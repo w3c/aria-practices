@@ -24,11 +24,14 @@ var CarouselTablist = function (node) {
 
   /* State properties */
   this.forcePlay = false; // set once the user activates the play/pause button
-  this.playState = true; // state of the play/pause button
+  this.playState = false; // state of the play/pause button
   this.rotate = true; // state of rotation
   this.timeInterval = 5000; // length of slide rotation in ms
   this.currentIndex = 0; // index of current slide
   this.slideTimeout = null; // save reference to setTimeout
+
+  /* URL params */
+  var urlParams = new URLSearchParams(location.search);
 
   // initialize Centering of tab controls
 
@@ -77,30 +80,28 @@ var CarouselTablist = function (node) {
   var elem = document.querySelector('.carousel-tablist .controls button.rotation');
   if (elem) {
     this.pauseButtonNode = elem;
-    this.pauseButtonNode.classList.add('pause');
-    this.pauseButtonNode.setAttribute('aria-label', this.pauseLabel);
+    this.pauseButtonNode.classList.add('play');
+    this.pauseButtonNode.setAttribute('aria-label', this.playLabel);
     this.pauseButtonNode.addEventListener('click', this.handlePauseButtonClick.bind(this));
   }
 
   this.domNode.addEventListener('mouseover', this.handleMouseOver.bind(this));
   this.domNode.addEventListener('mouseout', this.handleMouseOut.bind(this));
 
-  // Start rotation
-  this.rotateSlides(false);
-
-  // If URL contains text "paused", carousel is initially paused
-  if (location.href.toLowerCase().indexOf('paused') > 0) {
-    this.playState = false;
-    this.updateRotation();
-    this.updatePlayState(false);
+  // If the URL contains paused=false, play by default
+  if (urlParams.get('paused') === 'false') {
+    this.updatePlayState(true);
+    this.rotateSlides(false);
   }
 
-  // If URL contains text "noplay", carousel is disabled from autorotation
-  if (location.href.toLowerCase().indexOf('noplay') > 0) {
-    this.playState = false;
-    this.updateRotation();
-    this.updatePlayState(false);
-    this.pauseButtonNode.hidden = true;
+  // If the URL contains norotate=true, carousel is disabled from autorotation
+  if (urlParams.get('norotate') === 'true') {
+    this.disableRotation(true);
+  }
+
+  // If the URL does not contain moreaccessible=true, remove accessible styling
+  if (urlParams.get('moreaccessible') === 'false') {
+    this.setAccessibleStyling(false);
   }
 
   // Center Tablist Controls
@@ -110,6 +111,24 @@ var CarouselTablist = function (node) {
     window.addEventListener('resize', this.centerTablistControls.bind(this));
   }
 
+}
+
+/* Public function to disable or enable rotation */
+CarouselTablist.prototype.disableRotation = function(disable) {
+  if (disable) {
+    this.updatePlayState(false);
+  }
+  this.pauseButtonNode.hidden = disable;
+}
+
+/* Public function to update controls/caption styling */
+CarouselTablist.prototype.setAccessibleStyling = function(accessible) {
+  if (accessible) {
+    this.domNode.classList.add('carousel-tablist-moreaccessible');
+  }
+  else {
+    this.domNode.classList.remove('carousel-tablist-moreaccessible');
+  }
 }
 
 CarouselTablist.prototype.centerTablistControls = function () {
@@ -339,13 +358,52 @@ CarouselTablist.prototype.handleTabpanelFocusOut = function () {
   this.updateRotation();
 }
 
-/* Iniitalize Carousel Tablists */
+/* Iniitalize Carousel Tablists and options */
 
 window.addEventListener('load', function () {
-  var carousels = document.querySelectorAll('.carousel-tablist');
+  var carouselEls = document.querySelectorAll('.carousel-tablist');
+  var carousels = [];
 
-  carousels.forEach(function (node) {
-    new CarouselTablist(node);
+  carouselEls.forEach(function (node) {
+    carousels.push(new CarouselTablist(node));
+  });
+
+  var options = document.querySelectorAll('.carousel-options input[type=checkbox]');
+  var defaults = {
+    moreaccessible: 'true',
+    paused: 'true',
+    norotate: 'false'
+  };
+  var urlParams = new URLSearchParams(location.search);
+
+  // set checkboxes based on URL
+  options.forEach(function(option) {
+    var checked = urlParams.get(option.value);
+    checked = !!checked ? checked : defaults[option.value];
+    option.checked = checked === 'true';
+
+    // add change event
+    var updateEvent;
+    switch(option.value) {
+      case 'moreaccessible':
+        updateEvent = 'setAccessibleStyling';
+        break;
+      case 'norotate':
+        updateEvent = 'disableRotation';
+        break;
+    }
+
+    option.addEventListener('change', function(event) {
+      urlParams.set(event.target.value, `${event.target.checked}`);
+      window.history.replaceState(null, '', `${window.location.pathname}?${urlParams}`)
+      console.log(`${window.location.pathname}?${urlParams}`);
+
+      if (updateEvent) {
+        carousels.forEach(function (carousel) {
+          carousel[updateEvent](event.target.checked);
+        });
+      }
+    });
   });
 }, false);
 
