@@ -88,8 +88,9 @@ var CarouselTablist = function (node) {
   this.domNode.addEventListener('mouseover', this.handleMouseOver.bind(this));
   this.domNode.addEventListener('mouseout', this.handleMouseOut.bind(this));
 
-  // If the URL contains paused=false, play by default
-  if (urlParams.get('paused') === 'false') {
+  // If the URL contains paused=false, play by default unless reduced motion is set
+  var hasReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (urlParams.get('paused') === 'false' && !hasReducedMotion.matches) {
     this.updatePlayState(true);
     this.rotateSlides(false);
   }
@@ -395,8 +396,7 @@ window.addEventListener('load', function () {
 
     option.addEventListener('change', function(event) {
       urlParams.set(event.target.value, `${event.target.checked}`);
-      window.history.replaceState(null, '', `${window.location.pathname}?${urlParams}`)
-      console.log(`${window.location.pathname}?${urlParams}`);
+      window.history.replaceState(null, '', `${window.location.pathname}?${urlParams}`);
 
       if (updateEvent) {
         carousels.forEach(function (carousel) {
