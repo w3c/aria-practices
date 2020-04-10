@@ -40,7 +40,7 @@ Carousel.prototype.init = function () {
 
   items = this.domNode.querySelectorAll('.carousel-item');
 
-  for (var i = 0; i < items.length; i++) {
+  for (i = 0; i < items.length; i++) {
     item = new CarouselItem(items[i], this);
 
     item.init();
@@ -65,7 +65,7 @@ Carousel.prototype.init = function () {
 
   elems = document.querySelectorAll('.carousel .controls button');
 
-  for (var i = 0; i < elems.length; i++) {
+  for (i = 0; i < elems.length; i++) {
     elem = elems[i];
 
     if (elem.classList.contains('rotation')) {
