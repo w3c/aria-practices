@@ -135,7 +135,7 @@ DatePicker.prototype.updateGrid = function () {
 
   var d = new Date(firstDayOfMonth);
 
-  for (i = 0; i < this.days.length; i++) {
+  for (var i = 0; i < this.days.length; i++) {
     flag = d.getMonth() != fd.getMonth();
     this.days[i].updateDay(flag, d, this.isSameDay(d, this.selectedDay));
     d.setDate(d.getDate() + 1);
@@ -575,5 +575,3 @@ DatePicker.prototype.setMessage = function (str) {
     this.lastMessage = str;
   }
 };
-
-

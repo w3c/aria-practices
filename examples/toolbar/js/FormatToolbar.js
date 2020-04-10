@@ -54,7 +54,7 @@ FormatToolbar.prototype.init = function () {
   items            = this.domNode.querySelectorAll('.item');
 
 
-  for (i = 0; i < items.length; i++) {
+  for (var i = 0; i < items.length; i++) {
 
     toolbarItem = new FormatToolbarItem(items[i], this);
     toolbarItem.init();
@@ -73,7 +73,7 @@ FormatToolbar.prototype.init = function () {
 
   var spinButtons = this.domNode.querySelectorAll('[role=spinbutton]');
 
-  for (i = 0; i < spinButtons.length; i++) {
+  for (var i = 0; i < spinButtons.length; i++) {
     var s = new SpinButton(spinButtons[i], this);
     s.init();
   }
