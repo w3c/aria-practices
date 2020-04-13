@@ -489,35 +489,39 @@
         In most implementations, rotation automatically starts when the page loads, and it may also automatically stop once all the slides have been displayed.
         While a slide may contain any type of content, image carousels where each slide contains nothing more than a single image are common.  In additon to images, carousels often contain content that is overlayed on top of the image, including links, titles, short descriptions and carousel controls.   
       </p>
-      <h4>Rotation Control</h4>.
-      <p>
-        Ensuring all users can easily control and are not adversely effected by slide rotation is an essential aspect of making carousels accessible.
-        For instance, the screen reader experience can be confusing and disorienting if slides that are not visible on screen are incorrectly hidden, e.g., displayed off-screen.
-        Similarly, if slides rotate automatically and a screen reader user is not aware of the rotation, the user may read an element on slide one, execute the screen reader command for next element, and, instead of hearing the next element on slide one,  hear an element from slide 2 without any knowledge that the element just announced is from an entirely new context.
-      </p>
-      <p>Features needed to provide sufficient rotation control include:</p>
-      <ul>
-        <li>Buttons for displaying the previous and next slides.</li>
-        <li>Optionally, a control, or group of controls, for choosing a specific slide to display. For example, slide picker controls can be marked up as tabs in a tablist with the slide represented by a tabpanel element.</li>
-        <li>If the carousel can automatically rotate, it also:
-          <ul>
-            <li>Has a button for stopping and restarting rotation. This is particularly important for supporting assistive technologies operating in a mode that does not move either keyboard focus or the mouse.</li>
-            <li>Stops rotating when keyboard focus enters the carousel, and does not resume until focus leaves the carousel, including slide content.</li>
-            <li>Stops rotating whenever the mouse is hovering over the carousel.</li>
-          </ul>
-        </li>
-        <li>Carousels that do not rotate automatically are inheriently more accessible, since users have more control over slide navigation.</li> 
-      </ul>
+      <section class="notoc">
+        <h4>Rotation Control</h4>.
+        <p>
+          Ensuring all users can easily control and are not adversely effected by slide rotation is an essential aspect of making carousels accessible.
+          For instance, the screen reader experience can be confusing and disorienting if slides that are not visible on screen are incorrectly hidden, e.g., displayed off-screen.
+          Similarly, if slides rotate automatically and a screen reader user is not aware of the rotation, the user may read an element on slide one, execute the screen reader command for next element, and, instead of hearing the next element on slide one,  hear an element from slide 2 without any knowledge that the element just announced is from an entirely new context.
+        </p>
+        <p>Features needed to provide sufficient rotation control include:</p>
+        <ul>
+          <li>Buttons for displaying the previous and next slides.</li>
+          <li>Optionally, a control, or group of controls, for choosing a specific slide to display. For example, slide picker controls can be marked up as tabs in a tablist with the slide represented by a tabpanel element.</li>
+          <li>If the carousel can automatically rotate, it also:
+            <ul>
+              <li>Has a button for stopping and restarting rotation. This is particularly important for supporting assistive technologies operating in a mode that does not move either keyboard focus or the mouse.</li>
+              <li>Stops rotating when keyboard focus enters the carousel, and does not resume until focus leaves the carousel, including slide content.</li>
+              <li>Stops rotating whenever the mouse is hovering over the carousel.</li>
+            </ul>
+          </li>
+          <li>Carousels that do not rotate automatically are inheriently more accessible, since users have more control over slide navigation.</li> 
+        </ul>
+      </section>  
 
-      <h4>Color Contrast</h4>.
+      <section class="notoc">
+        <h4>Color Contrast</h4>.
 
-      <p>The placement of controls and content on top of the images effects the ability of people with visual impairments to be able to identify the controls and to read text content.  To ensuring all users can idenitfy carousel controls and the text content associated with each slide requires the author to ensure sufficient color contrast.   Without sufficient color contrast some users will not be able to operate the carousel controls or read the text content of a slide.</p>
+        <p>The placement of controls and content on top of the images effects the ability of people with visual impairments to be able to identify the controls and to read text content.  To ensuring all users can idenitfy carousel controls and the text content associated with each slide requires the author to ensure sufficient color contrast.   Without sufficient color contrast some users will not be able to operate the carousel controls or read the text content of a slide.</p>
 
-      <p>Features needed to provide sufficient color contrast of text content include:</p>
-      <ul>
-        <li>When carousel content is overlayed on top of images, ensure the background color of the content provides sufficient color contrast with text and carousel controls.</li>
-        <li>An alternative to content on top of the image is to move content to before and/or after the image.  The text and controls are easier to identify when outside the image and the surrounding background is more consistent and not dependent on the image content.</li>
-      </ul>
+        <p>Features needed to provide sufficient color contrast of text content include:</p>
+        <ul>
+          <li>When carousel content is overlayed on top of images, ensure the background color of the content provides sufficient color contrast with text and carousel controls.</li>
+          <li>An alternative to content on top of the image is to move content to before and/or after the image.  The text and controls are easier to identify when outside the image and the surrounding background is more consistent and not dependent on the image content.</li>
+        </ul>
+      </section>
 
       <section class="notoc">
         <h4>Examples</h4>
