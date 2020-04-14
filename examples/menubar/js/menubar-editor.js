@@ -45,10 +45,6 @@ MenubarEditor.prototype.getMenuitems = function(domNode) {
       flag = true;
       role = node.getAttribute('role');
 
-      if (role) {
-        role = role.trim().toLowerCase();
-      }
-
       switch (role) {
         case 'menu':
           node.tabIndex = -1;
