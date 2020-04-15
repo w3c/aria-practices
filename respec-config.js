@@ -1,17 +1,12 @@
 var respecConfig = {
   // Embed RDFa data in the output.
   doRDFa: '1.2',
-  includePermalinks: true,
-  permalinkEdge: true,
-  permalinkHide: false,
   // Specification status (e.g., WD, LC, NOTE, etc.). If in doubt use ED.
   specStatus: 'ED',
   // crEnd: "2012-04-30",
   // perEnd: "2013-07-23",
   // publishDate: "2013-08-22",
   noRecTrack: true,
-  diffTool: 'http://www.aptest.com/standards/htmldiff/htmldiff.pl',
-  license: 'w3c-software-doc',
 
   // The specifications short name, as in http://www.w3.org/TR/short-name/
   shortName: 'wai-aria-practices-1.2',
@@ -72,19 +67,19 @@ var respecConfig = {
     company: 'Inclusive Design Research Centre, OCAD University',
     companyURI: 'http://idrc.ocad.ca/',
     w3cid: 42279,
-    note: 'Editor until October 2014'
+    retiredDate: '2014-10-01'
   }, {
     name: 'Lisa Pappas',
     company: 'SAS',
     companyURI: 'http://www.sas.com/',
     w3cid: 41725,
-    note: 'Editor until October 2009'
+    retiredDate: '2009-10-01'
   }, {
     name: 'Rich Schwerdtfeger',
     company: 'IBM Corporation',
     companyURI: 'http://ibm.com/',
     w3cid: 2460,
-    note: 'Editor until October 2014'
+    retiredDate: '2014-10-01'
   }],
 
   // Authors, add as many as you like.
@@ -160,8 +155,5 @@ var respecConfig = {
   // If in doubt ask your friendly neighbourhood Team Contact.
   wgPatentURI: 'https://www.w3.org/2004/01/pp-impl/83726/status',
   maxTocLevel: 4,
-
-  localBiblio: biblio,
-
   preProcess: [ linkCrossReferences ]
 };
