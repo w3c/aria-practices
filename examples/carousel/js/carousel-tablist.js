@@ -104,14 +104,6 @@ var CarouselTablist = function (node) {
   if (urlParams.get('moreaccessible') === 'false') {
     this.setAccessibleStyling(false);
   }
-
-  // Center Tablist Controls
-
-  if (this.tablistNode.style.textAlign != 'center') {
-    this.centerTablistControls();
-    window.addEventListener('resize', this.centerTablistControls.bind(this));
-  }
-
 }
 
 /* Public function to disable or enable rotation */
@@ -132,13 +124,6 @@ CarouselTablist.prototype.setAccessibleStyling = function(accessible) {
   }
 }
 
-CarouselTablist.prototype.centerTablistControls = function () {
-  var width1 = this.tablistNode.getBoundingClientRect().width;
-  var width2 = this.containerNode.getBoundingClientRect().width;
-  var width3 = this.pauseButtonNode.getBoundingClientRect().width;
-  this.tablistNode.style.left = (((width2-width1)/2) - (3*width3/2)) +'px';
-}
-
 CarouselTablist.prototype.hideTabpanel = function (index) {
   var tabNode = this.tabNodes[index];
   var panelNode = this.tabpanelNodes[index];
@@ -151,7 +136,7 @@ CarouselTablist.prototype.hideTabpanel = function (index) {
   }
 }
 
-CarouselTablist.prototype.showTabpanel = function (index, moveFocus = false) {
+CarouselTablist.prototype.showTabpanel = function (index, moveFocus) {
   var tabNode = this.tabNodes[index];
   var panelNode = this.tabpanelNodes[index];
 
@@ -200,8 +185,8 @@ CarouselTablist.prototype.setSelectedToNextTab = function (moveFocus) {
   this.setSelectedTab(nextIndex, moveFocus);
 }
 
-CarouselTablist.prototype.rotateSlides = function (changeSlide = true) {
-  if (changeSlide) {
+CarouselTablist.prototype.rotateSlides = function (changeSlide) {
+  if (changeSlide !== false) {
     this.setSelectedToNextTab();
   }
 
@@ -380,7 +365,7 @@ window.addEventListener('load', function () {
   // set checkboxes based on URL
   options.forEach(function(option) {
     var checked = urlParams.get(option.value);
-    checked = !!checked ? checked : defaults[option.value];
+    checked = typeof checked === 'string' ? checked : defaults[option.value];
     option.checked = checked === 'true';
 
     // add change event
@@ -395,8 +380,8 @@ window.addEventListener('load', function () {
     }
 
     option.addEventListener('change', function(event) {
-      urlParams.set(event.target.value, `${event.target.checked}`);
-      window.history.replaceState(null, '', `${window.location.pathname}?${urlParams}`);
+      urlParams.set(event.target.value, event.target.checked + '');
+      window.history.replaceState(null, '', window.location.pathname + '?' + urlParams);
 
       if (updateEvent) {
         carousels.forEach(function (carousel) {

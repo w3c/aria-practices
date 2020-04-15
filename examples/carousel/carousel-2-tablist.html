@@ -67,8 +67,8 @@
       </ul>
 
       <section>
-        <h2 id="ex_label">Example</h2>
-        <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
+        <h2>Example View Options</h2>
+
         <fieldset class="carousel-options">
           <legend>Carousel Behavior Options</legend>
 
@@ -80,9 +80,9 @@
 
           <label for="rotation-paused">
             <input type="checkbox" id="rotation-paused" value="paused" aria-describedby="rotation-paused-desc" checked>
-            Auto-rotation is initially paused.
+            Auto-rotation is initially paused (reload needed).
           </label>
-          <p id="rotation-paused-desc">This option improves accessibility for users with visual impairments and people who are distracted by auto-rotation, but allows users to start auto-rotation using the start/stop button.</p>
+          <p id="rotation-paused-desc">This option controls whether the carousel is paused or playing on page load. The paused option improves accessibility for users with visual impairments and people who are distracted by auto-rotation, but allows users to start auto-rotation using the start/stop button.</p>
 
           <label for="rotation-disabled">
             <input type="checkbox" id="rotation-disabled" value="norotate" aria-describedby="rotation-disabled-desc">
@@ -90,6 +90,11 @@
           </label>
           <p id="rotation-disabled-desc">This option improves accessibility for users with visual impairments and people who are distracted by auto-rotation by disabling the auto-rotation feature and removing the start/stop button from the user interface.  Users can use the tablist to manually navigate through the slides.</p>
         </fieldset>
+      </section>
+
+      <section>
+        <h2 id="ex_label">Example</h2>
+        <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div id="ex1">
             <section id="myCarousel" class="carousel-tablist carousel-tablist-moreaccessible" aria-roledescription="carousel" aria-label="Highlighted television shows">
 
@@ -112,84 +117,86 @@
                     </svg>
                   </button>
 
-                  <div role="tablist" aria-label="Slides">
-                    <button id="carousel-tab-1"
-                            type="button"
-                            role="tab"
-                            aria-label="Slide 1"
-                            aria-selected="true"
-                            aria-controls="carousel-item-1">
-                      <svg width="34" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                        <circle class="border" cx="16" cy="15" r="10" />
-                        <circle class="tab-background" cx="16" cy="15" r="8" />
-                        <circle class="tab" cx="16" cy="15" r="6" />
-                      </svg>
-                    </button>
-                    <button id="carousel-tab-2"
-                            type="button"
-                            role="tab"
-                            tabindex="-1"
-                            aria-label="Slide 2"
-                            aria-selected="false"
-                            aria-controls="carousel-item-2">
-                      <svg width="34" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                        <circle class="border" cx="16" cy="15" r="10" />
-                        <circle class="tab-background" cx="16" cy="15" r="8" />
-                        <circle class="tab" cx="16" cy="15" r="6" />
-                      </svg>
-                    </button>
-                    <button id="carousel-tab-3"
-                            type="button"
-                            role="tab"
-                            tabindex="-1"
-                            aria-label="Slide 3"
-                            aria-selected="false"
-                            aria-controls="carousel-item-3">
-                      <svg width="34" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                        <circle class="border" cx="16" cy="15" r="10" />
-                        <circle class="tab-background" cx="16" cy="15" r="8" />
-                        <circle class="tab" cx="16" cy="15" r="6" />
-                      </svg>
-                    </button>
-                    <button id="carousel-tab-4"
-                            type="button"
-                            role="tab"
-                            tabindex="-1"
-                            aria-label="Slide 4"
-                            aria-selected="false"
-                            aria-controls="carousel-item-4">
-                      <svg width="34" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                        <circle class="border" cx="16" cy="15" r="10" />
-                        <circle class="tab-background" cx="16" cy="15" r="8" />
-                        <circle class="tab" cx="16" cy="15" r="6" />
-                      </svg>
-                    </button>
-                    <button id="carousel-tab-5"
-                            type="button"
-                            role="tab"
-                            tabindex="-1"
-                            aria-label="Slide 5"
-                            aria-selected="false"
-                            aria-controls="carousel-item-5">
-                      <svg width="34" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                        <circle class="border" cx="16" cy="15" r="10" />
-                        <circle class="tab-background" cx="16" cy="15" r="8" />
-                        <circle class="tab" cx="16" cy="15" r="6" />
-                      </svg>
-                    </button>
-                    <button id="carousel-tab-6"
-                            type="button"
-                            role="tab"
-                            tabindex="-1"
-                            aria-label="Slide 6"
-                            aria-selected="false"
-                            aria-controls="carousel-item-6">
-                      <svg width="34" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                        <circle class="border" cx="16" cy="15" r="10" />
-                        <circle class="tab-background" cx="16" cy="15" r="8" />
-                        <circle class="tab" cx="16" cy="15" r="6" />
-                      </svg>
-                    </button>
+                  <div class="tab-wrapper">
+                    <div role="tablist" aria-label="Slides">
+                      <button id="carousel-tab-1"
+                              type="button"
+                              role="tab"
+                              aria-label="Slide 1"
+                              aria-selected="true"
+                              aria-controls="carousel-item-1">
+                        <svg width="34" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                          <circle class="border" cx="16" cy="15" r="10" />
+                          <circle class="tab-background" cx="16" cy="15" r="8" />
+                          <circle class="tab" cx="16" cy="15" r="6" />
+                        </svg>
+                      </button>
+                      <button id="carousel-tab-2"
+                              type="button"
+                              role="tab"
+                              tabindex="-1"
+                              aria-label="Slide 2"
+                              aria-selected="false"
+                              aria-controls="carousel-item-2">
+                        <svg width="34" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                          <circle class="border" cx="16" cy="15" r="10" />
+                          <circle class="tab-background" cx="16" cy="15" r="8" />
+                          <circle class="tab" cx="16" cy="15" r="6" />
+                        </svg>
+                      </button>
+                      <button id="carousel-tab-3"
+                              type="button"
+                              role="tab"
+                              tabindex="-1"
+                              aria-label="Slide 3"
+                              aria-selected="false"
+                              aria-controls="carousel-item-3">
+                        <svg width="34" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                          <circle class="border" cx="16" cy="15" r="10" />
+                          <circle class="tab-background" cx="16" cy="15" r="8" />
+                          <circle class="tab" cx="16" cy="15" r="6" />
+                        </svg>
+                      </button>
+                      <button id="carousel-tab-4"
+                              type="button"
+                              role="tab"
+                              tabindex="-1"
+                              aria-label="Slide 4"
+                              aria-selected="false"
+                              aria-controls="carousel-item-4">
+                        <svg width="34" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                          <circle class="border" cx="16" cy="15" r="10" />
+                          <circle class="tab-background" cx="16" cy="15" r="8" />
+                          <circle class="tab" cx="16" cy="15" r="6" />
+                        </svg>
+                      </button>
+                      <button id="carousel-tab-5"
+                              type="button"
+                              role="tab"
+                              tabindex="-1"
+                              aria-label="Slide 5"
+                              aria-selected="false"
+                              aria-controls="carousel-item-5">
+                        <svg width="34" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                          <circle class="border" cx="16" cy="15" r="10" />
+                          <circle class="tab-background" cx="16" cy="15" r="8" />
+                          <circle class="tab" cx="16" cy="15" r="6" />
+                        </svg>
+                      </button>
+                      <button id="carousel-tab-6"
+                              type="button"
+                              role="tab"
+                              tabindex="-1"
+                              aria-label="Slide 6"
+                              aria-selected="false"
+                              aria-controls="carousel-item-6">
+                        <svg width="34" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                          <circle class="border" cx="16" cy="15" r="10" />
+                          <circle class="tab-background" cx="16" cy="15" r="8" />
+                          <circle class="tab" cx="16" cy="15" r="6" />
+                        </svg>
+                      </button>
+                    </div>
                   </div>
                 </div>
 
