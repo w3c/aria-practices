@@ -33,11 +33,6 @@
 
 /* More like bootstrap, less accessible */
 
-.carousel-tablist .playing .carousel-item .carousel-caption,
-.carousel-tablist .playing .carousel-item .carousel-image a img {
-  cursor: url('../images/paused-pointer.svg'), auto;
-}
-
 .carousel-tablist .carousel-item .carousel-caption a {
   cursor: pointer;
 }
@@ -50,6 +45,8 @@
 
 .carousel-tablist .carousel-item .carousel-caption a {
   text-decoration: underline;
+  color: #fff;
+  font-weight: 600;
 }
 
 .carousel-tablist .carousel-item .carousel-caption a,
@@ -60,11 +57,6 @@
   background-color: rgba(0, 0, 0, 0.65);
   border-radius: 5px;
   border: 0 solid transparent;
-}
-
-.carousel-tablist .carousel-item .carousel-caption h3 a {
-  color: #fff;
-  font-weight: 600;
 }
 
 .carousel-tablist .carousel-item .carousel-caption a:hover,
@@ -100,15 +92,26 @@
 /* Shared CSS for Pause and Tab Controls */
 
 .carousel-tablist .controls {
+  box-sizing: border-box;
   position: absolute;
   top: 1em;
-  left: 1em;
   z-index: 10;
+  display: flex;
+  width: 100%;
+  padding: 0.25em 1.25em 0;
+}
+
+.carousel-tablist .tab-wrapper {
+  flex: 1 1 auto;
+  height: 30px;
+  text-align: center;
 }
 
 /* SVG Controls */
 
-.carousel-tablist .controls button.rotation {
+.carousel-tablist .rotation {
+  flex: 0 0 auto;
+  height: 30px;
   padding: 0;
   background-color: transparent;
   border: none;
@@ -116,73 +119,66 @@
   z-index: 10;
 }
 
-.carousel-tablist .controls button svg rect.background {
+.carousel-tablist .svg-play .background {
   stroke: black;
   fill: black;
   stroke-width: 1px;
   opacity: 0.6;
 }
 
-.carousel-tablist .controls button svg rect.border {
+.carousel-tablist .svg-play .border {
   fill: transparent;
   stroke: transparent;
   stroke-width: 2px;
 }
 
-.carousel-tablist .controls button.rotation svg polygon.pause {
+.carousel-tablist .svg-play .pause {
   stroke-width: 4;
   fill: transparent;
   stroke: transparent;
 }
 
-.carousel-tablist .controls button.rotation svg polygon.play {
+.carousel-tablist .svg-play .play {
   stroke-width: 1;
   fill: transparent;
   stroke: transparent;
 }
 
-.carousel-tablist .controls button.rotation.pause svg polygon.pause,
-.carousel-tablist .controls button.rotation.play svg polygon.play {
+.carousel-tablist .pause .svg-play .pause,
+.carousel-tablist .play .svg-play .play {
   fill: white;
   stroke: white;
 }
 
-.carousel-tablist .controls button.rotation:focus rect.background,
-.carousel-tablist .controls button.rotation:hover rect.background,
-.carousel-tablist .controls button.rotation:focus rect.border,
-.carousel-tablist .controls button.rotation:hover rect.border {
+.carousel-tablist .rotation:focus .svg-play .background,
+.carousel-tablist .rotation:hover .svg-play .background,
+.carousel-tablist .rotation:hover .svg-play .border {
   fill: #005a9c;
   stroke: #005a9c;
   opacity: 1;
 }
 
-.carousel-tablist .controls button.rotation:focus rect.border {
+.carousel-tablist .rotation:focus .svg-play .border {
   stroke: white;
 }
 
 /* Shared CSS for Tabs */
 
 .carousel-tablist [role="tablist"] {
-  position: relative;
-  float: right;
-  top: -2px;
-}
-
-.carousel-tablist [role="tablist"] .border {
-  display: inline-block;
+  box-sizing: border-box;
   border: 0 transparent solid;
   border-radius: 13px;
+  display: inline-block;
   padding-top: 2px;
   height: 30px;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.65);
 }
 
-.carousel-tablist [role="tablist"] .border.focus {
+.carousel-tablist [role="tablist"].focus {
   border-width: 2px;
   border-color: white;
   padding-top: 0;
   background-color: #005a9c;
-  height: 26px;
 }
 
 .carousel-tablist [role="tab"] {
@@ -230,7 +226,7 @@
   stroke: #005a9c;
 }
 
-.carousel-tablist [role="tablist"] .focus circle.tab-background {
+.carousel-tablist [role="tablist"].focus circle.tab-background {
   stroke: #005a9c;
   fill: #005a9c;
 }
@@ -250,4 +246,114 @@
 
 .carousel-tablist [role="tab"][aria-selected="true"]:hover circle.tab {
   fill: white;
+}
+
+/* More accessible carousel styles, with caption and controls above/below image */
+
+.carousel-tablist-moreaccessible {
+  padding: 0;
+  margin: 0;
+  position: relative;
+  border: #eee solid 4px;
+  border-radius: 5px;
+}
+
+.carousel-tablist-moreaccessible .carousel-item {
+  padding: 0;
+  margin: 0;
+  max-height: none;
+}
+
+.carousel-tablist-moreaccessible .carousel-image {
+  margin: 0;
+  padding: 1px;
+  border: 4px solid transparent;
+}
+
+.carousel-tablist-moreaccessible .carousel-items.focus {
+  outline: none;
+}
+
+.carousel-tablist-moreaccessible .carousel-items.focus .carousel-image {
+  border-color: #005a9c;
+}
+
+.carousel-tablist-moreaccessible .carousel-image a[href],
+.carousel-tablist-moreaccessible .carousel-image a[href]:focus {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+/* More accessible caption styling */
+
+.carousel-tablist-moreaccessible .carousel-item .carousel-caption {
+  position: static;
+  padding: 0;
+  margin: 0;
+  height: 60px;
+  color: black;
+}
+
+.carousel-tablist-moreaccessible .carousel-item .carousel-caption a {
+  display: inline-block;
+  margin: 0;
+  padding: 6px;
+  color: black;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+}
+
+.carousel-tablist-moreaccessible .carousel-item .carousel-caption span.contrast,
+.carousel-tablist-moreaccessible .carousel-item .carousel-caption span.contrast:hover {
+  background-color: transparent;
+}
+
+.carousel-tablist-moreaccessible .carousel-item .carousel-caption p {
+  padding: 0;
+  margin: 0;
+}
+
+.carousel-tablist-moreaccessible .carousel-item .carousel-caption h3 {
+  font-size: 1.1em;
+  padding: 0;
+  margin: 0;
+}
+
+.carousel-tablist-moreaccessible .carousel-item .carousel-caption a:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.carousel-tablist-moreaccessible .carousel-item .carousel-caption a:focus {
+  padding: 4px;
+  border: 2px solid #005a9c;
+  outline: 2px dotted transparent;
+}
+
+/* Shared CSS for Pause and Tab Controls */
+
+.carousel-tablist-moreaccessible .controls {
+  position: relative;
+  top: 0;
+  left: 0;
+  padding: 0.25em 0.25em 0;
+}
+
+/* Shared CSS for Tabs */
+
+.carousel-tablist-moreaccessible [role="tab"] {
+  z-index: 20;
+}
+
+.carousel-tablist-moreaccessible [role="tab"] circle.border {
+  z-index: 14;
+}
+
+.carousel-tablist-moreaccessible [role="tab"] circle.tab {
+  z-index: 18;
+}
+
+.carousel-tablist-moreaccessible [role="tab"] circle.tab-background {
+  z-index: 16;
 }

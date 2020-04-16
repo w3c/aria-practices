@@ -7,19 +7,13 @@
     <!--  Core js and css shared by all examples; do not modify when using this template. -->
     <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
     <link rel="stylesheet" href="../css/core.css">
+    <link rel="stylesheet" href="css/carousel-2-tablist.css">
     <script src="../js/examples.js"></script>
     <script src="../js/highlight.pack.js"></script>
     <script src="../js/app.js"></script>
 
     <!--  css for this example. -->
     <script type="text/javascript">
-      var stylesheet = 'css/carousel-2-tablist.css';
-      if (location.href.indexOf('moreaccessible') > 0) {
-        console.log('loaded more accessible');
-        stylesheet = 'css/carousel-2-tablist-more-accessible.css';
-      }
-      document.write('<link rel="stylesheet" type="text/css" href="' + stylesheet + '">');
-
 
       window.addEventListener('load', function() {
         var ac = document.getElementById('accessible');
@@ -74,28 +68,43 @@
 
       <section>
         <h2>Example View Options</h2>
-        <ul>
-          <li><a id="accessible" href="carousel-2-tablist.html">Tablist carousel controls and captions displayed on image</a>: This option is less accessible than the following options because the controls are harder to perceive and captions are more difficult to read with rotating images behind them.</li>
-          <li><a id="moreaccessible" href="carousel-2-tablist.html?moreaccessible">Tablist carousel controls and captions displayed above and below the image</a>: This option is preferable because controls and captions are easier to perceive, especially for people with visual impairments.</li>
-          <li><a id="moreaccessiblepaused" href="carousel-2-tablist.html?moreaccessiblepaused">Auto-rotation is initially paused</a>: This option improves accessibility for users with visual impairments and people who are distracted by auto-rotation, but allows users to start auto-rotation using the start/stop button.</li>
-          <li><a id="moreaccessiblenoplay" href="carousel-2-tablist.html?moreaccessiblenoplay">Auto-rotation is disabled</a>: This option improves accessibility for users with visual impairments and people who are distracted by auto-rotation by disabling the auto-rotation feature and removing the start/stop button from the user interface.  Users can use the tablist to manually navigate through the slides.</li>
-        </ul>
+
+        <fieldset class="carousel-options">
+          <legend>Carousel Behavior Options</legend>
+
+          <label for="accessible-controls">
+            <input type="checkbox" id="accessible-controls" value="moreaccessible" aria-describedby="accessible-controls-desc" checked>
+            Tablist carousel controls and captions displayed over the image.
+          </label>
+          <p id="accessible-controls-desc">This option is less accessible than the following options because the controls are harder to perceive and captions are more difficult to read with rotating images behind them.</p>
+
+          <label for="rotation-paused">
+            <input type="checkbox" id="rotation-paused" value="paused" aria-describedby="rotation-paused-desc" checked>
+            Auto-rotation is initially paused (reload needed).
+          </label>
+          <p id="rotation-paused-desc">This option controls whether the carousel is paused or playing on page load. The paused option improves accessibility for users with visual impairments and people who are distracted by auto-rotation, but allows users to start auto-rotation using the start/stop button.</p>
+
+          <label for="rotation-disabled">
+            <input type="checkbox" id="rotation-disabled" value="norotate" aria-describedby="rotation-disabled-desc">
+            Auto-rotation is disabled.
+          </label>
+          <p id="rotation-disabled-desc">This option improves accessibility for users with visual impairments and people who are distracted by auto-rotation by disabling the auto-rotation feature and removing the start/stop button from the user interface.  Users can use the tablist to manually navigate through the slides.</p>
+        </fieldset>
       </section>
 
       <section>
         <h2 id="ex_label">Example</h2>
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div id="ex1">
-            <section id="myCarousel" class="carousel-tablist" aria-roledescription="carousel" aria-label="Highlighted television shows">
+            <section id="myCarousel" class="carousel-tablist carousel-tablist-moreaccessible" aria-roledescription="carousel" aria-label="Highlighted television shows">
 
               <div class="carousel-inner">
 
                 <div class="controls">
 
-                  <button class="rotation pause"
-                          type="button"
-                          aria-label="Stop automatic slide show">
-                    <svg width="42" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                  <button class="rotation"
+                          type="button">
+                    <svg width="42" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg" class="svg-play">
                       <rect class="background" x="2" y="2" rx="5" ry="5" width="38" height="24"/>
                       <rect class="border" x="4" y="4" rx="5" ry="5" width="34" height="20"/>
 
@@ -108,9 +117,8 @@
                     </svg>
                   </button>
 
-                  <div role="tablist"
-                       aria-label="Slides">
-                    <div class="border">
+                  <div class="tab-wrapper">
+                    <div role="tablist" aria-label="Slides">
                       <button id="carousel-tab-1"
                               type="button"
                               role="tab"
