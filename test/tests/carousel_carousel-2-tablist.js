@@ -223,13 +223,13 @@ ariaTest('slide container have aria-live initially set to off', exampleFile, 'ca
 
   await assertAttributeValues(t, ex.slideContainerSelector, 'aria-live', 'polite');
 
-  // Move focus to pause-start button start rotation, and the aria-live should change to 'off' again
-  await t.context.session.findElement(By.css(ex.pausePlayButtonSelector)).click();
-  await assertAttributeValues(t, ex.slideContainerSelector, 'aria-live', 'off');
-
-  // Click the pause button, and the aria-selected should change to 'polite' again
+  // Move focus to pause-start button start rotation, and the aria-live should change to 'polite' again
   await t.context.session.findElement(By.css(ex.pausePlayButtonSelector)).click();
   await assertAttributeValues(t, ex.slideContainerSelector, 'aria-live', 'polite');
+
+  // Click the pause button, and the aria-selected should change to 'off' again
+  await t.context.session.findElement(By.css(ex.pausePlayButtonSelector)).click();
+  await assertAttributeValues(t, ex.slideContainerSelector, 'aria-live', 'off');
 });
 
 

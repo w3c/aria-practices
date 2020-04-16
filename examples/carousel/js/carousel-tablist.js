@@ -185,6 +185,7 @@ CarouselTablist.prototype.resetTimeout = function() {
 }
 
 CarouselTablist.prototype.updateRotation = function() {
+
   var shouldRotate = !this.hasFocus && !this.hasHover && this.playState;
   if (shouldRotate === this.rotate) {
     return;
@@ -300,6 +301,7 @@ CarouselTablist.prototype.handleTabClick = function (event) {
 
 CarouselTablist.prototype.handleTabFocus = function () {
   this.tablistNode.classList.add('focus');
+  this.liveRegionNode.setAttribute('aria-live', 'polite');
 
   if (!this.forcePlay) {
     this.hasFocus = true;
@@ -309,6 +311,9 @@ CarouselTablist.prototype.handleTabFocus = function () {
 
 CarouselTablist.prototype.handleTabBlur = function () {
   this.tablistNode.classList.remove('focus');
+  if (this.playState) {
+    this.liveRegionNode.setAttribute('aria-live', 'off');
+  }
 
   if (!this.forcePlay) {
     this.hasFocus = false;
