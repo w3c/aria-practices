@@ -10,7 +10,12 @@
 }
 
 .carousel-tablist .carousel-items {
-  border: solid 2px transparent;
+  padding: 5px;
+}
+
+.carousel-tablist .carousel-items.focus  {
+  padding: 2px;
+  border: dotted 3px #005a9c;
 }
 
 .carousel-tablist .carousel-item {
@@ -22,26 +27,21 @@
   width: 100%;
 }
 
-.carousel-tablist .carousel-items.focus {
-  border-color: white;
-  outline: solid 3px #005a9c;
-}
-
 .carousel-tablist .carousel-item.active {
   display: block;
 }
 
 /* More like bootstrap, less accessible */
 
-.carousel-tablist .carousel-item .carousel-caption a {
-  cursor: pointer;
-}
-
-
 .carousel-tablist .carousel-item .carousel-image a img {
   height: 100%;
   width: 100%;
 }
+
+.carousel-tablist .carousel-item .carousel-caption a {
+  cursor: pointer;
+}
+
 
 .carousel-tablist .carousel-item .carousel-caption a {
   text-decoration: underline;
@@ -66,10 +66,9 @@
 
 .carousel-tablist .carousel-item .carousel-caption a:focus {
   padding: 4px;
-  border-width: 2px;
+  border-width: 2px dotted #fff;
   background-color: rgba(0, 0, 0, 1);
-  border-color: #fff;
-  outline: 2px dotted transparent;
+  outline: none;
 }
 
 .carousel-tablist .carousel-item .carousel-caption p {
@@ -223,7 +222,7 @@
 .carousel-tablist [role="tab"]:focus circle.border {
   display: block;
   fill: #005a9c;
-  stroke: #005a9c;
+  stroke: #ffffff;
 }
 
 .carousel-tablist [role="tablist"].focus circle.tab-background {
@@ -258,34 +257,33 @@
   border-radius: 5px;
 }
 
+
+.carousel-tablist-moreaccessible .carousel-items,
+.carousel-tablist-moreaccessible .carousel-items.focus  {
+  padding: 0px;
+  border: none;
+}
+
+.carousel-tablist-moreaccessible .carousel-items .carousel-image a {
+  display: block;
+  margin: 0;
+  padding: 5px;
+  text-decoration: none;
+  border: none;
+}
+
+.carousel-tablist-moreaccessible .carousel-items.focus .carousel-image a {
+  padding: 2px;
+  border: 3px dotted #005a9c;
+}
+
+/* More accessible caption styling */
+
 .carousel-tablist-moreaccessible .carousel-item {
   padding: 0;
   margin: 0;
   max-height: none;
 }
-
-.carousel-tablist-moreaccessible .carousel-image {
-  margin: 0;
-  padding: 1px;
-  border: 4px solid transparent;
-}
-
-.carousel-tablist-moreaccessible .carousel-items.focus {
-  outline: none;
-}
-
-.carousel-tablist-moreaccessible .carousel-items.focus .carousel-image {
-  border-color: #005a9c;
-}
-
-.carousel-tablist-moreaccessible .carousel-image a[href],
-.carousel-tablist-moreaccessible .carousel-image a[href]:focus {
-  padding: 0;
-  margin: 0;
-  border: none;
-}
-
-/* More accessible caption styling */
 
 .carousel-tablist-moreaccessible .carousel-item .carousel-caption {
   position: static;
@@ -304,6 +302,15 @@
   border: none;
   border-radius: 5px;
 }
+
+.carousel-tablist .carousel-item .carousel-caption a:focus {
+  padding: 4px;
+  border-width: 2px dotted #fff;
+  background-color: rgba(0, 0, 0, 1);
+  color: #fff;
+  outline: none;
+}
+
 
 .carousel-tablist-moreaccessible .carousel-item .carousel-caption span.contrast,
 .carousel-tablist-moreaccessible .carousel-item .carousel-caption span.contrast:hover {
@@ -327,8 +334,10 @@
 
 .carousel-tablist-moreaccessible .carousel-item .carousel-caption a:focus {
   padding: 4px;
-  border: 2px solid #005a9c;
-  outline: 2px dotted transparent;
+  border: 2px dotted #005a9c;
+  background-color: transparent;
+  color: black;
+  outline: none;
 }
 
 /* Shared CSS for Pause and Tab Controls */

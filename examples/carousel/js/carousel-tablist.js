@@ -80,30 +80,15 @@ var CarouselTablist = function (node) {
   var elem = document.querySelector('.carousel-tablist .controls button.rotation');
   if (elem) {
     this.pauseButtonNode = elem;
-    this.pauseButtonNode.classList.add('play');
-    this.pauseButtonNode.setAttribute('aria-label', this.playLabel);
     this.pauseButtonNode.addEventListener('click', this.handlePauseButtonClick.bind(this));
   }
+  // default is for images to rotate
+  this.updatePlayState(true);
+  this.rotateSlides(false);
 
   this.domNode.addEventListener('mouseover', this.handleMouseOver.bind(this));
   this.domNode.addEventListener('mouseout', this.handleMouseOut.bind(this));
 
-  // If the URL contains paused=false, play by default unless reduced motion is set
-  var hasReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  if (urlParams.get('paused') === 'false' && !hasReducedMotion.matches) {
-    this.updatePlayState(true);
-    this.rotateSlides(false);
-  }
-
-  // If the URL contains norotate=true, carousel is disabled from autorotation
-  if (urlParams.get('norotate') === 'true') {
-    this.disableRotation(true);
-  }
-
-  // If the URL does not contain moreaccessible=true, remove accessible styling
-  if (urlParams.get('moreaccessible') === 'false') {
-    this.setAccessibleStyling(false);
-  }
 }
 
 /* Public function to disable or enable rotation */
@@ -355,18 +340,18 @@ window.addEventListener('load', function () {
   });
 
   var options = document.querySelectorAll('.carousel-options input[type=checkbox]');
-  var defaults = {
-    moreaccessible: 'true',
-    paused: 'true',
-    norotate: 'false'
-  };
   var urlParams = new URLSearchParams(location.search);
 
-  // set checkboxes based on URL
+  // initialize example features based on
+  // default setting of the checkboxes and the parameters in the URL
+  // update checkboxes based on any corresponding URL parameters
   options.forEach(function(option) {
-    var checked = urlParams.get(option.value);
-    checked = typeof checked === 'string' ? checked : defaults[option.value];
-    option.checked = checked === 'true';
+    var checked = option.checked ? 'true' : 'false';
+
+    if (urlParams.has(option.value)) {
+      checked = urlParams.get(option.value);
+      option.checked = checked === 'true';
+    }
 
     // add change event
     var updateEvent;
@@ -374,11 +359,31 @@ window.addEventListener('load', function () {
       case 'moreaccessible':
         updateEvent = 'setAccessibleStyling';
         break;
+      case 'paused':
+        // effect is only useful when initializing page
+        if (option.checked) {
+          carousels.forEach(function (carousel) {
+            carousel.updatePlayState(false);
+          });
+        }
+        break;
       case 'norotate':
         updateEvent = 'disableRotation';
         break;
     }
 
+    // use current state of checkboxes to update URL and set options
+    carousels.forEach(function (carousel) {
+      if (option.checked) {
+        urlParams.set(option.value, option.checked + '');
+      }
+      window.history.replaceState(null, '', window.location.pathname + '?' + urlParams);
+      if (updateEvent) {
+        carousel[updateEvent](option.checked);
+      }
+    });
+
+    // initialize events to update the carousel features and URL when a checkbox state changes
     option.addEventListener('change', function(event) {
       urlParams.set(event.target.value, event.target.checked + '');
       window.history.replaceState(null, '', window.location.pathname + '?' + urlParams);

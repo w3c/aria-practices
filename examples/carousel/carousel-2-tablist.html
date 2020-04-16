@@ -12,30 +12,6 @@
     <script src="../js/highlight.pack.js"></script>
     <script src="../js/app.js"></script>
 
-    <!--  css for this example. -->
-    <script type="text/javascript">
-
-      window.addEventListener('load', function() {
-        var ac = document.getElementById('accessible');
-        if (location.href.indexOf('moreaccessible') > 0) {
-          ac = document.getElementById('moreaccessible');
-        }
-
-        if (location.href.indexOf('moreaccessiblepaused') > 0) {
-          ac = document.getElementById('moreaccessiblepaused');
-        }
-
-        if (location.href.indexOf('moreaccessiblenoplay') > 0) {
-          ac = document.getElementById('moreaccessiblenoplay');
-        }
-
-        if (ac) {
-          ac.setAttribute('aria-current', 'page');
-        }
-      });
-
-    </script>
-
     <script src="js/carousel-tablist.js" type="text/javascript"></script>
 
   </head>
@@ -67,28 +43,28 @@
       </ul>
 
       <section>
-        <h2>Example View Options</h2>
+        <h2>Example View and Rotation Options</h2>
 
         <fieldset class="carousel-options">
           <legend>Carousel Behavior Options</legend>
 
           <label for="accessible-controls">
-            <input type="checkbox" id="accessible-controls" value="moreaccessible" aria-describedby="accessible-controls-desc" checked>
-            Tablist carousel controls and captions displayed over the image.
+            <input type="checkbox" id="accessible-controls" value="moreaccessible" aria-describedby="accessible-controls-desc">
+            Tablist carousel controls and captions displayed before and/or after the image.
           </label>
-          <p id="accessible-controls-desc">This option is less accessible than the following options because the controls are harder to perceive and captions are more difficult to read with rotating images behind them.</p>
+          <p id="accessible-controls-desc">This option is more accessible than rendering controls and captions on top of the image, because the controls are harder to perceive and captions are more difficult to read with rotating images behind them.</p>
 
           <label for="rotation-paused">
-            <input type="checkbox" id="rotation-paused" value="paused" aria-describedby="rotation-paused-desc" checked>
+            <input type="checkbox" id="rotation-paused" value="paused" aria-describedby="rotation-paused-desc">
             Auto-rotation is initially paused (reload needed).
           </label>
-          <p id="rotation-paused-desc">This option controls whether the carousel is paused or playing on page load. The paused option improves accessibility for users with visual impairments and people who are distracted by auto-rotation, but allows users to start auto-rotation using the start/stop button.</p>
+          <p id="rotation-paused-desc">This option controls whether the carousel is paused or playing on page load. The paused option improves accessibility for users with visual impairments and people who are distracted or confused by auto-rotation, but allows users to start auto-rotation using the start/stop button.</p>
 
           <label for="rotation-disabled">
             <input type="checkbox" id="rotation-disabled" value="norotate" aria-describedby="rotation-disabled-desc">
             Auto-rotation is disabled.
           </label>
-          <p id="rotation-disabled-desc">This option improves accessibility for users with visual impairments and people who are distracted by auto-rotation by disabling the auto-rotation feature and removing the start/stop button from the user interface.  Users can use the tablist to manually navigate through the slides.</p>
+          <p id="rotation-disabled-desc">This option improves accessibility for users with visual impairments and people who are distracted or confused by auto-rotation by disabling the auto-rotation feature and removing the start/stop button from the user interface.  Users can use the tablist to manually navigate through the slides.</p>
         </fieldset>
       </section>
 
@@ -96,7 +72,7 @@
         <h2 id="ex_label">Example</h2>
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div id="ex1">
-            <section id="myCarousel" class="carousel-tablist carousel-tablist-moreaccessible" aria-roledescription="carousel" aria-label="Highlighted television shows">
+            <section id="myCarousel" class="carousel-tablist" aria-roledescription="carousel" aria-label="Highlighted television shows">
 
               <div class="carousel-inner">
 
@@ -106,7 +82,7 @@
                           type="button">
                     <svg width="42" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg" class="svg-play">
                       <rect class="background" x="2" y="2" rx="5" ry="5" width="38" height="24"/>
-                      <rect class="border" x="4" y="4" rx="5" ry="5" width="34" height="20"/>
+                      <rect class="border" stroke-dasharray="2,1" x="4" y="4" rx="5" ry="5" width="34" height="20"/>
 
                       <polygon class="pause" points="17 8 17 20"/>
 
@@ -126,7 +102,7 @@
                               aria-selected="true"
                               aria-controls="carousel-item-1">
                         <svg width="34" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                          <circle class="border" cx="16" cy="15" r="10" />
+                          <circle class="border" stroke-dasharray="2,1" cx="16" cy="15" r="10" />
                           <circle class="tab-background" cx="16" cy="15" r="8" />
                           <circle class="tab" cx="16" cy="15" r="6" />
                         </svg>
@@ -139,8 +115,8 @@
                               aria-selected="false"
                               aria-controls="carousel-item-2">
                         <svg width="34" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                          <circle class="border" cx="16" cy="15" r="10" />
-                          <circle class="tab-background" cx="16" cy="15" r="8" />
+                          <circle class="border" stroke-dasharray="2,1" cx="16" cy="15" r="10" />
+                          <circle class="tab-background" stroke-dasharray="2,1" cx="16" cy="15" r="8" />
                           <circle class="tab" cx="16" cy="15" r="6" />
                         </svg>
                       </button>
@@ -152,8 +128,8 @@
                               aria-selected="false"
                               aria-controls="carousel-item-3">
                         <svg width="34" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                          <circle class="border" cx="16" cy="15" r="10" />
-                          <circle class="tab-background" cx="16" cy="15" r="8" />
+                          <circle class="border" stroke-dasharray="2,1" cx="16" cy="15" r="10" />
+                          <circle class="tab-background" stroke-dasharray="2,1" cx="16" cy="15" r="8" />
                           <circle class="tab" cx="16" cy="15" r="6" />
                         </svg>
                       </button>
@@ -165,8 +141,8 @@
                               aria-selected="false"
                               aria-controls="carousel-item-4">
                         <svg width="34" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                          <circle class="border" cx="16" cy="15" r="10" />
-                          <circle class="tab-background" cx="16" cy="15" r="8" />
+                          <circle class="border" stroke-dasharray="2,1" cx="16" cy="15" r="10" />
+                          <circle class="tab-background" stroke-dasharray="2,2" cx="16" cy="15" r="8" />
                           <circle class="tab" cx="16" cy="15" r="6" />
                         </svg>
                       </button>
@@ -178,7 +154,7 @@
                               aria-selected="false"
                               aria-controls="carousel-item-5">
                         <svg width="34" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                          <circle class="border" cx="16" cy="15" r="10" />
+                          <circle class="border" stroke-dasharray="2,1" cx="16" cy="15" r="10" />
                           <circle class="tab-background" cx="16" cy="15" r="8" />
                           <circle class="tab" cx="16" cy="15" r="6" />
                         </svg>
@@ -191,7 +167,7 @@
                               aria-selected="false"
                               aria-controls="carousel-item-6">
                         <svg width="34" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                          <circle class="border" cx="16" cy="15" r="10" />
+                          <circle class="border" stroke-dasharray="2,1" cx="16" cy="15" r="10" />
                           <circle class="tab-background" cx="16" cy="15" r="8" />
                           <circle class="tab" cx="16" cy="15" r="6" />
                         </svg>
