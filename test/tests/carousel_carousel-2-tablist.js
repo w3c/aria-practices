@@ -105,6 +105,11 @@ ariaTest('role="tab" on button elements', exampleFile, 'tab-role', async (t) => 
   await assertAriaRoles(t, 'ex1', 'tab', ex.tabCount, 'button');
 });
 
+ariaTest('"aria-label" attribute on role="tab"', exampleFile, 'tab-aria-label', async (t) => {
+  t.plan(1);
+  await assertAriaLabelExists(t, ex.tabSelector);
+});
+
 ariaTest('"aria-selected" set on role="tab"', exampleFile, 'tab-aria-selected', async (t) => {
   t.plan(2 * ex.tabCount * ex.tabCount);
 
@@ -191,7 +196,7 @@ ariaTest('role="tabpanel" on div element', exampleFile, 'tabpanel-role', async (
 
 ariaTest('"aria-label" attribute on role="tabpanel" elements', exampleFile, 'tabpanel-aria-label', async (t) => {
   t.plan(1);
-  await assertAriaLabelExists(t, ex.tabpanelSelector);
+  await assertAriaLabelExists(t, ex.tabSelector);
 });
 
 ariaTest('aria-roledescription="slide" on role="tabpanel" elements', exampleFile, 'tabpanel-roledescription', async (t) => {
