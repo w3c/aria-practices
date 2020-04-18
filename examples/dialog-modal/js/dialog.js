@@ -199,7 +199,11 @@ aria.Utils = aria.Utils || {};
     // If this modal is opening on top of one that is already open,
     // get rid of the document focus listener of the open dialog.
     if (aria.OpenDialogList.length > 0) {
-      aria.getCurrentDialog().removeListeners();
+      var topDialog = aria.getCurrentDialog();
+      topDialog.removeListeners();
+      // Safari and VoiceOver don't support multiple aria-modal="true" elements
+      // on the page, so we temporarily remove the parent dialog attribute.
+      topDialog.removeAriaModalAttribute();
     }
 
     this.addListeners();
@@ -244,7 +248,12 @@ aria.Utils = aria.Utils || {};
 
     // If a dialog was open underneath this one, restore its listeners.
     if (aria.OpenDialogList.length > 0) {
-      aria.getCurrentDialog().addListeners();
+      var topDialog = aria.getCurrentDialog();
+      topDialog.addListeners();
+      // Safari and VoiceOver don't support multiple aria-modal="true" elements
+      // on the page. Now that the nested modal is closed, we can restore the
+      // parent modal attribute.
+      topDialog.addAriaModalAttribute();
     }
     else {
       document.body.classList.remove(aria.Utils.dialogOpenClass);
@@ -277,6 +286,14 @@ aria.Utils = aria.Utils || {};
     var focusAfterClosed = newFocusAfterClosed || this.focusAfterClosed;
     var dialog = new aria.Dialog(newDialogId, focusAfterClosed, newFocusFirst);
   }; // end replace
+
+  aria.Dialog.prototype.addAriaModalAttribute = function () {
+    this.dialogNode.setAttribute('aria-modal', 'true');
+  }; // end addAriaModalAttribute
+
+  aria.Dialog.prototype.removeAriaModalAttribute = function () {
+    this.dialogNode.removeAttribute('aria-modal');
+  }; // end removeAriaModalAttribute
 
   aria.Dialog.prototype.addListeners = function () {
     document.addEventListener('focus', this.trapFocus, true);
