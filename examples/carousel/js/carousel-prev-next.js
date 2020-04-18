@@ -231,11 +231,15 @@ CarouselPreviousNext.prototype.handleNextButtonClick = function () {
   /* Event Handlers for carousel items*/
 
 CarouselPreviousNext.prototype.handleFocusIn = function () {
+  this.liveRegionNode.setAttribute('aria-live', 'polite');
   this.hasFocus = true;
   this.updateRotation();
 }
 
 CarouselPreviousNext.prototype.handleFocusOut = function () {
+  if (this.playState) {
+    this.liveRegionNode.setAttribute('aria-live', 'off');
+  }
   this.hasFocus = false;
   this.updateRotation();
 }
