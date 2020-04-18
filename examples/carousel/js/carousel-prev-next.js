@@ -43,6 +43,8 @@ var CarouselPreviousNext = function (node) {
   if (elem) {
     this.previousButtonNode = elem;
     this.previousButtonNode.addEventListener('click', this.handlePreviousButtonClick.bind(this));
+    this.previousButtonNode.addEventListener('focus', this.handleFocusIn.bind(this));
+    this.previousButtonNode.addEventListener('blur', this.handleFocusOut.bind(this));
   }
 
   // Next Button
@@ -51,6 +53,26 @@ var CarouselPreviousNext = function (node) {
   if (elem) {
     this.nextButtonNode = elem;
     this.nextButtonNode.addEventListener('click', this.handleNextButtonClick.bind(this));
+    this.nextButtonNode.addEventListener('focus', this.handleFocusIn.bind(this));
+    this.nextButtonNode.addEventListener('blur', this.handleFocusOut.bind(this));
+  }
+
+  // Carousel item events
+
+  for (var i = 0; i < this.carouselItemNodes.length; i++ ) {
+    var caouselItemNode = this.carouselItemNodes[i];
+
+    // support stopping rotation when any element receives focus in the tabpanel
+    caouselItemNode.addEventListener('focusin', this.handleFocusIn.bind(this));
+    caouselItemNode.addEventListener('focusout', this.handleFocusOut.bind(this));
+
+    var imageLinkNode = caouselItemNode.querySelector('.carousel-image a');
+
+    if (imageLinkNode) {
+      imageLinkNode.addEventListener('focus', this.handleImageLinkFocus.bind(this));
+      imageLinkNode.addEventListener('blur', this.handleImageLinkBlur.bind(this));
+    }
+
   }
 
   // default is for images to rotate
@@ -208,12 +230,12 @@ CarouselPreviousNext.prototype.handleNextButtonClick = function () {
 
   /* Event Handlers for carousel items*/
 
-CarouselPreviousNext.prototype.handleCarouselItemFocusIn = function () {
+CarouselPreviousNext.prototype.handleFocusIn = function () {
   this.hasFocus = true;
   this.updateRotation();
 }
 
-CarouselPreviousNext.prototype.handleCarouselItemFocusOut = function () {
+CarouselPreviousNext.prototype.handleFocusOut = function () {
   this.hasFocus = false;
   this.updateRotation();
 }

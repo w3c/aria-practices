@@ -51,6 +51,7 @@
 
 .carousel .carousel-item .carousel-caption a,
 .carousel .carousel-item .carousel-caption span.contrast {
+  display: inline-block;
   margin: 0;
   padding: 6px;
   display: inline-block;
