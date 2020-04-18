@@ -45,6 +45,7 @@ FormatToolbar.prototype.init = function () {
   this.textarea.style.width = (this.domNode.getBoundingClientRect().width - 12) + 'px';
   this.textarea.addEventListener('mouseup', this.selectTextContent.bind(this));
   this.textarea.addEventListener('keyup', this.selectTextContent.bind(this));
+  this.domNode.addEventListener('click', this.handleContainerClick.bind(this));
 
   this.selected = this.textarea.selectText;
 
@@ -81,6 +82,11 @@ FormatToolbar.prototype.init = function () {
   }
 
 };
+
+FormatToolbar.prototype.handleContainerClick = function () {
+  if ( event.target !== this.domNode ) return;
+  this.setFocusToFirst();
+}
 
 FormatToolbar.prototype.selectTextContent = function () {
   this.start = this.textarea.selectionStart;
