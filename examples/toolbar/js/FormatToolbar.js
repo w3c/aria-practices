@@ -47,6 +47,7 @@ FormatToolbar.prototype.init = function () {
     this.domNode.getBoundingClientRect().width - 12 + 'px';
   this.textarea.addEventListener('mouseup', this.selectTextContent.bind(this));
   this.textarea.addEventListener('keyup', this.selectTextContent.bind(this));
+  this.domNode.addEventListener('click', this.handleContainerClick.bind(this));
 
   this.selected = this.textarea.selectText;
 
@@ -79,6 +80,16 @@ FormatToolbar.prototype.init = function () {
     var s = new SpinButton(spinButtons[i], this);
     s.init();
   }
+};
+
+FormatToolbar.prototype.handleContainerClick = function () {
+  if ( event.target !== this.domNode ) return;
+  this.setFocusCurrentItem();
+}
+
+FormatToolbar.prototype.setFocusCurrentItem = function () {
+  var item = this.domNode.querySelector('[tabindex="0"]');
+  item.focus();
 };
 
 FormatToolbar.prototype.selectTextContent = function () {
