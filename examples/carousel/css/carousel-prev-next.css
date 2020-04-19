@@ -67,7 +67,7 @@
 
 .carousel .carousel-item .carousel-caption a:focus {
   padding: 4px;
-  border-width: 2px dotted #fff;
+  border: 2px dotted #fff;
   background-color: rgba(0, 0, 0, 1);
   outline: none;
 }
@@ -100,6 +100,20 @@
   width: 100%;
   padding: 0.25em 1.25em 0;
 }
+
+.carousel .controls button {
+  position: absolute;
+  z-index: 10;
+}
+
+.carousel .controls button.previous {
+  right: 70px;
+}
+
+.carousel .controls button.next {
+  right: 18px;
+}
+
 
 /* SVG Controls */
 
@@ -176,6 +190,11 @@
   position: relative;
   border: #eee solid 4px;
   border-radius: 5px;
+}
+
+.carousel.carousel-moreaccessible .controls {
+  position: static;
+  height: 36px;
 }
 
 
