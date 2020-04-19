@@ -1,0 +1,38 @@
+name: HTML Linting
+on:
+  push:
+    paths:
+      - "package*.json"
+      - ".vnurc"
+      - "*.html"
+      - "examples/**/*.html"
+      - ".github/workflows/html.yml"
+      - "!common/**"
+
+  pull_request:
+    paths:
+      - "package*.json"
+      - ".vnurc"
+      - "*.html"
+      - "examples/**/*.html"
+      - ".github/workflows/html.yml"
+      - "!common/**"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12"
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: HTML Validator
+        run: npm run lint:html

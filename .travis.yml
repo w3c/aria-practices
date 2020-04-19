@@ -17,9 +17,6 @@ jobs:
 
   include:
     - stage: Test
-      name: HTML Linting
-      script: npm run vnu-jar
-    - stage: Test
       name: Spellcheck
       script: npm run lint:spelling
       env: ALLOW_FAILURE=true
