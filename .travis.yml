@@ -17,9 +17,6 @@ jobs:
 
   include:
     - stage: Test
-      name: JS Linting
-      script: npm run lint:es
-    - stage: Test
       name: HTML Linting
       script: npm run vnu-jar
     - stage: Test
