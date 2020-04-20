@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Auto-Rotating Image Carousel Example | WAI-ARIA Authoring Practices 1.2</title>
+    <title>Auto-Rotating Image Carousel with Previous and Next Buttons | WAI-ARIA Authoring Practices 1.2</title>
 
     <!--  Core js and css shared by all examples; do not modify when using this template. -->
     <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -25,7 +25,7 @@
       </ul>
     </nav>
     <main>
-      <h1>Auto-Rotating Image Carousel Example</h1>
+      <h1>Auto-Rotating Image Carousel with Previous and Next Buttons</h1>
       <p>
         The following example implementation of the
         <a href="../../#carousel">carousel design pattern</a>
@@ -35,10 +35,10 @@
       </p>
 
       <section>
-        <h2>Example View and Behavior Options</h2>
+        <h2>Example Options</h2>
 
         <fieldset class="carousel-options">
-          <legend>Carousel Behavior Options</legend>
+          <legend>Carousel View and Behavior Options</legend>
 
           <label for="accessible-controls">
             <input type="checkbox" id="accessible-controls" value="moreaccessible" aria-describedby="accessible-controls-desc">
@@ -48,7 +48,7 @@
 
           <label for="rotation-paused">
             <input type="checkbox" id="rotation-paused" value="paused" aria-describedby="rotation-paused-desc">
-            Auto-rotation is initially paused (<a href="javascript:history.go(0)"><img class="reload" src="images\reload-icon.png" alt="">reload needed<a/>).
+            Auto-rotation is initially paused (<a href="javascript:history.go(0)"><img class="reload" src="images\reload-icon.png" alt="">reload needed</a>).
           </label>
           <p id="rotation-paused-desc">This option controls whether the carousel is paused or playing on page load. The paused option improves accessibility for users with visual impairments and people who are distracted or confused by auto-rotation, but allows users to start auto-rotation using the start/stop button.  If this option is changed, the page must be reloaded to see the effect on behavior.</p>
 
@@ -203,7 +203,9 @@
                   <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="5 of 6">
 
                     <div class="carousel-image">
+                      <a href="#">
                         <img src="images/britcomdavidslide__800x600.jpg" alt="British flag with WILL-TV host David Thiel."/>
+                      </a>
                     </div>
 
                     <div class="carousel-caption">
@@ -287,8 +289,7 @@
         </ul>
         <h3>Color Contrast of Text and Rotation Controls</h3>
         <p>
-          In the view of this carousel where the controls and captions are displayed on top of the image, the background images can cause color contrast for the controls and text to become insufficient.
-          This view includes the following features to meet WCAG 2.1 color contrast requirements:
+          In the initial view of this carousel the controls and captions are displayed on top of the image, the background images can cause color contrast for the controls and text to become insufficient.  When controls and text are on top of the image the following features are used to meet WCAG 2.1 color contrast requirements:
         </p>
         <ul>
           <li>
@@ -297,6 +298,9 @@
           </li>
           <li>The transparency of the caption area is decreased so the caption text meets the WCAG 2.1 color contrast requirements.</li>
         </ul>
+
+        <p>One way to avoid the color contrast issues of controls and text on top of the images is to move the controls to before and/or after the image.  Moving the controls and text to a solid background makes it easier for the author to control color contrast and for the user to perceive them.  An example of this technique is one of the view options.</p>
+
         <h3>Screen Reader Announcement of Slide Changes</h3>
         <p>
           When automatic rotation is turned off, the carousel slide content is included in a live region.
