@@ -2,11 +2,11 @@ ul[role="menubar"] {
   margin: 0;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
-  padding: 8px;
+  padding: 7px;
   font-size: 110%;
   list-style: none;
   background-color: #eee;
-  border: #eee solid 0px;
+  border: #eee solid 1px;
   border-radius: 5px;
 }
 
