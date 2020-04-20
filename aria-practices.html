@@ -498,8 +498,12 @@
         </p>
         <p>Features needed to provide sufficient rotation control include:</p>
         <ul>
-          <li>Buttons for displaying the previous and next slides.</li>
-          <li>Optionally, a control, or group of controls, for choosing a specific slide to display. For example, slide picker controls can be marked up as tabs in a tablist with the slide represented by a tabpanel element.</li>
+          <li>Controls for manually moving between slides, for example:
+            <ul>
+              <li>Buttons for displaying the previous and next slides.</li>
+              <li>A set of tabs in a tablist for choosing specific slides to display, with each slide represented by a tabpanel element.</li>
+            </ul>
+          </li>
           <li>If the carousel can automatically rotate, it also:
             <ul>
               <li>Has a button for stopping and restarting rotation. This is particularly important for supporting assistive technologies operating in a mode that does not move either keyboard focus or the mouse.</li>
@@ -514,19 +518,19 @@
       <section class="notoc">
         <h4>Color Contrast</h4>
 
-        <p>The placement of controls and content on top of images affects the ability of people with visual impairments to be able to identify the controls and to read text content.  To ensuring all users can identify carousel controls and the text content associated with each slide requires the author to ensure sufficient color contrast.   Without sufficient color contrast some users will not be able to operate the carousel controls or read the text content of a slide.</p>
+        <p>The placement of controls and content on top of images affects the ability of people with visual impairments to be able to identify the controls and to read text content.  To ensure all users can identify carousel controls and the text content associated with each slide requires the author to provide sufficient color contrast.   Without sufficient color contrast some users will not be able to operate the carousel controls or read the text content of a slide.</p>
 
         <p>Features needed to provide sufficient color contrast of text content include:</p>
         <ul>
           <li>When carousel content is overlayed on top of images, ensure the background color of the content provides sufficient color contrast with text content and carousel controls.  One way to ensure sufficient contrast is to change the opacity or color of the background for text content and control elements.</li>
-          <li>An alternative to content on top of the image is to move content to before and/or after the image.  The text and controls are easier to identify when outside the image and the surrounding background is more consistent and not dependent on the image content.</li>
+          <li>An alternative to content on top of the image is to move controls and text to before and/or after the image.  The text and controls are easier to identify when outside the image and the surrounding background is more consistent and not dependent on the image content.</li>
         </ul>
       </section>
 
       <section class="notoc">
         <h4>Examples</h4>
-        <p>The following table highlights the options for the carousel examples to help authors experience how the placement of text content for each slide and the options for slide rotation change the user experience and accessibility for the examples
-        .</p>
+        <p>The following table highlights the options for the carousel examples to help authors experience how the placement of text content for each slide and the options for slide rotation change the user experience and accessibility for the examples.
+        </p>
         <table>
           <caption>Table of the accessibility options for the Previous/Next and Tablist carousel examples</caption>
           <thead>
@@ -541,15 +545,15 @@
               <th scope="row">Enabled on load</th>
               <td>
                 <ul>
-                  <li><a href="examples/carousel-1.html">Previous/Next Carousel (Auto, <abbr title="High Contrast Background">HCB</abbr>)</a></li>
+                  <li><a href="examples/carousel-1-prev-next.html">Previous/Next Carousel (Auto, <abbr title="High Contrast Background">HCB</abbr>)</a></li>
                   <li><a href="examples/carousel-2-tablist.html">Tablist Carousel (Auto, <abbr title="High Contrast Background">HCB</abbr>)</a></li>
                 </ul>
                 <em>Least accessible</em>
               </td>
               <td>
                 <ul>
-                  <li><a href="examples/carousel-1.html?moreaccessible=true">Previous/Next Carousel (Before/After)</a></li>
-                  <li><a href="examples/carousel-2-tablist.html?moreaccessible=true">Tablist Carousel (Before/After)</a></li>
+                  <li><a href="examples/carousel-1-prev-next.html?moreaccessible=true">Previous/Next Carousel (Auto, Before/After)</a></li>
+                  <li><a href="examples/carousel-2-tablist.html?moreaccessible=true">Tablist Carousel (Auto, Before/After)</a></li>
                 </ul>
               </td>
             </tr>
@@ -557,13 +561,13 @@
               <th scope="row">Paused on load</th>
               <td>
                 <ul>
-                  <li><a href="examples/carousel-1.html?paused=true">Previous/Next Carousel (Paused, <abbr title="High Contrast Background">HCB</abbr>)</a></li>
+                  <li><a href="examples/carousel-1-prev-next.html?paused=true">Previous/Next Carousel (Paused, <abbr title="High Contrast Background">HCB</abbr>)</a></li>
                   <li><a href="examples/carousel-2-tablist.html?paused=true">Tablist Carousel (Paused, <abbr title="High Contrast Background">HCB</abbr>)</a></li>
                 </ul>
               </td>
               <td>
                 <ul>
-                  <li><a href="examples/carousel-1.html?moreaccessible=true&paused=true">Previous/Next Carousel (Paused, Before/After)</a></li>
+                  <li><a href="examples/carousel-1-prev-next.html?moreaccessible=true&paused=true">Previous/Next Carousel (Paused, Before/After)</a></li>
                   <li><a href="examples/carousel-2-tablist.html?moreaccessible=true&paused=true">Tablist Carousel (Paused, Before/After)</a></li>
                 </ul>
               </td>
@@ -572,13 +576,13 @@
               <th scope="row">Disabled</th>
               <td>
                 <ul>
-                  <li><a href="examples/carousel-1.html?noplay=true">Previous/Next Carousel (No Play, <abbr title="High Contrast Background">HCB</abbr>)</a></li>
+                  <li><a href="examples/carousel-1-prev-next.html?noplay=true">Previous/Next Carousel (No Play, <abbr title="High Contrast Background">HCB</abbr>)</a></li>
                   <li><a href="examples/carousel-2-tablist.html?noplay=true">Tablist Carousel (No Play, <abbr title="High Contrast Background">HCB</abbr>)</a></li>
                 </ul>
               </td>
               <td>
                 <ul>
-                  <li><a href="examples/carousel-1.html?moreaccessible=true&noplay=true">Previous/Next Carousel (No Play, Before/After)</a></li>
+                  <li><a href="examples/carousel-1-prev-next.html?moreaccessible=true&noplay=true">Previous/Next Carousel (No Play, Before/After)</a></li>
                   <li><a href="examples/carousel-2-tablist.html?moreaccessible=true&noplay=true">Tablist Carousel (No Play, Before/After)</a></li>
                 </ul>
                 <em>Most accessible</em>
@@ -626,11 +630,11 @@
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <p>This section describes the element composition for three styles of carousels:</p>
         <ul>
-          <li>Basic: Has rotation, previous slide, and next slide controls but no slide picker controls.</li>
+          <li>Previous/Next: Has rotation, previous slide, and next slide controls but no slide picker controls.</li>
           <li>Tabbed: Has basic controls plus a single tab stop for slide picker controls implemented using the <a href="#tabpanel">tabs pattern.</a></li>
           <li>Grouped: Has basic controls plus a series of tab stops in a group of slide picker controls where each control implements the <a href="#button">button pattern.</a> Because each slide selector button adds an element to the page tab sequence, this style is the least friendly for keyboard users.</li>
         </ul>
-        <h5>Basic carousel elements</h5>
+        <h5>Previous/Next carousel elements</h5>
         <ul>
           <li>
             A carousel container element that encompasses all components of the carousel, including both carousel controls and slides using a <a href="#region" class="role-reference">region</a> role.
@@ -682,7 +686,7 @@
           </li>
         </ul>
         <h5>Tabbed Carousel Elements</h5>
-        <p>The structure of a tabbed carousel is the same as a basic carousel except that:</p>
+        <p>The structure of a tabbed carousel is the same as a previous/next carousel except that:</p>
         <ul>
           <li>
             Each slide container has role <a href="#tabpanel" class="role-reference">tabpanel</a> in lieu of <code>group</code>,
@@ -698,7 +702,7 @@
           </li>
         </ul>
         <h5>Grouped Carousel Elements</h5>
-        <p>A grouped carousel has the same structure as a basic carousel, but it also includes slide picker controls where:</p>
+        <p>A grouped carousel has the same structure as a previous/next carousel, but it also includes slide picker controls where:</p>
         <ul>
           <li>The set of slide picker controls is contained in an element with role <a href="#group" class="role-reference">group</a>.</li>
           <li>The group containing the picker controls has an accessible label provided by the value of <a href="#aria-label" class="property-reference">aria-label</a> that identifies the purpose of the controls, e.g., &quot;Choose slide to display.&quot;</li>
