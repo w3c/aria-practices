@@ -1,6 +1,14 @@
 
 /* .carousel-tablist */
 
+img.reload {
+  padding: 0.25em;
+  display: block-inline;
+  position: relative;
+  top: 6px;
+  height: 0.9em;
+}
+
 .carousel-tablist {
   background-color: #eee;
 }
