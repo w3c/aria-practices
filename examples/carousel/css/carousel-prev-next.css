@@ -1,6 +1,14 @@
 
 /* .carousel */
 
+img.reload {
+  padding: 0.25em;
+  display: block-inline;
+  position: relative;
+  top: 6px;
+  height: 0.9em;
+}
+
 .carousel {
   background-color: #eee;
 }
@@ -194,9 +202,17 @@
 
 .carousel.carousel-moreaccessible .controls {
   position: static;
-  height: 36px;
+  height: 32px;
 }
 
+
+.carousel.carousel-moreaccessible .controls button.previous {
+  right: 60px;
+}
+
+.carousel.carousel-moreaccessible .controls button.next {
+  right: 6px;
+}
 
 .carousel-moreaccessible .carousel-items,
 .carousel-moreaccessible .carousel-items.focus  {
