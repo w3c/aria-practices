@@ -22,8 +22,18 @@ ul[role="menubar"] > li {
 }
 
 ul[role="menubar"] > li > [role="menuitem"]::after {
-  content: url('../images/down-arrow-brown.png');
+  content: url('../images/down-arrow.svg');
   padding-left: 0.25em;
+  position: relative;
+  top: 2px;
+}
+
+ul[role="menubar"].focus > li > [role="menuitem"]::after {
+  content: url('../images/down-arrow-focus.svg');
+}
+
+ul[role="menubar"] > li > [role="menuitem"][aria-expanded="true"]::after {
+  content: url('../images/up-arrow.svg');
 }
 
 ul[role="menubar"] [role="menu"] {
@@ -72,8 +82,15 @@ ul[role="menubar"] [role="menuitem"][aria-expanded="true"] {
 }
 
 ul[role="menubar"] [role="menu"] [role="menuitem"][aria-haspopup="true"]::after {
-  content: url('../images/right-arrow-brown.png');
-  padding-right: 2em;
+  content: url('../images/right-arrow.svg');
+  position: relative;
+  left: 8px;
+}
+
+ul[role="menubar"] [role="menu"] [role="menuitem"][aria-expanded="true"]::after {
+  content: url('../images/down-arrow-focus.svg');
+  top: 2px;
+  left: 4px;
 }
 
 /* focus styling */
