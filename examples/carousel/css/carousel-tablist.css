@@ -23,7 +23,7 @@ img.reload {
 
 .carousel-tablist .carousel-items.focus  {
   padding: 2px;
-  border: dotted 3px #005a9c;
+  border: solid 3px #005a9c;
 }
 
 .carousel-tablist .carousel-item {
@@ -48,10 +48,6 @@ img.reload {
 
 .carousel-tablist .carousel-item .carousel-caption a {
   cursor: pointer;
-}
-
-
-.carousel-tablist .carousel-item .carousel-caption a {
   text-decoration: underline;
   color: #fff;
   font-weight: 600;
@@ -74,7 +70,7 @@ img.reload {
 
 .carousel-tablist .carousel-item .carousel-caption a:focus {
   padding: 4px;
-  border-width: 2px dotted #fff;
+  border: 2px solid #eee;
   background-color: rgba(0, 0, 0, 1);
   outline: none;
 }
@@ -282,7 +278,7 @@ img.reload {
 
 .carousel-tablist-moreaccessible .carousel-items.focus .carousel-image a {
   padding: 2px;
-  border: 3px dotted #005a9c;
+  border: 3px solid #005a9c;
 }
 
 /* More accessible caption styling */
@@ -313,7 +309,7 @@ img.reload {
 
 .carousel-tablist .carousel-item .carousel-caption a:focus {
   padding: 4px;
-  border-width: 2px dotted #fff;
+  border-width: 2px solid #fff;
   background-color: rgba(0, 0, 0, 1);
   color: #fff;
   outline: none;
@@ -342,7 +338,7 @@ img.reload {
 
 .carousel-tablist-moreaccessible .carousel-item .carousel-caption a:focus {
   padding: 4px;
-  border: 2px dotted #005a9c;
+  border: 2px solid #005a9c;
   background-color: transparent;
   color: black;
   outline: none;

@@ -351,6 +351,14 @@ window.addEventListener('load', function () {
   // default setting of the checkboxes and the parameters in the URL
   // update checkboxes based on any corresponding URL parameters
   options.forEach(function(option) {
+
+    if (option.value == 'paused') {
+      // effect is only useful when initializing page
+      var hasReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      console.log('[hasReducedMotion]: ' + hasReducedMotion.matches);
+      option.checked = option.checked ||  hasReducedMotion.matches;
+    }
+
     var checked = option.checked ? 'true' : 'false';
 
     if (urlParams.has(option.value)) {
@@ -365,7 +373,6 @@ window.addEventListener('load', function () {
         updateEvent = 'setAccessibleStyling';
         break;
       case 'paused':
-        // effect is only useful when initializing page
         if (option.checked) {
           carousels.forEach(function (carousel) {
             carousel.updatePlayState(false);

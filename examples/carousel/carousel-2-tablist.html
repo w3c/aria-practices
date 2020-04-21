@@ -51,21 +51,21 @@
 
           <label for="accessible-controls">
             <input type="checkbox" id="accessible-controls" value="moreaccessible" aria-describedby="accessible-controls-desc">
-            Tablist carousel controls and captions displayed before and/or after the image.
+            Display controls and captions outside of image.
           </label>
-          <p id="accessible-controls-desc">This option is more accessible than rendering controls and captions on top of the image, because the controls are harder to perceive and captions are more difficult to read with rotating images behind them.</p>
+          <p id="accessible-controls-desc">This option is more accessible than rendering controls and captions within the image, because controls are easier to perceive and captions are easier to read without rotating images behind them.</p>
 
           <label for="rotation-paused">
             <input type="checkbox" id="rotation-paused" value="paused" aria-describedby="rotation-paused-desc">
-            Auto-rotation is initially paused (<a href="javascript:history.go(0)"><img class="reload" src="images/reload-icon.png" alt="">reload needed</a>).
+            Pause auto-rotation on load (<a href="javascript:history.go(0)"><img class="reload" src="images/reload-icon.png" alt="">reload needed</a>).
           </label>
-          <p id="rotation-paused-desc">This option controls whether the carousel is paused or playing on page load. The paused option improves accessibility for users with visual impairments and people who are distracted or confused by auto-rotation, but allows users to start auto-rotation using the start/stop button.  If this option is changed, the page must be reloaded to see the effect on behavior.</p>
+          <p id="rotation-paused-desc">This option controls whether the carousel is paused or playing on page load. The paused option improves accessibility for users with visual impairments and people who are distracted or confused by auto-rotation, but allows users to start auto-rotation using the start/stop button.</p>
 
           <label for="rotation-disabled">
             <input type="checkbox" id="rotation-disabled" value="norotate" aria-describedby="rotation-disabled-desc">
-            Auto-rotation is disabled.
+            Disable auto-rotation.
           </label>
-          <p id="rotation-disabled-desc">This option improves accessibility for users with visual impairments and people who are distracted or confused by auto-rotation by disabling the auto-rotation feature and removing the start/stop button from the user interface.  Users can use the tablist to manually navigate through the slides.</p>
+          <p id="rotation-disabled-desc">This option improves accessibility for users with visual impairments and people who are distracted or confused by auto-rotation by disabling the auto-rotation feature and removing the start/stop button from the user interface. Users can use the tablist to manually navigate through the slides.</p>
         </fieldset>
       </section>
 
@@ -83,7 +83,7 @@
                           type="button">
                     <svg width="42" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg" class="svg-play">
                       <rect class="background" x="2" y="2" rx="5" ry="5" width="38" height="24"/>
-                      <rect class="border" stroke-dasharray="2,1" x="4" y="4" rx="5" ry="5" width="34" height="20"/>
+                      <rect class="border" x="4" y="4" rx="5" ry="5" width="34" height="20"/>
 
                       <polygon class="pause" points="17 8 17 20"/>
 
@@ -103,7 +103,7 @@
                               aria-selected="true"
                               aria-controls="carousel-item-1">
                         <svg width="34" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                          <circle class="border" stroke-dasharray="2,1" cx="16" cy="15" r="10" />
+                          <circle class="border"cx="16" cy="15" r="10" />
                           <circle class="tab-background" cx="16" cy="15" r="8" />
                           <circle class="tab" cx="16" cy="15" r="6" />
                         </svg>
@@ -116,8 +116,8 @@
                               aria-selected="false"
                               aria-controls="carousel-item-2">
                         <svg width="34" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                          <circle class="border" stroke-dasharray="2,1" cx="16" cy="15" r="10" />
-                          <circle class="tab-background" stroke-dasharray="2,1" cx="16" cy="15" r="8" />
+                          <circle class="border"cx="16" cy="15" r="10" />
+                          <circle class="tab-background" cx="16" cy="15" r="8" />
                           <circle class="tab" cx="16" cy="15" r="6" />
                         </svg>
                       </button>
@@ -129,8 +129,8 @@
                               aria-selected="false"
                               aria-controls="carousel-item-3">
                         <svg width="34" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                          <circle class="border" stroke-dasharray="2,1" cx="16" cy="15" r="10" />
-                          <circle class="tab-background" stroke-dasharray="2,1" cx="16" cy="15" r="8" />
+                          <circle class="border"cx="16" cy="15" r="10" />
+                          <circle class="tab-background" cx="16" cy="15" r="8" />
                           <circle class="tab" cx="16" cy="15" r="6" />
                         </svg>
                       </button>
@@ -142,8 +142,8 @@
                               aria-selected="false"
                               aria-controls="carousel-item-4">
                         <svg width="34" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                          <circle class="border" stroke-dasharray="2,1" cx="16" cy="15" r="10" />
-                          <circle class="tab-background" stroke-dasharray="2,2" cx="16" cy="15" r="8" />
+                          <circle class="border"cx="16" cy="15" r="10" />
+                          <circle class="tab-background" cx="16" cy="15" r="8" />
                           <circle class="tab" cx="16" cy="15" r="6" />
                         </svg>
                       </button>
@@ -155,7 +155,7 @@
                               aria-selected="false"
                               aria-controls="carousel-item-5">
                         <svg width="34" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                          <circle class="border" stroke-dasharray="2,1" cx="16" cy="15" r="10" />
+                          <circle class="border"cx="16" cy="15" r="10" />
                           <circle class="tab-background" cx="16" cy="15" r="8" />
                           <circle class="tab" cx="16" cy="15" r="6" />
                         </svg>
@@ -168,7 +168,7 @@
                               aria-selected="false"
                               aria-controls="carousel-item-6">
                         <svg width="34" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                          <circle class="border" stroke-dasharray="2,1" cx="16" cy="15" r="10" />
+                          <circle class="border"cx="16" cy="15" r="10" />
                           <circle class="tab-background" cx="16" cy="15" r="8" />
                           <circle class="tab" cx="16" cy="15" r="6" />
                         </svg>
@@ -360,6 +360,7 @@
         </p>
         <p>This example includes the following features for giving users control over slide rotation:</p>
         <ul>
+          <li>If operating system preferences have been set for reduced motion or disabling animations, the auto-rotation is initially paused.</li>
           <li>
             Hovering the mouse over any carousel content pauses automatic rotation.
             Automatic rotation resumes when the mouse moves away from the carousel unless another condition that prevents rotation, such as keyboard focus, has been triggered.
@@ -381,18 +382,18 @@
         </ul>
         <h3>Color Contrast of Text and Rotation Controls</h3>
         <p>
-          In the view of this carousel where the controls and captions are displayed on top of the image, background images could cause color contrast for the controls and text to become insufficient.
+          In the view of this carousel where the controls and captions are displayed inside the image, background images could cause color contrast for the controls and text to become insufficient.
           However, this view includes the following features to prevent this potential problem and ensure it meets WCAG 2.1 color contrast requirements:
         </p>
         <ul>
           <li>
-            When the tabs controlling the rendering of slides are on top of the carousel images, the tabs have foreground and background colors that meet WCAG 2.1 color contrast requirements.
+            When the tabs controlling the rendering of slides are inside the image, the tabs have foreground and background colors that meet WCAG 2.1 color contrast requirements.
             In addition, the focus styling uses SVG images that make the focus indicator highly visible when a control receives keyboard focus.
           </li>
           <li>The transparency of the caption area is decreased so the caption text meets the WCAG 2.1 color contrast requirements.</li>
         </ul>
 
-        <p>One way to avoid the color contrast issues of controls and text on top of the images is to move them to before and/or after the image.  Moving the controls and text to a solid background makes it easier for the author to control color contrast and for the user to perceive them.  An example of this technique is one of the view options.</p>
+        <p>One way to avoid the color contrast issues of controls and text inside the image is to move them to outside the image.  Moving the controls and text to a solid background makes it easier for the author to control color contrast and for the user to perceive them.  An example of this technique is one of the view options.</p>
 
         <h3>Focus Styling of the Tablist and Tabs</h3>
         <ul>
