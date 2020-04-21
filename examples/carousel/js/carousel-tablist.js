@@ -355,8 +355,7 @@ window.addEventListener('load', function () {
     if (option.value == 'paused') {
       // effect is only useful when initializing page
       var hasReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-      console.log('[hasReducedMotion]: ' + hasReducedMotion.matches);
-      option.checked = option.checked ||  hasReducedMotion.matches;
+      option.checked = option.checked || hasReducedMotion.matches;
     }
 
     var checked = option.checked ? 'true' : 'false';
