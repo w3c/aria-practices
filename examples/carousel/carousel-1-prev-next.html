@@ -47,21 +47,21 @@
 
           <label for="accessible-controls">
             <input type="checkbox" id="accessible-controls" value="moreaccessible" aria-describedby="accessible-controls-desc">
-            Tablist carousel controls and captions displayed before and/or after the image.
+            Display controls and captions outside of image.
           </label>
-          <p id="accessible-controls-desc">This option is more accessible than rendering controls and captions on top of the image, because the controls are harder to perceive and captions are more difficult to read with rotating images behind them.</p>
+          <p id="accessible-controls-desc">This option is more accessible than rendering controls and captions within the image, because controls are easier to perceive and captions are easier to read without rotating images behind them.</p>
 
           <label for="rotation-paused">
             <input type="checkbox" id="rotation-paused" value="paused" aria-describedby="rotation-paused-desc">
-            Auto-rotation is initially paused (<a href="javascript:history.go(0)"><img class="reload" src="images/reload-icon.png" alt="">reload needed</a>).
+            Pause auto-rotation on load (<a href="javascript:history.go(0)"><img class="reload" src="images/reload-icon.png" alt="">reload needed</a>).
           </label>
-          <p id="rotation-paused-desc">This option controls whether the carousel is paused or playing on page load. The paused option improves accessibility for users with visual impairments and people who are distracted or confused by auto-rotation, but allows users to start auto-rotation using the start/stop button.  If this option is changed, the page must be reloaded to see the effect on behavior.</p>
+          <p id="rotation-paused-desc">This option controls whether the carousel is paused or playing on page load. The paused option improves accessibility for users with visual impairments and people who are distracted or confused by auto-rotation, but allows users to start auto-rotation using the start/stop button.</p>
 
           <label for="rotation-disabled">
             <input type="checkbox" id="rotation-disabled" value="norotate" aria-describedby="rotation-disabled-desc">
-            Auto-rotation is disabled.
+            Disable auto-rotation.
           </label>
-          <p id="rotation-disabled-desc">This option improves accessibility for users with visual impairments and people who are distracted or confused by auto-rotation by disabling the auto-rotation feature and removing the start/stop button from the user interface.  Users can use the previous and next buttons to manually navigate through the slides.</p>
+          <p id="rotation-disabled-desc">This option improves accessibility for users with visual impairments and people who are distracted or confused by auto-rotation by disabling the auto-rotation feature and removing the start/stop button from the user interface. Users can use the previous and next buttons to manually navigate through the slides.</p>
         </fieldset>
 
       </section>
