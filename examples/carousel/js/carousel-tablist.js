@@ -10,12 +10,12 @@
 
 var CarouselTablist = function (node, options) {
   // merge passed options with defaults
-  options = Object.assign({ moreaccessible: true, paused: true, norotate: false }, (options || {}));
+  options = Object.assign({ moreaccessible: false, paused: false, norotate: false }, (options || {}));
 
   // a prefers-reduced-motion user setting must always override autoplay
   var hasReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   if (hasReducedMotion.matches) {
-    options.autoplay = false;
+    options.paused = true;
   }
 
   /* DOM properties */
