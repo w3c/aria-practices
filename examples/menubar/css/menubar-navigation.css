@@ -71,7 +71,7 @@ ul[role="menubar"] [role="menu"]  {
 
 ul[role="menubar"] [role="separator"] {
   padding-top: 3px;
-  background-image: url('../images/separator.png');
+  background-image: url('../images/separator.svg');
   background-position: center;
   background-repeat: repeat-x;
 }
