@@ -25,7 +25,7 @@
   margin-left: 10px;
   padding: 4px;
   margin: 0;
-  border: 0px dotted #005a9c;
+  border: 0px solid #005a9c;
   background-color: white;
   border-radius: 5px;
   position: relative;
@@ -46,7 +46,7 @@
 
 .datepicker input:focus {
   background-color: #DEF;
-  outline: 2px dotted #005a9c;
+  outline: 2px solid #005a9c;
   outline-offset: 1px;
 }
 
@@ -110,7 +110,7 @@
 .datepicker-dialog .next-month:focus,
 .datepicker-dialog .next-year:focus {
   padding: 2px;
-  border: 2px dotted white;
+  border: 2px solid white;
   border-radius: 4px;
   outline: 0;
 }
@@ -136,7 +136,7 @@
 
 .datepicker-dialog .dialog-button:focus {
   padding: 4px;
-  border: 2px dotted black;
+  border: 2px solid black;
 }
 
 .datepicker-dialog .fa-calendar-alt {
@@ -191,18 +191,18 @@
 
 .datepicker-dialog table.dates td:focus {
   padding: 1px;
-  border: 2px dotted rgb(100, 100, 100);
+  border: 2px solid rgb(100, 100, 100);
   outline: 0;
 }
 
 .datepicker-dialog table.dates td[aria-selected] {
   padding: 1px;
-  border: 2px dashed rgb(100, 100, 100);
+  border: 2px dotted rgb(100, 100, 100);
 }
 
 .datepicker-dialog table.dates td[aria-selected]:focus {
   padding: 1px;
-  border: 2px dotted  rgb(100, 100, 100);
+  border: 2px solid  rgb(100, 100, 100);
 }
 
 .datepicker-dialog table.dates td[tabindex="0"] {
