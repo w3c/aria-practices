@@ -506,6 +506,7 @@
           </li>
           <li>If the carousel can automatically rotate, it also:
             <ul>
+              <li>Pause auto-rotation on load when operating system settings for reduced motion or disabling animations have been enabled.</li>
               <li>Has a button for stopping and restarting rotation. This is particularly important for supporting assistive technologies operating in a mode that does not move either keyboard focus or the mouse.</li>
               <li>Stops rotating when keyboard focus enters the carousel, and does not resume until focus leaves the carousel, including slide content.</li>
               <li>Stops rotating whenever the mouse is hovering over the carousel.</li>
@@ -518,26 +519,27 @@
       <section class="notoc">
         <h4>Color Contrast</h4>
 
-        <p>The placement of controls and content on top of images affects the ability of people with visual impairments to be able to identify the controls and to read text content.  To ensure all users can identify carousel controls and the text content associated with each slide requires the author to provide sufficient color contrast.   Without sufficient color contrast some users will not be able to operate the carousel controls or read the text content of a slide.</p>
+        <p>The placement of controls and text within images affects the ability of people to identify the controls and to read text content.  To ensure all users can identify the controls and text associated with each slide requires the author needs to provide sufficient color contrast.   Without sufficient color contrast some users will not be able to operate the carousel controls or read the text content of a slide.</p>
 
-        <p>Features needed to provide sufficient color contrast of text content include:</p>
+        <p>Features needed to provide sufficient color contrast include:</p>
         <ul>
-          <li>When carousel content is overlayed on top of images, ensure the background color of the content provides sufficient color contrast with text content and carousel controls.  One way to ensure sufficient contrast is to change the opacity or color of the background for text content and control elements.</li>
-          <li>An alternative to content on top of the image is to move controls and text to before and/or after the image.  The text and controls are easier to identify when outside the image and the surrounding background is more consistent and not dependent on the image content.</li>
+          <li>When carousel controls and text are within an image, ensure the background color of the controls and text provide sufficient color contrast.  One way to ensure sufficient contrast is to change the opacity or color of the background for text content and control elements.</li>
+          <li>An alternative to content within the image is to move controls and text to outside the image.  The text and controls are easier to identify when outside the image and the surrounding background is more consistent and not dependent on the image content.</li>
         </ul>
       </section>
 
       <section class="notoc">
         <h4>Examples</h4>
-        <p>The following table highlights the options for the carousel examples to help authors experience how the placement of text content for each slide and the options for slide rotation change the user experience and accessibility for the examples.
+        <p>The following table highlights the options for the carousel examples to help authors experience how the placement of controls and text, and the options for slide rotation change the user experience and accessibility for the examples.</p>
+        <p> Note: If reduced motion or disabling animations has been set on your computer the auto-rotation for the "Enabled on load" options will be initially paused for the examples.
         </p>
         <table>
-          <caption>Table of the accessibility options for the Previous/Next and Tablist carousel examples</caption>
+          <caption>Accessibility view and behavior options for the Previous/Next and Tablist carousel examples</caption>
           <thead>
             <tr>
               <th>Auto-Rotation</th>
-              <th style="width: 16em">Content on High Contrast Background (<abbr title="High Contrast Background">HCB</abbr>) on Slide</th>
-              <th style="width: 16em">Content Before/After Slide</th>
+              <th style="width: 16em">Content on High Contrast Background (<abbr title="High Contrast Background">HCB</abbr>) within Image</th>
+              <th style="width: 16em">Content Outside Image</th>
             </tr>
           </thead>
           <tbody>
@@ -552,8 +554,8 @@
               </td>
               <td>
                 <ul>
-                  <li><a href="examples/carousel-1-prev-next.html?moreaccessible=true">Previous/Next Carousel (Auto, Before/After)</a></li>
-                  <li><a href="examples/carousel-2-tablist.html?moreaccessible=true">Tablist Carousel (Auto, Before/After)</a></li>
+                  <li><a href="examples/carousel-1-prev-next.html?moreaccessible=true">Previous/Next Carousel (Auto, Outside)</a></li>
+                  <li><a href="examples/carousel-2-tablist.html?moreaccessible=true">Tablist Carousel (Auto, Outside)</a></li>
                 </ul>
               </td>
             </tr>
@@ -567,8 +569,8 @@
               </td>
               <td>
                 <ul>
-                  <li><a href="examples/carousel-1-prev-next.html?moreaccessible=true&paused=true">Previous/Next Carousel (Paused, Before/After)</a></li>
-                  <li><a href="examples/carousel-2-tablist.html?moreaccessible=true&paused=true">Tablist Carousel (Paused, Before/After)</a></li>
+                  <li><a href="examples/carousel-1-prev-next.html?moreaccessible=true&paused=true">Previous/Next Carousel (Paused, Outside)</a></li>
+                  <li><a href="examples/carousel-2-tablist.html?moreaccessible=true&paused=true">Tablist Carousel (Paused, Outside)</a></li>
                 </ul>
               </td>
             </tr>
@@ -582,8 +584,8 @@
               </td>
               <td>
                 <ul>
-                  <li><a href="examples/carousel-1-prev-next.html?moreaccessible=true&noplay=true">Previous/Next Carousel (No Play, Before/After)</a></li>
-                  <li><a href="examples/carousel-2-tablist.html?moreaccessible=true&noplay=true">Tablist Carousel (No Play, Before/After)</a></li>
+                  <li><a href="examples/carousel-1-prev-next.html?moreaccessible=true&noplay=true">Previous/Next Carousel (No Play, Outside)</a></li>
+                  <li><a href="examples/carousel-2-tablist.html?moreaccessible=true&noplay=true">Tablist Carousel (No Play, Outside)</a></li>
                 </ul>
                 <em>Most accessible</em>
               </td>
