@@ -363,10 +363,6 @@ window.addEventListener('load', function () {
   var urlParams = new URLSearchParams(location.search);
   var carouselOptions = {};
 
-  carouselEls.forEach(function (node) {
-    carousels.push(new CarouselTablist(node));
-  });
-
   // initialize example features based on
   // default setting of the checkboxes and the parameters in the URL
   // update checkboxes based on any corresponding URL parameters
