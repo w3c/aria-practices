@@ -200,10 +200,14 @@
 }
 
 
-.combobox-datepicker .dates td[aria-selected],
-.combobox-datepicker .dates td[tabindex="0"] {
+.combobox-datepicker .dates td[aria-selected] {
   padding: 1px;
   border: 2px dotted black;
+  background-color: hsl(216, 80%, 96%);
+}
+
+.combobox-datepicker .dates td[tabindex="0"] {
+  background-color: hsl(216, 80%, 92%);
 }
 
 .combobox-datepicker .dates td:focus,
