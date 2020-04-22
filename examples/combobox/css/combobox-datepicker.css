@@ -39,7 +39,7 @@
 }
 
 .combobox-datepicker .group.focus {
-  outline: 2px dotted black;
+  outline: 2px solid black;
   outline-offset: 1px;
 }
 
@@ -53,7 +53,7 @@
 }
 
 .combobox-datepicker .group.focus {
-  outline: 2px dotted black;
+  outline: 2px solid black;
   outline-offset: 1px;
 }
 
@@ -133,7 +133,7 @@
 .combobox-datepicker .next-month:focus,
 .combobox-datepicker .next-year:focus {
   padding: 2px;
-  border: 2px dotted white;
+  border: 2px solid white;
   border-radius: 4px;
   outline: 0;
 }
@@ -159,7 +159,7 @@
 
 .combobox-datepicker .dialog-button:focus {
   padding: 4px;
-  border: 2px dotted black;
+  border: 2px solid black;
 }
 
 .combobox-datepicker .fa-calendar-alt {
@@ -200,14 +200,10 @@
 }
 
 
-.combobox-datepicker .dates td[aria-selected] {
-  padding: 1px;
-  border: 2px dashed rgb(100, 100, 100);
-}
-
+.combobox-datepicker .dates td[aria-selected],
 .combobox-datepicker .dates td[tabindex="0"] {
   padding: 1px;
-  border: 2px dashed rgb(100, 100, 100);
+  border: 2px dotted black;
 }
 
 .combobox-datepicker .dates td:focus,
@@ -218,7 +214,7 @@
 
 .combobox-datepicker .dates td:focus {
   padding: 1px;
-  border: 2px dotted rgb(100, 100, 100);
+  border: 2px solid rgb(100, 100, 100);
   outline: 0;
 }
 
