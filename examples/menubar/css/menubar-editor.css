@@ -69,11 +69,6 @@ ul[role="menubar"] [role="separator"] {
   background-repeat: repeat-x;
 }
 
-ul[role="menubar"] [role="menuitem"][aria-expanded="true"] {
-  padding: 4px;
-  border: 2px dashed #034575;
-}
-
 ul[role="menubar"] [role="menu"] [aria-checked='true'] {
   padding: 6px;
   padding-left: 10px;
@@ -114,8 +109,8 @@ ul[role="menubar"].focus [role="menu"].item  {
 ul[role="menubar"] [role="menuitem"]:focus,
 ul[role="menubar"] [role="menuitemcheckbox"]:focus,
 ul[role="menubar"] [role="menuitemradio"]:focus {
-  padding: 2px;
-  border: 4px dotted #034575;
+  padding: 4px;
+  border: 2px solid #034575;
   outline: none;
 }
 
@@ -130,13 +125,13 @@ ul[role="menubar"] [role="menuitemradio"]:hover {
 ul[role="menubar"] [role="menu"] [role="menuitem"]:focus,
 ul[role="menubar"] [role="menu"] [role="menuitemcheckbox"]:focus,
 ul[role="menubar"] [role="menu"] [role="menuitemradio"]:focus {
-  padding-left: 23px;
+  padding-left: 25px;
 }
 
 ul[role="menubar"] [role="menu"] [role="menuitem"][aria-checked='true']:focus,
 ul[role="menubar"] [role="menu"] [role="menuitemcheckbox"][aria-checked='true']:focus,
 ul[role="menubar"] [role="menu"] [role="menuitemradio"][aria-checked='true']:focus {
-  padding-left: 6px;
+  padding-left: 8px;
   padding-right: 18px;
 }
 
