@@ -23,7 +23,7 @@ img.reload {
 
 .carousel .carousel-items.focus  {
   padding: 2px;
-  border: dotted 3px #005a9c;
+  border: solid 3px #005a9c;
 }
 
 .carousel .carousel-item {
@@ -75,7 +75,7 @@ img.reload {
 
 .carousel .carousel-item .carousel-caption a:focus {
   padding: 4px;
-  border: 2px dotted #fff;
+  border: 2px solid #fff;
   background-color: rgba(0, 0, 0, 1);
   outline: none;
 }
@@ -128,7 +128,6 @@ img.reload {
 
 .carousel .controls button {
   flex: 0 0 auto;
-  display: inline-block;
   margin: 0;
   padding: 0;
   border: none;
@@ -230,7 +229,7 @@ img.reload {
 
 .carousel-moreaccessible .carousel-items.focus .carousel-image a {
   padding: 2px;
-  border: 3px dotted #005a9c;
+  border: 3px solid #005a9c;
 }
 
 /* More accessible caption styling */
@@ -261,7 +260,7 @@ img.reload {
 
 .carousel .carousel-item .carousel-caption a:focus {
   padding: 4px;
-  border-width: 2px dotted #fff;
+  border-width: 2px solid #fff;
   background-color: rgba(0, 0, 0, 1);
   color: #fff;
   outline: none;
@@ -290,7 +289,7 @@ img.reload {
 
 .carousel-moreaccessible .carousel-item .carousel-caption a:focus {
   padding: 4px;
-  border: 2px dotted #005a9c;
+  border: 2px solid #005a9c;
   background-color: transparent;
   color: black;
   outline: none;

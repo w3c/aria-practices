@@ -80,7 +80,7 @@
                           aria-label="Stop automatic slide show">
                     <svg width="42" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
                       <rect class="background" x="2" y="2" rx="5" ry="5" width="38" height="24"/>
-                      <rect class="border" stroke-dasharray="2,1" x="4" y="4" rx="5" ry="5" width="34" height="20"/>
+                      <rect class="border" x="4" y="4" rx="5" ry="5" width="34" height="20"/>
 
                       <polygon class="pause" points="17 8 17 20"/>
 
@@ -97,7 +97,7 @@
                      aria-label="Previous Slide">
                     <svg width="42" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
                       <rect class="background" x="2" y="2" rx="5" ry="5" width="38" height="24"/>
-                      <rect class="border" stroke-dasharray="2,1" x="4" y="4" rx="5" ry="5" width="34" height="20"/>
+                      <rect class="border" x="4" y="4" rx="5" ry="5" width="34" height="20"/>
                       <polygon points="9 14 21 8 21 11 33 11 33 17 21 17 21 20" />
                     </svg>
                   </button>
@@ -107,7 +107,7 @@
                      aria-label="Next Slide">
                     <svg width="42" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
                       <rect class="background" x="2" y="2" rx="5" ry="5" width="38" height="24"/>
-                      <rect class="border" stroke-dasharray="2,1" x="4" y="4" rx="5" ry="5" width="34" height="20"/>
+                      <rect class="border" x="4" y="4" rx="5" ry="5" width="34" height="20"/>
                       <polygon points="9 11 21 11 21 8 33 14 21 20 21 17 9 17" />
                     </svg>
                   </button>
@@ -274,6 +274,9 @@
         <p>This example includes the following features for giving users control over slide rotation:</p>
         <ul>
           <li>
+            If operating system preferences have been set for reduced motion or disabling animations, the auto-rotation is initially paused.
+          </li>
+          <li>
             Hovering the mouse over any carousel content pauses automatic rotation.
             Automatic rotation resumes when the mouse moves away from the carousel unless another condition, such as keyboard focus,  that prevents rotation has been triggered.
           </li>
@@ -294,17 +297,17 @@
         </ul>
         <h3>Color Contrast of Text and Rotation Controls</h3>
         <p>
-          In the initial view of this carousel the controls and captions are displayed on top of the image, the background images can cause color contrast for the controls and text to become insufficient.  When controls and text are on top of the image the following features are used to meet WCAG 2.1 color contrast requirements:
+          In the initial view of this carousel the controls and captions are displayed within the image, the background images can cause color contrast for the controls and text to become insufficient.  When controls and text are within the image the following features are used to meet WCAG 2.1 color contrast requirements:
         </p>
         <ul>
           <li>
-            When the rotation control, next slide,  and previous slide buttons are rendered on top of the carousel images, the buttons have foreground and background colors that meet WCAG 2.1 color contrast requirements.
+            When the rotation control, next slide, and previous slide buttons are rendered within the image, the buttons have foreground and background colors that meet WCAG 2.1 color contrast requirements.
             In addition, the focus styling uses SVG images that make the focus indicator highly visible when a control receives keyboard focus.
           </li>
           <li>The transparency of the caption area is decreased so the caption text meets the WCAG 2.1 color contrast requirements.</li>
         </ul>
 
-        <p>One way to avoid the color contrast issues of controls and text on top of the images is to move the controls to before and/or after the image.  Moving the controls and text to a solid background makes it easier for the author to control color contrast and for the user to perceive them.  An example of this technique is one of the view options.</p>
+        <p>One way to avoid the color contrast issues of controls and text within the images is to move the controls to outside the image.  Moving the controls and text to a solid background makes it easier for the author to control color contrast and for the user to perceive them.  An example of this technique is one of the view options.</p>
 
         <h3>Screen Reader Announcement of Slide Changes</h3>
         <p>

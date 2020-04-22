@@ -5,7 +5,15 @@
 *
 */
 
-var CarouselPreviousNext = function (node) {
+var CarouselPreviousNext = function (node, options) {
+  // merge passed options with defaults
+  options = Object.assign({ moreaccessible: false, paused: false, norotate: false }, (options || {}));
+
+  // a prefers-reduced-motion user setting must always override autoplay
+  var hasReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (hasReducedMotion.matches) {
+    options.paused = true;
+  }
 
   /* DOM properties */
   this.domNode = node;
@@ -23,8 +31,8 @@ var CarouselPreviousNext = function (node) {
 
   /* State properties */
   this.forcePlay = false; // set once the user activates the play/pause button
-  this.playState = false; // state of the play/pause button
-  this.rotate = true; // state of rotation
+  this.playState = !options.paused; // state of the play/pause button
+  this.rotate = !options.paused; // state of rotation
   this.timeInterval = 5000; // length of slide rotation in ms
   this.currentIndex = 0; // index of current slide
   this.slideTimeout = null; // save reference to setTimeout
@@ -75,9 +83,19 @@ var CarouselPreviousNext = function (node) {
 
   }
 
-  // default is for images to rotate
-  this.updatePlayState(true);
-  this.rotateSlides(false);
+  // initialize behavior based on options
+
+  this.updatePlayState(this.rotate && !options.norotate);
+
+  if (this.rotate && !options.norotate) {
+    this.rotateSlides(false);
+  }
+
+  if (options.norotate) {
+    this.disableRotation(true);
+  }
+
+  this.setAccessibleStyling(options.moreaccessible);
 
   // Handle hover events
   this.domNode.addEventListener('mouseover', this.handleMouseOver.bind(this));
@@ -87,6 +105,7 @@ var CarouselPreviousNext = function (node) {
 
 /* Public function to disable or enable rotation */
 CarouselPreviousNext.prototype.disableRotation = function(disable) {
+  console.log('[.disableRotation]: ' + disable + ' ' + typeof disable)
   if (disable) {
     this.updatePlayState(false);
   }
@@ -250,56 +269,48 @@ window.addEventListener('load', function () {
   var carouselEls = document.querySelectorAll('.carousel');
   var carousels = [];
 
-  carouselEls.forEach(function (node) {
-    carousels.push(new CarouselPreviousNext(node));
-  });
-
-  var options = document.querySelectorAll('.carousel-options input[type=checkbox]');
+  // set example behavior based on
+  // default setting of the checkboxes and the parameters in the URL
+  // update checkboxes based on any corresponding URL parameters
+  var checkboxes = document.querySelectorAll('.carousel-options input[type=checkbox]');
   var urlParams = new URLSearchParams(location.search);
+  var carouselOptions = {};
 
   // initialize example features based on
   // default setting of the checkboxes and the parameters in the URL
   // update checkboxes based on any corresponding URL parameters
-  options.forEach(function(option) {
-    var checked = option.checked ? 'true' : 'false';
+  checkboxes.forEach(function(checkbox) {
+    var checked = checkbox.checked;
 
-    if (urlParams.has(option.value)) {
-      checked = urlParams.get(option.value);
-      option.checked = checked === 'true';
+    if (urlParams.has(checkbox.value)) {
+      var urlParam = urlParams.get(checkbox.value);
+      if (typeof urlParam === 'string') {
+        checked = urlParam === 'true';
+        checkbox.checked = checked;
+      }
     }
 
-    // add change event
+    carouselOptions[checkbox.value] = checkbox.checked;
+  });
+
+  carouselEls.forEach(function (node) {
+    carousels.push(new CarouselPreviousNext(node, carouselOptions));
+  });
+
+  // add change event to checkboxes
+  checkboxes.forEach(function(checkbox) {
     var updateEvent;
-    switch(option.value) {
+    switch(checkbox.value) {
       case 'moreaccessible':
         updateEvent = 'setAccessibleStyling';
-        break;
-      case 'paused':
-        // effect is only useful when initializing page
-        if (option.checked) {
-          carousels.forEach(function (carousel) {
-            carousel.updatePlayState(false);
-          });
-        }
         break;
       case 'norotate':
         updateEvent = 'disableRotation';
         break;
     }
 
-    // use current state of checkboxes to update URL and set options
-    carousels.forEach(function (carousel) {
-      if (option.checked) {
-        urlParams.set(option.value, option.checked + '');
-      }
-      window.history.replaceState(null, '', window.location.pathname + '?' + urlParams);
-      if (updateEvent) {
-        carousel[updateEvent](option.checked);
-      }
-    });
-
-    // initialize events to update the carousel features and URL when a checkbox state changes
-    option.addEventListener('change', function(event) {
+    // update the carousel behavior and URL when a checkbox state changes
+    checkbox.addEventListener('change', function(event) {
       urlParams.set(event.target.value, event.target.checked + '');
       window.history.replaceState(null, '', window.location.pathname + '?' + urlParams);
 
@@ -311,4 +322,5 @@ window.addEventListener('load', function () {
     });
   });
 }, false);
+
 
