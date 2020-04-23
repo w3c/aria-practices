@@ -267,7 +267,7 @@
           </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr data-test-id="combobox-down-arrow-enter">
                 <th><kbd>Down Arrow</kbd>, <kbd>ALT + Down Arrow</kbd>, <kbd>Enter</kbd></th>
                 <td>
                   <ul>
@@ -520,7 +520,7 @@
               Identifies that the combobox opens a dialog box.
             </td>
           </tr>
-          <tr data-test-id="textbox-aria-expanded">
+          <tr data-test-id="textbox-aria-expanded-false">
             <td></td>
             <th scope="row"><code>aria-expanded=<q>false</q></code></th>
             <td><code>input</code></td>
@@ -528,7 +528,7 @@
               <code>aria-expanded=<q>false</q></code> when the date picker dialog box is closed.
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="textbox-aria-expanded-true">
             <td></td>
             <th scope="row"><code>aria-expanded=<q>true</q></code></th>
             <td><code>input</code></td>
@@ -609,7 +609,7 @@
                 Identifies the button opens a dialog box.
               </td>
             </tr>
-            <tr data-test-id="calendar-button-aria-expanded">
+            <tr data-test-id="calendar-button-aria-expanded-false">
               <td></td>
               <th scope="row"><code>aria-expanded=<q>false</q></code></th>
               <td><code>button</code></td>
@@ -617,7 +617,7 @@
                 <code>aria-expanded=<q>false</q></code> when the date picker dialog box is closed.
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="calendar-button-aria-expanded-true">
               <td></td>
               <th scope="row"><code>aria-expanded=<q>true</q></code></th>
               <td><code>button</code></td>
@@ -771,6 +771,7 @@
                       </ul>
                     </td>
                   </tr>
+                  <!-- The regression test for tabindex=0 tests for tabindex=-1 -->
                   <tr>
                     <td></td>
                     <th scope="row">

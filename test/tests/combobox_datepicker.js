@@ -21,6 +21,7 @@ const ex = {
   comboboxSelector: '#ex1 .group input',
   buttonSelector: '#ex1 .group button',
   dialogSelector: '#ex1 [role="dialog"]',
+  cancelSelector: '#ex1 [role="dialog"] button[value="cancel"]',
   dialogMessageSelector: '#ex1 .dialog-message',
   gridSelector: '#ex1 [role="grid"]',
   controlButtons: '#ex1 [role="dialog"] .header button',
@@ -92,10 +93,20 @@ ariaTest('Combobox: has aria-contorls set to "id-dialog-1"', exampleFile, 'textb
   await assertAttributeValues(t, ex.comboboxSelector, 'aria-controls', 'cb-dialog-1');
 });
 
-ariaTest('Combobox: Initially aria-expanded set to "false"', exampleFile, 'textbox-aria-expanded', async (t) => {
+ariaTest('Combobox: Initially aria-expanded set to "false"', exampleFile, 'textbox-aria-expanded-false', async (t) => {
   t.plan(1);
   await assertAttributeValues(t, ex.comboboxSelector, 'aria-expanded', 'false');
 });
+
+ariaTest('Combobox: aria-expanded set to "true" when dialog is open', exampleFile, 'textbox-aria-expanded-true', async (t) => {
+  t.plan(1);
+
+  // Open dialog box
+  await t.context.session.findElement(By.css(ex.comboboxSelector)).sendKeys(Key.ENTER);
+  await assertAttributeValues(t, ex.comboboxSelector, 'aria-expanded', 'true');
+
+});
+
 
 
 // Button Tests
@@ -105,19 +116,33 @@ ariaTest('Button: "aria-label" attribute', exampleFile, 'calendar-button-aria-la
   await assertAriaLabelExists(t,  ex.buttonSelector);
 });
 
+ariaTest('Button: "tabindex" is set to -1', exampleFile, 'calendar-button-tabindex', async (t) => {
+  t.plan(1);
+  await assertAttributeValues(t, ex.buttonSelector, 'tabindex', '-1');
+});
+
+
 ariaTest('Button: has aria-haspopup set to "dialog"', exampleFile, 'textbox-aria-haspopup', async (t) => {
   t.plan(1);
   await assertAttributeValues(t, ex.buttonSelector, 'aria-haspopup', 'dialog');
 });
 
-ariaTest('Button: has aria-contorls set to "id-dialog-1"', exampleFile, 'textbox-aria-controls', async (t) => {
+ariaTest('Button: has aria-controls set to "id-dialog-1"', exampleFile, 'textbox-aria-controls', async (t) => {
   t.plan(1);
   await assertAttributeValues(t, ex.buttonSelector, 'aria-controls', 'cb-dialog-1');
 });
 
-ariaTest('Button: Initially aria-expanded set to "false"', exampleFile, 'textbox-aria-expanded', async (t) => {
+ariaTest('Button: Initially aria-expanded set to "false"', exampleFile, 'calendar-button-aria-expanded-false', async (t) => {
   t.plan(1);
   await assertAttributeValues(t, ex.buttonSelector, 'aria-expanded', 'false');
+});
+
+ariaTest('Button: aria-expanded set to "true" when the dialog box is open', exampleFile, 'calendar-button-aria-expanded-true', async (t) => {
+  t.plan(1);
+
+  // Open dialog box
+  await t.context.session.findElement(By.css(ex.buttonSelector)).sendKeys(Key.ENTER);
+  await assertAttributeValues(t, ex.buttonSelector, 'aria-expanded', 'true');
 });
 
 
@@ -233,6 +258,66 @@ ariaTest('aria-selected on selected date', exampleFile, 'gridcell-aria-selected'
 });
 
 // Keyboard
+
+
+ariaTest('DOWN ARROW, ALT plus DOWN ARROW and ENTER to open datepicker', exampleFile, 'combobox-down-arrow-enter', async (t) => {
+  t.plan(6);
+
+  // Test ENTER key
+  await t.context.session.findElement(By.css(ex.comboboxSelector)).sendKeys(Key.ENTER);
+
+  t.not(
+    await t.context.session.findElement(By.css(ex.dialogSelector)).getCssValue('display'),
+    'none',
+    'After sending ENTER to the combobox, the calendar dialog should open'
+  );
+
+  // Close dialog
+  await t.context.session.findElement(By.css(ex.cancelSelector)).sendKeys(Key.ENTER);
+
+  t.not(
+    await t.context.session.findElement(By.css(ex.dialogSelector)).getCssValue('display'),
+    'block',
+    'After sending ESCAPE to the dialog, the calendar dialog should close'
+  );
+
+  // Test DOWN ARROW key
+  await t.context.session.findElement(By.css(ex.comboboxSelector)).sendKeys(Key.ARROW_DOWN);
+
+  t.not(
+    await t.context.session.findElement(By.css(ex.dialogSelector)).getCssValue('display'),
+    'none',
+    'After sending DOWN ARROW to the combobox, the calendar dialog should open'
+  );
+
+  // Close dialog
+  await t.context.session.findElement(By.css(ex.cancelSelector)).sendKeys(Key.ENTER);
+
+  t.not(
+    await t.context.session.findElement(By.css(ex.dialogSelector)).getCssValue('display'),
+    'block',
+    'After sending ESCAPE to the dialog, the calendar dialog should close'
+  );
+
+  // Test ALT + DOWN ARROW key
+  await t.context.session.findElement(By.css(ex.comboboxSelector)).sendKeys(Key.ALT, Key.ARROW_DOWN);
+
+  t.not(
+    await t.context.session.findElement(By.css(ex.dialogSelector)).getCssValue('display'),
+    'none',
+    'After sending DOWN ARROW to the combobox, the calendar dialog should open'
+  );
+
+  // Close dialog
+  await t.context.session.findElement(By.css(ex.cancelSelector)).sendKeys(Key.ENTER);
+
+  t.not(
+    await t.context.session.findElement(By.css(ex.dialogSelector)).getCssValue('display'),
+    'block',
+    'After sending ESCAPE to the dialog, the calendar dialog should close'
+  );
+
+});
 
 ariaTest('ENTER to open datepicker', exampleFile, 'button-space-return', async (t) => {
   let chooseDateButton = await t.context.session.findElement(By.css(ex.buttonSelector));
