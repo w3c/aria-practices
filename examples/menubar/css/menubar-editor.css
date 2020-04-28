@@ -2,12 +2,13 @@ ul[role="menubar"] {
   margin: 0;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
-  padding: 7px;
+  padding: 2px;
   font-size: 110%;
   list-style: none;
   background-color: #eee;
   border: #eee solid 1px;
-  border-radius: 5px;
+  height: 32px;
+  display: block;
 }
 
 ul[role="menubar"] li {
@@ -17,8 +18,10 @@ ul[role="menubar"] li {
 }
 
 ul[role="menubar"] > li {
-  display: inline;
+  display: inline-block;
   position: relative;
+  top: 3px;
+  left: 1px;
 }
 
 ul[role="menubar"] > li > [role="menuitem"]::after {
@@ -31,6 +34,7 @@ ul[role="menubar"] ul[role="menu"] {
   position: absolute;
   margin: 0;
   padding: 0;
+  top: 4px;
 }
 
 ul[role="menubar"] ul[role="group"] {
@@ -50,7 +54,6 @@ ul[role="menubar"] [role="separator"] {
   padding: 6px;
   background-color: #eee;
   border: 0px solid #eee;
-  border-radius: 5px;
   color: black;
 }
 
@@ -83,26 +86,24 @@ ul[role="menubar"]  [role="menu"] [aria-checked='true']::before {
 /* focus and hover styling */
 
 ul[role="menubar"].focus {
-  padding: 6px;
+  padding: 1px;
   border: #034575 solid 2px;
 }
 
 ul[role="menubar"].focus.item {
-  padding: 5px;
+  padding: 0px;
   border: #034575 solid 3px;
 }
 
 ul[role="menubar"].focus [role="menu"] {
-  padding: 8px 5px;
+  padding: 2px;
   border: 1px solid #034575;
-  border-radius: 5px;
   background-color: #eee;
 }
 
 ul[role="menubar"].focus [role="menu"].item  {
-  padding: 6px 3px;
+  padding: 0;
   border: 3px solid #034575;
-  border-radius: 5px;
   background-color: #eee;
 }
 
@@ -111,14 +112,14 @@ ul[role="menubar"] [role="menuitemcheckbox"]:focus,
 ul[role="menubar"] [role="menuitemradio"]:focus {
   padding: 4px;
   border: 2px solid #034575;
+  background-color: #034575;
+  color: #fff;
   outline: none;
 }
 
-
-ul[role="menubar"] [role="menuitem"]:hover,
-ul[role="menubar"] [role="menuitemcheckbox"]:hover,
-ul[role="menubar"] [role="menuitemradio"]:hover {
-  padding: 4px;
+ul[role="menubar"] [role="menuitem"]:hover {
+  margin: 1px;
+  padding: 2px;
   border: 2px solid #034575;
 }
 
@@ -132,21 +133,7 @@ ul[role="menubar"] [role="menu"] [role="menuitem"][aria-checked='true']:focus,
 ul[role="menubar"] [role="menu"] [role="menuitemcheckbox"][aria-checked='true']:focus,
 ul[role="menubar"] [role="menu"] [role="menuitemradio"][aria-checked='true']:focus {
   padding-left: 8px;
-  padding-right: 18px;
-}
-
-ul[role="menubar"] [role="menu"] [role="menuitem"]:hover,
-ul[role="menubar"] [role="menu"] [role="menuitemcheckbox"]:hover,
-ul[role="menubar"] [role="menu"] [role="menuitemradio"]:hover {
-  padding-left: 25px;
-}
-
-
-ul[role="menubar"] [role="menu"] [role="menuitem"][aria-checked='true']:hover,
-ul[role="menubar"] [role="menu"] [role="menuitemcheckbox"][aria-checked='true']:hover,
-ul[role="menubar"] [role="menu"] [role="menuitemradio"][aria-checked='true']:hover {
-  padding-left: 8px;
-  padding-right: 18px;
+  padding-right: 21px;
 }
 
 /*
