@@ -7,8 +7,8 @@
 *   Desc:   Styling functions for changing the style of an item
 */
 
-var StyleManager = function (id) {
-  this.node = document.getElementById(id);
+var StyleManager = function (node) {
+  this.node = node;
   this.fontSize = 'medium';
 };
 

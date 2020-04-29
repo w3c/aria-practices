@@ -43,8 +43,8 @@
     <h2 id="ex1_label">Example</h2>
     <div role="separator" id="ex1_start_sep" aria-labelledby="ex1_start_sep ex1_label" aria-label="Start of"></div>
     <div id="ex1">
-      <div class="text-styling">
-        <ul id="menubar1" role="menubar" aria-label="Text Formatting">
+      <div class="menubar-editor">
+        <ul role="menubar" aria-label="Text Formatting">
           <li role="none">
             <span role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Font</span>
             <ul role="menu" data-option="font-family" aria-label="Font" >
@@ -109,8 +109,7 @@
             </ul>
           </li>
         </ul>
-        <textarea id="textarea1" rows="20"
-          style="font-size: medium; font-family: sans-serif" aria-label="Text Sample"
+        <textarea style="font-size: medium; font-family: sans-serif" aria-label="Text Sample"
         >
             Four score and seven years ago our fathers brought forth on this continent a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.
 
@@ -744,6 +743,31 @@
                 The visual appearance of the selected state is synchronized with the <code>aria-checked</code> value using CSS attribute selectors.
               </li>
             </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+      <h3 id="rps3_label">Textarea</h3>
+      <table aria-labelledby="rps3_label rps_label" class="data attributes">
+      <thead>
+        <tr>
+          <th scope="col">Role</th>
+          <th scope="col">Attribute</th>
+          <th scope="col">Element</th>
+          <th scope="col">Usage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-test-id="textarea-aria-label">
+          <td></td>
+          <th scope="row">
+            <code>aria-label=&quot;<em>string</em>&quot;</code>
+          </th>
+          <td>
+            <code>textarea</code>
+          </td>
+          <td>
+            Defines an accessible name for the <code>textarea</code>.
           </td>
         </tr>
       </tbody>

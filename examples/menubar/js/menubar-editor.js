@@ -7,10 +7,12 @@
 *   Desc:   Creates a menubar to control the styling of text in a textarea element
 */
 
-var MenubarEditor = function (domNode, actionManager) {
+var MenubarEditor = function (domNode) {
 
   this.domNode = domNode;
-  this.actionManager = actionManager;
+  this.menubarNode = domNode.querySelector('[role=menubar]');
+  this.textareaNode = domNode.querySelector('textarea');
+  this.actionManager = new StyleManager(this.textareaNode);
 
   this.popups = [];
   this.menuitemGroups = {};
@@ -21,9 +23,9 @@ var MenubarEditor = function (domNode, actionManager) {
   this.firstMenuitem = {}; // see Menubar init method
   this.lastMenuitem = {}; // see Menubar init method
 
-  this.initMenu(domNode)
-  domNode.addEventListener('focusin', this.handleMenubarFocusin.bind(this));
-  domNode.addEventListener('focusout', this.handleMenubarFocusout.bind(this));
+  this.initMenu(this.menubarNode)
+  this.domNode.addEventListener('focusin', this.handleFocusin.bind(this));
+  this.domNode.addEventListener('focusout', this.handleFocusout.bind(this));
 
   window.addEventListener('mousedown', this.handleBackgroundMousedown.bind(this), true);
 };
@@ -112,9 +114,6 @@ MenubarEditor.prototype.initMenu = function (menu) {
 
     menuitem.addEventListener('keydown', this.handleKeydown.bind(this));
     menuitem.addEventListener('click', this.handleMenuitemClick.bind(this));
-
-    menuitem.addEventListener('focus', this.handleMenuitemFocus.bind(this));
-    menuitem.addEventListener('blur', this.handleMenuitemBlur.bind(this));
 
     menuitem.addEventListener('mouseover', this.handleMenuitemMouseover.bind(this));
 
@@ -440,7 +439,7 @@ MenubarEditor.prototype.openPopup = function (menuitem) {
 
   // set CSS properties
   popupMenu.style.position = 'absolute';
-  popupMenu.style.top = rect.height  + 'px';
+  popupMenu.style.top = (rect.height - 3) + 'px';
   popupMenu.style.left = '0px';
   popupMenu.style.zIndex = 100;
   popupMenu.style.display = 'block';
@@ -503,18 +502,16 @@ MenubarEditor.prototype.isOpen = function (menuitem) {
 
 // Menu event handlers
 
-MenubarEditor.prototype.handleMenubarFocusin = function (event) {
-  // if the menubar or any of its menus has focus, add styling hook for hover
+MenubarEditor.prototype.handleFocusin = function (event) {
   this.domNode.classList.add('focus');
 };
 
-MenubarEditor.prototype.handleMenubarFocusout = function (event) {
-  // remove styling hook for hover on menubar item
+MenubarEditor.prototype.handleFocusout = function (event) {
   this.domNode.classList.remove('focus');
 };
 
 MenubarEditor.prototype.handleBackgroundMousedown = function (event) {
-  if (!this.domNode.contains(event.target)) {
+  if (!this.menubarNode.contains(event.target)) {
     this.closePopupAll();
   }
 };
@@ -662,17 +659,6 @@ MenubarEditor.prototype.handleKeydown = function (event) {
   }
 };
 
-
-MenubarEditor.prototype.handleMenuitemFocus = function (event) {
-  var menu = this.getMenu(event.target);
-  menu.classList.add('item');
-};
-
-MenubarEditor.prototype.handleMenuitemBlur = function (event) {
-  var menu = this.getMenu(event.target);
-  menu.classList.remove('item');
-};
-
 MenubarEditor.prototype.handleMenuitemClick = function (event) {
   var tgt = event.currentTarget;
   var value;
@@ -727,23 +713,11 @@ MenubarEditor.prototype.handleMenuitemMouseover = function (event) {
   }
 };
 
-MenubarEditor.prototype.handleMenuitemMouseout = function (event) {
-  var tgt = event.currentTarget;
-
-};
-
-MenubarEditor.prototype.handleMenuMouseover = function (event) {
-
-};
-
-MenubarEditor.prototype.handleMenuMouseout = function (event) {
-};
-
-
 // Initialize menubar editor
 
 window.addEventListener('load', function () {
-  var styleManager  = new StyleManager('textarea1');
-  var menubarEditor = new MenubarEditor(document.getElementById('menubar1'), styleManager);
+  var menubarEditors = document.querySelectorAll('.menubar-editor');
+  for(var i=0; i < menubarEditors.length; i++) {
+    var menubarEditor = new MenubarEditor(menubarEditors[i]);
+  }
 });
-

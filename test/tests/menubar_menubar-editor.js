@@ -10,8 +10,9 @@ const assertRovingTabindex = require('../util/assertRovingTabindex');
 const exampleFile = 'menubar/menubar-editor.html';
 
 const ex = {
+  textareaSelector: '#ex1 textarea',
   menubarSelector: '#ex1 [role="menubar"]',
-  menubarMenuitemSelector: '#ex1 a[role="menuitem"]',
+  menubarMenuitemSelector: '#ex1 span[role="menuitem"]',
   submenuMenuitemSelector: '#ex1 li[role="menuitem"]',
   submenuSelector: '#ex1 [role="menu"]',
   menuitemcheckboxSelector: '#ex1 [role="menuitemcheckbox"]',
@@ -85,6 +86,11 @@ const checkFocus = async function (t, selector, index) {
 };
 
 // Attributes
+
+ariaTest('Test aria-label on textarea', exampleFile, 'textarea-aria-label', async (t) => {
+  t.plan(1);
+  await assertAriaLabelExists(t, ex.textareaSelector);
+});
 
 ariaTest('Test for role="menubar" on ul', exampleFile, 'menubar-role', async (t) => {
 
@@ -740,7 +746,7 @@ ariaTest('ENTER in submenu selects item', exampleFile, 'submenu-enter', async (t
 
       // Get the current style attribute on the "Text Sample"
       const originalStyle = await t.context.session
-        .findElement(By.css('#textarea1'))
+        .findElement(By.css(ex.textareaSelector))
         .getAttribute('style');
 
       // send ENTER to the item
@@ -766,7 +772,7 @@ ariaTest('ENTER in submenu selects item', exampleFile, 'submenu-enter', async (t
 
       // Get the current style attribute on the "Text Sample"
       const currentStyle = await t.context.session
-        .findElement(By.css('#textarea1'))
+        .findElement(By.css(ex.textareaSelector))
         .getAttribute('style');
 
       t.is(
