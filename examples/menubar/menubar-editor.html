@@ -43,82 +43,83 @@
     <h2 id="ex1_label">Example</h2>
     <div role="separator" id="ex1_start_sep" aria-labelledby="ex1_start_sep ex1_label" aria-label="Start of"></div>
     <div id="ex1">
-      <ul id="menubar1" role="menubar" aria-label="Text Formatting">
-        <li role="none">
-          <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Font</a>
-          <ul role="menu" data-option="font-family" aria-label="Font" >
-            <li role="menuitemradio" aria-checked="true">Sans-serif</li>
-            <li role="menuitemradio" aria-checked="false">Serif</li>
-            <li role="menuitemradio" aria-checked="false">Monospace</li>
-            <li role="menuitemradio" aria-checked="false">Fantasy</li>
-          </ul>
-        </li>
-        <li role="none">
-          <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Style/Color</a>
-          <ul role="menu" aria-label="Style/Color">
-            <li role="none">
-              <ul role="group" data-option="font-style" aria-label="Font Style">
-                <li role="menuitemcheckbox" data-option="font-bold" aria-checked="false">Bold</li>
-                <li role="menuitemcheckbox" data-option="font-italic" aria-checked="false">Italic</li>
-              </ul>
-            </li>
-            <li role="separator"></li>
-            <li role="none">
-              <ul role="group" data-option="font-color" aria-label="Text Color">
-                <li role="menuitemradio" aria-checked="true">Black</li>
-                <li role="menuitemradio" aria-checked="false">Blue</li>
-                <li role="menuitemradio" aria-checked="false">Red</li>
-                <li role="menuitemradio" aria-checked="false">Green</li>
-              </ul>
-            <li role="separator"></li>
-            <li role="none">
-              <ul role="group" data-option="text-decoration" aria-label="Text Decoration">
-                <li role="menuitemradio" aria-checked="true">None</li>
-                <li role="menuitemradio" aria-checked="false">Overline</li>
-                <li role="menuitemradio" aria-checked="false">Line-through</li>
-                <li role="menuitemradio" aria-checked="false">Underline</li>
-              </ul>
-          </ul>
-        </li>
+      <div class="text-styling">
+        <ul id="menubar1" role="menubar" aria-label="Text Formatting">
+          <li role="none">
+            <span role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Font</span>
+            <ul role="menu" data-option="font-family" aria-label="Font" >
+              <li role="menuitemradio" aria-checked="true">Sans-serif</li>
+              <li role="menuitemradio" aria-checked="false">Serif</li>
+              <li role="menuitemradio" aria-checked="false">Monospace</li>
+              <li role="menuitemradio" aria-checked="false">Fantasy</li>
+            </ul>
+          </li>
+          <li role="none">
+            <span role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Style/Color</span>
+            <ul role="menu" aria-label="Style/Color">
+              <li role="none">
+                <ul role="group" data-option="font-style" aria-label="Font Style">
+                  <li role="menuitemcheckbox" data-option="font-bold" aria-checked="false">Bold</li>
+                  <li role="menuitemcheckbox" data-option="font-italic" aria-checked="false">Italic</li>
+                </ul>
+              </li>
+              <li role="separator"></li>
+              <li role="none">
+                <ul role="group" data-option="font-color" aria-label="Text Color">
+                  <li role="menuitemradio" aria-checked="true">Black</li>
+                  <li role="menuitemradio" aria-checked="false">Blue</li>
+                  <li role="menuitemradio" aria-checked="false">Red</li>
+                  <li role="menuitemradio" aria-checked="false">Green</li>
+                </ul>
+              <li role="separator"></li>
+              <li role="none">
+                <ul role="group" data-option="text-decoration" aria-label="Text Decoration">
+                  <li role="menuitemradio" aria-checked="true">None</li>
+                  <li role="menuitemradio" aria-checked="false">Overline</li>
+                  <li role="menuitemradio" aria-checked="false">Line-through</li>
+                  <li role="menuitemradio" aria-checked="false">Underline</li>
+                </ul>
+            </ul>
+          </li>
 
-        <li role="none">
-          <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Text Align</a>
-          <ul role="menu" data-option="text-align" aria-label="Text Align">
-            <li role="menuitemradio" aria-checked="true">Left</li>
-            <li role="menuitemradio" aria-checked="false">Center</li>
-            <li role="menuitemradio" aria-checked="false">Right</li>
-            <li role="menuitemradio" aria-checked="false">Justify</li>
-          </ul>
-        </li>
+          <li role="none">
+            <span role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Text Align</span>
+            <ul role="menu" data-option="text-align" aria-label="Text Align">
+              <li role="menuitemradio" aria-checked="true">Left</li>
+              <li role="menuitemradio" aria-checked="false">Center</li>
+              <li role="menuitemradio" aria-checked="false">Right</li>
+              <li role="menuitemradio" aria-checked="false">Justify</li>
+            </ul>
+          </li>
 
-        <li role="none">
-          <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Size</a>
-          <ul role="menu" aria-label="Size" >
-            <li role="menuitem" data-option="font-smaller" aria-disabled="false">Smaller</li>
-            <li role="menuitem" data-option="font-larger"  aria-disabled="false">Larger</li>
-            <li role="separator"></li>
-            <li>
-              <ul role="group" data-option="font-size" aria-label="Font Sizes">
-                <li role="menuitemradio" aria-checked="false">X-Small</li>
-                <li role="menuitemradio" aria-checked="false">Small</li>
-                <li role="menuitemradio" aria-checked="true">Medium</li>
-                <li role="menuitemradio" aria-checked="false">Large</li>
-                <li role="menuitemradio" aria-checked="false">X-Large</li>
-              </ul>
-          </ul>
-        </li>
-      </ul>
+          <li role="none">
+            <span role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Size</span>
+            <ul role="menu" aria-label="Size" >
+              <li role="menuitem" data-option="font-smaller" aria-disabled="false">Smaller</li>
+              <li role="menuitem" data-option="font-larger"  aria-disabled="false">Larger</li>
+              <li role="separator"></li>
+              <li>
+                <ul role="group" data-option="font-size" aria-label="Font Sizes">
+                  <li role="menuitemradio" aria-checked="false">X-Small</li>
+                  <li role="menuitemradio" aria-checked="false">Small</li>
+                  <li role="menuitemradio" aria-checked="true">Medium</li>
+                  <li role="menuitemradio" aria-checked="false">Large</li>
+                  <li role="menuitemradio" aria-checked="false">X-Large</li>
+                </ul>
+            </ul>
+          </li>
+        </ul>
+        <textarea id="textarea1" rows="20"
+          style="font-size: medium; font-family: sans-serif" aria-label="Text Sample"
+        >
+            Four score and seven years ago our fathers brought forth on this continent a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.
 
-      <label for="textarea1" class="hidden">Text Sample</label><br>
-      <textarea id="textarea1" rows="20" cols="80"
-        style="font-size: medium; font-family: sans-serif"
-      >
-          Four score and seven years ago our fathers brought forth on this continent a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.
+            Now we are engaged in a great civil war, testing whether that nation, or any nation, so conceived and so dedicated, can long endure. We are met on a great battle-field of that war. We have come to dedicate a portion of that field, as a final resting place for those who here gave their lives that that nation might live. It is altogether fitting and proper that we should do this.
 
-          Now we are engaged in a great civil war, testing whether that nation, or any nation, so conceived and so dedicated, can long endure. We are met on a great battle-field of that war. We have come to dedicate a portion of that field, as a final resting place for those who here gave their lives that that nation might live. It is altogether fitting and proper that we should do this.
+            But, in a larger sense, we can not dedicate, we can not consecrate, we can not hallow, this ground. The brave men, living and dead, who struggled here, have consecrated it, far above our poor power to add or detract. The world will little note, nor long remember what we say here, but it can never forget what they did here. It is for us the living, rather, to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced. It is rather for us to be here dedicated to the great task remaining before us, that from these honored dead we take increased devotion to that cause for which they gave the last full measure of devotion, that we here highly resolve that these dead shall not have died in vain, that this nation, under God, shall have a new birth of freedom, and that government of the people, by the people, for the people, shall not perish from the earth.
+            </textarea>
+      </div>
 
-          But, in a larger sense, we can not dedicate, we can not consecrate, we can not hallow, this ground. The brave men, living and dead, who struggled here, have consecrated it, far above our poor power to add or detract. The world will little note, nor long remember what we say here, but it can never forget what they did here. It is for us the living, rather, to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced. It is rather for us to be here dedicated to the great task remaining before us, that from these honored dead we take increased devotion to that cause for which they gave the last full measure of devotion, that we here highly resolve that these dead shall not have died in vain, that this nation, under God, shall have a new birth of freedom, and that government of the people, by the people, for the people, shall not perish from the earth.
-          </textarea>
       <p>
         <a href="https://en.wikipedia.org/wiki/Gettysburg,_Pennsylvania">More information on
           Gettysburg Address</a>

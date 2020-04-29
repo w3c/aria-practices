@@ -1,7 +1,22 @@
+
+.text-styling {
+  margin: 0;
+  padding: 0;
+  width: 560px;
+}
+
+.text-styling textarea {
+  padding: 5px;
+  margin: 0;
+  border: 1px solid black;
+  height: 400px;
+  width: 548px;
+  font-size: medium;
+  font-family: sans-serif;
+}
+
 ul[role="menubar"] {
   margin: 0;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
   padding: 2px;
   font-size: 110%;
   list-style: none;
@@ -22,11 +37,6 @@ ul[role="menubar"] > li {
   position: relative;
   top: 3px;
   left: 1px;
-}
-
-ul[role="menubar"] > li > [role="menuitem"]::after {
-  content: url('../images/down-arrow-brown.png');
-  padding-left: 0.25em;
 }
 
 ul[role="menubar"] ul[role="menu"] {
@@ -151,11 +161,3 @@ ul[role="menubar"] [role="menu"] [role="menuitemradio"][aria-checked='true']:foc
   text-decoration: underline;
 }
 
-#textarea1 {
-  padding: 0.5em;
-  border: 1px solid black;
-  height: 400px;
-  width: 70%;
-  font-size: medium;
-  font-family: sans-serif;
-}
