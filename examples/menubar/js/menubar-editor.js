@@ -131,16 +131,7 @@ MenubarEditor.prototype.initMenu = function (menu) {
 
 /* MenubarEditor FOCUS MANAGEMENT METHODS */
 
-MenubarEditor.prototype.setFocus = function(menuitem) {
-  this.currentMenuitem = menuitem;
-  menuitem.focus();
-};
-
-MenubarEditor.prototype.setFocusToMenuitem = function (menuId, newMenuitem, currentMenuitem) {
-
-  if (typeof currentMenuitem !== 'object') {
-    currentMenuitem = this.currentMenuitem;
-  }
+MenubarEditor.prototype.setFocusToMenuitem = function (menuId, newMenuitem) {
 
   var isAnyPopupOpen = this.isAnyPopupOpen();
 
@@ -168,7 +159,7 @@ MenubarEditor.prototype.setFocusToMenuitem = function (menuId, newMenuitem, curr
     newMenuitem.tabIndex = 0;
   }
 
-  this.setFocus(newMenuitem);
+  newMenuitem.focus();
 
 };
 
@@ -191,7 +182,7 @@ MenubarEditor.prototype.setFocusToPreviousMenuitem = function (menuId, currentMe
     newMenuitem = this.menuitemGroups[menuId][ index - 1 ];
   }
 
-  this.setFocusToMenuitem(menuId, newMenuitem, currentMenuitem);
+  this.setFocusToMenuitem(menuId, newMenuitem);
 
   return newMenuitem;
 };
@@ -206,7 +197,7 @@ MenubarEditor.prototype.setFocusToNextMenuitem = function (menuId, currentMenuit
     index = this.menuitemGroups[menuId].indexOf(currentMenuitem);
     newMenuitem = this.menuitemGroups[menuId][ index + 1 ];
   }
-  this.setFocusToMenuitem(menuId, newMenuitem, currentMenuitem);
+  this.setFocusToMenuitem(menuId, newMenuitem);
 
   return newMenuitem;
 };
@@ -232,7 +223,7 @@ MenubarEditor.prototype.setFocusByFirstCharacter = function (menuId, currentMenu
 
   // If match was found...
   if (index > -1) {
-    this.setFocusToMenuitem(menuId, this.menuitemGroups[menuId][index], currentMenuitem);
+    this.setFocusToMenuitem(menuId, this.menuitemGroups[menuId][index]);
   }
 };
 
@@ -475,7 +466,7 @@ MenubarEditor.prototype.closePopup = function (menuitem) {
     menu = this.getMenu(menuitem);
     cmi = menu.previousElementSibling;
     cmi.setAttribute('aria-expanded', 'false');
-    this.setFocus(cmi);
+    cmi.focus();
     menu.style.display = 'none';
     menu.style.zIndex = 0;
   }
