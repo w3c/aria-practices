@@ -46,7 +46,7 @@
       <div class="menubar-editor">
         <ul role="menubar" aria-label="Text Formatting">
           <li role="none">
-            <span role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Font</span>
+            <span role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0">Font</span>
             <ul role="menu" data-option="font-family" aria-label="Font" >
               <li role="menuitemradio" aria-checked="true">Sans-serif</li>
               <li role="menuitemradio" aria-checked="false">Serif</li>
@@ -55,7 +55,7 @@
             </ul>
           </li>
           <li role="none">
-            <span role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Style/Color</span>
+            <span role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="-1">Style/Color</span>
             <ul role="menu" aria-label="Style/Color">
               <li role="none">
                 <ul role="group" data-option="font-style" aria-label="Font Style">
@@ -83,7 +83,7 @@
           </li>
 
           <li role="none">
-            <span role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Text Align</span>
+            <span role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="-1">Text Align</span>
             <ul role="menu" data-option="text-align" aria-label="Text Align">
               <li role="menuitemradio" aria-checked="true">Left</li>
               <li role="menuitemradio" aria-checked="false">Center</li>
@@ -93,7 +93,7 @@
           </li>
 
           <li role="none">
-            <span role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Size</span>
+            <span role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="-1">Size</span>
             <ul role="menu" aria-label="Size" >
               <li role="menuitem" data-option="font-smaller" aria-disabled="false">Smaller</li>
               <li role="menuitem" data-option="font-larger"  aria-disabled="false">Larger</li>
@@ -390,7 +390,7 @@
             </th>
             <td></td>
             <td>
-              <code>a</code>
+              <code>span</code>
             </td>
             <td>
               <ul>
@@ -405,7 +405,7 @@
               <code>tabindex=&quot;-1&quot;</code>
             </th>
             <td>
-              <code>a</code>
+              <code>span</code>
             </td>
             <td>
               Makes the <code>menuitem</code> element keyboard focusable but
@@ -418,7 +418,7 @@
               <code>tabindex=&quot;0&quot;</code>
             </th>
             <td>
-              <code>a</code>
+              <code>span</code>
             </td>
             <td>
               <ul>
@@ -444,7 +444,7 @@
               <code>aria-haspopup=&quot;true&quot;</code>
             </th>
             <td>
-              <code>a</code>
+              <code>span</code>
             </td>
             <td>
               Indicates that the <code>menuitem</code> has a submenu.
@@ -456,7 +456,7 @@
               <code>aria-expanded=&quot;true&quot;</code>
             </th>
             <td>
-              <code>a</code>
+              <code>span</code>
             </td>
             <td>Indicates the menu is open.</td>
           </tr>
@@ -466,7 +466,7 @@
               <code>aria-expanded=&quot;false&quot;</code>
             </th>
             <td>
-              <code>a</code>
+              <code>span</code>
             </td>
             <td>Indicates the submenu is closed.</td>
           </tr>
