@@ -30,16 +30,21 @@ const ex = {
   jan12019Day: '#ex1 [role="dialog"] .dates td[data-date="2019-01-01"]',
   jan22019Day: '#ex1 [role="dialog"] .dates td[data-date="2019-01-02"]',
   todayButton: `#ex1 [role="dialog"] .dates [data-date="${todayDataDate}"]`,
-  allFocusableElementsInDialog: [
-    `#ex1 [role="dialog"] td[data-date="${todayDataDate}"]`,
-    '#ex1 [role="dialog"] button[value="cancel"]',
-    '#ex1 [role="dialog"] button[value="ok"]',
-    '#ex1 [role="dialog"] button.prev-year',
-    '#ex1 [role="dialog"] button.prev-month',
-    '#ex1 [role="dialog"] button.next-month',
-    '#ex1 [role="dialog"] button.next-year'
-  ]
+  monthYear: '#cb-dialog-label',
+  prevYear: '#ex1 [role="dialog"] button.prev-year',
+  prevMonth: '#ex1 [role="dialog"] button.prev-month',
+  nextMonth: '#ex1 [role="dialog"] button.next-month',
+  nextYear: '#ex1 [role="dialog"] button.next-year'
 };
+ex.allFocusableElementsInDialog = [
+  `#ex1 [role="dialog"] td[data-date="${todayDataDate}"]`,
+  '#ex1 [role="dialog"] button[value="cancel"]',
+  '#ex1 [role="dialog"] button[value="ok"]',
+  ex.prevYear,
+  ex.prevMonth,
+  ex.nextMonth,
+  ex.nextYear
+]
 
 const clickFirstOfMonth = async function (t) {
   let today = new Date();
@@ -321,7 +326,7 @@ ariaTest('DOWN ARROW, ALT plus DOWN ARROW and ENTER to open datepicker', example
 
 ariaTest('ENTER to open datepicker', exampleFile, 'button-space-return', async (t) => {
   let chooseDateButton = await t.context.session.findElement(By.css(ex.buttonSelector));
-  chooseDateButton.sendKeys(Key.ENTER);
+  await chooseDateButton.sendKeys(Key.ENTER);
 
   t.not(
     await t.context.session.findElement(By.css(ex.dialogSelector)).getCssValue('display'),
@@ -332,7 +337,7 @@ ariaTest('ENTER to open datepicker', exampleFile, 'button-space-return', async (
 
 ariaTest('SPACE to open datepicker', exampleFile, 'button-space-return', async (t) => {
   let chooseDateButton = await t.context.session.findElement(By.css(ex.buttonSelector));
-  chooseDateButton.sendKeys(' ');
+  await chooseDateButton.sendKeys(' ');
 
   t.not(
     await t.context.session.findElement(By.css(ex.dialogSelector)).getCssValue('display'),
@@ -366,6 +371,33 @@ ariaTest('Sending key ESC when focus is in dialog closes dialog', exampleFile, '
   }
 });
 
+ariaTest('ENTER on previous year or month and SPACE on next year or month changes the year or month', exampleFile, 'month-year-button-space-return', async (t) => {
+  t.plan(4);
+  await t.context.session.findElement(By.css(ex.buttonSelector)).sendKeys(Key.ENTER);
+
+  let monthYear = await t.context.session.findElement(By.css(ex.monthYear));
+  let originalMonthYear = await monthYear.getText();
+
+  for (let yearOrMonth of ['Year', 'Month']) {
+    // enter on previous year or month should change the monthYear text
+    await t.context.session.findElement(By.css(ex[`prev${yearOrMonth}`])).sendKeys(Key.ENTER);
+
+    t.not(
+      await monthYear.getText(),
+      originalMonthYear,
+      'After sending ENTER on the "previous year" button, the month year text should be different'
+    );
+
+    // space on next year or month should change it back to the original
+    await t.context.session.findElement(By.css(ex[`next${yearOrMonth}`])).sendKeys(' ');
+
+    t.is(
+      await monthYear.getText(),
+      originalMonthYear,
+      'After sending ENTER on the "previous year" button, the month year text should be different'
+    );
+  }
+});
 
 ariaTest('Tab should go through all tabbable items, then repear', exampleFile, 'dialog-tab', async (t) => {
   t.plan(8);
@@ -387,7 +419,7 @@ ariaTest('Tab should go through all tabbable items, then repear', exampleFile, '
   );
 });
 
-ariaTest('', exampleFile, 'dialog-shift-tab', async (t) => {
+ariaTest('Shift-tab should move focus backwards', exampleFile, 'dialog-shift-tab', async (t) => {
   t.plan(7);
 
   await t.context.session.findElement(By.css(ex.buttonSelector)).sendKeys(Key.ENTER);
