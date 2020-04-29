@@ -40,7 +40,7 @@
 "aria-rowcount","1","2","Guidance: Using  aria-rowcount  and  aria-rowindex ","Example: Data Grid","Example: Layout Grid"
 "aria-rowindex","1","2","Guidance: Using  aria-rowcount  and  aria-rowindex ","Example: Data Grid","Example: Layout Grid"
 "aria-rowspan","1","0","Guidance: Defining cell spans using  aria-colspan  and  aria-rowspan "
-"aria-selected","0","4","Example: Editable Combobox with Grid Popup","Example: Listboxes with Rearrangeable Options","Example: Tabs with Automatic Activation","Example: Tabs with Manual Activation"
+"aria-selected","0","7","Example: Editable Combobox With Both List and Inline Autocomplete","Example: Editable Combobox With List Autocomplete","Example: Editable Combobox without Autocomplete","Example: Editable Combobox with Grid Popup","Example: Listboxes with Rearrangeable Options","Example: Tabs with Automatic Activation","Example: Tabs with Manual Activation"
 "aria-setsize","0","4","Example: Treegrid Email Inbox","Example: File Directory Treeview  Using Computed Properties","Example: File Directory Treeview  Using Declared Properties","Example: Navigation Treeview  Using Declared Properties"
 "aria-sort","1","1","Guidance: Indicating sort order with  aria-sort ","Example: Data Grid"
 "aria-valuemax","0","5","Example: Meter","Example: Horizontal Multi-Thumb Slider","Example: Horizontal Slider","Example: Slider  with aria-orientation and aria-valuetext","Example: Date Picker Spin Button"
