@@ -687,7 +687,6 @@ ComboboxDatePicker.prototype.setComboboxDate = function (domNode) {
   }
 
   this.comboboxNode.value = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
-  this.setDateForButtonLabel(d.getFullYear(), d.getMonth(), d.getDate());
 
 };
 
@@ -708,22 +707,6 @@ ComboboxDatePicker.prototype.getDateFromCombobox = function () {
     this.selectedDay = new Date(0,0,1);
   }
 
-};
-
-ComboboxDatePicker.prototype.setDateForButtonLabel = function (year, month, day) {
-  if (typeof year !== 'number' || typeof month !== 'number' || typeof day !== 'number') {
-    this.selectedDay = this.focusDay;
-  }
-  else {
-    this.selectedDay = new Date(year, month, day);
-  }
-
-  var label = this.buttonLabel;
-  label += ', ' + this.dayLabels[this.selectedDay.getDay()];
-  label += ' ' + this.monthLabels[this.selectedDay.getMonth()];
-  label += ' ' + (this.selectedDay.getDate());
-  label += ', ' + this.selectedDay.getFullYear();
-  this.buttonNode.setAttribute('aria-label', label);
 };
 
 ComboboxDatePicker.prototype.setMessage = function (str) {

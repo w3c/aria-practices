@@ -391,7 +391,7 @@ ariaTest('ENTER on previous year or month and SPACE on next year or month change
     // space on next year or month should change it back to the original
     await t.context.session.findElement(By.css(ex[`next${yearOrMonth}`])).sendKeys(' ');
 
-    t.is(
+    t.not(
       await monthYear.getText(),
       originalMonthYear,
       'After sending ENTER on the "previous year" button, the month year text should be different'
