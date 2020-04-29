@@ -83,7 +83,7 @@ ul[role="menubar"] [role="menu"] [role="separator"] {
 
 ul[role="menubar"] [role="separator"] {
   padding-top: 3px;
-  background-image: url('../images/separator.png');
+  background-image: url('../images/separator.svg');
   background-position: center;
   background-repeat: repeat-x;
 }
@@ -94,10 +94,16 @@ ul[role="menubar"] [role="menu"] [aria-checked='true'] {
   padding-right: 18px;
 }
 
-ul[role="menubar"]  [role="menu"] [aria-checked='true']::before {
-  content: url('../images/dot-brown.png');
+ul[role="menubar"] [role='menuitemradio'][aria-checked='true']::before {
+  content: url('../images/radio-checked.svg');
   padding-right: 5px;
 }
+
+ul[role="menubar"] [role='menuitemcheckbox'][aria-checked='true']::before {
+  content: url('../images/checkbox-checked.svg');
+  padding-right: 5px;
+}
+
 
 /* focus and hover styling */
 
@@ -128,6 +134,16 @@ ul[role="menubar"] [role="menuitemradio"]:focus {
   color: #fff;
   outline: none;
 }
+
+ul[role="menubar"] [role='menuitemradio'][aria-checked='true']:focus::before {
+  content: url('../images/radio-checked-focus.svg');
+}
+
+ul[role="menubar"] [role='menuitemcheckbox'][aria-checked='true']:focus::before {
+  content: url('../images/checkbox-checked-focus.svg');
+  padding-right: 5px;
+}
+
 
 ul[role="menubar"] [role="menuitem"]:hover {
   margin: 2px;
