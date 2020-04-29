@@ -1,8 +1,28 @@
+.text-styling {
+  margin: 0;
+  padding: 0;
+  width: 560px;
+}
+
+.text-styling textarea {
+  padding: 4px;
+  margin: 0;
+  border: 2px solid black;
+  height: 400px;
+  width: 548px;
+  font-size: medium;
+  font-family: sans-serif;
+}
+
+.text-styling textarea:focus {
+  padding: 4px;
+  border: #034575 solid 2px;
+}
+
+
 ul[role="menubar"] {
   margin: 0;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  padding: 2px;
+  padding: 1px;
   font-size: 110%;
   list-style: none;
   background-color: #eee;
@@ -85,14 +105,10 @@ ul[role="menubar"]  [role="menu"] [aria-checked='true']::before {
 
 /* focus and hover styling */
 
+ul[role="menubar"].focus.item,
 ul[role="menubar"].focus {
-  padding: 1px;
-  border: #034575 solid 2px;
-}
-
-ul[role="menubar"].focus.item {
-  padding: 0px;
-  border: #034575 solid 3px;
+  border-width: 2px;
+  border-color: #034575;
 }
 
 ul[role="menubar"].focus [role="menu"] {
@@ -118,7 +134,7 @@ ul[role="menubar"] [role="menuitemradio"]:focus {
 }
 
 ul[role="menubar"] [role="menuitem"]:hover {
-  margin: 1px;
+  margin: 2px;
   padding: 2px;
   border: 2px solid #034575;
 }
