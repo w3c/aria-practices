@@ -379,22 +379,24 @@ ariaTest('ENTER on previous year or month and SPACE on next year or month change
   let originalMonthYear = await monthYear.getText();
 
   for (let yearOrMonth of ['Year', 'Month']) {
+    let yearOrMonthLower = yearOrMonth.toLowerCase();
+
     // enter on previous year or month should change the monthYear text
     await t.context.session.findElement(By.css(ex[`prev${yearOrMonth}`])).sendKeys(Key.ENTER);
 
     t.not(
       await monthYear.getText(),
       originalMonthYear,
-      'After sending ENTER on the "previous year" button, the month year text should be different'
+      `After sending ENTER on the "previous ${yearOrMonthLower}" button, the month and year text should be updated`
     );
 
     // space on next year or month should change it back to the original
     await t.context.session.findElement(By.css(ex[`next${yearOrMonth}`])).sendKeys(' ');
 
-    t.not(
+    t.is(
       await monthYear.getText(),
       originalMonthYear,
-      'After sending ENTER on the "previous year" button, the month year text should be different'
+      `After sending SPACE on the "next ${yearOrMonthLower}" button, the month and year text should be updated`
     );
   }
 });
