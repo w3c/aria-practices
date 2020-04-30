@@ -2,11 +2,11 @@ ul[role="menubar"] {
   margin: 0;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
-  padding: 8px;
+  padding: 7px;
   font-size: 110%;
   list-style: none;
   background-color: #eee;
-  border: #eee solid 0px;
+  border: #eee solid 1px;
   border-radius: 5px;
 }
 
@@ -22,8 +22,18 @@ ul[role="menubar"] > li {
 }
 
 ul[role="menubar"] > li > [role="menuitem"]::after {
-  content: url('../images/down-arrow-brown.png');
+  content: url('../images/down-arrow.svg');
   padding-left: 0.25em;
+  position: relative;
+  top: 2px;
+}
+
+ul[role="menubar"].focus > li > [role="menuitem"]::after {
+  content: url('../images/down-arrow-focus.svg');
+}
+
+ul[role="menubar"] > li > [role="menuitem"][aria-expanded="true"]::after {
+  content: url('../images/up-arrow.svg');
 }
 
 ul[role="menubar"] [role="menu"] {
@@ -61,19 +71,21 @@ ul[role="menubar"] [role="menu"]  {
 
 ul[role="menubar"] [role="separator"] {
   padding-top: 3px;
-  background-image: url('../images/separator.png');
+  background-image: url('../images/separator.svg');
   background-position: center;
   background-repeat: repeat-x;
 }
 
-ul[role="menubar"] [role="menuitem"][aria-expanded="true"] {
-  padding: 4px;
-  border: 2px solid #034575;
+ul[role="menubar"] [role="menu"] [role="menuitem"][aria-haspopup="true"]::after {
+  content: url('../images/right-arrow.svg');
+  position: relative;
+  left: 8px;
 }
 
-ul[role="menubar"] [role="menu"] [role="menuitem"][aria-haspopup="true"]::after {
-  content: url('../images/right-arrow-brown.png');
-  padding-right: 2em;
+ul[role="menubar"] [role="menu"] [role="menuitem"][aria-expanded="true"]::after {
+  content: url('../images/down-arrow-focus.svg');
+  top: 2px;
+  left: 4px;
 }
 
 /* focus styling */
@@ -88,16 +100,16 @@ ul[role="menubar"].focus.item {
   border: #034575 solid 3px;
 }
 
-ul[role="menubar"].focus [role="menu"] {
-  padding: 8px 5px;
-  border: 1px solid #034575;
+ul[role="menubar"] [role="menu"].hover  {
+  padding: 9px 6px;
+  border: 0px solid #034575;
   border-radius: 5px;
   background-color: #eee;
 }
 
-ul[role="menubar"] [role="menu"].hover  {
-  padding: 9px 6px;
-  border: 0px solid #034575;
+ul[role="menubar"].focus [role="menu"] {
+  padding: 7px 4px;
+  border: 2px solid #034575;
   border-radius: 5px;
   background-color: #eee;
 }
@@ -111,7 +123,7 @@ ul[role="menubar"].focus [role="menu"].item  {
 
 ul[role="menubar"] [role="menuitem"]:focus {
   padding: 2px;
-  border: 4px dotted #034575;
+  border: 4px solid #034575;
   outline: none;
 }
 
