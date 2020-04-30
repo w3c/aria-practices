@@ -10,8 +10,7 @@
   border-radius: 5px;
 }
 
-.menubar-navigation li,
-.menubar-navigation a {
+.menubar-navigation li {
   margin: 0;
   padding: 0;
   border: 0 solid black;
@@ -23,16 +22,15 @@
   position: relative;
 }
 
-.menubar-navigation > li > [role="menuitem"] {
-  display: inline-block;
-}
-
-.menubar-navigation > li > li  {
+.menubar-navigation > li  li  {
   display: block;
 }
 
-.menubar-navigation [role="menu"] > li > a  {
-  display: inline-block;
+.menubar-navigation [role="menu"] [role="menuitem"],
+.menubar-navigation [role="menu"] [role="separator"] {
+  display: block;
+  width: 12em;
+  margin: 0;
 }
 
 .menubar-navigation [role="menuitem"],
@@ -69,12 +67,6 @@
   padding: 0;
 }
 
-.menubar-navigation [role="menu"] [role="menuitem"],
-.menubar-navigation [role="menu"] [role="separator"] {
-  display: block;
-  width: 12em;
-}
-
 .menubar-navigation [role="menu"]  {
   display: none;
 }
@@ -98,6 +90,7 @@
   left: 11em;
 }
 
+.menubar-navigation [role="menu"] [role="menuitem"][aria-haspopup="true"]:hover::after,
 .menubar-navigation [role="menu"] [role="menuitem"][aria-expanded="true"]::after {
   content: url('../images/down-arrow-focus.svg');
   position: absolute;
@@ -125,4 +118,5 @@
   background: #034575;
   color: #fff;
   outline: none;
+  margin: 0;
 }
