@@ -123,12 +123,7 @@ MenubarNavigation.prototype.initMenu = function (menu, depth) {
     this.lastMenuitem[menuId] = menuitem;
 
   }
-
-//  console.log('[initMenu][menuId]: ' + menuId  + ' ' + this.isPopup[menuId] + ' ' + this.isPopout[menuId]);
-//  menuitems.forEach(item => console.log('[menuitem]: ' + item.textContent + ' ' + this.hasPopup(item)));
 };
-
-/* MenubarNavigation FOCUS MANAGEMENT METHODS */
 
 MenubarNavigation.prototype.setFocusToMenuitem = function (menuId, newMenuitem) {
 
@@ -136,30 +131,17 @@ MenubarNavigation.prototype.setFocusToMenuitem = function (menuId, newMenuitem) 
 
   this.closePopupAll(newMenuitem);
 
-  if (this.hasPopup(newMenuitem)) {
-    if (isAnyPopupOpen) {
-      this.openPopup(menuId, newMenuitem);
-    }
-  }
-  else {
-    var menu = this.getMenu(newMenuitem);
-    var cmi = menu.previousElementSibling;
-    if (!this.isOpen(cmi)) {
-      this.openPopup(menuId, cmi);
-    }
-  }
-
-  if (this.hasPopup(newMenuitem)) {
-    if (this.menuitemGroups[menuId]) {
-      this.menuitemGroups[menuId].forEach(function(item) {
+  if (this.menuitemGroups[menuId]) {
+    this.menuitemGroups[menuId].forEach(function(item) {
+      if (item === newMenuitem) {
+        item.tabIndex = 0;
+        newMenuitem.focus();
+      }
+      else {
         item.tabIndex = -1;
-      });
-    }
-    newMenuitem.tabIndex = 0;
+      }
+    });
   }
-
-  newMenuitem.focus();
-
 };
 
 MenubarNavigation.prototype.setFocusToFirstMenuitem = function (menuId,  currentMenuitem) {
@@ -399,22 +381,15 @@ MenubarNavigation.prototype.closePopupAll = function (menuitem) {
   if (typeof menuitem !== 'object') {
     menuitem = false;
   }
-
   for (var i = 0; i < this.popups.length; i++) {
     var popup = this.popups[i];
-    console.log('[closePopupAll][doesNotContain]: ' + this.doesNotContain(popup, menuitem));
-    console.log('[closePopupAll][isOpen]: ' + this.isOpen(popup));
     if (this.doesNotContain(popup, menuitem) && this.isOpen(popup)) {
-      console.log('[closePopupAll][A]');
-      var cmi = popup.previousElementSibling;
+      var cmi = popup.nextElementSibling;
       if (cmi) {
-        cmi.setAttribute('aria-expanded', 'false');
+        popup.setAttribute('aria-expanded', 'false');
+        cmi.style.display = 'none';
       }
-      popup.style.display = 'none';
     }
-  }
-  if (menuitem) {
-    mennuitem.focus();
   }
 };
 
@@ -444,14 +419,6 @@ MenubarNavigation.prototype.handleMenubarFocusin = function (event) {
 MenubarNavigation.prototype.handleMenubarFocusout = function (event) {
   // remove styling hook for hover on menubar item
   this.domNode.classList.remove('focus');
-};
-
-MenubarNavigation.prototype.handleBackgroundMousedown = function (event) {
-  if (!this.domNode.contains(event.target)) {
-    this.closePopupAll();
-    event.stopPropagation();
-    event.preventDefault();
-  }
 };
 
 MenubarNavigation.prototype.handleKeydown = function (event) {
@@ -601,7 +568,7 @@ MenubarNavigation.prototype.handleMenuitemClick = function (event) {
       this.closePopup(tgt);
     }
     else {
-      this.closePopupAll();
+      this.closePopupAll(tgt);
       this.openPopup(menuId, tgt);
     }
     event.stopPropagation();
@@ -610,15 +577,23 @@ MenubarNavigation.prototype.handleMenuitemClick = function (event) {
 };
 
 MenubarNavigation.prototype.handleMenuitemMouseover = function (event) {
-  var tgt = event.currentTarget,
-    menuId,
-    menu;
+  var tgt = event.currentTarget;
 
-  if (this.isAnyPopupOpen() && this.hasPopup(tgt)) {
+  tgt.focus();
+
+  if (this.isAnyPopupOpen()) {
     this.closePopupAll(tgt);
-    menuId = this.getMenuId(tgt);
-    menu = this.getMenu(tgt);
-    this.openPopup(menuId, tgt);
+    if (this.hasPopup(tgt)) {
+      this.openPopup(this.getMenuId(tgt), tgt);
+    }
+  }
+};
+
+MenubarNavigation.prototype.handleBackgroundMousedown = function (event) {
+  if (!this.domNode.contains(event.target)) {
+    this.closePopupAll();
+    event.stopPropagation();
+    event.preventDefault();
   }
 };
 
