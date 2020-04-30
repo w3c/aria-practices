@@ -54,18 +54,18 @@ const clickFirstOfMonth = async function (t) {
   firstOfMonth.setDate(1);
   let firstOfMonthString = today.toISOString().split('T')[0];
 
-  return t.context.session.findElement(By.css(`[data-date=${firstOfMonthString}]`)).click();
+  return (await t.context.session.findElement(By.css(`[data-date=${firstOfMonthString}]`))).click();
 };
 
 const clickToday = async function (t) {
   let today = new Date();
   today.setUTCHours(0,0,0,0);
   let todayString = today.toISOString().split('T')[0];
-  return t.context.session.findElement(By.css(`[data-date=${todayString}]`)).click();
+  return (await t.context.session.findElement(By.css(`[data-date=${todayString}]`))).click();
 };
 
 const setDateToJanFirst2019 = async function (t) {
-  await t.context.session.findElement(By.css(ex.comboboxSelector)).click();
+  await (await t.context.session.findElement(By.css(ex.comboboxSelector))).click();
   return t.context.session.executeScript(function () {
     const inputSelector = arguments[0];
     document.querySelector(inputSelector).value = '1/1/2019';
@@ -107,7 +107,7 @@ ariaTest('Combobox: aria-expanded set to "true" when dialog is open', exampleFil
   t.plan(1);
 
   // Open dialog box
-  await t.context.session.findElement(By.css(ex.comboboxSelector)).sendKeys(Key.ENTER);
+  await (await t.context.session.findElement(By.css(ex.comboboxSelector))).sendKeys(Key.ENTER);
   await assertAttributeValues(t, ex.comboboxSelector, 'aria-expanded', 'true');
 
 });
@@ -146,7 +146,7 @@ ariaTest('Button: aria-expanded set to "true" when the dialog box is open', exam
   t.plan(1);
 
   // Open dialog box
-  await t.context.session.findElement(By.css(ex.buttonSelector)).sendKeys(Key.ENTER);
+  await (await t.context.session.findElement(By.css(ex.buttonSelector))).sendKeys(Key.ENTER);
   await assertAttributeValues(t, ex.buttonSelector, 'aria-expanded', 'true');
 });
 
@@ -195,10 +195,11 @@ ariaTest('aria-labelledby on grid element', exampleFile, 'grid-aria-labelledby',
 
 
 ariaTest('Roving tab index on dates in gridcell', exampleFile, 'gridcell-tabindex', async (t) => {
+  let button = await t.context.session.findElement(By.css(ex.buttonSelector));
   await setDateToJanFirst2019(t);
 
-  await t.context.session.findElement(By.css(ex.buttonSelector)).click();
-  await t.context.session.findElement(By.css(ex.buttonSelector)).click();
+  await button.click();
+  await button.click();
 
   let focusableButtons = await t.context.session.findElements(By.css(ex.currentMonthDateButtons));
   let allButtons = await t.context.session.findElements(By.css(ex.allDates));
@@ -229,11 +230,13 @@ ariaTest('Roving tab index on dates in gridcell', exampleFile, 'gridcell-tabinde
 ariaTest('aria-selected on selected date', exampleFile, 'gridcell-aria-selected', async (t) => {
   t.plan(5);
 
-  await t.context.session.findElement(By.css(ex.buttonSelector)).click();
+  let button = await t.context.session.findElement(By.css(ex.buttonSelector));
+
+  await button.click();
   await assertAttributeDNE(t, ex.allDates, 'aria-selected');
 
   await setDateToJanFirst2019(t);
-  await t.context.session.findElement(By.css(ex.buttonSelector)).click();
+  await button.click();
   await assertAttributeValues(t, ex.jan12019Day, 'aria-selected', 'true');
 
   let selectedButtons = await t.context.session.findElements(
@@ -246,8 +249,8 @@ ariaTest('aria-selected on selected date', exampleFile, 'gridcell-aria-selected'
     'after setting date in box, only one button should have aria-selected'
   );
 
-  await t.context.session.findElement(By.css(ex.jan22019Day)).click();
-  await t.context.session.findElement(By.css(ex.buttonSelector)).click();
+  await (await t.context.session.findElement(By.css(ex.jan22019Day))).click();
+  await button.click();
   await assertAttributeValues(t, ex.jan22019Day, 'aria-selected', 'true');
 
   selectedButtons = await t.context.session.findElements(
@@ -268,56 +271,60 @@ ariaTest('aria-selected on selected date', exampleFile, 'gridcell-aria-selected'
 ariaTest('DOWN ARROW, ALT plus DOWN ARROW and ENTER to open datepicker', exampleFile, 'combobox-down-arrow-enter', async (t) => {
   t.plan(6);
 
+  let combobox = await t.context.session.findElement(By.css(ex.comboboxSelector));
+  let dialog = await t.context.session.findElement(By.css(ex.dialogSelector));
+  let cancel = await t.context.session.findElement(By.css(ex.cancelSelector))
+
   // Test ENTER key
-  await t.context.session.findElement(By.css(ex.comboboxSelector)).sendKeys(Key.ENTER);
+  await combobox.sendKeys(Key.ENTER);
 
   t.not(
-    await t.context.session.findElement(By.css(ex.dialogSelector)).getCssValue('display'),
+    await dialog.getCssValue('display'),
     'none',
     'After sending ENTER to the combobox, the calendar dialog should open'
   );
 
   // Close dialog
-  await t.context.session.findElement(By.css(ex.cancelSelector)).sendKeys(Key.ENTER);
+  await cancel.sendKeys(Key.ENTER);
 
   t.not(
-    await t.context.session.findElement(By.css(ex.dialogSelector)).getCssValue('display'),
+    await dialog.getCssValue('display'),
     'block',
     'After sending ESCAPE to the dialog, the calendar dialog should close'
   );
 
   // Test DOWN ARROW key
-  await t.context.session.findElement(By.css(ex.comboboxSelector)).sendKeys(Key.ARROW_DOWN);
+  await combobox.sendKeys(Key.ARROW_DOWN);
 
   t.not(
-    await t.context.session.findElement(By.css(ex.dialogSelector)).getCssValue('display'),
+    await dialog.getCssValue('display'),
     'none',
     'After sending DOWN ARROW to the combobox, the calendar dialog should open'
   );
 
   // Close dialog
-  await t.context.session.findElement(By.css(ex.cancelSelector)).sendKeys(Key.ENTER);
+  await cancel.sendKeys(Key.ENTER);
 
   t.not(
-    await t.context.session.findElement(By.css(ex.dialogSelector)).getCssValue('display'),
+    await dialog.getCssValue('display'),
     'block',
     'After sending ESCAPE to the dialog, the calendar dialog should close'
   );
 
   // Test ALT + DOWN ARROW key
-  await t.context.session.findElement(By.css(ex.comboboxSelector)).sendKeys(Key.ALT, Key.ARROW_DOWN);
+  await combobox.sendKeys(Key.ALT, Key.ARROW_DOWN);
 
   t.not(
-    await t.context.session.findElement(By.css(ex.dialogSelector)).getCssValue('display'),
+    await dialog.getCssValue('display'),
     'none',
     'After sending DOWN ARROW to the combobox, the calendar dialog should open'
   );
 
   // Close dialog
-  await t.context.session.findElement(By.css(ex.cancelSelector)).sendKeys(Key.ENTER);
+  await cancel.sendKeys(Key.ENTER);
 
   t.not(
-    await t.context.session.findElement(By.css(ex.dialogSelector)).getCssValue('display'),
+    await dialog.getCssValue('display'),
     'block',
     'After sending ESCAPE to the dialog, the calendar dialog should close'
   );
@@ -329,7 +336,7 @@ ariaTest('ENTER to open datepicker', exampleFile, 'button-space-return', async (
   await chooseDateButton.sendKeys(Key.ENTER);
 
   t.not(
-    await t.context.session.findElement(By.css(ex.dialogSelector)).getCssValue('display'),
+    await (await t.context.session.findElement(By.css(ex.dialogSelector))).getCssValue('display'),
     'none',
     'After sending ENTER to the "choose date" button, the calendar dialog should open'
   );
@@ -340,7 +347,7 @@ ariaTest('SPACE to open datepicker', exampleFile, 'button-space-return', async (
   await chooseDateButton.sendKeys(' ');
 
   t.not(
-    await t.context.session.findElement(By.css(ex.dialogSelector)).getCssValue('display'),
+    await (await t.context.session.findElement(By.css(ex.dialogSelector))).getCssValue('display'),
     'none',
     'After sending SPACE to the "choose date" button, the calendar dialog should open'
   );
@@ -354,17 +361,17 @@ ariaTest('Sending key ESC when focus is in dialog closes dialog', exampleFile, '
   for (let i = 0; i < ex.allFocusableElementsInDialog.length; i++) {
 
     await chooseDateButton.sendKeys(Key.ENTER);
-    let el = t.context.session.findElement(By.css(ex.allFocusableElementsInDialog[i]));
+    let el = await t.context.session.findElement(By.css(ex.allFocusableElementsInDialog[i]));
     await el.sendKeys(Key.ESCAPE);
 
     t.is(
-      await t.context.session.findElement(By.css(ex.dialogSelector)).getCssValue('display'),
+      await (await t.context.session.findElement(By.css(ex.dialogSelector))).getCssValue('display'),
       'none',
       'After sending ESC to element "' + ex.allFocusableElementsInDialog[i] + '" in the dialog, the calendar dialog should close'
     );
 
     t.is(
-      await t.context.session.findElement(By.css(ex.comboboxSelector)).getAttribute('value'),
+      await (await t.context.session.findElement(By.css(ex.comboboxSelector))).getAttribute('value'),
       '',
       'After sending ESC to element "' + ex.allFocusableElementsInDialog[i] + '" in the dialog, no date should be selected'
     );
@@ -373,7 +380,7 @@ ariaTest('Sending key ESC when focus is in dialog closes dialog', exampleFile, '
 
 ariaTest('ENTER on previous year or month and SPACE on next year or month changes the year or month', exampleFile, 'month-year-button-space-return', async (t) => {
   t.plan(4);
-  await t.context.session.findElement(By.css(ex.buttonSelector)).sendKeys(Key.ENTER);
+  await (await t.context.session.findElement(By.css(ex.buttonSelector))).sendKeys(Key.ENTER);
 
   let monthYear = await t.context.session.findElement(By.css(ex.monthYear));
   let originalMonthYear = await monthYear.getText();
@@ -382,7 +389,7 @@ ariaTest('ENTER on previous year or month and SPACE on next year or month change
     let yearOrMonthLower = yearOrMonth.toLowerCase();
 
     // enter on previous year or month should change the monthYear text
-    await t.context.session.findElement(By.css(ex[`prev${yearOrMonth}`])).sendKeys(Key.ENTER);
+    await (await t.context.session.findElement(By.css(ex[`prev${yearOrMonth}`]))).sendKeys(Key.ENTER);
 
     t.not(
       await monthYear.getText(),
@@ -391,7 +398,7 @@ ariaTest('ENTER on previous year or month and SPACE on next year or month change
     );
 
     // space on next year or month should change it back to the original
-    await t.context.session.findElement(By.css(ex[`next${yearOrMonth}`])).sendKeys(' ');
+    await (await t.context.session.findElement(By.css(ex[`next${yearOrMonth}`]))).sendKeys(' ');
 
     t.is(
       await monthYear.getText(),
@@ -404,7 +411,7 @@ ariaTest('ENTER on previous year or month and SPACE on next year or month change
 ariaTest('Tab should go through all tabbable items, then repear', exampleFile, 'dialog-tab', async (t) => {
   t.plan(8);
 
-  await t.context.session.findElement(By.css(ex.buttonSelector)).sendKeys(Key.ENTER);
+  await (await t.context.session.findElement(By.css(ex.buttonSelector))).sendKeys(Key.ENTER);
 
   for (let itemSelector of ex.allFocusableElementsInDialog) {
     t.true(
@@ -412,7 +419,7 @@ ariaTest('Tab should go through all tabbable items, then repear', exampleFile, '
       'Focus should be on: ' + itemSelector
     );
 
-    await t.context.session.findElement(By.css(itemSelector)).sendKeys(Key.TAB);
+    await (await t.context.session.findElement(By.css(itemSelector))).sendKeys(Key.TAB);
   }
 
   t.true(
@@ -424,9 +431,9 @@ ariaTest('Tab should go through all tabbable items, then repear', exampleFile, '
 ariaTest('Shift-tab should move focus backwards', exampleFile, 'dialog-shift-tab', async (t) => {
   t.plan(7);
 
-  await t.context.session.findElement(By.css(ex.buttonSelector)).sendKeys(Key.ENTER);
+  await (await t.context.session.findElement(By.css(ex.buttonSelector))).sendKeys(Key.ENTER);
 
-  await t.context.session.findElement(By.css(ex.allFocusableElementsInDialog[0]))
+  await (await t.context.session.findElement(By.css(ex.allFocusableElementsInDialog[0])))
     .sendKeys(Key.chord(Key.SHIFT, Key.TAB));
 
   let lastIndex = ex.allFocusableElementsInDialog.length - 1;
@@ -436,7 +443,7 @@ ariaTest('Shift-tab should move focus backwards', exampleFile, 'dialog-shift-tab
       'Focus should be on: ' + ex.allFocusableElementsInDialog[i]
     );
 
-    await t.context.session.findElement(By.css(ex.allFocusableElementsInDialog[i]))
+    await (await t.context.session.findElement(By.css(ex.allFocusableElementsInDialog[i])))
       .sendKeys(Key.chord(Key.SHIFT, Key.TAB));
   }
 });
