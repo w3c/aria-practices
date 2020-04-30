@@ -322,7 +322,7 @@ MenubarNavigation.prototype.openPopup = function (menuId, menuitem) {
     popupMenu.style.display = 'block';
     popupMenu.style.position = 'absolute';
     popupMenu.style.left = '0px';
-    popupMenu.style.top = (rect.height + 2)+ 'px';
+    popupMenu.style.top = (rect.height + 8)+ 'px';
     popupMenu.style.zIndex = 100;
   }
 
