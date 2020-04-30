@@ -42,6 +42,10 @@
   border-radius: 5px;
 }
 
+.menubar-navigation > li > [role="menuitem"] {
+  display: inline-block;
+}
+
 .menubar-navigation > li > [role="menuitem"]::after {
   content: url('../images/down-arrow.svg');
   padding-left: 0.25em;
