@@ -1,4 +1,4 @@
-ul[role="menubar"] {
+.menubar-navigation {
   margin: 0;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
@@ -10,47 +10,33 @@ ul[role="menubar"] {
   border-radius: 5px;
 }
 
-ul[role="menubar"] li {
+.menubar-navigation li,
+.menubar-navigation a {
   margin: 0;
   padding: 0;
+  border: 0 solid black;
   list-style: none;
 }
 
-ul[role="menubar"] > li {
-  display: inline;
+.menubar-navigation > li {
+  display: inline-block;
   position: relative;
 }
 
-ul[role="menubar"] > li > [role="menuitem"]::after {
-  content: url('../images/down-arrow.svg');
-  padding-left: 0.25em;
-  position: relative;
-  top: 2px;
+.menubar-navigation > li > [role="menuitem"] {
+  display: inline-block;
 }
 
-ul[role="menubar"].focus > li > [role="menuitem"]::after {
-  content: url('../images/down-arrow-focus.svg');
+.menubar-navigation > li > li  {
+  display: block;
 }
 
-ul[role="menubar"] > li > [role="menuitem"][aria-expanded="true"]::after {
-  content: url('../images/up-arrow.svg');
+.menubar-navigation [role="menu"] > li > a  {
+  display: inline-block;
 }
 
-ul[role="menubar"] [role="menu"] {
-  display: none;
-  position: absolute;
-  margin: 0;
-  padding: 0;
-}
-
-ul[role="menubar"] [role="group"] {
-  margin: 0;
-  padding: 0;
-}
-
-ul[role="menubar"] [role="menuitem"],
-ul[role="menubar"] [role="separator"] {
-  margin: 3px;
+.menubar-navigation [role="menuitem"],
+.menubar-navigation [role="separator"] {
   padding: 6px;
   background-color: #eee;
   border: 0px solid #eee;
@@ -58,18 +44,42 @@ ul[role="menubar"] [role="separator"] {
   border-radius: 5px;
 }
 
-ul[role="menubar"] [role="menu"] [role="menuitem"],
-ul[role="menubar"] [role="menu"] [role="separator"] {
+.menubar-navigation > li > [role="menuitem"]::after {
+  content: url('../images/down-arrow.svg');
+  padding-left: 0.25em;
+}
+
+.menubar-navigation > li > [role="menuitem"]:focus::after {
+  content: url('../images/down-arrow-focus.svg');
+}
+
+.menubar-navigation > li > [role="menuitem"][aria-expanded="true"]::after {
+  content: url('../images/up-arrow-focus.svg');
+}
+
+.menubar-navigation [role="menu"] {
+  display: none;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+}
+
+.menubar-navigation [role="group"] {
+  margin: 0;
+  padding: 0;
+}
+
+.menubar-navigation [role="menu"] [role="menuitem"],
+.menubar-navigation [role="menu"] [role="separator"] {
   display: block;
   width: 12em;
 }
 
-ul[role="menubar"] [role="menu"]  {
+.menubar-navigation [role="menu"]  {
   display: none;
 }
 
-
-ul[role="menubar"] [role="separator"] {
+.menubar-navigation [role="separator"] {
   padding-top: 3px;
   background-image: url('../images/separator.svg');
   background-position: center;
@@ -83,56 +93,39 @@ ul[role="menubar"] [role="menuitem"][aria-expanded="true"] {
 
 ul[role="menubar"] [role="menu"] [role="menuitem"][aria-haspopup="true"]::after {
   content: url('../images/right-arrow.svg');
-  position: relative;
-  left: 8px;
+  position: absolute;
+  left: 11em;
 }
 
-ul[role="menubar"] [role="menu"] [role="menuitem"][aria-expanded="true"]::after {
+.menubar-navigation [role="menu"] [role="menuitem"][aria-haspopup="true"]:focus::after {
+  content: url('../images/right-arrow-focus.svg');
+  position: absolute;
+  left: 11em;
+}
+
+.menubar-navigation [role="menu"] [role="menuitem"][aria-expanded="true"]::after {
   content: url('../images/down-arrow-focus.svg');
-  top: 2px;
-  left: 4px;
+  position: absolute;
+  left: 11em;
 }
 
 /* focus styling */
 
-ul[role="menubar"].focus {
+.menubar-navigation.focus {
   padding: 6px;
   border: #034575 solid 2px;
 }
 
-ul[role="menubar"].focus.item {
-  padding: 5px;
-  border: #034575 solid 3px;
-}
-
-ul[role="menubar"] [role="menu"].hover  {
-  padding: 9px 6px;
-  border: 0px solid #034575;
-  border-radius: 5px;
-  background-color: #eee;
-}
-
-ul[role="menubar"].focus [role="menu"] {
+.menubar-navigation [role="menu"] {
   padding: 7px 4px;
   border: 2px solid #034575;
   border-radius: 5px;
   background-color: #eee;
 }
 
-ul[role="menubar"].focus [role="menu"].item  {
-  padding: 6px 3px;
-  border: 3px solid #034575;
-  border-radius: 5px;
-  background-color: #eee;
-}
-
-ul[role="menubar"] [role="menuitem"]:focus {
+.menubar-navigation [role="menuitem"][aria-expanded="true"],
+.menubar-navigation [role="menuitem"]:focus {
   padding: 2px;
   border: 4px dotted #034575;
   outline: none;
-}
-
-ul[role="menubar"] [role="menuitem"]:hover {
-  padding: 4px;
-  border: 2px solid #034575;
 }
