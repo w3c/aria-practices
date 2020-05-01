@@ -78,7 +78,7 @@ const checkmarkVisible = async function (t, selector, index) {
 };
 
 const checkFocus = async function (t, selector, index) {
-  return t.context.session.executeScript(function () {
+  return await t.context.session.executeScript(function () {
     const [selector, index] = arguments;
     const items = document.querySelectorAll(selector);
     return items[index] === document.activeElement;
@@ -374,9 +374,9 @@ ariaTest('Test "aria-checked" attirbute on role="menuitemcheckbox"',
 
     // Select both menuitems
     const checkboxes = await t.context.session.findElements(By.css(ex.menuitemcheckboxSelector));
-    checkboxes[0].sendKeys(Key.ENTER);
+    await checkboxes[0].sendKeys(Key.ENTER);
     await menus[1].sendKeys(Key.ARROW_DOWN);
-    checkboxes[1].sendKeys(Key.ENTER);
+    await checkboxes[1].sendKeys(Key.ENTER);
     await menus[1].sendKeys(Key.ARROW_DOWN);
 
 
@@ -723,7 +723,7 @@ ariaTest('Character sends to menubar changes focus in menubar',
       // Test that the focus switches to the appropriate menuitem
       t.true(
         await checkFocus(t,  ex.menubarMenuitemSelector, test.endIndex),
-        'Sending characther ' + test.sendChar + ' to menuitem ' + test.sendIndex + ' in menubar should move the foucs to menuitem ' + test.endIndex
+        'Sending character ' + test.sendChar + ' to menuitem ' + test.sendIndex + ' in menubar should move the focus to menuitem ' + test.endIndex
       );
     }
   });
@@ -1064,7 +1064,7 @@ ariaTest('Character sends to menubar changes focus in menubar',
         // Test that the focus switches to the appropriate menuitem
         t.true(
           await checkFocus(t, ex.allSubmenuItems[menuIndex], test.endIndex),
-          'Sending characther ' + test.sendChar + ' to menuitem ' + itemText + ' should move the focus to menuitem ' + test.endIndex
+          'Sending character ' + test.sendChar + ' to menuitem ' + itemText + ' should move the focus to menuitem ' + test.endIndex
         );
       }
     }
