@@ -65,7 +65,7 @@ const exampleInitialized = async function (t) {
 };
 
 const checkmarkVisible = async function (t, selector, index) {
-  return t.context.session.executeScript(function () {
+  return await t.context.session.executeScript(function () {
     const [selector, index] = arguments;
     const checkmarkContent = window.getComputedStyle(
       document.querySelectorAll(selector)[index], ':before'
