@@ -42,25 +42,24 @@
       <h2 id="ex_label">Example</h2>
       <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
       <div id="ex1">
-        <label id="combo1-label" class="combo-label">Read-only Select</label>
+        <label id="combo1-label" class="combo-label">Choose a Fruit</label>
         <div class="combo js-select">
-        <div
-            aria-autocomplete="none"
-            aria-controls="listbox1"
-            aria-expanded="false"
-            aria-haspopup="listbox"
-            aria-labelledby="combo1-label"
-            id="combo1"
-            class="combo-input"
-            role="combobox"
-            tabindex="0"
-            >
-            <span class="combo1-value"></span>
-        </div>
-        <div class="combo-menu" role="listbox" id="listbox1">
-            <!-- options are inserted here -->
-            <!-- e.g. <div role="option" id="op1">option text</div>  -->
-        </div>
+            <div
+                aria-autocomplete="none"
+                aria-controls="listbox1"
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                aria-labelledby="combo1-label"
+                id="combo1"
+                class="combo-input"
+                role="combobox"
+                tabindex="0"
+                >
+            </div>
+            <div class="combo-menu" role="listbox" id="listbox1">
+                <!-- options are inserted here -->
+                <!-- e.g. <div role="option" id="op1">option text</div>  -->
+            </div>
         </div>
       </div>
       <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
@@ -73,7 +72,7 @@
         Other variations and options for the keyboard interface are described in the
         <a href="../../#combobox_kbd_interaction">Keyboard Interaction section of the combobox design pattern.</a>
       </p>
-      <h3 id="kbd_label_textbox">Textbox</h3>
+      <h3 id="kbd_label_textbox">Closed Combobox</h3>
       <table aria-labelledby="kbd_label_textbox kbd_label" class="def">
         <thead>
           <tr>
@@ -101,26 +100,18 @@
             <th><kbd>Up Arrow</kbd></th>
             <td>
               <ul>
-                <li>First opens the listbox if it is not already displayed and then moves visual focus to the last option.</li>
+                <li>First opens the listbox if it is not already displayed and then moves visual focus to the first option.</li>
                 <li>DOM focus remains on the textbox.</li>
               </ul>
             </td>
           </tr>
-          <tr data-test-id="textbox-key-enter">
-            <th><kbd>Enter</kbd></th>
-            <td>
-              <ul>
-                <li>Sets the textbox value to the content of the selected option.</li>
-                <li>Closes the listbox if it is displayed.</li>
-              </ul>
-            </td>
-          </tr>
           <tr data-test-id="standard-single-line-editing-keys">
-            <th>Standard single line text editing keys</th>
+            <th>Printable Characters</th>
             <td>
               <ul>
-                <li>Keys used for cursor movement and text manipulation, such as <kbd>Delete</kbd> and <kbd>Shift + Right Arrow</kbd>.</li>
-                <li>An HTML <code>input</code> with <code>type="text"</code> is used for the textbox so the browser will provide platform-specific editing keys.</li>
+                <li>First opens the listbox if it is not already displayed and then moves visual focus to the first option that matches the typed character.</li>
+                <li>If multiple keys are typed in quick succession, visual focus moves to the first option that matches the full string.</li>
+                <li>If the same character is typed in succession, visual focus cycles among the options starting with that character</li>
               </ul>
             </td>
           </tr>
@@ -145,9 +136,9 @@
             <th><kbd>Enter</kbd></th>
             <td>
               <ul>
-                <li>Sets the textbox value to the content of the focused option in the listbox.</li>
+                <li>Sets the value to the content of the focused option in the listbox.</li>
                 <li>Closes the listbox.</li>
-                <li>Sets visual focus on the textbox.</li>
+                <li>Sets visual focus on the combobox.</li>
               </ul>
             </td>
           </tr>
@@ -156,7 +147,7 @@
             <td>
               <ul>
                 <li>Closes the listbox.</li>
-                <li>Sets visual focus on the textbox.</li>
+                <li>Sets visual focus on the combobox.</li>
                </ul>
             </td>
           </tr>
@@ -165,8 +156,7 @@
             <td>
               <ul>
                 <li>Moves visual focus to the next option.</li>
-                <li>If visual focus is on the last option, moves visual focus to the first option.</li>
-                <li>Note: This wrapping behavior is useful when <kbd>Home</kbd> and <kbd>End</kbd> move the editing cursor as described below.</li>
+                <li>If visual focus is on the last option, visual focus does not move.</li>
               </ul>
             </td>
           </tr>
@@ -175,43 +165,30 @@
             <td>
               <ul>
                 <li>Moves visual focus to the previous option.</li>
-                <li>If visual focus is on the first option, moves visual focus to the last option.</li>
-                <li>Note: This wrapping behavior is useful when <kbd>Home</kbd> and <kbd>End</kbd> move the editing cursor as described below.</li>
+                <li>If visual focus is on the first option, visual focus does not move.</li>
               </ul>
             </td>
           </tr>
-          <tr data-test-id="listbox-key-right-arrow">
-            <th><kbd>Right Arrow</kbd></th>
-            <td>Moves visual focus to the textbox and moves the editing cursor one character to the right.</td>
-          </tr>
-          <tr data-test-id="listbox-key-left-arrow">
-            <th><kbd>Left Arrow</kbd></th>
-            <td>Moves visual focus to the textbox and moves the editing cursor one character to the left.</td>
-          </tr>
           <tr data-test-id="listbox-key-home">
             <th><kbd>Home</kbd></th>
-            <td>Moves visual focus to the textbox and places the editing cursor at the beginning of the field.</td>
+            <td>Moves visual focus to the first option.</td>
           </tr>
           <tr data-test-id="listbox-key-end">
             <th><kbd>End</kbd></th>
-            <td>Moves visual focus to the textbox and places the editing cursor at the end of the field.</td>
+            <td>Moves visual focus to the last option.</td>
           </tr>
           <tr data-test-id="listbox-key-char">
             <th>Printable Characters</th>
             <td>
               <ul>
-                <li>Moves visual focus to the textbox.</li>
-                <li>Types the character in the textbox.</li>
-                <li>Options in the listbox are <em>not</em> filtered based on the characters in the textbox.</li>
+                <li>First opens the listbox if it is not already displayed and then moves visual focus to the first option that matches the typed character.</li>
+                <li>If multiple keys are typed in quick succession, visual focus moves to the first option that matches the full string.</li>
+                <li>If the same character is typed in succession, visual focus cycles among the options starting with that character</li>
               </ul>
             </td>
           </tr>
         </tbody>
       </table>
-      <h3 id="kbd_label_button">Button</h3>
-      <p>
-        The button has been removed from the tab sequence of the page, but is still important to assistive technologies for mobile devices that use touch events to open the list of options.
-      </p>
     </section>
 
     <section>
@@ -221,7 +198,7 @@
         Information about other ways of applying ARIA roles, states, and properties is available in the
         <a href="../../#combobox_roles_states_props">Roles, States, and Properties section of the combobox design pattern.</a>
       </p>
-      <h3 id="rps_label_textbox">Textbox</h3>
+      <h3 id="rps_label_textbox">Combobox</h3>
       <table aria-labelledby="rps_label_textbox rps_label" class="data attributes">
         <thead>
           <tr>
@@ -237,23 +214,15 @@
               <code>combobox</code>
             </th>
             <td></td>
-            <td><code>input[type="text"]</code></td>
+            <td><code>div</code></td>
             <td>Identifies the input as a combobox.</td>
-          </tr>
-          <tr data-test-id="combobox-aria-autocomplete">
-            <td></td>
-            <th scope="row">
-              <code>aria-autocomplete="none"</code>
-            </th>
-            <td><code>input[type="text"]</code></td>
-            <td>Indicates that the suggestions in the combobox popup are not values that complete the current textbox input.</td>
           </tr>
           <tr data-test-id="combobox-aria-controls">
             <td></td>
             <th scope="row">
               <code>aria-controls="#IDREF"</code>
             </th>
-            <td><code>input[type="text"]</code></td>
+            <td><code>div</code></td>
             <td>Identifies the element that serves as the popup.</td>
           </tr>
           <tr data-test-id="combobox-aria-expanded">
@@ -261,7 +230,7 @@
             <th scope="row">
               <code>aria-expanded="false"</code>
             </th>
-            <td><code>input[type="text"]</code></td>
+            <td><code>div</code></td>
             <td>Indicates that the popup element <strong>is not</strong> displayed.</td>
           </tr>
           <tr data-test-id="combobox-aria-expanded">
@@ -269,28 +238,15 @@
             <th scope="row">
               <code>aria-expanded="true"</code>
             </th>
-            <td><code>input[type="text"]</code></td>
+            <td><code>div</code></td>
             <td>Indicates that the popup element <strong>is</strong> displayed.</td>
-          </tr>
-          <tr data-test-id="combobox-id">
-            <td></td>
-            <th scope="row">
-              <code>id="string"</code>
-            </th>
-            <td><code>input[type="text"]</code></td>
-            <td>
-              <ul>
-                <li>Referenced by <code>for</code> attribute of <code>label</code> element to provide an accessible name.</li>
-                <li>Recommended naming method for HTML input elements because clicking label focuses input.</li>
-              </ul>
-            </td>
           </tr>
           <tr data-test-id="combobox-aria-activedescendant">
             <td></td>
             <th scope="row">
               <code>aria-activedescendant="IDREF"</code>
             </th>
-            <td><code>input[type="text"]</code></td>
+            <td><code>div</code></td>
             <td>
               <ul>
                 <li>When an option in the listbox is visually indicated as having keyboard focus, refers to that option.</li>
@@ -322,24 +278,16 @@
             </th>
             <td></td>
             <td>
-              <code>ul</code>
+              <code>div</code>
             </td>
-            <td>Identifies the <code>ul</code> element as a <code>listbox</code>.</td>
-          </tr>
-          <tr data-test-id="listbox-aria-label">
-            <td></td>
-            <th scope="row">
-              <code>aria-label="Previous Searches"</code>
-            </th>
-            <td><code>ul</code></td>
-            <td>Provides a label for the <code>listbox</code>.</td>
+            <td>Identifies the element as a <code>listbox</code>.</td>
           </tr>
           <tr data-test-id="option-role">
             <th scope="row">
               <code>option</code>
             </th>
             <td></td>
-            <td><code>li</code></td>
+            <td><code>div</code></td>
             <td>
               <ul>
                 <li>Identifies the element as a <code>listbox</code> <code>option</code>.</li>
@@ -362,59 +310,6 @@
           </tr>
         </tbody>
       </table>
-      <h3 id="rps_label_button">Button</h3>
-      <table aria-labelledby="rps_label_button rps_label" class="data attributes">
-        <thead>
-          <tr>
-            <th scope="col">Role</th>
-            <th scope="col">Attribute</th>
-            <th scope="col">Element</th>
-            <th scope="col">Usage</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr data-test-id="button-tabindex">
-            <td></td>
-            <th scope="row">
-              <code>tabindex="-1"</code>
-            </th>
-            <td><code>button</code></td>
-            <td>Removes the button from the tab sequence of the page, since it's keyboard function is redundant with the keyboard operation of the textbox to open the listbox.</td>
-          </tr>
-          <tr data-test-id="button-aria-label">
-            <td></td>
-            <th scope="row">
-              <code>aria-label="Previous Searches"</code>
-            </th>
-            <td><code>button</code></td>
-            <td>Provides a label for the <code>button</code>.</td>
-          </tr>
-          <tr data-test-id="button-aria-controls">
-            <td></td>
-            <th scope="row">
-              <code>aria-controls="#IDREF"</code>
-            </th>
-            <td><code>button</code></td>
-            <td>Identifies the element that serves as the popup.</td>
-          </tr>
-          <tr data-test-id="button-aria-expanded">
-            <td></td>
-            <th scope="row">
-              <code>aria-expanded="false"</code>
-            </th>
-            <td><code>button</code></td>
-            <td>Indicates that the popup element <strong>is not</strong> displayed.</td>
-          </tr>
-          <tr data-test-id="button-aria-expanded">
-            <td></td>
-            <th scope="row">
-              <code>aria-expanded="true"</code>
-            </th>
-            <td><code>button</code></td>
-            <td>Indicates that the popup element <strong>is</strong> displayed.</td>
-          </tr>
-        </tbody>
-      </table>
     </section>
 
     <section>
@@ -422,11 +317,11 @@
       <ul>
         <li>
           CSS:
-          <a href="css/combobox-autocomplete.css" type="text/css">combobox-autocomplete.css</a>
+          <a href="css/select-only.css" type="text/css">select-only.css</a>
         </li>
         <li>
           Javascript:
-          <a href="js/combobox-autocomplete.js" type="text/javascript">combobox-autocomplete.js</a>
+          <a href="js/select-only.js" type="text/javascript">select-only.js</a>
         </li>
       </ul>
     </section>
