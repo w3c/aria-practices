@@ -20,28 +20,24 @@ const ex = {
 // Attributes
 
 ariaTest('role="listbox" on ul element', exampleFile, 'listbox-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'ex', 'listbox', 1, 'ul');
+    await assertAriaRoles(t, 'ex', 'listbox', 1, 'ul');
 });
 
 ariaTest('"aria-labelledby" on listbox element', exampleFile, 'listbox-aria-labelledby', async (t) => {
-  t.plan(1);
-  await assertAriaLabelledby(t, ex.listboxSelector);
+    await assertAriaLabelledby(t, ex.listboxSelector);
 });
 
 ariaTest('tabindex="0" on listbox element', exampleFile, 'listbox-tabindex', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex.listboxSelector, 'tabindex', '0');
+    await assertAttributeValues(t, ex.listboxSelector, 'tabindex', '0');
 });
 
 ariaTest('aria-activedescendant on listbox element', exampleFile, 'listbox-aria-activedescendant', async (t) => {
-  t.plan(1);
-
+  
   // Put the focus on the listbox. In this example, focusing on the listbox
   // will automatically select the first option.
   await t.context.session.findElement(By.css(ex.firstOptionSelector)).click();
 
-  let options = await t.context.session.findElements(By.css(ex.optionSelector));
+  let options = await t.context.queryElements(t, ex.optionSelector);
   let optionId = await options[0].getAttribute('id');
 
   t.is(
@@ -54,13 +50,11 @@ ariaTest('aria-activedescendant on listbox element', exampleFile, 'listbox-aria-
 });
 
 ariaTest('role="option" on li elements', exampleFile, 'option-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'ex', 'option', 26, 'li');
+    await assertAriaRoles(t, 'ex', 'option', 26, 'li');
 });
 
 ariaTest('"aria-selected" on option elements', exampleFile, 'option-aria-selected', async (t) => {
-  t.plan(2);
-
+  
   await assertAttributeDNE(t, ex.optionSelector, 'aria-selected');
 
   // Put the focus on the listbox. In this example, focusing on the listbox
@@ -73,8 +67,7 @@ ariaTest('"aria-selected" on option elements', exampleFile, 'option-aria-selecte
 // Keys
 
 ariaTest('DOWN ARROW moves focus', exampleFile, 'key-down-arrow', async (t) => {
-  t.plan(2);
-
+  
   // Put the focus on the listbox. In this example, focusing on the listbox
   // will automatically select the first option.
   await t.context.session.findElement(By.css(ex.firstOptionSelector)).click();
@@ -115,8 +108,7 @@ ariaTest('END moves focus', exampleFile, 'key-end', async (t) => {
 });
 
 ariaTest('UP ARROW moves focus', exampleFile, 'key-up-arrow', async (t) => {
-  t.plan(2);
-
+  
   // Put the focus on the listbox. In this example, focusing on the listbox
   // will automatically select the first option.
   await t.context.session.findElement(By.css(ex.firstOptionSelector)).click();
@@ -140,8 +132,7 @@ ariaTest('UP ARROW moves focus', exampleFile, 'key-up-arrow', async (t) => {
 });
 
 ariaTest('HOME moves focus', exampleFile, 'key-home', async (t) => {
-  t.plan(2);
-
+  
   // Put the focus on the listbox. In this example, focusing on the listbox
   // will automatically select the first option.
   await t.context.session.findElement(By.css(ex.firstOptionSelector)).click();

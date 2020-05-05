@@ -1,7 +1,7 @@
 'use strict';
 
 const { ariaTest } = require('..');
-const { By, Key } = require('selenium-webdriver');
+const { Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
@@ -60,19 +60,16 @@ const verifyAllValues = async function (
 // Attributes
 
 ariaTest('role="slider" on div element', exampleFile, 'slider-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'ex1', 'slider', '4', 'img');
+    await assertAriaRoles(t, 'ex1', 'slider', '4', 'img');
 });
 
 ariaTest('"tabindex" set to "0" on sliders', exampleFile, 'tabindex', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex.sliderSelector, 'tabindex', '0');
+    await assertAttributeValues(t, ex.sliderSelector, 'tabindex', '0');
 });
 
 ariaTest('"aria-valuemax" set on sliders', exampleFile, 'aria-valuemax', async (t) => {
-  t.plan(4);
-  const hotelSliders = await t.context.session.findElements(By.css(ex.hotelSliderSelector));
-  const flightSliders = await t.context.session.findElements(By.css(ex.flightSliderSelector));
+    const hotelSliders = await t.context.queryElements(t, ex.hotelSliderSelector);
+  const flightSliders = await t.context.queryElements(t, ex.flightSliderSelector);
 
   t.is(
     await hotelSliders[0].getAttribute('aria-valuemax'),
@@ -98,9 +95,8 @@ ariaTest('"aria-valuemax" set on sliders', exampleFile, 'aria-valuemax', async (
 });
 
 ariaTest('"aria-valuemin" set to "0" on sliders', exampleFile, 'aria-valuemin', async (t) => {
-  t.plan(4);
-  const hotelSliders = await t.context.session.findElements(By.css(ex.hotelSliderSelector));
-  const flightSliders = await t.context.session.findElements(By.css(ex.flightSliderSelector));
+    const hotelSliders = await t.context.queryElements(t, ex.hotelSliderSelector);
+  const flightSliders = await t.context.queryElements(t, ex.flightSliderSelector);
 
   t.is(
     await hotelSliders[0].getAttribute('aria-valuemin'),
@@ -125,9 +121,8 @@ ariaTest('"aria-valuemin" set to "0" on sliders', exampleFile, 'aria-valuemin', 
 });
 
 ariaTest('"aria-valuenow" reflects slider value', exampleFile, 'aria-valuenow', async (t) => {
-  t.plan(4);
-  const hotelSliders = await t.context.session.findElements(By.css(ex.hotelSliderSelector));
-  const flightSliders = await t.context.session.findElements(By.css(ex.flightSliderSelector));
+    const hotelSliders = await t.context.queryElements(t, ex.hotelSliderSelector);
+  const flightSliders = await t.context.queryElements(t, ex.flightSliderSelector);
 
   t.is(
     await hotelSliders[0].getAttribute('aria-valuenow'),
@@ -152,9 +147,8 @@ ariaTest('"aria-valuenow" reflects slider value', exampleFile, 'aria-valuenow', 
 });
 
 ariaTest('"aria-valuetext" reflects slider value', exampleFile, 'aria-valuetext', async (t) => {
-  t.plan(4);
-  const hotelSliders = await t.context.session.findElements(By.css(ex.hotelSliderSelector));
-  const flightSliders = await t.context.session.findElements(By.css(ex.flightSliderSelector));
+    const hotelSliders = await t.context.queryElements(t, ex.hotelSliderSelector);
+  const flightSliders = await t.context.queryElements(t, ex.flightSliderSelector);
 
   t.is(
     await hotelSliders[0].getAttribute('aria-valuetext'),
@@ -180,17 +174,15 @@ ariaTest('"aria-valuetext" reflects slider value', exampleFile, 'aria-valuetext'
 
 
 ariaTest('"aria-label" set on sliders', exampleFile, 'aria-label', async (t) => {
-  t.plan(1);
-  await assertAriaLabelExists(t, ex.sliderSelector);
+    await assertAriaLabelExists(t, ex.sliderSelector);
 });
 
 // Keys
 
 ariaTest('Right arrow increases slider value by 1', exampleFile, 'key-right-arrow', async (t) => {
-  t.plan(24);
-
-  const hotelSliders = await t.context.session.findElements(By.css(ex.hotelSliderSelector));
-  const hotelLabels = await t.context.session.findElements(By.css(ex.hotelLabelSelector));
+  
+  const hotelSliders = await t.context.queryElements(t, ex.hotelSliderSelector);
+  const hotelLabels = await t.context.queryElements(t, ex.hotelLabelSelector);
 
   // Send 1 key to lower hotel slider
   await hotelSliders[0].sendKeys(Key.ARROW_RIGHT);
@@ -246,8 +238,8 @@ ariaTest('Right arrow increases slider value by 1', exampleFile, 'key-right-arro
     'after END then one ARROW RIGHT to upper hotel slider'
   );
 
-  const flightSliders = await t.context.session.findElements(By.css(ex.flightSliderSelector));
-  const flightLabels = await t.context.session.findElements(By.css(ex.flightLabelSelector));
+  const flightSliders = await t.context.queryElements(t, ex.flightSliderSelector);
+  const flightLabels = await t.context.queryElements(t, ex.flightLabelSelector);
 
   // Send 1 key to lower flight slider
   await flightSliders[0].sendKeys(Key.ARROW_RIGHT);
@@ -305,10 +297,9 @@ ariaTest('Right arrow increases slider value by 1', exampleFile, 'key-right-arro
 });
 
 ariaTest('Up arrow increases slider value by 1', exampleFile, 'key-up-arrow', async (t) => {
-  t.plan(24);
-
-  const hotelSliders = await t.context.session.findElements(By.css(ex.hotelSliderSelector));
-  const hotelLabels = await t.context.session.findElements(By.css(ex.hotelLabelSelector));
+  
+  const hotelSliders = await t.context.queryElements(t, ex.hotelSliderSelector);
+  const hotelLabels = await t.context.queryElements(t, ex.hotelLabelSelector);
 
   // Send 1 key to lower hotel slider
   await hotelSliders[0].sendKeys(Key.ARROW_UP);
@@ -364,8 +355,8 @@ ariaTest('Up arrow increases slider value by 1', exampleFile, 'key-up-arrow', as
     'after END then one ARROW UP to upper hotel slider'
   );
 
-  const flightSliders = await t.context.session.findElements(By.css(ex.flightSliderSelector));
-  const flightLabels = await t.context.session.findElements(By.css(ex.flightLabelSelector));
+  const flightSliders = await t.context.queryElements(t, ex.flightSliderSelector);
+  const flightLabels = await t.context.queryElements(t, ex.flightLabelSelector);
 
   // Send 1 key to lower flight slider
   await flightSliders[0].sendKeys(Key.ARROW_UP);
@@ -424,10 +415,9 @@ ariaTest('Up arrow increases slider value by 1', exampleFile, 'key-up-arrow', as
 
 
 ariaTest('Page up increases slider value by 10', exampleFile, 'key-page-up', async (t) => {
-  t.plan(24);
-
-  const hotelSliders = await t.context.session.findElements(By.css(ex.hotelSliderSelector));
-  const hotelLabels = await t.context.session.findElements(By.css(ex.hotelLabelSelector));
+  
+  const hotelSliders = await t.context.queryElements(t, ex.hotelSliderSelector);
+  const hotelLabels = await t.context.queryElements(t, ex.hotelLabelSelector);
 
   // Send 1 key to lower hotel slider
   await hotelSliders[0].sendKeys(Key.PAGE_UP);
@@ -483,8 +473,8 @@ ariaTest('Page up increases slider value by 10', exampleFile, 'key-page-up', asy
     'after END then one PAGE UP to upper hotel slider'
   );
 
-  const flightSliders = await t.context.session.findElements(By.css(ex.flightSliderSelector));
-  const flightLabels = await t.context.session.findElements(By.css(ex.flightLabelSelector));
+  const flightSliders = await t.context.queryElements(t, ex.flightSliderSelector);
+  const flightLabels = await t.context.queryElements(t, ex.flightLabelSelector);
 
   // Send 1 key to lower flight slider
   await flightSliders[0].sendKeys(Key.PAGE_UP);
@@ -543,10 +533,9 @@ ariaTest('Page up increases slider value by 10', exampleFile, 'key-page-up', asy
 
 
 ariaTest('left arrow decreases slider value by 1', exampleFile, 'key-left-arrow', async (t) => {
-  t.plan(24);
-
-  const hotelSliders = await t.context.session.findElements(By.css(ex.hotelSliderSelector));
-  const hotelLabels = await t.context.session.findElements(By.css(ex.hotelLabelSelector));
+  
+  const hotelSliders = await t.context.queryElements(t, ex.hotelSliderSelector);
+  const hotelLabels = await t.context.queryElements(t, ex.hotelLabelSelector);
 
   // Send 1 key to lower hotel slider
   await hotelSliders[0].sendKeys(Key.ARROW_LEFT);
@@ -602,8 +591,8 @@ ariaTest('left arrow decreases slider value by 1', exampleFile, 'key-left-arrow'
     'after HOME then one ARROW LEFT to upper hotel slider'
   );
 
-  const flightSliders = await t.context.session.findElements(By.css(ex.flightSliderSelector));
-  const flightLabels = await t.context.session.findElements(By.css(ex.flightLabelSelector));
+  const flightSliders = await t.context.queryElements(t, ex.flightSliderSelector);
+  const flightLabels = await t.context.queryElements(t, ex.flightLabelSelector);
 
   // Send 1 key to lower flight slider
   await flightSliders[0].sendKeys(Key.ARROW_LEFT);
@@ -661,10 +650,9 @@ ariaTest('left arrow decreases slider value by 1', exampleFile, 'key-left-arrow'
 });
 
 ariaTest('down arrow decreases slider value by 1', exampleFile, 'key-down-arrow', async (t) => {
-  t.plan(24);
-
-  const hotelSliders = await t.context.session.findElements(By.css(ex.hotelSliderSelector));
-  const hotelLabels = await t.context.session.findElements(By.css(ex.hotelLabelSelector));
+  
+  const hotelSliders = await t.context.queryElements(t, ex.hotelSliderSelector);
+  const hotelLabels = await t.context.queryElements(t, ex.hotelLabelSelector);
 
   // Send 1 key to lower hotel slider
   await hotelSliders[0].sendKeys(Key.ARROW_DOWN);
@@ -720,8 +708,8 @@ ariaTest('down arrow decreases slider value by 1', exampleFile, 'key-down-arrow'
     'after HOME then one ARROW DOWN to upper hotel slider'
   );
 
-  const flightSliders = await t.context.session.findElements(By.css(ex.flightSliderSelector));
-  const flightLabels = await t.context.session.findElements(By.css(ex.flightLabelSelector));
+  const flightSliders = await t.context.queryElements(t, ex.flightSliderSelector);
+  const flightLabels = await t.context.queryElements(t, ex.flightLabelSelector);
 
   // Send 1 key to lower flight slider
   await flightSliders[0].sendKeys(Key.ARROW_DOWN);
@@ -780,10 +768,9 @@ ariaTest('down arrow decreases slider value by 1', exampleFile, 'key-down-arrow'
 
 
 ariaTest('page down decreases slider value by 10', exampleFile, 'key-page-down', async (t) => {
-  t.plan(24);
-
-  const hotelSliders = await t.context.session.findElements(By.css(ex.hotelSliderSelector));
-  const hotelLabels = await t.context.session.findElements(By.css(ex.hotelLabelSelector));
+  
+  const hotelSliders = await t.context.queryElements(t, ex.hotelSliderSelector);
+  const hotelLabels = await t.context.queryElements(t, ex.hotelLabelSelector);
 
   // Send 1 key to lower hotel slider
   await hotelSliders[0].sendKeys(Key.PAGE_DOWN);
@@ -839,8 +826,8 @@ ariaTest('page down decreases slider value by 10', exampleFile, 'key-page-down',
     'after HOME then one PAGE DOWN to upper hotel slider'
   );
 
-  const flightSliders = await t.context.session.findElements(By.css(ex.flightSliderSelector));
-  const flightLabels = await t.context.session.findElements(By.css(ex.flightLabelSelector));
+  const flightSliders = await t.context.queryElements(t, ex.flightSliderSelector);
+  const flightLabels = await t.context.queryElements(t, ex.flightLabelSelector);
 
   // Send 1 key to lower flight slider
   await flightSliders[0].sendKeys(Key.PAGE_DOWN);
@@ -899,10 +886,9 @@ ariaTest('page down decreases slider value by 10', exampleFile, 'key-page-down',
 
 
 ariaTest('home sends value to minimum', exampleFile, 'key-home', async (t) => {
-  t.plan(12);
-
-  const hotelSliders = await t.context.session.findElements(By.css(ex.hotelSliderSelector));
-  const hotelLabels = await t.context.session.findElements(By.css(ex.hotelLabelSelector));
+  
+  const hotelSliders = await t.context.queryElements(t, ex.hotelSliderSelector);
+  const hotelLabels = await t.context.queryElements(t, ex.hotelLabelSelector);
 
   // Send 1 key to upper hotel slider
   await hotelSliders[1].sendKeys(Key.HOME);
@@ -932,8 +918,8 @@ ariaTest('home sends value to minimum', exampleFile, 'key-home', async (t) => {
     'after one HOME to lower hotel slider'
   );
 
-  const flightSliders = await t.context.session.findElements(By.css(ex.flightSliderSelector));
-  const flightLabels = await t.context.session.findElements(By.css(ex.flightLabelSelector));
+  const flightSliders = await t.context.queryElements(t, ex.flightSliderSelector);
+  const flightLabels = await t.context.queryElements(t, ex.flightLabelSelector);
 
   // Send 1 key to upper flight slider
   await flightSliders[1].sendKeys(Key.HOME);
@@ -966,10 +952,9 @@ ariaTest('home sends value to minimum', exampleFile, 'key-home', async (t) => {
 
 
 ariaTest('end sends value to minimum', exampleFile, 'key-end', async (t) => {
-  t.plan(12);
-
-  const hotelSliders = await t.context.session.findElements(By.css(ex.hotelSliderSelector));
-  const hotelLabels = await t.context.session.findElements(By.css(ex.hotelLabelSelector));
+  
+  const hotelSliders = await t.context.queryElements(t, ex.hotelSliderSelector);
+  const hotelLabels = await t.context.queryElements(t, ex.hotelLabelSelector);
 
   await hotelSliders[0].sendKeys(Key.END);
 
@@ -997,8 +982,8 @@ ariaTest('end sends value to minimum', exampleFile, 'key-end', async (t) => {
     'after one END to upper hotel slider'
   );
 
-  const flightSliders = await t.context.session.findElements(By.css(ex.flightSliderSelector));
-  const flightLabels = await t.context.session.findElements(By.css(ex.flightLabelSelector));
+  const flightSliders = await t.context.queryElements(t, ex.flightSliderSelector);
+  const flightLabels = await t.context.queryElements(t, ex.flightLabelSelector);
 
   await flightSliders[0].sendKeys(Key.END);
 

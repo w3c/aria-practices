@@ -1,6 +1,5 @@
 'use strict';
 
-const { By } = require('selenium-webdriver');
 const assert = require('assert');
 
 /**
@@ -14,7 +13,7 @@ const assert = require('assert');
 module.exports = async function assertRovingTabindex (t, elementsSelector, key) {
 
   // tabindex='0' is expected on the first element
-  let elements = await t.context.session.findElements(By.css(elementsSelector));
+  let elements = await t.context.queryElements(t, elementsSelector);
 
   assert.ok(
     elements.length,

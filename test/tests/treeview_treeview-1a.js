@@ -21,7 +21,7 @@ const ex = {
 
 const openAllFolders = async function (t) {
   const closedFoldersSelector = ex.treeitemSelector + '[aria-expanded="false"]';
-  let closedFolders = await t.context.session.findElements(By.css(closedFoldersSelector));
+  let closedFolders = await t.context.queryElements(t, closedFoldersSelector);
 
   // Going through all closed folder elements in dom order will open parent
   // folders first, therefore all child folders will be visible before clicked
@@ -74,9 +74,8 @@ const isClosedFolderTreeitem =  async function (el) {
 
 ariaTest('role="tree" on ul element', exampleFile, 'tree-role', async (t) => {
 
-  t.plan(2);
-
-  const trees = await t.context.session.findElements(By.css(ex.treeSelector));
+  
+  const trees = await t.context.queryElements(t, ex.treeSelector);
 
   t.is(
     trees.length,
@@ -93,16 +92,14 @@ ariaTest('role="tree" on ul element', exampleFile, 'tree-role', async (t) => {
 
 ariaTest('aria-labelledby on role="tree" element', exampleFile, 'tree-aria-labelledby', async (t) => {
 
-  t.plan(1);
-
+  
   await assertAriaLabelledby(t, ex.treeSelector);
 });
 
 ariaTest('role="treeitem" on "ul" element', exampleFile, 'treeitem-role', async (t) => {
 
-  t.plan(46);
-
-  const treeitems = await t.context.session.findElements(By.css(ex.treeitemSelector));
+  
+  const treeitems = await t.context.queryElements(t, ex.treeitemSelector);
 
   t.truthy(
     treeitems.length,
@@ -119,17 +116,15 @@ ariaTest('role="treeitem" on "ul" element', exampleFile, 'treeitem-role', async 
 });
 
 ariaTest('treeitem tabindex set by roving tabindex', exampleFile, 'treeitem-tabindex', async (t) => {
-  t.plan(1);
-  await openAllFolders(t);
+    await openAllFolders(t);
 
   await assertRovingTabindex(t, ex.treeitemSelector, Key.ARROW_DOWN);
 });
 
 ariaTest('aria-expanded attribute on treeitem matches dom', exampleFile, 'treeitem-ariaexpanded', async (t) => {
 
-  t.plan(66);
-
-  const folders = await t.context.session.findElements(By.css(ex.folderSelector));
+  
+  const folders = await t.context.queryElements(t, ex.folderSelector);
 
   for (let folder of folders) {
 
@@ -144,7 +139,7 @@ ariaTest('aria-expanded attribute on treeitem matches dom', exampleFile, 'treeit
         'false'
       );
       t.is(
-        await(await folder.findElements(By.css('[role="treeitem"]')))[0].isDisplayed(),
+        await(await t.context.queryElements(t, '[role="treeitem"]', folder))[0].isDisplayed(),
         false
       );
 
@@ -157,7 +152,7 @@ ariaTest('aria-expanded attribute on treeitem matches dom', exampleFile, 'treeit
         'true'
       );
       t.is(
-        await(await folder.findElements(By.css('[role="treeitem"]')))[0].isDisplayed(),
+        await(await t.context.queryElements(t, '[role="treeitem"]', folder))[0].isDisplayed(),
         true
       );
     }
@@ -180,7 +175,7 @@ ariaTest('aria-expanded attribute on treeitem matches dom', exampleFile, 'treeit
         folderText
       );
       t.is(
-        await(await folders[i].findElements(By.css('[role="treeitem"]')))[0].isDisplayed(),
+        await(await t.context.queryElements(t, '[role="treeitem"]', folders[i]))[0].isDisplayed(),
         false,
         folderText
       );
@@ -191,9 +186,8 @@ ariaTest('aria-expanded attribute on treeitem matches dom', exampleFile, 'treeit
 
 ariaTest('role="group" on "ul" elements', exampleFile, 'group-role', async (t) => {
 
-  t.plan(12);
-
-  const groups = await t.context.session.findElements(By.css(ex.groupSelector));
+  
+  const groups = await t.context.queryElements(t, ex.groupSelector);
 
   t.truthy(
     groups.length,
@@ -212,11 +206,10 @@ ariaTest('role="group" on "ul" elements', exampleFile, 'group-role', async (t) =
 // Keys
 
 ariaTest('Key enter opens folder', exampleFile, 'key-enter-or-space', async (t) => {
-  t.plan(34);
-
+  
   await openAllFolders(t);
 
-  const items = await t.context.session.findElements(By.css(ex.docSelector));
+  const items = await t.context.queryElements(t, ex.docSelector);
 
   for (let item of items) {
 
@@ -236,11 +229,10 @@ ariaTest('Key enter opens folder', exampleFile, 'key-enter-or-space', async (t) 
 });
 
 ariaTest('Key space opens folder', exampleFile, 'key-enter-or-space', async (t) => {
-  t.plan(34);
-
+  
   await openAllFolders(t);
 
-  const items = await t.context.session.findElements(By.css(ex.docSelector));
+  const items = await t.context.queryElements(t, ex.docSelector);
 
   for (let item of items) {
 
@@ -260,10 +252,9 @@ ariaTest('Key space opens folder', exampleFile, 'key-enter-or-space', async (t) 
 });
 
 ariaTest('key down arrow moves focus', exampleFile, 'key-down-arrow', async (t) => {
-  t.plan(51);
-
+  
   // Check that the down arrow does not open folders
-  const topLevelFolders = await t.context.session.findElements(By.css(ex.topLevelFolderSelector));
+  const topLevelFolders = await t.context.queryElements(t, ex.topLevelFolderSelector);
 
   for (let i = 0; i < topLevelFolders.length; i++) {
     await topLevelFolders[i].sendKeys(Key.ARROW_DOWN);
@@ -291,7 +282,7 @@ ariaTest('key down arrow moves focus', exampleFile, 'key-down-arrow', async (t) 
   // Open all folders
   await openAllFolders(t);
 
-  const items = await t.context.session.findElements(By.css(ex.treeitemSelector));
+  const items = await t.context.queryElements(t, ex.treeitemSelector);
 
   for (let i = 0; i < items.length; i++) {
     await items[i].sendKeys(Key.ARROW_DOWN);
@@ -309,10 +300,9 @@ ariaTest('key down arrow moves focus', exampleFile, 'key-down-arrow', async (t) 
 });
 
 ariaTest('key up arrow moves focus', exampleFile, 'key-up-arrow', async (t) => {
-  t.plan(51);
-
+  
   // Check that the down arrow does not open folders
-  const topLevelFolders = await t.context.session.findElements(By.css(ex.topLevelFolderSelector));
+  const topLevelFolders = await t.context.queryElements(t, ex.topLevelFolderSelector);
 
   for (let i = topLevelFolders.length - 1; i >= 0 ; i--) {
     await topLevelFolders[i].sendKeys(Key.ARROW_UP);
@@ -340,7 +330,7 @@ ariaTest('key up arrow moves focus', exampleFile, 'key-up-arrow', async (t) => {
   // Open all folders
   await openAllFolders(t);
 
-  const items = await t.context.session.findElements(By.css(ex.treeitemSelector));
+  const items = await t.context.queryElements(t, ex.treeitemSelector);
 
   for (let i = items.length - 1; i >= 0 ; i--) {
     await items[i].sendKeys(Key.ARROW_UP);
@@ -358,9 +348,8 @@ ariaTest('key up arrow moves focus', exampleFile, 'key-up-arrow', async (t) => {
 });
 
 ariaTest('key right arrow opens folders and moves focus', exampleFile, 'key-right-arrow', async (t) => {
-  t.plan(67);
-
-  const items = await t.context.session.findElements(By.css(ex.treeitemSelector));
+  
+  const items = await t.context.queryElements(t, ex.treeitemSelector);
 
   let i = 0;
   while (i < items.length) {
@@ -409,12 +398,11 @@ ariaTest('key right arrow opens folders and moves focus', exampleFile, 'key-righ
 });
 
 ariaTest('key left arrow closes folders and moves focus', exampleFile, 'key-left-arrow', async (t) => {
-  t.plan(106);
-
+  
   // Open all folders
   await openAllFolders(t);
 
-  const items = await t.context.session.findElements(By.css(ex.treeitemSelector));
+  const items = await t.context.queryElements(t, ex.treeitemSelector);
 
   let i = items.length - 1;
   while (i > 0) {
@@ -475,10 +463,9 @@ ariaTest('key left arrow closes folders and moves focus', exampleFile, 'key-left
 });
 
 ariaTest('key home moves focus', exampleFile, 'key-home', async (t) => {
-  t.plan(51);
-
+  
   // Test that key "home" works when no folder is open
-  const topLevelFolders = await t.context.session.findElements(By.css(ex.topLevelFolderSelector));
+  const topLevelFolders = await t.context.queryElements(t, ex.topLevelFolderSelector);
 
   for (let i = topLevelFolders.length - 1; i >= 0 ; i--) {
     await topLevelFolders[i].sendKeys(Key.HOME);
@@ -502,7 +489,7 @@ ariaTest('key home moves focus', exampleFile, 'key-home', async (t) => {
   // Open all folders
   await openAllFolders(t);
 
-  const items = await t.context.session.findElements(By.css(ex.treeitemSelector));
+  const items = await t.context.queryElements(t, ex.treeitemSelector);
 
   for (let i = items.length - 1; i >= 0 ; i--) {
     await items[i].sendKeys(Key.HOME);
@@ -515,10 +502,9 @@ ariaTest('key home moves focus', exampleFile, 'key-home', async (t) => {
 });
 
 ariaTest('key end moves focus', exampleFile, 'key-end', async (t) => {
-  t.plan(51);
-
+  
   // Test that key "end" works when no folder is open
-  const topLevelFolders = await t.context.session.findElements(By.css(ex.topLevelFolderSelector));
+  const topLevelFolders = await t.context.queryElements(t, ex.topLevelFolderSelector);
 
   for (let i = topLevelFolders.length - 1; i >= 0 ; i--) {
     await topLevelFolders[i].sendKeys(Key.END);
@@ -542,7 +528,7 @@ ariaTest('key end moves focus', exampleFile, 'key-end', async (t) => {
   // Open all folders
   await openAllFolders(t);
 
-  const items = await t.context.session.findElements(By.css(ex.treeitemSelector));
+  const items = await t.context.queryElements(t, ex.treeitemSelector);
 
   for (let i = items.length - 1; i >= 0 ; i--) {
     await items[i].sendKeys(Key.END);
@@ -556,8 +542,7 @@ ariaTest('key end moves focus', exampleFile, 'key-end', async (t) => {
 });
 
 ariaTest('characters move focus', exampleFile, 'key-character', async (t) => {
-  t.plan(15);
-
+  
   const charIndexTestClosed = [
     { sendChar: 'p', sendIndex: 0, endIndex: 0 },
     { sendChar: 'r', sendIndex: 0, endIndex: 1 },
@@ -576,7 +561,7 @@ ariaTest('characters move focus', exampleFile, 'key-character', async (t) => {
     { sendChar: 'l', sendIndex: 30, endIndex: 31 }
   ];
 
-  const topLevelFolders = await t.context.session.findElements(By.css(ex.topLevelFolderSelector));
+  const topLevelFolders = await t.context.queryElements(t, ex.topLevelFolderSelector);
 
   for (let test of charIndexTestClosed) {
 
@@ -598,7 +583,7 @@ ariaTest('characters move focus', exampleFile, 'key-character', async (t) => {
   // Open all folders
   await openAllFolders(t);
 
-  const items = await t.context.session.findElements(By.css(ex.treeitemSelector));
+  const items = await t.context.queryElements(t, ex.treeitemSelector);
 
   for (let test of charIndexTestOpened) {
 
@@ -614,12 +599,11 @@ ariaTest('characters move focus', exampleFile, 'key-character', async (t) => {
 });
 
 ariaTest('asterisk key opens folders', exampleFile, 'key-asterisk', async (t) => {
-  t.plan(10);
-
+  
   /* Test that "*" ONLY opens all top level nodes and no other folders */
 
-  const topLevelFolders = await t.context.session.findElements(By.css(ex.topLevelFolderSelector));
-  const nextLevelFolders = await t.context.session.findElements(By.css(ex.nextLevelFolderSelector));
+  const topLevelFolders = await t.context.queryElements(t, ex.topLevelFolderSelector);
+  const nextLevelFolders = await t.context.queryElements(t, ex.nextLevelFolderSelector);
 
   // Send Key
   await topLevelFolders[0].sendKeys('*');
@@ -634,8 +618,7 @@ ariaTest('asterisk key opens folders', exampleFile, 'key-asterisk', async (t) =>
 
   // The subfolders of first top level folder should all be open
 
-  const subFoldersOfFirstFolder = await topLevelFolders[0]
-    .findElements(By.css(ex.nextLevelFolderSelector));
+  const subFoldersOfFirstFolder = await t.context.queryElements(t, ex.nextLevelFolderSelector, topLevelFolders[0]);
   for (let el of subFoldersOfFirstFolder) {
     t.true(
       await el.getAttribute('aria-expanded') === 'true',
@@ -645,8 +628,7 @@ ariaTest('asterisk key opens folders', exampleFile, 'key-asterisk', async (t) =>
 
   // The subfolders of second top level folder should all be closed
 
-  const subFoldersOfSecondFolder = await topLevelFolders[1]
-    .findElements(By.css(ex.nextLevelFolderSelector));
+  const subFoldersOfSecondFolder = await t.context.queryElements(t, ex.nextLevelFolderSelector, topLevelFolders[1]);
   for (let el of subFoldersOfSecondFolder) {
     t.true(
       await el.getAttribute('aria-expanded') === 'false',
@@ -656,8 +638,7 @@ ariaTest('asterisk key opens folders', exampleFile, 'key-asterisk', async (t) =>
 
   // The subfolders of third top level folder should all be closed
 
-  const subFoldersOfThirdFolder = await topLevelFolders[2]
-    .findElements(By.css(ex.nextLevelFolderSelector));
+  const subFoldersOfThirdFolder = await t.context.queryElements(t, ex.nextLevelFolderSelector, topLevelFolders[2]);
   for (let el of subFoldersOfThirdFolder) {
     t.true(
       await el.getAttribute('aria-expanded') === 'false',
