@@ -54,18 +54,18 @@ const clickFirstOfMonth = async function (t) {
   firstOfMonth.setDate(1);
   let firstOfMonthString = today.toISOString().split('T')[0];
 
-  return (await t.context.queryElements(By.css(`[data-date=${firstOfMonthString}]`))).click();
+  return (await t.context.queryElements(t, By.css(`[data-date=${firstOfMonthString}]`))).click();
 };
 
 const clickToday = async function (t) {
   let today = new Date();
   today.setUTCHours(0,0,0,0);
   let todayString = today.toISOString().split('T')[0];
-  return (await t.context.queryElements(By.css(`[data-date=${todayString}]`))).click();
+  return (await t.context.queryElements(t, By.css(`[data-date=${todayString}]`))).click();
 };
 
 const setDateToJanFirst2019 = async function (t) {
-  await (await t.context.queryElements(By.css(ex.comboboxSelector))).click();
+  await (await t.context.queryElements(t, By.css(ex.comboboxSelector))).click();
   return t.context.session.executeScript(function () {
     const inputSelector = arguments[0];
     document.querySelector(inputSelector).value = '1/1/2019';
@@ -101,9 +101,8 @@ ariaTest('Combobox: Initially aria-expanded set to "false"', exampleFile, 'textb
 
 ariaTest('Combobox: aria-expanded set to "true" when dialog is open', exampleFile, 'textbox-aria-expanded-true', async (t) => {
   // Open dialog box
-  await (await t.context.queryElements(By.css(ex.comboboxSelector))).sendKeys(Key.ENTER);
+  await (await t.context.queryElements(t, By.css(ex.comboboxSelector))).sendKeys(Key.ENTER);
   await assertAttributeValues(t, ex.comboboxSelector, 'aria-expanded', 'true');
-
 });
 
 
@@ -133,7 +132,7 @@ ariaTest('Button: Initially aria-expanded set to "false"', exampleFile, 'calenda
 
 ariaTest('Button: aria-expanded set to "true" when the dialog box is open', exampleFile, 'calendar-button-aria-expanded-true', async (t) => {
   // Open dialog box
-  await (await t.context.queryElements(By.css(ex.buttonSelector))).sendKeys(Key.ENTER);
+  await (await t.context.queryElements(t, By.css(ex.buttonSelector))).sendKeys(Key.ENTER);
   await assertAttributeValues(t, ex.buttonSelector, 'aria-expanded', 'true');
 });
 
@@ -174,14 +173,14 @@ ariaTest('aria-labelledby on grid element', exampleFile, 'grid-aria-labelledby',
 
 
 ariaTest('Roving tab index on dates in gridcell', exampleFile, 'gridcell-tabindex', async (t) => {
-  let button = await t.context.queryElements(By.css(ex.buttonSelector));
+  let button = await t.context.queryElements(t, By.css(ex.buttonSelector));
   await setDateToJanFirst2019(t);
 
   await button.click();
   await button.click();
 
-  let focusableButtons = await t.context.queryElements(By.css(ex.currentMonthDateButtons));
-  let allButtons = await t.context.queryElements(By.css(ex.allDates));
+  let focusableButtons = await t.context.queryElements(t, By.css(ex.currentMonthDateButtons));
+  let allButtons = await t.context.queryElements(t, By.css(ex.allDates));
 
   // test only one element has tabindex="0"
   for (let tabableEl = 0; tabableEl < focusableButtons.length; tabableEl++) {
@@ -216,9 +215,7 @@ ariaTest('aria-selected on selected date', exampleFile, 'gridcell-aria-selected'
   await button.click();
   await assertAttributeValues(t, ex.jan12019Day, 'aria-selected', 'true');
 
-  let selectedButtons = await t.context.queryElements(
-    By.css(`${ex.allDates}[aria-selected="true"]`)
-  );
+  let selectedButtons = await t.context.queryElements(t, By.css(`${ex.allDates}[aria-selected="true"]`));
 
   t.is(
     selectedButtons.length,
@@ -230,9 +227,7 @@ ariaTest('aria-selected on selected date', exampleFile, 'gridcell-aria-selected'
   await button.click();
   await assertAttributeValues(t, ex.jan22019Day, 'aria-selected', 'true');
 
-  selectedButtons = await t.context.queryElements(
-    By.css(`${ex.allDates}[aria-selected="true"]`)
-  );
+  selectedButtons = await t.context.queryElements(t, By.css(`${ex.allDates}[aria-selected="true"]`));
 
   t.is(
     selectedButtons.length,
