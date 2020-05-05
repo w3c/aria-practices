@@ -46,17 +46,14 @@ const gridcellId = (row, column) => {
 
 // Attributes
 ariaTest('Test for role="combobox"', exampleFile, 'combobox-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'ex1', 'combobox', '1', 'input');
+    await assertAriaRoles(t, 'ex1', 'combobox', '1', 'input');
 });
 
 ariaTest('"aria-haspopup"=grid on combobox element', exampleFile, 'combobox-aria-haspopup', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex.comboboxSelector, 'aria-haspopup', 'grid');
+    await assertAttributeValues(t, ex.comboboxSelector, 'aria-haspopup', 'grid');
 });
 
 ariaTest('"aria-expanded" on combobox element', exampleFile, 'combobox-aria-expanded', async (t) => {
-  t.plan(4);
 
   const combobox = await t.context.session.findElement(By.css(ex.comboboxSelector));
 
@@ -102,7 +99,6 @@ ariaTest('"aria-expanded" on combobox element', exampleFile, 'combobox-aria-expa
 });
 
 ariaTest('"id" attribute on texbox used to discover accessible name', exampleFile, 'combobox-id', async (t) => {
-  t.plan(2);
 
   const labelForTextboxId = await t.context.session
     .findElement(By.css(ex.labelSelector))
@@ -124,12 +120,10 @@ ariaTest('"id" attribute on texbox used to discover accessible name', exampleFil
 });
 
 ariaTest('"aria-autocomplete" on grid element', exampleFile, 'combobox-aria-autocomplete', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex.comboboxSelector, 'aria-autocomplete', 'list');
+    await assertAttributeValues(t, ex.comboboxSelector, 'aria-autocomplete', 'list');
 });
 
 ariaTest('"aria-controls" attribute on grid element', exampleFile, 'combobox-aria-controls', async (t) => {
-  t.plan(2);
 
   const popupId = await t.context.session
     .findElement(By.css(ex.comboboxSelector))
@@ -140,9 +134,7 @@ ariaTest('"aria-controls" attribute on grid element', exampleFile, 'combobox-ari
     '"aria-controls" attribute should exist on: ' + ex.comboboxSelector
   );
 
-  const popupElements = await t.context.session
-    .findElement(By.id('ex1'))
-    .findElements(By.id(popupId));
+  const popupElements = await t.context.queryElements(t, `#ex1 #${popupId}`);
 
   t.is(
     popupElements.length,
@@ -152,28 +144,24 @@ ariaTest('"aria-controls" attribute on grid element', exampleFile, 'combobox-ari
 });
 
 ariaTest('"aria-activedescendant" on combobox element', exampleFile, 'combobox-aria-activedescendant', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex.comboboxSelector, 'aria-activedescendant', null);
+    await assertAttributeValues(t, ex.comboboxSelector, 'aria-activedescendant', null);
 });
 
 ariaTest('role "grid" on div element', exampleFile, 'grid-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'ex1', 'grid', '1', 'div');
+    await assertAriaRoles(t, 'ex1', 'grid', '1', 'div');
 });
 
 ariaTest('"aria-labelledby" attribute on grid element', exampleFile, 'grid-aria-labelledby', async (t) => {
-  t.plan(1);
-  await assertAriaLabelledby(t, ex.gridSelector);
+    await assertAriaLabelledby(t, ex.gridSelector);
 });
 
 ariaTest('role "row" exists within grid element', exampleFile, 'row-role', async (t) => {
-  t.plan(1);
 
   // Send key "a" then arrow down to reveal all options
   await t.context.session.findElement(By.css(ex.comboboxSelector)).sendKeys('a', Key.ARROW_DOWN);
 
-  let rowElements = await t.context.session.findElement(By.css(ex.gridSelector))
-    .findElements(By.css('[role="row"]'));
+  let gridEl = await t.context.session.findElement(By.css(ex.gridSelector));
+  let rowElements = await t.context.queryElements(t, '[role="row"]', gridEl);
 
   t.truthy(
     await rowElements.length,
@@ -183,7 +171,6 @@ ariaTest('role "row" exists within grid element', exampleFile, 'row-role', async
 
 // This test fails due to bug: https://github.com/w3c/aria-practices/issues/859
 ariaTest.failing('"aria-selected" attribute on row element', exampleFile, 'row-aria-selected', async (t) => {
-  t.plan(2);
 
   // Send key "a"
   await t.context.session.findElement(By.css(ex.comboboxSelector)).sendKeys('a');
@@ -195,16 +182,15 @@ ariaTest.failing('"aria-selected" attribute on row element', exampleFile, 'row-a
 });
 
 ariaTest('role "gridcell" exists within row element', exampleFile, 'gridcell-role', async (t) => {
-  t.plan(1);
 
   // Send key "a" then arrow down to reveal all options
   await t.context.session.findElement(By.css(ex.comboboxSelector)).sendKeys('a', Key.ARROW_DOWN);
 
-  let rowElements = await t.context.session.findElement(By.css(ex.rowSelector))
-    .findElements(By.css('[role="gridcell"]'));
+  let rowElement = await t.context.session.findElement(By.css(ex.rowSelector));
+  let cellElements = await t.context.queryElements(t, '[role="gridcell"]', rowElement);
 
   t.truthy(
-    await rowElements.length,
+    await cellElements.length,
     'role="gridcell" elements should be found within a row element after opening popup'
   );
 });
@@ -215,7 +201,6 @@ ariaTest('role "gridcell" exists within row element', exampleFile, 'gridcell-rol
 ariaTest('Test down key press with focus on combobox',
   exampleFile, 'popup-key-down-arrow', async (t) => {
 
-    t.plan(4);
 
     // Send ARROW_DOWN to the combobox
     await t.context.session
@@ -265,7 +250,6 @@ ariaTest('Test down key press with focus on combobox',
 ariaTest('Test down key press with focus on list',
   exampleFile, 'popup-key-down-arrow', async (t) => {
 
-    t.plan(6);
 
     // Send 'a' to text box, then send ARROW_DOWN to combobox to set focus on grid
     await t.context.session
@@ -337,7 +321,6 @@ ariaTest('Test down key press with focus on list',
 ariaTest('Test up key press with focus on combobox',
   exampleFile, 'popup-key-up-arrow', async (t) => {
 
-    t.plan(4);
 
     // Send ARROW_UP to the combobox
     await t.context.session
@@ -387,7 +370,6 @@ ariaTest('Test up key press with focus on combobox',
 ariaTest('Test up key press with focus on grid',
   exampleFile, 'popup-key-up-arrow', async (t) => {
 
-    t.plan(6);
 
     // Send 'a' to text box, then send ARROW_UP to combobox to put focus in combobox
     // Up arrow should move selection to the last item in the list
@@ -460,7 +442,6 @@ ariaTest('Test up key press with focus on grid',
 ariaTest('Test enter key press with focus on grid',
   exampleFile, 'popup-key-enter', async (t) => {
 
-    t.plan(2);
 
     // Send key "a" to the combobox, then key ARROW_DOWN to select the first item
 
@@ -495,39 +476,52 @@ ariaTest('Test enter key press with focus on grid',
   });
 
 ariaTest('Test escape key press with focus on combobox',
-  exampleFile, 'popup-key-escape', async (t) => {
-    t.plan(2);
+  exampleFile, 'textbox-key-escape', async (t) => {
+    // Send key "a" then key "ARROW_DOWN to put the focus on the listbox,
+    // then key ESCAPE to the textbox
 
-    // Send key "a", then key ESCAPE to the combobox
     await t.context.session
       .findElement(By.css(ex.comboboxSelector))
       .sendKeys('a', Key.ESCAPE);
 
-    // Wait for gridbox to close
-    await t.context.session.wait(
-      async function () {
-        return !(await t.context.session.findElement(By.css(ex.gridSelector)).isDisplayed());
-      },
-      t.context.waitTime,
-      'Timeout waiting for gridbox to close afer escape'
+    // Confirm the listbox is closed and the textbox is cleared
+
+    await assertAttributeValues(t, ex.comboboxSelector, 'aria-expanded', 'false');
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.comboboxSelector))
+        .getAttribute('value'),
+      'a',
+      'In listbox key press "ESCAPE" should result in "a" in textbox'
     );
 
-    // Confirm the grid is closed and the comboboxed is cleared
+  });
+
+
+ariaTest('Test double escape key press with focus on combobox',
+  exampleFile, 'textbox-key-escape', async (t) => {
+    // Send key "a", then key ESCAPE twice to the textbox
+
+    await t.context.session
+      .findElement(By.css(ex.comboboxSelector))
+      .sendKeys('a', Key.ESCAPE, Key.ESCAPE);
+
+    // Confirm the listbox is closed and the textbox is cleared
+
     await assertAttributeValues(t, ex.comboboxSelector, 'aria-expanded', 'false');
     t.is(
       await t.context.session
         .findElement(By.css(ex.comboboxSelector))
         .getAttribute('value'),
       '',
-      'In key press "ESCAPE" should result in clearing of the combobox'
+      'In key press "ESCAPE" should result in clearing the textbox'
     );
 
   });
 
-// This test fails due to bug: https://github.com/w3c/aria-practices/issues/860
-ariaTest.failing('Test escape key press with focus on popup',
+
+ariaTest('Test escape key press with focus on popup',
   exampleFile, 'popup-key-escape', async (t) => {
-    t.plan(2);
 
     // Send key "a" then key "ARROW_DOWN to put the focus on the grid,
     // then key ESCAPE to the combobox
@@ -558,15 +552,14 @@ ariaTest.failing('Test escape key press with focus on popup',
       await t.context.session
         .findElement(By.css(ex.comboboxSelector))
         .getAttribute('value'),
-      '',
-      'In grid key press "ESCAPE" should result in clearing of the combobox'
+      'a',
+      'In grid key press "ESCAPE" should result the "a" in the combobox'
     );
 
   });
 
 ariaTest('left arrow from focus on list puts focus on grid and moves cursor right',
   exampleFile, 'popup-key-left-arrow', async (t) => {
-    t.plan(4);
 
     // Send key "a" then key "ARROW_DOWN" to put the focus on the grid
     const combobox = t.context.session.findElement(By.css(ex.comboboxSelector));
@@ -617,7 +610,6 @@ ariaTest('left arrow from focus on list puts focus on grid and moves cursor righ
 
 ariaTest('Right arrow from focus on list puts focus on grid',
   exampleFile, 'popup-key-right-arrow', async (t) => {
-    t.plan(6);
 
     // Send key "a" then key "ARROW_DOWN" to put the focus on the grid
     const combobox = t.context.session.findElement(By.css(ex.comboboxSelector));
@@ -684,7 +676,6 @@ ariaTest('Right arrow from focus on list puts focus on grid',
 
 ariaTest('Home from focus on list puts focus on grid and moves cursor',
   exampleFile, 'popup-key-home', async (t) => {
-    t.plan(2);
 
     // Send key "a" then key "ARROW_DOWN" to put the focus on the grid
     const combobox = t.context.session.findElement(By.css(ex.comboboxSelector));
@@ -707,7 +698,6 @@ ariaTest('Home from focus on list puts focus on grid and moves cursor',
 
 ariaTest('End from focus on list puts focus on grid',
   exampleFile, 'popup-key-end', async (t) => {
-    t.plan(2);
 
     // Send key "a" then key "ARROW_DOWN" to put the focus on the grid
     const combobox = t.context.session.findElement(By.css(ex.comboboxSelector));
@@ -730,7 +720,6 @@ ariaTest('End from focus on list puts focus on grid',
 
 ariaTest('Sending character keys while focus is on grid moves focus',
   exampleFile, 'popup-key-char', async (t) => {
-    t.plan(2);
 
     // Send key "ARROW_DOWN" to put the focus on the grid
     const combobox = t.context.session.findElement(By.css(ex.comboboxSelector));
@@ -756,7 +745,6 @@ ariaTest('Sending character keys while focus is on grid moves focus',
 
 ariaTest.failing('Expected behavior for all other standard single line editing keys',
   exampleFile, 'standard-single-line-editing-keys', async (t) => {
-    t.plan(1);
-    t.fail();
+        t.fail();
   });
 

@@ -1,6 +1,5 @@
 'use strict';
 
-const { By } = require('selenium-webdriver');
 const assert = require('assert');
 
 /**
@@ -11,7 +10,7 @@ const assert = require('assert');
  */
 
 module.exports = async function assertAriaLabelledby (t, elementSelector) {
-  const elements = await t.context.session.findElements(By.css(elementSelector));
+  const elements = await t.context.queryElements(t, elementSelector);
 
   assert.ok(
     elements.length,

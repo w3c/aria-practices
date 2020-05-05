@@ -53,10 +53,11 @@
           <div class="group">
             <input id="cb1-input" class="cb_edit" type="text" role="combobox" aria-autocomplete="list"
               aria-expanded="false" aria-controls="cb1-listbox">
-            <button id="cb1-button" tabindex="-1" aria-label="Open">
+            <button id="cb1-button" tabindex="-1" aria-label="States" aria-expanded="false" aria-controls="cb1-listbox">
               <span class="arrow">
                 <svg width="18" height="16" aria-hidden="true" focusable="false">
-                  <polygon points="3,5 15,5 9,13"></polygon>
+                  <polygon class="outline" points="1,4 17,4 9,15"></polygon>
+                  <polygon class="arrow" points="3,5 15,5 9,13"></polygon>
                 </svg>
               </span>
             </button>
@@ -272,6 +273,10 @@
           </tr>
         </tbody>
       </table>
+      <h3 id="kbd_label_button">Button</h3>
+      <p>
+        The button has been removed from the tab sequence of the page, but is still important to assistive technologies for mobile devices that use touch events to open the list of options.
+      </p>
     </section>
 
     <section>
@@ -419,6 +424,60 @@
                 <li>Occurs only when an option in the list is referenced by <code>aria-activedescendant</code>.</li>
               </ul>
             </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 id="rps_label_button">Button</h3>
+      <table aria-labelledby="rps_label_button rps_label" class="data attributes">
+        <thead>
+          <tr>
+            <th scope="col">Role</th>
+            <th scope="col">Attribute</th>
+            <th scope="col">Element</th>
+            <th scope="col">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-test-id="button-tabindex">
+            <td></td>
+            <th scope="row">
+              <code>tabindex="-1"</code>
+            </th>
+            <td><code>button</code></td>
+            <td>Removes the button from the tab sequence of the page because its function is redundant with the keyboard operation of the combobox.</td>
+          </tr>
+          <tr data-test-id="button-aria-label">
+            <td></td>
+            <th scope="row">
+              <code>aria-label="States"</code>
+            </th>
+            <td><code>button</code></td>
+            <td>Provides a label for the <code>button</code>.</td>
+          </tr>
+          <tr data-test-id="button-aria-controls">
+            <td></td>
+            <th scope="row">
+              <code>aria-controls="#IDREF"</code>
+            </th>
+            <td><code>button</code></td>
+            <td>Identifies the element that serves as the popup.</td>
+          </tr>
+          <tr data-test-id="button-aria-expanded">
+            <td></td>
+            <th scope="row">
+              <code>aria-expanded="false"</code>
+            </th>
+            <td><code>button</code></td>
+            <td>Indicates that the popup element <strong>is not</strong> displayed.</td>
+          </tr>
+          <tr data-test-id="button-aria-expanded">
+            <td></td>
+            <th scope="row">
+              <code>aria-expanded="true"</code>
+            </th>
+            <td><code>button</code></td>
+            <td>Indicates that the popup element <strong>is</strong> displayed.</td>
           </tr>
         </tbody>
       </table>
