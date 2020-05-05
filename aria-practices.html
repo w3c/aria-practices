@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <title>WAI-ARIA Authoring Practices 1.2</title>
-  <script src="https://www.w3.org/Tools/respec/respec-w3c-common" class="remove"></script>
   <script src="common/script/resolveReferences.js" class="remove"></script>
-  <script src="common/biblio.js" class="remove"></script>
   <script src="respec-config.js" class="remove"></script>
+  <script src="common/biblio.js" class="remove"></script>
+  <script src="https://www.w3.org/Tools/respec/respec-w3c-common" class="remove"></script>
   <link href="common/css/common.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -26,7 +26,7 @@
       of the
       <a href="https://www.w3.org/WAI/">Web Accessibility Initiative</a>.
       It supports the
-      <a href="" class="specref">WAI-ARIA 1.2</a> [<cite><a href="#bib-WAI-ARIA" class="bibref">WAI-ARIA</a></cite>]
+      [[[wai-aria-1.2]]] [[WAI-ARIA-1.2]]
       specification, providing detailed advice and examples beyond what would be appropriate to a technical specification but which are important to understand the specification.
     </p>
     <p> This draft includes only a portion of content planned for WAI-ARIA Authoring Practices 1.2. To see plans for the complete guide, review the <a href="https://github.com/w3c/aria-practices/milestones?direction=asc&amp;sort=due_date&amp;state=open">Authoring Practices Milestone Plan</a>. </p>
@@ -1024,7 +1024,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
           <li>The element that serves as an input and displays the combobox value has role <a href="#combobox" class="role-reference">combobox</a>.</li>
           <li>
             The combobox element has <a href="#aria-controls" class="property-reference">aria-controls</a> set to a value that refers to the element that serves as the popup.
-            Note that <code>aria-controls</code> only needs to be set when the popup is visible. However, it is valid to reference an element that is not visible. 
+            Note that <code>aria-controls</code> only needs to be set when the popup is visible. However, it is valid to reference an element that is not visible.
           </li>
           <li>The popup is an element that has role <a href="#listbox" class="role-reference">listbox</a>, <a href="#tree" class="role-reference">tree</a>, <a href="#grid" class="role-reference">grid</a>, or <a href="#dialog" class="role-reference">dialog</a>.</li>
           <li>
@@ -1805,6 +1805,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
           <li><a href="examples/listbox/listbox-scrollable.html">Scrollable Listbox Example</a>: Single-select listbox that scrolls to reveal more options, similar to HTML <code>select</code> with <code>size</code> attribute greater than one.</li>
           <li><a href="examples/listbox/listbox-collapsible.html">Collapsible Dropdown Listbox Example</a>: Single-select collapsible listbox that expands when activated, similar to HTML <code>select</code> with the attribute <code>size=&quot;1&quot;</code>.</li>
           <li><a href="examples/listbox/listbox-rearrangeable.html">Example Listboxes with Rearrangeable Options</a>: Examples of both single-select and multi-select listboxes with accompanying toolbars where options can be added, moved, and removed.</li>
+          <li><a href="examples/listbox/listbox-grouped.html">Listbox Example with Grouped Options</a>: Single-select listbox with grouped options, similar to an HTML <code>select</code> with <code>optgroup</code> children.</li>
         </ul>
       </section>
 
@@ -2344,7 +2345,10 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         A slider is an input where the user selects a value from within a given range.
         Sliders typically have a slider thumb that can be moved along a bar or track to change the value of the slider.
       </p>
-
+      <p class="warning">
+        Users of touch-based assistive technologies may not be able to fully operate widgets that implement this pattern because APIs for capturing the necessary gestures and commands from assistive technologies are not yet available.
+        Authors should fully test widgets using this pattern with assistive technologies before considering incorporation into production systems.
+      </p>
       <section class="notoc">
         <h4>Examples</h4>
         <ul>
@@ -2406,6 +2410,10 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         For example, in a price range selector, the maximum value of the thumb that sets the lower end of the range is limited by the current value of the thumb that sets the upper end of the range.
         Conversely, the minimum value of the upper end thumb is limited by the current value of the lower end thumb.
         However, in some multi-thumb sliders, each thumb sets a value that does not depend on the other thumb values.
+      </p>
+      <p class="warning">
+        Users of touch-based assistive technologies may not be able to fully operate widgets that implement this pattern because APIs for capturing the necessary gestures and commands from assistive technologies are not yet available.
+        Authors should fully test widgets using this pattern with assistive technologies before considering incorporation into production systems.
       </p>
 
       <section class="notoc">
@@ -2632,8 +2640,11 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         <p>For the tab list:</p>
         <ul>
           <li>
-            <kbd>Tab</kbd>: When focus moves into the tab list, places focus on the active <code>tab</code> element.
-            When the tab list contains the focus, moves focus to the next element in the page tab sequence outside the tablist, which is typically either the first focusable element inside the tab panel or the tab panel itself.
+            <kbd>Tab</kbd>:
+            <ul>
+              <li>When focus moves into the tab list, places focus on the active <code>tab</code> element.</li>
+              <li>When the tab list contains the focus, moves focus to the next element in the page tab sequence outside the tablist, which is the tabpanel unless the first element containing meaningful content inside the tabpanel is focusable.</li>
+            </ul>
           </li>
           <li>When focus is on a tab element in a horizontal tab list:
             <ul>
@@ -3786,7 +3797,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         Authors supply a description when there is a need to associate additional information with an element, such as instructions or format requirements for an input field.
       </p>
       <p>
-        assistive technologies present names differently from descriptions.
+        Assistive technologies present names differently from descriptions.
         For instance, screen readers typically announce the name and role of an element first, e.g., a button named <q>Mute Conversation</q>could be spoken as <q>Mute Conversation button</q>.
         If an element has a state, it could be announced either before or after the name and role; after name and role is the typical default.
          For example, a switch button named <q>Mute Conversation</q> in the <q>off</q> state could be announced as <q>Mute Conversation switch button off</q>.
