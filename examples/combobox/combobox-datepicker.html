@@ -230,7 +230,6 @@
 
     <ul>
       <li>Opens and closes the date picker dialog box through click events.</li>
-      <li>The accessible name of the button is updated when a date is selected to include the current date.</li>
       <li>Excluded from the <kbd>tab</kbd> sequence of the page (eg. <code>tabindex=-1</code>), since the user can use the <kbd>down arrow</kbd> or <kbd>enter</kbd> key to open the date picker dialog box from the <code>textbox</code>.</li>
     </ul>
 
@@ -242,6 +241,11 @@
       <li>A live region announces changes in the month and year.</li>
       <li>A live region announces the use of cursor keys when a date in the grid of dates gets focus.  The message is also visible at the bottom of the dialog box to provide the same information to keyboard users.</li>
       <li>The dialog is opened through keyboard commands in the textbox or by clicking on the choose date button.</li>
+      <li>High contrast support is included in the date picker dialog using the CSS border property:
+       <ul>
+        <li>When a button or date receives focus.</li>
+        <li>When hovering over a button or date with a pointing device.</li>
+      </ul>
     </ul>
 
     <h3>Mobile Support</h3>

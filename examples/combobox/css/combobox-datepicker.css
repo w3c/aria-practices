@@ -138,6 +138,16 @@
   outline: 0;
 }
 
+.combobox-datepicker .prev-year:hover,
+.combobox-datepicker .prev-month:hover,
+.combobox-datepicker .next-month:hover,
+.combobox-datepicker .next-year:hover {
+  padding: 3px;
+  border: 1px solid white;
+  border-radius: 4px;
+  outline: 0;
+}
+
 .combobox-datepicker .dialog-ok-cancel-group {
   text-align: right;
   margin-top: 1em;
@@ -146,14 +156,13 @@
 }
 
 .combobox-datepicker .dialog-ok-cancel-group button {
-  padding: 5px;
+  padding: 6px;
   margin-left: 1em;
   width: 5em;
   background-color: hsl(216, 80%, 92%);
   font-size: 0.85em;
   color: black;
   outline: none;
-  border: 1px solid hsl(216, 80%, 92%);
   border-radius: 5px;
 }
 
@@ -161,6 +170,12 @@
   padding: 4px;
   border: 2px solid black;
 }
+
+.combobox-datepicker .dialog-button:hover {
+  padding: 5px;
+  border: 1px solid black;
+}
+
 
 .combobox-datepicker .fa-calendar-alt {
   color: hsl(216, 89%, 51%);
@@ -188,12 +203,11 @@
 }
 
 .combobox-datepicker .dates td {
-  padding: 2px;
+  padding: 3px;
   margin: 0;
   line-height: inherit;
   height: 40px;
   width: 40px;
-  border: 1px solid #eee;
   border-radius: 5px;
   font-size: 15px;
   background: #eee;
@@ -214,6 +228,11 @@
 .combobox-datepicker .dates td:hover {
   padding: 0;
   background-color: hsl(216, 80%, 92%);
+}
+
+.combobox-datepicker .dates td:not(.disabled):hover {
+  padding: 2px;
+  border: 1px solid rgb(100, 100, 100);
 }
 
 .combobox-datepicker .dates td:focus {
