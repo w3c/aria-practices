@@ -54,18 +54,18 @@ const clickFirstOfMonth = async function (t) {
   firstOfMonth.setDate(1);
   let firstOfMonthString = today.toISOString().split('T')[0];
 
-  return (await t.context.session.findElement(By.css(`[data-date=${firstOfMonthString}]`))).click();
+  return (await t.context.queryElements(By.css(`[data-date=${firstOfMonthString}]`))).click();
 };
 
 const clickToday = async function (t) {
   let today = new Date();
   today.setUTCHours(0,0,0,0);
   let todayString = today.toISOString().split('T')[0];
-  return (await t.context.session.findElement(By.css(`[data-date=${todayString}]`))).click();
+  return (await t.context.queryElements(By.css(`[data-date=${todayString}]`))).click();
 };
 
 const setDateToJanFirst2019 = async function (t) {
-  await (await t.context.session.findElement(By.css(ex.comboboxSelector))).click();
+  await (await t.context.queryElements(By.css(ex.comboboxSelector))).click();
   return t.context.session.executeScript(function () {
     const inputSelector = arguments[0];
     document.querySelector(inputSelector).value = '1/1/2019';
@@ -84,30 +84,24 @@ const focusMatchesElement = async function (t, selector) {
 // Attributes
 
 ariaTest('Combobox: has role', exampleFile, 'textbox-role', async (t) => {
-  t.plan(1);
   await assertAriaRoles(t, 'ex1', 'combobox', 1, 'input');
 });
 
 ariaTest('Combobox: has aria-haspopup set to "dialog"', exampleFile, 'textbox-aria-haspopup', async (t) => {
-  t.plan(1);
   await assertAttributeValues(t, ex.comboboxSelector, 'aria-haspopup', 'dialog');
 });
 
 ariaTest('Combobox: has aria-contorls set to "id-dialog-1"', exampleFile, 'textbox-aria-controls', async (t) => {
-  t.plan(1);
   await assertAttributeValues(t, ex.comboboxSelector, 'aria-controls', 'cb-dialog-1');
 });
 
 ariaTest('Combobox: Initially aria-expanded set to "false"', exampleFile, 'textbox-aria-expanded-false', async (t) => {
-  t.plan(1);
   await assertAttributeValues(t, ex.comboboxSelector, 'aria-expanded', 'false');
 });
 
 ariaTest('Combobox: aria-expanded set to "true" when dialog is open', exampleFile, 'textbox-aria-expanded-true', async (t) => {
-  t.plan(1);
-
   // Open dialog box
-  await (await t.context.session.findElement(By.css(ex.comboboxSelector))).sendKeys(Key.ENTER);
+  await (await t.context.queryElements(By.css(ex.comboboxSelector))).sendKeys(Key.ENTER);
   await assertAttributeValues(t, ex.comboboxSelector, 'aria-expanded', 'true');
 
 });
@@ -117,36 +111,29 @@ ariaTest('Combobox: aria-expanded set to "true" when dialog is open', exampleFil
 // Button Tests
 
 ariaTest('Button: "aria-label" attribute', exampleFile, 'calendar-button-aria-label', async (t) => {
-  t.plan(1);
   await assertAriaLabelExists(t,  ex.buttonSelector);
 });
 
 ariaTest('Button: "tabindex" is set to -1', exampleFile, 'calendar-button-tabindex', async (t) => {
-  t.plan(1);
   await assertAttributeValues(t, ex.buttonSelector, 'tabindex', '-1');
 });
 
 
 ariaTest('Button: has aria-haspopup set to "dialog"', exampleFile, 'textbox-aria-haspopup', async (t) => {
-  t.plan(1);
   await assertAttributeValues(t, ex.buttonSelector, 'aria-haspopup', 'dialog');
 });
 
 ariaTest('Button: has aria-controls set to "id-dialog-1"', exampleFile, 'textbox-aria-controls', async (t) => {
-  t.plan(1);
   await assertAttributeValues(t, ex.buttonSelector, 'aria-controls', 'cb-dialog-1');
 });
 
 ariaTest('Button: Initially aria-expanded set to "false"', exampleFile, 'calendar-button-aria-expanded-false', async (t) => {
-  t.plan(1);
   await assertAttributeValues(t, ex.buttonSelector, 'aria-expanded', 'false');
 });
 
 ariaTest('Button: aria-expanded set to "true" when the dialog box is open', exampleFile, 'calendar-button-aria-expanded-true', async (t) => {
-  t.plan(1);
-
   // Open dialog box
-  await (await t.context.session.findElement(By.css(ex.buttonSelector))).sendKeys(Key.ENTER);
+  await (await t.context.queryElements(By.css(ex.buttonSelector))).sendKeys(Key.ENTER);
   await assertAttributeValues(t, ex.buttonSelector, 'aria-expanded', 'true');
 });
 
@@ -154,55 +141,47 @@ ariaTest('Button: aria-expanded set to "true" when the dialog box is open', exam
 // Dialog Tests
 
 ariaTest('role="dialog" attribute on div', exampleFile, 'dialog-role', async (t) => {
-  t.plan(1);
   await assertAriaRoles(t, 'ex1', 'dialog', 1, 'div');
 });
 
 ariaTest('aria-modal="true" on modal', exampleFile, 'dialog-aria-modal', async (t) => {
-  t.plan(1);
   await assertAttributeValues(t, ex.dialogSelector, 'aria-modal', 'true');
 });
 
 ariaTest('aria-labelledby exist on dialog', exampleFile, 'dialog-aria-labelledby', async (t) => {
-  t.plan(1);
   await assertAriaLabelledby(t, ex.dialogSelector);
 });
 
 ariaTest('aria-live="polite" on keyboard support message', exampleFile, 'dialog-aria-live', async (t) => {
-  t.plan(1);
   await assertAttributeValues(t, ex.dialogMessageSelector, 'aria-live', 'polite');
 });
 
 ariaTest('"aria-label" exists on control buttons', exampleFile, 'calendar-navigation-button-aria-label', async (t) => {
-  t.plan(1);
   await assertAriaLabelExists(t,  ex.buttonSelector);
 });
 
 ariaTest('aria-live="polite" on dialog header', exampleFile, 'calendar-navigation-aria-live', async (t) => {
-  t.plan(1);
   await assertAttributeValues(t, `${ex.dialogSelector} h2`, 'aria-live', 'polite');
 });
 
 ariaTest('grid role on table element', exampleFile, 'grid-role', async (t) => {
-  t.plan(1);
   await assertAriaRoles(t, 'ex1', 'grid', 1, 'table');
 });
 
 ariaTest('aria-labelledby on grid element', exampleFile, 'grid-aria-labelledby', async (t) => {
-  t.plan(1);
   await assertAriaLabelledby(t, ex.gridSelector);
 });
 
 
 ariaTest('Roving tab index on dates in gridcell', exampleFile, 'gridcell-tabindex', async (t) => {
-  let button = await t.context.session.findElement(By.css(ex.buttonSelector));
+  let button = await t.context.queryElements(By.css(ex.buttonSelector));
   await setDateToJanFirst2019(t);
 
   await button.click();
   await button.click();
 
-  let focusableButtons = await t.context.session.findElements(By.css(ex.currentMonthDateButtons));
-  let allButtons = await t.context.session.findElements(By.css(ex.allDates));
+  let focusableButtons = await t.context.queryElements(By.css(ex.currentMonthDateButtons));
+  let allButtons = await t.context.queryElements(By.css(ex.allDates));
 
   // test only one element has tabindex="0"
   for (let tabableEl = 0; tabableEl < focusableButtons.length; tabableEl++) {
@@ -228,8 +207,6 @@ ariaTest('Roving tab index on dates in gridcell', exampleFile, 'gridcell-tabinde
 });
 
 ariaTest('aria-selected on selected date', exampleFile, 'gridcell-aria-selected', async (t) => {
-  t.plan(5);
-
   let button = await t.context.session.findElement(By.css(ex.buttonSelector));
 
   await button.click();
@@ -239,7 +216,7 @@ ariaTest('aria-selected on selected date', exampleFile, 'gridcell-aria-selected'
   await button.click();
   await assertAttributeValues(t, ex.jan12019Day, 'aria-selected', 'true');
 
-  let selectedButtons = await t.context.session.findElements(
+  let selectedButtons = await t.context.queryElements(
     By.css(`${ex.allDates}[aria-selected="true"]`)
   );
 
@@ -253,7 +230,7 @@ ariaTest('aria-selected on selected date', exampleFile, 'gridcell-aria-selected'
   await button.click();
   await assertAttributeValues(t, ex.jan22019Day, 'aria-selected', 'true');
 
-  selectedButtons = await t.context.session.findElements(
+  selectedButtons = await t.context.queryElements(
     By.css(`${ex.allDates}[aria-selected="true"]`)
   );
 
@@ -269,8 +246,6 @@ ariaTest('aria-selected on selected date', exampleFile, 'gridcell-aria-selected'
 
 
 ariaTest('DOWN ARROW, ALT plus DOWN ARROW and ENTER to open datepicker', exampleFile, 'combobox-down-arrow-enter', async (t) => {
-  t.plan(6);
-
   let combobox = await t.context.session.findElement(By.css(ex.comboboxSelector));
   let dialog = await t.context.session.findElement(By.css(ex.dialogSelector));
   let cancel = await t.context.session.findElement(By.css(ex.cancelSelector))
@@ -354,8 +329,6 @@ ariaTest('SPACE to open datepicker', exampleFile, 'button-space-return', async (
 });
 
 ariaTest('Sending key ESC when focus is in dialog closes dialog', exampleFile, 'dialog-esc', async (t) => {
-  t.plan(14);
-
   let chooseDateButton = await t.context.session.findElement(By.css(ex.buttonSelector));
 
   for (let i = 0; i < ex.allFocusableElementsInDialog.length; i++) {
@@ -379,7 +352,6 @@ ariaTest('Sending key ESC when focus is in dialog closes dialog', exampleFile, '
 });
 
 ariaTest('ENTER on previous year or month and SPACE on next year or month changes the year or month', exampleFile, 'month-year-button-space-return', async (t) => {
-  t.plan(4);
   await (await t.context.session.findElement(By.css(ex.buttonSelector))).sendKeys(Key.ENTER);
 
   let monthYear = await t.context.session.findElement(By.css(ex.monthYear));
@@ -409,8 +381,6 @@ ariaTest('ENTER on previous year or month and SPACE on next year or month change
 });
 
 ariaTest('Tab should go through all tabbable items, then repear', exampleFile, 'dialog-tab', async (t) => {
-  t.plan(8);
-
   await (await t.context.session.findElement(By.css(ex.buttonSelector))).sendKeys(Key.ENTER);
 
   for (let itemSelector of ex.allFocusableElementsInDialog) {
