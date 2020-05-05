@@ -115,6 +115,15 @@
   outline: 0;
 }
 
+.datepicker-dialog .prev-year:hover,
+.datepicker-dialog .prev-month:hover,
+.datepicker-dialog .next-month:hover,
+.datepicker-dialog .next-year:hover {
+  padding: 3px;
+  border: 1px solid white;
+  border-radius: 4px;
+}
+
 .datepicker-dialog .dialog-ok-cancel-group {
   text-align: right;
   margin-top: 1em;
@@ -123,20 +132,24 @@
 }
 
 .datepicker-dialog .dialog-ok-cancel-group button {
-  padding: 5px;
+  padding: 6px;
   margin-left: 1em;
   width: 5em;
   background-color: hsl(216, 80%, 92%);
   font-size: 0.85em;
   color: black;
   outline: none;
-  border: 1px solid hsl(216, 80%, 92%);
   border-radius: 5px;
 }
 
 .datepicker-dialog .dialog-button:focus {
   padding: 4px;
   border: 2px solid black;
+}
+
+.datepicker-dialog .dialog-button:hover {
+  padding: 5px;
+  border: 1px solid black;
 }
 
 .datepicker-dialog .fa-calendar-alt {
@@ -193,6 +206,12 @@
   border: 2px solid rgb(100, 100, 100);
   outline: 0;
 }
+
+.datepicker-dialog table.dates td:not(.disabled):hover {
+  padding: 2px;
+  border: 1px solid rgb(100, 100, 100);
+}
+
 
 .datepicker-dialog table.dates td[aria-selected] {
   padding: 1px;
