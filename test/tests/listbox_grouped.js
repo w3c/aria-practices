@@ -35,7 +35,8 @@ ariaTest('aria-activedescendant on listbox element', exampleFile, 'listbox-aria-
   // will automatically select the first option.
   await t.context.session.findElement(By.css(`${ex.optionIdBase}1`)).click();
 
-  let options = await t.context.session.findElements(By.css(ex.optionSelector));
+  let options = await t.context.queryElements(t, ex.optionSelector);
+
   let optionId = await options[0].getAttribute('id');
 
   t.is(
@@ -84,7 +85,7 @@ ariaTest('DOWN ARROW moves focus', exampleFile, 'key-down-arrow', async (t) => {
 
 ariaTest('DOWN ARROW does not wrap to top of listbox', exampleFile, 'key-down-arrow', async (t) => {
   const listbox = await t.context.session.findElement(By.css(ex.listboxSelector));
-  const options = await t.context.session.findElements(By.css(ex.optionSelector));
+  const options = await t.context.queryElements(t, ex.optionSelector);
 
   // click the last option
   await options[options.length - 1].click();
@@ -107,7 +108,7 @@ ariaTest('DOWN ARROW moves through groups', exampleFile, 'key-down-arrow', async
   // Sending the key down arrow will put focus on the first option if no options are focused
   const listbox = await t.context.session.findElement(By.css(ex.listboxSelector));
   const group1 = await listbox.findElement(By.css('[role="group"]'));
-  const groupOptions = await group1.findElements(By.css('[role="option"]'));
+  const groupOptions = await t.context.queryElements(t, '[role="option"]', group1);
 
   // click last option in group
   await groupOptions[groupOptions.length - 1].click();
@@ -128,7 +129,7 @@ ariaTest('UP ARROW sends initial focus to the first option', exampleFile, 'key-u
 
 ariaTest('END moves focus', exampleFile, 'key-end', async (t) => {
   const listbox = await t.context.session.findElement(By.css(ex.listboxSelector));
-  const options = await t.context.session.findElements(By.css(ex.optionSelector));
+  const options = await t.context.queryElements(t, ex.optionSelector);
 
   // Sending key end should put focus on the last item
   await listbox.sendKeys(Key.END);
@@ -168,7 +169,7 @@ ariaTest('UP ARROW moves through groups', exampleFile, 'key-up-arrow', async (t)
   // Sending the key down arrow will put focus on the first option if no options are focused
   const listbox = await t.context.session.findElement(By.css(ex.listboxSelector));
   const group1 = await listbox.findElement(By.css('[role="group"]'));
-  const groupOptions = await group1.findElements(By.css('[role="option"]'));
+  const groupOptions = await t.context.queryElements(t, '[role="option"]', group1);
 
   // click first option in second group
   await t.context.session.findElement(By.css(`${ex.optionIdBase}${groupOptions.length + 1}`)).click();
@@ -194,7 +195,7 @@ ariaTest('HOME moves focus', exampleFile, 'key-home', async (t) => {
 
 ariaTest('END scrolls listbox option into view', exampleFile, 'key-end', async (t) => {
   const listbox = await t.context.session.findElement(By.css(ex.listboxSelector));
-  const options = await t.context.session.findElements(By.css(ex.optionSelector));
+  const options = await t.context.queryElements(t, ex.optionSelector);
 
   let listboxBounds = await listbox.getRect();
   let optionBounds = await options[options.length - 1].getRect();
@@ -210,7 +211,7 @@ ariaTest('END scrolls listbox option into view', exampleFile, 'key-end', async (
 
 ariaTest('Click scrolls listbox option into view', exampleFile, 'key-end', async (t) => {
   const listbox = await t.context.session.findElement(By.css(ex.listboxSelector));
-  const options = await t.context.session.findElements(By.css(ex.optionSelector));
+  const options = await t.context.queryElements(t, ex.optionSelector);
 
   let listboxBounds = await listbox.getRect();
   let optionBounds = await options[options.length - 1].getRect();

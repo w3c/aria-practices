@@ -1,7 +1,6 @@
 'use strict';
 
 const { ariaTest } = require('..');
-const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaRoles = require('../util/assertAriaRoles');
@@ -59,51 +58,43 @@ const ex = {
 // Attributes
 
 ariaTest('role="group" on div element', exampleFile, 'group-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'example', 'group', '1', 'div');
+    await assertAriaRoles(t, 'example', 'group', '1', 'div');
 });
 
 ariaTest('"aria-labelledby" attribute on group', exampleFile, 'group-aria-labelledby', async (t) => {
-  t.plan(1);
-  await assertAriaLabelledby(t,  ex.groupSelector);
+    await assertAriaLabelledby(t,  ex.groupSelector);
 });
 
 ariaTest('role="spinbutton" on div element', exampleFile, 'spinbutton-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'example', 'spinbutton', '3', 'div');
+    await assertAriaRoles(t, 'example', 'spinbutton', '3', 'div');
 });
 
 ariaTest('"aria-valuemax" represetns the minimum value on spinbuttons', exampleFile, 'spinbutton-aria-valuemax', async (t) => {
-  t.plan(3);
-  await assertAttributeValues(t, ex.daySelector, 'aria-valuemax', ex.dayMax);
+    await assertAttributeValues(t, ex.daySelector, 'aria-valuemax', ex.dayMax);
   await assertAttributeValues(t, ex.monthSelector, 'aria-valuemax', ex.monthMax);
   await assertAttributeValues(t, ex.yearSelector, 'aria-valuemax', ex.yearMax);
 });
 
 ariaTest('"aria-valuemin" represents the maximum value on spinbuttons', exampleFile, 'spinbutton-aria-valuemin', async (t) => {
-  t.plan(3);
-  await assertAttributeValues(t, ex.daySelector, 'aria-valuemin', ex.dayMin);
+    await assertAttributeValues(t, ex.daySelector, 'aria-valuemin', ex.dayMin);
   await assertAttributeValues(t, ex.monthSelector, 'aria-valuemin', ex.monthMin);
   await assertAttributeValues(t, ex.yearSelector, 'aria-valuemin', ex.yearMin);
 });
 
 ariaTest('"aria-valuenow" reflects spinbutton value as a number', exampleFile, 'spinbutton-aria-valuenow', async (t) => {
-  t.plan(3);
-  await assertAttributeValues(t, ex.daySelector, 'aria-valuenow', ex.dayNow);
+    await assertAttributeValues(t, ex.daySelector, 'aria-valuenow', ex.dayNow);
   await assertAttributeValues(t, ex.monthSelector, 'aria-valuenow', ex.monthNow);
   await assertAttributeValues(t, ex.yearSelector, 'aria-valuenow', ex.yearNow);
 });
 
 
 ariaTest('"aria-valuetext" reflects spin button value as a text string', exampleFile, 'spinbutton-aria-valuetext', async (t) => {
-  t.plan(2);
-  await assertAttributeValues(t, ex.daySelector, 'aria-valuetext', ex.dayText);
+    await assertAttributeValues(t, ex.daySelector, 'aria-valuetext', ex.dayText);
   await assertAttributeValues(t, ex.monthSelector, 'aria-valuetext', ex.monthText);
 });
 
 ariaTest('"aria-label" provides accessible name for the spin buttons to screen reader users', exampleFile, 'spinbutton-aria-label', async (t) => {
-  t.plan(3);
-
+  
   await assertAttributeValues(t, ex.daySelector, 'aria-label', 'Day');
   await assertAttributeValues(t, ex.monthSelector, 'aria-label', 'Month');
   await assertAttributeValues(t, ex.yearSelector, 'aria-label', 'Year');
@@ -111,8 +102,7 @@ ariaTest('"aria-label" provides accessible name for the spin buttons to screen r
 });
 
 ariaTest('"tabindex=-1" removes previous and next from the tab order of the page', exampleFile, 'button-tabindex', async (t) => {
-  t.plan(6);
-  await assertAttributeValues(t, ex.dayIncreaseSelector, 'tabindex', '-1');
+    await assertAttributeValues(t, ex.dayIncreaseSelector, 'tabindex', '-1');
   await assertAttributeValues(t, ex.dayDecreaseSelector, 'tabindex', '-1');
 
   await assertAttributeValues(t, ex.monthIncreaseSelector, 'tabindex', '-1');
@@ -123,8 +113,7 @@ ariaTest('"tabindex=-1" removes previous and next from the tab order of the page
 });
 
 ariaTest('"aria-label" provides accessible name for the previous and next buttons to screen reader users', exampleFile, 'button-aria-label', async (t) => {
-  t.plan(6);
-  await assertAttributeValues(t, ex.dayIncreaseSelector, 'aria-label', 'next day');
+    await assertAttributeValues(t, ex.dayIncreaseSelector, 'aria-label', 'next day');
   await assertAttributeValues(t, ex.dayDecreaseSelector, 'aria-label', 'previous day');
 
   await assertAttributeValues(t, ex.monthIncreaseSelector, 'aria-label', 'next month');
@@ -135,8 +124,7 @@ ariaTest('"aria-label" provides accessible name for the previous and next button
 });
 
 ariaTest('"aria-hidden" hides decorative and redundant content form screen reader users', exampleFile, 'spinbutton-aria-hidden', async (t) => {
-  t.plan(6);
-  await assertAttributeValues(t, ex.dayHiddenPreviousSelector, 'aria-hidden', 'true');
+    await assertAttributeValues(t, ex.dayHiddenPreviousSelector, 'aria-hidden', 'true');
   await assertAttributeValues(t, ex.dayHiddenNextSelector, 'aria-hidden', 'true');
 
   await assertAttributeValues(t, ex.monthHiddenPreviousSelector, 'aria-hidden', 'true');

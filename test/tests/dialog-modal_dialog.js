@@ -173,9 +173,8 @@ const sendEscapeTo = async function (t, selector) {
 
 ariaTest('role="dialog" on div element', exampleFile, 'dialog-role', async (t) => {
 
-  t.plan(5);
-
-  const dialogs = await t.context.session.findElements(By.css(ex.dialogSelector));
+  
+  const dialogs = await t.context.queryElements(t, ex.dialogSelector);
 
   t.is(
     dialogs.length,
@@ -193,26 +192,22 @@ ariaTest('role="dialog" on div element', exampleFile, 'dialog-role', async (t) =
 });
 
 ariaTest('"aria-labelledby" attribute on role="dialog"', exampleFile, 'aria-labelledby', async (t) => {
-  t.plan(1);
-  await assertAriaLabelledby(t, ex.dialogSelector);
+    await assertAriaLabelledby(t, ex.dialogSelector);
 });
 
 ariaTest('', exampleFile, 'aria-describedby', async (t) => {
-  t.plan(1);
-  await assertAriaDescribedby(t, ex.dialogsWithDescribedbySelector);
+    await assertAriaDescribedby(t, ex.dialogsWithDescribedbySelector);
 });
 
 ariaTest('"aria-modal" attribute on role="dialog"', exampleFile, 'aria-modal', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex.dialogSelector, 'aria-modal', 'true');
+    await assertAttributeValues(t, ex.dialogSelector, 'aria-modal', 'true');
 });
 
 
 // Keys
 
 ariaTest('tab changes focus within dialog', exampleFile, 'key-tab', async (t) => {
-  t.plan(18);
-
+  
   /* DIALOG 1 */
 
   await openDialog1(t);
@@ -309,8 +304,7 @@ ariaTest('tab changes focus within dialog', exampleFile, 'key-tab', async (t) =>
 });
 
 ariaTest('shift tab changes focus within dialog', exampleFile, 'key-shift-tab', async (t) => {
-  t.plan(18);
-
+  
   /* DIALOG 1 */
 
   await openDialog1(t);
@@ -423,8 +417,7 @@ ariaTest('shift tab changes focus within dialog', exampleFile, 'key-shift-tab', 
 });
 
 ariaTest('escape closes dialog', exampleFile, 'key-escape', async (t) => {
-  t.plan(14);
-
+  
   /* DIALOG 1 */
 
   for (let selector of ex.dialog1FocusableEls) {
