@@ -165,12 +165,11 @@
 }
 
 .datepicker-dialog table.dates td {
-  padding: 2px;
+  padding: 3px;
   margin: 0;
   line-height: inherit;
   height: 40px;
   width: 40px;
-  border: 1px solid #eee;
   border-radius: 5px;
   font-size: 15px;
   background: #eee;
@@ -202,7 +201,7 @@
 
 .datepicker-dialog table.dates td[aria-selected]:focus {
   padding: 1px;
-  border: 2px solid  rgb(100, 100, 100);
+  border: 2px solid rgb(100, 100, 100);
 }
 
 .datepicker-dialog table.dates td[tabindex="0"] {
