@@ -27,40 +27,34 @@ const ex = {
 // Attributes
 
 ariaTest('role="radigroup" on div element', exampleFile, 'radiogroup-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'ex1', 'radiogroup', '2', 'ul');
+    await assertAriaRoles(t, 'ex1', 'radiogroup', '2', 'ul');
 });
 
 ariaTest('"aria-labelledby" attribute on radiogroup', exampleFile, 'radiogroup-aria-labelledby', async (t) => {
-  t.plan(1);
-  await assertAriaLabelledby(t,  ex.radiogroupSelector);
+    await assertAriaLabelledby(t,  ex.radiogroupSelector);
 });
 
 ariaTest('tabindex on radiogroup', exampleFile, 'radiogroup-tabindex', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex.radiogroupSelector, 'tabindex', '0');
+    await assertAttributeValues(t, ex.radiogroupSelector, 'tabindex', '0');
 });
 
 ariaTest('aria-activedescendant', exampleFile, 'radiogroup-aria-activedescendant', async (t) => {
-  t.plan(2);
-  await assertAttributeValues(t, ex.radiogroupSelectors[0], 'aria-activedescendant', 'rb11');
+    await assertAttributeValues(t, ex.radiogroupSelectors[0], 'aria-activedescendant', 'rb11');
   await assertAttributeValues(t, ex.radiogroupSelectors[1], 'aria-activedescendant', 'rb21');
 });
 
 ariaTest('role="radio" on div elements', exampleFile, 'radio-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'ex1', 'radio', '6', 'li');
+    await assertAriaRoles(t, 'ex1', 'radio', '6', 'li');
 });
 
 ariaTest('"aria-checked" set on role="radio"', exampleFile, 'radio-aria-checked', async (t) => {
-  t.plan(19);
-
+  
   // The radio groups will be all unchecked on page load
   await assertAttributeValues(t, ex.radioSelector, 'aria-checked', 'false');
 
-  const radiogroups = await t.context.session.findElements(By.css(ex.radiogroupSelector));
+  const radiogroups = await t.context.queryElements(t, ex.radiogroupSelector);
   for (let radiogroup of radiogroups) {
-    const radios = await radiogroup.findElements(By.css(ex.innerRadioSelector));
+    const radios = await t.context.queryElements(t, ex.innerRadioSelector, radiogroup);
 
     for (let checked = 0; checked < radios.length; checked++) {
 
@@ -83,8 +77,7 @@ ariaTest('"aria-checked" set on role="radio"', exampleFile, 'radio-aria-checked'
 // Keys
 
 ariaTest('Moves focus to first or checked item', exampleFile, 'key-tab', async (t) => {
-  t.plan(2);
-
+  
   // On page load, the first item in the radio list should be in tab index
   await assertTabOrder(t, [
     ex.radiogroupSelectors[0],
@@ -106,8 +99,7 @@ ariaTest('Moves focus to first or checked item', exampleFile, 'key-tab', async (
 });
 
 ariaTest('Selects radio item', exampleFile, 'key-space', async (t) => {
-  t.plan(2);
-
+  
   await t.context.session.findElement(By.css(ex.radiogroupSelectors[0])).sendKeys(Key.SPACE);
   const firstCrustRadioOption = ex.radioSelectors[0] + ':nth-of-type(1)';
   await assertAttributeValues(t, firstCrustRadioOption, 'aria-checked', 'true');
@@ -118,14 +110,13 @@ ariaTest('Selects radio item', exampleFile, 'key-space', async (t) => {
 });
 
 ariaTest('RIGHT ARROW changes focus and checks radio', exampleFile, 'key-right-arrow', async (t) => {
-  t.plan(12);
-
+  
   for (let groupIndex = 0; groupIndex < 2; groupIndex++) {
 
     const radiogroupSelector = ex.radiogroupSelectors[groupIndex];
     const radioSelector = ex.radioSelectors[groupIndex];
     const radiogroup = await t.context.session.findElement(By.css(radiogroupSelector));
-    const radios = await t.context.session.findElements(By.css(radioSelector));
+    const radios = await t.context.queryElements(t, radioSelector);
 
     // Right arrow moves focus to right
     for (let index = 0; index < radios.length; index++) {
@@ -144,14 +135,13 @@ ariaTest('RIGHT ARROW changes focus and checks radio', exampleFile, 'key-right-a
 });
 
 ariaTest('DOWN ARROW changes focus and checks radio', exampleFile, 'key-down-arrow', async (t) => {
-  t.plan(12);
-
+  
   for (let groupIndex = 0; groupIndex < 2; groupIndex++) {
 
     const radiogroupSelector = ex.radiogroupSelectors[groupIndex];
     const radioSelector = ex.radioSelectors[groupIndex];
     const radiogroup = await t.context.session.findElement(By.css(radiogroupSelector));
-    const radios = await t.context.session.findElements(By.css(radioSelector));
+    const radios = await t.context.queryElements(t, radioSelector);
 
     // Down arrow moves focus to right
     for (let index = 0; index < radios.length; index++) {
@@ -170,14 +160,13 @@ ariaTest('DOWN ARROW changes focus and checks radio', exampleFile, 'key-down-arr
 });
 
 ariaTest('LEFT ARROW changes focus and checks radio', exampleFile, 'key-left-arrow', async (t) => {
-  t.plan(12);
-
+  
   for (let groupIndex = 0; groupIndex < 2; groupIndex++) {
 
     const radiogroupSelector = ex.radiogroupSelectors[groupIndex];
     const radioSelector = ex.radioSelectors[groupIndex];
     const radiogroup = await t.context.session.findElement(By.css(radiogroupSelector));
-    const radios = await t.context.session.findElements(By.css(radioSelector));
+    const radios = await t.context.queryElements(t, radioSelector);
 
     // Left arrow moves focus to left
     for (let index of [0, 2, 1]) {
@@ -196,14 +185,13 @@ ariaTest('LEFT ARROW changes focus and checks radio', exampleFile, 'key-left-arr
 });
 
 ariaTest('UP ARROW changes focus and checks radio', exampleFile, 'key-up-arrow', async (t) => {
-  t.plan(12);
-
+  
   for (let groupIndex = 0; groupIndex < 2; groupIndex++) {
 
     const radiogroupSelector = ex.radiogroupSelectors[groupIndex];
     const radioSelector = ex.radioSelectors[groupIndex];
     const radiogroup = await t.context.session.findElement(By.css(radiogroupSelector));
-    const radios = await t.context.session.findElements(By.css(radioSelector));
+    const radios = await t.context.queryElements(t, radioSelector);
 
     // Up arrow moves focus to up
     for (let index of [0, 2, 1]) {

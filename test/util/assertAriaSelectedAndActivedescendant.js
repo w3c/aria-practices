@@ -16,8 +16,7 @@ module.exports = async function assertAriaSelectedAndActivedescendant (t, active
 
   // Confirm the option at the index has aria-selected set to true
 
-  const options = await t.context.session
-    .findElements(By.css(optionsSelector));
+  const options = await t.context.queryElements(t, optionsSelector);
 
   assert.strictEqual(
     await options[index].getAttribute('aria-selected'),
