@@ -1,7 +1,6 @@
 'use strict';
 
 const { ariaTest } = require('..');
-const { By, Key } = require('selenium-webdriver');
 const assertAriaDescribedby = require('../util/assertAriaDescribedby');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
@@ -19,27 +18,21 @@ const ex = {
 // Attributes
 
 ariaTest('role="table" element exists', exampleFile, 'table-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'ex1', 'table', 1, 'div');
+    await assertAriaRoles(t, 'ex1', 'table', 1, 'div');
 });
 
 ariaTest('"aria-label" attribute on table element', exampleFile, 'table-aria-label', async (t) => {
-  t.plan(1);
-  await assertAriaLabelExists(t, ex.tableSelector);
+    await assertAriaLabelExists(t, ex.tableSelector);
 });
 
 ariaTest('"aria-describedby" attribute on table element', exampleFile, 'table-aria-describedby', async (t) => {
-  t.plan(1);
-  await assertAriaDescribedby(t, ex.tableSelector);
+    await assertAriaDescribedby(t, ex.tableSelector);
 });
 
 
 ariaTest('role="rowgroup" exists', exampleFile, 'rowgroup-role', async (t) => {
-  t.plan(1);
-
-  const rowgroups = await t.context.session.findElements(By.css(
-    ex.tableSelector + ' [role="rowgroup"]'
-  ));
+  
+  const rowgroups = await t.context.queryElements(t, ex.tableSelector + ' [role="rowgroup"]');
 
   t.is(
     rowgroups.length,
@@ -50,11 +43,8 @@ ariaTest('role="rowgroup" exists', exampleFile, 'rowgroup-role', async (t) => {
 
 
 ariaTest('role="row" exists', exampleFile, 'row-role', async (t) => {
-  t.plan(1);
-
-  const rows = await t.context.session.findElements(By.css(
-    ex.tableSelector + ' [role="rowgroup"] [role="row"]'
-  ));
+  
+  const rows = await t.context.queryElements(t, ex.tableSelector + ' [role="rowgroup"] [role="row"]');
 
   t.is(
     rows.length,
@@ -65,11 +55,8 @@ ariaTest('role="row" exists', exampleFile, 'row-role', async (t) => {
 
 
 ariaTest('role="columnheader" exists', exampleFile, 'columnheader-role', async (t) => {
-  t.plan(1);
-
-  const columnheaders = await t.context.session.findElements(By.css(
-    ex.tableSelector + ' [role="rowgroup"] [role="row"] [role="columnheader"]'
-  ));
+  
+  const columnheaders = await t.context.queryElements(t, ex.tableSelector + ' [role="rowgroup"] [role="row"] [role="columnheader"]');
 
   t.is(
     columnheaders.length,
@@ -80,11 +67,8 @@ ariaTest('role="columnheader" exists', exampleFile, 'columnheader-role', async (
 });
 
 ariaTest('role="cell" exists', exampleFile, 'cell-role', async (t) => {
-  t.plan(1);
-
-  const cells = await t.context.session.findElements(By.css(
-    ex.tableSelector + ' [role="rowgroup"] [role="row"] [role="cell"]'
-  ));
+  
+  const cells = await t.context.queryElements(t, ex.tableSelector + ' [role="rowgroup"] [role="row"] [role="cell"]');
 
   t.is(
     cells.length,

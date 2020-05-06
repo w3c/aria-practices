@@ -4,26 +4,40 @@ const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaControls = require('../util/assertAriaControls');
-const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
-const assertNoElements = require('../util/assertNoElements');
 const assertTabOrder = require('../util/assertTabOrder');
 
-const exampleFile = 'tabs/tabs-1/tabs.html';
+const exampleFile = 'carousel/carousel-2-tablist.html';
 
 const ex = {
+  landmarkSelector: '#myCarousel',
+  rotationSelector: '#ex1 .rotation',
+  pausePlayButtonSelector: '#ex1 button:first-of-type',
   tablistSelector: '#ex1 [role="tablist"]',
   tabSelector: '#ex1 [role="tab"]',
+  tabSelectedSelector: '#ex1 [role="tab"][aria-selected="true"]',
   tabpanelSelector: '#ex1 [role="tabpanel"]',
-  tabCount: 3,
-  deletableId: 'complex',
+  slideContainerSelector: '#ex1 .carousel-items',
+  tabCount: 6,
   tabTabOrder: [
-    // button id, tab id
-    ['#nils', '#nils-tab'],
-    ['#agnes', '#agnes-tab'],
-    ['#complex', '#complexcomplex']
-  ]
+    // tab id, tabpanel id
+    ['#carousel-tab-1', '#carousel-image-1'],
+    ['#carousel-tab-2', '#carousel-image-2'],
+    ['#carousel-tab-3', '#carousel-image-3'],
+    ['#carousel-tab-4', '#carousel-image-4'],
+    ['#carousel-tab-5', '#carousel-image-5'],
+    ['#carousel-tab-6', '#carousel-image-6']
+  ],
+  allFocusableItems: [
+    '#ex1 button:first-of-type',
+    '#ex1 [role="tab"][aria-selected=true]',
+    '#ex1 .active .carousel-image a',
+    '#ex1 .active .carousel-caption a'
+  ],
+  rotationLabelPlaying: 'Stop automatic slide show',
+  rotationLabelPaused: 'Start automatic slide show',
+  activeCarouselItem: '#ex1 .active'
 };
 
 const openTabAtIndex = async function (t, index) {
@@ -50,19 +64,54 @@ const waitAndCheckAriaSelected = async function (t, index) {
 
 // Attributes
 
-ariaTest('role="tablist" on div element', exampleFile, 'tablist-role', async (t) => {
-    await assertAriaRoles(t, 'ex1', 'tablist', '1', 'div');
+ariaTest('rotation button has aria-label that is updated based on pause state', exampleFile, 'rotation-aria-label', async (t) => {
+  t.plan(4);
+  await assertAriaLabelExists(t, ex.rotationSelector);
+  await assertAttributeValues(t, ex.rotationSelector, 'aria-label', ex.rotationLabelPlaying);
+
+  let rotationButtonEl = await t.context.session.findElement(By.css(ex.rotationSelector));
+
+  // Send SPACE key and wait for change of 'aria-label'
+  await rotationButtonEl.sendKeys(Key.SPACE);
+  await t.context.session.wait(async function () {
+    return rotationButtonEl.getAttribute('aria-label') !== ex.rotationLabelPlaying;
+  }, t.context.waitTime, 'Timeout waiting for rotation button\'s aria-label to change');
+
+  await assertAttributeValues(t, ex.rotationSelector, 'aria-label', ex.rotationLabelPaused);
+
+  // Send ENTER key and wait for change of 'aria-label'
+  await rotationButtonEl.sendKeys(Key.ENTER);
+  await t.context.session.wait(async function () {
+    return rotationButtonEl.getAttribute('aria-label') !== ex.rotationLabelPaused;
+  }, t.context.waitTime, 'Timeout waiting for rotation button\'s aria-label to change');
+
+  await assertAttributeValues(t, ex.rotationSelector, 'aria-label', ex.rotationLabelPlaying);
+
+
 });
 
-ariaTest('"ariaLabel" attribute on role="tablist"', exampleFile, 'tablist-aria-label', async (t) => {
-    await assertAriaLabelExists(t, ex.tablistSelector);
+ariaTest('role="tablist" on div element', exampleFile, 'tablist-role', async (t) => {
+  t.plan(1);
+  await assertAriaRoles(t, 'ex1', 'tablist', '1', 'div');
+});
+
+ariaTest('"aria-label" attribute on role="tablist"', exampleFile, 'tablist-aria-label', async (t) => {
+  t.plan(1);
+  await assertAriaLabelExists(t, ex.tablistSelector);
 });
 
 ariaTest('role="tab" on button elements', exampleFile, 'tab-role', async (t) => {
-    await assertAriaRoles(t, 'ex1', 'tab', '3', 'button');
+  t.plan(1);
+  await assertAriaRoles(t, 'ex1', 'tab', ex.tabCount, 'button');
+});
+
+ariaTest('"aria-label" attribute on role="tab"', exampleFile, 'tab-aria-label', async (t) => {
+  t.plan(1);
+  await assertAriaLabelExists(t, ex.tabSelector);
 });
 
 ariaTest('"aria-selected" set on role="tab"', exampleFile, 'tab-aria-selected', async (t) => {
+  t.plan(2 * ex.tabCount * ex.tabCount);
 
   let tabs = await t.context.queryElements(t, ex.tabSelector);
   let tabpanels = await t.context.queryElements(t, ex.tabpanelSelector);
@@ -95,7 +144,9 @@ ariaTest('"aria-selected" set on role="tab"', exampleFile, 'tab-aria-selected', 
   }
 });
 
+
 ariaTest('"tabindex" on role="tab"', exampleFile, 'tab-tabindex', async (t) => {
+  t.plan(ex.tabCount * ex.tabCount);
 
   let tabs = await t.context.queryElements(t, ex.tabSelector);
   for (let selectedEl = 0; selectedEl < tabs.length; selectedEl++) {
@@ -105,7 +156,7 @@ ariaTest('"tabindex" on role="tab"', exampleFile, 'tab-tabindex', async (t) => {
 
     for (let el = 0; el < tabs.length; el++) {
 
-      // The open tab should have no tabindex set
+      // The open tab should have tabindex of 0
       if (el === selectedEl) {
         const tabindexExists = await t.context.session.executeScript(async function () {
           const [selector, el] = arguments;
@@ -133,26 +184,64 @@ ariaTest('"tabindex" on role="tab"', exampleFile, 'tab-tabindex', async (t) => {
   }
 });
 
-ariaTest('"aria-control" attribute on role="tab"', exampleFile, 'tab-aria-control', async (t) => {
-    await assertAriaControls(t, ex.tabSelector);
+ariaTest('"aria-controls" attribute on role="tab"', exampleFile, 'tab-aria-controls', async (t) => {
+  t.plan(1);
+  await assertAriaControls(t, ex.tabSelector);
 });
 
 ariaTest('role="tabpanel" on div element', exampleFile, 'tabpanel-role', async (t) => {
-    await assertAriaRoles(t, 'ex1', 'tabpanel', '3', 'div');
+  t.plan(1);
+  await assertAriaRoles(t, 'ex1', 'tabpanel', ex.tabCount, 'div');
 });
 
-ariaTest('"aria-labelledby" attribute on role="tabpanel" elements', exampleFile, 'tabpanel-aria-labelledby', async (t) => {
-    await assertAriaLabelledby(t, ex.tabpanelSelector);
+ariaTest('"aria-label" attribute on role="tabpanel" elements', exampleFile, 'tabpanel-aria-label', async (t) => {
+  t.plan(1);
+  await assertAriaLabelExists(t, ex.tabSelector);
 });
 
-ariaTest('tabindex="0" on role="tabpanel" elements', exampleFile, 'tabpanel-tabindex', async (t) => {
-    await assertAttributeValues(t, ex.tabpanelSelector, 'tabindex', '0');
+ariaTest('aria-roledescription="slide" on role="tabpanel" elements', exampleFile, 'tabpanel-roledescription', async (t) => {
+  t.plan(1);
+  await assertAttributeValues(t, ex.tabpanelSelector, 'aria-roledescription', 'slide');
+});
+
+ariaTest('section has aria-roledescription set to carousel', exampleFile, 'carousel-region-aria-roledescription', async (t) => {
+  t.plan(1);
+
+  // check the aria-roledescrption set to carousel
+  await assertAttributeValues(t, ex.landmarkSelector, 'aria-roledescription', 'carousel');
+});
+
+ariaTest('section has aria-label', exampleFile, 'carousel-region-aria-label', async (t) => {
+  t.plan(1);
+
+  await assertAriaLabelExists(t, ex.landmarkSelector);
+});
+
+ariaTest('slide container have aria-live initially set to off', exampleFile, 'carousel-aria-live', async (t) => {
+  t.plan(4);
+
+  // On page load, `aria-level` is `off`
+  await assertAttributeValues(t, ex.slideContainerSelector, 'aria-live', 'off');
+
+  // Focus on the widget, and aria-selected should change to 'polite'
+  await t.context.session.findElement(By.css(ex.tabSelectedSelector)).sendKeys(Key.ENTER);
+
+  await assertAttributeValues(t, ex.slideContainerSelector, 'aria-live', 'polite');
+
+  // Move focus to pause-start button start rotation, and the aria-live should change to 'polite' again
+  await t.context.session.findElement(By.css(ex.pausePlayButtonSelector)).click();
+  await assertAttributeValues(t, ex.slideContainerSelector, 'aria-live', 'polite');
+
+  // Click the pause button, and the aria-selected should change to 'off' again
+  await t.context.session.findElement(By.css(ex.pausePlayButtonSelector)).click();
+  await assertAttributeValues(t, ex.slideContainerSelector, 'aria-live', 'off');
 });
 
 
 // Keys
 
 ariaTest('TAB key moves focus to open tab and panel', exampleFile, 'key-tab', async (t) => {
+  t.plan(ex.tabCount);
 
   for (let index = 0; index < ex.tabCount; index++) {
     await openTabAtIndex(t, index);
@@ -162,6 +251,7 @@ ariaTest('TAB key moves focus to open tab and panel', exampleFile, 'key-tab', as
 });
 
 ariaTest('ARROW_RIGHT key moves focus and activates tab', exampleFile, 'key-right-arrow', async (t) => {
+  t.plan(3 * ex.tabCount);
 
   // Put focus on first tab
   await openTabAtIndex(t, 0);
@@ -208,7 +298,9 @@ ariaTest('ARROW_RIGHT key moves focus and activates tab', exampleFile, 'key-righ
 
 });
 
+
 ariaTest('ARROW_LEFT key moves focus and activates tab', exampleFile, 'key-left-arrow', async (t) => {
+  t.plan(3 * ex.tabCount);
 
   const tabs = await t.context.queryElements(t, ex.tabSelector);
   const tabpanels = await t.context.queryElements(t, ex.tabpanelSelector);
@@ -256,7 +348,7 @@ ariaTest('ARROW_LEFT key moves focus and activates tab', exampleFile, 'key-left-
 });
 
 ariaTest('HOME key moves focus and selects tab', exampleFile, 'key-home', async (t) => {
-
+  t.plan(3 * ex.tabCount);
 
   const tabs = await t.context.queryElements(t, ex.tabSelector);
   const tabpanels = await t.context.queryElements(t, ex.tabpanelSelector);
@@ -285,6 +377,7 @@ ariaTest('HOME key moves focus and selects tab', exampleFile, 'key-home', async 
 });
 
 ariaTest('END key moves focus and selects tab', exampleFile, 'key-end', async (t) => {
+  t.plan(3 * ex.tabCount);
 
   const tabs = await t.context.queryElements(t, ex.tabSelector);
   const tabpanels = await t.context.queryElements(t, ex.tabpanelSelector);
@@ -312,45 +405,76 @@ ariaTest('END key moves focus and selects tab', exampleFile, 'key-end', async (t
   }
 });
 
-ariaTest('DELETE key removes third tab', exampleFile, 'key-delete', async (t) => {
+// Keyboard interaction
 
-  let tabs = await t.context.queryElements(t, ex.tabSelector);
+ariaTest('TAB moves key through buttons', exampleFile, 'rotation-key-tab', async (t) => {
+  t.plan(1);
 
-  // Put focus on the first tab
-  await openTabAtIndex(t, 0);
+  await assertTabOrder(t, ex.allFocusableItems);
+});
 
-  // Send the delete key to the tab
-  await tabs[0].sendKeys(Key.DELETE);
+ariaTest('ENTER pause and start carousel motion', exampleFile, 'rotation-enter-or-space-toggle', async (t) => {
+  t.plan(2);
 
-  t.is(
-    (await t.context.queryElements(t, ex.tabSelector)).length,
-    3,
-    'Sending DELETE to first tab should not change number of tabs'
+  let activeElement = await t.context.session.findElement(By.css(ex.activeCarouselItem)).getAttribute('aria-label');
+
+  await t.context.session.findElement(By.css(ex.pausePlayButtonSelector)).sendKeys(Key.ENTER);
+  // Move focus from widget
+  await t.context.session.findElement(By.css(ex.pausePlayButtonSelector)).sendKeys(Key.chord(Key.SHIFT, Key.TAB));
+
+  let compareWithNextElement = await t.context.session.wait(async function () {
+    let newActiveElement = await t.context.session.findElement(By.css(ex.activeCarouselItem)).getAttribute('aria-label');
+    return activeElement === newActiveElement;
+  }, t.context.WaitTime);
+
+  t.true(
+    compareWithNextElement,
+    'The active elements should stay the same when the pause button has been sent ENTER'
   );
 
-  // Put focus on the second tab
-  await openTabAtIndex(t, 1);
+  await t.context.session.findElement(By.css(ex.pausePlayButtonSelector)).sendKeys(Key.ENTER);
 
-  // Send the delete key to the tab
-  await tabs[1].sendKeys(Key.DELETE);
+  compareWithNextElement = await t.context.session.wait(async function () {
+    let newActiveElement = await t.context.session.findElement(By.css(ex.activeCarouselItem)).getAttribute('aria-label');
+    return activeElement !== newActiveElement;
+  }, t.context.WaitTime);
 
-  t.is(
-    (await t.context.queryElements(t, ex.tabSelector)).length,
-    3,
-    'Sending DELETE to second tab should not change number of tabs'
+  t.true(
+    compareWithNextElement,
+    'The active elements should change when the play button has been sent ENTER'
   );
 
-  // Put focus on the last tab
-  await openTabAtIndex(t, 2);
+});
 
-  // Send the delete key to the tab
-  await tabs[2].sendKeys(Key.DELETE);
+ariaTest('SPACE pause and start carousel motion', exampleFile, 'rotation-enter-or-space-toggle', async (t) => {
+  t.plan(2);
 
-  t.is(
-    (await t.context.queryElements(t, ex.tabSelector)).length,
-    2,
-    'Sending DELETE to third tab should change number of tabs'
+  let activeElement = await t.context.session.findElement(By.css(ex.activeCarouselItem)).getAttribute('aria-label');
+
+  await t.context.session.findElement(By.css(ex.pausePlayButtonSelector)).sendKeys(Key.SPACE);
+  // Move focus from widget
+  await t.context.session.findElement(By.css(ex.pausePlayButtonSelector)).sendKeys(Key.chord(Key.SHIFT, Key.TAB));
+
+  let compareWithNextElement = await t.context.session.wait(async function () {
+    let newActiveElement = await t.context.session.findElement(By.css(ex.activeCarouselItem)).getAttribute('aria-label');
+    return activeElement === newActiveElement;
+  }, t.context.WaitTime);
+
+  t.true(
+    compareWithNextElement,
+    'The active elements should stay the same when the pause button has been sent SPACE'
   );
 
-  assertNoElements(t, `#${ex.deletableId}`, `Sending DELETE to third tab should have delete tab with id: ${ex.deletableId}`);
+  await t.context.session.findElement(By.css(ex.pausePlayButtonSelector)).sendKeys(Key.SPACE);
+
+  compareWithNextElement = await t.context.session.wait(async function () {
+    let newActiveElement = await t.context.session.findElement(By.css(ex.activeCarouselItem)).getAttribute('aria-label');
+    return activeElement !== newActiveElement;
+  }, t.context.WaitTime);
+
+  t.true(
+    compareWithNextElement,
+    'The active elements should change when the play button has been sent SPACE'
+  );
+
 });

@@ -36,7 +36,7 @@ const ex = {
 };
 
 const sendAllSlidersToEnd = async function (t) {
-  const sliders = await t.context.session.findElements(By.css(ex.sliderSelector));
+  const sliders = await t.context.queryElements(t, ex.sliderSelector);
 
   for (let slider of sliders) {
     await slider.sendKeys(Key.END);
@@ -53,60 +53,51 @@ const getValueAndText = async function (t, selector) {
 // Attributes
 
 ariaTest('role="slider" on div element', exampleFile, 'slider-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'ex1', 'slider', '3', 'div');
+    await assertAriaRoles(t, 'ex1', 'slider', '3', 'div');
 });
 
 ariaTest('"tabindex" set to "0" on sliders', exampleFile, 'tabindex', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex.sliderSelector, 'tabindex', '0');
+    await assertAttributeValues(t, ex.sliderSelector, 'tabindex', '0');
 });
 
 ariaTest('"aria-orientation" set on sliders', exampleFile, 'aria-orientation', async (t) => {
-  t.plan(3);
-  await assertAttributeValues(t, ex.tempSelector, 'aria-orientation', 'vertical');
+    await assertAttributeValues(t, ex.tempSelector, 'aria-orientation', 'vertical');
   await assertAttributeValues(t, ex.fanSelector, 'aria-orientation', 'horizontal');
   await assertAttributeValues(t, ex.heatSelector, 'aria-orientation', 'horizontal');
 });
 
 ariaTest('"aria-valuemax" set on sliders', exampleFile, 'aria-valuemax', async (t) => {
-  t.plan(3);
-  await assertAttributeValues(t, ex.tempSelector, 'aria-valuemax', ex.tempMax);
+    await assertAttributeValues(t, ex.tempSelector, 'aria-valuemax', ex.tempMax);
   await assertAttributeValues(t, ex.fanSelector, 'aria-valuemax', ex.fanMax);
   await assertAttributeValues(t, ex.heatSelector, 'aria-valuemax', ex.heatMax);
 });
 
 ariaTest('"aria-valuemin" set on sliders', exampleFile, 'aria-valuemin', async (t) => {
-  t.plan(3);
-  await assertAttributeValues(t, ex.tempSelector, 'aria-valuemin', ex.tempMin);
+    await assertAttributeValues(t, ex.tempSelector, 'aria-valuemin', ex.tempMin);
   await assertAttributeValues(t, ex.fanSelector, 'aria-valuemin', ex.fanMin);
   await assertAttributeValues(t, ex.heatSelector, 'aria-valuemin', ex.heatMin);
 });
 
 ariaTest('"aria-valuenow" reflects slider value', exampleFile, 'aria-valuenow', async (t) => {
-  t.plan(3);
-  await assertAttributeValues(t, ex.tempSelector, 'aria-valuenow', ex.tempDefault);
+    await assertAttributeValues(t, ex.tempSelector, 'aria-valuenow', ex.tempDefault);
   await assertAttributeValues(t, ex.fanSelector, 'aria-valuenow', '0');
   await assertAttributeValues(t, ex.heatSelector, 'aria-valuenow', '0');
 });
 
 ariaTest('"aria-valuetext" reflects slider value', exampleFile, 'aria-valuetext', async (t) => {
-  t.plan(2);
-  await assertAttributeValues(t, ex.fanSelector, 'aria-valuetext', ex.fanValues[0]);
+    await assertAttributeValues(t, ex.fanSelector, 'aria-valuetext', ex.fanValues[0]);
   await assertAttributeValues(t, ex.heatSelector, 'aria-valuetext', ex.heatValues[0]);
 });
 
 ariaTest('"aria-labelledby" set on sliders', exampleFile, 'aria-labelledby', async (t) => {
-  t.plan(1);
-  await assertAriaLabelledby(t, ex.sliderSelector);
+    await assertAriaLabelledby(t, ex.sliderSelector);
 });
 
 
 // Keys
 
 ariaTest('Right arrow increases slider value by 1', exampleFile, 'key-right-arrow', async (t) => {
-  t.plan(8);
-
+  
   // Send 1 key to temp slider
   const tempSlider = await t.context.session.findElement(By.css(ex.tempSelector));
   await tempSlider.sendKeys(Key.ARROW_RIGHT);
@@ -184,8 +175,7 @@ ariaTest('Right arrow increases slider value by 1', exampleFile, 'key-right-arro
 });
 
 ariaTest('up arrow increases slider value by 1', exampleFile, 'key-up-arrow', async (t) => {
-  t.plan(8);
-
+  
   // Send 1 key to temp slider
   const tempSlider = await t.context.session.findElement(By.css(ex.tempSelector));
   await tempSlider.sendKeys(Key.ARROW_UP);
@@ -264,8 +254,7 @@ ariaTest('up arrow increases slider value by 1', exampleFile, 'key-up-arrow', as
 
 
 ariaTest('page up increases slider value by 10', exampleFile, 'key-page-up', async (t) => {
-  t.plan(4);
-
+  
   // Send 1 key to temp slider
   const tempSlider = await t.context.session.findElement(By.css(ex.tempSelector));
   await tempSlider.sendKeys(Key.PAGE_UP);
@@ -300,8 +289,7 @@ ariaTest('page up increases slider value by 10', exampleFile, 'key-page-up', asy
 });
 
 ariaTest('key end set slider at max value', exampleFile, 'key-end', async (t) => {
-  t.plan(4);
-
+  
   // Send key end to temp slider
   const tempSlider = await t.context.session.findElement(By.css(ex.tempSelector));
   await tempSlider.sendKeys(Key.END);
@@ -339,8 +327,7 @@ ariaTest('key end set slider at max value', exampleFile, 'key-end', async (t) =>
 });
 
 ariaTest('left arrow decreases slider value by 1', exampleFile, 'key-left-arrow', async (t) => {
-  t.plan(8);
-
+  
   await sendAllSlidersToEnd(t);
 
   // Send 1 key to temp slider
@@ -423,8 +410,7 @@ ariaTest('left arrow decreases slider value by 1', exampleFile, 'key-left-arrow'
 });
 
 ariaTest('down arrow decreases slider value by 1', exampleFile, 'key-down-arrow', async (t) => {
-  t.plan(8);
-
+  
   await sendAllSlidersToEnd(t);
 
   // Send 1 key to temp slider
@@ -507,8 +493,7 @@ ariaTest('down arrow decreases slider value by 1', exampleFile, 'key-down-arrow'
 });
 
 ariaTest('page down decreases slider value by 10', exampleFile, 'key-page-down', async (t) => {
-  t.plan(4);
-
+  
   // Send 1 key to temp slider
   const tempSlider = await t.context.session.findElement(By.css(ex.tempSelector));
   await tempSlider.sendKeys(Key.PAGE_DOWN);
@@ -543,8 +528,7 @@ ariaTest('page down decreases slider value by 10', exampleFile, 'key-page-down',
 });
 
 ariaTest('home set slider value to minimum', exampleFile, 'key-home', async (t) => {
-  t.plan(4);
-
+  
   // Send key home to temp slider
   const tempSlider = await t.context.session.findElement(By.css(ex.tempSelector));
   await tempSlider.sendKeys(Key.HOME);

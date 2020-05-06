@@ -2,7 +2,6 @@
 
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
-const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaControls = require('../util/assertAriaControls');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 
@@ -45,9 +44,8 @@ const focusMatchesElement = async function (t, selector) {
 // Attributes
 
 ariaTest('h3 element should wrap accordion button', exampleFile, 'h3-element', async (t) => {
-  t.plan(3);
-
-  const buttons = await t.context.session.findElements(By.css(ex.buttonSelector));
+  
+  const buttons = await t.context.queryElements(t, ex.buttonSelector);
 
   for (let button of buttons) {
     t.is(
@@ -59,9 +57,8 @@ ariaTest('h3 element should wrap accordion button', exampleFile, 'h3-element', a
 });
 
 ariaTest('aria-expanded on button element', exampleFile, 'button-aria-expanded', async (t) => {
-  t.plan(9);
-
-  const buttons = await t.context.session.findElements(By.css(ex.buttonSelector));
+  
+  const buttons = await t.context.queryElements(t, ex.buttonSelector);
 
   for (let expandIndex = 0; expandIndex < buttons.length; expandIndex++) {
 
@@ -81,15 +78,13 @@ ariaTest('aria-expanded on button element', exampleFile, 'button-aria-expanded',
 });
 
 ariaTest('aria-controls on button element', exampleFile, 'button-aria-controls', async (t) => {
-  t.plan(1);
-
+  
   await assertAriaControls(t, ex.buttonSelector);
 });
 
 ariaTest('"aria-disabled" set on expanded sections', exampleFile, 'button-aria-disabled', async (t) => {
-  t.plan(9);
-
-  const buttons = await t.context.session.findElements(By.css(ex.buttonSelector));
+  
+  const buttons = await t.context.queryElements(t, ex.buttonSelector);
 
   for (let expandIndex = 0; expandIndex < buttons.length; expandIndex++) {
 
@@ -109,9 +104,8 @@ ariaTest('"aria-disabled" set on expanded sections', exampleFile, 'button-aria-d
 });
 
 ariaTest('role "region" exists on accordion panels', exampleFile, 'region-role', async (t) => {
-  t.plan(3);
-
-  const buttons = await t.context.session.findElements(By.css(ex.buttonSelector));
+  
+  const buttons = await t.context.queryElements(t, ex.buttonSelector);
   const panelIds = [];
   for (let button of buttons) {
     panelIds.push(await button.getAttribute('aria-controls'));
@@ -127,18 +121,16 @@ ariaTest('role "region" exists on accordion panels', exampleFile, 'region-role',
 });
 
 ariaTest('"aria-labelledby" on region', exampleFile, 'region-aria-labelledby', async (t) => {
-  t.plan(1);
-  await assertAriaLabelledby(t, ex.panelSelector);
+    await assertAriaLabelledby(t, ex.panelSelector);
 });
 
 
 // Keys
 
 ariaTest('ENTER key expands section', exampleFile, 'key-enter-or-space', async (t) => {
-  t.plan(12);
-
-  const buttons = await t.context.session.findElements(By.css(ex.buttonSelector));
-  const panels = await t.context.session.findElements(By.css(ex.panelSelector));
+  
+  const buttons = await t.context.queryElements(t, ex.buttonSelector);
+  const panels = await t.context.queryElements(t, ex.panelSelector);
 
   for (let expandIndex of [1, 2, 0]) {
     await buttons[expandIndex].sendKeys(Key.ENTER);
@@ -170,10 +162,9 @@ ariaTest('ENTER key expands section', exampleFile, 'key-enter-or-space', async (
 });
 
 ariaTest('SPACE key expands section', exampleFile, 'key-enter-or-space', async (t) => {
-  t.plan(12);
-
-  const buttons = await t.context.session.findElements(By.css(ex.buttonSelector));
-  const panels = await t.context.session.findElements(By.css(ex.panelSelector));
+  
+  const buttons = await t.context.queryElements(t, ex.buttonSelector);
+  const panels = await t.context.queryElements(t, ex.panelSelector);
 
   for (let expandIndex of [1, 2, 0]) {
     await buttons[expandIndex].sendKeys(Key.SPACE);
@@ -205,9 +196,8 @@ ariaTest('SPACE key expands section', exampleFile, 'key-enter-or-space', async (
 });
 
 ariaTest('TAB moves focus between headers and displayed inputs', exampleFile, 'key-tab', async (t) => {
-  t.plan(22);
-
-  const buttons = await t.context.session.findElements(By.css(ex.buttonSelector));
+  
+  const buttons = await t.context.queryElements(t, ex.buttonSelector);
 
   // Open a panel
   await buttons[0].click();
@@ -280,9 +270,8 @@ ariaTest('TAB moves focus between headers and displayed inputs', exampleFile, 'k
 });
 
 ariaTest('SHIFT+TAB moves focus between headers and displayed inputs', exampleFile, 'key-shift-tab', async (t) => {
-  t.plan(22);
-
-  const buttons = await t.context.session.findElements(By.css(ex.buttonSelector));
+  
+  const buttons = await t.context.queryElements(t, ex.buttonSelector);
 
   // Open a panel
   await buttons[0].click();
@@ -358,9 +347,8 @@ ariaTest('SHIFT+TAB moves focus between headers and displayed inputs', exampleFi
 });
 
 ariaTest('DOWN ARROW moves focus between headers', exampleFile, 'key-down-arrow', async (t) => {
-  t.plan(3);
-
-  const buttons = await t.context.session.findElements(By.css(ex.buttonSelector));
+  
+  const buttons = await t.context.queryElements(t, ex.buttonSelector);
 
   // Confirm focus moves through remaining items
   for (let index = 0; index < ex.buttonsInOrder.length - 1; index++) {
@@ -387,7 +375,7 @@ ariaTest('DOWN ARROW moves focus between headers', exampleFile, 'key-down-arrow'
 
 ariaTest('UP ARROW moves focus between headers', exampleFile, 'key-up-arrow', async (t) => {
 
-  const buttons = await t.context.session.findElements(By.css(ex.buttonSelector));
+  const buttons = await t.context.queryElements(t, ex.buttonSelector);
 
   // Confirm focus moves through remaining items
   for (let index = ex.buttonsInOrder.length - 1; index > 0; index--) {
@@ -413,9 +401,8 @@ ariaTest('UP ARROW moves focus between headers', exampleFile, 'key-up-arrow', as
 });
 
 ariaTest('HOME key will always move focus to first button', exampleFile, 'key-home', async (t) => {
-  t.plan(3);
-
-  const buttons = await t.context.session.findElements(By.css(ex.buttonSelector));
+  
+  const buttons = await t.context.queryElements(t, ex.buttonSelector);
   const lastIndex = ex.buttonsInOrder.length - 1;
 
   // Confirm focus moves through remaining items
@@ -433,9 +420,8 @@ ariaTest('HOME key will always move focus to first button', exampleFile, 'key-ho
 });
 
 ariaTest('END key will always move focus to last button', exampleFile, 'key-end', async (t) => {
-  t.plan(3);
-
-  const buttons = await t.context.session.findElements(By.css(ex.buttonSelector));
+  
+  const buttons = await t.context.queryElements(t, ex.buttonSelector);
   const lastIndex = ex.buttonsInOrder.length - 1;
 
   // Confirm focus moves through remaining items

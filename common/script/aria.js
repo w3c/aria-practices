@@ -159,7 +159,7 @@ require(["core/pubsubhub"], function( respecEvents ) {
                     }
                     sp.className = type + "-name";
                     sp.title = title;
-                    sp.innerHTML = "<code>" + content + "</code> <span class=\"type-indicator\">(" + type + ")</span>";
+                    sp.innerHTML = "<code>" + content + "</code> <span class=\"type-indicator\">" + type + "</span>";
                     sp.setAttribute("aria-describedby", "desc-" + title);
                     var dRef = item.nextElementSibling;
                     var desc = dRef.firstElementChild.innerHTML;
@@ -289,7 +289,7 @@ require(["core/pubsubhub"], function( respecEvents ) {
                         type = "abstract role";
                         isAbstract = true;
                     }
-                    sp.innerHTML = "<code>" + content + "</code> <span class=\"type-indicator\">(" + type + ")</span>";
+                    sp.innerHTML = "<code>" + content + "</code> <span class=\"type-indicator\">" + type + "</span>";
                     // sp.id = title;
                     sp.setAttribute("aria-describedby", "desc-" + title);
                     var dRef = item.nextElementSibling;

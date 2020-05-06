@@ -2,7 +2,6 @@
 
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
-const assertAttributeDNE = require('../util/assertAttributeDNE');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaControls = require('../util/assertAriaControls');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
@@ -33,8 +32,7 @@ const ex = {
 // Attributes
 
 ariaTest('section element used to contain slider', exampleFile, 'carousel-region-role', async (t) => {
-  t.plan(1);
-
+  
   // This test primarially tests that the ex.landmarkSelector points to a `section` element
   const landmarkEl = await t.context.session.findElement(By.css(ex.landmarkSelector));
   t.is(
@@ -45,21 +43,18 @@ ariaTest('section element used to contain slider', exampleFile, 'carousel-region
 });
 
 ariaTest('section has aria-roledescription set to carousel', exampleFile, 'carousel-region-aria-roledescription', async (t) => {
-  t.plan(1);
-
+  
   // check the aria-roledescrption set to carousel
   await assertAttributeValues(t, ex.landmarkSelector, 'aria-roledescription', 'carousel');
 });
 
 ariaTest('section has aria-label', exampleFile, 'carousel-region-aria-label', async (t) => {
-  t.plan(1);
-
+  
   await assertAriaLabelExists(t, ex.landmarkSelector);
 });
 
 ariaTest('slide container have aria-live initially set to off', exampleFile, 'carousel-aria-live', async (t) => {
-  t.plan(4);
-
+  
   // On page load, `aria-level` is `off`
   await assertAttributeValues(t, ex.slideContainerSelector, 'aria-live', 'off');
 
@@ -79,29 +74,24 @@ ariaTest('slide container have aria-live initially set to off', exampleFile, 'ca
 });
 
 ariaTest('pause, previous and next buttons have aria-label', exampleFile, 'carousel-button-aria-label', async (t) => {
-  t.plan(1);
-  await assertAriaLabelExists(t, ex.buttonSelector);
+    await assertAriaLabelExists(t, ex.buttonSelector);
 });
 
 ariaTest('previous and next buttons have aria-controls', exampleFile, 'carousel-button-aria-controls', async (t) => {
-  t.plan(2);
-  await assertAriaControls(t, ex.previousButtonSelector);
+    await assertAriaControls(t, ex.previousButtonSelector);
   await assertAriaControls(t, ex.nextButtonSelector);
 });
 
 ariaTest('slides have role group', exampleFile, 'carousel-group-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'myCarousel', 'group', 6, 'div');
+    await assertAriaRoles(t, 'myCarousel', 'group', 6, 'div');
 });
 
 ariaTest('slides have aria-label', exampleFile, 'carousel-group-aria-label', async (t) => {
-  t.plan(1);
-  await assertAriaLabelExists(t, ex.slideSelector);
+    await assertAriaLabelExists(t, ex.slideSelector);
 });
 
 ariaTest('slides have aria-roledescription set to slide', exampleFile, 'carousel-group-aria-roledescription', async (t) => {
-  t.plan(1);
-
+  
   // check the aria-roledescrption set to carousel
   await assertAttributeValues(t, ex.slideSelector, 'aria-roledescription', 'slide');
 });
@@ -109,14 +99,12 @@ ariaTest('slides have aria-roledescription set to slide', exampleFile, 'carousel
 // Keyboard interaction
 
 ariaTest('TAB moves key through buttons', exampleFile, 'carousel-key-tab', async (t) => {
-  t.plan(1);
-
+  
   await assertTabOrder(t, ex.allFocusableItems);
 });
 
 ariaTest('ENTER pause and start carousel motion', exampleFile, 'carousel-enter-or-space-toggle', async (t) => {
-  t.plan(2);
-
+  
   let activeElement = await t.context.session.findElement(By.css(ex.activeCarouselItem)).getAttribute('aria-label');
 
   await t.context.session.findElement(By.css(ex.pausePlayButtonSelector)).sendKeys(Key.ENTER);
@@ -151,8 +139,7 @@ ariaTest('ENTER pause and start carousel motion', exampleFile, 'carousel-enter-o
 
 
 ariaTest('SPACE pause and start carousel motion', exampleFile, 'carousel-enter-or-space-toggle', async (t) => {
-  t.plan(2);
-
+  
   let activeElement = await t.context.session.findElement(By.css(ex.activeCarouselItem)).getAttribute('aria-label');
 
   await t.context.session.findElement(By.css(ex.pausePlayButtonSelector)).sendKeys(Key.SPACE);
@@ -186,8 +173,7 @@ ariaTest('SPACE pause and start carousel motion', exampleFile, 'carousel-enter-o
 
 
 ariaTest('SPACE on previous and next', exampleFile, 'carousel-key-enter-or-space-move', async (t) => {
-  t.plan(2);
-
+  
   let activeElement = await t.context.session.findElement(By.css(ex.activeCarouselItem))
     .getAttribute('aria-label');
 
@@ -219,8 +205,7 @@ ariaTest('SPACE on previous and next', exampleFile, 'carousel-key-enter-or-space
 });
 
 ariaTest('ENTER on previous and next', exampleFile, 'carousel-key-enter-or-space-move', async (t) => {
-  t.plan(2);
-
+  
   let activeElement = await t.context.session.findElement(By.css(ex.activeCarouselItem))
     .getAttribute('aria-label');
 
