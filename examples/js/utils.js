@@ -12,6 +12,7 @@ aria.KeyCode = {
   BACKSPACE: 8,
   TAB: 9,
   RETURN: 13,
+  SHIFT: 16,
   ESC: 27,
   SPACE: 32,
   PAGE_UP: 33,

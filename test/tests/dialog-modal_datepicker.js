@@ -7,8 +7,6 @@ const assertAttributeDNE = require('../util/assertAttributeDNE');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
-const assertRovingTabindex = require('../util/assertRovingTabindex');
-const assertTabOrder = require('../util/assertTabOrder');
 
 const exampleFile = 'dialog-modal/datepicker-dialog.html';
 
@@ -85,58 +83,49 @@ const focusMatchesElement = async function (t, selector) {
 // Button Tests
 
 ariaTest('"aria-label" attribute on button', exampleFile, 'calendar-button-aria-label', async (t) => {
-  t.plan(1);
-  await assertAriaLabelExists(t,  ex.buttonSelector);
+    await assertAriaLabelExists(t,  ex.buttonSelector);
 });
 
 // Dialog Tests
 
 ariaTest('role="dialog" attribute on div', exampleFile, 'dialog-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'example', 'dialog', 1, 'div');
+    await assertAriaRoles(t, 'example', 'dialog', 1, 'div');
 });
 
 ariaTest('aria-modal="true" on modal', exampleFile, 'dialog-aria-modal', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex.dialogSelector, 'aria-modal', 'true');
+    await assertAttributeValues(t, ex.dialogSelector, 'aria-modal', 'true');
 });
 
 ariaTest('aria-labelledby exist on dialog', exampleFile, 'dialog-aria-labelledby', async (t) => {
-  t.plan(1);
-  await assertAriaLabelledby(t, ex.dialogSelector);
+    await assertAriaLabelledby(t, ex.dialogSelector);
 });
 
 ariaTest('aria-live="polite" on keyboard support message', exampleFile, 'dialog-aria-live', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex.messageSelector, 'aria-live', 'polite');
+    await assertAttributeValues(t, ex.messageSelector, 'aria-live', 'polite');
 });
 
 ariaTest('"aria-label" exists on control buttons', exampleFile, 'change-date-button-aria-label', async (t) => {
-  t.plan(1);
-  await assertAriaLabelExists(t, ex.controlButtons);
+    await assertAriaLabelExists(t, ex.controlButtons);
 });
 
 ariaTest('aria-live="polite" on dialog header', exampleFile, 'change-date-aria-live', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, `${ex.dialogSelector} h2`, 'aria-live', 'polite');
+    await assertAttributeValues(t, `${ex.dialogSelector} h2`, 'aria-live', 'polite');
 });
 
 ariaTest('grid role on table element', exampleFile, 'grid-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'example', 'grid', 1, 'table');
+    await assertAriaRoles(t, 'example', 'grid', 1, 'table');
 });
 
 ariaTest('aria-labelledby on grid element', exampleFile, 'grid-aria-labelledby', async (t) => {
-  t.plan(1);
-  await assertAriaLabelledby(t, ex.gridSelector);
+    await assertAriaLabelledby(t, ex.gridSelector);
 });
 
 ariaTest('Roving tab index on dates in gridcell', exampleFile, 'gridcell-button-tabindex', async (t) => {
   await setDateToJanFirst2019(t);
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
 
-  let focusableButtons = await t.context.session.findElements(By.css(ex.currentMonthDateButtons));
-  let allButtons = await t.context.session.findElements(By.css(ex.allDates));
+  let focusableButtons = await t.context.queryElements(t, ex.currentMonthDateButtons);
+  let allButtons = await t.context.queryElements(t, ex.allDateButtons);
 
   // test only one element has tabindex="0"
   for (let tabableEl = 0; tabableEl < 30; tabableEl++) {
@@ -161,7 +150,6 @@ ariaTest('Roving tab index on dates in gridcell', exampleFile, 'gridcell-button-
 });
 
 ariaTest('aria-selected on selected date', exampleFile, 'gridcell-button-aria-selected', async (t) => {
-  t.plan(5);
 
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
   await assertAttributeDNE(t, ex.allDates, 'aria-selected');
@@ -170,9 +158,7 @@ ariaTest('aria-selected on selected date', exampleFile, 'gridcell-button-aria-se
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
   await assertAttributeValues(t, ex.jan12019Day, 'aria-selected', 'true');
 
-  let selectedButtons = await t.context.session.findElements(
-    By.css(`${ex.allDates}[aria-selected="true"]`)
-  );
+  let selectedButtons = await t.context.queryElements(t, `${ex.allDateButtons}[aria-selected="true"]`);
 
   t.is(
     selectedButtons.length,
@@ -184,9 +170,7 @@ ariaTest('aria-selected on selected date', exampleFile, 'gridcell-button-aria-se
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
   await assertAttributeValues(t, ex.jan22019Day, 'aria-selected', 'true');
 
-  selectedButtons = await t.context.session.findElements(
-    By.css(`${ex.allDates}[aria-selected="true"]`)
-  );
+  selectedButtons = await t.context.queryElements(t, `${ex.allDateButtons}[aria-selected="true"]`);
 
   t.is(
     selectedButtons.length,
@@ -233,7 +217,6 @@ ariaTest('SPACE to open datepicker', exampleFile, 'button-space-return-down-arro
 });
 
 ariaTest('Sending key ESC when focus is in dialog closes dialog', exampleFile, 'dialog-esc', async (t) => {
-  t.plan(14);
 
   let chooseDateButton = await t.context.session.findElement(By.css(ex.buttonSelector));
 
@@ -258,7 +241,6 @@ ariaTest('Sending key ESC when focus is in dialog closes dialog', exampleFile, '
 });
 
 ariaTest('Tab should go through all tabbable items, then loop', exampleFile, 'dialog-tab', async (t) => {
-  t.plan(8);
 
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
 
@@ -278,7 +260,6 @@ ariaTest('Tab should go through all tabbable items, then loop', exampleFile, 'di
 });
 
 ariaTest('Shift+tab should send focus backwards through diaglog, then loop', exampleFile, 'dialog-shift-tab', async (t) => {
-  t.plan(7);
 
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
 
@@ -298,7 +279,6 @@ ariaTest('Shift+tab should send focus backwards through diaglog, then loop', exa
 });
 
 ariaTest('ENTER to buttons change calendar and date in focus', exampleFile, 'month-year-button-space-return', async (t) => {
-  t.plan(4);
 
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
   // By default, focus will be on todays date.
@@ -360,7 +340,6 @@ ariaTest('ENTER to buttons change calendar and date in focus', exampleFile, 'mon
 });
 
 ariaTest('SPACE to buttons change calendar and date in focus', exampleFile, 'month-year-button-space-return', async (t) => {
-  t.plan(4);
 
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
   // By default, focus will be on todays date.
@@ -422,7 +401,6 @@ ariaTest('SPACE to buttons change calendar and date in focus', exampleFile, 'mon
 });
 
 ariaTest('SPACE or RETURN selects date in focus', exampleFile, 'grid-space-return', async (t) => {
-  t.plan(2);
 
   // By default, focus will be on todays date.
   let day = new Date();
@@ -448,7 +426,6 @@ ariaTest('SPACE or RETURN selects date in focus', exampleFile, 'grid-space-retur
 });
 
 ariaTest('UP ARROW moves date up by week', exampleFile, 'grid-up-arrow', async (t) => {
-  t.plan(5);
 
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
   let day = new Date();
@@ -467,7 +444,6 @@ ariaTest('UP ARROW moves date up by week', exampleFile, 'grid-up-arrow', async (
 });
 
 ariaTest('DOWN ARROW moves date down by week', exampleFile, 'grid-down-arrow', async (t) => {
-  t.plan(5);
 
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
   let day = new Date();
@@ -486,7 +462,6 @@ ariaTest('DOWN ARROW moves date down by week', exampleFile, 'grid-down-arrow', a
 });
 
 ariaTest('RIGHT ARROW moves date greater by one', exampleFile, 'grid-right-arrow', async (t) => {
-  t.plan(31);
 
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
   let day = new Date();
@@ -505,7 +480,6 @@ ariaTest('RIGHT ARROW moves date greater by one', exampleFile, 'grid-right-arrow
 });
 
 ariaTest('LEFT ARROW moves date previous one', exampleFile, 'grid-left-arrow', async (t) => {
-  t.plan(31);
 
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
   let day = new Date();
@@ -524,8 +498,7 @@ ariaTest('LEFT ARROW moves date previous one', exampleFile, 'grid-left-arrow', a
 });
 
 ariaTest('Key HOME sends focus to begining of row', exampleFile, 'grid-home', async (t) => {
-  t.plan(2);
-  await t.context.session.findElement(By.css(ex.buttonSelector)).click();
+    await t.context.session.findElement(By.css(ex.buttonSelector)).click();
   let day = new Date();
 
   await t.context.session.findElement(By.css(ex.currentlyFocusedDay)).sendKeys(Key.HOME);
@@ -545,8 +518,7 @@ ariaTest('Key HOME sends focus to begining of row', exampleFile, 'grid-home', as
 });
 
 ariaTest('Key END sends focus to end of row', exampleFile, 'grid-end', async (t) => {
-  t.plan(2);
-  await t.context.session.findElement(By.css(ex.buttonSelector)).click();
+    await t.context.session.findElement(By.css(ex.buttonSelector)).click();
   let day = new Date();
 
   await t.context.session.findElement(By.css(ex.currentlyFocusedDay)).sendKeys(Key.END);
@@ -567,8 +539,7 @@ ariaTest('Key END sends focus to end of row', exampleFile, 'grid-end', async (t)
 });
 
 ariaTest('Sending PAGE UP moves focus by back month', exampleFile, 'grid-pageup', async (t) => {
-  t.plan(2);
-  await t.context.session.findElement(By.css(ex.buttonSelector)).click();
+    await t.context.session.findElement(By.css(ex.buttonSelector)).click();
   let day = new Date();
 
   await t.context.session.findElement(By.css(ex.currentlyFocusedDay)).sendKeys(Key.PAGE_UP);
@@ -589,8 +560,7 @@ ariaTest('Sending PAGE UP moves focus by back month', exampleFile, 'grid-pageup'
 });
 
 ariaTest('Sending SHIFT+PAGE UP moves focus back by year', exampleFile, 'grid-shift-pageup', async (t) => {
-  t.plan(2);
-  await t.context.session.findElement(By.css(ex.buttonSelector)).click();
+    await t.context.session.findElement(By.css(ex.buttonSelector)).click();
   let day = new Date();
 
   await t.context.session.findElement(By.css(ex.currentlyFocusedDay)).sendKeys(Key.chord(Key.SHIFT, Key.PAGE_UP));
@@ -611,8 +581,7 @@ ariaTest('Sending SHIFT+PAGE UP moves focus back by year', exampleFile, 'grid-sh
 });
 
 ariaTest('Sending PAGE DOWN moves focus back by month', exampleFile, 'grid-pagedown', async (t) => {
-  t.plan(2);
-  await t.context.session.findElement(By.css(ex.buttonSelector)).click();
+    await t.context.session.findElement(By.css(ex.buttonSelector)).click();
   let day = new Date();
 
   await t.context.session.findElement(By.css(ex.currentlyFocusedDay)).sendKeys(Key.PAGE_DOWN);
@@ -633,8 +602,7 @@ ariaTest('Sending PAGE DOWN moves focus back by month', exampleFile, 'grid-paged
 });
 
 ariaTest('Sending SHIFT+PAGE DOWN moves focus back by year', exampleFile, 'grid-shift-pagedown', async (t) => {
-  t.plan(2);
-  await t.context.session.findElement(By.css(ex.buttonSelector)).click();
+    await t.context.session.findElement(By.css(ex.buttonSelector)).click();
   let day = new Date();
 
   await t.context.session.findElement(By.css(ex.currentlyFocusedDay)).sendKeys(Key.chord(Key.SHIFT, Key.PAGE_DOWN));
@@ -656,7 +624,6 @@ ariaTest('Sending SHIFT+PAGE DOWN moves focus back by year', exampleFile, 'grid-
 
 ariaTest('ENTER on cancel button does not select date', exampleFile, 'okay-cancel-button-space-return', async (t) => {
 
-  t.plan(4);
 
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
   await t.context.session.findElement(By.css(ex.cancelButton)).sendKeys(Key.ENTER);
@@ -689,7 +656,6 @@ ariaTest('ENTER on cancel button does not select date', exampleFile, 'okay-cance
 
 ariaTest('SPACE on cancel button does not select date', exampleFile, 'okay-cancel-button-space-return', async (t) => {
 
-  t.plan(4);
 
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
   await t.context.session.findElement(By.css(ex.cancelButton)).sendKeys(Key.SPACE);
@@ -722,7 +688,6 @@ ariaTest('SPACE on cancel button does not select date', exampleFile, 'okay-cance
 
 ariaTest('ENTER on ok button does selects date', exampleFile, 'okay-cancel-button-space-return', async (t) => {
 
-  t.plan(4);
 
   let day = new Date();
 
@@ -757,7 +722,6 @@ ariaTest('ENTER on ok button does selects date', exampleFile, 'okay-cancel-butto
 
 ariaTest('SPACE on ok button does selects date', exampleFile, 'okay-cancel-button-space-return', async (t) => {
 
-  t.plan(4);
 
   let day = new Date();
 
