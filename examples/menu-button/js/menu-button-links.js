@@ -209,8 +209,18 @@ MenuButtonLinks.prototype.handleButtonKeydown = function (event) {
 };
 
 MenuButtonLinks.prototype.handleButtonClick = function (event) {
-  this.openPopup();
-  this.setFocusToFirstMenuitem();
+  if (this.isOpen()) {
+    this.closePopup();
+    this.buttonNode.focus();
+  }
+  else {
+    this.openPopup();
+    this.setFocusToFirstMenuitem();
+  }
+
+  event.stopPropagation();
+  event.preventDefault();
+
 };
 
 MenuButtonLinks.prototype.isPrintableCharacter = function(str) {
@@ -293,10 +303,10 @@ MenuButtonLinks.prototype.handleMenuitemMouseover = function (event) {
 
 MenuButtonLinks.prototype.handleBackgroundMousedown = function (event) {
   if (!this.domNode.contains(event.target)) {
-    this.closePopup();
-    this.buttonNode.focus();
-    event.stopPropagation();
-    event.preventDefault();
+    if (this.isOpen()) {
+      this.closePopup();
+      this.buttonNode.focus();
+    }
   }
 };
 
