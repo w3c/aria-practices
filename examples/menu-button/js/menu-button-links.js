@@ -223,66 +223,81 @@ MenuButtonLinks.prototype.handleButtonClick = function (event) {
 
 };
 
-MenuButtonLinks.prototype.isPrintableCharacter = function(str) {
-    return str.length === 1 && str.match(/\S/);
-};
-
 MenuButtonLinks.prototype.handleMenuitemKeydown = function (event) {
   var tgt = event.currentTarget,
     key = event.key,
     flag = false;
 
-  switch (key) {
-    case ' ':
-    case 'Enter':
-      this.closePopup();
-      window.location.href=tgt.href;
-      flag = true;
-     break;
-
-    case 'Esc':
-    case 'Escape':
-      this.closePopup();
-      this.buttonNode.focus();
-      flag = true;
-      break;
-
-    case 'Up':
-    case 'ArrowUp':
-      this.setFocusToPreviousMenuitem(tgt);
-      flag = true;
-      break;
-
-    case 'ArrowDown':
-    case 'Down':
-      this.setFocusToNextMenuitem(tgt);
-      flag = true;
-      break;
-
-
-    case 'Home':
-    case 'PageUp':
-      this.setFocusToFirstMenuitem(menuId, tgt);
-      flag = true;
-      break;
-
-    case 'End':
-    case 'PageDown':
-      this.setFocusToLastMenuitem(menuId, tgt);
-      flag = true;
-      break;
-
-    case 'Tab':
-      this.closePopup();
-      break;
-
-    default:
-      if (this.isPrintableCharacter(key)) {
-        this.setFocusByFirstCharacter(tgt, key);
-        flag = true;
-      }
-      break;
+  function isPrintableCharacter (str) {
+    return str.length === 1 && str.match(/\S/);
   }
+
+  if (event.ctrlKey || event.altKey  || event.metaKey || (event.keyCode === ' ') || (event.keyCode === 'Enter')) {
+    return;
+  }
+
+  if (event.shiftKey) {
+    if (isPrintableCharacter(char)) {
+      this.setFocusByFirstCharacter(tgt, key);
+      flag = true;
+    }
+
+    if (event.key === 'Tab') {
+      this.buttonNode.focus();
+      this.closePopup();
+    }
+  }
+  else {
+
+    switch (key) {
+      case ' ':
+      case 'Enter':
+        this.closePopup();
+        window.location.href=tgt.href;
+        flag = true;
+       break;
+
+      case 'Esc':
+      case 'Escape':
+        this.closePopup();
+        this.buttonNode.focus();
+        flag = true;
+        break;
+
+      case 'Up':
+      case 'ArrowUp':
+        this.setFocusToPreviousMenuitem(tgt);
+        flag = true;
+        break;
+
+      case 'ArrowDown':
+      case 'Down':
+        this.setFocusToNextMenuitem(tgt);
+        flag = true;
+        break;
+
+      case 'Home':
+      case 'PageUp':
+        this.setFocusToFirstMenuitem();
+        flag = true;
+        break;
+
+      case 'End':
+      case 'PageDown':
+        this.setFocusToLastMenuitem();
+        flag = true;
+        break;
+
+      default:
+        if (isPrintableCharacter(key)) {
+          this.setFocusByFirstCharacter(tgt, key);
+          flag = true;
+        }
+        break;
+    }
+
+  }
+
 
   if (flag) {
     event.stopPropagation();
