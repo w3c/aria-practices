@@ -26,7 +26,7 @@ const checkFocus = function (t, selector, index) {
 };
 
 const openMenu = async function (t) {
-  return t.context.session
+  return await t.context.session
     .findElement(By.css(ex.menubuttonSelector))
     .click();
 };
@@ -42,7 +42,7 @@ ariaTest('"aria-controls" attribute on menu button', exampleFile, 'menu-button-a
 });
 
 ariaTest('"aria-expanded" attribute on menu button', exampleFile, 'menu-button-aria-expanded', async (t) => {
-  
+
   const hasAttribute = await t.context.session.executeScript(function () {
     selector = arguments[0];
     return document.querySelector(selector).hasAttribute('aria-expanded');
@@ -88,7 +88,7 @@ ariaTest('tabindex="-1" on role="menuitem"', exampleFile, 'menuitem-tabindex', a
 // Keys
 
 ariaTest('"enter" on menu button', exampleFile, 'menu-button-key-open', async (t) => {
-  
+
   await t.context.session
     .findElement(By.css(ex.menubuttonSelector))
     .sendKeys(Key.ENTER);
@@ -105,7 +105,7 @@ ariaTest('"enter" on menu button', exampleFile, 'menu-button-key-open', async (t
 });
 
 ariaTest('"down arrow" on menu button', exampleFile, 'menu-button-key-open', async (t) => {
-  
+
   await t.context.session
     .findElement(By.css(ex.menubuttonSelector))
     .sendKeys(Key.ARROW_DOWN);
@@ -122,7 +122,7 @@ ariaTest('"down arrow" on menu button', exampleFile, 'menu-button-key-open', asy
 });
 
 ariaTest('"space" on menu button', exampleFile, 'menu-button-key-open', async (t) => {
-  
+
   await t.context.session
     .findElement(By.css(ex.menubuttonSelector))
     .sendKeys(Key.SPACE);
@@ -139,7 +139,7 @@ ariaTest('"space" on menu button', exampleFile, 'menu-button-key-open', async (t
 });
 
 ariaTest('"up arrow" on menu button', exampleFile, 'menu-button-key-up-arrow', async (t) => {
-  
+
   await t.context.session
     .findElement(By.css(ex.menubuttonSelector))
     .sendKeys(Key.ARROW_UP);
@@ -156,7 +156,7 @@ ariaTest('"up arrow" on menu button', exampleFile, 'menu-button-key-up-arrow', a
 });
 
 ariaTest('"enter" on role="menuitem"', exampleFile, 'menu-key-enter', async (t) => {
-  
+
   const items = await t.context.queryElements(t, ex.menuitemSelector);
   for (let item of items) {
 
@@ -183,7 +183,7 @@ ariaTest('"enter" on role="menuitem"', exampleFile, 'menu-key-enter', async (t) 
 });
 
 ariaTest('"escape" on role="menuitem"', exampleFile, 'menu-key-escape', async (t) => {
-  
+
   const items = await t.context.queryElements(t, ex.menuitemSelector);
   for (let item of items) {
 
@@ -210,7 +210,7 @@ ariaTest('"escape" on role="menuitem"', exampleFile, 'menu-key-escape', async (t
 });
 
 ariaTest('"down arrow" on role="menuitem"', exampleFile, 'menu-key-down-arrow', async (t) => {
-  
+
   await openMenu(t);
 
   const items = await t.context.queryElements(t, ex.menuitemSelector);
@@ -221,7 +221,7 @@ ariaTest('"down arrow" on role="menuitem"', exampleFile, 'menu-key-down-arrow', 
     const itemText = await items[index].getText();
     t.true(
       await checkFocus(t, ex.menuitemSelector, index + 1),
-      'down arrow on item "' + itemText + '" should put focus on the next item.'
+      'down arrow on item "' + itemText + ' (' + index + ') " should put focus on the next item.'
     );
   }
 
@@ -230,13 +230,13 @@ ariaTest('"down arrow" on role="menuitem"', exampleFile, 'menu-key-down-arrow', 
   const itemText = await items[items.length - 1].getText();
   t.true(
     await checkFocus(t, ex.menuitemSelector, 0),
-    'down arrow on item "' + itemText + '" should put focus to first item.'
+    'down arrow on item "' + itemText + ' (0) " should put focus to first item.'
   );
 
 });
 
 ariaTest('"up arrow" on role="menuitem"', exampleFile, 'menu-key-up-arrow', async (t) => {
-  
+
   await openMenu(t);
 
   const items = await t.context.queryElements(t, ex.menuitemSelector);
@@ -246,7 +246,7 @@ ariaTest('"up arrow" on role="menuitem"', exampleFile, 'menu-key-up-arrow', asyn
   const itemText = await items[0].getText();
   t.true(
     await checkFocus(t, ex.menuitemSelector, items.length - 1),
-    'up arrow on item "' + itemText + '" should put focus to last item.'
+    'up arrow on item "' + itemText + ' (0) " should put focus to last item.'
   );
 
   for (let index = items.length - 1; index > 0; index--) {
@@ -256,14 +256,14 @@ ariaTest('"up arrow" on role="menuitem"', exampleFile, 'menu-key-up-arrow', asyn
     const itemText = await items[index].getText();
     t.true(
       await checkFocus(t, ex.menuitemSelector, index - 1),
-      'down arrow on item "' + itemText + '" should put focus on the previous item.'
+      'down arrow on item "' + itemText + ' (' + index + ') " should put focus on the previous item.'
     );
   }
 
 });
 
 ariaTest('"home" on role="menuitem"', exampleFile, 'menu-key-home', async (t) => {
-  
+
   await openMenu(t);
 
   const items = await t.context.queryElements(t, ex.menuitemSelector);
@@ -281,7 +281,7 @@ ariaTest('"home" on role="menuitem"', exampleFile, 'menu-key-home', async (t) =>
 });
 
 ariaTest('"end" on role="menuitem"', exampleFile, 'menu-key-end', async (t) => {
-  
+
   await openMenu(t);
 
   const items = await t.context.queryElements(t, ex.menuitemSelector);
@@ -292,13 +292,13 @@ ariaTest('"end" on role="menuitem"', exampleFile, 'menu-key-end', async (t) => {
     const itemText = await items[index].getText();
     t.true(
       await checkFocus(t, ex.menuitemSelector, items.length - 1),
-      'key end on item "' + itemText + '" should put focus on the last item.'
+      'key end on item "' + itemText + ' (' + index + ') " should put focus on the last item.'
     );
   }
 });
 
 ariaTest('"character" on role="menuitem"', exampleFile, 'menu-key-character', async (t) => {
-  
+
   const charIndexTest = [
     { sendChar: 'x', sendIndex: 0, endIndex: 0 },
     { sendChar: 'a', sendIndex: 0, endIndex: 1 },

@@ -1,4 +1,4 @@
-.menu-button-links {
+.menu-button-actions {
   margin: 0;
   margin-top: 4px;
   margin-bottom: 4px;
@@ -10,7 +10,7 @@
   border-radius: 5px;
 }
 
-.menu-button-links button {
+.menu-button-actions button {
   margin: 0;
   padding: 6px;
   display: inline-block;
@@ -22,28 +22,28 @@
   border-radius: 5px;
 }
 
-.menu-button-links button::after {
+.menu-button-actions button::after {
   content: url('../images/down-arrow.svg');
   padding-left: 0.25em;
 }
 
-.menu-button-links button:focus::after {
+.menu-button-actions button:focus::after {
   content: url('../images/down-arrow-focus.svg');
 }
 
-.menu-button-links button[aria-expanded="true"]::after {
+.menu-button-actions button[aria-expanded="true"]::after {
   content: url('../images/up-arrow-focus.svg');
 }
 
-.menu-button-links [role="menu"] {
+.menu-button-actions [role="menu"] {
   display: none;
   position: absolute;
   margin: 0;
   padding: 0;
 }
 
-.menu-button-links [role="menuitem"],
-.menu-button-links [role="separator"] {
+.menu-button-actions [role="menuitem"],
+.menu-button-actions [role="separator"] {
   margin: 0;
   padding: 6px;
   display: block;
@@ -54,7 +54,7 @@
   border-radius: 5px;
 }
 
-.menu-button-links [role="separator"] {
+.menu-button-actions [role="separator"] {
   padding-top: 3px;
   background-image: url('../images/separator.svg');
   background-position: center;
@@ -63,21 +63,21 @@
 
 /* focus styling */
 
-.menu-button-links.focus {
+.menu-button-actions.focus {
   padding: 6px;
   border: #034575 solid 2px;
 }
 
-.menu-button-links [role="menu"] {
+.menu-button-actions [role="menu"] {
   padding: 7px 4px;
   border: 2px solid #034575;
   border-radius: 5px;
   background-color: #eee;
 }
 
-.menu-button-links button:focus,
-.menu-button-links button[aria-expanded=true],
-.menu-button-links [role="menuitem"]:focus {
+.menu-button-actions button:focus,
+.menu-button-actions button[aria-expanded=true],
+.menu-button-actions [role="menuitem"]:focus {
   padding: 3px;
   border: 3px solid #034575;
   background: #034575;

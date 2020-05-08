@@ -7,9 +7,10 @@
 *   Desc:   Creates a menu button that opens a menu of links
 */
 
-var MenuButtonLinks = function (domNode) {
+var MenuButtonActions = function (domNode, menuAction) {
 
   this.domNode       = domNode;
+  this.menuAction    = menuAction;
   this.buttonNode    = domNode.querySelector('button');
   this.menuNode      = domNode.querySelector('[role="menu"]');
   this.menuitemNodes = []
@@ -45,7 +46,7 @@ var MenuButtonLinks = function (domNode) {
   window.addEventListener('mousedown', this.handleBackgroundMousedown.bind(this), true);
 };
 
-MenuButtonLinks.prototype.setFocusToMenuitem = function (newMenuitem) {
+MenuButtonActions.prototype.setFocusToMenuitem = function (newMenuitem) {
 
   this.menuitemNodes.forEach(function(item) {
     if (item === newMenuitem) {
@@ -58,15 +59,15 @@ MenuButtonLinks.prototype.setFocusToMenuitem = function (newMenuitem) {
   });
 };
 
-MenuButtonLinks.prototype.setFocusToFirstMenuitem = function (currentMenuitem) {
+MenuButtonActions.prototype.setFocusToFirstMenuitem = function (currentMenuitem) {
   this.setFocusToMenuitem(this.firstMenuitem);
 };
 
-MenuButtonLinks.prototype.setFocusToLastMenuitem = function (currentMenuitem) {
+MenuButtonActions.prototype.setFocusToLastMenuitem = function (currentMenuitem) {
   this.setFocusToMenuitem(this.lastMenuitem);
 };
 
-MenuButtonLinks.prototype.setFocusToPreviousMenuitem = function (currentMenuitem) {
+MenuButtonActions.prototype.setFocusToPreviousMenuitem = function (currentMenuitem) {
   var newMenuitem, index;
 
   if (currentMenuitem === this.firstMenuitem) {
@@ -82,7 +83,7 @@ MenuButtonLinks.prototype.setFocusToPreviousMenuitem = function (currentMenuitem
   return newMenuitem;
 };
 
-MenuButtonLinks.prototype.setFocusToNextMenuitem = function (currentMenuitem) {
+MenuButtonActions.prototype.setFocusToNextMenuitem = function (currentMenuitem) {
   var newMenuitem, index;
 
   if (currentMenuitem === this.lastMenuitem) {
@@ -97,7 +98,7 @@ MenuButtonLinks.prototype.setFocusToNextMenuitem = function (currentMenuitem) {
   return newMenuitem;
 };
 
-MenuButtonLinks.prototype.setFocusByFirstCharacter = function (currentMenuitem, char) {
+MenuButtonActions.prototype.setFocusByFirstCharacter = function (currentMenuitem, char) {
   var start, index;
 
   if (char.length > 1) {
@@ -128,7 +129,7 @@ MenuButtonLinks.prototype.setFocusByFirstCharacter = function (currentMenuitem, 
 
 // Utilities
 
-MenuButtonLinks.prototype.getIndexFirstChars = function (startIndex, char) {
+MenuButtonActions.prototype.getIndexFirstChars = function (startIndex, char) {
   for (var i = startIndex; i < this.firstChars.length; i++) {
     if (char === this.firstChars[i]) {
       return i;
@@ -139,7 +140,7 @@ MenuButtonLinks.prototype.getIndexFirstChars = function (startIndex, char) {
 
 // Popup menu methods
 
-MenuButtonLinks.prototype.openPopup = function () {
+MenuButtonActions.prototype.openPopup = function () {
 
   var rect = this.menuNode.getBoundingClientRect();
 
@@ -149,28 +150,28 @@ MenuButtonLinks.prototype.openPopup = function () {
 
 };
 
-MenuButtonLinks.prototype.closePopup = function () {
+MenuButtonActions.prototype.closePopup = function () {
   if (this.isOpen()) {
     this.buttonNode.setAttribute('aria-expanded', 'false');
     this.menuNode.style.display = 'none';
   }
 };
 
-MenuButtonLinks.prototype.isOpen = function () {
+MenuButtonActions.prototype.isOpen = function () {
   return this.buttonNode.getAttribute('aria-expanded') === 'true';
 };
 
 // Menu event handlers
 
-MenuButtonLinks.prototype.handleFocusin = function (event) {
+MenuButtonActions.prototype.handleFocusin = function (event) {
   this.domNode.classList.add('focus');
 };
 
-MenuButtonLinks.prototype.handleFocusout = function (event) {
+MenuButtonActions.prototype.handleFocusout = function (event) {
   this.domNode.classList.remove('focus');
 };
 
-MenuButtonLinks.prototype.handleButtonKeydown = function (event) {
+MenuButtonActions.prototype.handleButtonKeydown = function (event) {
   var tgt = event.currentTarget,
     key = event.key,
     flag = false;
@@ -208,7 +209,7 @@ MenuButtonLinks.prototype.handleButtonKeydown = function (event) {
   }
 };
 
-MenuButtonLinks.prototype.handleButtonClick = function (event) {
+MenuButtonActions.prototype.handleButtonClick = function (event) {
   if (this.isOpen()) {
     this.closePopup();
     this.buttonNode.focus();
@@ -223,7 +224,7 @@ MenuButtonLinks.prototype.handleButtonClick = function (event) {
 
 };
 
-MenuButtonLinks.prototype.handleMenuitemKeydown = function (event) {
+MenuButtonActions.prototype.handleMenuitemKeydown = function (event) {
   var tgt = event.currentTarget,
     key = event.key,
     flag = false;
@@ -232,7 +233,7 @@ MenuButtonLinks.prototype.handleMenuitemKeydown = function (event) {
     return str.length === 1 && str.match(/\S/);
   }
 
-  if (event.ctrlKey || event.altKey  || event.metaKey || (event.key === ' ') || (event.key === 'Enter')) {
+  if (event.ctrlKey || event.altKey  || event.metaKey) {
     return;
   }
 
@@ -254,7 +255,8 @@ MenuButtonLinks.prototype.handleMenuitemKeydown = function (event) {
       case ' ':
       case 'Enter':
         this.closePopup();
-        window.location.href=tgt.href;
+        this.menuAction(tgt);
+        this.buttonNode.focus();
         flag = true;
        break;
 
@@ -310,18 +312,19 @@ MenuButtonLinks.prototype.handleMenuitemKeydown = function (event) {
   }
 };
 
-MenuButtonLinks.prototype.handleMenuitemClick = function (event) {
+MenuButtonActions.prototype.handleMenuitemClick = function (event) {
   var tgt = event.currentTarget;
   this.closePopup();
-  window.location.href=tgt.href;
+  this.buttonNode.focus();
+  this.menuAction(tgt);
 };
 
-MenuButtonLinks.prototype.handleMenuitemMouseover = function (event) {
+MenuButtonActions.prototype.handleMenuitemMouseover = function (event) {
   var tgt = event.currentTarget;
   tgt.focus();
 };
 
-MenuButtonLinks.prototype.handleBackgroundMousedown = function (event) {
+MenuButtonActions.prototype.handleBackgroundMousedown = function (event) {
   if (!this.domNode.contains(event.target)) {
     if (this.isOpen()) {
       this.closePopup();
@@ -333,8 +336,8 @@ MenuButtonLinks.prototype.handleBackgroundMousedown = function (event) {
 // Initialize menu buttons
 
 window.addEventListener('load', function () {
-  var menuButtons = document.querySelectorAll('.menu-button-links');
+  var menuButtons = document.querySelectorAll('.menu-button-actions');
   for(var i=0; i < menuButtons.length; i++) {
-    var menuButton = new MenuButtonLinks(menuButtons[i]);
+    var menuButton = new MenuButtonActions(menuButtons[i], menuAction);
   }
 });

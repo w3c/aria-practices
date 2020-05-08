@@ -7,7 +7,7 @@ const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaControls = require('../util/assertAriaControls');
 const assertAriaRoles = require('../util/assertAriaRoles');
 
-const exampleFile = 'menu-button/menu-button-links.html';
+const exampleFile = 'menu-button/menu-button-links-new.html';
 
 const ex = {
   menubuttonSelector: '#ex1 button',
@@ -69,7 +69,7 @@ ariaTest('"aria-controls" attribute on menu button', exampleFile, 'button-aria-c
 });
 
 ariaTest('"aria-expanded" attribute on menu button', exampleFile, 'button-aria-expanded', async (t) => {
-  
+
   const hasAttribute = await t.context.session.executeScript(function () {
     selector = arguments[0];
     return document.querySelector(selector).hasAttribute('aria-expanded');
@@ -119,7 +119,7 @@ ariaTest('tabindex="-1" on role="menuitem"', exampleFile, 'menuitem-tabindex', a
 // Keys
 
 ariaTest('"enter" on menu button', exampleFile, 'button-down-arrow-or-space-or-enter', async (t) => {
-  
+
   await t.context.session
     .findElement(By.css(ex.menubuttonSelector))
     .sendKeys(Key.ENTER);
@@ -136,7 +136,7 @@ ariaTest('"enter" on menu button', exampleFile, 'button-down-arrow-or-space-or-e
 });
 
 ariaTest('"down arrow" on menu button', exampleFile, 'button-down-arrow-or-space-or-enter', async (t) => {
-  
+
   await t.context.session
     .findElement(By.css(ex.menubuttonSelector))
     .sendKeys(Key.ARROW_DOWN);
@@ -153,7 +153,7 @@ ariaTest('"down arrow" on menu button', exampleFile, 'button-down-arrow-or-space
 });
 
 ariaTest('"space" on menu button', exampleFile, 'button-down-arrow-or-space-or-enter', async (t) => {
-  
+
   await t.context.session
     .findElement(By.css(ex.menubuttonSelector))
     .sendKeys(Key.SPACE);
@@ -170,7 +170,7 @@ ariaTest('"space" on menu button', exampleFile, 'button-down-arrow-or-space-or-e
 });
 
 ariaTest('"up arrow" on menu button', exampleFile, 'button-up-arrow', async (t) => {
-  
+
   await t.context.session
     .findElement(By.css(ex.menubuttonSelector))
     .sendKeys(Key.ARROW_UP);
@@ -187,7 +187,7 @@ ariaTest('"up arrow" on menu button', exampleFile, 'button-up-arrow', async (t) 
 });
 
 ariaTest('"enter" on role="menuitem"', exampleFile, 'menu-enter', async (t) => {
-  
+
   for (let index = 0; index < ex.numMenuitems; index++) {
 
     // Return to test page
@@ -207,7 +207,7 @@ ariaTest('"enter" on role="menuitem"', exampleFile, 'menu-enter', async (t) => {
 });
 
 ariaTest('"escape" on role="menuitem"', exampleFile, 'menu-escape', async (t) => {
-  
+
   const items = await t.context.queryElements(t, ex.menuitemSelector);
   for (let index = 0; index < ex.numMenuitems; index++) {
     const item = items[index];
@@ -230,7 +230,7 @@ ariaTest('"escape" on role="menuitem"', exampleFile, 'menu-escape', async (t) =>
 });
 
 ariaTest('"down arrow" on role="menuitem"', exampleFile, 'menu-down-arrow', async (t) => {
-  
+
   await openMenu(t);
 
   const items = await t.context.queryElements(t, ex.menuitemSelector);
@@ -256,7 +256,7 @@ ariaTest('"down arrow" on role="menuitem"', exampleFile, 'menu-down-arrow', asyn
 });
 
 ariaTest('"up arrow" on role="menuitem"', exampleFile, 'menu-up-arrow', async (t) => {
-  
+
   await openMenu(t);
 
   const items = await t.context.queryElements(t, ex.menuitemSelector);
@@ -283,7 +283,7 @@ ariaTest('"up arrow" on role="menuitem"', exampleFile, 'menu-up-arrow', async (t
 });
 
 ariaTest('"home" on role="menuitem"', exampleFile, 'menu-home', async (t) => {
-  
+
   await openMenu(t);
 
   const items = await t.context.queryElements(t, ex.menuitemSelector);
@@ -301,7 +301,7 @@ ariaTest('"home" on role="menuitem"', exampleFile, 'menu-home', async (t) => {
 });
 
 ariaTest('"end" on role="menuitem"', exampleFile, 'menu-end', async (t) => {
-  
+
   await openMenu(t);
 
   const items = await t.context.queryElements(t, ex.menuitemSelector);
@@ -318,7 +318,7 @@ ariaTest('"end" on role="menuitem"', exampleFile, 'menu-end', async (t) => {
 });
 
 ariaTest('"character" on role="menuitem"', exampleFile, 'menu-character', async (t) => {
-  
+
   const charIndexTest = [
     { sendChar: 'a', sendIndex: 0, endIndex: 2 },
     { sendChar: 'w', sendIndex: 2, endIndex: 3 },
