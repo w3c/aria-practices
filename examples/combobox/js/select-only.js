@@ -6,10 +6,11 @@ const SelectActions = {
   Last: 3,
   Next: 4,
   Open: 5,
-  Previous: 6,
-  Select: 7,
-  Space: 8,
-  Type: 9
+  PageDown: 6,
+  PageUp: 7,
+  Previous: 8,
+  Select: 9,
+  Type: 10
 }
 
 /*
@@ -28,18 +29,25 @@ function filterOptions(options = [], filter, exclude = []) {
 // map a key press to an action
 function getActionFromKey(event, menuOpen) {
   const { key, altKey, ctrlKey, metaKey } = event;
+  const openKeys = ['ArrowDown', 'ArrowUp', 'Enter', ' ', 'Home', 'End']; // all keys that will open the combo
   // handle opening when closed
-  if (!menuOpen && (key === 'ArrowDown' || key === 'ArrowUp' || key === 'Enter' || key === ' ')) {
+  if (!menuOpen && openKeys.includes(key)) {
     return SelectActions.Open;
   }
 
   // handle typing characters when open or closed
-  if (key === 'Backspace' || key === 'Clear' || (key.length === 1 && !altKey && !ctrlKey && !metaKey)) {
+  if (key === 'Backspace' || key === 'Clear' || (key.length === 1 && key !== ' ' && !altKey && !ctrlKey && !metaKey)) {
     return SelectActions.Type;
   }
 
   // handle keys when open
   if (menuOpen) {
+    if (key === 'ArrowUp' && event.altKey) {
+      return SelectActions.CloseSelect;
+    }
+    if (key === 'ArrowDown' && event.altKey) {
+      return;
+    }
     if (key === 'ArrowDown') {
       return SelectActions.Next;
     }
@@ -52,14 +60,17 @@ function getActionFromKey(event, menuOpen) {
     else if (key === 'End') {
       return SelectActions.Last;
     }
+    else if (key === 'PageUp') {
+      return SelectActions.PageUp;
+    }
+    else if (key === 'PageDown') {
+      return SelectActions.PageDown;
+    }
     else if (key === 'Escape') {
       return SelectActions.Close;
     }
-    else if (key === 'Enter') {
+    else if (key === 'Enter' || key === ' ') {
       return SelectActions.CloseSelect;
-    }
-    else if (key === ' ') {
-      return SelectActions.Space;
     }
   }
 }
@@ -90,6 +101,8 @@ function getIndexByLetter(options, filter, startIndex = 0) {
   
 // get an updated option index after performing an action
 function getUpdatedIndex(currentIndex, maxIndex, action) {
+  const pageSize = 10; // used for pageup/pagedown
+
   switch(action) {
     case SelectActions.First:
       return 0;
@@ -99,6 +112,10 @@ function getUpdatedIndex(currentIndex, maxIndex, action) {
       return Math.max(0, currentIndex - 1);
     case SelectActions.Next:
       return Math.min(maxIndex, currentIndex + 1);
+    case SelectActions.PageUp:
+      return Math.max(0, currentIndex - pageSize);
+    case SelectActions.PageDown:
+      return Math.min(maxIndex, currentIndex + pageSize);
     default:
       return currentIndex;
   }
@@ -201,35 +218,6 @@ Select.prototype.getSearchString = function(char) {
   return this.searchString;
 }
 
-Select.prototype.onComboKeyDown = function(event) {
-  const { key } = event;
-  const max = this.options.length - 1;
-
-  const action = getActionFromKey(event, this.open);
-
-  switch(action) {
-      case SelectActions.Next:
-      case SelectActions.Last:
-      case SelectActions.First:
-      case SelectActions.Previous:
-        event.preventDefault();
-        return this.onOptionChange(getUpdatedIndex(this.activeIndex, max, action));
-      case SelectActions.CloseSelect:
-      case SelectActions.Space:
-        event.preventDefault();
-        this.selectOption(this.activeIndex);
-        // intentional fallthrough
-      case SelectActions.Close:
-        event.preventDefault();
-        return this.updateMenuState(false);
-      case SelectActions.Type:
-        return this.onComboType(key);
-      case SelectActions.Open:
-        event.preventDefault();
-        return this.updateMenuState(true);
-    }
-}
-
 Select.prototype.onComboBlur = function() {
   // do not do blur action if ignoreBlur flag has been set
   if (this.ignoreBlur) {
@@ -244,6 +232,36 @@ Select.prototype.onComboBlur = function() {
   }
 }
 
+Select.prototype.onComboKeyDown = function(event) {
+  const { key } = event;
+  const max = this.options.length - 1;
+
+  const action = getActionFromKey(event, this.open);
+
+  switch(action) {
+      case SelectActions.Next:
+      case SelectActions.Last:
+      case SelectActions.First:
+      case SelectActions.Previous:
+      case SelectActions.PageUp:
+      case SelectActions.PageDown:
+        event.preventDefault();
+        return this.onOptionChange(getUpdatedIndex(this.activeIndex, max, action));
+      case SelectActions.CloseSelect:
+        event.preventDefault();
+        this.selectOption(this.activeIndex);
+        // intentional fallthrough
+      case SelectActions.Close:
+        event.preventDefault();
+        return this.updateMenuState(false);
+      case SelectActions.Type:
+        return this.onComboType(key);
+      case SelectActions.Open:
+        event.preventDefault();
+        return this.updateMenuState(true);
+    }
+}
+
 Select.prototype.onComboType = function(letter) {
   // open the listbox if it is closed
   this.updateMenuState(true);
@@ -255,6 +273,11 @@ Select.prototype.onComboType = function(letter) {
   // if a match was found, go to it
   if (searchIndex >= 0) {
     this.onOptionChange(searchIndex);
+  }
+  // if no matches, clear the timeout and search string
+  else {
+    window.clearTimeout(this.searchTimeout);
+    this.searchString = '';
   }
 }
 
@@ -328,7 +351,7 @@ Select.prototype.updateMenuState = function(open, callFocus = true) {
 
 // init select
 window.addEventListener('load', function () {
-  const options = ['Apple', 'Banana', 'Blueberry', 'Boysenberry', 'Cherry', 'Durian', 'Eggplant', 'Fig', 'Grape', 'Guava', 'Huckleberry'];
+  const options = ['Choose a Fruit', 'Apple', 'Banana', 'Blueberry', 'Boysenberry', 'Cherry', 'Cranberry', 'Durian', 'Eggplant', 'Fig', 'Grape', 'Guava', 'Huckleberry'];
   const selectEls = document.querySelectorAll('.js-select');
 
   selectEls.forEach((el) => {
