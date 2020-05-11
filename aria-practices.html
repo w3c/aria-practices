@@ -6518,7 +6518,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
             <td>100</td>
             <td>No</td>
             <td>No</td>
-            <td>Yes, unless inderterminate</td>
+            <td>Yes, if it is not exactly known.</td>
           </tr>
           <tr>
             <th scope="row"><code>scrollbar</code></th>
@@ -6656,7 +6656,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       <h3>Range properties with scrollbars</h3>
 
       <p>
-        The <code>aria-valuemin</code> and <code>aria-valuemax</code> properties only need to be set for the <code>scrollbar</code> role when the scrollbar's minimum is not 0 or the maximum value is not 100.   The aria-valuenow property is required for <code>scrollbar</code> and the author needs to make sure it is within the minimum and maximum values.
+        The <code>aria-valuemin</code> and <code>aria-valuemax</code> properties only need to be set for the <code>scrollbar</code> role when it's minimum value is not 0 or the maximum value is not 100.   The aria-valuenow property is required for <code>scrollbar</code> and the author needs to make sure it is within the minimum and maximum values.
       </p>
       <p>
         <code>aria-valuenow</code> will generally be exposed as a percentage between <code>aria-valuemin</code> and <code>aria-valuemax</code> calculated by assistive technologies.
