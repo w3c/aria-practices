@@ -5,7 +5,7 @@
   padding: 7px;
   font-size: 110%;
   list-style: none;
-  background-color: #bbb;
+  background-color: #eee;
   border: #eee solid 1px;
   border-radius: 5px;
 }
@@ -15,7 +15,7 @@
   padding: 6px;
   display: inline-block;
   position: relative;
-  background-color: #eee;
+  background-color: #ccc;
   border: 0px solid #eee;
   font-size: 0.9em;
   color: black;
