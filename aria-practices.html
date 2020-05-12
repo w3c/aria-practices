@@ -6561,9 +6561,9 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
       <p>
         When the element's values are contained within a range but those values are not numeric (such as "small", "medium" and "large"),
-        or they are numeric but there is more information than just the number,
+        or they are numeric but there is value in communicating more information than just a number,
         <code>aria-valuetext</code> is used to surface the text value to assistive technologies.
-        Only use <code>aria-valuetext</code> when <code>aria-valuenow</code> does not have meaning for the user because using <code>aria-valuetext</code> will prevent assistive technologies from communicating <code>aria-valuenow</code>.
+        Only use <code>aria-valuetext</code> when <code>aria-valuenow</code> is not sufficiently meaningful for users because using <code>aria-valuetext</code> will prevent assistive technologies from communicating <code>aria-valuenow</code>.
       </p>
 
       <div class="example">
