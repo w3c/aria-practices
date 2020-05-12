@@ -6571,12 +6571,13 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
           For example, for a battery indicator, it would be useful to know how many minutes are remaining, in addition to how many percent charge is remaining.
         </p>
 
-        <pre><code>&lt;p>
+        <pre><code>
   &lt;span id="battery-label">Battery&lt;/span>
   &lt;span role="meter" aria-labelledby="battery-label"
-        aria-valuemin="0" aria-valuenow="5" aria-valuemax="100"
-        aria-valuetext="5%, 18 minutes remaining.">&lt;/span>
-&lt;/p></code></pre>
+    aria-valuenow="5"
+    aria-valuetext="5%, 18 minutes remaining.">
+  &lt;/span>
+        </code></pre>
       </div>
     </section>
 
