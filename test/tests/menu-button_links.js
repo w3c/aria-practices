@@ -7,7 +7,7 @@ const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaControls = require('../util/assertAriaControls');
 const assertAriaRoles = require('../util/assertAriaRoles');
 
-const exampleFile = 'menu-button/menu-button-links-new.html';
+const exampleFile = 'menu-button/menu-button-links.html';
 
 const ex = {
   menubuttonSelector: '#ex1 button',

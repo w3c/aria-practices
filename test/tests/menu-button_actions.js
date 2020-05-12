@@ -17,6 +17,12 @@ const ex = {
   lastactionSelector: '#action_output'
 };
 
+const getFocusText = function (t) {
+  return t.context.session.executeScript(function () {
+    return document.activeElement.textContent.trim();
+  });
+};
+
 const checkFocus = function (t, selector, index) {
   return t.context.session.executeScript(function () {
     const [selector, index] = arguments;
@@ -246,7 +252,7 @@ ariaTest('"up arrow" on role="menuitem"', exampleFile, 'menu-key-up-arrow', asyn
   const itemText = await items[0].getText();
   t.true(
     await checkFocus(t, ex.menuitemSelector, items.length - 1),
-    'up arrow on item "' + itemText + ' (0) " should put focus to last item.'
+    'up arrow on item "' + itemText + ' (0 of ' + items.length + ') " should put focus to last item.'
   );
 
   for (let index = items.length - 1; index > 0; index--) {
@@ -256,7 +262,7 @@ ariaTest('"up arrow" on role="menuitem"', exampleFile, 'menu-key-up-arrow', asyn
     const itemText = await items[index].getText();
     t.true(
       await checkFocus(t, ex.menuitemSelector, index - 1),
-      'down arrow on item "' + itemText + ' (' + index + ') " should put focus on the previous item.'
+      'up arrow on item "' + itemText + ' (' + index + ') " should put focus on the previous item.'
     );
   }
 
@@ -292,7 +298,7 @@ ariaTest('"end" on role="menuitem"', exampleFile, 'menu-key-end', async (t) => {
     const itemText = await items[index].getText();
     t.true(
       await checkFocus(t, ex.menuitemSelector, items.length - 1),
-      'key end on item "' + itemText + ' (' + index + ') " should put focus on the last item.'
+      'key end on item "' + itemText + '" should put focus on the last item.'
     );
   }
 });
