@@ -5,7 +5,7 @@
   padding: 7px;
   font-size: 110%;
   list-style: none;
-  background-color: #eee;
+  background-color: #bbb;
   border: #eee solid 1px;
   border-radius: 5px;
 }
@@ -27,6 +27,7 @@
   padding-left: 0.25em;
 }
 
+.menu-button-links button:hover::after,
 .menu-button-links button:focus::after {
   content: url('../images/down-arrow-focus.svg');
 }
@@ -75,6 +76,7 @@
   background-color: #eee;
 }
 
+.menu-button-links button:hover,
 .menu-button-links button:focus,
 .menu-button-links button[aria-expanded=true],
 .menu-button-links [role="menuitem"]:focus {

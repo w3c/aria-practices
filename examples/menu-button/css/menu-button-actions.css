@@ -27,6 +27,7 @@
   padding-left: 0.25em;
 }
 
+.menu-button-actions button:hover::after,
 .menu-button-actions button:focus::after {
   content: url('../images/down-arrow-focus.svg');
 }
@@ -75,6 +76,7 @@
   background-color: #eee;
 }
 
+.menu-button-actions button:hover,
 .menu-button-actions button:focus,
 .menu-button-actions button[aria-expanded=true],
 .menu-button-actions [role="menuitem"]:focus,
