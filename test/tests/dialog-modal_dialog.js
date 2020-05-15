@@ -48,12 +48,10 @@ const ex = {
 
 const openDialog1 = async function (t) {
   // Click the button to open the address form dialog
-  await t.context.session
-    .findElement(By.css(ex.dialog1ButtonSelector))
-    .click();
+  await (await t.context.queryElements(t, ex.dialog1ButtonSelector))[0].click();
 
   // Make sure the appropriate dialog is open
-  const dialog = await t.context.session.findElement(By.css('#dialog1'));
+  const dialog = (await t.context.queryElements(t, '#dialog1'))[0];
   assert(
     await dialog.isDisplayed(),
     'dialog1 should have successfullly openned'
@@ -62,17 +60,13 @@ const openDialog1 = async function (t) {
 
 const openDialog2 = async function (t) {
   // Click the button to open the "address form" dialog
-  await t.context.session
-    .findElement(By.css(ex.dialog1ButtonSelector))
-    .click();
+  await (await t.context.queryElements(t, ex.dialog1ButtonSelector))[0].click();
 
   // Click the button to open the "verify form" dialog
-  await t.context.session
-    .findElement(By.css(ex.dialog2FromDialog1ButtonSelector))
-    .click();
+  await (await t.context.queryElements(t, ex.dialog2FromDialog1ButtonSelector))[0].click();
 
   // Make sure the appropriate dialog is open
-  const dialog = await t.context.session.findElement(By.css('#dialog2'));
+  const dialog = (await t.context.queryElements(t, '#dialog2'))[0];
   assert(
     await dialog.isDisplayed(),
     'dialog2 should have successfullly openned'
@@ -81,17 +75,13 @@ const openDialog2 = async function (t) {
 
 const openDialog3 = async function (t) {
   // Click the button to open the "address form" dialog
-  await t.context.session
-    .findElement(By.css(ex.dialog1ButtonSelector))
-    .click();
+  await (await t.context.queryElements(t, ex.dialog1ButtonSelector))[0].click();
 
   // Click the button to open the "add" dialog
-  await t.context.session
-    .findElement(By.css(ex.dialog3FromDialog1ButtonSelector))
-    .click();
+  await (await t.context.queryElements(t, ex.dialog3FromDialog1ButtonSelector))[0].click();
 
   // Make sure the appropriate dialog is open
-  const dialog = await t.context.session.findElement(By.css('#dialog3'));
+  const dialog = (await t.context.queryElements(t, '#dialog3'))[0];
   assert(
     await dialog.isDisplayed(),
     'dialog3 should have successfullly openned'
@@ -100,22 +90,16 @@ const openDialog3 = async function (t) {
 
 const openDialog4 = async function (t) {
   // Click the button to open the "address form" dialog
-  await t.context.session
-    .findElement(By.css(ex.dialog1ButtonSelector))
-    .click();
+  await (await t.context.queryElements(t, ex.dialog1ButtonSelector))[0].click();
 
   // Click the button to open the "verify form" dialog
-  await t.context.session
-    .findElement(By.css(ex.dialog2FromDialog1ButtonSelector))
-    .click();
+  await (await t.context.queryElements(t, ex.dialog2FromDialog1ButtonSelector))[0].click();
 
   // Click the button to open the "accepting an alternative form" dialog
-  await t.context.session
-    .findElement(By.css(ex.dialog4FromDialog2ButtonSelector))
-    .click();
+  await (await t.context.queryElements(t, ex.dialog4FromDialog2ButtonSelector))[0].click();
 
   // Make sure the appropriate dialog is open
-  const dialog = await t.context.session.findElement(By.css('#dialog2'));
+  const dialog = (await t.context.queryElements(t, '#dialog2'))[0];
   assert(
     await dialog.isDisplayed(),
     'dialog4 should have successfullly openned'
@@ -138,7 +122,7 @@ const checkFocus = async function (t, selector) {
 };
 
 const sendTabToSelector = async function (t, selector) {
-  let el = await t.context.session.findElement(By.css(selector));
+  let el = (await t.context.queryElements(t, selector))[0];
   await el.sendKeys(Key.TAB);
 
   // await for focus change before returning
@@ -151,7 +135,7 @@ const sendTabToSelector = async function (t, selector) {
 };
 
 const sendShiftTabToSelector = async function (t, selector) {
-  let el = await t.context.session.findElement(By.css(selector));
+  let el = (await t.context.queryElements(t, selector))[0];
   await el.sendKeys(Key.chord(Key.SHIFT, Key.TAB));
 
   // await for focus change before returning
@@ -164,7 +148,7 @@ const sendShiftTabToSelector = async function (t, selector) {
 };
 
 const sendEscapeTo = async function (t, selector) {
-  const el = await t.context.session.findElement(By.css(selector));
+  const el = (await t.context.queryElements(t, selector))[0];
   await el.sendKeys(Key.ESCAPE);
 };
 
@@ -173,7 +157,7 @@ const sendEscapeTo = async function (t, selector) {
 
 ariaTest('role="dialog" on div element', exampleFile, 'dialog-role', async (t) => {
 
-  
+
   const dialogs = await t.context.queryElements(t, ex.dialogSelector);
 
   t.is(
@@ -207,7 +191,7 @@ ariaTest('"aria-modal" attribute on role="dialog"', exampleFile, 'aria-modal', a
 // Keys
 
 ariaTest('tab changes focus within dialog', exampleFile, 'key-tab', async (t) => {
-  
+
   /* DIALOG 1 */
 
   await openDialog1(t);
@@ -294,7 +278,7 @@ ariaTest('tab changes focus within dialog', exampleFile, 'key-tab', async (t) =>
   );
 
   // Make focus does not change
-  let el = await t.context.session.findElement(By.css(ex.dialog4FocusableEls[0]));
+  let el = (await t.context.queryElements(t, ex.dialog4FocusableEls[0]))[0];
   await el.sendKeys(Key.TAB);
   t.true(
     await checkFocus(t, ex.dialog4FocusableEls[0]),
@@ -304,7 +288,7 @@ ariaTest('tab changes focus within dialog', exampleFile, 'key-tab', async (t) =>
 });
 
 ariaTest('shift tab changes focus within dialog', exampleFile, 'key-shift-tab', async (t) => {
-  
+
   /* DIALOG 1 */
 
   await openDialog1(t);
@@ -408,7 +392,7 @@ ariaTest('shift tab changes focus within dialog', exampleFile, 'key-shift-tab', 
   );
 
   // Make focus does not change
-  let el = await t.context.session.findElement(By.css(ex.dialog4FocusableEls[0]));
+  let el = (await t.context.queryElements(t, ex.dialog4FocusableEls[0]))[0];
   await el.sendKeys(Key.chord(Key.SHIFT, Key.TAB));
   t.true(
     await checkFocus(t, ex.dialog4FocusableEls[0]),
@@ -417,14 +401,14 @@ ariaTest('shift tab changes focus within dialog', exampleFile, 'key-shift-tab', 
 });
 
 ariaTest('escape closes dialog', exampleFile, 'key-escape', async (t) => {
-  
+
   /* DIALOG 1 */
 
   for (let selector of ex.dialog1FocusableEls) {
     await openDialog1(t);
     await sendEscapeTo(t, selector);
 
-    const modalEl = await t.context.session.findElement(By.css(ex.dialog1Selector));
+    const modalEl = (await t.context.queryElements(t, ex.dialog1Selector))[0];
     t.false(
       await modalEl.isDisplayed(),
       'Modal 1 should not be displayed after sending escape to element: ' + selector
@@ -439,7 +423,7 @@ ariaTest('escape closes dialog', exampleFile, 'key-escape', async (t) => {
     await openDialog2(t);
     await sendEscapeTo(t, selector);
 
-    const modalEl = await t.context.session.findElement(By.css(ex.dialog2Selector));
+    const modalEl = (await t.context.queryElements(t, ex.dialog2Selector))[0];
     t.false(
       await modalEl.isDisplayed(),
       'Modal 2 should not be displayed after sending escape to element: ' + selector
@@ -454,7 +438,7 @@ ariaTest('escape closes dialog', exampleFile, 'key-escape', async (t) => {
     await openDialog3(t);
     await sendEscapeTo(t, selector);
 
-    const modalEl = await t.context.session.findElement(By.css(ex.dialog3Selector));
+    const modalEl = (await t.context.queryElements(t, ex.dialog3Selector))[0];
     t.false(
       await modalEl.isDisplayed(),
       'Modal 3 should not be displayed after sending escape to element: ' + selector
@@ -468,7 +452,7 @@ ariaTest('escape closes dialog', exampleFile, 'key-escape', async (t) => {
   await openDialog4(t);
   await sendEscapeTo(t, ex.dialog4FocusableEls[0]);
 
-  const modalEl = await t.context.session.findElement(By.css(ex.dialog4Selector));
+  const modalEl = (await t.context.queryElements(t, ex.dialog4Selector))[0];
   t.false(
     await modalEl.isDisplayed(),
     'Modal 4 should not be displayed after sending escape to element: ' + ex.dialog4FocusableEls[0]
