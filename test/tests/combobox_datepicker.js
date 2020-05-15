@@ -412,3 +412,72 @@ ariaTest('Shift-tab should move focus backwards', exampleFile, 'dialog-shift-tab
       .sendKeys(Key.chord(Key.SHIFT, Key.TAB));
   }
 });
+
+// TODO(zcorpan): Missing tests. Either mark as "test-not-required" or write the test.
+ariaTest.failing(`Test not implemented: grid-space`, exampleFile, 'grid-space', async (t) => {
+  t.fail();
+});
+
+ariaTest.failing(`Test not implemented: grid-return`, exampleFile, 'grid-return', async (t) => {
+  t.fail();
+});
+
+ariaTest.failing(`Test not implemented: grid-up-arrow`, exampleFile, 'grid-up-arrow', async (t) => {
+  t.fail();
+});
+
+ariaTest.failing(`Test not implemented: grid-down-arrow`, exampleFile, 'grid-down-arrow', async (t) => {
+  t.fail();
+});
+
+ariaTest.failing(`Test not implemented: grid-right-arrow`, exampleFile, 'grid-right-arrow', async (t) => {
+  t.fail();
+});
+
+ariaTest.failing(`Test not implemented: grid-left-arrow`, exampleFile, 'grid-left-arrow', async (t) => {
+  t.fail();
+});
+
+ariaTest.failing(`Test not implemented: grid-home`, exampleFile, 'grid-home', async (t) => {
+  t.fail();
+});
+
+ariaTest.failing(`Test not implemented: grid-end`, exampleFile, 'grid-end', async (t) => {
+  t.fail();
+});
+
+ariaTest.failing(`Test not implemented: grid-pageup`, exampleFile, 'grid-pageup', async (t) => {
+  t.fail();
+});
+
+ariaTest.failing(`Test not implemented: grid-shift-pageup`, exampleFile, 'grid-shift-pageup', async (t) => {
+  t.fail();
+});
+
+ariaTest.failing(`Test not implemented: grid-pagedown`, exampleFile, 'grid-pagedown', async (t) => {
+  t.fail();
+});
+
+ariaTest.failing(`Test not implemented: grid-shift-pagedown`, exampleFile, 'grid-shift-pagedown', async (t) => {
+  t.fail();
+});
+
+ariaTest.failing(`Test not implemented: okay-cancel-button-space-return`, exampleFile, 'okay-cancel-button-space-return', async (t) => {
+  t.fail();
+});
+
+ariaTest.failing(`Test not implemented: textbox-aria-autocomplete`, exampleFile, 'textbox-aria-autocomplete', async (t) => {
+  t.fail();
+});
+
+ariaTest.failing(`Test not implemented: textbox-aria-live`, exampleFile, 'textbox-aria-live', async (t) => {
+  t.fail();
+});
+
+ariaTest.failing(`Test not implemented: calendar-button-aria-haspopup`, exampleFile, 'calendar-button-aria-haspopup', async (t) => {
+  t.fail();
+});
+
+ariaTest.failing(`Test not implemented: calendar-button-aria-controls`, exampleFile, 'calendar-button-aria-controls', async (t) => {
+  t.fail();
+});
