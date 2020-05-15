@@ -125,7 +125,7 @@ ariaTest('Roving tab index on dates in gridcell', exampleFile, 'gridcell-button-
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
 
   let focusableButtons = await t.context.queryElements(t, ex.currentMonthDateButtons);
-  let allButtons = await t.context.queryElements(t, ex.allDateButtons);
+  let allButtons = await t.context.queryElements(t, ex.allDates);
 
   // test only one element has tabindex="0"
   for (let tabableEl = 0; tabableEl < 30; tabableEl++) {
@@ -158,7 +158,7 @@ ariaTest('aria-selected on selected date', exampleFile, 'gridcell-button-aria-se
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
   await assertAttributeValues(t, ex.jan12019Day, 'aria-selected', 'true');
 
-  let selectedButtons = await t.context.queryElements(t, `${ex.allDateButtons}[aria-selected="true"]`);
+  let selectedButtons = await t.context.queryElements(t, `${ex.allDates}[aria-selected="true"]`);
 
   t.is(
     selectedButtons.length,
@@ -170,7 +170,7 @@ ariaTest('aria-selected on selected date', exampleFile, 'gridcell-button-aria-se
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
   await assertAttributeValues(t, ex.jan22019Day, 'aria-selected', 'true');
 
-  selectedButtons = await t.context.queryElements(t, `${ex.allDateButtons}[aria-selected="true"]`);
+  selectedButtons = await t.context.queryElements(t, `${ex.allDates}[aria-selected="true"]`);
 
   t.is(
     selectedButtons.length,
