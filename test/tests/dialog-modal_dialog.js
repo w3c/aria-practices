@@ -3,6 +3,7 @@
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
+const assertAttributeDNE = require('../util/assertAttributeDNE');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaDescribedby = require('../util/assertAriaDescribedby');
 const assert = require('assert');
@@ -205,6 +206,18 @@ ariaTest('', exampleFile, 'aria-describedby', async (t) => {
 ariaTest('"aria-modal" attribute on role="dialog"', exampleFile, 'aria-modal', async (t) => {
   t.plan(1);
   await assertAttributeValues(t, ex.dialogSelector, 'aria-modal', 'true');
+});
+
+ariaTest('"aria-modal" attribute on nested role="dialog"', exampleFile, 'aria-modal', async (t) => {
+  t.plan(3);
+
+  await openDialog1(t);
+  await assertAttributeValues(t, ex.dialog1Selector, 'aria-modal', 'true');
+
+  await reload(t);
+  await openDialog2(t);
+  await assertAttributeDNE(t, ex.dialog1Selector, 'aria-modal');
+  await assertAttributeValues(t, ex.dialog2Selector, 'aria-modal', 'true');
 });
 
 
