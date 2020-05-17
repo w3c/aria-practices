@@ -15,13 +15,11 @@ const ex = {
 // Attributes
 
 ariaTest('"aria-controls" attribute on button', exampleFile, 'aria-controls', async (t) => {
-  t.plan(1);
-  await assertAriaControls(t, ex.buttonSelector);
+    await assertAriaControls(t, ex.buttonSelector);
 });
 
 ariaTest('"aria-expanded" attribute on button', exampleFile, 'aria-expanded', async (t) => {
-  t.plan(4);
-
+  
   await assertAttributeValues(t, ex.buttonSelector, 'aria-expanded', 'false');
 
   let description = await t.context.session.findElement(By.css(ex.buttonSelector));
@@ -44,8 +42,7 @@ ariaTest('"aria-expanded" attribute on button', exampleFile, 'aria-expanded', as
 // Keys
 
 ariaTest('TAB should move focus to button', exampleFile, 'key-tab', async (t) => {
-  t.plan(1);
-
+  
   // Send SHIFT+TAB to button
   await await t.context.session.findElement(By.css(ex.buttonSelector))
     .sendKeys(Key.chord(Key.SHIFT, Key.TAB));
@@ -72,8 +69,7 @@ ariaTest('TAB should move focus to button', exampleFile, 'key-tab', async (t) =>
 });
 
 ariaTest('key ENTER expands details', exampleFile, 'key-space-or-enter', async (t) => {
-  t.plan(4);
-
+  
   const button = await t.context.session.findElement(By.css(ex.buttonSelector));
   const description = await t.context.session.findElement(By.css(ex.descriptionSelector));
   await button.sendKeys(Key.ENTER);
@@ -104,8 +100,7 @@ ariaTest('key ENTER expands details', exampleFile, 'key-space-or-enter', async (
 });
 
 ariaTest('key SPACE expands details', exampleFile, 'key-space-or-enter', async (t) => {
-  t.plan(4);
-
+  
   let button = await t.context.session.findElement(By.css(ex.buttonSelector));
   let description = await t.context.session.findElement(By.css(ex.descriptionSelector));
   await button.sendKeys(Key.SPACE);
