@@ -146,7 +146,7 @@ ariaTest('Test aria-haspopup set to true on menuitems',
 ariaTest('"aria-expanded" attribute on menubar menuitem', exampleFile, 'menubar-menuitem-aria-expanded', async (t) => {
 
   
-  // Before interating with page, make sure aria-expanded is set to false
+  // Before interacting with page, make sure aria-expanded is set to false
   await assertAttributeValues(t, ex.menubarMenuitemSelector, 'aria-expanded', 'false');
 
   // AND make sure no submenus are visible
@@ -332,7 +332,7 @@ ariaTest('Test tabindex="-1" for role="menuitemcheckbox"', exampleFile, 'menuite
     await assertAttributeValues(t, ex.menuitemcheckboxSelector, 'tabindex', '-1');
 });
 
-ariaTest('Test "aria-checked" attirbute on role="menuitemcheckbox"',
+ariaTest('Test "aria-checked" attribute on role="menuitemcheckbox"',
   exampleFile, 'menuitemcheckbox-aria-checked', async (t) => {
     
     const menus = await t.context.queryElements(t, ex.menubarMenuitemSelector);
@@ -343,7 +343,7 @@ ariaTest('Test "aria-checked" attirbute on role="menuitemcheckbox"',
     // Confirm aria-checked is set to false by default
     await assertAttributeValues(t, ex.menuitemcheckboxSelector, 'aria-checked', 'false');
 
-    // And corrospondingly, neither item should have a visible checkmark
+    // And correspondingly, neither item should have a visible checkmark
     for (let checkIndex = 0; checkIndex < 2; checkIndex++) {
       const checkmark = await checkmarkVisible(t, ex.menuitemcheckboxSelector, checkIndex);
       t.false(
@@ -363,7 +363,7 @@ ariaTest('Test "aria-checked" attirbute on role="menuitemcheckbox"',
     // Confirm aria-checked is set to true
     await assertAttributeValues(t, ex.menuitemcheckboxSelector, 'aria-checked', 'true');
 
-    // And corrospondingly, both items should have a visible checkmark
+    // And correspondingly, both items should have a visible checkmark
     for (let checkIndex = 0; checkIndex < 2; checkIndex++) {
       const checkmark = await checkmarkVisible(t, ex.menuitemcheckboxSelector, checkIndex);
       t.true(
@@ -639,7 +639,7 @@ ariaTest('Key HOME goes to first item in menubar', exampleFile, 'menubar-key-hom
     // Test that the focus is on the first item in the list
     t.true(
       await checkFocus(t,  ex.menubarMenuitemSelector, 0),
-      'Sending key "HOME" to menuitem ' + menuIndex + ' in menubar should move the foucs to the first menuitem'
+      'Sending key "HOME" to menuitem ' + menuIndex + ' in menubar should move the focus to the first menuitem'
     );
   }
 });
@@ -660,7 +660,7 @@ ariaTest('Key END goes to last item in menubar', exampleFile, 'menubar-key-end',
     // Test that the focus is on the last item in the list
     t.true(
       await checkFocus(t,  ex.menubarMenuitemSelector, ex.numMenus - 1),
-      'Sending key "END" to menuitem ' + menuIndex + ' in menubar should move the foucs to the last menuitem'
+      'Sending key "END" to menuitem ' + menuIndex + ' in menubar should move the focus to the last menuitem'
     );
   }
 });
@@ -688,7 +688,7 @@ ariaTest('Character sends to menubar changes focus in menubar',
       // Test that the focus switches to the appropriate menuitem
       t.true(
         await checkFocus(t,  ex.menubarMenuitemSelector, test.endIndex),
-        'Sending characther ' + test.sendChar + ' to menuitem ' + test.sendIndex + ' in menubar should move the foucs to menuitem ' + test.endIndex
+        'Sending character ' + test.sendChar + ' to menuitem ' + test.sendIndex + ' in menubar should move the focus to menuitem ' + test.endIndex
       );
     }
   });
@@ -1020,7 +1020,7 @@ ariaTest('Character sends to menubar changes focus in menubar',
         // Test that the focus switches to the appropriate menuitem
         t.true(
           await checkFocus(t, ex.allSubmenuItems[menuIndex], test.endIndex),
-          'Sending characther ' + test.sendChar + ' to menuitem ' + itemText + ' should move the focus to menuitem ' + test.endIndex
+          'Sending character ' + test.sendChar + ' to menuitem ' + itemText + ' should move the focus to menuitem ' + test.endIndex
         );
       }
     }

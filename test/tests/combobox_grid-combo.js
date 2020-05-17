@@ -98,7 +98,7 @@ ariaTest('"aria-expanded" on combobox element', exampleFile, 'combobox-aria-expa
   );
 });
 
-ariaTest('"id" attribute on texbox used to discover accessible name', exampleFile, 'combobox-id', async (t) => {
+ariaTest('"id" attribute on textbox used to discover accessible name', exampleFile, 'combobox-id', async (t) => {
 
   const labelForTextboxId = await t.context.session
     .findElement(By.css(ex.labelSelector))

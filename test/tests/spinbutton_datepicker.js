@@ -17,7 +17,7 @@ var getDaysInMonth = function (year, month) {
 
 var d = new Date();
 
-// The date picker uses the current day, month and year to settup
+// The date picker uses the current day, month and year to setup
 const ex = {
   groupSelector: '#example [role="group"]',
   spinbuttonSelector: '#example [role="spinbutton"]',
@@ -69,7 +69,7 @@ ariaTest('role="spinbutton" on div element', exampleFile, 'spinbutton-role', asy
     await assertAriaRoles(t, 'example', 'spinbutton', '3', 'div');
 });
 
-ariaTest('"aria-valuemax" represetns the minimum value on spinbuttons', exampleFile, 'spinbutton-aria-valuemax', async (t) => {
+ariaTest('"aria-valuemax" represents the minimum value on spinbuttons', exampleFile, 'spinbutton-aria-valuemax', async (t) => {
     await assertAttributeValues(t, ex.daySelector, 'aria-valuemax', ex.dayMax);
   await assertAttributeValues(t, ex.monthSelector, 'aria-valuemax', ex.monthMax);
   await assertAttributeValues(t, ex.yearSelector, 'aria-valuemax', ex.yearMax);
