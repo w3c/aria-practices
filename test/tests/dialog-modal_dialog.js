@@ -209,12 +209,7 @@ ariaTest('"aria-modal" attribute on role="dialog"', exampleFile, 'aria-modal', a
 });
 
 ariaTest('"aria-modal" attribute on nested role="dialog"', exampleFile, 'aria-modal', async (t) => {
-  t.plan(3);
-
-  await openDialog1(t);
-  await assertAttributeValues(t, ex.dialog1Selector, 'aria-modal', 'true');
-
-  await reload(t);
+  t.plan(2);
   await openDialog2(t);
   await assertAttributeDNE(t, ex.dialog1Selector, 'aria-modal');
   await assertAttributeValues(t, ex.dialog2Selector, 'aria-modal', 'true');
