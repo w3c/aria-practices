@@ -29,10 +29,18 @@ function filterOptions(options = [], filter, exclude = []) {
 // map a key press to an action
 function getActionFromKey(event, menuOpen) {
   const { key, altKey, ctrlKey, metaKey } = event;
-  const openKeys = ['ArrowDown', 'ArrowUp', 'Enter', ' ', 'Home', 'End']; // all keys that will open the combo
+  const openKeys = ['ArrowDown', 'ArrowUp', 'Enter', ' ']; // all keys that will do the default open action
   // handle opening when closed
   if (!menuOpen && openKeys.includes(key)) {
     return SelectActions.Open;
+  }
+
+  // home and end move the selected option when open or closed
+  if (key === 'Home') {
+    return SelectActions.First;
+  }
+  if (key === 'End') {
+    return SelectActions.Last;
   }
 
   // handle typing characters when open or closed
@@ -45,17 +53,11 @@ function getActionFromKey(event, menuOpen) {
     if (key === 'ArrowUp' && altKey) {
       return SelectActions.CloseSelect;
     }
-    if (key === 'ArrowDown' && !altKey) {
+    else if (key === 'ArrowDown' && !altKey) {
       return SelectActions.Next;
     }
     else if (key === 'ArrowUp') {
       return SelectActions.Previous;
-    }
-    else if (key === 'Home') {
-      return SelectActions.First;
-    }
-    else if (key === 'End') {
-      return SelectActions.Last;
     }
     else if (key === 'PageUp') {
       return SelectActions.PageUp;
@@ -236,27 +238,29 @@ Select.prototype.onComboKeyDown = function(event) {
   const action = getActionFromKey(event, this.open);
 
   switch(action) {
-      case SelectActions.Next:
-      case SelectActions.Last:
-      case SelectActions.First:
-      case SelectActions.Previous:
-      case SelectActions.PageUp:
-      case SelectActions.PageDown:
-        event.preventDefault();
-        return this.onOptionChange(getUpdatedIndex(this.activeIndex, max, action));
-      case SelectActions.CloseSelect:
-        event.preventDefault();
-        this.selectOption(this.activeIndex);
-        // intentional fallthrough
-      case SelectActions.Close:
-        event.preventDefault();
-        return this.updateMenuState(false);
-      case SelectActions.Type:
-        return this.onComboType(key);
-      case SelectActions.Open:
-        event.preventDefault();
-        return this.updateMenuState(true);
-    }
+    case SelectActions.Last:
+    case SelectActions.First:
+      this.updateMenuState(true);
+      // intentional fallthrough
+    case SelectActions.Next:
+    case SelectActions.Previous:
+    case SelectActions.PageUp:
+    case SelectActions.PageDown:
+      event.preventDefault();
+      return this.onOptionChange(getUpdatedIndex(this.activeIndex, max, action));
+    case SelectActions.CloseSelect:
+      event.preventDefault();
+      this.selectOption(this.activeIndex);
+      // intentional fallthrough
+    case SelectActions.Close:
+      event.preventDefault();
+      return this.updateMenuState(false);
+    case SelectActions.Type:
+      return this.onComboType(key);
+    case SelectActions.Open:
+      event.preventDefault();
+      return this.updateMenuState(true);
+  }
 }
 
 Select.prototype.onComboType = function(letter) {
