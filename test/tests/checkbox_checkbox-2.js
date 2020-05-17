@@ -79,7 +79,7 @@ ariaTest('"aria-checked" on checkbox element', exampleFile, 'checkbox-aria-check
   t.is(
     await checkbox.getAttribute('aria-checked'),
     'false',
-    'The control checkbox should have attribute aria-checked = "false" after clicking checkbox twice (with no partially checked state)'
+    'The control checkbox should have attribute aria-checked = "false" after clicking checkbox twice (with no parially checked state)'
   );
 
   assertNoElements(t, ex.checkedCondsSelector, 'No condiments should be selected via: ' + ex.checkedCondsSelector);
@@ -144,7 +144,7 @@ ariaTest('"aria-checked" on checkbox element', exampleFile, 'checkbox-aria-check
   t.is(
     await checkbox.getAttribute('aria-checked'),
     'true',
-    'The control checkbox should have attribute aria-checked = "true" after clicking checkbox twice (with no partially checked state)'
+    'The control checkbox should have attribute aria-checked = "true" after clicking checkbox twice (with no parially checked state)'
   );
 
   t.is(
