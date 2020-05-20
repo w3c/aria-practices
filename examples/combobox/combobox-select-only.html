@@ -71,8 +71,8 @@
         Other variations and options for the keyboard interface are described in the
         <a href="../../#combobox_kbd_interaction">Keyboard Interaction section of the combobox design pattern.</a>
       </p>
-      <h3 id="kbd_label_textbox">Closed Combobox</h3>
-      <table aria-labelledby="kbd_label_textbox kbd_label" class="def">
+      <h3 id="kbd_label_combobox">Closed Combobox</h3>
+      <table aria-labelledby="kbd_label_combobox kbd_label" class="def">
         <thead>
           <tr>
             <th>Key</th>
@@ -80,28 +80,52 @@
           </tr>
         </thead>
         <tbody>
-          <tr data-test-id="textbox-key-down-arrow">
+          <tr data-test-id="combobox-key-down-arrow">
             <th><kbd>Down Arrow</kbd></th>
             <td>
               <ul>
-                <li>First opens the listbox if it is not already displayed and then moves visual focus to the first option.</li>
-                <li>DOM focus remains on the textbox.</li>
+                <li>Opens the listbox if it is not already displayed without moving focus or changing selection.</li>
+                <li>DOM focus remains on the combobox.</li>
               </ul>
             </td>
           </tr>
-          <tr data-test-id="textbox-key-alt-down-arrow">
+          <tr data-test-id="combobox-key-alt-down-arrow">
             <th><kbd>Alt + Down Arrow</kbd></th>
             <td>
                 Opens the listbox without moving focus or changing selection.
             </td>
           </tr>
-          <tr data-test-id="textbox-key-up-arrow">
+          <tr data-test-id="combobox-key-up-arrow">
             <th><kbd>Up Arrow</kbd></th>
             <td>
               <ul>
                 <li>First opens the listbox if it is not already displayed and then moves visual focus to the first option.</li>
-                <li>DOM focus remains on the textbox.</li>
+                <li>DOM focus remains on the combobox.</li>
               </ul>
+            </td>
+          </tr>
+          <tr data-test-id="combobox-key-enter">
+            <th><kbd>Enter</kbd></th>
+            <td>
+                Opens the listbox without moving focus or changing selection.
+            </td>
+          </tr>
+          <tr data-test-id="combobox-key-space">
+            <th><kbd>Space</kbd></th>
+            <td>
+                Opens the listbox without moving focus or changing selection.
+            </td>
+          </tr>
+          <tr data-test-id="combobox-key-home">
+            <th><kbd>Home</kbd></th>
+            <td>
+                Opens the listbox and moves visual focus to the first option.
+            </td>
+          </tr>
+          <tr data-test-id="combobox-key-end">
+            <th><kbd>End</kbd></th>
+            <td>
+                Opens the listbox and moves visual focus to the last option.
             </td>
           </tr>
           <tr data-test-id="standard-single-line-editing-keys">
@@ -118,7 +142,7 @@
       </table>
       <h3 id="kbd_label_listbox">Listbox Popup</h3>
       <p>
-        <strong>NOTE:</strong> When visual focus is in the listbox, DOM focus remains on the textbox and the value of <code>aria-activedescendant</code> on the textbox is set to a value that refers to the listbox option that is visually indicated as focused.
+        <strong>NOTE:</strong> When visual focus is in the listbox, DOM focus remains on the combobox and the value of <code>aria-activedescendant</code> on the combobox is set to a value that refers to the listbox option that is visually indicated as focused.
         Where the following descriptions of keyboard commands mention focus, they are referring to the visual focus indicator.
         For more information about this focus management technique, see
         <a href="../../#kbd_focus_activedescendant">Using aria-activedescendant to Manage Focus.</a>
@@ -138,6 +162,26 @@
                 <li>Sets the value to the content of the focused option in the listbox.</li>
                 <li>Closes the listbox.</li>
                 <li>Sets visual focus on the combobox.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr data-test-id="listbox-key-space">
+            <th><kbd>Space</kbd></th>
+            <td>
+              <ul>
+                <li>Sets the value to the content of the focused option in the listbox.</li>
+                <li>Closes the listbox.</li>
+                <li>Sets visual focus on the combobox.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr data-test-id="listbox-key-tab">
+            <th><kbd>Tab</kbd></th>
+            <td>
+              <ul>
+                <li>Sets the value to the content of the focused option in the listbox.</li>
+                <li>Closes the listbox.</li>
+                <li>Performs the default action, moving focus to the next focusable element.</li>
               </ul>
             </td>
           </tr>
@@ -168,6 +212,16 @@
               </ul>
             </td>
           </tr>
+          <tr data-test-id="listbox-key-alt-up-arrow">
+            <th><kbd>Alt + Up Arrow</kbd></th>
+            <td>
+              <ul>
+                <li>Sets the value to the content of the focused option in the listbox.</li>
+                <li>Closes the listbox.</li>
+                <li>Sets visual focus on the combobox.</li>
+              </ul>
+            </td>
+          </tr>
           <tr data-test-id="listbox-key-home">
             <th><kbd>Home</kbd></th>
             <td>Moves visual focus to the first option.</td>
@@ -175,6 +229,14 @@
           <tr data-test-id="listbox-key-end">
             <th><kbd>End</kbd></th>
             <td>Moves visual focus to the last option.</td>
+          </tr>
+          <tr data-test-id="listbox-key-pageup">
+            <th><kbd>PageUp</kbd></th>
+            <td>Jumps visual focus up 10 options (or to first option).</td>
+          </tr>
+          <tr data-test-id="listbox-key-pagedown">
+            <th><kbd>PageDown</kbd></th>
+            <td>Jumps visual focus down 10 options (or to last option).</td>
           </tr>
           <tr data-test-id="listbox-key-char">
             <th>Printable Characters</th>
@@ -197,8 +259,8 @@
         Information about other ways of applying ARIA roles, states, and properties is available in the
         <a href="../../#combobox_roles_states_props">Roles, States, and Properties section of the combobox design pattern.</a>
       </p>
-      <h3 id="rps_label_textbox">Combobox</h3>
-      <table aria-labelledby="rps_label_textbox rps_label" class="data attributes">
+      <h3 id="rps_label_combobox">Combobox</h3>
+      <table aria-labelledby="rps_label_combobox rps_label" class="data attributes">
         <thead>
           <tr>
             <th scope="col">Role</th>
@@ -215,6 +277,14 @@
             <td></td>
             <td><code>div</code></td>
             <td>Identifies the input as a combobox.</td>
+          </tr>
+          <tr data-test-id="combobox-aria-labelledby">
+            <td></td>
+            <th scope="row">
+              <code>aria-labelledby="#IDREF"</code>
+            </th>
+            <td><code>div</code></td>
+            <td>Identifies the element that labels the combobox.</td>
           </tr>
           <tr data-test-id="combobox-aria-controls">
             <td></td>
