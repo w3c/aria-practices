@@ -13,6 +13,7 @@ var Slider = function (domNode)  {
   this.domNode = domNode;
   this.railNode = domNode.querySelector('.rail');
   this.thumbNode = domNode.querySelector('.thumb');
+  this.valueNode = domNode.querySelector('.value');
   
   console.log('Thumb Node: ' + this.thumbNode);
 
@@ -22,10 +23,10 @@ var Slider = function (domNode)  {
   this.valueMax = 100;
   this.valueNow = 50;
 
-  this.railWidth = 0;
+  this.railWidth = 20;
 
-  this.thumbWidth  = 8;
-  this.thumbHeight = 28;
+  this.thumbWidth  = -2.5;
+  this.thumbHeight = 0;
 
   this.keyCode = Object.freeze({
     'left': 37,
@@ -55,26 +56,24 @@ Slider.prototype.init = function () {
   this.railWidth = parseInt(this.railNode.getBBox().width);
   
   console.log('Rail width: ' + this.railWidth);
+  
 
-  this.valueDomNode = this.domNode.nextElementSibling;
+  if (this.valueNode) {
 
-  if (this.valueDomNode) {
+    this.valueNode.innerHTML = this.valueNow.toString();
 
-    this.valueDomNode.innerHTML = '0';
-    this.valueDomNode.style.left = (this.domNode.offsetLeft + this.railWidth + 10) + 'px';
-    this.valueDomNode.style.top = (this.domNode.offsetTop - 8) + 'px';
   }
 
   if (this.domNode.tabIndex != 0) {
     this.domNode.tabIndex = 0;
   }
 
-  this.domNode.addEventListener('keydown',    this.handleKeyDown.bind(this)); 
+  this.domNode.addEventListener('keydown', this.handleKeyDown.bind(this)); 
   // add onmousedown, move, and onmouseup
-  this.domNode.addEventListener('mousedown', this.handleMouseDown.bind(this));
+  this.domNode.addEventListener('mousedown',this.handleMouseDown.bind(this));
 
-  this.domNode.addEventListener('focus',      this.handleFocus.bind(this));
-  this.domNode.addEventListener('blur',       this.handleBlur.bind(this));
+  this.domNode.addEventListener('focus', this.handleFocus.bind(this));
+  this.domNode.addEventListener('blur', this.handleBlur.bind(this));
 
   this.railNode.addEventListener('click', this.handleClick.bind(this));
 
@@ -98,13 +97,12 @@ Slider.prototype.moveSliderTo = function (value) {
   this.domNode.setAttribute('aria-valuenow', this.valueNow);
 
   var pos = Math.round(
-    (this.valueNow * this.railWidth) / (this.valueMax - this.valueMin)
-  ) - (this.thumbWidth / 2);
+    (this.valueNow * this.railWidth) / (this.valueMax - this.valueMin)) - (this.thumbWidth);
 
   this.thumbNode.setAttribute('x', pos);
 
-  if (this.valueDomNode) {
-    this.valueDomNode.innerHTML = this.valueNow.toString();
+  if (this.valueNode) {
+    this.valueNode.innerHTML = this.valueNow.toString();
   }
 
   updateColorBox();
@@ -184,20 +182,17 @@ Slider.prototype.handleMouseDown = function (event) {
   var self = this;
 
   var handleMouseMove = function (event) {
-
-    var diffX = event.pageX - self.railDomNode.offsetLeft;
+    var diffX = event.pageX - self.domNode.offsetLeft;
     self.valueNow = parseInt(((self.valueMax - self.valueMin) * diffX) / self.railWidth);
     self.moveSliderTo(self.valueNow);
-
     event.preventDefault();
     event.stopPropagation();
   };
-
+  
   var handleMouseUp = function (event) {
 
     document.removeEventListener('mousemove', handleMouseMove);
     document.removeEventListener('mouseup', handleMouseUp);
-
   };
 
     // bind a mousemove event handler to move pointer
@@ -217,7 +212,7 @@ Slider.prototype.handleMouseDown = function (event) {
 // handleMouseMove has the same functionality as we need for handleMouseClick on the rail
 Slider.prototype.handleClick = function (event) {
 
-  var diffX = event.pageX - this.railDomNode.offsetLeft;
+  var diffX = event.pageX - this.domNode.offsetLeft;
   this.valueNow = parseInt(((this.valueMax - this.valueMin) * diffX) / this.railWidth);
   this.moveSliderTo(this.valueNow);
 

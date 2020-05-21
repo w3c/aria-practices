@@ -6,11 +6,25 @@ div.aria-widget-slider {
   height: 3em;
 }
 
-div.aria-widget-slider .value {
-  width: 100em;
-  text-align: right;
-  position: right;
+div.aria-widget-slider.value {
+  width: 9000em;
+  text-align: right;     
 }
+
+thumb {
+	fill: snow;
+	stroke:dimgrey;
+	stroke-width:5;
+	opacity:1;
+	overflow: visible;
+	width:15;	
+}
+rail {
+	opacity:0.5;
+	overflow:visible
+
+}
+
 
 label {
   display: block;
