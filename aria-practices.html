@@ -6696,7 +6696,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 &lt;/div&gt;</code></pre>
       <p>The slider example above can be made using the HTML <code>&lt;input type="range"></code> element.</p>
       <pre><code>&lt;input type="range" min="50" value="68" max="100" aria-label="Temperature (F)"&gt;
-      </code></pre><p>The following example is a fan control. The <code>aria-valuenow</code> value is "1", which is not meaningful to the user. The assistive technology will surface the value of <code>aria-valuetext</code> ("low") instead.</p>
+      </code></pre><p>The following example is a fan control. The <code>aria-valuenow</code> value is "1", which is not meaningful to the user. The <code>aria-valuetext</code> property is used so that assistive technology will surface its value ("low") instead.</p>
       <pre><code>&lt;div class="rail"&gt;
   &lt;div id="thumb" role="slider" aria-valuemin="0" aria-valuenow="1" aria-valuemax="3"
        aria-valuetext="low" aria-label="Fan speed" tabindex="0" &gt;
