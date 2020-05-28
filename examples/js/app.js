@@ -7,7 +7,15 @@
 
   function addSupportNotice() {
     // The "Example" heading
-    var exampleHeading = document.getElementById('ex_label');
+    var headings = document.querySelectorAll('h2');
+    var exampleHeading = null;
+    for (var i = 0; i < headings.length; ++i) {
+      var heading = headings[i];
+      if (heading.textContent.trim().match(/^Examples?$/)) {
+        exampleHeading = heading;
+        break;
+      }
+    }
     if (!exampleHeading) {
       return;
     }
