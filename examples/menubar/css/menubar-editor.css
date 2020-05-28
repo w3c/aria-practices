@@ -19,10 +19,6 @@
   font-family: sans-serif;
 }
 
-.menubar-editor textarea:focus {
-  outline-color: #034575;
-}
-
 .menubar-editor [role="menubar"] {
   margin: 0;
   padding: 2px;
@@ -46,6 +42,19 @@
   top: 3px;
   left: 1px;
 }
+
+.menubar-editor [role="menubar"] > li > [role="menuitem"]::after {
+  content: url('../images/down-arrow.svg');
+  padding-left: 0.25em;
+}
+
+.menubar-editor [role="menubar"] > li > [role="menuitem"]:focus::after {
+  content: url('../images/down-arrow-focus.svg');
+}
+
+.menubar-editor [role="menubar"] > li > [role="menuitem"][aria-expanded="true"]::after {
+  content: url('../images/up-arrow-focus.svg');
+  }
 
 .menubar-editor [role="menubar"] [role="menu"] {
   display: none;
