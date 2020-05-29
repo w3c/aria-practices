@@ -41,7 +41,7 @@ const ex = {
 };
 
 const openTabAtIndex = async function (t, index) {
-  const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
+  const tabs = await t.context.queryElements(t, ex.tabSelector);
   await tabs[index].click();
 };
 
@@ -57,7 +57,7 @@ const waitAndCheckFocus = async function (t, selector, index) {
 
 const waitAndCheckAriaSelected = async function (t, index) {
   return t.context.session.wait(async function () {
-    const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
+    const tabs = await t.context.queryElements(t, ex.tabSelector);
     return (await tabs[index].getAttribute('aria-selected')) === 'true';
   }, t.context.waitTime, 'Timeout waiting for aria-selected to be set to true.');
 };
@@ -113,8 +113,8 @@ ariaTest('"aria-label" attribute on role="tab"', exampleFile, 'tab-aria-label', 
 ariaTest('"aria-selected" set on role="tab"', exampleFile, 'tab-aria-selected', async (t) => {
   t.plan(2 * ex.tabCount * ex.tabCount);
 
-  let tabs = await t.context.session.findElements(By.css(ex.tabSelector));
-  let tabpanels = await t.context.session.findElements(By.css(ex.tabpanelSelector));
+  let tabs = await t.context.queryElements(t, ex.tabSelector);
+  let tabpanels = await t.context.queryElements(t, ex.tabpanelSelector);
 
   for (let selectedEl = 0; selectedEl < tabs.length; selectedEl++) {
 
@@ -148,7 +148,7 @@ ariaTest('"aria-selected" set on role="tab"', exampleFile, 'tab-aria-selected', 
 ariaTest('"tabindex" on role="tab"', exampleFile, 'tab-tabindex', async (t) => {
   t.plan(ex.tabCount * ex.tabCount);
 
-  let tabs = await t.context.session.findElements(By.css(ex.tabSelector));
+  let tabs = await t.context.queryElements(t, ex.tabSelector);
   for (let selectedEl = 0; selectedEl < tabs.length; selectedEl++) {
 
     // Open the tab
@@ -256,8 +256,8 @@ ariaTest('ARROW_RIGHT key moves focus and activates tab', exampleFile, 'key-righ
   // Put focus on first tab
   await openTabAtIndex(t, 0);
 
-  const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
-  const tabpanels = await t.context.session.findElements(By.css(ex.tabpanelSelector));
+  const tabs = await t.context.queryElements(t, ex.tabSelector);
+  const tabpanels = await t.context.queryElements(t, ex.tabpanelSelector);
   for (let index = 0; index < tabs.length - 1; index++) {
 
     // Send the arrow right key to move focus
@@ -302,8 +302,8 @@ ariaTest('ARROW_RIGHT key moves focus and activates tab', exampleFile, 'key-righ
 ariaTest('ARROW_LEFT key moves focus and activates tab', exampleFile, 'key-left-arrow', async (t) => {
   t.plan(3 * ex.tabCount);
 
-  const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
-  const tabpanels = await t.context.session.findElements(By.css(ex.tabpanelSelector));
+  const tabs = await t.context.queryElements(t, ex.tabSelector);
+  const tabpanels = await t.context.queryElements(t, ex.tabpanelSelector);
 
   // Put focus on first tab
   await openTabAtIndex(t, 0);
@@ -350,8 +350,8 @@ ariaTest('ARROW_LEFT key moves focus and activates tab', exampleFile, 'key-left-
 ariaTest('HOME key moves focus and selects tab', exampleFile, 'key-home', async (t) => {
   t.plan(3 * ex.tabCount);
 
-  const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
-  const tabpanels = await t.context.session.findElements(By.css(ex.tabpanelSelector));
+  const tabs = await t.context.queryElements(t, ex.tabSelector);
+  const tabpanels = await t.context.queryElements(t, ex.tabpanelSelector);
   for (let index = 0; index < tabs.length; index++) {
 
     // Put focus on the tab
@@ -379,8 +379,8 @@ ariaTest('HOME key moves focus and selects tab', exampleFile, 'key-home', async 
 ariaTest('END key moves focus and selects tab', exampleFile, 'key-end', async (t) => {
   t.plan(3 * ex.tabCount);
 
-  const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
-  const tabpanels = await t.context.session.findElements(By.css(ex.tabpanelSelector));
+  const tabs = await t.context.queryElements(t, ex.tabSelector);
+  const tabpanels = await t.context.queryElements(t, ex.tabpanelSelector);
   for (let index = 0; index < tabs.length; index++) {
 
     // Put focus on the tab

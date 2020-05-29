@@ -172,12 +172,14 @@ require(["core/pubsubhub"], function( respecEvents ) {
                     propList[title] = { is: type, title: title, name: content, desc: desc, roles: [] };
                     var abstract = container.querySelector("." + type + "-applicability");
                     if ((abstract.textContent || abstract.innerText) === "All elements of the base markup") {
-                        globalSP.push({ is: type, title: title, name: content, desc: desc, prohibited: false });
-                    } 
+                        globalSP.push({ is: type, title: title, name: content, desc: desc, prohibited: false, deprecated: false });
+                    }
                     else if ((abstract.textContent || abstract.innerText) === "All elements of the base markup except for some roles or elements that prohibit its use") {
-                        globalSP.push({ is: type, title: title, name: content, desc: desc, prohibited: true });
+                        globalSP.push({ is: type, title: title, name: content, desc: desc, prohibited: true, deprecated: false });
                     } 
-                    
+                    else if ((abstract.textContent || abstract.innerText) === "Use as a global deprecated in ARIA 1.2") {
+                        globalSP.push({ is: type, title: title, name: content, desc: desc, prohibited: false, deprecated: true });
+                    }
                     // the rdef is gone.  if we are in a div, convert that div to a section
 
                     if (container.nodeName.toLowerCase() == "div") {
@@ -222,12 +224,15 @@ require(["core/pubsubhub"], function( respecEvents ) {
                         var lItem = sortedList[i];
                         globalSPIndex += "<li>";
                         if (lItem.is === "state") {
-                            globalSPIndex += "<sref title=\"" + lItem.name + "\">" + lItem.name + " (state)</sref>";
+                            globalSPIndex += "<sref "+(lItem.prohibited?"data-prohibited ":"")+(lItem.deprecated?"data-deprecated ":"") +"title=\"" + lItem.name + "\">" + lItem.name + " (state)</sref>";
                         } else {
-                            globalSPIndex += "<pref>" + lItem.name + "</pref>";
+                            globalSPIndex += "<pref "+(lItem.prohibited?"data-prohibited ":"")+(lItem.deprecated?"data-deprecated ":"") +">" + lItem.name + "</pref>";
                         }
                         if (lItem.prohibited) {
                             globalSPIndex += " (Except where prohibited)";
+                        }
+                        if (lItem.deprecated) {
+                            globalSPIndex += " (Global use deprecated in ARIA 1.2)"
                         }
                         globalSPIndex += "</li>\n";
                     }
@@ -330,8 +335,9 @@ require(["core/pubsubhub"], function( respecEvents ) {
                                 var type = (item.localName === "pref" ? "property" : "state");
                                 var req = $(node).hasClass("role-required-properties");
                                 var dis = $(node).hasClass("role-disallowed");
-                                attrs.push( { is: type, name: name, required: req, disallowed: dis } );                                
-                                
+                                var dep = item.hasAttribute("data-deprecated");
+                                attrs.push( { is: type, name: name, required: req, disallowed: dis, deprecated: dep } );                                               
+
                                 // remember that the state or property is
                                 // referenced by this role
                                 propList[name].roles.push(title);
@@ -419,24 +425,41 @@ require(["core/pubsubhub"], function( respecEvents ) {
                                     });
                                 }
                             }
-                            var sortedList = [];
-                            sortedList = myList.sort(function(a,b) { return a.name < b.name ? -1 : a.name > b.name ? 1 : 0 });
+
+                            var reducedList = myList.reduce((uniqueList, item) => {
+                                return uniqueList.includes(item) ? uniqueList : [...uniqueList, item]
+                            }, [] )
+
+                            var sortedList = reducedList.sort((a,b) => { 
+                                if (a.name == b.name) {
+                                    // Ensure deprecated false properties occur first
+                                    if (a.deprecated !== b.deprecated) {
+                                        return a.deprecated ? 1 : b.deprecated ? -1 : 0
+                                    }
+                                }
+                                return a.name < b.name ? -1 : a.name > b.name ? 1 : 0 
+                            }, [] )
+
                             var prev;
                             for (var k = 0; k < sortedList.length; k++) {
-                                var role = sortedList[k];
+                                var property = sortedList[k];
                                 var req = "";
-                                if (role.required) {
+                                var dep = "";
+                                if (property.required) {
                                     req = " <strong>(required)</strong>";
                                 }
-                                if (prev != role.name) {
+                                if (property.deprecated) {
+                                    dep = " <strong>(deprecated on this role in ARIA 1.2)</strong>"
+                                }
+                                if (prev != property.name) {
                                     output += "<li>";
-                                    if (role.is === "state") {
-                                        output += "<sref title=\"" + role.name + "\">" + role.name + " (state)</sref>" + req;
+                                    if (property.is === "state") {
+                                        output += "<sref>" + property.name + "</sref> (state)" + req + dep;
                                     } else {
-                                        output += "<pref>" + role.name + "</pref>" + req;
+                                        output += "<pref>" + property.name + "</pref>" + req + dep;
                                     }
                                     output += "</li>\n";
-                                    prev = role.name;
+                                    prev = property.name;
                                 }
                             }
                             if (output !== "") {
@@ -509,6 +532,55 @@ require(["core/pubsubhub"], function( respecEvents ) {
                                 }
                                 placeholder.innerHTML = output;
                             }
+                        }
+                        else if (placeholder && (((placeholder.textContent || placeholder.innerText) ==="Use as a global deprecated in ARIA 1.2")) && item.roles.length)
+                        {
+                            // update the used in roles list
+                            var sortedList = [];
+                            sortedList = item.roles.sort();
+                            //remove roletype from the sorted list
+                            const index = sortedList.indexOf('roletype');
+                            if (index > -1) {
+                                sortedList.splice(index, 1);
+                            }
+
+
+                            for (var j = 0; j < sortedList.length; j++) {
+                                output += "<li><rref>" + sortedList[j] + "</rref></li>\n";
+                            }
+                            if (output !== "") {
+                                output = "<ul>\n" + output + "</ul>\n";
+                            }
+                            placeholder.innerHTML = output;
+                            // also update any inherited roles
+                            var myList = [];
+                            $.each(item.roles, function(j, role) {
+                                var children = getAllSubRoles(role);
+                                // Some subroles have required properties which are also required by the superclass.
+                                // Example: The checked state of radio, which is also required by superclass checkbox.
+                                // We only want to include these one time, so filter out the subroles.
+                                children = $.grep(children, function(subrole) {
+                                    return $.inArray(subrole, propList[item.name].roles) == -1;
+                                });
+                                $.merge(myList, children);
+                            });
+                            placeholder = section.querySelector(".state-descendants, .property-descendants");
+                            if (placeholder && myList.length) {
+                                sortedList = myList.sort();
+                                output = "";
+                                var last = "";
+                                for (j = 0; j < sortedList.length; j++) {
+                                    var sItem = sortedList[j];
+                                    if (last != sItem) {
+                                        output += "<li><rref>" + sItem + "</rref></li>\n";
+                                        last = sItem;
+                                    }
+                                }
+                                if (output !== "") {
+                                    output = "<ul>\n" + output + "</ul>\n";
+                                }
+                                placeholder.innerHTML = output;
+                            }                                
                         }
                     });
                     

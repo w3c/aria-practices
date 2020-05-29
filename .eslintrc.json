@@ -8,6 +8,10 @@
   },
   "rules": {
     "no-unused-vars": 0,
-    "no-undef": 0
+    "no-undef": 0,
+    "no-restricted-properties": [2, {
+      "property": "findElements",
+      "message": "Please use t.context.queryElements()."
+    }]
   }
 }

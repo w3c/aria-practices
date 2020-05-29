@@ -1,6 +1,5 @@
 'use strict';
 
-const { By } = require('selenium-webdriver');
 const assert = require('assert');
 
 /**
@@ -12,7 +11,7 @@ const assert = require('assert');
  */
 module.exports = async function assertAttributeDNE (t, selector, attribute) {
 
-  const numElements = (await t.context.session.findElements(By.css(selector))).length;
+  const numElements = (await t.context.queryElements(t, selector)).length;
 
   assert.ok(
     numElements,
