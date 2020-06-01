@@ -16,8 +16,7 @@ module.exports = async function assertAriaSelectedAndActivedescendant (t, active
 
   // Confirm aria-activedescendant refers to the correct option
 
-  const options = await t.context.session
-    .findElements(By.css(optionsSelector));
+  const options = await t.context.queryElements(t, optionsSelector);
   const optionId = await options[index].getAttribute('id');
 
   assert.strictEqual(

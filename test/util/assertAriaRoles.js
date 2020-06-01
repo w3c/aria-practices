@@ -1,6 +1,5 @@
 'use strict';
 
-const { By } = require('selenium-webdriver');
 const assert = require('assert');
 
 /**
@@ -17,7 +16,7 @@ const assert = require('assert');
 module.exports = async function assertAriaRoles (t, exampleId, role, roleCount, elementTag) {
   const elementSelector = '#' + exampleId + ' [role="' + role + '"]';
 
-  const elements = await t.context.session.findElements(By.css(elementSelector));
+  const elements = await t.context.queryElements(t, elementSelector);
 
   assert.equal(
     elements.length,

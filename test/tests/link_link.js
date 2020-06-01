@@ -75,8 +75,7 @@ ariaTest('Test "alt" attribute exists',
 ariaTest('Test "aria-label" attribute exists',
   'link/link.html', 'aria-label', async (t) => {
 
-    t.plan(1);
-
+    
     for (let i = 0; i < pageExamples.length; i++) {
 
       let ex = pageExamples[i];

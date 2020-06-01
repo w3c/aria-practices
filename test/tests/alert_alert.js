@@ -1,7 +1,7 @@
 'use strict';
 
 const { ariaTest } = require('..');
-const { By, Key } = require('selenium-webdriver');
+const { By } = require('selenium-webdriver');
 
 const exampleFile = 'alert/alert.html';
 
@@ -13,8 +13,7 @@ const ex = {
 // Attributes
 
 ariaTest('role="alert" on alert element', exampleFile, 'alert-role', async (t) => {
-  t.plan(2);
-
+  
   t.false(
     await t.context.session.findElement(By.css(ex.alertSelector)).isDisplayed(),
     '[role="alert"] element found and should not be displayed on pageload'

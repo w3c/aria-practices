@@ -1,6 +1,5 @@
 'use strict';
 
-const { By } = require('selenium-webdriver');
 const assert = require('assert');
 
 /**
@@ -12,8 +11,7 @@ const assert = require('assert');
  * @param {String} value           - the value
  */
 module.exports = async function assertAttributeValues (t, elementSelector, attribute, value) {
-  let elementLocator = By.css(elementSelector);
-  let elements = await t.context.session.findElements(elementLocator);
+  let elements = await t.context.queryElements(t, elementSelector);
 
   assert.ok(
     elements.length,
