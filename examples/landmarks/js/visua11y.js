@@ -817,7 +817,6 @@ function nameFromNativeSemantics(element, recFlag) {
 function nameFromAttributeIdRefs(element, attribute) {
   var value = getAttributeValue(element, attribute);
   var idRefs,
-      i,
       refElement,
       accName,
       arr = [];
