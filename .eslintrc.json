@@ -3,6 +3,9 @@
   "env": {
     "browser": true
   },
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
   "rules": {
     "no-unused-vars": 0,
     "no-undef": 0,
