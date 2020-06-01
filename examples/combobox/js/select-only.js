@@ -42,13 +42,10 @@ function getActionFromKey(event, menuOpen) {
 
   // handle keys when open
   if (menuOpen) {
-    if (key === 'ArrowUp' && event.altKey) {
+    if (key === 'ArrowUp' && altKey) {
       return SelectActions.CloseSelect;
     }
-    if (key === 'ArrowDown' && event.altKey) {
-      return;
-    }
-    if (key === 'ArrowDown') {
+    if (key === 'ArrowDown' && !altKey) {
       return SelectActions.Next;
     }
     else if (key === 'ArrowUp') {
