@@ -1,30 +1,41 @@
 /* CSS Document */
 
-div.aria-widget-slider {
+.aria-widget-slider {
   margin-top: 0em;
   margin-bottom: 0em;
   height: 3em;
 }
 
-div.aria-widget-slider.value {
+.aria-widget-slider.value {
   width: 9000em;
   text-align: right;     
 }
 
-thumb {
-	fill: snow;
-	stroke:dimgrey;
+.aria-widget-slider svg .rail {
+	fill:gray;
+	stroke:black;
 	stroke-width:5;
-	opacity:1;
-	overflow: visible;
-	width:15;	
-}
-rail {
-	opacity:0.5;
-	overflow:visible
-
+	opacity:0.2;
 }
 
+.aria-widget-slider svg .thumb {
+	fill: snow;
+	stroke:lightgray;
+	stroke-width:2px;
+	width: 15px;
+	height: 35px;
+	opacity: 0.2;
+}
+
+.aria-widget-slider svg .red {
+  fill: red;
+  stroke: red;
+}
+
+.aria-widget-slider.focus svg * {
+  stroke: black;
+  opacity: 1;
+}
 
 label {
   display: block;
