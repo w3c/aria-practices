@@ -32,8 +32,9 @@
     // Expected outcome '../js/app.js' OR '../../js/app.js'
     var scriptSource = document.querySelector('[src$="app.js"]').getAttribute('src');
     // Replace 'app.js' part with 'notice.html'
-    var fetchSource = scriptSource.replace('app.js', 'notice.html');
 
+    var fetchSource = scriptSource.replace('app.js', './notice.html');
+    //fetch('https://raw.githack.com/w3c/aria-practices/1228-support-notice/examples/js/notice.html')
     fetch(fetchSource)
     .then(function(response) {
       // Return notice.html as text
@@ -52,8 +53,8 @@
       for (var i = 0; i < links.length; ++i) {
         links[i].pathname = urlPrefix;
       }
-      // Insert the support notice after the page's example heading
-      exampleHeading.parentNode.insertBefore(noticeElement, exampleHeading.nextSibling);
+      // Insert the support notice before the page's example heading
+      exampleHeading.parentNode.insertBefore(noticeElement, exampleHeading);
     })
   }
 }());
