@@ -5,7 +5,9 @@
 *   File:   FontToolbarItem.js
 */
 
-FormatToolbarItem = function (domNode, toolbar) {
+'use strict';
+
+function FormatToolbarItem(domNode, toolbar) {
   this.domNode = domNode;
   this.toolbar = toolbar;
   this.buttonAction = '';

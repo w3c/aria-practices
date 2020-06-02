@@ -5,6 +5,8 @@
 *   File:   FormatToolbar.js
 */
 
+'use strict';
+
 /**
  * @constructor
  *
@@ -15,7 +17,7 @@
  * @param domNode
  *  The DOM node pointing to the element with the toolbar tole
  */
-FormatToolbar = function (domNode) {
+function FormatToolbar(domNode) {
   this.domNode = domNode;
   this.firstItem = null;
   this.lastItem = null;

@@ -5,8 +5,9 @@
 *   File:   FontMenuButton.js
 */
 
+'use strict';
 
-FontMenuButton = function (node, toolbar, toolbarItem) {
+function FontMenuButton(node, toolbar, toolbarItem) {
   this.domNode = node;
   this.fontMenu = false;
   this.toolbar = toolbar;

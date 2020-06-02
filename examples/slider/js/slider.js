@@ -7,6 +7,8 @@
 *   Desc:   Slider widget that implements ARIA Authoring Practices
 */
 
+'use strict';
+
 // Create Slider that contains value, valuemin, valuemax, and valuenow
 var Slider = function (domNode)  {
 
@@ -230,7 +232,7 @@ Slider.prototype.handleClick = function (event) {
 /*                  Change color of the Box                         */
 /* ---------------------------------------------------------------- */
 
-updateColorBox = function () {
+function updateColorBox() {
 
   function getColorHex () {
     var r = parseInt(document.getElementById('idRedValue').getAttribute('aria-valuenow')).toString(16);
