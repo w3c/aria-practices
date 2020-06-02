@@ -31,7 +31,7 @@ function FormatToolbarItem(domNode, toolbar) {
     'RIGHT': 39,
     'DOWN': 40
   });
-};
+}
 
 FormatToolbarItem.prototype.init = function () {
   this.domNode.addEventListener('keydown', this.handleKeyDown.bind(this));

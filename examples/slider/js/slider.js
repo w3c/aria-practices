@@ -275,4 +275,4 @@ function updateColorBox() {
     node.value = getColorRGB();
 
   }
-};
+}

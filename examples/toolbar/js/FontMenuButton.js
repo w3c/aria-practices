@@ -24,7 +24,7 @@ function FontMenuButton(node, toolbar, toolbarItem) {
     'UP': 38,
     'DOWN': 40
   });
-};
+}
 
 FontMenuButton.prototype.init = function () {
   var id = this.domNode.getAttribute('aria-controls');

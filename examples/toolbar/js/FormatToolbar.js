@@ -36,7 +36,7 @@ function FormatToolbar(domNode) {
 
   this.nightModeCheck = null;
 
-};
+}
 
 FormatToolbar.prototype.init = function () {
   var i, items, toolbarItem, menuButton;
