@@ -29,7 +29,6 @@ var MenuButtonLinks = function (domNode) {
     this.firstChars.push(menuitem.textContent.trim()[0].toLowerCase());
 
     menuitem.addEventListener('keydown', this.handleMenuitemKeydown.bind(this));
-    menuitem.addEventListener('click', this.handleMenuitemClick.bind(this));
 
     menuitem.addEventListener('mouseover', this.handleMenuitemMouseover.bind(this));
 
@@ -46,7 +45,6 @@ var MenuButtonLinks = function (domNode) {
 };
 
 MenuButtonLinks.prototype.setFocusToMenuitem = function (newMenuitem) {
-
   this.menuitemNodes.forEach(function(item) {
     if (item === newMenuitem) {
       item.tabIndex = 0;
@@ -140,13 +138,9 @@ MenuButtonLinks.prototype.getIndexFirstChars = function (startIndex, char) {
 // Popup menu methods
 
 MenuButtonLinks.prototype.openPopup = function () {
-
   var rect = this.menuNode.getBoundingClientRect();
-
   this.menuNode.style.display = 'block';
-
   this.buttonNode.setAttribute('aria-expanded', 'true');
-
 };
 
 MenuButtonLinks.prototype.closePopup = function () {
@@ -188,6 +182,7 @@ MenuButtonLinks.prototype.handleButtonKeydown = function (event) {
     case 'Esc':
     case 'Escape':
         this.closePopup();
+        this.buttonNode.focus();
         flag = true;
       break;
 
@@ -220,7 +215,6 @@ MenuButtonLinks.prototype.handleButtonClick = function (event) {
 
   event.stopPropagation();
   event.preventDefault();
-
 };
 
 MenuButtonLinks.prototype.handleMenuitemKeydown = function (event) {
@@ -232,7 +226,7 @@ MenuButtonLinks.prototype.handleMenuitemKeydown = function (event) {
     return str.length === 1 && str.match(/\S/);
   }
 
-  if (event.ctrlKey || event.altKey  || event.metaKey || (event.key === ' ') || (event.key === 'Enter')) {
+  if (event.ctrlKey || event.altKey  || event.metaKey) {
     return;
   }
 
@@ -252,10 +246,7 @@ MenuButtonLinks.prototype.handleMenuitemKeydown = function (event) {
 
     switch (key) {
       case ' ':
-      case 'Enter':
-        this.closePopup();
-        window.location.href=tgt.href;
-        flag = true;
+       window.location.href=tgt.href;
        break;
 
       case 'Esc':
@@ -303,17 +294,10 @@ MenuButtonLinks.prototype.handleMenuitemKeydown = function (event) {
 
   }
 
-
   if (flag) {
     event.stopPropagation();
     event.preventDefault();
   }
-};
-
-MenuButtonLinks.prototype.handleMenuitemClick = function (event) {
-  var tgt = event.currentTarget;
-  this.closePopup();
-  window.location.href=tgt.href;
 };
 
 MenuButtonLinks.prototype.handleMenuitemMouseover = function (event) {
