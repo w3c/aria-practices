@@ -575,5 +575,3 @@ DatePicker.prototype.setMessage = function (str) {
     this.lastMessage = str;
   }
 };
-
-
