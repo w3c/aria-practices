@@ -127,8 +127,6 @@ MenubarNavigation.prototype.initMenu = function (menu, depth) {
 
 MenubarNavigation.prototype.setFocusToMenuitem = function (menuId, newMenuitem) {
 
-  var isAnyPopupOpen = this.isAnyPopupOpen();
-
   this.closePopupAll(newMenuitem);
 
   if (this.menuitemGroups[menuId]) {
@@ -433,6 +431,8 @@ MenubarNavigation.prototype.handleKeydown = function (event) {
     option,
     value;
 
+  var isAnyPopupOpen = this.isAnyPopupOpen();
+
   switch (key) {
     case ' ':
     case 'Enter':
@@ -490,7 +490,10 @@ MenubarNavigation.prototype.handleKeydown = function (event) {
     case 'Left':
     case 'ArrowLeft':
       if (this.isMenuHorizontal(menuId)) {
-        this.setFocusToPreviousMenuitem(menuId, tgt);
+        mi = this.setFocusToPreviousMenuitem(menuId, tgt);
+        if (isAnyPopupOpen) {
+          this.openPopup(menuId, mi);
+        }
       }
       else {
         if (this.isPopout[menuId]) {
@@ -511,7 +514,10 @@ MenubarNavigation.prototype.handleKeydown = function (event) {
     case 'Right':
     case 'ArrowRight':
       if (this.isMenuHorizontal(menuId)) {
-        this.setFocusToNextMenuitem(menuId, tgt);
+        mi = this.setFocusToNextMenuitem(menuId, tgt);
+        if (isAnyPopupOpen) {
+          this.openPopup(menuId, mi);
+        }
       }
       else {
         if (this.hasPopup(tgt)) {
