@@ -6518,7 +6518,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
             <td>100</td>
             <td>No</td>
             <td>No</td>
-            <td>Yes, if known</td>
+            <td>No</td>
           </tr>
           <tr>
             <th scope="row"><code>scrollbar</code></th>
@@ -6548,9 +6548,9 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
             <th scope="row"><code>spinbutton</code></th>
             <td>None</td>
             <td>None</td>
-            <td>Yes, if known</td>
-            <td>Yes, if known</td>
-            <td>Yes, if known</td>
+            <td>No</td>
+            <td>No</td>
+            <td>No</td>
           </tr>
         </tbody>
       </table>
@@ -6591,8 +6591,8 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       <p>This example of a meter shows the current Central Processing Unit (CPU) usage. </p>
 
       <pre><code>&lt;span id="cpu_usage_label">CPU usage&lt;/span>
+&lt;!-- The CPU usage uses the default values of 0 and 100 for aria-valuemin and aria-valuemax --&gt;
 &lt;div role="meter"
-//The CPU usage uses the default values of 0 and 100 for aria-valuemin and aria-valuemax
       aria-valuenow="90"
       aria-labelledby="cpu_usage_label"&gt;
 &lt;/div&gt;</code></pre>
@@ -6625,8 +6625,8 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       </p>
 
       <pre><code>&lt;div&gt;Loading:
+  &lt;!-- The progress bar uses the default values of 0 and 100 for aria-valuemin and aria-valuemax --&gt;
   &lt;span role="progressbar"
-  //The progress bar uses the default values of 0 and 100 for aria-valuemin and aria-valuemax
         aria-valuenow="33" &gt;
     &lt;svg width="100" height="10"&gt;
       &lt;rect x="0" y="0" height="10" width="100" stroke="black" fill="none"/&gt;
@@ -6665,10 +6665,10 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679
 &lt;/div&gt;
 &lt;div class="rail"&gt;
+&lt;!-- The scrollbar uses the default values of 0 and 100 for aria-valuemin and aria-valuemax --&gt;
   &lt;div
     class="thumb"
     role="scrollbar"
-    //The scrollbar uses the default values of 0 and 100 for aria-valuemin and aria-valuemax
     aria-controls="pi"
     aria-orientation="horizontal"
     aria-valuenow="25"&gt;
