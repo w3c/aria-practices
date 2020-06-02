@@ -222,4 +222,3 @@ window.addEventListener('load', function () {
     carousel.init();
   }
 }, false);
-
