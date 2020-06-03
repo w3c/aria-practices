@@ -63,8 +63,8 @@ aria.Utils.remove = function (item) {
 };
 
 aria.Utils.isFocusable = function (element) {
-  if (element.tabIndex > 0 || (element.tabIndex === 0 && element.getAttribute('tabIndex') !== null)) {
-    return true;
+  if (element.tabIndex < 0) {
+    return false;
   }
 
   if (element.disabled) {
