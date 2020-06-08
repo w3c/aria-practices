@@ -19,19 +19,17 @@
 }
 
 .aria-widget-slider svg .thumb {
-	fill: snow;
+	fill: lightgray;
 	stroke:lightgray;
 	stroke-width:2px;
 	width: 15px;
 	height: 35px;
-	opacity: 0.2;
 }
 
-.aria-widget-slider svg .red {
-  fill: red;
-  stroke: red;
+.aria-widget-slider:hover svg * {
+  stroke: black;
+  opacity: 1;
 }
-
 .aria-widget-slider.focus svg * {
   stroke: black;
   opacity: 1;
