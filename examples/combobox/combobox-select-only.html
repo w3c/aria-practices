@@ -181,7 +181,9 @@
               <ul>
                 <li>Sets the value to the content of the focused option in the listbox.</li>
                 <li>Closes the listbox.</li>
-                <li>Performs the default action, moving focus to the next focusable element.</li>
+                <li>Performs the default action, moving focus to the next focusable element.
+                  Note: the native <code>&lt;select&gt;</code> element closes the listbox but does not move focus on tab.
+                  This pattern matches the behavior of the other comboboxes rather than the native element in this case.</li>
               </ul>
             </td>
           </tr>
