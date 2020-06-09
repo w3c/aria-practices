@@ -42,18 +42,21 @@
       <div id="myDatepicker"
            class="combobox-datepicker">
 
-        <label id="id-label-1"
-               for="cb-textbox-1">Date</label>
+        <div class="label">
+          <label id="id-label-1" for="cb-textbox-1">
+            Date
+          </label>
+        </div>
 
         <div class="group">
           <input type="text"
-                placeholder="mm/dd/yyyy"
                 id="cb-textbox-1"
                 aria-autocomplete="none"
                 role="combobox"
                 aria-expanded="false"
                 aria-haspopup="dialog"
-                aria-controls="cb-dialog-1">
+                aria-controls="cb-dialog-1"
+                aria-describedby="cb-description-1">
 
           <button type="button"
               class="arrow"
@@ -68,8 +71,8 @@
                 </svg>
               </span>
           </button>
-
         </div>
+        <div class="desc" id="cb-description-1">(date format: mm/dd/yy)</div>
 
         <div id="cb-dialog-1"
              class="dialog"
@@ -216,8 +219,8 @@
     <ul>
       <li>Contains the date value.</li>
       <li>Opens and closes the date picker dialog box through keyboard, click and touch events.</li>
-      <li>A live region provides information on how to open the date picker dialog when textbox receives focus (e.g. using <kbd>down arrow</kbd> key).</li>
       <li>To support people who are sighted in understanding the <kbd>down arrow</kbd> key opens the date picker dialog box, a down arrow icon appears in the <code>textbox</code> when the <code>textbox</code> receives keyboard focus and the down arrow icon is removed when the <code>textbox</code> does not have keyboard focus.</li>
+      <li>A description provides information on the date format to assistive technologies.</li>
     </ul>
 
     <h3>Choose Date Button</h3>
@@ -549,6 +552,14 @@
             <td><code>input</code></td>
             <td>
               Provides a reference to the screen reader for direct navigation to the dialog box.
+            </td>
+          </tr>
+          <tr data-test-id="textbox-aria-describedby">
+            <td></td>
+            <th scope="row"><code>aria-describedby=<q>IDREF</q></code></th>
+            <td><code>input</code></td>
+            <td>
+              Provides a reference to the screen reader of the date format.
             </td>
           </tr>
           <tr data-test-id="textbox-aria-live">
