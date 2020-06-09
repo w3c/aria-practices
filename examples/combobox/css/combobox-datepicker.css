@@ -7,6 +7,13 @@
   display: inline-flex;
 }
 
+.combobox-datepicker .desc {
+  margin-top: 0.1em;
+  font-size: 90%;
+  font-style: italic;
+  letter-spacing: 0.025em;
+}
+
 .combobox-datepicker label {
   display: block;
 }

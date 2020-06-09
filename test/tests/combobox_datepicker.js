@@ -95,6 +95,11 @@ ariaTest('Combobox: has aria-contorls set to "id-dialog-1"', exampleFile, 'textb
   await assertAttributeValues(t, ex.comboboxSelector, 'aria-controls', 'cb-dialog-1');
 });
 
+ariaTest('Combobox: has aria-contorls set to "id-descrption-1"', exampleFile, 'textbox-aria-describedby', async (t) => {
+  await assertAttributeValues(t, ex.comboboxSelector, 'aria-describedby', 'cb-description-1');
+});
+
+
 ariaTest('Combobox: Initially aria-expanded set to "false"', exampleFile, 'textbox-aria-expanded-false', async (t) => {
   await assertAttributeValues(t, ex.comboboxSelector, 'aria-expanded', 'false');
 });
