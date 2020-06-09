@@ -8,14 +8,19 @@
 
 .aria-widget-slider.value {
   width: 9000em;
-  text-align: right;     
+  text-align: right; 
+}
+
+.aria-widget-slider svg .valueBackground {
+	fill:white;
+	stroke-width:0;
 }
 
 .aria-widget-slider svg .rail {
 	fill:gray;
 	stroke:black;
 	stroke-width:5;
-	opacity:0.2;
+	opacity:0.3;
 }
 .aria-widget-slider svg .railFillGreen {
 	fill:green;
