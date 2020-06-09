@@ -17,6 +17,29 @@
 	stroke-width:5;
 	opacity:0.2;
 }
+.aria-widget-slider svg .railFillGreen {
+	fill:green;
+	stroke:black;
+	stroke-width:5;
+	opacity:0.2;
+	pointer-events: none;
+}
+
+.aria-widget-slider svg .railFillRed {
+	fill:red;
+	stroke:black;
+	stroke-width:5;
+	opacity:0.2;
+	pointer-events: none;
+}
+
+.aria-widget-slider svg .railFillBlue {
+	fill: blue;
+	stroke:black;
+	stroke-width:5;
+	opacity:0.2;
+	pointer-events: none;
+}
 
 .aria-widget-slider svg .thumb {
 	fill: lightgray;

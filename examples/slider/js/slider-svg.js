@@ -94,7 +94,18 @@ Slider.prototype.moveSliderTo = function (value) {
 
   this.valueNow = value;
 
-  this.domNode.setAttribute('aria-valuenow', this.valueNow);
+  switch(this.domNode.id) {
+	case "idGreenValue":
+		document.querySelector('.railFillGreen').setAttribute("width", value+10.1);
+		break;
+	case "idRedValue":
+		document.querySelector('.railFillRed').setAttribute("width", value+10.1);
+		break;
+	case "idBlueValue":
+		document.querySelector('.railFillBlue').setAttribute("width", value+10.1);
+		break;
+	 
+  }
 
   var pos = Math.round(
     (this.valueNow * this.railWidth) / (this.valueMax - this.valueMin)) - (this.thumbWidth);
@@ -213,9 +224,8 @@ Slider.prototype.handleMouseDown = function (event) {
 Slider.prototype.handleClick = function (event) {
 
   var diffX = event.pageX - this.domNode.offsetLeft;
-  this.valueNow = parseInt(((this.valueMax - this.valueMin) * diffX) / this.railWidth);
+  this.valueNow = parseInt(((this.valueMax - this.valueMin) * diffX)/ this.railWidth);
   this.moveSliderTo(this.valueNow);
-
   event.preventDefault();
   event.stopPropagation();
 
