@@ -151,16 +151,16 @@
       "aliasOf": "WAI-ARIA-1.1"
     }
   },
-  "publishDate": "2020-06-02",
-  "publishISODate": "2020-06-02T00:00:00.000Z",
-  "generatedSubtitle": "Editor's Draft 02 June 2020"
+  "publishDate": "2020-06-10",
+  "publishISODate": "2020-06-10T00:00:00.000Z",
+  "generatedSubtitle": "Editor's Draft 10 June 2020"
 }</script><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED"></head>
 <body class="h-entry informative"><div class="head">
     <a class="logo" href="https://www.w3.org/"><img alt="W3C" width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C"></a> <h1 id="title" class="title">WAI-ARIA Authoring Practices 1.2</h1>
     
     <h2>
       W3C Editor's Draft
-      <time class="dt-published" datetime="2020-06-02">02 June 2020</time>
+      <time class="dt-published" datetime="2020-06-10">10 June 2020</time>
     </h2>
     <dl>
       <dt>This version:</dt><dd>
@@ -348,9 +348,9 @@
         From the perspective of assistive technologies, ARIA gives authors the ability to dress up HTML and SVG elements with critical accessibility semantics that the assistive technologies would not otherwise be able to reliably derive.
       </p>
       <p>Some of ARIA is like a cloak; it covers up, or overrides, the original semantics or content.</p>
-      <pre><code aria-busy="false" class="hljs xml">
-        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"menuitem"</span>&gt;</span>Assistive tech users perceive this element as an item in a menu, not a link.<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"Assistive tech users can only perceive the contents of this aria-label, not the link text"</span>&gt;</span>Link Text<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <pre><code aria-busy="false" class="hljs javascript">
+        &lt;a role=<span class="hljs-string">"menuitem"</span>&gt;Assistive tech users perceive <span class="hljs-keyword">this</span> element <span class="hljs-keyword">as</span> an item <span class="hljs-keyword">in</span> a menu, not a link.&lt;/a&gt;
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"Assistive tech users can only perceive the contents of this aria-label, not the link text"</span>&gt;</span>Link Text<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span>
 </code></pre>
       <p>On the other hand, some uses of ARIA are more like suspenders or belts; they add meaning that provides essential support to the original content.</p>
       <pre><code aria-busy="false" class="hljs xml">
@@ -6981,7 +6981,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
 
   </section>
-<script type="text/javascript">(function(){window['__CF$cv$params']={r:'59d0000dab3ff051',m:'2d6fc46c0a4caded114dabb4eb7332338cc645e2-1591088596-1800-AX6gNkI7mFqfO4p3RWhjbYSTV/UZt8/7xdb8NEJmrJzEcylTZCNfRXvIaT0PF13xjiqVsa2bOQ490Z6KZCCmWPb1oZQJFk537ho7dJdh/mYE/MT003bprUjB17YxgpkLucFDWZW1/X5ttYRbR2q5auq4ucEt2jEk2gyz5jkbou73SaUupYL+7XmvfY9nlT22ADTlHDiC9zREkigIv1gkLcs=',s:[0xde0ce21efa,0x97a71ab094],}})();</script>
+<script type="text/javascript">(function(){window['__CF$cv$params']={r:'5a16c4584e6be839',m:'b5f3d68dca1f92643b92e415d8ffb656b4c6f110-1591830639-1800-AfrrD9zOCmImnMAvBAJjbt2YlEuKN4Lu5wtqjTu+aKJ5cKTS9YipL2WH0/VxjvbhkAlx25pZBqvZgEUgdHhQVD3tO1ugagbpJU1uqNXrkjkZ2tNNkAgsgqS9ZrSdhDGsDVNgK1Ov7vWvjzV0buKKIDIJWXh8blQKPsp+kdoo5yYyVlr1NkgXQsxMhBon3t6ky+urThvdOx9PJH8nsPrCBKU=',s:[0x39ad1f8800,0xb77587025c],}})();</script>
 
 <section id="references" class="appendix"><h2 id="d-references"><bdi class="secno">D. </bdi>References<a class="self-link" aria-label="§" href="#references"></a></h2><section id="informative-references">
       <h3 id="d-1-informative-references"><bdi class="secno">D.1 </bdi>
