@@ -35,7 +35,7 @@ var VOID_ELEMENTS = ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input',
 aria.widget.SourceCode = function () {
   this.location = new Array();
   this.code = new Array();
-  this.editCode = new Array();
+  this.exampleHeader = new Array();
   this.resources = new Array();
 };
 
@@ -45,10 +45,10 @@ aria.widget.SourceCode = function () {
  * @method add
  * @memberof aria.widget.SourceCode
  */
-aria.widget.SourceCode.prototype.add = function (locationId, codeId, editCodeId, cssJsFilesId) {
+aria.widget.SourceCode.prototype.add = function (locationId, codeId, exampleHeaderId, cssJsFilesId) {
   this.location[this.location.length] = locationId;
   this.code[this.code.length] = codeId;
-  this.editCode[this.editCode.length] = editCodeId;
+  this.exampleHeader[this.exampleHeader.length] = exampleHeaderId;
   this.resources[this.resources.length] = cssJsFilesId;
 };
 
@@ -71,38 +71,9 @@ aria.widget.SourceCode.prototype.make = function () {
       sourceCodeNode.innerHTML = sourceCodeNode.innerHTML.replace('<br>', '');
     }
 
-    if (this.editCode[i]) {
-      var editCodeInput = this.editCode[i];
-
-      // Correct the indentation for the example html
-      var indentedExampleHtml = document.getElementById(this.code[i]).innerHTML;
-      indentedExampleHtml = indentedExampleHtml.replace(/^\n+/, '');
-      var indentation = indentedExampleHtml.match(/^\s+/)[0];
-      var exampleHtml = indentedExampleHtml.replace(new RegExp('^' + indentation, 'gm'), '');
-
-      var postJson = {
-        html: exampleHtml,
-        css: '',
-        js: '',
-        head: '<base href="' + location.href + '">'
-      };
-
-      var getCssJsFilePromises = $('#' + this.resources[i] + ' a').map(function () {
-        var href = this.href;
-
-        return $.get(href).then(function (fileContent) {
-          if (href.indexOf('css') !== -1) {
-            postJson.css = postJson.css.concat(fileContent);
-          }
-          if (href.indexOf('js') !== -1) {
-            postJson.js = postJson.js.concat(fileContent);
-          }
-        });
-      });
-
-      $.when.apply($, getCssJsFilePromises).then(function () {
-        document.getElementById(editCodeInput).value = JSON.stringify(postJson);
-      });
+    // Adds the "Open In CodePen" button by the example header
+    if (this.exampleHeader[i]) {
+      addOpenInCodePenForm(i, this.exampleHeader[i], this.code[i], this.resources[i]);
     }
   }
 };
@@ -337,5 +308,68 @@ function indentLines (input, indentation) {
 
   return lines.join('\n');
 }
+
+/**
+ * Creates and adds an "Open in CodePen" button
+ *
+ * @param {String} exampleIndex - the example number, if there are multiple examples
+ * @param {String} exampleHeaderId - the example header to place the button next to
+ * @param {String} exampleCodeId - the example html code
+ * @param {String} exampleFilesId - the element containing all relevent CSS and JS file
+ */
+function addOpenInCodePenForm (exampleIndex, exampleHeaderId, exampleCodeId, exampleFilesId) {
+  var jsonInputId = 'codepen-data-ex-' + exampleIndex;
+
+  var form = document.createElement('form');
+  form.setAttribute('action', 'https://codepen.io/pen/define');
+  form.setAttribute('method', 'POST');
+  form.setAttribute('target', '_blank');
+
+  var input = document.createElement('input');
+  input.setAttribute('id', jsonInputId);
+  input.setAttribute('type', 'hidden');
+  input.setAttribute('name', 'data');
+
+  var button = document.createElement('button');
+  button.innerText = 'Open In CodePen';
+
+  form.appendChild(input);
+  form.appendChild(button);
+
+  var exampleHeader = document.getElementById(exampleHeaderId);
+  exampleHeader.parentNode.insertBefore(form, exampleHeader.nextSibling);
+
+  // Correct the indentation for the example html
+  var indentedExampleHtml = document.getElementById(exampleCodeId).innerHTML;
+  indentedExampleHtml = indentedExampleHtml.replace(/^\n+/, '');
+  var indentation = indentedExampleHtml.match(/^\s+/)[0];
+  var exampleHtml = indentedExampleHtml.replace(new RegExp('^' + indentation, 'gm'), '');
+
+  var postJson = {
+    html: exampleHtml,
+    css: '',
+    js: '',
+    head: '<base href="' + location.href + '">'
+  };
+
+  var getCssJsFilePromises = $('#' + exampleFilesId + ' a').map(function () {
+    var href = this.href;
+
+    return $.get(href).then(function (fileContent) {
+      if (href.indexOf('css') !== -1) {
+        postJson.css = postJson.css.concat(fileContent);
+      }
+      if (href.indexOf('js') !== -1) {
+        postJson.js = postJson.js.concat(fileContent);
+      }
+    });
+  });
+
+  $.when.apply($, getCssJsFilePromises).then(function () {
+    console.log('adding the json to: ', jsonInputId);
+    document.getElementById(jsonInputId).value = JSON.stringify(postJson);
+  });
+}
+
 
 var sourceCode = new aria.widget.SourceCode();
