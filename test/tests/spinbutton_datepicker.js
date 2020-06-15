@@ -319,6 +319,7 @@ ariaTest('down arrow on year', exampleFile, 'spinbutton-down-arrow', async (t) =
   );
 });
 
+// The bug causing this test to fail is tracked in https://github.com/w3c/aria-practices/issues/1426
 ariaTest.failing('page up on day', exampleFile, 'spinbutton-page-up', async (t) => {
   let control = parseInt(ex.dayNow);
   let daysInMonth = parseInt(ex.dayMax);
@@ -384,6 +385,7 @@ ariaTest('page down on day', exampleFile, 'spinbutton-page-down', async (t) => {
   );
 });
 
+// The bug causing this test to fail is tracked in https://github.com/w3c/aria-practices/issues/1426
 ariaTest.failing('page up on month', exampleFile, 'spinbutton-page-up', async (t) => {
   let control = parseInt(ex.monthNow) + 1;
 
@@ -416,6 +418,7 @@ ariaTest.failing('page up on month', exampleFile, 'spinbutton-page-up', async (t
   );
 });
 
+// The bug causing this test to fail is tracked in https://github.com/w3c/aria-practices/issues/1426
 ariaTest.failing('page down on month', exampleFile, 'spinbutton-page-down', async (t) => {
   let control = parseInt(ex.monthNow) + 1;
 
