@@ -96,13 +96,13 @@ Slider.prototype.moveSliderTo = function (value) {
   
   switch(this.domNode.id) {
 	case "idGreenValue":
-		document.querySelector('.railFillGreen').setAttribute("width", value+19);
+		document.querySelector('.railFillGreen').setAttribute("width", value+12);
 		break;
 	case "idRedValue":
-		document.querySelector('.railFillRed').setAttribute("width", value+19);
+		document.querySelector('.railFillRed').setAttribute("width", value+12);
 		break;
 	case "idBlueValue":
-		document.querySelector('.railFillBlue').setAttribute("width", value+19);
+		document.querySelector('.railFillBlue').setAttribute("width", value+12);
 		break; 
   }
 
