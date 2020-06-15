@@ -93,7 +93,7 @@ Slider.prototype.moveSliderTo = function (value) {
   }
 
   this.valueNow = value;
-
+  
   switch(this.domNode.id) {
 	case "idGreenValue":
 		document.querySelector('.railFillGreen').setAttribute("width", value+19);
@@ -103,21 +103,19 @@ Slider.prototype.moveSliderTo = function (value) {
 		break;
 	case "idBlueValue":
 		document.querySelector('.railFillBlue').setAttribute("width", value+19);
-		break;
-	 
+		break; 
   }
 
   var pos = Math.round(
     (this.valueNow * this.railWidth) / (this.valueMax - this.valueMin)) - (this.thumbWidth);
 
-  this.thumbNode.setAttribute('x', pos);
+  this.thumbNode.setAttribute('x', pos+2);
 
   if (this.valueNode) {
     this.valueNode.innerHTML = this.valueNow.toString();
   }
-
+  
   updateColorBox();
-
 };
 
 Slider.prototype.handleKeyDown = function (event) {
