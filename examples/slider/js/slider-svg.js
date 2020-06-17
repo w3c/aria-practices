@@ -25,7 +25,7 @@ var Slider = function (domNode)  {
 
   this.railWidth = 20;
 
-  this.thumbWidth  = -2.5;
+  this.thumbWidth  = -9;
   this.thumbHeight = 0;
 
   this.keyCode = Object.freeze({
@@ -96,20 +96,20 @@ Slider.prototype.moveSliderTo = function (value) {
   
   switch(this.domNode.id) {
 	case "idGreenValue":
-		document.querySelector('.railFillGreen').setAttribute("width", value+12);
+		document.querySelector('.railFillGreen').setAttribute("width", value+22.6);
 		break;
 	case "idRedValue":
-		document.querySelector('.railFillRed').setAttribute("width", value+12);
+		document.querySelector('.railFillRed').setAttribute("width", value+22.6);
 		break;
 	case "idBlueValue":
-		document.querySelector('.railFillBlue').setAttribute("width", value+12);
+		document.querySelector('.railFillBlue').setAttribute("width", value+22.6);
 		break; 
   }
 
   var pos = Math.round(
     (this.valueNow * this.railWidth) / (this.valueMax - this.valueMin)) - (this.thumbWidth);
 
-  this.thumbNode.setAttribute('x', pos+2);
+  this.thumbNode.setAttribute('x', pos+2.5);
 
   if (this.valueNode) {
     this.valueNode.innerHTML = this.valueNow.toString();
