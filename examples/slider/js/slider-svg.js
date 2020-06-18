@@ -94,7 +94,7 @@ Slider.prototype.moveSliderTo = function (value) {
   this.valueNow = value;
   this.domNode.setAttribute('aria-valuenow', value);
   
-  this.domNode.querySelector('.railFill').setAttribute('width', this.thumbNode.getAttribute('x'));
+  this.domNode.querySelector('.railFill').setAttribute('width', this.valueNow-(this.thumbWidth));
   
   var pos = Math.round(
     (this.valueNow * this.railWidth) / (this.valueMax - this.valueMin)) - ((this.thumbWidth)*1.5);
