@@ -53,7 +53,7 @@ Slider.prototype.init = function () {
     this.valueNow = parseInt((this.domNode.getAttribute('aria-valuenow')));
   }
 
-  this.railWidth = parseInt(this.railNode.getBBox().width);
+  this.railWidth = parseInt(this.railNode.getBBox().width+(this.thumbWidth*2));
   
   console.log('Rail width: ' + this.railWidth);
   
