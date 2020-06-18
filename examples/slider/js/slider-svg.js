@@ -25,7 +25,7 @@ var Slider = function (domNode)  {
 
   this.railWidth = 20;
 
-  this.thumbWidth  = -(this.domNode.querySelector('.thumb').getAttribute('width')/2);
+  this.thumbWidth  = -(this.thumbNode.getAttribute('width')/2);
   this.thumbHeight = 0;
 
   this.keyCode = Object.freeze({
@@ -94,7 +94,7 @@ Slider.prototype.moveSliderTo = function (value) {
   this.valueNow = value;
   this.domNode.setAttribute('aria-valuenow', value);
   
-  this.domNode.querySelector('.railFill').setAttribute('width', value-this.thumbWidth);
+  this.domNode.querySelector('.railFill').setAttribute('width', this.thumbNode.getAttribute('x'));
   
   var pos = Math.round(
     (this.valueNow * this.railWidth) / (this.valueMax - this.valueMin)) - ((this.thumbWidth)*1.5);
