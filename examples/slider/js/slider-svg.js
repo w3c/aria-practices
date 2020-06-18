@@ -25,7 +25,7 @@ var Slider = function (domNode)  {
 
   this.railWidth = 20;
 
-  this.thumbWidth  = -9;
+  this.thumbWidth  = -(this.domNode.querySelector('.thumb').getAttribute('width')/2);
   this.thumbHeight = 0;
 
   this.keyCode = Object.freeze({
@@ -82,7 +82,6 @@ Slider.prototype.init = function () {
 };
 
 Slider.prototype.moveSliderTo = function (value) {
-  console.log('moveSliderTo: ' + value);
 
   if (value > this.valueMax) {
     value = this.valueMax;
@@ -93,23 +92,14 @@ Slider.prototype.moveSliderTo = function (value) {
   }
 
   this.valueNow = value;
+  this.domNode.setAttribute('aria-valuenow', value);
   
-  switch(this.domNode.id) {
-	case "idGreenValue":
-		document.querySelector('.railFillGreen').setAttribute("width", value+22.6);
-		break;
-	case "idRedValue":
-		document.querySelector('.railFillRed').setAttribute("width", value+22.6);
-		break;
-	case "idBlueValue":
-		document.querySelector('.railFillBlue').setAttribute("width", value+22.6);
-		break; 
-  }
-
+  this.domNode.querySelector('.railFill').setAttribute('width', value-this.thumbWidth);
+  
   var pos = Math.round(
-    (this.valueNow * this.railWidth) / (this.valueMax - this.valueMin)) - (this.thumbWidth);
+    (this.valueNow * this.railWidth) / (this.valueMax - this.valueMin)) - ((this.thumbWidth)*1.5);
 
-  this.thumbNode.setAttribute('x', pos+2.5);
+  this.thumbNode.setAttribute('x', pos);
 
   if (this.valueNode) {
     this.valueNode.innerHTML = this.valueNow.toString();

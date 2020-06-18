@@ -6,10 +6,14 @@
   height: 3em;
 }
 
+.aria-widget-slider:focus{
+	outline: none;
+}
 .aria-widget-slider.value {
   width: 9000em;
   text-align: right; 
 }
+
 
 .aria-widget-slider svg .valueBackground {
 	fill:white;
@@ -22,28 +26,25 @@
 	stroke-width:2px;
 	opacity:0.3;
 }
-.aria-widget-slider svg .railFillGreen {
+.aria-widget-slider svg .railFill {
+	stroke-width:2px;
+	opacity:0.2;
+	pointer-events: none;
+}
+
+.aria-widget-slider svg .green {
 	fill:green;
 	stroke:green;
-	stroke-width:2px;
-	opacity:0.2;
-	pointer-events: none;
 }
 
-.aria-widget-slider svg .railFillRed {
+.aria-widget-slider svg .red {
 	fill:red;
 	stroke:red;
-	stroke-width:2px;
-	opacity:0.2;
-	pointer-events: none;
 }
 
-.aria-widget-slider svg .railFillBlue {
+.aria-widget-slider svg .blue {
 	fill: blue;
 	stroke:blue;
-	stroke-width:2px;
-	opacity:0.2;
-	pointer-events: none;
 }
 
 .aria-widget-slider svg .thumb {
@@ -56,7 +57,10 @@
   stroke: black;
   opacity: 1;
 }
-.aria-widget-slider.focus svg * {
+.aria-widget-slider.focus svg .rail,
+.aria-widget-slider.focus svg .thumb,
+.aria-widget-slider.focus svg .value
+ {
   stroke: black;
   opacity: 1;
 }
