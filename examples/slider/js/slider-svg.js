@@ -20,10 +20,10 @@ var Slider = function (domNode)  {
   this.valueDomNode = false;
 
   this.valueMin = 0;
-  this.valueMax = 100;
-  this.valueNow = 50;
+  this.valueMax = 0;
+  this.valueNow = 0;
 
-  this.railWidth = 20;
+  this.railWidth = 0;
 
   this.thumbWidth  = -(this.thumbNode.getAttribute('width')/2);
   this.thumbHeight = 0;
