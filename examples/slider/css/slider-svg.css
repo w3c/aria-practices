@@ -21,8 +21,8 @@
 }
 
 .aria-widget-slider svg .rail {
-	fill:gray;
-	stroke:gray;
+	fill:#505050;
+	stroke: #505050;
 	stroke-width:2px;
 	opacity:0.3;
 }
@@ -48,8 +48,8 @@
 }
 
 .aria-widget-slider svg .thumb {
-	fill: lightgray;
-	stroke:lightgray;
+	fill: #A8A8A8;
+	stroke:#A8A8A8;
 	stroke-width:2px;
 }
 

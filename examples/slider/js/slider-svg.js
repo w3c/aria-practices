@@ -8,14 +8,13 @@
 */
 
 // Create Slider that contains value, valuemin, valuemax, and valuenow
-var Slider = function (domNode)  {
+var Slider = function (domNode, action)  {
 
   this.domNode = domNode;
+  this.action = action;
   this.railNode = domNode.querySelector('.rail');
   this.thumbNode = domNode.querySelector('.thumb');
   this.valueNode = domNode.querySelector('.value');
-  
-  console.log('Thumb Node: ' + this.thumbNode);
 
   this.valueDomNode = false;
 
@@ -25,7 +24,7 @@ var Slider = function (domNode)  {
 
   this.railWidth = 0;
 
-  this.thumbWidth  = -(this.thumbNode.getAttribute('width')/2);
+  this.thumbWidth  = -((this.thumbNode.getAttribute('width')/2)+this.thumbNode.getAttribute('stroke-width'));
   this.thumbHeight = 0;
 
   this.keyCode = Object.freeze({
@@ -97,7 +96,7 @@ Slider.prototype.moveSliderTo = function (value) {
   this.domNode.querySelector('.railFill').setAttribute('width', this.valueNow-(this.thumbWidth));
   
   var pos = Math.round(
-    (this.valueNow * this.railWidth) / (this.valueMax - this.valueMin)) - ((this.thumbWidth)*1.5);
+    (this.valueNow * this.railWidth) / (this.valueMax - this.valueMin));
 
   this.thumbNode.setAttribute('x', pos);
 
@@ -105,7 +104,7 @@ Slider.prototype.moveSliderTo = function (value) {
     this.valueNode.innerHTML = this.valueNow.toString();
   }
   
-  updateColorBox();
+  this.action();
 };
 
 Slider.prototype.handleKeyDown = function (event) {
@@ -164,17 +163,6 @@ Slider.prototype.handleBlur = function (event) {
   this.domNode.classList.remove('focus');
 };
 
-// Initialise Sliders on the page
-window.addEventListener('load', function () {
-
-  var sliders = document.querySelectorAll('[role=slider]');;
-
-  for (var i = 0; i < sliders.length; i++) {
-    var s = new Slider(sliders[i]);
-    s.init();
-  }
-
-});
 
 Slider.prototype.handleMouseDown = function (event) {
 
@@ -213,7 +201,7 @@ Slider.prototype.handleClick = function (event) {
 
   var diffX = event.pageX - this.domNode.offsetLeft;
   this.valueNow = parseInt(((this.valueMax - this.valueMin) * diffX)/ this.railWidth);
-  this.moveSliderTo(this.valueNow);
+  this.moveSliderTo(this.valueNow-(this.thumbWidth*2));
   event.preventDefault();
   event.stopPropagation();
 
@@ -267,3 +255,14 @@ updateColorBox = function () {
 
   }
 };
+// Initialise Sliders on the page
+window.addEventListener('load', function () {
+
+  var sliders = document.querySelectorAll('[role=slider]');;
+
+  for (var i = 0; i < sliders.length; i++) {
+    var s = new Slider(sliders[i], updateColorBox);
+    s.init();
+  }
+
+});
