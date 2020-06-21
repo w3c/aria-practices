@@ -201,7 +201,7 @@ Slider.prototype.handleClick = function (event) {
 
   var diffX = event.pageX - this.domNode.offsetLeft;
   this.valueNow = parseInt(((this.valueMax - this.valueMin) * diffX)/ this.railWidth);
-  this.moveSliderTo(this.valueNow-(this.thumbWidth*2));
+  this.moveSliderTo(this.valueNow);
   event.preventDefault();
   event.stopPropagation();
 
@@ -258,7 +258,7 @@ updateColorBox = function () {
 // Initialise Sliders on the page
 window.addEventListener('load', function () {
 
-  var sliders = document.querySelectorAll('[role=slider]');;
+  var sliders = document.querySelectorAll('[role=slider]');
 
   for (var i = 0; i < sliders.length; i++) {
     var s = new Slider(sliders[i], updateColorBox);
