@@ -14,7 +14,6 @@
   text-align: right; 
 }
 
-
 .aria-widget-slider svg .valueBackground {
 	fill:white;
 	stroke-width:0;
@@ -53,13 +52,11 @@
 	stroke-width:2px;
 }
 
-.aria-widget-slider:hover svg * {
+.aria-widget-slider svg:hover * {
   stroke: black;
   opacity: 1;
 }
-.aria-widget-slider.focus svg .rail,
-.aria-widget-slider.focus svg .thumb,
-.aria-widget-slider.focus svg .value
+.aria-widget-slider:focus svg *
  {
   stroke: black;
   opacity: 1;
