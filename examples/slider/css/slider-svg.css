@@ -63,7 +63,7 @@
 }
 
 .aria-widget-slider.focus svg .rail,
-.aria-widget-slider.hover rail {
+.aria-widget-slider svg:hover .rail {
 	fill: white;
 }
 
