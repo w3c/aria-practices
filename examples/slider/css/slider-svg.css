@@ -62,6 +62,11 @@
   opacity: 1;
 }
 
+.aria-widget-slider.focus svg .rail,
+.aria-widget-slider.hover rail {
+	fill: white;
+}
+
 label {
   display: block;
   margin-top: 0em;
