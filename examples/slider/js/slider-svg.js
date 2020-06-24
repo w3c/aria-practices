@@ -24,7 +24,7 @@ var Slider = function (domNode, action)  {
 
   this.railWidth = 0;
 
-  this.thumbWidth  = -((this.thumbNode.getAttribute('width')/2)-this.thumbNode.getAttribute('stroke-width'));
+  this.thumbWidth  = -((this.thumbNode.getAttribute('width')/2)-1);
   this.thumbHeight = 0;
 
   this.keyCode = Object.freeze({
@@ -96,7 +96,7 @@ Slider.prototype.moveSliderTo = function (value) {
   this.domNode.querySelector('.railFill').setAttribute('width', this.valueNow-(this.thumbWidth));
   
   var pos = Math.round(
-    (this.valueNow * this.railWidth) / (this.valueMax - this.valueMin));
+    (this.valueNow * this.railWidth) / (this.valueMax - this.valueMin)+1);
 
   this.thumbNode.setAttribute('x', pos);
 
@@ -198,7 +198,7 @@ Slider.prototype.handleMouseDown = function (event) {
 
 // handleMouseMove has the same functionality as we need for handleMouseClick on the rail
 Slider.prototype.handleClick = function (event) {
-
+	
   var diffX = event.pageX - this.domNode.offsetLeft;
   this.valueNow = parseInt(((this.valueMax - this.valueMin) * diffX)/ this.railWidth);
   this.moveSliderTo(this.valueNow+this.thumbWidth);
