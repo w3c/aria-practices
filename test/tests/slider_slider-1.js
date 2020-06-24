@@ -6,7 +6,7 @@ const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaRoles = require('../util/assertAriaRoles');
 
-const exampleFile = 'slider/slider-1.html';
+const exampleFile = 'slider/slider-1-svg.html';
 
 const ex = {
   sliderSelector: '#ex1 [role="slider"]',
