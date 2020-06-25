@@ -85,7 +85,6 @@ Menubar.prototype.init = function () {
 /* FOCUS MANAGEMENT METHODS */
 
 Menubar.prototype.setFocusToItem = function (newItem) {
-
   var flag = false;
 
   for (var i = 0; i < this.menubarItems.length; i++) {
@@ -118,7 +117,7 @@ Menubar.prototype.setFocusToLastItem = function (flag) {
 };
 
 Menubar.prototype.setFocusToPreviousItem = function (currentItem) {
-  var index;
+  var index, newItem;
 
   if (currentItem === this.firstItem) {
     newItem = this.lastItem;
