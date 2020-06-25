@@ -196,7 +196,7 @@
 
   // Detect if a tab is deletable
   function determineDeletable (event) {
-    target = event.target;
+    var target = event.target;
 
     if (target.getAttribute('data-deletable') !== null) {
       // Delete target tab
@@ -253,7 +253,7 @@
 
   // Only activate tab on focus if it still has focus after the delay
   function checkTabFocus (target) {
-    focused = document.activeElement;
+    var focused = document.activeElement;
 
     if (target === focused) {
       activateTab(target, false);

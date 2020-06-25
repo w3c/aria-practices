@@ -196,7 +196,7 @@
 
   // Detect if a tab is deletable
   function determineDeletable (event) {
-    target = event.target;
+    var target = event.target;
 
     if (target.getAttribute('data-deletable') !== null) {
       // Delete target tab
