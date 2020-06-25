@@ -5,6 +5,8 @@
 *
 */
 
+'use strict';
+
 /*
 *   @constructor CarouselTablist
 *

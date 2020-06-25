@@ -7,6 +7,8 @@
 *   Desc:   Creates a menubar to control the styling of text in a textarea element
 */
 
+'use strict';
+
 window.addEventListener('load', function () {
   var menubar      = new MenubarAction(document.getElementById('menubar1'));
   var styleManager = new StyleManager('textarea1');

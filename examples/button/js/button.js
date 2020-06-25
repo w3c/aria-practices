@@ -5,6 +5,8 @@
 *   JS code for the button design pattern
 */
 
+'use strict';
+
 var ICON_MUTE_URL = 'images/mute.svg#icon-mute';
 var ICON_SOUND_URL = 'images/mute.svg#icon-sound';
 

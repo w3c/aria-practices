@@ -1,3 +1,4 @@
+'use strict';
 /* exported TreeGrid */
 function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
   function initAttributes () {

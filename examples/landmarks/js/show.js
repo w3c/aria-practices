@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+'use strict';
+
 function showLandmarks (event) {
   if (typeof window[initLandmarks] !== 'function') {
     window[initLandmarks] = initLandmarks();

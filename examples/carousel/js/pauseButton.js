@@ -5,6 +5,8 @@
 *
 */
 
+'use strict';
+
 var PauseButton = function (domNode, carouselObj) {
   this.domNode = domNode;
 

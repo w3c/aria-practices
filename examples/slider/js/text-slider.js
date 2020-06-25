@@ -7,6 +7,8 @@
 *   Desc:   Text slider widget that implements ARIA Authoring Practices
 */
 
+'use strict';
+
 // Create Text Slider that contains value, valuemin, valuemax, and valuenow
 
 var TSlider = function (domNode)  {
