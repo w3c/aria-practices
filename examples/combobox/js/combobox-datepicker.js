@@ -7,13 +7,12 @@
 
 var ComboboxDatePicker = function (cdp) {
   this.buttonLabel = 'Date';
-  this.dayLabels = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   this.monthLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
   this.messageCursorKeys = 'Cursor keys can navigate dates';
   this.lastMessage = '';
 
-  this.comboboxNode   = cdp.querySelector('input[type="text"');
+  this.comboboxNode   = cdp.querySelector('input[type="text"]');
   this.buttonNode     = cdp.querySelector('.group button');
   this.dialogNode     = cdp.querySelector('[role="dialog"]');
   this.messageNode    = this.dialogNode.querySelector('.dialog-message');
