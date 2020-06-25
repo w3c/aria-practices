@@ -7,6 +7,8 @@
 *   Desc:   Popup menu widget that implements ARIA Authoring Practices
 */
 
+'use strict';
+
 /*
 *   @constructor PopupMenuAction
 *
@@ -74,7 +76,7 @@ PopupMenuAction.prototype.init = function () {
 
   // Traverse the element children of domNode: configure each with
   // menuitem role behavior and store reference in menuitems array.
-  menuElements = this.domNode.getElementsByTagName('LI');
+  var menuElements = this.domNode.getElementsByTagName('LI');
 
   for (var i = 0; i < menuElements.length; i++) {
 

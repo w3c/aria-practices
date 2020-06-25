@@ -5,6 +5,8 @@
 *   File:   datepicker.js
 */
 
+'use strict';
+
 var CalendarButtonInput = CalendarButtonInput || {};
 var DatePickerDay = DatePickerDay || {};
 

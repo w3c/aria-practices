@@ -5,6 +5,8 @@
 *   File:   datepickerDay.js
 */
 
+'use strict';
+
 var DatePickerDay = function (domNode, datepicker, index, row, column) {
 
   this.index = index;
