@@ -97,7 +97,7 @@ ariaTest('Alt + down arrow opens listbox', exampleFile, 'combobox-key-alt-down-a
   t.false(await listbox.isDisplayed(), 'Listbox should be hidden on load');
 
   // Send ALT + ARROW_DOWN to the combo
-  await combobox.sendKeys(Key.ALT, Key.ARROW_DOWN);
+  await combobox.sendKeys(Key.chord(Key.ALT, Key.ARROW_DOWN));
 
   // Check that the listbox is displayed
   t.true(await listbox.isDisplayed(), 'alt + down should show the listbox');
@@ -107,7 +107,27 @@ ariaTest('Alt + down arrow opens listbox', exampleFile, 'combobox-key-alt-down-a
   t.is(await combobox.getAttribute('aria-activedescendant'), firstOptionId, 'Alt + Down should highlight the first option');
 });
 
-ariaTest('Down arrow opens listbox', exampleFile, 'combobox-key-down-arrow', async (t) => {
+ariaTest('Up arrow opens listbox', exampleFile, 'combobox-key-up-arrow', async (t) => {
+  const combobox = await t.context.session.findElement(By.css(ex.comboSelector));
+  const listbox = await t.context.session.findElement(By.css(ex.listboxSelector));
+  const firstOptionId = await t.context.session.findElement(By.css(`${ex.listboxSelector} [role=option]`)).getAttribute('id');
+
+  // listbox starts collapsed
+  t.false(await listbox.isDisplayed(), 'Listbox should be hidden on load');
+
+  // Send ARROW_UP to the combo
+  await combobox.sendKeys(Key.ARROW_UP);
+
+  // Check that the listbox is displayed
+  t.true(await listbox.isDisplayed(), 'arrow up should show the listbox');
+  t.is(await combobox.getAttribute('aria-expanded'), 'true', 'aria-expanded should be true when opened');
+
+  // the first option should be selected
+  t.is(await combobox.getAttribute('aria-activedescendant'), firstOptionId, 'arrow up should highlight the first option');
+});
+
+
+ariaTest(' arrow opens listbox', exampleFile, 'combobox-key-down-arrow', async (t) => {
   const combobox = await t.context.session.findElement(By.css(ex.comboSelector));
   const listbox = await t.context.session.findElement(By.css(ex.listboxSelector));
   const firstOptionId = await t.context.session.findElement(By.css(`${ex.listboxSelector} [role=option]`)).getAttribute('id');
@@ -215,7 +235,7 @@ ariaTest('End opens listbox to last option', exampleFile, 'combobox-key-end', as
   t.is(await combobox.getAttribute('aria-activedescendant'), lastOptionId, 'end should always highlight the last option');
 });
 
-ariaTest('character keys open listbox to matching option', exampleFile, 'listbox-key-char', async (t) => {
+ariaTest('character keys open listbox to matching option', exampleFile, 'printable-chars', async (t) => {
   const combobox = await t.context.session.findElement(By.css(ex.comboSelector));
   const listbox = await t.context.session.findElement(By.css(ex.listboxSelector));
   const secondOptionId = await t.context.session.findElement(By.css(`${ex.listboxSelector} [role=option]:nth-child(2)`)).getAttribute('id');
@@ -290,6 +310,23 @@ ariaTest('Space closes listbox and selects option', exampleFile, 'listbox-key-sp
   t.is(await combobox.getText(), secondOptionText, 'Combobox inner text should match the second option');
   t.is(await secondOption.getAttribute('aria-selected'), 'true', 'Second option has aria-selected set to true');
 });
+
+ariaTest('Space closes listbox and selects option', exampleFile, 'listbox-key-alt-up-arrow', async (t) => {
+  const combobox = await t.context.session.findElement(By.css(ex.comboSelector));
+  const listbox = await t.context.session.findElement(By.css(ex.listboxSelector));
+  const secondOption = await t.context.session.findElement(By.css(`${ex.listboxSelector} [role=option]:nth-child(2)`));
+
+  // Open, move to third option, send ALT+UP ARROW
+  await combobox.sendKeys(Key.ENTER, Key.ARROW_DOWN);
+  const secondOptionText = await secondOption.getText();
+  await combobox.sendKeys(Key.chord(Key.ALT, Key.ARROW_UP));
+
+  // listbox is collapsed and the value is set to the third option
+  t.false(await listbox.isDisplayed(), 'Listbox should be hidden');
+  t.is(await combobox.getText(), secondOptionText, 'Combobox inner text should match the second option');
+  t.is(await secondOption.getAttribute('aria-selected'), 'true', 'Second option has aria-selected set to true');
+});
+
 
 ariaTest('Escape closes listbox without selecting option', exampleFile, 'listbox-key-escape', async (t) => {
   const combobox = await t.context.session.findElement(By.css(ex.comboSelector));
@@ -450,7 +487,7 @@ ariaTest('PageUp moves up 10 options, and does not wrap', exampleFile, 'listbox-
   t.is(await combobox.getAttribute('aria-activedescendant'), optionId, 'aria-activedescendant points to the first option after second pageup');
 });
 
-ariaTest('Multiple single-character presses cycle through options', exampleFile, 'listbox-key-char', async (t) => {
+ariaTest('Multiple single-character presses cycle through options', exampleFile, 'printable-chars', async (t) => {
   const combobox = await t.context.session.findElement(By.css(ex.comboSelector));
   const options = await t.context.queryElements(t, `${ex.listboxSelector} [role=option]`);
 
@@ -484,7 +521,7 @@ ariaTest('Multiple single-character presses cycle through options', exampleFile,
   t.is(await combobox.getAttribute('aria-activedescendant'), `${matchingId}`, 'aria-activedescendant points to the second option beginning with "b"');
 });
 
-ariaTest('Typing multiple characters refines search', exampleFile, 'listbox-key-char', async (t) => {
+ariaTest('Typing multiple characters refines search', exampleFile, 'printable-chars', async (t) => {
   const combobox = await t.context.session.findElement(By.css(ex.comboSelector));
   const options = await t.context.queryElements(t, `${ex.listboxSelector} [role=option]`);
 
