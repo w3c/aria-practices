@@ -42,6 +42,11 @@ aria.widget.SourceCode = function () {
 /**
  * Adds source code
  *
+ * @param {string} locationId      - ID of `code` element that will display the example html
+ * @param {string} codeID          - ID of element containing only and all of the html used to render the example widget
+ * @param {string} exampleHeaderId - ID of header element underwhich the "Open in Codepen" button belongs
+ * @param {string} cssJsFilesId    - ID of element containing links to all the relevent js and css files used for the example widget
+ *
  * @method add
  * @memberof aria.widget.SourceCode
  */
