@@ -8,15 +8,14 @@
   function addSupportNotice() {
     // The "Example" heading
     var headings = document.querySelectorAll('h2');
-    var exampleHeading = null;
+    var foundExampleHeading;
     for (var i = 0; i < headings.length; ++i) {
-      var heading = headings[i];
-      if (heading.textContent.trim().match(/^Examples?$/)) {
-        exampleHeading = heading;
+      if (headings[i].textContent.trim().match(/^Examples?$/)) {
+        foundExampleHeading = true;
         break;
       }
     }
-    if (!exampleHeading) {
+    if (!foundExampleHeading) {
       return;
     }
 
@@ -53,8 +52,9 @@
       for (var i = 0; i < links.length; ++i) {
         links[i].pathname = urlPrefix;
       }
-      // Insert the support notice before the page's example heading
-      exampleHeading.parentNode.insertBefore(noticeElement, exampleHeading);
+      // Insert the support notice before the page's h1
+      var heading = document.querySelector('h1');
+      heading.parentNode.insertBefore(noticeElement, heading.nextSibling);
     })
   }
 }());
