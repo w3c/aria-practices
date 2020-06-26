@@ -44,7 +44,7 @@ aria.widget.SourceCode = function () {
  *
  * @param {string} locationId      - ID of `code` element that will display the example html
  * @param {string} codeID          - ID of element containing only and all of the html used to render the example widget
- * @param {string} exampleHeaderId - ID of header element underwhich the "Open in Codepen" button belongs
+ * @param {string} exampleHeaderId - ID of header element under which the "Open in Codepen" button belongs
  * @param {string} cssJsFilesId    - ID of element containing links to all the relevent js and css files used for the example widget
  *
  * @method add
@@ -324,6 +324,7 @@ function indentLines (input, indentation) {
  */
 function addOpenInCodePenForm (exampleIndex, exampleHeaderId, exampleCodeId, exampleFilesId) {
   var jsonInputId = 'codepen-data-ex-' + exampleIndex;
+  var buttonId = exampleCodeId + '-codepenbutton'
 
   var form = document.createElement('form');
   form.setAttribute('action', 'https://codepen.io/pen/define');
@@ -357,24 +358,52 @@ function addOpenInCodePenForm (exampleIndex, exampleHeaderId, exampleCodeId, exa
     head: '<base href="' + location.href + '">'
   };
 
-  var getCssJsFilePromises = $('#' + exampleFilesId + ' a').map(function () {
-    var href = this.href;
+  var totalFetchedFiles = 0;
+  var fileLinks = document.querySelectorAll('#' + exampleFilesId + ' a');
 
-    return $.get(href).then(function (fileContent) {
-      if (href.indexOf('css') !== -1) {
-        postJson.css = postJson.css.concat(fileContent);
-      }
-      if (href.indexOf('js') !== -1) {
-        postJson.js = postJson.js.concat(fileContent);
-      }
-    });
-  });
+  for (let fileLink of fileLinks) {
 
-  $.when.apply($, getCssJsFilePromises).then(function () {
-    console.log('adding the json to: ', jsonInputId);
-    document.getElementById(jsonInputId).value = JSON.stringify(postJson);
-  });
+      var request = new XMLHttpRequest();
+
+      request.open('GET', fileLink.href, true);
+      request.onload = function() {
+          var href = this.responseURL;
+          if (this.status >= 200 && this.status < 400) {
+              if (href.indexOf('css') !== -1) {
+                postJson.css = postJson.css.concat(this.response);
+              }
+              if (href.indexOf('js') !== -1) {
+                postJson.js = postJson.js.concat(this.response);
+              }
+              totalFetchedFiles++;
+          }
+          else {
+              hideButton(buttonId, "Could not load resource: " + href);
+          }
+      };
+      request.onerror = function() {
+          hideButton(buttonId, "Could not load resource: " + fileLink.href);
+      };
+      request.send();
+  }
+
+    var timerId = setInterval(() => {
+        console.log(totalFetchedFiles);
+        if (totalFetchedFiles === fileLinks.length) {
+            document.getElementById(jsonInputId).value = JSON.stringify(postJson);
+            clearInterval(timerId);
+        }
+    }, 500);
+
+    setTimeout(() => {
+        clearInterval(timerId);
+    }, 10000);
 }
 
+function hideButton(buttonId, errorMsg) {
+    let button = document.querySelector(buttonId);
+    button.style.display = "none";
+    console.log("Removing 'Open in Codepen button'. " + errorMsg);
+}
 
 var sourceCode = new aria.widget.SourceCode();
