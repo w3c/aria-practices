@@ -7,7 +7,6 @@
   <!--  Core js and css shared by all examples; do not modify when using this template. -->
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
   <link rel="stylesheet" href="../css/core.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="../js/examples.js"></script>
   <script src="../js/highlight.pack.js"></script>
   <script src="../js/app.js"></script>
@@ -46,118 +45,116 @@
       </li>
     </ul>
     <section>
-      <div class="example-header">
-        <h2 id="ex_label">Example</h2>
-      </div>
-      <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
-      <div id="ex1">
-        <h3>Hotel Price Range</h3>
-        <div class="aria-widget-slider">
-          <div class="rail-label min">
-            0
+       <h2 id="ex_label">Example</h2>
+          <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
+          <div id="ex1">
+              <h3>Hotel Price Range</h3>
+              <div class="aria-widget-slider">
+                <div class="rail-label min">
+                  0
+                </div>
+                <div class="rail" style="width: 300px;">
+                  <img id="minPriceHotel"
+                    src="images/min-arrow.png"
+                    role="slider"
+                    tabindex="0"
+                    class="min thumb"
+                    aria-valuemin="0"
+                    aria-valuenow="100"
+                    aria-valuetext="$100"
+                    aria-valuemax="400"
+                    aria-label="Hotel Minimum Price"/>
+                  <img id="maxPriceHotel"
+                    src="images/max-arrow.png"
+                    role="slider"
+                    tabindex="0"
+                    class="max thumb"
+                    aria-valuemin="0"
+                    aria-valuenow="250"
+                    aria-valuetext="$250"
+                    aria-valuemax="400"
+                    aria-label="Hotel Maximum Price"/>
+                </div>
+                <div class="rail-label max">
+                  0
+                </div>
+              </div>
+              <h3>Flight Price Range</h3>
+              <div class="aria-widget-slider">
+              <div class="rail-label min">
+                0
+              </div>
+              <div class="rail" style="width: 300px;">
+                <img src="images/min-arrow.png"
+                    role="slider" tabindex="0"
+                    class="min thumb"
+                    aria-valuemin="0"
+                    aria-valuenow="100"
+                    aria-valuetext="$100"
+                    aria-valuemax="250"
+                    aria-label="Flight Minimum Price">
+                <img src="images/max-arrow.png"
+                  role="slider"
+                  tabindex="0"
+                  class="max thumb"
+                  aria-valuemin="0"
+                  aria-valuenow="250"
+                  aria-valuetext="$250"
+                  aria-valuemax="1000"
+                  aria-label="Flight Maximum Price">
+              </div>
+              <div class="rail-label max">
+                0
+              </div>
+              </div>
           </div>
-          <div class="rail" style="width: 300px;">
-            <img id="minPriceHotel"
-              src="images/min-arrow.png"
-              role="slider"
-              tabindex="0"
-              class="min thumb"
-              aria-valuemin="0"
-              aria-valuenow="100"
-              aria-valuetext="$100"
-              aria-valuemax="400"
-              aria-label="Hotel Minimum Price"/>
-            <img id="maxPriceHotel"
-              src="images/max-arrow.png"
-              role="slider"
-              tabindex="0"
-              class="max thumb"
-              aria-valuemin="0"
-              aria-valuenow="250"
-              aria-valuetext="$250"
-              aria-valuemax="400"
-              aria-label="Hotel Maximum Price"/>
-          </div>
-          <div class="rail-label max">
-            0
-          </div>
-        </div>
-        <h3>Flight Price Range</h3>
-        <div class="aria-widget-slider">
-          <div class="rail-label min">
-            0
-          </div>
-          <div class="rail" style="width: 300px;">
-            <img src="images/min-arrow.png"
-              role="slider" tabindex="0"
-              class="min thumb"
-              aria-valuemin="0"
-              aria-valuenow="100"
-              aria-valuetext="$100"
-              aria-valuemax="250"
-              aria-label="Flight Minimum Price">
-            <img src="images/max-arrow.png"
-              role="slider"
-              tabindex="0"
-              class="max thumb"
-              aria-valuemin="0"
-              aria-valuenow="250"
-              aria-valuetext="$250"
-              aria-valuemax="1000"
-              aria-label="Flight Maximum Price">
-          </div>
-          <div class="rail-label max">
-            0
-          </div>
-        </div>
-      </div>
-      <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
+          <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
     </section>
 
     <section>
-      <h2 id="kbd_label">Keyboard Support</h2>
-      <table aria-labelledby="kbd_label" class="def">
-        <thead>
-          <tr>
-            <th>Key</th>
-            <th>Function</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr data-test-id="key-right-arrow">
-            <th><kbd>Right Arrow</kbd></th>
-            <td>Increases slider value one step.</td>
-          </tr>
-          <tr data-test-id="key-up-arrow">
-            <th><kbd>Up Arrow</kbd></th>
-            <td>Increases slider value one step.</td>
-          </tr>
-          <tr data-test-id="key-left-arrow">
-            <th><kbd>Left Arrow</kbd></th>
-            <td>Decreases slider value one step.</td>
-          </tr>
-          <tr data-test-id="key-down-arrow">
-            <th><kbd>Down Arrow</kbd></th>
-            <td>Decreases slider value one step.</td>
-          </tr>
-          <tr data-test-id="key-page-up">
-            <th><kbd>Page Up</kbd></th>
-            <td>Increases slider value multiple steps. In this slider, jumps ten steps.</td>
-          </tr>
-          <tr data-test-id="key-page-down">
-            <th><kbd>Page Down</kbd></th>
-            <td>Decreases slider value multiple steps. In this slider, jumps ten steps.</td>
-          </tr>
-          <tr data-test-id="key-home">
-            <th><kbd>Home</kbd></th>
-            <td>Sets slider to its minimum value.</td>
-          </tr>
-          <tr data-test-id="key-end">
-            <th><kbd>End</kbd></th>
-            <td>Sets slider to its maximum value.</td>
-          </tr>
-        </tbody>
-      </table>
+        <h2 id="kbd_label">Keyboard Support</h2>
+        <table aria-labelledby="kbd_label" class="def">
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-test-id="key-right-arrow">
+              <th><kbd>Right Arrow</kbd></th>
+              <td>Increases slider value one step.</td>
+            </tr>
+            <tr data-test-id="key-up-arrow">
+              <th><kbd>Up Arrow</kbd></th>
+              <td>Increases slider value one step.</td>
+            </tr>
+            <tr data-test-id="key-left-arrow">
+              <th><kbd>Left Arrow</kbd></th>
+              <td>Decreases slider value one step.</td>
+            </tr>
+            <tr data-test-id="key-down-arrow">
+              <th><kbd>Down Arrow</kbd></th>
+              <td>Decreases slider value one step.</td>
+            </tr>
+            <tr data-test-id="key-page-up">
+              <th><kbd>Page Up</kbd></th>
+              <td>Increases slider value multiple steps. In this slider, jumps ten steps.</td>
+            </tr>
+            <tr data-test-id="key-page-down">
+              <th><kbd>Page Down</kbd></th>
+              <td>Decreases slider value multiple steps. In this slider, jumps ten steps.</td>
+            </tr>
+            <tr data-test-id="key-home">
+              <th><kbd>Home</kbd></th>
+              <td>Sets slider to its minimum value.</td>
+            </tr>
+            <tr data-test-id="key-end">
+              <th><kbd>End</kbd></th>
+              <td>Sets slider to its maximum value.</td>
+            </tr>
+          </tbody>
+        </table>
     </section>
 
     <section>
@@ -251,23 +248,23 @@
       </table>
     </section>
 
-    <section>
-      <h2>Javascript and CSS Source Code</h2>
-      <ul id="cssJsFiles">
-        <li>CSS: <a href="css/multithumb-slider.css" type="tex/css">multithumb-slider.css</a></li>
-        <li>Javascript: <a href="js/multithumb-slider.js" type="text/javascript">multithumb-slider.js</a></li>
-      </ul>
+  <section>
+        <h2>Javascript and CSS Source Code</h2>
+        <ul>
+          <li>CSS: <a href="css/multithumb-slider.css" type="tex/css">multithumb-slider.css</a></li>
+          <li>Javascript: <a href="js/multithumb-slider.js" type="text/javascript">multithumb-slider.js</a></li>
+        </ul>
     </section>
 
     <section>
-      <h2 id="sc1_label">HTML Source Code</h2>
-      <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
-      <pre><code id="sc1"></code></pre>
-      <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
-      <script>
-        sourceCode.add('sc1', 'ex1', 'ex_label', 'cssJsFiles');
-        sourceCode.make();
-      </script>
+        <h2 id="sc1_label">HTML Source Code</h2>
+        <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
+        <pre><code id="sc1"></code></pre>
+        <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
+        <script>
+          sourceCode.add('sc1', 'ex1');
+          sourceCode.make();
+        </script>
     </section>
 
   </main>
