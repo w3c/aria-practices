@@ -85,8 +85,13 @@ FormatToolbar.prototype.init = function () {
 
 FormatToolbar.prototype.handleContainerClick = function () {
   if ( event.target !== this.domNode ) return;
-  this.setFocusToFirst();
+  this.setFocusCurrentItem();
 }
+
+FormatToolbar.prototype.setFocusCurrentItem = function () {
+  var item = this.domNode.querySelector('[tabindex="0"]');
+  item.focus();
+};
 
 FormatToolbar.prototype.selectTextContent = function () {
   this.start = this.textarea.selectionStart;
