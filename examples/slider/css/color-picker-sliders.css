@@ -1,0 +1,140 @@
+/* CSS Document */
+
+.color-picker-sliders label {
+  display: block;
+}
+
+.color-box-sliders .label {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 1 em;
+}
+
+.color-picker-sliders .color-box {
+  width: 200px;
+  height: 200px;
+  border: black solid medium;
+  text-align: center;
+  padding: 0.25em;
+}
+
+.color-picker-sliders .color-info {
+  padding-top: 5px;
+}
+
+.color-group > input,
+.color-group > button,
+.color-group > div {
+  display: inline;
+}
+
+.color-group button.dec10,
+.color-group button.dec,
+.color-group button.inc,
+.color-group button.inc10 {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+}
+
+.color-group .hc-background {
+  fill: white;
+}
+
+.color-group button.change circle.background {
+  fill: #ddd;
+  stroke: transparent;
+  stroke-width: 2px;
+}
+
+.color-group .color-slider text {
+  fill: #666;
+}
+
+.color-group.active .color-slider text,
+.color-group .color-slider:focus text,
+.color-group .color-slider:hover text {
+  fill: black;
+}
+
+.color-group .color-group button.change text {
+  stroke: black;
+  font-family: sans-serif;
+}
+
+.color-group .color-slider {
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 3em;
+}
+
+.color-group .color-slider.value {
+  width: 9000em;
+  text-align: right;
+}
+
+.color-group .color-slider svg .valueBackground {
+  fill: white;
+  stroke-width: 0;
+}
+
+.color-group .color-slider svg .rail {
+  fill: #bbb;
+  stroke: transparent;
+  stroke-width: 2px;
+  opacity: 0.5;
+}
+
+.color-group .color-slider svg .fill {
+  stroke-width: 0;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.color-group .color-slider svg .green {
+  fill: green;
+}
+
+.color-group .color-slider svg .red {
+  fill: red;
+}
+
+.color-group .color-slider svg .blue {
+  fill: blue;
+}
+
+.color-group .color-slider svg .thumb {
+  fill: #666;
+  stroke: transparent;
+  stroke-width: 2px;
+}
+
+.color-group .color-group button.change:focus,
+.color-group .color-slider:focus {
+  outline: none;
+}
+
+.color-group button.change:focus circle.background,
+.color-group button.change:hover circle.background {
+  stroke: #005a9c;
+}
+
+.color-group.active .color-slider rect,
+.color-group:hover .color-slider rect {
+  opacity: 1;
+}
+
+.color-group .color-slider:focus .rail,
+.color-group .color-slider:hover .rail {
+  fill: white;
+  stroke: #005a9c;
+  opacity: 1;
+}
+
+.color-group .color-slider:focus .thumb,
+.color-group .color-slider:hover .thumb {
+  fill: #ddd;
+  stroke: #005a9c;
+  opacity: 1;
+}
