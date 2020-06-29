@@ -1,0 +1,51 @@
+/* CSS Document */
+
+div.aria-widget-vertical-slider {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+div.aria-widget-vertical-slider .rail {
+  margin: 2px;
+  padding: 1px;
+  background-color: #eee;
+  border: 1px solid #888;
+  position: relative;
+  left: 3.8em;
+  width: 4px;
+}
+
+div.aria-widget-vertical-slider .thumb {
+  border: 1px solid #888;
+  border-top-color: #666;
+  border-left-color: #666;
+  background-color: #ddd;
+  position: relative;
+}
+
+div.aria-widget-vertical-slider .rail .thumb.focus,
+div.aria-widget-vertical-slider .rail .thumb:hover {
+  outline: 2px solid #888;
+  background-color: #e0cb52;
+}
+
+div.aria-widget-vertical-slider .rail.focus {
+  background-color: #aaa;
+}
+
+div.aria-widget-vertical-slider .label,
+div.aria-widget-vertical-slider .value {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  text-align: center;
+  width: 8em;
+}
+
+div.aria-widget-vertical-slider .label {
+  font-weight: bold;
+  font-size: 110%;
+}
+
+#id_kbd {
+  clear: both;
+}
