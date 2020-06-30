@@ -328,7 +328,7 @@ ColorPickerSliders.prototype.getColorRGB = function () {
   var g = this.sliders.green.sliderNode.getAttribute('aria-valuenow');
   var b = this.sliders.blue.sliderNode.getAttribute('aria-valuenow');
 
-  return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+  return r + ', ' + g + ', ' + b;
 };
 
 ColorPickerSliders.prototype.updateColorBox = function () {
