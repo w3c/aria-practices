@@ -1,3 +1,4 @@
+'use strict';
 var respecConfig = {
   // Embed RDFa data in the output.
   doRDFa: '1.2',

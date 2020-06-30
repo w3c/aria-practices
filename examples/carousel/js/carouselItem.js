@@ -4,6 +4,8 @@
 *   Desc:   Carousel Tab widget that implements ARIA Authoring Practices
 */
 
+'use strict';
+
 /*
 *   @constructor CarouselItem
 *
