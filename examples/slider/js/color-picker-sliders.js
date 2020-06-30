@@ -1,3 +1,4 @@
+'use strict';
 /*
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
@@ -46,7 +47,7 @@ ColorPickerSliders.prototype.initSliderRefs = function (sliderRef, color) {
 // Initialize slider
 ColorPickerSliders.prototype.init = function () {
 
-  for (slider in this.sliders) {
+  for (var slider in this.sliders) {
 
     console.log('[slider]: ' + slider);
 
@@ -302,7 +303,7 @@ ColorPickerSliders.prototype.handleBlur = function (event) {
   var slider = this.getSlider(event.currentTarget);
   if (!slider.groupNode.querySelector('.focus')) {
     slider.groupNode.classList.remove('active');
-  };
+  }
 };
 
 ColorPickerSliders.prototype.getColorHex = function () {
