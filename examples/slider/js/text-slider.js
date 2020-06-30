@@ -7,8 +7,6 @@
 *   Desc:   Text slider widget that implements ARIA Authoring Practices
 */
 
-'use strict';
-
 // Create Text Slider that contains value, valuemin, valuemax, and valuenow
 
 var TSlider = function (domNode)  {
@@ -181,7 +179,7 @@ TSlider.prototype.handleMouseDown = function (event) {
 
   };
 
-  // bind a mousemove event handler to move pointer
+    // bind a mousemove event handler to move pointer
   document.addEventListener('mousemove', handleMouseMove);
 
   // bind a mouseup event handler to stop tracking mouse movements
@@ -210,7 +208,7 @@ TSlider.prototype.handleClick = function (event) {
 // Initialise TSliders on the page
 window.addEventListener('load', function () {
 
-  var sliders = document.querySelectorAll('.aria-widget-text-slider [role=slider]');
+  var sliders = document.querySelectorAll('.aria-widget-text-slider [role=slider]');;
 
   for (var i = 0; i < sliders.length; i++) {
     var s = new TSlider(sliders[i]);
