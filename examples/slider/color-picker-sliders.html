@@ -270,6 +270,28 @@
           </tr>
         </thead>
         <tbody>
+         <tr data-test-id="group-role">
+            <th scope="row"><code>group</code></th>
+            <td></td>
+            <td><code>div</code></td>
+            <td>
+              <ul>
+                <li>Identifies the <code>div</code> as a group of sliders.</li>
+                <li>The group provides a means to inform assistive technology users that the three sliders are all related to the single purpose of choosing a color.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr data-test-id="group-aria-labelledby">
+            <td></td>
+            <th scope="row"><code>aria-labelledby="IDREFs"</code></th>
+            <td><code>div</code></td>
+            <td>
+              <ul>
+                <li>Contains the ID that reference the <code>div</code> element that provide the accessible name for the group.</li>
+                <li>One ID refers to the visible label <q>Color Picker</q>.</li>
+              </ul>
+            </td>
+          </tr>
           <tr data-test-id="slider-role">
             <th scope="row">
               <code>slider</code>
@@ -334,6 +356,18 @@
               <code>div</code>
             </td>
             <td>Refers to the element containing the name of the slider.</td>
+          </tr>
+          <tr data-test-id="button-aria-label">
+            <td></td>
+            <th scope="row"><code>aria-label="NAME_STRING"</code></th>
+            <td><code>button</code></td>
+            <td>Defines the accessible name for each increase and decrease button (<q>-10</q>, <q>-1</q>, <q>1</q>, and <q>+10</q>).</td>
+          </tr>
+          <tr data-test-id="button-tabindex">
+            <td></td>
+            <th scope="row"><code>tabindex="-1"</code></th>
+            <td><code>button</code></td>
+            <td>Removes the decrement and increment buttons from the page <kbd>Tab</kbd> sequence while keeping them focusable so they can be accessed with touch-based assistive technologies.</td>
           </tr>
         </tbody>
       </table>
