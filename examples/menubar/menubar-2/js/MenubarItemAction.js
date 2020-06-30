@@ -7,6 +7,8 @@
 *   Desc:   Menubar Menuitem widget that implements ARIA Authoring Practices
 */
 
+'use strict';
+
 /*
 *   @constructor MenubarItemAction
 *

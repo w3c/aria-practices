@@ -12,6 +12,7 @@
     "no-restricted-properties": [2, {
       "property": "findElements",
       "message": "Please use t.context.queryElements()."
-    }]
+    }],
+    "strict": [2, "global"]
   }
 }

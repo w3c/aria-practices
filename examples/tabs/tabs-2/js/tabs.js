@@ -2,6 +2,9 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 */
+
+'use strict';
+
 (function () {
   var tablist = document.querySelectorAll('[role="tablist"]')[0];
   var tabs;
@@ -193,7 +196,7 @@
 
   // Detect if a tab is deletable
   function determineDeletable (event) {
-    target = event.target;
+    var target = event.target;
 
     if (target.getAttribute('data-deletable') !== null) {
       // Delete target tab

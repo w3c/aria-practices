@@ -7,6 +7,8 @@
 *   Desc:   Menubutton widget that implements ARIA Authoring Practices
 */
 
+'use strict';
+
 /*
 *   @constructor MenuButton
 *
