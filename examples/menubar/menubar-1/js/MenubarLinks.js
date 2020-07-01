@@ -3,12 +3,14 @@
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 */
 
+'use strict';
+
 var Menubar = function (domNode) {
   var elementChildren,
     msgPrefix = 'Menubar constructor argument menubarNode ';
 
   // Check whether menubarNode is a DOM element
-  if (!domNode instanceof Element) {
+  if (!(domNode instanceof Element)) {
     throw new TypeError(msgPrefix + 'is not a DOM Element.');
   }
 
@@ -18,7 +20,7 @@ var Menubar = function (domNode) {
   }
 
   // Check whether menubarNode has A elements
-  e = domNode.firstElementChild;
+  var e = domNode.firstElementChild;
   while (e) {
     var menubarItem = e.firstElementChild;
     if (e && menubarItem && menubarItem.tagName !== 'A') {
@@ -55,10 +57,10 @@ Menubar.prototype.init = function () {
 
   // Traverse the element children of menubarNode: configure each with
   // menuitem role behavior and store reference in menuitems array.
-  elem = this.domNode.firstElementChild;
+  var elem = this.domNode.firstElementChild;
 
   while (elem) {
-    var menuElement = elem.firstElementChild;
+    menuElement = elem.firstElementChild;
 
     if (elem && menuElement && menuElement.tagName === 'A') {
       menubarItem = new MenubarItem(menuElement, this);
@@ -83,7 +85,6 @@ Menubar.prototype.init = function () {
 /* FOCUS MANAGEMENT METHODS */
 
 Menubar.prototype.setFocusToItem = function (newItem) {
-
   var flag = false;
 
   for (var i = 0; i < this.menubarItems.length; i++) {
@@ -116,7 +117,7 @@ Menubar.prototype.setFocusToLastItem = function (flag) {
 };
 
 Menubar.prototype.setFocusToPreviousItem = function (currentItem) {
-  var index;
+  var index, newItem;
 
   if (currentItem === this.firstItem) {
     newItem = this.lastItem;
@@ -131,7 +132,7 @@ Menubar.prototype.setFocusToPreviousItem = function (currentItem) {
 };
 
 Menubar.prototype.setFocusToNextItem = function (currentItem) {
-  var index;
+  var index, newItem;
 
   if (currentItem === this.lastItem) {
     newItem = this.firstItem;
@@ -146,8 +147,10 @@ Menubar.prototype.setFocusToNextItem = function (currentItem) {
 };
 
 Menubar.prototype.setFocusByFirstCharacter = function (currentItem, char) {
-  var start, index, char = char.toLowerCase();
+  var start, index;
   var flag = currentItem.domNode.getAttribute('aria-expanded') === 'true';
+
+  char = char.toLowerCase();
 
   // Get start index for search based on position of currentItem
   start = this.menubarItems.indexOf(currentItem) + 1;

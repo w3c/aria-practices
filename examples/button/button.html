@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Button Examples | WAI-ARIA Authoring Practices 1.1</title>
+  <title>Button Examples | WAI-ARIA Authoring Practices 1.2</title>
 
   <!-- Core JS and CSS shared by all examples. Do not modify when using this template. -->
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -52,7 +52,7 @@
         <p>This <q>Mute</q> toggle button uses an <code>a</code> element.</p>
         <a tabindex="0" role="button" id="toggle" aria-pressed="false">
           Mute
-          <svg>
+          <svg aria-hidden="true" focusable="false">
             <use xlink:href="images/mute.svg#icon-sound"></use>
           </svg>
         </a>
@@ -183,7 +183,7 @@
   </main>
 
   <nav>
-    <a href="../../#button">Button Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../../#button">Button Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
   </nav>
 </body>
 </html>

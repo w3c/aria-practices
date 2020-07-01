@@ -7,6 +7,8 @@
 *   Desc:   Menubar Menuitem widget that implements ARIA Authoring Practices
 */
 
+'use strict';
+
 /*
 *   @constructor MenubarItemAction
 *
@@ -120,13 +122,6 @@ MenubarItemAction.prototype.handleKeydown = function (event) {
     case this.keyCode.END:
     case this.keyCode.PAGEDOWN:
       this.menubar.setFocusToLastItem();
-      if (this.popupMenu) {
-        this.popupMenu.close();
-      }
-      flag = true;
-      break;
-
-    case this.keyCode.ESC:
       if (this.popupMenu) {
         this.popupMenu.close();
       }

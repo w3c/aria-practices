@@ -17,7 +17,7 @@
 
 .datepicker button.icon:focus {
   outline: none;
-  border-color: hsl(216, 80%, 55%);
+  border-color: hsl(216, 80%, 51%);
 }
 
 .datepicker span.arrow {
@@ -37,7 +37,7 @@
   width: 45%;
   clear: both;
   display: none;
-  border: 3px solid hsl(216, 80%, 55%);
+  border: 3px solid hsl(216, 80%, 51%);
   margin-top: 1em;
   border-radius: 5px;
   padding: 0;
@@ -46,7 +46,7 @@
 
 .datepicker .header {
   cursor: default;
-  background-color: hsl(216, 80%, 55%);
+  background-color: hsl(216, 80%, 51%);
   padding: 7px;
   font-weight: bold;
   text-transform: uppercase;
@@ -119,7 +119,7 @@
 }
 
 .datepicker .fa-calendar-alt {
-  color: hsl(216, 89%, 72%);
+  color: hsl(216, 89%, 51%);
 }
 
 .datepicker .monthYear {
@@ -193,6 +193,6 @@
   padding-top: 0.25em;
   padding-left: 1em;
   height: 1.75em;
-  background: hsl(216, 80%, 55%);
+  background: hsl(216, 80%, 51%);
   color: white;
 }

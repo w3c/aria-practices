@@ -5,6 +5,8 @@
 *   File:   datepicker.js
 */
 
+'use strict';
+
 var CalendarButtonInput = CalendarButtonInput || {};
 var DatePickerDay = DatePickerDay || {};
 
@@ -78,7 +80,6 @@ DatePicker.prototype.init = function () {
   this.prevMonthNode.addEventListener('keydown', this.handlePreviousMonthButton.bind(this));
   this.nextMonthNode.addEventListener('keydown', this.handleNextMonthButton.bind(this));
   this.prevYearNode.addEventListener('keydown', this.handlePreviousYearButton.bind(this));
-
   this.nextYearNode.addEventListener('keydown', this.handleNextYearButton.bind(this));
 
   document.body.addEventListener('mousedown', this.handleBackgroundMouseDown.bind(this), true);
@@ -97,6 +98,7 @@ DatePicker.prototype.init = function () {
       cell.classList.add('dateCell');
       var cellButton = document.createElement('button');
       cellButton.classList.add('dateButton');
+      cellButton.setAttribute('type', 'button');
       cell.appendChild(cellButton);
       row.appendChild(cell);
       var dpDay = new DatePickerDay(cellButton, this, index, i, j);
@@ -225,14 +227,6 @@ DatePicker.prototype.handleOkButton = function (event) {
     case 'keydown':
 
       switch (event.keyCode) {
-        case this.keyCode.ENTER:
-
-          this.setTextboxDate();
-
-          this.hide();
-          flag = true;
-          break;
-
         case this.keyCode.TAB:
           if (!event.shiftKey) {
             this.prevYearNode.focus();
@@ -274,10 +268,6 @@ DatePicker.prototype.handleCancelButton = function (event) {
     case 'keydown':
 
       switch (event.keyCode) {
-        case this.keyCode.ENTER:
-          this.hide();
-          flag = true;
-          break;
 
         case this.keyCode.ESC:
           this.hide();
@@ -587,5 +577,3 @@ DatePicker.prototype.setMessage = function (str) {
     this.lastMessage = str;
   }
 };
-
-

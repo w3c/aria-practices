@@ -2,10 +2,13 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 */
+
+'use strict';
+
 var MenuItem = function (domNode, menuObj) {
 
-  if (typeof popupObj !== 'object') {
-    popupObj = false;
+  if (typeof menuObj !== 'object') {
+    menuObj = false;
   }
 
   this.domNode = domNode;
@@ -173,6 +176,11 @@ MenuItem.prototype.setExpanded = function (value) {
 MenuItem.prototype.handleClick = function (event) {
   this.menu.setFocusToController();
   this.menu.close(true);
+  if (this.popupMenu) {
+    // for menuitem with menu, prevent default anchor behavior on click
+    // (which jumps to top of page for href="#" in some browsers)
+    event.preventDefault();
+  }
 };
 
 MenuItem.prototype.handleFocus = function (event) {

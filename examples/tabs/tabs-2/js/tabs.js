@@ -2,6 +2,9 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 */
+
+'use strict';
+
 (function () {
   var tablist = document.querySelectorAll('[role="tablist"]')[0];
   var tabs;
@@ -12,7 +15,7 @@
   function generateArrays () {
     tabs = document.querySelectorAll('[role="tab"]');
     panels = document.querySelectorAll('[role="tabpanel"]');
-  };
+  }
 
   // For easy reference
   var keys = {
@@ -36,9 +39,9 @@
   };
 
   // Bind listeners
-  for (i = 0; i < tabs.length; ++i) {
+  for (var i = 0; i < tabs.length; ++i) {
     addListeners(i);
-  };
+  }
 
   function addListeners (index) {
     tabs[index].addEventListener('click', clickEventListener);
@@ -47,13 +50,13 @@
 
     // Build an array with all tabs (<button>s) in it
     tabs[index].index = index;
-  };
+  }
 
   // When a tab is clicked, activateTab is fired to activate it
   function clickEventListener (event) {
     var tab = event.target;
     activateTab(tab, false);
-  };
+  }
 
   // Handle keydown on tabs
   function keydownEventListener (event) {
@@ -77,8 +80,8 @@
       case keys.down:
         determineOrientation(event);
         break;
-    };
-  };
+    }
+  }
 
   // Handle keyup on tabs
   function keyupEventListener (event) {
@@ -96,8 +99,8 @@
       case keys.space:
         activateTab(event.target);
         break;
-    };
-  };
+    }
+  }
 
   // When a tablist’s aria-orientation is set to vertical,
   // only up and down arrow should function.
@@ -111,18 +114,18 @@
       if (key === keys.up || key === keys.down) {
         event.preventDefault();
         proceed = true;
-      };
+      }
     }
     else {
       if (key === keys.left || key === keys.right) {
         proceed = true;
-      };
-    };
+      }
+    }
 
     if (proceed) {
       switchTabOnArrowPress(event);
-    };
-  };
+    }
+  }
 
   // Either focus the next, previous, first, or last tab
   // depending on key pressed
@@ -140,10 +143,10 @@
         }
         else if (pressed === keys.right || pressed == keys.down) {
           focusFirstTab();
-        };
-      };
-    };
-  };
+        }
+      }
+    }
+  }
 
   // Activates any given tab panel
   function activateTab (tab, setFocus) {
@@ -160,40 +163,40 @@
     // Get the value of aria-controls (which is an ID)
     var controls = tab.getAttribute('aria-controls');
 
-    // Remove hidden attribute from tab panel to make it visible
-    document.getElementById(controls).removeAttribute('hidden');
+    // Remove is-hidden class from tab panel to make it visible
+    document.getElementById(controls).classList.remove('is-hidden');
 
     // Set focus when required
     if (setFocus) {
       tab.focus();
-    };
-  };
+    }
+  }
 
   // Deactivate all tabs and tab panels
   function deactivateTabs () {
-    for (t = 0; t < tabs.length; t++) {
+    for (var t = 0; t < tabs.length; t++) {
       tabs[t].setAttribute('tabindex', '-1');
       tabs[t].setAttribute('aria-selected', 'false');
-    };
+    }
 
-    for (p = 0; p < panels.length; p++) {
-      panels[p].setAttribute('hidden', 'hidden');
-    };
-  };
+    for (var p = 0; p < panels.length; p++) {
+      panels[p].classList.add('is-hidden');
+    }
+  }
 
   // Make a guess
   function focusFirstTab () {
     tabs[0].focus();
-  };
+  }
 
   // Make a guess
   function focusLastTab () {
     tabs[tabs.length - 1].focus();
-  };
+  }
 
   // Detect if a tab is deletable
   function determineDeletable (event) {
-    target = event.target;
+    var target = event.target;
 
     if (target.getAttribute('data-deletable') !== null) {
       // Delete target tab
@@ -208,9 +211,9 @@
       }
       else {
         activateTab(tabs[target.index - 1]);
-      };
-    };
-  };
+      }
+    }
+  }
 
   // Deletes a tab and its panel
   function deleteTab (event) {
@@ -219,7 +222,7 @@
 
     target.parentElement.removeChild(target);
     panel.parentElement.removeChild(panel);
-  };
+  }
 
   // Determine whether there should be a delay
   // when user navigates with the arrow keys
@@ -235,9 +238,9 @@
       else {
         // If no value is specified, default to 300ms
         delay = 300;
-      };
-    };
+      }
+    }
 
     return delay;
-  };
+  }
 }());

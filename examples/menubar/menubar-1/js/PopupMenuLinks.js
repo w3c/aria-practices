@@ -2,12 +2,15 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 */
+
+'use strict';
+
 var PopupMenu = function (domNode, controllerObj) {
   var elementChildren,
     msgPrefix = 'PopupMenu constructor argument domNode ';
 
   // Check whether domNode is a DOM element
-  if (!domNode instanceof Element) {
+  if (!(domNode instanceof Element)) {
     throw new TypeError(msgPrefix + 'is not a DOM Element.');
   }
   // Check whether domNode has child elements
@@ -178,7 +181,9 @@ PopupMenu.prototype.setFocusToNextItem = function (currentItem) {
 };
 
 PopupMenu.prototype.setFocusByFirstCharacter = function (currentItem, char) {
-  var start, index, char = char.toLowerCase();
+  var start, index;
+
+  char = char.toLowerCase();
 
   // Get start index for search based on position of currentItem
   start = this.menuitems.indexOf(currentItem) + 1;

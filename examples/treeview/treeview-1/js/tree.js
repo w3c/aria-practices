@@ -8,6 +8,8 @@
 *           for a tree being used as a file viewer
 */
 
+'use strict';
+
 /**
  * ARIA Treeview example
  * @function onload
@@ -225,7 +227,9 @@ Tree.prototype.updateVisibleTreeitems = function () {
 };
 
 Tree.prototype.setFocusByFirstCharacter = function (currentItem, char) {
-  var start, index, char = char.toLowerCase();
+  var start, index;
+
+  char = char.toLowerCase();
 
   // Get start index for search based on position of currentItem
   start = this.treeitems.indexOf(currentItem) + 1;

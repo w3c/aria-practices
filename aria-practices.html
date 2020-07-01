@@ -2,17 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
 <head>
   <meta charset="utf-8" />
-  <title>WAI-ARIA Authoring Practices 1.1</title>
-  <script src="https://www.w3.org/Tools/respec/respec-w3c-common" class="remove"></script>
+  <title>WAI-ARIA Authoring Practices 1.2</title>
   <script src="common/script/resolveReferences.js" class="remove"></script>
-  <script src="common/biblio.js" class="remove"></script>
   <script src="respec-config.js" class="remove"></script>
+  <script src="common/biblio.js" class="remove"></script>
+  <script src="https://www.w3.org/Tools/respec/respec-w3c-common" class="remove"></script>
   <link href="common/css/common.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
   <section id="abstract">
     <p>
-      This document provides readers with an understanding of how to use <cite><a href="https://www.w3.org/TR/wai-aria-1.1/"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.1</a></cite> [[WAI-ARIA]] to create accessible rich internet applications.
+      This document provides readers with an understanding of how to use <cite><a href="https://www.w3.org/TR/wai-aria-1.2/"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.2</a></cite> [[WAI-ARIA]] to create accessible rich internet applications.
       It describes considerations that might not be evident to most authors from the WAI-ARIA specification alone and recommends approaches to make widgets, navigation, and behaviors accessible using WAI-ARIA roles, states, and properties.
       This document is directed primarily to Web application developers, but the guidance is also useful for user agent and assistive technology developers.
     </p>
@@ -26,10 +26,10 @@
       of the
       <a href="https://www.w3.org/WAI/">Web Accessibility Initiative</a>.
       It supports the
-      <a href="" class="specref">WAI-ARIA 1.1</a> [[WAI-ARIA]]
+      [[[wai-aria-1.2]]] [[WAI-ARIA-1.2]]
       specification, providing detailed advice and examples beyond what would be appropriate to a technical specification but which are important to understand the specification.
     </p>
-    <p> This draft includes only a portion of content planned for WAI-ARIA Authoring Practices 1.1. To see plans for the complete guide, review the <a href="https://github.com/w3c/aria-practices/milestones?direction=asc&amp;sort=due_date&amp;state=open">Authoring Practices Milestone Plan</a>. </p>
+    <p> This draft includes only a portion of content planned for WAI-ARIA Authoring Practices 1.2. To see plans for the complete guide, review the <a href="https://github.com/w3c/aria-practices/milestones?direction=asc&amp;sort=due_date&amp;state=open">Authoring Practices Milestone Plan</a>. </p>
     <p>
       Feedback on the  information provided here is essential to the ultimate success of Rich Internet Applications that afford full access to their information and operations.
       The Accessible Rich Internet Applications Working Group asks in particular:
@@ -46,7 +46,7 @@
       To comment,
       <a href="https://github.com/w3c/aria-practices/issues/">file an issue in the <abbr title="World Wide Web Consortium">W3C</abbr> ARIA Practices GitHub repository</a>,
       or if that is not possible, send email to
-      <a href="mailto:public-aria@w3.org?subject=Comment%20on%20WAI-ARIA%20Practices%201.1">public-aria@w3.org</a>
+      <a href="mailto:public-aria@w3.org?subject=Comment%20on%20WAI-ARIA%20Practices%201.2">public-aria@w3.org</a>
       (<a href="http://lists.w3.org/Archives/Public/public-aria/">comment archive</a>).
     </p>
   </section>
@@ -56,7 +56,7 @@
     <p>This section is <em>informative.</em></p>
     <p>
       WAI-ARIA Authoring Practices is a guide for understanding how to use
-      <cite><a href="https://www.w3.org/TR/wai-aria-1.1/">WAI-ARIA 1.1</a></cite> to create an accessible Rich Internet Application.
+      <cite><a href="https://www.w3.org/TR/wai-aria-1.2/">WAI-ARIA 1.2</a></cite> to create an accessible Rich Internet Application.
       It provides guidance on the appropriate application of WAI-ARIA, describes recommended WAI-ARIA usage patterns, and explains concepts behind them.
     </p>
     <p>
@@ -136,17 +136,17 @@
       <h3>Browser and Assistive Technology Support</h3>
       <p>
         <strong>Testing assistive technology interoperability is essential before using code from this guide in production.</strong>
-        Because the purpose of this guide is to illustrate appropriate use of ARIA 1.1 as defined in the ARIA specification, the design patterns, reference examples, and sample code intentionally <strong>do not</strong> describe and implement coding techniques for working around problems caused by gaps in support for ARIA 1.1 in browsers and assistive technologies.
+        Because the purpose of this guide is to illustrate appropriate use of ARIA 1.2 as defined in the ARIA specification, the design patterns, reference examples, and sample code intentionally <strong>do not</strong> describe and implement coding techniques for working around problems caused by gaps in support for ARIA 1.2 in browsers and assistive technologies.
         It is thus advisable to test implementations thoroughly with each browser and assistive technology combination that is relevant within a target audience.
       </p>
       <p>
-        Similarly, JavaScript and CSS in this guide is written to be compatible with the most recent version of Chrome, Firefox, Internet Explorer, and Safari at the time of writing.
-        In particular, some JavaScript and CSS may not function correctly in Internet Explorer version 10 or earlier.
+        Similarly, JavaScript and CSS in this guide is written to be compatible with the most recent version of Chrome, Firefox, and Safari at the time of writing.
+Some JavaScript and CSS may not function correctly in Internet Explorer.
       </p>
       <p>
         Except in cases where the ARIA Working Group and other contributors have overlooked an error,
         examples in this guide that do not function well in a particular browser or with a specific assistive technology are demonstrating browser or assistive technology bugs.
-        Browser and assistive technology developers can thus utilize code in this guide to help assess the quality of their support for ARIA 1.1.
+        Browser and assistive technology developers can thus utilize code in this guide to help assess the quality of their support for ARIA 1.2.
       </p>
     </section>
     <section id="mobile_and_touch_support">
@@ -294,7 +294,7 @@
 
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
-        <p>An alert (WAI-ARIA live region) does not require any keyboard interaction.</p>
+        <p>Not applicable.</p>
       </section>
 
       <section class="notoc">
@@ -414,7 +414,10 @@
 
       <section class="notoc">
         <h4>Examples</h4>
-        <p><a href="examples/button/button.html">Button Examples</a>: Examples of clickable HTML <code>div</code> and <code>span</code> elements made into accessible command and toggle buttons.</p>
+        <ul>
+          <li><a href="examples/button/button.html">Button Examples</a>: Examples of clickable HTML <code>div</code> and <code>span</code> elements made into accessible command and toggle buttons.</li>
+          <li><a href="examples/button/button_idl.html">Button Examples (IDL)</a>: Examples of clickable HTML <code>div</code> and <code>span</code> elements made into accessible command and toggle buttons. This example uses the <a class="specref" href="#idl-interface">IDL Interface</a>.</li>
+        </ul>
       </section>
 
       <section class="notoc">
@@ -602,8 +605,8 @@
             Optionally, an element wrapping the set of slide elements has <a href="#aria-atomic" class="property-reference">aria-atomic</a> set to <code>false</code>
             and <a href="#aria-live" class="property-reference">aria-live</a> set to:
             <ul>
-              <li><code>off</code>: if the carousel is automatically rotating.
-              <li><code>polite</code>: if the carousel is <strong>NOT</strong> automatically rotating.
+              <li><code>off</code>: if the carousel is automatically rotating.</li>
+              <li><code>polite</code>: if the carousel is <strong>NOT</strong> automatically rotating.</li>
             </ul>
           </li>
         </ul>
@@ -707,100 +710,102 @@
     </section>
 
     <section class="widget" id="combobox">
-      <h3>Combo Box</h3>
+      <h3>Combobox</h3>
       <p>
-        A <a href="#combobox" class="role-reference">combobox</a> is a widget made up of the combination of two distinct elements:
-        1) a single-line textbox, and 2) an associated pop-up element for helping users set the value of the textbox.
+        A <a href="#combobox" class="role-reference">combobox</a> is an input widget with an associated popup that enables users to select a value for the combobox from a collection of possible values.
+        In some implementations, the popup presents allowed values, while in other implementations, the popup presents suggested values, and users may either select one of the suggestions or type a value.
         The popup may be a <a href="#Listbox">listbox</a>,
         <a href="#grid">grid</a>,
         <a href="#TreeView">tree</a>, or
         <a href="#dialog_modal">dialog.</a>
-        Many implementations also include a third optional element -- a graphical button adjacent to the textbox, indicating the availability of the popup.
-        Activating the button displays the popup if suggestions are available.
+        Many implementations also include a third optional element -- a graphical <q>Open</q> button adjacent to the combobox, which indicates availability of the popup.
+        Activating the <q>Open</q> button displays the popup if suggestions are available.
       </p>
-      <p>The popup is hidden by default, and the conditions that trigger its display are specific to each implementation. Some possible popup display conditions include:</p>
+      <p>
+        The combobox pattern supports several optional behaviors.
+        The one that most shapes interaction is text input.
+        Some comboboxes allow users to type and edit text in the combobox and others do not.
+        If a combobox does not support text input, it is referred to as select-only, meaning the only way users can set a value is by selecting a value in the popup.
+        For example, in some browsers, an HTML <code>select</code> element with <code>size="1"</code> is presented to assistive technologies as a combobox.
+        Alternatively, if a combobox supports text input, it is referred to as editable.
+        An editable combobox may either allow users to input any arbitrary value, or it may restrict its value to a discrete set of allowed values, in which case typing input serves to filter suggestions presented in the popup.
+      </p>
+      <p>The popup is hidden by default, i.e., the default state is collapsed. The conditions that trigger expansion -- display of the popup --are specific to each implementation. Some possible conditions that trigger expansion include:</p>
       <ul>
-        <li>It is displayed only if a certain number of characters are typed in the textbox and those characters match some portion of one of the suggested values.</li>
-        <li>It is displayed as soon as the textbox is focused, even if the textbox is empty.</li>
-        <li>It is displayed when the <kbd>Down Arrow</kbd> key is pressed or the <q>show</q> button is activated, possibly with a dependency on the content of the textbox.</li>
-        <li>It is displayed if the value of the textbox is altered in a way that creates one or more partial matches to a suggested value.</li>
+        <li>It is displayed when the <kbd>Down Arrow</kbd> key is pressed or the <q>Open</q> button is activated. Optionally, if the combobox is editable and contains a string that does not match an allowed value, expansion does not occur.</li>
+        <li>It is displayed when the combobox receives focus even if the combobox is editable and empty.</li>
+        <li>If the combobox is editable, the popup is displayed only if a certain number of characters are typed in the combobox and those characters match some portion of one of the suggested values.</li>
       </ul>
-      <p>Combobox widgets are useful for setting the value of a single-line textbox in one of two types of scenarios:</p>
+      <p>Combobox widgets are useful for acquiring user input in either of two scenarios:</p>
       <ol>
         <li>
-          The value for the textbox must be chosen from a predefined set of allowed values,
-          e.g., a location field must contain a valid location name.
+          The value must be one of a predefined set of allowed values, e.g., a location field must contain a valid location name.
           Note that the listbox and menu button patterns are also useful in this scenario; differences between combobox and alternative patterns are described below.
         </li>
         <li>
-          The textbox may contain any arbitrary value, but it is advantageous to suggest possible values to the user,
-          e.g., a search field may suggest similar or previous searches to save the user time.
+          An arbitrary value is allowed, but it is advantageous to suggest possible values to users.
+          For example, a search field may suggest similar or previous searches to save the user time.
         </li>
       </ol>
       <p>
-        The nature of the suggested values and the way the suggestions are presented is called the autocomplete behavior.
+        The nature of possible values presented by a popup and the way they are presented is called the autocomplete behavior.
         Comboboxes can have one of four forms of autocomplete:
       </p>
       <ol>
         <li>
-          <strong>No autocomplete:</strong> When the popup is triggered, the suggested values it contains are the same regardless of the characters typed in the textbox.
+          <strong>No autocomplete:</strong> The combobox is editable, and  when the popup is triggered, the suggested values it contains are the same regardless of the characters typed in the combobox.
           For example, the popup suggests a set of recently entered values, and the suggestions  do not change as the user types.
         </li>
         <li>
-          <strong>List autocomplete with manual selection:</strong> When the popup is triggered, it presents suggested values that complete or logically correspond to the characters typed in the textbox.
-          The character string the user has typed will become the value of the textbox unless the user selects a value in the popup.
+          <strong>List autocomplete with manual selection:</strong> When the popup is triggered, it presents suggested values. If the combobox is editable,  the suggested values complete or logically correspond to the characters typed in the combobox.
+          The character string the user has typed will become the value of the combobox unless the user selects a value in the popup.
         </li>
         <li>
-          <strong>List autocomplete with automatic selection:</strong> When the popup is triggered, it presents suggested values that complete or logically correspond to the characters typed in the textbox,
+          <strong>List autocomplete with automatic selection:</strong> The combobox is editable, and when the popup is triggered, it presents suggested values that complete or logically correspond to the characters typed in the combobox,
           and the first suggestion is automatically highlighted as selected.
-           The automatically selected suggestion becomes the value of the textbox when the combobox loses focus unless the user chooses a different suggestion or changes the character string in the textbox.
+          The automatically selected suggestion becomes the value of the combobox when the combobox loses focus unless the user chooses a different suggestion or changes the character string in the combobox.
         </li>
         <li>
           <strong>List with inline autocomplete:</strong> This is the same as list with automatic selection with one additional feature.
-          The portion of the selected suggestion that has not been typed by the user, a completion string, appears inline after the input cursor in the textbox.
+          The portion of the selected suggestion that has not been typed by the user, a completion string, appears inline after the input cursor in the combobox.
           The inline completion string is visually highlighted and has a selected state.
         </li>
       </ol>
       <p>
-        With any form of list autocomplete, the popup may appear and disappear as the user types.
+        If a combobox is editable and has any form of list autocomplete, the popup may appear and disappear as the user types.
         For example, if the user types a two character string that triggers five suggestions to be displayed but then types a third character that forms a string that does not have any matching suggestions,
         the popup may close and, if present, the inline completion string disappears.
       </p>
       <p>
-        When constructing a widget that is both visually compact and enables users to choose one value from a set of discrete values, often either a <a href="#Listbox">listbox</a> or <a href="#menubutton">menu button</a> is simpler to implement and use.
-        One feature of combobox that distinguishes it from both listbox and menu button is that the value of the combobox is presented in an edit field.
-        Thus, the combobox gives users one function that both listbox and menu button lack, namely the ability to select some or all of the value for copying to the clipboard.
-        One feature that distinguishes both combobox and menu button widgets from listbox widgets is their ability to provide an undo mechanism.
-        In many implementations, users can navigate the set of allowed values in a combobox or menu and then decide to revert to the value the widget had before navigating by pressing <kbd>escape</kbd>.
-        In contrast, navigating a listbox immediately changes its value, and escape does not provide an undo mechanism.
-      </p>
-      <p class="note">
-        The options for a combobox to popup a grid, tree, or dialog were introduced in ARIA 1.1.
-        Changes made in the ARIA 1.1 specification also add support for a code pattern that enables assistive technologies to present the textbox and popup as separately perceivable elements.
-        both ARIA 1.0 and 1.1 patterns are described in the following sections.
-        While using the ARIA 1.1 pattern is recommended as soon as assistive technology support is sufficient,
-        there are no plans to deprecate the ARIA 1.0 pattern.
+        Two other widgets that are also visually compact and enable users to make a single choice from a set of discrete choices are <a href="#Listbox">listbox</a> and <a href="#menubutton">menu button</a>.
+        One feature that distinguishes combobox from both listbox and menu button is that the user's choice can be presented as a value in an editable field, which gives users the ability to select some or all of the value for copying to the clipboard.
+        Comboboxes and menu buttons can be implemented so users can explore the set of allowed choices without losing a previously made choice.
+        That is, users can navigate the set of available choices in a combobox popup or menu and then press <kbd>escape</kbd>, which closes the popup or menu without changing previous input.
+        In contrast, navigating among options in a single-select listbox immediately changes its value, and <kbd>Escape</kbd> does not provide an undo mechanism.
+        Comboboxes and listboxes can be marked as required with <code>aria-required="true"</code>, and they have an accessible name that is distinct from their value.
+        Thus, when assistive technology users focus either a combobox or listbox in its default state, they can perceive both a name and value for the widget.
+        However, a menu button cannot be marked required, and while it has an accessible name, it does not have a value so is not suitable for conveying the user's choice in its collapsed state.
       </p>
 
       <section class="notoc">
         <h4>Examples</h4>
         <ul>
-          <li><a href="examples/combobox/aria1.1pattern/listbox-combo.html">Examples of ARIA 1.1 Combobox with Listbox Popup</a>: Comboboxes that demonstrate the various forms of autocomplete behavior using a listbox popup and use the ARIA 1.1 implementation pattern.</li>
-          <li><a href="examples/combobox/aria1.1pattern/grid-combo.html">Example of ARIA 1.1 Combobox with Grid Popup</a>: A combobox that presents suggestions in a grid, enabling users to navigate descriptive information about each suggestion.</li>
-          <li><a href="examples/combobox/aria1.0pattern/combobox-autocomplete-both.html">ARIA 1.0 Combobox with Both List and Inline Autocomplete</a>: A combobox that demonstrates the autocomplete behavior known as <q>list with inline autocomplete</q> and uses the ARIA 1.0 implementation pattern.</li>
-          <li><a href="examples/combobox/aria1.0pattern/combobox-autocomplete-list.html">ARIA 1.0 Combobox with List Autocomplete</a>: A combobox that demonstrates the autocomplete behavior known as <q>list with manual selection</q> and uses the ARIA 1.0 implementation pattern.</li>
-          <li><a href="examples/combobox/aria1.0pattern/combobox-autocomplete-none.html">ARIA 1.0 Combobox Without Autocomplete</a>: A combo box that demonstrates the behavior associated with <code>aria-autocomplete=none</code> and uses the ARIA 1.0 implementation pattern.</li>
+          <li><a href="examples/combobox/combobox-select-only.html">Select-Only Combobox</a>: A single-select combobox with no text input that is functionally similar to an HTML <code>select</code> element.</li>
+          <li><a href="examples/combobox/combobox-autocomplete-both.html">Editable Combobox with Both List and Inline Autocomplete</a>: An editable combobox that demonstrates the autocomplete behavior known as <q>list with inline autocomplete</q>.</li>
+          <li><a href="examples/combobox/combobox-autocomplete-list.html">Editable Combobox with List Autocomplete</a>: An editable combobox that demonstrates the autocomplete behavior known as <q>list with manual selection</q>.</li>
+          <li><a href="examples/combobox/combobox-autocomplete-none.html">Editable Combobox Without Autocomplete</a>: An editable combobox that demonstrates the behavior associated with <code>aria-autocomplete=none</code>.</li>
+          <li><a href="examples/combobox/grid-combo.html">Editable Combobox with Grid Popup</a>: An editable combobox that presents suggestions in a grid, enabling users to navigate descriptive information about each suggestion.</li>
         </ul>
       </section>
 
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <ul>
-          <li><kbd>Tab</kbd>: The textbox is in the page <kbd>Tab</kbd> sequence.</li>
+          <li><kbd>Tab</kbd>: The combobox is in the page <kbd>Tab</kbd> sequence.</li>
           <li>Note: The popup indicator icon or button (if present), the popup, and the popup descendants are excluded from the page <kbd>Tab</kbd> sequence. </li>
         </ul>
-        <h5>Textbox Keyboard Interaction</h5>
-        <p>When focus is in the textbox:</p>
+        <h5>Combobox Keyboard Interaction</h5>
+        <p>When focus is in the combobox:</p>
         <ul>
           <li><kbd>Down Arrow</kbd>: If the popup is available, moves focus into the popup:
             <ul>
@@ -809,52 +814,64 @@
             </ul>
           </li>
           <li><kbd>Up Arrow</kbd> (Optional): If the popup is available, places focus on the last focusable element in the popup.</li>
-          <li><kbd>Escape</kbd>: Dismisses the popup if it is visible. Optionally, clears the textbox.</li>
+          <li><kbd>Escape</kbd>: Dismisses the popup if it is visible. Optionally, if the popup is hidden before <kbd>Escape</kbd> is pressed, clears the combobox.</li>
           <li>
-            <kbd>Enter</kbd>: If an autocomplete suggestion is automatically selected, accepts the suggestion either by placing the input cursor at the end of the accepted value in the textbox or by performing a default action on the value.
-            For example, in a messaging application, the default action may be to add the accepted value to a list of message recipients and then clear the textbox so the user can add another recipient.
+            <kbd>Enter</kbd>: If the combobox is editable and an autocomplete suggestion is selected in the popup, accepts the suggestion either by placing the input cursor at the end of the accepted value in the combobox or by performing a default action on the value.
+            For example, in a messaging application, the default action may be to add the accepted value to a list of message recipients and then clear the combobox so the user can add another recipient.
           </li>
-          <li>Printable Characters: Type characters in the textbox. Note that some implementations may regard certain characters as invalid and prevent their input.</li>
-          <li>Standard single line text editing keys appropriate for the device platform (see note below).</li>
+          <li>Printable Characters:
+            <ul>
+              <li>If the combobox is editable, type characters in the combobox. Note that some implementations may regard certain characters as invalid and prevent their input.</li>
+              <li>If the combobox is not editable, optionally moves focus to a value that starts with the typed characters.</li>
+            </ul>
+          </li>
+          <li>If the combobox is editable, it supports standard single line text editing keys appropriate for the device platform (see note below).</li>
           <li><kbd>Alt + Down Arrow</kbd> (Optional): If the popup is available but not displayed, displays the popup without moving focus.</li>
           <li><kbd>Alt + Up Arrow</kbd> (Optional): If the popup is displayed:
-            <ol>
-              <li>If the popup contains focus, returns focus to the textbox.</li>
+            <ul>
+              <li>If the popup contains focus, returns focus to the combobox.</li>
               <li>Closes the popup.</li>
-            </ol>
+            </ul>
           </li>
         </ul>
-        <p class="note">Standard single line text editing keys appropriate for the device platform:</p>
-        <ol>
-          <li>include keys for input, cursor movement, selection, and text manipulation.</li>
-          <li>Standard key assignments for editing functions depend on the device operating system.</li>
-          <li>The most robust approach for providing text editing functions is to rely on browsers, which  supply them for HTML inputs with type text and for elements with the <code>contenteditable</code> HTML attribute.</li>
-          <li><strong>IMPORTANT:</strong> Be sure that JavaScript does not interfere with browser-provided text editing functions by capturing key events for the keys used to perform them.</li>
-        </ol>
+        <div class="note">
+          <p>Standard single line text editing keys appropriate for the device platform:</p>
+          <ol>
+            <li>include keys for input, cursor movement, selection, and text manipulation.</li>
+            <li>Standard key assignments for editing functions depend on the device operating system.</li>
+            <li>The most robust approach for providing text editing functions is to rely on browsers, which  supply them for HTML inputs with type text and for elements with the <code>contenteditable</code> HTML attribute.</li>
+            <li><strong>IMPORTANT:</strong> Ensure JavaScript does not interfere with browser-provided text editing functions by capturing key events for the keys used to perform them.</li>
+          </ol>
+        </div>
         <h5>Listbox Popup Keyboard Interaction</h5>
         <p>When focus is in a listbox popup:</p>
         <ul>
-          <li><kbd>Enter</kbd>: Accepts the focused option in the listbox by closing the popup and placing the accepted value in the textbox with the input cursor at the end of the value.</li>
-          <li><kbd>Escape</kbd>: Closes the popup and returns focus to the textbox. Optionally, clears the contents of the textbox.</li>
+          <li><kbd>Enter</kbd>: Accepts the focused option in the listbox  by closing the popup, placing the accepted value in the combobox, and if the combobox is editable,  placing the input cursor at the end of the value.</li>
+          <li><kbd>Escape</kbd>: Closes the popup and returns focus to the combobox. Optionally, if the combobox is editable, clears the contents of the combobox.</li>
+          <li><kbd>Down Arrow</kbd>: Moves focus to and selects the next option. If focus is on the last option, either returns focus to the combobox or does nothing.</li>
+          <li><kbd>Up Arrow</kbd>: Moves focus to and selects the previous option. If focus is on the first option, either returns focus to the combobox or does nothing.</li>
           <li>
-            <kbd>Right Arrow</kbd>: Returns focus to the textbox without closing the popup and moves the input cursor one character to the right.
+            <kbd>Right Arrow</kbd>: If the combobox is editable, returns focus to the combobox without closing the popup and moves the input cursor one character to the right.
             If the input cursor is on the right-most character, the cursor does not move.
           </li>
           <li>
-            <kbd>Left Arrow</kbd>: Returns focus to the textbox without closing the popup and moves the input cursor one character to the left.
+            <kbd>Left Arrow</kbd>: If the combobox is editable, returns focus to the combobox without closing the popup and moves the input cursor one character to the left.
             If the input cursor is on the left-most character, the cursor does not move.
           </li>
-          <li>Any printable character: Returns the focus to the textbox without closing the popup and types the character.</li>
-          <li><kbd>Backspace</kbd> (Optional): Returns focus to the textbox and deletes the character prior to the cursor.</li>
-          <li><kbd>Delete</kbd> (Optional): Returns focus to the textbox, removes the selected state if a suggestion was selected, and removes the inline autocomplete string if present.</li>
-          <li><kbd>Down Arrow</kbd>: Moves focus to and selects the next option. If focus is on the last option, either returns focus to the textbox or does nothing.</li>
-          <li><kbd>Up Arrow</kbd>: Moves focus to and selects the previous option. If focus is on the first option, either returns focus to the textbox or does nothing.</li>
-          <li><kbd>Home</kbd> (Optional): Either moves focus to and selects the first option or returns focus to the textbox and places the cursor on the first character.</li>
-          <li><kbd>End</kbd> (Optional): Either moves focus to the last option or returns focus to the textbox and places the cursor after the last character.</li>
+          <li><kbd>Home</kbd> (Optional): Either moves focus to and selects the first option or, if the combobox is editable,  returns focus to the combobox and places the cursor on the first character.</li>
+          <li><kbd>End</kbd> (Optional): Either moves focus to the last option or, if the combobox is editable, returns focus to the combobox and places the cursor after the last character.</li>
+          <li>Any printable character:
+            <ul>
+              <li>If the combobox is editable, returns the focus to the combobox without closing the popup and types the character.</li>
+              <li>Otherwise, moves focus to the next option with a name that starts with the characters typed.</li>
+            </ul>
+          </li>
+          <li><kbd>Backspace</kbd> (Optional): If the combobox is editable, returns focus to the combobox and deletes the character prior to the cursor.</li>
+          <li><kbd>Delete</kbd> (Optional): If the combobox is editable, returns focus to the combobox, removes the selected state if a suggestion was selected, and removes the inline autocomplete string if present.</li>
         </ul>
         <ol class="note">
-          <li>DOM Focus is maintained on the combobox textbox and the assistive technology focus is moved within the listbox using <code>aria-activedescendant</code> as described in <a href="#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant.</a></li>
-          <li>Selection follows focus in the listbox; the listbox allows only one suggested value to be selected at a time for the textbox value.</li>
+          <li>DOM Focus is maintained on the combobox and the assistive technology focus is moved within the listbox using <code>aria-activedescendant</code> as described in <a href="#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant.</a></li>
+          <li>Selection follows focus in the listbox; the listbox allows only one suggested value to be selected at a time for the combobox value.</li>
         </ol>
         <h5>Grid Popup Keyboard Interaction</h5>
         <p>
@@ -862,28 +879,25 @@
           See notes below for how this aspect of grid design effects the keyboard interaction design and the way that selection moves in response to focus movements.
         </p>
         <ul>
-          <li><kbd>Enter</kbd>: Accepts the currently selected suggested value by closing the popup and placing the selected value in the textbox with the input cursor at the end of the value.</li>
-          <li><kbd>Escape</kbd>: Closes the popup and returns focus to the textbox. Optionally, clears the contents of the textbox.</li>
-          <li>Any printable character: Returns the focus to the textbox without closing the popup and types the character.</li>
-          <li><kbd>Backspace</kbd> (Optional): Returns focus to the textbox and deletes the character prior to the cursor.</li>
-          <li><kbd>Delete</kbd> (Optional): Returns focus to the textbox, removes the selected state if a suggestion was selected, and removes the inline autocomplete string if present.</li>
+          <li><kbd>Enter</kbd>: Accepts the currently selected suggested value by closing the popup, placing the selected value in the combobox, and if the combobox is editable, placing the input cursor at the end of the value.</li>
+          <li><kbd>Escape</kbd>: Closes the popup and returns focus to the combobox. Optionally, if the combobox is editable, clears the contents of the combobox.</li>
           <li>
             <kbd>Right Arrow</kbd>: Moves focus one cell to the right.
             Optionally, if focus is on the right-most cell in the row, focus may move to the first cell in the following row.
-            If focus is on the last cell in the grid, either does nothing or returns focus to the textbox.
+            If focus is on the last cell in the grid, either does nothing or returns focus to the combobox.
           </li>
           <li>
             <kbd>Left Arrow</kbd>: Moves focus one cell to the left.
             Optionally, if focus is on the left-most cell in the row, focus may move to the last cell in the previous row.
-            If focus is on the first cell in the grid, either does nothing or returns focus to the textbox.
+            If focus is on the first cell in the grid, either does nothing or returns focus to the combobox.
           </li>
           <li>
             <kbd>Down Arrow</kbd>: Moves focus one cell down.
-            If focus is in the last row of the grid, either does nothing or returns focus to the textbox.
+            If focus is in the last row of the grid, either does nothing or returns focus to the combobox.
           </li>
           <li>
             <kbd>Up Arrow</kbd>: Moves focus one cell up.
-            If focus is in the first row of the grid, either does nothing or returns focus to the textbox.
+            If focus is in the first row of the grid, either does nothing or returns focus to the combobox.
           </li>
           <li>
             <kbd>Page Down</kbd> (Optional): Moves focus down an author-determined number of rows, typically scrolling so the bottom row in the currently visible set of rows becomes one of the first visible rows.
@@ -896,21 +910,24 @@
           <li><kbd>Home</kbd> (Optional): <strong>Either:</strong>
             <ul>
               <li> Moves focus to the first cell in the row that contains focus. Or, if the grid has fewer than three cells per row or multiple suggested values per row, focus may move to the first cell in the grid.</li>
-              <li>Returns focus to the textbox and places the cursor on the first character.</li>
+              <li>If the combobox is editable, returns focus to the combobox and places the cursor on the first character.</li>
             </ul>
           </li>
           <li><kbd>End</kbd> (Optional): <strong>Either:</strong>
             <ul>
               <li> Moves focus to the last cell in the row that contains focus. Or, if the grid has fewer than three cells per row or multiple suggested values per row, focus may move to the last cell in the grid.</li>
-              <li>Returns focus to the textbox and places the cursor after the last character.</li>
+              <li>If the combobox is editable, returns focus to the combobox and places the cursor after the last character.</li>
             </ul>
           </li>
           <li><kbd>Control + Home</kbd> (optional): moves focus to the first row.</li>
           <li><kbd>Control + End</kbd> (Optional): moves focus to the last row.</li>
+          <li>Any printable character: If the combobox is editable, returns the focus to the combobox without closing the popup and types the character.</li>
+          <li><kbd>Backspace</kbd> (Optional): If the combobox is editable, returns focus to the combobox and deletes the character prior to the cursor.</li>
+          <li><kbd>Delete</kbd> (Optional): If the combobox is editable, returns focus to the combobox, removes the selected state if a suggestion was selected, and removes the inline autocomplete string if present.</li>
         </ul>
         <ol class="note">
-          <li>DOM Focus is maintained on the combobox textbox and the assistive technology focus is moved within the grid using <code>aria-activedescendant</code> as described in <a href="#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant.</a></li>
-          <li>The grid allows only one suggested value to be selected at a time for the textbox value.</li>
+          <li>DOM Focus is maintained on the combobox and the assistive technology focus is moved within the grid using <code>aria-activedescendant</code> as described in <a href="#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant.</a></li>
+          <li>The grid allows only one suggested value to be selected at a time for the combobox value.</li>
           <li>In a grid popup, each suggested value may be represented by either a single cell or an entire row. This aspect of design effects focus and selection movement:
             <ol>
               <li>If every cell contains a different suggested value:
@@ -937,9 +954,8 @@
         </p>
         <p>When focus is in a vertically oriented tree popup:</p>
         <ul>
-          <li><kbd>Enter</kbd>: Accepts the currently selected suggested value by closing the popup and placing the selected value in the textbox with the input cursor at the end of the value.</li>
-          <li><kbd>Escape</kbd>: Closes the popup and returns focus to the textbox. Optionally, clears the contents of the textbox.</li>
-          <li>Any printable character: Returns the focus to the textbox without closing the popup and types the character.</li>
+          <li><kbd>Enter</kbd>: Accepts the currently selected suggested value by closing the popup, placing the selected value in the combobox, and if the combobox is editable, placing the input cursor at the end of the value.</li>
+          <li><kbd>Escape</kbd>: Closes the popup and returns focus to the combobox. Optionally, clears the contents of the combobox.</li>
           <li><kbd>Right arrow</kbd>:
             <ul>
               <li>When focus is on a closed node, opens the node; focus and selection do not move.</li>
@@ -956,12 +972,18 @@
            </li>
           <li><kbd>Down Arrow</kbd>: Moves focus to the next node that is focusable without opening or closing a node and selects it if it is selectable.</li>
           <li><kbd>Up Arrow</kbd>: Moves focus to the previous node that is focusable without opening or closing a node and selects it if it is selectable.</li>
-          <li><kbd>Home</kbd>: Moves focus to the first node in the tree without opening or closing a node and selects it if it is selectable.</li>
-          <li><kbd>End</kbd>: Moves focus to the last node in the tree that is focusable without opening a node and selects it if it is selectable.</li>
+          <li><kbd>Home</kbd>: Moves focus to the first focusable node in the tree without opening or closing a node and selects it if it is selectable.</li>
+          <li><kbd>End</kbd>: Moves focus to the last focusable node in the tree without opening or closing a node and selects it if it is selectable.</li>
+          <li>Any printable character:
+            <ul>
+              <li>If the combobox is editable, returns the focus to the combobox without closing the popup and types the character.</li>
+              <li>Otherwise, moves focus to the next suggested value with a name that starts with the characters typed.</li>
+            </ul>
+          </li>
         </ul>
         <ol class="note">
-        <li>DOM Focus is maintained on the combobox textbox and the assistive technology focus is moved within the tree using <code>aria-activedescendant</code> as described in <a href="#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant.</a></li>
-        <li>The tree allows only one suggested value to be selected at a time for the textbox value.</li>
+        <li>DOM Focus is maintained on the combobox and the assistive technology focus is moved within the tree using <code>aria-activedescendant</code> as described in <a href="#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant.</a></li>
+        <li>The tree allows only one suggested value to be selected at a time for the combobox value.</li>
           <li>
             In a tree popup, some or all parent nodes may not be selectable values; they may serve as category labels for suggested values.
             If focus moves to a node that is not a selectable value, either:
@@ -971,7 +993,7 @@
               <li>In either case, focus is visually distinct from selection so users can readily see if a value is selected or not.</li>
             </ul>
         </li>
-          <li>If the nodes in a tree are arranged horizontally:
+          <li>If nodes in the tree are arranged horizontally (<a href="aria-orientation" class="property-reference">aria-orientation</a> is set to <code>horizontal</code>):
             <ol>
               <li><kbd>Down Arrow</kbd> performs as <kbd>Right Arrow</kbd> is described above, and vice versa.</li>
               <li><kbd>Up Arrow</kbd> performs as <kbd>Left Arrow</kbd> is described above, and vice versa.</li>
@@ -981,91 +1003,78 @@
         <h5>Dialog Popup Keyboard Interaction</h5>
         <p>When focus is in a dialog popup:</p>
         <ul>
-          <li>There are two ways to close the popup and return focus to the textbox:
+          <li>There are two ways to close the popup and return focus to the combobox:
             <ol>
-              <li>Perform an action in the dialog, such as activate a button, that specifies a value for the textbox.</li>
+              <li>Perform an action in the dialog, such as activate a button, that specifies a value for the combobox.</li>
               <li>
                 Cancel out of the dialog, e.g., press <kbd>Escape</kbd> or activate the cancel button in the dialog.
-                Canceling either returns focus to the text box without changing the textbox value or returns focus to the textbox and clears the textbox.
+                Canceling either returns focus to the text box without changing the combobox value or returns focus to the combobox and clears the combobox.
               </li>
             </ol>
           </li>
           <li>The dialog implements the keyboard interaction defined in the <a href="#dialog_modal">modal dialog pattern.</a></li>
         </ul>
         <p class="note">
-          Unlike other combobox popups, dialogs do not support <code>aria-activedescendant</code> so DOM focus moves into the dialog from the textbox.
+          Unlike other combobox popups, dialogs do not support <code>aria-activedescendant</code> so DOM focus moves into the dialog from the combobox.
         </p>
       </section>
 
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
-        <p>
-          The role, state, and property guidance where the ARIA 1.1 and ARIA 1.0 patterns differ is listed first.
-          The subsequent guidance applies to both patterns.
-        </p>
         <ul>
-          <li>In a combobox implementing the ARIA 1.1 pattern:
-            <ul>
-              <li>The element that serves as the combobox container has role <a href="#combobox" class="role-reference">combobox</a>.</li>
-              <li>The element with role <code>combobox</code> contains or owns a textbox element that has either role <a href="#textbox" class="role-reference">textbox</a> or role <a href="#searchbox" class="role-reference">searchbox</a>.</li>
-              <li>When the combobox popup is visible, the combobox element contains or owns an element that has role <a href="#listbox" class="role-reference">listbox</a>, <a href="#tree" class="role-reference">tree</a>, <a href="#grid" class="role-reference">grid</a>, or <a href="#dialog" class="role-reference">dialog</a>.</li>
-              <li>
-                If the combobox popup has a role other than <code>listbox</code>, the element with role <code>combobox</code> has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to a value that corresponds to the popup type.
-                That is, <code>aria-haspopup</code> is set to <code>grid</code>, <code>tree</code>, or <code>dialog</code>.
-                Note that elements with role <code>combobox</code> have an implicit <code>aria-haspopup</code> value of <code>listbox</code>.
-              </li>
-              <li>When the combobox popup is visible, the textbox element has <a href="#aria-controls" class="property-reference">aria-controls</a> set to a value that refers to the combobox popup element.</li>
-            </ul>
-          </li>
-          <li>In a combobox implementing the ARIA 1.0 pattern:
-            <ul>
-              <li>The element that serves as the textbox has role <a href="#combobox" class="role-reference">combobox</a>.</li>
-              <li>When the combobox popup is visible, the element with role combobox has <a href="#aria-owns" class="property-reference">aria-owns</a> set to a value that refers to an element with role <a href="#listbox" class="role-reference">listbox</a>.</li>
-              <li>
-                the element with role <code>combobox</code> has a value for <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> of <code>listbox</code>.
-                Note that elements with role <code>combobox</code> have an implicit <code>aria-haspopup</code> value of <code>listbox</code>.
-              </li>
-            </ul>
-          </li>
+          <li>The element that serves as an input and displays the combobox value has role <a href="#combobox" class="role-reference">combobox</a>.</li>
           <li>
-            The textbox element has  a value for <a href="#aria-multiline" class="property-reference">aria-multiline</a> of <code>false</code>.
-            Note that the default value of <code>aria-multiline</code> is <code>false</code>.
+            The combobox element has <a href="#aria-controls" class="property-reference">aria-controls</a> set to a value that refers to the element that serves as the popup.
+            Note that <code>aria-controls</code> only needs to be set when the popup is visible. However, it is valid to reference an element that is not visible.
+          </li>
+          <li>The popup is an element that has role <a href="#listbox" class="role-reference">listbox</a>, <a href="#tree" class="role-reference">tree</a>, <a href="#grid" class="role-reference">grid</a>, or <a href="#dialog" class="role-reference">dialog</a>.</li>
+          <li>
+            If the popup has a role other than <code>listbox</code>, the element with role <code>combobox</code> has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to a value that corresponds to the popup type.
+            That is, <code>aria-haspopup</code> is set to <code>grid</code>, <code>tree</code>, or <code>dialog</code>.
+            Note that elements with role <code>combobox</code> have an implicit <code>aria-haspopup</code> value of <code>listbox</code>.
           </li>
           <li>
             When the combobox popup is not visible, the element with role <code>combobox</code> has <a href="#aria-expanded" class="state-reference">aria-expanded</a> set to <code>false</code>.
             When the popup element is visible, <code>aria-expanded</code> is set to <code>true</code>.
             Note that elements with role <code>combobox</code> have a default value for <code>aria-expanded</code> of <code>false</code>.
           </li>
-          <li>When a combobox receives focus, DOM focus is placed on the textbox element.</li>
-          <li>When a descendant of  a listbox, grid, or tree popup is focused, DOM focus remains on the textbox and the textbox has <a href="#aria-activedescendant" class="property-reference">aria-activedescendant</a> set to a value that refers to the focused element within the popup.</li>
-          <li>In a combobox with a listbox, grid, or tree popup, when a suggested value is visually indicated as the currently selected value, the <code>option</code>, <code>gridcell</code>, <code>row</code>, or <code>treeitem</code> containing that value has <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code>.</li>
+          <li>When a combobox receives focus, DOM focus is placed on the combobox element.</li>
+          <li>When a descendant of a listbox, grid, or tree popup is focused, DOM focus remains on the combobox and the combobox has <a href="#aria-activedescendant" class="property-reference">aria-activedescendant</a> set to a value that refers to the focused element within the popup.</li>
+          <li>For a combobox that controls a listbox, grid, or tree popup, when a suggested value is visually indicated as the currently selected value, the <code>option</code>, <code>gridcell</code>, <code>row</code>, or <code>treeitem</code> containing that value has <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code>.</li>
           <li>
-            If the combobox has a visible label, the element with role combobox has <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> set to a value that refers to the labelling element.
+            If the combobox has a visible label and the combobox element is an HTML element that can be labelled using the HTML <code>label</code> element (e.g., the <code>input</code> element), it is labeled using the <code>label</code> element.
+            Otherwise, if it has a visible label, the combobox element has <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> set to a value that refers to the labelling element.
             Otherwise, the combobox element has a label provided by <a href="#aria-label" class="property-reference">aria-label</a>.
           </li>
-          <li>The textbox element has <a href="#aria-autocomplete" class="property-reference">aria-autocomplete</a> set to a value that corresponds to its autocomplete behavior:
+          <li>The combobox element has <a href="#aria-autocomplete" class="property-reference">aria-autocomplete</a> set to a value that corresponds to its autocomplete behavior:
             <ul>
-              <li><code>none</code>: When the popup is displayed, the suggested values it contains are the same regardless of the characters typed in the textbox.</li>
-              <li><code>list</code>: When the popup is triggered, it presents suggested values that complete or logically correspond to the characters typed in the textbox.</li>
+              <li><code>none</code>: When the popup is displayed, the suggested values it contains are the same regardless of the characters typed in the combobox.</li>
+              <li><code>list</code>: When the popup is triggered, it presents suggested values. If the combobox is editable, the values complete or logically correspond to the characters typed in the combobox.</li>
               <li>
-                <code>both</code>: When the popup is triggered, it presents suggested values that complete or logically correspond to the characters typed in the textbox.
-                In addition, the portion of the selected suggestion that has not been typed by the user, known as the <q>completion string</q>, appears inline after the input cursor in the textbox.
+                <code>both</code>: When the popup is triggered, it presents suggested values that complete or logically correspond to the characters typed in the combobox.
+                In addition, the portion of the selected suggestion that has not been typed by the user, known as the <q>completion string</q>, appears inline after the input cursor in the combobox.
                 The inline completion string is visually highlighted and has a selected state.
               </li>
             </ul>
           </li>
         </ul>
-        <ol class="note">
-          <li>When referring to the roles, states, and properties documentation for the below list of patterns used for popups, keep in mind that a combobox is a single-select widget where selection always follows focus in the popup.</li>
-          <li>The roles, states, and properties for popup elements are defined in their respective design patterns:
-            <ul>
-              <li><a href="#listbox_roles_states_props">Listbox Roles, States, and Properties</a></li>
-              <li><a href="#grid_roles_states_props">Grid Roles, States, and Properties</a></li>
-              <li><a href="#tree_roles_states_props">Tree Roles, States, and Properties</a></li>
-              <li><a href="#dialog_roles_states_props">Dialog Roles, States, and Properties</a></li>
-            </ul>
-          </li>
-        </ol>
+        <div class="note">
+          <ol>
+            <li>
+              In ARIA 1.0, the combobox referenced its popup with <a href="#aria-owns" class="property-reference">aria-owns</a> instead of <a href="#aria-controls" class="property-reference">aria-controls</a>.
+              While user agents might support comboboxes with <a href="#aria-owns" class="property-reference">aria-owns</a> for backwards compatibility with legacy content, it is strongly recommended that authors use <a href="#aria-controls" class="property-reference">aria-controls</a>.
+            </li>
+            <li>When referring to the roles, states, and properties documentation for the below list of patterns used for popups, keep in mind that a combobox is a single-select widget where selection follows focus in the popup.</li>
+            <li>The roles, states, and properties for popup elements are defined in their respective design patterns:
+              <ul>
+                <li><a href="#listbox_roles_states_props">Listbox Roles, States, and Properties</a></li>
+                <li><a href="#grid_roles_states_props">Grid Roles, States, and Properties</a></li>
+                <li><a href="#tree_roles_states_props">Tree Roles, States, and Properties</a></li>
+                <li><a href="#dialog_roles_states_props">Dialog Roles, States, and Properties</a></li>
+              </ul>
+            </li>
+          </ol>
+        </div>
       </section>
     </section>
 
@@ -1797,6 +1806,7 @@
           <li><a href="examples/listbox/listbox-scrollable.html">Scrollable Listbox Example</a>: Single-select listbox that scrolls to reveal more options, similar to HTML <code>select</code> with <code>size</code> attribute greater than one.</li>
           <li><a href="examples/listbox/listbox-collapsible.html">Collapsible Dropdown Listbox Example</a>: Single-select collapsible listbox that expands when activated, similar to HTML <code>select</code> with the attribute <code>size=&quot;1&quot;</code>.</li>
           <li><a href="examples/listbox/listbox-rearrangeable.html">Example Listboxes with Rearrangeable Options</a>: Examples of both single-select and multi-select listboxes with accompanying toolbars where options can be added, moved, and removed.</li>
+          <li><a href="examples/listbox/listbox-grouped.html">Listbox Example with Grouped Options</a>: Single-select listbox with grouped options, similar to an HTML <code>select</code> with <code>optgroup</code> children.</li>
         </ul>
       </section>
 
@@ -1909,6 +1919,7 @@
       <h3>Menu or Menu bar</h3>
       <p>
         A <a href="#menu" class="role-reference">menu</a> is a widget that offers a list of choices to the user, such as a set of actions or functions.
+        Menu widgets behave like native operating system menus, such as the menus that pull down from the menubars commonly found at the top of many desktop application windows.
         A menu is usually opened, or made visible, by activating a <a href="#menubutton">menu button</a>, choosing an item in a menu that opens a sub menu, or by invoking a command, such as <kbd>Shift + F10</kbd> in Windows, that opens a context specific menu.
         When a user activates a choice in a menu, the menu usually closes unless the choice opened a submenu.
       </p>
@@ -1941,7 +1952,7 @@
           <ol>
             <li>Focusable elements, which may have role <code>menuitem</code>, <code>menuitemradio</code>, or <code>menuitemcheckbox</code>, are referred to as items.</li>
             <li>If a behavior applies to only certain types of items, e.g., <code>menuitem</code> elements, the specific role name is used.</li>
-            <li>Submenus, also known as pop-up menus,  are elements with role <code>menu</code>.</li>
+            <li>Submenus, also known as popup menus,  are elements with role <code>menu</code>.</li>
             <li>Except where noted, menus opened from a menubutton behave the same as menus opened from a menubar.</li>
           </ol>
         <ul>
@@ -2150,6 +2161,47 @@
       </section>
     </section>
 
+    <section class="widget" id="meter">
+      <h3>Meter</h3>
+      <p>
+        A <a class="role-reference" href="#meter">meter</a> is a graphical display of a numeric value that varies within a defined range.
+        For example, a meter could be used to depict a device's current battery percentage or a car's fuel level.
+      </p>
+      <ul class="note">
+        <li>A <code>meter</code> should not be used to represent a value like the current world population since it does not have a meaningful maximum limit.</li>
+        <li>
+          The <code>meter</code> should not be used to indicate progress, such as loading or percent completion of a task.
+          To communicate progress, use the <a href="#progressbar" class="role-reference">progressbar</a> role instead.
+        </li>
+      </ul>
+
+      <section class="notoc">
+        <h4>Example</h4>
+        <p><a href="examples/meter/meter.html">Meter Example</a></p>
+      </section>
+
+      <section class="notoc">
+        <h4>Keyboard Interaction</h4>
+        <p>Not applicable.</p>
+      </section>
+
+      <section class="notoc">
+        <h4>WAI-ARIA Roles, States, and Properties</h4>
+        <ul>
+          <li>The element serving as the meter has a role of <a class="role-reference" href="#meter">meter</a>.</li>
+          <li>The meter has <a class="property-reference" href="#aria-valuenow">aria-valuenow</a> set to a decimal value between <code>aria-valuemin</code> and <code>aria-valuemax</code> representing the current value of the meter.</li>
+          <li>The meter has <a class="property-reference" href="#aria-valuemin">aria-valuemin</a> set to a decimal value less than <code>aria-valuemax</code>.</li>
+          <li>The meter has <a class="property-reference" href="#aria-valuemax">aria-valuemax</a> set to a decimal value greater than <code>aria-valuemin</code>.</li>
+          <li>
+            Assistive technologies often present <code>aria-valuenow</code> as a percentage.
+            If conveying the value of the meter only in terms of a percentage would not be user friendly, the <a class="property-reference" href="#aria-valuetext">aria-valuetext</a> property is set to a string that makes the meter value understandable.
+            For example, a battery meter value might be conveyed as <code>aria-valuetext="50% (6 hours) remaining"</code>.
+          </li>
+          <li>If the meter has a visible label, it is referenced by <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the element with role <code>meter</code>. Otherwise, the element with role <code>meter</code> has a label provided by <a href="#aria-label" class="property-reference">aria-label</a>.</li>
+        </ul>
+      </section>
+    </section>
+
     <section class="widget" id="radiobutton">
       <h3>Radio Group</h3>
       <p>
@@ -2294,7 +2346,10 @@
         A slider is an input where the user selects a value from within a given range.
         Sliders typically have a slider thumb that can be moved along a bar or track to change the value of the slider.
       </p>
-
+      <p class="warning">
+        Users of touch-based assistive technologies may not be able to fully operate widgets that implement this pattern because APIs for capturing the necessary gestures and commands from assistive technologies are not yet available.
+        Authors should fully test widgets using this pattern with assistive technologies before considering incorporation into production systems.
+      </p>
       <section class="notoc">
         <h4>Examples</h4>
         <ul>
@@ -2356,6 +2411,10 @@
         For example, in a price range selector, the maximum value of the thumb that sets the lower end of the range is limited by the current value of the thumb that sets the upper end of the range.
         Conversely, the minimum value of the upper end thumb is limited by the current value of the lower end thumb.
         However, in some multi-thumb sliders, each thumb sets a value that does not depend on the other thumb values.
+      </p>
+      <p class="warning">
+        Users of touch-based assistive technologies may not be able to fully operate widgets that implement this pattern because APIs for capturing the necessary gestures and commands from assistive technologies are not yet available.
+        Authors should fully test widgets using this pattern with assistive technologies before considering incorporation into production systems.
       </p>
 
       <section class="notoc">
@@ -2419,7 +2478,7 @@
 
       <section class="notoc">
         <h4>Example</h4>
-        <p><a href="examples/spinbutton/datepicker-spinbuttons.html">Date Picker Spin Button Example:</a> Illustrates a date picker made from thre spin buttons for day, month, and year.</p>
+        <p><a href="examples/spinbutton/datepicker-spinbuttons.html">Date Picker Spin Button Example:</a> Illustrates a date picker made from three spin buttons for day, month, and year.</p>
       </section>
 
       <section class="notoc">
@@ -2582,8 +2641,11 @@
         <p>For the tab list:</p>
         <ul>
           <li>
-            <kbd>Tab</kbd>: When focus moves into the tab list, places focus on the active <code>tab</code> element.
-            When the tab list contains the focus, moves focus to the next element in the page tab sequence outside the tablist, which is typically either the first focusable element inside the tab panel or the tab panel itself.
+            <kbd>Tab</kbd>:
+            <ul>
+              <li>When focus moves into the tab list, places focus on the active <code>tab</code> element.</li>
+              <li>When the tab list contains the focus, moves focus to the next element in the page tab sequence outside the tablist, which is the tabpanel unless the first element containing meaningful content inside the tabpanel is focusable.</li>
+            </ul>
           </li>
           <li>When focus is on a tab element in a horizontal tab list:
             <ul>
@@ -2604,7 +2666,7 @@
               <li><kbd>Space or Enter</kbd>: Activates the tab if it was not activated automatically on focus.</li>
               <li><kbd>Home</kbd> (Optional): Moves focus to the first tab. Optionally, activates the newly focused tab (See note below).</li>
               <li><kbd>End</kbd> (Optional): Moves focus to the last tab. Optionally, activates the newly focused tab (See note below).</li>
-              <li><kbd>Shift + F10</kbd>: If the tab has an associated pop-up menu, opens the menu. </li>
+              <li><kbd>Shift + F10</kbd>: If the tab has an associated popup menu, opens the menu. </li>
               <li>
                 <kbd>Delete</kbd> (Optional): If deletion is allowed, deletes (closes) the current tab element and its associated tab panel,
                 sets focus on the tab following the tab that was closed, and optionally activates the newly focused tab. If there is not a tab that followed the tab that was deleted,
@@ -2625,7 +2687,7 @@
             For additional guidance, see <a href="#kbd_selection_follows_focus"></a>.
           </li>
           <li>
-            If the tabs in a tab list are arranged vertically:
+            When a tab list has its <a href="#aria-orientation" class="property-reference">aria-orientation</a> set to <code>vertical</code>:
             <ol>
               <li><kbd>Down Arrow</kbd> performs as <kbd>Right Arrow</kbd> is described above.</li>
               <li><kbd>Up Arrow</kbd> performs as <kbd>Left Arrow</kbd> is described above.</li>
@@ -2647,7 +2709,7 @@
           <li>Each element with role <code>tab</code> has the property <a href="#aria-controls" class="property-reference">aria-controls</a> referring to its associated <code>tabpanel</code> element.</li>
           <li>The active <code>tab</code> element has the state <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code> and all other <code>tab</code> elements have it set to <code>false</code>.</li>
           <li>Each element with role <code>tabpanel</code> has the property <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> referring to its associated <code>tab</code> element. </li>
-          <li>If a <code>tab</code> element has a pop-up menu, it has the property <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>. </li>
+          <li>If a <code>tab</code> element has a popup menu, it has the property <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>. </li>
           <li>
             If the <code>tablist</code> element is vertically oriented, it has the property <a href="#aria-orientation" class="property-reference">aria-orientation</a> set to <code>vertical</code>.
             The default value of <code>aria-orientation</code> for a <code>tablist</code> element is <code>horizontal</code>.
@@ -3033,12 +3095,14 @@
               <li>If focus is on a row, moves focus one row down.  If focus is on the last row, focus does not move.</li>
               <li>If focus is on a cell, moves focus one cell down.  If focus is on the bottom cell in the column, focus does not move.</li>
             </ul>
+          </li>
           <li>
             <kbd>Up Arrow</kbd>:
             <ul>
               <li>If focus is on a row, moves focus one row up.  If focus is on the first row, focus does not move.</li>
               <li>If focus is on a cell, moves focus one cell up.  If focus is on the top cell in the column, focus does not move.</li>
             </ul>
+          </li>
           <li>
             <kbd>Page Down</kbd>:
             <ul>
@@ -3394,7 +3458,7 @@
         <h4 class="widget-name">Banner</h4>
 
         <p>
-          A <a href="https://www.w3.org/TR/wai-aria-1.1/#banner"><code>banner</code></a> landmark identifies site-oriented content at the beginning of each page within a website. Site-oriented content typically includes things such as the logo or identity
+          A <a class="role-reference" href="#banner"><code>banner</code></a> landmark identifies site-oriented content at the beginning of each page within a website. Site-oriented content typically includes things such as the logo or identity
           of the site sponsor, and site-specific search tool. A banner usually appears at the top of the page and typically spans the full width.
         </p>
 
@@ -3442,7 +3506,7 @@
       <section id="aria_lh_complementary">
         <h4 class="widget-name">Complementary</h4>
 
-        <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#complementary"><code>complementary</code></a> landmark is a supporting section of the document, designed to be complementary to the main content at a similar level in the DOM hierarchy, but remains meaningful
+        <p>A <a class="role-reference" href="#complementary"><code>complementary</code></a> landmark is a supporting section of the document, designed to be complementary to the main content at a similar level in the DOM hierarchy, but remains meaningful
           when separated from the main content.</p>
 
         <ul>
@@ -3473,7 +3537,7 @@
       <section id="aria_lh_contentinfo">
         <h4 class="widget-name">Contentinfo</h4>
 
-        <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#contentinfo"><code>contentinfo</code></a> landmark is a way to identify common information at the bottom of each page within a website, typically called the &quot;footer&quot; of the page, including information
+        <p>A <a class="role-reference" href="#contentinfo"><code>contentinfo</code></a> landmark is a way to identify common information at the bottom of each page within a website, typically called the &quot;footer&quot; of the page, including information
           such as copyrights and links to privacy and accessibility statements.</p>
 
         <ul>
@@ -3520,7 +3584,7 @@
       <section id="aria_lh_form">
         <h4 class="widget-name">Form</h4>
 
-        <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#form"><code>form</code></a> landmark identifies a region that contains a collection of items and objects that, as a whole, combine to create a form when no other named landmark is appropriate (e.g. main
+        <p>A <a class="role-reference" href="#form"><code>form</code></a> landmark identifies a region that contains a collection of items and objects that, as a whole, combine to create a form when no other named landmark is appropriate (e.g. main
           or search).</p>
 
         <ul>
@@ -3566,7 +3630,7 @@
       <section id="aria_lh_main">
         <h4 class="widget-name">Main</h4>
 
-        <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#main"><code>main</code></a> landmark identifies the primary content of the page.</p>
+        <p>A <a class="role-reference" href="#main"><code>main</code></a> landmark identifies the primary content of the page.</p>
 
         <ul>
           <li>Each page should have one <code>main</code> landmark.</li>
@@ -3599,7 +3663,7 @@
       <section id="aria_lh_navigation">
         <h4 class="widget-name">Navigation</h4>
 
-        <p><a href="https://www.w3.org/TR/wai-aria-1.1/#navigation"><code>Navigation</code></a> landmarks provide a way to identify groups (e.g. lists) of links that are intended to be used for website or page content navigation.</p>
+        <p><a class="role-reference" href="#navigation"><code>Navigation</code></a> landmarks provide a way to identify groups (e.g. lists) of links that are intended to be used for website or page content navigation.</p>
 
         <ul>
           <li>If a page includes more than one <code>navigation</code> landmark, each should have a unique label (see <a href="#aria_lh_step3">Step 3</a> above).</li>
@@ -3628,7 +3692,7 @@
       <section id="aria_lh_region">
         <h4 class="widget-name">Region</h4>
 
-        <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#region"><code>region</code></a> landmark is a perceivable section of the page containing content that is sufficiently important for users to be able to navigate to the section.</p>
+        <p>A <a class="role-reference" href="#region"><code>region</code></a> landmark is a perceivable section of the page containing content that is sufficiently important for users to be able to navigate to the section.</p>
 
         <ul>
           <li>A <code>region</code> landmark must have a label.</li>
@@ -3658,7 +3722,7 @@
       <section id="aria_lh_search">
         <h4 class="widget-name">Search</h4>
 
-        <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#search"><code>search</code></a> landmark contains a collection of items and objects that, as a whole, combine to create search functionality.</p>
+        <p>A <a class="role-reference" href="#search"><code>search</code></a> landmark contains a collection of items and objects that, as a whole, combine to create search functionality.</p>
 
         <ul>
           <li>Use the <code>search</code> landmark instead of the <code>form</code> landmark when the form is used for search functionality.</li>
@@ -3736,13 +3800,13 @@
         Authors supply a description when there is a need to associate additional information with an element, such as instructions or format requirements for an input field.
       </p>
       <p>
-        assistive technologies present names differently from descriptions.
+        Assistive technologies present names differently from descriptions.
         For instance, screen readers typically announce the name and role of an element first, e.g., a button named <q>Mute Conversation</q>could be spoken as <q>Mute Conversation button</q>.
         If an element has a state, it could be announced either before or after the name and role; after name and role is the typical default.
          For example, a switch button named <q>Mute Conversation</q> in the <q>off</q> state could be announced as <q>Mute Conversation switch button off</q>.
         Because descriptions are optional strings that are usually significantly longer than names, they are presented last, sometimes after a slight delay.
         For example, <q>Mute Conversation Switch button off, Silences alerts and notifications about activity in this conversation.</q>
-        To reduce verbosity, some screen readers do not announce descriptions by default but instead inform users of their presence so that users can press a key that will announce the description. 
+        To reduce verbosity, some screen readers do not announce descriptions by default but instead inform users of their presence so that users can press a key that will announce the description.
       </p>
     </section>
 
@@ -4074,7 +4138,7 @@ However, most authors do not need such detailed understanding of the algorithms 
 &lt;/figure></code></pre>
           <p>
             Like with <code>table</code> elements, if a <code>figure</code> is not named using <code>aria-label</code> or <code>aria-labelledby</code>, the content of the <code>figcaption</code> element will be used as the accessible name.
-            However unlike <code>table</code> elements, if the <code>figcaption</code> element is not used for the name, it does not become an accessible description unless it is referenced by <code>aria-describedby</code>. 
+            However unlike <code>table</code> elements, if the <code>figcaption</code> element is not used for the name, it does not become an accessible description unless it is referenced by <code>aria-describedby</code>.
             Nevertheless, assistive technologies will render the content of a <code>figcaption</code> regardless of whether it is used as a name, description, or neither.
           </p>
           <p>Using the <code>caption</code> element to name a <code>table</code> element, or a <code>figcaption</code> element to name a <code>figure</code> element, satisfies <a href="#naming_rule_visible_text">Rule 2: Prefer Visible Text</a> and <a href="#naming_rule_native_techniques">Rule 3: Prefer Native Techniques</a>.</p>
@@ -4174,10 +4238,11 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
                 If <code>aria-label</code> or <code>aria-labelledby</code> is applied, content contained in the element and its descendants is hidden from assistive technology users unless it is also referenced by <code>aria-labelledby</code>.
                 Avoid hiding descendant content except in the rare circumstances where doing so benefits assistive technology users.
               </li>
-              <li>Required: The ARIA specification requires authors to provide a name; a missing name triggers accessibility validators to flag a violation.</li>
+              <li>Required: The ARIA specification requires authors to provide a name; a missing name causes accessibility validators to report an error.</li>
               <li>Recommended: Providing a name is strongly recommended.</li>
               <li>Discretionary: Naming is either optional or, in the circumstances described in the guidance column, is discouraged.</li>
               <li>Do Not Name: Naming is strongly discouraged even if it is technically permitted; often assistive technologies do not render a name even if provided.</li>
+              <li>Prohibited: The ARIA specification does not permit the element to be named; If a name is specified, accessibility validators will report an error.</li>
             </ul>
           </dd>
           <dt>Guidance:</dt>
@@ -4235,6 +4300,13 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
               </td>
             </tr>
             <tr>
+              <td><a href="#blockquote" class="role-reference"><code>blockquote</code></a></td>
+              <td>Discretionary</td>
+              <td>
+                If a visible label is present, associating it with the blockquote by using <code>aria-labelledby</code> could benefit some assistive technology users.
+              </td>
+            </tr>
+            <tr>
               <td><a href="#button" class="role-reference"><code>button</code></a></td>
               <td>Required <strong>Only If</strong> Content Insufficient</td>
               <td>
@@ -4243,6 +4315,11 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
                   <li>Ideally named by visible, descendant content.</li>
                 </ul>
               </td>
+            </tr>
+            <tr>
+              <td><a href="#caption" class="role-reference"><code>caption</code></a></td>
+              <td>Prohibited</td>
+              <td></td>
             </tr>
             <tr>
               <td><a href="#cell" class="role-reference"><code>cell</code></a></td>
@@ -4266,6 +4343,11 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
                   <li>Otherwise, reference visible content via <code>aria-labelledby</code>.</li>
                 </ul>
               </td>
+            </tr>
+            <tr>
+              <td><a href="#code" class="role-reference"><code>code</code></a></td>
+              <td>Prohibited</td>
+              <td></td>
             </tr>
             <tr>
               <td><a href="#columnheader" class="role-reference"><code>columnheader</code></a></td>
@@ -4317,6 +4399,11 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
               <td>Reference the term being defined with <code>role="term"</code>, using <code>aria-labelledby</code>.</td>
             </tr>
             <tr>
+              <td><a href="#deletion" class="role-reference"><code>deletion</code></a></td>
+              <td>Prohibited</td>
+              <td></td>
+            </tr>
+            <tr>
               <td><a href="#dialog" class="role-reference"><code>dialog</code></a></td>
               <td>Required</td>
               <td>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</td>
@@ -4339,6 +4426,11 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
                 Typically, the name of the <code>application</code> element will provide sufficient context and identity for the <code>document</code> element.
                 Because the <code>application</code> element is used only to create unusual, custom widgets, careful assessment is necessary to determine whether or not adding an accessible name is beneficial.
               </td>
+            </tr>
+            <tr>
+              <td><a href="#emphasis" class="role-reference"><code>emphasis</code></a></td>
+              <td>Prohibited</td>
+              <td></td>
             </tr>
             <tr>
               <td><a href="#feed" class="role-reference"><code>feed</code></a></td>
@@ -4372,6 +4464,11 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
                   <li>See the <a href="#aria_lh_form">Form Landmark</a> section.</li>
                 </ul>
               </td>
+            </tr>
+            <tr>
+              <td><a href="#generic" class="role-reference"><code>generic</code></a></td>
+              <td>Prohibited</td>
+              <td></td>
             </tr>
             <tr>
               <td><a href="#grid" class="role-reference"><code>grid</code></a></td>
@@ -4418,6 +4515,11 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
               </td>
             </tr>
             <tr>
+              <td><a href="#insertion" class="role-reference"><code>insertion</code></a></td>
+              <td>Prohibited</td>
+              <td></td>
+            </tr>
+            <tr>
               <td><a href="#img" class="role-reference"><code>img</code></a></td>
               <td>Required</td>
               <td>For the HTML <code>img</code> element, use the <code>alt</code> attribute. For other elements with the <code>img</code> role, use <code>aria-labelledby</code> or <code>aria-label</code>.</td>
@@ -4458,12 +4560,16 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
             <tr>
               <td><a href="#listitem" class="role-reference"><code>listitem</code></a></td>
               <td>Do Not Name</td>
-              <td>Not supported by assistive technologies; it is necessary to include relevant content within the list item.</td>
+              <td>Naming is not supported by assistive technologies; it is necessary to include relevant content within the list item.</td>
             </tr>
             <tr>
               <td><a href="#log" class="role-reference"><code>log</code></a></td>
-              <td>Required</td>
-              <td>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</td>
+              <td>Discretionary</td>
+              <td>
+                Some screen readers announce the name of a log element before announcing the content of the log element.
+                Thus, <code>aria-label</code> provides a method for prefacing the visible content of a log element with text that is not displayed as part of the log element.
+                Using <code>aria-label</code> is functionally equivalent to providing off-screen text in the contents of the log element, except off-screen text would be announced by screen readers that do not support <code>aria-label</code> on <code>log</code> elements.
+              </td>
             </tr>
             <tr>
               <td><a href="#main" class="role-reference"><code>main</code></a></td>
@@ -4554,6 +4660,17 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
               </td>
             </tr>
             <tr>
+              <td><a href="#meter" class="role-reference"><code>meter</code></a></td>
+              <td>Required</td>
+              <td>
+                <ul>
+                  <li>If based on an HTML <code>meter</code> element, can be named with an HTML <code>label</code> element.</li>
+                  <li>Otherwise use <code>aria-labelledby</code> if a visible label is present.</li>
+                  <li>Use <code>aria-label</code> if a visible label is not present.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
               <td><a href="#navigation" class="role-reference"><code>navigation</code></a></td>
               <td>Recommended</td>
               <td>
@@ -4566,7 +4683,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
             </tr>
             <tr>
               <td><a href="#none" class="role-reference"><code>none</code></a></td>
-              <td>Do Not Name</td>
+              <td>Prohibited</td>
               <td>An element with <code>role="none"</code> is not part of the accessibility tree (except in error cases). Do not use <code>aria-labelledby</code> or <code>aria-label</code>.</td>
             </tr>
             <tr>
@@ -4586,13 +4703,18 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
                 <ul>
                   <li>Warning! Using <code>aria-label</code> or <code>aria-labelledby</code> will hide any descendant content from assistive technologies.</li>
                   <li>Ideally named by visible, descendant content.</li>
-                  <li>See the <a href="#combobox">Combo Box Design Pattern</a>.</li>
+                  <li>See the <a href="#combobox">Combobox Design Pattern</a>.</li>
                 </ul>
               </td>
             </tr>
             <tr>
+              <td><a href="#paragraph" class="role-reference"><code>paragraph</code></a></td>
+              <td>Prohibited</td>
+              <td></td>
+            </tr>
+            <tr>
               <td><a href="#presentation" class="role-reference"><code>presentation</code></a></td>
-              <td>Do Not Name</td>
+              <td>Prohibited</td>
               <td>An element with <code>role="presentation"</code> is not part of the accessibility tree (except in error cases). Do not use <code>aria-labelledby</code> or <code>aria-label</code>.</td>
             </tr>
             <tr>
@@ -4655,7 +4777,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
             <tr>
               <td><a href="#rowgroup" class="role-reference"><code>rowgroup</code></a></td>
               <td>Do Not Name</td>
-              <td>Not supported by assistive technologies.</td>
+              <td>Naming is not supported by assistive technologies.</td>
             </tr>
             <tr>
               <td><a href="#rowheader" class="role-reference"><code>rowheader</code></a></td>
@@ -4745,6 +4867,21 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
               </td>
             </tr>
             <tr>
+              <td><a href="#strong" class="role-reference"><code>strong</code></a></td>
+              <td>Prohibited</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href="#subscript" class="role-reference"><code>subscript</code></a></td>
+              <td>Prohibited</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href="#superscript" class="role-reference"><code>superscript</code></a></td>
+              <td>Prohibited</td>
+              <td></td>
+            </tr>
+            <tr>
               <td><a href="#switch" class="role-reference"><code>switch</code></a></td>
               <td>Required <strong>Only If</strong> Content Insufficient</td>
               <td>
@@ -4815,9 +4952,18 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
               </td>
             </tr>
             <tr>
+              <td><a href="#time" class="role-reference"><code>time</code></a></td>
+              <td>Do Not Name</td>
+              <td>Naming is not supported by assistive technologies.</td>
+            </tr>
+            <tr>
               <td><a href="#timer" class="role-reference"><code>timer</code></a></td>
-              <td>Required</td>
-              <td>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</td>
+              <td>Discretionary</td>
+              <td>
+                Some screen readers announce the name of a timer element before announcing the content of the timer element.
+                Thus, <code>aria-label</code> provides a method for prefacing the visible content of a timer element with text that is not displayed as part of the timer element.
+                Using <code>aria-label</code> is functionally equivalent to providing off-screen text in the contents of the timer element, except off-screen text would be announced by screen readers that do not support <code>aria-label</code> on <code>timer</code> elements.
+              </td>
             </tr>
             <tr>
               <td><a href="#toolbar" class="role-reference"><code>toolbar</code></a></td>
@@ -6405,7 +6551,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       <li>button</li>
       <li>checkbox</li>
       <li>img</li>
-      <li>math</li>
+      <li>meter</li>
       <li>menuitemcheckbox</li>
       <li>menuitemradio</li>
       <li>option</li>
@@ -6444,92 +6590,168 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
     </p>
   </section>
 
-    <section id="indexes" class="appendix">
-      <h2>Indexes</h2>
+  <section id="structural_roles">
+    <h2>Structural Roles</h2>
+    <p>
+      ARIA provides a set of roles that convey the accessibility semantics of structures on a page.
+      These roles express the meaning that is conveyed by the layout and appearance of elements that organize and structure content, such as headings, lists, and tables.
+    </p>
+    <p>
+      some host languages, such as HTML, include elements that express the same semantics as an ARIA role.
+      For instance, the HTML <code>&lt;p&gt;</code> element is mapped to accessibility APIs in exactly the same way as <code>&lt;div role="paragraph"&gt;</code>.
+      The ARIA and HTML specifications refer to this mapping of HTML elements to ARIA attributes as implied semantics, i.e., the implied ARIA role of the HTML <code>&lt;p&gt;</code> element is <code>paragraph</code>.
+    </p>
+    <p>
+      When developing HTML, it is important to use native HTML elements where ever possible.
+      Do not use an ARIA role or property if it is possible to use an HTML element that has equivalent semantics.
+      Circumstances where it is appropriate to use ARIA attributes instead of equivalent HTML are:
+    </p>
+    <ol>
+      <li>When the HTML element cannot be styled in a way that meets visual design requirements.</li>
+      <li>When testing reveals that browsers or assistive technologies provide better support for the ARIA equivalent.</li>
+      <li>When remediating or retrofitting legacy content and altering the underlying DOM to use the HTML would be cost prohibitive.</li>
+      <li>When building a web component to compose a <a href="https://html.spec.whatwg.org/multipage/#custom-elements">custom element</a> and the element being extended  does not convey the appropriate or sufficient accessibility semantics.</li>
+    </ol>
+    <p>The following table lists all structural roles defined in ARIA 1.2.</p>
+    <table class="widget-features">
+      <caption>ARIA structural roles</caption>
+      <thead>
+        <tr>
+          <th>ARIA Role</th>
+          <th>HTML Equivalent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th>application</th><td>No equivalent element</td></tr>
+        <tr><th>article</th><td>article</td></tr>
+        <tr><th>blockquote</th><td>blockquote</td></tr>
+        <tr><th>caption</th><td>caption</td></tr>
+        <tr><th>cell</th><td>td</td></tr>
+        <tr><th>code</th><td>code</td></tr>
+        <tr><th>columnheader</th><td>th</td></tr>
+        <tr><th>definition</th><td>dd</td></tr>
+        <tr><th>deletion</th><td>del</td></tr>
+        <tr><th>directory</th><td>No equivalent element</td></tr>
+        <tr><th>document</th><td>No equivalent element</td></tr>
+        <tr><th>emphasis</th><td>em</td></tr>
+        <tr><th>feed</th><td>No equivalent element</td></tr>
+        <tr><th>figure</th><td>figure</td></tr>
+        <tr><th>generic</th><td>div, span</td></tr>
+        <tr><th>group</th><td>No equivalent element</td></tr>
+        <tr><th>heading with aria-level="N" where N is 1, 2, 3, 4, 5, or 6</th><td>h1, h2, h3, h4, h5, h6</td></tr>
+        <tr><th>insertion</th><td>ins</td></tr>
+        <tr><th>img</th><td>img</td></tr>
+        <tr><th>list</th><td>ul, ol</td></tr>
+        <tr><th>listitem</th><td>li</td></tr>
+        <tr><th>math</th><td>No equivalent element</td></tr>
+        <tr><th>none</th><td>No equivalent element</td></tr>
+        <tr><th>note</th><td>No equivalent element</td></tr>
+        <tr><th>presentation</th><td>No equivalent element</td></tr>
+        <tr><th>paragraph</th><td>p</td></tr>
+        <tr><th>row</th><td>tr</td></tr>
+        <tr><th>rowgroup</th><td>tbody, thead, tfoot</td></tr>
+        <tr><th>rowheader</th><td>th</td></tr>
+        <tr><th>separator (when not focusable)</th><td>hr</td></tr>
+        <tr><th>strong</th><td>strong</td></tr>
+        <tr><th>subscript</th><td>sub</td></tr>
+        <tr><th>superscript</th><td>sup</td></tr>
+        <tr><th>table</th><td>table</td></tr>
+        <tr><th>term</th><td>dfn</td></tr>
+        <tr><th>time</th><td>time</td></tr>
+        <tr><th>toolbar</th><td>No equivalent element</td></tr>
+        <tr><th>tooltip</th><td>No equivalent element</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="indexes" class="appendix">
+    <h2>Indexes</h2>
+    <ul>
+      <li><a href="examples/#examples_by_role_label">Design Pattern Examples by Role</a></li>
+      <li><a href="examples/#examples_by_props_label">Design Pattern Examples by Properties and States</a> </li>
+    </ul>
+  </section>
+
+  <section id="change_log" class="appendix">
+    <h2>Change History</h2>
+    <p>Change history is maintained in a separate version-specific branch.</p>
+  </section>
+
+  <section id="acknowledgements" class="appendix">
+    <h2>Acknowledgements</h2>
+    <section>
+      <h3>Major Contributors to Version 1.1</h3>
+      <p>
+        While WAI-ARIA Authoring Practices 1.1 is the work of the entire Authoring Practices Task Force and also benefits from many people throughout the open source community who both contribute significant work and provide valuable feedback,
+        special thanks goes to the following people who provided distinctly large portions of the content and code in version 1.1.
+      </p>
       <ul>
-        <li><a href="examples/#examples_by_role_label">Design Pattern Examples by Role</a></li>
-        <li><a href="examples/#examples_by_props_label">Design Pattern Examples by Properties and States</a> </li>
+        <li>Jon Gunderson and Nicholas Hoyt  of the Division of Disability Resources and Education Services at the University of Illinois Urbana/Champaign and the students Max Foltz,  Sulaiman Sanaullah, Mark McCarthy, and Jinyuan Zhou for their contributions to the development of many of the design pattern examples.</li>
+        <li>Valerie Young of Bocoup and her sponsor, Facebook, for development of the example test framework and regressions tests for more than 50 examples.</li>
+        <li>Simon Pieters of Bocoup and his sponsor, Facebook, for authoring of significant guidance sections, including comprehensive treatment of the topic of accessible names and descriptions.</li>
       </ul>
     </section>
+  	<section>
+  		<h3>Participants active in the ARIA Authoring Practices Task Force</h3>
+  		<ul>
+  			<li>Ann Abbott (Invited Expert)</li>
+  			<li>Shirisha Balusani (Microsoft Corporation)</li>
+        <li>Dorothy Bass (Wells Fargo Bank N.A.)</li>
+  			<li>Curt Bellew (Oracle)</li>
+  			<li>Zoë Bijl (Invited Expert)</li>
+  			<li>Michael Cooper (W3C)</li>
+  			<li>Bryan Garaventa (Level Access)</li>
+  			<li>Jon Gunderson (University of Illinois at Urbana-Champaign)</li>
+        <li>Jesse Hausler(Salesforce)</li>
+        <li>Sarah Higley (Microsoft Corporation)</li>
+  			<li>Hans Hillen (The Paciello Group, LLC)</li>
+  			<li>Matt King (Facebook)</li>
+  			<li>Jaeun Ku (University of Illinois at Urbana-Champaign)</li>
+  			<li>Aaron Leventhal (Google)</li>
+        <li>Carolyn MacLeod (IBM Corporation)</li>
+  			<li>Mark McCarthy (University of Illinois at Urbana-Champaign)</li>
+  			<li>James Nurthen (Adobe)</li>
+        <li>Scott O'Hara (The Paciello Group, LLC)</li>
+        <li>Simon Pieters (Bocoup)</li>
+        <li>Scott Vinkle (Shopify)</li>
+  			<li>Evan Yamanishi (W. W. Norton)</li>
+  			<li>Valerie Young (Bocoup)</li>
+  		</ul>
+  	</section>
+  	<section>
+  		<h3>Other commenters and contributors to Version 1.1</h3>
+  		<ul>
+  			<li>Vyacheslav Aristov</li>
+  			<li>J. Renée Beach</li>
+  			<li>Kasper Christensen</li>
+  			<li>Gerard K. Cohen</li>
+  			<li>Anne-Gaelle Colom</li>
+  			<li>Kevin Coughlin</li>
+  			<li>Cameron Cundiff</li>
+  			<li>Manish Dahamiwal</li>
+  			<li>Gilmore Davidson</li>
+  			<li>Boris Dušek</li>
+  			<li>Michael Fairchild</li>
+  			<li>Jeremy Felt</li>
+  			<li>Rob Fentress</li>
+  			<li>Geppy</li>
+  			<li>Tatiana Iskandar</li>
+  			<li>Patrick Lauke</li>
+  			<li>Marek Lewandowski</li>
+  			<li>Dan Matthew</li>
+  			<li>Shane McCarron</li>
+  			<li>Victor Meyer</li>
+  			<li>Jonathan Neal</li>
+  			<li>Philipp Rudloff</li>
+  			<li>Joseph Scheuhammer</li>
+  			<li>Nick Schonning</li>
+  			<li>thomascorthals</li>
+  			<li>Christopher Tryens</li>
+  		</ul>
+  	</section>
 
-    <section id="change_log" class="appendix">
-      <h2>Change History</h2>
-      <p>Change history is maintained in a separate version-specific branch.</p>
-    </section>
+  	<div data-include='common/acknowledgements/funders.html' data-include-replace='true'></div>
 
-    <section id="acknowledgements" class="appendix">
-      <h2>Acknowledgements</h2>
-      <section>
-        <h3>Major Contributors to Version 1.1</h3>
-        <p>
-          While WAI-ARIA Authoring Practices 1.1 is the work of the entire Authoring Practices Task Force and also benefits from many people throughout the open source community who both contribute significant work and provide valuable feedback,
-          special thanks goes to the following people who provided distinctly large portions of the content and code in version 1.1.
-        </p>
-        <ul>
-          <li>Jon Gunderson and Nicholas Hoyt  of the Division of Disability Resources and Education Services at the University of Illinois Urbana/Champaign and the students Max Foltz,  Sulaiman Sanaullah, Mark McCarthy, and Jinyuan Zhou for their contributions to the development of many of the design pattern examples.</li>
-          <li>Valerie Young of Bocoup and her sponsor, Facebook, for development of the example test framework and regressions tests for more than 50 examples.</li>
-          <li>Simon Pieters of Bocoup and his sponsor, Facebook, for authoring of significant guidance sections, including comprehensive treatement of the topic of accessible names and descriptions.</li>
-        </ul>
-      </section>
-    	<section>
-    		<h3>Participants active in the ARIA Authoring Practices Task Force</h3>
-    		<ul>
-    			<li>Ann Abbott (Invited Expert)</li>
-    			<li>Shirisha Balusani (Microsoft Corporation)</li>
-          <li>Dorothy Bass (Wells Fargo Bank N.A.)</li>
-    			<li>Curt Bellew (Oracle)</li>
-    			<li>Zoë Bijl (Invited Expert)</li>
-    			<li>Michael Cooper (W3C)</li>
-    			<li>Bryan Garaventa (Level Access)</li>
-    			<li>Jon Gunderson (University of Illinois at Urbana-Champaign)</li>
-          <li>Jesse Hausler(Salesforce)</li>
-          <li>Sarah Higley (Microsoft Corporation)</li>
-    			<li>Hans Hillen (The Paciello Group, LLC)</li>
-    			<li>Matt King (Facebook)</li>
-    			<li>Jaeun Ku (University of Illinois at Urbana-Champaign)</li>
-    			<li>Aaron Leventhal (Google)</li>
-          <li>Carolyn MacLeod (IBM Corporation)</li>
-    			<li>Mark McCarthy (University of Illinois at Urbana-Champaign)</li>
-    			<li>James Nurthen (Adobe)</li>
-          <li>Scott O'Hara (The Paciello Group, LLC)</li>
-          <li>Simon Pieters (Bocoup)</li>
-          <li>Scott Vinkle (Shopify)</li>
-    			<li>Evan Yamanishi (W. W. Norton)</li>
-    			<li>Valerie Young (Bocoup)</li>
-    		</ul>
-    	</section>
-    	<section>
-    		<h3>Other commenters and contributors to Version 1.1</h3>
-    		<ul>
-    			<li>Vyacheslav Aristov</li>
-    			<li>J. Renée Beach</li>
-    			<li>Kasper Christensen</li>
-    			<li>Gerard K. Cohen</li>
-    			<li>Anne-Gaelle Colom</li>
-    			<li>Kevin Coughlin</li>
-    			<li>Cameron Cundiff</li>
-    			<li>Manish Dahamiwal</li>
-    			<li>Gilmore Davidson</li>
-    			<li>Boris Dušek</li>
-    			<li>Michael Fairchild</li>
-    			<li>Jeremy Felt</li>
-    			<li>Rob Fentress</li>
-    			<li>Geppy</li>
-    			<li>Tatiana Iskandar</li>
-    			<li>Patrick Lauke</li>
-    			<li>Marek Lewandowski</li>
-    			<li>Dan Matthew</li>
-    			<li>Shane McCarron</li>
-    			<li>Victor Meyer</li>
-    			<li>Jonathan Neal</li>
-    			<li>Philipp Rudloff</li>
-    			<li>Joseph Scheuhammer</li>
-    			<li>Nick Schonning</li>
-    			<li>thomascorthals</li>
-    			<li>Christopher Tryens</li>
-    		</ul>
-    	</section>
-    	<div data-include='common/acknowledgements/funders.html' data-include-replace='true'></div>
-    </section>
+  </section>
 </body>
 </html>

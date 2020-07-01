@@ -78,6 +78,10 @@
   background: hsl(220, 43%, 99%);
 }
 
+[role="tabpanel"].is-hidden {
+  display: none;
+}
+
 [role="tabpanel"]:focus {
   border-color: hsl(20, 96%, 48%);
   box-shadow: 0 0 0.2em hsl(20, 96%, 48%);

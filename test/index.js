@@ -1,11 +1,12 @@
 'use strict';
 
 const path = require('path');
-const { test } = require('ava');
+const test = require('ava');
 const webdriver = require('selenium-webdriver');
 const { By } = require('selenium-webdriver');
 
 const startGeckodriver = require('./util/start-geckodriver');
+const queryElements = require('./util/queryElements');
 
 let session, geckodriver;
 const firefoxArgs = process.env.CI ? [ '-headless' ] : [];
@@ -30,6 +31,7 @@ if (!coverageReportRun) {
   test.beforeEach((t) => {
     t.context.session = session;
     t.context.waitTime = testWaitTime;
+    t.context.queryElements = queryElements;
   });
 
   test.after.always(() => {
@@ -81,11 +83,13 @@ const _ariaTest = (desc, page, testId, body, failing) => {
     t.context.url = url;
     await t.context.session.get(url);
 
-    const assert = require('assert');
-    assert(
-      (await t.context.session.findElements(By.css(selector))).length,
-      'Cannot find behavior description for this test in example page:' + testId
-    );
+    if (testId !== 'test-additional-behavior') {
+      const assert = require('assert');
+      assert(
+        (await t.context.queryElements(t, selector)).length,
+        'Cannot find behavior description for this test in example page:' + testId
+      );
+    }
 
     return body.apply(this, arguments);
   });

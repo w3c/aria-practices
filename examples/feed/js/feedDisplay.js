@@ -3,6 +3,8 @@
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 */
 
+'use strict';
+
 /**
  * @namespace aria
  */
@@ -249,7 +251,7 @@ aria.FeedDisplay.prototype.renderItemData = function (itemData) {
 
   var actions = document.createElement('div');
   actions.className = 'restaurant-actions';
-  actions.innerHTML = '<button class="bookmark-button">Bookmark</button>';
+  actions.innerHTML = '<button type="button" class="bookmark-button">Bookmark</button>';
   feedItem.appendChild(actions);
 
   return feedItem;

@@ -1,10 +1,9 @@
 'use strict';
 
-const { By } = require('selenium-webdriver');
 const assert = require('assert');
 
 /**
- * Confirm the the value of an attribute on an element.
+ * Confirm the value of an attribute on an element.
  *
  * @param {obj} t                  - ava execution object
  * @param {String} elementSelector - the element to check
@@ -12,13 +11,7 @@ const assert = require('assert');
  * @param {String} value           - the value
  */
 module.exports = async function assertAttributeValues (t, elementSelector, attribute, value) {
-  let elementLocator = By.css(elementSelector);
-  let elements = await t.context.session.findElements(elementLocator);
-
-  assert.ok(
-    elements.length,
-    'CSS elector returned no results: ' + elementSelector
-  );
+  let elements = await t.context.queryElements(t, elementSelector);
 
   for (let element of elements) {
     assert.strictEqual(

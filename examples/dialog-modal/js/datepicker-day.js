@@ -5,6 +5,8 @@
 *   File:   datepickerDay.js
 */
 
+'use strict';
+
 var DatePickerDay = function (domNode, datepicker, index, row, column) {
 
   this.index = index;
@@ -34,7 +36,7 @@ var DatePickerDay = function (domNode, datepicker, index, row, column) {
 
 DatePickerDay.prototype.init = function () {
   this.domNode.setAttribute('tabindex', '-1');
-  this.domNode.addEventListener('mousedown', this.handleMouseDown.bind(this));
+  this.domNode.addEventListener('click', this.handleClick.bind(this));
   this.domNode.addEventListener('keydown', this.handleKeyDown.bind(this));
   this.domNode.addEventListener('focus', this.handleFocus.bind(this));
 
@@ -97,13 +99,6 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
       flag = true;
       break;
 
-    case this.keyCode.ENTER:
-    case this.keyCode.SPACE:
-      this.datepicker.setTextboxDate(this.day);
-      this.datepicker.hide();
-      flag = true;
-      break;
-
     case this.keyCode.RIGHT:
       this.datepicker.moveFocusToNextDay();
       flag = true;
@@ -163,7 +158,7 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
   }
 };
 
-DatePickerDay.prototype.handleMouseDown = function (event) {
+DatePickerDay.prototype.handleClick = function (event) {
 
   if (!this.isDisabled()) {
     this.datepicker.setTextboxDate(this.day);

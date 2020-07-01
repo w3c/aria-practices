@@ -1,109 +1,18 @@
 {
+  "extends": "eslint:recommended",
+  "env": {
+    "browser": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
   "rules": {
-    "no-with": 2,
-    "no-mixed-spaces-and-tabs": 2,
-    "no-multiple-empty-lines": 2,
-    "no-multi-spaces": 0,
-    "operator-linebreak": [
-      2,
-      "after"
-    ],
-    "quote-props": 0,
-    "key-spacing": [
-      2,
-      {
-        "afterColon": true
-      }
-    ],
-    "space-unary-ops": [
-      2,
-      {
-        "words": false,
-        "nonwords": false
-      }
-    ],
-    "no-spaced-func": 2,
-    "array-bracket-spacing": [
-      2,
-      "never",
-      {
-        "singleValue": true
-      }
-    ],
-    "space-in-parens": [
-      2,
-      "never"
-    ],
-    "comma-dangle": [
-      2,
-      "never"
-    ],
-    "no-trailing-spaces": 2,
-    "yoda": [
-      2,
-      "never"
-    ],
-    "camelcase": [
-      2,
-      {
-        "properties": "always"
-      }
-    ],
-    "comma-style": [
-      2,
-      "last"
-    ],
-    "curly": [
-      2,
-      "all"
-    ],
-    "dot-notation": 2,
-    "brace-style": [
-      2,
-      "stroustrup",
-      {
-        "allowSingleLine": true
-      }
-    ],
-    "eol-last": 2,
-    "wrap-iife": 2,
-    "semi": [
-      2,
-      "always"
-    ],
-    "space-infix-ops": 2,
-    "keyword-spacing": [
-      2,
-      {}
-    ],
-    "spaced-comment": [
-      2,
-      "always"
-    ],
-    "space-before-blocks": [
-      2,
-      "always"
-    ],
-    "space-before-function-paren": [
-      2,
-      "always"
-    ],
-    "consistent-this": [
-      2,
-      "self"
-    ],
-    "indent": [
-      2,
-      2,
-      {
-        "SwitchCase": 1
-      }
-    ],
-    "quotes": [
-      2,
-      "single"
-    ],
-    "no-eval": "error",
-    "no-implied-eval": "error"
+    "no-unused-vars": 0,
+    "no-undef": 0,
+    "no-restricted-properties": [2, {
+      "property": "findElements",
+      "message": "Please use t.context.queryElements()."
+    }],
+    "strict": [2, "global"]
   }
 }

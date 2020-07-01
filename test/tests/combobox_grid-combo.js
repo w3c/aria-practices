@@ -7,12 +7,11 @@ const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAttributeDNE = require('../util/assertAttributeDNE');
 const assertAriaRoles = require('../util/assertAriaRoles');
 
-const exampleFile = 'combobox/aria1.1pattern/grid-combo.html';
+const exampleFile = 'combobox/grid-combo.html';
 
 const ex = {
-  comboboxSelector: '#ex1 [role="combobox"]',
   labelSelector: '#ex1 label',
-  textboxSelector: '#ex1 input[type="text"]',
+  comboboxSelector: '#ex1 input[type="text"]',
   gridSelector: '#ex1 [role="grid"]',
   rowSelector: '#ex1 [role="row"]',
   gridcellSelector: '#ex1 [role="gridcell"]',
@@ -20,11 +19,11 @@ const ex = {
   numAOptions: 3
 };
 
-const waitForFocusChange = async (t, textboxSelector, originalFocus) => {
+const waitForFocusChange = async (t, comboboxSelector, originalFocus) => {
   await t.context.session.wait(
     async function () {
       let newfocus = await t.context.session
-        .findElement(By.css(textboxSelector))
+        .findElement(By.css(comboboxSelector))
         .getAttribute('aria-activedescendant');
       return newfocus != originalFocus;
     },
@@ -47,40 +46,14 @@ const gridcellId = (row, column) => {
 
 // Attributes
 ariaTest('Test for role="combobox"', exampleFile, 'combobox-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'ex1', 'combobox', '1', 'div');
+    await assertAriaRoles(t, 'ex1', 'combobox', '1', 'input');
 });
 
 ariaTest('"aria-haspopup"=grid on combobox element', exampleFile, 'combobox-aria-haspopup', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex.comboboxSelector, 'aria-haspopup', 'grid');
-});
-
-ariaTest('"aria-owns" attribute on combobox element', exampleFile, 'combobox-aria-owns', async (t) => {
-  t.plan(2);
-
-  const popupId = await t.context.session
-    .findElement(By.css(ex.comboboxSelector))
-    .getAttribute('aria-owns');
-
-  t.truthy(
-    popupId,
-    '"aria-owns" attribute should exist on: ' + ex.comboboxSelector
-  );
-
-  const popupElements = await t.context.session
-    .findElement(By.id('ex1'))
-    .findElements(By.id(popupId));
-
-  t.is(
-    popupElements.length,
-    1,
-    'There should be a element with id "' + popupId + '" as referenced by the aria-owns attribute'
-  );
+    await assertAttributeValues(t, ex.comboboxSelector, 'aria-haspopup', 'grid');
 });
 
 ariaTest('"aria-expanded" on combobox element', exampleFile, 'combobox-aria-expanded', async (t) => {
-  t.plan(4);
 
   const combobox = await t.context.session.findElement(By.css(ex.comboboxSelector));
 
@@ -94,7 +67,7 @@ ariaTest('"aria-expanded" on combobox element', exampleFile, 'combobox-aria-expa
 
   const popupId = await t.context.session
     .findElement(By.css(ex.comboboxSelector))
-    .getAttribute('aria-owns');
+    .getAttribute('aria-controls');
 
   const popupElement = await t.context.session
     .findElement(By.id('ex1'))
@@ -105,10 +78,10 @@ ariaTest('"aria-expanded" on combobox element', exampleFile, 'combobox-aria-expa
     'Popup element should not be displayed when \'aria-expanded\' is false\''
   );
 
-  // Send key "a" to textbox
+  // Send key "a" to combobox
 
   await t.context.session
-    .findElement(By.css(ex.textboxSelector))
+    .findElement(By.css(ex.comboboxSelector))
     .sendKeys('a');
 
   // Check that aria-expanded is true and the grid is visible
@@ -125,8 +98,7 @@ ariaTest('"aria-expanded" on combobox element', exampleFile, 'combobox-aria-expa
   );
 });
 
-ariaTest('"id" attribute on texbox used to discover accessible name', exampleFile, 'textbox-id', async (t) => {
-  t.plan(2);
+ariaTest('"id" attribute on texbox used to discover accessible name', exampleFile, 'combobox-id', async (t) => {
 
   const labelForTextboxId = await t.context.session
     .findElement(By.css(ex.labelSelector))
@@ -138,35 +110,31 @@ ariaTest('"id" attribute on texbox used to discover accessible name', exampleFil
   );
 
   const textboxElementId = await t.context.session
-    .findElement(By.css(ex.textboxSelector))
+    .findElement(By.css(ex.comboboxSelector))
     .getAttribute('id');
 
   t.true(
     labelForTextboxId === textboxElementId,
-    'Id on textbox element (' + ex.textboxSelector + ') should match the "for" attribute of the label (' + labelForTextboxId + ')'
+    'Id on textbox element (' + ex.comboboxSelector + ') should match the "for" attribute of the label (' + labelForTextboxId + ')'
   );
 });
 
-ariaTest('"aria-autocomplete" on grid element', exampleFile, 'textbox-aria-autocomplete', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex.textboxSelector, 'aria-autocomplete', 'list');
+ariaTest('"aria-autocomplete" on grid element', exampleFile, 'combobox-aria-autocomplete', async (t) => {
+    await assertAttributeValues(t, ex.comboboxSelector, 'aria-autocomplete', 'list');
 });
 
-ariaTest('"aria-controls" attribute on grid element', exampleFile, 'textbox-aria-controls', async (t) => {
-  t.plan(2);
+ariaTest('"aria-controls" attribute on grid element', exampleFile, 'combobox-aria-controls', async (t) => {
 
   const popupId = await t.context.session
-    .findElement(By.css(ex.textboxSelector))
+    .findElement(By.css(ex.comboboxSelector))
     .getAttribute('aria-controls');
 
   t.truthy(
     popupId,
-    '"aria-controls" attribute should exist on: ' + ex.textboxSelector
+    '"aria-controls" attribute should exist on: ' + ex.comboboxSelector
   );
 
-  const popupElements = await t.context.session
-    .findElement(By.id('ex1'))
-    .findElements(By.id(popupId));
+  const popupElements = await t.context.queryElements(t, `#ex1 #${popupId}`);
 
   t.is(
     popupElements.length,
@@ -175,29 +143,25 @@ ariaTest('"aria-controls" attribute on grid element', exampleFile, 'textbox-aria
   );
 });
 
-ariaTest('"aria-activedescendant" on combobox element', exampleFile, 'textbox-aria-activedescendant', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex.textboxSelector, 'aria-activedescendant', null);
+ariaTest('"aria-activedescendant" on combobox element', exampleFile, 'combobox-aria-activedescendant', async (t) => {
+    await assertAttributeValues(t, ex.comboboxSelector, 'aria-activedescendant', null);
 });
 
 ariaTest('role "grid" on div element', exampleFile, 'grid-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'ex1', 'grid', '1', 'div');
+    await assertAriaRoles(t, 'ex1', 'grid', '1', 'div');
 });
 
 ariaTest('"aria-labelledby" attribute on grid element', exampleFile, 'grid-aria-labelledby', async (t) => {
-  t.plan(1);
-  await assertAriaLabelledby(t, ex.gridSelector);
+    await assertAriaLabelledby(t, ex.gridSelector);
 });
 
 ariaTest('role "row" exists within grid element', exampleFile, 'row-role', async (t) => {
-  t.plan(1);
 
   // Send key "a" then arrow down to reveal all options
-  await t.context.session.findElement(By.css(ex.textboxSelector)).sendKeys('a', Key.ARROW_DOWN);
+  await t.context.session.findElement(By.css(ex.comboboxSelector)).sendKeys('a', Key.ARROW_DOWN);
 
-  let rowElements = await t.context.session.findElement(By.css(ex.gridSelector))
-    .findElements(By.css('[role="row"]'));
+  let gridEl = await t.context.session.findElement(By.css(ex.gridSelector));
+  let rowElements = await t.context.queryElements(t, '[role="row"]', gridEl);
 
   t.truthy(
     await rowElements.length,
@@ -207,28 +171,26 @@ ariaTest('role "row" exists within grid element', exampleFile, 'row-role', async
 
 // This test fails due to bug: https://github.com/w3c/aria-practices/issues/859
 ariaTest.failing('"aria-selected" attribute on row element', exampleFile, 'row-aria-selected', async (t) => {
-  t.plan(2);
 
   // Send key "a"
-  await t.context.session.findElement(By.css(ex.textboxSelector)).sendKeys('a');
+  await t.context.session.findElement(By.css(ex.comboboxSelector)).sendKeys('a');
   await assertAttributeDNE(t, ex.rowSelector + ':nth-of-type(1)', 'aria-selected');
 
   // Send key ARROW_DOWN to selected first option
-  await t.context.session.findElement(By.css(ex.textboxSelector)).sendKeys(Key.ARROW_DOWN);
+  await t.context.session.findElement(By.css(ex.comboboxSelector)).sendKeys(Key.ARROW_DOWN);
   await assertAttributeValues(t, ex.rowSelector + ':nth-of-type(1)', 'aria-selected', 'true');
 });
 
 ariaTest('role "gridcell" exists within row element', exampleFile, 'gridcell-role', async (t) => {
-  t.plan(1);
 
   // Send key "a" then arrow down to reveal all options
-  await t.context.session.findElement(By.css(ex.textboxSelector)).sendKeys('a', Key.ARROW_DOWN);
+  await t.context.session.findElement(By.css(ex.comboboxSelector)).sendKeys('a', Key.ARROW_DOWN);
 
-  let rowElements = await t.context.session.findElement(By.css(ex.rowSelector))
-    .findElements(By.css('[role="gridcell"]'));
+  let rowElement = await t.context.session.findElement(By.css(ex.rowSelector));
+  let cellElements = await t.context.queryElements(t, '[role="gridcell"]', rowElement);
 
   t.truthy(
-    await rowElements.length,
+    await cellElements.length,
     'role="gridcell" elements should be found within a row element after opening popup'
   );
 });
@@ -236,44 +198,43 @@ ariaTest('role "gridcell" exists within row element', exampleFile, 'gridcell-rol
 
 // Keys
 
-ariaTest('Test down key press with focus on textbox',
-  exampleFile, 'textbox-key-down-arrow', async (t) => {
+ariaTest('Test down key press with focus on combobox',
+  exampleFile, 'popup-key-down-arrow', async (t) => {
 
-    t.plan(4);
 
-    // Send ARROW_DOWN to the textbox
+    // Send ARROW_DOWN to the combobox
     await t.context.session
-      .findElement(By.css(ex.textboxSelector))
+      .findElement(By.css(ex.comboboxSelector))
       .sendKeys(Key.ARROW_DOWN);
 
     // Check that the grid is displayed
     t.false(
       await t.context.session.findElement(By.css(ex.gridSelector)).isDisplayed(),
-      'In example ex3 grid should not be display after ARROW_DOWN keypress while textbox is empty'
+      'In example ex3 grid should not be display after ARROW_DOWN keypress while combobox is empty'
     );
 
-    // Send "a" then ARROW_DOWN to the textbox
+    // Send "a" then ARROW_DOWN to the combobox
     await t.context.session
-      .findElement(By.css(ex.textboxSelector))
+      .findElement(By.css(ex.comboboxSelector))
       .sendKeys('a', Key.ARROW_DOWN);
 
     // Account for race condition
-    await waitForFocusChange(t, ex.textboxSelector, '');
+    await waitForFocusChange(t, ex.comboboxSelector, '');
 
     // Check that the grid is displayed
     t.true(
       await t.context.session.findElement(By.css(ex.gridSelector)).isDisplayed(),
-      'In example ex3 grid should display after ARROW_DOWN keypress when textbox has character values'
+      'In example ex3 grid should display after ARROW_DOWN keypress when combobox has character values'
     );
 
     // Check that the active descendent focus is correct
-    let focusedId = await t.context.session.findElement(By.css(ex.textboxSelector))
+    let focusedId = await t.context.session.findElement(By.css(ex.comboboxSelector))
       .getAttribute('aria-activedescendant');
 
     t.is(
       focusedId,
       gridcellId(0,0),
-      'After down arrow sent to textbox, aria-activedescendant should be set to the first gridcell element: ' + gridcellId(0,0)
+      'After down arrow sent to combobox, aria-activedescendant should be set to the first gridcell element: ' + gridcellId(0,0)
     );
 
     let focusedElementClasses = await t.context.session.findElement(By.id(gridcellId(0,0)))
@@ -289,34 +250,33 @@ ariaTest('Test down key press with focus on textbox',
 ariaTest('Test down key press with focus on list',
   exampleFile, 'popup-key-down-arrow', async (t) => {
 
-    t.plan(6);
 
-    // Send 'a' to text box, then send ARROW_DOWN to textbox to set focus on grid
+    // Send 'a' to text box, then send ARROW_DOWN to combobox to set focus on grid
     await t.context.session
-      .findElement(By.css(ex.textboxSelector))
+      .findElement(By.css(ex.comboboxSelector))
       .sendKeys('a', Key.ARROW_DOWN);
 
     // Test that ARROW_DOWN moves active descendant focus on item in grid
     for (let i = 1; i <  ex.numAOptions; i++) {
       let oldfocus = await t.context.session
-        .findElement(By.css(ex.textboxSelector))
+        .findElement(By.css(ex.comboboxSelector))
         .getAttribute('aria-activedescendant');
 
       await t.context.session
-        .findElement(By.css(ex.textboxSelector))
+        .findElement(By.css(ex.comboboxSelector))
         .sendKeys(Key.ARROW_DOWN);
 
       // Account for race condition
-      await waitForFocusChange(t, ex.textboxSelector, oldfocus);
+      await waitForFocusChange(t, ex.comboboxSelector, oldfocus);
 
       // Check that the active descendent focus is correct
 
-      let focusedId = await t.context.session.findElement(By.css(ex.textboxSelector))
+      let focusedId = await t.context.session.findElement(By.css(ex.comboboxSelector))
         .getAttribute('aria-activedescendant');
       t.is(
         focusedId,
         gridcellId(i,0),
-        'After down up sent to textbox, aria-activedescendant should be set to this gridcell element: ' + gridcellId(i,0)
+        'After down up sent to combobox, aria-activedescendant should be set to this gridcell element: ' + gridcellId(i,0)
       );
 
       let focusedElementClasses = await t.context.session.findElement(By.id(gridcellId(i,0)))
@@ -329,18 +289,18 @@ ariaTest('Test down key press with focus on list',
 
     // Sending ARROW_DOWN to the last item should put focus on the first
     let oldfocus = await t.context.session
-      .findElement(By.css(ex.textboxSelector))
+      .findElement(By.css(ex.comboboxSelector))
       .getAttribute('aria-activedescendant');
     await t.context.session
-      .findElement(By.css(ex.textboxSelector))
+      .findElement(By.css(ex.comboboxSelector))
       .sendKeys(Key.ARROW_DOWN);
 
     // Account for race condition
-    await waitForFocusChange(t, ex.textboxSelector, oldfocus);
+    await waitForFocusChange(t, ex.comboboxSelector, oldfocus);
 
     // Focus should be on the first item
 
-    let focusedId = await t.context.session.findElement(By.css(ex.textboxSelector))
+    let focusedId = await t.context.session.findElement(By.css(ex.comboboxSelector))
       .getAttribute('aria-activedescendant');
     t.is(
       focusedId,
@@ -358,44 +318,43 @@ ariaTest('Test down key press with focus on list',
   });
 
 
-ariaTest('Test up key press with focus on textbox',
-  exampleFile, 'textbox-key-up-arrow', async (t) => {
+ariaTest('Test up key press with focus on combobox',
+  exampleFile, 'popup-key-up-arrow', async (t) => {
 
-    t.plan(4);
 
-    // Send ARROW_UP to the textbox
+    // Send ARROW_UP to the combobox
     await t.context.session
-      .findElement(By.css(ex.textboxSelector))
+      .findElement(By.css(ex.comboboxSelector))
       .sendKeys(Key.ARROW_UP);
 
     // Check that the grid is displayed
     t.false(
       await t.context.session.findElement(By.css(ex.gridSelector)).isDisplayed(),
-      'In example ex3 grid should not be display after ARROW_UP keypress while textbox is empty'
+      'In example ex3 grid should not be display after ARROW_UP keypress while combobox is empty'
     );
 
-    // Send "a" then ARROW_UP to the textbox
+    // Send "a" then ARROW_UP to the combobox
     await t.context.session
-      .findElement(By.css(ex.textboxSelector))
+      .findElement(By.css(ex.comboboxSelector))
       .sendKeys('a', Key.ARROW_UP);
 
     // Account for race condition
-    await waitForFocusChange(t, ex.textboxSelector, '');
+    await waitForFocusChange(t, ex.comboboxSelector, '');
 
     // Check that the grid is displayed
     t.true(
       await t.context.session.findElement(By.css(ex.gridSelector)).isDisplayed(),
-      'In example ex3 grid should display after ARROW_UP keypress when textbox has character values'
+      'In example ex3 grid should display after ARROW_UP keypress when combobox has character values'
     );
 
     // Check that the active descendent focus is correct
-    let focusedId = await t.context.session.findElement(By.css(ex.textboxSelector))
+    let focusedId = await t.context.session.findElement(By.css(ex.comboboxSelector))
       .getAttribute('aria-activedescendant');
 
     t.is(
       focusedId,
       gridcellId(ex.numAOptions - 1,0),
-      'After up arrow sent to textbox, aria-activedescendant should be set to the last row first gridcell element: ' + gridcellId(ex.numAOptions - 1,0)
+      'After up arrow sent to combobox, aria-activedescendant should be set to the last row first gridcell element: ' + gridcellId(ex.numAOptions - 1,0)
     );
 
     let focusedElementClasses = await t.context.session.findElement(By.id(gridcellId(ex.numAOptions - 1,0)))
@@ -411,35 +370,34 @@ ariaTest('Test up key press with focus on textbox',
 ariaTest('Test up key press with focus on grid',
   exampleFile, 'popup-key-up-arrow', async (t) => {
 
-    t.plan(6);
 
-    // Send 'a' to text box, then send ARROW_UP to textbox to textbox to put focus in textbox
+    // Send 'a' to text box, then send ARROW_UP to combobox to put focus in combobox
     // Up arrow should move selection to the last item in the list
     await t.context.session
-      .findElement(By.css(ex.textboxSelector))
+      .findElement(By.css(ex.comboboxSelector))
       .sendKeys('a', Key.ARROW_UP);
 
     // Test that ARROW_UP moves active descendant focus up one item in the grid
     for (let index = ex.numAOptions - 2; index >= 0 ; index--) {
       let oldfocus = await t.context.session
-        .findElement(By.css(ex.textboxSelector))
+        .findElement(By.css(ex.comboboxSelector))
         .getAttribute('aria-activedescendant');
 
       // Send Key
       await t.context.session
-        .findElement(By.css(ex.textboxSelector))
+        .findElement(By.css(ex.comboboxSelector))
         .sendKeys(Key.ARROW_UP);
 
-      await waitForFocusChange(t, ex.textboxSelector, oldfocus);
+      await waitForFocusChange(t, ex.comboboxSelector, oldfocus);
 
       // Check that the active descendent focus is correct
 
-      let focusedId = await t.context.session.findElement(By.css(ex.textboxSelector))
+      let focusedId = await t.context.session.findElement(By.css(ex.comboboxSelector))
         .getAttribute('aria-activedescendant');
       t.is(
         focusedId,
         gridcellId(index,0),
-        'After up arrow sent to textbox, aria-activedescendant should be set to gridcell element: ' + gridcellId(index,0)
+        'After up arrow sent to combobox, aria-activedescendant should be set to gridcell element: ' + gridcellId(index,0)
       );
 
       let focusedElementClasses = await t.context.session.findElement(By.id(gridcellId(index,0)))
@@ -452,19 +410,19 @@ ariaTest('Test up key press with focus on grid',
 
     // Test that ARROW_UP, when on the first item, returns focus to the last item in the list
     let oldfocus = await t.context.session
-      .findElement(By.css(ex.textboxSelector))
+      .findElement(By.css(ex.comboboxSelector))
       .getAttribute('aria-activedescendant');
 
     // Send Key
     await t.context.session
-      .findElement(By.css(ex.textboxSelector))
+      .findElement(By.css(ex.comboboxSelector))
       .sendKeys(Key.ARROW_UP);
 
-    await waitForFocusChange(t, ex.textboxSelector, oldfocus);
+    await waitForFocusChange(t, ex.comboboxSelector, oldfocus);
 
     // Check that the active descendent focus is correct
 
-    let focusedId = await t.context.session.findElement(By.css(ex.textboxSelector))
+    let focusedId = await t.context.session.findElement(By.css(ex.comboboxSelector))
       .getAttribute('aria-activedescendant');
     t.is(
       focusedId,
@@ -484,12 +442,11 @@ ariaTest('Test up key press with focus on grid',
 ariaTest('Test enter key press with focus on grid',
   exampleFile, 'popup-key-enter', async (t) => {
 
-    t.plan(2);
 
-    // Send key "a" to the textbox, then key ARROW_DOWN to select the first item
+    // Send key "a" to the combobox, then key ARROW_DOWN to select the first item
 
     await t.context.session
-      .findElement(By.css(ex.textboxSelector))
+      .findElement(By.css(ex.comboboxSelector))
       .sendKeys('a', Key.ARROW_DOWN);
 
     // Get the value of the first option in the grid
@@ -499,71 +456,84 @@ ariaTest('Test enter key press with focus on grid',
     // Send key ENTER
 
     await t.context.session
-      .findElement(By.css(ex.textboxSelector))
+      .findElement(By.css(ex.comboboxSelector))
       .sendKeys(Key.ENTER);
 
     // Confirm that the grid is closed
 
     await assertAttributeValues(t, ex.comboboxSelector, 'aria-expanded', 'false');
 
-    // Confirm that the value of the textbox is now set to the first option
+    // Confirm that the value of the combobox is now set to the first option
 
     t.is(
       await t.context.session
-        .findElement(By.css(ex.textboxSelector))
+        .findElement(By.css(ex.comboboxSelector))
         .getAttribute('value'),
       firstOption,
-      'key press "ENTER" should result in first option in textbox'
+      'key press "ENTER" should result in first option in combobox'
     );
 
   });
 
-ariaTest('Test escape key press with focus on textbox',
+ariaTest('Test escape key press with focus on combobox',
   exampleFile, 'textbox-key-escape', async (t) => {
-    t.plan(2);
-
-    // Send key "a", then key ESCAPE to the textbox
-    await t.context.session
-      .findElement(By.css(ex.textboxSelector))
-      .sendKeys('a', Key.ESCAPE);
-
-    // Wait for gridbox to close
-    await t.context.session.wait(
-      async function () {
-        return !(await t.context.session.findElement(By.css(ex.gridSelector)).isDisplayed());
-      },
-      t.context.waitTime,
-      'Timeout waiting for gridbox to close afer escape'
-    );
-
-    // Confirm the grid is closed and the textboxed is cleared
-    await assertAttributeValues(t, ex.comboboxSelector, 'aria-expanded', 'false');
-    t.is(
-      await t.context.session
-        .findElement(By.css(ex.textboxSelector))
-        .getAttribute('value'),
-      '',
-      'In key press "ESCAPE" should result in clearing of the textbox'
-    );
-
-  });
-
-// This test fails due to bug: https://github.com/w3c/aria-practices/issues/860
-ariaTest.failing('Test escape key press with focus on popup',
-  exampleFile, 'popup-key-escape', async (t) => {
-    t.plan(2);
-
-    // Send key "a" then key "ARROW_DOWN to put the focus on the grid,
+    // Send key "a" then key "ARROW_DOWN to put the focus on the listbox,
     // then key ESCAPE to the textbox
 
     await t.context.session
-      .findElement(By.css(ex.textboxSelector))
-      .sendKeys('a', Key.ARROW_DOWN);
+      .findElement(By.css(ex.comboboxSelector))
+      .sendKeys('a', Key.ESCAPE);
 
-    await waitForFocusChange(t, ex.textboxSelector, '');
+    // Confirm the listbox is closed and the textbox is cleared
+
+    await assertAttributeValues(t, ex.comboboxSelector, 'aria-expanded', 'false');
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.comboboxSelector))
+        .getAttribute('value'),
+      'a',
+      'In listbox key press "ESCAPE" should result in "a" in textbox'
+    );
+
+  });
+
+
+ariaTest('Test double escape key press with focus on combobox',
+  exampleFile, 'textbox-key-escape', async (t) => {
+    // Send key "a", then key ESCAPE twice to the textbox
 
     await t.context.session
-      .findElement(By.css(ex.textboxSelector))
+      .findElement(By.css(ex.comboboxSelector))
+      .sendKeys('a', Key.ESCAPE, Key.ESCAPE);
+
+    // Confirm the listbox is closed and the textbox is cleared
+
+    await assertAttributeValues(t, ex.comboboxSelector, 'aria-expanded', 'false');
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.comboboxSelector))
+        .getAttribute('value'),
+      '',
+      'In key press "ESCAPE" should result in clearing the textbox'
+    );
+
+  });
+
+
+ariaTest('Test escape key press with focus on popup',
+  exampleFile, 'popup-key-escape', async (t) => {
+
+    // Send key "a" then key "ARROW_DOWN to put the focus on the grid,
+    // then key ESCAPE to the combobox
+
+    await t.context.session
+      .findElement(By.css(ex.comboboxSelector))
+      .sendKeys('a', Key.ARROW_DOWN);
+
+    await waitForFocusChange(t, ex.comboboxSelector, '');
+
+    await t.context.session
+      .findElement(By.css(ex.comboboxSelector))
       .sendKeys(Key.ESCAPE);
 
     // Wait for gridbox to close
@@ -575,39 +545,38 @@ ariaTest.failing('Test escape key press with focus on popup',
       'Timeout waiting for gridbox to close afer escape'
     );
 
-    // Confirm the grid is closed and the textboxed is cleared
+    // Confirm the grid is closed and the textbox is cleared
     await assertAttributeValues(t, ex.comboboxSelector, 'aria-expanded', 'false');
 
     t.is(
       await t.context.session
-        .findElement(By.css(ex.textboxSelector))
+        .findElement(By.css(ex.comboboxSelector))
         .getAttribute('value'),
-      '',
-      'In grid key press "ESCAPE" should result in clearing of the textbox'
+      'a',
+      'In grid key press "ESCAPE" should result the "a" in the combobox'
     );
 
   });
 
 ariaTest('left arrow from focus on list puts focus on grid and moves cursor right',
   exampleFile, 'popup-key-left-arrow', async (t) => {
-    t.plan(4);
 
     // Send key "a" then key "ARROW_DOWN" to put the focus on the grid
-    const textbox = t.context.session.findElement(By.css(ex.textboxSelector));
-    await textbox.sendKeys('a', Key.ARROW_DOWN);
+    const combobox = t.context.session.findElement(By.css(ex.comboboxSelector));
+    await combobox.sendKeys('a', Key.ARROW_DOWN);
 
     // Send key "ARROW_LEFT"
-    await textbox.sendKeys(Key.ARROW_LEFT);
+    await combobox.sendKeys(Key.ARROW_LEFT);
 
     // Check that the active descendent focus is correct
     let lastrow = ex.numAOptions - 1;
 
-    var focusedId = await t.context.session.findElement(By.css(ex.textboxSelector))
+    var focusedId = await t.context.session.findElement(By.css(ex.comboboxSelector))
       .getAttribute('aria-activedescendant');
     t.is(
       focusedId,
       gridcellId(lastrow,1),
-      'After left arrow sent to pop-up, aria-activedescendant should be set to the last row, last gricell: ' + gridcellId(lastrow, 1)
+      'After left arrow sent to popup, aria-activedescendant should be set to the last row, last gricell: ' + gridcellId(lastrow, 1)
     );
 
     var focusedElementClasses = await t.context.session.findElement(By.id(gridcellId(lastrow,1)))
@@ -618,10 +587,10 @@ ariaTest('left arrow from focus on list puts focus on grid and moves cursor righ
     );
 
     // Send key "ARROW_LEFT" a second time
-    await textbox.sendKeys(Key.ARROW_LEFT);
+    await combobox.sendKeys(Key.ARROW_LEFT);
 
     // Check that the active descendent focus is correct
-    focusedId = await t.context.session.findElement(By.css(ex.textboxSelector))
+    focusedId = await t.context.session.findElement(By.css(ex.comboboxSelector))
       .getAttribute('aria-activedescendant');
     t.is(
       focusedId,
@@ -641,22 +610,21 @@ ariaTest('left arrow from focus on list puts focus on grid and moves cursor righ
 
 ariaTest('Right arrow from focus on list puts focus on grid',
   exampleFile, 'popup-key-right-arrow', async (t) => {
-    t.plan(6);
 
     // Send key "a" then key "ARROW_DOWN" to put the focus on the grid
-    const textbox = t.context.session.findElement(By.css(ex.textboxSelector));
-    await textbox.sendKeys('a', Key.ARROW_DOWN);
+    const combobox = t.context.session.findElement(By.css(ex.comboboxSelector));
+    await combobox.sendKeys('a', Key.ARROW_DOWN);
 
     // Send key "RIGHT_ARROW"
-    await textbox.sendKeys(Key.ARROW_RIGHT);
+    await combobox.sendKeys(Key.ARROW_RIGHT);
 
     // Check that the active descendent focus is correct
-    var focusedId = await t.context.session.findElement(By.css(ex.textboxSelector))
+    var focusedId = await t.context.session.findElement(By.css(ex.comboboxSelector))
       .getAttribute('aria-activedescendant');
     t.is(
       focusedId,
       gridcellId(0,1),
-      'After right arrow sent to pop-up, aria-activedescendant should be set to the first row second gridcell element: ' + gridcellId(0, 1)
+      'After right arrow sent to popup, aria-activedescendant should be set to the first row second gridcell element: ' + gridcellId(0, 1)
     );
 
     var focusedElementClasses = await t.context.session.findElement(By.id(gridcellId(0,1)))
@@ -667,10 +635,10 @@ ariaTest('Right arrow from focus on list puts focus on grid',
     );
 
     // Send key "ARROW_RIGHT" a second time
-    await textbox.sendKeys(Key.ARROW_RIGHT);
+    await combobox.sendKeys(Key.ARROW_RIGHT);
 
     // Check that the active descendent focus is correct
-    focusedId = await t.context.session.findElement(By.css(ex.textboxSelector))
+    focusedId = await t.context.session.findElement(By.css(ex.comboboxSelector))
       .getAttribute('aria-activedescendant');
     t.is(
       focusedId,
@@ -686,10 +654,10 @@ ariaTest('Right arrow from focus on list puts focus on grid',
     );
 
     // Send key "ARROW_RIGHT" four more times
-    await textbox.sendKeys(Key.ARROW_RIGHT, Key.ARROW_RIGHT, Key.ARROW_RIGHT, Key.ARROW_RIGHT);
+    await combobox.sendKeys(Key.ARROW_RIGHT, Key.ARROW_RIGHT, Key.ARROW_RIGHT, Key.ARROW_RIGHT);
 
     // Check that the active descendent focus is correct
-    focusedId = await t.context.session.findElement(By.css(ex.textboxSelector))
+    focusedId = await t.context.session.findElement(By.css(ex.comboboxSelector))
       .getAttribute('aria-activedescendant');
     t.is(
       focusedId,
@@ -708,79 +676,75 @@ ariaTest('Right arrow from focus on list puts focus on grid',
 
 ariaTest('Home from focus on list puts focus on grid and moves cursor',
   exampleFile, 'popup-key-home', async (t) => {
-    t.plan(2);
 
     // Send key "a" then key "ARROW_DOWN" to put the focus on the grid
-    const textbox = t.context.session.findElement(By.css(ex.textboxSelector));
-    await textbox.sendKeys('a', Key.ARROW_DOWN);
+    const combobox = t.context.session.findElement(By.css(ex.comboboxSelector));
+    await combobox.sendKeys('a', Key.ARROW_DOWN);
 
     // Send key "ARROW_HOME"
-    await textbox.sendKeys(Key.HOME);
+    await combobox.sendKeys(Key.HOME);
 
     t.true(
-      await confirmCursorIndex(t, ex.textboxSelector, 0),
+      await confirmCursorIndex(t, ex.comboboxSelector, 0),
       'Cursor should be at index 0 after one ARROW_HOME key'
     );
 
     t.is(
-      await textbox.getAttribute('aria-activedescendant'),
+      await combobox.getAttribute('aria-activedescendant'),
       '',
-      'Focus should be on the textbox after one ARROW_HOME key',
+      'Focus should be on the combobox after one ARROW_HOME key',
     );
   });
 
 ariaTest('End from focus on list puts focus on grid',
   exampleFile, 'popup-key-end', async (t) => {
-    t.plan(2);
 
     // Send key "a" then key "ARROW_DOWN" to put the focus on the grid
-    const textbox = t.context.session.findElement(By.css(ex.textboxSelector));
-    await textbox.sendKeys('a', Key.ARROW_DOWN);
+    const combobox = t.context.session.findElement(By.css(ex.comboboxSelector));
+    await combobox.sendKeys('a', Key.ARROW_DOWN);
 
     // Send key "END_ARROW"
-    await textbox.sendKeys(Key.END);
+    await combobox.sendKeys(Key.END);
 
     t.true(
-      await confirmCursorIndex(t, ex.textboxSelector, 1),
+      await confirmCursorIndex(t, ex.comboboxSelector, 1),
       'Cursor should be at index 1 after one ARROW_END key'
     );
 
     t.is(
-      await textbox.getAttribute('aria-activedescendant'),
+      await combobox.getAttribute('aria-activedescendant'),
       '',
-      'Focus should be on the textbox after on ARROW_END key',
+      'Focus should be on the combobox after on ARROW_END key',
     );
   });
 
 ariaTest('Sending character keys while focus is on grid moves focus',
   exampleFile, 'popup-key-char', async (t) => {
-    t.plan(2);
 
     // Send key "ARROW_DOWN" to put the focus on the grid
-    const textbox = t.context.session.findElement(By.css(ex.textboxSelector));
-    await textbox.sendKeys(Key.ARROW_DOWN);
+    const combobox = t.context.session.findElement(By.css(ex.comboboxSelector));
+    await combobox.sendKeys(Key.ARROW_DOWN);
 
     // Send key "a"
-    await textbox.sendKeys('a');
+    await combobox.sendKeys('a');
 
     t.is(
-      await textbox.getAttribute('value'),
+      await combobox.getAttribute('value'),
       'a',
-      'Value of the textbox should be "a" after sending key "a" to the textbox while the focus ' +
+      'Value of the combobox should be "a" after sending key "a" to the combobox while the focus ' +
         'is on the grid'
     );
 
     t.is(
-      await textbox.getAttribute('aria-activedescendant'),
+      await combobox.getAttribute('aria-activedescendant'),
       '',
-      'Focus should be on the textbox after sending a character key while the focus is on the grid',
+      'Focus should be on the combobox after sending a character key while the focus is on the grid',
     );
 
   });
 
 ariaTest.failing('Expected behavior for all other standard single line editing keys',
   exampleFile, 'standard-single-line-editing-keys', async (t) => {
-    t.plan(1);
-    t.fail();
+        t.fail();
   });
 

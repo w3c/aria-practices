@@ -7,6 +7,8 @@
 *   Desc:   Popup menu Links widget that implements ARIA Authoring Practices
 */
 
+'use strict';
+
 /*
 *   @constructor PopupMenuLinks
 *
@@ -35,7 +37,7 @@ var PopupMenuLinks = function (domNode, controllerObj) {
     msgPrefix = 'PopupMenuLinks constructor argument domNode ';
 
   // Check whether domNode is a DOM element
-  if (!domNode instanceof Element) {
+  if (!(domNode instanceof Element)) {
     throw new TypeError(msgPrefix + 'is not a DOM Element.');
   }
 
@@ -180,7 +182,9 @@ PopupMenuLinks.prototype.setFocusToNextItem = function (currentItem) {
 };
 
 PopupMenuLinks.prototype.setFocusByFirstCharacter = function (currentItem, char) {
-  var start, index, char = char.toLowerCase();
+  var start, index;
+
+  char = char.toLowerCase();
 
   // Get start index for search based on position of currentItem
   start = this.menuitems.indexOf(currentItem) + 1;

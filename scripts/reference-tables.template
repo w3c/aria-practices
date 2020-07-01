@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Index of ARIA Design Pattern Examples | WAI-ARIA Authoring Practices 1.1</title>
+  <title>Index of ARIA Design Pattern Examples | WAI-ARIA Authoring Practices 1.2</title>
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
   <link rel="stylesheet" href="css/core.css">
   <script src="js/examples.js"></script>
@@ -12,14 +12,14 @@
 </head>
 <body>
   <nav aria-label="ARIA Practices">
-    <a href="../">WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../">WAI-ARIA Authoring Practices 1.2</a>
   </nav>
   <main>
     <h1>Index of ARIA Design Pattern Examples</h1>
     <p>
       This page includes the following indexes of example implementations of
       <a href="../#aria_ex">ARIA design patterns</a> included in
-      <a href="../">WAI-ARIA Authoring Practices 1.1.</a>
+      <a href="../">WAI-ARIA Authoring Practices 1.2.</a>
     </p>
     <ul>
       <li><a href="#examples_by_role_label">Examples by Role</a></li>
@@ -54,7 +54,7 @@
     </section>
   </main>
   <nav aria-label="ARIA Practices">
-    <a href="../">WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../">WAI-ARIA Authoring Practices 1.2</a>
   </nav>
 </body>
 </html>

@@ -2,6 +2,9 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 */
+
+'use strict';
+
 /**
  * @namespace aria
  */
@@ -22,6 +25,7 @@ aria.Listbox = function (listboxNode) {
   this.multiselectable = this.listboxNode.hasAttribute('aria-multiselectable');
   this.moveUpDownEnabled = false;
   this.siblingList = null;
+  this.startRangeIndex = 0;
   this.upButton = null;
   this.downButton = null;
   this.moveButton = null;
@@ -39,6 +43,10 @@ aria.Listbox.prototype.registerEvents = function () {
   this.listboxNode.addEventListener('focus', this.setupFocus.bind(this));
   this.listboxNode.addEventListener('keydown', this.checkKeyPress.bind(this));
   this.listboxNode.addEventListener('click', this.checkClickItem.bind(this));
+
+  if (this.multiselectable) {
+    this.listboxNode.addEventListener('mousedown', this.checkMouseDown.bind(this));
+  }
 };
 
 /**
@@ -49,8 +57,6 @@ aria.Listbox.prototype.setupFocus = function () {
   if (this.activeDescendant) {
     return;
   }
-
-  this.focusFirstItem();
 };
 
 /**
@@ -58,9 +64,7 @@ aria.Listbox.prototype.setupFocus = function () {
  *  Focus on the first option
  */
 aria.Listbox.prototype.focusFirstItem = function () {
-  var firstItem;
-
-  firstItem = this.listboxNode.querySelector('[role="option"]');
+  var firstItem = this.listboxNode.querySelector('[role="option"]');
 
   if (firstItem) {
     this.focusItem(firstItem);
@@ -89,9 +93,12 @@ aria.Listbox.prototype.focusLastItem = function () {
  */
 aria.Listbox.prototype.checkKeyPress = function (evt) {
   var key = evt.which || evt.keyCode;
-  var nextItem = document.getElementById(this.activeDescendant);
+  var lastActiveId = this.activeDescendant;
+  var allOptions = this.listboxNode.querySelectorAll('[role="option"]');
+  var currentItem = document.getElementById(this.activeDescendant) || allOptions[0];
+  var nextItem = currentItem;
 
-  if (!nextItem) {
+  if (!currentItem) {
     return;
   }
 
@@ -112,9 +119,15 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
       break;
     case aria.KeyCode.UP:
     case aria.KeyCode.DOWN:
-      evt.preventDefault();
+
+      if (!this.activeDescendant) {
+        // focus first option if no option was previously focused, and perform no other actions
+        this.focusItem(currentItem);
+        break;
+      }
 
       if (this.moveUpDownEnabled && evt.altKey) {
+        evt.preventDefault();
         if (key === aria.KeyCode.UP) {
           this.moveUpItems();
         }
@@ -125,24 +138,41 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
       }
 
       if (key === aria.KeyCode.UP) {
-        nextItem = nextItem.previousElementSibling;
+        nextItem = this.findPreviousOption(currentItem);
       }
       else {
-        nextItem = nextItem.nextElementSibling;
+        nextItem = this.findNextOption(currentItem);
+      }
+
+      if (nextItem && this.multiselectable && event.shiftKey) {
+        this.selectRange(this.startRangeIndex, nextItem);
       }
 
       if (nextItem) {
         this.focusItem(nextItem);
+        evt.preventDefault();
       }
 
       break;
     case aria.KeyCode.HOME:
       evt.preventDefault();
       this.focusFirstItem();
+
+      if (this.multiselectable && evt.shiftKey && evt.ctrlKey) {
+        this.selectRange(this.startRangeIndex, 0);
+      }
       break;
     case aria.KeyCode.END:
       evt.preventDefault();
       this.focusLastItem();
+
+      if (this.multiselectable && evt.shiftKey && evt.ctrlKey) {
+        var startItem = allOptions[this.startRangeIndex];
+        this.selectRange(this.startRangeIndex, allOptions.length - 1);
+      }
+      break;
+    case aria.KeyCode.SHIFT: 
+      this.startRangeIndex = this.getElementIndex(currentItem, allOptions);
       break;
     case aria.KeyCode.SPACE:
       evt.preventDefault();
@@ -191,6 +221,14 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
         this.focusItem(nextUnselected);
       }
       break;
+    case 65:
+      // handle control + A
+      if (this.multiselectable && (evt.ctrlKey || evt.metaKey)) {
+        evt.preventDefault();
+        this.selectRange(0, allOptions.length - 1);
+        break;
+      }
+      // fall through
     default:
       var itemToFocus = this.findItemToFocus(key);
       if (itemToFocus) {
@@ -198,16 +236,21 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
       }
       break;
   }
+
+  if (this.activeDescendant !== lastActiveId) {
+    this.updateScroll();
+  }
 };
 
 aria.Listbox.prototype.findItemToFocus = function (key) {
   var itemList = this.listboxNode.querySelectorAll('[role="option"]');
   var character = String.fromCharCode(key);
+  var searchIndex = 0;
 
   if (!this.keysSoFar) {
     for (var i = 0; i < itemList.length; i++) {
       if (itemList[i].getAttribute('id') == this.activeDescendant) {
-        this.searchIndex = i;
+        searchIndex = i;
       }
     }
   }
@@ -216,17 +259,51 @@ aria.Listbox.prototype.findItemToFocus = function (key) {
 
   var nextMatch = this.findMatchInRange(
     itemList,
-    this.searchIndex + 1,
+    searchIndex + 1,
     itemList.length
   );
   if (!nextMatch) {
     nextMatch = this.findMatchInRange(
       itemList,
       0,
-      this.searchIndex
+      searchIndex
     );
   }
   return nextMatch;
+};
+
+/* Return the index of the passed element within the passed array, or null if not found */
+aria.Listbox.prototype.getElementIndex = function (option, options) {
+  var allOptions = Array.prototype.slice.call(options); // convert to array
+  var optionIndex = allOptions.indexOf(option);
+
+  return typeof optionIndex === 'number' ? optionIndex : null;
+};
+
+/* Return the next listbox option, if it exists; otherwise, returns null */
+aria.Listbox.prototype.findNextOption = function (currentOption) {
+  var allOptions = Array.prototype.slice.call(this.listboxNode.querySelectorAll('[role="option"]')); // get options array
+  var currentOptionIndex = allOptions.indexOf(currentOption);
+  var nextOption = null;
+
+  if (currentOptionIndex > -1 && currentOptionIndex < allOptions.length - 1) {
+    nextOption = allOptions[currentOptionIndex + 1];
+  }
+
+  return nextOption;
+};
+
+/* Return the previous listbox option, if it exists; otherwise, returns null */
+aria.Listbox.prototype.findPreviousOption = function (currentOption) {
+  var allOptions = Array.prototype.slice.call(this.listboxNode.querySelectorAll('[role="option"]')); // get options array
+  var currentOptionIndex = allOptions.indexOf(currentOption);
+  var previousOption = null;
+
+  if (currentOptionIndex > -1 && currentOptionIndex > 0) {
+    previousOption = allOptions[currentOptionIndex - 1];
+  }
+
+  return previousOption;
 };
 
 aria.Listbox.prototype.clearKeysSoFarAfterDelay = function () {
@@ -260,9 +337,25 @@ aria.Listbox.prototype.findMatchInRange = function (list, startIndex, endIndex) 
  *  The click event object
  */
 aria.Listbox.prototype.checkClickItem = function (evt) {
-  if (evt.target.getAttribute('role') === 'option') {
-    this.focusItem(evt.target);
-    this.toggleSelectItem(evt.target);
+  if (evt.target.getAttribute('role') !== 'option') {
+    return;
+  }
+
+  this.focusItem(evt.target);
+  this.toggleSelectItem(evt.target);
+  this.updateScroll();
+
+  if (this.multiselectable && evt.shiftKey) {
+    this.selectRange(this.startRangeIndex, evt.target);
+  }
+};
+
+/**
+ * Prevent text selection on shift + click for multiselect listboxes
+ */
+aria.Listbox.prototype.checkMouseDown = function (evt) {
+  if (this.multiselectable && evt.shiftKey && evt.target.getAttribute('role') === 'option') {
+    evt.preventDefault();
   }
 };
 
@@ -280,14 +373,7 @@ aria.Listbox.prototype.toggleSelectItem = function (element) {
       element.getAttribute('aria-selected') === 'true' ? 'false' : 'true'
     );
 
-    if (this.moveButton) {
-      if (this.listboxNode.querySelector('[aria-selected="true"]')) {
-        this.moveButton.setAttribute('aria-disabled', 'false');
-      }
-      else {
-        this.moveButton.setAttribute('aria-disabled', 'true');
-      }
-    }
+    this.updateMoveButton();
   }
 };
 
@@ -305,7 +391,7 @@ aria.Listbox.prototype.defocusItem = function (element) {
   if (!this.multiselectable) {
     element.removeAttribute('aria-selected');
   }
-  aria.Utils.removeClass(element, 'focused');
+  element.classList.remove('focused');
 };
 
 /**
@@ -320,27 +406,76 @@ aria.Listbox.prototype.focusItem = function (element) {
   if (!this.multiselectable) {
     element.setAttribute('aria-selected', 'true');
   }
-  aria.Utils.addClass(element, 'focused');
+  element.classList.add('focused');
   this.listboxNode.setAttribute('aria-activedescendant', element.id);
   this.activeDescendant = element.id;
 
-  if (this.listboxNode.scrollHeight > this.listboxNode.clientHeight) {
-    var scrollBottom = this.listboxNode.clientHeight + this.listboxNode.scrollTop;
-    var elementBottom = element.offsetTop + element.offsetHeight;
-    if (elementBottom > scrollBottom) {
-      this.listboxNode.scrollTop = elementBottom - this.listboxNode.clientHeight;
-    }
-    else if (element.offsetTop < this.listboxNode.scrollTop) {
-      this.listboxNode.scrollTop = element.offsetTop;
-    }
-  }
-
-  if (!this.multiselectable && this.moveButton) {
-    this.moveButton.setAttribute('aria-disabled', false);
+  if (!this.multiselectable) {
+    this.updateMoveButton();
   }
 
   this.checkUpDownButtons();
   this.handleFocusChange(element);
+};
+
+/**
+ * Helper function to check if a number is within a range; no side effects.
+ */
+aria.Listbox.prototype.checkInRange = function(index, start, end) {
+  var rangeStart = start < end ? start : end;
+  var rangeEnd = start < end ? end : start;
+
+  return index >= rangeStart && index <= rangeEnd;
+}
+
+/**
+ * Select a range of options
+ */
+aria.Listbox.prototype.selectRange = function (start, end) {
+  // get start/end indices
+  var allOptions = this.listboxNode.querySelectorAll('[role="option"]');
+  var startIndex = typeof start === 'number' ? start : this.getElementIndex(start, allOptions);
+  var endIndex = typeof end === 'number' ? end : this.getElementIndex(end, allOptions);
+
+  for (var index = 0; index < allOptions.length; index++) {
+    var selected = this.checkInRange(index, startIndex, endIndex);
+    allOptions[index].setAttribute('aria-selected', selected + '');
+  }
+
+  this.updateMoveButton();
+};
+
+/**
+ * Check for selected options and update moveButton, if applicable
+ */
+aria.Listbox.prototype.updateMoveButton = function() {
+  if (!this.moveButton) {
+    return;
+  }
+
+  if (this.listboxNode.querySelector('[aria-selected="true"]')) {
+    this.moveButton.setAttribute('aria-disabled', 'false');
+  }
+  else {
+    this.moveButton.setAttribute('aria-disabled', 'true');
+  }
+}
+
+/**
+ * Check if the selected option is in view, and scroll if not
+ */
+aria.Listbox.prototype.updateScroll = function () {
+  var selectedOption = document.getElementById(this.activeDescendant);
+  if (selectedOption && this.listboxNode.scrollHeight > this.listboxNode.clientHeight) {
+    var scrollBottom = this.listboxNode.clientHeight + this.listboxNode.scrollTop;
+    var elementBottom = selectedOption.offsetTop + selectedOption.offsetHeight;
+    if (elementBottom > scrollBottom) {
+      this.listboxNode.scrollTop = elementBottom - this.listboxNode.clientHeight;
+    }
+    else if (selectedOption.offsetTop < this.listboxNode.scrollTop) {
+      this.listboxNode.scrollTop = selectedOption.offsetTop;
+    }
+  }
 };
 
 /**
@@ -444,10 +579,7 @@ aria.Listbox.prototype.clearActiveDescendant = function () {
   this.activeDescendant = null;
   this.listboxNode.setAttribute('aria-activedescendant', null);
 
-  if (this.moveButton) {
-    this.moveButton.setAttribute('aria-disabled', 'true');
-  }
-
+  this.updateMoveButton();
   this.checkUpDownButtons();
 };
 
@@ -457,14 +589,12 @@ aria.Listbox.prototype.clearActiveDescendant = function () {
  *  item is already at the top of the list.
  */
 aria.Listbox.prototype.moveUpItems = function () {
-  var previousItem;
-
   if (!this.activeDescendant) {
     return;
   }
 
-  currentItem = document.getElementById(this.activeDescendant);
-  previousItem = currentItem.previousElementSibling;
+  var currentItem = document.getElementById(this.activeDescendant);
+  var previousItem = currentItem.previousElementSibling;
 
   if (previousItem) {
     this.listboxNode.insertBefore(currentItem, previousItem);
@@ -480,14 +610,12 @@ aria.Listbox.prototype.moveUpItems = function () {
  *  the item is already at the end of the list.
  */
 aria.Listbox.prototype.moveDownItems = function () {
-  var nextItem;
-
   if (!this.activeDescendant) {
     return;
   }
 
-  currentItem = document.getElementById(this.activeDescendant);
-  nextItem = currentItem.nextElementSibling;
+  var currentItem = document.getElementById(this.activeDescendant);
+  var nextItem = currentItem.nextElementSibling;
 
   if (nextItem) {
     this.listboxNode.insertBefore(nextItem, currentItem);

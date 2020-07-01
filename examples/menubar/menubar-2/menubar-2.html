@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>Editor Menubar Example | WAI-ARIA Authoring Practices 1.1</title>
+  <title>Editor Menubar Example | WAI-ARIA Authoring Practices 1.2</title>
 
   <!--  Core js and css shared by all examples; do not modify when using this template. -->
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -60,10 +60,14 @@
         <li role="none">
           <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Style/Color</a>
           <ul role="menu" aria-label="Style/Color">
-            <li role="menuitemcheckbox" data-option="font-bold" aria-checked="false">Bold</li>
-            <li role="menuitemcheckbox" data-option="font-italic" aria-checked="false">Italic</li>
+            <li role="none">
+              <ul role="group" data-option="font-style" aria-label="Font Style">
+                <li role="menuitemcheckbox" data-option="font-bold" aria-checked="false">Bold</li>
+                <li role="menuitemcheckbox" data-option="font-italic" aria-checked="false">Italic</li>
+              </ul>
+            </li>
             <li role="separator"></li>
-            <li>
+            <li role="none">
               <ul role="group" data-option="font-color" aria-label="Text Color">
                 <li role="menuitemradio" aria-checked="true">Black</li>
                 <li role="menuitemradio" aria-checked="false">Blue</li>
@@ -71,7 +75,7 @@
                 <li role="menuitemradio" aria-checked="false">Green</li>
               </ul>
             <li role="separator"></li>
-            <li>
+            <li role="none">
               <ul role="group" data-option="text-decoration" aria-label="Text Decoration">
                 <li role="menuitemradio" aria-checked="true">None</li>
                 <li role="menuitemradio" aria-checked="false">Overline</li>
@@ -787,7 +791,7 @@ sourceCode.make();
   </section>
   </main>
   <nav>
-    <a href="../../../#menu">Menu or Menubar Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../../../#menu">Menu or Menubar Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
   </nav>
 
 </body>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Data Grid Examples | WAI-ARIA Authoring Practices 1.1</title>
+<title>Data Grid Examples | WAI-ARIA Authoring Practices 1.2</title>
 
 <!--  Core js and css shared by all examples; do not modify when using this template. -->
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -162,7 +162,7 @@
               </div>
             </td>
             <td class="menu-wrapper">
-              <button tabindex="-1" aria-haspopup="true" aria-controls="menu1">Income</button>
+              <button type="button" tabindex="-1" aria-haspopup="true" aria-controls="menu1">Income</button>
               <ul role="menu" id="menu1">
                 <li role="menuitem">Income</li>
                 <li role="menuitem">Groceries</li>
@@ -186,7 +186,7 @@
               </div>
             </td>
             <td class="menu-wrapper">
-              <button tabindex="-1" aria-haspopup="true" aria-controls="menu2">Groceries
+              <button type="button" tabindex="-1" aria-haspopup="true" aria-controls="menu2">Groceries
               </button>
               <ul role="menu" id="menu2">
                 <li role="menuitem">Income</li>
@@ -210,7 +210,7 @@
               </div>
             </td>
             <td class="menu-wrapper">
-              <button tabindex="-1" aria-haspopup="true" aria-controls="menu3">Dining Out
+              <button type="button" tabindex="-1" aria-haspopup="true" aria-controls="menu3">Dining Out
               </button>
               <ul role="menu" id="menu3">
                 <li role="menuitem">Income</li>
@@ -235,7 +235,7 @@
               </div>
             </td>
             <td class="menu-wrapper">
-              <button tabindex="-1" aria-haspopup="true" aria-controls="menu4">Auto</button>
+              <button type="button" tabindex="-1" aria-haspopup="true" aria-controls="menu4">Auto</button>
               <ul role="menu" id="menu4">
                 <li role="menuitem">Income</li>
                 <li role="menuitem">Groceries</li>
@@ -259,7 +259,7 @@
               </div>
             </td>
             <td class="menu-wrapper">
-              <button tabindex="-1" aria-haspopup="true" aria-controls="menu5">Household
+              <button type="button" tabindex="-1" aria-haspopup="true" aria-controls="menu5">Household
               </button>
               <ul role="menu" id="menu5">
                 <li role="menuitem">Income</li>
@@ -283,7 +283,7 @@
               </div>
             </td>
             <td class="menu-wrapper">
-              <button tabindex="-1" aria-haspopup="true" aria-controls="menu6">Beauty</button>
+              <button type="button" tabindex="-1" aria-haspopup="true" aria-controls="menu6">Beauty</button>
               <ul role="menu" id="menu6">
                 <li role="menuitem">Income</li>
                 <li role="menuitem">Groceries</li>
@@ -307,7 +307,7 @@
               </div>
             </td>
             <td class="menu-wrapper">
-              <button tabindex="-1" aria-haspopup="true" aria-controls="menu7">Dining Out
+              <button type="button" tabindex="-1" aria-haspopup="true" aria-controls="menu7">Dining Out
               </button>
               <ul role="menu" id="menu7">
                 <li role="menuitem">Income</li>
@@ -329,7 +329,7 @@
         <li>The navigation keys and functions are the same as example 1 except that the column
           headers are focusable because the date and amount columns provide sort functionality.</li>
           <li>A description may be edited by activating the cell.</li>
-        <li>A category may be changed by using the category pop-up menu.</li>
+        <li>A category may be changed by using the category popup menu.</li>
       </ol>
     </section>
     <section>
@@ -337,7 +337,7 @@
       <div role="separator" id="ex3_start_sep" aria-labelledby="ex3_start_sep ex3_label" aria-label="Start of"></div>
       <div id="ex3">
         <h4 id="grid3Label">Transactions for January 1 through January 15</h4>
-        <button id="toggle_column_btn" type="button" name="toggle_columns">Hide Type and
+        <button type="button" id="toggle_column_btn" name="toggle_columns">Hide Type and
           Category</button>
         <table role="grid" aria-labelledby="grid3Label" aria-rowcount="16" aria-colcount="6"
           data-per-page="5" class="data">
@@ -801,6 +801,7 @@
           <li><a href="js/dataGrid.js" type="text/javascript">dataGrid.js</a></li>
           <li><a href="js/dataGrids.js" type="text/javascript">dataGrids.js</a></li>
           <li><a href="js/menuButton.js" type="text/javascript">menuButton.js</a></li>
+          <li><a href="../js/utils.js">utils.js</a></li>
         </ul>
       </li>
     </ul>
@@ -831,7 +832,7 @@
   </main>
   <nav>
     <!--  Update the pattern_ID parameter of this link to refer to the APG design pattern section related to this example.  -->
-    <a href="../../#grid">Grid Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../../#grid">Grid Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
   </nav>
 </body>
 </html>

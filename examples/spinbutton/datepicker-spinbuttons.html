@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Date Picker Spin Button Example | WAI-ARIA Authoring Practices 1.1</title>
+<title>Date Picker Spin Button Example | WAI-ARIA Authoring Practices 1.2</title>
 
 <!--  Core js and css shared by all examples; do not modify when using this template. -->
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -41,17 +41,17 @@
       <h2 id="ex_label">Example</h2>
       <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
       <div id="example">
-  
+
         <div id="example-group"
              class="datepicker-spinbuttons"
              role="group"
              aria-labelledby="myDatepickerLabel myDatepickerDate">
-  
+
              <div id="myDatepickerLabel">Choose a Date</div>
              <div class="date" hidden id="myDatepickerDate">current value is Friday, June 30th, 2019</div>
-  
+
           <div  class="day spinbutton"
-  >         <button class="decrease"
+  >         <button type="button" class="decrease"
                   tabindex="-1"
                   aria-label="previous day">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
@@ -67,7 +67,7 @@
                   aria-valuemax="31"
                   aria-label="Day">1</div>
             <div class="next" aria-hidden="true">2</div>
-            <button class="increase"
+            <button type="button" class="increase"
                   tabindex="-1"
                   aria-label="next day">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
@@ -75,9 +75,9 @@
               </svg>
             </button>
           </div>
-  
+
           <div  class="month spinbutton">
-            <button class="decrease"
+            <button type="button" class="decrease"
                   tabindex="-1"
                   aria-label="previous month">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
@@ -93,7 +93,7 @@
                   aria-valuemax="11"
                   aria-label="Month">June</div>
             <div class="next" aria-hidden="true">July</div>
-            <button class="increase"
+            <button type="button" class="increase"
                   tabindex="-1"
                   aria-label="next month">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
@@ -101,9 +101,9 @@
               </svg>
             </button>
           </div>
-  
+
           <div  class="year spinbutton">
-            <button class="decrease"
+            <button type="button" class="decrease"
                   tabindex="-1"
                   aria-label="previous year">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
@@ -118,7 +118,7 @@
                     aria-valuemax="2040"
                     aria-label="Year">2019</div>
             <div class="next" aria-hidden="true">2020</div>
-            <button class="increase"
+            <button type="button" class="increase"
                   tabindex="-1"
                   aria-label="next year">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
@@ -149,7 +149,7 @@
         </li>
       </ul>
     </section>
-    
+
     <section>
       <h2 id="kbd_label">Keyboard Support</h2>
       <p>The spin buttons provide the following keyboard support described in the <a href="../../#spinbutton">spin button design pattern.</a></p>
@@ -176,7 +176,7 @@
             <td>
               <ul>
                 <li>Increases the value 1 step.</li>
-                <li>When focus is on the <q>Day</q> spin button and the value is the lastt day of the month, changes value to the first day of the month.</li>
+                <li>When focus is on the <q>Day</q> spin button and the value is the last day of the month, changes value to the first day of the month.</li>
                 <li>When focus is on the <q>Month</q> spin button and the value is <q>December</q>, changes value to <q>January</q>.</li>
               </ul>
             </td>
@@ -191,7 +191,7 @@
           </tr>
           <tr data-test-id="spinbutton-home">
             <th><kbd>Home</kbd></th>
-            <td>Decreases to mimimum value.</td>
+            <td>Decreases to minimum value.</td>
           </tr>
           <tr data-test-id="spinbutton-end">
             <th><kbd>End</kbd></th>
@@ -316,7 +316,7 @@
         </tbody>
       </table>
     </section>
-  
+
     <section>
       <h2>Javascript and CSS Source Code</h2>
       <ul>
@@ -346,7 +346,7 @@
     </section>
   </main>
   <nav>
-    <a href="../../#spinbutton">Spin Button Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../../#spinbutton">Spin Button Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
   </nav>
 </body>
 </html>

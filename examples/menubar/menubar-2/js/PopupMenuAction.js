@@ -7,6 +7,8 @@
 *   Desc:   Popup menu widget that implements ARIA Authoring Practices
 */
 
+'use strict';
+
 /*
 *   @constructor PopupMenuAction
 *
@@ -32,7 +34,7 @@ var PopupMenuAction = function (domNode, controllerObj, actionManager) {
     msgPrefix = 'PopupMenu constructor argument domNode ';
 
   // Check whether domNode is a DOM element
-  if (!domNode instanceof Element) {
+  if (!(domNode instanceof Element)) {
     throw new TypeError(msgPrefix + 'is not a DOM Element.');
   }
 
@@ -74,7 +76,7 @@ PopupMenuAction.prototype.init = function () {
 
   // Traverse the element children of domNode: configure each with
   // menuitem role behavior and store reference in menuitems array.
-  menuElements = this.domNode.getElementsByTagName('LI');
+  var menuElements = this.domNode.getElementsByTagName('LI');
 
   for (var i = 0; i < menuElements.length; i++) {
 
@@ -110,7 +112,7 @@ PopupMenuAction.prototype.updateMenuStates = function () {
     }
   }
 
-  var item = this.domNode.querySelector('[data-option="font-smaller"]');
+  item = this.domNode.querySelector('[data-option="font-smaller"]');
   if (item) {
     if (this.actionManager.isMinFontSize()) {
       item.setAttribute('aria-disabled', 'true');
@@ -192,7 +194,9 @@ PopupMenuAction.prototype.setFocusToNextItem = function (currentItem) {
 };
 
 PopupMenuAction.prototype.setFocusByFirstCharacter = function (currentItem, char) {
-  var start, index, char = char.toLowerCase();
+  var start, index;
+
+  char = char.toLowerCase();
 
   // Get start index for search based on position of currentItem
   start = this.menuitems.indexOf(currentItem) + 1;

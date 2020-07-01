@@ -3,6 +3,8 @@
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 */
 
+'use strict';
+
 var aria = aria || {};
 
 aria.Utils = aria.Utils || {};
@@ -70,6 +72,7 @@ aria.Utils = aria.Utils || {};
       element.focus();
     }
     catch (e) {
+      // continue regardless of error
     }
     aria.Utils.IgnoreUtilFocusChanges = false;
     return (document.activeElement === element);

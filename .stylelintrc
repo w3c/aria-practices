@@ -1,0 +1,6 @@
+{
+  "rules": {
+    "media-feature-name-no-unknown": [true,
+    "ignoreMediaFeatureNames": ["forced-colors"] ]
+  }
+}

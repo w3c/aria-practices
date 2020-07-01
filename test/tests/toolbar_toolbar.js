@@ -2,7 +2,6 @@
 
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
-const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertRovingTabindex = require('../util/assertRovingTabindex');
@@ -67,19 +66,16 @@ const waitAndCheckTabindex = async function (t, selector) {
 // Attributes
 
 ariaTest('Toolbar element has role="toolbar"', exampleFile, 'toolbar-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'ex1', 'toolbar', '1', 'div');
+    await assertAriaRoles(t, 'ex1', 'toolbar', '1', 'div');
 });
 
 // Test fails from bug in example: fix in issue 847 on w3c/aria-practices
 ariaTest('Toolbar element has "aria-label"', exampleFile, 'toolbar-aria-label', async (t) => {
-  t.plan(1);
-  await assertAriaLabelExists(t, ex.toolbarSelector);
+    await assertAriaLabelExists(t, ex.toolbarSelector);
 });
 
 ariaTest('Toolbar items support roving tabindex on toolbar items (Part 1)', exampleFile, 'toolbar-item-tabindex', async (t) => {
-  t.plan(1);
-
+  
   // Test all the toolbar items with roving tab index
   await assertRovingTabindex(t, ex.itemSelector, Key.ARROW_RIGHT);
 
@@ -87,8 +83,7 @@ ariaTest('Toolbar items support roving tabindex on toolbar items (Part 1)', exam
 
 /*
 ariaTest('Toolbar items support roving tabindex on toolbar items (Part 2)', exampleFile, 'toolbar-item-tabindex', async (t) => {
-  t.plan(1);
-
+  
   // Test the last element in the toolbox, which is a native "link" element
   await clickAndWait(t, ex.linkSelector);
 
@@ -107,8 +102,7 @@ ariaTest.failing('"aria-disabled" on button elements', exampleFile, 'button-aria
 // Keys
 
 ariaTest('key TAB moves focus', exampleFile, 'key-tab', async (t) => {
-  t.plan(6);
-
+  
   let numTools = ex.allToolSelectors.length;
 
   for (let index = 0; index < numTools; index++) {
@@ -130,8 +124,7 @@ ariaTest('key TAB moves focus', exampleFile, 'key-tab', async (t) => {
 
 // This tests fail from bug in example: fix in issue 847 on w3c/aria-practices
 ariaTest.failing('key LEFT ARROW moves focus', exampleFile, 'key-left-arrow', async (t) => {
-  t.plan(12);
-
+  
   // Put focus on the first item in the list
   await clickAndWait(t, ex.allToolSelectors[0]);
 
@@ -183,8 +176,7 @@ ariaTest.failing('key LEFT ARROW moves focus', exampleFile, 'key-left-arrow', as
 
 // This tests fail from bug in example: fix in issue 847 on w3c/aria-practices
 ariaTest.failing('key RIGHT ARROW moves focus', exampleFile, 'key-right-arrow', async (t) => {
-  t.plan(12);
-
+  
   // Put focus on the first item in the list
   await clickAndWait(t, ex.allToolSelectors[0]);
 
@@ -235,8 +227,7 @@ ariaTest.failing('key RIGHT ARROW moves focus', exampleFile, 'key-right-arrow', 
 
 // This tests fail from bug in example: fix in issue 847 on w3c/aria-practices
 ariaTest.failing('key HOME moves focus', exampleFile, 'key-home', async (t) => {
-  t.plan(6);
-
+  
   let numTools = ex.allToolSelectors.length;
 
   // Confirm right moves HOME focus to first item
@@ -259,8 +250,7 @@ ariaTest.failing('key HOME moves focus', exampleFile, 'key-home', async (t) => {
 
 // This tests fail from bug in example: fix in issue 847 on w3c/aria-practices
 ariaTest.failing('key END moves focus', exampleFile, 'key-end', async (t) => {
-  t.plan(6);
-
+  
   let numTools = ex.allToolSelectors.length;
 
   // Confirm right moves HOME focus to first item

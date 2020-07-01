@@ -22,8 +22,7 @@ const ex = {
 // Attributes
 
 ariaTest('Example elements should have role="button" set', exampleFile, 'button-role', async (t) => {
-  t.plan(4);
-
+  
   for (let button of ex.buttons) {
     let buttonEl = await t.context.session.findElement(By.id(button.id));
 
@@ -42,8 +41,7 @@ ariaTest('Example elements should have role="button" set', exampleFile, 'button-
 });
 
 ariaTest('Button examples should have tabindex="0"', exampleFile, 'button-tabindex', async (t) => {
-  t.plan(2);
-
+  
   for (let button of ex.buttons) {
     let buttonEl = await t.context.session.findElement(By.id(button.id));
 
@@ -56,8 +54,7 @@ ariaTest('Button examples should have tabindex="0"', exampleFile, 'button-tabind
 });
 
 ariaTest('"aria-pressed" reflects button state', exampleFile, 'button-aria-pressed', async (t) => {
-  t.plan(3);
-
+  
   let toggleButtonSelector = '#' + ex.buttons[1].id;
 
   let ariaPressedExists = await t.context.session.executeScript(async function () {
@@ -93,8 +90,7 @@ ariaTest('"aria-pressed" reflects button state', exampleFile, 'button-aria-press
 });
 
 ariaTest('key ENTER activates button', exampleFile, 'key-enter', async (t) => {
-  t.plan(3);
-
+  
   let toggleButtonSelector = '#' + ex.buttons[1].id;
   let toggleButtonEl = await t.context.session.findElement(By.css(toggleButtonSelector));
 
@@ -149,8 +145,7 @@ ariaTest('key ENTER activates button', exampleFile, 'key-enter', async (t) => {
 });
 
 ariaTest('key SPACE activates button', exampleFile, 'key-space', async (t) => {
-  t.plan(3);
-
+  
   let toggleButtonSelector = '#' + ex.buttons[1].id;
   let toggleButtonEl = await t.context.session.findElement(By.css(toggleButtonSelector));
 

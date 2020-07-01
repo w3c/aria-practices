@@ -5,6 +5,8 @@
 *   File:   calendar-button.js
 */
 
+'use strict';
+
 var DatePicker = DatePicker || {};
 
 var CalendarButtonInput = function (inputNode, buttonNode, datepicker) {
@@ -24,30 +26,7 @@ var CalendarButtonInput = function (inputNode, buttonNode, datepicker) {
 
 CalendarButtonInput.prototype.init = function () {
   this.buttonNode.addEventListener('click', this.handleClick.bind(this));
-  this.buttonNode.addEventListener('keydown', this.handleKeyDown.bind(this));
   this.buttonNode.addEventListener('focus', this.handleFocus.bind(this));
-};
-
-CalendarButtonInput.prototype.handleKeyDown = function (event) {
-  var flag = false;
-
-  switch (event.keyCode) {
-
-    case this.keyCode.SPACE:
-    case this.keyCode.ENTER:
-      this.datepicker.show();
-      this.datepicker.setFocusDay();
-      flag = true;
-      break;
-
-    default:
-      break;
-  }
-
-  if (flag) {
-    event.stopPropagation();
-    event.preventDefault();
-  }
 };
 
 CalendarButtonInput.prototype.handleClick = function () {

@@ -5,6 +5,8 @@
 *   File:   FormatToolbar.js
 */
 
+'use strict';
+
 /**
  * @constructor
  *
@@ -15,7 +17,7 @@
  * @param domNode
  *  The DOM node pointing to the element with the toolbar tole
  */
-FormatToolbar = function (domNode) {
+function FormatToolbar(domNode) {
   this.domNode = domNode;
   this.firstItem = null;
   this.lastItem = null;
@@ -34,7 +36,7 @@ FormatToolbar = function (domNode) {
 
   this.nightModeCheck = null;
 
-};
+}
 
 FormatToolbar.prototype.init = function () {
   var i, items, toolbarItem, menuButton;
@@ -71,9 +73,9 @@ FormatToolbar.prototype.init = function () {
     this.toolbarItems.push(toolbarItem);
   }
 
-  var spinButtons = this.domNode.querySelectorAll('[role=spinbutton]');;
+  var spinButtons = this.domNode.querySelectorAll('[role=spinbutton]');
 
-  for (var i = 0; i < spinButtons.length; i++) {
+  for (i = 0; i < spinButtons.length; i++) {
     var s = new SpinButton(spinButtons[i], this);
     s.init();
   }
@@ -104,7 +106,7 @@ FormatToolbar.prototype.updateDisable = function (copyButton, cutButton, pasteBu
 };
 
 FormatToolbar.prototype.selectText = function (start, end, textarea) {
-  if (typeof(textarea.selectionStart != undefined)) {
+  if (typeof textarea.selectionStart !== "undefined") {
     textarea.focus();
     textarea.selectionStart = start;
     textarea.selectionEnd = end;

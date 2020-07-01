@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Modal Dialog Example | WAI-ARIA Authoring Practices 1.1</title>
+<title>Modal Dialog Example | WAI-ARIA Authoring Practices 1.2</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -45,7 +45,7 @@
       <h2 id="ex_label">Example</h2>
       <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
       <div id="ex1">
-        <button onclick="openDialog('dialog1', this)">Add Delivery Address</button>
+        <button type="button" onclick="openDialog('dialog1', this)">Add Delivery Address</button>
       </div>
       <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
     </section>
@@ -219,7 +219,7 @@
         </li>
         <li>
           Javascript:
-          <a href="js/dialog.js" type="text/javascript">dialog.js</a>
+          <a href="js/dialog.js" type="text/javascript">dialog.js</a>, <a href="../js/utils.js">utils.js</a>
         </li>
       </ul>
     </section>
@@ -233,7 +233,7 @@
     </section>
   </main>
   <nav>
-    <a href="../../#dialog_modal">Modal Dialog Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../../#dialog_modal">Modal Dialog Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
   </nav>
   <div id="dialog_layer" class="dialogs">
     <div role="dialog" id="dialog1" aria-labelledby="dialog1_label" aria-modal="true" class="hidden">
@@ -275,9 +275,9 @@
         </div>
       </div>
       <div class="dialog_form_actions">
-        <button onclick="openDialog('dialog2', this, 'dialog2_para1')">Verify Address</button>
-        <button onclick="replaceDialog('dialog3', undefined, 'dialog3_close_btn')">Add</button>
-        <button onclick="closeDialog(this)">Cancel</button>
+        <button type="button" onclick="openDialog('dialog2', this, 'dialog2_para1')">Verify Address</button>
+        <button type="button" onclick="replaceDialog('dialog3', undefined, 'dialog3_close_btn')">Add</button>
+        <button type="button" onclick="closeDialog(this)">Cancel</button>
       </div>
     </div>
 
@@ -336,8 +336,8 @@
       </div>
       <div class="dialog_form_actions">
         <a href="#" onclick="openDialog('dialog4', this)">link to help</a>
-        <button onclick="openDialog('dialog4', this)">accepting an alternative form</button>
-        <button onclick="closeDialog(this)">Close</button>
+        <button type="button" onclick="openDialog('dialog4', this)">accepting an alternative form</button>
+        <button type="button" onclick="closeDialog(this)">Close</button>
       </div>
     </div>
 
@@ -351,7 +351,7 @@
         <a href="#" onclick="openDialog('dialog4', this)">your profile.</a>
       </p>
       <div class="dialog_form_actions">
-        <button id="dialog3_close_btn" onclick="closeDialog(this)">OK</button>
+        <button type="button" id="dialog3_close_btn" onclick="closeDialog(this)">OK</button>
       </div>
     </div>
 
@@ -364,7 +364,7 @@
         The link or button is present for demonstration purposes only.
       </p>
       <div class="dialog_form_actions">
-        <button id="dialog4_close_btn" onclick="closeDialog(this)">Close</button>
+        <button type="button" id="dialog4_close_btn" onclick="closeDialog(this)">Close</button>
       </div>
     </div>
   </div>

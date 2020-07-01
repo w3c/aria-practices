@@ -7,6 +7,8 @@
 *   Desc:   Menubar widget that implements ARIA Authoring Practices
 */
 
+'use strict';
+
 /*
 *   @constructor MenubarAction
 *
@@ -22,7 +24,7 @@ var MenubarAction = function (domNode) {
   var msgPrefix = 'Menubar constructor argument domNode ';
 
   // Check whether domNode is a DOM element
-  if (!domNode instanceof Element) {
+  if (!(domNode instanceof Element)) {
     throw new TypeError(msgPrefix + 'is not a DOM Element.');
   }
 
@@ -154,7 +156,9 @@ MenubarAction.prototype.setFocusToNextItem = function (currentItem) {
 };
 
 MenubarAction.prototype.setFocusByFirstCharacter = function (currentItem, char) {
-  var start, index, char = char.toLowerCase();
+  var start, index;
+
+  char = char.toLowerCase();
 
   // Get start index for search based on position of currentItem
   start = this.menubarItems.indexOf(currentItem) + 1;

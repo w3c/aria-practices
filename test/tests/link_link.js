@@ -58,7 +58,7 @@ ariaTest('Test "alt" attribute exists',
 
     for (let i = 0; i < pageExamples.length; i++) {
       let ex = pageExamples[i];
-      if (!ex.hasOwnProperty('alt')) {
+      if (!Object.prototype.hasOwnProperty.call(ex, 'alt')) {
         continue;
       }
       let linkLocator = By.css(ex.linkSelector);
@@ -75,12 +75,11 @@ ariaTest('Test "alt" attribute exists',
 ariaTest('Test "aria-label" attribute exists',
   'link/link.html', 'aria-label', async (t) => {
 
-    t.plan(1);
-
+    
     for (let i = 0; i < pageExamples.length; i++) {
 
       let ex = pageExamples[i];
-      if (!ex.hasOwnProperty('ariaLabel')) {
+      if (!Object.prototype.hasOwnProperty.call(ex, 'ariaLabel')) {
         continue;
       }
 

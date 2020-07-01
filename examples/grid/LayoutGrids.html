@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Layout Grid Examples | WAI-ARIA Authoring Practices 1.1</title>
+<title>Layout Grid Examples | WAI-ARIA Authoring Practices 1.2</title>
 
 <!--  Core js and css shared by all examples; do not modify when using this template. -->
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -157,7 +157,7 @@
 
           <div id="recipient-form">
             <input id="add-recipient-input" type="text" aria-label="Add Recipient" placeholder="New Recipient Name">
-            <button id="add-recipient-button">Add</button>
+            <button type="button" id="add-recipient-button">Add</button>
             <div class="accessible_elem">
               Last change to recipient list:
               <span aria-live="polite" aria-relevant="text" id="form-action-text"></span>
@@ -240,7 +240,7 @@
               </h5></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
               tabindex="-1" role="gridcell"
             >Jul 21, 2016 - This version of ARIA 1.1 changes the aria-kbdshortcuts property to
-              aria-keyshortcuts , expands roles that can be used in combo boxes, adds a ...</span>
+              aria-keyshortcuts , expands roles that can be used in comboboxes, adds a ...</span>
           </div>
           <div role="row">
             <div role="gridcell"><h5 class="ex3_result_header">
@@ -372,8 +372,8 @@
         </div>
 
         <div class="ex3_pagination">
-          <button disabled id="ex3_pageup_button">Previous</button>
-          <button id="ex3_pagedown_button">Next</button>
+          <button type="button" disabled id="ex3_pageup_button">Previous</button>
+          <button type="button" id="ex3_pagedown_button">Next</button>
         </div>
       </div>
       <div role="separator" id="ex3_end_sep" aria-labelledby="ex3_end_sep ex3_label" aria-label="End of"></div>
@@ -701,6 +701,7 @@
         <ul>
           <li><a href="js/layoutGrids.js" type="text/javascript">layoutGrids.js</a></li>
           <li><a href="js/dataGrid.js" type="text/javascript">dataGrid.js</a></li>
+          <li><a href="../js/utils.js">utils.js</a></li>
         </ul>
       </li>
     </ul>
@@ -731,7 +732,7 @@
   </main>
   <nav>
     <!--  Update the pattern_ID parameter of this link to refer to the APG design pattern section related to this example.  -->
-    <a href="../../#grid">Grid Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../../#grid">Grid Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
   </nav>
 </body>
 </html>

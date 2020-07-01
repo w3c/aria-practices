@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/w3c/aria-practices.svg?branch=master)](https://travis-ci.com/w3c/aria-practices)
+[![Build Status](https://travis-ci.com/w3c/aria-practices.svg?branch=master)](https://travis-ci.com/w3c/aria-practices) [![Greenkeeper badge](https://badges.greenkeeper.io/w3c/aria-practices.svg)](https://greenkeeper.io/)
 
 # WAI-ARIA: Authoring Practices Guide
 
@@ -36,6 +36,8 @@ Pull requests that contain linting errors will not be merged until the errors ar
 1. Make sure that you have [Node.js](https://nodejs.org/en/) installed, which comes with [node package manager (npm)](https://www.npmjs.com/get-npm)
 1. Open the directory that contains your `aria-practices` repository in a terminal
 1. Run `npm install`
+
+The HTML validator also requires the installation of a JDK in order to run. If you don't already have a JDK installed, [download the latest JDK from Oracle](https://www.oracle.com/technetwork/java/javase/downloads/index.html).
 
 It is also highly recommended that you use a code editor that supports these tools and [EditorConfig](http://editorconfig.org/).
 
@@ -77,7 +79,7 @@ npm run lint:js
 ### Test and fix your code
 
 1. Open a terminal window to the directory that contains the `aria-practices` repository
-1. The repository has a script defined that will test all JavaScript in the examples directory. To run it, execute the command `npm test`.
+1. The repository has a script defined that will test all JavaScript in the examples directory. To run it, execute the command `npm test`. Note: this may take a few minutes to run and will open several browser windows during the test that will gain focus.
 1. Many errors can be fixed automatically with the command `npm run fix`.
 1. After running fix, test again to see what you need to fix manually.
 

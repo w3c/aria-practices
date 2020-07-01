@@ -2,6 +2,9 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 */
+
+'use strict';
+
 var aria = aria || {};
 
 /**
@@ -87,7 +90,7 @@ function PillList (grid, input, submitButton, formUpdateText) {
   this.submitButton.addEventListener('click', this.submitItemForm.bind(this));
   this.grid.gridNode.addEventListener('click', this.checkRemovePill.bind(this));
   this.grid.gridNode.addEventListener('keydown', this.checkRemovePill.bind(this));
-};
+}
 
 PillList.prototype.checkSubmitItem = function (event) {
   var key = event.which || event.keyCode;

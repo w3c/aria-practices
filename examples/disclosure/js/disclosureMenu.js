@@ -5,6 +5,7 @@
 *   Supplemental JS for the disclosure menu keyboard behavior
 */
 
+'use strict';
 
 var DisclosureNav = function (domNode) {
   this.rootNode = domNode;
@@ -170,8 +171,8 @@ window.addEventListener('load', function (event) {
   // fake link behavior
   var links = document.querySelectorAll('[href="#mythical-page-content"]');
   var examplePageHeading = document.getElementById('mythical-page-heading');
-  for (var i = 0; i < links.length; i++) {
-    links[i].addEventListener('click', function (event) {
+  for (var k = 0; k < links.length; k++) {
+    links[k].addEventListener('click', function (event) {
       var pageTitle = event.target.innerText;
       examplePageHeading.innerText = pageTitle;
 
