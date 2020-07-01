@@ -6615,14 +6615,10 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
       <p>
         The <code>aria-valuemin</code> and <code>aria-valuemax</code> properties only need to be set for the <code>progressbar</code> role when the progress bar's minimum is not 0 or the maximum value is not 100.
-        The aria-valuenow property is required for <code>progressbar</code> if the value is known (e.g. not indeterminate). If the <code>aria-valuenow</code> property is set, the author needs to make sure it is within the minimum and maximum values.
+        The aria-valuenow property needs to be set for a <code>progressbar</code> if its value is known (e.g. not indeterminate).
+        If the <code>aria-valuenow</code> property is set, the author needs to make sure it is within the minimum and maximum values.
       </p>
-      <p>The Range properties are necessary for communicating the state of a progress bar to assistive technologies.
-      </p>
-      <p>
-        This is an example of a progress bar represented by an SVG.
-        The range properties are necessary to fully explain the widget to assistive technologies.
-      </p>
+      <p>Following is an example of a progress bar represented by an SVG.</p>
 
       <pre><code>&lt;div&gt;Loading:
   &lt;!-- The progress bar uses the default values of 0 and 100 for aria-valuemin and aria-valuemax --&gt;
@@ -6634,17 +6630,13 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
     &lt;/svg&gt;
   &lt;/span&gt;
 &lt;/div&gt;</code></pre>
-      <p>
-        The progress bar example can also be made using the native HTML <code>progress</code> element.
-      </p>
+      <p>This progress bar can also be made using the native HTML <code>progress</code> element.</p>
 
       <pre><code>&lt;label for="loadstatus"&gt;Loading:&lt;/label&gt;
 &lt;progress id="loadstatus" max="100" value="33"&gt;&lt;/progress&gt;
       </code></pre>
-      <p>
-        To represent an indeterminate progress bar where the value range is unknown,
-        omit the <code>aria-valuenow</code> attribute.
-      </p>
+      
+      <p>To represent an indeterminate progress bar where the value range is unknown, omit the <code>aria-valuenow</code> attribute.</p>
 
       <pre><code>&lt;img role="progressbar" src="spinner.gif" alt="Loading..."&gt;</code></pre>
     </section>
