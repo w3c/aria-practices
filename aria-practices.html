@@ -6702,14 +6702,15 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       <h3>Range properties with spin buttons</h3>
 
       <p>
-        The <code>aria-valuenow</code>, <code>aria-valuemin</code> and <code>aria-valuemax</code> properties are not required for the <code>spinbutton</code> role.
-        <code>aria-valuetext</code> can be used when appropriate. However, <code>aria-valuenow</code>, <code>aria-valuemin</code> and <code>aria-valuemax</code> are required if those values are known.
+        The <code>aria-valuemin</code> and <code>aria-valuemax</code> properties are used only when a <code>spinbutton</code> has a defined range.
+        They do not have default values, so if they are not specified, range limits will not be exposed to assistive technologies.
+        Similarly, the <code>aria-valuenow</code> property is set only when a <code>spinbutton</code> has a value.
+        If it is not set, a value is not exposed to assistive technologies for the <code>spinbutton</code>.
+        <code>aria-valuetext</code> can be used when appropriate.
         A detailed description of the <code>spinbutton</code> role can be found in the <a href="#spinbutton">spinbutton design pattern</a>.
       </p>
 
-      <p>
-        This example sets the price of paperclips in cents.
-      </p>
+      <p>The following example sets the price of paperclips in cents.</p>
 
       <pre><code>&lt;div role="spinbutton" aria-valuenow="50" tabindex="0"&gt;
   &lt;button id="lower-price"&gt;Lower&lt;/button&gt;
@@ -6717,7 +6718,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
   Price per paperclip: $&lt;span id="price"&gt;0.50&lt;/span&gt;
 &lt;/div&gt;</code></pre>
 
-      <p>If there is a minimum and maximum value, set the <code>aria-valuemin</code> and <code>aria-valuemax</code> properties.</p>
+      <p>If there are minimum and maximum allowed values, set the <code>aria-valuemin</code> and <code>aria-valuemax</code> properties.</p>
 
       <pre><code>&lt;div role="spinbutton" aria-valuemin="1" aria-valuenow="50" aria-valuemax="200" tabindex="0"&gt;
   &lt;button id="lower-price"&gt;Lower&lt;/button&gt;
@@ -6725,9 +6726,8 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
   Price per paperclip: $&lt;span id="price"&gt;0.50&lt;/span&gt;
 &lt;/div&gt;</code></pre>
 
-      <p>
-        The spin button example above can be made using the native HTML <code>&lt;input type="number"></code> element.
-      </p>
+      <p>The spin button example above can be made using the native HTML <code>&lt;input type="number"></code> element.</p>
+      
       <pre><code>&lt;label&gt;Price per paperclip: $&lt;input type="number" min="0.01" value="0.5" max="2" step="0.01"&gt;&lt;/label&gt;</code></pre>
     </section>
   </section>
