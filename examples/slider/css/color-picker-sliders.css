@@ -58,9 +58,9 @@
   fill: black;
 }
 
-.color-group .color-group button.change text {
+.color-group button.change line {
   stroke: black;
-  font-family: sans-serif;
+  stroke-width: 2px;
 }
 
 .color-group .color-slider {

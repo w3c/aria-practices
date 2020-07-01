@@ -21,7 +21,7 @@ var ColorPickerSliders = function (domNode)  {
 
   this.thumbWidth  = this.sliders.red.thumbNode.getBBox().width;
   this.railWidth = this.sliders.red.railNode.getBBox().width;
-  this.offsetLeft = 4;
+  this.offsetLeft = 6;
 
   this.colorBoxNode = domNode.querySelector('.color-box');
   this.colorValueHexNode = domNode.querySelector('input.color-value-hex');

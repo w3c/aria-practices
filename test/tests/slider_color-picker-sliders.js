@@ -3,16 +3,19 @@
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
+const assertAriaLabel = require('../util/assertAriaLabelExists');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaRoles = require('../util/assertAriaRoles');
 
 const exampleFile = 'slider/color-picker-sliders.html';
 
 const ex = {
+  groupSelector: '#ex1 [role="group"]',
   sliderSelector: '#ex1 [role="slider"]',
-  hexTextInput: '.color-info .color-value-hex',
-  rgbTextInput: '.color-info .color-value-rgb',
-  colorBox: '.color-info .color-box'
+  buttonSelector: '#ex1 button.change',
+  hexTextInput: '#ex1 .color-info .color-value-hex',
+  rgbTextInput: '#ex1 .color-info .color-value-rgb',
+  colorBox: '#ex1 .color-info .color-box'
 };
 
 const testDisplayMatchesValue = async function (t, rgbString) {
@@ -50,7 +53,7 @@ const testDisplayMatchesValue = async function (t, rgbString) {
 };
 
 const sendAllSlidersToEnd = async function (t) {
-  const sliders = await t.context.session.findElements(By.css(ex.sliderSelector));
+  const sliders = await t.context.queryElements(t, ex.sliderSelector);
 
   for (let slider of sliders) {
     await slider.sendKeys(Key.END);
@@ -59,42 +62,51 @@ const sendAllSlidersToEnd = async function (t) {
 
 // Attributes
 
+ariaTest('role="group" on div element', exampleFile, 'group-role', async (t) => {
+  await assertAriaRoles(t, 'ex1', 'group', '1', 'div');
+});
+
+ariaTest('"aria-labelledby" set on group', exampleFile, 'aria-labelledby', async (t) => {
+  await assertAriaLabelledby(t, ex.groupSelector);
+});
+
 ariaTest('role="slider" on div element', exampleFile, 'slider-role', async (t) => {
-  t.plan(1);
   await assertAriaRoles(t, 'ex1', 'slider', '3', 'div');
 });
 
 ariaTest('"tabindex" set to "0" on sliders', exampleFile, 'tabindex', async (t) => {
-  t.plan(1);
   await assertAttributeValues(t, ex.sliderSelector, 'tabindex', '0');
 });
 
 ariaTest('"aria-valuemax" set to "255" on sliders', exampleFile, 'aria-valuemax', async (t) => {
-  t.plan(1);
   await assertAttributeValues(t, ex.sliderSelector, 'aria-valuemax', '255');
 });
 
 ariaTest('"aria-valuemin" set to "0" on sliders', exampleFile, 'aria-valuemin', async (t) => {
-  t.plan(1);
   await assertAttributeValues(t, ex.sliderSelector, 'aria-valuemin', '0');
 });
 
 ariaTest('"aria-valuenow" reflects slider value', exampleFile, 'aria-valuenow', async (t) => {
-  t.plan(1);
   await assertAttributeValues(t, ex.sliderSelector, 'aria-valuenow', '128');
 });
 
 ariaTest('"aria-labelledby" set on sliders', exampleFile, 'aria-labelledby', async (t) => {
-  t.plan(1);
   await assertAriaLabelledby(t, ex.sliderSelector);
+});
+
+ariaTest('"aria-label" set on decrement and increment buttons', exampleFile, 'button-aria-label', async (t) => {
+  await assertAriaLabel(t, ex.buttonSelector);
+});
+
+ariaTest('"tabindex" set to "-1" on decrement and increment buttons', exampleFile, 'button-tabindex', async (t) => {
+  await assertAttributeValues(t, ex.buttonSelector, 'tabindex', '-1');
 });
 
 // Keys
 
 ariaTest('Right arrow increases slider value by 1', exampleFile, 'key-right-arrow', async (t) => {
-  t.plan(12);
 
-  const sliders = await t.context.session.findElements(By.css(ex.sliderSelector));
+  const sliders = await t.context.queryElements(t, ex.sliderSelector);
 
   // Send 1 key to red slider
   const redSlider = sliders[0];
@@ -185,9 +197,8 @@ ariaTest('Right arrow increases slider value by 1', exampleFile, 'key-right-arro
 });
 
 ariaTest('up arrow increases slider value by 1', exampleFile, 'key-up-arrow', async (t) => {
-  t.plan(12);
 
-  const sliders = await t.context.session.findElements(By.css(ex.sliderSelector));
+  const sliders = await t.context.queryElements(t, ex.sliderSelector);
 
   // Send 1 key to red slider
   const redSlider = sliders[0];
@@ -279,9 +290,7 @@ ariaTest('up arrow increases slider value by 1', exampleFile, 'key-up-arrow', as
 
 
 ariaTest('page up increases slider value by 10', exampleFile, 'key-page-up', async (t) => {
-  t.plan(12);
-
-  const sliders = await t.context.session.findElements(By.css(ex.sliderSelector));
+  const sliders = await t.context.queryElements(t, ex.sliderSelector);
 
   // Send 1 key to red slider
   const redSlider = sliders[0];
@@ -374,7 +383,7 @@ ariaTest('page up increases slider value by 10', exampleFile, 'key-page-up', asy
 ariaTest('key end set slider at max value', exampleFile, 'key-end', async (t) => {
   t.plan(6);
 
-  const sliders = await t.context.session.findElements(By.css(ex.sliderSelector));
+  const sliders = await t.context.queryElements(t, ex.sliderSelector);
 
   // Send key end to red slider
   const redSlider = sliders[0];
@@ -424,7 +433,7 @@ ariaTest('left arrow decreases slider value by 1', exampleFile, 'key-left-arrow'
 
   await sendAllSlidersToEnd(t);
 
-  const sliders = await t.context.session.findElements(By.css(ex.sliderSelector));
+  const sliders = await t.context.queryElements(t, ex.sliderSelector);
 
   // Send 1 key to red slider
   const redSlider = sliders[0];
@@ -519,7 +528,7 @@ ariaTest('down arrow decreases slider value by 1', exampleFile, 'key-down-arrow'
 
   await sendAllSlidersToEnd(t);
 
-  const sliders = await t.context.session.findElements(By.css(ex.sliderSelector));
+  const sliders = await t.context.queryElements(t, ex.sliderSelector);
 
   // Send 1 key to red slider
   const redSlider = sliders[0];
@@ -614,7 +623,7 @@ ariaTest('page down decreases slider value by 10', exampleFile, 'key-page-down',
 
   await sendAllSlidersToEnd(t);
 
-  const sliders = await t.context.session.findElements(By.css(ex.sliderSelector));
+  const sliders = await t.context.queryElements(t, ex.sliderSelector);
 
   // Send 1 key to red slider
   const redSlider = sliders[0];
@@ -707,7 +716,7 @@ ariaTest('page down decreases slider value by 10', exampleFile, 'key-page-down',
 ariaTest('home set slider value to minimum', exampleFile, 'key-home', async (t) => {
   t.plan(6);
 
-  const sliders = await t.context.session.findElements(By.css(ex.sliderSelector));
+  const sliders = await t.context.queryElements(t, ex.sliderSelector);
 
   await sendAllSlidersToEnd(t);
 
