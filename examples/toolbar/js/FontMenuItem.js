@@ -5,6 +5,7 @@
 *   File:   FontMenuItem.js
 */
 
+'use strict';
 
 /*
 *   @constructor MenuItem

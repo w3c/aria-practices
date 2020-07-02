@@ -10,13 +10,7 @@ const assert = require('assert');
  * @param {String} attribute - attribute that should not exist
  */
 module.exports = async function assertAttributeDNE (t, selector, attribute) {
-
   const numElements = (await t.context.queryElements(t, selector)).length;
-
-  assert.ok(
-    numElements,
-    'CSS elector returned no results: ' + selector
-  );
 
   for (let index = 0; index < numElements; index++) {
     const attributeExists = await t.context.session.executeScript(function () {

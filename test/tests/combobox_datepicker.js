@@ -20,6 +20,7 @@ let todayDataDate = today.toISOString().split('T')[0];
 const ex = {
   comboboxSelector: '#ex1 .group input',
   buttonSelector: '#ex1 .group button',
+  calendarNavigationButtonSelector: '#ex1 [role="dialog"] .header button',
   dialogSelector: '#ex1 [role="dialog"]',
   cancelSelector: '#ex1 [role="dialog"] button[value="cancel"]',
   dialogMessageSelector: '#ex1 .dialog-message',
@@ -30,12 +31,13 @@ const ex = {
   jan12019Day: '#ex1 [role="dialog"] .dates td[data-date="2019-01-01"]',
   jan22019Day: '#ex1 [role="dialog"] .dates td[data-date="2019-01-02"]',
   todayButton: `#ex1 [role="dialog"] .dates [data-date="${todayDataDate}"]`,
-  monthYear: '#cb-dialog-label',
+  monthYear: '#cb-grid-label',
   prevYear: '#ex1 [role="dialog"] button.prev-year',
   prevMonth: '#ex1 [role="dialog"] button.prev-month',
   nextMonth: '#ex1 [role="dialog"] button.next-month',
   nextYear: '#ex1 [role="dialog"] button.next-year'
 };
+
 ex.allFocusableElementsInDialog = [
   `#ex1 [role="dialog"] td[data-date="${todayDataDate}"]`,
   '#ex1 [role="dialog"] button[value="cancel"]',
@@ -106,7 +108,7 @@ ariaTest('Combobox: Initially aria-expanded set to "false"', exampleFile, 'textb
 
 ariaTest('Combobox: aria-expanded set to "true" when dialog is open', exampleFile, 'textbox-aria-expanded-true', async (t) => {
   // Open dialog box
-  await (await t.context.queryElements(t, ex.comboboxSelector))[0].sendKeys(Key.ENTER);
+  await (await t.context.queryElements(t, ex.comboboxSelector))[0].sendKeys(Key.ARROW_DOWN);
   await assertAttributeValues(t, ex.comboboxSelector, 'aria-expanded', 'true');
 });
 
@@ -123,25 +125,6 @@ ariaTest('Button: "tabindex" is set to -1', exampleFile, 'calendar-button-tabind
 });
 
 
-ariaTest('Button: has aria-haspopup set to "dialog"', exampleFile, 'textbox-aria-haspopup', async (t) => {
-  await assertAttributeValues(t, ex.buttonSelector, 'aria-haspopup', 'dialog');
-});
-
-ariaTest('Button: has aria-controls set to "id-dialog-1"', exampleFile, 'textbox-aria-controls', async (t) => {
-  await assertAttributeValues(t, ex.buttonSelector, 'aria-controls', 'cb-dialog-1');
-});
-
-ariaTest('Button: Initially aria-expanded set to "false"', exampleFile, 'calendar-button-aria-expanded-false', async (t) => {
-  await assertAttributeValues(t, ex.buttonSelector, 'aria-expanded', 'false');
-});
-
-ariaTest('Button: aria-expanded set to "true" when the dialog box is open', exampleFile, 'calendar-button-aria-expanded-true', async (t) => {
-  // Open dialog box
-  await (await t.context.queryElements(t, ex.buttonSelector))[0].sendKeys(Key.ENTER);
-  await assertAttributeValues(t, ex.buttonSelector, 'aria-expanded', 'true');
-});
-
-
 // Dialog Tests
 
 ariaTest('role="dialog" attribute on div', exampleFile, 'dialog-role', async (t) => {
@@ -152,8 +135,8 @@ ariaTest('aria-modal="true" on modal', exampleFile, 'dialog-aria-modal', async (
   await assertAttributeValues(t, ex.dialogSelector, 'aria-modal', 'true');
 });
 
-ariaTest('aria-labelledby exist on dialog', exampleFile, 'dialog-aria-labelledby', async (t) => {
-  await assertAriaLabelledby(t, ex.dialogSelector);
+ariaTest('aria-label exist on dialog', exampleFile, 'dialog-aria-label', async (t) => {
+  await assertAriaLabelExists(t, ex.dialogSelector);
 });
 
 ariaTest('aria-live="polite" on keyboard support message', exampleFile, 'dialog-aria-live', async (t) => {
@@ -161,7 +144,7 @@ ariaTest('aria-live="polite" on keyboard support message', exampleFile, 'dialog-
 });
 
 ariaTest('"aria-label" exists on control buttons', exampleFile, 'calendar-navigation-button-aria-label', async (t) => {
-  await assertAriaLabelExists(t,  ex.buttonSelector);
+  await assertAriaLabelExists(t, ex.calendarNavigationButtonSelector);
 });
 
 ariaTest('aria-live="polite" on dialog header', exampleFile, 'calendar-navigation-aria-live', async (t) => {
@@ -181,8 +164,7 @@ ariaTest('Roving tab index on dates in gridcell', exampleFile, 'gridcell-tabinde
   let button = (await t.context.queryElements(t, ex.buttonSelector))[0];
   await setDateToJanFirst2019(t);
 
-  await button.click();
-  await button.click();
+  await button.sendKeys(Key.ENTER);
 
   let focusableButtons = await t.context.queryElements(t, ex.currentMonthDateButtons);
   let allButtons = await t.context.queryElements(t, ex.allDates);
@@ -245,28 +227,10 @@ ariaTest('aria-selected on selected date', exampleFile, 'gridcell-aria-selected'
 // Keyboard
 
 
-ariaTest('DOWN ARROW, ALT plus DOWN ARROW and ENTER to open datepicker', exampleFile, 'combobox-down-arrow-enter', async (t) => {
+ariaTest('DOWN ARROW, ALT plus DOWN ARROW and ENTER to open datepicker', exampleFile, 'combobox-down-arrow', async (t) => {
   let combobox = (await t.context.queryElements(t, ex.comboboxSelector))[0];
   let dialog = (await t.context.queryElements(t, ex.dialogSelector))[0];
   let cancel = (await t.context.queryElements(t, ex.cancelSelector))[0];
-
-  // Test ENTER key
-  await combobox.sendKeys(Key.ENTER);
-
-  t.not(
-    await dialog.getCssValue('display'),
-    'none',
-    'After sending ENTER to the combobox, the calendar dialog should open'
-  );
-
-  // Close dialog
-  await cancel.sendKeys(Key.ENTER);
-
-  t.not(
-    await dialog.getCssValue('display'),
-    'block',
-    'After sending ESCAPE to the dialog, the calendar dialog should close'
-  );
 
   // Test DOWN ARROW key
   await combobox.sendKeys(Key.ARROW_DOWN);
@@ -370,7 +334,7 @@ ariaTest('ENTER on previous year or month and SPACE on next year or month change
     );
 
     // space on next year or month should change it back to the original
-    await (await t.context.queryElements(t, ex[`next${yearOrMonth}`]))[0].sendKeys(Key.SPACE);
+    await (await t.context.queryElements(t, ex[`next${yearOrMonth}`]))[0].sendKeys(' ');
 
     t.is(
       await monthYear.getText(),
@@ -476,13 +440,5 @@ ariaTest.failing(`Test not implemented: textbox-aria-autocomplete`, exampleFile,
 });
 
 ariaTest.failing(`Test not implemented: textbox-aria-live`, exampleFile, 'textbox-aria-live', async (t) => {
-  t.fail();
-});
-
-ariaTest.failing(`Test not implemented: calendar-button-aria-haspopup`, exampleFile, 'calendar-button-aria-haspopup', async (t) => {
-  t.fail();
-});
-
-ariaTest.failing(`Test not implemented: calendar-button-aria-controls`, exampleFile, 'calendar-button-aria-controls', async (t) => {
   t.fail();
 });

@@ -5,6 +5,8 @@
 *   File:   SpinButton.js
 */
 
+'use strict';
+
 // Create SpinButton that contains value, valuemin, valuemax, and valuenow
 var SpinButton = function (domNode, toolbar)  {
 

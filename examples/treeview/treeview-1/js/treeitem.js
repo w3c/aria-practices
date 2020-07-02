@@ -8,6 +8,8 @@
 *           for a tree being used as a file viewer
 */
 
+'use strict';
+
 /*
 *   @constructor
 *

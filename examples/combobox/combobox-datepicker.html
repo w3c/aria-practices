@@ -58,13 +58,11 @@
                 aria-controls="cb-dialog-1"
                 aria-describedby="cb-description-1">
 
+          <span class="desc" id="cb-description-1">(date format: mm/dd/yy)</span>
           <button type="button"
               class="arrow"
               tabindex="-1"
-              aria-haspopup="dialog"
-              aria-label="Date"
-              aria-expanded="false"
-              aria-controls="cb-dialog-1">
+              aria-label="Choose Date">
               <span>
                 <svg width="18" height="16" aria-hidden="true" focusable="false">
                   <polygon points="2,4 16,4 9,14"></polygon>
@@ -72,13 +70,12 @@
               </span>
           </button>
         </div>
-        <div class="desc" id="cb-description-1">(date format: mm/dd/yy)</div>
 
         <div id="cb-dialog-1"
              class="dialog"
              role="dialog"
              aria-modal="true"
-             aria-labelledby="cb-dialog-label">
+             aria-label="Choose Date">
 
           <div class="header">
 
@@ -94,7 +91,7 @@
               <span class="fas fa-angle-left fa-lg"></span>
             </button>
 
-            <h2 id="cb-dialog-label"
+            <h2 id="cb-grid-label"
                 class="month-year"
                 aria-live="polite">
               December 2020
@@ -115,10 +112,9 @@
           </div>
 
           <table
-            id="myDatepickerGrid"
             class="dates"
             role="grid"
-            aria-labelledby="cb-dialog-label">
+            aria-labelledby="cb-grid-label">
             <thead>
               <tr>
                 <th scope="col" abbr="Sunday">Su</th>
@@ -268,8 +264,8 @@
           </tr>
         </thead>
         <tbody>
-            <tr data-test-id="combobox-down-arrow-enter">
-                <th><kbd>Down Arrow</kbd>, <kbd>ALT + Down Arrow</kbd>, <kbd>Enter</kbd></th>
+            <tr data-test-id="combobox-down-arrow">
+                <th><kbd>Down Arrow</kbd>, <kbd>ALT + Down Arrow</kbd></th>
                 <td>
                   <ul>
                   <li>Open the date picker dialog.</li>
@@ -610,38 +606,6 @@
                 </ul>
               </td>
             </tr>
-            <tr data-test-id="calendar-button-aria-haspopup">
-              <td></td>
-              <th scope="row"><code>aria-haspopup=<q>dialog</q></code></th>
-              <td><code>button</code></td>
-              <td>
-                Identifies the button opens a dialog box.
-              </td>
-            </tr>
-            <tr data-test-id="calendar-button-aria-expanded-false">
-              <td></td>
-              <th scope="row"><code>aria-expanded=<q>false</q></code></th>
-              <td><code>button</code></td>
-              <td>
-                <code>aria-expanded=<q>false</q></code> when the date picker dialog box is closed.
-              </td>
-            </tr>
-            <tr data-test-id="calendar-button-aria-expanded-true">
-              <td></td>
-              <th scope="row"><code>aria-expanded=<q>true</q></code></th>
-              <td><code>button</code></td>
-              <td>
-                <code>aria-expanded=<q>true</q></code> when the date picker dialog box is open.
-              </td>
-            </tr>
-            <tr data-test-id="calendar-button-aria-controls">
-              <td></td>
-              <th scope="row"><code>aria-controls=<q>IDREF</q></code></th>
-              <td><code>button</code></td>
-              <td>
-                Provides a reference to the screen reader for direct navigation to the dialog box.
-              </td>
-            </tr>
           </tbody>
         </table>
       </section>
@@ -672,11 +636,11 @@
                 <td><code>div</code></td>
                 <td>Indicates the dialog is modal.</td>
               </tr>
-              <tr data-test-id="dialog-aria-labelledby">
+              <tr data-test-id="dialog-aria-label">
                 <td></td>
-                <th scope="row"><code>aria-labelledby=<q>IDREFS</q></code></th>
+                <th scope="row"><code>aria-label=<q>Choose Date</q></code></th>
                 <td><code>div</code></td>
-                <td>Refers to the heading containing the currently displayed month and year, which defines the accessible name for the dialog.</td>
+                <td>Defines the accessible name for the dialog.</td>
               </tr>
               <tr data-test-id="dialog-aria-live">
                 <td></td>

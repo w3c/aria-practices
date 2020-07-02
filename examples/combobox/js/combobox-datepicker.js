@@ -5,6 +5,8 @@
 *   File:   ComboboxDatePicker.js
 */
 
+'use strict';
+
 var ComboboxDatePicker = function (cdp) {
   this.buttonLabel = 'Date';
   this.monthLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -43,12 +45,12 @@ var ComboboxDatePicker = function (cdp) {
 ComboboxDatePicker.prototype.init = function () {
 
   this.comboboxNode.addEventListener('keydown', this.handleComboboxKeyDown.bind(this));
-  this.comboboxNode.addEventListener('mouseup',   this.handleComboboxMouseUp.bind(this));
+  this.comboboxNode.addEventListener('click',   this.handleComboboxClick.bind(this));
   this.comboboxNode.addEventListener('focus',   this.handleComboboxFocus.bind(this));
   this.comboboxNode.addEventListener('blur',   this.handleComboboxBlur.bind(this));
 
   this.buttonNode.addEventListener('keydown',   this.handleButtonKeyDown.bind(this));
-  this.buttonNode.addEventListener('mouseup',   this.handleButtonMouseUp.bind(this));
+  this.buttonNode.addEventListener('click',   this.handleButtonClick.bind(this));
 
   this.okButtonNode.addEventListener('click', this.handleOkButton.bind(this));
   this.okButtonNode.addEventListener('keydown', this.handleOkButton.bind(this));
@@ -175,8 +177,8 @@ ComboboxDatePicker.prototype.open = function () {
   this.dialogNode.style.display = 'block';
   this.dialogNode.style.zIndex = 2;
 
-  this.comboboxNode.setAttribute('aria-expanded', 'true')
-  this.buttonNode.setAttribute('aria-expanded', 'true')
+  this.comboboxNode.setAttribute('aria-expanded', 'true');
+  this.buttonNode.classList.add('open');
   this.getDateFromCombobox();
   this.updateGrid();
 };
@@ -194,7 +196,7 @@ ComboboxDatePicker.prototype.close = function (flag) {
   this.setMessage('');
   this.dialogNode.style.display = 'none';
   this.comboboxNode.setAttribute('aria-expanded', 'false')
-  this.buttonNode.setAttribute('aria-expanded', 'false')
+  this.buttonNode.classList.remove('open');
 
   if (flag) {
     this.comboboxNode.focus();
@@ -735,7 +737,6 @@ ComboboxDatePicker.prototype.handleComboboxKeyDown = function (event) {
 
   switch (event.key) {
 
-    case "Enter":
     case "Down":
     case "ArrowDown":
       this.open();
@@ -771,7 +772,7 @@ ComboboxDatePicker.prototype.handleComboboxKeyDown = function (event) {
 
 };
 
-ComboboxDatePicker.prototype.handleComboboxMouseUp = function (event) {
+ComboboxDatePicker.prototype.handleComboboxClick = function (event) {
   if (this.isOpen()) {
     this.close(false);
   }
@@ -802,13 +803,13 @@ ComboboxDatePicker.prototype.handleButtonKeyDown = function (event) {
   }
 };
 
-ComboboxDatePicker.prototype.handleButtonMouseUp = function (event) {
+ComboboxDatePicker.prototype.handleButtonClick = function (event) {
   if (this.isOpen()) {
     this.close();
   }
   else {
     this.open();
-    this.setFocusCombobox();
+    this.setFocusDay();
   }
 
   event.stopPropagation();

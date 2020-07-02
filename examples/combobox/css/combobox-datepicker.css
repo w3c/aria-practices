@@ -7,19 +7,17 @@
   display: inline-flex;
 }
 
-.combobox-datepicker .desc {
-  margin-top: 0.1em;
-  font-size: 90%;
-  font-style: italic;
-  letter-spacing: 0.025em;
-}
-
 .combobox-datepicker label {
   display: block;
 }
 
-.combobox-datepicker input,
-.combobox-datepicker button {
+.combobox-datepicker .group {
+  position: relative;
+  width: 12.125rem;
+}
+
+.combobox-datepicker .group input,
+.combobox-datepicker .group button {
   background-color: white;
   color: black;
   box-sizing: border-box;
@@ -31,7 +29,7 @@
   position: relative;
 }
 
-.combobox-datepicker input {
+.combobox-datepicker .group input {
   width: 10.75rem;
   border-right: none;
   outline: none;
@@ -39,24 +37,22 @@
   padding: 0.1em 0.3em;
 }
 
-.combobox-datepicker button {
-  width: 1.25rem;
+.combobox-datepicker .group button {
+  position: absolute;
+  left: 10.75rem;
+  padding-right: 0.125rem;
   border-left: none;
   outline: none;
 }
 
-.combobox-datepicker .group.focus {
-  outline: 2px solid black;
-  outline-offset: 1px;
-}
-
-.combobox-datepicker .group.focus input,
-.combobox-datepicker .group.focus button {
-  background-color: #DEF;
-}
-
-.combobox-datepicker .group button[aria-expanded="true"] svg {
-  transform: rotate(180deg) translate(0, -1px);
+.combobox-datepicker .group .desc {
+  position: absolute;
+  top: 2em;
+  left: 0;
+  margin-top: 0.1em;
+  font-size: 90%;
+  font-style: italic;
+  letter-spacing: 0.025em;
 }
 
 .combobox-datepicker .group.focus {
@@ -78,6 +74,10 @@
 .combobox-datepicker .group.focus polygon {
   fill: black;
   stroke: white;
+}
+
+.combobox-datepicker .group button.open svg {
+  transform: rotate(180deg) translate(0, -1px);
 }
 
 .combobox-datepicker .dialog {
