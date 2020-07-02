@@ -5,6 +5,8 @@
 *   File:   datepicker-spinbuttons.js
 */
 
+'use strict';
+
 /* global SpinButtonDate */
 
 var DatePickerSpinButtons = function (domNode)  {

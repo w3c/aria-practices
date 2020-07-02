@@ -7,6 +7,8 @@
 *   Desc:   Creates a menu button that opens a menu of actions
 */
 
+'use strict';
+
 var MenuButtonActions = function (domNode, menuAction) {
 
   this.domNode       = domNode;

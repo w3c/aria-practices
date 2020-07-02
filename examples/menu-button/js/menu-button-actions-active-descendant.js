@@ -7,6 +7,8 @@
 *   Desc:   Creates a menu button that opens a menu of actions using aria-activedescendants
 */
 
+'use strict';
+
 var MenuButtonActionsActiveDescendant = function (domNode, menuAction) {
 
   this.domNode       = domNode;
