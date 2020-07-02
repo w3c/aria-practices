@@ -239,7 +239,8 @@
           <li>When hovering over a button or date with a pointing device a border is added.</li>
           <li>By default buttons and dates do not have a border, padding is used as a placeholder for the added border for focus and hover styling.</li>
         </ul>
-      </li>    </ul>
+      </li>
+    </ul>
 
     <h3>Mobile Support</h3>
 
@@ -557,17 +558,6 @@
               Provides a reference to the screen reader of the date format.
             </td>
           </tr>
-          <tr data-test-id="textbox-aria-live">
-            <td></td>
-            <th scope="row"><code>aria-live=<q>polite</q></code></th>
-            <td><code>div</code></td>
-            <td>
-              <ul>
-                <li>Indicates the element that displays information about keyboard commands for opening the dialog box should be automatically announced by screen readers.</li>
-                <li>The script slightly delays display of the information so screen readers are more likely to read it after information related to change of focus.</li>
-              </ul>
-            </td>
-          </tr>
         </tbody>
       </table>
     </section>
@@ -600,10 +590,7 @@
               <th scope="row"><code>aria-label="string"</code></th>
               <td><code>button</code></td>
               <td>
-                <ul>
-                  <li>The initial value of accessible name is <q>Choose Date</q>.</li>
-                  <li>When users select a date, the accessible name is updated to also include the selected date.</li>
-                </ul>
+                  The accessible name is <q>Choose Date</q>, since activating the button opens the <q>Choose Date</q> dialog and moves focus to the dialog.
               </td>
             </tr>
           </tbody>
