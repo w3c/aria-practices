@@ -32,7 +32,7 @@ const openMenu = async function (t) {
   if (expanded !== 'true') {
     await t.context.session
       .findElement(By.css(ex.menubuttonSelector))
-      .click();
+      .sendKeys(Key.ENTER);
   }
 
   return t.context.session.wait(async function () {
