@@ -4,6 +4,8 @@
 *   Desc:   Carousel Button widget that implements ARIA Authoring Practices
 */
 
+'use strict';
+
 /*
 *   @constructor CarouselButton
 *

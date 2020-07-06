@@ -5,7 +5,9 @@
 *   File:   FontToolbarItem.js
 */
 
-FormatToolbarItem = function (domNode, toolbar) {
+'use strict';
+
+function FormatToolbarItem(domNode, toolbar) {
   this.domNode = domNode;
   this.toolbar = toolbar;
   this.buttonAction = '';
@@ -29,7 +31,7 @@ FormatToolbarItem = function (domNode, toolbar) {
     'RIGHT': 39,
     'DOWN': 40
   });
-};
+}
 
 FormatToolbarItem.prototype.init = function () {
   this.domNode.addEventListener('keydown', this.handleKeyDown.bind(this));

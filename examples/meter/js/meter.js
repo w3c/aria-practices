@@ -1,3 +1,4 @@
+'use strict';
 var Meter = function (element) {
   this.rootEl = element;
   this.fillEl = element.querySelector('.fill');

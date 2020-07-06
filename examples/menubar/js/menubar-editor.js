@@ -7,6 +7,8 @@
 *   Desc:   Creates a menubar to control the styling of text in a textarea element
 */
 
+'use strict';
+
 var MenubarEditor = function (domNode) {
 
   this.domNode = domNode;
