@@ -277,12 +277,13 @@
         </thead>
         <tbody>
             <tr data-test-id="combobox-down-arrow">
-                <th><kbd>Down Arrow</kbd>, <kbd>ALT + Down Arrow</kbd></th>
+                <th><kbd>Down Arrow</kbd>,<br><kbd>ALT + Down Arrow</kbd></th>
                 <td>
                   <ul>
                   <li>Open the date picker dialog.</li>
                   <li>
-                    If a date is defined in the textbox, focus is placed on the date in the calendar grid, otherwise focus is on today's date.
+                    If the combobox contains a valid date, moves focus to that date in the calendar grid.
+                    Otherwise, moves focus to current date, i.e., today's date.
                   </li>
                 </ul>
               </td>
