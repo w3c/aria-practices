@@ -7,6 +7,8 @@
 *   Desc:   Creates a menubar of hierarchical set of links
 */
 
+'use strict';
+
 var MenubarNavigation = function (domNode) {
 
   this.domNode = domNode;
