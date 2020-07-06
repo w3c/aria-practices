@@ -674,7 +674,7 @@
                 <code>table</code>
               </td>
               <td>
-               <ul>
+                <ul>
                   <li>Identifies the <code>table</code> element as a <code>grid</code> widget.</li>
                   <li>Since the <code>grid</code> role is applied to a <code>table</code> element, the <code>row</code>, <code>colheader</code>, and <code>gridcell</code> roles do not need to be specified because they are implied by <code>tr</code>, <code>th</code>, and <code>td</code> tags.</li>
                 </ul>
@@ -685,7 +685,7 @@
               <th scope="row"><code>aria-labelledby="IDREF"</code></th>
               <td><code>table</code></td>
               <td>
-                Defines the accessible name for the <code>grid</code> using the <code>h2</code> that shows the month and year of the dates displayed in the grid.
+                Identifies the element that provides the accessible name for the <code>grid</code>, which is  the <code>h2</code> that shows the month and year of the dates displayed in the grid.
               </td>
             </tr>
             <tr data-test-id="gridcell-tabindex">
@@ -729,8 +729,8 @@
               <td><code>td</code></td>
               <td>
                 <ul>
-                  <li>Identifies the gridcell for the currently selected date, i.e., the date value  present in the date textbox.</li>
-                  <li>Only set on the gridcell representing the currently selected date, no other gridcells have <code>aria-selected</code> specified.</li>
+                  <li>Indicates the cell is selected.</li>
+                  <li>Set on the gridcell representing the current value of the combobox; no other gridcells have <code>aria-selected</code> specified.</li>
                 </ul>
               </td>
             </tr>
