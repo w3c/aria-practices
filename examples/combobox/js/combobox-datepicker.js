@@ -164,15 +164,6 @@ ComboboxDatePicker.prototype.setFocusDay = function (flag) {
 
 };
 
-ComboboxDatePicker.prototype.updateDay = function (day) {
-  var d = this.focusDay;
-  this.focusDay = day;
-  if (this.isNotSameMonth(d, day)) {
-    this.updateGrid();
-    this.setFocusDay();
-  }
-};
-
 ComboboxDatePicker.prototype.open = function () {
   this.dialogNode.style.display = 'block';
   this.dialogNode.style.zIndex = 2;
@@ -720,10 +711,6 @@ ComboboxDatePicker.prototype.setMessage = function (str) {
     setTimeout(setMessageDelayed.bind(this), 200);
     this.lastMessage = str;
   }
-};
-
-ComboboxDatePicker.prototype.setFocusCombobox = function () {
-  this.comboboxNode.focus();
 };
 
 ComboboxDatePicker.prototype.handleComboboxKeyDown = function (event) {
