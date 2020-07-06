@@ -57,7 +57,7 @@
 
 .combobox-datepicker .group.focus {
   outline: 2px solid black;
-  outline-offset: 1px;
+  outline-offset: 2px;
 }
 
 .combobox-datepicker .group.focus input,
