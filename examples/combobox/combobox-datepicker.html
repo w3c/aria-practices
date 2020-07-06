@@ -495,7 +495,7 @@
             <th scope="row"><code>aria-haspopup="dialog"</code></th>
             <td><code>input</code></td>
             <td>
-              Identifies that the combobox opens a dialog box.
+              Indicates that the combobox opens a dialog.
             </td>
           </tr>
           <tr data-test-id="textbox-aria-expanded-false">
@@ -503,7 +503,7 @@
             <th scope="row"><code>aria-expanded="false"</code></th>
             <td><code>input</code></td>
             <td>
-              <code>aria-expanded="false"</code> when the date picker dialog box is closed.
+              Indicates that the combobox is collapsed, i.e., the &quot;Choose Date&quot; dialog is not displayed.
             </td>
           </tr>
           <tr data-test-id="textbox-aria-expanded-true">
@@ -511,7 +511,7 @@
             <th scope="row"><code>aria-expanded="true"</code></th>
             <td><code>input</code></td>
             <td>
-              <code>aria-expanded="true"</code> when the date picker dialog box is open.
+              Indicates that the combobox is expanded, i.e., the &quot;Choose Date&quot; dialog is open. 
             </td>
           </tr>
           <tr data-test-id="textbox-aria-autocomplete">
@@ -519,7 +519,7 @@
             <th scope="row"><code>aria-autocomplete="none"</code></th>
             <td><code>input</code></td>
             <td>
-              <code>aria-autocomplete="none"</code> the textbox does not support autocompletion when text is entered.
+              Indicates the combobox does not support autocomplete.
             </td>
           </tr>
           <tr data-test-id="textbox-aria-controls">
@@ -527,7 +527,7 @@
             <th scope="row"><code>aria-controls="IDREF"</code></th>
             <td><code>input</code></td>
             <td>
-              Provides a reference to the screen reader for direct navigation to the dialog box.
+              Identifies the element controled by the combobox.
             </td>
           </tr>
           <tr data-test-id="textbox-aria-describedby">
@@ -535,7 +535,7 @@
             <th scope="row"><code>aria-describedby="IDREF"</code></th>
             <td><code>input</code></td>
             <td>
-              Provides a reference to the screen reader of the date format.
+              Identifies the element that provides an accessible description for the combobox, enableing assistive technologies to associate the date format description with the input.
             </td>
           </tr>
         </tbody>
@@ -569,9 +569,7 @@
               <td></td>
               <th scope="row"><code>aria-label="string"</code></th>
               <td><code>button</code></td>
-              <td>
-                  The accessible name is <q>Choose Date</q>, since activating the button opens the <q>Choose Date</q> dialog and moves focus to the dialog.
-              </td>
+              <td>Defines the accessible name as &quot;Choose Date&quot;, which matches the title of the dialog opened by activating the button.</td>
             </tr>
           </tbody>
         </table>
