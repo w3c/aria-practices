@@ -5,6 +5,8 @@
 *   File:   FontMenu.js
 */
 
+'use strict';
+
 var FontMenu = function (domNode, controllerObj) {
   var elementChildren,
     msgPrefix = 'FontMenu constructor argument domNode ';

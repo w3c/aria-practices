@@ -6,6 +6,8 @@
  *   File:   coberage-report.js
  */
 
+'use strict';
+
 const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
