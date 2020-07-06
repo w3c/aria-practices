@@ -5,6 +5,7 @@
 *   Supplemental JS for the disclosure menu keyboard behavior
 */
 
+'use strict';
 
 var DisclosureNav = function (domNode) {
   this.rootNode = domNode;

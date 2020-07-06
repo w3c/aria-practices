@@ -5,6 +5,8 @@
 *   File:   MenuButtonDatePicker.js
 */
 
+'use strict';
+
 var MenuButtonDatePicker = function (cdp) {
   this.buttonLabel = 'Date';
   this.dayLabels = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
