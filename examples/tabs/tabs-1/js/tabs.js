@@ -2,6 +2,9 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 */
+
+'use strict';
+
 (function () {
   var tablist = document.querySelectorAll('[role="tablist"]')[0];
   var tabs;
@@ -35,7 +38,7 @@
   };
 
   // Bind listeners
-  for (i = 0; i < tabs.length; ++i) {
+  for (var i = 0; i < tabs.length; ++i) {
     addListeners(i);
   }
 
@@ -124,7 +127,7 @@
   function switchTabOnArrowPress (event) {
     var pressed = event.keyCode;
 
-    for (x = 0; x < tabs.length; x++) {
+    for (var x = 0; x < tabs.length; x++) {
       tabs[x].addEventListener('focus', focusEventHandler);
     }
 
@@ -170,13 +173,13 @@
 
   // Deactivate all tabs and tab panels
   function deactivateTabs () {
-    for (t = 0; t < tabs.length; t++) {
+    for (var t = 0; t < tabs.length; t++) {
       tabs[t].setAttribute('tabindex', '-1');
       tabs[t].setAttribute('aria-selected', 'false');
       tabs[t].removeEventListener('focus', focusEventHandler);
     }
 
-    for (p = 0; p < panels.length; p++) {
+    for (var p = 0; p < panels.length; p++) {
       panels[p].classList.add('is-hidden');
     }
   }
@@ -193,7 +196,7 @@
 
   // Detect if a tab is deletable
   function determineDeletable (event) {
-    target = event.target;
+    var target = event.target;
 
     if (target.getAttribute('data-deletable') !== null) {
       // Delete target tab
@@ -250,7 +253,7 @@
 
   // Only activate tab on focus if it still has focus after the delay
   function checkTabFocus (target) {
-    focused = document.activeElement;
+    var focused = document.activeElement;
 
     if (target === focused) {
       activateTab(target, false);

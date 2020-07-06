@@ -5,8 +5,9 @@
 *   File:   FontMenuButton.js
 */
 
+'use strict';
 
-FontMenuButton = function (node, toolbar, toolbarItem) {
+function FontMenuButton(node, toolbar, toolbarItem) {
   this.domNode = node;
   this.fontMenu = false;
   this.toolbar = toolbar;
@@ -23,7 +24,7 @@ FontMenuButton = function (node, toolbar, toolbarItem) {
     'UP': 38,
     'DOWN': 40
   });
-};
+}
 
 FontMenuButton.prototype.init = function () {
   var id = this.domNode.getAttribute('aria-controls');

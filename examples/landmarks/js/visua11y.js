@@ -27,11 +27,11 @@ function initHeadings() {
 
   addPolyfills();
 
-  var targetList = [{ selector: "h1", color: "navy",   label: "h1" }, 
-                    { selector: "h2", color: "olive",  label: "h2" }, 
-                    { selector: "h3", color: "purple", label: "h3" }, 
-                    { selector: "h4", color: "green",  label: "h4" }, 
-                    { selector: "h5", color: "gray",   label: "h5" }, 
+  var targetList = [{ selector: "h1", color: "navy",   label: "h1" },
+                    { selector: "h2", color: "olive",  label: "h2" },
+                    { selector: "h3", color: "purple", label: "h3" },
+                    { selector: "h4", color: "green",  label: "h4" },
+                    { selector: "h5", color: "gray",   label: "h5" },
                     { selector: "h6", color: "brown",  label: "h6" }];
 
   var selectors = targetList.map(function (tgt) {
@@ -84,16 +84,16 @@ function initLandmarks() {
     return false;
   }
 
-  var targetList = [{ selector: 'aside:not([role]), [role~="complementary"], [role~="COMPLEMENTARY"]', color: "maroon", label: "complementary" }, 
-                    { selector: 'form[aria-labelledby], form[aria-label], form[title], [role~="form"], [role~="form"]', color: "maroon", label: "form" }, 
-                    { selector: 'footer, [role~="contentinfo"], [role~="CONTENTINFO"]', filter: isContentinfo, color: "olive", label: "contentinfo" }, 
-                    { selector: '[role~="application"], [role~="APPLICATION"]', color: "black", label: "application" }, 
-                    { selector: 'nav, [role~="navigation"], [role~="NAVIGATION"]', color: "green", label: "navigation" }, 
-                    { selector: '[role~="region"][aria-labelledby], [role~="REGION"][aria-labelledby]', color: "teal", label: "region" }, 
-                    { selector: '[role~="region"][aria-label], [role~="REGION"][aria-label]', color: "teal", label: "region" }, 
-                    { selector: 'section[aria-labelledby], section[aria-label]', color: "teal", label: "region" }, 
-                    { selector: 'header, [role~="banner"], [role~="BANNER"]', filter: isBanner, color: "gray", label: "banner" }, 
-                    { selector: '[role~="search"], [role~="SEARCH"]', color: "purple", label: "search" }, 
+  var targetList = [{ selector: 'aside:not([role]), [role~="complementary"], [role~="COMPLEMENTARY"]', color: "maroon", label: "complementary" },
+                    { selector: 'form[aria-labelledby], form[aria-label], form[title], [role~="form"], [role~="form"]', color: "maroon", label: "form" },
+                    { selector: 'footer, [role~="contentinfo"], [role~="CONTENTINFO"]', filter: isContentinfo, color: "olive", label: "contentinfo" },
+                    { selector: '[role~="application"], [role~="APPLICATION"]', color: "black", label: "application" },
+                    { selector: 'nav, [role~="navigation"], [role~="NAVIGATION"]', color: "green", label: "navigation" },
+                    { selector: '[role~="region"][aria-labelledby], [role~="REGION"][aria-labelledby]', color: "teal", label: "region" },
+                    { selector: '[role~="region"][aria-label], [role~="REGION"][aria-label]', color: "teal", label: "region" },
+                    { selector: 'section[aria-labelledby], section[aria-label]', color: "teal", label: "region" },
+                    { selector: 'header, [role~="banner"], [role~="BANNER"]', filter: isBanner, color: "gray", label: "banner" },
+                    { selector: '[role~="search"], [role~="SEARCH"]', color: "purple", label: "search" },
                     { selector: 'main, [role~="main"], [role~="MAIN"]', color: "navy", label: "main" }];
 
   var selectors = targetList.map(function (tgt) {
@@ -817,7 +817,6 @@ function nameFromNativeSemantics(element, recFlag) {
 function nameFromAttributeIdRefs(element, attribute) {
   var value = getAttributeValue(element, attribute);
   var idRefs,
-      i,
       refElement,
       accName,
       arr = [];
@@ -825,7 +824,7 @@ function nameFromAttributeIdRefs(element, attribute) {
   if (value.length) {
     idRefs = value.split(' ');
 
-    for (i = 0; i < idRefs.length; i++) {
+    for (var i = 0; i < idRefs.length; i++) {
       refElement = document.getElementById(idRefs[i]);
       if (refElement) {
         accName = getAccessibleName(refElement, true);

@@ -12,11 +12,6 @@ const assert = require('assert');
 module.exports = async function assertAriaControls (t, elementSelector) {
   const elements = await t.context.queryElements(t, elementSelector);
 
-  assert.ok(
-    elements.length,
-    'CSS elector returned no results: ' + elementSelector
-  );
-
   for (let element of elements) {
     const ariaControlsExists = await t.context.session.executeScript(async function () {
       const selector = arguments[0];

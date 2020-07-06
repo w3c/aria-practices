@@ -7,6 +7,8 @@
 *   Desc:   Radio group widget using aria-activedescendant that implements ARIA Authoring Practices
 */
 
+'use strict';
+
 /*
 *   @constructor radioGroupActiveDescendent
 *

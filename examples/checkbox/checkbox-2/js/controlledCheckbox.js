@@ -8,6 +8,8 @@
 *           for a mixed checkbox
 */
 
+'use strict';
+
 /*
 *   @constructor ControlledCheckbox
 *

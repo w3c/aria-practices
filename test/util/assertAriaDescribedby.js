@@ -13,11 +13,6 @@ const assert = require('assert');
 module.exports = async function assertAriaDescribedby (t, elementSelector) {
   const elements = await t.context.queryElements(t, elementSelector);
 
-  assert.ok(
-    elements.length,
-    'CSS elector returned no results: ' + elementSelector
-  );
-
   for (let index = 0; index < elements.length; index++) {
 
     let ariaDescribedbyExists = await t.context.session.executeScript(async function () {
