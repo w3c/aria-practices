@@ -559,10 +559,7 @@
               <th scope="row"><code>tabindex="-1"</code></th>
               <td><code>button</code></td>
               <td>
-                <ul>
-                  <li>Excludes the button (i.e., the down arrow icon) from the <kbd>Tab</kbd> sequence as specified by the combobox design pattern.</li>
-                  <li>The textbox supports opening the dialog through the keyboard.</li>
-                </ul>
+                Excludes the button (i.e., the down arrow icon) from the <kbd>Tab</kbd> sequence as specified by the combobox design pattern.
               </td>
             </tr>
             <tr data-test-id="calendar-button-aria-label">
@@ -607,6 +604,17 @@
                 <td><code>div</code></td>
                 <td>Defines the accessible name for the dialog.</td>
               </tr>
+              <tr data-test-id="calendar-navigation-aria-live">
+                <td></td>
+                <th scope="row"><code>aria-live="polite"</code></th>
+                <td><code>h2</code></td>
+                <td>
+                  <ul>
+                    <li>Indicates that screen readers should automatically announce the element containing the currently displayed month and year when they change.</li>
+                    <li>The <code>polite</code> value indicates that other announcements should not be interrupted.</li>
+                  </ul>
+                </td>
+              </tr>
               <tr data-test-id="dialog-aria-live">
                 <td></td>
                 <th scope="row"><code>aria-live="polite"</code></th>
@@ -614,7 +622,8 @@
                 <td>
                   <ul>
                     <li>Indicates the element that displays information about keyboard commands for navigating the grid should be automatically announced by screen readers.</li>
-                    <li>The script slightly delays display of the information so screen readers are more likely to read it after information related to change of focus.</li>
+                    <li>The script slightly delays display of the information, so screen readers are more likely to announce it after announcing focus change events.</li>
+                    <li>The <code>polite</code> value indicates that other announcements should not be interrupted.</li>
                   </ul>
                 </td>
               </tr>
@@ -634,27 +643,14 @@
               </tr>
             </thead>
             <tbody>
-                <tr data-test-id="calendar-navigation-button-aria-label">
-                    <td></td>
-                    <th scope="row"><code>aria-label="<em>String</em>"</code></th>
-                    <td><code>button</code></td>
-                    <td>
-                      Defines the accessible name of the button (e.g. "Next Year").
-                    </td>
-                </tr>
-                <tr data-test-id="calendar-navigation-aria-live">
-                    <td></td>
-                    <th scope="row"><code>aria-live="polite"</code></th>
-                    <td>
-                      <code>h2</code>
-                    </td>
-                    <td>
-                      <ul>
-                        <li>When the month and/or year changes the content of the <code>h2</code> element is updated.</li>
-                        <li>The use of the <code>polite</code> value means the screen reader will not interrupt other speech to announce the change in month and/or year.</li>
-                      </ul>
-                    </td>
-                  </tr>
+              <tr data-test-id="calendar-navigation-button-aria-label">
+                <td></td>
+                <th scope="row"><code>aria-label="<em>String</em>"</code></th>
+                <td><code>button</code></td>
+                <td>
+                  Defines the accessible name of the button (e.g. "Next Year").
+                </td>
+              </tr>
             </tbody>
           </table>
         </section>
