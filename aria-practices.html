@@ -6600,7 +6600,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       <p>
         The <code>aria-valuetext</code> property can be set to a string that makes the meter value understandable. For example, a CPU usage meter value might be conveyed as <code>aria-valuetext="90% of CPU is being used"</code>.
       </p>
-      <p>Here is another example of meter that has a range different from the default of 0 for <code>aria-valuemin</code> and 100 for <code>aria-valuemax</code>.</p>
+      <p>Here is another example of a meter that has a range different from the default of 0 for <code>aria-valuemin</code> and 100 for <code>aria-valuemax</code>.</p>
 
       <pre><code>&lt;span id="ph_alkaline_meter_label">Alkaline pH(Power of Hydrogen) Level&lt;/span>
 &lt;div role="meter"
@@ -6620,9 +6620,10 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       </p>
       <p>Following is an example of a progress bar represented by an SVG.</p>
 
-      <pre><code>&lt;div&gt;Loading:
+      <pre><code>&lt;div&gt;&lt;span id="loadlabel"&gt;Loading:&lt;/span&gt;
   &lt;!-- The progress bar uses the default values of 0 and 100 for aria-valuemin and aria-valuemax --&gt;
   &lt;span role="progressbar"
+        aria-labelledby="loadlabel"
         aria-valuenow="33" &gt;
     &lt;svg width="100" height="10"&gt;
       &lt;rect x="0" y="0" height="10" width="100" stroke="black" fill="none"/&gt;
@@ -6651,7 +6652,8 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
         <code>aria-valuenow</code> will generally be exposed as a percentage between <code>aria-valuemin</code> and <code>aria-valuemax</code> calculated by assistive technologies.
       </p>
 
-      <pre><code>&lt;div id="pi"&gt;
+      <pre><code>&lt;span id="pi-label"&gt;Pi&lt;/div&gt;
+&lt;div id="pi"&gt;
 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679
 &lt;/div&gt;
 &lt;div class="rail"&gt;
@@ -6659,6 +6661,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
   &lt;div
     class="thumb"
     role="scrollbar"
+    aria-labelledby="pi-label"
     aria-controls="pi"
     aria-orientation="horizontal"
     aria-valuenow="25"&gt;
@@ -6712,18 +6715,19 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
       <p>The following example sets the price of paperclips in cents.</p>
 
-      <pre><code>&lt;div role="spinbutton" aria-valuenow="50" tabindex="0"&gt;
+      <pre><code>&lt;div role="spinbutton" aria-labelledby="price-label" aria-valuenow="50" tabindex="0"&gt;
   &lt;button id="lower-price"&gt;Lower&lt;/button&gt;
   &lt;button id="raise-price"&gt;Raise&lt;/button&gt;
-  Price per paperclip: $&lt;span id="price"&gt;0.50&lt;/span&gt;
+  &lt;span id="price-label"&gt;Price per paperclip: $&lt;/span&gt;&lt;span id="price"&gt;0.50&lt;/span&gt;
 &lt;/div&gt;</code></pre>
 
       <p>If there are minimum and maximum allowed values, set the <code>aria-valuemin</code> and <code>aria-valuemax</code> properties.</p>
 
-      <pre><code>&lt;div role="spinbutton" aria-valuemin="1" aria-valuenow="50" aria-valuemax="200" tabindex="0"&gt;
+      <pre><code>&lt;div role="spinbutton" aria-labelledby="price-label"
+      aria-valuemin="1" aria-valuenow="50" aria-valuemax="200" tabindex="0"&gt;
   &lt;button id="lower-price"&gt;Lower&lt;/button&gt;
   &lt;button id="raise-price"&gt;Raise&lt;/button&gt;
-  Price per paperclip: $&lt;span id="price"&gt;0.50&lt;/span&gt;
+  &lt;span id="price-label"&gt;Price per paperclip: $&lt;/span&gt;&lt;span id="price"&gt;0.50&lt;/span&gt;
 &lt;/div&gt;</code></pre>
 
       <p>The spin button example above can be made using the native HTML <code>&lt;input type="number"></code> element.</p>
