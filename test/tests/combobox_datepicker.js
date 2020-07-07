@@ -270,28 +270,6 @@ ariaTest('DOWN ARROW, ALT plus DOWN ARROW and ENTER to open datepicker', example
 
 });
 
-ariaTest('ENTER to open datepicker', exampleFile, 'button-space-return', async (t) => {
-  let chooseDateButton = (await t.context.queryElements(t, ex.buttonSelector))[0];
-  await chooseDateButton.sendKeys(Key.ENTER);
-
-  t.not(
-    await (await t.context.queryElements(t, ex.dialogSelector))[0].getCssValue('display'),
-    'none',
-    'After sending ENTER to the "choose date" button, the calendar dialog should open'
-  );
-});
-
-ariaTest('SPACE to open datepicker', exampleFile, 'button-space-return', async (t) => {
-  let chooseDateButton = (await t.context.queryElements(t, ex.buttonSelector))[0];
-  await chooseDateButton.sendKeys(' ');
-
-  t.not(
-    await (await t.context.queryElements(t, ex.dialogSelector))[0].getCssValue('display'),
-    'none',
-    'After sending SPACE to the "choose date" button, the calendar dialog should open'
-  );
-});
-
 ariaTest('Sending key ESC when focus is in dialog closes dialog', exampleFile, 'dialog-esc', async (t) => {
   let chooseDateButton = (await t.context.queryElements(t, ex.buttonSelector))[0];
 
