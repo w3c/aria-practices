@@ -51,14 +51,13 @@
           <label for="id-textbox-1">Date</label>
 
           <div class="group">
-            <div class="textbox">
-              <input type="text"
-                    placeholder="mm/dd/yyyy"
-                    id="id-textbox-1"
-                    aria-autocomplete="none"
-                    aria-describedby="id-description-1">
-            </div>
-            <span class="desc" id="id-description-1">(date format: mm/dd/yy)</span>
+            <input type="text"
+                  placeholder="mm/dd/yyyy"
+                  id="id-textbox-1"
+                  aria-autocomplete="none"
+                  size:
+                  aria-describedby="id-description-1">
+            <span class="desc" id="id-description-1">(<span class="sr-only">date format: </span>mm/dd/yyyy)</span>
             <button type="button"
                     class="icon"
                     aria-label="Choose Date">
@@ -145,7 +144,7 @@
                 <td tabindex="-1" data-date="2020-02-11">11</td>
                 <td tabindex="-1" data-date="2020-02-12">12</td>
                 <td tabindex="-1" data-date="2020-02-13">13</td>
-                <td role="gridcell" aria-selected="true" data-date="2020-02-14">14</td>
+                <td tabindex="0" data-date="2020-02-14" aria-selected="true" >14</td>
                 <td tabindex="-1" data-date="2020-02-15">15</td>
               </tr>
               <tr>

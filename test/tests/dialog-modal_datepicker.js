@@ -26,7 +26,7 @@ const ex = {
   jan12019Day: '#example [role="dialog"] table.dates td[data-date="2019-01-01"]',
   jan22019Day: '#example [role="dialog"] table.dates td[data-date="2019-01-02"]',
   todayDay: `#example [role="dialog"] table.dates td[data-date="${todayDataDate}"]`,
-  currentlyFocusedDay: '#example [role="dialog"] table.dates td[tabindex=\'0\']',
+  currentlyFocusedDay: '#example [role="dialog"] table.dates td[tabindex="0"]',
   allFocusableElementsInDialog: [
     `#example [role="dialog"] table.dates td[data-date="${todayDataDate}"]`,
     '#example [role="dialog"] button[value="cancel"]',
@@ -96,8 +96,8 @@ ariaTest('aria-modal="true" on modal', exampleFile, 'dialog-aria-modal', async (
     await assertAttributeValues(t, ex.dialogSelector, 'aria-modal', 'true');
 });
 
-ariaTest('aria-labelledby exist on dialog', exampleFile, 'dialog-aria-labelledby', async (t) => {
-    await assertAriaLabelledby(t, ex.dialogSelector);
+ariaTest('aria-label exist on dialog', exampleFile, 'dialog-aria-label', async (t) => {
+    await assertAriaLabelExists(t, ex.dialogSelector);
 });
 
 ariaTest('aria-live="polite" on keyboard support message', exampleFile, 'dialog-aria-live', async (t) => {
@@ -416,13 +416,13 @@ ariaTest('SPACE or RETURN selects date in focus', exampleFile, 'grid-space-retur
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
   await t.context.session.findElement(By.css(ex.todayDay)).sendKeys(Key.ARROW_RIGHT);
   await t.context.session.findElement(By.css(ex.currentlyFocusedDay)).sendKeys(' ');
+
   day.setDate(day.getDate() + 1);
   t.is(
     await t.context.session.findElement(By.css(ex.inputSelector)).getAttribute('value'),
     `${day.getMonth() + 1}/${day.getDate()}/${day.getFullYear()}`,
     'SPACE sent to tomorrow\'s date button should select tomorrow'
   );
-
 });
 
 ariaTest('UP ARROW moves date up by week', exampleFile, 'grid-up-arrow', async (t) => {
@@ -497,7 +497,7 @@ ariaTest('LEFT ARROW moves date previous one', exampleFile, 'grid-left-arrow', a
   }
 });
 
-ariaTest('Key HOME sends focus to begining of row', exampleFile, 'grid-home', async (t) => {
+ariaTest('Key HOME sends focus to beginning of row', exampleFile, 'grid-home', async (t) => {
     await t.context.session.findElement(By.css(ex.buttonSelector)).click();
   let day = new Date();
 

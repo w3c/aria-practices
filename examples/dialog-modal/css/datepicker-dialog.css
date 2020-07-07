@@ -1,10 +1,18 @@
+.sr-only {
+  position: absolute;
+  top: -2000em;
+  left: -3000em;
+}
+
 .datepicker {
   margin-top: 1em;
   position: relative;
 }
 
 .datepicker .group {
-  display: inline-flex;
+  display: inline-block;
+  position: relative;
+  width: 13em;
 }
 
 .datepicker label {
@@ -21,16 +29,19 @@
 }
 
 .datepicker button.icon {
+  position: relative;
+  top: 0.25em;
   margin: 0;
-  margin-left: 10px;
   padding: 4px;
-  margin: 0;
   border: 0px solid #005a9c;
   background-color: white;
   border-radius: 5px;
-  position: relative;
-  left: 5px;
-  top: -6px;
+}
+
+.datepicker .desc {
+  position: absolute;
+  left: 0;
+  top: 2em;
 }
 
 .datepicker .fa-calendar-alt {

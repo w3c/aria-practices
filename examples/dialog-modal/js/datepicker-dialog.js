@@ -47,8 +47,6 @@ var MenuButtonDatePicker = function (cdp) {
 
 MenuButtonDatePicker.prototype.init = function () {
 
-  this.textboxNode.addEventListener('mouseup',   this.handleTextboxMouseUp.bind(this));
-
   this.buttonNode.addEventListener('keydown',   this.handleButtonKeydown.bind(this));
   this.buttonNode.addEventListener('click',   this.handleButtonClick.bind(this));
 
@@ -311,11 +309,10 @@ MenuButtonDatePicker.prototype.updateDate = function (domNode, disable, day, sel
       domNode.setAttribute('tabindex', '0');
     }
   }
-
 };
 
 MenuButtonDatePicker.prototype.updateSelected = function (domNode) {
-  for (i = 0; i < this.days.length; i++) {
+  for (var i = 0; i < this.days.length; i++) {
     var day = this.days[i];
     if (day  === domNode) {
       day.setAttribute('aria-selected', 'true');
@@ -635,6 +632,8 @@ MenuButtonDatePicker.prototype.handlePreviousMonthButton = function (event) {
 MenuButtonDatePicker.prototype.handleDayKeyDown = function (event) {
   var flag = false;
 
+
+  console.log("key: " + event.key);
   switch (event.key) {
 
     case "Esc":
@@ -651,6 +650,7 @@ MenuButtonDatePicker.prototype.handleDayKeyDown = function (event) {
     case "Enter":
       this.setTextboxDate(event.currentTarget);
       this.close();
+      flag = true;
       break;
 
     case "Tab":
@@ -769,19 +769,8 @@ MenuButtonDatePicker.prototype.handleButtonClick = function (event) {
   event.preventDefault();
 };
 
-
-MenuButtonDatePicker.prototype.handleTextboxMouseUp = function (event) {
-  if (this.isOpen()) {
-    this.close();
-    this.textboxNode.focus();
-  }
-
-  event.stopPropagation();
-  event.preventDefault();
-};
 MenuButtonDatePicker.prototype.handleBackgroundMouseUp = function (event) {
-  if (!this.textboxNode.contains(event.target) &&
-      !this.buttonNode.contains(event.target) &&
+  if (!this.buttonNode.contains(event.target) &&
       !this.dialogNode.contains(event.target)) {
 
     if (this.isOpen()) {
