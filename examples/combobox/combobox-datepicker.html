@@ -209,59 +209,29 @@
 
   <section>
     <h2>Accessibility Features</h2>
-    <p>There are three main features of the combobox date picker example:</p>
     <ul>
-      <li>Textbox: Holds the value of the selected date and can open the date picker dialog box.</li>
-      <li>Choose Date Button: Opens the datepicker dialog box.</li>
-      <li>Date Picker Dialog Box: Displays a grid of dates for the user to select from and provides additional buttons to change the month and year of dates shown in the grid.</li>
-    </ul>
-
-    <p>The <code>combobox</code>, <code>textbox</code> and <code>button</code> all have the same accessible name.</p>
-
-
-    <h3>Date Textbox</h3>
-
-    <ul>
-      <li>Contains the date value.</li>
-      <li>Opens and closes the date picker dialog box through keyboard, click and touch events.</li>
-      <li>A down arrow icon in the <code>textbox</code> provides a visual affordance that the <kbd>down arrow</kbd> key opens the date picker dialog box.</li>
-      <li>A description provides information on the date format to assistive technologies.</li>
-    </ul>
-
-    <h3>Choose Date Button</h3>
-
-    <ul>
-      <li>The down arrow icon is a button to open and close the date picker dialog box through click events.</li>
-      <li>The arrow points down when the dialog box is closed and it points up when the dialog box is open.</li>
-      <li>Excluded from the <kbd>tab</kbd> sequence of the page (eg. <code>tabindex=-1</code>), since the user can use the <kbd>down arrow</kbd> or <kbd>enter</kbd> key to open the date picker dialog box from the <code>textbox</code>.</li>
-    </ul>
-
-    <h3>Date Picker Dialog</h3>
-
-    <ul>
-      <li>The date picker dialog is a modal dialog box for selecting a date from a grid of dates for a particular month and year.</li>
-      <li>Additional buttons and keyboard commands are used to change month and year.</li>
-      <li>A live region announces changes in the month and year.</li>
-      <li>A live region announces the use of cursor keys when a date in the grid of dates gets focus.  The message is also visible at the bottom of the dialog box to provide the same information to keyboard users.</li>
-      <li>The dialog is opened through keyboard commands in the textbox or by clicking on the choose date button.</li>
-      <li>High contrast support for focus and hover styling of the controls in the dialog box use the CSS border property:
+     <li>The description of the date format is associated with the combobox via <code>aria-describedby</code>, making it available to assistive technologies as an accessible description.</li>
+      <li>
+        While the down arrow icon is excluded from the <kbd>Tab</kbd> sequence as specified in the <code>combobox</code> design pattern, it is made accessible to assistive technologies as the Choose Date button. 
+        This enables assistive technology users who might not have a keyboard, e.g., someone using a touch-based screen reader, to open the date picker dialog.
+      </li>
+      <li>In the dialog, shortcut keys are assigned to the additional buttons for changing the month and year displayed in the calendar.</li>
+      <li>Keyboard help is displayed at the bottom of the dialog. A live region is used to announce it to screen reader users when focus moves into the grid.</li>
+      <li>The calendar heading displaying the month and year is marked up as a live region so screen reader users get feedback from the buttons and keyboard commands that change the month and year.</li>
+      <li>
+        To facilitate compact visual design in the calendar, the day names in the column headers are abbreviated to two characters.
+        However, this makes it more difficult for screen reader users to understand the day names.
+        So, full day names are provided to assistive technologies in the HTML <code>abbr</code> attribute on the column headers, enabling screen readers to announce the full names when users navigate the grid.
+      </li>
+      <li>Focus and hover styling of the controls support operating system high contrast settings via the CSS border property:
         <ul>
-          <li>When a button or date receives focus a border is added.</li>
-          <li>When hovering over a button or date with a pointing device a border is added.</li>
-          <li>By default buttons and dates do not have a border, padding is used as a placeholder for the added border for focus and hover styling.</li>
+          <li>When a button or date cell receives focus a border is added.</li>
+          <li>When hovering over a button or date cell with a pointing device a border is added.</li>
+          <li>By default, buttons and date cells do not have a border; padding provides a placeholder space for focus and hover styling.</li>
         </ul>
       </li>
-    </ul>
-
-    <h3>Mobile Support</h3>
-
-    <ul>
-      <li>One issue with mobile browsers is that the onscreen keyboard is visible when the textbox has focus.</li>
-      <li>Adding the <code>touchstart</code> event allows the user to close the onscreen keyboard when the textbox has focus.</li>
-    </ul>
-
+   </ul>
   </section>
-
 
   <section>
     <h2 id="kbd_label">Keyboard Support</h2>
