@@ -6479,13 +6479,12 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
         When the value of a range widget is constrained to known limits, the <code>aria-valuemin</code> and <code>aria-valuemax</code> properties are used to inform assistive technologies of the minimum and maximum values of the range.
         For some widgets, assistive technologies use this information to present the current value as a percentage.
         When using these properties, set <code>aria-valuemin</code> to the lowest value allowed for the widget and <code>aria-valuemax</code> to the highest allowed value.
-        If a range widget represents a value that does not have known limits, omit both <code>aria-valuemin</code> and <code>aria-valuemax</code>.
+        If values for <code>aria-valuemin</code> and <code>aria-valuemax</code> are not set, default values are exposed to assistive technologies unless the widget is a <code>spinbutton</code>, which is the only range widget that does not have default limits.
       </p>
       <p>
         The <code>aria-valuenow</code> property is used to inform assistive technologies of the current value of a range widget.
-        If a range widget has a known value, set <code>aria-valuenow</code> to that value.
-        Otherwise, omit the <code>aria-valuenow</code> property.
-        If <code>aria-valuemin</code> and <code>aria-valuemax</code> are specified, ensure the value of <code>aria-valuenow</code> falls within the defined range.
+        Set <code>aria-valuenow</code> to the current value of the widget, ensuring the value of <code>aria-valuenow</code> falls within the range defined by <code>aria-valuemin</code> and <code>aria-valuemax</code>.
+        If the current value of a <code>progressbar</code> or <code>spinbutton</code> is indeterminate or unknown, omit The <code>aria-valuenow</code> property.
         The <code>aria-valuenow</code> property is required for the <code>meter</code>, <code>scrollbar</code>, <code>separator</code> (if the element is focusable), and <code>slider</code> roles.
       </p>
       <p>
