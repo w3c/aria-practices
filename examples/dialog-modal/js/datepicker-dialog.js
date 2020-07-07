@@ -50,7 +50,7 @@ MenuButtonDatePicker.prototype.init = function () {
   this.textboxNode.addEventListener('mouseup',   this.handleTextboxMouseUp.bind(this));
 
   this.buttonNode.addEventListener('keydown',   this.handleButtonKeydown.bind(this));
-  this.buttonNode.addEventListener('mouseup',   this.handleButtonMouseUp.bind(this));
+  this.buttonNode.addEventListener('click',   this.handleButtonClick.bind(this));
 
   this.okButtonNode.addEventListener('click', this.handleOkButton.bind(this));
   this.okButtonNode.addEventListener('keydown', this.handleOkButton.bind(this));
@@ -743,10 +743,10 @@ MenuButtonDatePicker.prototype.handleDayFocus = function () {
 
 MenuButtonDatePicker.prototype.handleButtonKeydown = function (event) {
 
-  if ((event.key === "Enter") ||
-      (event.key == "Down")  ||
-      (event.key == "ArrowDown")  ||
-      (event.key == " ")) {
+  if ((event.key === 'Enter') ||
+      (event.key === 'Down')  ||
+      (event.key === 'ArrowDown')  ||
+      (event.key === ' ')) {
     this.open();
     this.setFocusDay();
 
@@ -756,7 +756,7 @@ MenuButtonDatePicker.prototype.handleButtonKeydown = function (event) {
 
 };
 
-MenuButtonDatePicker.prototype.handleButtonMouseUp = function (event) {
+MenuButtonDatePicker.prototype.handleButtonClick = function (event) {
   if (this.isOpen()) {
     this.close();
   }
