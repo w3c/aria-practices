@@ -547,7 +547,7 @@ ComboboxDatePicker.prototype.updateDate = function (domNode, disable, day, selec
 };
 
 ComboboxDatePicker.prototype.updateSelected = function (domNode) {
-  for (i = 0; i < this.days.length; i++) {
+  for (var i = 0; i < this.days.length; i++) {
     var day = this.days[i];
     if (day  === domNode) {
       day.setAttribute('aria-selected', 'true');
