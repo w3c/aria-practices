@@ -667,73 +667,73 @@
           </tr>
         </thead>
         <tbody>
-            <tr data-test-id="grid-role">
-              <th scope="row"><code>grid</code></th>
-              <td></td>
-              <td>
-                <code>table</code>
-              </td>
-              <td>
-                <ul>
-                  <li>Identifies the <code>table</code> element as a <code>grid</code> widget.</li>
-                  <li>Since the <code>grid</code> role is applied to a <code>table</code> element, the <code>row</code>, <code>columnheader</code>, and <code>gridcell</code> roles do not need to be specified because they are implied by <code>tr</code>, <code>th</code>, and <code>td</code> tags.</li>
-                </ul>
-              </td>
-            </tr>
-            <tr data-test-id="grid-aria-labelledby">
-              <td></td>
-              <th scope="row"><code>aria-labelledby="IDREF"</code></th>
-              <td><code>table</code></td>
-              <td>
-                Identifies the element that provides the accessible name for the <code>grid</code>, which is  the <code>h2</code> that shows the month and year of the dates displayed in the grid.
-              </td>
-            </tr>
-            <tr data-test-id="gridcell-tabindex">
-              <td></td>
-              <th scope="row">
-                <code>tabindex="0"</code>
-              </th>
-              <td>
-                <code>td</code>
-              </td>
-              <td>
-                <ul>
-                  <li>Makes the gridcell focusable and includes it in the dialog <kbd>Tab</kbd> sequence.</li>
-                  <li>Set dynamically by the JavaScript when the element is to be included in the dialog <kbd>Tab</kbd> sequence.</li>
-                  <li>At any given time, only one gridcell within the grid is in the dialog <kbd>Tab</kbd> sequence.</li>
-                  <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
-                </ul>
-              </td>
-            </tr>
-            <!-- The regression test for tabindex=0 tests for tabindex=-1 -->
-            <tr data-test-id="gridcell-tabindex">
-              <td></td>
-              <th scope="row">
-                <code>tabindex="-1"</code>
-              </th>
-              <td>
-                <code>td</code>
-              </td>
-              <td>
-                <ul>
-                  <li>Makes the gridcell focusable and excludes it from the dialog <kbd>Tab</kbd> sequence.</li>
-                  <li>Changed dynamically to <code>0</code> by the JavaScript when the gridcell is to be included in the dialog <kbd>Tab</kbd> sequence.</li>
-                  <li>At any given time, only one gridcell within the grid is in the dialog <kbd>Tab</kbd> sequence.</li>
-                  <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
-                </ul>
-              </td>
-            </tr>
-            <tr data-test-id="gridcell-aria-selected">
-              <td></td>
-              <th scope="row"><code>aria-selected="true"</code></th>
-              <td><code>td</code></td>
-              <td>
-                <ul>
-                  <li>Indicates the cell is selected.</li>
-                  <li>Set on the gridcell representing the current value of the combobox; no other gridcells have <code>aria-selected</code> specified.</li>
-                </ul>
-              </td>
-            </tr>
+          <tr data-test-id="grid-role">
+            <th scope="row"><code>grid</code></th>
+            <td></td>
+            <td>
+              <code>table</code>
+            </td>
+            <td>
+              <ul>
+                <li>Identifies the <code>table</code> element as a <code>grid</code> widget.</li>
+                <li>Since the <code>grid</code> role is applied to a <code>table</code> element, the <code>row</code>, <code>columnheader</code>, and <code>gridcell</code> roles do not need to be specified because they are implied by <code>tr</code>, <code>th</code>, and <code>td</code> tags.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr data-test-id="grid-aria-labelledby">
+            <td></td>
+            <th scope="row"><code>aria-labelledby="IDREF"</code></th>
+            <td><code>table</code></td>
+            <td>
+              Identifies the element that provides the accessible name for the <code>grid</code>, which is  the <code>h2</code> that shows the month and year of the dates displayed in the grid.
+            </td>
+          </tr>
+          <tr data-test-id="gridcell-tabindex">
+            <td></td>
+            <th scope="row">
+              <code>tabindex="0"</code>
+            </th>
+            <td>
+              <code>td</code>
+            </td>
+            <td>
+              <ul>
+                <li>Makes the gridcell focusable and includes it in the dialog <kbd>Tab</kbd> sequence.</li>
+                <li>Set dynamically by the JavaScript when the element is to be included in the dialog <kbd>Tab</kbd> sequence.</li>
+                <li>At any given time, only one gridcell within the grid is in the dialog <kbd>Tab</kbd> sequence.</li>
+                <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
+              </ul>
+            </td>
+          </tr>
+          <!-- The regression test for tabindex=0 tests for tabindex=-1 -->
+          <tr data-test-id="gridcell-tabindex">
+            <td></td>
+            <th scope="row">
+              <code>tabindex="-1"</code>
+            </th>
+            <td>
+              <code>td</code>
+            </td>
+            <td>
+              <ul>
+                <li>Makes the gridcell focusable and excludes it from the dialog <kbd>Tab</kbd> sequence.</li>
+                <li>Changed dynamically to <code>0</code> by the JavaScript when the gridcell is to be included in the dialog <kbd>Tab</kbd> sequence.</li>
+                <li>At any given time, only one gridcell within the grid is in the dialog <kbd>Tab</kbd> sequence.</li>
+                <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr data-test-id="gridcell-aria-selected">
+            <td></td>
+            <th scope="row"><code>aria-selected="true"</code></th>
+            <td><code>td</code></td>
+            <td>
+              <ul>
+                <li>Indicates the cell is selected.</li>
+                <li>Set on the gridcell representing the current value of the combobox; no other gridcells have <code>aria-selected</code> specified.</li>
+              </ul>
+            </td>
+          </tr>
         </tbody>
       </table>
       <p>
