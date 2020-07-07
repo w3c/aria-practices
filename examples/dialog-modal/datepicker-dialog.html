@@ -55,7 +55,6 @@
                   placeholder="mm/dd/yyyy"
                   id="id-textbox-1"
                   aria-autocomplete="none"
-                  size:
                   aria-describedby="id-description-1">
             <span class="desc" id="id-description-1">(<span class="sr-only">date format: </span>mm/dd/yyyy)</span>
             <button type="button"
@@ -144,7 +143,7 @@
                 <td tabindex="-1" data-date="2020-02-11">11</td>
                 <td tabindex="-1" data-date="2020-02-12">12</td>
                 <td tabindex="-1" data-date="2020-02-13">13</td>
-                <td tabindex="0" data-date="2020-02-14" aria-selected="true" >14</td>
+                <td tabindex="0"  data-date="2020-02-14" role="gridcell" aria-selected="true">14</td>
                 <td tabindex="-1" data-date="2020-02-15">15</td>
               </tr>
               <tr>
@@ -500,7 +499,6 @@
                 <td>
                   The accessible name is <q>Choose Date</q>, since activating the button opens the <q>Choose Date</q> dialog and moves focus to the dialog.
               </td>
-                </td>
               </tr>
               <tr data-test-id="dialog-aria-live">
                 <th></th>
