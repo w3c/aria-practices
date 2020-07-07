@@ -209,16 +209,20 @@ ariaTest('"enter" on role="menuitem"', exampleFile, 'menu-enter', async (t) => {
 ariaTest('"escape" on role="menuitem"', exampleFile, 'menu-escape', async (t) => {
 
   const items = await t.context.queryElements(t, ex.menuitemSelector);
-  for (let index = 0; index < ex.numMenuitems; index++) {
+  for (let index = 0; index < items.length; index++) {
     const item = items[index];
 
     await openMenu(t);
     await item.sendKeys(Key.ESCAPE);
     await waitForNoAriaExpanded(t);
 
+    // fixes for running regression tests on windows
+    let url = t.context.url.replace(/\\/g, '/');
+    url = url.replace('file://', 'file:///')
+
     t.is(
       await t.context.session.getCurrentUrl(),
-      t.context.url,
+      url,
       'Key escape when focus on list item at index ' + index + ' should not activate the link'
     );
 
