@@ -195,7 +195,7 @@ ariaTest('ESCAPE closes listbox', exampleFile, 'key-escape', async (t) => {
 
 ariaTest('DOWN ARROW opens listbox and moves focus', exampleFile, 'key-down-arrow', async (t) => {
   
-  // Send DOWN ARROW to button should open listbo
+  // Send DOWN ARROW to button should open listbox
   await t.context.session.findElement(By.css(ex.buttonSelector)).sendKeys(Key.ARROW_DOWN);
 
   // Confirm the listbox is open and in focus
@@ -247,7 +247,7 @@ ariaTest('END moves focus', exampleFile, 'key-end', async (t) => {
 
 ariaTest('UP ARROW moves focus', exampleFile, 'key-up-arrow', async (t) => {
   
-  // Send UP ARROW to button should open listboxx
+  // Send UP ARROW to button should open listbox
   await t.context.session.findElement(By.css(ex.buttonSelector)).sendKeys(Key.ARROW_UP);
 
   // Confirm the listbox is open and in focus

@@ -14,7 +14,7 @@ const ex = {
     rowSelector: '#ex1 tr',
     lastColumn: 5,
     lastRow: 7,
-    firstInterativeRow: 2
+    firstInteractiveRow: 2
   },
   2: {
     gridSelector: '#ex2 [role="grid"]',
@@ -23,7 +23,7 @@ const ex = {
     amountHeaderSelector: '#ex2 tr:nth-of-type(1) th:nth-of-type(5)',
     lastColumn: 6,
     lastRow: 8,
-    firstInterativeRow: 1
+    firstInteractiveRow: 1
   },
   3: {
     gridSelector: '#ex3 [role="grid"]',
@@ -31,7 +31,7 @@ const ex = {
     hideButtonSelector: '#ex3 #toggle_column_btn',
     lastColumn: 6,
     lastRow: 16,
-    firstInterativeRow: 2
+    firstInteractiveRow: 2
   }
 };
 
@@ -54,7 +54,7 @@ const checkFocusOnOrInCell = async function (t, gridSelector, rowIndex, columnIn
       return document.activeElement === cellElement;
     }
 
-    // Look for an interative element in the gridcell to find candidate for focus
+    // Look for an interactive element in the gridcell to find candidate for focus
     const interactiveElement = cellElement.querySelector('[tabindex]');
     return document.activeElement === interactiveElement;
 
@@ -72,9 +72,9 @@ const sendKeyToGridcell = async function (t, gridSelector, rowIndex, columnIndex
     return await cellElement.sendKeys(key);
   }
 
-  // Look for an interative element in the gridcell to send KEY
-  const interativeElement = await cellElement.findElement(By.css('[tabindex]'));
-  return await interativeElement.sendKeys(key);
+  // Look for an interactive element in the gridcell to send KEY
+  const interactiveElement = await cellElement.findElement(By.css('[tabindex]'));
+  return await interactiveElement.sendKeys(key);
 };
 
 const scrollToEndOfExample3 = async function (t) {
@@ -514,7 +514,7 @@ ariaTest('Key up moves focus, examples 1,2,3', exampleFile, 'key-up-arrow', asyn
       await sendKeyToGridcell(t, gridSelector, 2, 1, Key.ARROW_UP);
       t.true(
         await checkFocusOnOrInCell(t, gridSelector, 1, 1),
-        'After sending ARROW UP to element the first data row (2) at column 1 the focus should move to the header row (which is interative) in example: ' + example
+        'After sending ARROW UP to element the first data row (2) at column 1 the focus should move to the header row (which is interactive) in example: ' + example
       );
     }
 
@@ -664,7 +664,7 @@ ariaTest('Control+home moves focus', exampleFile, 'key-control-home', async (t) 
     const rowSelector = ex[example].rowSelector;
     const lastColumn = ex[example].lastColumn;
     const lastRow = ex[example].lastRow;
-    const firstInterativeRow = ex[example].firstInterativeRow;
+    const firstInteractiveRow = ex[example].firstInteractiveRow;
 
     let columnIndex = 1;
 
@@ -684,8 +684,8 @@ ariaTest('Control+home moves focus', exampleFile, 'key-control-home', async (t) 
       // Test focus moves down
       await sendKeyToGridcell(t, gridSelector, rowIndex, columnIndex, Key.chord(Key.CONTROL, Key.HOME));
       t.true(
-        await checkFocusOnOrInCell(t, gridSelector, firstInterativeRow, 1),
-        'After sending CONTROL+HOME to element in row ' + rowIndex + ' column ' + columnIndex + ', focus should be on element in row ' + firstInterativeRow + ' column 1 for example: ' + example
+        await checkFocusOnOrInCell(t, gridSelector, firstInteractiveRow, 1),
+        'After sending CONTROL+HOME to element in row ' + rowIndex + ' column ' + columnIndex + ', focus should be on element in row ' + firstInteractiveRow + ' column 1 for example: ' + example
       );
 
       // Switch the column every time

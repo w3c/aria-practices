@@ -255,7 +255,7 @@ ariaTest('aria-expanded attribute on treeitem matches dom', exampleFile, 'treeit
 });
 
 
-ariaTest('"aria-setsize" atrribute on treeitem', exampleFile, 'treeitem-aria-setsize', async (t) => {
+ariaTest('"aria-setsize" attribute on treeitem', exampleFile, 'treeitem-aria-setsize', async (t) => {
   
   for (const [level, levelSelectors] of Object.entries(ex.groupItemSelectors)) {
     for (const selector of levelSelectors) {
@@ -341,7 +341,7 @@ ariaTest('"aria-level" attribute on treeitem', exampleFile, 'treeitem-aria-level
           );
         }
 
-        // The item is a li that contains a link the "treeitem" role and "aria-slevel" set
+        // The item is a li that contains a link the "treeitem" role and "aria-level" set
         else {
           let treeitem = item.findElement(By.css('[role="treeitem"]'));
           t.is(
@@ -627,7 +627,7 @@ ariaTest.failing('key left arrow closes folders and moves focus', exampleFile, '
       t.true(
         await checkFocus(t,  ex.treeitemSelector, i),
         'Sending key ARROW_LEFT to link in top level folder at treeitem index ' + i +
-          ' should not move focu'
+          ' should not move focus'
       );
     }
 
@@ -757,7 +757,7 @@ ariaTest('characters move focus', exampleFile, 'key-character', async (t) => {
     // Test that the focus switches to the appropriate item
     t.true(
       await checkFocus(t, ex.topLevelFolderSelector, test.endIndex),
-      'Sending characther ' + test.sendChar + ' to treeitem ' + test.sendIndex + ' should move the foucs to treeitem ' + test.endIndex
+      'Sending character ' + test.sendChar + ' to treeitem ' + test.sendIndex + ' should move the foucs to treeitem ' + test.endIndex
     );
 
     await assertAttributeValues(t, ex.topLevelFolderSelector, 'aria-expanded', 'false');
@@ -779,7 +779,7 @@ ariaTest('characters move focus', exampleFile, 'key-character', async (t) => {
     // Test that the focus switches to the appropriate treeitem
     t.true(
       await checkFocus(t, ex.treeitemSelector, test.endIndex),
-      'Sending characther ' + test.sendChar + ' to treeitem ' + test.sendIndex + ' should move the foucs to treeitem ' + test.endIndex
+      'Sending character ' + test.sendChar + ' to treeitem ' + test.sendIndex + ' should move the foucs to treeitem ' + test.endIndex
     );
   }
 });
