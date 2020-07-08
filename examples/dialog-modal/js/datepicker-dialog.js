@@ -165,29 +165,36 @@ MenuButtonDatePicker.prototype.updateDate = function (domNode, disable, day, sel
   }
 };
 
+MenuButtonDatePicker.prototype.moveFocusToDay = function (day) {
+  var d = this.focusDay;
+
+  this.focusDay = day;
+
+  if ((d.getMonth() != this.focusDay.getMonth()) ||
+      (d.getYear() != this.focusDay.getYear())) {
+    this.updateGrid();
+  }
+  this.setFocusDay();
+};
+
 MenuButtonDatePicker.prototype.setFocusDay = function (flag) {
 
   if (typeof flag !== 'boolean') {
     flag = true;
   }
 
-  var fd = this.focusDay;
-  var getDayFromDataDateAttribute = this.getDayFromDataDateAttribute;
+  for (var i = 0; i < this.days.length; i++) {
+    var dayNode = this.days[i];
+    var day = this.getDayFromDataDateAttribute(dayNode);
 
-  function checkDay (domNode) {
-
-    var d = getDayFromDataDateAttribute(domNode);
-
-    domNode.setAttribute('tabindex', '-1');
-    if (this.isSameDay(d, fd)) {
-      domNode.setAttribute('tabindex', '0');
+    dayNode.tabIndex = -1;
+    if (this.isSameDay(day, this.focusDay)) {
+      dayNode.tabIndex = 0;
       if (flag) {
-        domNode.focus();
+        dayNode.focus();
       }
     }
   }
-
-  this.days.forEach(checkDay.bind(this));
 };
 
 MenuButtonDatePicker.prototype.open = function () {
@@ -216,18 +223,6 @@ MenuButtonDatePicker.prototype.close = function (flag) {
   if (flag) {
     this.buttonNode.focus();
   }
-};
-
-MenuButtonDatePicker.prototype.moveFocusToDay = function (day) {
-  var d = this.focusDay;
-
-  this.focusDay = day;
-
-  if ((d.getMonth() != this.focusDay.getMonth()) ||
-      (d.getYear() != this.focusDay.getYear())) {
-    this.updateGrid();
-  }
-  this.setFocusDay();
 };
 
 MenuButtonDatePicker.prototype.moveToNextYear = function () {
