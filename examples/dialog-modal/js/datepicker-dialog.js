@@ -82,7 +82,7 @@ MenuButtonDatePicker.prototype.init = function () {
       cell.addEventListener('keydown', this.handleDayKeyDown.bind(this));
       cell.addEventListener('focus', this.handleDayFocus.bind(this));
 
-      cell.innerHTML = '-1';
+      cell.textContent = '-1';
 
       row.appendChild(cell);
       this.days.push(cell);
@@ -109,7 +109,7 @@ MenuButtonDatePicker.prototype.updateGrid = function () {
   var flag;
   var fd = this.focusDay;
 
-  this.monthYearNode.innerHTML = this.monthLabels[fd.getMonth()] + ' ' + fd.getFullYear();
+  this.monthYearNode.textContent = this.monthLabels[fd.getMonth()] + ' ' + fd.getFullYear();
 
   var firstDayOfMonth = new Date(fd.getFullYear(), fd.getMonth(), 1);
   var dayOfWeek = firstDayOfMonth.getDay();
@@ -153,11 +153,11 @@ MenuButtonDatePicker.prototype.updateDate = function (domNode, disable, day, sel
 
   if (disable) {
     domNode.classList.add('disabled');
-    domNode.innerHTML = '';
+    domNode.textContent = '';
   }
   else {
     domNode.classList.remove('disabled');
-    domNode.innerHTML = day.getDate();
+    domNode.textContent = day.getDate();
     if (selected) {
       domNode.setAttribute('aria-selected', 'true');
       domNode.tabIndex = 0;
