@@ -77,7 +77,7 @@ MenuButtonDatePicker.prototype.init = function () {
     for (var j = 0; j < 7; j++) {
       var cell = document.createElement('td');
 
-      cell.setAttribute('tabindex', '-1');
+      cell.tabIndex = -1;
       cell.addEventListener('click', this.handleDayClick.bind(this));
       cell.addEventListener('keydown', this.handleDayKeyDown.bind(this));
       cell.addEventListener('focus', this.handleDayFocus.bind(this));
@@ -106,7 +106,7 @@ MenuButtonDatePicker.prototype.isNotSameMonth = function (day1, day2) {
 
 MenuButtonDatePicker.prototype.updateGrid = function () {
 
-  var i, flag;
+  var flag;
   var fd = this.focusDay;
 
   this.monthYearNode.innerHTML = this.monthLabels[fd.getMonth()] + ' ' + fd.getFullYear();
@@ -118,12 +118,12 @@ MenuButtonDatePicker.prototype.updateGrid = function () {
 
   var d = new Date(firstDayOfMonth);
 
-  for (i = 0; i < this.days.length; i++) {
+  for (var i = 0; i < this.days.length; i++) {
     flag = d.getMonth() != fd.getMonth();
     this.updateDate(this.days[i], flag, d, this.isSameDay(d, this.selectedDay));
     d.setDate(d.getDate() + 1);
 
-    // Hide last row if all disabled dates
+    // Hide last row if all dates are disabled (e.g. in next month)
     if (i === 35) {
       if (flag) {
         this.lastRowNode.style.visibility = 'hidden';
@@ -131,6 +131,36 @@ MenuButtonDatePicker.prototype.updateGrid = function () {
       else {
         this.lastRowNode.style.visibility = 'visible';
       }
+    }
+  }
+};
+
+MenuButtonDatePicker.prototype.updateDate = function (domNode, disable, day, selected) {
+
+  var d = day.getDate().toString();
+  if (day.getDate() <= 9) {
+    d = '0' + d;
+  }
+
+  var m = day.getMonth() + 1;
+  if (day.getMonth() < 9) {
+    m = '0' + m;
+  }
+
+  domNode.tabIndex = -1;
+  domNode.removeAttribute('aria-selected');
+  domNode.setAttribute('data-date', day.getFullYear() + '-' + m + '-' + d);
+
+  if (disable) {
+    domNode.classList.add('disabled');
+    domNode.innerHTML = '';
+  }
+  else {
+    domNode.classList.remove('disabled');
+    domNode.innerHTML = day.getDate();
+    if (selected) {
+      domNode.setAttribute('aria-selected', 'true');
+      domNode.tabIndex = 0;
     }
   }
 };
@@ -157,26 +187,14 @@ MenuButtonDatePicker.prototype.setFocusDay = function (flag) {
     }
   }
 
-
   this.days.forEach(checkDay.bind(this));
-
-};
-
-MenuButtonDatePicker.prototype.updateDay = function (day) {
-  var d = this.focusDay;
-  this.focusDay = day;
-  if (this.isNotSameMonth(d, day)) {
-    this.updateGrid();
-    this.setFocusDay();
-  }
 };
 
 MenuButtonDatePicker.prototype.open = function () {
   this.dialogNode.style.display = 'block';
   this.dialogNode.style.zIndex = 2;
 
-  this.textboxNode.setAttribute('aria-expanded', 'true')
-  this.buttonNode.setAttribute('aria-expanded', 'true')
+  this.buttonNode.setAttribute('aria-expanded', 'true');
   this.getDateFromTextbox();
   this.updateGrid();
 };
@@ -193,7 +211,6 @@ MenuButtonDatePicker.prototype.close = function (flag) {
 
   this.setMessage('');
   this.dialogNode.style.display = 'none';
-  this.textboxNode.setAttribute('aria-expanded', 'false')
   this.buttonNode.setAttribute('aria-expanded', 'false')
 
   if (flag) {
@@ -212,7 +229,6 @@ MenuButtonDatePicker.prototype.moveFocusToDay = function (day) {
   }
   this.setFocusDay();
 };
-
 
 MenuButtonDatePicker.prototype.moveToNextYear = function () {
   this.focusDay.setFullYear(this.focusDay.getFullYear() + 1);
@@ -280,49 +296,6 @@ MenuButtonDatePicker.prototype.getDayFromDataDateAttribute = function (domNode) 
   var parts = domNode.getAttribute('data-date').split('-');
   return new Date(parts[0], parseInt(parts[1])-1, parts[2]);
 };
-
-MenuButtonDatePicker.prototype.updateDate = function (domNode, disable, day, selected) {
-
-  var d = day.getDate().toString();
-  if (day.getDate() <= 9) {
-    d = '0' + d;
-  }
-
-  var m = day.getMonth() + 1;
-  if (day.getMonth() < 9) {
-    m = '0' + m;
-  }
-
-  domNode.setAttribute('tabindex', '-1');
-  domNode.removeAttribute('aria-selected');
-  domNode.setAttribute('data-date', day.getFullYear() + '-' + m + '-' + d);
-
-  if (disable) {
-    domNode.classList.add('disabled');
-    domNode.innerHTML = '';
-  }
-  else {
-    domNode.classList.remove('disabled');
-    domNode.innerHTML = day.getDate();
-    if (selected) {
-      domNode.setAttribute('aria-selected', 'true');
-      domNode.setAttribute('tabindex', '0');
-    }
-  }
-};
-
-MenuButtonDatePicker.prototype.updateSelected = function (domNode) {
-  for (var i = 0; i < this.days.length; i++) {
-    var day = this.days[i];
-    if (day  === domNode) {
-      day.setAttribute('aria-selected', 'true');
-    }
-    else {
-      day.removeAttribute('aria-selected');
-    }
-  }
-};
-
 // Textbox methods
 
 MenuButtonDatePicker.prototype.setTextboxDate = function (domNode) {
@@ -632,8 +605,6 @@ MenuButtonDatePicker.prototype.handlePreviousMonthButton = function (event) {
 MenuButtonDatePicker.prototype.handleDayKeyDown = function (event) {
   var flag = false;
 
-
-  console.log("key: " + event.key);
   switch (event.key) {
 
     case "Esc":
@@ -642,7 +613,6 @@ MenuButtonDatePicker.prototype.handleDayKeyDown = function (event) {
       break;
 
     case " ":
-      this.updateSelected(event.currentTarget);
       this.setTextboxDate(event.currentTarget);
       flag = true;
       break;
