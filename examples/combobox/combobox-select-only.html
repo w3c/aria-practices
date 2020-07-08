@@ -69,14 +69,17 @@
 
     <section>
       <h2>Accessibility Features</h2>
-      <p>While functionally similar to an HTML select element, there are places where this example diverges from HTML select behavior.</p>
+      <p>While the functionality and user experience of this example are nearly equivalent to  an HTML <code>select</code> element with the attribute <code>size="1"</code>, the following differences in behavior are implemented to improve both accessibility and general usability.</p>
       <ol>
         <li>
-          To allow the user to see what is in the listbox, this example opens the listbox when the user types printable characters.
+          If the combobox is collapsed and the user types printable characters, the listbox is displayed and receives accessibility focus via <code>aria-activedescendant</code>.
+          This enables users to perceive the presence of the options, and enables assistive technology users to comprehend the size of the list of options.
         </li>
         <li>
-          To give the user the ability to explore the values with the arrow keys and then cancel and keep the previous value,
-          this example selects on Space, Enter, or loss of focus, and can be cancelled with Escape.
+          Navigating the list of options does not set the value of the input.
+          This gives  screen reader users, who need to navigate among the options to perceive them, the ability to explore options without losing the current value of the input.
+          The value is set when users press <kbd>Space</kbd>, <kbd>Enter</kbd>, or <kbd>Tab</kbd>, or when focus moves out of the combobox.
+          The current value is retained if the listbox is closed with <kbd>Escape</kbd> or if the user collapses the list by clicking the input.
         </li>
       </ol>
     </section>
