@@ -151,16 +151,16 @@
       "aliasOf": "WAI-ARIA-1.1"
     }
   },
-  "publishDate": "2020-07-07",
-  "publishISODate": "2020-07-07T00:00:00.000Z",
-  "generatedSubtitle": "Editor's Draft 07 July 2020"
+  "publishDate": "2020-07-08",
+  "publishISODate": "2020-07-08T00:00:00.000Z",
+  "generatedSubtitle": "Editor's Draft 08 July 2020"
 }</script><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED"></head>
 <body class="h-entry informative"><div class="head">
     <a class="logo" href="https://www.w3.org/"><img alt="W3C" width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C"></a> <h1 id="title" class="title">WAI-ARIA Authoring Practices 1.2</h1>
     
     <h2>
       W3C Editor's Draft
-      <time class="dt-published" datetime="2020-07-07">07 July 2020</time>
+      <time class="dt-published" datetime="2020-07-08">08 July 2020</time>
     </h2>
     <dl>
       <dt>This version:</dt><dd>
@@ -290,13 +290,13 @@
   </p><p>
                   This document is governed by the
                   <a id="w3c_process_revision" href="https://www.w3.org/2019/Process-20190301/">1 March 2019 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
-                </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#intro"><bdi class="secno">1. </bdi>Introduction</a></li><li class="tocline"><a class="tocxref" href="#read_me_first"><bdi class="secno">2. </bdi>Read Me First</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#no_aria_better_bad_aria"><bdi class="secno">2.1 </bdi>No ARIA is better than Bad ARIA</a></li><li class="tocline"><a class="tocxref" href="#browser_and_AT_support"><bdi class="secno">2.2 </bdi>Browser and Assistive Technology Support</a></li><li class="tocline"><a class="tocxref" href="#mobile_and_touch_support"><bdi class="secno">2.3 </bdi>Mobile and Touch Support</a></li></ol></li><li class="tocline"><a class="tocxref" href="#aria_ex"><bdi class="secno">3. </bdi>Design Patterns and Widgets</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#accordion"><bdi class="secno">3.1 </bdi>Accordion (Sections With Show/Hide Functionality)</a></li><li class="tocline"><a class="tocxref" href="#alert"><bdi class="secno">3.2 </bdi>Alert</a></li><li class="tocline"><a class="tocxref" href="#alertdialog"><bdi class="secno">3.3 </bdi>Alert and Message Dialogs</a></li><li class="tocline"><a class="tocxref" href="#breadcrumb"><bdi class="secno">3.4 </bdi>Breadcrumb</a></li><li class="tocline"><a class="tocxref" href="#button"><bdi class="secno">3.5 </bdi>Button</a></li><li class="tocline"><a class="tocxref" href="#carousel"><bdi class="secno">3.6 </bdi>Carousel (Slide Show or Image Rotator)</a></li><li class="tocline"><a class="tocxref" href="#checkbox"><bdi class="secno">3.7 </bdi>Checkbox</a></li><li class="tocline"><a class="tocxref" href="#combobox"><bdi class="secno">3.8 </bdi>Combobox</a></li><li class="tocline"><a class="tocxref" href="#dialog_modal"><bdi class="secno">3.9 </bdi>Dialog (Modal)</a></li><li class="tocline"><a class="tocxref" href="#disclosure"><bdi class="secno">3.10 </bdi>Disclosure (Show/Hide)</a></li><li class="tocline"><a class="tocxref" href="#feed"><bdi class="secno">3.11 </bdi>Feed</a></li><li class="tocline"><a class="tocxref" href="#grid"><bdi class="secno">3.12 </bdi>Grids : Interactive Tabular Data and Layout Containers</a></li><li class="tocline"><a class="tocxref" href="#link"><bdi class="secno">3.13 </bdi>Link</a></li><li class="tocline"><a class="tocxref" href="#Listbox"><bdi class="secno">3.14 </bdi>Listbox</a></li><li class="tocline"><a class="tocxref" href="#menu"><bdi class="secno">3.15 </bdi>Menu or Menu bar</a></li><li class="tocline"><a class="tocxref" href="#menubutton"><bdi class="secno">3.16 </bdi>Menu Button</a></li><li class="tocline"><a class="tocxref" href="#meter"><bdi class="secno">3.17 </bdi>Meter</a></li><li class="tocline"><a class="tocxref" href="#radiobutton"><bdi class="secno">3.18 </bdi>Radio Group</a></li><li class="tocline"><a class="tocxref" href="#slider"><bdi class="secno">3.19 </bdi>Slider</a></li><li class="tocline"><a class="tocxref" href="#slidertwothumb"><bdi class="secno">3.20 </bdi>Slider (Multi-Thumb)</a></li><li class="tocline"><a class="tocxref" href="#spinbutton"><bdi class="secno">3.21 </bdi>Spinbutton</a></li><li class="tocline"><a class="tocxref" href="#table"><bdi class="secno">3.22 </bdi>Table</a></li><li class="tocline"><a class="tocxref" href="#tabpanel"><bdi class="secno">3.23 </bdi>Tabs</a></li><li class="tocline"><a class="tocxref" href="#toolbar"><bdi class="secno">3.24 </bdi>Toolbar</a></li><li class="tocline"><a class="tocxref" href="#tooltip"><bdi class="secno">3.25 </bdi>Tooltip Widget</a></li><li class="tocline"><a class="tocxref" href="#TreeView"><bdi class="secno">3.26 </bdi>Tree View</a></li><li class="tocline"><a class="tocxref" href="#treegrid"><bdi class="secno">3.27 </bdi>Treegrid</a></li><li class="tocline"><a class="tocxref" href="#windowsplitter"><bdi class="secno">3.28 </bdi>Window Splitter</a></li></ol></li><li class="tocline"><a class="tocxref" href="#aria_landmark"><bdi class="secno">4. </bdi>Landmark Regions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#html-sectioning-elements"><bdi class="secno">4.1 </bdi>HTML Sectioning Elements</a></li><li class="tocline"><a class="tocxref" href="#general-principles-of-landmark-design"><bdi class="secno">4.2 </bdi>General Principles of Landmark Design</a></li><li class="tocline"><a class="tocxref" href="#landmark-roles"><bdi class="secno">4.3 </bdi>Landmark Roles</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#aria_lh_banner"><bdi class="secno">4.3.1 </bdi>Banner</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_complementary"><bdi class="secno">4.3.2 </bdi>Complementary</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_contentinfo"><bdi class="secno">4.3.3 </bdi>Contentinfo</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_form"><bdi class="secno">4.3.4 </bdi>Form</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_main"><bdi class="secno">4.3.5 </bdi>Main</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_navigation"><bdi class="secno">4.3.6 </bdi>Navigation</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_region"><bdi class="secno">4.3.7 </bdi>Region</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_search"><bdi class="secno">4.3.8 </bdi>Search</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#names_and_descriptions"><bdi class="secno">5. </bdi>Providing Accessible Names and Descriptions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#names_and_descriptions_definition"><bdi class="secno">5.1 </bdi>What ARE Accessible Names and Descriptions?</a></li><li class="tocline"><a class="tocxref" href="#names_and_descriptions_derivation"><bdi class="secno">5.2 </bdi>How Are Name and Description Strings Derived?</a></li><li class="tocline"><a class="tocxref" href="#accessible_names"><bdi class="secno">5.3 </bdi>Accessible Names</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#naming_cardinal_rules"><bdi class="secno">5.3.1 </bdi>Cardinal Rules of Naming</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#naming_rule_heed_warnings"><bdi class="secno">5.3.1.1 </bdi>Rule 1: Heed Warnings and Test Thoroughly</a></li><li class="tocline"><a class="tocxref" href="#naming_rule_visible_text"><bdi class="secno">5.3.1.2 </bdi>Rule 2: Prefer Visible Text</a></li><li class="tocline"><a class="tocxref" href="#naming_rule_native_techniques"><bdi class="secno">5.3.1.3 </bdi>Rule 3: Prefer Native Techniques</a></li><li class="tocline"><a class="tocxref" href="#naming_rule_avoid_fallback"><bdi class="secno">5.3.1.4 </bdi>Rule 4: Avoid Browser Fallback</a></li><li class="tocline"><a class="tocxref" href="#naming_rule_brief_names"><bdi class="secno">5.3.1.5 </bdi>Rule 5: Compose Brief, Useful Names</a></li></ol></li><li class="tocline"><a class="tocxref" href="#naming_techniques"><bdi class="secno">5.3.2 </bdi>Naming Techniques</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#naming_with_child_content"><bdi class="secno">5.3.2.1 </bdi>Naming with Child Content</a></li><li class="tocline"><a class="tocxref" href="#naming_with_aria-label"><bdi class="secno">5.3.2.2 </bdi>Naming with a String Attribute Via <code>aria-label</code></a></li><li class="tocline"><a class="tocxref" href="#naming_with_aria-labelledby"><bdi class="secno">5.3.2.3 </bdi>Naming with Referenced Content Via <code>aria-labelledby</code></a></li><li class="tocline"><a class="tocxref" href="#naming_with_labels"><bdi class="secno">5.3.2.4 </bdi>Naming Form Controls with the Label Element</a></li><li class="tocline"><a class="tocxref" href="#naming_with_legends"><bdi class="secno">5.3.2.5 </bdi>Naming Fieldsets with the Legend Element</a></li><li class="tocline"><a class="tocxref" href="#naming_with_captions"><bdi class="secno">5.3.2.6 </bdi>Naming Tables and Figures with Captions</a></li><li class="tocline"><a class="tocxref" href="#naming_with_fallback"><bdi class="secno">5.3.2.7 </bdi>Fallback Names Derived from Titles and Placeholders</a></li></ol></li><li class="tocline"><a class="tocxref" href="#naming_effectively"><bdi class="secno">5.3.3 </bdi>Composing Effective and User-friendly Accessible Names</a></li><li class="tocline"><a class="tocxref" href="#naming_role_guidance"><bdi class="secno">5.3.4 </bdi><span id="naming_role_guidance_heading">Accessible Name Guidance by Role</span></a></li><li class="tocline"><a class="tocxref" href="#name_calculation"><bdi class="secno">5.3.5 </bdi>Accessible name calculation</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#name_calculation_non-recursive_ex"><bdi class="secno">5.3.5.1 </bdi>Examples of non-recursive accessible name calculation</a></li><li class="tocline"><a class="tocxref" href="#name_calculation_recursive_ex"><bdi class="secno">5.3.5.2 </bdi>Examples of recursive accessible name calculation</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#accessible_descriptions"><bdi class="secno">5.4 </bdi>Accessible Descriptions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#describing_techniques"><bdi class="secno">5.4.1 </bdi>Describing Techniques</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#describing_with_aria-describedby"><bdi class="secno">5.4.1.1 </bdi>Describing by referencing content with <code>aria-describedby</code></a></li><li class="tocline"><a class="tocxref" href="#describing_with_captions"><bdi class="secno">5.4.1.2 </bdi>Describing Tables and Figures with Captions</a></li><li class="tocline"><a class="tocxref" href="#describing_with_title"><bdi class="secno">5.4.1.3 </bdi>Descriptions Derived from Titles</a></li></ol></li><li class="tocline"><a class="tocxref" href="#description_calculation"><bdi class="secno">5.4.2 </bdi>Accessible description calculation</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#keyboard"><bdi class="secno">6. </bdi>Developing a Keyboard Interface</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_generalnav"><bdi class="secno">6.1 </bdi>Fundamental Keyboard Navigation Conventions</a></li><li class="tocline"><a class="tocxref" href="#kbd_focus_discernable_predictable"><bdi class="secno">6.2 </bdi>Discernible and Predictable Keyboard Focus</a></li><li class="tocline"><a class="tocxref" href="#kbd_focus_vs_selection"><bdi class="secno">6.3 </bdi>Focus VS Selection and the Perception of Dual Focus</a></li><li class="tocline"><a class="tocxref" href="#kbd_selection_follows_focus"><bdi class="secno">6.4 </bdi>Deciding When to Make Selection Automatically Follow Focus</a></li><li class="tocline"><a class="tocxref" href="#kbd_general_between"><bdi class="secno">6.5 </bdi>Keyboard Navigation Between Components (The Tab Sequence)</a></li><li class="tocline"><a class="tocxref" href="#kbd_general_within"><bdi class="secno">6.6 </bdi> Keyboard Navigation Inside Components</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_roving_tabindex"><bdi class="secno">6.6.1 </bdi>Managing Focus Within Components Using a Roving tabindex</a></li><li class="tocline"><a class="tocxref" href="#kbd_focus_activedescendant"><bdi class="secno">6.6.2 </bdi>Managing Focus in Composites Using aria-activedescendant</a></li></ol></li><li class="tocline"><a class="tocxref" href="#kbd_disabled_controls"><bdi class="secno">6.7 </bdi>Focusability of disabled controls</a></li><li class="tocline"><a class="tocxref" href="#kbd_common_conventions"><bdi class="secno">6.8 </bdi>Key Assignment Conventions for Common Functions</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts"><bdi class="secno">6.9 </bdi>Keyboard Shortcuts</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_behavior_design"><bdi class="secno">6.9.1 </bdi>Designing the Scope and Behavior of Keyboard Shortcuts</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_design_basic"><bdi class="secno">6.9.1.1 </bdi>Ensure Basic Access Via Navigation </a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_design_choose_behavior"><bdi class="secno">6.9.1.2 </bdi>Choose Appropriate Shortcut Behavior</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_design_where"><bdi class="secno">6.9.1.3 </bdi>Choose Where to Add Shortcuts </a></li></ol></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assigning"><bdi class="secno">6.9.2 </bdi>Assigning Keyboard Shortcuts</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_opsys_conflicts"><bdi class="secno">6.9.2.1 </bdi>Operating System Key Conflicts</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_assistivetech_conflicts"><bdi class="secno">6.9.2.2 </bdi>Assistive Technology Key Conflicts</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_browser_conflicts"><bdi class="secno">6.9.2.3 </bdi>Browser Key Conflicts</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_intentional_conflicts"><bdi class="secno">6.9.2.4 </bdi>Intentional Key Conflicts</a></li></ol></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties"><bdi class="secno">7. </bdi>Grid and Table Properties</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_rows"><bdi class="secno">7.1 </bdi>Using <code>aria-rowcount</code> and <code>aria-rowindex</code></a></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_cols"><bdi class="secno">7.2 </bdi>Using <code>aria-colcount</code> and <code>aria-colindex</code></a><ol class="toc"><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_cols_contiguous"><bdi class="secno">7.2.1 </bdi>Using <code>aria-colindex</code> When Column Indices Are Contiguous</a></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_cols_noncontiguous"><bdi class="secno">7.2.2 </bdi>Using <code>aria-colindex</code> When Column Indices Are Not Contiguous</a></li></ol></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_spans"><bdi class="secno">7.3 </bdi>Defining cell spans using <code>aria-colspan</code> and <code>aria-rowspan</code></a></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_sort"><bdi class="secno">7.4 </bdi>Indicating sort order with <code>aria-sort</code></a></li></ol></li><li class="tocline"><a class="tocxref" href="#presentation_role"><bdi class="secno">8. </bdi>Intentionally Hiding Semantics with the <code>presentation</code> Role</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#presentation_role_effects"><bdi class="secno">8.1 </bdi>
+                </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#intro"><bdi class="secno">1. </bdi>Introduction</a></li><li class="tocline"><a class="tocxref" href="#read_me_first"><bdi class="secno">2. </bdi>Read Me First</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#no_aria_better_bad_aria"><bdi class="secno">2.1 </bdi>No ARIA is better than Bad ARIA</a></li><li class="tocline"><a class="tocxref" href="#browser_and_AT_support"><bdi class="secno">2.2 </bdi>Browser and Assistive Technology Support</a></li><li class="tocline"><a class="tocxref" href="#mobile_and_touch_support"><bdi class="secno">2.3 </bdi>Mobile and Touch Support</a></li></ol></li><li class="tocline"><a class="tocxref" href="#aria_ex"><bdi class="secno">3. </bdi>Design Patterns and Widgets</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#accordion"><bdi class="secno">3.1 </bdi>Accordion (Sections With Show/Hide Functionality)</a></li><li class="tocline"><a class="tocxref" href="#alert"><bdi class="secno">3.2 </bdi>Alert</a></li><li class="tocline"><a class="tocxref" href="#alertdialog"><bdi class="secno">3.3 </bdi>Alert and Message Dialogs</a></li><li class="tocline"><a class="tocxref" href="#breadcrumb"><bdi class="secno">3.4 </bdi>Breadcrumb</a></li><li class="tocline"><a class="tocxref" href="#button"><bdi class="secno">3.5 </bdi>Button</a></li><li class="tocline"><a class="tocxref" href="#carousel"><bdi class="secno">3.6 </bdi>Carousel (Slide Show or Image Rotator)</a></li><li class="tocline"><a class="tocxref" href="#checkbox"><bdi class="secno">3.7 </bdi>Checkbox</a></li><li class="tocline"><a class="tocxref" href="#combobox"><bdi class="secno">3.8 </bdi>Combobox</a></li><li class="tocline"><a class="tocxref" href="#dialog_modal"><bdi class="secno">3.9 </bdi>Dialog (Modal)</a></li><li class="tocline"><a class="tocxref" href="#disclosure"><bdi class="secno">3.10 </bdi>Disclosure (Show/Hide)</a></li><li class="tocline"><a class="tocxref" href="#feed"><bdi class="secno">3.11 </bdi>Feed</a></li><li class="tocline"><a class="tocxref" href="#grid"><bdi class="secno">3.12 </bdi>Grids : Interactive Tabular Data and Layout Containers</a></li><li class="tocline"><a class="tocxref" href="#link"><bdi class="secno">3.13 </bdi>Link</a></li><li class="tocline"><a class="tocxref" href="#Listbox"><bdi class="secno">3.14 </bdi>Listbox</a></li><li class="tocline"><a class="tocxref" href="#menu"><bdi class="secno">3.15 </bdi>Menu or Menu bar</a></li><li class="tocline"><a class="tocxref" href="#menubutton"><bdi class="secno">3.16 </bdi>Menu Button</a></li><li class="tocline"><a class="tocxref" href="#meter"><bdi class="secno">3.17 </bdi>Meter</a></li><li class="tocline"><a class="tocxref" href="#radiobutton"><bdi class="secno">3.18 </bdi>Radio Group</a></li><li class="tocline"><a class="tocxref" href="#slider"><bdi class="secno">3.19 </bdi>Slider</a></li><li class="tocline"><a class="tocxref" href="#slidertwothumb"><bdi class="secno">3.20 </bdi>Slider (Multi-Thumb)</a></li><li class="tocline"><a class="tocxref" href="#spinbutton"><bdi class="secno">3.21 </bdi>Spinbutton</a></li><li class="tocline"><a class="tocxref" href="#table"><bdi class="secno">3.22 </bdi>Table</a></li><li class="tocline"><a class="tocxref" href="#tabpanel"><bdi class="secno">3.23 </bdi>Tabs</a></li><li class="tocline"><a class="tocxref" href="#toolbar"><bdi class="secno">3.24 </bdi>Toolbar</a></li><li class="tocline"><a class="tocxref" href="#tooltip"><bdi class="secno">3.25 </bdi>Tooltip Widget</a></li><li class="tocline"><a class="tocxref" href="#TreeView"><bdi class="secno">3.26 </bdi>Tree View</a></li><li class="tocline"><a class="tocxref" href="#treegrid"><bdi class="secno">3.27 </bdi>Treegrid</a></li><li class="tocline"><a class="tocxref" href="#windowsplitter"><bdi class="secno">3.28 </bdi>Window Splitter</a></li></ol></li><li class="tocline"><a class="tocxref" href="#aria_landmark"><bdi class="secno">4. </bdi>Landmark Regions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#html-sectioning-elements"><bdi class="secno">4.1 </bdi>HTML Sectioning Elements</a></li><li class="tocline"><a class="tocxref" href="#general-principles-of-landmark-design"><bdi class="secno">4.2 </bdi>General Principles of Landmark Design</a></li><li class="tocline"><a class="tocxref" href="#landmark-roles"><bdi class="secno">4.3 </bdi>Landmark Roles</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#aria_lh_banner"><bdi class="secno">4.3.1 </bdi>Banner</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_complementary"><bdi class="secno">4.3.2 </bdi>Complementary</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_contentinfo"><bdi class="secno">4.3.3 </bdi>Contentinfo</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_form"><bdi class="secno">4.3.4 </bdi>Form</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_main"><bdi class="secno">4.3.5 </bdi>Main</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_navigation"><bdi class="secno">4.3.6 </bdi>Navigation</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_region"><bdi class="secno">4.3.7 </bdi>Region</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_search"><bdi class="secno">4.3.8 </bdi>Search</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#names_and_descriptions"><bdi class="secno">5. </bdi>Providing Accessible Names and Descriptions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#names_and_descriptions_definition"><bdi class="secno">5.1 </bdi>What ARE Accessible Names and Descriptions?</a></li><li class="tocline"><a class="tocxref" href="#names_and_descriptions_derivation"><bdi class="secno">5.2 </bdi>How Are Name and Description Strings Derived?</a></li><li class="tocline"><a class="tocxref" href="#accessible_names"><bdi class="secno">5.3 </bdi>Accessible Names</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#naming_cardinal_rules"><bdi class="secno">5.3.1 </bdi>Cardinal Rules of Naming</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#naming_rule_heed_warnings"><bdi class="secno">5.3.1.1 </bdi>Rule 1: Heed Warnings and Test Thoroughly</a></li><li class="tocline"><a class="tocxref" href="#naming_rule_visible_text"><bdi class="secno">5.3.1.2 </bdi>Rule 2: Prefer Visible Text</a></li><li class="tocline"><a class="tocxref" href="#naming_rule_native_techniques"><bdi class="secno">5.3.1.3 </bdi>Rule 3: Prefer Native Techniques</a></li><li class="tocline"><a class="tocxref" href="#naming_rule_avoid_fallback"><bdi class="secno">5.3.1.4 </bdi>Rule 4: Avoid Browser Fallback</a></li><li class="tocline"><a class="tocxref" href="#naming_rule_brief_names"><bdi class="secno">5.3.1.5 </bdi>Rule 5: Compose Brief, Useful Names</a></li></ol></li><li class="tocline"><a class="tocxref" href="#naming_techniques"><bdi class="secno">5.3.2 </bdi>Naming Techniques</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#naming_with_child_content"><bdi class="secno">5.3.2.1 </bdi>Naming with Child Content</a></li><li class="tocline"><a class="tocxref" href="#naming_with_aria-label"><bdi class="secno">5.3.2.2 </bdi>Naming with a String Attribute Via <code>aria-label</code></a></li><li class="tocline"><a class="tocxref" href="#naming_with_aria-labelledby"><bdi class="secno">5.3.2.3 </bdi>Naming with Referenced Content Via <code>aria-labelledby</code></a></li><li class="tocline"><a class="tocxref" href="#naming_with_labels"><bdi class="secno">5.3.2.4 </bdi>Naming Form Controls with the Label Element</a></li><li class="tocline"><a class="tocxref" href="#naming_with_legends"><bdi class="secno">5.3.2.5 </bdi>Naming Fieldsets with the Legend Element</a></li><li class="tocline"><a class="tocxref" href="#naming_with_captions"><bdi class="secno">5.3.2.6 </bdi>Naming Tables and Figures with Captions</a></li><li class="tocline"><a class="tocxref" href="#naming_with_fallback"><bdi class="secno">5.3.2.7 </bdi>Fallback Names Derived from Titles and Placeholders</a></li></ol></li><li class="tocline"><a class="tocxref" href="#naming_effectively"><bdi class="secno">5.3.3 </bdi>Composing Effective and User-friendly Accessible Names</a></li><li class="tocline"><a class="tocxref" href="#naming_role_guidance"><bdi class="secno">5.3.4 </bdi><span id="naming_role_guidance_heading">Accessible Name Guidance by Role</span></a></li><li class="tocline"><a class="tocxref" href="#name_calculation"><bdi class="secno">5.3.5 </bdi>Accessible name calculation</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#name_calculation_non-recursive_ex"><bdi class="secno">5.3.5.1 </bdi>Examples of non-recursive accessible name calculation</a></li><li class="tocline"><a class="tocxref" href="#name_calculation_recursive_ex"><bdi class="secno">5.3.5.2 </bdi>Examples of recursive accessible name calculation</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#accessible_descriptions"><bdi class="secno">5.4 </bdi>Accessible Descriptions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#describing_techniques"><bdi class="secno">5.4.1 </bdi>Describing Techniques</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#describing_with_aria-describedby"><bdi class="secno">5.4.1.1 </bdi>Describing by referencing content with <code>aria-describedby</code></a></li><li class="tocline"><a class="tocxref" href="#describing_with_captions"><bdi class="secno">5.4.1.2 </bdi>Describing Tables and Figures with Captions</a></li><li class="tocline"><a class="tocxref" href="#describing_with_title"><bdi class="secno">5.4.1.3 </bdi>Descriptions Derived from Titles</a></li></ol></li><li class="tocline"><a class="tocxref" href="#description_calculation"><bdi class="secno">5.4.2 </bdi>Accessible description calculation</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#keyboard"><bdi class="secno">6. </bdi>Developing a Keyboard Interface</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_generalnav"><bdi class="secno">6.1 </bdi>Fundamental Keyboard Navigation Conventions</a></li><li class="tocline"><a class="tocxref" href="#kbd_focus_discernable_predictable"><bdi class="secno">6.2 </bdi>Discernible and Predictable Keyboard Focus</a></li><li class="tocline"><a class="tocxref" href="#kbd_focus_vs_selection"><bdi class="secno">6.3 </bdi>Focus VS Selection and the Perception of Dual Focus</a></li><li class="tocline"><a class="tocxref" href="#kbd_selection_follows_focus"><bdi class="secno">6.4 </bdi>Deciding When to Make Selection Automatically Follow Focus</a></li><li class="tocline"><a class="tocxref" href="#kbd_general_between"><bdi class="secno">6.5 </bdi>Keyboard Navigation Between Components (The Tab Sequence)</a></li><li class="tocline"><a class="tocxref" href="#kbd_general_within"><bdi class="secno">6.6 </bdi> Keyboard Navigation Inside Components</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_roving_tabindex"><bdi class="secno">6.6.1 </bdi>Managing Focus Within Components Using a Roving tabindex</a></li><li class="tocline"><a class="tocxref" href="#kbd_focus_activedescendant"><bdi class="secno">6.6.2 </bdi>Managing Focus in Composites Using aria-activedescendant</a></li></ol></li><li class="tocline"><a class="tocxref" href="#kbd_disabled_controls"><bdi class="secno">6.7 </bdi>Focusability of disabled controls</a></li><li class="tocline"><a class="tocxref" href="#kbd_common_conventions"><bdi class="secno">6.8 </bdi>Key Assignment Conventions for Common Functions</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts"><bdi class="secno">6.9 </bdi>Keyboard Shortcuts</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_behavior_design"><bdi class="secno">6.9.1 </bdi>Designing the Scope and Behavior of Keyboard Shortcuts</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_design_basic"><bdi class="secno">6.9.1.1 </bdi>Ensure Basic Access Via Navigation </a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_design_choose_behavior"><bdi class="secno">6.9.1.2 </bdi>Choose Appropriate Shortcut Behavior</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_design_where"><bdi class="secno">6.9.1.3 </bdi>Choose Where to Add Shortcuts </a></li></ol></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assigning"><bdi class="secno">6.9.2 </bdi>Assigning Keyboard Shortcuts</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_opsys_conflicts"><bdi class="secno">6.9.2.1 </bdi>Operating System Key Conflicts</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_assistivetech_conflicts"><bdi class="secno">6.9.2.2 </bdi>Assistive Technology Key Conflicts</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_browser_conflicts"><bdi class="secno">6.9.2.3 </bdi>Browser Key Conflicts</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_intentional_conflicts"><bdi class="secno">6.9.2.4 </bdi>Intentional Key Conflicts</a></li></ol></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties"><bdi class="secno">7. </bdi>Grid and Table Properties</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_rows"><bdi class="secno">7.1 </bdi>Using <code>aria-rowcount</code> and <code>aria-rowindex</code></a></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_cols"><bdi class="secno">7.2 </bdi>Using <code>aria-colcount</code> and <code>aria-colindex</code></a><ol class="toc"><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_cols_contiguous"><bdi class="secno">7.2.1 </bdi>Using <code>aria-colindex</code> When Column Indices Are Contiguous</a></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_cols_noncontiguous"><bdi class="secno">7.2.2 </bdi>Using <code>aria-colindex</code> When Column Indices Are Not Contiguous</a></li></ol></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_spans"><bdi class="secno">7.3 </bdi>Defining cell spans using <code>aria-colspan</code> and <code>aria-rowspan</code></a></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_sort"><bdi class="secno">7.4 </bdi>Indicating sort order with <code>aria-sort</code></a></li></ol></li><li class="tocline"><a class="tocxref" href="#range_related_properties"><bdi class="secno">8. </bdi>Communicating Value and Limits for Range Widgets</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#range_related_properties_using_aria-valuemin_aria-valuemax_and_aria-valuenow"><bdi class="secno">8.1 </bdi>Using <code>aria-valuemin</code>, <code>aria-valuemax</code> and <code>aria-valuenow</code></a></li><li class="tocline"><a class="tocxref" href="#range_related_properties_using_aria-valuetext"><bdi class="secno">8.2 </bdi>Using <code>aria-valuetext</code></a></li><li class="tocline"><a class="tocxref" href="#range_related_properties_meter_role"><bdi class="secno">8.3 </bdi>Range properties with meter</a></li><li class="tocline"><a class="tocxref" href="#range_related_properties_progressbar_role"><bdi class="secno">8.4 </bdi>Range properties with progress bars</a></li><li class="tocline"><a class="tocxref" href="#range_related_properties_scrollbar_role"><bdi class="secno">8.5 </bdi>Range properties with scrollbars</a></li><li class="tocline"><a class="tocxref" href="#range_related_properties_slider_role"><bdi class="secno">8.6 </bdi>Range properties with sliders</a></li><li class="tocline"><a class="tocxref" href="#range_related_properties_spinbutton_role"><bdi class="secno">8.7 </bdi>Range properties with spin buttons</a></li></ol></li><li class="tocline"><a class="tocxref" href="#presentation_role"><bdi class="secno">9. </bdi>Intentionally Hiding Semantics with the <code>presentation</code> Role</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#presentation_role_effects"><bdi class="secno">9.1 </bdi>
         Effects of Role <code>presentation</code>
-      </a></li><li class="tocline"><a class="tocxref" href="#presentation_role_ignored"><bdi class="secno">8.2 </bdi>
+      </a></li><li class="tocline"><a class="tocxref" href="#presentation_role_ignored"><bdi class="secno">9.2 </bdi>
         Conditions That Cause Role <code>presentation</code> to be Ignored
-      </a></li><li class="tocline"><a class="tocxref" href="#presentation_role_examples"><bdi class="secno">8.3 </bdi>
+      </a></li><li class="tocline"><a class="tocxref" href="#presentation_role_examples"><bdi class="secno">9.3 </bdi>
         Example Demonstrating Effects of the <code>presentation</code> Role
-      </a></li></ol></li><li class="tocline"><a class="tocxref" href="#children_presentational"><bdi class="secno">9. </bdi>Roles That Automatically Hide Semantics by Making Their Descendants Presentational</a></li><li class="tocline"><a class="tocxref" href="#structural_roles"><bdi class="secno">10. </bdi>Structural Roles</a></li><li class="tocline"><a class="tocxref" href="#indexes"><bdi class="secno">A. </bdi>Indexes</a></li><li class="tocline"><a class="tocxref" href="#change_log"><bdi class="secno">B. </bdi>Change History</a></li><li class="tocline"><a class="tocxref" href="#acknowledgements"><bdi class="secno">C. </bdi>Acknowledgements</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#major-contributors-to-version-1-1"><bdi class="secno">C.1 </bdi>Major Contributors to Version 1.1</a></li><li class="tocline"><a class="tocxref" href="#participants-active-in-the-aria-authoring-practices-task-force"><bdi class="secno">C.2 </bdi>Participants active in the ARIA Authoring Practices Task Force</a></li><li class="tocline"><a class="tocxref" href="#other-commenters-and-contributors-to-version-1-1"><bdi class="secno">C.3 </bdi>Other commenters and contributors to Version 1.1</a></li><li class="tocline"><a class="tocxref" href="#ack_funders"><bdi class="secno">C.4 </bdi>Enabling funders</a></li></ol></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">D. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#informative-references"><bdi class="secno">D.1 </bdi>
+      </a></li></ol></li><li class="tocline"><a class="tocxref" href="#children_presentational"><bdi class="secno">10. </bdi>Roles That Automatically Hide Semantics by Making Their Descendants Presentational</a></li><li class="tocline"><a class="tocxref" href="#structural_roles"><bdi class="secno">11. </bdi>Structural Roles</a></li><li class="tocline"><a class="tocxref" href="#indexes"><bdi class="secno">A. </bdi>Indexes</a></li><li class="tocline"><a class="tocxref" href="#change_log"><bdi class="secno">B. </bdi>Change History</a></li><li class="tocline"><a class="tocxref" href="#acknowledgements"><bdi class="secno">C. </bdi>Acknowledgements</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#major-contributors-to-version-1-1"><bdi class="secno">C.1 </bdi>Major Contributors to Version 1.1</a></li><li class="tocline"><a class="tocxref" href="#participants-active-in-the-aria-authoring-practices-task-force"><bdi class="secno">C.2 </bdi>Participants active in the ARIA Authoring Practices Task Force</a></li><li class="tocline"><a class="tocxref" href="#other-commenters-and-contributors-to-version-1-1"><bdi class="secno">C.3 </bdi>Other commenters and contributors to Version 1.1</a></li><li class="tocline"><a class="tocxref" href="#ack_funders"><bdi class="secno">C.4 </bdi>Enabling funders</a></li></ol></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">D. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#informative-references"><bdi class="secno">D.1 </bdi>
         Informative references
       </a></li></ol></li></ol></nav>
 
@@ -6663,8 +6663,318 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
   </section>
 
+  <section id="range_related_properties">
+    <h2 id="x8-communicating-value-and-limits-for-range-widgets"><bdi class="secno">8. </bdi>Communicating Value and Limits for Range Widgets<a class="self-link" aria-label="§" href="#range_related_properties"></a></h2>
+    <p>
+      ARIA defines the following roles as range widgets, which means they communicate a value that is typically numeric and constrained to defined limits.
+    </p>
+    <ul>
+      <li><code>meter</code></li>
+      <li><code>progressbar</code></li>
+      <li><code>scrollbar</code></li>
+      <li><code>separator</code> (if focusable)</li>
+      <li><code>slider</code></li>
+      <li><code>spinbutton</code></li>
+    </ul>
+    <p>
+      For example, a spin button for choosing a day within the month of January would allow integer values that range from 1 to 31.
+      In some cases, the value is represented numerically, but is not presented as a number to users.
+      For instance, a spin button for choosing a day of the week could support values from 1 to 7 but they could be presented to the user as day names, e.g., "Monday", "Tuesday", etc.
+    </p>
+    <p>
+      This section describes considerations for using the following four properties that communicate characteristics of a range widget:
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Definition</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th><code>aria-valuemin</code></th>
+          <td>Defines the minimum value allowed by a range widget.</td>
+        </tr>
+        <tr>
+          <th><code>aria-valuemax</code></th>
+          <td>Defines the maximum value allowed by a range widget.</td>
+        </tr>
+        <tr>
+          <th><code>aria-valuenow</code></th>
+          <td>Defines the current value of a range widget. This value is a number greater than or equal to <code>aria-valuemin</code> and less than or equal to <code>aria-valuemax</code> (if they are specified).</td>
+        </tr>
+        <tr>
+          <th><code>aria-valuetext</code></th>
+          <td>If a numeric value is not sufficiently descriptive, this property can define a text description of the current value of a range widget.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <section id="range_related_properties_using_aria-valuemin_aria-valuemax_and_aria-valuenow">
+      <h3 id="x8-1-using-aria-valuemin-aria-valuemax-and-aria-valuenow"><bdi class="secno">8.1 </bdi>Using <code>aria-valuemin</code>, <code>aria-valuemax</code> and <code>aria-valuenow</code><a class="self-link" aria-label="§" href="#range_related_properties_using_aria-valuemin_aria-valuemax_and_aria-valuenow"></a></h3>
+      <p>
+        When the value of a range widget is constrained to known limits, the <code>aria-valuemin</code> and <code>aria-valuemax</code> properties are used to inform assistive technologies of the minimum and maximum values of the range.
+        For some widgets, assistive technologies use this information to present the current value as a percentage.
+        When using these properties, set <code>aria-valuemin</code> to the lowest value allowed for the widget and <code>aria-valuemax</code> to the highest allowed value.
+        If values for <code>aria-valuemin</code> and <code>aria-valuemax</code> are not set, default values are exposed to assistive technologies unless the widget is a <code>spinbutton</code>, which is the only range widget that does not have default limits.
+      </p>
+      <p>
+        The <code>aria-valuenow</code> property is used to inform assistive technologies of the current value of a range widget.
+        Set <code>aria-valuenow</code> to the current value of the widget, ensuring the value of <code>aria-valuenow</code> falls within the range defined by <code>aria-valuemin</code> and <code>aria-valuemax</code>.
+        If the current value of a <code>progressbar</code> or <code>spinbutton</code> is indeterminate or unknown, omit the <code>aria-valuenow</code> property.
+        The <code>aria-valuenow</code> property is required for the <code>meter</code>, <code>scrollbar</code>, <code>separator</code> (if the element is focusable), and <code>slider</code> roles.
+      </p>
+      <p>
+        The range widget roles have the following default values and requirements for <code>aria-valuemin</code>, <code>aria-valuemax</code> and <code>aria-valuenow</code>.
+      </p>
+      <table>
+        <thead>
+
+          <tr>
+            <th scope="col">Role</th>
+            <th scope="col"><code>aria-valuemin</code><br>(default)</th>
+            <th scope="col"><code>aria-valuemax</code><br>(default)</th>
+            <th scope="col"><code>aria-valuemin</code><br>(required)</th>
+            <th scope="col"><code>aria-valuemax</code><br>(required)</th>
+            <th scope="col"><code>aria-valuenow</code><br>(required)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><code>meter</code></th>
+            <td>0</td>
+            <td>100</td>
+            <td>No</td>
+            <td>No</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <th scope="row"><code>progressbar</code></th>
+            <td>0</td>
+            <td>100</td>
+            <td>No</td>
+            <td>No</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <th scope="row"><code>scrollbar</code></th>
+            <td>0</td>
+            <td>100</td>
+            <td>No</td>
+            <td>No</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <th scope="row"><code>separator</code> <small>(if focusable)</small></th>
+            <td>0</td>
+            <td>100</td>
+            <td>No</td>
+            <td>No</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <th scope="row"><code>slider</code></th>
+            <td>0</td>
+            <td>100</td>
+            <td>No</td>
+            <td>No</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <th scope="row"><code>spinbutton</code></th>
+            <td>None</td>
+            <td>None</td>
+            <td>No</td>
+            <td>No</td>
+            <td>No</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="range_related_properties_using_aria-valuetext">
+      <h3 id="x8-2-using-aria-valuetext"><bdi class="secno">8.2 </bdi>Using <code>aria-valuetext</code><a class="self-link" aria-label="§" href="#range_related_properties_using_aria-valuetext"></a></h3>
+
+      <p>
+        When the element's values are contained within a range but those values are not numeric (such as "small", "medium" and "large"),
+        or they are numeric but there is value in communicating more information than just a number,
+        <code>aria-valuetext</code> is used to surface the text value to assistive technologies.
+        Only use <code>aria-valuetext</code> when <code>aria-valuenow</code> is not sufficiently meaningful for users because using <code>aria-valuetext</code> will prevent assistive technologies from communicating <code>aria-valuenow</code>.
+      </p>
+
+      <div class="example">
+        <p>
+          For example, for a battery indicator, it would be useful to know how many minutes are remaining, in addition to the percentage of charge remaining.
+        </p>
+
+        <pre><code aria-busy="false" class="hljs xml">
+  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"battery-label"</span>&gt;</span>Battery<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"meter"</span> <span class="hljs-attr">aria-labelledby</span>=<span class="hljs-string">"battery-label"</span>
+    <span class="hljs-attr">aria-valuenow</span>=<span class="hljs-string">"5"</span>
+    <span class="hljs-attr">aria-valuetext</span>=<span class="hljs-string">"5%, 18 minutes remaining."</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+        </code></pre>
+      </div>
+    </section>
+
+    <section id="range_related_properties_meter_role">
+      <h3 id="x8-3-range-properties-with-meter"><bdi class="secno">8.3 </bdi>Range properties with meter<a class="self-link" aria-label="§" href="#range_related_properties_meter_role"></a></h3>
+      <p>
+        The <code>aria-valuemin</code> and <code>aria-valuemax</code> properties only need to be set for elements with role <code>meter</code> if the meter's minimum value is not 0 or its maximum value is not 100.
+        It is necessary, however, to always specify a value for <code>aria-valuenow</code> and to ensure the value is greater than or equal to the minimum allowed value and less than or equal to the maximum allowed value.
+        A detailed description of the <code>meter</code> role is in the <a href="#meter">meter design pattern</a>.</p>
+
+      <p>This example of a meter shows the current Central Processing Unit (CPU) usage. </p>
+
+      <pre><code aria-busy="false" class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"cpu_usage_label"</span>&gt;</span>CPU usage<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- The CPU usage uses the default values of 0 and 100 for aria-valuemin and aria-valuemax --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"meter"</span>
+      <span class="hljs-attr">aria-valuenow</span>=<span class="hljs-string">"90"</span>
+      <span class="hljs-attr">aria-labelledby</span>=<span class="hljs-string">"cpu_usage_label"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+
+      <p>
+        The <code>aria-valuetext</code> property can be set to a string that makes the meter value understandable. For example, a CPU usage meter value might be conveyed as <code>aria-valuetext="90% of CPU is being used"</code>.
+      </p>
+      <p>Here is another example of a meter that has a range different from the default of 0 for <code>aria-valuemin</code> and 100 for <code>aria-valuemax</code>.</p>
+
+      <pre><code aria-busy="false" class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"ph_alkaline_meter_label"</span>&gt;</span>Alkaline pH(Power of Hydrogen) Level<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"meter"</span>
+        <span class="hljs-attr">aria-valuenow</span>=<span class="hljs-string">"9"</span>
+        <span class="hljs-attr">aria-valuemin</span>=<span class="hljs-string">"7"</span>
+        <span class="hljs-attr">aria-valuemax</span>=<span class="hljs-string">"14"</span>
+        <span class="hljs-attr">aria-labelledby</span>=<span class="hljs-string">"ph_alkaline_meter_label"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+    </section>
+    <section id="range_related_properties_progressbar_role">
+      <h3 id="x8-4-range-properties-with-progress-bars"><bdi class="secno">8.4 </bdi>Range properties with progress bars<a class="self-link" aria-label="§" href="#range_related_properties_progressbar_role"></a></h3>
+
+      <p>
+        The <code>aria-valuemin</code> and <code>aria-valuemax</code> properties only need to be set for the <code>progressbar</code> role when the progress bar's minimum is not 0 or the maximum value is not 100.
+        The aria-valuenow property needs to be set for a <code>progressbar</code> if its value is known (e.g. not indeterminate).
+        If the <code>aria-valuenow</code> property is set, the author needs to make sure it is within the minimum and maximum values.
+      </p>
+      <p>Following is an example of a progress bar represented by an SVG.</p>
+
+      <pre><code aria-busy="false" class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"loadlabel"</span>&gt;</span>Loading:<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- The progress bar uses the default values of 0 and 100 for aria-valuemin and aria-valuemax --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"progressbar"</span>
+        <span class="hljs-attr">aria-labelledby</span>=<span class="hljs-string">"loadlabel"</span>
+        <span class="hljs-attr">aria-valuenow</span>=<span class="hljs-string">"33"</span> &gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"100"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"10"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">rect</span> <span class="hljs-attr">x</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">y</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"10"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"100"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"black"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span>/&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">rect</span> <span class="hljs-attr">x</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">y</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"10"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"33"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"green"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+      <p>This progress bar can also be made using the native HTML <code>progress</code> element.</p>
+
+      <pre><code aria-busy="false" class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"loadstatus"</span>&gt;</span>Loading:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">progress</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"loadstatus"</span> <span class="hljs-attr">max</span>=<span class="hljs-string">"100"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"33"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">progress</span>&gt;</span>
+      </code></pre>
+      
+      <p>To represent an indeterminate progress bar where the value range is unknown, omit the <code>aria-valuenow</code> attribute.</p>
+
+      <pre><code aria-busy="false" class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"progressbar"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"spinner.gif"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"Loading..."</span>&gt;</span></code></pre>
+    </section>
+
+    <section id="range_related_properties_scrollbar_role">
+      <h3 id="x8-5-range-properties-with-scrollbars"><bdi class="secno">8.5 </bdi>Range properties with scrollbars<a class="self-link" aria-label="§" href="#range_related_properties_scrollbar_role"></a></h3>
+
+      <p>
+        The <code>aria-valuemin</code> and <code>aria-valuemax</code> properties only need to be set for the <code>scrollbar</code> role when it's minimum value is not 0 or the maximum value is not 100.   The <code>aria-valuenow</code> property is required for <code>scrollbar</code> and the author needs to make sure it is within the minimum and maximum values.
+      </p>
+      <p>
+        <code>aria-valuenow</code> will generally be exposed as a percentage between <code>aria-valuemin</code> and <code>aria-valuemax</code> calculated by assistive technologies.
+      </p>
+
+      <pre><code aria-busy="false" class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"pi-label"</span>&gt;</span>Pi<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"pi"</span>&gt;</span>
+3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"rail"</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- The scrollbar uses the default values of 0 and 100 for aria-valuemin and aria-valuemax --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>
+    <span class="hljs-attr">class</span>=<span class="hljs-string">"thumb"</span>
+    <span class="hljs-attr">role</span>=<span class="hljs-string">"scrollbar"</span>
+    <span class="hljs-attr">aria-labelledby</span>=<span class="hljs-string">"pi-label"</span>
+    <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"pi"</span>
+    <span class="hljs-attr">aria-orientation</span>=<span class="hljs-string">"horizontal"</span>
+    <span class="hljs-attr">aria-valuenow</span>=<span class="hljs-string">"25"</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+
+
+    </section>
+
+    <section id="range_related_properties_slider_role">
+      <h3 id="x8-6-range-properties-with-sliders"><bdi class="secno">8.6 </bdi>Range properties with sliders<a class="self-link" aria-label="§" href="#range_related_properties_slider_role"></a></h3>
+      <p>
+        The <code>aria-valuemin</code> and <code>aria-valuemax</code> properties only need to be set for the <code>slider</code> role when the slider's minimum is not 0 or the maximum value is not 100.
+        The <code>aria-valuenow</code> property is required for <code>slider</code> role and the author needs to make sure it is within the minimum and maximum values.
+        A detailed description of the <code>slider</code> role can be found in the <a href="#slider">slider design pattern</a> and <a href="#slidertwothumb">slider (multi-thumb) design pattern</a>.
+      </p>
+      <p>
+        The following example shows a temperature controller.
+        In this example, <code>aria-valuenow</code> is meaningful to the user, and so <code>aria-valuetext</code> is not used.
+      </p>
+      <pre><code aria-busy="false" class="hljs javascript">&lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"rail"</span>&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"thumb"</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"slider"</span> <span class="hljs-attr">aria-valuemin</span>=<span class="hljs-string">"50"</span> <span class="hljs-attr">aria-valuenow</span>=<span class="hljs-string">"68"</span> <span class="hljs-attr">aria-valuemax</span>=<span class="hljs-string">"100"</span>
+       <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"Temperature (F)"</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">"0"</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+&lt;/div&gt;</code></pre>
+      <p>The slider example above can be made using the HTML <code>&lt;input type="range"&gt;</code> element.</p>
+      <pre><code aria-busy="false" class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"range"</span> <span class="hljs-attr">min</span>=<span class="hljs-string">"50"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"68"</span> <span class="hljs-attr">max</span>=<span class="hljs-string">"100"</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"Temperature (F)"</span>&gt;</span>
+      </code></pre><p>The following example is a fan control. The <code>aria-valuenow</code> value is "1", which is not meaningful to the user. The <code>aria-valuetext</code> property is used so that assistive technology will surface its value ("low") instead.</p>
+      <pre><code aria-busy="false" class="hljs javascript">&lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"rail"</span>&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"thumb"</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"slider"</span> <span class="hljs-attr">aria-valuemin</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">aria-valuenow</span>=<span class="hljs-string">"1"</span> <span class="hljs-attr">aria-valuemax</span>=<span class="hljs-string">"3"</span>
+       <span class="hljs-attr">aria-valuetext</span>=<span class="hljs-string">"low"</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"Fan speed"</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">"0"</span> &gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"value"</span>&gt;</span> Off <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"value"</span>&gt;</span> Low <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"value"</span>&gt;</span> Medium <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"value"</span>&gt;</span> High <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <section id="range_related_properties_spinbutton_role">
+      <h3 id="x8-7-range-properties-with-spin-buttons"><bdi class="secno">8.7 </bdi>Range properties with spin buttons<a class="self-link" aria-label="§" href="#range_related_properties_spinbutton_role"></a></h3>
+
+      <p>
+        The <code>aria-valuemin</code> and <code>aria-valuemax</code> properties are used only when a <code>spinbutton</code> has a defined range.
+        They do not have default values, so if they are not specified, range limits will not be exposed to assistive technologies.
+        Similarly, the <code>aria-valuenow</code> property is set only when a <code>spinbutton</code> has a value.
+        If it is not set, a value is not exposed to assistive technologies for the <code>spinbutton</code>.
+        <code>aria-valuetext</code> can be used when appropriate.
+        A detailed description of the <code>spinbutton</code> role can be found in the <a href="#spinbutton">spinbutton design pattern</a>.
+      </p>
+
+      <p>The following example sets the price of paperclips in cents.</p>
+
+      <pre><code aria-busy="false" class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"spinbutton"</span> <span class="hljs-attr">aria-labelledby</span>=<span class="hljs-string">"price-label"</span> <span class="hljs-attr">aria-valuenow</span>=<span class="hljs-string">"50"</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">"0"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"lower-price"</span>&gt;</span>Lower<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"raise-price"</span>&gt;</span>Raise<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"price-label"</span>&gt;</span>Price per paperclip: $<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"price"</span>&gt;</span>0.50<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+
+      <p>If there are minimum and maximum allowed values, set the <code>aria-valuemin</code> and <code>aria-valuemax</code> properties.</p>
+
+      <pre><code aria-busy="false" class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"spinbutton"</span> <span class="hljs-attr">aria-labelledby</span>=<span class="hljs-string">"price-label"</span>
+      <span class="hljs-attr">aria-valuemin</span>=<span class="hljs-string">"1"</span> <span class="hljs-attr">aria-valuenow</span>=<span class="hljs-string">"50"</span> <span class="hljs-attr">aria-valuemax</span>=<span class="hljs-string">"200"</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">"0"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"lower-price"</span>&gt;</span>Lower<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"raise-price"</span>&gt;</span>Raise<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"price-label"</span>&gt;</span>Price per paperclip: $<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"price"</span>&gt;</span>0.50<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+
+      <p>The spin button example above can be made using the native HTML <code>&lt;input type="number"&gt;</code> element.</p>
+      
+      <pre><code aria-busy="false" class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Price per paperclip: $<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"number"</span> <span class="hljs-attr">min</span>=<span class="hljs-string">"0.01"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"0.5"</span> <span class="hljs-attr">max</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">step</span>=<span class="hljs-string">"0.01"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span></code></pre>
+    </section>
+  </section>
+
   <section id="presentation_role">
-    <h2 id="x8-intentionally-hiding-semantics-with-the-presentation-role"><bdi class="secno">8. </bdi>Intentionally Hiding Semantics with the <code>presentation</code> Role<a class="self-link" aria-label="§" href="#presentation_role"></a></h2>
+    <h2 id="x9-intentionally-hiding-semantics-with-the-presentation-role"><bdi class="secno">9. </bdi>Intentionally Hiding Semantics with the <code>presentation</code> Role<a class="self-link" aria-label="§" href="#presentation_role"></a></h2>
     <p>
       While ARIA is primarily used to express semantics, there are some situations where hiding an
       element’s semantics from assistive technologies is helpful. This is done with the
@@ -6705,7 +7015,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
         widget, such as a tablist, menu, or tree as demonstrated in the example above.</li>
     </ol>
     <section id="presentation_role_effects">
-      <h3 id="x8-1-effects-of-role-presentation"><bdi class="secno">8.1 </bdi>
+      <h3 id="x9-1-effects-of-role-presentation"><bdi class="secno">9.1 </bdi>
         Effects of Role <code>presentation</code>
       <a class="self-link" aria-label="§" href="#presentation_role_effects"></a></h3>
       <p>
@@ -6739,7 +7049,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       </ol>
     </section>
     <section id="presentation_role_ignored">
-      <h3 id="x8-2-conditions-that-cause-role-presentation-to-be-ignored"><bdi class="secno">8.2 </bdi>
+      <h3 id="x9-2-conditions-that-cause-role-presentation-to-be-ignored"><bdi class="secno">9.2 </bdi>
         Conditions That Cause Role <code>presentation</code> to be Ignored
       <a class="self-link" aria-label="§" href="#presentation_role_ignored"></a></h3>
       <p>
@@ -6754,7 +7064,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
           </ul>
     </section>
     <section id="presentation_role_examples">
-      <h3 id="x8-3-example-demonstrating-effects-of-the-presentation-role"><bdi class="secno">8.3 </bdi>
+      <h3 id="x9-3-example-demonstrating-effects-of-the-presentation-role"><bdi class="secno">9.3 </bdi>
         Example Demonstrating Effects of the <code>presentation</code> Role
       <a class="self-link" aria-label="§" href="#presentation_role_examples"></a></h3>
       <p>This code:</p>
@@ -6770,7 +7080,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
   </section>
 
   <section id="children_presentational">
-    <h2 id="x9-roles-that-automatically-hide-semantics-by-making-their-descendants-presentational"><bdi class="secno">9. </bdi>Roles That Automatically Hide Semantics by Making Their Descendants Presentational<a class="self-link" aria-label="§" href="#children_presentational"></a></h2>
+    <h2 id="x10-roles-that-automatically-hide-semantics-by-making-their-descendants-presentational"><bdi class="secno">10. </bdi>Roles That Automatically Hide Semantics by Making Their Descendants Presentational<a class="self-link" aria-label="§" href="#children_presentational"></a></h2>
     <p>
       There are some types of user interface components that, when represented in a platform
       accessibility API, can only contain text. For example, accessibility APIs do not have a way of
@@ -6817,7 +7127,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
   </section>
 
   <section id="structural_roles">
-    <h2 id="x10-structural-roles"><bdi class="secno">10. </bdi>Structural Roles<a class="self-link" aria-label="§" href="#structural_roles"></a></h2>
+    <h2 id="x11-structural-roles"><bdi class="secno">11. </bdi>Structural Roles<a class="self-link" aria-label="§" href="#structural_roles"></a></h2>
     <p>
       ARIA provides a set of roles that convey the accessibility semantics of structures on a page.
       These roles express the meaning that is conveyed by the layout and appearance of elements that organize and structure content, such as headings, lists, and tables.
@@ -6983,7 +7293,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
 
   </section>
-<script type="text/javascript">(function(){window['__CF$cv$params']={r:'5af4c2c89ac6e6e0',m:'72ff323436ea5b9aaa63da46f56780577b3df6ee-1594158414-1800-AQ9g3U1yVLlD2sNAXY2AqQX8MBRafvkbCtRjcxqa7qwP4g8lGNApcMawfjNOwqrdNg4hZ2YZMkCrcQNjqQqrenPwqADFpUSJG/mAypPIVMiONUAnePixQBo4ADQar2lnLex89jr48jgEaymcryTlfUZGfD4NiwlgXt0bOOJITYscP5Dg86A7CT2T8v4Gqt928efenIRYyKA7lA0i+3OacTg=',s:[0x1929da72e9,0x39e43d143d],}})();</script>
+<script type="text/javascript">(function(){window['__CF$cv$params']={r:'5af691a2bfa6e738',m:'9d9351857d329abeb16162123deae36838cc8f78-1594177372-1800-Aeu6VDLaQgQiD4XeLM+eny2M1O6zVBrFVbjwbAr03ZEbSw6XfUox2Iv8+kAbl6BhaS0Skbs4nyoR8XmmG6T2xPmvyiA5pf/07/ziI723B9+jIqdkNMJOLHPRrw4XTOzPZh500/sysACrU354Gwiw8rVF0+NwFGMdTb9sxLQ52pwXIx2WTfbF8eJZGQfzkJB4XtA2hC/nsiz4Fs13UA66ntY=',s:[0x7f193a593d,0xc03ecb2898],}})();</script>
 
 <section id="references" class="appendix"><h2 id="d-references"><bdi class="secno">D. </bdi>References<a class="self-link" aria-label="§" href="#references"></a></h2><section id="informative-references">
       <h3 id="d-1-informative-references"><bdi class="secno">D.1 </bdi>
