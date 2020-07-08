@@ -5,6 +5,8 @@
 *   File:   calendar-button.js
 */
 
+'use strict';
+
 var DatePicker = DatePicker || {};
 
 var CalendarButtonInput = function (inputNode, buttonNode, datepicker) {

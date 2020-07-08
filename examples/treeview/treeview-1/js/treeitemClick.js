@@ -7,6 +7,8 @@
 *   Desc:   Setup click events for Tree widget examples
 */
 
+'use strict';
+
 /**
  * ARIA Treeview example
  * @function onload

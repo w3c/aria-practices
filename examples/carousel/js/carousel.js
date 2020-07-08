@@ -5,6 +5,8 @@
 *
 */
 
+'use strict';
+
 /*
 *   @constructor CarouselTablist
 *
@@ -222,4 +224,3 @@ window.addEventListener('load', function () {
     carousel.init();
   }
 }, false);
-
