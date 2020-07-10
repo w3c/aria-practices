@@ -1,3 +1,4 @@
+'use strict';
 var respecConfig = {
   // Specification status (e.g., WD, LC, NOTE, etc.). If in doubt use ED.
   specStatus: 'ED',
