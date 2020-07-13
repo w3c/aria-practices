@@ -228,7 +228,7 @@ MenubarEditor.prototype.setFocusByFirstCharacter = function (menuId, currentMenu
   }
 };
 
-// Utitlities
+// Utilities
 
 MenubarEditor.prototype.getIndexFirstChars = function (menuId, startIndex, char) {
   for (var i = startIndex; i < this.firstChars[menuId].length; i++) {
