@@ -16,7 +16,7 @@ ariaTest('role="alert" on alert element', exampleFile, 'alert-role', async (t) =
   
   t.false(
     await t.context.session.findElement(By.css(ex.alertSelector)).isDisplayed(),
-    '[role="alert"] element found and should not be displayed on pageload'
+    '[role="alert"] element found and should not be displayed on page load'
   );
 
   let alertButton = await t.context.session.findElement(By.css(ex.buttonSelector));
