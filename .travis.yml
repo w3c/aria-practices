@@ -35,7 +35,14 @@ jobs:
       addons:
         firefox: latest
       script: scripts/regression-tests.sh
-      env: TEST_WAIT_TIME=1000
+      env:
+        global:
+          - CI_NODE_TOTAL=2
+          - TEST_WAIT_TIME=1000
+        jobs:
+          - CI_NODE_INDEX=0
+          - CI_NODE_INDEX=1
+
     - stage: Test
       name: Regression Tests Coverage Report
       script: node test/util/report.js
