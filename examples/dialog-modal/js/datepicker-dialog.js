@@ -8,7 +8,8 @@
 'use strict';
 
 var MenuButtonDatePicker = function (cdp) {
-  this.buttonLabel = 'Date';
+  this.buttonLabelChoose = 'Choose Date';
+  this.buttonLabelChange = 'Change Date';
   this.dayLabels = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   this.monthLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -46,6 +47,8 @@ var MenuButtonDatePicker = function (cdp) {
 };
 
 MenuButtonDatePicker.prototype.init = function () {
+
+  this.textboxNode.addEventListener('blur',   this.setDateForButtonLabel.bind(this));
 
   this.buttonNode.addEventListener('keydown',   this.handleButtonKeydown.bind(this));
   this.buttonNode.addEventListener('click',   this.handleButtonClick.bind(this));
@@ -91,6 +94,7 @@ MenuButtonDatePicker.prototype.init = function () {
 
   this.updateGrid();
   this.close();
+  this.setDateForButtonLabel();
 };
 
 MenuButtonDatePicker.prototype.isSameDay = function (day1, day2) {
@@ -302,7 +306,7 @@ MenuButtonDatePicker.prototype.setTextboxDate = function (domNode) {
   }
 
   this.textboxNode.value = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
-  this.setDateForButtonLabel(d.getFullYear(), d.getMonth(), d.getDate());
+  this.setDateForButtonLabel();
 
 };
 
@@ -325,20 +329,27 @@ MenuButtonDatePicker.prototype.getDateFromTextbox = function () {
 
 };
 
-MenuButtonDatePicker.prototype.setDateForButtonLabel = function (year, month, day) {
-  if (typeof year !== 'number' || typeof month !== 'number' || typeof day !== 'number') {
-    this.selectedDay = this.focusDay;
+MenuButtonDatePicker.prototype.setDateForButtonLabel = function () {
+
+  var parts = this.textboxNode.value.split('/');
+
+  if ((parts.length === 3) &&
+      Number.isInteger(parseInt(parts[0])) &&
+      Number.isInteger(parseInt(parts[1])) &&
+      Number.isInteger(parseInt(parts[2]))) {
+    var day = new Date(parseInt(parts[2]), parseInt(parts[0]) - 1, parseInt(parts[1]));
+
+    var label = this.buttonLabelChange;
+    label += ', ' + this.dayLabels[day.getDay()];
+    label += ' ' + this.monthLabels[day.getMonth()];
+    label += ' ' + (day.getDate());
+    label += ', ' + day.getFullYear();
+    this.buttonNode.setAttribute('aria-label', label);
   }
   else {
-    this.selectedDay = new Date(year, month, day);
+    // If not a valid date, initialize with "Choose Date"
+    this.buttonNode.setAttribute('aria-label', this.buttonLabelChoose);
   }
-
-  var label = this.buttonLabel;
-  label += ', ' + this.dayLabels[this.selectedDay.getDay()];
-  label += ' ' + this.monthLabels[this.selectedDay.getMonth()];
-  label += ' ' + (this.selectedDay.getDate());
-  label += ', ' + this.selectedDay.getFullYear();
-  this.buttonNode.setAttribute('aria-label', label);
 };
 
 MenuButtonDatePicker.prototype.setMessage = function (str) {
