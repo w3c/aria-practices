@@ -220,6 +220,7 @@ ariaTest('"escape" on role="menuitem"', exampleFile, 'menu-escape', async (t) =>
     let url = t.context.url;
     if (url.indexOf('\\') >= 0) {
       url = url.replace(/\\/g, '/');
+      url = url.replace('file://C:', 'file:///C:');
     }
 
     t.is(
