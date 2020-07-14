@@ -500,7 +500,7 @@ ariaTest('Key HOME goes to first item in menubar', exampleFile, 'menubar-home', 
     // Test that the focus is on the first item in the list
     t.true(
       await checkFocus(t,  ex.menubarMenuitemSelector, 0),
-      'Sending key "HOME" to menuitem ' + menuIndex + ' in menubar should move the foucs to the first menuitem'
+      'Sending key "HOME" to menuitem ' + menuIndex + ' in menubar should move the focus to the first menuitem'
     );
   }
 });
@@ -521,7 +521,7 @@ ariaTest('Key END goes to last item in menubar', exampleFile, 'menubar-end', asy
     // Test that the focus is on the last item in the list
     t.true(
       await checkFocus(t,  ex.menubarMenuitemSelector, ex.numMenus - 1),
-      'Sending key "END" to menuitem ' + menuIndex + ' in menubar should move the foucs to the last menuitem'
+      'Sending key "END" to menuitem ' + menuIndex + ' in menubar should move the focus to the last menuitem'
     );
   }
 });
@@ -546,7 +546,7 @@ ariaTest('Character sends to menubar changes focus in menubar',
       // Test that the focus switches to the appropriate menuitem
       t.true(
         await checkFocus(t,  ex.menubarMenuitemSelector, test.endIndex),
-        'Sending characther ' + test.sendChar + ' to menuitem ' + test.sendIndex + ' in menubar should move the foucs to menuitem ' + test.endIndex
+        'Sending character ' + test.sendChar + ' to menuitem ' + test.sendIndex + ' in menubar should move the focus to menuitem ' + test.endIndex
       );
     }
   });
@@ -1175,7 +1175,7 @@ ariaTest('Character sends to menubar changes focus in menubar', exampleFile, 'su
       // Test that the focus switches to the appropriate menuitem
       t.true(
         await checkFocus(t, ex.menuMenuitemSelectors[menuIndex], test.endIndex),
-        'Sending characther ' + test.sendChar + ' to menuitem ' + itemText + ' should move the focus to menuitem ' + test.endIndex
+        'Sending character ' + test.sendChar + ' to menuitem ' + itemText + ' should move the focus to menuitem ' + test.endIndex
       );
     }
   }
@@ -1217,7 +1217,7 @@ ariaTest('Character sends to menubar changes focus in menubar', exampleFile, 'su
       // Test that the focus switches to the appropriate menuitem
       t.true(
         await checkFocus(t, submenuMenuitemSelector, test.endIndex),
-        'Sending characther ' + test.sendChar + ' to menuitem ' + itemText + ' should move the focus to menuitem ' + test.endIndex
+        'Sending character ' + test.sendChar + ' to menuitem ' + itemText + ' should move the focus to menuitem ' + test.endIndex
       );
     }
 
