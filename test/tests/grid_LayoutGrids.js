@@ -285,7 +285,7 @@ ariaTest('Right arrow key moves focus', 'grid/LayoutGrids.html', 'key-right-arro
     // Find the first focusable element
     let activeElement = await focusOnOrInCell(t, gridcellElements[0], ex.focusableElements[0]);
     if (!activeElement) {
-      throw new Error('Could not focus on element or any decendent in the first gridcell: ' + ex.gridcellSelector);
+      throw new Error('Could not focus on element or any descendent in the first gridcell: ' + ex.gridcellSelector);
     }
 
     // Test focus moves to next element on arrow right
@@ -334,10 +334,10 @@ ariaTest('Left arrow key moves focus', 'grid/LayoutGrids.html', 'key-left-arrow'
     let activeElement = await focusOnOrInCell(t, gridcellElements[lastCellIndex], ex.focusableElements[lastCellIndex]);
 
     if (!activeElement) {
-      throw new Error('Could not focus on element or any decendent in the last gridcell: ' + ex.gridcellSelector);
+      throw new Error('Could not focus on element or any descendent in the last gridcell: ' + ex.gridcellSelector);
     }
 
-    // Test focus moves to preivous cell after arrow left
+    // Test focus moves to previous cell after arrow left
 
     for (let index = gridcellElements.length - 2; index > -1; index--) {
 
@@ -381,10 +381,10 @@ ariaTest('Down arrow key moves focus', 'grid/LayoutGrids.html', 'key-down-arrow'
     // Find the first focusable element
     let activeElement = await focusOnOrInCell(t, gridcellElements[0], ex.focusableElements[0]);
     if (!activeElement) {
-      throw new Error('Could not focus on element or any decendent in the first gridcell: ' + selector);
+      throw new Error('Could not focus on element or any descendent in the first gridcell: ' + selector);
     }
 
-    // Test focus moves to next row on down arroq
+    // Test focus moves to next row on down arrow
 
     for (let index = 1; index < gridcellElements.length; index++) {
 
@@ -437,7 +437,7 @@ ariaTest('Up arrow key moves focus', 'grid/LayoutGrids.html', 'key-up-arrow', as
     let activeElement = await focusOnOrInCell(t, gridcellElements[lastCellIndex], focusableElement);
 
     if (!activeElement) {
-      throw new Error('Could not focus on element or any decendent in the last gridcell: ' + selector);
+      throw new Error('Could not focus on element or any descendent in the last gridcell: ' + selector);
     }
 
     // Test focus moves to previous row on up arrow
@@ -491,7 +491,7 @@ ariaTest('PageDown key moves focus', 'grid/LayoutGrids.html', 'key-page-down', a
 
     let activeElement = await focusOnOrInCell(t, gridcellElements[0], focusableElement);
     if (!activeElement) {
-      throw new Error('Could not focus on element or any decendent in the first gridcell: ' + selector);
+      throw new Error('Could not focus on element or any descendent in the first gridcell: ' + selector);
     }
 
     // Test focus moves to next element on paging key
@@ -551,14 +551,14 @@ ariaTest('PageUp key moves focus', 'grid/LayoutGrids.html', 'key-page-up', async
     // Find the last focusable element
     let activeElement = await focusOnOrInCell(t, gridcellElements[lastCellIndex], focusableElement);
     if (!activeElement) {
-      throw new Error('Could not focus on element or any decendent in the final gridcell: ' + selector);
+      throw new Error('Could not focus on element or any descendent in the final gridcell: ' + selector);
     }
 
     // Test focus moves to next element on paging key
 
-    // The final "page" of rows may not contain the maxmium number of rows. In
+    // The final "page" of rows may not contain the maximum number of rows. In
     // this case, the first "Page Up" keypress will involve traversing fewer
-    // rows than subsequent kepresses.
+    // rows than subsequent key presses.
     const finalPageLength = (gridcellElements.length % jumpBy) || jumpBy;
     const penultimate = gridcellElements.length - 1 - finalPageLength;
     for (let index = penultimate; index > -1; index -= jumpBy) {
@@ -602,7 +602,7 @@ ariaTest('Home key moves focus', 'grid/LayoutGrids.html', 'key-home', async (t) 
     // Find the first focusable element
     let activeElement = await focusOnOrInCell(t, gridcellElements[0], ex.focusableElements[0]);
     if (!activeElement) {
-      throw new Error('Could not focus on element or any decendent in the first gridcell: ' + ex.gridcellSelector);
+      throw new Error('Could not focus on element or any descendent in the first gridcell: ' + ex.gridcellSelector);
     }
 
     // Move the focused element off the first element in the row
@@ -641,7 +641,7 @@ ariaTest('End key moves focus', 'grid/LayoutGrids.html', 'key-end', async (t) =>
     // Find the first focusable element
     let activeElement = await focusOnOrInCell(t, gridcellElements[0], ex.focusableElements[0]);
     if (!activeElement) {
-      throw new Error('Could not focus on element or any decendent in the first gridcell: ' + ex.gridcellSelector);
+      throw new Error('Could not focus on element or any descendent in the first gridcell: ' + ex.gridcellSelector);
     }
 
     // Test focus to last element in row using key END
@@ -673,7 +673,7 @@ ariaTest('control+home keys moves focus', 'grid/LayoutGrids.html', 'key-control-
     // Find the first focusable element
     let activeElement = await focusOnOrInCell(t, gridcellElements[0], ex.focusableElements[0]);
     if (!activeElement) {
-      throw new Error('Could not focus on element or any decendent in the first gridcell: ' + ex.gridcellSelector);
+      throw new Error('Could not focus on element or any descendent in the first gridcell: ' + ex.gridcellSelector);
     }
 
     // Move the focused element off the first element in the row
@@ -712,7 +712,7 @@ ariaTest('Control+end keys moves focus', 'grid/LayoutGrids.html', 'key-control-e
     // Find the first focusable element
     let activeElement = await focusOnOrInCell(t, gridcellElements[0], ex.focusableElements[0]);
     if (!activeElement) {
-      throw new Error('Could not focus on element or any decendent in the first gridcell: ' + ex.gridcellSelector);
+      throw new Error('Could not focus on element or any descendent in the first gridcell: ' + ex.gridcellSelector);
     }
 
     // Test focus to last element in row using key CONTROL+END

@@ -20,8 +20,8 @@ const ex = {
   allToolSelectors: [
     '#ex1 .item'
   ],
-  tabbaleItemBeforeToolbarSelector: '[href="../../#toolbar"]',
-  tabbaleItemAfterToolbarSelector: '[href="../../#kbd_roving_tabindex"]'
+  tabbableItemBeforeToolbarSelector: '[href="../../#toolbar"]',
+  tabbableItemAfterToolbarSelector: '[href="../../#kbd_roving_tabindex"]'
 };
 
 const clickAndWait = async function (t, selector) {
@@ -116,7 +116,7 @@ ariaTest('key TAB moves focus', exampleFile, 'key-tab', async (t) => {
       .sendKeys(Key.TAB);
 
     t.true(
-      await waitAndCheckFocus(t, ex.tabbaleItemAfterToolbarSelector, index),
+      await waitAndCheckFocus(t, ex.tabbableItemAfterToolbarSelector, index),
       'Sending TAB to: ' + toolSelector + ' should move focus off toolbar'
     );
   }
