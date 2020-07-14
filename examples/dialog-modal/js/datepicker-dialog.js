@@ -205,7 +205,6 @@ MenuButtonDatePicker.prototype.open = function () {
   this.dialogNode.style.display = 'block';
   this.dialogNode.style.zIndex = 2;
 
-  this.buttonNode.setAttribute('aria-expanded', 'true');
   this.getDateFromTextbox();
   this.updateGrid();
 };
@@ -222,7 +221,6 @@ MenuButtonDatePicker.prototype.close = function (flag) {
 
   this.setMessage('');
   this.dialogNode.style.display = 'none';
-  this.buttonNode.setAttribute('aria-expanded', 'false')
 
   if (flag) {
     this.buttonNode.focus();
