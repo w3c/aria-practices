@@ -33,7 +33,7 @@ const ex = {
 
 ariaTest('section element used to contain slider', exampleFile, 'carousel-region-role', async (t) => {
   
-  // This test primarially tests that the ex.landmarkSelector points to a `section` element
+  // This test primarily tests that the ex.landmarkSelector points to a `section` element
   const landmarkEl = await t.context.session.findElement(By.css(ex.landmarkSelector));
   t.is(
     await landmarkEl.getTagName(),

@@ -1,7 +1,5 @@
 'use strict';
 var respecConfig = {
-  // Embed RDFa data in the output.
-  doRDFa: '1.2',
   // Specification status (e.g., WD, LC, NOTE, etc.). If in doubt use ED.
   specStatus: 'ED',
   // crEnd: "2012-04-30",
