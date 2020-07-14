@@ -16,7 +16,7 @@ ariaTest('aria-label attribute on nav element', exampleFile, 'aria-label', async
     await assertAriaLabelExists(t, ex.breadcrumbSelector);
 });
 
-ariaTest('aria-current element should exist on relevent link', exampleFile, 'aria-current', async (t) => {
+ariaTest('aria-current element should exist on relevant link', exampleFile, 'aria-current', async (t) => {
   
   let navElement = await t.context.session.findElement(By.css(ex.breadcrumbSelector));
   let currentElement = await t.context.queryElements(t, '[aria-current]', navElement);

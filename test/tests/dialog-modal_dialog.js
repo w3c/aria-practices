@@ -54,7 +54,7 @@ const openDialog1 = async function (t) {
   const dialog = (await t.context.queryElements(t, '#dialog1'))[0];
   assert(
     await dialog.isDisplayed(),
-    'dialog1 should have successfullly openned'
+    'dialog1 should have successfully opened'
   );
 };
 
@@ -69,7 +69,7 @@ const openDialog2 = async function (t) {
   const dialog = (await t.context.queryElements(t, '#dialog2'))[0];
   assert(
     await dialog.isDisplayed(),
-    'dialog2 should have successfullly openned'
+    'dialog2 should have successfully opened'
   );
 };
 
@@ -84,7 +84,7 @@ const openDialog3 = async function (t) {
   const dialog = (await t.context.queryElements(t, '#dialog3'))[0];
   assert(
     await dialog.isDisplayed(),
-    'dialog3 should have successfullly openned'
+    'dialog3 should have successfully opened'
   );
 };
 
@@ -102,7 +102,7 @@ const openDialog4 = async function (t) {
   const dialog = (await t.context.queryElements(t, '#dialog2'))[0];
   assert(
     await dialog.isDisplayed(),
-    'dialog4 should have successfullly openned'
+    'dialog4 should have successfully opened'
   );
 };
 

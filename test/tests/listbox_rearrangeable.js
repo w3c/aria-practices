@@ -342,7 +342,7 @@ ariaTest('shift + click selects multiple options', exampleFile, 'key-shift-up-ar
           .keyUp(Key.SHIFT)
           .perform();
   
-  // expect first through fourt option to be selected
+  // expect first through fourth option to be selected
   for (let index = options.length - 1; index >= 0 ; index--) {
     const selected = await options[index].getAttribute('aria-selected');
     const shouldBeSelected = index < 4;
