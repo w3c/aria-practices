@@ -217,8 +217,10 @@ ariaTest('"escape" on role="menuitem"', exampleFile, 'menu-escape', async (t) =>
     await waitForNoAriaExpanded(t);
 
     // fixes for running regression tests on windows
-    let url = t.context.url.replace(/\\/g, '/');
-    url = url.replace('file://', 'file:///')
+    let url = t.context.url;
+    if (url.indexOf('\\') >= 0) {
+      url = url.replace(/\\/g, '/');
+    }
 
     t.is(
       await t.context.session.getCurrentUrl(),
