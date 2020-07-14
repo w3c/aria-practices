@@ -28,7 +28,7 @@ const checkFocus = async function (t, selector, index) {
 
 // Attributes
 
-ariaTest('role="radigroup" on div element', exampleFile, 'radiogroup-role', async (t) => {
+ariaTest('role="radiogroup" on div element', exampleFile, 'radiogroup-role', async (t) => {
     await assertAriaRoles(t, 'ex1', 'radiogroup', '2', 'div');
 });
 

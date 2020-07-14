@@ -50,7 +50,7 @@ const openAllThreads = async function (t) {
   let closedThreads = await t.context.queryElements(t, ex.closedThreadSelector);
 
   // Going through all closed email thread elements in dom order will open parent
-  // threads first, therefore all child threads will be visible before openning
+  // threads first, therefore all child threads will be visible before opening
   for (let thread of closedThreads) {
     await thread.sendKeys(Key.ARROW_RIGHT);
   }
@@ -122,7 +122,7 @@ const checkFocusOnGridcell = async function (t, rowIndex, gridcellIndex) {
   }
 
   // Otherwise, the gridcell contains an interactive widget, and focus
-  // should be on the interative widget
+  // should be on the interactive widget
   gridcellsSelector = gridcellsSelector + ':nth-of-type(3) a';
   return checkFocus(t, gridcellsSelector, 0);
 };
@@ -283,7 +283,7 @@ ariaTest('aria-setsize on row elements', exampleFile, 'row-aria-setsize', async 
 });
 
 
-ariaTest('aria-posinset on row elementsx', exampleFile, 'row-aria-posinset', async (t) => {
+ariaTest('aria-posinset on row elements', exampleFile, 'row-aria-posinset', async (t) => {
   
   let rows = await t.context.queryElements(t, ex.emailRowSelector);
 
@@ -422,7 +422,7 @@ ariaTest('Navigating through gridcells with left arrow', exampleFile, 'key-left-
     await sendKeyToGridcellAndWait(t, index, 0, Key.ARROW_LEFT);
     t.true(
       await checkFocus(t, ex.emailRowSelector, index),
-      'Focus should be on grid row at index " + index + " after ARROW LEFT sent to first gridcell in frist row'
+      'Focus should be on grid row at index " + index + " after ARROW LEFT sent to first gridcell in first row'
     );
 
     // Set up: put focus on last gridcell
@@ -530,7 +530,7 @@ ariaTest('Navigating through gridcells with up arrow', exampleFile, 'key-up-arro
       await sendKeyToGridcellAndWait(t, rowindex, columnindex, Key.ARROW_UP);
       t.true(
         await checkFocusOnGridcell(t, rowindex - 1, columnindex),
-        'Sending key ARROW UP to cell at row index ' + rowindex + ' and column index ' + columnindex + ' should move focus to the preious email'
+        'Sending key ARROW UP to cell at row index ' + rowindex + ' and column index ' + columnindex + ' should move focus to the previous email'
       );
     }
 
@@ -545,18 +545,18 @@ ariaTest('Navigating through gridcells with up arrow', exampleFile, 'key-up-arro
 });
 
 
-ariaTest('TAB moves focus from active row to wigets in row', exampleFile, 'key-tab', async (t) => {
+ariaTest('TAB moves focus from active row to widgets in row', exampleFile, 'key-tab', async (t) => {
   
   // Send tab to the first row:
   await sendKeyToRowAndWait(t, 0, Key.TAB);
 
   t.true(
     await checkFocusOnGridcell(t, 0, 2),
-    'Sending TAB to the first row on page load will send the focus to the first interative widget in the row, which should be the email link in the last column.'
+    'Sending TAB to the first row on page load will send the focus to the first interactive widget in the row, which should be the email link in the last column.'
   );
 });
 
-ariaTest('SHIFT+TAB moves focus from wigets in row to row', exampleFile, 'key-shift-tab', async (t) => {
+ariaTest('SHIFT+TAB moves focus from widgets in row to row', exampleFile, 'key-shift-tab', async (t) => {
   
   await putFocusOnRow1Gridcell(t, 2);
 
@@ -565,7 +565,7 @@ ariaTest('SHIFT+TAB moves focus from wigets in row to row', exampleFile, 'key-sh
 
   t.true(
     await checkFocus(t, ex.emailRowSelector, 0),
-    'Sending SHIFT+TAB to the interative widget in the last cell of the first row should move focus to the first row.'
+    'Sending SHIFT+TAB to the interactive widget in the last cell of the first row should move focus to the first row.'
   );
 
 });

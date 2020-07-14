@@ -35,7 +35,7 @@ const navigateToFeed = async function (t) {
 };
 
 const waitForArticlesToLoad = async function (t) {
-  // Wait for artilces to load
+  // Wait for articles to load
   return t.context.session.wait(
     async function () {
       let element = await t.context.session.findElement(By.css(ex.feedSelector));
@@ -162,7 +162,7 @@ ariaTest('aria-setsize on article element', exampleFile, 'article-aria-setsize',
       await articles[index - 1].getAttribute('aria-setsize'),
       (ex.numArticlesLoadedInSet * 2).toString(),
       'Article number ' + index + ' does not have aria-setsize set correctly, ' +
-        'after triggering more artilces to load.'
+        'after triggering more articles to load.'
     );
   }
 });
