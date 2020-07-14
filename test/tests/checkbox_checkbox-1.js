@@ -1,4 +1,5 @@
 'use strict';
+// This change forces tests to run
 
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
