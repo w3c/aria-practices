@@ -606,8 +606,6 @@ MenubarNavigation.prototype.handleMenuitemMouseover = function (event) {
 MenubarNavigation.prototype.handleBackgroundMousedown = function (event) {
   if (!this.domNode.contains(event.target)) {
     this.closePopupAll();
-    event.stopPropagation();
-    event.preventDefault();
   }
 };
 
