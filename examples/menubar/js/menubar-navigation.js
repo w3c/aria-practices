@@ -115,7 +115,6 @@ MenubarNavigation.prototype.initMenu = function (menu, depth) {
 
     menuitem.addEventListener('mouseover', this.handleMenuitemMouseover.bind(this));
 
-
     if( !this.firstMenuitem[menuId]) {
       if (this.hasPopup(menuitem)) {
         menuitem.tabIndex = 0;
@@ -409,6 +408,10 @@ MenubarNavigation.prototype.isMenuHorizontal = function (menuitem) {
   return this.menuOrientation[menuitem] === 'horizontal';
 };
 
+MenubarNavigation.prototype.hasFocus = function () {
+  return this.domNode.classList.contains('focus');
+};
+
 // Menu event handlers
 
 MenubarNavigation.prototype.handleMenubarFocusin = function (event) {
@@ -586,13 +589,16 @@ MenubarNavigation.prototype.handleMenuitemClick = function (event) {
 
 MenubarNavigation.prototype.handleMenuitemMouseover = function (event) {
   var tgt = event.currentTarget;
+  var menuId = this.getMenuId(tgt);
 
-  tgt.focus();
+  if (this.hasFocus()) {
+    this.setFocusToMenuitem(menuId, tgt);
+  }
 
-  if (this.isAnyPopupOpen()) {
+  if (this.isAnyPopupOpen() || this.hasFocus()) {
     this.closePopupAll(tgt);
     if (this.hasPopup(tgt)) {
-      this.openPopup(this.getMenuId(tgt), tgt);
+      this.openPopup(menuId, tgt);
     }
   }
 };
