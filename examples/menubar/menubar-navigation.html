@@ -16,13 +16,7 @@
   <script src="js/menubar-navigation.js" type="text/javascript"></script>
 
   <!--  Pre-load images used in the example  -->
-  <link rel="preload" as="image" href="images/down-arrow-focus.svg">
-  <link rel="preload" as="image" href="images/down-arrow.svg">
-  <link rel="preload" as="image" href="images/right-arrow-focus.svg">
-  <link rel="preload" as="image" href="images/right-arrow.svg">
   <link rel="preload" as="image" href="images/separator.svg">
-  <link rel="preload" as="image" href="images/up-arrow-focus.svg">
-  <link rel="preload" as="image" href="images/up-arrow.svg">
 
 </head>
 
@@ -63,7 +57,12 @@
       <nav aria-label="Mythical University">
         <ul class="menubar-navigation" role="menubar" aria-label="Mythical University">
           <li role="none">
-            <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">About</a>
+            <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">
+              About
+              <svg xmlns="http://www.w3.org/2000/svg" class="down" width="12" height="9" viewBox="0 0 12 9">
+               <polygon points="1 0, 11 0, 6 8"/>
+              </svg>
+            </a>
             <ul role="menu" aria-label="About">
               <li role="none">
                 <a role="menuitem" href="mb-about.html#overview">Overview</a>
@@ -72,7 +71,15 @@
                 <a role="menuitem" href="mb-about.html#admin">Administration</a>
               </li>
               <li role="none">
-                <a id="menubar113" role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">Facts</a>
+                <a role="menuitem"
+                   href="#"
+                   aria-haspopup="true"
+                   aria-expanded="false">
+                  Facts
+                  <svg xmlns="http://www.w3.org/2000/svg" class="right" width="9" height="12" viewBox="0 0 9 12">
+                   <polygon points="0 1, 0 11, 8 6"/>
+                  </svg>
+                </a>
                 <ul role="menu" aria-label="Facts">
                   <li role="none">
                     <a role="menuitem" href="mb-about.html#facts">History</a>
@@ -86,8 +93,15 @@
                 </ul>
               </li>
               <li role="none">
-                <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">Campus
-                  Tours</a>
+                <a role="menuitem"
+                    href="#"
+                    aria-haspopup="true"
+                    aria-expanded="false">
+                  Campus Tours
+                  <svg xmlns="http://www.w3.org/2000/svg" class="right" width="9" height="12" viewBox="0 0 9 12">
+                   <polygon points="0 1, 0 11, 8 6"/>
+                  </svg>
+                </a>
                 <ul role="menu" aria-label="Campus Tours">
                   <li role="none">
                     <a role="menuitem" href="mb-about.html#tours">For prospective students</a>
@@ -103,13 +117,26 @@
             </ul>
           </li>
           <li role="none">
-            <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Admissions</a>
+            <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">
+              Admissions
+              <svg xmlns="http://www.w3.org/2000/svg" class="down" width="12" height="9" viewBox="0 0 12 9">
+               <polygon points="1 0, 11 0, 6 8"/>
+              </svg>
+            </a>
             <ul role="menu" aria-label="Admissions">
               <li role="none">
                 <a role="menuitem" href="mb-admissions.html#apply">Apply</a>
               </li>
               <li role="none">
-                <a role="menuitem" href="" aria-haspopup="true" aria-expanded="false">Tuition</a>
+                <a role="menuitem"
+                    href=""
+                    aria-haspopup="true"
+                    aria-expanded="false">
+                  Tuition
+                  <svg xmlns="http://www.w3.org/2000/svg" class="right" width="9" height="12" viewBox="0 0 9 12">
+                   <polygon points="0 1, 0 11, 8 6"/>
+                  </svg>
+                </a>
                 <ul role="menu" aria-label="Tuition Information">
                   <li role="none">
                     <a role="menuitem" href="mb-admissions.html#tuition">Undergraduate</a>
@@ -138,7 +165,12 @@
             </ul>
           </li>
           <li role="none">
-            <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Academics</a>
+            <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">
+              Academics
+              <svg xmlns="http://www.w3.org/2000/svg" class="down" width="12" height="9" viewBox="0 0 12 9">
+               <polygon points="1 0, 11 0, 6 8"/>
+              </svg>
+            </a>
             <ul role="menu" aria-label="Academics">
               <li role="none">
                 <a role="menuitem" href="mb-academics.html#colleges">Colleges &amp; Schools</a>

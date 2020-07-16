@@ -69,7 +69,7 @@ MenubarNavigation.prototype.getMenuitems = function(domNode, depth) {
           break;
       }
 
-      if (flag && node.firstElementChild) {
+      if (flag && node.firstElementChild && node.firstElementChild.tagName !== 'svg') {
         findMenuitems(node.firstElementChild);
       }
 
@@ -108,7 +108,7 @@ MenubarNavigation.prototype.initMenu = function (menu, depth) {
 
     menuitem.tabIndex = -1;
     this.menuitemGroups[menuId].push(menuitem);
-    this.firstChars[menuId].push(menuitem.textContent[0].toLowerCase());
+    this.firstChars[menuId].push(menuitem.textContent.trim().toLowerCase()[0]);
 
     menuitem.addEventListener('keydown', this.handleKeydown.bind(this));
     menuitem.addEventListener('click', this.handleMenuitemClick.bind(this));
