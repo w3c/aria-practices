@@ -591,13 +591,13 @@
                 <code>tabindex="0"</code>
               </th>
               <td>
-                <code>button</code>
+                <code>td</code>
               </td>
               <td>
                 <ul>
-                  <li>Makes the button focusable and includes it in the dialog <kbd>Tab</kbd> sequence.</li>
+                  <li>Makes the cell focusable and includes it in the dialog <kbd>Tab</kbd> sequence.</li>
                   <li>Set dynamically by the JavaScript when the element is to be included in the dialog <kbd>Tab</kbd> sequence.</li>
-                  <li>At any given time, only one button within the grid is in the dialog <kbd>Tab</kbd> sequence.</li>
+                  <li>At any given time, only one <code>gridcell</code> within the grid is in the dialog <kbd>Tab</kbd> sequence.</li>
                   <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
                 </ul>
               </td>
@@ -608,13 +608,13 @@
                 <code>tabindex="-1"</code>
               </th>
               <td>
-                <code>button</code>
+                <code>td</code>
               </td>
               <td>
                 <ul>
-                  <li>Makes the button focusable and excludes it from the dialog <kbd>Tab</kbd> sequence.</li>
-                  <li>Changed dynamically to <code>0</code> by the JavaScript when the button is to be included in the dialog <kbd>Tab</kbd> sequence.</li>
-                  <li>At any given time, only one button within the grid is in the dialog <kbd>Tab</kbd> sequence.</li>
+                  <li>Makes the cell focusable and excludes it from the dialog <kbd>Tab</kbd> sequence.</li>
+                  <li>Changed dynamically to <code>0</code> by the JavaScript when the cell is to be included in the dialog <kbd>Tab</kbd> sequence.</li>
+                  <li>At any given time, only one <code>gridcell</code> within the grid is in the dialog <kbd>Tab</kbd> sequence.</li>
                   <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
                 </ul>
               </td>
@@ -622,11 +622,11 @@
             <tr data-test-id="gridcell-button-aria-selected">
               <td></td>
               <th scope="row"><code>aria-selected="true"</code></th>
-              <td><code>button</code></td>
+              <td><code>td</code></td>
               <td>
                 <ul>
-                  <li>Identifies the button for the currently selected date, i.e., the date value  present in the date input.</li>
-                  <li>Only set on the button representing the currently selected date, no other buttons have <code>aria-selected</code> specified.</li>
+                  <li>Identifies the cell containing the currently selected date, i.e., the date value  present in the date input.</li>
+                  <li>Only set on the cell containing the currently selected date; no other cells have <code>aria-selected</code> specified.</li>
                 </ul>
               </td>
             </tr>
