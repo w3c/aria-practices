@@ -504,6 +504,19 @@
                   The accessible name is &quot;Choose Date&quot;, since activating the button opens the &quot;Choose Date&quot; dialog and moves focus to the dialog.
               </td>
               </tr>
+              <tr data-test-id="change-date-aria-live">
+                <th></th>
+                <th scope="row"><code>aria-live="polite"</code></th>
+                <td>
+                  <code>h2</code>
+                </td>
+                <td>
+                  <ul>
+                    <li>When the month and/or year changes the content of the <code>h2</code> element is updated.</li>
+                    <li>Indicates the <code>h2</code> should be automatically announced by screen readers.</li>
+                  </ul>
+                </td>
+              </tr>
               <tr data-test-id="dialog-aria-live">
                 <th></th>
                 <th scope="row"><code>aria-live="polite"</code></th>
@@ -511,7 +524,7 @@
                 <td>
                   <ul>
                     <li>Indicates the element that displays information about keyboard commands for navigating the grid should be automatically announced by screen readers.</li>
-                    <li>The script slightly delays display of the information so screen readers are more likely to read it after information related to change of focus.</li>
+                    <li>The script slightly delays display of the information, so screen readers are more likely to read it after information related to change of focus.</li>
                   </ul>
                 </td>
               </tr>
@@ -537,19 +550,6 @@
                     <td><code>button</code></td>
                     <td>Defines the accessible name of the button (e.g. &quot;Next Year&quot;).</td>
                 </tr>
-                <tr data-test-id="change-date-aria-live">
-                    <th></th>
-                    <th scope="row"><code>aria-live="polite"</code></th>
-                    <td>
-                      <code>h2</code>
-                    </td>
-                    <td>
-                      <ul>
-                        <li>When the month and/or year changes the content of the <code>h2</code> element is updated.</li>
-                        <li>Indicates the <code>h2</code> should be automatically announced by screen readers.</li>
-                      </ul>
-                    </td>
-                  </tr>
             </tbody>
           </table>
         </section>
