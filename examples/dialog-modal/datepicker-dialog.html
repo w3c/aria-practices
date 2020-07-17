@@ -501,7 +501,7 @@
                 <th scope="row"><code>aria-label="string"</code></th>
                 <td><code>div</code></td>
                 <td>
-                  The accessible name is &quot;Choose Date&quot;, since activating the button opens the &quot;Choose Date&quot; dialog and moves focus to the dialog.
+                  Defines the accessible name for the dialog.
               </td>
               </tr>
               <tr data-test-id="change-date-aria-live">
@@ -575,7 +575,7 @@
               <td>
                 <ul>
                   <li>Identifies the <code>table</code> element as a <code>grid</code> widget.</li>
-                  <li>Since the <code>grid</code> role is applied to a <code>table</code> element, the <code>row</code>, <code>colheader</code>, and <code>gridcell</code> roles do not need to be specified because they are implied by <code>tr</code>, <code>th</code>, and <code>td</code> tags.</li>
+                  <li>Since the <code>grid</code> role is applied to a <code>table</code> element, the <code>row</code>, <code>columnheader</code>, and <code>gridcell</code> roles do not need to be specified because they are implied by <code>tr</code>, <code>th</code>, and <code>td</code> tags.</li>
                 </ul>
               </td>
             </tr>
@@ -583,8 +583,7 @@
               <td></td>
               <th scope="row"><code>aria-labelledby=&quot;IDREF&quot;</code></th>
               <td><code>table</code></td>
-              <td>Defines the accessible name for the <code>grid</code> using the <code>h2</code> that shows the month and year of the dates displayed in the grid.
-              </td>
+              <td>Identifies the element that provides the accessible name for the <code>grid</code>.</td>
             </tr>
             <tr data-test-id="gridcell-button-tabindex">
               <td></td>
