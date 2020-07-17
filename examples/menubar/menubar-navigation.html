@@ -199,11 +199,11 @@
   <section>
     <h2>Accessibility Features</h2>
     <ol>
-            <li>To help communicate that the arrow keys are available for directional navigation within the menubar and its submenus, a border is added to the menubar container when focus is within the menubar.</li>
+      <li>To help communicate that the arrow keys are available for directional navigation within the menubar and its submenus, a border is added to the menubar container when focus is within the menubar.</li>
       <li>To support operating system high contrast settings:
         <ul>
           <li>Focus is highlighted by adding and removing a border around the menu item with focus.</li>
-          <li>The arrow icons used to indicate the current state of pull expandable menus use inline SVG images.</li>
+          <li>The arrow icons indicating the current state of expandable menus use inline SVG images with the CSS <code>currentColor</code> value used for the <code>fill</code> and <code>stroke</code> properties of the <code>polygon</code> element.</li>
         </ul>
       </li>
       <li>Since the menubar presents a site navigation system, it is wrapped in a navigation region implemented with a <code>nav</code> element that has an <code>aria-label</code> that matches the label on the menubar.</li>
