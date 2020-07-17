@@ -8,11 +8,11 @@
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
 <link rel="stylesheet" href="../css/core.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-
 <script src="../js/examples.js" type="text/javascript"></script>
 <script src="../js/highlight.pack.js"></script>
 <script src="../js/app.js"></script>
 
+<!--  js and css specific to this example -->
 <link href="css/datepicker-dialog.css" rel="stylesheet">
 <script src="js/datepicker-dialog.js"></script>
 </head>
@@ -197,24 +197,27 @@
   <section>
     <h2>Accessibility Features</h2>
     <ul>
+      <li>The description of the date format is associated with the text input via <code>aria-describedby</code>, making it available to assistive technologies as an accessible description.</li>
       <li>
-        When a date is chosen, the accessible name of the <q>Choose Date</q> button is updated to include the selected date.
-        So, when the dialog closes and focus returns to the <q>Choose Date</q> button, screen reader users hear confirmation of the selected date in the button name.
+        After a date is chosen, the accessible name of the &quot;Choose Date&quot; button is changed to &quot;Change Date, DATE_STRING&quot; where DATE_STRING is the selected date.
+        So, when the dialog closes and focus returns to the button, screen reader users hear confirmation of the selected date.
       </li>
-      <li>When the month or year of the calendar grid changes as users navigate the calendar or activate the buttons for next or previous month or year, a live region enables screen readers to announce the new month and year.</li>
-      <li>The calendar grid provides hotkeys for changing the year and month as well as support for normal grid navigation keys.</li>
+      <li>In the dialog, shortcut keys are assigned to the additional buttons for changing the month and year displayed in the calendar.</li>
+      <li>The calendar heading displaying the month and year is marked up as a live region so screen reader users get feedback from the buttons and keyboard commands that change the month and year.</li>
+      <li>Keyboard help is displayed at the bottom of the dialog. A live region is used to announce it to screen reader users when focus moves into the calendar grid.</li>
       <li>
-        When the dialog opens and a date in the calendar grid receives focus, a live region enables screen readers to announce keyboard instructions for navigating the calendar grid.
-        The instructions are also visible at the bottom of the dialog box.
+        To facilitate compact visual design in the calendar, the day names in the column headers are abbreviated to two characters.
+        However, this makes it more difficult for screen reader users to understand the day names.
+        So, full day names are provided to assistive technologies in the HTML <code>abbr</code> attribute on the column headers, enabling screen readers to announce the full names when users navigate the grid.
       </li>
       <li>High contrast support for focus and hover styling of the controls in the dialog box use the CSS border property:
         <ul>
-          <li>When a button or date receives focus a border is added.</li>
-          <li>When hovering over a button or date with a pointing device a border is added.</li>
-          <li>By default buttons and dates do not have a border, padding is used as a placeholder for the added border for focus and hover styling.</li>
+          <li>When a button or date cell receives focus a border is added.</li>
+          <li>When hovering over a button or date cell with a pointing device a border is added.</li>
+          <li>By default buttons and date cells do not have a border, padding is used as a placeholder for the added border for focus and hover styling.</li>
         </ul>
       </li>
-     </ul>
+    </ul>
   </section>
 
   <section>
