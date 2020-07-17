@@ -183,7 +183,7 @@ ariaTest('aria-selected on selected date', exampleFile, 'gridcell-button-aria-se
 
 // Keyboard
 
-ariaTest('ENTER to open datepicker', exampleFile, 'button-space-return-down-arrow', async (t) => {
+ariaTest('ENTER to open datepicker', exampleFile, 'button-space-return', async (t) => {
   let chooseDateButton = await t.context.session.findElement(By.css(ex.buttonSelector));
   chooseDateButton.sendKeys(Key.ENTER);
 
@@ -194,18 +194,7 @@ ariaTest('ENTER to open datepicker', exampleFile, 'button-space-return-down-arro
   );
 });
 
-ariaTest('DOWN ARROW to open datepicker', exampleFile, 'button-space-return-down-arrow', async (t) => {
-  let chooseDateButton = await t.context.session.findElement(By.css(ex.buttonSelector));
-  chooseDateButton.sendKeys(Key.ARROW_DOWN);
-
-  t.not(
-    await t.context.session.findElement(By.css(ex.dialogSelector)).getCssValue('display'),
-    'none',
-    'After sending DOWN ARROW to the "choose date" button, the calendar dialog should open'
-  );
-});
-
-ariaTest('SPACE to open datepicker', exampleFile, 'button-space-return-down-arrow', async (t) => {
+ariaTest('SPACE to open datepicker', exampleFile, 'button-space-return', async (t) => {
   let chooseDateButton = await t.context.session.findElement(By.css(ex.buttonSelector));
   chooseDateButton.sendKeys(' ');
 
