@@ -391,27 +391,27 @@
     </section>
 
     <section>
-        <h3 id="kbd_label_6">Date Picker Dialog: OK and Cancel Buttons</h3>
-        <table aria-labelledby="kbd_label_6 kbd_label" class="def">
-          <thead>
-            <tr>
-                <th>Key</th>
-                <th>Function</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr data-test-id="okay-cancel-button-space-return">
-              <th> <kbd>Space</kbd>,<br><kbd>Enter</kbd></th>
-              <td>
-                Activates the button:
-                <ul>
-                  <li>&quot;Cancel&quot;: Closes the dialog, moves focus to &quot;Choose Date&quot; button, does not update date in date input.</li>
-                  <li>&quot;OK&quot;: Closes the dialog, moves focus to &quot;Choose Date&quot; button, updates date in date input, updates accessible name of the &quot;Choose Date&quot; button to include the selected date.</li>
-                </ul>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <h3 id="kbd_label_6">Date Picker Dialog: OK and Cancel Buttons</h3>
+      <table aria-labelledby="kbd_label_6 kbd_label" class="def">
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-test-id="okay-cancel-button-space-return">
+            <th> <kbd>Space</kbd>,<br><kbd>Enter</kbd></th>
+            <td>
+              Activates the button:
+              <ul>
+                <li>&quot;Cancel&quot;: Closes the dialog, moves focus to &quot;Choose Date&quot; button, does not update date in date input.</li>
+                <li>&quot;OK&quot;: Closes the dialog, moves focus to &quot;Choose Date&quot; button, updates date in date input, updates accessible name of the &quot;Choose Date&quot; button to include the selected date.</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </section>
   </section>
 
@@ -443,115 +443,115 @@
     </section>
 
     <section>
-        <h3 id="rps_label_2">Choose Date Button</h3>
-        <table aria-labelledby="rps_label_2 rps_label" class="data attributes">
-          <thead>
-            <tr>
-              <th scope="col">Role</th>
-              <th scope="col">Attribute</th>
-              <th scope="col">Element</th>
-              <th scope="col">Usage</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr data-test-id="calendar-button-aria-label">
-              <td></td>
-              <th scope="row"><code>aria-label="String"</code></th>
-              <td><code>button</code></td>
-              <td>
-                <ul>
-                  <li>The initial value of accessible name is &quot;Choose Date&quot;.</li>
-                  <li>When users select a date, the accessible name is changed to &quot;Change Date, DATE_STRING&quot; where DATE_STRING is the selected date.</li>
-                </ul>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
+      <h3 id="rps_label_2">Choose Date Button</h3>
+      <table aria-labelledby="rps_label_2 rps_label" class="data attributes">
+        <thead>
+          <tr>
+            <th scope="col">Role</th>
+            <th scope="col">Attribute</th>
+            <th scope="col">Element</th>
+            <th scope="col">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-test-id="calendar-button-aria-label">
+            <td></td>
+            <th scope="row"><code>aria-label="String"</code></th>
+            <td><code>button</code></td>
+            <td>
+              <ul>
+                <li>The initial value of accessible name is &quot;Choose Date&quot;.</li>
+                <li>When users select a date, the accessible name is changed to &quot;Change Date, DATE_STRING&quot; where DATE_STRING is the selected date.</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
-      <section>
-          <h3 id="rps_label_3">Date Picker Dialog</h3>
-          <table aria-labelledby="rps_label_3 rps_label" class="data attributes">
-            <thead>
-              <tr>
-                <th scope="col">Role</th>
-                <th scope="col">Attribute</th>
-                <th scope="col">Element</th>
-                <th scope="col">Usage</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr data-test-id="dialog-role">
-                <th scope="row"><code>dialog</code></th>
-                <td></td>
-                <td>
-                  <code>div</code>
-                </td>
-                <td>Identifies the element as a dialog .</td>
-              </tr>
-              <tr data-test-id="dialog-aria-modal">
-                <td></td>
-                <th scope="row"><code>aria-modal="true"</code></th>
-                <td><code>div</code></td>
-                <td>Indicates the dialog is modal.</td>
-              </tr>
-              <tr data-test-id="dialog-aria-label">
-                <td></td>
-                <th scope="row"><code>aria-label="string"</code></th>
-                <td><code>div</code></td>
-                <td>
-                  Defines the accessible name for the dialog.
-              </td>
-              </tr>
-              <tr data-test-id="change-date-aria-live">
-                <th></th>
-                <th scope="row"><code>aria-live="polite"</code></th>
-                <td>
-                  <code>h2</code>
-                </td>
-                <td>
-                  <ul>
-                    <li>When the month and/or year changes the content of the <code>h2</code> element is updated.</li>
-                    <li>Indicates the <code>h2</code> should be automatically announced by screen readers.</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr data-test-id="dialog-aria-live">
-                <th></th>
-                <th scope="row"><code>aria-live="polite"</code></th>
-                <td><code>div</code></td>
-                <td>
-                  <ul>
-                    <li>Indicates the element that displays information about keyboard commands for navigating the grid should be automatically announced by screen readers.</li>
-                    <li>The script slightly delays display of the information, so screen readers are more likely to read it after information related to change of focus.</li>
-                  </ul>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
+    <section>
+      <h3 id="rps_label_3">Date Picker Dialog</h3>
+      <table aria-labelledby="rps_label_3 rps_label" class="data attributes">
+        <thead>
+          <tr>
+            <th scope="col">Role</th>
+            <th scope="col">Attribute</th>
+            <th scope="col">Element</th>
+            <th scope="col">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-test-id="dialog-role">
+            <th scope="row"><code>dialog</code></th>
+            <td></td>
+            <td>
+              <code>div</code>
+            </td>
+            <td>Identifies the element as a dialog .</td>
+          </tr>
+          <tr data-test-id="dialog-aria-modal">
+            <td></td>
+            <th scope="row"><code>aria-modal="true"</code></th>
+            <td><code>div</code></td>
+            <td>Indicates the dialog is modal.</td>
+          </tr>
+          <tr data-test-id="dialog-aria-label">
+            <td></td>
+            <th scope="row"><code>aria-label="string"</code></th>
+            <td><code>div</code></td>
+            <td>
+              Defines the accessible name for the dialog.
+          </td>
+          </tr>
+          <tr data-test-id="change-date-aria-live">
+            <th></th>
+            <th scope="row"><code>aria-live="polite"</code></th>
+            <td>
+              <code>h2</code>
+            </td>
+            <td>
+              <ul>
+                <li>When the month and/or year changes the content of the <code>h2</code> element is updated.</li>
+                <li>Indicates the <code>h2</code> should be automatically announced by screen readers.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr data-test-id="dialog-aria-live">
+            <th></th>
+            <th scope="row"><code>aria-live="polite"</code></th>
+            <td><code>div</code></td>
+            <td>
+              <ul>
+                <li>Indicates the element that displays information about keyboard commands for navigating the grid should be automatically announced by screen readers.</li>
+                <li>The script slightly delays display of the information, so screen readers are more likely to read it after information related to change of focus.</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
-      <section>
-          <h3 id="rps_label_4">Date Picker Dialog: Calendar Navigation Buttons</h3>
-          <table aria-labelledby="rps_label_4 rps_label" class="data attributes">
-            <thead>
-              <tr>
-                <th scope="col">Role</th>
-                <th scope="col">Attribute</th>
-                <th scope="col">Element</th>
-                <th scope="col">Usage</th>
-              </tr>
-            </thead>
-            <tbody>
-                <tr data-test-id="change-date-button-aria-label">
-                    <td></td>
-                    <th scope="row"><code>aria-label="String"</code></th>
-                    <td><code>button</code></td>
-                    <td>Defines the accessible name of the button (e.g. &quot;Next Year&quot;).</td>
-                </tr>
-            </tbody>
-          </table>
-        </section>
+    <section>
+      <h3 id="rps_label_4">Date Picker Dialog: Calendar Navigation Buttons</h3>
+      <table aria-labelledby="rps_label_4 rps_label" class="data attributes">
+        <thead>
+          <tr>
+            <th scope="col">Role</th>
+            <th scope="col">Attribute</th>
+            <th scope="col">Element</th>
+            <th scope="col">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-test-id="change-date-button-aria-label">
+            <td></td>
+            <th scope="row"><code>aria-label="String"</code></th>
+            <td><code>button</code></td>
+            <td>Defines the accessible name of the button (e.g. &quot;Next Year&quot;).</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
     <section>
       <h3 id="rps_label_5">Date Picker Dialog: Date Grid</h3>
@@ -565,70 +565,70 @@
           </tr>
         </thead>
         <tbody>
-            <tr data-test-id="grid-role">
-              <th scope="row"><code>grid</code></th>
-              <td></td>
-              <td>
-                <code>table</code>
-              </td>
-              <td>
-                <ul>
-                  <li>Identifies the <code>table</code> element as a <code>grid</code> widget.</li>
-                  <li>Since the <code>grid</code> role is applied to a <code>table</code> element, the <code>row</code>, <code>columnheader</code>, and <code>gridcell</code> roles do not need to be specified because they are implied by <code>tr</code>, <code>th</code>, and <code>td</code> tags.</li>
-                </ul>
-              </td>
-            </tr>
-            <tr data-test-id="grid-aria-labelledby">
-              <td></td>
-              <th scope="row"><code>aria-labelledby=&quot;IDREF&quot;</code></th>
-              <td><code>table</code></td>
-              <td>Identifies the element that provides the accessible name for the <code>grid</code>.</td>
-            </tr>
-            <tr data-test-id="gridcell-button-tabindex">
-              <td></td>
-              <th scope="row">
-                <code>tabindex="0"</code>
-              </th>
-              <td>
-                <code>td</code>
-              </td>
-              <td>
-                <ul>
-                  <li>Makes the cell focusable and includes it in the dialog <kbd>Tab</kbd> sequence.</li>
-                  <li>Set dynamically by the JavaScript when the element is to be included in the dialog <kbd>Tab</kbd> sequence.</li>
-                  <li>At any given time, only one <code>gridcell</code> within the grid is in the dialog <kbd>Tab</kbd> sequence.</li>
-                  <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
-                </ul>
-              </td>
-            </tr>
-            <tr data-test-id="gridcell-button-tabindex">
-              <td></td>
-              <th scope="row">
-                <code>tabindex="-1"</code>
-              </th>
-              <td>
-                <code>td</code>
-              </td>
-              <td>
-                <ul>
-                  <li>Makes the cell focusable and excludes it from the dialog <kbd>Tab</kbd> sequence.</li>
-                  <li>Changed dynamically to <code>0</code> by the JavaScript when the cell is to be included in the dialog <kbd>Tab</kbd> sequence.</li>
-                  <li>At any given time, only one <code>gridcell</code> within the grid is in the dialog <kbd>Tab</kbd> sequence.</li>
-                  <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
-                </ul>
-              </td>
-            </tr>
-            <tr data-test-id="gridcell-button-aria-selected">
-              <td></td>
-              <th scope="row"><code>aria-selected="true"</code></th>
-              <td><code>td</code></td>
-              <td>
-                <ul>
-                  <li>Identifies the cell containing the currently selected date, i.e., the date value  present in the date input.</li>
-                  <li>Only set on the cell containing the currently selected date; no other cells have <code>aria-selected</code> specified.</li>
-                </ul>
-              </td>
-            </tr>
+          <tr data-test-id="grid-role">
+            <th scope="row"><code>grid</code></th>
+            <td></td>
+            <td>
+              <code>table</code>
+            </td>
+            <td>
+              <ul>
+                <li>Identifies the <code>table</code> element as a <code>grid</code> widget.</li>
+                <li>Since the <code>grid</code> role is applied to a <code>table</code> element, the <code>row</code>, <code>columnheader</code>, and <code>gridcell</code> roles do not need to be specified because they are implied by <code>tr</code>, <code>th</code>, and <code>td</code> tags.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr data-test-id="grid-aria-labelledby">
+            <td></td>
+            <th scope="row"><code>aria-labelledby=&quot;IDREF&quot;</code></th>
+            <td><code>table</code></td>
+            <td>Identifies the element that provides the accessible name for the <code>grid</code>.</td>
+          </tr>
+          <tr data-test-id="gridcell-button-tabindex">
+            <td></td>
+            <th scope="row">
+              <code>tabindex="0"</code>
+            </th>
+            <td>
+              <code>td</code>
+            </td>
+            <td>
+              <ul>
+                <li>Makes the cell focusable and includes it in the dialog <kbd>Tab</kbd> sequence.</li>
+                <li>Set dynamically by the JavaScript when the element is to be included in the dialog <kbd>Tab</kbd> sequence.</li>
+                <li>At any given time, only one <code>gridcell</code> within the grid is in the dialog <kbd>Tab</kbd> sequence.</li>
+                <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr data-test-id="gridcell-button-tabindex">
+            <td></td>
+            <th scope="row">
+              <code>tabindex="-1"</code>
+            </th>
+            <td>
+              <code>td</code>
+            </td>
+            <td>
+              <ul>
+                <li>Makes the cell focusable and excludes it from the dialog <kbd>Tab</kbd> sequence.</li>
+                <li>Changed dynamically to <code>0</code> by the JavaScript when the cell is to be included in the dialog <kbd>Tab</kbd> sequence.</li>
+                <li>At any given time, only one <code>gridcell</code> within the grid is in the dialog <kbd>Tab</kbd> sequence.</li>
+                <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr data-test-id="gridcell-button-aria-selected">
+            <td></td>
+            <th scope="row"><code>aria-selected="true"</code></th>
+            <td><code>td</code></td>
+            <td>
+              <ul>
+                <li>Identifies the cell containing the currently selected date, i.e., the date value  present in the date input.</li>
+                <li>Only set on the cell containing the currently selected date; no other cells have <code>aria-selected</code> specified.</li>
+              </ul>
+            </td>
+          </tr>
         </tbody>
       </table>
       <p>
@@ -653,7 +653,7 @@
     </ul>
   </section>
 
- <section>
+  <section>
     <h2 id="sc1_label">HTML Source Code</h2>
     <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
     <pre><code id="source1"></code></pre>
