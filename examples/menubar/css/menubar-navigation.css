@@ -109,10 +109,13 @@
 .menubar-navigation [role="menuitem"][aria-expanded="true"],
 .menubar-navigation [role="menuitem"]:focus,
 .menubar-navigation [role="menuitem"]:hover {
-  padding: 2px;
-  border: 3px solid #034575;
   background: #034575;
   color: #fff;
   outline: none;
-  margin: 0;
+}
+
+.menubar-navigation [role="menuitem"]:focus,
+.menubar-navigation [role="menuitem"]:hover {
+  padding: 2px;
+  border: 4px solid #034575;
 }
