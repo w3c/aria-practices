@@ -51,28 +51,18 @@
             <ul>
               <li>Each page may have one <code>banner</code> landmark.</li>
               <li>The <code>banner</code> landmark should be a top-level landmark.</li>
-              <li>When a page contains nested <code>document</code> and/or <code>application</code> roles (e.g. typically through the use of <code>iframe</code> and <code>frame</code> elements), 
+              <li>When a page contains nested <code>document</code> and/or <code>application</code> roles (e.g. typically through the use of <code>iframe</code> and <code>frame</code> elements),
                 each <code>document</code> or <code>application</code> role may have one <code>banner</code> landmark.
               </li>
               <li>If a page includes more than one <code>banner</code> landmark, each should have a unique label.</li>
             </ul>
             <section aria-label="Coding Techniques">
               <ul id="myTabs" class="nav nav-tabs" role="tablist">
-                <li class="active"><a id="tab1" href="#tabpanel1" aria-controls="tabpanel1" role="tab" data-toggle="tab">ARIA Techniques</a></li>
-                <li><a id="tab2" href="#tabpanel2" aria-controls="tabpanel2" role="tab" data-toggle="tab">HTML Techniques</a></li>
+                <li class="active"><a id="tab2" href="#tabpanel2" aria-controls="tabpanel2" role="tab" data-toggle="tab">HTML Techniques</a></li>
+                <li><a id="tab1" href="#tabpanel1" aria-controls="tabpanel1" role="tab" data-toggle="tab">ARIA Techniques</a></li>
               </ul>
               <div class="tab-content">
-                <div id="tabpanel1" aria-labelledby="tab1" role="tabpanel" class="tab-pane active" >
-                  <p>A <code>role="banner"</code> attribute is used to define a <code>banner</code> landmark.</p>
-                  <h3>ARIA Example</h3>
-                  <div class="code">
-                          &lt;div <strong>role="banner"</strong>&gt;<br>
-                          &nbsp;&nbsp;&lt;h1&gt;<em>page title identifying website</em>&lt;h1&gt;<br>
-                          &nbsp;&nbsp;.... <em>banner content</em>....   <br>
-                          &lt;/div&gt;<br>
-                  </div>
-                </div>
-                <div id="tabpanel2" aria-labelledby="tab2"  role="tabpanel" class="tab-pane">
+                <div id="tabpanel2" aria-labelledby="tab2"  role="tabpanel" class="tab-pane active">
                   <ul>
                     <li>The HTML <code>header</code> element defines a <code>banner</code> landmark when its context is the <code>body</code> element.</li>
                     <li>
@@ -93,6 +83,16 @@
                             &nbsp;&nbsp;&lt;h1&gt;<em>website information</em>&lt;h1&gt;<br>
                             &nbsp;&nbsp;.... <em>banner content</em>....   <br>
                             <strong>&lt;/header&gt;</strong>
+                  </div>
+                </div>
+                <div id="tabpanel1" aria-labelledby="tab1" role="tabpanel" class="tab-pane" >
+                  <p>A <code>role="banner"</code> attribute is used to define a <code>banner</code> landmark.</p>
+                  <h3>ARIA Example</h3>
+                  <div class="code">
+                          &lt;div <strong>role="banner"</strong>&gt;<br>
+                          &nbsp;&nbsp;&lt;h1&gt;<em>page title identifying website</em>&lt;h1&gt;<br>
+                          &nbsp;&nbsp;.... <em>banner content</em>....   <br>
+                          &lt;/div&gt;<br>
                   </div>
                 </div>
               </div>
@@ -135,18 +135,18 @@
             W3C ARIA Authoring Practices Task Force
           </div>
           <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
-            Copyright 2016
+            Copyright 2020
           </div>
         </footer>
       </div>
     </div>
-    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>        
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/tabs.js"></script>        
-    <script type="text/javascript" src="js/bootstrap-accessibility.min.js"></script>        
-    <script type="text/javascript" src="js/bootstrap-accessibility-2.js"></script>       
-    <script type="text/javascript" src="js/visua11y.js"></script>        
-    <script type="text/javascript" src="js/show.js"></script>        
+    <script type="text/javascript" src="js/tabs.js"></script>
+    <script type="text/javascript" src="js/bootstrap-accessibility.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-accessibility-2.js"></script>
+    <script type="text/javascript" src="js/visua11y.js"></script>
+    <script type="text/javascript" src="js/show.js"></script>
     <script type="text/javascript" >
       // Use the SkipTo defaults, but just showing custom configuration
       var SkipToConfig =
@@ -159,6 +159,6 @@
         }
       };
     </script>
-    <script type="text/javascript" src="js/SkipTo.min.js"></script>      
+    <script type="text/javascript" src="js/SkipTo.min.js"></script>
   </body>
 </html>

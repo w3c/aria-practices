@@ -96,11 +96,86 @@
             </ul>
             <section aria-label="Coding Techniques">
               <ul id="myTabs" class="nav nav-tabs" role="tablist">
-                <li class="active"><a  id="tab1" href="#tabpanel1" aria-controls="tabpanel1"  role="tab" data-toggle="tab">ARIA Techniques</a></li>
-                <li><a  id="tab2" href="#tabpanel2" aria-controls="tabpanel2"  role="tab" data-toggle="tab">HTML Techniques</a></li>
+                <li class="active"><a  id="tab2" href="#tabpanel2" aria-controls="tabpanel2"  role="tab" data-toggle="tab">HTML Techniques</a></li>
+                <li><a  id="tab1" href="#tabpanel1" aria-controls="tabpanel1"  role="tab" data-toggle="tab">ARIA Techniques</a></li>
               </ul>
               <div class="tab-content">
-                <div id="tabpanel1" aria-labelledby="tab1" role="tabpanel" class="tab-pane active">
+                <div id="tabpanel2" aria-labelledby="tab2" role="tabpanel" class="tab-pane active">
+                  <p>If a <code>form</code> element has an accessible name it is considered <code>form</code> landmark.</p>
+
+                  <h3>HTML Form Landmark Example</h3>
+
+                  <p>Assume the following two forms (e.g. add contact and add organization) can be independently submitted from the same web page.</p>
+
+                  <form aria-labelledby="contact_html5">
+                    <fieldset>
+                      <legend id="contact_html5">Add Contact</legend>
+
+                      <label for="name_html5">Name</label>
+                      <input id="name_html5" type="text" size="25">
+
+                      <label for="email_html5">E-mail</label>
+                      <input id="email_html5" type="text" size="25">
+
+                      <label for="phone_html5">Phone</label>
+                      <input id="phone_html5" type="text" size="25">
+
+                      <input type="submit" value="Add Contact">
+
+                    </fieldset>
+                  </form>
+
+                  <form aria-labelledby="organization">
+                    <fieldset>
+                      <legend id="organization_html5">Add Organization</legend>
+
+                      <label for="org_html5">Organization</label>
+                      <input id="org_html5" type="text" size="25">
+
+                      <label for="www_html5">WWW</label>
+                      <input id="www_html5" type="text" size="25">
+
+                      <input type="submit" value="Add Organization">
+                    </fieldset>
+                  </form>
+
+                  <h3>Source Code</h3>
+                  <div class="code">
+
+                    &nbsp;&nbsp;&lt;<strong>form aria-labelledby="contact"</strong>&gt;
+                    <br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;fieldset&gt;<br>
+                    <br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;legend <strong>id="contact"</strong>&gt;Add Contact &lt;/legend&gt;
+                    <br/>
+                    <br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;... <em>form controls add contact</em> ...
+                    <br/>
+                    <br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;/fieldset&gt;
+                    <br/>
+                    &nbsp;&nbsp;&lt;<strong>/form</strong>&gt;
+                    <br/>
+                    <br/> &nbsp;&nbsp;...............
+                    <br/>
+                    <br/>
+                    &nbsp;&nbsp;&lt;<strong>form aria-labelledby="organization"</strong>&gt;
+                    <br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;fieldset&gt;<br>
+                    <br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;legend <strong>id="organization"</strong>&gt;Add Organization &lt;/legend&gt;
+                    <br>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;... <em>form controls add organization</em> ...
+                    <br>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;/fieldset&gt;
+                    <br>
+                    &nbsp;&nbsp;&lt;<strong>/form</strong>&gt;
+                    <br>
+                  </div>
+                </div>
+                <div id="tabpanel1" aria-labelledby="tab1" role="tabpanel" class="tab-pane">
                   <ul>
                     <li>The <code>role="form"</code> attribute defines a form landmark.</li>
                     <li>Use the <code>role="form"</code> to identify a region of the page; do not use it to identify every form field.</li>
@@ -176,84 +251,6 @@
                     <br>
                     &nbsp;&nbsp;&lt;/div&gt;
                     <br>
-
-
-                  </div>
-
-                </div>
-                <div id="tabpanel2" aria-labelledby="tab2" role="tabpanel" class="tab-pane">
-                  <p>If a <code>form</code> element has an accessible name it is considered <code>form</code> landmark.</p>
-
-                  <h3>HTML Form Landmark Example</h3>
-
-                  <p>Assume the following two forms (e.g. add contact and add organization) can be independently submitted from the same web page.</p>
-
-                  <form aria-labelledby="contact_html5">
-                    <fieldset>
-                      <legend id="contact_html5">Add Contact</legend>
-
-                      <label for="name_html5">Name</label>
-                      <input id="name_html5" type="text" size="25">
-
-                      <label for="email_html5">E-mail</label>
-                      <input id="email_html5" type="text" size="25">
-
-                      <label for="phone_html5">Phone</label>
-                      <input id="phone_html5" type="text" size="25">
-
-                      <input type="submit" value="Add Contact">
-
-                    </fieldset>
-                  </form>
-
-                  <form aria-labelledby="organization">
-                    <fieldset>
-                      <legend id="organization_html5">Add Organization</legend>
-
-                      <label for="org_html5">Organization</label>
-                      <input id="org_html5" type="text" size="25">
-
-                      <label for="www_html5">WWW</label>
-                      <input id="www_html5" type="text" size="25">
-
-                      <input type="submit" value="Add Organization">
-                    </fieldset>
-                  </form>
-
-                  <h3>Source Code</h3>
-                  <div class="code">
-
-                    &nbsp;&nbsp;&lt;<strong>form aria-labelledby="contact"</strong>&gt;
-                    <br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;fieldset&gt;<br>
-                    <br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;legend <strong>id="contact"</strong>&gt;Add Contact &lt;/legend&gt;
-                    <br/>
-                    <br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;... <em>form controls add contact</em> ...
-                    <br/>
-                    <br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;/fieldset&gt;
-                    <br/>
-                    &nbsp;&nbsp;&lt;<strong>/form</strong>&gt;
-                    <br/>
-                    <br/> &nbsp;&nbsp;...............
-                    <br/>
-                    <br/>
-                    &nbsp;&nbsp;&lt;<strong>form aria-labelledby="organization"</strong>&gt;
-                    <br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;fieldset&gt;<br>
-                    <br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;legend <strong>id="organization"</strong>&gt;Add Organization &lt;/legend&gt;
-                    <br>
-                    <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;... <em>form controls add organization</em> ...
-                    <br>
-                    <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;/fieldset&gt;
-                    <br>
-                    &nbsp;&nbsp;&lt;<strong>/form</strong>&gt;
-                    <br>
                   </div>
                 </div>
               </div>
@@ -297,7 +294,7 @@
             W3C ARIA Authoring Practices Task Force
           </div>
           <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
-            Copyright 2016
+            Copyright 2020
           </div>
         </footer>
       </div>

@@ -46,7 +46,7 @@
             <h1 id="id1"> Region Landmark</h1>
             <p> A <code>region</code> landmark is a perceivable section containing content that is relevant to a specific, author-specified purpose and sufficiently important that users will likely want to be able to navigate to the section easily and to have it listed in a summary of the page.</p>
             <p> ARIA 1.1 Specification: <a href="https://www.w3.org/TR/wai-aria-1.1/#region"><code>region</code> landmark</a></p>
-            
+
             <h2>Design Patterns</h2>
             <ul>
               <li>A <code>region</code> landmark must have a label.</li>
@@ -56,49 +56,11 @@
 
             <section aria-label="Coding Techniques">
               <ul id="myTabs" class="nav nav-tabs" role="tablist">
-                <li class="active"><a id="tab1" href="#tabpanel1" aria-controls="tabpanel1" role="tab" data-toggle="tab">ARIA Techniques</a></li>
-                <li><a id="tab2" href="#tabpanel2" aria-controls="tabpanel2"  role="tab" data-toggle="tab">HTML Techniques</a></li>
+                <li class="active"><a id="tab2" href="#tabpanel2" aria-controls="tabpanel2"  role="tab" data-toggle="tab">HTML Techniques</a></li>
+                <li><a id="tab1" href="#tabpanel1" aria-controls="tabpanel1" role="tab" data-toggle="tab">ARIA Techniques</a></li>
               </ul>
               <div class = "tab-content">
-                <div id="tabpanel1" aria-labelledby="tab1" role="tabpanel" class="tab-pane active">
-                  <p>A <code>role="region"</code> attribute is used to define a <code>region</code> landmark.</p>
-
-                  <h3>ARIA Example: Using <code>role="region"</code> attribute</h3>
-                  <div class="code">
-                    &lt;div role="main"&gt;
-                    <br>
-                    <br>
-                    &nbsp;&nbsp;&lt;h1&gt;<em>title for main content area</em>&lt;h1&gt;<br>
-                    <br>
-                    &nbsp;&nbsp;&lt;div <strong>role="region" aria-labelledby="region1"</strong>&gt;
-                    <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;h2 <strong>id="region1"</strong>&gt;title for region area 1&lt;/h2&gt;
-                    <br>
-                    <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;... <em>content for region area 1</em> ...
-                    <br>
-                    <br>
-                    &nbsp;&nbsp;&lt;/div&gt;
-                    <br>
-                    <br>
-                    &nbsp;&nbsp;&lt;div <strong>role="region" aria-labelledby="region2"</strong>&gt;
-                    <br>
-                    <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;h2 <strong>id="region2"</strong>&gt;title for region area 2&lt;/h2&gt;
-                    <br>
-                    <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;... <em>content for region area 2</em> ...
-                    <br>
-                    <br>
-                    &nbsp;&nbsp;&lt;/div&gt;
-                    <br>
-                    <br>
-                    &lt;/div&gt;
-                  </div>
-
-                </div>
-
-                <div  id="tabpanel2" aria-labelledby="tab2" role="tabpanel" class="tab-pane">
+                <div  id="tabpanel2" aria-labelledby="tab2" role="tabpanel" class="tab-pane active">
                   <p>Use the HTML <code>section</code> element to define a <code>region</code> landmark.</p>
 
                   <h3>HTML Example: Using <code>section[aria-labelledby]</code> attribute</h3>
@@ -207,6 +169,42 @@
                     &lt;/main&gt;
                   </div>
                 </div>
+                <div id="tabpanel1" aria-labelledby="tab1" role="tabpanel" class="tab-pane">
+                  <p>A <code>role="region"</code> attribute is used to define a <code>region</code> landmark.</p>
+
+                  <h3>ARIA Example: Using <code>role="region"</code> attribute</h3>
+                  <div class="code">
+                    &lt;div role="main"&gt;
+                    <br>
+                    <br>
+                    &nbsp;&nbsp;&lt;h1&gt;<em>title for main content area</em>&lt;h1&gt;<br>
+                    <br>
+                    &nbsp;&nbsp;&lt;div <strong>role="region" aria-labelledby="region1"</strong>&gt;
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;h2 <strong>id="region1"</strong>&gt;title for region area 1&lt;/h2&gt;
+                    <br>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;... <em>content for region area 1</em> ...
+                    <br>
+                    <br>
+                    &nbsp;&nbsp;&lt;/div&gt;
+                    <br>
+                    <br>
+                    &nbsp;&nbsp;&lt;div <strong>role="region" aria-labelledby="region2"</strong>&gt;
+                    <br>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;h2 <strong>id="region2"</strong>&gt;title for region area 2&lt;/h2&gt;
+                    <br>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;... <em>content for region area 2</em> ...
+                    <br>
+                    <br>
+                    &nbsp;&nbsp;&lt;/div&gt;
+                    <br>
+                    <br>
+                    &lt;/div&gt;
+                  </div>
+                </div>
               </div>
             </section>
           </main>
@@ -247,17 +245,17 @@
             W3C ARIA Authoring Practices Task Force
           </div>
           <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
-            Copyright 2016
+            Copyright 2020
           </div>
         </footer>
       </div>
     </div>
-    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>        
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>        
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/bootstrap-accessibility.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap-accessibility-2.js"></script>       
-    <script type="text/javascript" src="js/visua11y.js"></script>        
-    <script type="text/javascript" src="js/show.js"></script>        
+    <script type="text/javascript" src="js/bootstrap-accessibility-2.js"></script>
+    <script type="text/javascript" src="js/visua11y.js"></script>
+    <script type="text/javascript" src="js/show.js"></script>
     <script type="text/javascript" >
       // Use the SkipTo defaults, but just showing custom configuration
       var SkipToConfig =
@@ -270,6 +268,6 @@
         }
       };
     </script>
-    <script type="text/javascript" src="js/SkipTo.min.js"></script>      
+    <script type="text/javascript" src="js/SkipTo.min.js"></script>
   </body>
 </html>
