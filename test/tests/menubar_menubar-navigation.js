@@ -7,7 +7,7 @@ const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertRovingTabindex = require('../util/assertRovingTabindex');
 
-const exampleFile = 'menubar/menubar-1/menubar-1.html';
+const exampleFile = 'menubar/menubar-navigation.html';
 
 const ex = {
   // menubar selector
@@ -116,7 +116,7 @@ ariaTest('Test aria-label on menubar', exampleFile, 'menubar-aria-label', async 
 });
 
 ariaTest('Test for role="menuitem" in menubar', exampleFile, 'menuitem-role', async (t) => {
-  
+
   const menuitems = await t.context.queryElements(t, ex.menubarMenuitemSelector);
 
   t.is(
@@ -135,7 +135,7 @@ ariaTest('Test for role="menuitem" in menubar', exampleFile, 'menuitem-role', as
 
 ariaTest('Test roving tabindex', exampleFile, 'menuitem-tabindex', async (t) => {
 
-  
+
   // Wait for roving tabindex to be initialized by the javascript
   await exampleInitialized(t);
 
@@ -145,12 +145,12 @@ ariaTest('Test roving tabindex', exampleFile, 'menuitem-tabindex', async (t) => 
 ariaTest('Test aria-haspopup set to true on menuitems',
   exampleFile, 'menuitem-aria-haspopup', async (t) => {
 
-    
+
     await assertAttributeValues(t, ex.menubarMenuitemSelector, 'aria-haspopup', 'true');
   });
 
 ariaTest('"aria-expanded" attribute on menubar menuitem', exampleFile, 'menuitem-aria-expanded', async (t) => {
-  
+
   // Before interating with page, make sure aria-expanded is set to false
   await assertAttributeValues(t, ex.menubarMenuitemSelector, 'aria-expanded', 'false');
 
@@ -196,7 +196,7 @@ ariaTest('"aria-expanded" attribute on menubar menuitem', exampleFile, 'menuitem
 });
 
 ariaTest('Test for role="none" on menubar li', exampleFile, 'none-role', async (t) => {
-  
+
   const liElements = await t.context.queryElements(t, ex.menubarSelector + '>li');
 
   for (let liElement of liElements) {
@@ -218,7 +218,7 @@ ariaTest('Test for aria-label on role="menu"', exampleFile, 'menu-aria-label', a
 
 ariaTest('Test for submenu role="menuitem"s with accessible names', exampleFile, 'sub-menuitem-role', async (t) => {
 
-  
+
   const menuitems = await t.context.queryElements(t, ex.anyMenuMenuitemSelector);
 
   t.truthy(
@@ -248,7 +248,7 @@ ariaTest('Test tabindex="-1" on submenu role="menuitem"s', exampleFile, 'sub-men
 });
 
 ariaTest('Test aria-haspopup on menuitems with submenus', exampleFile, 'sub-menuitem-aria-haspopup', async (t) => {
-  
+
   const menubarMenuitems = await t.context.queryElements(t, ex.menubarMenuitemSelector);
 
   for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
@@ -273,7 +273,7 @@ ariaTest('Test aria-haspopup on menuitems with submenus', exampleFile, 'sub-menu
 });
 
 ariaTest('Test aria-expanded on menuitems with submenus', exampleFile, 'sub-menuitem-aria-expanded', async (t) => {
-  
+
   const menubarMenuitems = await t.context.queryElements(t, ex.menubarMenuitemSelector);
 
   for (let submenuLocation of ex.submenuLocations) {
@@ -319,7 +319,7 @@ ariaTest('Test aria-expanded on menuitems with submenus', exampleFile, 'sub-menu
 });
 
 ariaTest('Test for role="none" on menu lis', exampleFile, 'sub-none-role', async (t) => {
-  
+
   const liElements = await t.context.queryElements(t, ex.anyMenuSelector + '>li');
 
   for (let liElement of liElements) {
@@ -337,7 +337,7 @@ ariaTest('Test for role="none" on menu lis', exampleFile, 'sub-none-role', async
 // KEYS
 
 ariaTest('Key ENTER open submenu', exampleFile, 'menubar-space-or-enter', async (t) => {
-  
+
   const menuitems = await t.context.queryElements(t, ex.menubarMenuitemSelector);
   const menus = await t.context.queryElements(t, ex.menuSelector);
   for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
@@ -360,13 +360,12 @@ ariaTest('Key ENTER open submenu', exampleFile, 'menubar-space-or-enter', async 
 
 
 ariaTest('Key SPACE open submenu', exampleFile, 'menubar-space-or-enter', async (t) => {
-  
   const menubaritems = await t.context.queryElements(t, ex.menubarMenuitemSelector);
   const menus = await t.context.queryElements(t, ex.menuSelector);
   for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
     // Send the SPACE key
-    await menubaritems[menuIndex].sendKeys(Key.SPACE);
+    await menubaritems[menuIndex].sendKeys(' ');
 
     // Test that the submenu is displayed
     t.true(
@@ -385,7 +384,7 @@ ariaTest('Key SPACE open submenu', exampleFile, 'menubar-space-or-enter', async 
 ariaTest('Key ARROW_RIGHT moves focus to next menubar item',
   exampleFile, 'menubar-right-arrow', async (t) => {
 
-    
+
     const menubaritems = await t.context.queryElements(t, ex.menubarMenuitemSelector);
 
     for (let menuIndex = 0; menuIndex < ex.numMenus + 1; menuIndex++) {
@@ -407,7 +406,7 @@ ariaTest('Key ARROW_RIGHT moves focus to next menubar item',
 ariaTest('Key ARROW_RIGHT moves focus to next menubar item',
   exampleFile, 'menubar-left-arrow', async (t) => {
 
-    
+
     const menubaritems = await t.context.queryElements(t, ex.menubarMenuitemSelector);
 
     // Send the ARROW_LEFT key to the first menuitem
@@ -436,7 +435,7 @@ ariaTest('Key ARROW_RIGHT moves focus to next menubar item',
 ariaTest('Key ARROW_UP opens submenu, focus on last item',
   exampleFile, 'menubar-up-arrow', async (t) => {
 
-    
+
     const menubaritems = await t.context.queryElements(t, ex.menubarMenuitemSelector);
     const menus = await t.context.queryElements(t, ex.menuSelector);
     for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
@@ -462,7 +461,7 @@ ariaTest('Key ARROW_UP opens submenu, focus on last item',
 
 ariaTest('Key ARROW_DOWN opens submenu, focus on first item',
   exampleFile, 'menubar-down-arrow', async (t) => {
-    
+
     const menubaritems = await t.context.queryElements(t, ex.menubarMenuitemSelector);
     const menus = await t.context.queryElements(t, ex.menuSelector);
     for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
@@ -485,7 +484,7 @@ ariaTest('Key ARROW_DOWN opens submenu, focus on first item',
   });
 
 ariaTest('Key HOME goes to first item in menubar', exampleFile, 'menubar-home', async (t) => {
-  
+
   const menubaritems = await t.context.queryElements(t, ex.menubarMenuitemSelector);
   for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
@@ -500,13 +499,13 @@ ariaTest('Key HOME goes to first item in menubar', exampleFile, 'menubar-home', 
     // Test that the focus is on the first item in the list
     t.true(
       await checkFocus(t,  ex.menubarMenuitemSelector, 0),
-      'Sending key "HOME" to menuitem ' + menuIndex + ' in menubar should move the focus to the first menuitem'
+      'Sending key "HOME" to menuitem ' + menuIndex + ' in menubar should move the foucs to the first menuitem'
     );
   }
 });
 
 ariaTest('Key END goes to last item in menubar', exampleFile, 'menubar-end', async (t) => {
-  
+
   const menubaritems = await t.context.queryElements(t, ex.menubarMenuitemSelector);
   for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
@@ -521,7 +520,7 @@ ariaTest('Key END goes to last item in menubar', exampleFile, 'menubar-end', asy
     // Test that the focus is on the last item in the list
     t.true(
       await checkFocus(t,  ex.menubarMenuitemSelector, ex.numMenus - 1),
-      'Sending key "END" to menuitem ' + menuIndex + ' in menubar should move the focus to the last menuitem'
+      'Sending key "END" to menuitem ' + menuIndex + ' in menubar should move the foucs to the last menuitem'
     );
   }
 });
@@ -529,7 +528,7 @@ ariaTest('Key END goes to last item in menubar', exampleFile, 'menubar-end', asy
 ariaTest('Character sends to menubar changes focus in menubar',
   exampleFile, 'menubar-character', async (t) => {
 
-    
+
     const charIndexTest = [
       { sendChar: 'z', sendIndex: 0, endIndex: 0 },
       { sendChar: 'a', sendIndex: 0, endIndex: 1 },
@@ -546,14 +545,14 @@ ariaTest('Character sends to menubar changes focus in menubar',
       // Test that the focus switches to the appropriate menuitem
       t.true(
         await checkFocus(t,  ex.menubarMenuitemSelector, test.endIndex),
-        'Sending character ' + test.sendChar + ' to menuitem ' + test.sendIndex + ' in menubar should move the focus to menuitem ' + test.endIndex
+        'Sending characther ' + test.sendChar + ' to menuitem ' + test.sendIndex + ' in menubar should move the foucs to menuitem ' + test.endIndex
       );
     }
   });
 
 // This test is failing due to a bug reported in issue: https://github.com/w3c/aria-practices/issues/907
 ariaTest.failing('ENTER in submenu selects item', exampleFile, 'submenu-space-or-enter', async (t) => {
-  
+
   // Test all the level one menuitems
 
   for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
@@ -613,7 +612,7 @@ ariaTest.failing('ENTER in submenu selects item', exampleFile, 'submenu-space-or
 
 // This test is failing due to a bug reported in issue: https://github.com/w3c/aria-practices/issues/907
 ariaTest.failing('SPACE in submenu selects item', exampleFile, 'submenu-space-or-enter', async (t) => {
-  
+
   // Test all the level one menuitems
 
   for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
@@ -629,7 +628,7 @@ ariaTest.failing('SPACE in submenu selects item', exampleFile, 'submenu-space-or
       const itemText = await items[itemIndex].getText();
 
       // send SPACE to the item
-      await items[itemIndex].sendKeys(Key.SPACE);
+      await items[itemIndex].sendKeys(' ');
       await waitForUrlChange(t);
 
       t.not(
@@ -657,7 +656,7 @@ ariaTest.failing('SPACE in submenu selects item', exampleFile, 'submenu-space-or
       // send SPACE to the item we are testing
       const items = await t.context.queryElements(t, submenuMenuitemSelector);
       const itemText = await items[itemIndex].getText();
-      await items[itemIndex].sendKeys(Key.SPACE);
+      await items[itemIndex].sendKeys(' ');
       await waitForUrlChange(t);
 
       t.not(
@@ -673,7 +672,7 @@ ariaTest.failing('SPACE in submenu selects item', exampleFile, 'submenu-space-or
 
 
 ariaTest('ESCAPE to submenu closes submenu', exampleFile, 'submenu-escape', async (t) => {
-  
+
   const menubaritems = await t.context.queryElements(t, ex.menubarMenuitemSelector);
   const menus = await t.context.queryElements(t, ex.menuSelector);
 
@@ -739,7 +738,7 @@ ariaTest('ESCAPE to submenu closes submenu', exampleFile, 'submenu-escape', asyn
 
 ariaTest('ARROW_RIGHT to submenu closes submenu and opens next', exampleFile, 'submenu-right-arrow', async (t) => {
 
-  
+
   const menubaritems = await t.context.queryElements(t, ex.menubarMenuitemSelector);
   const menus = await t.context.queryElements(t, ex.menuSelector);
 
@@ -831,7 +830,7 @@ ariaTest('ARROW_RIGHT to submenu closes submenu and opens next', exampleFile, 's
 });
 
 ariaTest('ARROW_LEFT to submenu closes submenu and opens next', exampleFile, 'submenu-left-arrow', async (t) => {
-  
+
   const menubaritems = await t.context.queryElements(t, ex.menubarMenuitemSelector);
   const menus = await t.context.queryElements(t, ex.menuSelector);
 
@@ -900,7 +899,7 @@ ariaTest('ARROW_LEFT to submenu closes submenu and opens next', exampleFile, 'su
 });
 
 ariaTest('ARROW_DOWN moves focus in menu', exampleFile, 'submenu-down-arrow', async (t) => {
-  
+
   const menubaritems = await t.context.queryElements(t, ex.menubarMenuitemSelector);
   const menus = await t.context.queryElements(t, ex.menuSelector);
 
@@ -966,7 +965,7 @@ ariaTest('ARROW_DOWN moves focus in menu', exampleFile, 'submenu-down-arrow', as
 
 
 ariaTest('ARROW_UP moves focus in menu', exampleFile, 'submenu-up-arrow', async (t) => {
-  
+
   const menubaritems = await t.context.queryElements(t, ex.menubarMenuitemSelector);
   const menus = await t.context.queryElements(t, ex.menuSelector);
 
@@ -1031,7 +1030,7 @@ ariaTest('ARROW_UP moves focus in menu', exampleFile, 'submenu-up-arrow', async 
 });
 
 ariaTest('HOME moves focus in menu', exampleFile, 'submenu-home', async (t) => {
-  
+
   const menubaritems = await t.context.queryElements(t, ex.menubarMenuitemSelector);
   const menus = await t.context.queryElements(t, ex.menuSelector);
 
@@ -1086,7 +1085,7 @@ ariaTest('HOME moves focus in menu', exampleFile, 'submenu-home', async (t) => {
 
 
 ariaTest('END moves focus in menu', exampleFile, 'submenu-end', async (t) => {
-  
+
   const menubaritems = await t.context.queryElements(t, ex.menubarMenuitemSelector);
   const menus = await t.context.queryElements(t, ex.menuSelector);
 
@@ -1141,7 +1140,7 @@ ariaTest('END moves focus in menu', exampleFile, 'submenu-end', async (t) => {
 
 
 ariaTest('Character sends to menubar changes focus in menubar', exampleFile, 'submenu-character', async (t) => {
-  
+
   const charIndexTest = [
     [ // Tests for menu dropdown 0
       { sendChar: 'a', sendIndex: 0, endIndex: 1 },
@@ -1175,7 +1174,7 @@ ariaTest('Character sends to menubar changes focus in menubar', exampleFile, 'su
       // Test that the focus switches to the appropriate menuitem
       t.true(
         await checkFocus(t, ex.menuMenuitemSelectors[menuIndex], test.endIndex),
-        'Sending character ' + test.sendChar + ' to menuitem ' + itemText + ' should move the focus to menuitem ' + test.endIndex
+        'Sending characther ' + test.sendChar + ' to menuitem ' + itemText + ' should move the focus to menuitem ' + test.endIndex
       );
     }
   }
@@ -1217,7 +1216,7 @@ ariaTest('Character sends to menubar changes focus in menubar', exampleFile, 'su
       // Test that the focus switches to the appropriate menuitem
       t.true(
         await checkFocus(t, submenuMenuitemSelector, test.endIndex),
-        'Sending character ' + test.sendChar + ' to menuitem ' + itemText + ' should move the focus to menuitem ' + test.endIndex
+        'Sending characther ' + test.sendChar + ' to menuitem ' + itemText + ' should move the focus to menuitem ' + test.endIndex
       );
     }
 

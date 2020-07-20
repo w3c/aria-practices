@@ -57,24 +57,11 @@
             </ul>
             <section aria-label="Coding Techniques">
               <ul id="myTabs" class="nav nav-tabs" role="tablist">
-                <li class="active"><a id="tab1" href="#tabpanel1" aria-controls="tabpanel1" role="tab" data-toggle="tab">ARIA Techniques</a></li>
-                <li><a id="tab2" href="#tabpanel2" aria-controls="tabpanel2"  role="tab" data-toggle="tab">HTML Techniques</a></li>
+                <li class="active"><a id="tab2" href="#tabpanel2" aria-controls="tabpanel2"  role="tab" data-toggle="tab">HTML Techniques</a></li>
+                <li><a id="tab1" href="#tabpanel1" aria-controls="tabpanel1" role="tab" data-toggle="tab">ARIA Techniques</a></li>
               </ul>
               <div class="tab-content">
-                <div id="tabpanel1" aria-labelledby="tab1" role="tabpanel" class="tab-pane active">
-                  <p>A <code>role="contentinfo"</code> attribute is used to define a <code>contentinfo</code> landmark.</p>
-                  <h3>ARIA Example</h3>
-                    <div class="code">
-                            &lt;div <strong>role="contentinfo"</strong>&gt;<br>
-                            <br>
-                            &nbsp;&nbsp;&lt;h2&gt;<em>Contact, Policies and Legal</em>&lt;h2&gt;<br>
-                            <br>
-                            &nbsp;&nbsp;.... <em>contentinfo area content</em> ....   <br>
-                            <br>
-                            &lt;/div&gt;<br>
-                    </div>
-                </div>
-                <div id="tabpanel2" aria-labelledby="tab2" role="tabpanel" class="tab-pane">
+                <div id="tabpanel2" aria-labelledby="tab2" role="tabpanel" class="tab-pane active">
                   <ul>
                     <li>The HTML <code>footer</code> element defines a <code>contentinfo</code> landmark when its context is the <code>body</code> element.</li>
                     <li>
@@ -98,6 +85,19 @@
                             &nbsp;&nbsp;.... <em>contentinfo area content</em> ....   <br>
                     <br>
                             <strong>&lt;/footer&gt;</strong>
+                    </div>
+                </div>
+                <div id="tabpanel1" aria-labelledby="tab1" role="tabpanel" class="tab-pane">
+                  <p>A <code>role="contentinfo"</code> attribute is used to define a <code>contentinfo</code> landmark.</p>
+                  <h3>ARIA Example</h3>
+                    <div class="code">
+                            &lt;div <strong>role="contentinfo"</strong>&gt;<br>
+                            <br>
+                            &nbsp;&nbsp;&lt;h2&gt;<em>Contact, Policies and Legal</em>&lt;h2&gt;<br>
+                            <br>
+                            &nbsp;&nbsp;.... <em>contentinfo area content</em> ....   <br>
+                            <br>
+                            &lt;/div&gt;<br>
                     </div>
                 </div>
               </div>
@@ -140,7 +140,7 @@
             W3C ARIA Authoring Practices Task Force
           </div>
           <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
-            Copyright 2016
+            Copyright 2020
           </div>
         </footer>
       </div>
