@@ -147,7 +147,7 @@ MenuButtonLinks.prototype.openPopup = function () {
 
 MenuButtonLinks.prototype.closePopup = function () {
   if (this.isOpen()) {
-    this.buttonNode.setAttribute('aria-expanded', 'false');
+    this.buttonNode.removeAttribute('aria-expanded');
     this.menuNode.style.display = 'none';
   }
 };

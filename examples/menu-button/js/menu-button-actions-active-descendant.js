@@ -155,8 +155,8 @@ MenuButtonActionsActiveDescendant.prototype.openPopup = function () {
 
 MenuButtonActionsActiveDescendant.prototype.closePopup = function () {
   if (this.isOpen()) {
-    this.buttonNode.setAttribute('aria-expanded', 'false');
-    this.buttonNode.setAttribute('aria-activedescendant', '');
+    this.buttonNode.removeAttribute('aria-expanded');
+    this.menuNode.setAttribute('aria-activedescendant', '');
     for (var i = 0; i < this.menuitemNodes.length; i++) {
       this.menuitemNodes[i].classList.remove('focus');
     }
