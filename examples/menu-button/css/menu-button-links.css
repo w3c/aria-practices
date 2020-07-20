@@ -22,20 +22,6 @@
   border-radius: 5px;
 }
 
-.menu-button-links button::after {
-  content: url('../images/down-arrow.svg');
-  padding-left: 0.25em;
-}
-
-.menu-button-links button:hover::after,
-.menu-button-links button:focus::after {
-  content: url('../images/down-arrow-focus.svg');
-}
-
-.menu-button-links button[aria-expanded="true"]::after {
-  content: url('../images/up-arrow-focus.svg');
-}
-
 .menu-button-links [role="menu"] {
   display: none;
   position: absolute;
@@ -62,6 +48,16 @@
   background-repeat: repeat-x;
 }
 
+.menu-button-links button svg.down {
+  padding-left: 0.125em;
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+.menu-button-links button[aria-expanded="true"] svg.down {
+  transform: rotate(180deg);
+}
+
 /* focus styling */
 
 .menu-button-links.focus {
@@ -80,10 +76,15 @@
 .menu-button-links button:focus,
 .menu-button-links button[aria-expanded=true],
 .menu-button-links [role="menuitem"]:focus {
-  padding: 3px;
-  border: 3px solid #034575;
   background: #034575;
   color: #fff;
   outline: none;
   margin: 0;
+}
+
+.menu-button-links button:hover,
+.menu-button-links button:focus,
+.menu-button-links [role="menuitem"]:focus {
+  padding: 3px;
+  border: 3px solid #034575;
 }

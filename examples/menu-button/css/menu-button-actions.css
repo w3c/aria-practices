@@ -22,20 +22,6 @@
   border-radius: 5px;
 }
 
-.menu-button-actions button::after {
-  content: url('../images/down-arrow.svg');
-  padding-left: 0.25em;
-}
-
-.menu-button-actions button:hover::after,
-.menu-button-actions button:focus::after {
-  content: url('../images/down-arrow-focus.svg');
-}
-
-.menu-button-actions button[aria-expanded="true"]::after {
-  content: url('../images/up-arrow-focus.svg');
-}
-
 .menu-button-actions [role="menu"] {
   display: none;
   position: absolute;
@@ -62,6 +48,17 @@
   background-repeat: repeat-x;
 }
 
+.menu-button-actions button svg.down {
+  padding-left: 0.125em;
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+.menu-button-actions button[aria-expanded="true"] svg.down {
+  transform: rotate(180deg);
+}
+
+
 /* focus styling */
 
 .menu-button-actions.focus {
@@ -78,12 +75,19 @@
 
 .menu-button-actions button:hover,
 .menu-button-actions button:focus,
+.menu-button-actions [role="menuitem"].focus,
 .menu-button-actions button[aria-expanded=true],
-.menu-button-actions [role="menuitem"]:focus,
-.menu-button-actions [role="menuitem"].focus {
-  padding: 3px;
-  border: 3px solid #034575;
+.menu-button-actions [role="menuitem"]:focus {
   background: #034575;
   color: #fff;
   margin: 0;
 }
+
+.menu-button-actions button:hover,
+.menu-button-actions button:focus,
+.menu-button-actions [role="menuitem"].focus,
+.menu-button-actions [role="menuitem"]:focus {
+  padding: 3px;
+  border: 3px solid #034575;
+}
+

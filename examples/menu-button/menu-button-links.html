@@ -57,6 +57,9 @@
               aria-controls="menu2"
               >
               WAI-ARIA Quick Links
+              <svg xmlns="http://www.w3.org/2000/svg" class="down" width="12" height="9" viewBox="0 0 12 9">
+                <polygon points="1 0, 11 0, 6 8"/>
+              </svg>
             </button>
 
             <ul id="menu2" role="menu" aria-labelledby="menubutton">
@@ -94,6 +97,19 @@
           </div>
         </div>
         <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
+      </section>
+
+      <section>
+        <h2>Accessibility Features</h2>
+        <ol>
+          <li>Down arrow icon provide a visual affordance the button opens a menu.</li>
+          <li>To support operating system high contrast settings:
+            <ul>
+              <li>Focus is highlighted by adding and removing a border around the menu item with focus.</li>
+              <li>The arrow icons indicating the current state of expandable menus use in-line SVG images with the CSS <code>currentColor</code> value for the <code>fill</code> and <code>stroke</code> properties of the <code>polygon</code> element.</li>
+            </ul>
+          </li>
+        </ol>
       </section>
 
       <section>
