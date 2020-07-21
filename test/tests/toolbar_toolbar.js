@@ -8,6 +8,7 @@ const assertRovingTabindex = require('../util/assertRovingTabindex');
 const assertHasFocus = require('../util/assertHasFocus');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertNoElements = require('../util/assertNoElements');
+const assertAttributeCanBeToggled = require('../util/assertAttributeCanBeToggled');
 
 const exampleFile = 'toolbar/toolbar.html';
 
@@ -23,10 +24,14 @@ const ex = {
     last:'#ex1 #link',
   },
   menuSelector: '#ex1 button[aria-haspopup]',
+  radioButtons: {
+    first: '#ex1 [role="radio"]:nth-child(1)',
+    second: '#ex1 [role="radio"]:nth-child(2)',
+    last: '#ex1 [role="radio"]:nth-child(1)',
+  },
   spinSelector: '#ex1 [role="spinbutton"]',
   tabbaleItemAfterToolbarSelector: '#textarea1',
   tabbaleItemBeforeToolbarSelector: 'body > main > p > a:last-of-type',
-  toolbarLabel: 'Example Toolbar',
   toolbarSelector: '#ex1 [role="toolbar"]'
 };
 
@@ -55,7 +60,7 @@ const sendKeyAndAssertSelectorIsHidden = async function (t, key, selector, selec
 }
 
 /**
- * Attribute Tests
+ * Toolbar
  */
 
 ariaTest('Toolbar element has role="toolbar"', exampleFile, 'toolbar-role', async (t) => {
@@ -71,21 +76,6 @@ ariaTest('Toolbar items support roving tabindex on toolbar items', exampleFile, 
   // Test all the toolbar items with roving tab index
   await assertRovingTabindex(t, ex.itemSelector, Key.ARROW_RIGHT);
 });
-
-/**
- * Keyboard & Focus Tests
- */
-
-ariaTest('TAB: Moves focus into the toolbar', exampleFile, 'toolbar-tab', async (t) => {
-  let tabTarget = ex.tabbaleItemBeforeToolbarSelector;
-  await t.context.session.findElement(By.css(tabTarget)).sendKeys(Key.TAB);
-  await assertHasFocus(t, ex.itemSelector);
-})
-
-ariaTest('TAB: Moves focus out of the toolbar', exampleFile, 'toolbar-tab', async (t) => {
-  await t.context.session.findElement(By.css(ex.itemSelector)).sendKeys(Key.TAB);
-  await assertHasFocus(t, ex.tabbaleItemAfterToolbarSelector);
-})
 
 ariaTest('ARROW_LEFT: If the first control has focus, focus moves to the last control.', exampleFile, 'toolbar-left-arrow', async (t) => {
   await t.context.session.findElement(By.css(ex.itemSelectors.first)).sendKeys(Key.ARROW_LEFT);
@@ -117,10 +107,13 @@ ariaTest('ARROW_RIGHT: If an item in the popup menu has focus, does nothing.', e
   await sendKeyAndAssertNoFocusChange(t, Key.ARROW_RIGHT, '[role="menuitemradio"]');
 });
 
-ariaTest('HOME: Moves focus to the first control.', exampleFile, 'toolbar-home', async (t) => {
-  await t.context.session.findElement(By.css(ex.itemSelectors.last)).sendKeys(Key.HOME);
-  await assertHasFocus(t, ex.itemSelectors.first);
+ariaTest('CLICK events on toolbar send focus to .item[tabindex="0"]', exampleFile, 'toolbar-item-tabindex', async (t) => {
+  // Set an item to active, tabindex=0  
+  await clickAndWait(t, ex.itemSelector);
+  await clickAndWait(t, ex.toolbarSelector);
+  await assertHasFocus(t, ex.itemSelector);
 });
+
 
 ariaTest('END: Moves focus to the last control.', exampleFile, 'toolbar-home', async (t) => {
   await t.context.session.findElement(By.css(ex.itemSelectors.first)).sendKeys(Key.END);
@@ -132,9 +125,85 @@ ariaTest('ESCAPE: Escape key hides any .popup-label', exampleFile, 'toolbar-togg
   await sendKeyAndAssertSelectorIsHidden(t, Key.ESCAPE, ex.itemSelectors.first, '.popup-label.show')
 })
 
-ariaTest('Click events on toolbar send focus to .item[tabindex="0"]', exampleFile, 'toolbar-item-tabindex', async (t) => {
-  // Set an item to active, tabindex=0  
-  await clickAndWait(t, ex.itemSelector);
-  await clickAndWait(t, ex.toolbarSelector);
+ariaTest('HOME: Moves focus to the first control.', exampleFile, 'toolbar-home', async (t) => {
+  await t.context.session.findElement(By.css(ex.itemSelectors.last)).sendKeys(Key.HOME);
+  await assertHasFocus(t, ex.itemSelectors.first);
+});
+
+ariaTest('TAB: Moves focus into the toolbar, to the first menu item', exampleFile, 'toolbar-tab', async (t) => {
+  let tabTarget = ex.tabbaleItemBeforeToolbarSelector;
+  await t.context.session.findElement(By.css(tabTarget)).sendKeys(Key.TAB);
   await assertHasFocus(t, ex.itemSelector);
+})
+
+ariaTest('TAB: Moves focus out of the toolbar, to the next control', exampleFile, 'toolbar-tab', async (t) => {
+  await t.context.session.findElement(By.css(ex.itemSelector)).sendKeys(Key.TAB);
+  await assertHasFocus(t, ex.tabbaleItemAfterToolbarSelector);
+});
+
+/**
+ * Radio Group
+ */
+
+ariaTest('ENTER: Toggle the pressed state of the button.', exampleFile, 'toolbar-toggle-enter-or-space', async (t) => {
+  // Move focus to 'Bold' togglable button
+  await assertAttributeCanBeToggled(t, ex.itemSelector, 'aria-pressed', Key.ENTER);
+});
+
+ariaTest('ENTER: If the focused radio button is checked, do nothing.', exampleFile, 'toolbar-radio-enter-or-space', async (t) => {
+  await assertAttributeValues(t, ex.radioButtons.second, 'aria-checked', 'false');
+  await t.context.session.findElement(By.css(ex.radioButtons.second)).sendKeys(Key.ENTER);
+  await assertAttributeValues(t, ex.radioButtons.second, 'aria-checked', 'true');
+  await t.context.session.findElement(By.css(ex.radioButtons.second)).sendKeys(Key.ENTER);
+  await assertAttributeValues(t, ex.radioButtons.second, 'aria-checked', 'true');
+});
+
+ariaTest('ENTER: Otherwise, uncheck the currently checked radio button and check the radio button that has focus.', exampleFile, 'toolbar-radio-enter-or-space', async (t) => {
+  await assertAttributeValues(t, ex.radioButtons.second, 'aria-checked', 'false');
+  await t.context.session.findElement(By.css(ex.radioButtons.second)).sendKeys(Key.ENTER);
+  await assertAttributeValues(t, ex.radioButtons.second, 'aria-checked', 'true');
+  await t.context.session.findElement(By.css(ex.radioButtons.first)).sendKeys(Key.ENTER);
+  await assertAttributeValues(t, ex.radioButtons.first, 'aria-checked', 'true');
+  await assertAttributeValues(t, ex.radioButtons.second, 'aria-checked', 'false');
+});
+
+ariaTest('SPACE: Toggle the pressed state of the button.', exampleFile, 'toolbar-toggle-enter-or-space', async (t) => {
+  await assertAttributeCanBeToggled(t, ex.itemSelector, 'aria-pressed', Key.SPACE);
+});
+
+ariaTest('SPACE: If the focused radio button is checked, do nothing.', exampleFile, 'toolbar-radio-enter-or-space', async (t) => {
+  await assertAttributeValues(t, ex.radioButtons.second, 'aria-checked', 'false');
+  await t.context.session.findElement(By.css(ex.radioButtons.second)).sendKeys(Key.SPACE);
+  await assertAttributeValues(t, ex.radioButtons.second, 'aria-checked', 'true');
+  await t.context.session.findElement(By.css(ex.radioButtons.second)).sendKeys(Key.SPACE);
+  await assertAttributeValues(t, ex.radioButtons.second, 'aria-checked', 'true');
+});
+
+ariaTest('SPACE: Otherwise, uncheck the currently checked radio button and check the radio button that has focus.', exampleFile, 'toolbar-radio-enter-or-space', async (t) => {
+  await assertAttributeValues(t, ex.radioButtons.second, 'aria-checked', 'false');
+  await t.context.session.findElement(By.css(ex.radioButtons.second)).sendKeys(Key.SPACE);
+  await assertAttributeValues(t, ex.radioButtons.second, 'aria-checked', 'true');
+  await t.context.session.findElement(By.css(ex.radioButtons.first)).sendKeys(Key.SPACE);
+  await assertAttributeValues(t, ex.radioButtons.first, 'aria-checked', 'true');
+  await assertAttributeValues(t, ex.radioButtons.second, 'aria-checked', 'false');
+});
+
+ariaTest('DOWN: Moves focus to the next radio button.', exampleFile, 'toolbar-radio-down-arrow', async (t) => {
+  await t.context.session.findElement(By.css(ex.radioButtons.first)).sendKeys(Key.DOWN);
+  await assertHasFocus(t, ex.radioButtons.second);
+});
+
+ariaTest('DOWN: If the last radio button has focus, focus moves to the first radio button.', exampleFile, 'toolbar-radio-down-arrow', async (t) => {
+  await t.context.session.findElement(By.css(ex.radioButtons.last)).sendKeys(Key.DOWN);
+  await assertHasFocus(t, ex.radioButtons.first);
+});
+
+ariaTest('UP: Moves focus to the next radio button.', exampleFile, 'toolbar-radio-up-arrow', async (t) => {
+  await t.context.session.findElement(By.css(ex.radioButtons.last)).sendKeys(Key.UP);
+  await assertHasFocus(t, ex.radioButtons.second);
+});
+
+ariaTest('UP: If the first radio button has focus, focus moves to the last radio button.', exampleFile, 'toolbar-radio-up-arrow', async (t) => {
+  await t.context.session.findElement(By.css(ex.radioButtons.first)).sendKeys(Key.UP);
+  await assertHasFocus(t, ex.radioButtons.last);
 });
