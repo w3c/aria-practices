@@ -311,12 +311,18 @@ DatePickerDialog.prototype.setTextboxDate = function (domNode) {
 DatePickerDialog.prototype.getDateFromTextbox = function () {
 
   var parts = this.textboxNode.value.split('/');
+  var month = parseInt(parts[0]);
+  var day = parseInt(parts[1]);
+  var year = parseInt(parts[2]);
 
   if ((parts.length === 3) &&
-      Number.isInteger(parseInt(parts[0])) &&
-      Number.isInteger(parseInt(parts[1])) &&
-      Number.isInteger(parseInt(parts[2]))) {
-    this.focusDay = new Date(parseInt(parts[2]), parseInt(parts[0]) - 1, parseInt(parts[1]));
+      Number.isInteger(month) &&
+      Number.isInteger(day) &&
+      Number.isInteger(year)) {
+      if (year < 100) {
+        year = 2000 + year;
+      }
+    this.focusDay = new Date(year, month-1, day);
     this.selectedDay = new Date(this.focusDay);
   }
   else {
