@@ -27,7 +27,7 @@ const ex = {
   radioButtons: {
     first: '#ex1 [role="radio"]:nth-child(1)',
     second: '#ex1 [role="radio"]:nth-child(2)',
-    last: '#ex1 [role="radio"]:nth-child(1)',
+    last: '#ex1 [role="radio"]:nth-child(3)',
   },
   spinSelector: '#ex1 [role="spinbutton"]',
   tabbaleItemAfterToolbarSelector: '#textarea1',
