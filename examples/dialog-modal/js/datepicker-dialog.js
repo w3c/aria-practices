@@ -93,7 +93,7 @@ DatePickerDialog.prototype.init = function () {
   }
 
   this.updateGrid();
-  this.close();
+  this.close(false);
   this.setDateForButtonLabel();
 };
 
