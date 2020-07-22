@@ -1,13 +1,6 @@
 .menu-button-actions {
   margin: 0;
-  margin-top: 4px;
-  margin-bottom: 4px;
-  padding: 7px;
-  font-size: 110%;
-  list-style: none;
-  background-color: #ddd;
-  border: #ddd solid 1px;
-  border-radius: 5px;
+  padding: 0;
 }
 
 .menu-button-actions button {
@@ -15,10 +8,10 @@
   padding: 6px;
   display: inline-block;
   position: relative;
-  background-color: #eee;
-  border: 0px solid #eee;
+  background-color: #034575;
+  border: 0px solid #034575;
   font-size: 0.9em;
-  color: black;
+  color: white;
   border-radius: 5px;
 }
 
@@ -61,11 +54,6 @@
 
 /* focus styling */
 
-.menu-button-actions.focus {
-  padding: 6px;
-  border: #034575 solid 2px;
-}
-
 .menu-button-actions [role="menu"] {
   padding: 7px 4px;
   border: 2px solid #034575;
@@ -75,19 +63,21 @@
 
 .menu-button-actions button:hover,
 .menu-button-actions button:focus,
-.menu-button-actions [role="menuitem"].focus,
-.menu-button-actions button[aria-expanded=true],
-.menu-button-actions [role="menuitem"]:focus {
-  background: #034575;
-  color: #fff;
+.menu-button-actions button[aria-expanded=true] {
+  padding: 4px;
+  border: 2px solid #034575;
+  background: #eee;
+  color: #222;
+  outline: none;
   margin: 0;
 }
 
-.menu-button-actions button:hover,
-.menu-button-actions button:focus,
 .menu-button-actions [role="menuitem"].focus,
 .menu-button-actions [role="menuitem"]:focus {
-  padding: 3px;
-  border: 3px solid #034575;
+  padding: 4px;
+  border: 2px solid #034575;
+  background: #034575;
+  color: #fff;
+  outline: none;
+  margin: 0;
 }
-
