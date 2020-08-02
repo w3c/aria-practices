@@ -42,7 +42,7 @@
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="ex1">
       <div role="table" aria-label="Students" aria-describedby="students_table_desc">
-        <div id="students_table_desc">Students currently enrolled in WAI-ARIA 101 for the coming semester</div>
+        <div role="caption" id="students_table_desc">Students currently enrolled in WAI-ARIA 101 for the coming semester</div>
         <div role="rowgroup">
           <div role="row">
             <span role="columnheader">First Name</span>
@@ -120,6 +120,12 @@
           </th>
           <td><code>div</code></td>
           <td>Refers to the element that serves as the caption for the table.</td>
+        </tr>
+        <tr data-test-id="caption-role">
+          <th scope="row"><code>caption</code></th>
+          <td></td>
+          <td><code>div</code></td>
+          <td>The element containing a description of the table contents.</td>
         </tr>
         <tr data-test-id="rowgroup-role">
           <th scope="row"><code>rowgroup</code></th>
