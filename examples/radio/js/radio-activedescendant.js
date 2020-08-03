@@ -27,6 +27,7 @@ var RadioGroupActiveDescendant = function (domNode) {
 
   this.firstRadioButton  = null;
   this.lastRadioButton   = null;
+  this.hasChecked = false;
 
   this.domNode.addEventListener('keydown',    this.handleKeydown.bind(this));
   this.domNode.addEventListener('focus',      this.handleFocus.bind(this));
@@ -41,6 +42,10 @@ var RadioGroupActiveDescendant = function (domNode) {
 
   for (var i = 0; i < rbs.length; i++) {
     var rb = rbs[i];
+    if (rb.getAttribute('aria-checked') === 'true') {
+      this.hasChecked = true;
+    }
+    rb.addEventListener('click',       this.handleClick.bind(this));
     this.radioButtons.push(rb);
     if (!this.firstRadioButton) {
       this.firstRadioButton = rb;
@@ -50,15 +55,22 @@ var RadioGroupActiveDescendant = function (domNode) {
   this.domNode.tabIndex = 0;
 };
 
-RadioGroupActiveDescendant.prototype.setChecked  = function (currentItem) {
+RadioGroupActiveDescendant.prototype.setChecked  = function (currentItem, flag) {
+  if (typeof flag !== 'boolean') {
+    flag = false;
+  }
+
   for (var i = 0; i < this.radioButtons.length; i++) {
     var rb = this.radioButtons[i];
     rb.setAttribute('aria-checked', 'false');
     rb.classList.remove('focus');
   }
-  currentItem.setAttribute('aria-checked', 'true');
   currentItem.classList.add('focus');
   this.domNode.setAttribute('aria-activedescendant', currentItem.id);
+  if (this.hasChecked || flag) {
+    currentItem.setAttribute('aria-checked', 'true');
+    this.hasChecked = true;
+  }
   this.domNode.focus();
 };
 
@@ -111,7 +123,7 @@ RadioGroupActiveDescendant.prototype.handleKeydown = function (event) {
   switch (event.key) {
     case ' ':
     case 'Enter':
-      this.setChecked(currentItem);
+      this.setChecked(currentItem, true);
       flag = true;
       break;
 
@@ -149,6 +161,10 @@ RadioGroupActiveDescendant.prototype.handleFocus = function () {
 RadioGroupActiveDescendant.prototype.handleBlur = function () {
   var currentItem = this.getCurrentRadioButton();
   currentItem.classList.remove('focus');
+};
+
+RadioGroupActiveDescendant.prototype.handleClick = function (event) {
+  this.setChecked(event.currentTarget, true);
 };
 
 
