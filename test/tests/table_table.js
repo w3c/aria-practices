@@ -9,7 +9,6 @@ const exampleFile = 'table/table.html';
 
 const ex = {
   tableSelector: '#ex1 [role="table"]',
-  captionSelector: '#ex1 [role="caption"]',
   numRowgroups: 2,
   numRows: 5,
   numColumnheaders: 4,
