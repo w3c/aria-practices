@@ -1,4 +1,4 @@
-
+'use strict';
 
 const { ariaTest } = require('..');
 const assertAriaDescribedby = require('../util/assertAriaDescribedby');
@@ -9,7 +9,6 @@ const exampleFile = 'table/table.html';
 
 const ex = {
   tableSelector: '#ex1 [role="table"]',
-  captionSelector: '#ex1 [role="caption"]',
   numRowgroups: 2,
   numRows: 5,
   numColumnheaders: 4,
@@ -30,12 +29,9 @@ ariaTest('"aria-describedby" attribute on table element', exampleFile, 'table-ar
     await assertAriaDescribedby(t, ex.tableSelector);
 });
 
-ariaTest('role="caption" element exists', exampleFile, 'caption-role', async (t) => {
-    await assertAriaRoles(t, 'ex1', 'caption', 1, 'div');
-});
 
 ariaTest('role="rowgroup" exists', exampleFile, 'rowgroup-role', async (t) => {
-
+  
   const rowgroups = await t.context.queryElements(t, ex.tableSelector + ' [role="rowgroup"]');
 
   t.is(
@@ -47,7 +43,7 @@ ariaTest('role="rowgroup" exists', exampleFile, 'rowgroup-role', async (t) => {
 
 
 ariaTest('role="row" exists', exampleFile, 'row-role', async (t) => {
-
+  
   const rows = await t.context.queryElements(t, ex.tableSelector + ' [role="rowgroup"] [role="row"]');
 
   t.is(
@@ -59,7 +55,7 @@ ariaTest('role="row" exists', exampleFile, 'row-role', async (t) => {
 
 
 ariaTest('role="columnheader" exists', exampleFile, 'columnheader-role', async (t) => {
-
+  
   const columnheaders = await t.context.queryElements(t, ex.tableSelector + ' [role="rowgroup"] [role="row"] [role="columnheader"]');
 
   t.is(
@@ -71,7 +67,7 @@ ariaTest('role="columnheader" exists', exampleFile, 'columnheader-role', async (
 });
 
 ariaTest('role="cell" exists', exampleFile, 'cell-role', async (t) => {
-
+  
   const cells = await t.context.queryElements(t, ex.tableSelector + ' [role="rowgroup"] [role="row"] [role="cell"]');
 
   t.is(
