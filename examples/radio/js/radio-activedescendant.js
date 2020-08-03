@@ -58,7 +58,7 @@ RadioGroupActiveDescendant.prototype.setChecked  = function (currentItem) {
   }
   currentItem.setAttribute('aria-checked', 'true');
   currentItem.classList.add('focus');
-  this.domNode.setAttribute('aria-activedescendant', currentItem.domNode.id);
+  this.domNode.setAttribute('aria-activedescendant', currentItem.id);
   this.domNode.focus();
 };
 
@@ -150,3 +150,13 @@ RadioGroupActiveDescendant.prototype.handleBlur = function () {
   var currentItem = this.getCurrentRadioButton();
   currentItem.classList.remove('focus');
 };
+
+
+// Initialize radio button group using aria-activedescendant
+
+window.addEventListener('load', function () {
+  var rgs = document.querySelectorAll('.radiogroup-activedescendant');
+  for(var i=0; i < rgs.length; i++) {
+    new RadioGroupActiveDescendant(rgs[i]);
+  }
+});
