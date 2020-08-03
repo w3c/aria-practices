@@ -6,29 +6,28 @@
 
     <!--  Core js and css shared by all examples; do not modify when using this template. -->
     <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
-    <link rel="stylesheet" href="../../css/core.css">
-    <script src="../../js/examples.js"></script>
-    <script src="../../js/highlight.pack.js"></script>
-    <script src="../../js/app.js"></script>
+    <link rel="stylesheet" href="../css/core.css">
+    <script src="../js/examples.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    <script src="../js/app.js"></script>
 
 <!--  CSS and Javascript for this example -->
-    <link rel="stylesheet" href="../css/radio.css">
-    <script src="js/radioGroupActiveDescendant.js" type="text/javascript"></script>
-    <script src="js/radioButtonActiveDescendant.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="css/radio.css">
+    <script src="js/radio-activedescendant.js" type="text/javascript"></script>
   </head>
   <body>
     <nav aria-label="Related Links" class="feedback">
       <ul>
-        <li><a href="../../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
+        <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
         <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
         <li><a href="https://github.com/w3c/aria-practices/projects/22">Related Issues</a></li>
-        <li><a href="../../../#radiobutton">Design Pattern</a></li>
+        <li><a href="../../#radiobutton">Design Pattern</a></li>
       </ul>
     </nav>
     <main role="main">
       <h1>Radio Group Example Using aria-activedescendant</h1>
       <p>
-        This example implements the features of the <a href="../../../#radiobutton">Radio Group Design Pattern</a>
+        This example implements the features of the <a href="../../#radiobutton">Radio Group Design Pattern</a>
         for two radio groups -- one for choosing a pizza crust and another for choosing a delivery method.
         This implementation uses <code>aria-activedescendant</code> for informing assistive technologies which radio button has visual focus.
       </p>
@@ -42,8 +41,7 @@
       <div id="ex1">
         <h3 id="group_label_1">Pizza Crust</h3>
 
-        <ul id="rg1"
-            class="radiogroup"
+        <ul class="radiogroup-activedescendant"
             role="radiogroup"
             aria-labelledby="group_label_1"
             aria-activedescendant="rb11"
@@ -67,8 +65,7 @@
 
         <h3 id="group_label_2">Pizza Delivery</h3>
 
-        <ul id="rg2"
-            class="radiogroup"
+        <ul class="radiogroup-activedescendant"
             role="radiogroup"
             aria-labelledby="group_label_2"
             aria-activedescendant="rb21"
@@ -89,13 +86,6 @@
             Dine in Restaurant
           </li>
         </ul>
-
-        <script type="text/javascript">
-          var rg1 = new RadioGroup(document.getElementById('rg1'));
-          rg1.init();
-          var rg2 = new RadioGroup(document.getElementById('rg2'));
-          rg2.init();
-        </script>
 
       </div>
       <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
@@ -122,7 +112,7 @@
           <strong>NOTE:</strong> When visual focus is on a radio button in the radio group, DOM focus remains on the radio group container and the value of <code>aria-activedescendant</code> on the radio group refers to the radio button that is visually indicated as focused.
           Where the following descriptions of keyboard commands mention focus, they are referring to the visual focus indicator, not DOM focus.
           For more information about this focus management technique, see
-          <a href="../../../#kbd_focus_activedescendant">Using aria-activedescendant to Manage Focus.</a>
+          <a href="../../#kbd_focus_activedescendant">Using aria-activedescendant to Manage Focus.</a>
         </p>
         <table aria-labelledby="kbd_label" class="def">
           <thead>
@@ -241,7 +231,7 @@
                   <li>Enables assistive technologies to know which element the application regards as focused while DOM focus remains on the  radio group element.</li>
                   <li>
                     For more information about this focus management technique, see
-                    <a href="../../../#kbd_focus_activedescendant">Using aria-activedescendant to Manage Focus.</a>
+                    <a href="../../#kbd_focus_activedescendant">Using aria-activedescendant to Manage Focus.</a>
                   </li>
                 </ul>
               </td>
@@ -289,8 +279,7 @@
         <h2>Javascript and CSS Source Code</h2>
         <ul>
             <li>CSS: <a href="../css/radio.css" type="tex/css">radio.css</a></li>
-            <li>Javascript: <a href="js/radioGroupActiveDescendant.js" type="text/javascript">radioGroupActiveDescendant.js</a></li>
-            <li>Javascript: <a href="js/radioButtonActiveDescendant.js" type="text/javascript">radioButtonActiveDescendant.js</a></li>
+            <li>Javascript: <a href="js/radio-activedescendant.js" type="text/javascript">radio-activedescendant.js</a></li>
         </ul>
       </section>
 
@@ -311,7 +300,7 @@
       </section>
     </main>
     <nav>
-      <a href="../../../#radiobutton"> Radio Button Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
+      <a href="../../#radiobutton"> Radio Button Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
     </nav>
   </body>
   </html>
