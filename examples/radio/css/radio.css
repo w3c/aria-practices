@@ -9,13 +9,13 @@
 }
 
 [role="radio"] {
-  border: 2px solid transparent;
+  padding: 4px;
+  padding-left: 30px;
+  padding-right: 8px;
+  border: 0px solid transparent;
   border-radius: 5px;
   display: inline-block;
   position: relative;
-  padding: 0.125em;
-  padding-left: 1.5em;
-  padding-right: 0.5em;
   cursor: default;
   outline: none;
 }
@@ -28,7 +28,7 @@
 [role="radio"]::after {
   position: absolute;
   top: 50%;
-  left: 7px;
+  left: 11px;
   transform: translate(-20%, -50%);
   content: '';
 }
@@ -38,7 +38,7 @@
   height: 14px;
   border: 1px solid hsl(0, 0%, 20%);
   border-radius: 100%;
-  background-image: linear-gradient(to bottom, hsl(300, 3%, 93%), #fff 60%);
+  background-image: linear-gradient(to bottom, hsl(300, 3%, 93%), #fff 80%);
 }
 
 [role="radio"]:active::before {
@@ -60,7 +60,7 @@
 
 [role="radio"][aria-checked="mixed"]:active::before,
 [role="radio"][aria-checked="true"]:active::before {
-  background-image: linear-gradient(to bottom, hsl(216, 80%, 57%), hsl(217, 95%, 68%) 60%);
+  background-image: linear-gradient(to bottom, hsl(216, 80%, 57%), hsl(217, 95%, 68%) 80%);
 }
 
 [role="radio"]:hover::before {
@@ -68,8 +68,16 @@
 }
 
 [role="radio"].focus {
-  border-color: hsl(216, 94%, 73%);
+  padding: 2px;
+  padding-left: 28px;
+  padding-right: 6px;
+  border: 2px solid hsl(216, 94%, 73%);
   background-color: hsl(216, 80%, 97%);
+}
+
+[role="radio"][aria-checked="true"]:focus::after,
+[role="radio"]:focus::before {
+  left: 9px;
 }
 
 [role="radio"]:hover {
