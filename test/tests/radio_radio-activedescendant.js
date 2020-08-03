@@ -100,11 +100,11 @@ ariaTest('Moves focus to first or checked item', exampleFile, 'key-tab', async (
 
 ariaTest('Selects radio item', exampleFile, 'key-space', async (t) => {
 
-  await t.context.session.findElement(By.css(ex.radiogroupSelectors[0])).sendKeys(Key.SPACE);
+  await t.context.session.findElement(By.css(ex.radiogroupSelectors[0])).sendKeys(' ');
   const firstCrustRadioOption = ex.radioSelectors[0] + ':nth-of-type(1)';
   await assertAttributeValues(t, firstCrustRadioOption, 'aria-checked', 'true');
 
-  await t.context.session.findElement(By.css(ex.radiogroupSelectors[1])).sendKeys(Key.SPACE);
+  await t.context.session.findElement(By.css(ex.radiogroupSelectors[1])).sendKeys(' ');
   const firstDeliveryRadioOption = ex.radioSelectors[1] + ':nth-of-type(1)';
   await assertAttributeValues(t, firstDeliveryRadioOption, 'aria-checked', 'true');
 });
