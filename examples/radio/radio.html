@@ -75,15 +75,10 @@
       <section>
         <h2>Accessibility Features</h2>
         <ul>
-          <li>Uses CSS attribute selectors for synchronizing <code>aria-checked</code> state with the visual state indicator.</li>
-          <li>
-            Uses CSS <code>:hover</code> and <code>:focus</code> pseudo-selectors for styling visual keyboard focus and hover.
-            <ul>
-              <li>Focus indicator encompasses both radio button and label, making it easier to perceive which option is being chosen.</li>
-              <li>Hover changes background of both radio button and label, making it easier to perceive that clicking either the label or button will activate the radio button.</li>
-              <li>Border is added and removed when a radio button receives and loses focus to support high contrast settings of operating systems.</li>
-            </ul>
-          </li>
+          <li>The value of <code>aria-checked</code> is synchronized with the visual indicator of the state of each radio with CSS attribute selectors.</li>
+          <li>To make it it easier to perceive which option is being chosen, the focus indicator encompasses both the radio button and its label.</li>
+          <li>To help users understand that a radio can be activated by clicking either the button or its label, hovering changes the background of both a radio button and its label.</li>
+          <li>To support operating system high contrast settings, a border is added and removed when a radio button receives and loses focus.</li>
         </ul>
       </section>
 
