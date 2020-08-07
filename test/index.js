@@ -1,7 +1,7 @@
 'use strict';
 
 // This change should cause all tests to run
-// 1
+// 2
 
 const path = require('path');
 const test = require('ava');
