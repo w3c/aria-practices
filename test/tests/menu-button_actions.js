@@ -95,6 +95,8 @@ ariaTest('tabindex="-1" on role="menuitem"', exampleFile, 'menuitem-tabindex', a
 
 ariaTest('"enter" on menu button', exampleFile, 'menu-button-key-open', async (t) => {
 
+  await new Promise(resolve => setTimeout(resolve, 5000));
+
   await t.context.session
     .findElement(By.css(ex.menubuttonSelector))
     .sendKeys(Key.ENTER);
