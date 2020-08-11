@@ -1,68 +1,70 @@
 #!/bin/bash
 
-if [[ "$CI" != "true" ]]
-then
-  # When running this script locally, compare the current branch to master
-  COMMIT_RANGE="..master"
+# if [[ "$CI" != "true" ]]
+# then
+#   # When running this script locally, compare the current branch to master
+#   COMMIT_RANGE="..master"
 
-elif [[ "$TRAVIS_PULL_REQUEST" != "false" ]]
-then
-  # If we are on a PR build, we can use TRAVIS_COMMIT_RANGE
-  COMMIT_RANGE=$TRAVIS_COMMIT_RANGE
+# elif [[ "$TRAVIS_PULL_REQUEST" != "false" ]]
+# then
+#   # If we are on a PR build, we can use TRAVIS_COMMIT_RANGE
+#   COMMIT_RANGE=$TRAVIS_COMMIT_RANGE
 
-else
-  # If we are on a branch build, and it has been force pushed, then TRAVIS_PULL_REQUEST will
-  # not contain useful information for the branch build.
-  COMMIT_RANGE="origin/master...$TRAVIS_BRANCH"
-  git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
-  git fetch origin master
-fi
+# else
+#   # If we are on a branch build, and it has been force pushed, then TRAVIS_PULL_REQUEST will
+#   # not contain useful information for the branch build.
+#   COMMIT_RANGE="origin/master...$TRAVIS_BRANCH"
+#   git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+#   git fetch origin master
+# fi
 
-AVACMD="npm run regression -- -t"
-ARGS=''
+# AVACMD="npm run regression -- -t"
+# ARGS=''
 
-TEST_FILES=$(git diff --name-only $COMMIT_RANGE | grep -oP 'test/tests/\K.*' | uniq)
-TEST_INFRA=$(git diff --name-only $COMMIT_RANGE | grep -oP 'test/(util|index)')
+# TEST_FILES=$(git diff --name-only $COMMIT_RANGE | grep -oP 'test/tests/\K.*' | uniq)
+# TEST_INFRA=$(git diff --name-only $COMMIT_RANGE | grep -oP 'test/(util|index)')
 
-EXAMPLE_DIRS=$(git diff --name-only $COMMIT_RANGE | grep -oP 'examples/\K[\w-]+(?=/)' | uniq)
-EXAMPLE_INFRA=$(echo "$EXAMPLE_DIRS" | grep -P '^(js|css)$')
+# EXAMPLE_DIRS=$(git diff --name-only $COMMIT_RANGE | grep -oP 'examples/\K[\w-]+(?=/)' | uniq)
+# EXAMPLE_INFRA=$(echo "$EXAMPLE_DIRS" | grep -P '^(js|css)$')
 
-PACKAGE_UPDATE=$(git diff --name-only $COMMIT_RANGE | grep -P '(package\.json)')
+# PACKAGE_UPDATE=$(git diff --name-only $COMMIT_RANGE | grep -P '(package\.json)')
 
-if [[ $TEST_INFRA || $EXAMPLE_INFRA || $PACKAGE_UPDATE ]]
-then
+# if [[ $TEST_INFRA || $EXAMPLE_INFRA || $PACKAGE_UPDATE ]]
+# then
 
-    # If the example/js or example/css directories or the test/index.js or the test/utils.js
-    # or the package.json files have been edited, run all tests.
+#     # If the example/js or example/css directories or the test/index.js or the test/utils.js
+#     # or the package.json files have been edited, run all tests.
 
-    ARGS="test/tests/*.js"
+#     ARGS="test/tests/*.js"
 
-else
+# else
 
-  # Otherwise, run only relevant tests
+#   # Otherwise, run only relevant tests
 
-  for D in $EXAMPLE_DIRS
-  do
-    # Remove this if statement when we add regression tests for landmark pages
-    if [[ $D != 'landmarks' ]]
-    then
-      ARGS="${ARGS} test/tests/${D}*.js"
-    fi
-  done
+#   for D in $EXAMPLE_DIRS
+#   do
+#     # Remove this if statement when we add regression tests for landmark pages
+#     if [[ $D != 'landmarks' ]]
+#     then
+#       ARGS="${ARGS} test/tests/${D}*.js"
+#     fi
+#   done
 
-  for F in $TEST_FILES
-  do
-    ARGS="${ARGS} test/tests/${F}"
-  done
-fi
+#   for F in $TEST_FILES
+#   do
+#     ARGS="${ARGS} test/tests/${F}"
+#   done
+# fi
 
-# If there are no arguments, no regression test relevant files have been edited
-if [[ -z $ARGS ]]
-then
-  echo "Examples files were not updated, not running example regression tests."
-  exit
-fi
+# # If there are no arguments, no regression test relevant files have been edited
+# if [[ -z $ARGS ]]
+# then
+#   echo "Examples files were not updated, not running example regression tests."
+#   exit
+# fi
 
-echo "$" $AVACMD $ARGS
+# echo "$" $AVACMD $ARGS
 
-$AVACMD $ARGS
+# $AVACMD $ARGS
+npm run regression -- --verbose -t test/tests/menu-button_actions-active-descendant.js test/tests/menu-button_actions.js test/tests/menu-button_links.js
+
