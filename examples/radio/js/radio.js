@@ -7,7 +7,7 @@
 *   Desc:   Radio group widget that implements ARIA Authoring Practices
 */
 
-'use strict'
+'use strict';
 
 var RadioGroup = function (domNode) {
 
