@@ -38,11 +38,6 @@
   height: 14px;
   border: 2px solid hsl(0, 0%, 40%);
   border-radius: 100%;
-  background-image: linear-gradient(to bottom, hsl(300, 3%, 93%), #fff 60%);
-}
-
-[role="radio"]:active::before {
-  background-image: linear-gradient(to bottom, hsl(300, 3%, 73%), hsl(300, 3%, 93%));
 }
 
 [role="radio"][aria-checked="true"]::before {

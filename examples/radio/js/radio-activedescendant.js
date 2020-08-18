@@ -7,18 +7,8 @@
 *   Desc:   Radio group widget using aria-activedescendant that implements ARIA Authoring Practices
 */
 
+'use strict'
 
-
-/*
-*   @constructor radioGroupActiveDescendent
-*
-*   @desc
-*       Wrapper for ARIA radiogroup control using ARIA active-descendant.  Any descendant
-*       element with role=radio will be included in this radiogroup as a radiobutton2.
-*
-*   @param domNode
-*       The DOM element node that serves as the radiogroup container.
-*/
 var RadioGroupActiveDescendant = function (domNode) {
 
   this.domNode   = domNode;
@@ -28,9 +18,9 @@ var RadioGroupActiveDescendant = function (domNode) {
   this.firstRadioButton  = null;
   this.lastRadioButton   = null;
 
-  this.domNode.addEventListener('keydown',    this.handleKeydown.bind(this));
-  this.domNode.addEventListener('focus',      this.handleFocus.bind(this));
-  this.domNode.addEventListener('blur',       this.handleBlur.bind(this));
+  this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
+  this.domNode.addEventListener('focus', this.handleFocus.bind(this));
+  this.domNode.addEventListener('blur', this.handleBlur.bind(this));
 
   // initialize
   if (!this.domNode.getAttribute('role')) {
@@ -41,6 +31,7 @@ var RadioGroupActiveDescendant = function (domNode) {
 
   for (var i = 0; i < rbs.length; i++) {
     var rb = rbs[i];
+    rb.addEventListener('click', this.handleClick.bind(this));
     this.radioButtons.push(rb);
     if (!this.firstRadioButton) {
       this.firstRadioButton = rb;
@@ -139,6 +130,10 @@ RadioGroupActiveDescendant.prototype.handleKeydown = function (event) {
     event.stopPropagation();
     event.preventDefault();
   }
+};
+
+RadioGroupActiveDescendant.prototype.handleClick = function (event) {
+  this.setChecked(event.currentTarget);
 };
 
 RadioGroupActiveDescendant.prototype.handleFocus = function () {
