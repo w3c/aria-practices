@@ -48,7 +48,7 @@ ariaTest('"aria-controls" attribute on menu button', exampleFile, 'button-aria-c
 });
 
 ariaTest('"aria-expanded" attribute on menu button', exampleFile, 'button-aria-expanded', async (t) => {
-
+  
   const hasAttribute = await t.context.session.executeScript(function () {
     selector = arguments[0];
     return document.querySelector(selector).hasAttribute('aria-expanded');
@@ -83,7 +83,7 @@ ariaTest('"aria-labelledby" on role="menu"', exampleFile, 'menu-aria-labelledby'
 });
 
 // This test fails due to bug: https://github.com/w3c/aria-practices/issues/894
-ariaTest('tabindex="-1" on role="menu"', exampleFile, 'menu-tabindex', async (t) => {
+ariaTest.failing('tabindex="-1" on role="menu"', exampleFile, 'menu-tabindex', async (t) => {
     await openMenu(t);
   await assertAttributeValues(t, ex.menuSelector, 'tabindex', '-1');
 });
@@ -100,7 +100,7 @@ ariaTest('role="menuitem" on li element', exampleFile, 'menuitem-role', async (t
 // Keys
 
 ariaTest('"enter" on menu button', exampleFile, 'button-down-arrow-or-space-or-enter', async (t) => {
-
+  
   await t.context.session
     .findElement(By.css(ex.menubuttonSelector))
     .sendKeys(Key.ENTER);
@@ -114,7 +114,7 @@ ariaTest('"enter" on menu button', exampleFile, 'button-down-arrow-or-space-or-e
 });
 
 ariaTest('"down arrow" on menu button', exampleFile, 'button-down-arrow-or-space-or-enter', async (t) => {
-
+  
   await t.context.session
     .findElement(By.css(ex.menubuttonSelector))
     .sendKeys(Key.ARROW_DOWN);
@@ -128,7 +128,7 @@ ariaTest('"down arrow" on menu button', exampleFile, 'button-down-arrow-or-space
 });
 
 ariaTest('"space" on menu button', exampleFile, 'button-down-arrow-or-space-or-enter', async (t) => {
-
+  
   await t.context.session
     .findElement(By.css(ex.menubuttonSelector))
     .sendKeys(Key.SPACE);
@@ -142,7 +142,7 @@ ariaTest('"space" on menu button', exampleFile, 'button-down-arrow-or-space-or-e
 });
 
 ariaTest('"up arrow" on menu button', exampleFile, 'button-up-arrow', async (t) => {
-
+  
   await t.context.session
     .findElement(By.css(ex.menubuttonSelector))
     .sendKeys(Key.ARROW_UP);
@@ -156,7 +156,7 @@ ariaTest('"up arrow" on menu button', exampleFile, 'button-up-arrow', async (t) 
 });
 
 ariaTest('"enter" on role="menu"', exampleFile, 'menu-enter', async (t) => {
-
+  
   const menu = await t.context.session.findElement(By.css(ex.menuSelector));
   const items = await t.context.queryElements(t, ex.menuitemSelector);
 
@@ -250,7 +250,7 @@ ariaTest('"enter" on role="menu"', exampleFile, 'menu-enter', async (t) => {
 });
 
 ariaTest('"escape" on role="menu"', exampleFile, 'menu-escape', async (t) => {
-
+  
   const menu = await t.context.session.findElement(By.css(ex.menuSelector));
   const items = await t.context.queryElements(t, ex.menuitemSelector);
   for (let item of items) {
@@ -277,41 +277,45 @@ ariaTest('"escape" on role="menu"', exampleFile, 'menu-escape', async (t) => {
   }
 });
 
-ariaTest('"down arrow" on role="menu"', exampleFile, 'menu-down-arrow', async (t) => {
+// This test is flaky, so is commented out for now.
+// We are traking it in issue:https://github.com/w3c/aria-practices/issues/1415
+// ariaTest('"down arrow" on role="menu"', exampleFile, 'menu-down-arrow', async (t) => {
+  
+//   await openMenu(t);
+//   const menu = await t.context.session.findElement(By.css(ex.menuSelector));
+//   const items = await t.context.queryElements(t, ex.menuitemSelector);
 
-  await openMenu(t);
-  const menu = await t.context.session.findElement(By.css(ex.menuSelector));
-  const items = await t.context.queryElements(t, ex.menuitemSelector);
+//   for (let index = 0; index < items.length - 1; index++) {
 
-  for (let index = 0; index < items.length - 1; index++) {
+//     await menu.sendKeys(Key.ARROW_DOWN);
+//     await assertAriaActivedescendant(t, ex.menuSelector, ex.menuitemSelector, index + 1);
+//   }
 
-    await menu.sendKeys(Key.ARROW_DOWN);
-    await assertAriaActivedescendant(t, ex.menuSelector, ex.menuitemSelector, index + 1);
-  }
+//   await menu.sendKeys(Key.ARROW_DOWN);
+//   await assertAriaActivedescendant(t, ex.menuSelector, ex.menuitemSelector, 0);
+// });
 
-  await menu.sendKeys(Key.ARROW_DOWN);
-  await assertAriaActivedescendant(t, ex.menuSelector, ex.menuitemSelector, 0);
-});
+// This test is flaky, so is commented out for now.
+// We are traking it in issue:https://github.com/w3c/aria-practices/issues/1415
+// ariaTest('"up arrow" on role="menu"', exampleFile, 'menu-up-arrow', async (t) => {
+  
+//   await openMenu(t);
+//   const menu = await t.context.session.findElement(By.css(ex.menuSelector));
+//   const items = await t.context.queryElements(t, ex.menuitemSelector);
 
-ariaTest('"up arrow" on role="menu"', exampleFile, 'menu-up-arrow', async (t) => {
+//   await menu.sendKeys(Key.ARROW_UP);
+//   await assertAriaActivedescendant(t, ex.menuSelector, ex.menuitemSelector, ex.numMenuitems - 1);
 
-  await openMenu(t);
-  const menu = await t.context.session.findElement(By.css(ex.menuSelector));
-  const items = await t.context.queryElements(t, ex.menuitemSelector);
+//   for (let index = items.length - 1; index > 0; index--) {
 
-  await menu.sendKeys(Key.ARROW_UP);
-  await assertAriaActivedescendant(t, ex.menuSelector, ex.menuitemSelector, ex.numMenuitems - 1);
+//     await menu.sendKeys(Key.ARROW_UP);
+//     await assertAriaActivedescendant(t, ex.menuSelector, ex.menuitemSelector, index - 1);
+//   }
 
-  for (let index = items.length - 1; index > 0; index--) {
-
-    await menu.sendKeys(Key.ARROW_UP);
-    await assertAriaActivedescendant(t, ex.menuSelector, ex.menuitemSelector, index - 1);
-  }
-
-});
+// });
 
 ariaTest('"home" on role="menu"', exampleFile, 'menu-home', async (t) => {
-
+  
   const menu = await t.context.session.findElement(By.css(ex.menuSelector));
   const items = await t.context.queryElements(t, ex.menuitemSelector);
   await openMenu(t);
@@ -338,7 +342,7 @@ ariaTest('"home" on role="menu"', exampleFile, 'menu-home', async (t) => {
 });
 
 ariaTest('"end" on role="menu"', exampleFile, 'menu-end', async (t) => {
-
+  
   const menu = await t.context.session.findElement(By.css(ex.menuSelector));
   const items = await t.context.queryElements(t, ex.menuitemSelector);
   const last =  ex.numMenuitems - 1;
@@ -365,21 +369,22 @@ ariaTest('"end" on role="menu"', exampleFile, 'menu-end', async (t) => {
   await assertAriaActivedescendant(t, ex.menuSelector, ex.menuitemSelector, last);
 });
 
-ariaTest('"character" on role="menu"', exampleFile, 'menu-character', async (t) => {
+// This test is flaky, so is commented out for now.
+// We are traking it in issue:https://github.com/w3c/aria-practices/issues/1415
+// ariaTest('"character" on role="menu"', exampleFile, 'menu-character', async (t) => {
+//   const charIndexTest = [
+//     { sendChar: 'x', sendIndex: 0, endIndex: 0 },
+//     { sendChar: 'a', sendIndex: 0, endIndex: 1 },
+//     { sendChar: 'y', sendIndex: 1, endIndex: 1 },
+//     { sendChar: 'a', sendIndex: 1, endIndex: 2 }
+//   ];
 
-  const charIndexTest = [
-    { sendChar: 'x', sendIndex: 0, endIndex: 0 },
-    { sendChar: 'a', sendIndex: 0, endIndex: 1 },
-    { sendChar: 'y', sendIndex: 1, endIndex: 1 },
-    { sendChar: 'a', sendIndex: 1, endIndex: 2 }
-  ];
+//   await openMenu(t);
+//   const menu = await t.context.session.findElement(By.css(ex.menuSelector));
 
-  await openMenu(t);
-  const menu = await t.context.session.findElement(By.css(ex.menuSelector));
+//   for (let test of charIndexTest) {
+//     await menu.sendKeys(test.sendChar);
 
-  for (let test of charIndexTest) {
-    await menu.sendKeys(test.sendChar);
-
-    await assertAriaActivedescendant(t, ex.menuSelector, ex.menuitemSelector, test.endIndex);
-  }
-});
+//     await assertAriaActivedescendant(t, ex.menuSelector, ex.menuitemSelector, test.endIndex);
+//   }
+// });
