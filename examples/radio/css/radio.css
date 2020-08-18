@@ -36,7 +36,7 @@
 [role="radio"]::before {
   width: 14px;
   height: 14px;
-  border: 2px solid hsl(0, 0%, 66%);
+  border: 2px solid hsl(0, 0%, 40%);
   border-radius: 100%;
   background-image: linear-gradient(to bottom, hsl(300, 3%, 93%), #fff 60%);
 }
