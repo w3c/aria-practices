@@ -50,7 +50,7 @@
   display: block;
   border: 4px solid #fff;
   border-radius: 100%;
-  transform: translate(25%, -50%);
+  transform: translate(20%, -50%);
 }
 
 [role="radio"][aria-checked="true"]:active::before {
@@ -84,5 +84,5 @@
 
 [role="radio"][aria-checked="true"].focus::after,
 [role="radio"][aria-checked="true"]:hover::after {
-  transform: translate(0%, -50%);
+  transform: translate(-6%, -50%);
 }

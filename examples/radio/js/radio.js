@@ -80,8 +80,7 @@ RadioGroup.prototype.setCheckedToNextItem = function (currentItem) {
 
 RadioGroup.prototype.handleKeydown = function (event) {
   var tgt = event.currentTarget,
-    flag = false,
-    clickEvent;
+    flag = false;
 
   switch (event.key) {
     case ' ':
