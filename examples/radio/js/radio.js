@@ -9,16 +9,16 @@
 
 'use strict';
 
-var RadioGroup = function (domNode) {
+var RadioGroup = function (groupNode) {
 
-  this.domNode   = domNode;
+  this.groupNode = groupNode;
 
   this.radioButtons = [];
 
   this.firstRadioButton  = null;
   this.lastRadioButton   = null;
 
-  var rbs = this.domNode.querySelectorAll('[role=radio]');
+  var rbs = this.groupNode.querySelectorAll('[role=radio]');
 
   for (var i = 0; i < rbs.length; i++) {
     var rb = rbs[i];

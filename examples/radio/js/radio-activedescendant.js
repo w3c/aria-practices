@@ -9,25 +9,25 @@
 
 'use strict';
 
-var RadioGroupActiveDescendant = function (domNode) {
+var RadioGroupActiveDescendant = function (groupNode) {
 
-  this.domNode   = domNode;
+  this.groupNode = groupNode;
 
   this.radioButtons = [];
 
   this.firstRadioButton  = null;
   this.lastRadioButton   = null;
 
-  this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
-  this.domNode.addEventListener('focus', this.handleFocus.bind(this));
-  this.domNode.addEventListener('blur', this.handleBlur.bind(this));
+  this.groupNode.addEventListener('keydown', this.handleKeydown.bind(this));
+  this.groupNode.addEventListener('focus', this.handleFocus.bind(this));
+  this.groupNode.addEventListener('blur', this.handleBlur.bind(this));
 
   // initialize
-  if (!this.domNode.getAttribute('role')) {
-    this.domNode.setAttribute('role', 'radiogroup');
+  if (!this.groupNode.getAttribute('role')) {
+    this.groupNode.setAttribute('role', 'radiogroup');
   }
 
-  var rbs = this.domNode.querySelectorAll('[role=radio]');
+  var rbs = this.groupNode.querySelectorAll('[role=radio]');
 
   for (var i = 0; i < rbs.length; i++) {
     var rb = rbs[i];
@@ -38,7 +38,7 @@ var RadioGroupActiveDescendant = function (domNode) {
     }
     this.lastRadioButton = rb;
   }
-  this.domNode.tabIndex = 0;
+  this.groupNode.tabIndex = 0;
 };
 
 RadioGroupActiveDescendant.prototype.setChecked  = function (currentItem) {
@@ -49,8 +49,8 @@ RadioGroupActiveDescendant.prototype.setChecked  = function (currentItem) {
   }
   currentItem.setAttribute('aria-checked', 'true');
   currentItem.classList.add('focus');
-  this.domNode.setAttribute('aria-activedescendant', currentItem.id);
-  this.domNode.focus();
+  this.groupNode.setAttribute('aria-activedescendant', currentItem.id);
+  this.groupNode.focus();
 };
 
 RadioGroupActiveDescendant.prototype.setCheckedToPreviousItem = function (currentItem) {
@@ -78,9 +78,9 @@ RadioGroupActiveDescendant.prototype.setCheckedToNextItem = function (currentIte
 };
 
 RadioGroupActiveDescendant.prototype.getCurrentRadioButton = function () {
-  var id = this.domNode.getAttribute('aria-activedescendant');
+  var id = this.groupNode.getAttribute('aria-activedescendant');
   if (!id) {
-    this.domNode.setAttribute('aria-activedescendant', this.firstRadioButton.id);
+    this.groupNode.setAttribute('aria-activedescendant', this.firstRadioButton.id);
     return this.firstRadioButton;
   }
   for (var i = 0; i < this.radioButtons.length; i++) {
@@ -89,7 +89,7 @@ RadioGroupActiveDescendant.prototype.getCurrentRadioButton = function () {
       return rb;
     }
   }
-  this.domNode.setAttribute('aria-activedescendant', this.firstRadioButton.id);
+  this.groupNode.setAttribute('aria-activedescendant', this.firstRadioButton.id);
   return this.firstRadioButton;
 };
 
