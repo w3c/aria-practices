@@ -29,7 +29,6 @@ jobs:
     - stage: Lint
       name: Spellcheck
       script: npm run lint:spelling
-      env: ALLOW_FAILURE=true
     - stage: Lint
       name: Regression Tests Coverage Report
       script: node test/util/report.js
