@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Navigation Menu Button Example | WAI-ARIA Authoring Practices 1.2</title>
+
+    <!--  Core js and css shared by all examples; do not modify when using this template. -->
+    <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
+    <link rel="stylesheet" href="../css/core.css">
+    <script src="../js/examples.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    <script src="../js/app.js"></script>
+
+    <!--  JS and CSS for this example -->
+    <link href="css/menu-button-navigation.css" rel="stylesheet">
+    <link href="css/menu-button-links.css" rel="stylesheet">
+    <script src="js/menu-button-links.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <nav aria-label="Related Links" class="feedback">
+      <ul>
+        <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
+        <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
+        <li><a href="https://github.com/w3c/aria-practices/projects/5">Related Issues</a></li>
+        <li><a href="../../#menubutton">Design Pattern</a></li>
+      </ul>
+    </nav>
+    <main>
+      <h1>Navigation Menu Button Example</h1>
+      <p>
+        This example demonstrates the
+        <a href="../../#menubutton">menu button design pattern</a>
+        for a button that displays a menu of link targets.
+        The menu items are made from HTML links and maintain their HTML link behaviors.
+        That is, activating a menuitem loads the link target, and the browser's link context menu and associated actions are available.
+      </p>
+      <p>
+        In this implementation, an HTML <code>button</code> element reveals a menu structure made with an HTML <code>ul</code> element.
+        The <code>menuitem</code> role is on the HTML <code>a</code> element contained by each <code>li</code> element so link behaviors are available when focus is set on the menu item.
+        Another reason the <code>menuitem</code> role is not on the <code>li</code> element is that the semantics of descendants of ARIA <code>menuitem</code> elements are not exposed in the accessibility tree.
+        That is, an item in a menu can only be a <code>menuitem</code> because accessibility APIs do not enable assistive technologies to render elements contained inside of an item in a menu.
+        For a more detailed description of this constraint, see
+        <a href="../../#children_presentational">Roles That Automatically Hide Semantics by Making Their Descendants Presentational.</a>
+      </p>
+      <p>Similar examples include: </p>
+      <ul>
+        <li><a href="menu-button-actions.html">Action Menu Button Example Using element.focus()</a>: A button that opens a menu of actions or commands where focus in the menu is managed using <code>element.focus()</code>.</li>
+        <li><a href="menu-button-actions-active-descendant.html">Action Menu Button Example Using aria-activedescendant</a>: A button that opens a menu of actions or commands where focus in the menu is managed using aria-activedescendant.</li>
+      </ul>
+      <section>
+        <h2 id="ex_label">Example</h2>
+        <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
+        <div id="ex1">
+          <nav class="menu-button-navigation" aria-label="top">
+            <div class="menu-button-links">
+              <button type="button"
+                id="id-mb-about"
+                aria-haspopup="true"
+                aria-controls="id-menu-about"
+                >
+                About
+                <svg xmlns="http://www.w3.org/2000/svg" class="down" width="12" height="9" viewBox="0 0 12 9">
+                  <polygon points="1 0, 11 0, 6 8"/>
+                </svg>
+              </button>
+
+              <ul id="id-menu-about" role="menu" aria-labelledby="id-mb-about">
+                <li role="none">
+                  <a role="menuitem" href="mb-about.html#overview">
+                    Overview
+                  </a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="mb-about.html#administration">
+                    Administration
+                  </a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="mb-about.html#facts">
+                    Facts
+                  </a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="mb-about.html#tours">
+                    Campus Tours
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="menu-button-links">
+              <button type="button"
+                id="id-mb-admissions"
+                aria-haspopup="true"
+                aria-controls="id-menu-admissions"
+                >
+                Admissions
+                <svg xmlns="http://www.w3.org/2000/svg" class="down" width="12" height="9" viewBox="0 0 12 9">
+                  <polygon points="1 0, 11 0, 6 8"/>
+                </svg>
+              </button>
+
+              <ul id="id-menu-admissions" role="menu" aria-labelledby="id-mb-admissions">
+                <li role="none">
+                  <a role="menuitem" href="mb-admissions.html#apply">
+                    Apply
+                  </a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="mb-admissions.html#tuition">
+                    Tuition
+                  </a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="mb-admissions.html#sign-up">
+                    Sign Up
+                  </a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="mb-admissions.html#visit">
+                    Visit
+                  </a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="mb-admissions.html#photo">
+                    Photo Tour
+                  </a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="mb-admissions.html#connect">
+                    Connect
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="menu-button-links">
+              <button type="button"
+                id="id-mb-academics"
+                aria-haspopup="true"
+                aria-controls="id-menu-academics"
+                >
+                Academics
+                <svg xmlns="http://www.w3.org/2000/svg" class="down" width="12" height="9" viewBox="0 0 12 9">
+                  <polygon points="1 0, 11 0, 6 8"/>
+                </svg>
+              </button>
+
+              <ul id="id-menu-academics" role="menu" aria-labelledby="id-mb-academics">
+                <li role="none">
+                  <a role="menuitem" href="mb-academics.html#colleges">
+                    Colleges & Schools
+                  </a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="mb-academics.html#programs">
+                    Programs of Study
+                  </a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="mb-academics.html#honors">
+                    Honors Programs
+                  </a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="mb-academics.html#online">
+                    Online Courses
+                  </a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="mb-academics.html#explorer">
+                    Course Explorer
+                  </a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="mb-academics.html#register">
+                    Register for Class
+                  </a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="mb-academics.html#calendar">
+                    Academic Calendar
+                  </a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="mb-academics.html#transcripts">
+                    Transcripts
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
+      </section>
+
+      <section>
+        <h2>Accessibility Features</h2>
+        <ol>
+          <li>The <code>nav</code> element identifies the collection of links as navigation landmark.</li>
+          <li>Down arrow icon after the text label provides a visual affordance the button opens a menu.</li>
+          <li>To support operating system high contrast settings:
+            <ul>
+              <li>Focus is highlighted by adding and removing a border around the menu item with focus.</li>
+              <li>The arrow icons indicating the current state of expandable menus use in-line SVG images with the CSS <code>currentColor</code> value for the <code>fill</code> and <code>stroke</code> properties of the <code>polygon</code> element.</li>
+            </ul>
+          </li>
+        </ol>
+      </section>
+
+      <section>
+        <h2 id="kbd_label">Keyboard Support</h2>
+        <h3 id="kbd1_label">Menu Button</h3>
+        <table aria-labelledby="kbd1_label kbd_label" class="def">
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-test-id="button-down-arrow-or-space-or-enter">
+              <th><kbd>Down Arrow</kbd><br><kbd>Space</kbd><br><kbd>Enter</kbd></th>
+              <td>Opens <code>menu</code> and moves focus to first <code>menuitem</code></td>
+            </tr>
+            <tr data-test-id="button-up-arrow">
+              <th><kbd>Up Arrow</kbd></th>
+              <td>Opens <code>menu</code> and moves focus to last <code>menuitem</code></td>
+            </tr>
+          </tbody>
+        </table>
+         <h3 id="kbd2_label" class="widget">Menu</h3>
+        <table aria-labelledby="kbd2_label kbd_label" class="def">
+          <thead>
+            <tr>
+              <th style="min-width: 8em">Key</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-test-id="menu-enter">
+              <th><kbd>Space</kbd><br><kbd>Enter</kbd></th>
+              <td>
+                Activates the menu item, which is equivalent to activating the link element from which the menu item is made.
+              </td>
+            </tr>
+            <tr data-test-id="menu-escape">
+              <th><kbd>Escape</kbd></th>
+              <td>
+                <ul>
+                  <li>Closes the menu.</li>
+                  <li>Sets focus to the menu button.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="menu-up-arrow">
+              <th><kbd>Up Arrow</kbd></th>
+              <td>
+                <ul>
+                  <li>Moves focus to the previous menu item.</li>
+                  <li>If focus is on the first menu item, moves focus to the last menu item.</li>
+                </ul>
+              </td>
+            </tr>
+             <tr data-test-id="menu-down-arrow">
+              <th><kbd>Down Arrow</kbd></th>
+              <td>
+                <ul>
+                  <li>Moves focus to the next menu item.</li>
+                  <li>If focus is on the last menu item, moves focus to the first menu item.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="menu-home">
+              <th><kbd>Home</kbd></th>
+              <td>Moves focus to the first menu item.</td>
+            </tr>
+            <tr data-test-id="menu-end">
+              <th><kbd>End</kbd></th>
+              <td>Moves focus to the last menu item.</td>
+            </tr>
+            <tr data-test-id="menu-character">
+              <th><kbd>A-Z</kbd><br><kbd>a-z</kbd></th>
+              <td>
+                <ul>
+                  <li>Moves focus to the next menu item with a label that starts with the typed character if such an menu item exists.</li>
+                  <li>Otherwise, focus does not move.</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+     <section>
+        <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
+        <h3 id="rps0_label">Landmark</h3>
+        <table aria-labelledby="rps0_label rps_label" class="data attributes">
+          <thead>
+            <tr>
+              <th scope="col">Role</th>
+              <th scope="col">Attribute</th>
+              <th scope="col">Element</th>
+              <th scope="col">Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-test-id="nav-label">
+              <td></td>
+              <th scope="row"><code>aria-label=&quot;<em>string</em>&quot;</code></th>
+              <td>
+                <code>nav</code>
+              </td>
+              <td>
+                Defines an accessible name <q>top</q> for the navigation landmark, based on the location of the links in the web page.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 id="rps1_label">Menu Button</h3>
+        <table aria-labelledby="rps1_label rps_label" class="data attributes">
+          <thead>
+            <tr>
+              <th scope="col">Role</th>
+              <th scope="col">Attribute</th>
+              <th scope="col">Element</th>
+              <th scope="col">Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-test-id="button-aria-haspopup">
+              <td></td>
+              <th scope="row"><code>aria-haspopup=&quot;true&quot;</code></th>
+              <td>
+                <code>button</code>
+              </td>
+              <td>
+                <ul>
+                  <li>Indicates the button opens a menu.</li>
+                  <li>
+                    <strong>NOTE:</strong> While ARIA does not include a role specifically for menu buttons, most platform accessibility APIs include a menubutton role.
+                    Consequently, on such platforms, assistive technologies, such as screen readers, identify buttons that have <code>aria-haspopup</code> set to either <code>true</code> or <code>menu</code> as menu buttons.
+                  </li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="button-aria-controls">
+              <td></td>
+              <th scope="row"><code>aria-controls=&quot;IDREF&quot;</code></th>
+              <td>
+                <code>button</code>
+              </td>
+              <td>
+                <ul>
+                  <li>Refers to the menu element controlled by the menu button.</li>
+                  <li>Optional attribute: assistive technology users can operate the menu if not present.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="button-aria-expanded">
+                <td></td>
+                <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
+                <td><code>button</code></td>
+                <td>
+                  <ul>
+                    <li>Added when the menu is open.</li>
+                    <li>Indicates that the menu is displayed and that activating the menu button closes the menu.</li>
+                    <li>The <code>aria-expanded</code> attribute is removed when the menu is closed.</li>
+                    <li>Included to support touch devices where screen reader users can touch the menu button when the menu is displayed. Keyboard users cannot focus the menu button when the menu is open.</li>
+                  </ul>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+        <h4>Note</h4>
+        <p>The label for the button is provided by the text content of the <code>button</code> element.</p>
+        <h3 id="rps2_label">Menu</h3>
+        <table aria-labelledby="rps2_label rps_label" class="data attributes">
+          <thead>
+            <tr>
+              <th scope="col">Role</th>
+              <th scope="col">Attribute</th>
+              <th scope="col">Element</th>
+              <th scope="col">Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-test-id="menu-role">
+              <th scope="row">
+                <code>menu</code>
+              </th>
+              <td></td>
+              <td>
+                <code>ul</code>
+              </td>
+              <td>Identifies the <code>ul</code> element as a <code>menu</code>.</td>
+            </tr>
+            <tr data-test-id="menu-aria-labelledby">
+              <td>
+                <code></code>
+              </td>
+              <th scope="row"><code>aria-labelledby=&quot;IDREF&quot;</code></th>
+              <td>
+                <code>ul</code>
+              </td>
+              <td>
+                <ul>
+                  <li>Refers to the element that contains the accessible name for the <code>menu</code>.</li>
+                  <li>The menu is labeled by the menu button.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="none-role">
+              <th scope="row">
+                <code>none</code>
+              </th>
+              <td></td>
+              <td>
+                <code>li</code>
+              </td>
+              <td>
+                <ul>
+                  <li>Hides the implied <code>listitem</code> role of the <code>li</code> element from assistive technologies.</li>
+                  <li>For more details, see <a href="../../#presentation_role">Intentionally Hiding Semantics with the <code>presentation</code> Role</a>.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="menuitem-role">
+              <th scope="row">
+                <code>menuitem</code>
+              </th>
+              <td></td>
+              <td>
+                <code>a</code>
+              </td>
+              <td>
+                <ul>
+                  <li>Identifies the element as a <code>menuitem</code>.</li>
+                  <li>The text content of the <code>a</code> element provides the accessible name of the <code>menuitem</code>.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="menuitem-tabindex">
+              <td></td>
+              <th scope="row"><code>tabindex=&quot;-1&quot;</code></th>
+              <td>
+                <code>a</code>
+              </td>
+              <td>removes the <code>a</code> element from the page tab sequence but keeps it focusable with JavaScript.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Javascript and CSS Source Code</h2>
+
+        <ul>
+          <li>CSS: <a href="css/menu-button-links.css" type="text/css">menu-button-links.css</a></li>
+          <li>CSS: <a href="css/menu-button-navigation.css" type="text/css">menu-button-navigation.css</a></li>
+          <li>Javascript: <a href="js/menu-button-links.js" type="text/javascript">menu-button-links.js</a></li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="sc1_label">HTML Source Code</h2>
+        <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
+        <pre><code id="sc1"></code></pre>
+        <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
+        <!--
+          The following script will show the reader the HTML source for the example that is in the div with ID 'ex1'.
+          It renders the HTML in the preceding div with ID 'sc1'.
+          If you change the ID of either the 'ex1' div or the 'sc1' div, be sure to update the sourceCode.add function parameters.
+          -->
+        <script>
+          sourceCode.add('sc1', 'ex1');
+          sourceCode.make();
+        </script>
+      </section>
+    </main>
+    <nav>
+      <a href="../../#menubutton">Menu Button Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
+    </nav>
+  </body>
+</html>

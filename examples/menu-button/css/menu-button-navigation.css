@@ -1,0 +1,13 @@
+.menu-button-navigation {
+  padding: 0.25em;
+  background: #eee;
+  border: 2px solid #eee;
+  border-radius: 5px;
+  height: 2em;
+}
+
+.menu-button-navigation .menu-button-links {
+  margin-right: 0.5em;
+  float: left;
+}
+
