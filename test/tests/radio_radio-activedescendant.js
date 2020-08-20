@@ -1,4 +1,4 @@
-
+'use strict';
 
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
