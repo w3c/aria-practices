@@ -56,18 +56,18 @@ const clickFirstOfMonth = async function (t) {
   firstOfMonth.setDate(1);
   let firstOfMonthString = today.toISOString().split('T')[0];
 
-  return (await t.context.queryElements(t, `[data-date=${firstOfMonthString}]`))[0].click();
+  return (await t.context.queryElement(t, `[data-date=${firstOfMonthString}]`)).click();
 };
 
 const clickToday = async function (t) {
   let today = new Date();
   today.setUTCHours(0,0,0,0);
   let todayString = today.toISOString().split('T')[0];
-  return (await t.context.queryElements(t, `[data-date=${todayString}]`))[0].click();
+  return (await t.context.queryElement(t, `[data-date=${todayString}]`)).click();
 };
 
 const setDateToJanFirst2019 = async function (t) {
-  await (await t.context.queryElements(t, ex.comboboxSelector))[0].click();
+  await (await t.context.queryElement(t, ex.comboboxSelector)).click();
   return t.context.session.executeScript(function () {
     const inputSelector = arguments[0];
     document.querySelector(inputSelector).value = '1/1/2019';
@@ -108,7 +108,7 @@ ariaTest('Combobox: Initially aria-expanded set to "false"', exampleFile, 'textb
 
 ariaTest('Combobox: aria-expanded set to "true" when dialog is open', exampleFile, 'textbox-aria-expanded-true', async (t) => {
   // Open dialog box
-  await (await t.context.queryElements(t, ex.comboboxSelector))[0].sendKeys(Key.ARROW_DOWN);
+  await (await t.context.queryElement(t, ex.comboboxSelector)).sendKeys(Key.ARROW_DOWN);
   await assertAttributeValues(t, ex.comboboxSelector, 'aria-expanded', 'true');
 });
 
@@ -161,7 +161,7 @@ ariaTest('aria-labelledby on grid element', exampleFile, 'grid-aria-labelledby',
 
 
 ariaTest('Roving tab index on dates in gridcell', exampleFile, 'gridcell-tabindex', async (t) => {
-  let button = (await t.context.queryElements(t, ex.buttonSelector))[0];
+  let button = await t.context.queryElement(t, ex.buttonSelector);
   await setDateToJanFirst2019(t);
 
   await button.sendKeys(Key.ENTER);
@@ -193,7 +193,7 @@ ariaTest('Roving tab index on dates in gridcell', exampleFile, 'gridcell-tabinde
 });
 
 ariaTest('aria-selected on selected date', exampleFile, 'gridcell-aria-selected', async (t) => {
-  let button = (await t.context.queryElements(t, ex.buttonSelector))[0];
+  let button = await t.context.queryElement(t, ex.buttonSelector);
 
   await button.click();
   await assertAttributeDNE(t, ex.allDates, 'aria-selected');
@@ -210,7 +210,7 @@ ariaTest('aria-selected on selected date', exampleFile, 'gridcell-aria-selected'
     'after setting date in box, only one button should have aria-selected'
   );
 
-  await (await t.context.queryElements(t, ex.jan22019Day))[0].click();
+  await (await t.context.queryElement(t, ex.jan22019Day)).click();
   await button.click();
   await assertAttributeValues(t, ex.jan22019Day, 'aria-selected', 'true');
 
@@ -228,9 +228,9 @@ ariaTest('aria-selected on selected date', exampleFile, 'gridcell-aria-selected'
 
 
 ariaTest('DOWN ARROW, ALT plus DOWN ARROW and ENTER to open datepicker', exampleFile, 'combobox-down-arrow', async (t) => {
-  let combobox = (await t.context.queryElements(t, ex.comboboxSelector))[0];
-  let dialog = (await t.context.queryElements(t, ex.dialogSelector))[0];
-  let cancel = (await t.context.queryElements(t, ex.cancelSelector))[0];
+  let combobox = await t.context.queryElement(t, ex.comboboxSelector);
+  let dialog = await t.context.queryElement(t, ex.dialogSelector);
+  let cancel = await t.context.queryElement(t, ex.cancelSelector);
 
   // Test DOWN ARROW key
   await combobox.sendKeys(Key.ARROW_DOWN);
@@ -271,22 +271,22 @@ ariaTest('DOWN ARROW, ALT plus DOWN ARROW and ENTER to open datepicker', example
 });
 
 ariaTest('Sending key ESC when focus is in dialog closes dialog', exampleFile, 'dialog-esc', async (t) => {
-  let chooseDateButton = (await t.context.queryElements(t, ex.buttonSelector))[0];
+  let chooseDateButton = await t.context.queryElement(t, ex.buttonSelector);
 
   for (let i = 0; i < ex.allFocusableElementsInDialog.length; i++) {
 
     await chooseDateButton.sendKeys(Key.ENTER);
-    let el = (await t.context.queryElements(t, ex.allFocusableElementsInDialog[i]))[0];
+    let el = await t.context.queryElement(t, ex.allFocusableElementsInDialog[i]);
     await el.sendKeys(Key.ESCAPE);
 
     t.is(
-      await (await t.context.queryElements(t, ex.dialogSelector))[0].getCssValue('display'),
+      await (await t.context.queryElement(t, ex.dialogSelector)).getCssValue('display'),
       'none',
       'After sending ESC to element "' + ex.allFocusableElementsInDialog[i] + '" in the dialog, the calendar dialog should close'
     );
 
     t.is(
-      await (await t.context.queryElements(t, ex.comboboxSelector))[0].getAttribute('value'),
+      await (await t.context.queryElement(t, ex.comboboxSelector)).getAttribute('value'),
       '',
       'After sending ESC to element "' + ex.allFocusableElementsInDialog[i] + '" in the dialog, no date should be selected'
     );
@@ -294,16 +294,16 @@ ariaTest('Sending key ESC when focus is in dialog closes dialog', exampleFile, '
 });
 
 ariaTest('ENTER on previous year or month and SPACE on next year or month changes the year or month', exampleFile, 'month-year-button-space-return', async (t) => {
-  await (await t.context.queryElements(t, ex.buttonSelector))[0].sendKeys(Key.ENTER);
+  await (await t.context.queryElement(t, ex.buttonSelector)).sendKeys(Key.ENTER);
 
-  let monthYear = (await t.context.queryElements(t, ex.monthYear))[0];
+  let monthYear = await t.context.queryElement(t, ex.monthYear);
   let originalMonthYear = await monthYear.getText();
 
   for (let yearOrMonth of ['Year', 'Month']) {
     let yearOrMonthLower = yearOrMonth.toLowerCase();
 
     // enter on previous year or month should change the monthYear text
-    await (await t.context.queryElements(t, ex[`prev${yearOrMonth}`]))[0].sendKeys(Key.ENTER);
+    await (await t.context.queryElement(t, ex[`prev${yearOrMonth}`])).sendKeys(Key.ENTER);
 
     t.not(
       await monthYear.getText(),
@@ -312,7 +312,7 @@ ariaTest('ENTER on previous year or month and SPACE on next year or month change
     );
 
     // space on next year or month should change it back to the original
-    await (await t.context.queryElements(t, ex[`next${yearOrMonth}`]))[0].sendKeys(' ');
+    await (await t.context.queryElement(t, ex[`next${yearOrMonth}`])).sendKeys(' ');
 
     t.is(
       await monthYear.getText(),
@@ -323,7 +323,7 @@ ariaTest('ENTER on previous year or month and SPACE on next year or month change
 });
 
 ariaTest('Tab should go through all tabbable items, then repear', exampleFile, 'dialog-tab', async (t) => {
-  await (await t.context.queryElements(t, ex.buttonSelector))[0].sendKeys(Key.ENTER);
+  await (await t.context.queryElement(t, ex.buttonSelector)).sendKeys(Key.ENTER);
 
   for (let itemSelector of ex.allFocusableElementsInDialog) {
     t.true(
@@ -331,7 +331,7 @@ ariaTest('Tab should go through all tabbable items, then repear', exampleFile, '
       'Focus should be on: ' + itemSelector
     );
 
-    await (await t.context.queryElements(t, itemSelector))[0].sendKeys(Key.TAB);
+    await (await t.context.queryElement(t, itemSelector)).sendKeys(Key.TAB);
   }
 
   t.true(
@@ -343,9 +343,9 @@ ariaTest('Tab should go through all tabbable items, then repear', exampleFile, '
 ariaTest('Shift-tab should move focus backwards', exampleFile, 'dialog-shift-tab', async (t) => {
   t.plan(7);
 
-  await (await t.context.queryElements(t, ex.buttonSelector))[0].sendKeys(Key.ENTER);
+  await (await t.context.queryElement(t, ex.buttonSelector)).sendKeys(Key.ENTER);
 
-  await (await t.context.queryElements(t, ex.allFocusableElementsInDialog[0]))[0]
+  await (await t.context.queryElement(t, ex.allFocusableElementsInDialog[0]))
     .sendKeys(Key.chord(Key.SHIFT, Key.TAB));
 
   let lastIndex = ex.allFocusableElementsInDialog.length - 1;
@@ -355,7 +355,7 @@ ariaTest('Shift-tab should move focus backwards', exampleFile, 'dialog-shift-tab
       'Focus should be on: ' + ex.allFocusableElementsInDialog[i]
     );
 
-    await (await t.context.queryElements(t, ex.allFocusableElementsInDialog[i]))[0]
+    await (await t.context.queryElement(t, ex.allFocusableElementsInDialog[i]))
       .sendKeys(Key.chord(Key.SHIFT, Key.TAB));
   }
 });
