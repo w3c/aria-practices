@@ -24,7 +24,7 @@ var CarouselPreviousNext = function (node, options) {
 
   this.containerNode = node.querySelector('.carousel-items');
   this.liveRegionNode = node.querySelector('.carousel-items');
-  this.pauseButtonNode = null;
+  this.pausePlayButtonNode = null;
   this.previousButtonNode = null;
   this.nextButtonNode = null;
 
@@ -32,9 +32,9 @@ var CarouselPreviousNext = function (node, options) {
   this.pauseLabel = 'Stop automatic slide show';
 
   /* State properties */
-  this.forcePlay = false; // set once the user activates the play/pause button
-  this.playState = !options.paused; // state of the play/pause button
-  this.rotate = !options.paused; // state of rotation
+  this.hasUserActivatedPlayButton = false; // set once the user activates the play/pause button
+  this.isAutoRotationDisabled = options.norotate // This property for disabling auto rotation
+  this.isPlayingEnabled = !options.paused; // This property is also set in updatePlaying method
   this.timeInterval = 5000; // length of slide rotation in ms
   this.currentIndex = 0; // index of current slide
   this.slideTimeout = null; // save reference to setTimeout
@@ -43,8 +43,8 @@ var CarouselPreviousNext = function (node, options) {
 
   var elem = document.querySelector('.carousel .controls button.rotation');
   if (elem) {
-    this.pauseButtonNode = elem;
-    this.pauseButtonNode.addEventListener('click', this.handlePauseButtonClick.bind(this));
+    this.pausePlayButtonNode = elem;
+    this.pausePlayButtonNode.addEventListener('click', this.handlePauseButtonClick.bind(this));
   }
 
   // Previous Button
@@ -85,33 +85,22 @@ var CarouselPreviousNext = function (node, options) {
 
   }
 
-  // initialize behavior based on options
-
-  this.updatePlayState(this.rotate && !options.norotate);
-
-  if (this.rotate && !options.norotate) {
-    this.rotateSlides(false);
-  }
-
-  if (options.norotate) {
-    this.disableRotation(true);
-  }
-
-  this.setAccessibleStyling(options.moreaccessible);
-
   // Handle hover events
   this.domNode.addEventListener('mouseover', this.handleMouseOver.bind(this));
   this.domNode.addEventListener('mouseout', this.handleMouseOut.bind(this));
 
+  // initialize behavior based on options
+
+  this.enableOrDisableAutoRotation(options.norotate);
+  this.updatePlaying(!options.paused && !options.norotate);
+  this.setAccessibleStyling(options.moreaccessible);
+  this.rotateSlides();
 }
 
-/* Public function to disable or enable rotation */
-CarouselPreviousNext.prototype.disableRotation = function(disable) {
-  console.log('[.disableRotation]: ' + disable + ' ' + typeof disable)
-  if (disable) {
-    this.updatePlayState(false);
-  }
-  this.pauseButtonNode.hidden = disable;
+/* Public function to disable/enable rotation and if false, hide pause/play button*/
+CarouselPreviousNext.prototype.enableOrDisableAutoRotation = function(disable) {
+  this.isAutoRotationDisabled = disable;
+  this.pausePlayButtonNode.hidden = disable;
 }
 
 /* Public function to update controls/caption styling */
@@ -141,70 +130,47 @@ CarouselPreviousNext.prototype.showCarouselItem = function (index) {
 
 CarouselPreviousNext.prototype.previousCarouselItem = function () {
   var nextIndex = this.currentIndex - 1;
-
   if (nextIndex < 0) {
     nextIndex = this.carouselItemNodes.length - 1;
   }
-
   this.showCarouselItem(nextIndex);
 }
 
 CarouselPreviousNext.prototype.nextCarouselItem = function () {
   var nextIndex = this.currentIndex + 1;
-
   if (nextIndex >= this.carouselItemNodes.length) {
     nextIndex = 0;
   }
-
   this.showCarouselItem(nextIndex);
 }
 
-CarouselPreviousNext.prototype.rotateSlides = function (changeSlide) {
-  if (changeSlide !== false) {
-    this.nextCarouselItem();
+CarouselPreviousNext.prototype.rotateSlides = function () {
+  if (!this.isAutoRotationDisabled ) {
+    if ((!this.hasFocus &&
+        !this.hasHover &&
+        this.isPlayingEnabled) ||
+        this.hasUserActivatedPlayButton) {
+      this.nextCarouselItem();
+    }
   }
 
   this.slideTimeout = setTimeout(this.rotateSlides.bind(this), this.timeInterval);
 }
 
-CarouselPreviousNext.prototype.resetTimeout = function() {
-  clearTimeout(this.slideTimeout);
-  this.rotate = false;
-  this.updateRotation();
-}
+CarouselPreviousNext.prototype.updatePlaying = function (play) {
+  this.isPlayingEnabled = play;
 
-CarouselPreviousNext.prototype.updateRotation = function() {
-
-  var shouldRotate = !this.hasFocus && !this.hasHover && this.playState;
-  if (shouldRotate === this.rotate) {
-    return;
-  }
-
-  this.rotate = shouldRotate;
-
-  if (shouldRotate) {
-    this.rotateSlides(false);
-  }
-  else {
-    clearTimeout(this.slideTimeout);
-  }
-}
-
-CarouselPreviousNext.prototype.updatePlayState = function (play) {
-  this.playState = play;
-  this.updateRotation();
-
-  if (!play) {
-    this.pauseButtonNode.setAttribute('aria-label', this.playLabel);
-    this.pauseButtonNode.classList.remove('pause');
-    this.pauseButtonNode.classList.add('play');
-    this.liveRegionNode.setAttribute('aria-live', 'polite');
-  }
-  else {
-    this.pauseButtonNode.setAttribute('aria-label', this.pauseLabel);
-    this.pauseButtonNode.classList.remove('play');
-    this.pauseButtonNode.classList.add('pause');
+  if (play) {
+    this.pausePlayButtonNode.setAttribute('aria-label', this.pauseLabel);
+    this.pausePlayButtonNode.classList.remove('play');
+    this.pausePlayButtonNode.classList.add('pause');
     this.liveRegionNode.setAttribute('aria-live', 'off');
+  }
+  else {
+    this.pausePlayButtonNode.setAttribute('aria-label', this.playLabel);
+    this.pausePlayButtonNode.classList.remove('pause');
+    this.pausePlayButtonNode.classList.add('play');
+    this.liveRegionNode.setAttribute('aria-live', 'polite');
   }
 }
 
@@ -219,26 +185,20 @@ CarouselPreviousNext.prototype.handleImageLinkBlur = function () {
 }
 
 CarouselPreviousNext.prototype.handleMouseOver = function (event) {
-  if (!this.forcePlay) {
-    if (!this.pauseButtonNode.contains(event.target)) {
-      this.hasHover = true;
-    }
-    this.updateRotation();
+  if (!this.pausePlayButtonNode.contains(event.target)) {
+    this.hasHover = true;
   }
 }
 
 CarouselPreviousNext.prototype.handleMouseOut = function () {
-  if (!this.forcePlay) {
-    this.hasHover = false;
-    this.updateRotation();
-  }
+  this.hasHover = false;
 }
 
   /* EVENT HANDLERS */
 
 CarouselPreviousNext.prototype.handlePauseButtonClick = function () {
-  this.forcePlay = true;
-  this.updatePlayState(!this.playState);
+  this.hasUserActivatedPlayButton = !this.isPlayingEnabled;
+  this.updatePlaying(!this.isPlayingEnabled);
 }
 
 CarouselPreviousNext.prototype.handlePreviousButtonClick = function () {
@@ -254,15 +214,13 @@ CarouselPreviousNext.prototype.handleNextButtonClick = function () {
 CarouselPreviousNext.prototype.handleFocusIn = function () {
   this.liveRegionNode.setAttribute('aria-live', 'polite');
   this.hasFocus = true;
-  this.updateRotation();
 }
 
 CarouselPreviousNext.prototype.handleFocusOut = function () {
-  if (this.playState) {
+  if (this.isPlayingEnabled) {
     this.liveRegionNode.setAttribute('aria-live', 'off');
   }
   this.hasFocus = false;
-  this.updateRotation();
 }
 
 /* Initialize Carousel and options */
@@ -307,7 +265,7 @@ window.addEventListener('load', function () {
         updateEvent = 'setAccessibleStyling';
         break;
       case 'norotate':
-        updateEvent = 'disableRotation';
+        updateEvent = 'enableOrDisableAutoRotation';
         break;
     }
 
