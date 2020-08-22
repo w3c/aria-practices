@@ -227,7 +227,7 @@ ariaTest('aria-expanded attribute on treeitem matches dom', exampleFile, 'treeit
         'false'
       );
       t.is(
-        await(await t.context.queryElements(t, '[role="treeitem"]', folder))[0].isDisplayed(),
+        await (await t.context.queryElement(t, '[role="treeitem"]', folder)).isDisplayed(),
         false
       );
 
@@ -240,7 +240,7 @@ ariaTest('aria-expanded attribute on treeitem matches dom', exampleFile, 'treeit
         'true'
       );
       t.is(
-        await(await t.context.queryElements(t, '[role="treeitem"]', folder))[0].isDisplayed(),
+        await (await t.context.queryElement(t, '[role="treeitem"]', folder)).isDisplayed(),
         true
       );
     }
@@ -263,7 +263,7 @@ ariaTest('aria-expanded attribute on treeitem matches dom', exampleFile, 'treeit
         folderText
       );
       t.is(
-        await(await t.context.queryElements(t, '[role="treeitem"]', folders[i]))[0].isDisplayed(),
+        await (await t.context.queryElement(t, '[role="treeitem"]', folders[i])).isDisplayed(),
         false,
         folderText
       );
