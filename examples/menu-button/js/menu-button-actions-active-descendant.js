@@ -9,12 +9,12 @@
 
 'use strict';
 
-var MenuButtonActionsActiveDescendant = function (domNode, menuAction) {
+var MenuButtonActionsActiveDescendant = function (domNode, performMenuAction) {
 
-  this.domNode       = domNode;
-  this.menuAction    = menuAction;
-  this.buttonNode    = domNode.querySelector('button');
-  this.menuNode      = domNode.querySelector('[role="menu"]');
+  this.domNode = domNode;
+  this.performMenuAction = performMenuAction;
+  this.buttonNode = domNode.querySelector('button');
+  this.menuNode = domNode.querySelector('[role="menu"]');
   this.currentMenuitem = {};
   this.menuitemNodes = []
   this.firstMenuitem = false;
@@ -258,7 +258,7 @@ MenuButtonActionsActiveDescendant.prototype.handleMenuKeydown = function (event)
       case ' ':
       case 'Enter':
         this.closePopup();
-        this.menuAction(this.currentMenuitem);
+        this.performMenuAction(this.currentMenuitem);
         flag = true;
        break;
 
@@ -319,7 +319,7 @@ MenuButtonActionsActiveDescendant.prototype.handleMenuitemMouseover = function (
 MenuButtonActionsActiveDescendant.prototype.handleMenuitemClick = function (event) {
   var tgt = event.currentTarget;
   this.closePopup();
-  this.menuAction(tgt);
+  this.performMenuAction(tgt);
 };
 
 MenuButtonActionsActiveDescendant.prototype.handleBackgroundMousedown = function (event) {
@@ -333,8 +333,15 @@ MenuButtonActionsActiveDescendant.prototype.handleBackgroundMousedown = function
 // Initialize menu buttons
 
 window.addEventListener('load', function () {
+
+  document.getElementById("action_output").value = "none";
+
+  function performMenuAction(node) {
+    document.getElementById("action_output").value = node.textContent.trim();
+  }
+
   var menuButtons = document.querySelectorAll('.menu-button-actions');
   for(var i=0; i < menuButtons.length; i++) {
-    var menuButton = new MenuButtonActionsActiveDescendant(menuButtons[i], menuAction);
+    var menuButton = new MenuButtonActionsActiveDescendant(menuButtons[i], performMenuAction);
   }
 });
