@@ -32,7 +32,7 @@ var CarouselPreviousNext = function (node, options) {
   this.pauseLabel = 'Stop automatic slide show';
 
   /* State properties */
-  this.hasUserActivatedPlayButton = false; // set once the user activates the play/pause button
+  this.hasUserActivatedPlay = false; // set when the user activates the play/pause button
   this.isAutoRotationDisabled = options.norotate // This property for disabling auto rotation
   this.isPlayingEnabled = !options.paused; // This property is also set in updatePlaying method
   this.timeInterval = 5000; // length of slide rotation in ms
@@ -44,7 +44,7 @@ var CarouselPreviousNext = function (node, options) {
   var elem = document.querySelector('.carousel .controls button.rotation');
   if (elem) {
     this.pausePlayButtonNode = elem;
-    this.pausePlayButtonNode.addEventListener('click', this.handlePauseButtonClick.bind(this));
+    this.pausePlayButtonNode.addEventListener('click', this.handlePausePlayButtonClick.bind(this));
   }
 
   // Previous Button
@@ -149,7 +149,7 @@ CarouselPreviousNext.prototype.rotateSlides = function () {
     if ((!this.hasFocus &&
         !this.hasHover &&
         this.isPlayingEnabled) ||
-        this.hasUserActivatedPlayButton) {
+        this.hasUserActivatedPlay) {
       this.nextCarouselItem();
     }
   }
@@ -196,8 +196,8 @@ CarouselPreviousNext.prototype.handleMouseOut = function () {
 
   /* EVENT HANDLERS */
 
-CarouselPreviousNext.prototype.handlePauseButtonClick = function () {
-  this.hasUserActivatedPlayButton = !this.isPlayingEnabled;
+CarouselPreviousNext.prototype.handlePausePlayButtonClick = function () {
+  this.hasUserActivatedPlay = !this.isPlayingEnabled;
   this.updatePlaying(!this.isPlayingEnabled);
 }
 
