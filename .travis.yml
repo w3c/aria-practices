@@ -9,7 +9,6 @@ git:
 stages:
 - Lint
 - Test
-- Deploy
 
 jobs:
   fast_finish: true
@@ -62,14 +61,3 @@ jobs:
         - TEST_WAIT_TIME=1000
         - CI_NODE_TOTAL=3
         - CI_NODE_INDEX=2
-
-    - stage: Deploy
-      if: branch = master AND type != pull_request
-      script: skip
-      before_deploy: scripts/travis-before_deploy.sh
-      deploy:
-        provider: script
-        skip_cleanup: true
-        script: /tmp/deploy/travis-deploy.sh
-        on:
-          branch: master
