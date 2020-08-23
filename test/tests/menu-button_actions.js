@@ -34,7 +34,7 @@ const checkFocus = function (t, selector, index) {
 const openMenu = async function (t) {
   return await t.context.session
     .findElement(By.css(ex.menubuttonSelector))
-    .click();
+    .sendKeys(Key.ARROW_DOWN);
 };
 
 // Attributes
