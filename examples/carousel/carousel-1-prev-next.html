@@ -202,7 +202,7 @@
                       </h3>
 
                       <div>
-                        <p><span class="contrast">8 pm Sunday, March 8, on TV: Sneak peak at the final season.</span></p>
+                        <p><span class="contrast">8 pm Sunday, March 8, on TV: Sneak peek at the final season.</span></p>
                       </div>
                     </div>  <!-- .carousel-caption -->
                   </div>   <!-- .item -->
@@ -269,7 +269,7 @@
         <h3>Controlling Automatic Slide Rotation</h3>
         <p>
           Users can stop and start slide rotation, which is an essential aspect of accessibility of the carousel for a variety of people with disabilities.
-          People with low vision or a cognitive disability that effects visual processing or reading benefit from being able to control slide rotation so they have sufficient time to explore slide content.
+          People with low vision or a cognitive disability that affects visual processing or reading benefit from being able to control slide rotation so they have sufficient time to explore slide content.
           Similarly, since screen reader users cannot perceive automatic rotation, it can make reading the page confusing and disorienting.
           For example, when slides are automatically rotating, a screen reader user may read an element on slide one, execute a screen reader command to read the next element, and, instead of hearing the next element on slide one, hear an element from slide 2 without any knowledge that the element just announced is from an entirely new context.
         </p>
@@ -290,7 +290,7 @@
             <ul>
               <li>The rotation control button is the first element in the screen reader reading order.</li>
               <li>The rotation control button is always visible so it is available to all users whether they are interacting via a mouse, keyboard, assistive technology, or touch.</li>
-              <li>If the carousel is rotating, its accessible name is &quot;Stop Automatic Slide Show&quot;, informing screen reader users that the slides are changing in addition to providing a way to stop the changes.</li>
+              <li>If the carousel is rotating, the button's accessible name is &quot;Stop Automatic Slide Show&quot;, informing screen reader users that the slides are changing in addition to providing a way to stop the changes.</li>
               <li>If the carousel is not rotating, the accessible name of the button is &quot;Start Automatic Slide Show&quot;.</li>
               <li>If a user has activated the button to stop the show, the rotation will only restart if the button is activated. Moving keyboard focus or the mouse out of the carousel will not restart rotation.</li>
               <li>If keyboard focus is inside the carousel, or if the mouse is hovering over the carousel, the button is disabled; it cannot be used to start rotation.</li>
@@ -316,9 +316,9 @@
         <p>
           When automatic rotation is turned off, the carousel slide content is included in a live region.
           This makes it easier for screen reader users to scan through the carousel slides.
-          When screen reader users activate the next or previous slide button , the new slide content is announced, giving users immediate feedback that helps them determine whether or not to interact with the content.
+          When screen reader users activate the next or previous slide button, the new slide content is announced, giving users immediate feedback that helps them determine whether or not to interact with the content.
           Very importantly, if automatic rotation is turned on, the live region is disabled.
-          If it were not, the page would be come unusable as announcements of the continuously changing content constantly interrupt anything else the user is reading.
+          If it were not, the page would become unusable as announcements of the continuously changing content constantly interrupt anything else the user is reading.
         </p>
       </section>
 
@@ -395,7 +395,7 @@
               <td>
                 <ul>
                   <li>Role <code>region</code> is implied for any <code>section</code> element that has an accessible name.</li>
-                  <li>Defines the carousel and its controls as a land mark region.</li>
+                  <li>Defines the carousel and its controls as a landmark region.</li>
                 </ul>
               </td>
             </tr>
@@ -410,7 +410,7 @@
               <td>
                 <ul>
                   <li>Informs assistive technologies to identify the element as a &quot;carousel&quot; rather than a &quot;region.&quot;</li>
-                  <li>Effects how the assistive technology renders the role but does not effect functionality, such as commands for navigating to landmark regions.</li>
+                  <li>Affects how the assistive technology renders the role but does not affect functionality, such as commands for navigating to landmark regions.</li>
                 </ul>
               </td>
             </tr>
@@ -482,7 +482,7 @@
               <td>
                 <ul>
                   <li>Informs assistive technologies to identify the element as a &quot;slide&quot; rather than a &quot;group.&quot;</li>
-                  <li>Effects how the assistive technology renders the role but does not remove any assistive technology functions related to <code>group</code> elements.</li>
+                  <li>Affects how the assistive technology renders the role but does not remove any assistive technology functions related to <code>group</code> elements.</li>
                 </ul>
               </td>
             </tr>
