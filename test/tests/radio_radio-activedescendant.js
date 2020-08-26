@@ -184,7 +184,7 @@ ariaTest('LEFT ARROW changes focus and checks radio', exampleFile, 'key-up-left-
   }
 });
 
-ariaTest('UP ARROW changes focus and checks radio', exampleFile, 'key-up-arrow', async (t) => {
+ariaTest('UP ARROW changes focus and checks radio', exampleFile, 'key-up-left-arrow', async (t) => {
 
   for (let groupIndex = 0; groupIndex < 2; groupIndex++) {
 

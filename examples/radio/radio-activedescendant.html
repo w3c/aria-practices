@@ -96,7 +96,7 @@
         <ul>
           <li>Uses CSS attribute selectors for synchronizing <code>aria-checked</code> state with the visual state indicator.</li>
           <li>
-            Uses CSS <code>:hover</code> and <code>:focus</code> pseudo-selectors for styling visual keyboard focus and hover.
+            Uses CSS <code>:hover</code> and <code>:focus</code> pseudo-classes for styling visual keyboard focus and hover.
             <ul>
               <li>Focus indicator encompasses both radio button and label, making it easier to perceive which option is being chosen.</li>
               <li>Hover changes background of both radio button and label, making it easier to perceive that clicking either the label or button will activate the radio button.</li>
@@ -235,7 +235,7 @@
                 <ul>
                   <li>Identifies <code>radio</code> buttons which are not checked.</li>
                   <li>CSS attribute selectors (e.g. <code>[aria-checked="false"]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
-                  <li>The CSS <code>::before</code> pseudo-class is used to indicate visual state of unchecked radio buttons to support high contrast settings in operating systems and browsers.</li>
+                  <li>The CSS <code>::before</code> pseudo-element is used to indicate visual state of unchecked radio buttons to support high contrast settings in operating systems and browsers.</li>
                 </ul>
               </td>
             </tr>
@@ -247,7 +247,7 @@
                 <ul>
                   <li>Identifies the <code>radio</code> button which is checked.</li>
                   <li>CSS attribute selectors (e.g. <code>[aria-checked="true"]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
-                  <li>The CSS <code>::before</code> pseudo-class is used to indicate visual state of checked radio buttons to support high contrast settings in operating systems and browsers.</li>
+                  <li>The CSS <code>::before</code> pseudo-element is used to indicate visual state of checked radio buttons to support high contrast settings in operating systems and browsers.</li>
                 </ul>
               </td>
             </tr>
