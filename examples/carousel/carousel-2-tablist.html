@@ -375,7 +375,7 @@
               <li>The rotation control button is always visible so it is available to all users whether they are interacting via a mouse, keyboard, assistive technology, or touch.</li>
               <li>If the carousel is rotating, the button's accessible name is <q>Stop Automatic Slide Show</q>, informing screen reader users that the slides are changing in addition to providing a way to stop the changes.</li>
               <li>If the carousel is not rotating, the accessible name of the button is <q>Start Automatic Slide Show</q>.</li>
-              <li>If a user has activated the button to stop the show, the rotation will only restart if the button is activated. Moving keyboard focus or the mouse out of the carousel will not restart rotation.</li>
+              <li>If a user activates the rotation control button to start the rotation, the rotation will only stop if the button is activated again. Moving keyboard focus or the mouse into the carousel will not stop rotation when the button has re-entered the playing state.  The idea is when users initiate rotation, they want the rotation to start immediately, regardless of focus or hover states within the carousel.</li>
             </ul>
           </li>
           <li>The example includes an option to completely disable automatic slide rotation.  When this option is selected the start/stop button is not rendered and slides can only be rotated through activation of the tab controls.</li>
