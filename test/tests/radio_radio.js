@@ -113,7 +113,7 @@ ariaTest('Selects radio item', exampleFile, 'key-space', async (t) => {
 
 });
 
-ariaTest('RIGHT ARROW changes focus and checks radio', exampleFile, 'key-right-arrow', async (t) => {
+ariaTest('RIGHT ARROW changes focus and checks radio', exampleFile, 'key-down-right-arrow', async (t) => {
 
   let radios = await t.context.queryElements(t, ex.crustRadioSelector);
 
@@ -148,7 +148,7 @@ ariaTest('RIGHT ARROW changes focus and checks radio', exampleFile, 'key-right-a
   );
 });
 
-ariaTest('DOWN ARROW changes focus and checks radio', exampleFile, 'key-down-arrow', async (t) => {
+ariaTest('DOWN ARROW changes focus and checks radio', exampleFile, 'key-down-right-arrow', async (t) => {
 
   let radios = await t.context.queryElements(t, ex.crustRadioSelector);
 
@@ -183,7 +183,7 @@ ariaTest('DOWN ARROW changes focus and checks radio', exampleFile, 'key-down-arr
   );
 });
 
-ariaTest('LEFT ARROW changes focus and checks radio', exampleFile, 'key-left-arrow', async (t) => {
+ariaTest('LEFT ARROW changes focus and checks radio', exampleFile, 'key-up-left-arrow', async (t) => {
 
   let radios = await t.context.queryElements(t, ex.crustRadioSelector);
 
@@ -219,7 +219,7 @@ ariaTest('LEFT ARROW changes focus and checks radio', exampleFile, 'key-left-arr
   }
 });
 
-ariaTest('UP ARROW changes focus and checks radio', exampleFile, 'key-up-arrow', async (t) => {
+ariaTest('UP ARROW changes focus and checks radio', exampleFile, 'key-up-left-arrow', async (t) => {
 
   let radios = await t.context.queryElements(t, ex.crustRadioSelector);
 

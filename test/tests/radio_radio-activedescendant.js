@@ -109,7 +109,7 @@ ariaTest('Selects radio item', exampleFile, 'key-space', async (t) => {
   await assertAttributeValues(t, firstDeliveryRadioOption, 'aria-checked', 'true');
 });
 
-ariaTest('RIGHT ARROW changes focus and checks radio', exampleFile, 'key-right-arrow', async (t) => {
+ariaTest('RIGHT ARROW changes focus and checks radio', exampleFile, 'key-down-right-arrow', async (t) => {
 
   for (let groupIndex = 0; groupIndex < 2; groupIndex++) {
 
@@ -134,7 +134,7 @@ ariaTest('RIGHT ARROW changes focus and checks radio', exampleFile, 'key-right-a
   }
 });
 
-ariaTest('DOWN ARROW changes focus and checks radio', exampleFile, 'key-down-arrow', async (t) => {
+ariaTest('DOWN ARROW changes focus and checks radio', exampleFile, 'key-down-right-arrow', async (t) => {
 
   for (let groupIndex = 0; groupIndex < 2; groupIndex++) {
 
@@ -159,7 +159,7 @@ ariaTest('DOWN ARROW changes focus and checks radio', exampleFile, 'key-down-arr
   }
 });
 
-ariaTest('LEFT ARROW changes focus and checks radio', exampleFile, 'key-left-arrow', async (t) => {
+ariaTest('LEFT ARROW changes focus and checks radio', exampleFile, 'key-up-left-arrow', async (t) => {
 
   for (let groupIndex = 0; groupIndex < 2; groupIndex++) {
 
