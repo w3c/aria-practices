@@ -2217,8 +2217,25 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         In fact, there are many accessible design patterns that can be employed when building a navigation system, some of which require very little ARIA and minimal scripting and others, like the menu pattern, which offer advanced keyboard features but are substantially more complex to implement.  
       </p>
       <p>
-        The examples in the section below each demonstrate one of the many ways of building a navigation system.
-        To facilitate comparison, they all illustrate navigation for the same hypothetical web site belonging to a "Mythical University".  
+        In scenarios where a short list of links is persistently visible, i.e., the list doesn't fully or partially collapse, simply wrap a list of links in a navigation region and use <a class="state-reference">aria-current</a> to indicate which page is currently displayed.
+        For instance, a site-wide navigation structure for &quot;Company A&quot; that includes 4 pages could simply be implemented as follows. 
+      </p>
+      <pre><code>
+&lt;nav aria-label="Company A">
+  &lt;ul>
+    &lt;li>&lt;a aria-current="page">Page 1&lt;/a>&lt;/li>
+    &lt;li>&lt;a>Page 2&lt;/a>&lt;/li>
+    &lt;li>&lt;a>Page 3&lt;/a>&lt;/li>    
+    &lt;li>&lt;a>Page 4&lt;/a>&lt;/li>
+  &lt;/ul>
+&lt;/nav>      
+      </code></pre>
+      <p>
+        In In the above example, some code is necessary to ensure that when users activate a link, <code>aria-current</code> is removed from its previous location and added to the activated link.
+      </p>
+      <p>
+        In other scenarios where the design includes more complex functionality, such as fly outs or keyboard typeahead, the following examples demonstrate some of the many possible approaches.
+        To facilitate comparison, all the examples illustrate navigation for the same hypothetical web site belonging to a "Mythical University".  
         And, each example is accompanied by a list of considerations to help authors decide whether the approach it illustrates satisfies the needs and constraints relevant in a particular situation.
       </p>
       
