@@ -6,6 +6,7 @@ const webdriver = require('selenium-webdriver');
 const { By } = require('selenium-webdriver');
 
 const startGeckodriver = require('./util/start-geckodriver');
+const queryElement = require('./util/queryElement');
 const queryElements = require('./util/queryElements');
 
 let session, geckodriver;
@@ -31,6 +32,7 @@ if (!coverageReportRun) {
   test.beforeEach((t) => {
     t.context.session = session;
     t.context.waitTime = testWaitTime;
+    t.context.queryElement = queryElement;
     t.context.queryElements = queryElements;
   });
 
