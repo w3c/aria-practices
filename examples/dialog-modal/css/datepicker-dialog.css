@@ -235,7 +235,8 @@
 }
 
 .datepicker-dialog table.dates td[tabindex="0"] {
-  background-color: hsl(216, 80%, 92%);
+  background-color: hsl(216, 80%, 51%);
+  color: white;
 }
 
 
