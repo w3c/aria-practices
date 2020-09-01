@@ -2232,7 +2232,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
           <li><a href="examples/disclosure/disclosure-navigation.html">Disclosure (Show/Hide) for Navigation Menus:</a>
             <ul>
               <li>Very little scripting is necessary, especially if the optional arrow key behavior is omitted.</li>
-              <li>Uses only 3 ARIA attributes. The most important one, <code>aria-expanded</code>, is very well supported by assistive technologies.</li>
+              <li>Uses only 3 ARIA attributes: <code>aria-controls</code>, <code>aria-expanded</code> and <code>aria-current</code>. The most important one, <code>aria-expanded</code>, is very well supported by assistive technologies.</li>
               <li>Unlike menu and tree widgets:
                 <ul>
                   <li>Adds multiple elements to the page <kbd>Tab</kbd> sequence.</li>
@@ -2244,21 +2244,21 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
           <li><a href="examples/menu-button/menu-button-links.html">Navigation Menu Button:</a>
             <ul>
               <li>Requires complex scripting.</li>
-              <li>Relies on X ARIA attributes.</li>
+              <li>Relies on the <code>aria-haspopup</code>, <code>aria-controls</code> and <code>aria-expanded</code> ARIA attributes.</li>
               <li>Because the links are recast as menu items, screen reader users may not realize that standard context actions for links, such as open in new window, are available.</li>
             </ul>
           </li>
           <li><a href="examples/menubar/menubar-navigation.html">Navigation Menubar:</a>
             <ul>
               <li>Requires complex scripting.</li>
-              <li>Relies on X ARIA attributes.</li>
+              <li>Relies on the <code>aria-haspopup</code> and <code>aria-expanded</code> ARIA attributes.</li>
               <li>Because the links are recast as menu items, screen reader users may not realize that standard context actions for links, such as open in new window, are available.</li>
             </ul>
           </li>
           <li><a href="examples/treeview/treeview-2/treeview-2a.html">Navigation Treeview:</a>
             <ul>
               <li>Requires complex scripting.</li>
-              <li>Relies on X ARIA attributes.</li>
+              <li>Relies on the <code>aria-expanded</code> ARIA attribute, and optionally the <code>aria-setsize</code>, <code>aria-posinset</code> and <code>aria-level</code> ARIA attributes.</li>
               <li>Because the links are recast as tree items, screen reader users may not realize that standard context actions for links, such as open in new window, are available.</li>
             </ul>
           </li>
