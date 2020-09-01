@@ -102,10 +102,13 @@
       <section>
         <h2>Accessibility Features</h2>
         <ol>
-          <li>Down arrow icon provides a visual affordance the button opens a menu.</li>
+          <li>A down arrow icon is included to help users understand that the button opens a menu.</li>
           <li>To support operating system high contrast settings:
             <ul>
-              <li>Focus is highlighted by adding and removing a border around the menu item with focus.</li>
+              <li>
+                Because transparent borders are visible on some systems with high contrast enabled, only the focused element has a visible border.
+                When focusable elements are not focused, they have a 0-width border and additional padding equal in width to the border that is used to indicate focus.
+              </li>
               <li>The arrow icons indicating the current state of expandable menus use in-line SVG images with the CSS <code>currentColor</code> value for the <code>fill</code> and <code>stroke</code> properties of the <code>polygon</code> element.</li>
             </ul>
           </li>
