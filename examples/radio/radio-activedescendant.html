@@ -100,7 +100,10 @@
             <ul>
               <li>Focus indicator encompasses both radio button and label, making it easier to perceive which option is being chosen.</li>
               <li>Hover changes background of both radio button and label, making it easier to perceive that clicking either the label or button will activate the radio button.</li>
-              <li>Border is added and removed when a radio button receives and loses focus to support high contrast settings of operating systems.</li>
+              <li>
+                Because transparent borders are visible on some systems with high contrast enabled, only the focused element has a visible border.
+                When focusable elements are not focused, they have a 0-width border and additional padding equal in width to the border that is used to indicate focus.
+              </li>
             </ul>
           </li>
         </ul>
