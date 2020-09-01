@@ -49,13 +49,16 @@
 }
 
 .color-group .color-slider text {
-  fill: #666;
+  fill: currentColor;
+  fill-opacity: 0.8;
 }
 
 .color-group.active .color-slider text,
 .color-group .color-slider:focus text,
 .color-group .color-slider:hover text {
-  fill: black;
+  fill: currentColor;
+  fill-opacity: 1.0;
+  font: bold;
 }
 
 .color-group button.change line {

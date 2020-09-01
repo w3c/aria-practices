@@ -218,8 +218,9 @@
         <li>
           The three sliders are wrapped in a group to help assistive technology users understand that all three elements together represent a color picker.
         </li>
-        <li>Use of SVG enables high contrast support by including additional background <code>rects</code> and <code>circle</code> elements to provide contrast for the focus and hover styling of the buttons and sliders.</li>
+        <li>Use of SVG enables high contrast support by including additional background <code>rects</code> and <code>circle</code> elements to provide contrast for the focus and hover border styling of the buttons and sliders.</li>
         <li>The placement of the slider value above the thumb supports user's with low vision by allow them to more easily see the value of the slider as they move the thumb.</li>
+        <li>The use of the <code>currentColor</code> for the color of the slider value supports the visibility of the value in operating system high contrast modes.</li>
         <li>
           The increase and decrease buttons are not contained within the <code>div</code> with role <code>slider</code> so they can be separately focusable by users of touch screen readers.
           However, they are excluded from the page <kbd>Tab</kbd> sequence with <code>tabindex="-1"</code> because they are redundant with the arrow key support provided to keyboard users.
