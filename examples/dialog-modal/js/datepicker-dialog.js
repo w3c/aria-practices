@@ -301,6 +301,8 @@ DatePickerDialog.prototype.setTextboxDate = function (domNode) {
 
   if (domNode) {
     d = this.getDayFromDataDateAttribute(domNode);
+    // updated aria-selected
+    this.days.forEach(day => day === domNode ? day.setAttribute('aria-selected', 'true') : day.removeAttribute('aria-selected'));
   }
 
   this.textboxNode.value = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
