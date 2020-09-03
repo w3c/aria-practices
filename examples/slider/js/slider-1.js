@@ -5,11 +5,11 @@
 *
 *   File:   slider.js
 *
-*   Desc:   ColorPickerSliders widget that implements ARIA Authoring Practices
+*   Desc:   ColorViewerSliders widget that implements ARIA Authoring Practices
 */
 
-// Create ColorPickerSliders that contains value, valuemin, valuemax, and valuenow
-var ColorPickerSliders = function (domNode)  {
+// Create ColorViewerSliders that contains value, valuemin, valuemax, and valuenow
+var ColorViewerSliders = function (domNode)  {
 
   this.domNode = domNode;
 
@@ -29,7 +29,7 @@ var ColorPickerSliders = function (domNode)  {
 
 };
 
-ColorPickerSliders.prototype.initSliderRefs = function (sliderRef, color) {
+ColorViewerSliders.prototype.initSliderRefs = function (sliderRef, color) {
   sliderRef[color] = {};
   var n = this.domNode.querySelector('.color-group.' + color);
   sliderRef[color].groupNode  = n;
@@ -45,7 +45,7 @@ ColorPickerSliders.prototype.initSliderRefs = function (sliderRef, color) {
 };
 
 // Initialize slider
-ColorPickerSliders.prototype.init = function () {
+ColorViewerSliders.prototype.init = function () {
 
   for (var slider in this.sliders) {
 
@@ -82,7 +82,7 @@ ColorPickerSliders.prototype.init = function () {
   }
 };
 
-ColorPickerSliders.prototype.getSlider = function (domNode) {
+ColorViewerSliders.prototype.getSlider = function (domNode) {
 
   if (!domNode.classList.contains('color-slider')) {
     if (domNode.tagName.toLowerCase() === 'rect') {
@@ -104,19 +104,19 @@ ColorPickerSliders.prototype.getSlider = function (domNode) {
   return this.sliders.blue;
 };
 
-ColorPickerSliders.prototype.getValueMin = function (slider) {
+ColorViewerSliders.prototype.getValueMin = function (slider) {
   return parseInt(slider.sliderNode.getAttribute('aria-valuemin'));
 };
 
-ColorPickerSliders.prototype.getValueNow = function (slider) {
+ColorViewerSliders.prototype.getValueNow = function (slider) {
   return parseInt(slider.sliderNode.getAttribute('aria-valuenow'));
 };
 
-ColorPickerSliders.prototype.getValueMax = function (slider) {
+ColorViewerSliders.prototype.getValueMax = function (slider) {
   return parseInt(slider.sliderNode.getAttribute('aria-valuemax'));
 };
 
-ColorPickerSliders.prototype.moveSliderTo = function (slider, value) {
+ColorViewerSliders.prototype.moveSliderTo = function (slider, value) {
 
   var valueMin = this.getValueMin(slider);
   var valueNow = this.getValueNow(slider);
@@ -147,7 +147,7 @@ ColorPickerSliders.prototype.moveSliderTo = function (slider, value) {
   this.updateColorBox();
 };
 
-ColorPickerSliders.prototype.handleSliderKeyDown = function (event) {
+ColorViewerSliders.prototype.handleSliderKeyDown = function (event) {
 
   var flag = false;
 
@@ -205,7 +205,7 @@ ColorPickerSliders.prototype.handleSliderKeyDown = function (event) {
 
 };
 
-ColorPickerSliders.prototype.handleThumbMouseDown = function (event) {
+ColorViewerSliders.prototype.handleThumbMouseDown = function (event) {
 
   var slider = this.getSlider(event.currentTarget);
 
@@ -242,7 +242,7 @@ ColorPickerSliders.prototype.handleThumbMouseDown = function (event) {
 };
 
 // handleMouseMove has the same functionality as we need for handleMouseClick on the rail
-ColorPickerSliders.prototype.handleRailClick = function (event) {
+ColorViewerSliders.prototype.handleRailClick = function (event) {
 
   var slider = this.getSlider(event.currentTarget);
 
@@ -258,7 +258,7 @@ ColorPickerSliders.prototype.handleRailClick = function (event) {
 
 };
 
-ColorPickerSliders.prototype.handleChangeClick = function (event, n) {
+ColorViewerSliders.prototype.handleChangeClick = function (event, n) {
   var slider = this.getSlider(event.currentTarget);
 
   var valueMin = this.getValueMin(slider);
@@ -271,30 +271,30 @@ ColorPickerSliders.prototype.handleChangeClick = function (event, n) {
   event.stopPropagation();
 };
 
-ColorPickerSliders.prototype.handleDec10Click = function (event) {
+ColorViewerSliders.prototype.handleDec10Click = function (event) {
   this.handleChangeClick(event, -10);
 };
 
-ColorPickerSliders.prototype.handleDecClick = function (event) {
+ColorViewerSliders.prototype.handleDecClick = function (event) {
   this.handleChangeClick(event, -1);
 };
 
-ColorPickerSliders.prototype.handleIncClick = function (event) {
+ColorViewerSliders.prototype.handleIncClick = function (event) {
   this.handleChangeClick(event, 1);
 };
 
-ColorPickerSliders.prototype.handleInc10Click = function (event) {
+ColorViewerSliders.prototype.handleInc10Click = function (event) {
   this.handleChangeClick(event, 10);
 };
 
 
-ColorPickerSliders.prototype.handleFocus = function (event) {
+ColorViewerSliders.prototype.handleFocus = function (event) {
   event.currentTarget.classList.add('focus');
   var slider = this.getSlider(event.currentTarget);
   slider.groupNode.classList.add('active');
 };
 
-ColorPickerSliders.prototype.handleBlur = function (event) {
+ColorViewerSliders.prototype.handleBlur = function (event) {
   event.currentTarget.classList.remove('focus');
   var slider = this.getSlider(event.currentTarget);
   if (!slider.groupNode.querySelector('.focus')) {
@@ -302,7 +302,7 @@ ColorPickerSliders.prototype.handleBlur = function (event) {
   }
 };
 
-ColorPickerSliders.prototype.getColorHex = function () {
+ColorViewerSliders.prototype.getColorHex = function () {
   var r = parseInt(this.sliders.red.sliderNode.getAttribute('aria-valuenow')).toString(16);
   var g = parseInt(this.sliders.green.sliderNode.getAttribute('aria-valuenow')).toString(16);
   var b = parseInt(this.sliders.blue.sliderNode.getAttribute('aria-valuenow')).toString(16);
@@ -320,7 +320,7 @@ ColorPickerSliders.prototype.getColorHex = function () {
   return '#' + r + g + b;
 };
 
-ColorPickerSliders.prototype.getColorRGB = function () {
+ColorViewerSliders.prototype.getColorRGB = function () {
   var r = this.sliders.red.sliderNode.getAttribute('aria-valuenow');
   var g = this.sliders.green.sliderNode.getAttribute('aria-valuenow');
   var b = this.sliders.blue.sliderNode.getAttribute('aria-valuenow');
@@ -328,7 +328,7 @@ ColorPickerSliders.prototype.getColorRGB = function () {
   return r + ', ' + g + ', ' + b;
 };
 
-ColorPickerSliders.prototype.updateColorBox = function () {
+ColorViewerSliders.prototype.updateColorBox = function () {
 
   if (this.colorBoxNode) {
     this.colorBoxNode.style.backgroundColor = this.getColorHex();
@@ -343,13 +343,13 @@ ColorPickerSliders.prototype.updateColorBox = function () {
   }
 };
 
-// Initialise ColorPickerSliderss on the page
+// Initialise ColorViewerSliderss on the page
 window.addEventListener('load', function () {
 
   var sliders = document.querySelectorAll('.color-picker-sliders');
 
   for (var i = 0; i < sliders.length; i++) {
-    var s = new ColorPickerSliders(sliders[i]);
+    var s = new ColorViewerSliders(sliders[i]);
     s.init();
   }
 
