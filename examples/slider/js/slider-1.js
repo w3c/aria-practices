@@ -49,8 +49,6 @@ ColorPickerSliders.prototype.init = function () {
 
   for (var slider in this.sliders) {
 
-    console.log('[slider]: ' + slider);
-
     if (this.sliders[slider].sliderNode.tabIndex != 0) {
       this.sliders[slider].sliderNode.tabIndex = 0;
     }
@@ -119,8 +117,6 @@ ColorPickerSliders.prototype.getValueMax = function (slider) {
 };
 
 ColorPickerSliders.prototype.moveSliderTo = function (slider, value) {
-
-  console.log('[moveSliderTo][slider]: ' + slider.sliderNode.classList);
 
   var valueMin = this.getValueMin(slider);
   var valueNow = this.getValueNow(slider);
