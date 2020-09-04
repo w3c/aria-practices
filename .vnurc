@@ -4,7 +4,10 @@
 # Proposed, tracking in gh-429
 Bad value “” for attribute “aria-activedescendant” on element “ul”:.*
 # Ignoring for Slider examples because it is forcing rule with role=img
-.*“img”.*“alt”.*
+Element “img” is missing required attribute “alt”.
+An “img” element with no “alt” attribute must not have a “role” attribute.
+An “img” element with no “alt” attribute must not have any “aria-*” attributes other than “aria-hidden”.
+An “img” element must have an “alt” attribute, except under certain conditions. For details, consult guidance on providing text alternatives for images.
 # Ignoring aria-posinset and aria-setsize on role row
 Attribute “aria-posinset” not allowed on element “tr” at this point.
 Attribute “aria-setsize” not allowed on element “tr” at this point.
