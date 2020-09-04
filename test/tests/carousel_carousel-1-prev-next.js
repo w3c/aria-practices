@@ -8,7 +8,7 @@ const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertTabOrder = require('../util/assertTabOrder');
 
-const exampleFile = 'carousel/carousel-1.html';
+const exampleFile = 'carousel/carousel-1-prev-next.html';
 
 const ex = {
   landmarkSelector: '#myCarousel',
@@ -58,7 +58,7 @@ ariaTest('slide container have aria-live initially set to off', exampleFile, 'ca
   // On page load, `aria-level` is `off`
   await assertAttributeValues(t, ex.slideContainerSelector, 'aria-live', 'off');
 
-  // Focus on the widget, and aria-selected should change to 'polite'
+  // Focus on the widget, and aria-live should change to 'polite'
   await t.context.session.findElement(By.css(ex.nextButtonSelector)).sendKeys(Key.ENTER);
 
   await assertAttributeValues(t, ex.slideContainerSelector, 'aria-live', 'polite');
