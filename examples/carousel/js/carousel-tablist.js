@@ -30,21 +30,20 @@ var CarouselTablist = function (node, options) {
   this.tabpanelNodes = [];
 
   this.liveRegionNode = node.querySelector('.carousel-items');
-  this.pauseButtonNode = null;
+  this.pausePlayButtonNode =  document.querySelector('.carousel-tablist .controls button.rotation');
 
   this.playLabel = 'Start automatic slide show';
   this.pauseLabel = 'Stop automatic slide show';
 
   /* State properties */
-  this.forcePlay = false; // set once the user activates the play/pause button
-  this.playState = !options.paused; // state of the play/pause button
-  this.rotate = !options.paused; // state of rotation
+  this.hasUserActivatedPlay = false; // set when the user activates the play/pause button
+  this.isAutoRotationDisabled = options.norotate // This property for disabling auto rotation
+  this.isPlayingEnabled = !options.paused; // This property is also set in updatePlaying method
   this.timeInterval = 5000; // length of slide rotation in ms
   this.currentIndex = 0; // index of current slide
   this.slideTimeout = null; // save reference to setTimeout
 
   // initialize tabs
-
   this.tablistNode.addEventListener('focusin', this.handleTabFocus.bind(this));
   this.tablistNode.addEventListener('focusout', this.handleTabBlur.bind(this));
 
@@ -75,46 +74,33 @@ var CarouselTablist = function (node, options) {
         imageLink.addEventListener('focus', this.handleImageLinkFocus.bind(this));
         imageLink.addEventListener('blur', this.handleImageLinkBlur.bind(this));
       }
-
     }
     else {
       this.tabpanelNodes.push(null);
     }
-
   }
 
   // Pause Button
-  var elem = document.querySelector('.carousel-tablist .controls button.rotation');
-  if (elem) {
-    this.pauseButtonNode = elem;
-    this.pauseButtonNode.addEventListener('click', this.handlePauseButtonClick.bind(this));
+  if (this.pausePlayButtonNode) {
+    this.pausePlayButtonNode.addEventListener('click', this.handlePausePlayButtonClick.bind(this));
   }
 
-  // initialize behavior based on options
-
-  this.updatePlayState(this.rotate && !options.norotate);
-
-  if (this.rotate && !options.norotate) {
-    this.rotateSlides(false);
-  }
-
-  if (options.norotate) {
-    this.disableRotation(true);
-  }
-
-  this.setAccessibleStyling(options.moreaccessible);
-
+  // Handle hover events
   this.domNode.addEventListener('mouseover', this.handleMouseOver.bind(this));
   this.domNode.addEventListener('mouseout', this.handleMouseOut.bind(this));
 
+  // initialize behavior based on options
+
+  this.enableOrDisableAutoRotation(options.norotate);
+  this.updatePlaying(!options.paused && !options.norotate);
+  this.setAccessibleStyling(options.moreaccessible);
+  this.rotateSlides();
 }
 
-/* Public function to disable or enable rotation */
-CarouselTablist.prototype.disableRotation = function(disable) {
-  if (disable) {
-    this.updatePlayState(false);
-  }
-  this.pauseButtonNode.hidden = disable;
+/* Public function to disable/enable rotation and if false, hide pause/play button*/
+CarouselTablist.prototype.enableOrDisableAutoRotation = function(disable) {
+  this.isAutoRotationDisabled = disable;
+  this.pausePlayButtonNode.hidden = disable;
 }
 
 /* Public function to update controls/caption styling */
@@ -188,52 +174,33 @@ CarouselTablist.prototype.setSelectedToNextTab = function (moveFocus) {
   this.setSelectedTab(nextIndex, moveFocus);
 }
 
-CarouselTablist.prototype.rotateSlides = function (changeSlide) {
-  if (changeSlide !== false) {
-    this.setSelectedToNextTab();
+CarouselTablist.prototype.rotateSlides = function () {
+  if (!this.isAutoRotationDisabled ) {
+    if ((!this.hasFocus &&
+        !this.hasHover &&
+        this.isPlayingEnabled) ||
+        this.hasUserActivatedPlay) {
+      this.setSelectedToNextTab(false);
+    }
   }
 
   this.slideTimeout = setTimeout(this.rotateSlides.bind(this), this.timeInterval);
 }
 
-CarouselTablist.prototype.resetTimeout = function() {
-  clearTimeout(this.slideTimeout);
-  this.rotate = false;
-  this.updateRotation();
-}
+CarouselTablist.prototype.updatePlaying = function (play) {
+  this.isPlayingEnabled = play;
 
-CarouselTablist.prototype.updateRotation = function() {
-
-  var shouldRotate = !this.hasFocus && !this.hasHover && this.playState;
-  if (shouldRotate === this.rotate) {
-    return;
-  }
-
-  this.rotate = shouldRotate;
-
-  if (shouldRotate) {
-    this.rotateSlides(false);
-  }
-  else {
-    clearTimeout(this.slideTimeout);
-  }
-}
-
-CarouselTablist.prototype.updatePlayState = function (play) {
-  this.playState = play;
-  this.updateRotation();
-
-  if (!play) {
-    this.pauseButtonNode.setAttribute('aria-label', this.playLabel);
-    this.pauseButtonNode.classList.remove('pause');
-    this.pauseButtonNode.classList.add('play');
-    this.liveRegionNode.setAttribute('aria-live', 'polite');
-  }
-  else {
-    this.pauseButtonNode.setAttribute('aria-label', this.pauseLabel);
-    this.pauseButtonNode.classList.remove('play');
-    this.pauseButtonNode.classList.add('pause');
+  if (play) {
+    this.pausePlayButtonNode.setAttribute('aria-label', this.pauseLabel);
+    this.pausePlayButtonNode.classList.remove('play');
+    this.pausePlayButtonNode.classList.add('pause');
     this.liveRegionNode.setAttribute('aria-live', 'off');
+  }
+  else {
+    this.pausePlayButtonNode.setAttribute('aria-label', this.playLabel);
+    this.pausePlayButtonNode.classList.remove('pause');
+    this.pausePlayButtonNode.classList.add('play');
+    this.liveRegionNode.setAttribute('aria-live', 'polite');
   }
 }
 
@@ -248,26 +215,20 @@ CarouselTablist.prototype.handleImageLinkBlur = function () {
 }
 
 CarouselTablist.prototype.handleMouseOver = function (event) {
-  if (!this.forcePlay) {
-    if (!this.pauseButtonNode.contains(event.target)) {
-      this.hasHover = true;
-    }
-    this.updateRotation();
+  if (!this.pausePlayButtonNode.contains(event.target)) {
+    this.hasHover = true;
   }
 }
 
 CarouselTablist.prototype.handleMouseOut = function () {
-  if (!this.forcePlay) {
-    this.hasHover = false;
-    this.updateRotation();
-  }
+  this.hasHover = false;
 }
 
   /* EVENT HANDLERS */
 
-CarouselTablist.prototype.handlePauseButtonClick = function () {
-  this.forcePlay = true;
-  this.updatePlayState(!this.playState);
+CarouselTablist.prototype.handlePausePlayButtonClick = function () {
+  this.hasUserActivatedPlay = !this.isPlayingEnabled;
+  this.updatePlaying(!this.isPlayingEnabled);
 }
 
   /* Event Handlers for Tabs*/
@@ -279,25 +240,21 @@ CarouselTablist.prototype.handleTabKeydown = function (event) {
 
     case 'ArrowRight':
       this.setSelectedToNextTab(true);
-      this.resetTimeout();
       flag = true;
       break;
 
     case 'ArrowLeft':
       this.setSelectedToPreviousTab(true);
-      this.resetTimeout();
       flag = true;
       break;
 
     case 'Home':
       this.setSelectedTab(0, true);
-      this.resetTimeout();
       flag = true;
       break;
 
     case 'End':
       this.setSelectedTab(this.tabNodes.length - 1, true);
-      this.resetTimeout();
       flag = true;
       break;
 
@@ -314,17 +271,12 @@ CarouselTablist.prototype.handleTabKeydown = function (event) {
 CarouselTablist.prototype.handleTabClick = function (event) {
   var index = this.tabNodes.indexOf(event.currentTarget);
   this.setSelectedTab(index, true);
-  this.resetTimeout();
 }
 
 CarouselTablist.prototype.handleTabFocus = function () {
   this.tablistNode.classList.add('focus');
   this.liveRegionNode.setAttribute('aria-live', 'polite');
-
-  if (!this.forcePlay) {
-    this.hasFocus = true;
-    this.updateRotation();
-  }
+  this.hasFocus = true;
 }
 
 CarouselTablist.prototype.handleTabBlur = function () {
@@ -333,23 +285,17 @@ CarouselTablist.prototype.handleTabBlur = function () {
     this.liveRegionNode.setAttribute('aria-live', 'off');
   }
 
-  if (!this.forcePlay) {
-    this.hasFocus = false;
-    this.updateRotation();
-  }
+  this.hasFocus = false;
 }
-
 
   /* Event Handlers for Tabpanels*/
 
 CarouselTablist.prototype.handleTabpanelFocusIn = function () {
   this.hasFocus = true;
-  this.updateRotation();
 }
 
 CarouselTablist.prototype.handleTabpanelFocusOut = function () {
   this.hasFocus = false;
-  this.updateRotation();
 }
 
 /* Iniitalize Carousel Tablists and options */
@@ -394,7 +340,7 @@ window.addEventListener('load', function () {
         updateEvent = 'setAccessibleStyling';
         break;
       case 'norotate':
-        updateEvent = 'disableRotation';
+        updateEvent = 'enableOrDisableAutoRotation';
         break;
     }
 
