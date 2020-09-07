@@ -5,15 +5,12 @@
 
 .combobox-datepicker .group {
   display: inline-flex;
+  position: relative;
+  width: 12.125rem;
 }
 
 .combobox-datepicker label {
   display: block;
-}
-
-.combobox-datepicker .group {
-  position: relative;
-  width: 12.125rem;
 }
 
 .combobox-datepicker .group input,
@@ -123,6 +120,9 @@
 
 .combobox-datepicker .dates {
   width: 320px;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 1em;
 }
 
 .combobox-datepicker .prev-year,
@@ -191,12 +191,6 @@
   display: inline-block;
   width: 12em;
   text-align: center;
-}
-
-.combobox-datepicker .dates {
-  padding-left: 1em;
-  padding-right: 1em;
-  padding-top: 1em;
 }
 
 .combobox-datepicker .dates th,

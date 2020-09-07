@@ -73,6 +73,8 @@ img.reload {
   border: 2px solid #eee;
   background-color: rgba(0, 0, 0, 1);
   outline: none;
+  border-width: 2px solid #fff;
+  color: #fff;
 }
 
 .carousel-tablist .carousel-item .carousel-caption p {
@@ -304,14 +306,6 @@ img.reload {
   background-color: transparent;
   border: none;
   border-radius: 5px;
-}
-
-.carousel-tablist .carousel-item .carousel-caption a:focus {
-  padding: 4px;
-  border-width: 2px solid #fff;
-  background-color: rgba(0, 0, 0, 1);
-  color: #fff;
-  outline: none;
 }
 
 .carousel-tablist-moreaccessible .carousel-item .carousel-caption span.contrast,

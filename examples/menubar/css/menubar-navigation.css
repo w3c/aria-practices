@@ -74,15 +74,15 @@
   position: absolute;
   margin: 0;
   padding: 0;
+  padding: 7px 4px;
+  border: 2px solid #034575;
+  border-radius: 5px;
+  background-color: #eee;
 }
 
 .menubar-navigation [role="group"] {
   margin: 0;
   padding: 0;
-}
-
-.menubar-navigation [role="menu"] {
-  display: none;
 }
 
 .menubar-navigation [role="separator"] {
@@ -97,13 +97,6 @@
 .menubar-navigation.focus {
   padding: 6px;
   border: #034575 solid 2px;
-}
-
-.menubar-navigation [role="menu"] {
-  padding: 7px 4px;
-  border: 2px solid #034575;
-  border-radius: 5px;
-  background-color: #eee;
 }
 
 .menubar-navigation [role="menuitem"][aria-expanded="true"],
