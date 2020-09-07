@@ -21,7 +21,7 @@ img.reload {
   padding: 5px;
 }
 
-.carousel .carousel-items.focus  {
+.carousel .carousel-items.focus {
   padding: 2px;
   border: solid 3px #005a9c;
 }
@@ -49,7 +49,6 @@ img.reload {
 .carousel .carousel-item .carousel-caption a {
   cursor: pointer;
 }
-
 
 .carousel .carousel-item .carousel-caption a {
   text-decoration: underline;
@@ -125,7 +124,6 @@ img.reload {
 
 /* SVG Controls */
 
-
 .carousel .controls button {
   flex: 0 0 auto;
   margin: 0;
@@ -171,7 +169,6 @@ img.reload {
   stroke: white;
 }
 
-
 .carousel .controls svg polygon {
   fill: white;
   stroke: white;
@@ -204,7 +201,6 @@ img.reload {
   height: 36px;
 }
 
-
 .carousel.carousel-moreaccessible .controls button.previous {
   right: 60px;
 }
@@ -214,8 +210,8 @@ img.reload {
 }
 
 .carousel-moreaccessible .carousel-items,
-.carousel-moreaccessible .carousel-items.focus  {
-  padding: 0px;
+.carousel-moreaccessible .carousel-items.focus {
+  padding: 0;
   border: none;
 }
 
@@ -266,7 +262,6 @@ img.reload {
   outline: none;
 }
 
-
 .carousel-moreaccessible .carousel-item .carousel-caption span.contrast,
 .carousel-moreaccessible .carousel-item .carousel-caption span.contrast:hover {
   background-color: transparent;
@@ -303,4 +298,3 @@ img.reload {
   left: 0;
   padding: 0.25em 0.25em 0;
 }
-
