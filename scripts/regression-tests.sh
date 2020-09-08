@@ -27,7 +27,7 @@ TEST_INFRA=$(git diff --name-only $COMMIT_RANGE | grep -oP 'test/(util|index)')
 EXAMPLE_DIRS=$(git diff --name-only $COMMIT_RANGE | grep -oP 'examples/\K[\w-]+(?=/)' | uniq)
 EXAMPLE_INFRA=$(echo "$EXAMPLE_DIRS" | grep -P '^(js|css)$')
 
-PACKAGE_UPDATE=$(git diff --name-only $COMMIT_RANGE | grep -P '(package\.json)')
+PACKAGE_UPDATE=$(git diff --name-only $COMMIT_RANGE | grep -P 'package(-lock)?\.json')
 
 if [[ $TEST_INFRA || $EXAMPLE_INFRA || $PACKAGE_UPDATE ]]
 then
