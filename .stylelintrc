@@ -8,6 +8,7 @@
           "forced-colors"
         ]
       }
-    ]
+    ],
+    "no-descending-specificity": null
   }
 }
