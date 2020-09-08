@@ -12,10 +12,8 @@
 <script type="text/javascript" src="../js/app.js"></script>
 
 <!--  js and css for this example. -->
-<link rel="stylesheet" href="css/combobox.css">
-<script type="text/javascript" src="js/combobox-list.js"></script>
-<script type="text/javascript" src="js/listbox.js"></script>
-<script type="text/javascript" src="js/listboxOption.js"></script>
+<link rel="stylesheet" href="css/combobox-autocomplete.css">
+<script type="text/javascript" src="js/combobox-autocomplete.js"></script>
 </head>
 <body>
   <nav aria-label="Related Links" class="feedback">
@@ -41,9 +39,11 @@
     </p>
     <p>Similar examples include:</p>
     <ul>
+      <li><a href="combobox-select-only.html">Select-Only Combobox</a>: A single-select combobox with no text input that is functionally similar to an HTML <code>select</code> element.</li>
       <li><a href="combobox-autocomplete-list.html">Editable Combobox with List Autocomplete</a>: An editable combobox that demonstrates the autocomplete behavior known as <q>list with manual selection</q>.</li>
       <li><a href="combobox-autocomplete-none.html">Editable Combobox Without Autocomplete</a>: An editable combobox that demonstrates the behavior associated with <code>aria-autocomplete=none</code>.</li>
       <li><a href="grid-combo.html">Editable Combobox with Grid Popup</a>: An editable combobox that presents suggestions in a grid, enabling users to navigate descriptive information about each suggestion.</li>
+      <li><a href="combobox-datepicker.html">Date Picker Combobox</a>: An editable date input combobox that opens a dialog containing a calendar grid and buttons for navigating by month and year.</li>
     </ul>
     <section>
       <h2 id="ex_label">Example</h2>
@@ -53,10 +53,17 @@
         <div class="combobox combobox-list">
           <div class="group">
             <input id="cb1-input" class="cb_edit" type="text" role="combobox" aria-autocomplete="both"
-              aria-expanded="false" aria-controls="lb1">
-            <button type="button" id="cb1-button" aria-label="Open" tabindex="-1">&#9660;</button>
+              aria-expanded="false" aria-controls="cb1-listbox">
+            <button type="button" id="cb1-button" aria-label="States" aria-expanded="false" aria-controls="cb1-listbox" tabindex="-1">
+              <span class="arrow">
+                <svg width="18" height="16" aria-hidden="true" focusable="false">
+                  <polygon class="outline" points="1,4 17,4 9,15"></polygon>
+                  <polygon class="arrow" points="3,5 15,5 9,13"></polygon>
+                </svg>
+              </span>
+            </button>
           </div>
-          <ul id="lb1" role="listbox" aria-label="States">
+          <ul id="cb1-listbox" role="listbox" aria-label="States">
             <li id="lb1-al" role="option">Alabama</li>
             <li id="lb1-ak" role="option">Alaska</li>
             <li id="lb1-as" role="option">American Samoa</li>
@@ -145,6 +152,12 @@
               </ul>
             </td>
           </tr>
+          <tr data-test-id="textbox-key-alt-down-arrow">
+            <th><kbd>Alt + Down Arrow</kbd></th>
+            <td>
+                Opens the listbox without moving focus or changing selection.
+            </td>
+          </tr>
           <tr data-test-id="textbox-key-up-arrow">
             <th><kbd>Up Arrow</kbd></th>
             <td>
@@ -168,8 +181,8 @@
             <th><kbd>Escape</kbd></th>
             <td>
               <ul>
-                <li>Clears the textbox.</li>
                 <li>If the listbox is displayed, closes it.</li>
+                <li>If the listbox is not displayed, clears the textbox.</li>
               </ul>
             </td>
           </tr>
@@ -213,7 +226,6 @@
             <th><kbd>Escape</kbd></th>
             <td>
               <ul>
-                <li>Clears the textbox.</li>
                 <li>Closes the listbox.</li>
                 <li>Sets visual focus on the textbox.</li>
               </ul>
@@ -261,11 +273,17 @@
               <ul>
                 <li>Moves visual focus to the textbox.</li>
                 <li>Types the character in the textbox.</li>
+                <li>Options in the listbox are filtered based on characters in the textbox.</li>
               </ul>
             </td>
           </tr>
         </tbody>
       </table>
+      <h3 id="kbd_label_button">Button</h3>
+      <p>
+        The button has been removed from the tab sequence of the page, but is still important to assistive technologies for mobile devices that use touch events to open the list of options.
+      </p>
+
     </section>
 
     <section>
@@ -325,6 +343,19 @@
             </th>
             <td><code>input[type="text"]</code></td>
             <td>Indicates that the popup element <strong>is</strong> displayed.</td>
+          </tr>
+          <tr data-test-id="combobox-id">
+            <td></td>
+            <th scope="row">
+              <code>id="string"</code>
+            </th>
+            <td><code>input[type="text"]</code></td>
+            <td>
+              <ul>
+                <li>Referenced by <code>for</code> attribute of <code>label</code> element to provide an accessible name.</li>
+                <li>Recommended naming method for HTML input elements because clicking label focuses input.</li>
+              </ul>
+            </td>
           </tr>
           <tr data-test-id="combobox-aria-activedescendant">
             <td></td>
@@ -403,6 +434,60 @@
           </tr>
         </tbody>
       </table>
+
+      <h3 id="rps_label_button">Button</h3>
+      <table aria-labelledby="rps_label_button rps_label" class="data attributes">
+        <thead>
+          <tr>
+            <th scope="col">Role</th>
+            <th scope="col">Attribute</th>
+            <th scope="col">Element</th>
+            <th scope="col">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-test-id="button-tabindex">
+            <td></td>
+            <th scope="row">
+              <code>tabindex="-1"</code>
+            </th>
+            <td><code>button</code></td>
+            <td>Removes the button from the tab sequence of the page because its function is redundant with the keyboard operation of the combobox.</td>
+          </tr>
+          <tr data-test-id="button-aria-label">
+            <td></td>
+            <th scope="row">
+              <code>aria-label="States"</code>
+            </th>
+            <td><code>button</code></td>
+            <td>Provides a label for the <code>button</code>.</td>
+          </tr>
+          <tr data-test-id="button-aria-controls">
+            <td></td>
+            <th scope="row">
+              <code>aria-controls="#IDREF"</code>
+            </th>
+            <td><code>button</code></td>
+            <td>Identifies the element that serves as the popup.</td>
+          </tr>
+          <tr data-test-id="button-aria-expanded">
+            <td></td>
+            <th scope="row">
+              <code>aria-expanded="false"</code>
+            </th>
+            <td><code>button</code></td>
+            <td>Indicates that the popup element <strong>is not</strong> displayed.</td>
+          </tr>
+          <tr data-test-id="button-aria-expanded">
+            <td></td>
+            <th scope="row">
+              <code>aria-expanded="true"</code>
+            </th>
+            <td><code>button</code></td>
+            <td>Indicates that the popup element <strong>is</strong> displayed.</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
 
     <section>
@@ -410,23 +495,11 @@
       <ul>
         <li>
           CSS:
-          <a href="css/combobox.css" type="text/css">combobox.css</a>
-        </li>
-        <li>
-          CSS:
-          <a href="css/listbox.css" type="text/css">listbox.css</a>
+          <a href="css/combobox-autocomplete.css" type="text/css">combobox-autocomplete.css</a>
         </li>
         <li>
           Javascript:
-          <a href="js/combobox-list.js" type="text/javascript">combobox-list.js</a>
-        </li>
-        <li>
-          Javascript:
-          <a href="js/listbox.js" type="text/javascript">listbox.js</a>
-        </li>
-        <li>
-          Javascript:
-          <a href="js/listboxOption.js" type="text/javascript">listboxOption.js</a>
+          <a href="js/combobox-autocomplete.js" type="text/javascript">combobox-autocomplete.js</a>
         </li>
       </ul>
     </section>

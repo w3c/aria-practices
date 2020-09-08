@@ -35,7 +35,7 @@ const navigateToFeed = async function (t) {
 };
 
 const waitForArticlesToLoad = async function (t) {
-  // Wait for artilces to load
+  // Wait for articles to load
   return t.context.session.wait(
     async function () {
       let element = await t.context.session.findElement(By.css(ex.feedSelector));
@@ -69,60 +69,52 @@ const checkFocus = async function (t, selector, index) {
 // Attributes
 
 ariaTest('role="feed" exists', exampleFile, 'feed-role', async (t) => {
-  t.plan(1);
-  await navigateToFeed(t);
+    await navigateToFeed(t);
   await assertAriaRoles(t, 'main-content', 'feed', 1, 'div');
 });
 
 // This bug has been reported in issue: https://github.com/w3c/aria-practices/issues/911
 ariaTest.failing('aria-labelledby attribute on feed element', exampleFile, 'feed-aria-labelledby', async (t) => {
-  t.plan(1);
-  await navigateToFeed(t);
+    await navigateToFeed(t);
   await assertAriaLabelledby(t, ex.feedSelector);
 });
 
 ariaTest('aria-busy attribute on feed element', exampleFile, 'feed-aria-busy', async (t) => {
-  t.plan(2);
-  await navigateToFeed(t);
+    await navigateToFeed(t);
   await assertAttributeValues(t, ex.feedSelector, 'aria-busy', 'true');
   await waitForArticlesToLoad(t);
   await assertAttributeDNE(t, ex.feedSelector, 'aria-busy');
 });
 
 ariaTest('role="article" exists', exampleFile, 'article-role', async (t) => {
-  t.plan(1);
-  await navigateToFeed(t);
+    await navigateToFeed(t);
   await waitForArticlesToLoad(t);
   await assertAriaRoles(t, 'main-content', 'article', 10, 'div');
 });
 
 ariaTest('tabindex="-1" on article elements', exampleFile, 'article-tabindex', async (t) => {
-  t.plan(1);
-  await navigateToFeed(t);
+    await navigateToFeed(t);
   await waitForArticlesToLoad(t);
   await assertAttributeValues(t, ex.articleSelector, 'tabindex', '0');
 });
 
 ariaTest('aria-labelledby set on article elements', exampleFile, 'article-labelledby', async (t) => {
-  t.plan(1);
-  await navigateToFeed(t);
+    await navigateToFeed(t);
   await waitForArticlesToLoad(t);
   await assertAriaLabelledby(t, ex.articleSelector);
 });
 
 ariaTest('aria-describedby set on article elements', exampleFile, 'article-describedby', async (t) => {
-  t.plan(1);
-  await navigateToFeed(t);
+    await navigateToFeed(t);
   await waitForArticlesToLoad(t);
   await assertAriaDescribedby(t, ex.articleSelector);
 });
 
 ariaTest('aria-posinset on article element', exampleFile, 'article-aria-posinset', async (t) => {
-  t.plan(30);
-  await navigateToFeed(t);
+    await navigateToFeed(t);
   await waitForArticlesToLoad(t);
 
-  let articles = await t.context.session.findElements(By.css(ex.articleSelector));
+  let articles = await t.context.queryElements(t, ex.articleSelector);
   for (let index = 1; index <= articles.length; index++) {
     t.is(
       await articles[index - 1].getAttribute('aria-posinset'),
@@ -134,7 +126,7 @@ ariaTest('aria-posinset on article element', exampleFile, 'article-aria-posinset
   await loadMoreArticles(t);
   await waitForArticlesToLoad(t);
 
-  articles = await t.context.session.findElements(By.css(ex.articleSelector));
+  articles = await t.context.queryElements(t, ex.articleSelector);
   for (let index = 1; index <= articles.length; index++) {
     t.is(
       await articles[index - 1].getAttribute('aria-posinset'),
@@ -145,12 +137,11 @@ ariaTest('aria-posinset on article element', exampleFile, 'article-aria-posinset
 });
 
 ariaTest('aria-setsize on article element', exampleFile, 'article-aria-setsize', async (t) => {
-  t.plan(30);
-
+  
   await navigateToFeed(t);
   await waitForArticlesToLoad(t);
 
-  let articles = await t.context.session.findElements(By.css(ex.articleSelector));
+  let articles = await t.context.queryElements(t, ex.articleSelector);
   let numArticles = articles.length;
   for (let index = 1; index <= numArticles; index++) {
     t.is(
@@ -164,14 +155,14 @@ ariaTest('aria-setsize on article element', exampleFile, 'article-aria-setsize',
   await loadMoreArticles(t);
   await waitForArticlesToLoad(t);
 
-  articles = await t.context.session.findElements(By.css(ex.articleSelector));
+  articles = await t.context.queryElements(t, ex.articleSelector);
   numArticles = articles.length;
   for (let index = 1; index <= numArticles; index++) {
     t.is(
       await articles[index - 1].getAttribute('aria-setsize'),
       (ex.numArticlesLoadedInSet * 2).toString(),
       'Article number ' + index + ' does not have aria-setsize set correctly, ' +
-        'after triggering more artilces to load.'
+        'after triggering more articles to load.'
     );
   }
 });
@@ -179,11 +170,10 @@ ariaTest('aria-setsize on article element', exampleFile, 'article-aria-setsize',
 // Keys
 
 ariaTest('PAGE DOWN moves focus between articles', exampleFile, 'key-page-down', async (t) => {
-  t.plan(1);
-  await navigateToFeed(t);
+    await navigateToFeed(t);
   await waitForArticlesToLoad(t);
 
-  let articles = await t.context.session.findElements(By.css(ex.articleSelector));
+  let articles = await t.context.queryElements(t, ex.articleSelector);
   articles[0].sendKeys(Key.PAGE_DOWN);
 
   t.true(
@@ -193,11 +183,10 @@ ariaTest('PAGE DOWN moves focus between articles', exampleFile, 'key-page-down',
 });
 
 ariaTest('PAGE UP moves focus between articles', exampleFile, 'key-page-up', async (t) => {
-  t.plan(1);
-  await navigateToFeed(t);
+    await navigateToFeed(t);
   await waitForArticlesToLoad(t);
 
-  let articles = await t.context.session.findElements(By.css(ex.articleSelector));
+  let articles = await t.context.queryElements(t, ex.articleSelector);
   articles[1].sendKeys(Key.PAGE_UP);
 
   t.true(
@@ -207,11 +196,10 @@ ariaTest('PAGE UP moves focus between articles', exampleFile, 'key-page-up', asy
 });
 
 ariaTest('CONTROL+END moves focus out of feed', exampleFile, 'key-control-end', async (t) => {
-  t.plan(1);
-  await navigateToFeed(t);
+    await navigateToFeed(t);
   await waitForArticlesToLoad(t);
 
-  let articles = await t.context.session.findElements(By.css(ex.articleSelector));
+  let articles = await t.context.queryElements(t, ex.articleSelector);
   articles[0].sendKeys(Key.chord(Key.CONTROL, Key.END));
 
   t.true(

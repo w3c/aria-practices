@@ -28,17 +28,15 @@ const ex = {
 // Attributes
 
 ariaTest('"aria-controls" attribute on button', exampleFile, 'button-aria-controls', async (t) => {
-  t.plan(1);
-  await assertAriaControls(t, ex.buttonSelector);
+    await assertAriaControls(t, ex.buttonSelector);
 });
 
 ariaTest('"aria-expanded" attribute on button', exampleFile, 'button-aria-expanded', async (t) => {
-  t.plan(7);
-
+  
   await assertAttributeValues(t, ex.buttonSelector, 'aria-expanded', 'false');
 
-  let buttons = await t.context.session.findElements(By.css(ex.buttonSelector));
-  let menus = await t.context.session.findElements(By.css(ex.menuSelector));
+  let buttons = await t.context.queryElements(t, ex.buttonSelector);
+  let menus = await t.context.queryElements(t, ex.menuSelector);
   for (let i = buttons.length - 1; i >= 0; i--) {
     await buttons[i].click();
     t.true(
@@ -50,13 +48,12 @@ ariaTest('"aria-expanded" attribute on button', exampleFile, 'button-aria-expand
 });
 
 ariaTest('"aria-current" attribute on links', exampleFile, 'link-aria-current', async (t) => {
-  t.plan(36);
-
-  const buttons = await t.context.session.findElements(By.css(ex.buttonSelector));
-  const menus = await t.context.session.findElements(By.css(ex.menuSelector));
+  
+  const buttons = await t.context.queryElements(t, ex.buttonSelector);
+  const menus = await t.context.queryElements(t, ex.menuSelector);
 
   for (let b = 0; b < buttons.length; b++) {
-    const links = await menus[b].findElements(By.css('a'));
+    const links = await t.context.queryElements(t, 'a', menus[b]);
 
     for (let l = 0; l < links.length; l++) {
 
@@ -69,9 +66,7 @@ ariaTest('"aria-current" attribute on links', exampleFile, 'link-aria-current', 
         'after clicking link at index ' + l + ' on menu ' + b + 'aria-current should be set to page'
       );
 
-      let ariaCurrentLinks = await t.context.session.findElements(
-        By.css(`${ex.linkSelector}[aria-current="page"]`)
-      );
+      let ariaCurrentLinks = await t.context.queryElements(t, `${ex.linkSelector}[aria-current="page"]`);
 
       t.is(
         ariaCurrentLinks.length,
@@ -86,16 +81,14 @@ ariaTest('"aria-current" attribute on links', exampleFile, 'link-aria-current', 
 // Keys
 
 ariaTest('TAB should move focus between buttons', exampleFile, 'key-tab', async (t) => {
-  t.plan(1);
-
+  
   await assertTabOrder(t, ex.buttonSelectors);
 });
 
 ariaTest('key ENTER expands dropdown', exampleFile, 'key-enter-space', async (t) => {
-  t.plan(12);
-
-  const buttons = await t.context.session.findElements(By.css(ex.buttonSelector));
-  const menus = await t.context.session.findElements(By.css(ex.menuSelector));
+  
+  const buttons = await t.context.queryElements(t, ex.buttonSelector);
+  const menus = await t.context.queryElements(t, ex.menuSelector);
 
   for (let i = buttons.length - 1; i >= 0; i--) {
     await buttons[i].sendKeys(Key.ENTER);
@@ -115,10 +108,9 @@ ariaTest('key ENTER expands dropdown', exampleFile, 'key-enter-space', async (t)
 });
 
 ariaTest('key SPACE expands dropdown', exampleFile, 'key-enter-space', async (t) => {
-  t.plan(12);
-
-  const buttons = await t.context.session.findElements(By.css(ex.buttonSelector));
-  const menus = await t.context.session.findElements(By.css(ex.menuSelector));
+  
+  const buttons = await t.context.queryElements(t, ex.buttonSelector);
+  const menus = await t.context.queryElements(t, ex.menuSelector);
 
   for (let i = buttons.length - 1; i >= 0; i--) {
     await buttons[i].sendKeys(Key.SPACE);
@@ -138,8 +130,7 @@ ariaTest('key SPACE expands dropdown', exampleFile, 'key-enter-space', async (t)
 });
 
 ariaTest('key ESCAPE closes dropdown', exampleFile, 'key-escape', async (t) => {
-  t.plan(3);
-
+  
   const button = await t.context.session.findElement(By.css(ex.buttonSelectors[0]));
   const menu = await t.context.session.findElement(By.css(ex.menuSelectors[0]));
   const firstLink = await t.context.session.findElement(By.css(`${ex.menuSelectors[0]} a`));
@@ -159,9 +150,8 @@ ariaTest('key ESCAPE closes dropdown', exampleFile, 'key-escape', async (t) => {
 });
 
 ariaTest('arrow keys move focus between disclosure buttons', exampleFile, 'key-arrows', async (t) => {
-  t.plan(8);
-
-  const buttons = await t.context.session.findElements(By.css(ex.buttonSelector));
+  
+  const buttons = await t.context.queryElements(t, ex.buttonSelector);
 
   await buttons[0].sendKeys(Key.ARROW_RIGHT);
   await assertHasFocus(t, ex.buttonSelectors[1], 'right arrow moves focus from first to second button');
@@ -189,9 +179,8 @@ ariaTest('arrow keys move focus between disclosure buttons', exampleFile, 'key-a
 });
 
 ariaTest('down arrow moves focus from button to open menu', exampleFile, 'key-arrows', async (t) => {
-  t.plan(2);
-
-  const buttons = await t.context.session.findElements(By.css(ex.buttonSelector));
+  
+  const buttons = await t.context.queryElements(t, ex.buttonSelector);
   const menu = await t.context.session.findElement(By.css(ex.menuSelectors[0]));
 
   // open menu
@@ -206,9 +195,8 @@ ariaTest('down arrow moves focus from button to open menu', exampleFile, 'key-ar
 });
 
 ariaTest('home and end move focus to first and last buttons', exampleFile, 'key-home-end', async (t) => {
-  t.plan(2);
-
-  const buttons = await t.context.session.findElements(By.css(ex.buttonSelector));
+  
+  const buttons = await t.context.queryElements(t, ex.buttonSelector);
 
   await buttons[1].sendKeys(Key.HOME);
   await assertHasFocus(t, ex.buttonSelectors[0], 'home key moves focus to first button');
@@ -218,11 +206,10 @@ ariaTest('home and end move focus to first and last buttons', exampleFile, 'key-
 });
 
 ariaTest('arrow keys move focus between open menu links', exampleFile, 'key-arrows', async (t) => {
-  t.plan(6);
-
+  
   const button = await t.context.session.findElement(By.css(ex.buttonSelectors[0]));
   const menu = await t.context.session.findElement(By.css(ex.menuSelectors[0]));
-  const menuLinks = await t.context.session.findElements(By.css(`${ex.menuSelectors[0]} a`));
+  const menuLinks = await t.context.queryElements(t, `${ex.menuSelectors[0]} a`);
 
   await button.click();
   await menu.isDisplayed();
@@ -247,11 +234,10 @@ ariaTest('arrow keys move focus between open menu links', exampleFile, 'key-arro
 });
 
 ariaTest('home and end move focus to first and last open menu link', exampleFile, 'key-home-end', async (t) => {
-  t.plan(2);
-
+  
   const button = await t.context.session.findElement(By.css(ex.buttonSelectors[0]));
   const menu = await t.context.session.findElement(By.css(ex.menuSelectors[0]));
-  const menuLinks = await t.context.session.findElements(By.css(`${ex.menuSelectors[0]} a`));
+  const menuLinks = await t.context.queryElements(t, `${ex.menuSelectors[0]} a`);
 
   await button.click();
   await menu.isDisplayed();

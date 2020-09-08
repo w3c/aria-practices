@@ -2,6 +2,9 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 */
+
+'use strict';
+
 /**
  * ARIA Listbox Examples
  * @function onload
@@ -11,8 +14,8 @@
 window.addEventListener('load', function () {
   var ex1 = document.getElementById('ex1');
   var ex1ImportantListbox = new aria.Listbox(document.getElementById('ss_imp_list'));
-  var ex1Toolbar = new aria.Toolbar(ex1.querySelector('[role="toolbar"]'));
   var ex1UnimportantListbox = new aria.Listbox(document.getElementById('ss_unimp_list'));
+  new aria.Toolbar(ex1.querySelector('[role="toolbar"]'));
 
   ex1ImportantListbox.enableMoveUpDown(
     document.getElementById('ex1-up'),
@@ -44,7 +47,6 @@ window.addEventListener('load', function () {
   });
   ex1UnimportantListbox.setupMove(document.getElementById('ex1-add'), ex1ImportantListbox);
 
-  var ex2 = document.getElementById('ex2');
   var ex2ImportantListbox = new aria.Listbox(document.getElementById('ms_imp_list'));
   var ex2UnimportantListbox = new aria.Listbox(document.getElementById('ms_unimp_list'));
 

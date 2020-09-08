@@ -44,21 +44,19 @@ const waitAndCheckExpandedFalse = async function (t, selector) {
 // Attributes
 
 ariaTest('"aria-controls" attribute on button', exampleFile, 'button-aria-controls', async (t) => {
-  t.plan(1);
-  await assertAriaControls(t, ex.buttonSelector);
+    await assertAriaControls(t, ex.buttonSelector);
 });
 
 ariaTest('"aria-expanded" attribute on button', exampleFile, 'button-aria-expanded', async (t) => {
-  t.plan(6);
-
+  
   await assertAttributeValues(t, ex.buttonSelector, 'aria-expanded', 'false');
 
-  let buttons = await t.context.session.findElements(By.css(ex.buttonSelector));
+  let buttons = await t.context.queryElements(t, ex.buttonSelector);
   for (let button of buttons) {
     await button.click();
   }
 
-  let answers = await t.context.session.findElements(By.css(ex.buttonSelector));
+  let answers = await t.context.queryElements(t, ex.buttonSelector);
   for (let answer of answers) {
     t.true(
       await answer.isDisplayed(),
@@ -72,11 +70,10 @@ ariaTest('"aria-expanded" attribute on button', exampleFile, 'button-aria-expand
 // Keys
 
 ariaTest('TAB should move focus', exampleFile, 'key-tab', async (t) => {
-  t.plan(2);
-
+  
   await assertTabOrder(t, ex.buttonSelectors);
 
-  let buttons = await t.context.session.findElements(By.css(ex.buttonSelector));
+  let buttons = await t.context.queryElements(t, ex.buttonSelector);
   for (let button of buttons) {
     await button.click();
   }
@@ -85,8 +82,7 @@ ariaTest('TAB should move focus', exampleFile, 'key-tab', async (t) => {
 });
 
 ariaTest('key ENTER expands details', exampleFile, 'key-enter-or-space', async (t) => {
-  t.plan(16);
-
+  
   for (let index = 0; index < ex.buttonSelectors.length; index++) {
     let buttonSelector = ex.buttonSelectors[index];
     let answerSelector = ex.answerSelectors[index];
@@ -119,8 +115,7 @@ ariaTest('key ENTER expands details', exampleFile, 'key-enter-or-space', async (
 });
 
 ariaTest('key SPACE expands details', exampleFile, 'key-enter-or-space', async (t) => {
-  t.plan(16);
-
+  
   for (let index = 0; index < ex.buttonSelectors.length; index++) {
     let buttonSelector = ex.buttonSelectors[index];
     let answerSelector = ex.answerSelectors[index];

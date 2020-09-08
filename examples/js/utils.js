@@ -1,3 +1,4 @@
+'use strict';
 /**
  * @namespace aria
  */
@@ -12,6 +13,7 @@ aria.KeyCode = {
   BACKSPACE: 8,
   TAB: 9,
   RETURN: 13,
+  SHIFT: 16,
   ESC: 27,
   SPACE: 32,
   PAGE_UP: 33,
@@ -62,8 +64,8 @@ aria.Utils.remove = function (item) {
 };
 
 aria.Utils.isFocusable = function (element) {
-  if (element.tabIndex > 0 || (element.tabIndex === 0 && element.getAttribute('tabIndex') !== null)) {
-    return true;
+  if (element.tabIndex < 0) {
+    return false;
   }
 
   if (element.disabled) {
@@ -74,7 +76,7 @@ aria.Utils.isFocusable = function (element) {
     case 'A':
       return !!element.href && element.rel != 'ignore';
     case 'INPUT':
-      return element.type != 'hidden' && element.type != 'file';
+      return element.type != 'hidden';
     case 'BUTTON':
     case 'SELECT':
     case 'TEXTAREA':

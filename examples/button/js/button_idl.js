@@ -5,6 +5,8 @@
 *   JS code for the button design pattern using the new ARIA 1.2 IDL for reflection.
 */
 
+'use strict';
+
 var ICON_MUTE_URL = 'images/mute.svg#icon-mute';
 var ICON_SOUND_URL = 'images/mute.svg#icon-sound';
 

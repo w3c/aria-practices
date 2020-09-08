@@ -8,6 +8,8 @@
 *           for a menu of links
 */
 
+'use strict';
+
 /*
 *   @constructor CheckboxMixed
 *

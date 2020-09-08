@@ -5,6 +5,8 @@
 *   File:   datepicker-spinbuttons.js
 */
 
+'use strict';
+
 /* global SpinButtonDate */
 
 var DatePickerSpinButtons = function (domNode)  {
@@ -52,42 +54,7 @@ DatePickerSpinButtons.prototype.init = function () {
 };
 
 DatePickerSpinButtons.prototype.getDaysInMonth = function (year, month) {
-
-  if (typeof year !== 'number') {
-    year = this.year;
-  }
-
-  if (typeof month !== 'number') {
-    month = this.month;
-  }
-
-  switch (month) {
-
-    case 0:
-    case 2:
-    case 4:
-    case 6:
-    case 7:
-    case 9:
-    case 11:
-      return 31;
-
-    case 1:
-      return (((this.yearIndex % 4 === 0) && (this.yearIndex % 100 !== 0) && (this.yearIndex % 400 === 0)) ? 29 : 28);
-
-    case 3:
-    case 5:
-    case 8:
-    case 10:
-      return 30;
-
-    default:
-      break;
-
-  }
-
-  return -1;
-
+  return new Date(year, month + 1, 0).getDate();
 };
 
 DatePickerSpinButtons.prototype.updateDay = function (day) {
