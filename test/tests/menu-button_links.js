@@ -61,18 +61,15 @@ const waitForNoAriaExpanded = async function (t) {
 // Attributes
 
 ariaTest('"aria-haspopup" attribute on menu button', exampleFile, 'button-aria-haspopup', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex.menubuttonSelector, 'aria-haspopup', 'true');
+    await assertAttributeValues(t, ex.menubuttonSelector, 'aria-haspopup', 'true');
 });
 
 ariaTest('"aria-controls" attribute on menu button', exampleFile, 'button-aria-controls', async (t) => {
-  t.plan(1);
-  await assertAriaControls(t, ex.menubuttonSelector);
+    await assertAriaControls(t, ex.menubuttonSelector);
 });
 
 ariaTest('"aria-expanded" attribute on menu button', exampleFile, 'button-aria-expanded', async (t) => {
-  t.plan(4);
-
+  
   const hasAttribute = await t.context.session.executeScript(function () {
     selector = arguments[0];
     return document.querySelector(selector).hasAttribute('aria-expanded');
@@ -99,36 +96,30 @@ ariaTest('"aria-expanded" attribute on menu button', exampleFile, 'button-aria-e
 });
 
 ariaTest('role="menu" on ul element', exampleFile, 'menu-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'ex1', 'menu', 1, 'ul');
+    await assertAriaRoles(t, 'ex1', 'menu', 1, 'ul');
 });
 
 ariaTest('"aria-labelledby" on role="menu"', exampleFile, 'menu-aria-labelledby', async (t) => {
-  t.plan(1);
-  await assertAriaLabelledby(t, ex.menuSelector);
+    await assertAriaLabelledby(t, ex.menuSelector);
 });
 
 ariaTest('role="none" on li element', exampleFile, 'none-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'ex1', 'none', ex.numMenuitems, 'li');
+    await assertAriaRoles(t, 'ex1', 'none', ex.numMenuitems, 'li');
 });
 
 ariaTest('role="menuitem" on a element', exampleFile, 'menuitem-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'ex1', 'menuitem', ex.numMenuitems, 'a');
+    await assertAriaRoles(t, 'ex1', 'menuitem', ex.numMenuitems, 'a');
 });
 
 ariaTest('tabindex="-1" on role="menuitem"', exampleFile, 'menuitem-tabindex', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex.menuitemSelector, 'tabindex', '-1');
+    await assertAttributeValues(t, ex.menuitemSelector, 'tabindex', '-1');
 });
 
 
 // Keys
 
 ariaTest('"enter" on menu button', exampleFile, 'button-down-arrow-or-space-or-enter', async (t) => {
-  t.plan(2);
-
+  
   await t.context.session
     .findElement(By.css(ex.menubuttonSelector))
     .sendKeys(Key.ENTER);
@@ -145,8 +136,7 @@ ariaTest('"enter" on menu button', exampleFile, 'button-down-arrow-or-space-or-e
 });
 
 ariaTest('"down arrow" on menu button', exampleFile, 'button-down-arrow-or-space-or-enter', async (t) => {
-  t.plan(2);
-
+  
   await t.context.session
     .findElement(By.css(ex.menubuttonSelector))
     .sendKeys(Key.ARROW_DOWN);
@@ -163,8 +153,7 @@ ariaTest('"down arrow" on menu button', exampleFile, 'button-down-arrow-or-space
 });
 
 ariaTest('"space" on menu button', exampleFile, 'button-down-arrow-or-space-or-enter', async (t) => {
-  t.plan(2);
-
+  
   await t.context.session
     .findElement(By.css(ex.menubuttonSelector))
     .sendKeys(Key.SPACE);
@@ -181,8 +170,7 @@ ariaTest('"space" on menu button', exampleFile, 'button-down-arrow-or-space-or-e
 });
 
 ariaTest('"up arrow" on menu button', exampleFile, 'button-up-arrow', async (t) => {
-  t.plan(2);
-
+  
   await t.context.session
     .findElement(By.css(ex.menubuttonSelector))
     .sendKeys(Key.ARROW_UP);
@@ -199,13 +187,12 @@ ariaTest('"up arrow" on menu button', exampleFile, 'button-up-arrow', async (t) 
 });
 
 ariaTest('"enter" on role="menuitem"', exampleFile, 'menu-enter', async (t) => {
-  t.plan(6);
-
+  
   for (let index = 0; index < ex.numMenuitems; index++) {
 
     // Return to test page
     await t.context.session.get(t.context.url);
-    const item = (await t.context.session.findElements(By.css(ex.menuitemSelector)))[index];
+    const item = (await t.context.queryElements(t, ex.menuitemSelector))[index];
 
     await openMenu(t);
     await item.sendKeys(Key.ENTER);
@@ -220,9 +207,8 @@ ariaTest('"enter" on role="menuitem"', exampleFile, 'menu-enter', async (t) => {
 });
 
 ariaTest('"escape" on role="menuitem"', exampleFile, 'menu-escape', async (t) => {
-  t.plan(12);
-
-  const items = await t.context.session.findElements(By.css(ex.menuitemSelector));
+  
+  const items = await t.context.queryElements(t, ex.menuitemSelector);
   for (let index = 0; index < ex.numMenuitems; index++) {
     const item = items[index];
 
@@ -244,11 +230,10 @@ ariaTest('"escape" on role="menuitem"', exampleFile, 'menu-escape', async (t) =>
 });
 
 ariaTest('"down arrow" on role="menuitem"', exampleFile, 'menu-down-arrow', async (t) => {
-  t.plan(6);
-
+  
   await openMenu(t);
 
-  const items = await t.context.session.findElements(By.css(ex.menuitemSelector));
+  const items = await t.context.queryElements(t, ex.menuitemSelector);
   for (let index = 0; index < items.length - 1; index++) {
 
     await items[index].sendKeys(Key.ARROW_DOWN);
@@ -271,11 +256,10 @@ ariaTest('"down arrow" on role="menuitem"', exampleFile, 'menu-down-arrow', asyn
 });
 
 ariaTest('"up arrow" on role="menuitem"', exampleFile, 'menu-up-arrow', async (t) => {
-  t.plan(6);
-
+  
   await openMenu(t);
 
-  const items = await t.context.session.findElements(By.css(ex.menuitemSelector));
+  const items = await t.context.queryElements(t, ex.menuitemSelector);
 
   await items[0].sendKeys(Key.ARROW_UP);
 
@@ -299,11 +283,10 @@ ariaTest('"up arrow" on role="menuitem"', exampleFile, 'menu-up-arrow', async (t
 });
 
 ariaTest('"home" on role="menuitem"', exampleFile, 'menu-home', async (t) => {
-  t.plan(6);
-
+  
   await openMenu(t);
 
-  const items = await t.context.session.findElements(By.css(ex.menuitemSelector));
+  const items = await t.context.queryElements(t, ex.menuitemSelector);
   for (let index = 0; index < items.length; index++) {
 
     await items[index].sendKeys(Key.HOME);
@@ -318,11 +301,10 @@ ariaTest('"home" on role="menuitem"', exampleFile, 'menu-home', async (t) => {
 });
 
 ariaTest('"end" on role="menuitem"', exampleFile, 'menu-end', async (t) => {
-  t.plan(6);
-
+  
   await openMenu(t);
 
-  const items = await t.context.session.findElements(By.css(ex.menuitemSelector));
+  const items = await t.context.queryElements(t, ex.menuitemSelector);
   for (let index = 0; index < items.length; index++) {
 
     await items[index].sendKeys(Key.END);
@@ -336,8 +318,7 @@ ariaTest('"end" on role="menuitem"', exampleFile, 'menu-end', async (t) => {
 });
 
 ariaTest('"character" on role="menuitem"', exampleFile, 'menu-character', async (t) => {
-  t.plan(4);
-
+  
   const charIndexTest = [
     { sendChar: 'a', sendIndex: 0, endIndex: 2 },
     { sendChar: 'w', sendIndex: 2, endIndex: 3 },
@@ -346,7 +327,7 @@ ariaTest('"character" on role="menuitem"', exampleFile, 'menu-character', async 
   ];
 
   await openMenu(t);
-  const items = await t.context.session.findElements(By.css(ex.menuitemSelector));
+  const items = await t.context.queryElements(t, ex.menuitemSelector);
 
   for (let test of charIndexTest) {
     await items[test.sendIndex].sendKeys(test.sendChar);

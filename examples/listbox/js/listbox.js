@@ -2,6 +2,9 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 */
+
+'use strict';
+
 /**
  * @namespace aria
  */
@@ -22,6 +25,7 @@ aria.Listbox = function (listboxNode) {
   this.multiselectable = this.listboxNode.hasAttribute('aria-multiselectable');
   this.moveUpDownEnabled = false;
   this.siblingList = null;
+  this.startRangeIndex = 0;
   this.upButton = null;
   this.downButton = null;
   this.moveButton = null;
@@ -39,6 +43,10 @@ aria.Listbox.prototype.registerEvents = function () {
   this.listboxNode.addEventListener('focus', this.setupFocus.bind(this));
   this.listboxNode.addEventListener('keydown', this.checkKeyPress.bind(this));
   this.listboxNode.addEventListener('click', this.checkClickItem.bind(this));
+
+  if (this.multiselectable) {
+    this.listboxNode.addEventListener('mousedown', this.checkMouseDown.bind(this));
+  }
 };
 
 /**
@@ -86,10 +94,11 @@ aria.Listbox.prototype.focusLastItem = function () {
 aria.Listbox.prototype.checkKeyPress = function (evt) {
   var key = evt.which || evt.keyCode;
   var lastActiveId = this.activeDescendant;
-  var firstItem = this.listboxNode.querySelector('[role="option"]');
-  var nextItem = document.getElementById(this.activeDescendant) || firstItem;
+  var allOptions = this.listboxNode.querySelectorAll('[role="option"]');
+  var currentItem = document.getElementById(this.activeDescendant) || allOptions[0];
+  var nextItem = currentItem;
 
-  if (!nextItem) {
+  if (!currentItem) {
     return;
   }
 
@@ -110,15 +119,15 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
       break;
     case aria.KeyCode.UP:
     case aria.KeyCode.DOWN:
-      evt.preventDefault();
 
       if (!this.activeDescendant) {
         // focus first option if no option was previously focused, and perform no other actions
-        this.focusItem(nextItem);
+        this.focusItem(currentItem);
         break;
       }
 
       if (this.moveUpDownEnabled && evt.altKey) {
+        evt.preventDefault();
         if (key === aria.KeyCode.UP) {
           this.moveUpItems();
         }
@@ -129,24 +138,41 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
       }
 
       if (key === aria.KeyCode.UP) {
-        nextItem = this.findPreviousOption(nextItem);
+        nextItem = this.findPreviousOption(currentItem);
       }
       else {
-        nextItem = this.findNextOption(nextItem);
+        nextItem = this.findNextOption(currentItem);
+      }
+
+      if (nextItem && this.multiselectable && event.shiftKey) {
+        this.selectRange(this.startRangeIndex, nextItem);
       }
 
       if (nextItem) {
         this.focusItem(nextItem);
+        evt.preventDefault();
       }
 
       break;
     case aria.KeyCode.HOME:
       evt.preventDefault();
       this.focusFirstItem();
+
+      if (this.multiselectable && evt.shiftKey && evt.ctrlKey) {
+        this.selectRange(this.startRangeIndex, 0);
+      }
       break;
     case aria.KeyCode.END:
       evt.preventDefault();
       this.focusLastItem();
+
+      if (this.multiselectable && evt.shiftKey && evt.ctrlKey) {
+        var startItem = allOptions[this.startRangeIndex];
+        this.selectRange(this.startRangeIndex, allOptions.length - 1);
+      }
+      break;
+    case aria.KeyCode.SHIFT: 
+      this.startRangeIndex = this.getElementIndex(currentItem, allOptions);
       break;
     case aria.KeyCode.SPACE:
       evt.preventDefault();
@@ -195,6 +221,14 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
         this.focusItem(nextUnselected);
       }
       break;
+    case 65:
+      // handle control + A
+      if (this.multiselectable && (evt.ctrlKey || evt.metaKey)) {
+        evt.preventDefault();
+        this.selectRange(0, allOptions.length - 1);
+        break;
+      }
+      // fall through
     default:
       var itemToFocus = this.findItemToFocus(key);
       if (itemToFocus) {
@@ -236,6 +270,14 @@ aria.Listbox.prototype.findItemToFocus = function (key) {
     );
   }
   return nextMatch;
+};
+
+/* Return the index of the passed element within the passed array, or null if not found */
+aria.Listbox.prototype.getElementIndex = function (option, options) {
+  var allOptions = Array.prototype.slice.call(options); // convert to array
+  var optionIndex = allOptions.indexOf(option);
+
+  return typeof optionIndex === 'number' ? optionIndex : null;
 };
 
 /* Return the next listbox option, if it exists; otherwise, returns null */
@@ -295,10 +337,25 @@ aria.Listbox.prototype.findMatchInRange = function (list, startIndex, endIndex) 
  *  The click event object
  */
 aria.Listbox.prototype.checkClickItem = function (evt) {
-  if (evt.target.getAttribute('role') === 'option') {
-    this.focusItem(evt.target);
-    this.toggleSelectItem(evt.target);
-    this.updateScroll();
+  if (evt.target.getAttribute('role') !== 'option') {
+    return;
+  }
+
+  this.focusItem(evt.target);
+  this.toggleSelectItem(evt.target);
+  this.updateScroll();
+
+  if (this.multiselectable && evt.shiftKey) {
+    this.selectRange(this.startRangeIndex, evt.target);
+  }
+};
+
+/**
+ * Prevent text selection on shift + click for multiselect listboxes
+ */
+aria.Listbox.prototype.checkMouseDown = function (evt) {
+  if (this.multiselectable && evt.shiftKey && evt.target.getAttribute('role') === 'option') {
+    evt.preventDefault();
   }
 };
 
@@ -316,14 +373,7 @@ aria.Listbox.prototype.toggleSelectItem = function (element) {
       element.getAttribute('aria-selected') === 'true' ? 'false' : 'true'
     );
 
-    if (this.moveButton) {
-      if (this.listboxNode.querySelector('[aria-selected="true"]')) {
-        this.moveButton.setAttribute('aria-disabled', 'false');
-      }
-      else {
-        this.moveButton.setAttribute('aria-disabled', 'true');
-      }
-    }
+    this.updateMoveButton();
   }
 };
 
@@ -360,13 +410,56 @@ aria.Listbox.prototype.focusItem = function (element) {
   this.listboxNode.setAttribute('aria-activedescendant', element.id);
   this.activeDescendant = element.id;
 
-  if (!this.multiselectable && this.moveButton) {
-    this.moveButton.setAttribute('aria-disabled', false);
+  if (!this.multiselectable) {
+    this.updateMoveButton();
   }
 
   this.checkUpDownButtons();
   this.handleFocusChange(element);
 };
+
+/**
+ * Helper function to check if a number is within a range; no side effects.
+ */
+aria.Listbox.prototype.checkInRange = function(index, start, end) {
+  var rangeStart = start < end ? start : end;
+  var rangeEnd = start < end ? end : start;
+
+  return index >= rangeStart && index <= rangeEnd;
+}
+
+/**
+ * Select a range of options
+ */
+aria.Listbox.prototype.selectRange = function (start, end) {
+  // get start/end indices
+  var allOptions = this.listboxNode.querySelectorAll('[role="option"]');
+  var startIndex = typeof start === 'number' ? start : this.getElementIndex(start, allOptions);
+  var endIndex = typeof end === 'number' ? end : this.getElementIndex(end, allOptions);
+
+  for (var index = 0; index < allOptions.length; index++) {
+    var selected = this.checkInRange(index, startIndex, endIndex);
+    allOptions[index].setAttribute('aria-selected', selected + '');
+  }
+
+  this.updateMoveButton();
+};
+
+/**
+ * Check for selected options and update moveButton, if applicable
+ */
+aria.Listbox.prototype.updateMoveButton = function() {
+  if (!this.moveButton) {
+    return;
+  }
+
+  if (this.listboxNode.querySelector('[aria-selected="true"]')) {
+    this.moveButton.setAttribute('aria-disabled', 'false');
+  }
+  else {
+    this.moveButton.setAttribute('aria-disabled', 'true');
+  }
+}
 
 /**
  * Check if the selected option is in view, and scroll if not
@@ -486,10 +579,7 @@ aria.Listbox.prototype.clearActiveDescendant = function () {
   this.activeDescendant = null;
   this.listboxNode.setAttribute('aria-activedescendant', null);
 
-  if (this.moveButton) {
-    this.moveButton.setAttribute('aria-disabled', 'true');
-  }
-
+  this.updateMoveButton();
   this.checkUpDownButtons();
 };
 

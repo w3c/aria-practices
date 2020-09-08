@@ -6,6 +6,8 @@
  *   File:   reference-tables.js
  */
 
+'use strict';
+
 const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
@@ -66,6 +68,7 @@ const ariaRoles = [
   'progressbar',
   'radio',
   'radiogroup',
+  // 'region', Region is generated differently from other roles
   'row',
   'rowgroup',
   'rowheader',

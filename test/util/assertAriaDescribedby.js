@@ -11,12 +11,7 @@ const assert = require('assert');
  */
 
 module.exports = async function assertAriaDescribedby (t, elementSelector) {
-  const elements = await t.context.session.findElements(By.css(elementSelector));
-
-  assert.ok(
-    elements.length,
-    'CSS elector returned no results: ' + elementSelector
-  );
+  const elements = await t.context.queryElements(t, elementSelector);
 
   for (let index = 0; index < elements.length; index++) {
 
@@ -48,8 +43,7 @@ module.exports = async function assertAriaDescribedby (t, elementSelector) {
         return el.innerText;
       }, descriptionId);
 
-      let descriptionImage = await t.context.session.findElement(By.id(descriptionId))
-        .findElements(By.css('img'));
+      let descriptionImage = await t.context.queryElements(t, `#${descriptionId}`);
 
       assert.ok(
         descriptionText || descriptionImage.length,

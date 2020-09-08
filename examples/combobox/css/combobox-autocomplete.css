@@ -1,0 +1,114 @@
+.combobox-list {
+  position: relative;
+}
+
+.combobox .group {
+  display: inline-flex;
+}
+
+.combobox input,
+.combobox button {
+  background-color: white;
+  color: black;
+  box-sizing: border-box;
+  height: 1.75rem;
+  padding: 0;
+  margin: 0;
+  vertical-align: bottom;
+  border: 1px solid gray;
+  position: relative;
+}
+
+.combobox input {
+  width: 10.75rem;
+  border-right: none;
+  outline: none;
+  font-size: 87.5%;
+  padding: 0.1em 0.3em;
+}
+
+.combobox button {
+  width: 1.25rem;
+  border-left: none;
+  outline: none;
+}
+
+.combobox button[aria-expanded="true"] svg {
+  transform: rotate(180deg) translate(0, -1px);
+}
+
+.combobox .group.focus {
+  outline: 2px solid black;
+  outline-offset: 1px;
+}
+
+.combobox .group.focus input,
+.combobox .group.focus button {
+  background-color: #def;
+}
+
+.combobox button polygon.outline {
+  stroke: transparent;
+  fill: transparent;
+}
+
+.combobox button[aria-expanded="true"] polygon.outline,
+.combobox .group.focus polygon.outline {
+  stroke: white;
+  fill: white;
+}
+
+.combobox polygon.arrow {
+  fill: gray;
+  stroke: gray;
+}
+
+ul[role="listbox"] {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  left: 0;
+  top: 1.75rem;
+  list-style: none;
+  background-color: white;
+  display: none;
+  box-sizing: border-box;
+  border: 1px gray solid;
+  border-top: none;
+  max-height: 11.4em;
+  width: 12rem;
+  overflow: scroll;
+  overflow-x: hidden;
+  font-size: 87.5%;
+}
+
+ul[role="listbox"] li[role="option"] {
+  display: block;
+  padding-left: 0.3em;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+}
+
+/* focus and hover styling */
+
+[role="listbox"].focus [role="option"][aria-selected="true"] {
+  background-color: #def;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-top: 0.2em solid #8ccbf2;
+  border-bottom: 0.2em solid #8ccbf2;
+}
+
+@media (forced-colors: active), (-ms-high-contrast: active) {
+  [role="listbox"].focus [role="option"][aria-selected="true"] {
+    -ms-high-contrast-adjust: none; /* disable the backgrounds that Edge puts behind text */
+    background-color: highlight;
+    color: highlighttext;
+    border-color: currentColor;
+  }
+}
+
+[role="listbox"] li[role="option"]:hover {
+  background-color: #def;
+}

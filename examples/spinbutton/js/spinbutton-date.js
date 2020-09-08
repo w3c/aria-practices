@@ -5,6 +5,8 @@
 *   File:   spinbutton-date.js
 */
 
+'use strict';
+
 var SpinButtonDate = function (domNode, values, callback)  {
 
   this.domNode = domNode;

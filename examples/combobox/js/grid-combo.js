@@ -3,6 +3,8 @@
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 */
 
+'use strict';
+
 /**
  * @constructor
  *
@@ -94,12 +96,16 @@ aria.GridCombobox.prototype.handleInputKeyDown = function (evt) {
       );
     }
     else {
+      if (!this.shown) {
+        setTimeout((function () {
+          // On Firefox, input does not get cleared here unless wrapped in
+          // a setTimeout
+          this.input.value = '';
+        }).bind(this), 1);
+      }
+    }
+    if (this.shown) {
       this.hideResults();
-      setTimeout((function () {
-        // On Firefox, input does not get cleared here unless wrapped in
-        // a setTimeout
-        this.input.value = '';
-      }).bind(this), 1);
     }
     return;
   }
