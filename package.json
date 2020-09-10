@@ -65,6 +65,10 @@
     "*.js": [
       "eslint --fix",
       "git add"
+    ],
+    "examples/**/*.html": [
+      "npm run reference-tables",
+      "git add examples/index.html"
     ]
   },
   "ava": {
