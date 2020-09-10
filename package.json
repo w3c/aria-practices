@@ -14,6 +14,7 @@
     "lint:js": "npm run lint:es",
     "lint:html": "npm run vnu-jar",
     "lint:spelling": "cspell \"**/*.*\"",
+    "reference-tables": "node scripts/reference-tables.js",
     "regression": "ava --timeout=1m",
     "regression-report": "node test/util/report",
     "test": "npm run lint && npm run regression",
