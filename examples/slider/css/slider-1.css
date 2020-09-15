@@ -1,6 +1,6 @@
 /* CSS Document */
 
-.color-picker-sliders label {
+.boxpicker-sliders label {
   display: block;
 }
 
@@ -16,10 +16,20 @@
   border: black solid medium;
   text-align: center;
   padding: 0.25em;
+  forced-color-adjust: none;
 }
 
 .color-picker-sliders .color-info {
   padding-top: 5px;
+}
+
+.color-picker-sliders .color-info label {
+  margin-top: 0.25em;
+  display: block;
+}
+
+.color-picker-sliders .color-info input:focus {
+  outline: 2px solid rgb(0, 90, 156);
 }
 
 .color-group > input,
