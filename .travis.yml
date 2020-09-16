@@ -7,8 +7,8 @@ git:
   depth: 3
 
 stages:
+- Lint
 - Test
-- Deploy
 
 jobs:
   fast_finish: true
@@ -16,18 +16,22 @@ jobs:
     - env: ALLOW_FAILURE=true
 
   include:
-    - stage: Test
+    - stage: Lint
       name: CSS Linting
       script: npm run lint:css
-    - stage: Test
+    - stage: Lint
       name: JS Linting
       script: npm run lint:es
-    - stage: Test
+    - stage: Lint
       name: HTML Linting
       script: npm run vnu-jar
-    - stage: Test
+    - stage: Lint
       name: Spellcheck
       script: npm run lint:spelling
+      env: ALLOW_FAILURE=true
+    - stage: Lint
+      name: Regression Tests Coverage Report
+      script: node test/util/report.js
       env: ALLOW_FAILURE=true
 
     - stage: Test
@@ -35,18 +39,25 @@ jobs:
       addons:
         firefox: latest
       script: scripts/regression-tests.sh
-      env: TEST_WAIT_TIME=1000
+      env:
+        - TEST_WAIT_TIME=1000
+        - CI_NODE_TOTAL=3
+        - CI_NODE_INDEX=0
     - stage: Test
-      name: Regression Tests Coverage Report
-      script: node test/util/report.js
-      env: ALLOW_FAILURE=true
-    - stage: Deploy
-      if: branch = master AND type != pull_request
-      script: skip
-      before_deploy: scripts/travis-before_deploy.sh
-      deploy:
-        provider: script
-        skip_cleanup: true
-        script: /tmp/deploy/travis-deploy.sh
-        on:
-          branch: master
+      name: AVA Regression Tests
+      addons:
+        firefox: latest
+      script: scripts/regression-tests.sh
+      env:
+        - TEST_WAIT_TIME=1000
+        - CI_NODE_TOTAL=3
+        - CI_NODE_INDEX=1
+    - stage: Test
+      name: AVA Regression Tests
+      addons:
+        firefox: latest
+      script: scripts/regression-tests.sh
+      env:
+        - TEST_WAIT_TIME=1000
+        - CI_NODE_TOTAL=3
+        - CI_NODE_INDEX=2
