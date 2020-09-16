@@ -29,7 +29,8 @@
 }
 
 .color-picker-sliders .color-info input:focus {
-  outline: 2px solid rgb(0, 90, 156);
+  outline: 2px solid  #034575;
+  background: #def;
 }
 
 .color-group > input,
