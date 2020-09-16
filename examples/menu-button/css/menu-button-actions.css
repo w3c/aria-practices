@@ -9,7 +9,7 @@
   display: inline-block;
   position: relative;
   background-color: #034575;
-  border: 0px solid #034575;
+  border: 1px solid #034575;
   font-size: 0.9em;
   color: white;
   border-radius: 5px;
@@ -65,7 +65,7 @@
 .menu-button-actions button:focus,
 .menu-button-actions button[aria-expanded=true] {
   padding: 4px;
-  border: 2px solid #034575;
+  border: 3px solid #034575;
   background: #eee;
   color: #222;
   outline: none;
@@ -80,4 +80,9 @@
   color: #fff;
   outline: none;
   margin: 0;
+}
+
+input.action:focus {
+  outline: 2px solid  #034575;
+  background: #def;
 }

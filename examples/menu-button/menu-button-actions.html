@@ -65,7 +65,7 @@
             </ul>
           </div>
         <p>
-          <label>Last Action: <input id="action_output" type="text" value=""></label>
+          <label>Last Action: <input class="action" id="action_output" type="text" value=""></label>
         </p>
         </div>
         <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
@@ -78,8 +78,7 @@
           <li>To support operating system high contrast settings:
             <ul>
               <li>
-                Because transparent borders are visible on some systems with high contrast enabled, only the focused element has a visible border.
-                When focusable elements are not focused, they have a 0-width border and additional padding equal in width to the border that is used to indicate focus.
+                To make focus changes visible in high contrast settings, the menu button border width is changed from 1 pixel to 3 pixels .  A corresponding adjustment in the padding is also made for the overall dimensions of the menu button to remain the same.
               </li>
               <li>To ensure the arrow icons that indicate the expanded or collapsed state of menus have sufficient contrast when high contrast settings invert colors to light text on a dark background, the color of the arrow icons changes to match the text color via use of the CSS <code>currentColor</code> value for the <code>fill</code> and <code>stroke</code> properties of the SVG <code>polygon</code> element.</li>
             </ul>
