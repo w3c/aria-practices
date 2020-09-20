@@ -1,12 +1,33 @@
 /* CSS Document */
 
-div.aria-widget-slider {
+.multithumb-slider {
+  display: grid;
+  grid-template-columns: 30px 500px 30px;
+}
+
+.multithumb-slider .slider-group {
+  position: relative;
+  top: 40px;
+}
+
+
+.multithumb-slider .color-group button.change:focus,
+.multithumb-slider .color-slider:focus {
+  outline: none;
+}
+
+
+.multithumb-slider .hc-background {
+  fill: white;
+}
+
+.multithumb-slider {
   clear: both;
   padding-top: 0.5em;
   padding-bottom: 1em;
 }
 
-div.rail-label {
+.multithumb-slider .rail-label {
   padding-right: 0.5em;
   text-align: right;
   float: left;
@@ -15,34 +36,31 @@ div.rail-label {
   top: -0.5em;
 }
 
-div.rail-label.max {
+.multithumb-slider .rail-label.max {
   padding-left: 0.5em;
   text-align: left;
+
 }
 
-div.aria-widget-slider .rail {
-  background-color: #eee;
-  border: 1px solid #888;
+.multithumb-slider .rail {
   position: relative;
-  height: 4px;
   float: left;
 }
 
-div.aria-widget-slider img[role="slider"] {
+.multithumb-slider [role="slider"] {
   position: absolute;
   padding: 0;
   margin: 0;
-  top: -10px;
+  top: -35px;
+
 }
 
-div.aria-widget-slider img[role="slider"].focus,
-div.aria-widget-slider img[role="slider"]:hover {
+div.multithumb-slider [role="slider"].focus,
+div.multithumb-slider [role="slider"]:hover {
   outline-color: rgb(140, 203, 242);
   outline-style: solid;
   outline-width: 2px;
   outline-offset: 2px;
+
 }
 
-div.aria-widget-slider .rail.focus {
-  background-color: #aaa;
-}

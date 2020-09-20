@@ -10,85 +10,85 @@
 'use strict';
 
 // Create Slider that contains value, valuemin, valuemax, and valuenow
-var Slider = function (domNode)  {
+var MultithumbSlider = function (domNode)  {
 
   this.domNode = domNode;
-  this.railDomNode = domNode.parentNode;
+  this.railDomNode = domNode.querySelector('.rail');
 
-  this.labelDomNode = false;
-  this.minDomNode = false;
-  this.maxDomNode = false;
-
-  this.valueNow = 50;
-
+  this.minLabelNode = domNode.querySelector('.rail-label.min');
+  this.maxLabelNode = domNode.querySelector('.rail-label.max');
+  this.minSliderNode = domNode.querySelector('.thumb.min');
+  this.maxSliderNode = domNode.querySelector('.thumb.max');
+  this.minSliderValueNode = this.minSliderNode.querySelector('.value');
+  this.maxSliderValueNode = this.maxSliderNode.querySelector('.value');
   this.railMin = 0;
   this.railMax = 100;
   this.railWidth = 0;
   this.railBorderWidth = 1;
 
-  this.thumbWidth  = 20;
-  this.thumbHeight = 24;
+  this.thumbWidth = this.minSliderNode.getBoundingClientRect().width;
+  this.thumbHeight = this.minSliderNode.getBoundingClientRect().height;
 
-  this.keyCode = Object.freeze({
-    'left': 37,
-    'up': 38,
-    'right': 39,
-    'down': 40,
-    'pageUp': 33,
-    'pageDown': 34,
-    'end': 35,
-    'home': 36
-  });
 };
 
 // Initialize slider
-Slider.prototype.init = function () {
+MultithumbSlider.prototype.init = function () {
 
-  if (this.domNode.previousElementSibling) {
-    this.minDomNode = this.domNode.previousElementSibling;
-    this.railMin = parseInt((this.minDomNode.getAttribute('aria-valuemin')));
-  }
-  else {
-    this.railMin = parseInt((this.domNode.getAttribute('aria-valuemin')));
-  }
-
-  if (this.domNode.nextElementSibling) {
-    this.maxDomNode = this.domNode.nextElementSibling;
-    this.railMax = parseInt((this.maxDomNode.getAttribute('aria-valuemax')));
-  }
-
-  else {
-    this.railMax = parseInt((this.domNode.getAttribute('aria-valuemax')));
-  }
-
-  this.valueNow = parseInt((this.domNode.getAttribute('aria-valuenow')));
-
+  this.railMin = parseInt((this.minSliderNode.getAttribute('aria-valuemin')));
+  this.railMax = parseInt((this.maxSliderNode.getAttribute('aria-valuemax')));
   this.railWidth = parseInt(this.railDomNode.style.width.slice(0, -2));
 
-  if (this.domNode.classList.contains('min')) {
-    this.labelDomNode = this.domNode.parentElement.previousElementSibling;
+  this.minSliderNode.addEventListener('keydown',   this.handleKeyDown.bind(this));
+  this.minSliderNode.addEventListener('mousedown', this.handleMouseDown.bind(this));
+  this.minSliderNode.addEventListener('focus',     this.handleFocus.bind(this));
+  this.minSliderNode.addEventListener('blur',      this.handleBlur.bind(this));
+
+  this.maxSliderNode.addEventListener('keydown',   this.handleKeyDown.bind(this));
+  this.maxSliderNode.addEventListener('mousedown', this.handleMouseDown.bind(this));
+  this.maxSliderNode.addEventListener('focus',     this.handleFocus.bind(this));
+  this.maxSliderNode.addEventListener('blur',      this.handleBlur.bind(this));
+
+  this.moveSliderTo(this.minSliderNode, this.getValue(this.minSliderNode));
+
+  this.moveSliderTo(this.maxSliderNode, this.getValue(this.maxSliderNode));
+  var buttons = this.domNode.querySelectorAll('.change');
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', this.handleButton.bind(this));
   }
-
-  if (this.domNode.classList.contains('max')) {
-    this.labelDomNode = this.domNode.parentElement.nextElementSibling;
-  }
-
-  if (this.domNode.tabIndex != 0) {
-    this.domNode.tabIndex = 0;
-  }
-
-  this.domNode.addEventListener('keydown',    this.handleKeyDown.bind(this));
-  this.domNode.addEventListener('mousedown', this.handleMouseDown.bind(this));
-  this.domNode.addEventListener('focus',      this.handleFocus.bind(this));
-  this.domNode.addEventListener('blur',       this.handleBlur.bind(this));
-
-  this.moveSliderTo(this.valueNow);
 
 };
 
-Slider.prototype.moveSliderTo = function (value) {
-  var valueMax = parseInt(this.domNode.getAttribute('aria-valuemax'));
-  var valueMin = parseInt(this.domNode.getAttribute('aria-valuemin'));
+
+MultithumbSlider.prototype.getValue = function (sliderNode){
+  return parseInt(sliderNode.getAttribute('aria-valuenow'));
+};
+
+MultithumbSlider.prototype.getValueMin = function (sliderNode){
+  return parseInt(sliderNode.getAttribute('aria-valuemin'));
+};
+
+MultithumbSlider.prototype.getValueMax = function (sliderNode){
+  return parseInt(sliderNode.getAttribute('aria-valuemax'));
+};
+
+MultithumbSlider.prototype.isMinSlider = function(sliderNode) {
+  return this.minSliderNode === sliderNode;
+}
+
+
+MultithumbSlider.prototype.moveSliderTo = function (sliderNode, value) {
+  var valueMax;
+  var valueMin;
+
+  if(this.isMinSlider(sliderNode)){
+    valueMin = this.getValueMin(this.minSliderNode);
+    valueMax = this.getValue(this.maxSliderNode);
+
+  }
+  else{
+    valueMin = this.getValue(this.minSliderNode);
+    valueMax = this.getValueMax(this.maxSliderNode);
+  }
 
   if (value > valueMax) {
     value = valueMax;
@@ -98,68 +98,63 @@ Slider.prototype.moveSliderTo = function (value) {
     value = valueMin;
   }
 
-  this.valueNow = value;
-  this.dolValueNow = '$' + value;
+  var dollarValue = '$' + value;
+  sliderNode.setAttribute('aria-valuenow', value);
+  sliderNode.setAttribute('aria-valuetext', dollarValue);
 
-  this.domNode.setAttribute('aria-valuenow', this.valueNow);
-  this.domNode.setAttribute('aria-valuetext', this.dolValueNow);
+  var pos = Math.round(((value - this.railMin) * (this.railWidth - (2 * (this.thumbWidth - this.railBorderWidth)))) / (this.railMax - this.railMin));
 
-  if (this.minDomNode) {
-    this.minDomNode.setAttribute('aria-valuemax', this.valueNow);
-  }
-
-  if (this.maxDomNode) {
-    this.maxDomNode.setAttribute('aria-valuemin', this.valueNow);
-  }
-
-  var pos = Math.round(((this.valueNow - this.railMin) * (this.railWidth - 2 * (this.thumbWidth - this.railBorderWidth))) / (this.railMax - this.railMin));
-
-  if (this.minDomNode) {
-    this.domNode.style.left = (pos + this.thumbWidth - this.railBorderWidth) + 'px';
+  if (this.isMinSlider(sliderNode)) {
+    sliderNode.style.left = pos + 'px';
+    this.minSliderValueNode.textContent = dollarValue;
+    this.maxSliderNode.setAttribute('aria-valuemin',value);
   }
   else {
-    this.domNode.style.left = (pos - this.railBorderWidth) + 'px';
-  }
-
-  if (this.labelDomNode) {
-    this.labelDomNode.innerHTML = this.dolValueNow.toString();
+    sliderNode.style.left = (this.thumbWidth + pos) + 'px';
+    this.maxSliderValueNode.textContent = dollarValue;
+    this.minSliderNode.setAttribute('aria-valuemax', value);
   }
 };
 
-Slider.prototype.handleKeyDown = function (event) {
+
+MultithumbSlider.prototype.handleKeyDown = function (event) {
 
   var flag = false;
+  var sliderNode = event.currentTarget;
+  var value = this.getValue(sliderNode);
+  var valueMin = this.getValueMin(sliderNode);
+  var valueMax = this.getValueMax(sliderNode);
 
-  switch (event.keyCode) {
-    case this.keyCode.left:
-    case this.keyCode.down:
-      this.moveSliderTo(this.valueNow - 1);
+  switch (event.key) {
+    case 'ArrowLeft':
+    case 'ArrowDown':
+      this.moveSliderTo(sliderNode, value - 1);
       flag = true;
       break;
 
-    case this.keyCode.right:
-    case this.keyCode.up:
-      this.moveSliderTo(this.valueNow + 1);
+    case 'ArrowRight':
+    case 'ArrowUp':
+      this.moveSliderTo(sliderNode, value + 1);
       flag = true;
       break;
 
-    case this.keyCode.pageDown:
-      this.moveSliderTo(this.valueNow - 10);
+    case 'Down':
+      this.moveSliderTo(sliderNode, value - 10);
       flag = true;
       break;
 
-    case this.keyCode.pageUp:
-      this.moveSliderTo(this.valueNow + 10);
+    case 'PageUp':
+      this.moveSliderTo(sliderNode, value + 10);
       flag = true;
       break;
 
-    case this.keyCode.home:
-      this.moveSliderTo(this.railMin);
+    case 'Home':
+      this.moveSliderTo(sliderNode, valueMin);
       flag = true;
       break;
 
-    case this.keyCode.end:
-      this.moveSliderTo(this.railMax);
+    case 'End':
+      this.moveSliderTo(sliderNode, valueMax);
       flag = true;
       break;
 
@@ -174,25 +169,27 @@ Slider.prototype.handleKeyDown = function (event) {
 
 };
 
-Slider.prototype.handleFocus = function (event) {
+MultithumbSlider.prototype.handleFocus = function (event) {
   this.domNode.classList.add('focus');
   this.railDomNode.classList.add('focus');
 };
 
-Slider.prototype.handleBlur = function (event) {
+MultithumbSlider.prototype.handleBlur = function (event) {
   this.domNode.classList.remove('focus');
   this.railDomNode.classList.remove('focus');
 };
 
-Slider.prototype.handleMouseDown = function (event) {
+MultithumbSlider.prototype.handleMouseDown = function (event) {
 
+  var sliderNode = event.currentTarget;
   var self = this;
 
   var handleMouseMove = function (event) {
 
     var diffX = event.pageX - self.railDomNode.offsetLeft;
-    self.valueNow = self.railMin + parseInt(((self.railMax - self.railMin) * diffX) / self.railWidth);
-    self.moveSliderTo(self.valueNow);
+    var value = self.railMin + parseInt(((self.railMax - self.railMin) * diffX) / self.railWidth);
+
+    self.moveSliderTo(sliderNode, value);
 
     event.preventDefault();
     event.stopPropagation();
@@ -219,6 +216,30 @@ Slider.prototype.handleMouseDown = function (event) {
 
 };
 
+MultithumbSlider.prototype.handleButton = function (event){
+  var tgt = event.currentTarget;
+  console.log('[handleButton] '+ tgt.classList + ' ' + tgt.parentNode.classList);
+  var slider = this.minSliderNode;
+  if(tgt.classList.contains('max')){
+    slider = this.maxSliderNode;
+  }
+
+  var value = this.getValue(slider);
+
+  if(tgt.classList.contains('dec10')){
+    this.moveSliderTo(slider,value - 10 );
+  }
+  else if (tgt.classList.contains('dec')){
+    this.moveSliderTo(slider, value-1);
+  }
+  else if(tgt.classList.contains('inc10')){
+    this.moveSliderTo(slider, value+10);
+  }
+  else if(tgt.classList.contains('inc')){
+    this.moveSliderTo(slider, value+1);
+  }
+};
+
 // handleMouseMove has the same functionality as we need for handleMouseClick on the rail
 // Slider.prototype.handleClick = function (event) {
 
@@ -234,11 +255,10 @@ Slider.prototype.handleMouseDown = function (event) {
 // Initialise Sliders on the page
 window.addEventListener('load', function () {
 
-  var sliders = document.querySelectorAll('[role=slider]');
+  var multithumbSliders = document.querySelectorAll('.multithumb-slider');
 
-  for (var i = 0; i < sliders.length; i++) {
-    var s = new Slider(sliders[i]);
-    s.init();
+  for (var i = 0; i < multithumbSliders.length; i++) {
+    var ms = new MultithumbSlider(multithumbSliders[i]);
+    ms.init();
   }
-
 });
