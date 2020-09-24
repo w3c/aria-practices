@@ -46,6 +46,7 @@ table.data.attributes tbody td {
   display: flex;
   align-items: center;
   margin-top: 3rem;
+  margin-bottom: 1rem;
   page-break-after: avoid;
   page-break-inside: avoid;
   font: 100% sans-serif;
