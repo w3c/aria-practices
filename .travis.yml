@@ -17,9 +17,6 @@ jobs:
 
   include:
     - stage: Lint
-      name: CSS Linting
-      script: npm run lint:css
-    - stage: Lint
       name: JS Linting
       script: npm run lint:es
     - stage: Lint
