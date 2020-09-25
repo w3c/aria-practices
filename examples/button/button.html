@@ -41,7 +41,9 @@
     </ul>
 
     <section>
+    <div class="example-header">
       <h2 id="ex_label">Example</h2>
+    </div>
 
       <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
 
@@ -154,7 +156,7 @@
     <section>
       <h2>Javascript and CSS Source Code</h2>
 
-      <ul>
+      <ul id="css_js_files">
         <li>
           CSS:
           <a href="css/button.css" type="text/css">button.css</a>
@@ -176,7 +178,7 @@
       <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
 
       <script>
-        sourceCode.add('source1', 'example');
+        sourceCode.add('source1', 'example', 'ex_label', 'css_js_files');
         sourceCode.make();
       </script>
     </section>
