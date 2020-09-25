@@ -380,11 +380,11 @@ function addOpenInCodePenForm (exampleIndex, exampleHeaderId, exampleCodeId, exa
               totalFetchedFiles++;
           }
           else {
-              console.log("Not showing 'Open in Codepen' button. Could not load resource: " + href);
+              console.warn("Not showing 'Open in Codepen' button. Could not load resource: " + href);
           }
       };
       request.onerror = function() {
-          console.log("Not showing 'Open in Codepen' button. Could not load resource: " + fileLink.href);
+          console.warn("Not showing 'Open in Codepen' button. Could not load resource: " + fileLink.href);
       };
       request.send();
   }
@@ -400,7 +400,7 @@ function addOpenInCodePenForm (exampleIndex, exampleHeaderId, exampleCodeId, exa
 
     setTimeout(() => {
         clearInterval(timerId);
-        console.log("Not showing 'Open in Codepen' button. Timeout when loading resource.");
+        console.warn("Not showing 'Open in Codepen' button. Timeout when loading resource.");
     }, 10000);
 }
 
