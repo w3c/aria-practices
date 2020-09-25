@@ -11,6 +11,7 @@ on:
   push:
     branches-ignore:
       - master
+      - "dependabot/**"
     paths:
       - ".github/workflows/regression.yml"
       - "package*.json"
