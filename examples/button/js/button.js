@@ -7,9 +7,6 @@
 
 'use strict';
 
-var ICON_MUTE_URL = 'images/mute.svg#icon-mute';
-var ICON_SOUND_URL = 'images/mute.svg#icon-sound';
-
 function init () {
   var actionButton = document.getElementById('action');
   actionButton.addEventListener('click', activateActionButton);
@@ -109,8 +106,14 @@ function toggleButtonState (button) {
 
   button.setAttribute('aria-pressed', isAriaPressed ? 'false' : 'true');
 
-  var icon = button.querySelector('use');
-  icon.setAttribute('xlink:href', isAriaPressed ? ICON_SOUND_URL : ICON_MUTE_URL);
+  if (isAriaPressed) {
+    button.querySelector('#icon-mute').setAttribute('display', 'none');
+    button.querySelector('#icon-sound').setAttribute('display', '');
+  }
+  else {
+    button.querySelector('#icon-mute').setAttribute('display', '');
+    button.querySelector('#icon-sound').setAttribute('display', 'none');
+  }
 }
 
 window.onload = init;
