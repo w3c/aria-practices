@@ -338,6 +338,8 @@ function addOpenInCodePenForm (exampleIndex, exampleHeaderId, exampleCodeId, exa
 
   var button = document.createElement('button');
   button.innerText = 'Open In CodePen';
+  button.id = buttonId;
+  button.style.display = 'none';
 
   form.appendChild(input);
   form.appendChild(button);
@@ -378,32 +380,28 @@ function addOpenInCodePenForm (exampleIndex, exampleHeaderId, exampleCodeId, exa
               totalFetchedFiles++;
           }
           else {
-              hideButton(buttonId, "Could not load resource: " + href);
+              console.log("Not showing 'Open in Codepen' button. Could not load resource: " + href);
           }
       };
       request.onerror = function() {
-          hideButton(buttonId, "Could not load resource: " + fileLink.href);
+          console.log("Not showing 'Open in Codepen' button. Could not load resource: " + fileLink.href);
       };
       request.send();
   }
 
     var timerId = setInterval(() => {
-        console.log(totalFetchedFiles);
         if (totalFetchedFiles === fileLinks.length) {
-            document.getElementById(jsonInputId).value = JSON.stringify(postJson);
             clearInterval(timerId);
+            document.getElementById(jsonInputId).value = JSON.stringify(postJson);
+            var button = document.getElementById(buttonId);
+            button.style.display = '';
         }
     }, 500);
 
     setTimeout(() => {
         clearInterval(timerId);
+        console.log("Not showing 'Open in Codepen' button. Timeout when loading resource.");
     }, 10000);
-}
-
-function hideButton(buttonId, errorMsg) {
-    let button = document.querySelector(buttonId);
-    button.style.display = "none";
-    console.log("Removing 'Open in Codepen button'. " + errorMsg);
 }
 
 var sourceCode = new aria.widget.SourceCode();
