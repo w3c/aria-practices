@@ -80,7 +80,7 @@
               <li>
                 To make focus changes visible in high contrast settings, the menu button border width is changed from 1 pixel to 3 pixels .  A corresponding adjustment in the padding is also made for the overall dimensions of the menu button to remain the same.
               </li>
-              <li>To ensure the arrow icons that indicate the expanded or collapsed state of menus have sufficient contrast when high contrast settings invert colors to light text on a dark background, the color of the arrow icons changes to match the text color via use of the CSS <code>currentColor</code> value for the <code>fill</code> and <code>stroke</code> properties of the SVG <code>polygon</code> element.</li>
+               <li>To ensure the arrow icons used to indicate the expanded or collapsed state have sufficient contrast with the background when high contrast settings invert colors, the CSS <code>currentColor</code> value for the <code>fill</code> and <code>stroke</code> properties of the SVG <code>polygon</code> element are used to synchronize the color with text content.  If specific colors are used to specify the <code>fill</code> and <code>stroke</code> properties, in high contrast mode these colors will remain the same and in many cases will not have sufficient color contrast with the background, and in some cases will be invisible when they have the same color as the background.</li>
             </ul>
           </li>
         </ol>
