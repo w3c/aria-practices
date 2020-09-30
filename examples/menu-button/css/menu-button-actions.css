@@ -19,7 +19,10 @@
   display: none;
   position: absolute;
   margin: 0;
-  padding: 0;
+  padding: 7px 4px;
+  border: 2px solid #034575;
+  border-radius: 5px;
+  background-color: #eee;
 }
 
 .menu-button-actions [role="menuitem"],
@@ -29,7 +32,6 @@
   display: block;
   width: 4em;
   background-color: #eee;
-  border: 0px solid #eee;
   color: black;
   border-radius: 5px;
 }
@@ -53,13 +55,6 @@
 
 
 /* focus styling */
-
-.menu-button-actions [role="menu"] {
-  padding: 7px 4px;
-  border: 2px solid #034575;
-  border-radius: 5px;
-  background-color: #eee;
-}
 
 .menu-button-actions button:hover,
 .menu-button-actions button:focus,
