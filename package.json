@@ -41,7 +41,7 @@
     "npm-merge-driver": "^2.3.6",
     "run-node": "^2.0.0",
     "selenium-webdriver": "^4.0.0-alpha.7",
-    "stylelint": "^13.3.2",
+    "stylelint": "^13.7.2",
     "stylelint-config-standard": "^20.0.0",
     "vnu-jar": "^20.3.16"
   },
