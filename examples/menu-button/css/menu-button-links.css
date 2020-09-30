@@ -16,11 +16,14 @@
 }
 
 .menu-button-links [role="menu"] {
+  margin: 0;
+  padding: 7px 4px;
+  list-style: none;
   display: none;
   position: absolute;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  border: 2px solid #034575;
+  border-radius: 5px;
+  background-color: #eee;
 }
 
 .menu-button-links [role="menuitem"],
@@ -30,7 +33,7 @@
   display: block;
   width: 24em;
   background-color: #eee;
-  border: 0px solid #eee;
+  border: none;
   color: black;
   border-radius: 5px;
 }
@@ -54,13 +57,6 @@
 
 /* focus styling */
 
-.menu-button-links [role="menu"] {
-  padding: 7px 4px;
-  border: 2px solid #034575;
-  border-radius: 5px;
-  background-color: #eee;
-}
-
 .menu-button-links button:hover,
 .menu-button-links button:focus,
 .menu-button-links button[aria-expanded=true] {
@@ -80,4 +76,3 @@
   outline: none;
   margin: 0;
 }
-
