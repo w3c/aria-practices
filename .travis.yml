@@ -10,15 +10,8 @@ stages:
 - Lint
 
 jobs:
-  fast_finish: true
-  allow_failures:
-    - env: ALLOW_FAILURE=true
 
   include:
     - stage: Lint
       name: HTML Linting
       script: npm run vnu-jar
-    - stage: Lint
-      name: Spellcheck
-      script: npm run lint:spelling
-      env: ALLOW_FAILURE=true
