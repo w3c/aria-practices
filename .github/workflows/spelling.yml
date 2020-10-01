@@ -2,6 +2,8 @@ name: Spellcheck
 
 on:
   push:
+    branches-ignore:
+      - "dependabot/**"
     paths:
       - "package*.json"
       - "cspell.json"
