@@ -5,6 +5,7 @@ on:
       - "dependabot/**"
     paths:
       - "package*.json"
+      - ".prettier*"
       - ".stylelint*"
       - "**/*.css"
       - ".github/workflows/lint-css.yml"
@@ -13,6 +14,7 @@ on:
   pull_request:
     paths:
       - "package*.json"
+      - ".prettier*"
       - ".stylelint*"
       - "**/*.css"
       - ".github/workflows/lint-css.yml"
