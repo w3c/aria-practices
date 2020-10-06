@@ -6,14 +6,14 @@
 
     <!--  Core js and css shared by all examples; do not modify when using this template. -->
     <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
-    <link rel="stylesheet" href="../../css/core.css">
-    <script src="../../js/examples.js"></script>
-    <script src="../../js/highlight.pack.js"></script>
-    <script src="../../js/app.js"></script>
+    <link rel="stylesheet" href="../css/core.css">
+    <script src="../js/examples.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    <script src="../js/app.js"></script>
 
-    <link href="css/treeLinks.css" rel="stylesheet">
-    <script type="text/javascript" src="js/treeLinks.js"></script>
-    <script type="text/javascript" src="js/treeitemLinks.js"></script>
+    <link href="css/treeview-navigation.css" rel="stylesheet">
+    <script type="text/javascript" src="js/treeview-navigation.js"></script>
+    <script type="text/javascript" src="js/navigation-content-generator.js"></script>
   </head>
   <body>
   <nav aria-label="Related Links" class="feedback">
@@ -45,288 +45,180 @@
        </p>
       <p>Similar examples include: </p>
       <ul>
-        <li><a href="../treeview-1/treeview-1a.html">File Directory Treeview using <em>computed</em> properties</a></li>
-        <li><a href="../treeview-1/treeview-1b.html">File Directory Treeview using <em>declared</em> properties</a></li>
-        <li><a href="../treeview-2/treeview-2b.html">Navigation Treeview using <em>declared</em> properties</a></li>
+        <li><a href="treeview-1/treeview-1a.html">File Directory Treeview using <em>computed</em> properties</a></li>
+        <li><a href="treeview-1/treeview-1b.html">File Directory Treeview using <em>declared</em> properties</a></li>
       </ul>
   <section>
         <h2 id="ex_label">Example</h2>
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
 
         <div id="ex1">
-          <h3 id="tree1">Foods</h3>
-          <ul role="tree" aria-labelledby="tree1" >
-            <li role="treeitem"
-                aria-expanded="false">
-              <span>Fruits</span>
-              <ul>
-                <li role="none">
-                  <a role="treeitem"
-                     href="https://en.wikipedia.org/wiki/Orange_%28fruit%29">
-                      Oranges
-                  </a>
-                </li>
-                <li role="none">
-                  <a role="treeitem"
-                     href="https://en.wikipedia.org/wiki/Pineapple">
-                      Pineapple
-                  </a>
-                </li>
-                <li role="treeitem"
-                    aria-expanded="false">
-                    <span>Apples</span>
-                  <ul role="group">
-                    <li role="none">
-                      <a role="treeitem"
-                         href="https://en.wikipedia.org/wiki/McIntosh_%28apple%29">
-                          Macintosh
-                      </a>
-                    </li>
-                    <li role="none">
-                      <a role="treeitem"
-                         href="https://en.wikipedia.org/wiki/Granny_Smith">
-                          Granny Smith
-                      </a>
-                    </li>
-                    <li role="none">
-                      <a role="treeitem"
-                         href="https://en.wikipedia.org/wiki/Fuji_(apple)">
-                          Fuji
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li role="none">
-                  <a role="treeitem"
-                     href="https://en.wikipedia.org/wiki/Banana">
-                      Bananas
-                  </a>
-                </li>
-                <li role="treeitem"
-                    aria-expanded="false">
-                  <span> Pears </span>
-                  <ul role="group">
-                    <li role="none">
-                      <a role="treeitem"
-                         href="https://en.wikipedia.org/wiki/D%27Anjou">
-                          Anjou
-                      </a>
-                    </li>
-                    <li role="none">
-                      <a role="treeitem"
-                         href="https://en.wikipedia.org/wiki/Williams_pear">
-                          Bartlett
-                      </a>
-                    </li>
-                    <li role="none">
-                      <a role="treeitem"
-                         href="https://en.wikipedia.org/wiki/Bosc_pear">
-                          Bosc
-                      </a>
-                    </li>
-                    <li role="none">
-                      <a role="treeitem"
-                         href="https://en.wikipedia.org/wiki/Pyrus_communis">
-                          Concorde
-                      </a>
-                    </li>
-                    <li role="none">
-                      <a role="treeitem"
-                         href="https://en.wikipedia.org/wiki/Pyrus_communis">
-                          Seckel
-                      </a>
-                    </li>
-                    <li role="none">
-                      <a role="treeitem"
-                         href="https://en.wikipedia.org/wiki/Pyrus_communis">
-                          Starkrimson
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li role="treeitem"
-                aria-expanded="false">
-              <span>Vegetables</span>
-              <ul role="group">
-                <li role="treeitem"
-                    aria-expanded="false">
-                  <span>Podded Vegetables</span>
-                  <ul role="group">
-                    <li role="none">
-                        <a role="treeitem"
-                           href="https://en.wikipedia.org/wiki/Lentil">
-                            Lentil
-                        </a>
-                    </li>
-                    <li role="none">
-                        <a role="treeitem"
-                           href="https://en.wikipedia.org/wiki/Pea">
-                            Pea
-                        </a>
-                    </li>
-                    <li role="none">
-                        <a role="treeitem"
-                           href="https://en.wikipedia.org/wiki/Peanut">
-                            Peanut
-                        </a>
-                    </li>
-                  </ul>
-                </li>
-                <li role="treeitem"
-                    aria-expanded="false">
-                  <span>Bulb and Stem Vegetables</span>
-                  <ul role="group">
-                    <li role="none">
-                      <a role="treeitem"
-                         href="https://en.wikipedia.org/wiki/Asparagus">
-                          Asparagus
-                      </a>
-                    </li>
-                    <li role="none">
-                        <a role="treeitem"
-                           href="https://en.wikipedia.org/wiki/Celery">
-                            Celery
-                        </a>
-                    </li>
-                    <li role="none">
-                        <a role="treeitem"
-                           href="https://en.wikipedia.org/wiki/Leek">
-                            Leek
-                        </a>
-                    </li>
-                    <li role="none">
-                        <a role="treeitem"
-                           href="https://en.wikipedia.org/wiki/Onion">
-                            Onion
-                        </a>
-                    </li>
-                  </ul>
-                </li>
-                <li role="treeitem"
-                    aria-expanded="false">
-                  <span>Root and Tuberous Vegetables</span>
-                  <ul role="group">
-                    <li role="none">
-                        <a role="treeitem"
-                           href="https://en.wikipedia.org/wiki/Carrot">
-                            Carrot
-                        </a>
-                    </li>
-                    <li role="none">
-                        <a role="treeitem"
-                           href="https://en.wikipedia.org/wiki/Ginger">
-                            Ginger
-                        </a>
-                    </li>
-                    <li role="none">
-                      <a role="treeitem"
-                         href="https://en.wikipedia.org/wiki/Parsnip">
-                          Parsnip
-                      </a>
-                    </li>
-                    <li role="none">
-                      <a role="treeitem"
-                         href="https://en.wikipedia.org/wiki/Potato">
-                          Potato
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li role="treeitem"
-                aria-expanded="false">
-              <span>Grains</span>
-              <ul role="group">
-                <li role="treeitem"
-                    aria-expanded="false">
-                  <span>Cereal Grains</span>
-                  <ul role="group">
-                    <li role="none">
-                      <a role="treeitem"
-                         href="https://en.wikipedia.org/wiki/Barley">
-                          Barley
-                      </a>
-                    </li>
-                    <li role="none">
-                      <a role="treeitem"
-                         href="https://en.wikipedia.org/wiki/Oats">
-                          Oats
-                      </a>
-                    </li>
-                    <li role="none">
-                      <a role="treeitem"
-                         href="https://en.wikipedia.org/wiki/Rice">
-                          Rice
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li role="treeitem"
-                    aria-expanded="false">
-                  <span>Pseudocereal Grains</span>
-                  <ul role="group">
-                    <li role="none">
-                      <a role="treeitem"
-                         href="https://en.wikipedia.org/wiki/Amaranth">
-                          Amaranth
-                      </a>
-                    </li>
-                    <li role="none">
-                      <a role="treeitem"
-                         href="https://en.wikipedia.org/wiki/Buckwheat">
-                          Bucketwheat
-                      </a>
-                    </li>
-                    <li role="none">
-                      <a role="treeitem"
-                         href="https://en.wikipedia.org/wiki/Salvia_hispanica">
-                          Chia
-                      </a>
-                    </li>
-                    <li role="none">
-                      <a role="treeitem"
-                         href="https://en.wikipedia.org/wiki/Quinoa">
-                          Quinoa
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li role="treeitem"
-                    aria-expanded="false">
-                  <span>Oilseeds</span>
-                  <ul role="group">
-                    <li role="none">
-                      <a role="treeitem"
-                         href="https://en.wikipedia.org/wiki/Brassica_juncea">
-                          India Mustard
-                      </a>
-                    </li>
-                    <li role="none">
-                      <a role="treeitem"
-                         href="https://en.wikipedia.org/wiki/Safflower">
-                          Safflower
-                      </a>
-                    </li>
-                    <li role="none">
-                      <a role="treeitem"
-                         href="https://en.wikipedia.org/wiki/Flax_seed">
-                          Flax Seed
-                      </a>
-                    </li>
-                    <li role="none">
-                      <a role="treeitem"
-                         href="https://en.wikipedia.org/wiki/Poppy_seed">
-                          Poppy Seed
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
+          <nav aria-label="Mythical University">
+            <ul class="treeview-navigation" role="tree" aria-label="Mythical University">
+              <li role="none">
+                <a role="treeitem"
+                   aria-expanded="false"
+                   aria-owns="id-about-subtree"
+                   href="#about-mythical-university">
+                  <span class="minus"></span>
+                  About
+                </a>
+                <ul id="id-about-subtree"
+                    role="group"
+                    aria-label="About">
+                  <li role="none">
+                    <a role="treeitem" href="#mythical-univeristy-overview">Overview</a>
+                  </li>
+                  <li role="none">
+                    <a role="treeitem" href="#mythical-university-adminstration">Administration</a>
+                  </li>
+                  <li role="none">
+                    <a role="treeitem"
+                       aria-expanded="false"
+                       aria-owns="id-facts-subtree"
+                       href="#mythical-univeristy-facts">
+                      <span class="minus"></span>
+                      Facts
+                    </a>
+                    <ul id="id-facts-subtree"
+                        role="group"
+                        aria-label="Facts">
+                      <li role="none">
+                        <a role="treeitem" href="#mythical-university-history">History</a>
+                      </li>
+                      <li role="none">
+                        <a role="treeitem" href="#mythical-university-statistics">Current Statistics</a>
+                      </li>
+                      <li role="none">
+                        <a role="treeitem" href="#mythical-university-awards">Awards</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li role="none">
+                    <a role="treeitem"
+                        aria-expanded="false"
+                        aria-owns="id-campus-tours-subtree"
+                        href="#about-campus-tours">
+                      <span class="minus"></span>
+                      Campus Tours
+                    </a>
+                    <ul id="id-campus-tours-subtree"
+                        role="group"
+                        aria-label="Campus Tours">
+                      <li role="none">
+                        <a role="treeitem" href="#prospective-students-tours">For prospective students</a>
+                      </li>
+                      <li role="none">
+                        <a role="treeitem" href="#alumni-tours">For alumni</a>
+                      </li>
+                      <li role="none">
+                        <a role="treeitem" href="#visitor-tours">For visitors</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li role="none">
+                <a role="treeitem"
+                   aria-expanded="false"
+                   aria-owns="id-admissions-subtree"
+                   href="#admissions">
+                  <span class="minus"></span>
+                  Admissions
+                </a>
+                <ul id="id-admissions-subtree"
+                    role="group"
+                    aria-label="Admissions">
+                  <li role="none">
+                    <a role="treeitem" href="#apply-to-mythical-university">Apply</a>
+                  </li>
+                  <li role="none">
+                    <a role="treeitem"
+                        aria-expanded="false"
+                        aria-owns="id-tutiton-subtree"
+                        href="#tuition">
+                      <span class="minus"></span>
+                      Tuition
+                    </a>
+                    <ul id="id-tutiton-subtree"
+                        role="group"
+                        aria-label="Tuition">
+                      <li role="none">
+                        <a role="treeitem" href="#undergraduate-tuition">Undergraduate</a>
+                      </li>
+                      <li role="none">
+                        <a role="treeitem" href="#graduate-tuition">Graduate</a>
+                      </li>
+                      <li role="none">
+                        <a role="treeitem" href="#professional-school-tuition">Professional Schools</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li role="none">
+                    <a role="treeitem" href="#admissions-signup">Sign Up</a>
+                  </li>
+                  <li role="separator"></li>
+                  <li role="none">
+                    <a role="treeitem" href="#admissions-visit">Visit</a>
+                  </li>
+                  <li role="none">
+                    <a role="treeitem" href="#admissions-photo-tour">Photo Tour</a>
+                  </li>
+                  <li role="none">
+                    <a role="treeitem" href="#admissions-connect">Connect</a>
+                  </li>
+                </ul>
+              </li>
+              <li role="none">
+                <a role="treeitem"
+                   aria-expanded="false"
+                   aria-owns="id-academics-subtree"
+                   href="#academics">
+                  <span class="minus"></span>
+                  Academics
+                </a>
+                <ul id="id-academics-subtree"
+                    role="group"
+                    aria-label="Academics">
+                  <li role="none">
+                    <a role="treeitem" href="#colleges-and-schools">Colleges &amp; Schools</a>
+                  </li>
+                  <li role="none">
+                    <a role="treeitem" href="#programs-of-study">Programs of Study</a>
+                  </li>
+                  <li role="none">
+                    <a role="treeitem" href="#honors-programs">Honors Programs</a>
+                  </li>
+                  <li role="none">
+                    <a role="treeitem" href="#online-courses">Online Courses</a>
+                  </li>
+                  <li role="separator"></li>
+                  <li role="none">
+                    <a role="treeitem" href="#course-explorer">Course Explorer</a>
+                  </li>
+                  <li role="none">
+                    <a role="treeitem" href="#register-for-classes">Register for Classes</a>
+                  </li>
+                  <li role="none">
+                    <a role="treeitem" href="#academic-calendar">Academic Calendar</a>
+                  </li>
+                  <li role="none">
+                    <a role="treeitem" href="#academic-tanscripts">Transcripts</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+
+          <aside class="page" aria-label="Updated content from treeview navigation">
+            <h1 class="page_title">Mythical University</h1>
+            <div class="content">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque gravida in fermentum et sollicitudin. Tellus mauris a diam maecenas sed enim. Felis imperdiet proin fermentum leo. Iaculis eu non diam phasellus vestibulum lorem sed risus ultricies. Eu mi bibendum neque egestas congue. Mattis aliquam faucibus purus in massa. Ultrices dui sapien eget mi proin sed. Nulla facilisi etiam dignissim diam quis enim. Pellentesque elit ullamcorper dignissim cras. Tincidunt augue interdum velit euismod in pellentesque. Vitae tempus quam pellentesque nec nam. Et netus et malesuada fames ac turpis egestas maecenas pharetra.</p>
+              <p>Eget mauris pharetra et ultrices neque. Diam volutpat commodo sed egestas egestas fringilla. Sodales ut eu sem integer vitae. Cursus eget nunc scelerisque viverra mauris in aliquam. Nunc sed velit dignissim sodales ut eu sem. Diam in arcu cursus euismod quis viverra. Nibh cras pulvinar mattis nunc sed blandit. Non arcu risus quis varius. Neque volutpat ac tincidunt vitae semper. Integer enim neque volutpat ac tincidunt vitae semper quis. Magna fermentum iaculis eu non diam phasellus.</p>
+            </div>
+          </aside>
+
+
         </div>
         <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
       </section>

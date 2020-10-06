@@ -1,0 +1,96 @@
+#ex1 {
+  display: grid;
+  grid-template-columns: auto auto;
+  border: #eee solid 2px;
+}
+
+#ex1 nav {
+  margin: 0;
+  padding: 0.5em;
+  width: 17em;
+  height: 50em;
+  background: #eee;
+}
+
+#ex1 .page {
+  margin: 0.25em;
+  padding: 0.25em;
+  height: 30em;
+}
+
+#ex1 .page h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.treeview-navigation ul,
+.treeview-navigation li {
+  margin: 0;
+  padding: 0;
+  padding-left: 1em;
+}
+
+.treeview-navigation[role="tree"] {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.treeview-navigation[role="tree"] li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.treeview-navigation[role="tree"] a {
+  text-decoration: underline;
+  border-color: transparent;
+}
+
+.treeview-navigation [role="treeitem"] ul {
+  margin: 0;
+  padding: 0;
+  margin-left: 0.5em;
+}
+
+.treeview-navigation [role="treeitem"][aria-expanded="false"] + [role="group"] {
+  display: none;
+}
+
+.treeview-navigation [role="treeitem"][aria-expanded="true"] + [role="group"] {
+  display: block;
+}
+
+.treeview-navigation [role="treeitem"][aria-expanded="false"] > span::before {
+  content: url(../images/right-arrow-brown.png);
+  position: relative;
+  left: -0.25em;
+}
+
+.treeview-navigation [role="treeitem"][aria-expanded="true"] > span::before {
+  content: url(../images/down-arrow-brown.png);
+  position: relative;
+  left: -0.25em;
+}
+
+.treeview-navigation a[role="treeitem"] {
+  width: 16em;
+  margin: 0;
+  padding: 4px;
+  text-decoration: none;
+}
+
+/* disable default keyboard focus styling for treeitems
+   Keyboard focus is styled with the following CSS */
+
+.treeview-navigation [role="treeitem"]:focus {
+  outline: 0;
+  background-color: #ddd;
+  padding: 2px;
+  border: 2px black solid;
+}
+
+.treeview-navigation [role="treeitem"]:hover {
+  background-color: #ccc;
+  text-decoration: underline;
+}
