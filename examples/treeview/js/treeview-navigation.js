@@ -7,7 +7,7 @@
 *       tree widget for navigational links
 */
 
-'use strict';
+
 
 var TreeViewNavigation = function (node) {
   // Check whether node is a DOM element
@@ -103,6 +103,7 @@ TreeViewNavigation.prototype.expandTreeitem = function (treeitem) {
 };
 
 TreeViewNavigation.prototype.expandAllSiblingTreeitems = function (treeitem) {
+
 };
 
 TreeViewNavigation.prototype.setFocusToTreeitem = function (treeitem) {
@@ -323,7 +324,7 @@ TreeViewNavigation.prototype.handleClick = function (event) {
 
   var paraNodes = document.querySelectorAll('#ex1 .page p');
   var content = new NavigationContentGenerator();
-  paraNodes.forEach(p => p.textContent = content.generate(100));
+  paraNodes.forEach(p => p.textContent = content.generate(h1Node.textContent));
 
 };
 
