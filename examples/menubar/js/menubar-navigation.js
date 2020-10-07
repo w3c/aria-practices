@@ -31,6 +31,19 @@ var MenubarNavigation = function (domNode) {
   domNode.addEventListener('focusout', this.handleMenubarFocusout.bind(this));
 
   window.addEventListener('mousedown', this.handleBackgroundMousedown.bind(this), true);
+
+  // Initial content for page
+  this.contentGenerator = new NavigationContentGenerator('Mythical University');
+  this.updateContent(this.treeitems[0].textContent.trim());
+};
+
+MenubarNavigation.prototype.updateContent = function (title) {
+  var h1Node = document.querySelector('#ex1 .page h1');
+  if (h1Node) {
+    h1Node.textContent = title;
+  }
+  var paraNodes = document.querySelectorAll('#ex1 .page p');
+  paraNodes.forEach(p => p.textContent = this.contentGenerator.generateParagraph(title));
 };
 
 MenubarNavigation.prototype.getMenuitems = function(domNode, depth) {
@@ -449,7 +462,7 @@ MenubarNavigation.prototype.handleKeydown = function (event) {
       else {
         if (tgt.href !== '#') {
           this.closePopupAll();
-          window.location.href=tgt.href;
+          this.updateContent(tgt.textContent.trim());
         }
       }
       flag = true;
@@ -584,6 +597,9 @@ MenubarNavigation.prototype.handleMenuitemClick = function (event) {
     }
     event.stopPropagation();
     event.preventDefault();
+  }
+  else {
+    this.updateContent(tgt.textContent.trim());
   }
 };
 

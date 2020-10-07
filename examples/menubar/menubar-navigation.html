@@ -13,6 +13,7 @@
 
   <!--  CSS and JS specific to this example  -->
   <link href="css/menubar-navigation.css" rel="stylesheet">
+  <script src="js/navigation-content-generator.js" type="text/javascript"></script>
   <script src="js/menubar-navigation.js" type="text/javascript"></script>
 
   <!--  Pre-load images used in the example  -->
@@ -45,7 +46,10 @@
     <h2 id="ex_label">Example</h2>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="ex1">
-      <nav aria-label="Mythical University">
+        <header>
+          <div class="title">Mythical University</div>
+          <div class="tagline">Using a Tree widget pattern for navigational links</div>
+        </header>      <nav aria-label="Mythical University">
         <ul class="menubar-navigation" role="menubar" aria-label="Mythical University">
           <li role="none">
             <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">
@@ -56,10 +60,10 @@
             </a>
             <ul role="menu" aria-label="About">
               <li role="none">
-                <a role="menuitem" href="mb-about.html#overview">Overview</a>
+                <a role="menuitem" href="#overview">Overview</a>
               </li>
               <li role="none">
-                <a role="menuitem" href="mb-about.html#admin">Administration</a>
+                <a role="menuitem" href="#admin">Administration</a>
               </li>
               <li role="none">
                 <a role="menuitem"
@@ -73,13 +77,13 @@
                 </a>
                 <ul role="menu" aria-label="Facts">
                   <li role="none">
-                    <a role="menuitem" href="mb-about.html#facts">History</a>
+                    <a role="menuitem" href="#facts">History</a>
                   </li>
                   <li role="none">
-                    <a role="menuitem" href="mb-about.html#facts">Current Statistics</a>
+                    <a role="menuitem" href="#facts">Current Statistics</a>
                   </li>
                   <li role="none">
-                    <a role="menuitem" href="mb-about.html#facts">Awards</a>
+                    <a role="menuitem" href="#facts">Awards</a>
                   </li>
                 </ul>
               </li>
@@ -95,13 +99,13 @@
                 </a>
                 <ul role="menu" aria-label="Campus Tours">
                   <li role="none">
-                    <a role="menuitem" href="mb-about.html#tours">For prospective students</a>
+                    <a role="menuitem" href="#tours">For prospective students</a>
                   </li>
                   <li role="none">
-                    <a role="menuitem" href="mb-about.html#tours">For alumni</a>
+                    <a role="menuitem" href="#tours">For alumni</a>
                   </li>
                   <li role="none">
-                    <a role="menuitem" href="mb-about.html#tours">For visitors</a>
+                    <a role="menuitem" href="#tours">For visitors</a>
                   </li>
                 </ul>
               </li>
@@ -116,7 +120,7 @@
             </a>
             <ul role="menu" aria-label="Admissions">
               <li role="none">
-                <a role="menuitem" href="mb-admissions.html#apply">Apply</a>
+                <a role="menuitem" href="#apply">Apply</a>
               </li>
               <li role="none">
                 <a role="menuitem"
@@ -130,28 +134,28 @@
                 </a>
                 <ul role="menu" aria-label="Tuition">
                   <li role="none">
-                    <a role="menuitem" href="mb-admissions.html#tuition">Undergraduate</a>
+                    <a role="menuitem" href="#tuition">Undergraduate</a>
                   </li>
                   <li role="none">
-                    <a role="menuitem" href="mb-admissions.html#tuition">Graduate</a>
+                    <a role="menuitem" href="#tuition">Graduate</a>
                   </li>
                   <li role="none">
-                    <a role="menuitem" href="mb-admissions.html#tuition">Professional Schools</a>
+                    <a role="menuitem" href="#tuition">Professional Schools</a>
                   </li>
                 </ul>
               </li>
               <li role="none">
-                <a role="menuitem" href="mb-admissions.html#signup">Sign Up</a>
+                <a role="menuitem" href="#signup">Sign Up</a>
               </li>
               <li role="separator"></li>
               <li role="none">
-                <a role="menuitem" href="mb-admissions.html#visit">Visit</a>
+                <a role="menuitem" href="#visit">Visit</a>
               </li>
               <li role="none">
-                <a role="menuitem" href="mb-admissions.html#photo">Photo Tour</a>
+                <a role="menuitem" href="#photo">Photo Tour</a>
               </li>
               <li role="none">
-                <a role="menuitem" href="mb-admissions.html#connect">Connect</a>
+                <a role="menuitem" href="#connect">Connect</a>
               </li>
             </ul>
           </li>
@@ -164,34 +168,46 @@
             </a>
             <ul role="menu" aria-label="Academics">
               <li role="none">
-                <a role="menuitem" href="mb-academics.html#colleges">Colleges &amp; Schools</a>
+                <a role="menuitem" href="#colleges">Colleges &amp; Schools</a>
               </li>
               <li role="none">
-                <a role="menuitem" href="mb-academics.html#programs">Programs of Study</a>
+                <a role="menuitem" href="#programs">Programs of Study</a>
               </li>
               <li role="none">
-                <a role="menuitem" href="mb-academics.html#honors">Honors Programs</a>
+                <a role="menuitem" href="#honors">Honors Programs</a>
               </li>
               <li role="none">
-                <a role="menuitem" href="mb-academics.html#online">Online Courses</a>
+                <a role="menuitem" href="#online">Online Courses</a>
               </li>
               <li role="separator"></li>
               <li role="none">
-                <a role="menuitem" href="mb-academics.html#explorer">Course Explorer</a>
+                <a role="menuitem" href="#explorer">Course Explorer</a>
               </li>
               <li role="none">
-                <a role="menuitem" href="mb-academics.html#register">Register for Class</a>
+                <a role="menuitem" href="#register">Register for Class</a>
               </li>
               <li role="none">
-                <a role="menuitem" href="mb-academics.html#academic">Academic Calendar</a>
+                <a role="menuitem" href="#academic">Academic Calendar</a>
               </li>
               <li role="none">
-                <a role="menuitem" href="mb-academics.html#tanscripts">Transcripts</a>
+                <a role="menuitem" href="#tanscripts">Transcripts</a>
               </li>
             </ul>
           </li>
         </ul>
       </nav>
+      <main class="page" aria-label="Updated content from treeview navigation">
+        <h1 class="page_title">Mythical University</h1>
+        <div class="content">
+          <p></p>
+          <p></p>
+          <p></p>
+        </div>
+      </main>
+      <footer>
+        Mythical University footer information
+      </footer>
+
     </div>
     <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
   </section>

@@ -1,3 +1,29 @@
+#ex1 header {
+  border: #005a9c solid 2px;
+  background: #005a9c;
+  color: white;
+  text-align: center;
+}
+
+#ex1 header .title {
+  font-size: 2.5em;
+  font-weight: bold;
+  font-family: serif;
+}
+
+#ex1 header .tagline {
+  font-style: italic;
+}
+
+#ex1 footer {
+  border: #005a9c solid 2px;
+  background: #005a9c;
+  font-family: serif;
+  color: white;
+  font-style: italic;
+  padding-left: 1em;
+}
+
 .menubar-navigation {
   margin: 0;
   margin-top: 0.5em;
