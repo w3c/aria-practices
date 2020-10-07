@@ -1,21 +1,21 @@
-#ex1 .header {
+#ex1 header {
   border: #005a9c solid 2px;
   background: #005a9c;
   color: white;
   text-align: center;
 }
 
-#ex1 .header .title {
+#ex1 header .title {
   font-size: 2.5em;
   font-weight: bold;
   font-family: serif;
 }
 
-#ex1 .header .tagline {
+#ex1 header .tagline {
   font-style: italic;
 }
 
-#ex1 .footer {
+#ex1 footer {
   border: #005a9c solid 2px;
   background: #005a9c;
   font-family: serif;
