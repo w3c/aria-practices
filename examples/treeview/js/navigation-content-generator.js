@@ -5,20 +5,22 @@
 *   File: navigation-content-generator.js
 */
 
+"use strict";
 
+var NavigationContentGenerator = function (name) {
 
-var NavigationContentGenerator = function () {
+  this.name = name;
+  this.fillerTextSentences = [];
 
-  this.titleSentence = 'The content on this page is associated with the $title link for Mytihical University.';
-  this.dummySentences = [];
-
-  this.dummySentences.push('The text content in this paragraph is just dummy content to provided a visual change when the $title link is selected from the menu.  ');
-  this.dummySentences.push('Mythical University doesn\'t really exist, but the use of an organizational name is useful to provide content for the $title link.  ');
+  this.fillerTextSentences.push('The content on this page is associated with the $title link for $name.');
+  this.fillerTextSentences.push('The text content in this paragraph is filler text providing a detectable change of content when the $title link is selected from the menu.  ');
+  this.fillerTextSentences.push('$name doesn\'t really exist, but the use of an organizational name is useful to provide content for the $title link.  ');
+  this.fillerTextSentences.push('Since $name doesn\'t exist there really is no real content associated with the $title link.');
 };
 
-NavigationContentGenerator.prototype.generate = function (title) {
-  var content = this.titleSentence.replace('$title', title);
-  this.dummySentences.forEach(s => content += s.replace('$title', title));
+NavigationContentGenerator.prototype.generateParagraph = function (title) {
+  var content = '';
+  this.fillerTextSentences.forEach(s => content += s.replace('$name', this.name).replace('$title', title));
   return content;
 }
 

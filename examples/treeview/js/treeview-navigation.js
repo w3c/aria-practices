@@ -7,7 +7,7 @@
 *       tree widget for navigational links
 */
 
-
+"use strict";
 
 var TreeViewNavigation = function (node) {
   // Check whether node is a DOM element
@@ -20,12 +20,15 @@ var TreeViewNavigation = function (node) {
   this.treeitems = this.treeNode.querySelectorAll('[role="treeitem"');
   for (var i = 0; i < this.treeitems.length; i++) {
     var ti = this.treeitems[i];
-    ti.tabIndex = -1;
     ti.addEventListener('keydown', this.handleKeydown.bind(this));
-    ti.addEventListener('click', this.handleClick.bind(this));
+    ti.addEventListener('click', this.handleLinkClick.bind(this));
+    // first tree item is in tab sequence of page
     if (i == 0) {
-      // first tree item is in tab sequence of page
       ti.tabIndex = 0;
+      ti.setAttribute('aria-current', 'page')
+    }
+    else {
+      ti.tabIndex = -1;
     }
     var groupNode = this.getGroupNode(ti);
     if (groupNode) {
@@ -33,6 +36,19 @@ var TreeViewNavigation = function (node) {
       span.addEventListener('click', this.handleSpanClick.bind(this));
     }
   }
+
+  // Initial content for page
+  this.contentGenerator = new NavigationContentGenerator('Mythical University');
+  this.updateContent(this.treeitems[0].textContent.trim());
+};
+
+TreeViewNavigation.prototype.updateContent = function (title) {
+  var h1Node = document.querySelector('#ex1 .page h1');
+  if (h1Node) {
+    h1Node.textContent = title;
+  }
+  var paraNodes = document.querySelectorAll('#ex1 .page p');
+  paraNodes.forEach(p => p.textContent = this.contentGenerator.generateParagraph(title));
 };
 
 TreeViewNavigation.prototype.isVisible = function (treeitem) {
@@ -103,12 +119,21 @@ TreeViewNavigation.prototype.expandTreeitem = function (treeitem) {
 };
 
 TreeViewNavigation.prototype.expandAllSiblingTreeitems = function (treeitem) {
+  var parentNode = treeitem.parentNode.parentNode;
 
+  if (parentNode) {
+    var siblingTreeitemNodes = parentNode.querySelectorAll(':scope > li > a[aria-expanded]');
+
+    for (var i = 0; i < siblingTreeitemNodes.length; i++) {
+      siblingTreeitemNodes[i].setAttribute('aria-expanded', 'true');
+    }
+  }
 };
 
 TreeViewNavigation.prototype.setFocusToTreeitem = function (treeitem) {
-  this.treeitems.forEach(item => item.tabIndex = -1);
+  this.treeitems.forEach(item => { item.tabIndex = -1; item.removeAttribute('aria-current');});
   treeitem.tabIndex = 0;
+  treeitem.setAttribute('aria-current', 'page');
   treeitem.focus();
 };
 
@@ -313,19 +338,9 @@ TreeViewNavigation.prototype.handleKeydown = function (event) {
   }
 };
 
-TreeViewNavigation.prototype.handleClick = function (event) {
+TreeViewNavigation.prototype.handleLinkClick = function (event) {
   var tgt = event.currentTarget;
-
-  var h1Node = document.querySelector('#ex1 .page h1');
-
-  if (h1Node) {
-    h1Node.textContent = tgt.textContent.trim();
-  }
-
-  var paraNodes = document.querySelectorAll('#ex1 .page p');
-  var content = new NavigationContentGenerator();
-  paraNodes.forEach(p => p.textContent = content.generate(h1Node.textContent));
-
+  this.updateContent(tgt.textContent.trim());
 };
 
 

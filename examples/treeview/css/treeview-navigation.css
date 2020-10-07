@@ -1,10 +1,36 @@
-#ex1 {
+#ex1 .header {
+  border: #005a9c solid 2px;
+  background: #005a9c;
+  color: white;
+  text-align: center;
+}
+
+#ex1 .header .title {
+  font-size: 2.5em;
+  font-weight: bold;
+  font-family: serif;
+}
+
+#ex1 .header .tagline {
+  font-style: italic;
+}
+
+#ex1 .footer {
+  border: #005a9c solid 2px;
+  background: #005a9c;
+  font-family: serif;
+  color: white;
+  font-style: italic;
+  padding-left: 1em;
+}
+
+#ex1 .body {
   display: grid;
   grid-template-columns: auto auto;
   border: #eee solid 2px;
 }
 
-#ex1 nav {
+#ex1 .body nav {
   margin: 0;
   padding: 0.5em;
   width: 17em;
@@ -12,13 +38,13 @@
   background: #eee;
 }
 
-#ex1 .page {
+#ex1 .body .page {
   margin: 0.25em;
   padding: 0.25em;
   height: 30em;
 }
 
-#ex1 .page h1 {
+#ex1 .body .page h1 {
   margin: 0;
   padding: 0;
 }
