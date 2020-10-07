@@ -322,8 +322,8 @@ TreeViewNavigation.prototype.handleClick = function (event) {
   }
 
   var paraNodes = document.querySelectorAll('#ex1 .page p');
-  var lipsum = new LoremIpsum();
-  paraNodes.forEach(p => p.textContent = lipsum.generate(100));
+  var content = new NavigationContentGenerator();
+  paraNodes.forEach(p => p.textContent = content.generate(100));
 
 };
 
