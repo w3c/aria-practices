@@ -32,7 +32,7 @@ var MenubarNavigation = function (domNode) {
 
   window.addEventListener('mousedown', this.handleBackgroundMousedown.bind(this), true);
 
-  this.menuitems[0].tabIndex = 0;
+  domNode.querySelector("[role=menuitem]").tabIndex = 0;
 
   // Initial content for page
   this.contentGenerator = new NavigationContentGenerator('#home', 'Mythical University');
@@ -68,7 +68,6 @@ MenubarNavigation.prototype.updateContent = function (linkURL, linkName) {
 
   // Update aria-current
   this.menuitems.forEach(item => {
-    console.log('[updateContent]' + item.href + ' ' + linkURL);
     if (item.href === linkURL) {
       item.setAttribute('aria-current', 'page');
     }
