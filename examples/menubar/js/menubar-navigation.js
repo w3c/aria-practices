@@ -7,12 +7,11 @@
 *   Desc:   Creates a menubar of hierarchical set of links
 */
 
-
+"use strict";
 
 var MenubarNavigation = function (domNode) {
 
   this.domNode = domNode;
-
 
   this.popups = [];
   this.menuitemGroups = {};
@@ -33,19 +32,47 @@ var MenubarNavigation = function (domNode) {
   window.addEventListener('mousedown', this.handleBackgroundMousedown.bind(this), true);
 
   // Initial content for page
-  this.contentGenerator = new NavigationContentGenerator('Mythical University');
-  this.updateContent('Overview');
-};
+  this.contentGenerator = new NavigationContentGenerator('#home', 'Mythical University');
+  this.updateContent(location.href, getLinkNameFromURL(location.href));
 
-MenubarNavigation.prototype.updateContent = function (title) {
-  var h1Node = document.querySelector('#ex1 .page h1');
-  if (h1Node) {
-    h1Node.textContent = title;
+  function getLinkNameFromURL(url) {
+
+    function capitalize(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    var name = url.split('#')[1];
+    if (typeof name === 'string') {
+      name = name.split('-').map(capitalize).join(' ');
+    }
+    else {
+      name = "Home";
+    }
+    return name;
   }
-  var paraNodes = document.querySelectorAll('#ex1 .page p');
-  paraNodes.forEach(p => p.textContent = this.contentGenerator.generateParagraph(title));
 };
 
+MenubarNavigation.prototype.updateContent = function (linkURL, linkName) {
+  var h1Node, paraNodes, treeitemNode;
+
+  // Update content area
+  h1Node = document.querySelector('#ex1 .page h1');
+  if (h1Node) {
+    h1Node.textContent = linkName;
+  }
+  paraNodes = document.querySelectorAll('#ex1 .page p');
+  paraNodes.forEach(p => p.innerHTML = this.contentGenerator.generateParagraph(linkURL, linkName));
+
+  // Update aria-current
+  this.treeitems.forEach(item => {
+    if (item.href === linkURL) {
+      item.setAttribute('aria-current', 'page');
+    }
+    else {
+      item.removeAttribute('aria-current');
+    }
+  });
+};
 MenubarNavigation.prototype.getMenuitems = function(domNode, depth) {
   var nodes = [];
 
@@ -462,7 +489,7 @@ MenubarNavigation.prototype.handleKeydown = function (event) {
       else {
         if (tgt.href !== '#') {
           this.closePopupAll();
-          this.updateContent(tgt.textContent.trim());
+          this.updateContent(tgt.href, tgt.textContent.trim());
         }
       }
       flag = true;
@@ -599,7 +626,7 @@ MenubarNavigation.prototype.handleMenuitemClick = function (event) {
     event.preventDefault();
   }
   else {
-    this.updateContent(tgt.textContent.trim());
+    this.updateContent(tgt.href, tgt.textContent.trim());
     this.closePopupAll()
   }
 };
