@@ -47,7 +47,12 @@ var TreeViewNavigation = function (node) {
     }
 
     var name = url.split('#')[1];
-    name = name.split('-').map(capitalize).join(' ');
+    if (typeof name === 'string') {
+      name = name.split('-').map(capitalize).join(' ');
+    }
+    else {
+      name = "Home";
+    }
     return name;
   }
 };
