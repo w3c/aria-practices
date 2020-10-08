@@ -13,6 +13,7 @@ var MenubarNavigation = function (domNode) {
 
   this.domNode = domNode;
 
+  this.menuitems = [];
   this.popups = [];
   this.menuitemGroups = {};
   this.menuOrientation = {};
@@ -30,6 +31,8 @@ var MenubarNavigation = function (domNode) {
   domNode.addEventListener('focusout', this.handleMenubarFocusout.bind(this));
 
   window.addEventListener('mousedown', this.handleBackgroundMousedown.bind(this), true);
+
+  this.menuitems[0].tabIndex = 0;
 
   // Initial content for page
   this.contentGenerator = new NavigationContentGenerator('#home', 'Mythical University');
@@ -53,7 +56,7 @@ var MenubarNavigation = function (domNode) {
 };
 
 MenubarNavigation.prototype.updateContent = function (linkURL, linkName) {
-  var h1Node, paraNodes, treeitemNode;
+  var h1Node, paraNodes, menuitemNode;
 
   // Update content area
   h1Node = document.querySelector('#ex1 .page h1');
@@ -64,7 +67,8 @@ MenubarNavigation.prototype.updateContent = function (linkURL, linkName) {
   paraNodes.forEach(p => p.innerHTML = this.contentGenerator.generateParagraph(linkURL, linkName));
 
   // Update aria-current
-  this.treeitems.forEach(item => {
+  this.menuitems.forEach(item => {
+    console.log('[updateContent]' + item.href + ' ' + linkURL);
     if (item.href === linkURL) {
       item.setAttribute('aria-current', 'page');
     }
@@ -73,6 +77,7 @@ MenubarNavigation.prototype.updateContent = function (linkURL, linkName) {
     }
   });
 };
+
 MenubarNavigation.prototype.getMenuitems = function(domNode, depth) {
   var nodes = [];
 
@@ -112,13 +117,10 @@ MenubarNavigation.prototype.getMenuitems = function(domNode, depth) {
       if (flag && node.firstElementChild && node.firstElementChild.tagName !== 'svg') {
         findMenuitems(node.firstElementChild);
       }
-
       node = node.nextElementSibling;
     }
   }
-
   findMenuitems(domNode.firstElementChild);
-
   return nodes;
 };
 
@@ -147,6 +149,7 @@ MenubarNavigation.prototype.initMenu = function (menu, depth) {
     }
 
     menuitem.tabIndex = -1;
+    this.menuitems.push(menuitem);
     this.menuitemGroups[menuId].push(menuitem);
     this.firstChars[menuId].push(menuitem.textContent.trim().toLowerCase()[0]);
 
