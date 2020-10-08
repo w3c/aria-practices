@@ -34,7 +34,7 @@ var MenubarNavigation = function (domNode) {
 
   // Initial content for page
   this.contentGenerator = new NavigationContentGenerator('Mythical University');
-  this.updateContent(this.treeitems[0].textContent.trim());
+  this.updateContent('Overview');
 };
 
 MenubarNavigation.prototype.updateContent = function (title) {
