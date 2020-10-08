@@ -7,7 +7,7 @@
 *   Desc:   Creates a menubar of hierarchical set of links
 */
 
-'use strict';
+
 
 var MenubarNavigation = function (domNode) {
 
@@ -600,6 +600,7 @@ MenubarNavigation.prototype.handleMenuitemClick = function (event) {
   }
   else {
     this.updateContent(tgt.textContent.trim());
+    this.closePopupAll()
   }
 };
 
