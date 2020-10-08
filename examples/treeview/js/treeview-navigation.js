@@ -25,7 +25,6 @@ var TreeViewNavigation = function (node) {
     // first tree item is in tab sequence of page
     if (i == 0) {
       ti.tabIndex = 0;
-      ti.setAttribute('aria-current', 'page')
     }
     else {
       ti.tabIndex = -1;
@@ -38,17 +37,41 @@ var TreeViewNavigation = function (node) {
   }
 
   // Initial content for page
-  this.contentGenerator = new NavigationContentGenerator('Mythical University');
-  this.updateContent(this.treeitems[0].textContent.trim());
+  this.contentGenerator = new NavigationContentGenerator('#home', 'Mythical University');
+  this.updateContent(location.href, getLinkNameFromURL(location.href));
+
+  function getLinkNameFromURL(url) {
+
+    function capitalize(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    var name = url.split('#')[1];
+    name = name.split('-').map(capitalize).join(' ');
+    return name;
+  }
 };
 
-TreeViewNavigation.prototype.updateContent = function (title) {
-  var h1Node = document.querySelector('#ex1 .page h1');
+TreeViewNavigation.prototype.updateContent = function (linkURL, linkName) {
+  var h1Node, paraNodes, treeitemNode;
+
+  // Update content area
+  h1Node = document.querySelector('#ex1 .page h1');
   if (h1Node) {
-    h1Node.textContent = title;
+    h1Node.textContent = linkName;
   }
-  var paraNodes = document.querySelectorAll('#ex1 .page p');
-  paraNodes.forEach(p => p.textContent = this.contentGenerator.generateParagraph(title));
+  paraNodes = document.querySelectorAll('#ex1 .page p');
+  paraNodes.forEach(p => p.innerHTML = this.contentGenerator.generateParagraph(linkURL, linkName));
+
+  // Update aria-current
+  this.treeitems.forEach(item => {
+    if (item.href === linkURL) {
+      item.setAttribute('aria-current', 'page');
+    }
+    else {
+      item.removeAttribute('aria-current');
+    }
+  });
 };
 
 TreeViewNavigation.prototype.isVisible = function (treeitem) {
@@ -131,9 +154,8 @@ TreeViewNavigation.prototype.expandAllSiblingTreeitems = function (treeitem) {
 };
 
 TreeViewNavigation.prototype.setFocusToTreeitem = function (treeitem) {
-  this.treeitems.forEach(item => { item.tabIndex = -1; item.removeAttribute('aria-current');});
+  this.treeitems.forEach(item => item.tabIndex = -1);
   treeitem.tabIndex = 0;
-  treeitem.setAttribute('aria-current', 'page');
   treeitem.focus();
 };
 
@@ -340,7 +362,7 @@ TreeViewNavigation.prototype.handleKeydown = function (event) {
 
 TreeViewNavigation.prototype.handleLinkClick = function (event) {
   var tgt = event.currentTarget;
-  this.updateContent(tgt.textContent.trim());
+  this.updateContent(tgt.href, tgt.textContent.trim());
 };
 
 
