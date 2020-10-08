@@ -286,8 +286,10 @@ TreeViewNavigation.prototype.handleKeydown = function (event) {
   }
   else {
     switch (key) {
+      // NOTE: Return key is supported through the click event
       case ' ':
-      case 'Enter':
+        this.updateContent(tgt.href, tgt.textContent.trim());
+        flag = true;
         break;
 
       case 'Up':

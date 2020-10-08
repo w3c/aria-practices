@@ -60,6 +60,14 @@ const isTopLevelFolder = async function (t, el) {
   }, el);
 };
 
+const getOwnedElement = async function (t, el) {
+  return t.context.session.executeScript(function () {
+    const el = arguments[0];
+    return document.getElementById(el.getAttribute('aria-owns'));
+  }, el);
+};
+
+
 const isFolderTreeitem = async function (el) {
   return (await el.getTagName()) === 'li';
 };
@@ -140,5 +148,83 @@ ariaTest('role="none" on "li" element', exampleFile, 'none-role', async (t) => {
 ariaTest('treeitem tabindex set by roving tabindex', exampleFile, 'treeitem-tabindex', async (t) => {
   await openAllFolders(t);
   await assertRovingTabindex(t, ex.treeitemSelector, Key.ARROW_DOWN);
+});
+
+ariaTest('role="group" on "ul" elements', exampleFile, 'group-role', async (t) => {
+  const groups = await t.context.queryElements(t, ex.groupSelector);
+
+  t.truthy(
+    groups.length,
+    'role="group" elements should be found by selector: ' + ex.groupSelector
+  );
+
+  for (let group of groups) {
+    t.is(
+      await group.getTagName(),
+      'ul',
+      'role="group" should be found on a "ul"'
+    );
+  }
+});
+
+
+ariaTest('aria-expanded attribute on treeitem matches dom', exampleFile, 'treeitem-aria-expanded', async (t) => {
+  const expandableTreeitems = await t.context.queryElements(t, ex.expandableSelector);
+
+  for (let treeitem of expandableTreeitems) {
+
+    // If the folder is displayed
+    if (await treeitem.isDisplayed()) {
+
+      const treeitemText = await treeitem.getText();
+
+      // By default, all expandable treeitems  will be closed
+      t.is(
+        await treeitem.getAttribute('aria-expanded'),
+        'false'
+      );
+      t.is(
+        await (await getOwnedElement(t, treeitem)).isDisplayed(),
+        false
+      );
+
+      // Send enter to the folder
+      await treeitem.sendKeys(Key.ARROW_RIGHT);
+
+      // After click, it should be open
+      t.is(
+        await treeitem.getAttribute('aria-expanded'),
+        'true'
+      );
+      t.is(
+        await (await getOwnedElement(t, treeitem)).isDisplayed(),
+        true
+      );
+    }
+  }
+
+  for (let i = (expandableTreeitems.length - 1); i >= 0; i--) {
+
+    // If the folder is displayed
+    if (await expandableTreeitems[i].isDisplayed()) {
+
+      const treeitemText = await expandableTreeitems[i].getText();
+
+      // Send enter to the expandale treeitem
+      await expandableTreeitems[i].sendKeys(Key.ARROW_LEFT);
+
+      // After sending enter, it should be closed
+      t.is(
+        await expandableTreeitems[i].getAttribute('aria-expanded'),
+        'false',
+        treeitemText
+      );
+      t.is(
+        await (await getOwnedElement(t, expandableTreeitems[i])).isDisplayed(),
+        false,
+        treeitemText
+      );
+    }
+  }
 });
 
