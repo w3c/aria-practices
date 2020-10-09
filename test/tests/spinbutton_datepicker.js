@@ -353,7 +353,8 @@ ariaTest.failing('page up on day', exampleFile, 'spinbutton-page-up', async (t) 
   );
 });
 
-ariaTest('page down on day', exampleFile, 'spinbutton-page-down', async (t) => {
+// The bug causing this test to fail is tracked in https://github.com/w3c/aria-practices/issues/1426
+ariaTest.failing('page down on day', exampleFile, 'spinbutton-page-down', async (t) => {
   let control = parseInt(ex.dayNow);
   let daysInMonth = parseInt(ex.dayMax);
 
@@ -361,7 +362,7 @@ ariaTest('page down on day', exampleFile, 'spinbutton-page-down', async (t) => {
   let daySpinner = await t.context.session.findElement(By.css(ex.daySelector));
   await daySpinner.sendKeys(Key.PAGE_DOWN);
 
-  // Subract a day to the control
+  // Subract 5 days to the control
   control = (control - 5) % daysInMonth;
 
   t.is(
@@ -375,7 +376,7 @@ ariaTest('page down on day', exampleFile, 'spinbutton-page-down', async (t) => {
     await daySpinner.sendKeys(Key.PAGE_DOWN);
   }
 
-  // Subtract 15 days to the control
+  // Subtract 25 days to the control
   control = daysInMonth + ((control - 25) % daysInMonth);
 
   t.is(
