@@ -10,5 +10,3 @@ Attribute “aria-posinset” not allowed on element “tr” at this point.
 Attribute “aria-setsize” not allowed on element “tr” at this point.
 # Ignoring role meter
 Bad value “meter” for attribute “role” on element “div”.
-# Deleted Section Archive
-The “longdesc” attribute on the “img” element is obsolete. Use a regular “a” element to link to the description.

@@ -4,18 +4,6 @@ if [[ "$CI" != "true" ]]
 then
   # When running this script locally, compare the current branch to master
   COMMIT_RANGE="..master"
-
-elif [[ "$TRAVIS_PULL_REQUEST" != "false" ]]
-then
-  # If we are on a PR build, we can use TRAVIS_COMMIT_RANGE
-  COMMIT_RANGE=$TRAVIS_COMMIT_RANGE
-
-else
-  # If we are on a branch build, and it has been force pushed, then TRAVIS_PULL_REQUEST will
-  # not contain useful information for the branch build.
-  COMMIT_RANGE="origin/master...$TRAVIS_BRANCH"
-  git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
-  git fetch origin master
 fi
 
 AVACMD="npm run regression -- -t"
