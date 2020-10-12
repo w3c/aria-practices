@@ -19,7 +19,7 @@ on:
       - "!common/**"
 
 jobs:
-  lint:
+  lint-css:
     runs-on: ubuntu-latest
 
     steps:

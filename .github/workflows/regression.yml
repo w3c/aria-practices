@@ -20,7 +20,7 @@ on:
       - "!examples/landmarks/**"
 
 jobs:
-  deploy:
+  regression:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
