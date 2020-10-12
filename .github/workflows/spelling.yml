@@ -20,7 +20,7 @@ on:
       - ".github/workflows/spelling.yml"
 
 jobs:
-  lint:
+  spelling:
     runs-on: ubuntu-latest
 
     steps:
