@@ -35,17 +35,26 @@ var VOID_ELEMENTS = ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input',
 aria.widget.SourceCode = function () {
   this.location = new Array();
   this.code = new Array();
+  this.exampleHeader = new Array();
+  this.resources = new Array();
 };
 
 /**
  * Adds source code
  *
+ * @param {string} locationId      - ID of `code` element that will display the example html
+ * @param {string} codeID          - ID of element containing only and all of the html used to render the example widget
+ * @param {string} exampleHeaderId - ID of header element under which the "Open in Codepen" button belongs
+ * @param {string} cssJsFilesId    - ID of element containing links to all the relevent js and css files used for the example widget
+ *
  * @method add
  * @memberof aria.widget.SourceCode
  */
-aria.widget.SourceCode.prototype.add = function (locationId, codeId) {
+aria.widget.SourceCode.prototype.add = function (locationId, codeId, exampleHeaderId, cssJsFilesId) {
   this.location[this.location.length] = locationId;
   this.code[this.code.length] = codeId;
+  this.exampleHeader[this.exampleHeader.length] = exampleHeaderId;
+  this.resources[this.resources.length] = cssJsFilesId;
 };
 
 /**
@@ -65,6 +74,11 @@ aria.widget.SourceCode.prototype.make = function () {
     // Remove unnecessary `<br>` element.
     if (sourceCodeNode.innerHTML.startsWith('<br>')) {
       sourceCodeNode.innerHTML = sourceCodeNode.innerHTML.replace('<br>', '');
+    }
+
+    // Adds the "Open In CodePen" button by the example header
+    if (this.exampleHeader[i]) {
+      addOpenInCodePenForm(i, this.exampleHeader[i], this.code[i], this.resources[i]);
     }
   }
 };
@@ -298,6 +312,98 @@ function indentLines (input, indentation) {
   });
 
   return lines.join('\n');
+}
+
+/**
+ * Creates and adds an "Open in CodePen" button
+ *
+ * @param {String} exampleIndex - the example number, if there are multiple examples
+ * @param {String} exampleHeaderId - the example header to place the button next to
+ * @param {String} exampleCodeId - the example html code
+ * @param {String} exampleFilesId - the element containing all relevent CSS and JS file
+ */
+function addOpenInCodePenForm (exampleIndex, exampleHeaderId, exampleCodeId, exampleFilesId) {
+  var jsonInputId = 'codepen-data-ex-' + exampleIndex;
+  var buttonId = exampleCodeId + '-codepenbutton'
+
+  var form = document.createElement('form');
+  form.setAttribute('action', 'https://codepen.io/pen/define');
+  form.setAttribute('method', 'POST');
+  form.setAttribute('target', '_blank');
+
+  var input = document.createElement('input');
+  input.setAttribute('id', jsonInputId);
+  input.setAttribute('type', 'hidden');
+  input.setAttribute('name', 'data');
+
+  var button = document.createElement('button');
+  button.innerText = 'Open In CodePen';
+
+  form.appendChild(input);
+  form.appendChild(button);
+
+  var exampleHeader = document.getElementById(exampleHeaderId);
+  exampleHeader.parentNode.insertBefore(form, exampleHeader.nextSibling);
+
+  // Correct the indentation for the example html
+  var indentedExampleHtml = document.getElementById(exampleCodeId).innerHTML;
+  indentedExampleHtml = indentedExampleHtml.replace(/^\n+/, '');
+  var indentation = indentedExampleHtml.match(/^\s+/)[0];
+  var exampleHtml = indentedExampleHtml.replace(new RegExp('^' + indentation, 'gm'), '');
+
+  var postJson = {
+    html: exampleHtml,
+    css: '',
+    js: '',
+    head: '<base href="' + location.href + '">'
+  };
+
+  var totalFetchedFiles = 0;
+  var fileLinks = document.querySelectorAll('#' + exampleFilesId + ' a');
+
+  for (let fileLink of fileLinks) {
+
+      var request = new XMLHttpRequest();
+
+      request.open('GET', fileLink.href, true);
+      request.onload = function() {
+          var href = this.responseURL;
+          if (this.status >= 200 && this.status < 400) {
+              if (href.indexOf('css') !== -1) {
+                postJson.css = postJson.css.concat(this.response);
+              }
+              if (href.indexOf('js') !== -1) {
+                postJson.js = postJson.js.concat(this.response);
+              }
+              totalFetchedFiles++;
+          }
+          else {
+              hideButton(buttonId, "Could not load resource: " + href);
+          }
+      };
+      request.onerror = function() {
+          hideButton(buttonId, "Could not load resource: " + fileLink.href);
+      };
+      request.send();
+  }
+
+    var timerId = setInterval(() => {
+        console.log(totalFetchedFiles);
+        if (totalFetchedFiles === fileLinks.length) {
+            document.getElementById(jsonInputId).value = JSON.stringify(postJson);
+            clearInterval(timerId);
+        }
+    }, 500);
+
+    setTimeout(() => {
+        clearInterval(timerId);
+    }, 10000);
+}
+
+function hideButton(buttonId, errorMsg) {
+    let button = document.querySelector(buttonId);
+    button.style.display = "none";
+    console.log("Removing 'Open in Codepen button'. " + errorMsg);
 }
 
 var sourceCode = new aria.widget.SourceCode();
