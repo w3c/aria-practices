@@ -68,25 +68,25 @@
   list-style: none;
 }
 
-.treeview-navigation [role="treeitem"] ul {
+.treeview-navigation a[role="treeitem"] ul {
   margin: 0;
   padding: 0;
   margin-left: 0.5em;
 }
 
-.treeview-navigation [role="treeitem"][aria-expanded="false"] + [role="group"] {
+.treeview-navigation a[role="treeitem"][aria-expanded="false"] + [role="group"] {
   display: none;
 }
 
-.treeview-navigation [role="treeitem"][aria-expanded="true"] + [role="group"] {
+.treeview-navigation a[role="treeitem"][aria-expanded="true"] + [role="group"] {
   display: block;
 }
 
-.treeview-navigation [role="treeitem"] > span svg {
+.treeview-navigation a[role="treeitem"] > span svg {
   transform: translate(0, 0);
 }
 
-.treeview-navigation [role="treeitem"][aria-expanded="false"] > span svg {
+.treeview-navigation a[role="treeitem"][aria-expanded="false"] > span svg {
   transform: rotate(270deg) translate(2px, 2px);
 }
 
@@ -123,8 +123,4 @@
 .treeview-navigation a[role="treeitem"]:hover {
   background-color: #ccc;
   text-decoration: underline;
-}
-
-.treeview-navigation [role="treeitem"] > span:hover svg {
-  transform: scale(1.25);
 }
