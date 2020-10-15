@@ -34,7 +34,7 @@
   margin: 0;
   padding: 0.5em;
   width: 17em;
-  height: 50em;
+  height: 60em;
   background: #eee;
 }
 
@@ -68,11 +68,6 @@
   list-style: none;
 }
 
-.treeview-navigation[role="tree"] a {
-  text-decoration: underline;
-  border-color: transparent;
-}
-
 .treeview-navigation [role="treeitem"] ul {
   margin: 0;
   padding: 0;
@@ -87,36 +82,49 @@
   display: block;
 }
 
-.treeview-navigation [role="treeitem"][aria-expanded="false"] > span::before {
-  content: url(../images/right-arrow-brown.png);
-  position: relative;
-  left: -0.25em;
+.treeview-navigation [role="treeitem"] > span svg {
+  transform: translate(0, 0);
 }
 
-.treeview-navigation [role="treeitem"][aria-expanded="true"] > span::before {
-  content: url(../images/down-arrow-brown.png);
-  position: relative;
-  left: -0.25em;
+.treeview-navigation [role="treeitem"][aria-expanded="false"] > span svg {
+  transform: rotate(270deg) translate(2px, 2px);
 }
 
 .treeview-navigation a[role="treeitem"] {
-  width: 16em;
   margin: 0;
   padding: 4px;
   text-decoration: none;
+  color: #005a9c;
+  border: none;
+  display: block;
 }
+
+.treeview-navigation a[role="treeitem"][aria-current] {
+  background-color: #005a9c;
+  color: white;
+}
+
 
 /* disable default keyboard focus styling for treeitems
    Keyboard focus is styled with the following CSS */
 
-.treeview-navigation [role="treeitem"]:focus {
+.treeview-navigation a[role="treeitem"]:focus {
   outline: 0;
   background-color: #ddd;
   padding: 2px;
-  border: 2px black solid;
+  border: 2px  #005a9c solid;
 }
 
-.treeview-navigation [role="treeitem"]:hover {
+.treeview-navigation a[role="treeitem"][aria-current]:focus,
+.treeview-navigation a[role="treeitem"][aria-current]:hover {
+  color: #005a9c;
+}
+
+.treeview-navigation a[role="treeitem"]:hover {
   background-color: #ccc;
   text-decoration: underline;
+}
+
+.treeview-navigation [role="treeitem"] > span:hover svg {
+  transform: scale(1.25);
 }

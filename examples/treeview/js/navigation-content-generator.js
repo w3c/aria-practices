@@ -14,9 +14,9 @@ var NavigationContentGenerator = function (siteURL, siteName) {
   this.fillerTextSentences = [];
 
   this.fillerTextSentences.push('The content on this page is associated with the <a href="$linkURL">$linkName</a> link for <a href="$siteURL">$siteName</a>.');
-  this.fillerTextSentences.push('The text content in this paragraph is filler text providing a detectable change of content when the <a href="$linkURL">$linkName</a> link is selected from the menu.  ');
-  this.fillerTextSentences.push('<a href="$siteURL">$siteName</a> doesn\'t really exist, but the use of an organizational name is useful to provide context for the <a href="$linkURL">$linkName</a> link.  ');
-  this.fillerTextSentences.push('Since $siteName doesn\'t exist there really is no real content associated with the <a href="$linkURL">$linkName</a> link.');
+//  this.fillerTextSentences.push('The text content in this paragraph is filler text providing a detectable change of content when the <a href="$linkURL">$linkName</a> link is selected from the menu.  ');
+//  this.fillerTextSentences.push('<a href="$siteURL">$siteName</a> doesn\'t really exist, but the use of an organizational name is useful to provide context for the <a href="$linkURL">$linkName</a> link.  ');
+//  this.fillerTextSentences.push('Since $siteName doesn\'t exist there really is no real content associated with the <a href="$linkURL">$linkName</a> link.');
 };
 
 NavigationContentGenerator.prototype.generateParagraph = function (linkURL, linkName) {

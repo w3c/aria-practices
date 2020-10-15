@@ -9,345 +9,335 @@
 
 "use strict";
 
-var TreeViewNavigation = function (node) {
-  // Check whether node is a DOM element
-  if (typeof node !== 'object') {
-    return;
-  }
+class TreeViewNavigation {
 
-  this.treeNode = node;
+  constructor(node) {
+    var linkURL, linkTitle;
 
-  this.treeitems = this.treeNode.querySelectorAll('[role="treeitem"');
-  for (var i = 0; i < this.treeitems.length; i++) {
-    var ti = this.treeitems[i];
-    ti.addEventListener('keydown', this.handleKeydown.bind(this));
-    ti.addEventListener('click', this.handleLinkClick.bind(this));
-    // first tree item is in tab sequence of page
-    if (i == 0) {
-      ti.tabIndex = 0;
-    }
-    else {
-      ti.tabIndex = -1;
-    }
-    var groupNode = this.getGroupNode(ti);
-    if (groupNode) {
-      var span = ti.querySelector('span');
-      span.addEventListener('click', this.handleSpanClick.bind(this));
-    }
-  }
-
-  // Initial content for page
-  this.contentGenerator = new NavigationContentGenerator('#home', 'Mythical University');
-  this.updateContent(location.href, getLinkNameFromURL(location.href));
-
-  function getLinkNameFromURL(url) {
-
-    function capitalize(str) {
-      return str.charAt(0).toUpperCase() + str.slice(1);
+    // Check whether node is a DOM element
+    if (typeof node !== 'object') {
+      return;
     }
 
-    var name = url.split('#')[1];
-    if (typeof name === 'string') {
-      name = name.split('-').map(capitalize).join(' ');
+    this.treeNode = node;
+
+    this.treeitems = this.treeNode.querySelectorAll('[role="treeitem"]');
+    for (let i = 0; i < this.treeitems.length; i++) {
+      let ti = this.treeitems[i];
+      ti.addEventListener('keydown', this.handleKeydown.bind(this));
+      ti.addEventListener('click', this.handleLinkClick.bind(this));
+      // first tree item is in tab sequence of page
+      if (i == 0) {
+        ti.tabIndex = 0;
+      }
+      else {
+        ti.tabIndex = -1;
+      }
+      var groupNode = this.getGroupNode(ti);
+      if (groupNode) {
+        var span = ti.querySelector('span');
+        span.addEventListener('click', this.handleSpanClick.bind(this));
+      }
     }
-    else {
-      name = "Home";
+
+    // Initial content for page
+    if (location.href.split('#').length > 1) {
+      linkURL = location.href;
+      linkTitle = getLinkNameFromURL(location.href);
+    } else {
+      linkURL = location.href + "#home";
+      linkTitle = "Home";
     }
-    return name;
-  }
-};
 
-TreeViewNavigation.prototype.updateContent = function (linkURL, linkName) {
-  var h1Node, paraNodes, treeitemNode;
+    this.contentGenerator = new NavigationContentGenerator('#home', 'Mythical University');
+    this.updateContent(linkURL, linkTitle, false);
 
-  // Update content area
-  h1Node = document.querySelector('#ex1 .page h1');
-  if (h1Node) {
-    h1Node.textContent = linkName;
-  }
-  paraNodes = document.querySelectorAll('#ex1 .page p');
-  paraNodes.forEach(p => p.innerHTML = this.contentGenerator.generateParagraph(linkURL, linkName));
+    function getLinkNameFromURL(url) {
 
-  // Update aria-current
-  this.treeitems.forEach(item => {
-    if (item.href === linkURL) {
-      item.setAttribute('aria-current', 'page');
-    }
-    else {
-      item.removeAttribute('aria-current');
-    }
-  });
-};
+      function capitalize(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+      }
 
-TreeViewNavigation.prototype.isVisible = function (treeitem) {
-  var flag = true;
-//  console.log('[isVisible]: ' + treeitem.textContent);
-  if (this.isInSubtree(treeitem)) {
-    treeitem = this.getParentTreeitem(treeitem);
-    if (!treeitem || treeitem.getAttribute('aria-expanded') === 'false') {
-      return false;
-    }
-  }
-  return flag;
-};
-
-TreeViewNavigation.prototype.isInSubtree = function (treeitem) {
-  return treeitem.parentNode.parentNode.getAttribute('role') === 'group';
-};
-
-TreeViewNavigation.prototype.isExpandable = function (treeitem) {
-  return treeitem.hasAttribute('aria-expanded');
-};
-
-TreeViewNavigation.prototype.isExpanded = function (treeitem) {
-  return treeitem.getAttribute('aria-expanded') === 'true';
-};
-
-TreeViewNavigation.prototype.getParentTreeitem = function (treeitem) {
-  var node = treeitem.parentNode.parentNode.previousElementSibling;
-  return node;
-};
-
-TreeViewNavigation.prototype.getGroupNode = function (treeitem) {
-  var groupNode = false;
-  var id = treeitem.getAttribute('aria-owns');
-  if (id) {
-    groupNode = document.getElementById(id);
-  }
-  return groupNode;
-};
-
-TreeViewNavigation.prototype.getVisibleTreeitems = function () {
-  var items = [];
-  for (var i = 0; i < this.treeitems.length; i++) {
-    var ti = this.treeitems[i];
-    if (this.isVisible(ti)) {
-      items.push(ti)
-    }
-  }
-  return items;
-};
-
-TreeViewNavigation.prototype.collapseTreeitem = function (treeitem) {
-  if (treeitem.getAttribute('aria-owns')) {
-    var groupNode = document.getElementById(treeitem.getAttribute('aria-owns'));
-    if (groupNode) {
-      treeitem.setAttribute('aria-expanded', 'false');
-    }
-  }
-};
-
-TreeViewNavigation.prototype.expandTreeitem = function (treeitem) {
-  if (treeitem.getAttribute('aria-owns')) {
-    var groupNode = document.getElementById(treeitem.getAttribute('aria-owns'));
-    if (groupNode) {
-      treeitem.setAttribute('aria-expanded', 'true');
-    }
-  }
-};
-
-TreeViewNavigation.prototype.expandAllSiblingTreeitems = function (treeitem) {
-  var parentNode = treeitem.parentNode.parentNode;
-
-  if (parentNode) {
-    var siblingTreeitemNodes = parentNode.querySelectorAll(':scope > li > a[aria-expanded]');
-
-    for (var i = 0; i < siblingTreeitemNodes.length; i++) {
-      siblingTreeitemNodes[i].setAttribute('aria-expanded', 'true');
-    }
-  }
-};
-
-TreeViewNavigation.prototype.setFocusToTreeitem = function (treeitem) {
-  this.treeitems.forEach(item => item.tabIndex = -1);
-  treeitem.tabIndex = 0;
-  treeitem.focus();
-};
-
-TreeViewNavigation.prototype.setFocusToNextTreeitem = function (treeitem) {
-
-  var visibleTreeitems = this.getVisibleTreeitems();
-  var nextItem = visibleTreeitems[0];
-
-  for (var i = (visibleTreeitems.length - 1); i >= 0; i--) {
-    var ti = visibleTreeitems[i];
-    if (ti === treeitem) {
-      break;
-    }
-    nextItem = ti;
-  }
-  if (nextItem) {
-    this.setFocusToTreeitem(nextItem);
-  }
-
-};
-
-TreeViewNavigation.prototype.setFocusToPreviousTreeitem = function (treeitem) {
-
-  var visibleTreeitems = this.getVisibleTreeitems();
-  var prevItem = visibleTreeitems[visibleTreeitems.length-1];
-
-  for (var i = 0; i < visibleTreeitems.length; i++) {
-    var ti = visibleTreeitems[i];
-    if (ti === treeitem) {
-      break;
-    }
-    prevItem = ti;
-  }
-
-  if (prevItem) {
-    this.setFocusToTreeitem(prevItem);
-  }
-};
-
-TreeViewNavigation.prototype.setFocusToParentTreeitem = function(treeitem) {
-  var ti = treeitem.parentNode.previousElementSlibling;
-  if (ti) {
-    this.setFocusToTreeitem(ti);
-  }
-};
-
-TreeViewNavigation.prototype.setFocusByFirstCharacter = function (treeitem, char) {
-  var start, i, ti, index = -1;
-  var visibleTreeitems = this.getVisibleTreeitems();
-  char = char.toLowerCase();
-
-  // Get start index for search based on position of treeitem
-  start = visibleTreeitems.indexOf(treeitem) + 1;
-  if (start >= visibleTreeitems.length) {
-    start = 0;
-  }
-
-  // Check remaining items in the tree
-  for (i = start; i < visibleTreeitems.length; i++) {
-    ti = visibleTreeitems[i];
-    if (char === ti.textContent.trim()[0].toLowerCase()) {
-      index = i;
-      break;
+      var name = url.split('#')[1];
+      if (typeof name === 'string') {
+        name = name.split('-').map(capitalize).join(' ');
+      }
+      else {
+        name = "Home";
+      }
+      return name;
     }
   }
 
-  // If not found in remaining slots, check from beginning
-  if (index === -1) {
-    for (i = 0; i < start; i++) {
+  updateContent(linkURL, linkName, moveFocus) {
+    var h1Node, paraNodes, regionNode;
+
+    if (typeof moveFocus !== 'boolean') {
+      moveFocus = true;
+    }
+
+    // Update content area
+    h1Node = document.querySelector('#ex1 .page h1');
+    if (h1Node) {
+      h1Node.textContent = linkName;
+    }
+    paraNodes = document.querySelectorAll('#ex1 .page p');
+    paraNodes.forEach(p => p.innerHTML = this.contentGenerator.generateParagraph(linkURL, linkName));
+
+    // move focus to the content region
+    regionNode = document.querySelector('#ex1 section.page');
+    regionNode.tabIndex = -1;
+    if (moveFocus) {
+      regionNode.focus();
+    }
+
+    // Update aria-current
+    this.treeitems.forEach(item => {
+      if (item.href === linkURL) {
+        item.setAttribute('aria-current', 'page');
+        // Make sure link is visible
+        this.showTreeitem(item);
+        this.setTabIndex(item);
+      }
+      else {
+        item.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  showTreeitem(treeitem) {
+    var parentNode = this.getParentTreeitem(treeitem);
+
+    while (parentNode) {
+      parentNode.setAttribute('aria-expanded', 'true');
+      parentNode = this.getParentTreeitem(parentNode);
+    }
+  }
+
+  setTabIndex(treeitem) {
+    this.treeitems.forEach(item => item.tabIndex = -1);
+    treeitem.tabIndex = 0;
+  }
+
+  getParentTreeitem(treeitem) {
+    var node = treeitem.parentNode;
+
+    if (node) {
+      node = node.parentNode;
+      if (node) {
+        node = node.previousElementSibling;
+        if (node.getAttribute('role') === 'treeitem') {
+          return node;
+        }
+      }
+    }
+    return false;
+  }
+
+  isVisible(treeitem) {
+    var flag = true;
+  //  console.log('[isVisible]: ' + treeitem.textContent);
+    if (this.isInSubtree(treeitem)) {
+      treeitem = this.getParentTreeitem(treeitem);
+      if (!treeitem || treeitem.getAttribute('aria-expanded') === 'false') {
+        return false;
+      }
+    }
+    return flag;
+  }
+
+  isInSubtree(treeitem) {
+    return treeitem.parentNode.parentNode.getAttribute('role') === 'group';
+  }
+
+  isExpandable(treeitem) {
+    return treeitem.hasAttribute('aria-expanded');
+  }
+
+  isExpanded(treeitem) {
+    return treeitem.getAttribute('aria-expanded') === 'true';
+  }
+
+  getGroupNode(treeitem) {
+    var groupNode = false;
+    var id = treeitem.getAttribute('aria-owns');
+    if (id) {
+      groupNode = document.getElementById(id);
+    }
+    return groupNode;
+  }
+
+  getVisibleTreeitems() {
+    var items = [];
+    for (var i = 0; i < this.treeitems.length; i++) {
+      var ti = this.treeitems[i];
+      if (this.isVisible(ti)) {
+        items.push(ti)
+      }
+    }
+    return items;
+  }
+
+  collapseTreeitem(treeitem) {
+    if (treeitem.getAttribute('aria-owns')) {
+      var groupNode = document.getElementById(treeitem.getAttribute('aria-owns'));
+      if (groupNode) {
+        treeitem.setAttribute('aria-expanded', 'false');
+      }
+    }
+  }
+
+  expandTreeitem(treeitem) {
+    if (treeitem.getAttribute('aria-owns')) {
+      var groupNode = document.getElementById(treeitem.getAttribute('aria-owns'));
+      if (groupNode) {
+        treeitem.setAttribute('aria-expanded', 'true');
+      }
+    }
+  }
+
+  expandAllSiblingTreeitems(treeitem) {
+    var parentNode = treeitem.parentNode.parentNode;
+
+    if (parentNode) {
+      var siblingTreeitemNodes = parentNode.querySelectorAll(':scope > li > a[aria-expanded]');
+
+      for (var i = 0; i < siblingTreeitemNodes.length; i++) {
+        siblingTreeitemNodes[i].setAttribute('aria-expanded', 'true');
+      }
+    }
+  }
+
+  setFocusToTreeitem(treeitem) {
+    this.setTabIndex(treeitem);
+    treeitem.focus();
+  }
+
+  setFocusToNextTreeitem(treeitem) {
+
+    var visibleTreeitems = this.getVisibleTreeitems();
+    var nextItem = visibleTreeitems[0];
+
+    for (var i = (visibleTreeitems.length - 1); i >= 0; i--) {
+      var ti = visibleTreeitems[i];
+      if (ti === treeitem) {
+        break;
+      }
+      nextItem = ti;
+    }
+    if (nextItem) {
+      this.setFocusToTreeitem(nextItem);
+    }
+
+  }
+
+  setFocusToPreviousTreeitem(treeitem) {
+
+    var visibleTreeitems = this.getVisibleTreeitems();
+    var prevItem = visibleTreeitems[visibleTreeitems.length-1];
+
+    for (var i = 0; i < visibleTreeitems.length; i++) {
+      var ti = visibleTreeitems[i];
+      if (ti === treeitem) {
+        break;
+      }
+      prevItem = ti;
+    }
+
+    if (prevItem) {
+      this.setFocusToTreeitem(prevItem);
+    }
+  }
+
+  setFocusToParentTreeitem(treeitem) {
+    var ti = treeitem.parentNode.previousElementSlibling;
+    if (ti) {
+      this.setFocusToTreeitem(ti);
+    }
+  }
+
+  setFocusByFirstCharacter(treeitem, char) {
+    var start, i, ti, index = -1;
+    var visibleTreeitems = this.getVisibleTreeitems();
+    char = char.toLowerCase();
+
+    // Get start index for search based on position of treeitem
+    start = visibleTreeitems.indexOf(treeitem) + 1;
+    if (start >= visibleTreeitems.length) {
+      start = 0;
+    }
+
+    // Check remaining items in the tree
+    for (i = start; i < visibleTreeitems.length; i++) {
       ti = visibleTreeitems[i];
       if (char === ti.textContent.trim()[0].toLowerCase()) {
         index = i;
         break;
       }
     }
-  }
 
-  // If match was found...
-  if (index > -1) {
-    this.setFocusToTreeitem(visibleTreeitems[index]);
-  }
-};
-
-// Event handlers
-
-TreeViewNavigation.prototype.handleSpanClick = function (event) {
-  var tgt = event.currentTarget;
-
-  if (this.isExpanded(tgt.parentNode)) {
-    this.collapseTreeitem(tgt.parentNode);
-  }
-  else {
-    this.expandTreeitem(tgt.parentNode);
-  }
-
-  event.preventDefault();
-  event.stopPropagation();
-};
-
-TreeViewNavigation.prototype.handleKeydown = function (event) {
-  var tgt = event.currentTarget,
-    flag = false,
-    key = event.key;
-
-  function isPrintableCharacter (str) {
-    return str.length === 1 && str.match(/\S/);
-  }
-
-  if (event.altKey || event.ctrlKey || event.metaKey) {
-    return;
-  }
-
-  if (event.shift) {
-    if (event.keyCode == this.keyCode.SPACE || event.keyCode == this.keyCode.RETURN) {
-      event.stopPropagation();
-    }
-    else {
-      if (isPrintableCharacter(key)) {
-        if (key == '*') {
-          this.expandAllSiblingTreeitems(tgt);
-          flag = true;
-        }
-        else {
-          this.setFocusByFirstCharacter(tgt, key);
+    // If not found in remaining slots, check from beginning
+    if (index === -1) {
+      for (i = 0; i < start; i++) {
+        ti = visibleTreeitems[i];
+        if (char === ti.textContent.trim()[0].toLowerCase()) {
+          index = i;
+          break;
         }
       }
     }
+
+    // If match was found...
+    if (index > -1) {
+      this.setFocusToTreeitem(visibleTreeitems[index]);
+    }
   }
-  else {
-    switch (key) {
-      // NOTE: Return key is supported through the click event
-      case ' ':
-        this.updateContent(tgt.href, tgt.textContent.trim());
-        flag = true;
-        break;
 
-      case 'Up':
-      case 'ArrowUp':
-        this.setFocusToPreviousTreeitem(tgt);
-        flag = true;
-        break;
+// Event handlers
 
-      case 'Down':
-      case 'ArrowDown':
-        this.setFocusToNextTreeitem(tgt);
-        flag = true;
-        break;
+  handleSpanClick(event) {
+    console.log('[handleSpanClick]');
+    var tgt = event.currentTarget;
 
-      case 'Right':
-      case 'ArrowRight':
-        if (this.isExpandable(tgt)) {
-          if (this.isExpanded(tgt)) {
-            this.setFocusToNextTreeitem(tgt);
-          }
-          else {
-            this.expandTreeitem(tgt);
-          }
-        }
-        flag = true;
-        break;
+    if (this.isExpanded(tgt.parentNode)) {
+      this.collapseTreeitem(tgt.parentNode);
+    }
+    else {
+      this.expandTreeitem(tgt.parentNode);
+    }
 
-      case 'Left':
-      case 'ArrowLeft':
-        if (this.isExpandable(tgt) && this.isExpanded(tgt)) {
-          this.collapseTreeitem(tgt);
-          flag = true;
-        }
-        else {
-          if (this.isInSubtree(tgt)) {
-            this.setFocusToParentTreeitem(tgt);
-            flag = true;
-          }
-        }
-        break;
+    event.preventDefault();
+    event.stopPropagation();
+  }
 
-      case 'Home':
-        this.setFocusToTreeItem(this.treeitems[0]);
-        flag = true;
-        break;
 
-      case 'End':
-        var visibleTreeitems = this.getVisibleTreeitems();
-        this.setFocusToTreeitem(visibleTreeitems[visibleTreeitems.length-1]);
-        flag = true;
-        break;
+  handleLinkClick(event) {
+    var tgt = event.currentTarget;
+    this.updateContent(tgt.href, tgt.textContent.trim());
+    console.log('[handleLinkClick]: ' + tgt.textContent.trim());
 
-      default:
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  handleKeydown(event) {
+    var tgt = event.currentTarget,
+      flag = false,
+      key = event.key;
+
+    function isPrintableCharacter (str) {
+      return str.length === 1 && str.match(/\S/);
+    }
+
+    if (event.altKey || event.ctrlKey || event.metaKey) {
+      return;
+    }
+
+    if (event.shift) {
+      if (event.keyCode == this.keyCode.SPACE || event.keyCode == this.keyCode.RETURN) {
+        event.stopPropagation();
+      }
+      else {
         if (isPrintableCharacter(key)) {
           if (key == '*') {
             this.expandAllSiblingTreeitems(tgt);
@@ -357,21 +347,87 @@ TreeViewNavigation.prototype.handleKeydown = function (event) {
             this.setFocusByFirstCharacter(tgt, key);
           }
         }
-        break;
+      }
+    }
+    else {
+      switch (key) {
+        // NOTE: Return key is supported through the click event
+        case ' ':
+          this.updateContent(tgt.href, tgt.textContent.trim());
+          flag = true;
+          break;
+
+        case 'Up':
+        case 'ArrowUp':
+          this.setFocusToPreviousTreeitem(tgt);
+          flag = true;
+          break;
+
+        case 'Down':
+        case 'ArrowDown':
+          this.setFocusToNextTreeitem(tgt);
+          flag = true;
+          break;
+
+        case 'Right':
+        case 'ArrowRight':
+          if (this.isExpandable(tgt)) {
+            if (this.isExpanded(tgt)) {
+              this.setFocusToNextTreeitem(tgt);
+            }
+            else {
+              this.expandTreeitem(tgt);
+            }
+          }
+          flag = true;
+          break;
+
+        case 'Left':
+        case 'ArrowLeft':
+          if (this.isExpandable(tgt) && this.isExpanded(tgt)) {
+            this.collapseTreeitem(tgt);
+            flag = true;
+          }
+          else {
+            if (this.isInSubtree(tgt)) {
+              this.setFocusToParentTreeitem(tgt);
+              flag = true;
+            }
+          }
+          break;
+
+        case 'Home':
+          this.setFocusToTreeItem(this.treeitems[0]);
+          flag = true;
+          break;
+
+        case 'End':
+          var visibleTreeitems = this.getVisibleTreeitems();
+          this.setFocusToTreeitem(visibleTreeitems[visibleTreeitems.length-1]);
+          flag = true;
+          break;
+
+        default:
+          if (isPrintableCharacter(key)) {
+            if (key == '*') {
+              this.expandAllSiblingTreeitems(tgt);
+              flag = true;
+            }
+            else {
+              this.setFocusByFirstCharacter(tgt, key);
+            }
+          }
+          break;
+      }
+    }
+
+    if (flag) {
+      event.stopPropagation();
+      event.preventDefault();
     }
   }
 
-  if (flag) {
-    event.stopPropagation();
-    event.preventDefault();
-  }
-};
-
-TreeViewNavigation.prototype.handleLinkClick = function (event) {
-  var tgt = event.currentTarget;
-  this.updateContent(tgt.href, tgt.textContent.trim());
-};
-
+}
 
 /**
  * ARIA Treeview example
@@ -383,7 +439,7 @@ window.addEventListener('load', function () {
 
   var trees = document.querySelectorAll('nav [role="tree"]');
 
-  for (var i = 0; i < trees.length; i++) {
+  for (let i = 0; i < trees.length; i++) {
     new TreeViewNavigation(trees[i]);
   }
 
