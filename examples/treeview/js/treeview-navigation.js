@@ -126,7 +126,7 @@ class TreeViewNavigation {
       node = node.parentNode;
       if (node) {
         node = node.previousElementSibling;
-        if (node.getAttribute('role') === 'treeitem') {
+        if (node && node.getAttribute('role') === 'treeitem') {
           return node;
         }
       }
