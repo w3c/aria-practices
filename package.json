@@ -17,7 +17,7 @@
     "regression": "ava --timeout=1m",
     "regression-report": "node test/util/report",
     "test": "npm run lint && npm run regression",
-    "vnu-jar": "java -jar node_modules/vnu-jar/build/dist/vnu.jar --errors-only --filterfile .vnurc --no-langdetect --skip-non-html *.html examples/"
+    "vnu-jar": "java -jar node_modules/vnu-jar/build/dist/vnu.jar --errors-only --filterfile .vnurc --no-langdetect --skip-non-html aria-practices.html examples/"
   },
   "repository": {
     "type": "git",
@@ -30,11 +30,11 @@
   },
   "homepage": "https://github.com/w3c/aria-practices#readme",
   "devDependencies": {
-    "ava": "^3.7.1",
+    "ava": "^3.13.0",
     "cheerio": "^1.0.0-rc.2",
     "cspell": "^4.1.0",
     "eslint": "^7.10.0",
-    "geckodriver": "^1.19.1",
+    "geckodriver": "^1.20.0",
     "glob": "^7.1.6",
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
