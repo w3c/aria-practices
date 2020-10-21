@@ -1,5 +1,5 @@
 {
-  "extends": "stylelint-config-standard",
+  "extends": ["stylelint-config-standard", "stylelint-prettier/recommended"],
   "rules": {
     "media-feature-name-no-unknown": [
       true,
@@ -9,6 +9,7 @@
         ]
       }
     ],
-    "no-descending-specificity": null
+    "no-descending-specificity": null,
+    "prettier/prettier": [true, {"singleQuote": false}]
   }
 }
