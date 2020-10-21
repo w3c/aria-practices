@@ -39,7 +39,7 @@
     "geckodriver": "^1.20.0",
     "glob": "^7.1.6",
     "husky": "^4.3.0",
-    "lint-staged": "^10.4.0",
+    "lint-staged": "^10.4.2",
     "npm-merge-driver": "^2.3.6",
     "prettier": "^2.1.2",
     "run-node": "^2.0.0",
