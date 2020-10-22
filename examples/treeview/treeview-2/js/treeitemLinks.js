@@ -1,28 +1,27 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   TreeitemLink.js
-*
-*   Desc:   Treeitem widget that implements ARIA Authoring Practices
-*           for a tree being used as a file viewer
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   TreeitemLink.js
+ *
+ *   Desc:   Treeitem widget that implements ARIA Authoring Practices
+ *           for a tree being used as a file viewer
+ */
 
 'use strict';
 
 /*
-*   @constructor
-*
-*   @desc
-*       Treeitem object for representing the state and user interactions for a
-*       treeItem widget
-*
-*   @param node
-*       An element with the role=tree attribute
-*/
+ *   @constructor
+ *
+ *   @desc
+ *       Treeitem object for representing the state and user interactions for a
+ *       treeItem widget
+ *
+ *   @param node
+ *       An element with the role=tree attribute
+ */
 
 var TreeitemLink = function (node, treeObj, group) {
-
   // Check whether node is a DOM element
   if (typeof node !== 'object') {
     return;
@@ -50,7 +49,6 @@ var TreeitemLink = function (node, treeObj, group) {
   var elem = node.firstElementChild;
 
   while (elem) {
-
     if (elem.tagName.toLowerCase() == 'ul') {
       elem.setAttribute('role', 'group');
       this.isExpandable = true;
@@ -70,7 +68,7 @@ var TreeitemLink = function (node, treeObj, group) {
     LEFT: 37,
     UP: 38,
     RIGHT: 39,
-    DOWN: 40
+    DOWN: 40,
   });
 };
 
@@ -87,23 +85,26 @@ TreeitemLink.prototype.init = function () {
   this.domNode.addEventListener('blur', this.handleBlur.bind(this));
 
   if (this.isExpandable) {
-    this.domNode.firstElementChild.addEventListener('mouseover', this.handleMouseOver.bind(this));
-    this.domNode.firstElementChild.addEventListener('mouseout', this.handleMouseOut.bind(this));
-  }
-  else {
+    this.domNode.firstElementChild.addEventListener(
+      'mouseover',
+      this.handleMouseOver.bind(this)
+    );
+    this.domNode.firstElementChild.addEventListener(
+      'mouseout',
+      this.handleMouseOut.bind(this)
+    );
+  } else {
     this.domNode.addEventListener('mouseover', this.handleMouseOver.bind(this));
     this.domNode.addEventListener('mouseout', this.handleMouseOut.bind(this));
   }
 };
 
 TreeitemLink.prototype.isExpanded = function () {
-
   if (this.isExpandable) {
     return this.domNode.getAttribute('aria-expanded') === 'true';
   }
 
   return false;
-
 };
 
 /* EVENT HANDLERS */
@@ -114,16 +115,15 @@ TreeitemLink.prototype.handleKeydown = function (event) {
     char = event.key,
     clickEvent;
 
-  function isPrintableCharacter (str) {
+  function isPrintableCharacter(str) {
     return str.length === 1 && str.match(/\S/);
   }
 
-  function printableCharacter (item) {
+  function printableCharacter(item) {
     if (char == '*') {
       item.tree.expandAllSiblingItems(item);
       flag = true;
-    }
-    else {
+    } else {
       if (isPrintableCharacter(char)) {
         item.tree.setFocusByFirstCharacter(item, char);
         flag = true;
@@ -138,30 +138,29 @@ TreeitemLink.prototype.handleKeydown = function (event) {
   }
 
   if (event.shift) {
-    if (event.keyCode == this.keyCode.SPACE || event.keyCode == this.keyCode.RETURN) {
+    if (
+      event.keyCode == this.keyCode.SPACE ||
+      event.keyCode == this.keyCode.RETURN
+    ) {
       event.stopPropagation();
       this.stopDefaultClick = true;
-    }
-    else {
+    } else {
       if (isPrintableCharacter(char)) {
         printableCharacter(this);
       }
     }
-  }
-  else {
+  } else {
     switch (event.keyCode) {
       case this.keyCode.SPACE:
       case this.keyCode.RETURN:
         if (this.isExpandable) {
           if (this.isExpanded()) {
             this.tree.collapseTreeitem(this);
-          }
-          else {
+          } else {
             this.tree.expandTreeitem(this);
           }
           flag = true;
-        }
-        else {
+        } else {
           event.stopPropagation();
           this.stopDefaultClick = true;
         }
@@ -181,8 +180,7 @@ TreeitemLink.prototype.handleKeydown = function (event) {
         if (this.isExpandable) {
           if (this.isExpanded()) {
             this.tree.setFocusToNextItem(this);
-          }
-          else {
+          } else {
             this.tree.expandTreeitem(this);
           }
         }
@@ -193,8 +191,7 @@ TreeitemLink.prototype.handleKeydown = function (event) {
         if (this.isExpandable && this.isExpanded()) {
           this.tree.collapseTreeitem(this);
           flag = true;
-        }
-        else {
+        } else {
           if (this.inGroup) {
             this.tree.setFocusToParentItem(this);
             flag = true;
@@ -227,17 +224,18 @@ TreeitemLink.prototype.handleKeydown = function (event) {
 };
 
 TreeitemLink.prototype.handleClick = function (event) {
-
   // only process click events that directly happened on this treeitem
-  if (event.target !== this.domNode && event.target !== this.domNode.firstElementChild) {
+  if (
+    event.target !== this.domNode &&
+    event.target !== this.domNode.firstElementChild
+  ) {
     return;
   }
 
   if (this.isExpandable) {
     if (this.isExpanded()) {
       this.tree.collapseTreeitem(this);
-    }
-    else {
+    } else {
       this.tree.expandTreeitem(this);
     }
     event.stopPropagation();

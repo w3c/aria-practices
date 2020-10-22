@@ -1,7 +1,7 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ */
 
 'use strict';
 
@@ -31,7 +31,10 @@ aria.Toolbar = function (toolbarNode) {
  *  Register events for the toolbar interactions
  */
 aria.Toolbar.prototype.registerEvents = function () {
-  this.toolbarNode.addEventListener('keydown', this.checkFocusChange.bind(this));
+  this.toolbarNode.addEventListener(
+    'keydown',
+    this.checkFocusChange.bind(this)
+  );
   this.toolbarNode.addEventListener('click', this.checkClickItem.bind(this));
 };
 
