@@ -1,6 +1,15 @@
 {
+  "extends": ["stylelint-config-standard", "stylelint-prettier/recommended"],
   "rules": {
-    "media-feature-name-no-unknown": [true,
-    "ignoreMediaFeatureNames": ["forced-colors"] ]
+    "media-feature-name-no-unknown": [
+      true,
+      {
+        "ignoreMediaFeatureNames": [
+          "forced-colors"
+        ]
+      }
+    ],
+    "no-descending-specificity": null,
+    "prettier/prettier": [true, {"singleQuote": false}]
   }
 }
