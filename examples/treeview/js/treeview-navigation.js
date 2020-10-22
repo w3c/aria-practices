@@ -69,7 +69,7 @@ class TreeViewNavigation {
   }
 
   updateContent(linkURL, linkName, moveFocus) {
-    var h1Node, paraNodes, regionNode;
+    var h1Node, paraNodes;
 
     if (typeof moveFocus !== 'boolean') {
       moveFocus = true;
@@ -90,10 +90,9 @@ class TreeViewNavigation {
     );
 
     // move focus to the content region
-    regionNode = document.querySelector('#ex1 section h1');
-    regionNode.tabIndex = -1;
-    if (moveFocus) {
-      regionNode.focus();
+    if (moveFocus && h1Node) {
+      h1Node.tabIndex = -1;
+      h1Node.focus();
     }
 
     // Update aria-current
