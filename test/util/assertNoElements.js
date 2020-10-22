@@ -14,9 +14,9 @@ const { By } = require('selenium-webdriver');
  * @returns {Promise} Resolves to array of elements
  */
 module.exports = async function assertNoElements(t, selector, message) {
-
   const elements = await t.context.session.findElements(By.css(selector));
-  const errorMessage = message || 'Should return no results for CSS selector ' + selector;
+  const errorMessage =
+    message || 'Should return no results for CSS selector ' + selector;
 
   t.is(elements.length, 0, errorMessage);
-}
+};

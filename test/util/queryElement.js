@@ -18,4 +18,4 @@ module.exports = async function queryElement(t, selector, context) {
     t.fail(`Element query returned no result: ${selector}`);
   }
   return result;
-}
+};

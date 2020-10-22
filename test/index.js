@@ -10,7 +10,7 @@ const queryElement = require('./util/queryElement');
 const queryElements = require('./util/queryElements');
 
 let session, geckodriver;
-const firefoxArgs = process.env.CI ? [ '-headless' ] : [];
+const firefoxArgs = process.env.CI ? ['-headless'] : [];
 const testWaitTime = parseInt(process.env.TEST_WAIT_TIME) || 500;
 const coverageReportRun = process.env.REGRESSION_COVERAGE_REPORT;
 
@@ -21,8 +21,8 @@ if (!coverageReportRun) {
       .usingServer('http://localhost:' + geckodriver.port)
       .withCapabilities({
         'moz:firefoxOptions': {
-          args: firefoxArgs
-        }
+          args: firefoxArgs,
+        },
       })
       .forBrowser('firefox')
       .build();
@@ -37,8 +37,9 @@ if (!coverageReportRun) {
   });
 
   test.after.always(() => {
-    return Promise.resolve(session && session.close())
-      .then(() => geckodriver && geckodriver.stop());
+    return Promise.resolve(session && session.close()).then(
+      () => geckodriver && geckodriver.stop()
+    );
   });
 }
 
@@ -89,7 +90,8 @@ const _ariaTest = (desc, page, testId, body, failing) => {
       const assert = require('assert');
       assert(
         (await t.context.queryElements(t, selector)).length,
-        'Cannot find behavior description for this test in example page:' + testId
+        'Cannot find behavior description for this test in example page:' +
+          testId
       );
     }
 

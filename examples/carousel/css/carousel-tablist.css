@@ -1,4 +1,3 @@
-
 /* .carousel-tablist */
 
 img.reload {
@@ -309,7 +308,10 @@ img.reload {
 }
 
 .carousel-tablist-moreaccessible .carousel-item .carousel-caption span.contrast,
-.carousel-tablist-moreaccessible .carousel-item .carousel-caption span.contrast:hover {
+.carousel-tablist-moreaccessible
+  .carousel-item
+  .carousel-caption
+  span.contrast:hover {
   background-color: transparent;
 }
 

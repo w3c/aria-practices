@@ -1,46 +1,45 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   FontMenuItem.js
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   FontMenuItem.js
+ */
 
 'use strict';
 
 /*
-*   @constructor MenuItem
-*
-*   @desc
-*       Wrapper object for a simple menu item in a popup menu
-*
-*   @param domNode
-*       The DOM element node that serves as the menu item container.
-*       The menuObj PopupMenu is responsible for checking that it has
-*       requisite metadata, e.g. role="menuitem".
-*
-*   @param menuObj
-*       The object that is a wrapper for the PopupMenu DOM element that
-*       contains the menu item DOM element. See PopupMenuAction.js
-*/
+ *   @constructor MenuItem
+ *
+ *   @desc
+ *       Wrapper object for a simple menu item in a popup menu
+ *
+ *   @param domNode
+ *       The DOM element node that serves as the menu item container.
+ *       The menuObj PopupMenu is responsible for checking that it has
+ *       requisite metadata, e.g. role="menuitem".
+ *
+ *   @param menuObj
+ *       The object that is a wrapper for the PopupMenu DOM element that
+ *       contains the menu item DOM element. See PopupMenuAction.js
+ */
 var FontMenuItem = function (domNode, fontMenu) {
-
-  this.domNode   = domNode;
+  this.domNode = domNode;
   this.fontMenu = fontMenu;
-  this.font     = '';
+  this.font = '';
 
   this.keyCode = Object.freeze({
-    'TAB': 9,
-    'ENTER': 13,
-    'ESC': 27,
-    'SPACE': 32,
-    'PAGEUP': 33,
-    'PAGEDOWN': 34,
-    'END': 35,
-    'HOME': 36,
-    'LEFT': 37,
-    'UP': 38,
-    'RIGHT': 39,
-    'DOWN': 40
+    TAB: 9,
+    ENTER: 13,
+    ESC: 27,
+    SPACE: 32,
+    PAGEUP: 33,
+    PAGEDOWN: 34,
+    END: 35,
+    HOME: 36,
+    LEFT: 37,
+    UP: 38,
+    RIGHT: 39,
+    DOWN: 40,
   });
 };
 
@@ -53,13 +52,12 @@ FontMenuItem.prototype.init = function () {
 
   this.font = this.domNode.textContent.trim().toLowerCase();
 
-  this.domNode.addEventListener('keydown',    this.handleKeydown.bind(this));
-  this.domNode.addEventListener('click',      this.handleClick.bind(this));
-  this.domNode.addEventListener('focus',      this.handleFocus.bind(this));
-  this.domNode.addEventListener('blur',       this.handleBlur.bind(this));
-  this.domNode.addEventListener('mouseover',  this.handleMouseover.bind(this));
-  this.domNode.addEventListener('mouseout',   this.handleMouseout.bind(this));
-
+  this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
+  this.domNode.addEventListener('click', this.handleClick.bind(this));
+  this.domNode.addEventListener('focus', this.handleFocus.bind(this));
+  this.domNode.addEventListener('blur', this.handleBlur.bind(this));
+  this.domNode.addEventListener('mouseover', this.handleMouseover.bind(this));
+  this.domNode.addEventListener('mouseout', this.handleMouseout.bind(this));
 };
 
 /* EVENT HANDLERS */
@@ -70,11 +68,11 @@ FontMenuItem.prototype.handleKeydown = function (event) {
     char = event.key,
     clickEvent;
 
-  function isPrintableCharacter (str) {
+  function isPrintableCharacter(str) {
     return str.length === 1 && str.match(/\S/);
   }
 
-  if (event.ctrlKey || event.altKey  || event.metaKey) {
+  if (event.ctrlKey || event.altKey || event.metaKey) {
     return;
   }
 
@@ -82,9 +80,7 @@ FontMenuItem.prototype.handleKeydown = function (event) {
     if (isPrintableCharacter(char)) {
       this.fontMenu.setFocusByFirstCharacter(this, char);
     }
-  }
-  else {
-
+  } else {
     switch (event.keyCode) {
       case this.keyCode.SPACE:
       case this.keyCode.ENTER:
@@ -164,7 +160,6 @@ FontMenuItem.prototype.handleBlur = function (event) {
 FontMenuItem.prototype.handleMouseover = function (event) {
   this.fontMenu.hasHover = true;
   this.fontMenu.open();
-
 };
 
 FontMenuItem.prototype.handleMouseout = function (event) {

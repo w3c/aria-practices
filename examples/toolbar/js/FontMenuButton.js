@@ -1,9 +1,9 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   FontMenuButton.js
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   FontMenuButton.js
+ */
 
 'use strict';
 
@@ -17,12 +17,12 @@ function FontMenuButton(node, toolbar, toolbarItem) {
   this.value = '';
 
   this.keyCode = Object.freeze({
-    'TAB': 9,
-    'ENTER': 13,
-    'ESC': 27,
-    'SPACE': 32,
-    'UP': 38,
-    'DOWN': 40
+    TAB: 9,
+    ENTER: 13,
+    ESC: 27,
+    SPACE: 32,
+    UP: 38,
+    DOWN: 40,
   });
 }
 
@@ -68,8 +68,7 @@ FontMenuButton.prototype.handleKeyDown = function (event) {
 FontMenuButton.prototype.handleClick = function (event, menuButton) {
   if (this.fontMenu.isOpen()) {
     this.fontMenu.close();
-  }
-  else {
+  } else {
     this.fontMenu.open();
   }
 };
@@ -81,4 +80,3 @@ FontMenuButton.prototype.setFontFamily = function (font) {
   this.domNode.setAttribute('aria-label', 'Font: ' + font);
   this.toolbar.activateItem(this);
 };
-
