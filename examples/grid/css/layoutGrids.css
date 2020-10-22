@@ -8,7 +8,7 @@
   position: fixed;
   height: 65px;
   width: 85px;
-  background: url('../imgs/black_keys.png') no-repeat;
+  background: url("../imgs/black_keys.png") no-repeat;
   background-size: contain;
 }
 

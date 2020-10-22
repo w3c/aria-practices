@@ -73,13 +73,21 @@ table.data.attributes tbody td {
   font-size: inherit;
   text-shadow: 0 -1px 1px hsl(216, 27%, 25%);
   background-color: hsl(216, 82%, 51%);
-  background-image: linear-gradient(to bottom, hsl(216, 82%, 53%), hsl(216, 82%, 47%));
+  background-image: linear-gradient(
+    to bottom,
+    hsl(216, 82%, 53%),
+    hsl(216, 82%, 47%)
+  );
 }
 
 .example-header button:hover {
   border-color: hsl(213, 71%, 29%);
   background-color: hsl(216, 82%, 31%);
-  background-image: linear-gradient(to bottom, hsl(216, 82%, 33%), hsl(216, 82%, 27%));
+  background-image: linear-gradient(
+    to bottom,
+    hsl(216, 82%, 33%),
+    hsl(216, 82%, 27%)
+  );
   cursor: default;
 }
 
@@ -100,12 +108,16 @@ table.data.attributes tbody td {
 
   /* button border radius + outline width + offset */
   border-radius: calc(5px + 3px + 3px);
-  content: '';
+  content: "";
 }
 
 .example-header button:active {
   border-color: hsl(213, 71%, 49%);
   background-color: hsl(216, 82%, 31%);
-  background-image: linear-gradient(to bottom, hsl(216, 82%, 53%), hsl(216, 82%, 47%));
+  background-image: linear-gradient(
+    to bottom,
+    hsl(216, 82%, 53%),
+    hsl(216, 82%, 47%)
+  );
   box-shadow: inset 0 3px 5px 1px hsl(216, 82%, 30%);
 }
