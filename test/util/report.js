@@ -283,7 +283,7 @@ console.log(examplesWithNoTestsReport || 'None found.\n');
 console.log('\n#### Examples missing some regression tests:\n');
 console.log(examplesMissingSomeTestsReport || 'None found.\n');
 console.log(
-  '\n#### Examples pages Keyboard or Attribute table rows that do not have data-test-ids:\n'
+  '\n#### Examples pages with Keyboard or Attribute table rows that do not have data-test-ids:\n'
 );
 console.log(missingTestIdsReport || 'None found.\n');
 
