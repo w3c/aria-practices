@@ -260,15 +260,15 @@ fs.readdirSync(testsPath).forEach(function (testFile) {
   }
 });
 
-console.log('\n## Regression test coverage:\n');
-console.log('\n### Examples without any regression tests:\n');
+console.log('\n#### Regression test coverage:\n');
+console.log('\n#### Examples without any regression tests:\n');
 console.log(examplesWithNoTestsReport || 'None found.\n');
-console.log('\n### Examples missing some regression tests:\n');
+console.log('\n#### Examples missing some regression tests:\n');
 console.log(examplesMissingSomeTestsReport || 'None found.\n');
-console.log('\n### Examples documentation table rows without data-test-ids:\n');
+console.log('\n#### Examples pages Keyboard or Attribute table rows that do not have data-test-ids:\n');
 console.log(missingTestIdsReport || 'None found.\n');
 
-console.log('### SUMMARTY:\n');
+console.log('#### SUMMARY:\n');
 console.log('  ' + exampleFiles.length + ' example pages found.');
 console.log('  ' + examplesWithNoTests + ' example pages have no regression tests.');
 console.log('  ' + examplesMissingSomeTests + ' example pages are missing approximately ' +
