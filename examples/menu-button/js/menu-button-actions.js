@@ -1,26 +1,28 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   menu-button-actions.js
-*
-*   Desc:   Creates a menu button that opens a menu of actions
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   menu-button-actions.js
+ *
+ *   Desc:   Creates a menu button that opens a menu of actions
+ */
 
 'use strict';
 
 var MenuButtonActions = function (domNode, performMenuAction) {
-
-  this.domNode       = domNode;
-  this.performMenuAction    = performMenuAction;
-  this.buttonNode    = domNode.querySelector('button');
-  this.menuNode      = domNode.querySelector('[role="menu"]');
-  this.menuitemNodes = []
+  this.domNode = domNode;
+  this.performMenuAction = performMenuAction;
+  this.buttonNode = domNode.querySelector('button');
+  this.menuNode = domNode.querySelector('[role="menu"]');
+  this.menuitemNodes = [];
   this.firstMenuitem = false;
-  this.lastMenuitem  = false;
+  this.lastMenuitem = false;
   this.firstChars = [];
 
-  this.buttonNode.addEventListener('keydown', this.handleButtonKeydown.bind(this));
+  this.buttonNode.addEventListener(
+    'keydown',
+    this.handleButtonKeydown.bind(this)
+  );
   this.buttonNode.addEventListener('click', this.handleButtonClick.bind(this));
 
   var nodes = domNode.querySelectorAll('[role="menuitem"]');
@@ -34,9 +36,12 @@ var MenuButtonActions = function (domNode, performMenuAction) {
     menuitem.addEventListener('keydown', this.handleMenuitemKeydown.bind(this));
     menuitem.addEventListener('click', this.handleMenuitemClick.bind(this));
 
-    menuitem.addEventListener('mouseover', this.handleMenuitemMouseover.bind(this));
+    menuitem.addEventListener(
+      'mouseover',
+      this.handleMenuitemMouseover.bind(this)
+    );
 
-    if( !this.firstMenuitem) {
+    if (!this.firstMenuitem) {
       this.firstMenuitem = menuitem;
     }
     this.lastMenuitem = menuitem;
@@ -45,38 +50,46 @@ var MenuButtonActions = function (domNode, performMenuAction) {
   domNode.addEventListener('focusin', this.handleFocusin.bind(this));
   domNode.addEventListener('focusout', this.handleFocusout.bind(this));
 
-  window.addEventListener('mousedown', this.handleBackgroundMousedown.bind(this), true);
+  window.addEventListener(
+    'mousedown',
+    this.handleBackgroundMousedown.bind(this),
+    true
+  );
 };
 
 MenuButtonActions.prototype.setFocusToMenuitem = function (newMenuitem) {
-  this.menuitemNodes.forEach(function(item) {
+  this.menuitemNodes.forEach(function (item) {
     if (item === newMenuitem) {
       item.tabIndex = 0;
       newMenuitem.focus();
-    }
-    else {
+    } else {
       item.tabIndex = -1;
     }
   });
 };
 
-MenuButtonActions.prototype.setFocusToFirstMenuitem = function (currentMenuitem) {
+MenuButtonActions.prototype.setFocusToFirstMenuitem = function (
+  currentMenuitem
+) {
   this.setFocusToMenuitem(this.firstMenuitem);
 };
 
-MenuButtonActions.prototype.setFocusToLastMenuitem = function (currentMenuitem) {
+MenuButtonActions.prototype.setFocusToLastMenuitem = function (
+  currentMenuitem
+) {
   this.setFocusToMenuitem(this.lastMenuitem);
 };
 
-MenuButtonActions.prototype.setFocusToPreviousMenuitem = function (currentMenuitem) {
+MenuButtonActions.prototype.setFocusToPreviousMenuitem = function (
+  currentMenuitem
+) {
   var newMenuitem, index;
 
   if (currentMenuitem === this.firstMenuitem) {
     newMenuitem = this.lastMenuitem;
-  }
-  else {
+  } else {
     index = this.menuitemNodes.indexOf(currentMenuitem);
-    newMenuitem = this.menuitemNodes[ index - 1 ];
+    newMenuitem = this.menuitemNodes[index - 1];
   }
 
   this.setFocusToMenuitem(newMenuitem);
@@ -84,22 +97,26 @@ MenuButtonActions.prototype.setFocusToPreviousMenuitem = function (currentMenuit
   return newMenuitem;
 };
 
-MenuButtonActions.prototype.setFocusToNextMenuitem = function (currentMenuitem) {
+MenuButtonActions.prototype.setFocusToNextMenuitem = function (
+  currentMenuitem
+) {
   var newMenuitem, index;
 
   if (currentMenuitem === this.lastMenuitem) {
     newMenuitem = this.firstMenuitem;
-  }
-  else {
+  } else {
     index = this.menuitemNodes.indexOf(currentMenuitem);
-    newMenuitem = this.menuitemNodes[ index + 1 ];
+    newMenuitem = this.menuitemNodes[index + 1];
   }
   this.setFocusToMenuitem(newMenuitem);
 
   return newMenuitem;
 };
 
-MenuButtonActions.prototype.setFocusByFirstCharacter = function (currentMenuitem, char) {
+MenuButtonActions.prototype.setFocusByFirstCharacter = function (
+  currentMenuitem,
+  char
+) {
   var start, index;
 
   if (char.length > 1) {
@@ -110,7 +127,7 @@ MenuButtonActions.prototype.setFocusByFirstCharacter = function (currentMenuitem
 
   // Get start index for search based on position of currentItem
   start = this.menuitemNodes.indexOf(currentMenuitem) + 1;
-  if (start >=  this.menuitemNodes.length) {
+  if (start >= this.menuitemNodes.length) {
     start = 0;
   }
 
@@ -181,12 +198,12 @@ MenuButtonActions.prototype.handleButtonKeydown = function (event) {
       this.openPopup();
       this.setFocusToFirstMenuitem();
       flag = true;
-     break;
+      break;
 
     case 'Esc':
     case 'Escape':
-        this.closePopup();
-        flag = true;
+      this.closePopup();
+      flag = true;
       break;
 
     case 'Up':
@@ -210,8 +227,7 @@ MenuButtonActions.prototype.handleButtonClick = function (event) {
   if (this.isOpen()) {
     this.closePopup();
     this.buttonNode.focus();
-  }
-  else {
+  } else {
     this.openPopup();
     this.setFocusToFirstMenuitem();
   }
@@ -225,11 +241,11 @@ MenuButtonActions.prototype.handleMenuitemKeydown = function (event) {
     key = event.key,
     flag = false;
 
-  function isPrintableCharacter (str) {
+  function isPrintableCharacter(str) {
     return str.length === 1 && str.match(/\S/);
   }
 
-  if (event.ctrlKey || event.altKey  || event.metaKey) {
+  if (event.ctrlKey || event.altKey || event.metaKey) {
     return;
   }
 
@@ -244,9 +260,7 @@ MenuButtonActions.prototype.handleMenuitemKeydown = function (event) {
       this.closePopup();
       flag = true;
     }
-  }
-  else {
-
+  } else {
     switch (key) {
       case ' ':
       case 'Enter':
@@ -254,7 +268,7 @@ MenuButtonActions.prototype.handleMenuitemKeydown = function (event) {
         this.performMenuAction(tgt);
         this.buttonNode.focus();
         flag = true;
-       break;
+        break;
 
       case 'Esc':
       case 'Escape':
@@ -298,7 +312,6 @@ MenuButtonActions.prototype.handleMenuitemKeydown = function (event) {
         }
         break;
     }
-
   }
 
   if (flag) {
@@ -330,15 +343,14 @@ MenuButtonActions.prototype.handleBackgroundMousedown = function (event) {
 
 // Initialize menu buttons
 window.addEventListener('load', function () {
-
-  document.getElementById("action_output").value = "none";
+  document.getElementById('action_output').value = 'none';
 
   function performMenuAction(node) {
-    document.getElementById("action_output").value = node.textContent.trim();
+    document.getElementById('action_output').value = node.textContent.trim();
   }
 
   var menuButtons = document.querySelectorAll('.menu-button-actions');
-  for(var i=0; i < menuButtons.length; i++) {
+  for (var i = 0; i < menuButtons.length; i++) {
     var menuButton = new MenuButtonActions(menuButtons[i], performMenuAction);
   }
 });

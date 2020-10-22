@@ -1,27 +1,29 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   menu-button-actives-active-descendant.js
-*
-*   Desc:   Creates a menu button that opens a menu of actions using aria-activedescendants
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   menu-button-actives-active-descendant.js
+ *
+ *   Desc:   Creates a menu button that opens a menu of actions using aria-activedescendants
+ */
 
 'use strict';
 
 var MenuButtonActionsActiveDescendant = function (domNode, performMenuAction) {
-
   this.domNode = domNode;
   this.performMenuAction = performMenuAction;
   this.buttonNode = domNode.querySelector('button');
   this.menuNode = domNode.querySelector('[role="menu"]');
   this.currentMenuitem = {};
-  this.menuitemNodes = []
+  this.menuitemNodes = [];
   this.firstMenuitem = false;
-  this.lastMenuitem  = false;
+  this.lastMenuitem = false;
   this.firstChars = [];
 
-  this.buttonNode.addEventListener('keydown', this.handleButtonKeydown.bind(this));
+  this.buttonNode.addEventListener(
+    'keydown',
+    this.handleButtonKeydown.bind(this)
+  );
   this.buttonNode.addEventListener('click', this.handleButtonClick.bind(this));
 
   this.menuNode.addEventListener('keydown', this.handleMenuKeydown.bind(this));
@@ -35,9 +37,12 @@ var MenuButtonActionsActiveDescendant = function (domNode, performMenuAction) {
     this.firstChars.push(menuitem.textContent.trim()[0].toLowerCase());
 
     menuitem.addEventListener('click', this.handleMenuitemClick.bind(this));
-    menuitem.addEventListener('mouseover', this.handleMenuitemMouseover.bind(this));
+    menuitem.addEventListener(
+      'mouseover',
+      this.handleMenuitemMouseover.bind(this)
+    );
 
-    if( !this.firstMenuitem) {
+    if (!this.firstMenuitem) {
       this.firstMenuitem = menuitem;
     }
     this.lastMenuitem = menuitem;
@@ -46,19 +51,23 @@ var MenuButtonActionsActiveDescendant = function (domNode, performMenuAction) {
   domNode.addEventListener('focusin', this.handleFocusin.bind(this));
   domNode.addEventListener('focusout', this.handleFocusout.bind(this));
 
-  window.addEventListener('mousedown', this.handleBackgroundMousedown.bind(this), true);
+  window.addEventListener(
+    'mousedown',
+    this.handleBackgroundMousedown.bind(this),
+    true
+  );
 };
 
-MenuButtonActionsActiveDescendant.prototype.setFocusToMenuitem = function (newMenuitem) {
-
+MenuButtonActionsActiveDescendant.prototype.setFocusToMenuitem = function (
+  newMenuitem
+) {
   for (var i = 0; i < this.menuitemNodes.length; i++) {
     var menuitem = this.menuitemNodes[i];
-    if ( menuitem === newMenuitem) {
+    if (menuitem === newMenuitem) {
       this.currentMenuitem = newMenuitem;
       menuitem.classList.add('focus');
       this.menuNode.setAttribute('aria-activedescendant', newMenuitem.id);
-    }
-    else {
+    } else {
       menuitem.classList.remove('focus');
     }
   }
@@ -77,10 +86,9 @@ MenuButtonActionsActiveDescendant.prototype.setFocusToPreviousMenuitem = functio
 
   if (this.currentMenuitem === this.firstMenuitem) {
     newMenuitem = this.lastMenuitem;
-  }
-  else {
+  } else {
     index = this.menuitemNodes.indexOf(this.currentMenuitem);
-    newMenuitem = this.menuitemNodes[ index - 1 ];
+    newMenuitem = this.menuitemNodes[index - 1];
   }
 
   this.setFocusToMenuitem(newMenuitem);
@@ -93,17 +101,18 @@ MenuButtonActionsActiveDescendant.prototype.setFocusToNextMenuitem = function ()
 
   if (this.currentMenuitem === this.lastMenuitem) {
     newMenuitem = this.firstMenuitem;
-  }
-  else {
+  } else {
     index = this.menuitemNodes.indexOf(this.currentMenuitem);
-    newMenuitem = this.menuitemNodes[ index + 1 ];
+    newMenuitem = this.menuitemNodes[index + 1];
   }
   this.setFocusToMenuitem(newMenuitem);
 
   return newMenuitem;
 };
 
-MenuButtonActionsActiveDescendant.prototype.setFocusByFirstCharacter = function (char) {
+MenuButtonActionsActiveDescendant.prototype.setFocusByFirstCharacter = function (
+  char
+) {
   var start, index;
 
   if (char.length > 1) {
@@ -114,7 +123,7 @@ MenuButtonActionsActiveDescendant.prototype.setFocusByFirstCharacter = function 
 
   // Get start index for search based on position of currentItem
   start = this.menuitemNodes.indexOf(this.currentMenuitem) + 1;
-  if (start >=  this.menuitemNodes.length) {
+  if (start >= this.menuitemNodes.length) {
     start = 0;
   }
 
@@ -134,7 +143,10 @@ MenuButtonActionsActiveDescendant.prototype.setFocusByFirstCharacter = function 
 
 // Utilities
 
-MenuButtonActionsActiveDescendant.prototype.getIndexFirstChars = function (startIndex, char) {
+MenuButtonActionsActiveDescendant.prototype.getIndexFirstChars = function (
+  startIndex,
+  char
+) {
   for (var i = startIndex; i < this.firstChars.length; i++) {
     if (char === this.firstChars[i]) {
       return i;
@@ -179,7 +191,9 @@ MenuButtonActionsActiveDescendant.prototype.handleFocusout = function (event) {
   this.domNode.classList.remove('focus');
 };
 
-MenuButtonActionsActiveDescendant.prototype.handleButtonKeydown = function (event) {
+MenuButtonActionsActiveDescendant.prototype.handleButtonKeydown = function (
+  event
+) {
   var tgt = event.currentTarget,
     key = event.key,
     flag = false;
@@ -192,12 +206,12 @@ MenuButtonActionsActiveDescendant.prototype.handleButtonKeydown = function (even
       this.openPopup();
       this.setFocusToFirstMenuitem();
       flag = true;
-     break;
+      break;
 
     case 'Esc':
     case 'Escape':
-        this.closePopup();
-        flag = true;
+      this.closePopup();
+      flag = true;
       break;
 
     case 'Up':
@@ -211,34 +225,36 @@ MenuButtonActionsActiveDescendant.prototype.handleButtonKeydown = function (even
       break;
   }
 
-
   if (flag) {
     event.stopPropagation();
     event.preventDefault();
   }
 };
 
-MenuButtonActionsActiveDescendant.prototype.handleButtonClick = function (event) {
+MenuButtonActionsActiveDescendant.prototype.handleButtonClick = function (
+  event
+) {
   if (this.isOpen()) {
     this.closePopup();
-  }
-  else {
+  } else {
     this.openPopup();
   }
   event.stopPropagation();
   event.preventDefault();
 };
 
-MenuButtonActionsActiveDescendant.prototype.handleMenuKeydown = function (event) {
+MenuButtonActionsActiveDescendant.prototype.handleMenuKeydown = function (
+  event
+) {
   var tgt = event.currentTarget,
     key = event.key,
     flag = false;
 
-  function isPrintableCharacter (str) {
+  function isPrintableCharacter(str) {
     return str.length === 1 && str.match(/\S/);
   }
 
-  if (event.ctrlKey || event.altKey  || event.metaKey) {
+  if (event.ctrlKey || event.altKey || event.metaKey) {
     return;
   }
 
@@ -252,15 +268,14 @@ MenuButtonActionsActiveDescendant.prototype.handleMenuKeydown = function (event)
       this.closePopup();
       flag = true;
     }
-  }
-  else {
+  } else {
     switch (key) {
       case ' ':
       case 'Enter':
         this.closePopup();
         this.performMenuAction(this.currentMenuitem);
         flag = true;
-       break;
+        break;
 
       case 'Esc':
       case 'Escape':
@@ -311,18 +326,24 @@ MenuButtonActionsActiveDescendant.prototype.handleMenuKeydown = function (event)
   }
 };
 
-MenuButtonActionsActiveDescendant.prototype.handleMenuitemMouseover = function (event) {
+MenuButtonActionsActiveDescendant.prototype.handleMenuitemMouseover = function (
+  event
+) {
   var tgt = event.currentTarget;
   this.setFocusToMenuitem(tgt);
 };
 
-MenuButtonActionsActiveDescendant.prototype.handleMenuitemClick = function (event) {
+MenuButtonActionsActiveDescendant.prototype.handleMenuitemClick = function (
+  event
+) {
   var tgt = event.currentTarget;
   this.closePopup();
   this.performMenuAction(tgt);
 };
 
-MenuButtonActionsActiveDescendant.prototype.handleBackgroundMousedown = function (event) {
+MenuButtonActionsActiveDescendant.prototype.handleBackgroundMousedown = function (
+  event
+) {
   if (!this.domNode.contains(event.target)) {
     if (this.isOpen()) {
       this.closePopup();
@@ -333,15 +354,17 @@ MenuButtonActionsActiveDescendant.prototype.handleBackgroundMousedown = function
 // Initialize menu buttons
 
 window.addEventListener('load', function () {
-
-  document.getElementById("action_output").value = "none";
+  document.getElementById('action_output').value = 'none';
 
   function performMenuAction(node) {
-    document.getElementById("action_output").value = node.textContent.trim();
+    document.getElementById('action_output').value = node.textContent.trim();
   }
 
   var menuButtons = document.querySelectorAll('.menu-button-actions');
-  for(var i=0; i < menuButtons.length; i++) {
-    var menuButton = new MenuButtonActionsActiveDescendant(menuButtons[i], performMenuAction);
+  for (var i = 0; i < menuButtons.length; i++) {
+    var menuButton = new MenuButtonActionsActiveDescendant(
+      menuButtons[i],
+      performMenuAction
+    );
   }
 });

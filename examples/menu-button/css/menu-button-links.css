@@ -40,7 +40,7 @@
 
 .menu-button-links [role="separator"] {
   padding-top: 3px;
-  background-image: url('../images/separator.svg');
+  background-image: url("../images/separator.svg");
   background-position: center;
   background-repeat: repeat-x;
 }
@@ -59,7 +59,7 @@
 
 .menu-button-links button:hover,
 .menu-button-links button:focus,
-.menu-button-links button[aria-expanded=true] {
+.menu-button-links button[aria-expanded="true"] {
   padding: 4px;
   border: 3px solid #034575;
   background: #eee;

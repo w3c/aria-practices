@@ -38,7 +38,7 @@
 
 .menu-button-actions [role="separator"] {
   padding-top: 3px;
-  background-image: url('../images/separator.svg');
+  background-image: url("../images/separator.svg");
   background-position: center;
   background-repeat: repeat-x;
 }
@@ -57,7 +57,7 @@
 
 .menu-button-actions button:hover,
 .menu-button-actions button:focus,
-.menu-button-actions button[aria-expanded=true] {
+.menu-button-actions button[aria-expanded="true"] {
   padding: 4px;
   border: 3px solid #034575;
   background: #eee;
@@ -77,6 +77,6 @@
 }
 
 input.action:focus {
-  outline: 2px solid  #034575;
+  outline: 2px solid #034575;
   background: #def;
 }
