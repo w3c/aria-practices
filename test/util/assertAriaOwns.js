@@ -9,15 +9,18 @@ const assert = require('assert');
  * @param {String} elementSelector - the element with aria-owns set
  */
 
-module.exports = async function assertAriaOwns (t, elementSelector) {
+module.exports = async function assertAriaOwns(t, elementSelector) {
   const elements = await t.context.queryElements(t, elementSelector);
 
   for (let element of elements) {
-    const ariaOwnsExists = await t.context.session.executeScript(async function () {
-      const selector = arguments[0];
-      let el = document.querySelector(selector);
-      return el.hasAttribute('aria-owns');
-    }, elementSelector);
+    const ariaOwnsExists = await t.context.session.executeScript(
+      async function () {
+        const selector = arguments[0];
+        let el = document.querySelector(selector);
+        return el.hasAttribute('aria-owns');
+      },
+      elementSelector
+    );
 
     assert.ok(
       ariaOwnsExists,
@@ -28,7 +31,8 @@ module.exports = async function assertAriaOwns (t, elementSelector) {
 
     assert.ok(
       ownsId,
-      '"aria-owns" attribute should have a value on element(s): ' + elementSelector
+      '"aria-owns" attribute should have a value on element(s): ' +
+        elementSelector
     );
 
     const ownedEl = await t.context.queryElements(t, `#${ownsId}`);
@@ -36,7 +40,10 @@ module.exports = async function assertAriaOwns (t, elementSelector) {
     assert.equal(
       ownedEl.length,
       1,
-      'Element with id "' + ownsId + '" should exist as reference by "aria-owns" on: ' + elementSelector
+      'Element with id "' +
+        ownsId +
+        '" should exist as reference by "aria-owns" on: ' +
+        elementSelector
     );
   }
   t.pass();
