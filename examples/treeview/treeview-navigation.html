@@ -53,7 +53,9 @@
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
 
         <div id="ex1">
-          <header>
+          <!-- NOTE: In a real website the header element would be a top level element and it would
+                   not need the role="banner" attribute to be a banner landmark -->
+          <header role="banner">
             <div class="title">Mythical University</div>
             <div class="tagline">Using a Tree widget pattern for navigational links</div>
           </header>
@@ -252,7 +254,9 @@
               </div>
             </section>
           </div>
-          <footer>
+          <!-- NOTE: In a real website the footer element would be a top level element and it would
+                   not need the role="contentinfo" attribute to be a contentinfo landmark -->
+          <footer role="contentinfo">
             Mythical University footer information
           </footer>
         </div>

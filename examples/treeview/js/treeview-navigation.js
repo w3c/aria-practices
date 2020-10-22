@@ -1,16 +1,15 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File: treeview-navigation.js
-*   Desc: Tree item object for representing the state and user interactions for a
-*       tree widget for navigational links
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File: treeview-navigation.js
+ *   Desc: Tree item object for representing the state and user interactions for a
+ *       tree widget for navigational links
+ */
 
-"use strict";
+'use strict';
 
 class TreeViewNavigation {
-
   constructor(node) {
     var linkURL, linkTitle;
 
@@ -29,8 +28,7 @@ class TreeViewNavigation {
       // first tree item is in tab sequence of page
       if (i == 0) {
         ti.tabIndex = 0;
-      }
-      else {
+      } else {
         ti.tabIndex = -1;
       }
       var groupNode = this.getGroupNode(ti);
@@ -45,15 +43,17 @@ class TreeViewNavigation {
       linkURL = location.href;
       linkTitle = getLinkNameFromURL(location.href);
     } else {
-      linkURL = location.href + "#home";
-      linkTitle = "Home";
+      linkURL = location.href + '#home';
+      linkTitle = 'Home';
     }
 
-    this.contentGenerator = new NavigationContentGenerator('#home', 'Mythical University');
+    this.contentGenerator = new NavigationContentGenerator(
+      '#home',
+      'Mythical University'
+    );
     this.updateContent(linkURL, linkTitle, false);
 
     function getLinkNameFromURL(url) {
-
       function capitalize(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
       }
@@ -61,9 +61,8 @@ class TreeViewNavigation {
       var name = url.split('#')[1];
       if (typeof name === 'string') {
         name = name.split('-').map(capitalize).join(' ');
-      }
-      else {
-        name = "Home";
+      } else {
+        name = 'Home';
       }
       return name;
     }
@@ -82,24 +81,29 @@ class TreeViewNavigation {
       h1Node.textContent = linkName;
     }
     paraNodes = document.querySelectorAll('#ex1 .page p');
-    paraNodes.forEach(p => p.innerHTML = this.contentGenerator.generateParagraph(linkURL, linkName));
+    paraNodes.forEach(
+      (p) =>
+        (p.innerHTML = this.contentGenerator.generateParagraph(
+          linkURL,
+          linkName
+        ))
+    );
 
     // move focus to the content region
-    regionNode = document.querySelector('#ex1 section.page');
+    regionNode = document.querySelector('#ex1 section h1');
     regionNode.tabIndex = -1;
     if (moveFocus) {
       regionNode.focus();
     }
 
     // Update aria-current
-    this.treeitems.forEach(item => {
+    this.treeitems.forEach((item) => {
       if (item.href === linkURL) {
         item.setAttribute('aria-current', 'page');
         // Make sure link is visible
         this.showTreeitem(item);
         this.setTabIndex(item);
-      }
-      else {
+      } else {
         item.removeAttribute('aria-current');
       }
     });
@@ -115,7 +119,7 @@ class TreeViewNavigation {
   }
 
   setTabIndex(treeitem) {
-    this.treeitems.forEach(item => item.tabIndex = -1);
+    this.treeitems.forEach((item) => (item.tabIndex = -1));
     treeitem.tabIndex = 0;
   }
 
@@ -136,7 +140,6 @@ class TreeViewNavigation {
 
   isVisible(treeitem) {
     var flag = true;
-  //  console.log('[isVisible]: ' + treeitem.textContent);
     if (this.isInSubtree(treeitem)) {
       treeitem = this.getParentTreeitem(treeitem);
       if (!treeitem || treeitem.getAttribute('aria-expanded') === 'false') {
@@ -147,7 +150,10 @@ class TreeViewNavigation {
   }
 
   isInSubtree(treeitem) {
-    return treeitem.parentNode.parentNode.getAttribute('role') === 'group';
+    if (treeitem.parentNode && treeitem.parentNode.parentNode) {
+      return treeitem.parentNode.parentNode.getAttribute('role') === 'group';
+    }
+    return false;
   }
 
   isExpandable(treeitem) {
@@ -172,7 +178,7 @@ class TreeViewNavigation {
     for (var i = 0; i < this.treeitems.length; i++) {
       var ti = this.treeitems[i];
       if (this.isVisible(ti)) {
-        items.push(ti)
+        items.push(ti);
       }
     }
     return items;
@@ -180,7 +186,9 @@ class TreeViewNavigation {
 
   collapseTreeitem(treeitem) {
     if (treeitem.getAttribute('aria-owns')) {
-      var groupNode = document.getElementById(treeitem.getAttribute('aria-owns'));
+      var groupNode = document.getElementById(
+        treeitem.getAttribute('aria-owns')
+      );
       if (groupNode) {
         treeitem.setAttribute('aria-expanded', 'false');
       }
@@ -189,7 +197,9 @@ class TreeViewNavigation {
 
   expandTreeitem(treeitem) {
     if (treeitem.getAttribute('aria-owns')) {
-      var groupNode = document.getElementById(treeitem.getAttribute('aria-owns'));
+      var groupNode = document.getElementById(
+        treeitem.getAttribute('aria-owns')
+      );
       if (groupNode) {
         treeitem.setAttribute('aria-expanded', 'true');
       }
@@ -200,7 +210,9 @@ class TreeViewNavigation {
     var parentNode = treeitem.parentNode.parentNode;
 
     if (parentNode) {
-      var siblingTreeitemNodes = parentNode.querySelectorAll(':scope > li > a[aria-expanded]');
+      var siblingTreeitemNodes = parentNode.querySelectorAll(
+        ':scope > li > a[aria-expanded]'
+      );
 
       for (var i = 0; i < siblingTreeitemNodes.length; i++) {
         siblingTreeitemNodes[i].setAttribute('aria-expanded', 'true');
@@ -214,11 +226,10 @@ class TreeViewNavigation {
   }
 
   setFocusToNextTreeitem(treeitem) {
-
     var visibleTreeitems = this.getVisibleTreeitems();
     var nextItem = visibleTreeitems[0];
 
-    for (var i = (visibleTreeitems.length - 1); i >= 0; i--) {
+    for (var i = visibleTreeitems.length - 1; i >= 0; i--) {
       var ti = visibleTreeitems[i];
       if (ti === treeitem) {
         break;
@@ -228,13 +239,11 @@ class TreeViewNavigation {
     if (nextItem) {
       this.setFocusToTreeitem(nextItem);
     }
-
   }
 
   setFocusToPreviousTreeitem(treeitem) {
-
     var visibleTreeitems = this.getVisibleTreeitems();
-    var prevItem = visibleTreeitems[visibleTreeitems.length-1];
+    var prevItem = visibleTreeitems[visibleTreeitems.length - 1];
 
     for (var i = 0; i < visibleTreeitems.length; i++) {
       var ti = visibleTreeitems[i];
@@ -250,14 +259,17 @@ class TreeViewNavigation {
   }
 
   setFocusToParentTreeitem(treeitem) {
-    var ti = treeitem.parentNode.previousElementSlibling;
-    if (ti) {
+    if (this.isInSubtree(treeitem)) {
+      var ti = treeitem.parentNode.parentNode.previousElementSibling;
       this.setFocusToTreeitem(ti);
     }
   }
 
   setFocusByFirstCharacter(treeitem, char) {
-    var start, i, ti, index = -1;
+    var start,
+      i,
+      ti,
+      index = -1;
     var visibleTreeitems = this.getVisibleTreeitems();
     char = char.toLowerCase();
 
@@ -293,16 +305,14 @@ class TreeViewNavigation {
     }
   }
 
-// Event handlers
+  // Event handlers
 
   handleSpanClick(event) {
-    console.log('[handleSpanClick]');
     var tgt = event.currentTarget;
 
     if (this.isExpanded(tgt.parentNode)) {
       this.collapseTreeitem(tgt.parentNode);
-    }
-    else {
+    } else {
       this.expandTreeitem(tgt.parentNode);
     }
 
@@ -310,11 +320,9 @@ class TreeViewNavigation {
     event.stopPropagation();
   }
 
-
   handleLinkClick(event) {
     var tgt = event.currentTarget;
     this.updateContent(tgt.href, tgt.textContent.trim());
-    console.log('[handleLinkClick]: ' + tgt.textContent.trim());
 
     event.preventDefault();
     event.stopPropagation();
@@ -325,7 +333,7 @@ class TreeViewNavigation {
       flag = false,
       key = event.key;
 
-    function isPrintableCharacter (str) {
+    function isPrintableCharacter(str) {
       return str.length === 1 && str.match(/\S/);
     }
 
@@ -334,22 +342,22 @@ class TreeViewNavigation {
     }
 
     if (event.shift) {
-      if (event.keyCode == this.keyCode.SPACE || event.keyCode == this.keyCode.RETURN) {
+      if (
+        event.keyCode == this.keyCode.SPACE ||
+        event.keyCode == this.keyCode.RETURN
+      ) {
         event.stopPropagation();
-      }
-      else {
+      } else {
         if (isPrintableCharacter(key)) {
           if (key == '*') {
             this.expandAllSiblingTreeitems(tgt);
             flag = true;
-          }
-          else {
+          } else {
             this.setFocusByFirstCharacter(tgt, key);
           }
         }
       }
-    }
-    else {
+    } else {
       switch (key) {
         // NOTE: Return key is supported through the click event
         case ' ':
@@ -374,8 +382,7 @@ class TreeViewNavigation {
           if (this.isExpandable(tgt)) {
             if (this.isExpanded(tgt)) {
               this.setFocusToNextTreeitem(tgt);
-            }
-            else {
+            } else {
               this.expandTreeitem(tgt);
             }
           }
@@ -387,8 +394,7 @@ class TreeViewNavigation {
           if (this.isExpandable(tgt) && this.isExpanded(tgt)) {
             this.collapseTreeitem(tgt);
             flag = true;
-          }
-          else {
+          } else {
             if (this.isInSubtree(tgt)) {
               this.setFocusToParentTreeitem(tgt);
               flag = true;
@@ -403,7 +409,9 @@ class TreeViewNavigation {
 
         case 'End':
           var visibleTreeitems = this.getVisibleTreeitems();
-          this.setFocusToTreeitem(visibleTreeitems[visibleTreeitems.length-1]);
+          this.setFocusToTreeitem(
+            visibleTreeitems[visibleTreeitems.length - 1]
+          );
           flag = true;
           break;
 
@@ -412,8 +420,7 @@ class TreeViewNavigation {
             if (key == '*') {
               this.expandAllSiblingTreeitems(tgt);
               flag = true;
-            }
-            else {
+            } else {
               this.setFocusByFirstCharacter(tgt, key);
             }
           }
@@ -426,7 +433,6 @@ class TreeViewNavigation {
       event.preventDefault();
     }
   }
-
 }
 
 /**
@@ -436,11 +442,9 @@ class TreeViewNavigation {
  */
 
 window.addEventListener('load', function () {
-
   var trees = document.querySelectorAll('nav [role="tree"]');
 
   for (let i = 0; i < trees.length; i++) {
     new TreeViewNavigation(trees[i]);
   }
-
 });
