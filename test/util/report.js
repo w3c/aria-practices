@@ -235,13 +235,13 @@ for (let example in exampleCoverage) {
     let exampleName = example;
 
     if (existingTestIds === missingTests) {
-      examplesWithNoTestsReport += exampleName + '\n';
+      examplesWithNoTestsReport += '- ' + exampleName + '\n';
       examplesWithNoTests++;
     } else if (missingTests) {
-      examplesMissingSomeTestsReport += exampleName + ':\n';
+      examplesMissingSomeTestsReport += '- ' + exampleName + ':\n';
 
       for (let testId of exampleCoverage[example].missingTests) {
-        examplesMissingSomeTestsReport += '    ' + testId + '\n';
+        examplesMissingSomeTestsReport += '   - ' + testId + '\n';
       }
 
       examplesMissingSomeTests += 1;
@@ -249,18 +249,18 @@ for (let example in exampleCoverage) {
     }
 
     if (missingKeys || missingAttrs) {
-      missingTestIdsReport += exampleName + '\n';
+      missingTestIdsReport += '- ' + exampleName + '\n';
       if (missingKeys) {
-        missingTestIdsReport += '    "Keyboard Support" table(s):\n';
+        missingTestIdsReport += '   - "Keyboard Support" table(s):\n';
         for (let row of exampleCoverage[example].missingKeys) {
-          missingTestIdsReport += '       ' + row + '\n';
+          missingTestIdsReport += '      - ' + row + '\n';
         }
       }
 
       if (missingAttrs) {
-        missingTestIdsReport += '    "Attributes" table(s):\n';
+        missingTestIdsReport += '   - "Attributes" table(s):\n';
         for (let row of exampleCoverage[example].missingAttrs) {
-          missingTestIdsReport += '       ' + row + '\n';
+          missingTestIdsReport += '      - ' + row + '\n';
         }
       }
     }
@@ -277,14 +277,17 @@ fs.readdirSync(testsPath).forEach(function (testFile) {
   }
 });
 
-console.log('\nExamples without any regression tests:\n');
+console.log('\n#### Regression test coverage:\n');
+console.log('\n#### Examples without any regression tests:\n');
 console.log(examplesWithNoTestsReport || 'None found.\n');
-console.log('\nExamples missing some regression tests:\n');
+console.log('\n#### Examples missing some regression tests:\n');
 console.log(examplesMissingSomeTestsReport || 'None found.\n');
-console.log('\nExamples documentation table rows without data-test-ids:\n');
+console.log(
+  '\n#### Example pages with Keyboard or Attribute table rows that do not have data-test-ids:\n'
+);
 console.log(missingTestIdsReport || 'None found.\n');
 
-console.log('SUMMARTY:\n');
+console.log('#### SUMMARY:\n');
 console.log('  ' + exampleFiles.length + ' example pages found.');
 console.log(
   '  ' + examplesWithNoTests + ' example pages have no regression tests.'
