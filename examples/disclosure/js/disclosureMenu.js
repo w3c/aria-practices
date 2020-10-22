@@ -1,9 +1,9 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   Supplemental JS for the disclosure menu keyboard behavior
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   Supplemental JS for the disclosure menu keyboard behavior
+ */
 
 'use strict';
 
@@ -16,7 +16,9 @@ var DisclosureNav = function (domNode) {
 };
 
 DisclosureNav.prototype.init = function () {
-  var buttons = this.rootNode.querySelectorAll('button[aria-expanded][aria-controls]');
+  var buttons = this.rootNode.querySelectorAll(
+    'button[aria-expanded][aria-controls]'
+  );
   for (var i = 0; i < buttons.length; i++) {
     var button = buttons[i];
     var menu = button.parentNode.querySelector('ul');
@@ -59,7 +61,11 @@ DisclosureNav.prototype.toggleExpand = function (index, expanded) {
   }
 };
 
-DisclosureNav.prototype.controlFocusByKey = function (keyboardEvent, nodeList, currentIndex) {
+DisclosureNav.prototype.controlFocusByKey = function (
+  keyboardEvent,
+  nodeList,
+  currentIndex
+) {
   switch (keyboardEvent.key) {
     case 'ArrowUp':
     case 'ArrowLeft':
@@ -105,7 +111,11 @@ DisclosureNav.prototype.handleButtonKeyDown = function (event) {
   }
 
   // move focus into the open menu if the current menu is open
-  else if (this.useArrowKeys && this.openIndex === targetButtonIndex && event.key === 'ArrowDown') {
+  else if (
+    this.useArrowKeys &&
+    this.openIndex === targetButtonIndex &&
+    event.key === 'ArrowDown'
+  ) {
     event.preventDefault();
     this.controlledNodes[this.openIndex].querySelector('a').focus();
   }
@@ -128,7 +138,9 @@ DisclosureNav.prototype.handleMenuKeyDown = function (event) {
     return;
   }
 
-  var menuLinks = Array.prototype.slice.call(this.controlledNodes[this.openIndex].querySelectorAll('a'));
+  var menuLinks = Array.prototype.slice.call(
+    this.controlledNodes[this.openIndex].querySelectorAll('a')
+  );
   var currentIndex = menuLinks.indexOf(document.activeElement);
 
   // close on escape
@@ -150,37 +162,41 @@ DisclosureNav.prototype.updateKeyControls = function (useArrowKeys) {
 
 /* Initialize Disclosure Menus */
 
-window.addEventListener('load', function (event) {
-  var menus = document.querySelectorAll('.disclosure-nav');
-  var disclosureMenus = [];
+window.addEventListener(
+  'load',
+  function (event) {
+    var menus = document.querySelectorAll('.disclosure-nav');
+    var disclosureMenus = [];
 
-  for (var i = 0; i < menus.length; i++) {
-    disclosureMenus[i] = new DisclosureNav(menus[i]);
-    disclosureMenus[i].init();
-  }
-
-  // listen to arrow key checkbox
-  var arrowKeySwitch = document.getElementById('arrow-behavior-switch');
-  arrowKeySwitch.addEventListener('change', function (event) {
-    var checked = arrowKeySwitch.checked;
-    for (var i = 0; i < disclosureMenus.length; i++) {
-      disclosureMenus[i].updateKeyControls(checked);
+    for (var i = 0; i < menus.length; i++) {
+      disclosureMenus[i] = new DisclosureNav(menus[i]);
+      disclosureMenus[i].init();
     }
-  });
 
-  // fake link behavior
-  var links = document.querySelectorAll('[href="#mythical-page-content"]');
-  var examplePageHeading = document.getElementById('mythical-page-heading');
-  for (var k = 0; k < links.length; k++) {
-    links[k].addEventListener('click', function (event) {
-      var pageTitle = event.target.innerText;
-      examplePageHeading.innerText = pageTitle;
-
-      // handle aria-current
-      for (var n = 0; n < links.length; n++) {
-        links[n].removeAttribute('aria-current');
+    // listen to arrow key checkbox
+    var arrowKeySwitch = document.getElementById('arrow-behavior-switch');
+    arrowKeySwitch.addEventListener('change', function (event) {
+      var checked = arrowKeySwitch.checked;
+      for (var i = 0; i < disclosureMenus.length; i++) {
+        disclosureMenus[i].updateKeyControls(checked);
       }
-      this.setAttribute('aria-current', 'page');
     });
-  }
-}, false);
+
+    // fake link behavior
+    var links = document.querySelectorAll('[href="#mythical-page-content"]');
+    var examplePageHeading = document.getElementById('mythical-page-heading');
+    for (var k = 0; k < links.length; k++) {
+      links[k].addEventListener('click', function (event) {
+        var pageTitle = event.target.innerText;
+        examplePageHeading.innerText = pageTitle;
+
+        // handle aria-current
+        for (var n = 0; n < links.length; n++) {
+          links[n].removeAttribute('aria-current');
+        }
+        this.setAttribute('aria-current', 'page');
+      });
+    }
+  },
+  false
+);

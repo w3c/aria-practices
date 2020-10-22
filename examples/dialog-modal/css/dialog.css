@@ -16,9 +16,12 @@
   [role="dialog"] {
     position: absolute;
     top: 2rem;
-    left: 50vw;  /* move to the middle of the screen (assumes relative parent is the body/viewport) */
-    transform: translateX(-50%);  /* move backwards 50% of this element's width */
-    min-width: calc(640px - (15px * 2));  /* == breakpoint - left+right margin */
+    left: 50vw; /* move to the middle of the screen (assumes relative parent is the body/viewport) */
+    transform: translateX(
+      -50%
+    ); /* move backwards 50% of this element's width */
+
+    min-width: calc(640px - (15px * 2)); /* == breakpoint - left+right margin */
     min-height: auto;
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.12), 0 15px 12px rgba(0, 0, 0, 0.22);
   }

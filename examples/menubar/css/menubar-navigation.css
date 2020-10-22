@@ -87,7 +87,7 @@
 
 .menubar-navigation [role="separator"] {
   padding-top: 3px;
-  background-image: url('../images/separator.svg');
+  background-image: url("../images/separator.svg");
   background-position: center;
   background-repeat: repeat-x;
 }
