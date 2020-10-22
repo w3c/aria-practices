@@ -1,9 +1,9 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   FontToolbarItem.js
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   FontToolbarItem.js
+ */
 
 'use strict';
 
@@ -16,20 +16,19 @@ function FormatToolbarItem(domNode, toolbar) {
   this.hasHover = false;
   this.popupLabelDelay = 800;
 
-
   this.keyCode = Object.freeze({
-    'TAB': 9,
-    'ENTER': 13,
-    'ESC': 27,
-    'SPACE': 32,
-    'PAGEUP': 33,
-    'PAGEDOWN': 34,
-    'END': 35,
-    'HOME': 36,
-    'LEFT': 37,
-    'UP': 38,
-    'RIGHT': 39,
-    'DOWN': 40
+    TAB: 9,
+    ENTER: 13,
+    ESC: 27,
+    SPACE: 32,
+    PAGEUP: 33,
+    PAGEDOWN: 34,
+    END: 35,
+    HOME: 36,
+    LEFT: 37,
+    UP: 38,
+    RIGHT: 39,
+    DOWN: 40,
   });
 }
 
@@ -41,8 +40,10 @@ FormatToolbarItem.prototype.init = function () {
   this.domNode.addEventListener('mouseover', this.handleMouseOver.bind(this));
   this.domNode.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
 
-  document.body.addEventListener('keydown', this.handleHideAllPopupLabels.bind(this));
-
+  document.body.addEventListener(
+    'keydown',
+    this.handleHideAllPopupLabels.bind(this)
+  );
 
   if (this.domNode.classList.contains('bold')) {
     this.buttonAction = 'bold';
@@ -97,13 +98,13 @@ FormatToolbarItem.prototype.init = function () {
   if (this.popupLabelNode) {
     var width = 8 * this.popupLabelNode.textContent.length;
     this.popupLabelNode.style.width = width + 'px';
-    this.popupLabelNode.style.left = -1 * ((width - this.domNode.offsetWidth) / 2) - 5 + 'px';
+    this.popupLabelNode.style.left =
+      -1 * ((width - this.domNode.offsetWidth) / 2) - 5 + 'px';
   }
-
 };
 
 FormatToolbarItem.prototype.isPressed = function () {
-  return this.domNode.getAttribute('aria-pressed')  === 'true';
+  return this.domNode.getAttribute('aria-pressed') === 'true';
 };
 
 FormatToolbarItem.prototype.setPressed = function () {
@@ -114,11 +115,9 @@ FormatToolbarItem.prototype.resetPressed = function () {
   this.domNode.setAttribute('aria-pressed', 'false');
 };
 
-
 FormatToolbarItem.prototype.setChecked = function () {
   this.domNode.setAttribute('aria-checked', 'true');
   this.domNode.checked = true;
-
 };
 
 FormatToolbarItem.prototype.resetChecked = function () {
@@ -147,13 +146,10 @@ FormatToolbarItem.prototype.hidePopupLabel = function () {
   }
 };
 
-
 // Events
 
 FormatToolbarItem.prototype.handleHideAllPopupLabels = function (event) {
-
   switch (event.keyCode) {
-
     case this.keyCode.ESC:
       this.toolbar.hidePopupLabels();
       break;
@@ -161,10 +157,7 @@ FormatToolbarItem.prototype.handleHideAllPopupLabels = function (event) {
     default:
       break;
   }
-
-
 };
-
 
 FormatToolbarItem.prototype.handleBlur = function (event) {
   this.toolbar.domNode.classList.remove('focus');
@@ -198,13 +191,14 @@ FormatToolbarItem.prototype.handleKeyDown = function (event) {
   var flag = false;
 
   switch (event.keyCode) {
-
     case this.keyCode.ENTER:
     case this.keyCode.SPACE:
-      if ((this.buttonAction !== '') &&
-        (this.buttonAction !== 'bold') &&
-        (this.buttonAction !== 'italic') &&
-        (this.buttonAction !== 'underline')) {
+      if (
+        this.buttonAction !== '' &&
+        this.buttonAction !== 'bold' &&
+        this.buttonAction !== 'italic' &&
+        this.buttonAction !== 'underline'
+      ) {
         this.toolbar.activateItem(this);
         if (this.buttonAction !== 'nightmode') {
           flag = true;
@@ -236,8 +230,7 @@ FormatToolbarItem.prototype.handleKeyDown = function (event) {
       if (this.buttonAction === 'align') {
         if (this.domNode.classList.contains('align-left')) {
           this.toolbar.setFocusToLastAlignItem();
-        }
-        else {
+        } else {
           this.toolbar.setFocusToPrevious(this);
         }
         flag = true;
@@ -247,8 +240,7 @@ FormatToolbarItem.prototype.handleKeyDown = function (event) {
       if (this.buttonAction === 'align') {
         if (this.domNode.classList.contains('align-right')) {
           this.toolbar.setFocusToFirstAlignItem();
-        }
-        else {
+        } else {
           this.toolbar.setFocusToNext(this);
         }
         flag = true;
@@ -262,11 +254,9 @@ FormatToolbarItem.prototype.handleKeyDown = function (event) {
     event.stopPropagation();
     event.preventDefault();
   }
-
 };
 
 FormatToolbarItem.prototype.handleClick = function (e) {
-
   if (this.buttonAction == 'link') {
     return;
   }
