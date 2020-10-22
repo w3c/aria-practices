@@ -21,7 +21,7 @@ nav.breadcrumb li + li::before {
   transform: rotate(15deg);
   border-right: 0.1em solid currentColor;
   height: 0.8em;
-  content: '';
+  content: "";
 }
 
 nav.breadcrumb [aria-current="page"] {

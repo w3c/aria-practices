@@ -1,8 +1,11 @@
 name: JavaScript Linting
 on:
   push:
+    branches-ignore:
+      - "dependabot/**"
     paths:
       - "package*.json"
+      - ".prettier*"
       - ".eslint*"
       - "**/*.js"
       - ".github/workflows/lint-js.yml"
@@ -11,13 +14,14 @@ on:
   pull_request:
     paths:
       - "package*.json"
+      - ".prettier*"
       - ".eslint*"
       - "**/*.js"
       - ".github/workflows/lint-js.yml"
       - "!common/**"
 
 jobs:
-  lint:
+  lint-js:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,7 +31,7 @@ jobs:
       # setup-node task is used without a particular version in order to load
       # the ESLint problem matchers
       - name: Set up Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2.1.2
 
       - name: Install npm dependencies
         run: npm ci
