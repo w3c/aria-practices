@@ -15,12 +15,14 @@ const ex = {
   groupSelector: '#ex1 [role="group"]',
   expandableSelector: '#ex1 [role="treeitem"][aria-expanded]',
   topLevelFolderSelector: '#ex1 [role="tree"] > li > [role="treeitem"]',
-  nextLevelFolderSelector: '[role="group"] > li > [role="treeitem"][aria-expanded]',
-  linkSelector: '#ex1 a[role="treeitem"]'
+  nextLevelFolderSelector:
+    '[role="group"] > li > [role="treeitem"][aria-expanded]',
+  linkSelector: '#ex1 a[role="treeitem"]',
 };
 
 const openAllFolders = async function (t) {
-  const closedFoldersSelector = ex.treeitemSelector + '[aria-expanded="false"] span.minus';
+  const closedFoldersSelector =
+    ex.treeitemSelector + '[aria-expanded="false"] span.minus';
   let closedFolders = await t.context.queryElements(t, closedFoldersSelector);
 
   // Going through all closed expandable tree elements in dom order will open parent
@@ -31,11 +33,15 @@ const openAllFolders = async function (t) {
 };
 
 const checkFocus = async function (t, selector, index) {
-  return t.context.session.executeScript(function (/* selector, index*/) {
-    const [selector, index] = arguments;
-    const items = document.querySelectorAll(selector);
-    return items[index] === document.activeElement;
-  }, selector, index);
+  return t.context.session.executeScript(
+    function (/* selector, index*/) {
+      const [selector, index] = arguments;
+      const items = document.querySelectorAll(selector);
+      return items[index] === document.activeElement;
+    },
+    selector,
+    index
+  );
 };
 
 const checkFocusOnParentFolder = async function (t, el) {
@@ -44,11 +50,17 @@ const checkFocusOnParentFolder = async function (t, el) {
 
     // the element is a folder
     if (el.hasAttribute('aria-expanded')) {
-      return document.activeElement === el.parentElement.closest('[role="treeitem"][aria-expanded]');
+      return (
+        document.activeElement ===
+        el.parentElement.closest('[role="treeitem"][aria-expanded]')
+      );
     }
     // the element is a folder
     else {
-      return document.activeElement === el.closest('[role="treeitem"][aria-expanded]');
+      return (
+        document.activeElement ===
+        el.closest('[role="treeitem"][aria-expanded]')
+      );
     }
   }, el);
 };
@@ -67,17 +79,16 @@ const getOwnedElement = async function (t, el) {
   }, el);
 };
 
-
 const isFolderTreeitem = async function (el) {
   return (await el.getTagName()) === 'li';
 };
 
-const isOpenedFolderTreeitem =  async function (el) {
-  return await el.getAttribute('aria-expanded') === 'true';
+const isOpenedFolderTreeitem = async function (el) {
+  return (await el.getAttribute('aria-expanded')) === 'true';
 };
 
-const isClosedFolderTreeitem =  async function (el) {
-  return await el.getAttribute('aria-expanded') === 'false';
+const isClosedFolderTreeitem = async function (el) {
+  return (await el.getAttribute('aria-expanded')) === 'false';
 };
 
 const hasAriaExpandedAttribute = async function (t, el) {
@@ -103,36 +114,46 @@ ariaTest('role="tree" on ul element', exampleFile, 'tree-role', async (t) => {
   );
 });
 
-ariaTest('aria-label on role="tree" element', exampleFile, 'tree-aria-label', async (t) => {
-  await assertAriaLabelExists(t, ex.treeSelector);
-});
-
-ariaTest('role="treeitem" on "a" element', exampleFile, 'treeitem-role', async (t) => {
-
-
-  // Get all the list items in the tree structure
-  const listitems = await t.context.queryElements(t, '#ex1 [role="tree"] a');
-
-  // Check the role "treeitem" is on each a element
-  for (let item of listitems) {
-
-    const hasAriaExpanded = await hasAriaExpandedAttribute(t, item);
-
-    t.is(
-      await item.getAttribute('role'),
-      'treeitem',
-      'role="treeitem" should be found on a "a" items that have attribute "aria-expanded"'
-    );
+ariaTest(
+  'aria-label on role="tree" element',
+  exampleFile,
+  'tree-aria-label',
+  async (t) => {
+    await assertAriaLabelExists(t, ex.treeSelector);
   }
-});
+);
 
-ariaTest('aria-owns on expandable treeitems', exampleFile, 'treeitem-aria-owns', async (t) => {
+ariaTest(
+  'role="treeitem" on "a" element',
+  exampleFile,
+  'treeitem-role',
+  async (t) => {
+    // Get all the list items in the tree structure
+    const listitems = await t.context.queryElements(t, '#ex1 [role="tree"] a');
+
+    // Check the role "treeitem" is on each a element
+    for (let item of listitems) {
+      const hasAriaExpanded = await hasAriaExpandedAttribute(t, item);
+
+      t.is(
+        await item.getAttribute('role'),
+        'treeitem',
+        'role="treeitem" should be found on a "a" items that have attribute "aria-expanded"'
+      );
+    }
+  }
+);
+
+ariaTest(
+  'aria-owns on expandable treeitems',
+  exampleFile,
+  'treeitem-aria-owns',
+  async (t) => {
     await assertAriaOwns(t, ex.expandableSelector);
-});
+  }
+);
 
 ariaTest('role="none" on "li" element', exampleFile, 'none-role', async (t) => {
-
-
   // Get all the list items in the tree structure
   const listitems = await t.context.queryElements(t, '#ex1 [role="tree"] li');
 
@@ -145,86 +166,88 @@ ariaTest('role="none" on "li" element', exampleFile, 'none-role', async (t) => {
   }
 });
 
-ariaTest('treeitem tabindex set by roving tabindex', exampleFile, 'treeitem-tabindex', async (t) => {
-  await openAllFolders(t);
-  await assertRovingTabindex(t, ex.treeitemSelector, Key.ARROW_DOWN);
-});
+ariaTest(
+  'treeitem tabindex set by roving tabindex',
+  exampleFile,
+  'treeitem-tabindex',
+  async (t) => {
+    await openAllFolders(t);
+    await assertRovingTabindex(t, ex.treeitemSelector, Key.ARROW_DOWN);
+  }
+);
 
-ariaTest('role="group" on "ul" elements', exampleFile, 'group-role', async (t) => {
-  const groups = await t.context.queryElements(t, ex.groupSelector);
+ariaTest(
+  'role="group" on "ul" elements',
+  exampleFile,
+  'group-role',
+  async (t) => {
+    const groups = await t.context.queryElements(t, ex.groupSelector);
 
-  t.truthy(
-    groups.length,
-    'role="group" elements should be found by selector: ' + ex.groupSelector
-  );
-
-  for (let group of groups) {
-    t.is(
-      await group.getTagName(),
-      'ul',
-      'role="group" should be found on a "ul"'
+    t.truthy(
+      groups.length,
+      'role="group" elements should be found by selector: ' + ex.groupSelector
     );
-  }
-});
 
-
-ariaTest('aria-expanded attribute on treeitem matches dom', exampleFile, 'treeitem-aria-expanded', async (t) => {
-  const expandableTreeitems = await t.context.queryElements(t, ex.expandableSelector);
-
-  for (let treeitem of expandableTreeitems) {
-
-    // If the folder is displayed
-    if (await treeitem.isDisplayed()) {
-
-      const treeitemText = await treeitem.getText();
-
-      // By default, all expandable treeitems  will be closed
+    for (let group of groups) {
       t.is(
-        await treeitem.getAttribute('aria-expanded'),
-        'false'
-      );
-      t.is(
-        await (await getOwnedElement(t, treeitem)).isDisplayed(),
-        false
-      );
-
-      // Send enter to the folder
-      await treeitem.sendKeys(Key.ARROW_RIGHT);
-
-      // After click, it should be open
-      t.is(
-        await treeitem.getAttribute('aria-expanded'),
-        'true'
-      );
-      t.is(
-        await (await getOwnedElement(t, treeitem)).isDisplayed(),
-        true
+        await group.getTagName(),
+        'ul',
+        'role="group" should be found on a "ul"'
       );
     }
   }
+);
 
-  for (let i = (expandableTreeitems.length - 1); i >= 0; i--) {
+ariaTest(
+  'aria-expanded attribute on treeitem matches dom',
+  exampleFile,
+  'treeitem-aria-expanded',
+  async (t) => {
+    const expandableTreeitems = await t.context.queryElements(
+      t,
+      ex.expandableSelector
+    );
 
-    // If the folder is displayed
-    if (await expandableTreeitems[i].isDisplayed()) {
+    for (let treeitem of expandableTreeitems) {
+      // If the folder is displayed
+      if (await treeitem.isDisplayed()) {
+        const treeitemText = await treeitem.getText();
 
-      const treeitemText = await expandableTreeitems[i].getText();
+        // By default, all expandable treeitems  will be closed
+        t.is(await treeitem.getAttribute('aria-expanded'), 'false');
+        t.is(await (await getOwnedElement(t, treeitem)).isDisplayed(), false);
 
-      // Send enter to the expandale treeitem
-      await expandableTreeitems[i].sendKeys(Key.ARROW_LEFT);
+        // Send enter to the folder
+        await treeitem.sendKeys(Key.ARROW_RIGHT);
 
-      // After sending enter, it should be closed
-      t.is(
-        await expandableTreeitems[i].getAttribute('aria-expanded'),
-        'false',
-        treeitemText
-      );
-      t.is(
-        await (await getOwnedElement(t, expandableTreeitems[i])).isDisplayed(),
-        false,
-        treeitemText
-      );
+        // After click, it should be open
+        t.is(await treeitem.getAttribute('aria-expanded'), 'true');
+        t.is(await (await getOwnedElement(t, treeitem)).isDisplayed(), true);
+      }
+    }
+
+    for (let i = expandableTreeitems.length - 1; i >= 0; i--) {
+      // If the folder is displayed
+      if (await expandableTreeitems[i].isDisplayed()) {
+        const treeitemText = await expandableTreeitems[i].getText();
+
+        // Send enter to the expandale treeitem
+        await expandableTreeitems[i].sendKeys(Key.ARROW_LEFT);
+
+        // After sending enter, it should be closed
+        t.is(
+          await expandableTreeitems[i].getAttribute('aria-expanded'),
+          'false',
+          treeitemText
+        );
+        t.is(
+          await (
+            await getOwnedElement(t, expandableTreeitems[i])
+          ).isDisplayed(),
+          false,
+          treeitemText
+        );
+      }
     }
   }
-});
-
+);

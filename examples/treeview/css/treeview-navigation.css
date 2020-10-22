@@ -74,7 +74,9 @@
   margin-left: 0.5em;
 }
 
-.treeview-navigation a[role="treeitem"][aria-expanded="false"] + [role="group"] {
+.treeview-navigation
+  a[role="treeitem"][aria-expanded="false"]
+  + [role="group"] {
   display: none;
 }
 
@@ -111,7 +113,7 @@
   outline: 0;
   background-color: #ddd;
   padding: 2px;
-  border: 2px  #005a9c solid;
+  border: 2px #005a9c solid;
 }
 
 .treeview-navigation a[role="treeitem"][aria-current]:focus,
