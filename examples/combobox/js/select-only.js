@@ -1,7 +1,7 @@
 /*
- *   This content is licensed according to the W3C Software License at
- *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
- */
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*/
 
 'use strict';
 
@@ -17,8 +17,8 @@ const SelectActions = {
   PageUp: 7,
   Previous: 8,
   Select: 9,
-  Type: 10,
-};
+  Type: 10
+}
 
 /*
  * Helper functions
@@ -51,11 +51,7 @@ function getActionFromKey(event, menuOpen) {
   }
 
   // handle typing characters when open or closed
-  if (
-    key === 'Backspace' ||
-    key === 'Clear' ||
-    (key.length === 1 && key !== ' ' && !altKey && !ctrlKey && !metaKey)
-  ) {
+  if (key === 'Backspace' || key === 'Clear' || (key.length === 1 && key !== ' ' && !altKey && !ctrlKey && !metaKey)) {
     return SelectActions.Type;
   }
 
@@ -63,32 +59,35 @@ function getActionFromKey(event, menuOpen) {
   if (menuOpen) {
     if (key === 'ArrowUp' && altKey) {
       return SelectActions.CloseSelect;
-    } else if (key === 'ArrowDown' && !altKey) {
+    }
+    else if (key === 'ArrowDown' && !altKey) {
       return SelectActions.Next;
-    } else if (key === 'ArrowUp') {
+    }
+    else if (key === 'ArrowUp') {
       return SelectActions.Previous;
-    } else if (key === 'PageUp') {
+    }
+    else if (key === 'PageUp') {
       return SelectActions.PageUp;
-    } else if (key === 'PageDown') {
+    }
+    else if (key === 'PageDown') {
       return SelectActions.PageDown;
-    } else if (key === 'Escape') {
+    }
+    else if (key === 'Escape') {
       return SelectActions.Close;
-    } else if (key === 'Enter' || key === ' ') {
+    }
+    else if (key === 'Enter' || key === ' ') {
       return SelectActions.CloseSelect;
     }
   }
 }
-
+  
 // return the index of an option from an array of options, based on a search string
 // if the filter is multiple iterations of the same letter (e.g "aaa"), then cycle through first-letter matches
 function getIndexByLetter(options, filter, startIndex = 0) {
-  const orderedOptions = [
-    ...options.slice(startIndex),
-    ...options.slice(0, startIndex),
-  ];
+  const orderedOptions = [...options.slice(startIndex), ...options.slice(0, startIndex)];
   const firstMatch = filterOptions(orderedOptions, filter)[0];
   const allSameLetter = (array) => array.every((letter) => letter === array[0]);
-
+  
   // first check if there is an exact match for the typed string
   if (firstMatch) {
     return options.indexOf(firstMatch);
@@ -105,12 +104,12 @@ function getIndexByLetter(options, filter, startIndex = 0) {
     return -1;
   }
 }
-
+  
 // get an updated option index after performing an action
 function getUpdatedIndex(currentIndex, maxIndex, action) {
   const pageSize = 10; // used for pageup/pagedown
 
-  switch (action) {
+  switch(action) {
     case SelectActions.First:
       return 0;
     case SelectActions.Last:
@@ -127,7 +126,7 @@ function getUpdatedIndex(currentIndex, maxIndex, action) {
       return currentIndex;
   }
 }
-
+  
 // check if an element is currently scrollable
 function isScrollable(element) {
   return element && element.clientHeight < element.scrollHeight;
@@ -140,11 +139,12 @@ function maintainScrollVisibility(activeElement, scrollParent) {
   const { offsetHeight: parentOffsetHeight, scrollTop } = scrollParent;
 
   const isAbove = offsetTop < scrollTop;
-  const isBelow = offsetTop + offsetHeight > scrollTop + parentOffsetHeight;
+  const isBelow = (offsetTop + offsetHeight) > (scrollTop + parentOffsetHeight);
 
   if (isAbove) {
     scrollParent.scrollTo(0, offsetTop);
-  } else if (isBelow) {
+  }
+  else if (isBelow) {
     scrollParent.scrollTo(0, offsetTop - parentOffsetHeight + offsetHeight);
   }
 }
@@ -153,7 +153,7 @@ function maintainScrollVisibility(activeElement, scrollParent) {
  * Select Component
  * Accepts a combobox element and an array of string options
  */
-const Select = function (el, options = []) {
+const Select = function(el, options = []) {
   // element refs
   this.el = el;
   this.comboEl = el.querySelector('[role=combobox]');
@@ -172,10 +172,10 @@ const Select = function (el, options = []) {
   // init
   if (el && this.comboEl && this.listboxEl) {
     this.init();
-  }
-};
+  } 
+}
 
-Select.prototype.init = function () {
+Select.prototype.init = function() {
   // select first option by default
   this.comboEl.innerHTML = this.options[0];
 
@@ -189,14 +189,13 @@ Select.prototype.init = function () {
     const optionEl = this.createOption(option, index);
     this.listboxEl.appendChild(optionEl);
   });
-};
+}
 
-Select.prototype.createOption = function (optionText, index) {
+Select.prototype.createOption = function(optionText, index) {
   const optionEl = document.createElement('div');
   optionEl.setAttribute('role', 'option');
   optionEl.id = `${this.idBase}-${index}`;
-  optionEl.className =
-    index === 0 ? 'combo-option option-current' : 'combo-option';
+  optionEl.className = index === 0 ? 'combo-option option-current' : 'combo-option';
   optionEl.setAttribute('aria-selected', `${index === 0}`);
   optionEl.innerText = optionText;
 
@@ -207,9 +206,9 @@ Select.prototype.createOption = function (optionText, index) {
   optionEl.addEventListener('mousedown', this.onOptionMouseDown.bind(this));
 
   return optionEl;
-};
+}
 
-Select.prototype.getSearchString = function (char) {
+Select.prototype.getSearchString = function(char) {
   // reset typing timeout and start new timeout
   // this allows us to make multiple-letter matches, like a native select
   if (typeof this.searchTimeout === 'number') {
@@ -219,13 +218,13 @@ Select.prototype.getSearchString = function (char) {
   this.searchTimeout = window.setTimeout(() => {
     this.searchString = '';
   }, 500);
-
+  
   // add most recent letter to saved search string
   this.searchString += char;
   return this.searchString;
-};
+}
 
-Select.prototype.onComboBlur = function () {
+Select.prototype.onComboBlur = function() {
   // do not do blur action if ignoreBlur flag has been set
   if (this.ignoreBlur) {
     this.ignoreBlur = false;
@@ -237,35 +236,33 @@ Select.prototype.onComboBlur = function () {
     this.selectOption(this.activeIndex);
     this.updateMenuState(false, false);
   }
-};
+}
 
-Select.prototype.onComboClick = function () {
+Select.prototype.onComboClick = function() {
   this.updateMenuState(!this.open, false);
-};
+}
 
-Select.prototype.onComboKeyDown = function (event) {
+Select.prototype.onComboKeyDown = function(event) {
   const { key } = event;
   const max = this.options.length - 1;
 
   const action = getActionFromKey(event, this.open);
 
-  switch (action) {
+  switch(action) {
     case SelectActions.Last:
     case SelectActions.First:
       this.updateMenuState(true);
-    // intentional fallthrough
+      // intentional fallthrough
     case SelectActions.Next:
     case SelectActions.Previous:
     case SelectActions.PageUp:
     case SelectActions.PageDown:
       event.preventDefault();
-      return this.onOptionChange(
-        getUpdatedIndex(this.activeIndex, max, action)
-      );
+      return this.onOptionChange(getUpdatedIndex(this.activeIndex, max, action));
     case SelectActions.CloseSelect:
       event.preventDefault();
       this.selectOption(this.activeIndex);
-    // intentional fallthrough
+      // intentional fallthrough
     case SelectActions.Close:
       event.preventDefault();
       return this.updateMenuState(false);
@@ -275,19 +272,15 @@ Select.prototype.onComboKeyDown = function (event) {
       event.preventDefault();
       return this.updateMenuState(true);
   }
-};
+}
 
-Select.prototype.onComboType = function (letter) {
+Select.prototype.onComboType = function(letter) {
   // open the listbox if it is closed
   this.updateMenuState(true);
 
   // find the index of the first matching option
   const searchString = this.getSearchString(letter);
-  const searchIndex = getIndexByLetter(
-    this.options,
-    searchString,
-    this.activeIndex + 1
-  );
+  const searchIndex = getIndexByLetter(this.options, searchString, this.activeIndex + 1);
 
   // if a match was found, go to it
   if (searchIndex >= 0) {
@@ -298,9 +291,9 @@ Select.prototype.onComboType = function (letter) {
     window.clearTimeout(this.searchTimeout);
     this.searchString = '';
   }
-};
+}
 
-Select.prototype.onOptionChange = function (index) {
+Select.prototype.onOptionChange = function(index) {
   // update state
   this.activeIndex = index;
 
@@ -318,21 +311,21 @@ Select.prototype.onOptionChange = function (index) {
   if (isScrollable(this.listboxEl)) {
     maintainScrollVisibility(options[index], this.listboxEl);
   }
-};
+}
 
-Select.prototype.onOptionClick = function (index) {
+Select.prototype.onOptionClick = function(index) {
   this.onOptionChange(index);
   this.selectOption(index);
   this.updateMenuState(false);
-};
+}
 
-Select.prototype.onOptionMouseDown = function () {
+Select.prototype.onOptionMouseDown = function() {
   // Clicking an option will cause a blur event,
   // but we don't want to perform the default keyboard blur action
   this.ignoreBlur = true;
-};
+}
 
-Select.prototype.selectOption = function (index) {
+Select.prototype.selectOption = function(index) {
   // update state
   this.activeIndex = index;
 
@@ -346,9 +339,9 @@ Select.prototype.selectOption = function (index) {
     optionEl.setAttribute('aria-selected', 'false');
   });
   options[index].setAttribute('aria-selected', 'true');
-};
+}
 
-Select.prototype.updateMenuState = function (open, callFocus = true) {
+Select.prototype.updateMenuState = function(open, callFocus = true) {
   if (this.open === open) {
     return;
   }
@@ -359,32 +352,18 @@ Select.prototype.updateMenuState = function (open, callFocus = true) {
   // update aria-expanded and styles
   this.comboEl.setAttribute('aria-expanded', `${open}`);
   open ? this.el.classList.add('open') : this.el.classList.remove('open');
-
+  
   // update activedescendant
   const activeID = open ? `${this.idBase}-${this.activeIndex}` : '';
   this.comboEl.setAttribute('aria-activedescendant', activeID);
 
   // move focus back to the combobox, if needed
   callFocus && this.comboEl.focus();
-};
+}
 
 // init select
 window.addEventListener('load', function () {
-  const options = [
-    'Choose a Fruit',
-    'Apple',
-    'Banana',
-    'Blueberry',
-    'Boysenberry',
-    'Cherry',
-    'Cranberry',
-    'Durian',
-    'Eggplant',
-    'Fig',
-    'Grape',
-    'Guava',
-    'Huckleberry',
-  ];
+  const options = ['Choose a Fruit', 'Apple', 'Banana', 'Blueberry', 'Boysenberry', 'Cherry', 'Cranberry', 'Durian', 'Eggplant', 'Fig', 'Grape', 'Guava', 'Huckleberry'];
   const selectEls = document.querySelectorAll('.js-select');
 
   selectEls.forEach((el) => {

@@ -1,13 +1,14 @@
 /*
- *   This content is licensed according to the W3C Software License at
- *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
- *
- *   File:   spinbutton-date.js
- */
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*
+*   File:   spinbutton-date.js
+*/
 
 'use strict';
 
-var SpinButtonDate = function (domNode, values, callback) {
+var SpinButtonDate = function (domNode, values, callback)  {
+
   this.domNode = domNode;
   this.values = values;
   this.callback = callback;
@@ -24,49 +25,43 @@ var SpinButtonDate = function (domNode, values, callback) {
   this.decreaseNode = domNode.querySelector('.decrease');
 
   if (values) {
-    this.valueMin = 0;
-    this.valueMax = values.length - 1;
+    this.valueMin  = 0;
+    this.valueMax  = values.length - 1;
     if (initialValue) {
-      this.valueNow = values.indexOf(initialValue);
+      this.valueNow  = values.indexOf(initialValue);
       this.valueText = initialValue;
-    } else {
-      this.valueNow = values.length / 2;
+    }
+    else {
+      this.valueNow  = values.length / 2;
       this.valueText = values[this.valueNow];
     }
-  } else {
-    this.valueMin = parseInt(this.spinbuttonNode.getAttribute('aria-valuemin'));
-    this.valueMax = parseInt(this.spinbuttonNode.getAttribute('aria-valuemax'));
-    this.valueNow = parseInt(this.spinbuttonNode.getAttribute('aria-valuenow'));
+  }
+  else {
+    this.valueMin  = parseInt(this.spinbuttonNode.getAttribute('aria-valuemin'));
+    this.valueMax  = parseInt(this.spinbuttonNode.getAttribute('aria-valuemax'));
+    this.valueNow  = parseInt(this.spinbuttonNode.getAttribute('aria-valuenow'));
     this.valueText = this.spinbuttonNode.getAttribute('aria-valuenow');
   }
 
   this.keyCode = Object.freeze({
-    UP: 38,
-    DOWN: 40,
-    PAGEUP: 33,
-    PAGEDOWN: 34,
-    END: 35,
-    HOME: 36,
+    'UP': 38,
+    'DOWN': 40,
+    'PAGEUP': 33,
+    'PAGEDOWN': 34,
+    'END': 35,
+    'HOME': 36
   });
 };
 
 // Initialize slider
 SpinButtonDate.prototype.init = function () {
-  this.spinbuttonNode.addEventListener(
-    'keydown',
-    this.handleKeyDown.bind(this)
-  );
-  this.spinbuttonNode.addEventListener('focus', this.handleFocus.bind(this));
-  this.spinbuttonNode.addEventListener('blur', this.handleBlur.bind(this));
 
-  this.increaseNode.addEventListener(
-    'click',
-    this.handleIncreaseClick.bind(this)
-  );
-  this.decreaseNode.addEventListener(
-    'click',
-    this.handleDecreaseClick.bind(this)
-  );
+  this.spinbuttonNode.addEventListener('keydown', this.handleKeyDown.bind(this));
+  this.spinbuttonNode.addEventListener('focus',   this.handleFocus.bind(this));
+  this.spinbuttonNode.addEventListener('blur',    this.handleBlur.bind(this));
+
+  this.increaseNode.addEventListener('click', this.handleIncreaseClick.bind(this));
+  this.decreaseNode.addEventListener('click', this.handleDecreaseClick.bind(this));
 };
 
 SpinButtonDate.prototype.noWrap = function () {
@@ -81,7 +76,9 @@ SpinButtonDate.prototype.getValueText = function () {
   return this.valueText;
 };
 
+
 SpinButtonDate.prototype.setValue = function (value, flag) {
+
   if (typeof flag !== 'boolean') {
     flag = true;
   }
@@ -89,7 +86,8 @@ SpinButtonDate.prototype.setValue = function (value, flag) {
   if (value > this.valueMax) {
     if (this.wrap) {
       value = this.valueMin;
-    } else {
+    }
+    else {
       value = this.valueMax;
     }
   }
@@ -97,15 +95,17 @@ SpinButtonDate.prototype.setValue = function (value, flag) {
   if (value < this.valueMin) {
     if (this.wrap) {
       value = this.valueMax;
-    } else {
+    }
+    else {
       value = this.valueMin;
     }
   }
 
-  this.valueNow = value;
+  this.valueNow  = value;
   if (this.values) {
     this.valueText = this.values[this.valueNow];
-  } else {
+  }
+  else {
     if (typeof value === 'number') {
       this.valueText = parseInt(value);
     }
@@ -119,15 +119,17 @@ SpinButtonDate.prototype.setValue = function (value, flag) {
 
   this.spinbuttonNode.innerHTML = this.valueText;
 
-  if ((flag, this.callback)) {
+  if (flag, this.callback) {
     this.callback(this.valueNow);
   }
+
 };
 
 SpinButtonDate.prototype.setValueText = function (value) {
   this.valueText = value;
   this.spinbuttonNode.setAttribute('aria-valuetext', value);
 };
+
 
 SpinButtonDate.prototype.getValueMin = function () {
   return parseInt(this.spinbuttonNode.getAttribute('aria-valuemin'));
@@ -142,7 +144,9 @@ SpinButtonDate.prototype.setValueMax = function (value) {
   this.valueMax = value;
 };
 
+
 SpinButtonDate.prototype.setPreviousValue = function (value) {
+
   if (this.values) {
     value = this.values[value];
   }
@@ -150,7 +154,8 @@ SpinButtonDate.prototype.setPreviousValue = function (value) {
   if (typeof value === 'number') {
     if (value < this.valueMin) {
       value = '&nbsp;';
-    } else {
+    }
+    else {
       value = parseInt(value);
     }
   }
@@ -166,7 +171,8 @@ SpinButtonDate.prototype.setNextValue = function (value) {
   if (typeof value === 'number') {
     if (value > this.valueMax) {
       value = '&nbsp;';
-    } else {
+    }
+    else {
       value = parseInt(value);
     }
   }
@@ -175,6 +181,7 @@ SpinButtonDate.prototype.setNextValue = function (value) {
 };
 
 SpinButtonDate.prototype.handleKeyDown = function (event) {
+
   var flag = false;
 
   switch (event.keyCode) {
@@ -216,6 +223,7 @@ SpinButtonDate.prototype.handleKeyDown = function (event) {
     event.preventDefault();
     event.stopPropagation();
   }
+
 };
 
 SpinButtonDate.prototype.handleFocus = function () {
@@ -227,15 +235,19 @@ SpinButtonDate.prototype.handleBlur = function () {
 };
 
 SpinButtonDate.prototype.handleIncreaseClick = function (event) {
+
   this.setValue(this.valueNow + 1);
 
   event.preventDefault();
   event.stopPropagation();
+
 };
 
 SpinButtonDate.prototype.handleDecreaseClick = function (event) {
+
   this.setValue(this.valueNow - 1);
 
   event.preventDefault();
   event.stopPropagation();
+
 };

@@ -1,48 +1,33 @@
 /*
- *   This content is licensed according to the W3C Software License at
- *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
- *
- *   File:   ComboboxDatePicker.js
- */
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*
+*   File:   ComboboxDatePicker.js
+*/
 
 'use strict';
 
 var ComboboxDatePicker = function (cdp) {
   this.buttonLabel = 'Date';
-  this.monthLabels = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
+  this.monthLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
   this.messageCursorKeys = 'Cursor keys can navigate dates';
   this.lastMessage = '';
 
-  this.comboboxNode = cdp.querySelector('input[type="text"]');
-  this.buttonNode = cdp.querySelector('.group button');
-  this.dialogNode = cdp.querySelector('[role="dialog"]');
-  this.messageNode = this.dialogNode.querySelector('.dialog-message');
+  this.comboboxNode   = cdp.querySelector('input[type="text"]');
+  this.buttonNode     = cdp.querySelector('.group button');
+  this.dialogNode     = cdp.querySelector('[role="dialog"]');
+  this.messageNode    = this.dialogNode.querySelector('.dialog-message');
 
   this.monthYearNode = this.dialogNode.querySelector('.month-year');
 
-  this.prevYearNode = this.dialogNode.querySelector('.prev-year');
+  this.prevYearNode  = this.dialogNode.querySelector('.prev-year');
   this.prevMonthNode = this.dialogNode.querySelector('.prev-month');
   this.nextMonthNode = this.dialogNode.querySelector('.next-month');
-  this.nextYearNode = this.dialogNode.querySelector('.next-year');
+  this.nextYearNode  = this.dialogNode.querySelector('.next-year');
 
-  this.okButtonNode = this.dialogNode.querySelector('button[value="ok"]');
-  this.cancelButtonNode = this.dialogNode.querySelector(
-    'button[value="cancel"]'
-  );
+  this.okButtonNode     = this.dialogNode.querySelector('button[value="ok"]');
+  this.cancelButtonNode = this.dialogNode.querySelector('button[value="cancel"]');
 
   this.tbodyNode = this.dialogNode.querySelector('table.dates tbody');
 
@@ -51,86 +36,39 @@ var ComboboxDatePicker = function (cdp) {
   this.days = [];
 
   this.focusDay = new Date();
-  this.selectedDay = new Date(0, 0, 1);
+  this.selectedDay = new Date(0,0,1);
 
   this.isMouseDownOnBackground = false;
+
 };
 
 ComboboxDatePicker.prototype.init = function () {
-  this.comboboxNode.addEventListener(
-    'keydown',
-    this.handleComboboxKeyDown.bind(this)
-  );
-  this.comboboxNode.addEventListener(
-    'click',
-    this.handleComboboxClick.bind(this)
-  );
-  this.comboboxNode.addEventListener(
-    'focus',
-    this.handleComboboxFocus.bind(this)
-  );
-  this.comboboxNode.addEventListener(
-    'blur',
-    this.handleComboboxBlur.bind(this)
-  );
 
-  this.buttonNode.addEventListener(
-    'keydown',
-    this.handleButtonKeyDown.bind(this)
-  );
-  this.buttonNode.addEventListener('click', this.handleButtonClick.bind(this));
+  this.comboboxNode.addEventListener('keydown', this.handleComboboxKeyDown.bind(this));
+  this.comboboxNode.addEventListener('click',   this.handleComboboxClick.bind(this));
+  this.comboboxNode.addEventListener('focus',   this.handleComboboxFocus.bind(this));
+  this.comboboxNode.addEventListener('blur',   this.handleComboboxBlur.bind(this));
+
+  this.buttonNode.addEventListener('keydown',   this.handleButtonKeyDown.bind(this));
+  this.buttonNode.addEventListener('click',   this.handleButtonClick.bind(this));
 
   this.okButtonNode.addEventListener('click', this.handleOkButton.bind(this));
   this.okButtonNode.addEventListener('keydown', this.handleOkButton.bind(this));
 
-  this.cancelButtonNode.addEventListener(
-    'click',
-    this.handleCancelButton.bind(this)
-  );
-  this.cancelButtonNode.addEventListener(
-    'keydown',
-    this.handleCancelButton.bind(this)
-  );
+  this.cancelButtonNode.addEventListener('click', this.handleCancelButton.bind(this));
+  this.cancelButtonNode.addEventListener('keydown', this.handleCancelButton.bind(this));
 
-  this.prevMonthNode.addEventListener(
-    'click',
-    this.handlePreviousMonthButton.bind(this)
-  );
-  this.nextMonthNode.addEventListener(
-    'click',
-    this.handleNextMonthButton.bind(this)
-  );
-  this.prevYearNode.addEventListener(
-    'click',
-    this.handlePreviousYearButton.bind(this)
-  );
-  this.nextYearNode.addEventListener(
-    'click',
-    this.handleNextYearButton.bind(this)
-  );
+  this.prevMonthNode.addEventListener('click', this.handlePreviousMonthButton.bind(this));
+  this.nextMonthNode.addEventListener('click', this.handleNextMonthButton.bind(this));
+  this.prevYearNode.addEventListener('click', this.handlePreviousYearButton.bind(this));
+  this.nextYearNode.addEventListener('click', this.handleNextYearButton.bind(this));
 
-  this.prevMonthNode.addEventListener(
-    'keydown',
-    this.handlePreviousMonthButton.bind(this)
-  );
-  this.nextMonthNode.addEventListener(
-    'keydown',
-    this.handleNextMonthButton.bind(this)
-  );
-  this.prevYearNode.addEventListener(
-    'keydown',
-    this.handlePreviousYearButton.bind(this)
-  );
-  this.nextYearNode.addEventListener(
-    'keydown',
-    this.handleNextYearButton.bind(this)
-  );
+  this.prevMonthNode.addEventListener('keydown', this.handlePreviousMonthButton.bind(this));
+  this.nextMonthNode.addEventListener('keydown', this.handleNextMonthButton.bind(this));
+  this.prevYearNode.addEventListener('keydown', this.handlePreviousYearButton.bind(this));
+  this.nextYearNode.addEventListener('keydown', this.handleNextYearButton.bind(this));
 
-  document.body.addEventListener(
-    'mouseup',
-    this.handleBackgroundMouseUp.bind(this),
-    true
-  );
+  document.body.addEventListener('mouseup', this.handleBackgroundMouseUp.bind(this), true);
 
   // Create Grid of Dates
 
@@ -158,26 +96,22 @@ ComboboxDatePicker.prototype.init = function () {
 };
 
 ComboboxDatePicker.prototype.isSameDay = function (day1, day2) {
-  return (
-    day1.getFullYear() == day2.getFullYear() &&
-    day1.getMonth() == day2.getMonth() &&
-    day1.getDate() == day2.getDate()
-  );
+  return (day1.getFullYear() == day2.getFullYear()) &&
+        (day1.getMonth() == day2.getMonth()) &&
+        (day1.getDate() == day2.getDate());
 };
 
 ComboboxDatePicker.prototype.isNotSameMonth = function (day1, day2) {
-  return (
-    day1.getFullYear() != day2.getFullYear() ||
-    day1.getMonth() != day2.getMonth()
-  );
+  return (day1.getFullYear() != day2.getFullYear()) ||
+        (day1.getMonth() != day2.getMonth());
 };
 
 ComboboxDatePicker.prototype.updateGrid = function () {
+
   var i, flag;
   var fd = this.focusDay;
 
-  this.monthYearNode.innerHTML =
-    this.monthLabels[fd.getMonth()] + ' ' + fd.getFullYear();
+  this.monthYearNode.innerHTML = this.monthLabels[fd.getMonth()] + ' ' + fd.getFullYear();
 
   var firstDayOfMonth = new Date(fd.getFullYear(), fd.getMonth(), 1);
   var dayOfWeek = firstDayOfMonth.getDay();
@@ -195,7 +129,8 @@ ComboboxDatePicker.prototype.updateGrid = function () {
     if (i === 35) {
       if (flag) {
         this.lastRowNode.style.visibility = 'hidden';
-      } else {
+      }
+      else {
         this.lastRowNode.style.visibility = 'visible';
       }
     }
@@ -203,6 +138,7 @@ ComboboxDatePicker.prototype.updateGrid = function () {
 };
 
 ComboboxDatePicker.prototype.setFocusDay = function (flag) {
+
   if (typeof flag !== 'boolean') {
     flag = true;
   }
@@ -210,7 +146,8 @@ ComboboxDatePicker.prototype.setFocusDay = function (flag) {
   var fd = this.focusDay;
   var getDayFromDataDateAttribute = this.getDayFromDataDateAttribute;
 
-  function checkDay(domNode) {
+  function checkDay (domNode) {
+
     var d = getDayFromDataDateAttribute(domNode);
 
     domNode.setAttribute('tabindex', '-1');
@@ -222,7 +159,9 @@ ComboboxDatePicker.prototype.setFocusDay = function (flag) {
     }
   }
 
+
   this.days.forEach(checkDay.bind(this));
+
 };
 
 ComboboxDatePicker.prototype.open = function () {
@@ -247,7 +186,7 @@ ComboboxDatePicker.prototype.close = function (flag) {
 
   this.setMessage('');
   this.dialogNode.style.display = 'none';
-  this.comboboxNode.setAttribute('aria-expanded', 'false');
+  this.comboboxNode.setAttribute('aria-expanded', 'false')
   this.buttonNode.classList.remove('open');
 
   if (flag) {
@@ -260,22 +199,24 @@ ComboboxDatePicker.prototype.handleOkButton = function (event) {
 
   switch (event.type) {
     case 'keydown':
+
       switch (event.key) {
-        case 'Tab':
+        case "Tab":
           if (!event.shiftKey) {
             this.prevYearNode.focus();
             flag = true;
           }
           break;
 
-        case 'Esc':
-        case 'Escape':
+        case "Esc":
+        case "Escape":
           this.close();
           flag = true;
           break;
 
         default:
           break;
+
       }
       break;
 
@@ -300,15 +241,18 @@ ComboboxDatePicker.prototype.handleCancelButton = function (event) {
 
   switch (event.type) {
     case 'keydown':
+
       switch (event.key) {
-        case 'Esc':
-        case 'Escape':
+
+        case "Esc":
+        case "Escape":
           this.close();
           flag = true;
           break;
 
         default:
           break;
+
       }
       break;
 
@@ -331,15 +275,17 @@ ComboboxDatePicker.prototype.handleNextYearButton = function (event) {
   var flag = false;
 
   switch (event.type) {
+
     case 'keydown':
+
       switch (event.key) {
-        case 'Esc':
-        case 'Escape':
+        case "Esc":
+        case "Escape":
           this.close();
           flag = true;
           break;
 
-        case 'Enter':
+        case "Enter":
           this.moveToNextYear();
           this.setFocusDay(false);
           flag = true;
@@ -367,23 +313,26 @@ ComboboxDatePicker.prototype.handlePreviousYearButton = function (event) {
   var flag = false;
 
   switch (event.type) {
+
     case 'keydown':
+
       switch (event.key) {
-        case 'Enter':
+
+        case "Enter":
           this.moveToPreviousYear();
           this.setFocusDay(false);
           flag = true;
           break;
 
-        case 'Tab':
+        case "Tab":
           if (event.shiftKey) {
             this.okButtonNode.focus();
             flag = true;
           }
           break;
 
-        case 'Esc':
-        case 'Escape':
+        case "Esc":
+        case "Escape":
           this.close();
           flag = true;
           break;
@@ -413,15 +362,17 @@ ComboboxDatePicker.prototype.handleNextMonthButton = function (event) {
   var flag = false;
 
   switch (event.type) {
+
     case 'keydown':
+
       switch (event.key) {
-        case 'Esc':
-        case 'Escape':
+        case "Esc":
+        case "Escape":
           this.close();
           flag = true;
           break;
 
-        case 'Enter':
+        case "Enter":
           this.moveToNextMonth();
           this.setFocusDay(false);
           flag = true;
@@ -449,15 +400,17 @@ ComboboxDatePicker.prototype.handlePreviousMonthButton = function (event) {
   var flag = false;
 
   switch (event.type) {
+
     case 'keydown':
+
       switch (event.key) {
-        case 'Esc':
-        case 'Escape':
+        case "Esc":
+        case "Escape":
           this.close();
           flag = true;
           break;
 
-        case 'Enter':
+        case "Enter":
           this.moveToPreviousMonth();
           this.setFocusDay(false);
           flag = true;
@@ -487,14 +440,13 @@ ComboboxDatePicker.prototype.moveFocusToDay = function (day) {
 
   this.focusDay = day;
 
-  if (
-    d.getMonth() != this.focusDay.getMonth() ||
-    d.getYear() != this.focusDay.getYear()
-  ) {
+  if ((d.getMonth() != this.focusDay.getMonth()) ||
+      (d.getYear() != this.focusDay.getYear())) {
     this.updateGrid();
   }
   this.setFocusDay();
 };
+
 
 ComboboxDatePicker.prototype.moveToNextYear = function () {
   this.focusDay.setFullYear(this.focusDay.getFullYear() + 1);
@@ -560,15 +512,11 @@ ComboboxDatePicker.prototype.isDayDisabled = function (domNode) {
 
 ComboboxDatePicker.prototype.getDayFromDataDateAttribute = function (domNode) {
   var parts = domNode.getAttribute('data-date').split('-');
-  return new Date(parts[0], parseInt(parts[1]) - 1, parts[2]);
+  return new Date(parts[0], parseInt(parts[1])-1, parts[2]);
 };
 
-ComboboxDatePicker.prototype.updateDate = function (
-  domNode,
-  disable,
-  day,
-  selected
-) {
+ComboboxDatePicker.prototype.updateDate = function (domNode, disable, day, selected) {
+
   var d = day.getDate().toString();
   if (day.getDate() <= 9) {
     d = '0' + d;
@@ -586,7 +534,8 @@ ComboboxDatePicker.prototype.updateDate = function (
   if (disable) {
     domNode.classList.add('disabled');
     domNode.innerHTML = '';
-  } else {
+  }
+  else {
     domNode.classList.remove('disabled');
     domNode.innerHTML = day.getDate();
     if (selected) {
@@ -594,40 +543,44 @@ ComboboxDatePicker.prototype.updateDate = function (
       domNode.setAttribute('tabindex', '0');
     }
   }
+
 };
 
 ComboboxDatePicker.prototype.updateSelected = function (domNode) {
   for (var i = 0; i < this.days.length; i++) {
     var day = this.days[i];
-    if (day === domNode) {
+    if (day  === domNode) {
       day.setAttribute('aria-selected', 'true');
-    } else {
+    }
+    else {
       day.removeAttribute('aria-selected');
     }
   }
 };
 
+
 ComboboxDatePicker.prototype.handleDayKeyDown = function (event) {
   var flag = false;
 
   switch (event.key) {
-    case 'Esc':
-    case 'Escape':
+
+    case "Esc":
+    case "Escape":
       this.close();
       break;
 
-    case ' ':
+    case " ":
       this.updateSelected(event.currentTarget);
       this.setComboboxDate(event.currentTarget);
       flag = true;
       break;
 
-    case 'Enter':
+    case "Enter":
       this.setComboboxDate(event.currentTarget);
       this.close();
       break;
 
-    case 'Tab':
+    case "Tab":
       this.cancelButtonNode.focus();
       if (event.shiftKey) {
         this.nextYearNode.focus();
@@ -636,56 +589,58 @@ ComboboxDatePicker.prototype.handleDayKeyDown = function (event) {
       flag = true;
       break;
 
-    case 'Right':
-    case 'ArrowRight':
+    case "Right":
+    case "ArrowRight":
       this.moveFocusToNextDay();
       flag = true;
       break;
 
-    case 'Left':
-    case 'ArrowLeft':
+    case "Left":
+    case "ArrowLeft":
       this.moveFocusToPreviousDay();
       flag = true;
       break;
 
-    case 'Down':
-    case 'ArrowDown':
+    case "Down":
+    case "ArrowDown":
       this.moveFocusToNextWeek();
       flag = true;
       break;
 
-    case 'Up':
-    case 'ArrowUp':
+    case "Up":
+    case "ArrowUp":
       this.moveFocusToPreviousWeek();
       flag = true;
       break;
 
-    case 'PageUp':
+    case "PageUp":
       if (event.shiftKey) {
         this.moveToPreviousYear();
-      } else {
+      }
+      else {
         this.moveToPreviousMonth();
       }
       this.setFocusDay();
       flag = true;
       break;
 
-    case 'PageDown':
+    case "PageDown":
       if (event.shiftKey) {
         this.moveToNextYear();
-      } else {
+      }
+      else {
         this.moveToNextMonth();
       }
       this.setFocusDay();
       flag = true;
       break;
 
-    case 'Home':
+    case "Home":
       this.moveFocusToFirstDayOfWeek();
       flag = true;
       break;
 
-    case 'End':
+    case "End":
       this.moveFocusToLastDayOfWeek();
       flag = true;
       break;
@@ -698,6 +653,7 @@ ComboboxDatePicker.prototype.handleDayKeyDown = function (event) {
 };
 
 ComboboxDatePicker.prototype.handleDayClick = function (event) {
+
   if (!this.isDayDisabled(event.currentTarget)) {
     this.setComboboxDate(event.currentTarget);
     this.close();
@@ -705,6 +661,7 @@ ComboboxDatePicker.prototype.handleDayClick = function (event) {
 
   event.stopPropagation();
   event.preventDefault();
+
 };
 
 ComboboxDatePicker.prototype.handleDayFocus = function () {
@@ -714,40 +671,39 @@ ComboboxDatePicker.prototype.handleDayFocus = function () {
 // Combobox methods
 
 ComboboxDatePicker.prototype.setComboboxDate = function (domNode) {
+
   var d = this.focusDay;
 
   if (domNode) {
     d = this.getDayFromDataDateAttribute(domNode);
   }
 
-  this.comboboxNode.value =
-    d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear();
+  this.comboboxNode.value = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
+
 };
 
 ComboboxDatePicker.prototype.getDateFromCombobox = function () {
+
   var parts = this.comboboxNode.value.split('/');
 
-  if (
-    parts.length === 3 &&
-    Number.isInteger(parseInt(parts[0])) &&
-    Number.isInteger(parseInt(parts[1])) &&
-    Number.isInteger(parseInt(parts[2]))
-  ) {
-    this.focusDay = new Date(
-      parseInt(parts[2]),
-      parseInt(parts[0]) - 1,
-      parseInt(parts[1])
-    );
+  if ((parts.length === 3) &&
+      Number.isInteger(parseInt(parts[0])) &&
+      Number.isInteger(parseInt(parts[1])) &&
+      Number.isInteger(parseInt(parts[2]))) {
+    this.focusDay = new Date(parseInt(parts[2]), parseInt(parts[0]) - 1, parseInt(parts[1]));
     this.selectedDay = new Date(this.focusDay);
-  } else {
+  }
+  else {
     // If not a valid date (MM/DD/YY) initialize with todays date
     this.focusDay = new Date();
-    this.selectedDay = new Date(0, 0, 1);
+    this.selectedDay = new Date(0,0,1);
   }
+
 };
 
 ComboboxDatePicker.prototype.setMessage = function (str) {
-  function setMessageDelayed() {
+
+  function setMessageDelayed () {
     this.messageNode.textContent = str;
   }
 
@@ -760,34 +716,37 @@ ComboboxDatePicker.prototype.setMessage = function (str) {
 ComboboxDatePicker.prototype.handleComboboxKeyDown = function (event) {
   var flag = false,
     char = event.key,
-    altKey = event.altKey;
+    altKey   = event.altKey;
 
   if (event.ctrlKey || event.shiftKey) {
     return;
   }
 
   switch (event.key) {
-    case 'Down':
-    case 'ArrowDown':
+
+    case "Down":
+    case "ArrowDown":
       this.open();
       this.setFocusDay();
       flag = true;
       break;
 
-    case 'Esc':
-    case 'Escape':
+    case "Esc":
+    case "Escape":
       if (this.isOpen()) {
         this.close(false);
-      } else {
+      }
+      else {
         this.comboboxNode.value = '';
       }
       this.option = null;
       flag = true;
       break;
 
-    case 'Tab':
+    case "Tab":
       this.close(false);
       break;
+
 
     default:
       break;
@@ -797,12 +756,14 @@ ComboboxDatePicker.prototype.handleComboboxKeyDown = function (event) {
     event.stopPropagation();
     event.preventDefault();
   }
+
 };
 
 ComboboxDatePicker.prototype.handleComboboxClick = function (event) {
   if (this.isOpen()) {
     this.close(false);
-  } else {
+  }
+  else {
     this.open();
   }
 
@@ -819,7 +780,8 @@ ComboboxDatePicker.prototype.handleComboboxBlur = function (event) {
 };
 
 ComboboxDatePicker.prototype.handleButtonKeyDown = function (event) {
-  if (event.key === 'Enter' || event.key === ' ') {
+
+  if (event.key === "Enter" || event.key === " ") {
     this.open();
     this.setFocusDay();
 
@@ -831,7 +793,8 @@ ComboboxDatePicker.prototype.handleButtonKeyDown = function (event) {
 ComboboxDatePicker.prototype.handleButtonClick = function (event) {
   if (this.isOpen()) {
     this.close();
-  } else {
+  }
+  else {
     this.open();
     this.setFocusDay();
   }
@@ -841,11 +804,10 @@ ComboboxDatePicker.prototype.handleButtonClick = function (event) {
 };
 
 ComboboxDatePicker.prototype.handleBackgroundMouseUp = function (event) {
-  if (
-    !this.comboboxNode.contains(event.target) &&
-    !this.buttonNode.contains(event.target) &&
-    !this.dialogNode.contains(event.target)
-  ) {
+  if (!this.comboboxNode.contains(event.target) &&
+      !this.buttonNode.contains(event.target) &&
+      !this.dialogNode.contains(event.target)) {
+
     if (this.isOpen()) {
       this.close(false);
       event.stopPropagation();
@@ -856,11 +818,13 @@ ComboboxDatePicker.prototype.handleBackgroundMouseUp = function (event) {
 
 // Initialize menu button date picker
 
-window.addEventListener('load', function () {
+window.addEventListener('load' , function () {
+
   var comboboxDatePickers = document.querySelectorAll('.combobox-datepicker');
 
   comboboxDatePickers.forEach(function (dp) {
     var datePicker = new ComboboxDatePicker(dp);
     datePicker.init();
   });
+
 });

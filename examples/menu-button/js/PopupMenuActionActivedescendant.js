@@ -1,37 +1,37 @@
 /*
- *   This content is licensed according to the W3C Software License at
- *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
- *
- *   File:   PopupMenuActionActivedescendant.js
- *
- *   Desc:   Popup menu widget that implements ARIA Authoring Practices
- */
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*
+*   File:   PopupMenuActionActivedescendant.js
+*
+*   Desc:   Popup menu widget that implements ARIA Authoring Practices
+*/
 
 'use strict';
 
 /*
- *   @constructor PopupMenuActionActivedescendant
- *
- *   @desc
- *       Wrapper object for a simple popup menu (without nested submenus)
- *
- *   @param domNode
- *       The DOM element node that serves as the popup menu container. Each
- *       child element of domNode that represents a menuitem must have a
- *       'role' attribute with value 'menuitem'.
- *
- *   @param controllerObj
- *       The object that is a wrapper for the DOM element that controls the
- *       menu, e.g. a button element, with an 'aria-controls' attribute that
- *       references this menu's domNode. See MenuButton.js
- *
- *       The controller object is expected to have the following properties:
- *       1. domNode: The controller object's DOM element node, needed for
- *          retrieving positioning information.
- *       2. hasHover: boolean that indicates whether the controller object's
- *          domNode has responded to a mouseover event with no subsequent
- *          mouseout event having occurred.
- */
+*   @constructor PopupMenuActionActivedescendant
+*
+*   @desc
+*       Wrapper object for a simple popup menu (without nested submenus)
+*
+*   @param domNode
+*       The DOM element node that serves as the popup menu container. Each
+*       child element of domNode that represents a menuitem must have a
+*       'role' attribute with value 'menuitem'.
+*
+*   @param controllerObj
+*       The object that is a wrapper for the DOM element that controls the
+*       menu, e.g. a button element, with an 'aria-controls' attribute that
+*       references this menu's domNode. See MenuButton.js
+*
+*       The controller object is expected to have the following properties:
+*       1. domNode: The controller object's DOM element node, needed for
+*          retrieving positioning information.
+*       2. hasHover: boolean that indicates whether the controller object's
+*          domNode has responded to a mouseover event with no subsequent
+*          mouseout event having occurred.
+*/
 var PopupMenuActionActivedescendant = function (domNode, controllerObj) {
   var elementChildren,
     msgPrefix = 'PopupMenu constructor argument domNode ';
@@ -51,9 +51,7 @@ var PopupMenuActionActivedescendant = function (domNode, controllerObj) {
   while (childElement) {
     var menuitem = childElement.firstElementChild;
     if (menuitem && menuitem === 'A') {
-      throw new Error(
-        msgPrefix + 'Cannot have descendant elements are A elements.'
-      );
+      throw new Error(msgPrefix + 'Cannot have descendant elements are A elements.');
     }
     childElement = childElement.nextElementSibling;
   }
@@ -63,63 +61,55 @@ var PopupMenuActionActivedescendant = function (domNode, controllerObj) {
   this.domNode = domNode;
   this.controller = controllerObj;
 
-  this.menuitems = []; // see PopupMenu init method
-  this.firstChars = []; // see PopupMenu init method
+  this.menuitems  = [];      // see PopupMenu init method
+  this.firstChars = [];      // see PopupMenu init method
 
-  this.firstItem = null; // see PopupMenu init method
-  this.lastItem = null; // see PopupMenu init method
+  this.firstItem  = null;    // see PopupMenu init method
+  this.lastItem   = null;    // see PopupMenu init method
 
-  this.hasFocus = false; // see MenuItem handleFocus, handleBlur
-  this.hasHover = false; // see PopupMenu handleMouseover, handleMouseout
+  this.hasFocus   = false;   // see MenuItem handleFocus, handleBlur
+  this.hasHover   = false;   // see PopupMenu handleMouseover, handleMouseout
 
   this.keyCode = Object.freeze({
-    TAB: 9,
-    RETURN: 13,
-    ESC: 27,
-    SPACE: 32,
-    PAGEUP: 33,
-    PAGEDOWN: 34,
-    END: 35,
-    HOME: 36,
-    LEFT: 37,
-    UP: 38,
-    RIGHT: 39,
-    DOWN: 40,
+    'TAB': 9,
+    'RETURN': 13,
+    'ESC': 27,
+    'SPACE': 32,
+    'PAGEUP': 33,
+    'PAGEDOWN': 34,
+    'END': 35,
+    'HOME': 36,
+    'LEFT': 37,
+    'UP': 38,
+    'RIGHT': 39,
+    'DOWN': 40
   });
+
 };
 
 /*
- *   @method PopupMenuActionActivedescendant.prototype.init
- *
- *   @desc
- *       Add domNode event listeners for mouseover and mouseout. Traverse
- *       domNode children to configure each menuitem and populate menuitems
- *       array. Initialize firstItem and lastItem properties.
- */
+*   @method PopupMenuActionActivedescendant.prototype.init
+*
+*   @desc
+*       Add domNode event listeners for mouseover and mouseout. Traverse
+*       domNode children to configure each menuitem and populate menuitems
+*       array. Initialize firstItem and lastItem properties.
+*/
 PopupMenuActionActivedescendant.prototype.init = function () {
-  var childElement,
-    menuElement,
-    firstChildElement,
-    menuItem,
-    textContent,
-    label;
+  var childElement, menuElement, firstChildElement, menuItem, textContent, label;
 
   // Configure the domNode itself
   this.domNode.tabIndex = 0;
 
   this.domNode.setAttribute('role', 'menu');
 
-  if (
-    !this.domNode.getAttribute('aria-labelledby') &&
-    !this.domNode.getAttribute('aria-label') &&
-    !this.domNode.getAttribute('title')
-  ) {
+  if (!this.domNode.getAttribute('aria-labelledby') && !this.domNode.getAttribute('aria-label') && !this.domNode.getAttribute('title')) {
     label = this.controller.domNode.innerHTML;
     this.domNode.setAttribute('aria-label', label);
   }
-  this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
+  this.domNode.addEventListener('keydown',    this.handleKeydown.bind(this));
   this.domNode.addEventListener('mouseover', this.handleMouseover.bind(this));
-  this.domNode.addEventListener('mouseout', this.handleMouseout.bind(this));
+  this.domNode.addEventListener('mouseout',  this.handleMouseout.bind(this));
   this.domNode.addEventListener('blur', this.handleBlur.bind(this));
 
   // Traverse the element children of domNode: configure each with
@@ -127,11 +117,9 @@ PopupMenuActionActivedescendant.prototype.init = function () {
   var menuElements = this.domNode.getElementsByTagName('LI');
 
   for (var i = 0; i < menuElements.length; i++) {
+
     menuElement = menuElements[i];
-    if (
-      !menuElement.firstElementChild &&
-      menuElement.getAttribute('role') != 'separator'
-    ) {
+    if (!menuElement.firstElementChild && menuElement.getAttribute('role') != 'separator') {
       menuItem = new MenuItem(menuElement, this);
       menuItem.init();
       this.menuitems.push(menuItem);
@@ -144,19 +132,20 @@ PopupMenuActionActivedescendant.prototype.init = function () {
   if (this.menuitems.length > 0) {
     this.firstItem = this.menuitems[0];
     this.currentItem = this.firstItem;
-    this.lastItem = this.menuitems[this.menuitems.length - 1];
+    this.lastItem  = this.menuitems[this.menuitems.length - 1];
   }
+
 };
 PopupMenuActionActivedescendant.prototype.handleKeydown = function (event) {
   var flag = false,
     char = event.key,
     clickEvent;
 
-  function isPrintableCharacter(str) {
+  function isPrintableCharacter (str) {
     return str.length === 1 && str.match(/\S/);
   }
 
-  if (event.ctrlKey || event.altKey || event.metaKey) {
+  if (event.ctrlKey || event.altKey  || event.metaKey) {
     return;
   }
 
@@ -164,8 +153,10 @@ PopupMenuActionActivedescendant.prototype.handleKeydown = function (event) {
     if (isPrintableCharacter(char)) {
       this.setFocusByFirstCharacter(char);
     }
-  } else {
+  }
+  else {
     switch (event.keyCode) {
+
       case this.keyCode.SPACE:
         flag = true;
         break;
@@ -175,11 +166,12 @@ PopupMenuActionActivedescendant.prototype.handleKeydown = function (event) {
         // and let the event handler handleClick do the housekeeping.
         try {
           clickEvent = new MouseEvent('click', {
-            view: window,
-            bubbles: true,
-            cancelable: true,
+            'view': window,
+            'bubbles': true,
+            'cancelable': true
           });
-        } catch (err) {
+        }
+        catch (err) {
           if (document.createEvent) {
             // DOM Level 3 for IE 9+
             clickEvent = document.createEvent('MouseEvents');
@@ -276,7 +268,8 @@ PopupMenuActionActivedescendant.prototype.setFocusToPreviousItem = function () {
 
   if (this.currentItem === this.firstItem) {
     this.setFocusToLastItem();
-  } else {
+  }
+  else {
     index = this.menuitems.indexOf(this.currentItem);
     this.setFocus(this.menuitems[index - 1]);
   }
@@ -287,15 +280,14 @@ PopupMenuActionActivedescendant.prototype.setFocusToNextItem = function () {
 
   if (this.currentItem === this.lastItem) {
     this.setFocusToFirstItem();
-  } else {
+  }
+  else {
     index = this.menuitems.indexOf(this.currentItem);
     this.setFocus(this.menuitems[index + 1]);
   }
 };
 
-PopupMenuActionActivedescendant.prototype.setFocusByFirstCharacter = function (
-  char
-) {
+PopupMenuActionActivedescendant.prototype.setFocusByFirstCharacter = function (char) {
   var start, index;
 
   char = char.toLowerCase();
@@ -320,10 +312,7 @@ PopupMenuActionActivedescendant.prototype.setFocusByFirstCharacter = function (
   }
 };
 
-PopupMenuActionActivedescendant.prototype.getIndexFirstChars = function (
-  startIndex,
-  char
-) {
+PopupMenuActionActivedescendant.prototype.getIndexFirstChars = function (startIndex, char) {
   for (var i = startIndex; i < this.firstChars.length; i++) {
     if (char === this.firstChars[i]) {
       return i;
@@ -335,10 +324,7 @@ PopupMenuActionActivedescendant.prototype.getIndexFirstChars = function (
 PopupMenuActionActivedescendant.prototype.getCurrentItem = function () {
   var id = this.domNode.getAttribute('aria-activedescendant');
   if (!id) {
-    this.domNode.setAttribute(
-      'aria-activedescendant',
-      this.firstItem.domNode.id
-    );
+    this.domNode.setAttribute('aria-activedescendant', this.firstItem.domNode.id);
     return this.firstItem;
   }
   for (var i = 0; i < this.menuitems.length; i++) {
@@ -360,7 +346,7 @@ PopupMenuActionActivedescendant.prototype.open = function () {
   // set CSS properties
   this.domNode.style.display = 'block';
   this.domNode.style.position = 'absolute';
-  this.domNode.style.top = rect.height + 'px';
+  this.domNode.style.top  = rect.height + 'px';
   this.domNode.style.left = '0px';
 
   this.hasFocus = true;
@@ -371,6 +357,7 @@ PopupMenuActionActivedescendant.prototype.open = function () {
 };
 
 PopupMenuActionActivedescendant.prototype.close = function (force) {
+
   if (typeof force !== 'boolean') {
     force = false;
   }

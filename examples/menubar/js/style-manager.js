@@ -1,11 +1,11 @@
 /*
- *   This content is licensed according to the W3C Software License at
- *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
- *
- *   File:   TextStyling.js
- *
- *   Desc:   Styling functions for changing the style of an item
- */
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*
+*   File:   TextStyling.js
+*
+*   Desc:   Styling functions for changing the style of an item
+*/
 
 'use strict';
 
@@ -36,22 +36,27 @@ StyleManager.prototype.setColor = function (value) {
 };
 
 StyleManager.prototype.setBold = function (flag) {
+
   if (flag) {
     this.node.style.fontWeight = 'bold';
-  } else {
+  }
+  else {
     this.node.style.fontWeight = 'normal';
   }
 };
 
 StyleManager.prototype.setItalic = function (flag) {
+
   if (flag) {
     this.node.style.fontStyle = 'italic';
-  } else {
+  }
+  else {
     this.node.style.fontStyle = 'normal';
   }
 };
 
 StyleManager.prototype.fontSmaller = function () {
+
   switch (this.fontSize) {
     case 'small':
       this.setFontSize('x-small');
@@ -71,10 +76,12 @@ StyleManager.prototype.fontSmaller = function () {
 
     default:
       break;
+
   } // end switch
 };
 
 StyleManager.prototype.fontLarger = function () {
+
   switch (this.fontSize) {
     case 'x-small':
       this.setFontSize('small');
@@ -94,6 +101,7 @@ StyleManager.prototype.fontLarger = function () {
 
     default:
       break;
+
   } // end switch
 };
 
@@ -110,12 +118,14 @@ StyleManager.prototype.getFontSize = function () {
 };
 
 StyleManager.prototype.setOption = function (option, value) {
+
   option = option.toLowerCase();
   if (typeof value === 'string') {
-    value = value.toLowerCase();
+    value  = value.toLowerCase();
   }
 
   switch (option) {
+
     case 'font-bold':
       this.setBold(value);
       break;
@@ -154,5 +164,7 @@ StyleManager.prototype.setOption = function (option, value) {
 
     default:
       break;
+
   } // end switch
+
 };

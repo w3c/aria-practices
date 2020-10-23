@@ -1,7 +1,7 @@
 /*
- *   This content is licensed according to the W3C Software License at
- *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
- */
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*/
 
 'use strict';
 
@@ -22,7 +22,11 @@
  *  The search function. The function accepts a search string and returns an
  *  array of results.
  */
-aria.GridCombobox = function (input, grid, searchFn) {
+aria.GridCombobox = function (
+  input,
+  grid,
+  searchFn
+) {
   this.input = input;
   this.grid = grid;
   this.searchFn = searchFn;
@@ -74,6 +78,7 @@ aria.GridCombobox.prototype.handleInputKeyUp = function (evt) {
   }
 };
 
+
 aria.GridCombobox.prototype.handleInputKeyDown = function (evt) {
   var key = evt.which || evt.keyCode;
   var activeRowIndex = this.activeRowIndex;
@@ -85,17 +90,18 @@ aria.GridCombobox.prototype.handleInputKeyDown = function (evt) {
       this.removeFocusCell(this.activeRowIndex, this.activeColIndex);
       this.activeRowIndex = -1;
       this.activeColIndex = 0;
-      this.input.setAttribute('aria-activedescendant', '');
-    } else {
+      this.input.setAttribute(
+        'aria-activedescendant',
+        ''
+      );
+    }
+    else {
       if (!this.shown) {
-        setTimeout(
-          function () {
-            // On Firefox, input does not get cleared here unless wrapped in
-            // a setTimeout
-            this.input.value = '';
-          }.bind(this),
-          1
-        );
+        setTimeout((function () {
+          // On Firefox, input does not get cleared here unless wrapped in
+          // a setTimeout
+          this.input.value = '';
+        }).bind(this), 1);
       }
     }
     if (this.shown) {
@@ -126,7 +132,8 @@ aria.GridCombobox.prototype.handleInputKeyDown = function (evt) {
       if (activeColIndex <= 0) {
         activeColIndex = this.colsCount - 1;
         activeRowIndex = this.getRowIndex(key);
-      } else {
+      }
+      else {
         activeColIndex--;
       }
       if (this.gridFocused) {
@@ -137,7 +144,8 @@ aria.GridCombobox.prototype.handleInputKeyDown = function (evt) {
       if (activeColIndex === -1 || activeColIndex >= this.colsCount - 1) {
         activeColIndex = 0;
         activeRowIndex = this.getRowIndex(key);
-      } else {
+      }
+      else {
         activeColIndex++;
       }
       if (this.gridFocused) {
@@ -173,8 +181,12 @@ aria.GridCombobox.prototype.handleInputKeyDown = function (evt) {
     this.focusCell(activeRowIndex, activeColIndex);
     var selectedItem = this.getItemAt(activeRowIndex, this.selectionCol);
     selectedItem.setAttribute('aria-selected', 'true');
-  } else {
-    this.input.setAttribute('aria-activedescendant', '');
+  }
+  else {
+    this.input.setAttribute(
+      'aria-activedescendant',
+      ''
+    );
   }
 };
 
@@ -190,9 +202,11 @@ aria.GridCombobox.prototype.handleGridClick = function (evt) {
   var row;
   if (evt.target.getAttribute('role') === 'row') {
     row = evt.target;
-  } else if (evt.target.getAttribute('role') === 'gridcell') {
+  }
+  else if (evt.target.getAttribute('role') === 'gridcell') {
     row = evt.target.parentNode;
-  } else {
+  }
+  else {
     return;
   }
 
@@ -242,7 +256,8 @@ aria.GridCombobox.prototype.getRowIndex = function (key) {
     case aria.KeyCode.LEFT:
       if (activeRowIndex <= 0) {
         activeRowIndex = this.rowsCount - 1;
-      } else {
+      }
+      else {
         activeRowIndex--;
       }
       break;
@@ -250,7 +265,8 @@ aria.GridCombobox.prototype.getRowIndex = function (key) {
     case aria.KeyCode.RIGHT:
       if (activeRowIndex === -1 || activeRowIndex >= this.rowsCount - 1) {
         activeRowIndex = 0;
-      } else {
+      }
+      else {
         activeRowIndex++;
       }
   }
@@ -258,9 +274,11 @@ aria.GridCombobox.prototype.getRowIndex = function (key) {
   return activeRowIndex;
 };
 
+
 aria.GridCombobox.prototype.getItemAt = function (rowIndex, colIndex) {
   return document.getElementById('result-item-' + rowIndex + 'x' + colIndex);
 };
+
 
 aria.GridCombobox.prototype.selectItem = function (item) {
   if (item) {
@@ -279,7 +297,10 @@ aria.GridCombobox.prototype.hideResults = function () {
   this.input.setAttribute('aria-expanded', 'false');
   this.rowsCount = 0;
   this.colsCount = 0;
-  this.input.setAttribute('aria-activedescendant', '');
+  this.input.setAttribute(
+    'aria-activedescendant',
+    ''
+  );
 };
 
 aria.GridCombobox.prototype.removeFocusCell = function (rowIndex, colIndex) {

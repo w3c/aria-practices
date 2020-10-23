@@ -1,3 +1,5 @@
+'use strict';
+
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
@@ -15,92 +17,69 @@ const ex = {
   spinSelector: '#ex1 [role="spinbutton"]',
   checkboxSelector: '#ex1 .item',
   linkSelector: '#ex1 [href]',
-  allToolSelectors: ['#ex1 .item'],
+  allToolSelectors: [
+    '#ex1 .item'
+  ],
   tabbableItemBeforeToolbarSelector: '[href="../../#toolbar"]',
-  tabbableItemAfterToolbarSelector: '[href="../../#kbd_roving_tabindex"]',
+  tabbableItemAfterToolbarSelector: '[href="../../#kbd_roving_tabindex"]'
 };
 
 const clickAndWait = async function (t, selector) {
   let element = await t.context.session.findElement(By.css(selector));
   await element.click();
 
-  return await t.context.session
-    .wait(
-      async function () {
-        let tabindex = await element.getAttribute('tabindex');
-        return tabindex === '0';
-      },
-      t.context.waitTime,
-      'Timeout waiting for click to set tabindex="0" on: ' + selector
-    )
-    .catch((err) => {
-      return err;
-    });
+  return await t.context.session.wait(
+    async function () {
+      let tabindex = await element.getAttribute('tabindex');
+      return tabindex === '0';
+    },
+    t.context.waitTime,
+    'Timeout waiting for click to set tabindex="0" on: ' + selector
+  ).catch((err) => { return err; });
 };
 
 const waitAndCheckFocus = async function (t, selector) {
-  return t.context.session
-    .wait(
-      async function () {
-        return t.context.session.executeScript(function () {
-          const [selector, index] = arguments;
-          let item = document.querySelector(selector);
-          return item === document.activeElement;
-        }, selector);
-      },
-      t.context.waitTime,
-      'Timeout waiting for activeElement to become: ' + selector
-    )
-    .catch((err) => {
-      return err;
-    });
+  return t.context.session.wait(
+    async function () {
+      return t.context.session.executeScript(function () {
+        const [selector, index] = arguments;
+        let item = document.querySelector(selector);
+        return item === document.activeElement;
+      }, selector);
+    },
+    t.context.waitTime,
+    'Timeout waiting for activeElement to become: ' + selector,
+  ).catch((err) => { return err; });
 };
 
 const waitAndCheckTabindex = async function (t, selector) {
-  return t.context.session
-    .wait(
-      async function () {
-        let item = await t.context.session.findElement(By.css(selector));
-        return (await item.getAttribute('tabindex')) === '0';
-      },
-      600,
-      'Timeout waiting for tabindex to set to "0" for: ' + selector
-    )
-    .catch((err) => {
-      return err;
-    });
+  return t.context.session.wait(
+    async function () {
+      let item = await t.context.session.findElement(By.css(selector));
+      return (await item.getAttribute('tabindex')) === '0';
+    },
+    600,
+    'Timeout waiting for tabindex to set to "0" for: ' + selector
+  ).catch((err) => { return err; });
 };
 
 // Attributes
 
-ariaTest(
-  'Toolbar element has role="toolbar"',
-  exampleFile,
-  'toolbar-role',
-  async (t) => {
+ariaTest('Toolbar element has role="toolbar"', exampleFile, 'toolbar-role', async (t) => {
     await assertAriaRoles(t, 'ex1', 'toolbar', '1', 'div');
-  }
-);
+});
 
 // Test fails from bug in example: fix in issue 847 on w3c/aria-practices
-ariaTest(
-  'Toolbar element has "aria-label"',
-  exampleFile,
-  'toolbar-aria-label',
-  async (t) => {
+ariaTest('Toolbar element has "aria-label"', exampleFile, 'toolbar-aria-label', async (t) => {
     await assertAriaLabelExists(t, ex.toolbarSelector);
-  }
-);
+});
 
-ariaTest(
-  'Toolbar items support roving tabindex on toolbar items (Part 1)',
-  exampleFile,
-  'toolbar-item-tabindex',
-  async (t) => {
-    // Test all the toolbar items with roving tab index
-    await assertRovingTabindex(t, ex.itemSelector, Key.ARROW_RIGHT);
-  }
-);
+ariaTest('Toolbar items support roving tabindex on toolbar items (Part 1)', exampleFile, 'toolbar-item-tabindex', async (t) => {
+  
+  // Test all the toolbar items with roving tab index
+  await assertRovingTabindex(t, ex.itemSelector, Key.ARROW_RIGHT);
+
+});
 
 /*
 ariaTest('Toolbar items support roving tabindex on toolbar items (Part 2)', exampleFile, 'toolbar-item-tabindex', async (t) => {

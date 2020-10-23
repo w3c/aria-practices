@@ -41,11 +41,11 @@ dl.faq button:active {
 }
 
 dl.faq button[aria-expanded="false"]::before {
-  content: url("../images/right-arrow-brown.png");
+  content: url('../images/right-arrow-brown.png');
   padding-right: 0.35em;
 }
 
 dl.faq button[aria-expanded="true"]::before {
-  content: url("../images/down-arrow-brown.png");
+  content: url('../images/down-arrow-brown.png');
   padding-right: 0.35em;
 }

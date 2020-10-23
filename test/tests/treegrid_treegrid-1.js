@@ -1,3 +1,5 @@
+'use strict';
+
 const { ariaTest } = require('..');
 const { By, Key, until } = require('selenium-webdriver');
 const assertAriaRoles = require('../util/assertAriaRoles');
@@ -24,8 +26,8 @@ const ex = {
     ['2', '3', '3'],
     ['3', '1', '1'],
     ['4', '2', '1'],
-    ['4', '2', '2'],
-  ],
+    ['4', '2', '2']
+  ]
 };
 
 const reload = async (t) => {
@@ -58,53 +60,41 @@ const openAllThreadsAndFocusOnFirstRow = async function (t) {
   await openAllThreads(t);
   await t.context.session.findElement(By.css(ex.gridcellSelector)).click();
 
-  await t.context.session.wait(
-    async function () {
-      const val = await t.context.session
-        .findElement(By.css(ex.emailRowSelector))
-        .getAttribute('tabindex');
-      return val === '0';
-    },
-    500,
-    'Timeout waiting for tabindex to update to "0" after clicking first grid row'
-  );
+  await t.context.session.wait(async function () {
+    const val =  await t.context.session.findElement(By.css(ex.emailRowSelector))
+      .getAttribute('tabindex');
+    return val === '0';
+  }, 500, 'Timeout waiting for tabindex to update to "0" after clicking first grid row');
 };
 
 const checkFocus = async function (t, selector, index) {
-  return t.context.session.executeScript(
-    function (/* selector, index*/) {
-      const [selector, index] = arguments;
-      const items = document.querySelectorAll(selector);
-      return items[index] === document.activeElement;
-    },
-    selector,
-    index
-  );
+  return t.context.session.executeScript(function (/* selector, index*/) {
+    const [selector, index] = arguments;
+    const items = document.querySelectorAll(selector);
+    return items[index] === document.activeElement;
+  }, selector, index);
 };
 
 const checkFocusOnParentEmail = async function (t, emailIndex) {
-  return t.context.session.executeScript(
-    function () {
-      const [selector, emailIndex] = arguments;
+  return t.context.session.executeScript(function () {
+    const [selector, emailIndex] = arguments;
 
-      const emails = document.querySelectorAll(selector);
-      const email = emails[emailIndex];
-      const currentLevel = parseInt(email.getAttribute('aria-level'));
+    const emails = document.querySelectorAll(selector);
+    const email = emails[emailIndex];
+    const currentLevel = parseInt(email.getAttribute('aria-level'));
 
-      const previousLevel = currentLevel - 1;
+    const previousLevel = currentLevel - 1;
 
-      // The first email we find that is up one level is the parent email
-      for (let i = emailIndex - 1; i >= 0; i--) {
-        if (parseInt(emails[i].getAttribute('aria-level')) === previousLevel) {
-          return document.activeElement === emails[i];
-        }
+    // The first email we find that is up one level is the parent email
+    for (let i = emailIndex - 1; i >= 0; i--) {
+      if (parseInt(emails[i].getAttribute('aria-level')) === previousLevel) {
+        return document.activeElement === emails[i];
       }
+    }
 
-      return false;
-    },
-    ex.emailRowSelector,
-    emailIndex
-  );
+    return false;
+
+  }, ex.emailRowSelector, emailIndex);
 };
 
 const isTopLevelFolder = async function (t, el) {
@@ -114,17 +104,16 @@ const isTopLevelFolder = async function (t, el) {
   }, el);
 };
 
-const isOpenedThread = async function (el) {
-  return (await el.getAttribute('aria-expanded')) === 'true';
+const isOpenedThread =  async function (el) {
+  return await el.getAttribute('aria-expanded') === 'true';
 };
 
-const isClosedThread = async function (el) {
-  return (await el.getAttribute('aria-expanded')) === 'false';
+const isClosedThread =  async function (el) {
+  return await el.getAttribute('aria-expanded') === 'false';
 };
 
 const checkFocusOnGridcell = async function (t, rowIndex, gridcellIndex) {
-  let gridcellsSelector =
-    '#ex1 [role="row"]:nth-of-type(' + (rowIndex + 1) + ') [role="gridcell"]';
+  let gridcellsSelector = '#ex1 [role="row"]:nth-of-type(' + (rowIndex + 1) + ') [role="gridcell"]';
 
   // If the gridcell is index 0 or 1, it does not contain a widget, focus
   // should be on the gridcell itself
@@ -138,16 +127,10 @@ const checkFocusOnGridcell = async function (t, rowIndex, gridcellIndex) {
   return checkFocus(t, gridcellsSelector, 0);
 };
 
-const sendKeyToGridcellAndWait = async function (
-  t,
-  rowIndex,
-  gridcellIndex,
-  key
-) {
-  let gridcellSelector =
-    '#ex1 [role="row"]:nth-of-type(' + (rowIndex + 1) + ') [role="gridcell"]';
-  gridcellSelector =
-    gridcellSelector + ':nth-of-type(' + (gridcellIndex + 1) + ')';
+const sendKeyToGridcellAndWait = async function (t, rowIndex, gridcellIndex, key) {
+
+  let gridcellSelector = '#ex1 [role="row"]:nth-of-type(' + (rowIndex + 1) + ') [role="gridcell"]';
+  gridcellSelector = gridcellSelector + ':nth-of-type(' + (gridcellIndex + 1) + ')';
 
   // If index 2, then we need to send keys to the 'a' element within the gridcell
   if (gridcellIndex == 2) {
@@ -158,7 +141,7 @@ const sendKeyToGridcellAndWait = async function (
 
   // Wait for focus to move (this example can be slow to update focus on key press)
   t.context.session.wait(async function () {
-    return (await checkFocus(t, gridcellSelector, 0)) === false;
+    return await checkFocus(t, gridcellSelector, 0) === false;
   }, 500);
 };
 
@@ -168,24 +151,22 @@ const sendKeyToRowAndWait = async function (t, rowIndex, key) {
 
   // Wait for focus to move (this example can be slow to update focus on key press)
   t.context.session.wait(async function () {
-    return (await checkFocus(t, ex.emailRowSelector, rowIndex)) === false;
+    return await checkFocus(t, ex.emailRowSelector, rowIndex) === false;
   }, 500);
 };
 
 const putFocusOnRow1Gridcell = async function (t, columnindex) {
   if (columnindex === 0) {
-    await t.context.session
-      .findElement(By.css(ex.emailRowSelector))
-      .sendKeys(Key.ARROW_RIGHT);
-  } else if (columnindex === 1) {
-    await t.context.session
-      .findElement(By.css(ex.emailRowSelector))
-      .sendKeys(Key.ARROW_RIGHT);
+    await t.context.session.findElement(By.css(ex.emailRowSelector)).sendKeys(Key.ARROW_RIGHT);
+  }
+
+  else if (columnindex === 1) {
+    await t.context.session.findElement(By.css(ex.emailRowSelector)).sendKeys(Key.ARROW_RIGHT);
     await sendKeyToGridcellAndWait(t, 0, 0, Key.ARROW_RIGHT);
-  } else if (columnindex === 2) {
-    await t.context.session
-      .findElement(By.css(ex.emailRowSelector))
-      .sendKeys(Key.ARROW_RIGHT);
+  }
+
+  else if (columnindex === 2) {
+    await t.context.session.findElement(By.css(ex.emailRowSelector)).sendKeys(Key.ARROW_RIGHT);
     await sendKeyToGridcellAndWait(t, 0, 0, Key.ARROW_RIGHT);
     await sendKeyToGridcellAndWait(t, 0, 1, Key.ARROW_RIGHT);
   }
@@ -197,507 +178,400 @@ const putFocusOnLastRowGridcell = async function (t, columnindex) {
 
   if (columnindex === 0) {
     await rows[lastrow].sendKeys(Key.ARROW_RIGHT);
-  } else if (columnindex === 1) {
+  }
+  else if (columnindex === 1) {
     await rows[lastrow].sendKeys(Key.ARROW_RIGHT);
     await sendKeyToGridcellAndWait(t, lastrow, 0, Key.ARROW_RIGHT);
-  } else if (columnindex === 2) {
+  }
+  else if (columnindex === 2) {
     await rows[lastrow].sendKeys(Key.ARROW_RIGHT);
     await sendKeyToGridcellAndWait(t, lastrow, 0, Key.ARROW_RIGHT);
     await sendKeyToGridcellAndWait(t, lastrow, 1, Key.ARROW_RIGHT);
   }
 };
 
+
 // Attributes
 
-ariaTest(
-  'treegrid role on table element',
-  exampleFile,
-  'treegrid-role',
-  async (t) => {
+ariaTest('treegrid role on table element', exampleFile, 'treegrid-role', async (t) => {
     await assertAriaRoles(t, 'ex1', 'treegrid', 1, 'table');
-  }
-);
-
-ariaTest(
-  'aria-label on treegrid',
-  exampleFile,
-  'treegrid-aria-label',
-  async (t) => {
-    await assertAriaLabelExists(t, ex.treegridSelector);
-  }
-);
-
-ariaTest('row role on tr element', exampleFile, 'row-role', async (t) => {
-  await assertAriaRoles(t, 'ex1', 'row', 8, 'tr');
 });
 
-ariaTest(
-  'roving tabindex on rows and links',
-  exampleFile,
-  'row-tabindex',
-  async (t) => {
-    await openAllThreadsAndFocusOnFirstRow(t);
+ariaTest('aria-label on treegrid', exampleFile, 'treegrid-aria-label', async (t) => {
+    await assertAriaLabelExists(t, ex.treegridSelector);
+});
 
-    // Assert roving tab index on rows
-    await assertRovingTabindex(t, ex.emailRowSelector, Key.ARROW_DOWN);
+ariaTest('row role on tr element', exampleFile, 'row-role', async (t) => {
+    await assertAriaRoles(t, 'ex1', 'row', 8, 'tr');
+});
 
-    await reload(t);
-    await openAllThreadsAndFocusOnFirstRow(t);
+ariaTest('roving tabindex on rows and links', exampleFile, 'row-tabindex', async (t) => {
+  
+  await openAllThreadsAndFocusOnFirstRow(t);
 
-    // Assert roving tab index on the links
-    await assertRovingTabindex(t, ex.emailLinkSelector, Key.ARROW_DOWN);
+  // Assert roving tab index on rows
+  await assertRovingTabindex(t, ex.emailRowSelector, Key.ARROW_DOWN);
 
-    // TODO:
-    // Test tabindex values on gridcells. At the time of this test the
-    // description does not match the behavior and it is unclear which is correct.
-    // See issue #790
-  }
-);
+  await reload(t);
+  await openAllThreadsAndFocusOnFirstRow(t);
 
-ariaTest(
-  'aria-expanded on row elements',
-  exampleFile,
-  'row-aria-expanded',
-  async (t) => {
-    // After page load and after closing the first thread, all threads will be closed
-    await t.context.session
-      .findElement(By.css(ex.threadSelector))
-      .sendKeys(Key.ARROW_LEFT);
-    await assertAttributeValues(t, ex.threadSelector, 'aria-expanded', 'false');
+  // Assert roving tab index on the links
+  await assertRovingTabindex(t, ex.emailLinkSelector, Key.ARROW_DOWN);
 
-    // Open all threads
-    await openAllThreadsAndFocusOnFirstRow(t);
-    await assertAttributeValues(t, ex.threadSelector, 'aria-expanded', 'true');
+  // TODO:
+  // Test tabindex values on gridcells. At the time of this test the
+  // description does not match the behavior and it is unclear which is correct.
+  // See issue #790
+});
 
-    // Close the first thread
-    await t.context.session
-      .findElement(By.css(ex.threadSelector))
-      .sendKeys(Key.ARROW_LEFT);
+ariaTest('aria-expanded on row elements', exampleFile, 'row-aria-expanded', async (t) => {
+  
+  // After page load and after closing the first thread, all threads will be closed
+  await t.context.session.findElement(By.css(ex.threadSelector)).sendKeys(Key.ARROW_LEFT);
+  await assertAttributeValues(t, ex.threadSelector, 'aria-expanded', 'false');
 
-    // Make sure the first thread is closed
-    const threads = await t.context.queryElements(t, ex.threadSelector);
+  // Open all threads
+  await openAllThreadsAndFocusOnFirstRow(t);
+  await assertAttributeValues(t, ex.threadSelector, 'aria-expanded', 'true');
+
+  // Close the first thread
+  await t.context.session.findElement(By.css(ex.threadSelector)).sendKeys(Key.ARROW_LEFT);
+
+  // Make sure the first thread is closed
+  const threads = await t.context.queryElements(t, ex.threadSelector);
+  t.is(
+    await threads.shift().getAttribute('aria-expanded'),
+    'false',
+    'Closing the first thread (via "arrow left" key) should set aria-expanded to "false"'
+  );
+
+  // But all other threads are still open
+  for (let thread of threads) {
     t.is(
-      await threads.shift().getAttribute('aria-expanded'),
-      'false',
-      'Closing the first thread (via "arrow left" key) should set aria-expanded to "false"'
+      await thread.getAttribute('aria-expanded'),
+      'true',
+      'All threads other than the first thread should remain open after closing on the first.'
     );
-
-    // But all other threads are still open
-    for (let thread of threads) {
-      t.is(
-        await thread.getAttribute('aria-expanded'),
-        'true',
-        'All threads other than the first thread should remain open after closing on the first.'
-      );
-    }
   }
-);
+});
 
-ariaTest(
-  'aria-level on row elements',
-  exampleFile,
-  'row-aria-level',
-  async (t) => {
-    let rows = await t.context.queryElements(t, ex.emailRowSelector);
 
-    for (let index = 0; index < rows.length; index++) {
-      t.is(
-        await rows[index].getAttribute('aria-level'),
-        ex.rowRelationData[index][0],
-        'The email at index ' +
-          index +
-          ' should have "aria-level" value: ' +
-          ex.rowRelationData[index][0]
-      );
-    }
+ariaTest('aria-level on row elements', exampleFile, 'row-aria-level', async (t) => {
+  
+  let rows = await t.context.queryElements(t, ex.emailRowSelector);
+
+  for (let index = 0; index < rows.length; index++) {
+    t.is(
+      await rows[index].getAttribute('aria-level'),
+      ex.rowRelationData[index][0],
+      'The email at index ' + index + ' should have "aria-level" value: ' + ex.rowRelationData[index][0]
+    );
   }
-);
+});
 
-ariaTest(
-  'aria-setsize on row elements',
-  exampleFile,
-  'row-aria-setsize',
-  async (t) => {
-    let rows = await t.context.queryElements(t, ex.emailRowSelector);
+ariaTest('aria-setsize on row elements', exampleFile, 'row-aria-setsize', async (t) => {
+  
+  let rows = await t.context.queryElements(t, ex.emailRowSelector);
 
-    for (let index = 0; index < rows.length; index++) {
-      t.is(
-        await rows[index].getAttribute('aria-setsize'),
-        ex.rowRelationData[index][1],
-        'The email at index ' +
-          index +
-          ' should have "aria-setsize" value: ' +
-          ex.rowRelationData[index][1]
-      );
-    }
+  for (let index = 0; index < rows.length; index++) {
+    t.is(
+      await rows[index].getAttribute('aria-setsize'),
+      ex.rowRelationData[index][1],
+      'The email at index ' + index + ' should have "aria-setsize" value: ' + ex.rowRelationData[index][1]
+    );
   }
-);
+});
 
-ariaTest(
-  'aria-posinset on row elements',
-  exampleFile,
-  'row-aria-posinset',
-  async (t) => {
-    let rows = await t.context.queryElements(t, ex.emailRowSelector);
 
-    for (let index = 0; index < rows.length; index++) {
-      t.is(
-        await rows[index].getAttribute('aria-posinset'),
-        ex.rowRelationData[index][2],
-        'The email at index ' +
-          index +
-          ' should have "aria-posinset" value: ' +
-          ex.rowRelationData[index][2]
-      );
-    }
+ariaTest('aria-posinset on row elements', exampleFile, 'row-aria-posinset', async (t) => {
+  
+  let rows = await t.context.queryElements(t, ex.emailRowSelector);
+
+  for (let index = 0; index < rows.length; index++) {
+    t.is(
+      await rows[index].getAttribute('aria-posinset'),
+      ex.rowRelationData[index][2],
+      'The email at index ' + index + ' should have "aria-posinset" value: ' + ex.rowRelationData[index][2]
+    );
   }
-);
+});
 
-ariaTest(
-  'gridcell roles on td elements',
-  exampleFile,
-  'gridcell-role',
-  async (t) => {
+
+ariaTest('gridcell roles on td elements', exampleFile, 'gridcell-role', async (t) => {
     await assertAriaRoles(t, 'ex1', 'gridcell', 24, 'td');
-  }
-);
+});
 
 // Keys
 
-ariaTest(
-  'Navigating through rows with right arrow',
-  exampleFile,
-  'key-right-arrow',
-  async (t) => {
-    await closeAllThreads(t);
+ariaTest('Navigating through rows with right arrow', exampleFile, 'key-right-arrow', async (t) => {
+  
+  await closeAllThreads(t);
 
-    // Going through all closed email thread elements in dom order will open parent
-    // threads first.
+  // Going through all closed email thread elements in dom order will open parent
+  // threads first.
 
-    const emailRows = await t.context.queryElements(t, ex.emailRowSelector);
-    for (let index = 0; index < emailRows.length; index++) {
-      // Send ARROW RIGHT only to emails that are the start of threads
-      if (await isClosedThread(emailRows[index])) {
-        await emailRows[index].sendKeys(Key.ARROW_RIGHT);
-        t.true(
-          await emailRows[index + 1].isDisplayed(),
-          'Sending key ARROW RIGHT to email at index ' +
-            index +
-            ' should open a thread, displaying the next email row(s) in the gridtree.'
-        );
-      }
-    }
-  }
-);
+  const emailRows = await t.context.queryElements(t, ex.emailRowSelector);
+  for (let index = 0; index < emailRows.length; index++) {
 
-ariaTest(
-  'Navigating through gridcells with right arrow',
-  exampleFile,
-  'key-right-arrow',
-  async (t) => {
-    await openAllThreads(t);
-
-    const emailRows = await t.context.queryElements(t, ex.emailRowSelector);
-    for (let index = 0; index < emailRows.length; index++) {
-      // Check that arrow right moves focus to the first gridcell of each row if the email
-      // is not the start of a thread, or the thread is open
+    // Send ARROW RIGHT only to emails that are the start of threads
+    if (await isClosedThread(emailRows[index])) {
       await emailRows[index].sendKeys(Key.ARROW_RIGHT);
       t.true(
-        await checkFocusOnGridcell(t, index, 0),
-        'Sending key ARROW RIGHT to email at index ' +
-          index +
-          ' should move focus to the first gridcell'
-      );
-
-      // Check that arrow right moves focus to the next gridcell
-      await sendKeyToGridcellAndWait(t, index, 0, Key.ARROW_RIGHT);
-      t.true(
-        await checkFocusOnGridcell(t, index, 1),
-        'Sending ARROW RIGHT keys to gridcell at index 1 should move focus to gridcell at index 2'
-      );
-
-      // Check that arrow right does not move focus when sent to last gridcell
-      await sendKeyToGridcellAndWait(t, index, 2, Key.ARROW_RIGHT);
-      t.true(
-        await checkFocusOnGridcell(t, index, 2),
-        'Sending ARROW RIGHT keys to final gridcell should key focus on final gridcell'
+        await emailRows[index + 1].isDisplayed(),
+        'Sending key ARROW RIGHT to email at index ' + index + ' should open a thread, displaying the next email row(s) in the gridtree.'
       );
     }
   }
-);
 
-ariaTest(
-  'Navigating through rows with left arrow',
-  exampleFile,
-  'key-left-arrow',
-  async (t) => {
-    await openAllThreads(t);
+});
 
-    const emailRows = await t.context.queryElements(t, ex.emailRowSelector);
-    let i = emailRows.length - 1;
-    while (i > 0) {
-      const isOpened = await isOpenedThread(emailRows[i]);
+ariaTest('Navigating through gridcells with right arrow', exampleFile, 'key-right-arrow', async (t) => {
+  
+  await openAllThreads(t);
 
-      await emailRows[i].sendKeys(Key.ARROW_LEFT);
+  const emailRows = await t.context.queryElements(t, ex.emailRowSelector);
+  for (let index = 0; index < emailRows.length; index++) {
 
-      // If the emailRows was an opened Thread
-      if (isOpened) {
-        t.is(
-          await emailRows[i].getAttribute('aria-expanded'),
-          'false',
-          'Sending key ARROW_LEFT to thread at email index ' +
-            i +
-            ' when the thread is opened should close the thread'
-        );
-
-        t.true(
-          await checkFocus(t, ex.emailRowSelector, i),
-          'Sending key ARROW_LEFT to thread at email index ' +
-            i +
-            ' when the thread is opened should not move the focus'
-        );
-        // Send one more arrow key to the folder that is now closed
-        continue;
-      }
-
-      // If the email row is an email without children, or a closed thead,
-      // arrow will move up to parent email
-      else {
-        t.true(
-          await checkFocusOnParentEmail(t, i),
-          'Sending key ARROW_LEFT to email at index ' +
-            i +
-            ' should move focus to parent email'
-        );
-
-        t.is(
-          await emailRows[i].isDisplayed(),
-          true,
-          'Sending key ARROW_LEFT to email at index ' +
-            i +
-            ' should not close the folder it is in'
-        );
-      }
-
-      i--;
-    }
-  }
-);
-
-ariaTest(
-  'Navigating through gridcells with left arrow',
-  exampleFile,
-  'key-left-arrow',
-  async (t) => {
-    await openAllThreads(t);
-
-    const emailRows = await t.context.queryElements(t, ex.emailRowSelector);
-
-    for (let index = 0; index < emailRows.length; index++) {
-      // Set up: put focus on a gridcell by sending a "ARROW LEFT" key to an open row
-      await emailRows[index].sendKeys(Key.ARROW_RIGHT);
-
-      // Now send that row an "ARROW LEFT" key and make sure focus is on the first row
-      await sendKeyToGridcellAndWait(t, index, 0, Key.ARROW_LEFT);
-      t.true(
-        await checkFocus(t, ex.emailRowSelector, index),
-        'Focus should be on grid row at index " + index + " after ARROW LEFT sent to first gridcell in first row'
-      );
-
-      // Set up: put focus on last gridcell
-      await emailRows[index].sendKeys(Key.ARROW_RIGHT);
-      await sendKeyToGridcellAndWait(t, index, 0, Key.END);
-
-      // Now send that gridcell an "ARROW LEFT" key and make sure focus is on the second gridcell
-      await sendKeyToGridcellAndWait(t, index, 2, Key.ARROW_LEFT);
-      t.true(
-        await checkFocusOnGridcell(t, index, 1),
-        'Focus should be on the second gridcell in the first row after ARROW LEFT sent to third gridcell in grid row of index: ' +
-          index
-      );
-
-      // Now send the second gridcell an "ARROW LEFT" key and make sure focus is on the first
-      await sendKeyToGridcellAndWait(t, index, 1, Key.ARROW_LEFT);
-      t.true(
-        await checkFocusOnGridcell(t, index, 0),
-        'Focus should be on the first gridcell in the first row after ARROW LEFT sent to second gridcell  in grid row of index: ' +
-          index
-      );
-    }
-  }
-);
-
-ariaTest(
-  'Navigating through rows with down arrow',
-  exampleFile,
-  'key-down-arrow',
-  async (t) => {
-    await openAllThreads(t);
-
-    const emailRows = await t.context.queryElements(t, ex.emailRowSelector);
-    for (let index = 0; index < emailRows.length - 1; index++) {
-      // Send ARROW DOWN to email rows
-      await emailRows[index].sendKeys(Key.ARROW_DOWN);
-      t.true(
-        await checkFocus(t, ex.emailRowSelector, index + 1),
-        'Sending key ARROW DOWN to email at index ' +
-          index +
-          ' should move focus to the next email'
-      );
-    }
-
-    // Send ARROW DOWN to last email
-    await emailRows[emailRows.length - 1].sendKeys(Key.ARROW_DOWN);
+    // Check that arrow right moves focus to the first gridcell of each row if the email
+    // is not the start of a thread, or the thread is open
+    await emailRows[index].sendKeys(Key.ARROW_RIGHT);
     t.true(
-      await checkFocus(t, ex.emailRowSelector, emailRows.length - 1),
-      'Sending key ARROW DOWN to last email should not move focus'
+      await checkFocusOnGridcell(t, index, 0),
+      'Sending key ARROW RIGHT to email at index ' + index + ' should move focus to the first gridcell'
+    );
+
+    // Check that arrow right moves focus to the next gridcell
+    await sendKeyToGridcellAndWait(t, index, 0, Key.ARROW_RIGHT);
+    t.true(
+      await checkFocusOnGridcell(t, index, 1),
+      'Sending ARROW RIGHT keys to gridcell at index 1 should move focus to gridcell at index 2'
+    );
+
+    // Check that arrow right does not move focus when sent to last gridcell
+    await sendKeyToGridcellAndWait(t, index, 2, Key.ARROW_RIGHT);
+    t.true(
+      await checkFocusOnGridcell(t, index, 2),
+      'Sending ARROW RIGHT keys to final gridcell should key focus on final gridcell'
     );
   }
-);
 
-ariaTest(
-  'Navigating through gridcells with down arrow',
-  exampleFile,
-  'key-down-arrow',
-  async (t) => {
-    await openAllThreads(t);
-    const emailRows = await t.context.queryElements(t, ex.emailRowSelector);
+});
 
-    for (let columnindex = 0; columnindex < 3; columnindex++) {
-      await putFocusOnRow1Gridcell(t, columnindex);
+ariaTest('Navigating through rows with left arrow', exampleFile, 'key-left-arrow', async (t) => {
+  
+  await openAllThreads(t);
 
-      for (let rowindex = 0; rowindex < emailRows.length - 1; rowindex++) {
-        // Send ARROW DOWN to gridcell
-        await sendKeyToGridcellAndWait(
-          t,
-          rowindex,
-          columnindex,
-          Key.ARROW_DOWN
-        );
-        t.true(
-          await checkFocusOnGridcell(t, rowindex + 1, columnindex),
-          'Sending key ARROW DOWN to cell at row index ' +
-            rowindex +
-            ' and column index ' +
-            columnindex +
-            ' should move focus to the next email'
-        );
-      }
+  const emailRows = await t.context.queryElements(t, ex.emailRowSelector);
+  let i = emailRows.length - 1;
+  while (i > 0) {
 
-      // Send ARROW DOWN to last row
-      await sendKeyToGridcellAndWait(
-        t,
-        emailRows.length - 1,
-        columnindex,
-        Key.ARROW_DOWN
+    const isOpened = await isOpenedThread(emailRows[i]);
+
+    await emailRows[i].sendKeys(Key.ARROW_LEFT);
+
+    // If the emailRows was an opened Thread
+    if (isOpened) {
+      t.is(
+        await emailRows[i].getAttribute('aria-expanded'),
+        'false',
+        'Sending key ARROW_LEFT to thread at email index ' + i +
+          ' when the thread is opened should close the thread'
       );
+
       t.true(
-        await checkFocusOnGridcell(t, emailRows.length - 1, columnindex),
-        'Sending key ARROW DOWN to the cell at column index ' +
-          columnindex +
-          ' in the last row should not move focus'
+        await checkFocus(t,  ex.emailRowSelector, i),
+        'Sending key ARROW_LEFT to thread at email index ' + i +
+          ' when the thread is opened should not move the focus'
       );
+      // Send one more arrow key to the folder that is now closed
+      continue;
     }
-  }
-);
 
-ariaTest(
-  'Navigating through rows with up arrow',
-  exampleFile,
-  'key-up-arrow',
-  async (t) => {
-    await openAllThreads(t);
-
-    const emailRows = await t.context.queryElements(t, ex.emailRowSelector);
-    for (let index = emailRows.length - 1; index > 0; index--) {
-      // Send ARROW UP to email rows
-      await emailRows[index].sendKeys(Key.ARROW_UP);
+    // If the email row is an email without children, or a closed thead,
+    // arrow will move up to parent email
+    else {
       t.true(
-        await checkFocus(t, ex.emailRowSelector, index - 1),
-        'Sending key ARROW UP to email at index ' +
-          index +
-          ' should move focus to the previous email'
+        await checkFocusOnParentEmail(t, i),
+        'Sending key ARROW_LEFT to email at index ' + i + ' should move focus to parent email'
+      );
+
+      t.is(
+        await emailRows[i].isDisplayed(),
+        true,
+        'Sending key ARROW_LEFT to email at index ' + i + ' should not close the folder it is in'
       );
     }
 
-    // Send ARROW UP to first email
-    await emailRows[0].sendKeys(Key.ARROW_UP);
+    i--;
+  }
+});
+
+
+ariaTest('Navigating through gridcells with left arrow', exampleFile, 'key-left-arrow', async (t) => {
+  
+  await openAllThreads(t);
+
+  const emailRows = await t.context.queryElements(t, ex.emailRowSelector);
+
+  for (let index = 0; index < emailRows.length; index++) {
+
+    // Set up: put focus on a gridcell by sending a "ARROW LEFT" key to an open row
+    await emailRows[index].sendKeys(Key.ARROW_RIGHT);
+
+    // Now send that row an "ARROW LEFT" key and make sure focus is on the first row
+    await sendKeyToGridcellAndWait(t, index, 0, Key.ARROW_LEFT);
     t.true(
-      await checkFocus(t, ex.emailRowSelector, 0),
-      'Sending key ARROW UP to first email should not move focus'
+      await checkFocus(t, ex.emailRowSelector, index),
+      'Focus should be on grid row at index " + index + " after ARROW LEFT sent to first gridcell in first row'
+    );
+
+    // Set up: put focus on last gridcell
+    await emailRows[index].sendKeys(Key.ARROW_RIGHT);
+    await sendKeyToGridcellAndWait(t, index, 0, Key.END);
+
+    // Now send that gridcell an "ARROW LEFT" key and make sure focus is on the second gridcell
+    await sendKeyToGridcellAndWait(t, index, 2, Key.ARROW_LEFT);
+    t.true(
+      await checkFocusOnGridcell(t, index, 1),
+      'Focus should be on the second gridcell in the first row after ARROW LEFT sent to third gridcell in grid row of index: ' + index
+    );
+
+    // Now send the second gridcell an "ARROW LEFT" key and make sure focus is on the first
+    await sendKeyToGridcellAndWait(t, index, 1, Key.ARROW_LEFT);
+    t.true(
+      await checkFocusOnGridcell(t, index, 0),
+      'Focus should be on the first gridcell in the first row after ARROW LEFT sent to second gridcell  in grid row of index: ' + index
     );
   }
-);
 
-ariaTest(
-  'Navigating through gridcells with up arrow',
-  exampleFile,
-  'key-up-arrow',
-  async (t) => {
-    await openAllThreads(t);
-    const emailRows = await t.context.queryElements(t, ex.emailRowSelector);
+});
 
-    for (let columnindex = 0; columnindex < 3; columnindex++) {
-      await putFocusOnLastRowGridcell(t, columnindex);
+ariaTest('Navigating through rows with down arrow', exampleFile, 'key-down-arrow', async (t) => {
+  
+  await openAllThreads(t);
 
-      for (let rowindex = emailRows.length - 1; rowindex > 0; rowindex--) {
-        // Send ARROW UP to gridcell
-        await sendKeyToGridcellAndWait(t, rowindex, columnindex, Key.ARROW_UP);
-        t.true(
-          await checkFocusOnGridcell(t, rowindex - 1, columnindex),
-          'Sending key ARROW UP to cell at row index ' +
-            rowindex +
-            ' and column index ' +
-            columnindex +
-            ' should move focus to the previous email'
-        );
-      }
+  const emailRows = await t.context.queryElements(t, ex.emailRowSelector);
+  for (let index = 0; index < emailRows.length - 1; index++) {
+    // Send ARROW DOWN to email rows
+    await emailRows[index].sendKeys(Key.ARROW_DOWN);
+    t.true(
+      await checkFocus(t, ex.emailRowSelector, index + 1),
+      'Sending key ARROW DOWN to email at index ' + index + ' should move focus to the next email'
+    );
+  }
 
-      // Send ARROW UP to first row
-      await sendKeyToGridcellAndWait(t, 0, columnindex, Key.ARROW_UP);
+  // Send ARROW DOWN to last email
+  await emailRows[emailRows.length - 1].sendKeys(Key.ARROW_DOWN);
+  t.true(
+    await checkFocus(t, ex.emailRowSelector, emailRows.length - 1),
+    'Sending key ARROW DOWN to last email should not move focus'
+  );
+
+});
+
+ariaTest('Navigating through gridcells with down arrow', exampleFile, 'key-down-arrow', async (t) => {
+  
+  await openAllThreads(t);
+  const emailRows = await t.context.queryElements(t, ex.emailRowSelector);
+
+  for (let columnindex = 0; columnindex < 3; columnindex++) {
+    await putFocusOnRow1Gridcell(t, columnindex);
+
+    for (let rowindex = 0; rowindex < emailRows.length - 1; rowindex++) {
+      // Send ARROW DOWN to gridcell
+      await sendKeyToGridcellAndWait(t, rowindex, columnindex, Key.ARROW_DOWN);
       t.true(
-        await checkFocusOnGridcell(t, 0, columnindex),
-        'Sending key ARROW UUP to the cell at column index ' +
-          columnindex +
-          ' in the first row should not move focus'
+        await checkFocusOnGridcell(t, rowindex + 1, columnindex),
+        'Sending key ARROW DOWN to cell at row index ' + rowindex + ' and column index ' + columnindex + ' should move focus to the next email'
       );
     }
-  }
-);
 
-ariaTest(
-  'TAB moves focus from active row to widgets in row',
-  exampleFile,
-  'key-tab',
-  async (t) => {
-    // Send tab to the first row:
-    await sendKeyToRowAndWait(t, 0, Key.TAB);
-
+    // Send ARROW DOWN to last row
+    await sendKeyToGridcellAndWait(t, emailRows.length - 1, columnindex, Key.ARROW_DOWN);
     t.true(
-      await checkFocusOnGridcell(t, 0, 2),
-      'Sending TAB to the first row on page load will send the focus to the first interactive widget in the row, which should be the email link in the last column.'
+      await checkFocusOnGridcell(t, emailRows.length - 1, columnindex),
+      'Sending key ARROW DOWN to the cell at column index ' + columnindex + ' in the last row should not move focus'
     );
   }
-);
+});
 
-ariaTest(
-  'SHIFT+TAB moves focus from widgets in row to row',
-  exampleFile,
-  'key-shift-tab',
-  async (t) => {
-    await putFocusOnRow1Gridcell(t, 2);
+ariaTest('Navigating through rows with up arrow', exampleFile, 'key-up-arrow', async (t) => {
+  
+  await openAllThreads(t);
 
-    // Send shift tab to the link in the last gridcell of the first row
-    await sendKeyToGridcellAndWait(t, 0, 2, Key.chord(Key.SHIFT, Key.TAB));
-
+  const emailRows = await t.context.queryElements(t, ex.emailRowSelector);
+  for (let index = emailRows.length - 1; index > 0; index--) {
+    // Send ARROW UP to email rows
+    await emailRows[index].sendKeys(Key.ARROW_UP);
     t.true(
-      await checkFocus(t, ex.emailRowSelector, 0),
-      'Sending SHIFT+TAB to the interactive widget in the last cell of the first row should move focus to the first row.'
+      await checkFocus(t, ex.emailRowSelector, index - 1),
+      'Sending key ARROW UP to email at index ' + index + ' should move focus to the previous email'
     );
   }
-);
+
+  // Send ARROW UP to first email
+  await emailRows[0].sendKeys(Key.ARROW_UP);
+  t.true(
+    await checkFocus(t, ex.emailRowSelector, 0),
+    'Sending key ARROW UP to first email should not move focus'
+  );
+});
+
+ariaTest('Navigating through gridcells with up arrow', exampleFile, 'key-up-arrow', async (t) => {
+  
+  await openAllThreads(t);
+  const emailRows = await t.context.queryElements(t, ex.emailRowSelector);
+
+  for (let columnindex = 0; columnindex < 3; columnindex++) {
+    await putFocusOnLastRowGridcell(t, columnindex);
+
+    for (let rowindex = emailRows.length - 1; rowindex > 0 ; rowindex--) {
+      // Send ARROW UP to gridcell
+      await sendKeyToGridcellAndWait(t, rowindex, columnindex, Key.ARROW_UP);
+      t.true(
+        await checkFocusOnGridcell(t, rowindex - 1, columnindex),
+        'Sending key ARROW UP to cell at row index ' + rowindex + ' and column index ' + columnindex + ' should move focus to the previous email'
+      );
+    }
+
+    // Send ARROW UP to first row
+    await sendKeyToGridcellAndWait(t, 0, columnindex, Key.ARROW_UP);
+    t.true(
+      await checkFocusOnGridcell(t, 0, columnindex),
+      'Sending key ARROW UUP to the cell at column index ' + columnindex + ' in the first row should not move focus'
+    );
+  }
+
+});
+
+
+ariaTest('TAB moves focus from active row to widgets in row', exampleFile, 'key-tab', async (t) => {
+  
+  // Send tab to the first row:
+  await sendKeyToRowAndWait(t, 0, Key.TAB);
+
+  t.true(
+    await checkFocusOnGridcell(t, 0, 2),
+    'Sending TAB to the first row on page load will send the focus to the first interactive widget in the row, which should be the email link in the last column.'
+  );
+});
+
+ariaTest('SHIFT+TAB moves focus from widgets in row to row', exampleFile, 'key-shift-tab', async (t) => {
+  
+  await putFocusOnRow1Gridcell(t, 2);
+
+  // Send shift tab to the link in the last gridcell of the first row
+  await sendKeyToGridcellAndWait(t, 0, 2, Key.chord(Key.SHIFT, Key.TAB));
+
+  t.true(
+    await checkFocus(t, ex.emailRowSelector, 0),
+    'Sending SHIFT+TAB to the interactive widget in the last cell of the first row should move focus to the first row.'
+  );
+
+});
 
 ariaTest('HOME moves focus', exampleFile, 'key-home', async (t) => {
+  
   await openAllThreads(t);
   const emailRows = await t.context.queryElements(t, ex.emailRowSelector);
 
@@ -713,11 +587,12 @@ ariaTest('HOME moves focus', exampleFile, 'key-home', async (t) => {
   await sendKeyToGridcellAndWait(t, 0, 1, Key.HOME);
   t.true(
     await checkFocusOnGridcell(t, 0, 0),
-    "Sending HOME to first row's second gridcell should move focus to first row's first gridcell"
+    'Sending HOME to first row\'s second gridcell should move focus to first row\'s first gridcell'
   );
 });
 
 ariaTest('END moves focus', exampleFile, 'key-end', async (t) => {
+  
   await openAllThreads(t);
   const emailRows = await t.context.queryElements(t, ex.emailRowSelector);
 
@@ -734,41 +609,33 @@ ariaTest('END moves focus', exampleFile, 'key-end', async (t) => {
   await sendKeyToGridcellAndWait(t, 0, 0, Key.END);
   t.true(
     await checkFocusOnGridcell(t, 0, 2),
-    "Sending HOME to first row's first gridcell should move focus to first row's last gridcell"
+    'Sending HOME to first row\'s first gridcell should move focus to first row\'s last gridcell'
   );
 });
 
-ariaTest(
-  'CTRL+HOME moves focus',
-  exampleFile,
-  'key-control-home',
-  async (t) => {
-    await openAllThreads(t);
-    const emailRows = await t.context.queryElements(t, ex.emailRowSelector);
+ariaTest('CTRL+HOME moves focus', exampleFile, 'key-control-home', async (t) => {
+  
+  await openAllThreads(t);
+  const emailRows = await t.context.queryElements(t, ex.emailRowSelector);
 
-    // Send CTRL+HOME to the second row
-    await emailRows[1].sendKeys(Key.chord(Key.CONTROL, Key.HOME));
-    t.true(
-      await checkFocus(t, ex.emailRowSelector, 0),
-      'Sending CTRL+HOME to second row should result on focus on first row'
-    );
+  // Send CTRL+HOME to the second row
+  await emailRows[1].sendKeys(Key.chord(Key.CONTROL, Key.HOME));
+  t.true(
+    await checkFocus(t, ex.emailRowSelector, 0),
+    'Sending CTRL+HOME to second row should result on focus on first row'
+  );
 
-    // Send CTRL+HOME to last row first gridcell
-    await putFocusOnLastRowGridcell(t, 0);
-    await sendKeyToGridcellAndWait(
-      t,
-      ex.lastRowIndex,
-      0,
-      Key.chord(Key.CONTROL, Key.HOME)
-    );
-    t.true(
-      await checkFocusOnGridcell(t, 0, 0),
-      "Sending CTRL+HOME to last row's first gridcell should move focus to first row's first gridcell"
-    );
-  }
-);
+  // Send CTRL+HOME to last row first gridcell
+  await putFocusOnLastRowGridcell(t, 0);
+  await sendKeyToGridcellAndWait(t, ex.lastRowIndex, 0, Key.chord(Key.CONTROL, Key.HOME));
+  t.true(
+    await checkFocusOnGridcell(t, 0, 0),
+    'Sending CTRL+HOME to last row\'s first gridcell should move focus to first row\'s first gridcell'
+  );
+});
 
 ariaTest('CTRL+END moves focus', exampleFile, 'key-control-end', async (t) => {
+  
   await openAllThreads(t);
   const emailRows = await t.context.queryElements(t, ex.emailRowSelector);
 
@@ -784,56 +651,44 @@ ariaTest('CTRL+END moves focus', exampleFile, 'key-control-end', async (t) => {
   await sendKeyToGridcellAndWait(t, 0, 0, Key.chord(Key.CONTROL, Key.END));
   t.true(
     await checkFocusOnGridcell(t, ex.lastRowIndex, 0),
-    "Sending CTRL+END to first row's first gridcell should move focus to last row's first gridcell"
+    'Sending CTRL+END to first row\'s first gridcell should move focus to last row\'s first gridcell'
   );
 });
 
 // This test fails due to: https://github.com/w3c/aria-practices/issues/790#issuecomment-422079276
-ariaTest.failing(
-  'ENTER actives interactive items item',
-  exampleFile,
-  'key-enter',
-  async (t) => {
-    // INTERACTIVE ITEM 1: Enter sent while focus is on email row should open email alert
+ariaTest.failing('ENTER actives interactive items item', exampleFile, 'key-enter', async (t) => {
+  
+  // INTERACTIVE ITEM 1: Enter sent while focus is on email row should open email alert
 
-    const email = await t.context.session.findElement(
-      By.css(ex.emailRowSelector)
-    );
+  const email = await t.context.session.findElement(By.css(ex.emailRowSelector));
 
-    await email.sendKeys(Key.ENTER);
+  await email.sendKeys(Key.ENTER);
 
-    const alert = await t.context.session.wait(
-      until.alertIsPresent(),
-      t.context.waitTime
-    );
-    t.truthy(
-      await alert.getText(),
-      'Sending "enter" to any email row should open alert with the rest of the email'
-    );
-    await alert.accept();
+  const alert = await t.context.session.wait(until.alertIsPresent(), t.context.waitTime);
+  t.truthy(
+    await alert.getText(),
+    'Sending "enter" to any email row should open alert with the rest of the email'
+  );
+  await alert.accept();
 
-    // INTERACTIVE ITEM 1: Enter sent while focus is email gridcell should trigger link
+  // INTERACTIVE ITEM 1: Enter sent while focus is email gridcell should trigger link
 
-    const selector = '#ex1 [role="row"]:nth-of-type(1) a';
-    const newUrl = t.context.url + '#test-url-change';
+  const selector = '#ex1 [role="row"]:nth-of-type(1) a';
+  const newUrl = t.context.url + '#test-url-change';
 
-    // Reset the href to not be an email link in order to test
-    await t.context.session.executeScript(
-      function () {
-        let [selector, newUrl] = arguments;
-        document.querySelector(selector).href = newUrl;
-      },
-      selector,
-      newUrl
-    );
+  // Reset the href to not be an email link in order to test
+  await t.context.session.executeScript(function () {
+    let [selector, newUrl] = arguments;
+    document.querySelector(selector).href = newUrl;
+  }, selector, newUrl);
 
-    await t.context.session.findElement(By.css(selector)).sendKeys(Key.ENTER);
+  await t.context.session.findElement(By.css(selector)).sendKeys(Key.ENTER);
 
-    // Test that the URL is updated.
-    t.is(
-      await t.context.session.getCurrentUrl(),
-      newUrl,
-      'Sending "enter" to a link within the gridcell should activate the link'
-    );
-  }
-);
+  // Test that the URL is updated.
+  t.is(
+    await t.context.session.getCurrentUrl(),
+    newUrl,
+    'Sending "enter" to a link within the gridcell should activate the link'
+  );
+});
+

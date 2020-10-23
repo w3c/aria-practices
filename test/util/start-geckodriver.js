@@ -1,3 +1,5 @@
+'use strict';
+
 const assert = require('assert');
 const { path: binaryPath } = require('geckodriver');
 const { spawn } = require('child_process');
@@ -8,9 +10,9 @@ const SERIES_LOCK = 8432;
 
 const startOnPort = (port, timeout) => {
   if (timeout < 0) {
-    return Promise.reject(
-      new Error('Timed out while locating free port for WebDriver server')
-    );
+    return Promise.reject(new Error(
+      'Timed out while locating free port for WebDriver server'
+    ));
   }
 
   const start = Date.now();
@@ -25,7 +27,7 @@ const startOnPort = (port, timeout) => {
 
     child.on('close', giveUp);
 
-    (function poll() {
+    (function poll () {
       if (stopPolling) {
         return;
       }
@@ -43,19 +45,20 @@ const startOnPort = (port, timeout) => {
           resolve(() => child.kill());
         })
         .catch(() => setTimeout(poll, 500));
-    })();
+    }());
   });
 };
 
 const startOnAnyPort = (port, timeout) => {
   const start = Date.now();
 
-  return startOnPort(port, timeout).then(function (stop) {
-    if (!stop) {
-      return startOnAnyPort(port + 1, timeout - (Date.now() - start));
-    }
-    return { stop, port };
-  });
+  return startOnPort(port, timeout)
+    .then(function (stop) {
+      if (!stop) {
+        return startOnAnyPort(port + 1, timeout - (Date.now() - start));
+      }
+      return { stop, port };
+    });
 };
 
 /**

@@ -1,15 +1,16 @@
 /*
- *   This content is licensed according to the W3C Software License at
- *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
- *
- *   File:   menubar-editor.js
- *
- *   Desc:   Creates a menubar to control the styling of text in a textarea element
- */
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*
+*   File:   menubar-editor.js
+*
+*   Desc:   Creates a menubar to control the styling of text in a textarea element
+*/
 
 'use strict';
 
 var MenubarEditor = function (domNode) {
+
   this.domNode = domNode;
   this.menubarNode = domNode.querySelector('[role=menubar]');
   this.textareaNode = domNode.querySelector('textarea');
@@ -24,18 +25,14 @@ var MenubarEditor = function (domNode) {
   this.firstMenuitem = {}; // see Menubar init method
   this.lastMenuitem = {}; // see Menubar init method
 
-  this.initMenu(this.menubarNode);
+  this.initMenu(this.menubarNode)
   this.domNode.addEventListener('focusin', this.handleFocusin.bind(this));
   this.domNode.addEventListener('focusout', this.handleFocusout.bind(this));
 
-  window.addEventListener(
-    'mousedown',
-    this.handleBackgroundMousedown.bind(this),
-    true
-  );
+  window.addEventListener('mousedown', this.handleBackgroundMousedown.bind(this), true);
 };
 
-MenubarEditor.prototype.getMenuitems = function (domNode) {
+MenubarEditor.prototype.getMenuitems = function(domNode) {
   var nodes = [];
 
   var initMenu = this.initMenu.bind(this);
@@ -105,7 +102,7 @@ MenubarEditor.prototype.initMenu = function (menu) {
   this.firstMenuitem[menuId] = null;
   this.lastMenuitem[menuId] = null;
 
-  for (i = 0; i < menuitems.length; i++) {
+  for(i = 0; i < menuitems.length; i++) {
     menuitem = menuitems[i];
     role = menuitem.getAttribute('role');
 
@@ -120,24 +117,23 @@ MenubarEditor.prototype.initMenu = function (menu) {
     menuitem.addEventListener('keydown', this.handleKeydown.bind(this));
     menuitem.addEventListener('click', this.handleMenuitemClick.bind(this));
 
-    menuitem.addEventListener(
-      'mouseover',
-      this.handleMenuitemMouseover.bind(this)
-    );
+    menuitem.addEventListener('mouseover', this.handleMenuitemMouseover.bind(this));
 
-    if (!this.firstMenuitem[menuId]) {
+    if( !this.firstMenuitem[menuId]) {
       if (this.hasPopup(menuitem)) {
         menuitem.tabIndex = 0;
       }
       this.firstMenuitem[menuId] = menuitem;
     }
     this.lastMenuitem[menuId] = menuitem;
+
   }
 };
 
 /* MenubarEditor FOCUS MANAGEMENT METHODS */
 
 MenubarEditor.prototype.setFocusToMenuitem = function (menuId, newMenuitem) {
+
   var isAnyPopupOpen = this.isAnyPopupOpen();
 
   this.closePopupAll(newMenuitem);
@@ -146,7 +142,8 @@ MenubarEditor.prototype.setFocusToMenuitem = function (menuId, newMenuitem) {
     if (isAnyPopupOpen) {
       this.openPopup(newMenuitem);
     }
-  } else {
+  }
+  else {
     var menu = this.getMenu(newMenuitem);
     var cmi = menu.previousElementSibling;
     if (!this.isOpen(cmi)) {
@@ -156,7 +153,7 @@ MenubarEditor.prototype.setFocusToMenuitem = function (menuId, newMenuitem) {
 
   if (this.hasPopup(newMenuitem)) {
     if (this.menuitemGroups[menuId]) {
-      this.menuitemGroups[menuId].forEach(function (item) {
+      this.menuitemGroups[menuId].forEach(function(item) {
         item.tabIndex = -1;
       });
     }
@@ -164,6 +161,7 @@ MenubarEditor.prototype.setFocusToMenuitem = function (menuId, newMenuitem) {
   }
 
   newMenuitem.focus();
+
 };
 
 MenubarEditor.prototype.setFocusToFirstMenuitem = function (menuId) {
@@ -174,17 +172,15 @@ MenubarEditor.prototype.setFocusToLastMenuitem = function (menuId) {
   this.setFocusToMenuitem(menuId, this.lastMenuitem[menuId]);
 };
 
-MenubarEditor.prototype.setFocusToPreviousMenuitem = function (
-  menuId,
-  currentMenuitem
-) {
+MenubarEditor.prototype.setFocusToPreviousMenuitem = function (menuId, currentMenuitem) {
   var newMenuitem, index;
 
   if (currentMenuitem === this.firstMenuitem[menuId]) {
     newMenuitem = this.lastMenuitem[menuId];
-  } else {
+  }
+  else {
     index = this.menuitemGroups[menuId].indexOf(currentMenuitem);
-    newMenuitem = this.menuitemGroups[menuId][index - 1];
+    newMenuitem = this.menuitemGroups[menuId][ index - 1 ];
   }
 
   this.setFocusToMenuitem(menuId, newMenuitem);
@@ -192,35 +188,29 @@ MenubarEditor.prototype.setFocusToPreviousMenuitem = function (
   return newMenuitem;
 };
 
-MenubarEditor.prototype.setFocusToNextMenuitem = function (
-  menuId,
-  currentMenuitem
-) {
+MenubarEditor.prototype.setFocusToNextMenuitem = function (menuId, currentMenuitem) {
   var newMenuitem, index;
 
   if (currentMenuitem === this.lastMenuitem[menuId]) {
     newMenuitem = this.firstMenuitem[menuId];
-  } else {
+  }
+  else {
     index = this.menuitemGroups[menuId].indexOf(currentMenuitem);
-    newMenuitem = this.menuitemGroups[menuId][index + 1];
+    newMenuitem = this.menuitemGroups[menuId][ index + 1 ];
   }
   this.setFocusToMenuitem(menuId, newMenuitem);
 
   return newMenuitem;
 };
 
-MenubarEditor.prototype.setFocusByFirstCharacter = function (
-  menuId,
-  currentMenuitem,
-  char
-) {
+MenubarEditor.prototype.setFocusByFirstCharacter = function (menuId, currentMenuitem, char) {
   var start, index;
 
   char = char.toLowerCase();
 
   // Get start index for search based on position of currentItem
   start = this.menuitemGroups[menuId].indexOf(currentMenuitem) + 1;
-  if (start >= this.menuitemGroups[menuId].length) {
+  if (start >=  this.menuitemGroups[menuId].length) {
     start = 0;
   }
 
@@ -240,11 +230,7 @@ MenubarEditor.prototype.setFocusByFirstCharacter = function (
 
 // Utilities
 
-MenubarEditor.prototype.getIndexFirstChars = function (
-  menuId,
-  startIndex,
-  char
-) {
+MenubarEditor.prototype.getIndexFirstChars = function (menuId, startIndex, char) {
   for (var i = startIndex; i < this.firstChars[menuId].length; i++) {
     if (char === this.firstChars[menuId][i]) {
       return i;
@@ -253,19 +239,21 @@ MenubarEditor.prototype.getIndexFirstChars = function (
   return -1;
 };
 
-MenubarEditor.prototype.isPrintableCharacter = function (str) {
-  return str.length === 1 && str.match(/\S/);
+MenubarEditor.prototype.isPrintableCharacter = function(str) {
+    return str.length === 1 && str.match(/\S/);
 };
 
-MenubarEditor.prototype.getIdFromAriaLabel = function (node) {
-  var id = node.getAttribute('aria-label');
+MenubarEditor.prototype.getIdFromAriaLabel = function(node) {
+  var id = node.getAttribute('aria-label')
   if (id) {
     id = id.trim().toLowerCase().replace(' ', '-').replace('/', '-');
   }
   return id;
 };
 
-MenubarEditor.prototype.getMenuOrientation = function (node) {
+
+MenubarEditor.prototype.getMenuOrientation = function(node) {
+
   var orientation = node.getAttribute('aria-orientation');
 
   if (!orientation) {
@@ -288,13 +276,17 @@ MenubarEditor.prototype.getMenuOrientation = function (node) {
   return orientation;
 };
 
-MenubarEditor.prototype.getDataOption = function (node) {
+MenubarEditor.prototype.getDataOption = function(node) {
+
   var option = false;
   var hasOption = node.hasAttribute('data-option');
   var role = node.hasAttribute('role');
 
   if (!hasOption) {
-    while (node && !hasOption && role !== 'menu' && role !== 'menubar') {
+
+    while (node && !hasOption &&
+         (role !== 'menu') &&
+         (role !== 'menubar')) {
       node = node.parentNode;
       if (node) {
         role = node.getAttribute('role');
@@ -310,11 +302,33 @@ MenubarEditor.prototype.getDataOption = function (node) {
   return option;
 };
 
-MenubarEditor.prototype.getGroupId = function (node) {
+MenubarEditor.prototype.getGroupId = function(node) {
+
   var id = false;
   var role = node.getAttribute('role');
 
-  while (node && role !== 'group' && role !== 'menu' && role !== 'menubar') {
+  while (node && (role !== 'group') &&
+         (role !== 'menu') &&
+         (role !== 'menubar')) {
+    node = node.parentNode;
+    if (node) {
+      role = node.getAttribute('role');
+    }
+ }
+
+  if (node) {
+    id = role + '-' + this.getIdFromAriaLabel(node);
+  }
+
+  return id;
+};
+
+MenubarEditor.prototype.getMenuId = function(node) {
+
+  var id = false;
+  var role = node.getAttribute('role');
+
+  while (node && (role !== 'menu') && (role !== 'menubar')) {
     node = node.parentNode;
     if (node) {
       role = node.getAttribute('role');
@@ -328,31 +342,14 @@ MenubarEditor.prototype.getGroupId = function (node) {
   return id;
 };
 
-MenubarEditor.prototype.getMenuId = function (node) {
-  var id = false;
-  var role = node.getAttribute('role');
+MenubarEditor.prototype.getMenu = function(menuitem) {
 
-  while (node && role !== 'menu' && role !== 'menubar') {
-    node = node.parentNode;
-    if (node) {
-      role = node.getAttribute('role');
-    }
-  }
-
-  if (node) {
-    id = role + '-' + this.getIdFromAriaLabel(node);
-  }
-
-  return id;
-};
-
-MenubarEditor.prototype.getMenu = function (menuitem) {
   var id = false;
   var menu = menuitem;
   var role = menuitem.getAttribute('role');
 
-  while (menu && role !== 'menu' && role !== 'menubar') {
-    menu = menu.parentNode;
+  while (menu && (role !== 'menu') && (role !== 'menubar')) {
+    menu = menu.parentNode
     if (menu) {
       role = menu.getAttribute('role');
     }
@@ -361,7 +358,7 @@ MenubarEditor.prototype.getMenu = function (menuitem) {
   return menu;
 };
 
-MenubarEditor.prototype.toggleCheckbox = function (menuitem) {
+MenubarEditor.prototype.toggleCheckbox = function(menuitem) {
   if (menuitem.getAttribute('aria-checked') === 'true') {
     menuitem.setAttribute('aria-checked', 'false');
     return false;
@@ -370,17 +367,18 @@ MenubarEditor.prototype.toggleCheckbox = function (menuitem) {
   return true;
 };
 
-MenubarEditor.prototype.setRadioButton = function (menuitem) {
+MenubarEditor.prototype.setRadioButton = function(menuitem) {
   var groupId = this.getGroupId(menuitem);
   var radiogroupItems = this.menuitemGroups[groupId];
-  radiogroupItems.forEach(function (item) {
-    item.setAttribute('aria-checked', 'false');
+  radiogroupItems.forEach( function (item) {
+    item.setAttribute('aria-checked', 'false')
   });
   menuitem.setAttribute('aria-checked', 'true');
   return menuitem.textContent;
 };
 
-MenubarEditor.prototype.updateFontSizeMenu = function (menuId) {
+MenubarEditor.prototype.updateFontSizeMenu = function(menuId) {
+
   var fontSizeMenuitems = this.menuitemGroups[menuId];
   var currentValue = this.actionManager.getFontSize();
 
@@ -393,7 +391,8 @@ MenubarEditor.prototype.updateFontSizeMenu = function (menuId) {
       case 'font-smaller':
         if (currentValue === 'x-small') {
           mi.setAttribute('aria-disabled', 'true');
-        } else {
+        }
+        else {
           mi.removeAttribute('aria-disabled');
         }
         break;
@@ -401,7 +400,8 @@ MenubarEditor.prototype.updateFontSizeMenu = function (menuId) {
       case 'font-larger':
         if (currentValue === 'x-large') {
           mi.setAttribute('aria-disabled', 'true');
-        } else {
+        }
+        else {
           mi.removeAttribute('aria-disabled');
         }
         break;
@@ -409,13 +409,17 @@ MenubarEditor.prototype.updateFontSizeMenu = function (menuId) {
       default:
         if (currentValue === value) {
           mi.setAttribute('aria-checked', 'true');
-        } else {
+        }
+        else {
           mi.setAttribute('aria-checked', 'false');
         }
         break;
+
     }
   }
-};
+
+
+}
 
 // Popup menu methods
 
@@ -429,6 +433,7 @@ MenubarEditor.prototype.isAnyPopupOpen = function () {
 };
 
 MenubarEditor.prototype.openPopup = function (menuitem) {
+
   // set aria-expanded attribute
   var popupMenu = menuitem.nextElementSibling;
 
@@ -436,7 +441,7 @@ MenubarEditor.prototype.openPopup = function (menuitem) {
 
   // set CSS properties
   popupMenu.style.position = 'absolute';
-  popupMenu.style.top = rect.height - 3 + 'px';
+  popupMenu.style.top = (rect.height - 3) + 'px';
   popupMenu.style.left = '0px';
   popupMenu.style.zIndex = 100;
   popupMenu.style.display = 'block';
@@ -444,6 +449,7 @@ MenubarEditor.prototype.openPopup = function (menuitem) {
   menuitem.setAttribute('aria-expanded', 'true');
 
   return this.getMenuId(popupMenu);
+
 };
 
 MenubarEditor.prototype.closePopup = function (menuitem) {
@@ -454,8 +460,10 @@ MenubarEditor.prototype.closePopup = function (menuitem) {
       menuitem.setAttribute('aria-expanded', 'false');
       menuitem.nextElementSibling.style.display = 'none';
       menuitem.nextElementSibling.style.zIndex = 0;
+
     }
-  } else {
+  }
+  else {
     menu = this.getMenu(menuitem);
     cmi = menu.previousElementSibling;
     cmi.setAttribute('aria-expanded', 'false');
@@ -525,13 +533,14 @@ MenubarEditor.prototype.handleKeydown = function (event) {
   switch (key) {
     case ' ':
     case 'Enter':
-      if (this.hasPopup(tgt)) {
+     if (this.hasPopup(tgt)) {
         popupMenuId = this.openPopup(tgt);
         this.setFocusToFirstMenuitem(popupMenuId);
-      } else {
+      }
+      else {
         role = tgt.getAttribute('role');
         option = this.getDataOption(tgt);
-        switch (role) {
+        switch(role) {
           case 'menuitem':
             this.actionManager.setOption(option, tgt.textContent);
             break;
@@ -556,14 +565,15 @@ MenubarEditor.prototype.handleKeydown = function (event) {
         this.closePopup(tgt);
       }
       flag = true;
-      break;
+     break;
 
     case 'ArrowDown':
     case 'Down':
       if (this.menuOrientation[menuId] === 'vertical') {
         this.setFocusToNextMenuitem(menuId, tgt);
         flag = true;
-      } else {
+      }
+      else {
         if (this.hasPopup(tgt)) {
           popupMenuId = this.openPopup(tgt);
           this.setFocusToFirstMenuitem(popupMenuId);
@@ -574,8 +584,8 @@ MenubarEditor.prototype.handleKeydown = function (event) {
 
     case 'Esc':
     case 'Escape':
-      this.closePopup(tgt);
-      flag = true;
+        this.closePopup(tgt);
+        flag = true;
       break;
 
     case 'Left':
@@ -583,7 +593,8 @@ MenubarEditor.prototype.handleKeydown = function (event) {
       if (this.menuOrientation[menuId] === 'horizontal') {
         this.setFocusToPreviousMenuitem(menuId, tgt);
         flag = true;
-      } else {
+      }
+      else {
         mi = this.closePopup(tgt);
         id = this.getMenuId(mi);
         mi = this.setFocusToPreviousMenuitem(id, mi);
@@ -596,7 +607,8 @@ MenubarEditor.prototype.handleKeydown = function (event) {
       if (this.menuOrientation[menuId] === 'horizontal') {
         this.setFocusToNextMenuitem(menuId, tgt);
         flag = true;
-      } else {
+      }
+      else {
         mi = this.closePopup(tgt);
         id = this.getMenuId(mi);
         mi = this.setFocusToNextMenuitem(id, mi);
@@ -609,7 +621,8 @@ MenubarEditor.prototype.handleKeydown = function (event) {
       if (this.menuOrientation[menuId] === 'vertical') {
         this.setFocusToPreviousMenuitem(menuId, tgt);
         flag = true;
-      } else {
+      }
+      else {
         if (this.hasPopup(tgt)) {
           popupMenuId = this.openPopup(tgt);
           this.setFocusToLastMenuitem(popupMenuId);
@@ -655,14 +668,16 @@ MenubarEditor.prototype.handleMenuitemClick = function (event) {
   if (this.hasPopup(tgt)) {
     if (this.isOpen(tgt)) {
       this.closePopup(tgt);
-    } else {
+    }
+    else {
       var menuId = this.openPopup(tgt);
       this.setFocusToMenuitem(menuId, tgt);
     }
-  } else {
+  }
+  else {
     var role = tgt.getAttribute('role');
     var option = this.getDataOption(tgt);
-    switch (role) {
+    switch(role) {
       case 'menuitem':
         this.actionManager.setOption(option, tgt.textContent);
         break;
@@ -689,6 +704,7 @@ MenubarEditor.prototype.handleMenuitemClick = function (event) {
 
   event.stopPropagation();
   event.preventDefault();
+
 };
 
 MenubarEditor.prototype.handleMenuitemMouseover = function (event) {
@@ -703,7 +719,7 @@ MenubarEditor.prototype.handleMenuitemMouseover = function (event) {
 
 window.addEventListener('load', function () {
   var menubarEditors = document.querySelectorAll('.menubar-editor');
-  for (var i = 0; i < menubarEditors.length; i++) {
+  for(var i=0; i < menubarEditors.length; i++) {
     var menubarEditor = new MenubarEditor(menubarEditors[i]);
   }
 });

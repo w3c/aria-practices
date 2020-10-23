@@ -1,9 +1,9 @@
 /*
- *   This content is licensed according to the W3C Software License at
- *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
- *
- * ARIA Combobox Examples
- */
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*
+* ARIA Combobox Examples
+*/
 
 'use strict';
 
@@ -70,10 +70,10 @@ var FRUITS_AND_VEGGIES = [
   ['Watercress', 'Vegetable'],
   ['Watermelon', 'Fruit'],
   ['Yam', 'Vegetable'],
-  ['Zucchini', 'Vegetable'],
+  ['Zucchini', 'Vegetable']
 ];
 
-function searchVeggies(searchString) {
+function searchVeggies (searchString) {
   var results = [];
 
   for (var i = 0; i < FRUITS_AND_VEGGIES.length; i++) {
@@ -96,4 +96,5 @@ window.addEventListener('load', function () {
     document.getElementById('ex1-grid'),
     searchVeggies
   );
+
 });

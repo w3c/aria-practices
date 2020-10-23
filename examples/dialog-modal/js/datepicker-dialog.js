@@ -1,58 +1,35 @@
 /*
- *   This content is licensed according to the W3C Software License at
- *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
- *
- *   File:   DatePickerDialog.js
- */
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*
+*   File:   DatePickerDialog.js
+*/
 
 'use strict';
 
 var DatePickerDialog = function (cdp) {
   this.buttonLabelChoose = 'Choose Date';
   this.buttonLabelChange = 'Change Date';
-  this.dayLabels = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-  ];
-  this.monthLabels = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
+  this.dayLabels = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  this.monthLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
   this.messageCursorKeys = 'Cursor keys can navigate dates';
   this.lastMessage = '';
 
-  this.textboxNode = cdp.querySelector('input[type="text"');
-  this.buttonNode = cdp.querySelector('.group button');
-  this.dialogNode = cdp.querySelector('[role="dialog"]');
-  this.messageNode = this.dialogNode.querySelector('.dialog-message');
+  this.textboxNode   = cdp.querySelector('input[type="text"');
+  this.buttonNode     = cdp.querySelector('.group button');
+  this.dialogNode     = cdp.querySelector('[role="dialog"]');
+  this.messageNode    = this.dialogNode.querySelector('.dialog-message');
 
   this.monthYearNode = this.dialogNode.querySelector('.month-year');
 
-  this.prevYearNode = this.dialogNode.querySelector('.prev-year');
+  this.prevYearNode  = this.dialogNode.querySelector('.prev-year');
   this.prevMonthNode = this.dialogNode.querySelector('.prev-month');
   this.nextMonthNode = this.dialogNode.querySelector('.next-month');
-  this.nextYearNode = this.dialogNode.querySelector('.next-year');
+  this.nextYearNode  = this.dialogNode.querySelector('.next-year');
 
-  this.okButtonNode = this.dialogNode.querySelector('button[value="ok"]');
-  this.cancelButtonNode = this.dialogNode.querySelector(
-    'button[value="cancel"]'
-  );
+  this.okButtonNode     = this.dialogNode.querySelector('button[value="ok"]');
+  this.cancelButtonNode = this.dialogNode.querySelector('button[value="cancel"]');
 
   this.tbodyNode = this.dialogNode.querySelector('table.dates tbody');
 
@@ -61,76 +38,38 @@ var DatePickerDialog = function (cdp) {
   this.days = [];
 
   this.focusDay = new Date();
-  this.selectedDay = new Date(0, 0, 1);
+  this.selectedDay = new Date(0,0,1);
 
   this.isMouseDownOnBackground = false;
 
   this.init();
+
 };
 
 DatePickerDialog.prototype.init = function () {
-  this.textboxNode.addEventListener(
-    'blur',
-    this.setDateForButtonLabel.bind(this)
-  );
 
-  this.buttonNode.addEventListener(
-    'keydown',
-    this.handleButtonKeydown.bind(this)
-  );
-  this.buttonNode.addEventListener('click', this.handleButtonClick.bind(this));
+  this.textboxNode.addEventListener('blur',   this.setDateForButtonLabel.bind(this));
+
+  this.buttonNode.addEventListener('keydown',   this.handleButtonKeydown.bind(this));
+  this.buttonNode.addEventListener('click',   this.handleButtonClick.bind(this));
 
   this.okButtonNode.addEventListener('click', this.handleOkButton.bind(this));
   this.okButtonNode.addEventListener('keydown', this.handleOkButton.bind(this));
 
-  this.cancelButtonNode.addEventListener(
-    'click',
-    this.handleCancelButton.bind(this)
-  );
-  this.cancelButtonNode.addEventListener(
-    'keydown',
-    this.handleCancelButton.bind(this)
-  );
+  this.cancelButtonNode.addEventListener('click', this.handleCancelButton.bind(this));
+  this.cancelButtonNode.addEventListener('keydown', this.handleCancelButton.bind(this));
 
-  this.prevMonthNode.addEventListener(
-    'click',
-    this.handlePreviousMonthButton.bind(this)
-  );
-  this.nextMonthNode.addEventListener(
-    'click',
-    this.handleNextMonthButton.bind(this)
-  );
-  this.prevYearNode.addEventListener(
-    'click',
-    this.handlePreviousYearButton.bind(this)
-  );
-  this.nextYearNode.addEventListener(
-    'click',
-    this.handleNextYearButton.bind(this)
-  );
+  this.prevMonthNode.addEventListener('click', this.handlePreviousMonthButton.bind(this));
+  this.nextMonthNode.addEventListener('click', this.handleNextMonthButton.bind(this));
+  this.prevYearNode.addEventListener('click', this.handlePreviousYearButton.bind(this));
+  this.nextYearNode.addEventListener('click', this.handleNextYearButton.bind(this));
 
-  this.prevMonthNode.addEventListener(
-    'keydown',
-    this.handlePreviousMonthButton.bind(this)
-  );
-  this.nextMonthNode.addEventListener(
-    'keydown',
-    this.handleNextMonthButton.bind(this)
-  );
-  this.prevYearNode.addEventListener(
-    'keydown',
-    this.handlePreviousYearButton.bind(this)
-  );
-  this.nextYearNode.addEventListener(
-    'keydown',
-    this.handleNextYearButton.bind(this)
-  );
+  this.prevMonthNode.addEventListener('keydown', this.handlePreviousMonthButton.bind(this));
+  this.nextMonthNode.addEventListener('keydown', this.handleNextMonthButton.bind(this));
+  this.prevYearNode.addEventListener('keydown', this.handlePreviousYearButton.bind(this));
+  this.nextYearNode.addEventListener('keydown', this.handleNextYearButton.bind(this));
 
-  document.body.addEventListener(
-    'mouseup',
-    this.handleBackgroundMouseUp.bind(this),
-    true
-  );
+  document.body.addEventListener('mouseup', this.handleBackgroundMouseUp.bind(this), true);
 
   // Create Grid of Dates
 
@@ -159,26 +98,22 @@ DatePickerDialog.prototype.init = function () {
 };
 
 DatePickerDialog.prototype.isSameDay = function (day1, day2) {
-  return (
-    day1.getFullYear() == day2.getFullYear() &&
-    day1.getMonth() == day2.getMonth() &&
-    day1.getDate() == day2.getDate()
-  );
+  return (day1.getFullYear() == day2.getFullYear()) &&
+        (day1.getMonth() == day2.getMonth()) &&
+        (day1.getDate() == day2.getDate());
 };
 
 DatePickerDialog.prototype.isNotSameMonth = function (day1, day2) {
-  return (
-    day1.getFullYear() != day2.getFullYear() ||
-    day1.getMonth() != day2.getMonth()
-  );
+  return (day1.getFullYear() != day2.getFullYear()) ||
+        (day1.getMonth() != day2.getMonth());
 };
 
 DatePickerDialog.prototype.updateGrid = function () {
+
   var flag;
   var fd = this.focusDay;
 
-  this.monthYearNode.textContent =
-    this.monthLabels[fd.getMonth()] + ' ' + fd.getFullYear();
+  this.monthYearNode.textContent = this.monthLabels[fd.getMonth()] + ' ' + fd.getFullYear();
 
   var firstDayOfMonth = new Date(fd.getFullYear(), fd.getMonth(), 1);
   var dayOfWeek = firstDayOfMonth.getDay();
@@ -196,19 +131,16 @@ DatePickerDialog.prototype.updateGrid = function () {
     if (i === 35) {
       if (flag) {
         this.lastRowNode.style.visibility = 'hidden';
-      } else {
+      }
+      else {
         this.lastRowNode.style.visibility = 'visible';
       }
     }
   }
 };
 
-DatePickerDialog.prototype.updateDate = function (
-  domNode,
-  disable,
-  day,
-  selected
-) {
+DatePickerDialog.prototype.updateDate = function (domNode, disable, day, selected) {
+
   var d = day.getDate().toString();
   if (day.getDate() <= 9) {
     d = '0' + d;
@@ -226,7 +158,8 @@ DatePickerDialog.prototype.updateDate = function (
   if (disable) {
     domNode.classList.add('disabled');
     domNode.textContent = '';
-  } else {
+  }
+  else {
     domNode.classList.remove('disabled');
     domNode.textContent = day.getDate();
     if (selected) {
@@ -241,16 +174,15 @@ DatePickerDialog.prototype.moveFocusToDay = function (day) {
 
   this.focusDay = day;
 
-  if (
-    d.getMonth() != this.focusDay.getMonth() ||
-    d.getYear() != this.focusDay.getYear()
-  ) {
+  if ((d.getMonth() != this.focusDay.getMonth()) ||
+      (d.getYear() != this.focusDay.getYear())) {
     this.updateGrid();
   }
   this.setFocusDay();
 };
 
 DatePickerDialog.prototype.setFocusDay = function (flag) {
+
   if (typeof flag !== 'boolean') {
     flag = true;
   }
@@ -359,81 +291,76 @@ DatePickerDialog.prototype.isDayDisabled = function (domNode) {
 
 DatePickerDialog.prototype.getDayFromDataDateAttribute = function (domNode) {
   var parts = domNode.getAttribute('data-date').split('-');
-  return new Date(parts[0], parseInt(parts[1]) - 1, parts[2]);
+  return new Date(parts[0], parseInt(parts[1])-1, parts[2]);
 };
 // Textbox methods
 
 DatePickerDialog.prototype.setTextboxDate = function (domNode) {
+
   var d = this.focusDay;
 
   if (domNode) {
     d = this.getDayFromDataDateAttribute(domNode);
     // updated aria-selected
-    this.days.forEach((day) =>
-      day === domNode
-        ? day.setAttribute('aria-selected', 'true')
-        : day.removeAttribute('aria-selected')
-    );
+    this.days.forEach(day => day === domNode ? day.setAttribute('aria-selected', 'true') : day.removeAttribute('aria-selected'));
   }
 
-  this.textboxNode.value =
-    d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear();
+  this.textboxNode.value = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
   this.setDateForButtonLabel();
+
 };
 
 DatePickerDialog.prototype.getDateFromTextbox = function () {
+
   var parts = this.textboxNode.value.split('/');
   var month = parseInt(parts[0]);
   var day = parseInt(parts[1]);
   var year = parseInt(parts[2]);
 
-  if (
-    parts.length === 3 &&
-    Number.isInteger(month) &&
-    Number.isInteger(day) &&
-    Number.isInteger(year)
-  ) {
-    if (year < 100) {
-      year = 2000 + year;
-    }
-    this.focusDay = new Date(year, month - 1, day);
+  if ((parts.length === 3) &&
+      Number.isInteger(month) &&
+      Number.isInteger(day) &&
+      Number.isInteger(year)) {
+      if (year < 100) {
+        year = 2000 + year;
+      }
+    this.focusDay = new Date(year, month-1, day);
     this.selectedDay = new Date(this.focusDay);
-  } else {
+  }
+  else {
     // If not a valid date (MM/DD/YY) initialize with todays date
     this.focusDay = new Date();
-    this.selectedDay = new Date(0, 0, 1);
+    this.selectedDay = new Date(0,0,1);
   }
+
 };
 
 DatePickerDialog.prototype.setDateForButtonLabel = function () {
+
   var parts = this.textboxNode.value.split('/');
 
-  if (
-    parts.length === 3 &&
-    Number.isInteger(parseInt(parts[0])) &&
-    Number.isInteger(parseInt(parts[1])) &&
-    Number.isInteger(parseInt(parts[2]))
-  ) {
-    var day = new Date(
-      parseInt(parts[2]),
-      parseInt(parts[0]) - 1,
-      parseInt(parts[1])
-    );
+  if ((parts.length === 3) &&
+      Number.isInteger(parseInt(parts[0])) &&
+      Number.isInteger(parseInt(parts[1])) &&
+      Number.isInteger(parseInt(parts[2]))) {
+    var day = new Date(parseInt(parts[2]), parseInt(parts[0]) - 1, parseInt(parts[1]));
 
     var label = this.buttonLabelChange;
     label += ', ' + this.dayLabels[day.getDay()];
     label += ' ' + this.monthLabels[day.getMonth()];
-    label += ' ' + day.getDate();
+    label += ' ' + (day.getDate());
     label += ', ' + day.getFullYear();
     this.buttonNode.setAttribute('aria-label', label);
-  } else {
+  }
+  else {
     // If not a valid date, initialize with "Choose Date"
     this.buttonNode.setAttribute('aria-label', this.buttonLabelChoose);
   }
 };
 
 DatePickerDialog.prototype.setMessage = function (str) {
-  function setMessageDelayed() {
+
+  function setMessageDelayed () {
     this.messageNode.textContent = str;
   }
 
@@ -445,27 +372,30 @@ DatePickerDialog.prototype.setMessage = function (str) {
 
 // Event handlers
 
+
 DatePickerDialog.prototype.handleOkButton = function (event) {
   var flag = false;
 
   switch (event.type) {
     case 'keydown':
+
       switch (event.key) {
-        case 'Tab':
+        case "Tab":
           if (!event.shiftKey) {
             this.prevYearNode.focus();
             flag = true;
           }
           break;
 
-        case 'Esc':
-        case 'Escape':
+        case "Esc":
+        case "Escape":
           this.close();
           flag = true;
           break;
 
         default:
           break;
+
       }
       break;
 
@@ -490,15 +420,18 @@ DatePickerDialog.prototype.handleCancelButton = function (event) {
 
   switch (event.type) {
     case 'keydown':
+
       switch (event.key) {
-        case 'Esc':
-        case 'Escape':
+
+        case "Esc":
+        case "Escape":
           this.close();
           flag = true;
           break;
 
         default:
           break;
+
       }
       break;
 
@@ -521,15 +454,17 @@ DatePickerDialog.prototype.handleNextYearButton = function (event) {
   var flag = false;
 
   switch (event.type) {
+
     case 'keydown':
+
       switch (event.key) {
-        case 'Esc':
-        case 'Escape':
+        case "Esc":
+        case "Escape":
           this.close();
           flag = true;
           break;
 
-        case 'Enter':
+        case "Enter":
           this.moveToNextYear();
           this.setFocusDay(false);
           flag = true;
@@ -557,23 +492,26 @@ DatePickerDialog.prototype.handlePreviousYearButton = function (event) {
   var flag = false;
 
   switch (event.type) {
+
     case 'keydown':
+
       switch (event.key) {
-        case 'Enter':
+
+        case "Enter":
           this.moveToPreviousYear();
           this.setFocusDay(false);
           flag = true;
           break;
 
-        case 'Tab':
+        case "Tab":
           if (event.shiftKey) {
             this.okButtonNode.focus();
             flag = true;
           }
           break;
 
-        case 'Esc':
-        case 'Escape':
+        case "Esc":
+        case "Escape":
           this.close();
           flag = true;
           break;
@@ -603,15 +541,17 @@ DatePickerDialog.prototype.handleNextMonthButton = function (event) {
   var flag = false;
 
   switch (event.type) {
+
     case 'keydown':
+
       switch (event.key) {
-        case 'Esc':
-        case 'Escape':
+        case "Esc":
+        case "Escape":
           this.close();
           flag = true;
           break;
 
-        case 'Enter':
+        case "Enter":
           this.moveToNextMonth();
           this.setFocusDay(false);
           flag = true;
@@ -639,15 +579,17 @@ DatePickerDialog.prototype.handlePreviousMonthButton = function (event) {
   var flag = false;
 
   switch (event.type) {
+
     case 'keydown':
+
       switch (event.key) {
-        case 'Esc':
-        case 'Escape':
+        case "Esc":
+        case "Escape":
           this.close();
           flag = true;
           break;
 
-        case 'Enter':
+        case "Enter":
           this.moveToPreviousMonth();
           this.setFocusDay(false);
           flag = true;
@@ -676,23 +618,24 @@ DatePickerDialog.prototype.handleDayKeyDown = function (event) {
   var flag = false;
 
   switch (event.key) {
-    case 'Esc':
-    case 'Escape':
+
+    case "Esc":
+    case "Escape":
       this.close();
       break;
 
-    case ' ':
+    case " ":
       this.setTextboxDate(event.currentTarget);
       flag = true;
       break;
 
-    case 'Enter':
+    case "Enter":
       this.setTextboxDate(event.currentTarget);
       this.close();
       flag = true;
       break;
 
-    case 'Tab':
+    case "Tab":
       this.cancelButtonNode.focus();
       if (event.shiftKey) {
         this.nextYearNode.focus();
@@ -701,56 +644,58 @@ DatePickerDialog.prototype.handleDayKeyDown = function (event) {
       flag = true;
       break;
 
-    case 'Right':
-    case 'ArrowRight':
+    case "Right":
+    case "ArrowRight":
       this.moveFocusToNextDay();
       flag = true;
       break;
 
-    case 'Left':
-    case 'ArrowLeft':
+    case "Left":
+    case "ArrowLeft":
       this.moveFocusToPreviousDay();
       flag = true;
       break;
 
-    case 'Down':
-    case 'ArrowDown':
+    case "Down":
+    case "ArrowDown":
       this.moveFocusToNextWeek();
       flag = true;
       break;
 
-    case 'Up':
-    case 'ArrowUp':
+    case "Up":
+    case "ArrowUp":
       this.moveFocusToPreviousWeek();
       flag = true;
       break;
 
-    case 'PageUp':
+    case "PageUp":
       if (event.shiftKey) {
         this.moveToPreviousYear();
-      } else {
+      }
+      else {
         this.moveToPreviousMonth();
       }
       this.setFocusDay();
       flag = true;
       break;
 
-    case 'PageDown':
+    case "PageDown":
       if (event.shiftKey) {
         this.moveToNextYear();
-      } else {
+      }
+      else {
         this.moveToNextMonth();
       }
       this.setFocusDay();
       flag = true;
       break;
 
-    case 'Home':
+    case "Home":
       this.moveFocusToFirstDayOfWeek();
       flag = true;
       break;
 
-    case 'End':
+    case "End":
       this.moveFocusToLastDayOfWeek();
       flag = true;
       break;
@@ -763,6 +708,7 @@ DatePickerDialog.prototype.handleDayKeyDown = function (event) {
 };
 
 DatePickerDialog.prototype.handleDayClick = function (event) {
+
   if (!this.isDayDisabled(event.currentTarget)) {
     this.setTextboxDate(event.currentTarget);
     this.close();
@@ -770,6 +716,7 @@ DatePickerDialog.prototype.handleDayClick = function (event) {
 
   event.stopPropagation();
   event.preventDefault();
+
 };
 
 DatePickerDialog.prototype.handleDayFocus = function () {
@@ -777,19 +724,23 @@ DatePickerDialog.prototype.handleDayFocus = function () {
 };
 
 DatePickerDialog.prototype.handleButtonKeydown = function (event) {
-  if (event.key === 'Enter' || event.key === ' ') {
+
+  if ((event.key === 'Enter') ||
+      (event.key === ' ')) {
     this.open();
     this.setFocusDay();
 
     event.stopPropagation();
     event.preventDefault();
   }
+
 };
 
 DatePickerDialog.prototype.handleButtonClick = function (event) {
   if (this.isOpen()) {
     this.close();
-  } else {
+  }
+  else {
     this.open();
     this.setFocusDay();
   }
@@ -799,10 +750,9 @@ DatePickerDialog.prototype.handleButtonClick = function (event) {
 };
 
 DatePickerDialog.prototype.handleBackgroundMouseUp = function (event) {
-  if (
-    !this.buttonNode.contains(event.target) &&
-    !this.dialogNode.contains(event.target)
-  ) {
+  if (!this.buttonNode.contains(event.target) &&
+      !this.dialogNode.contains(event.target)) {
+
     if (this.isOpen()) {
       this.close(false);
       event.stopPropagation();
@@ -813,10 +763,12 @@ DatePickerDialog.prototype.handleBackgroundMouseUp = function (event) {
 
 // Initialize menu button date picker
 
-window.addEventListener('load', function () {
+window.addEventListener('load' , function () {
+
   var datePickers = document.querySelectorAll('.datepicker');
 
   datePickers.forEach(function (dp) {
     new DatePickerDialog(dp);
   });
+
 });
