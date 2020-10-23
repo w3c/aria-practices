@@ -226,7 +226,7 @@ class TreeViewNavigation {
 
   setFocusToNextTreeitem(treeitem) {
     var visibleTreeitems = this.getVisibleTreeitems();
-    var nextItem = visibleTreeitems[0];
+    var nextItem = false;
 
     for (var i = visibleTreeitems.length - 1; i >= 0; i--) {
       var ti = visibleTreeitems[i];
@@ -242,7 +242,7 @@ class TreeViewNavigation {
 
   setFocusToPreviousTreeitem(treeitem) {
     var visibleTreeitems = this.getVisibleTreeitems();
-    var prevItem = visibleTreeitems[visibleTreeitems.length - 1];
+    var prevItem = false;
 
     for (var i = 0; i < visibleTreeitems.length; i++) {
       var ti = visibleTreeitems[i];
