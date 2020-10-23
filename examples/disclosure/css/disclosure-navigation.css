@@ -68,13 +68,13 @@
 }
 
 .disclosure-nav button:hover,
-.disclosure-nav button[aria-expanded=true] {
+.disclosure-nav button[aria-expanded="true"] {
   background-color: #005a9c;
   color: #fff;
 }
 
 .disclosure-nav button:hover::after,
-.disclosure-nav button[aria-expanded=true]::after {
+.disclosure-nav button[aria-expanded="true"]::after {
   border-color: #fff;
 }
 

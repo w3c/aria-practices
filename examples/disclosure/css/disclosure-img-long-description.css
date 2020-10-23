@@ -29,12 +29,12 @@ figure button:active {
 }
 
 figure button[aria-expanded="false"]::before {
-  content: url('../images/right-arrow-brown.png');
+  content: url("../images/right-arrow-brown.png");
   padding-right: 0.25em;
 }
 
 figure button[aria-expanded="true"]::before {
-  content: url('../images/down-arrow-brown.png');
+  content: url("../images/down-arrow-brown.png");
   padding-right: 0.25em;
 }
 
