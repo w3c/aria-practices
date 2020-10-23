@@ -1,5 +1,3 @@
-'use strict';
-
 const { ariaTest } = require('..');
 const { By } = require('selenium-webdriver');
 

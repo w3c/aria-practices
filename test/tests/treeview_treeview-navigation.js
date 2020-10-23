@@ -1,5 +1,3 @@
-'use strict';
-
 const { ariaTest } = require('..');
 const { Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
