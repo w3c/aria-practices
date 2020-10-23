@@ -1,5 +1,3 @@
-'use strict';
-
 const { By, Key } = require('selenium-webdriver');
 const assert = require('assert');
 

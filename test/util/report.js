@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-'use strict';
 
 const cheerio = require('cheerio');
 const path = require('path');
