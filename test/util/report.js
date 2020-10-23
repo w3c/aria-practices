@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-'use strict';
 
 const cheerio = require('cheerio');
 const path = require('path');
@@ -9,20 +8,30 @@ const { spawnSync } = require('child_process');
 
 const examplePath = path.resolve(__dirname, '..', '..', 'examples');
 const testsPath = path.resolve(__dirname, '..', 'tests');
-const ignoreExampleDirs = path.resolve(__dirname, 'report_files', 'ignore_test_directories');
-const ignoreExampleFiles = path.resolve(__dirname, 'report_files', 'ignore_html_files');
+const ignoreExampleDirs = path.resolve(
+  __dirname,
+  'report_files',
+  'ignore_test_directories'
+);
+const ignoreExampleFiles = path.resolve(
+  __dirname,
+  'report_files',
+  'ignore_html_files'
+);
 const ignoredDataTestId = 'test-not-required';
 
-const ignoreDirectories = fs.readFileSync(ignoreExampleDirs)
+const ignoreDirectories = fs
+  .readFileSync(ignoreExampleDirs)
   .toString()
   .trim()
   .split('\n')
-  .map(d => path.resolve(examplePath, d));
-const ignoreFiles = fs.readFileSync(ignoreExampleFiles)
+  .map((d) => path.resolve(examplePath, d));
+const ignoreFiles = fs
+  .readFileSync(ignoreExampleFiles)
   .toString()
   .trim()
   .split('\n')
-  .map(f => path.resolve(examplePath, f));
+  .map((f) => path.resolve(examplePath, f));
 
 /**
  * Recursively find all example pages, saves to exampleFiles global
@@ -40,8 +49,7 @@ const getExampleFiles = function (currentDirPath, exampleFiles) {
       ignoreFiles.indexOf(filePath) === -1
     ) {
       exampleFiles.push(filePath);
-    }
-    else if (
+    } else if (
       stat.isDirectory() &&
       ignoreDirectories.indexOf(filePath) === -1
     ) {
@@ -76,7 +84,6 @@ const getAttributeRowName = function ($, $tableRow) {
   return rowName;
 };
 
-
 /**
  * Processes all example files to find data-test-ids and missing data-test-ids
  * Builds exampleCoverage object:
@@ -92,7 +99,10 @@ const getAttributeRowName = function ($, $tableRow) {
  * @param {Array} exampleFiles     - all example files to process
  * @param {Object} exampleCoverage - object to add coverage information to
  */
-const processDocumentationInExampleFiles = function (exampleFiles, exampleCoverage) {
+const processDocumentationInExampleFiles = function (
+  exampleFiles,
+  exampleCoverage
+) {
   for (let exampleFile of exampleFiles) {
     var data = fs.readFileSync(exampleFile);
     const dom = htmlparser2.parseDOM(data);
@@ -107,12 +117,13 @@ const processDocumentationInExampleFiles = function (exampleFiles, exampleCovera
       let $row = $(this);
       let dataTestId = $row.attr('data-test-id');
 
-      if (dataTestId === ignoredDataTestId) { return; }
+      if (dataTestId === ignoredDataTestId) {
+        return;
+      }
 
       if (dataTestId !== undefined) {
         dataTestIds.add(dataTestId);
-      }
-      else {
+      } else {
         keysMissingIds.add(getKeyboardRowName($, $row));
       }
     });
@@ -122,12 +133,13 @@ const processDocumentationInExampleFiles = function (exampleFiles, exampleCovera
       let $row = $(this);
       let dataTestId = $row.attr('data-test-id');
 
-      if (dataTestId === ignoredDataTestId) { return; }
+      if (dataTestId === ignoredDataTestId) {
+        return;
+      }
 
       if (dataTestId !== undefined) {
         dataTestIds.add(dataTestId);
-      }
-      else {
+      } else {
         attrsMissingIds.add(getAttributeRowName($, $row));
       }
     });
@@ -139,7 +151,7 @@ const processDocumentationInExampleFiles = function (exampleFiles, exampleCovera
       existingTestIds: dataTestIds,
       missingTests: new Set(dataTestIds),
       missingAttrs: attrsMissingIds,
-      missingKeys: keysMissingIds
+      missingKeys: keysMissingIds,
     };
   }
 };
@@ -159,7 +171,14 @@ const getRegressionTestCoverage = function (exampleCoverage) {
     allTestFiles.push(path.join(testsPath, testfile));
   });
 
-  const cmd = path.resolve(__dirname, '..', '..', 'node_modules', 'ava', 'cli.js');
+  const cmd = path.resolve(
+    __dirname,
+    '..',
+    '..',
+    'node_modules',
+    'ava',
+    'cli.js'
+  );
   const cmdargs = [...allTestFiles, '--tap', '-c', '1'];
 
   const output = spawnSync(cmd, cmdargs);
@@ -176,7 +195,7 @@ const getRegressionTestCoverage = function (exampleCoverage) {
   let testRegex = /^# (\S+) [>›] (\S+\.html) \[data-test-id="(\S+)"\]/gm;
   let matchResults;
   // eslint-disable-next-line no-cond-assign
-  while (matchResults = testRegex.exec(avaResults)) {
+  while ((matchResults = testRegex.exec(avaResults))) {
     let example = matchResults[2];
     let dataTestId = matchResults[3];
 
@@ -215,14 +234,13 @@ for (let example in exampleCoverage) {
     let exampleName = example;
 
     if (existingTestIds === missingTests) {
-      examplesWithNoTestsReport += exampleName + '\n';
+      examplesWithNoTestsReport += '- ' + exampleName + '\n';
       examplesWithNoTests++;
-    }
-    else if (missingTests) {
-      examplesMissingSomeTestsReport += exampleName + ':\n';
+    } else if (missingTests) {
+      examplesMissingSomeTestsReport += '- ' + exampleName + ':\n';
 
       for (let testId of exampleCoverage[example].missingTests) {
-        examplesMissingSomeTestsReport += '    ' + testId + '\n';
+        examplesMissingSomeTestsReport += '   - ' + testId + '\n';
       }
 
       examplesMissingSomeTests += 1;
@@ -230,28 +248,26 @@ for (let example in exampleCoverage) {
     }
 
     if (missingKeys || missingAttrs) {
-      missingTestIdsReport += exampleName + '\n';
+      missingTestIdsReport += '- ' + exampleName + '\n';
       if (missingKeys) {
-        missingTestIdsReport += '    "Keyboard Support" table(s):\n';
+        missingTestIdsReport += '   - "Keyboard Support" table(s):\n';
         for (let row of exampleCoverage[example].missingKeys) {
-          missingTestIdsReport += '       ' + row + '\n';
+          missingTestIdsReport += '      - ' + row + '\n';
         }
       }
 
       if (missingAttrs) {
-        missingTestIdsReport += '    "Attributes" table(s):\n';
+        missingTestIdsReport += '   - "Attributes" table(s):\n';
         for (let row of exampleCoverage[example].missingAttrs) {
-          missingTestIdsReport += '       ' + row + '\n';
+          missingTestIdsReport += '      - ' + row + '\n';
         }
       }
     }
   }
 }
 
-
 let badFileNames = [];
 fs.readdirSync(testsPath).forEach(function (testFile) {
-
   let dirName = testFile.split('_')[0];
   let dir = path.join(examplePath, dirName);
 
@@ -260,26 +276,42 @@ fs.readdirSync(testsPath).forEach(function (testFile) {
   }
 });
 
-console.log('\nExamples without any regression tests:\n');
+console.log('\n#### Regression test coverage:\n');
+console.log('\n#### Examples without any regression tests:\n');
 console.log(examplesWithNoTestsReport || 'None found.\n');
-console.log('\nExamples missing some regression tests:\n');
+console.log('\n#### Examples missing some regression tests:\n');
 console.log(examplesMissingSomeTestsReport || 'None found.\n');
-console.log('\nExamples documentation table rows without data-test-ids:\n');
+console.log(
+  '\n#### Example pages with Keyboard or Attribute table rows that do not have data-test-ids:\n'
+);
 console.log(missingTestIdsReport || 'None found.\n');
 
-console.log('SUMMARTY:\n');
+console.log('#### SUMMARY:\n');
 console.log('  ' + exampleFiles.length + ' example pages found.');
-console.log('  ' + examplesWithNoTests + ' example pages have no regression tests.');
-console.log('  ' + examplesMissingSomeTests + ' example pages are missing approximately ' +
-            missingTestIds + ' out of approximately ' + totalTestIds + ' tests.\n');
+console.log(
+  '  ' + examplesWithNoTests + ' example pages have no regression tests.'
+);
+console.log(
+  '  ' +
+    examplesMissingSomeTests +
+    ' example pages are missing approximately ' +
+    missingTestIds +
+    ' out of approximately ' +
+    totalTestIds +
+    ' tests.\n'
+);
 
 if (examplesMissingSomeTests) {
-  console.log('ERROR - missing tests:\n\n  Please write missing tests for this report to pass.\n');
+  console.log(
+    'ERROR - missing tests:\n\n  Please write missing tests for this report to pass.\n'
+  );
   process.exitCode = 1;
 }
 
 if (badFileNames.length) {
-  console.log('ERROR - bad file names:\n\n  Some test files do not follow the correct naming convention. Test file names should begin with the root parent directory of example being tested followed by an underscore (\'_\'). Please correct the following bad test file(s):\n');
+  console.log(
+    "ERROR - bad file names:\n\n  Some test files do not follow the correct naming convention. Test file names should begin with the root parent directory of example being tested followed by an underscore ('_'). Please correct the following bad test file(s):\n"
+  );
 
   for (let file of badFileNames) {
     console.log('  ' + file[0]);
