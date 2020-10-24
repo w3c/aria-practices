@@ -398,12 +398,12 @@
           <tbody>
             <tr data-test-id="banner-role">
               <th scope="row"><code>banner</code></th>
-              <td><code>role="banner"</code></td>
+              <td><code>role==&quot;banner=&quot;</code></td>
               <td><code>header</code></td>
               <td>
                 <ul>
                   <li>Identifies the common content found at the top of most pages in a website.</li>
-                  <li>In a real web page the <code>header</code> element would typically not need <code>role="banner"</code> attribute to define the landmark, but in this example the <code>header</code> element is not in the proper scope of the <code>body</code> element to identify is as a banner landmark, so it must be explicitly identified using the role attribute.</li>
+                  <li>In a real web page the <code>header</code> element would typically not need <code>role=&quot;banner&quot;</code> attribute to define the landmark, but in this example the <code>header</code> element is not in the proper scope of the <code>body</code> element to identify is as a banner landmark, so it must be explicitly identified using the role attribute.</li>
                 </ul>
               </td>
             </tr>
@@ -417,7 +417,7 @@
             </tr>
             <tr data-test-id="navigation-aria-label">
               <td></td>
-              <th scope="row"><code>aria-label="<em>navigation label</em>"</code></th>
+              <th scope="row"><code>aria-label==&quot;<em>navigation label</em>=&quot;</code></th>
               <td><code>nav</code></td>
               <td>
                 The <code>aria-label</code> attribute provides an accessible name for the <code>navigation</code> landmark.
@@ -436,7 +436,7 @@
             </tr>
             <tr data-test-id="region-aria-label">
               <td></td>
-              <th scope="row"><code>aria-label="<em>region label</em>"</code></th>
+              <th scope="row"><code>aria-label==&quot;<em>region label</em>=&quot;</code></th>
               <td><code>section</code></td>
               <td>
                 The <code>aria-label</code> attribute provides an accessible name for the <code>region</code> landmark.
@@ -444,12 +444,12 @@
             </tr>
             <tr data-test-id="contentinfo-role">
               <th scope="row"><code>contentinfo</code></th>
-              <td><code>role="contentinfo"</code></td>
+              <td><code>role==&quot;contentinfo=&quot;</code></td>
               <td><code>footer</code></td>
               <td>
                 <ul>
                   <li>Identifies the common content found at the bottom of most pages in a website.</li>
-                  <li>In a real web page the <code>footer</code> element would typically not need <code>role="contentinfo"</code> attribute to define the landmark, but in this example the <code>footer</code> element is not in the proper scope of the <code>body</code> element to identify is as a contentinfo landmark, so it must be explicitly identified using the role attribute.</li>
+                  <li>In a real web page the <code>footer</code> element would typically not need <code>role=&quot;contentinfo&quot;</code> attribute to define the landmark, but in this example the <code>footer</code> element is not in the proper scope of the <code>body</code> element to identify is as a contentinfo landmark, so it must be explicitly identified using the role attribute.</li>
                 </ul>
               </td>
             </tr>
@@ -524,10 +524,7 @@
                 <ul>
                   <li>Includes the element with the <code>treeitem</code> role in the tab sequence.</li>
                   <li>Only one <code>treeitem</code> in the <code>tree</code> has <code>tabindex=&quot;0&quot;</code>.</li>
-                  <li>In this implementation, the first <code>treeitem</code> in the <code>tree</code> is included in the tab sequence when the page loads.</li>
-                  <li>
-                    When the user moves focus in the <code>tree</code>, the element included in the tab sequence changes to the element with focus as described in the section on
-                    <a href="../../../#kbd_roving_tabindex">roving tabindex.</a>
+                  <li>In this implementation tabindex=&quot;0&quot;</code> stays on the treeitem with <code>aria-current=&quotepage&quoute</code>.
                   </li>
                  </ul>
               </td>
