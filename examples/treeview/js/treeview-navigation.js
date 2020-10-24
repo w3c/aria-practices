@@ -18,7 +18,13 @@ class TreeViewNavigation {
       return;
     }
 
+    document.body.addEventListener(
+      'focusin',
+      this.handleBodyFocusin.bind(this)
+    );
+
     this.treeNode = node;
+    this.navNode = node.parentElement;
 
     this.treeitems = this.treeNode.querySelectorAll('[role="treeitem"]');
     for (let i = 0; i < this.treeitems.length; i++) {
@@ -96,8 +102,13 @@ class TreeViewNavigation {
     }
 
     // Update aria-current
+    this.updateAriaCurrent(linkURL);
+    document.location.href = linkURL;
+  }
+
+  updateAriaCurrent(url) {
     this.treeitems.forEach((item) => {
-      if (item.href === linkURL) {
+      if (item.href === url) {
         item.setAttribute('aria-current', 'page');
         // Make sure link is visible
         this.showTreeitem(item);
@@ -220,7 +231,6 @@ class TreeViewNavigation {
   }
 
   setFocusToTreeitem(treeitem) {
-    this.setTabIndex(treeitem);
     treeitem.focus();
   }
 
@@ -305,6 +315,18 @@ class TreeViewNavigation {
   }
 
   // Event handlers
+
+  handleBodyFocusin(event) {
+    var tgt = event.target;
+    console.log('[handleBodyFocusin]: ' + this.treeNode.contains(tgt));
+
+    if (this.treeNode.contains(tgt)) {
+      this.navNode.classList.add('focus');
+    } else {
+      this.navNode.classList.remove('focus');
+      this.updateAriaCurrent(document.location.href);
+    }
+  }
 
   handleSpanClick(event) {
     var tgt = event.currentTarget;

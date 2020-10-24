@@ -250,7 +250,8 @@ ariaTest(
   }
 );
 
-ariaTest(
+// We do not want roving tabindex anymore
+ariaTest.failing(
   'treeitem tabindex set by roving tabindex',
   exampleFile,
   'treeitem-tabindex',

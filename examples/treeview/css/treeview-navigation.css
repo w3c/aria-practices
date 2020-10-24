@@ -32,10 +32,15 @@
 
 #ex1 .body nav {
   margin: 0;
-  padding: 0.5em;
+  padding: 6px;
   width: 17em;
   height: 60em;
   background: #eee;
+}
+
+#ex1 .body nav.focus {
+  padding: 4px;
+  border: 2px solid #005a9c;
 }
 
 #ex1 .body .page {
@@ -101,9 +106,11 @@
   display: block;
 }
 
-.treeview-navigation a[role="treeitem"][aria-current] {
-  background-color: #005a9c;
-  color: white;
+.treeview-navigation a[role="treeitem"][aria-current]::after {
+  content: url("../images/aria-current.svg");
+  position: relative;
+  top: 2px;
+  left: 6px;
 }
 
 /* disable default keyboard focus styling for treeitems
