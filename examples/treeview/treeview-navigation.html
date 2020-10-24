@@ -275,6 +275,7 @@
             <ul>
               <li>Focus is highlighted by adding and removing a border around the menu item with focus.</li>
               <li>The arrow icons indicating the current state of expandable tree items use in-line SVG images with the CSS <code>currentColor</code> value for the <code>fill</code> and <code>stroke</code> properties of the <code>polygon</code> element.</li>
+              <li>The visual indication of which <code>treeitem</code> has <code>aria-current</code> is an SVG circle with a transparent fill.</li>
             </ul>
           </li>
           <li>Since the tree presents a site navigation system, it is wrapped in a navigation region implemented with a <code>nav</code> element that has an <code>aria-label</code> that matches the label on the menubar.</li>
@@ -534,7 +535,10 @@
               <th scope="row"><code>aria-current=&quot;page&quot;</code></th>
               <td><code>a</code></td>
               <td>
-                Applied only to <code>treeitem</code> that is the link to current page.
+                <ul>
+                  <li>Applied only to <code>treeitem</code> that is the link to current page.</li>
+                  <li>The visual indication of the <code>treeitem</code> with <code>aria-current</code> is an SVG circle with a transparent fill after the label text.</li>
+                <ul>
               </td>
             </tr>
             <tr data-test-id="treeitem-aria-expanded">
