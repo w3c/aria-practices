@@ -402,7 +402,7 @@ class TreeViewNavigation {
           break;
 
         case 'Home':
-          this.setFocusToTreeItem(this.treeitems[0]);
+          this.setFocusToTreeitem(this.treeitems[0]);
           flag = true;
           break;
 

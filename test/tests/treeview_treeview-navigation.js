@@ -8,13 +8,29 @@ const assertAriaOwns = require('../util/assertAriaOwns');
 const exampleFile = 'treeview/treeview-navigation.html';
 
 const ex = {
+  bannerSelector: '#ex1 header',
+  navigationSelector: '#ex1 nav',
+  regionSelector: '#ex1 section',
+  contentinfoSelector: '#ex1 footer',
   treeSelector: '#ex1 [role="tree"]',
   treeitemSelector: '#ex1 [role="treeitem"]',
+  tabIndexZeroSelector: '#ex1 [tabindex="0"]',
   groupSelector: '#ex1 [role="group"]',
   expandableSelector: '#ex1 [role="treeitem"][aria-expanded]',
   topLevelTreeitemsSelector: '#ex1 [role="tree"] > li > [role="treeitem"]',
   nextLevelTreeitemsSelector:
-    '[role="group"] > li > [role="treeitem"][aria-expanded]',
+    '#ex1 [role="tree"] > li > [role="group"] > li > [role="treeitem"]',
+  topLevelExpandableTreeitemsSelector:
+    '#ex1 [role="tree"] > li > [role="treeitem"][aria-expanded]',
+  nextLevelExpandableTreeitemsSelector:
+    '#ex1 [role="tree"] > li > [role="group"] > li > [role="treeitem"][aria-expanded]',
+  aboutChildTreeitemsSelector: '#id-about-subtree > li > [role="treeitem"]',
+  aboutChildExpandableTreeitemsSelector:
+    '#id-about-subtree > li > [role="treeitem"][aria-expanded]',
+  admissionsChildTreeitemsSelector:
+    '#id-admissions-subtree > li > [role="treeitem"]',
+  admissionsChildExpandableTreeitemsSelector:
+    '#id-admissions-subtree > li > [role="treeitem"][aria-expanded]',
   linkSelector: '#ex1 a[role="treeitem"]',
   h1Selector: '#ex1 .page h1',
 };
@@ -49,32 +65,17 @@ const checkFocus = async function (t, selector, index) {
 const checkFocusOnParentTreeitem = async function (t, el) {
   return t.context.session.executeScript(function () {
     const el = arguments[0];
-
-    // the element is a treeitem
-    if (el.hasAttribute('aria-expanded')) {
-      return (
-        document.activeElement ===
-        el.parentElement.parentElement.closest(
-          '[role="treeitem"][aria-expanded]'
-        )
-      );
-    }
-    // the element is a treeitem
-    else {
-      return (
-        document.activeElement ===
-        el.parentElement.parentElement.closest(
-          '[role="treeitem"][aria-expanded]'
-        )
-      );
-    }
+    return (
+      document.activeElement ===
+      el.parentElement.parentElement.previousElementSibling
+    );
   }, el);
 };
 
 const isTopLevelTreeitem = async function (t, el) {
   return t.context.session.executeScript(function () {
     const el = arguments[0];
-    return el.parentElement.getAttribute('role') === 'tree';
+    return el.parentElement.parentElement.getAttribute('role') === 'tree';
   }, el);
 };
 
@@ -103,6 +104,105 @@ const hasAriaExpandedAttribute = async function (t, el) {
     return el.hasAttribute('aria-expanded');
   }, el);
 };
+
+// Tests for landmark roles in example
+
+ariaTest(
+  'role="banner" on header element',
+  exampleFile,
+  'banner-role',
+  async (t) => {
+    const banners = await t.context.queryElements(t, ex.bannerSelector);
+
+    t.is(
+      banners.length,
+      1,
+      'One "role=banner" element should be found by selector: ' +
+        ex.bannerSelector
+    );
+
+    t.is(
+      await banners[0].getTagName(),
+      'header',
+      'role="banner" should be found on a "header"'
+    );
+  }
+);
+
+ariaTest(
+  'nav element identifies navigation landmark',
+  exampleFile,
+  'navigation-role',
+  async (t) => {
+    const navs = await t.context.queryElements(t, ex.navigationSelector);
+
+    t.is(
+      navs.length,
+      1,
+      'One nav element should be found by selector: ' + ex.navigationSelector
+    );
+  }
+);
+
+ariaTest(
+  'aria-label on nav element',
+  exampleFile,
+  'navigation-aria-label',
+  async (t) => {
+    await assertAriaLabelExists(t, ex.navigationSelector);
+  }
+);
+
+ariaTest(
+  'section element identifies region landmark',
+  exampleFile,
+  'region-role',
+  async (t) => {
+    const regions = await t.context.queryElements(t, ex.regionSelector);
+
+    t.is(
+      regions.length,
+      1,
+      'One section element should be found by selector: ' + ex.regionSelector
+    );
+  }
+);
+
+ariaTest(
+  'aria-label on section element',
+  exampleFile,
+  'region-aria-label',
+  async (t) => {
+    await assertAriaLabelExists(t, ex.regionSelector);
+  }
+);
+
+ariaTest(
+  'role="contentinfo" on footer element',
+  exampleFile,
+  'contentinfo-role',
+  async (t) => {
+    const contentinfos = await t.context.queryElements(
+      t,
+      ex.contentinfoSelector
+    );
+
+    t.is(
+      contentinfos.length,
+      1,
+      'One "role=contentifo" element should be found by selector: ' +
+        ex.contentinfoSelector
+    );
+
+    t.is(
+      await contentinfos[0].getTagName(),
+      'footer',
+      'role="contentinfo" should be found on a "footer"'
+    );
+  }
+);
+
+// Tests for treeview widget roles, properties and states
 
 ariaTest('role="tree" on ul element', exampleFile, 'tree-role', async (t) => {
   const trees = await t.context.queryElements(t, ex.treeSelector);
@@ -151,28 +251,6 @@ ariaTest(
 );
 
 ariaTest(
-  'aria-owns on expandable treeitems',
-  exampleFile,
-  'treeitem-aria-owns',
-  async (t) => {
-    await assertAriaOwns(t, ex.expandableSelector);
-  }
-);
-
-ariaTest('role="none" on "li" element', exampleFile, 'none-role', async (t) => {
-  // Get all the list items in the tree structure
-  const listitems = await t.context.queryElements(t, '#ex1 [role="tree"] li');
-
-  for (let item of listitems) {
-    t.is(
-      await item.getAttribute('role'),
-      'none',
-      'role="none" should be found on a "li" items'
-    );
-  }
-});
-
-ariaTest(
   'treeitem tabindex set by roving tabindex',
   exampleFile,
   'treeitem-tabindex',
@@ -183,24 +261,16 @@ ariaTest(
 );
 
 ariaTest(
-  'role="group" on "ul" elements',
+  'treeitem aria-current="page" on item with tabindex="0"',
   exampleFile,
-  'group-role',
+  'treeitem-aria-current',
   async (t) => {
-    const groups = await t.context.queryElements(t, ex.groupSelector);
-
-    t.truthy(
-      groups.length,
-      'role="group" elements should be found by selector: ' + ex.groupSelector
+    await assertAttributeValues(
+      t,
+      ex.tabIndexZeroSelector,
+      'aria-current',
+      'page'
     );
-
-    for (let group of groups) {
-      t.is(
-        await group.getTagName(),
-        'ul',
-        'role="group" should be found on a "ul"'
-      );
-    }
   }
 );
 
@@ -257,6 +327,50 @@ ariaTest(
     }
   }
 );
+
+ariaTest(
+  'aria-owns on expandable treeitems',
+  exampleFile,
+  'treeitem-aria-owns',
+  async (t) => {
+    await assertAriaOwns(t, ex.expandableSelector);
+  }
+);
+
+ariaTest(
+  'role="group" on "ul" elements',
+  exampleFile,
+  'group-role',
+  async (t) => {
+    const groups = await t.context.queryElements(t, ex.groupSelector);
+
+    t.truthy(
+      groups.length,
+      'role="group" elements should be found by selector: ' + ex.groupSelector
+    );
+
+    for (let group of groups) {
+      t.is(
+        await group.getTagName(),
+        'ul',
+        'role="group" should be found on a "ul"'
+      );
+    }
+  }
+);
+
+ariaTest('role="none" on "li" element', exampleFile, 'none-role', async (t) => {
+  // Get all the list items in the tree structure
+  const listitems = await t.context.queryElements(t, '#ex1 [role="tree"] li');
+
+  for (let item of listitems) {
+    t.is(
+      await item.getAttribute('role'),
+      'none',
+      'role="none" should be found on a "li" items'
+    );
+  }
+});
 
 // Keys
 
@@ -501,7 +615,7 @@ ariaTest(
   }
 );
 
-ariaTest.failing(
+ariaTest(
   'key left arrow closes treeitems and moves focus',
   exampleFile,
   'key-left-arrow',
@@ -512,7 +626,9 @@ ariaTest.failing(
     const items = await t.context.queryElements(t, ex.treeitemSelector);
 
     let i = items.length - 1;
+    let count = 0;
     while (i > 0) {
+      count += 1;
       const isExpandable = await isExpandableTreeitem(items[i]);
       const isOpened = await isOpenedExpandableTreeitem(items[i]);
       const isTopLevel = isExpandableTreeitem
@@ -574,7 +690,7 @@ ariaTest.failing(
   }
 );
 
-ariaTest.failing('key home moves focus', exampleFile, 'key-home', async (t) => {
+ariaTest('key home moves focus', exampleFile, 'key-home', async (t) => {
   // Test that key "home" works when no treeitem is open
   const topLevelTreeitems = await t.context.queryElements(
     t,
@@ -591,13 +707,15 @@ ariaTest.failing('key home moves focus', exampleFile, 'key-home', async (t) => {
         ' should move focus to first top level treeitem'
     );
 
-    t.is(
-      await topLevelTreeitems[i].getAttribute('aria-expanded'),
-      'false',
-      'Sending key HOME to top level treeitem at index ' +
-        i +
-        ' should not expand the treeitem'
-    );
+    if (await isExpandableTreeitem(topLevelTreeitems[i])) {
+      t.is(
+        await topLevelTreeitems[i].getAttribute('aria-expanded'),
+        'false',
+        'Sending key HOME to top level treeitem at index ' +
+          i +
+          ' should not expand the treeitem'
+      );
+    }
   }
 
   // Reload page
@@ -620,7 +738,7 @@ ariaTest.failing('key home moves focus', exampleFile, 'key-home', async (t) => {
   }
 });
 
-ariaTest.failing('key end moves focus', exampleFile, 'key-end', async (t) => {
+ariaTest('key end moves focus', exampleFile, 'key-end', async (t) => {
   // Test that key "end" works when no treeitem is open
   const topLevelTreeitems = await t.context.queryElements(
     t,
@@ -641,13 +759,15 @@ ariaTest.failing('key end moves focus', exampleFile, 'key-end', async (t) => {
         ' should move focus to last top level treeitem'
     );
 
-    t.is(
-      await topLevelTreeitems[i].getAttribute('aria-expanded'),
-      'false',
-      'Sending key END to top level treeitem at index ' +
-        i +
-        ' should not expand the treeitem'
-    );
+    if (await isExpandableTreeitem(topLevelTreeitems[i])) {
+      t.is(
+        await topLevelTreeitems[i].getAttribute('aria-expanded'),
+        'false',
+        'Sending key END to top level treeitem at index ' +
+          i +
+          ' should not expand the treeitem'
+      );
+    }
   }
 
   // Reload page
@@ -670,97 +790,85 @@ ariaTest.failing('key end moves focus', exampleFile, 'key-end', async (t) => {
   }
 });
 
-ariaTest.failing(
-  'characters move focus',
-  exampleFile,
-  'key-character',
-  async (t) => {
-    const charIndexTestClosed = [
-      { sendChar: 'p', sendIndex: 0, endIndex: 0 },
-      { sendChar: 'r', sendIndex: 0, endIndex: 1 },
-      { sendChar: 'l', sendIndex: 1, endIndex: 2 },
-    ];
+ariaTest('characters move focus', exampleFile, 'key-character', async (t) => {
+  const charIndexTestClosed = [
+    { sendChar: 'p', sendIndex: 0, endIndex: 0 },
+    { sendChar: 'A', sendIndex: 0, endIndex: 1 },
+    { sendChar: 'H', sendIndex: 1, endIndex: 0 },
+  ];
 
-    const charIndexTestOpened = [
-      { sendChar: 'x', sendIndex: 0, endIndex: 0 },
-      { sendChar: 'p', sendIndex: 0, endIndex: 1 },
-      { sendChar: 'p', sendIndex: 1, endIndex: 2 },
-      { sendChar: 'p', sendIndex: 2, endIndex: 3 },
-      { sendChar: 'x', sendIndex: 3, endIndex: 3 },
-      { sendChar: 'r', sendIndex: 3, endIndex: 15 },
-      { sendChar: 'r', sendIndex: 15, endIndex: 16 },
-      { sendChar: 'l', sendIndex: 3, endIndex: 30 },
-      { sendChar: 'l', sendIndex: 30, endIndex: 31 },
-    ];
+  const charIndexTestOpened = [
+    { sendChar: 'f', sendIndex: 0, endIndex: 4 },
+    { sendChar: 'h', sendIndex: 0, endIndex: 5 },
+    { sendChar: 'u', sendIndex: 2, endIndex: 15 },
+    { sendChar: 'u', sendIndex: 15, endIndex: 15 },
+    { sendChar: 'c', sendIndex: 15, endIndex: 21 },
+    { sendChar: 'r', sendIndex: 21, endIndex: 28 },
+    { sendChar: 'f', sendIndex: 28, endIndex: 4 },
+    { sendChar: 'g', sendIndex: 3, endIndex: 16 },
+    { sendChar: 'f', sendIndex: 10, endIndex: 11 },
+  ];
 
-    const topLevelTreeitems = await t.context.queryElements(
-      t,
-      ex.topLevelTreeitemsSelector
+  const topLevelTreeitems = await t.context.queryElements(
+    t,
+    ex.topLevelTreeitemsSelector
+  );
+
+  for (let test of charIndexTestClosed) {
+    // Send character to treeitem
+    await topLevelTreeitems[test.sendIndex].sendKeys(test.sendChar);
+
+    // Test that the focus switches to the appropriate item
+    t.true(
+      await checkFocus(t, ex.topLevelTreeitemsSelector, test.endIndex),
+      'Sending character ' +
+        test.sendChar +
+        ' to treeitem ' +
+        test.sendIndex +
+        ' should move the focus to treeitem ' +
+        test.endIndex
     );
-
-    for (let test of charIndexTestClosed) {
-      // Send character to treeitem
-      await topLevelTreeitems[test.sendIndex].sendKeys(test.sendChar);
-
-      // Test that the focus switches to the appropriate item
-      t.true(
-        await checkFocus(t, ex.topLevelTreeitemsSelector, test.endIndex),
-        'Sending character ' +
-          test.sendChar +
-          ' to treeitem ' +
-          test.sendIndex +
-          ' should move the foucs to treeitem ' +
-          test.endIndex
-      );
-
-      await assertAttributeValues(
-        t,
-        ex.topLevelTreeitemsSelector,
-        'aria-expanded',
-        'false'
-      );
-    }
-
-    // Reload page
-    await t.context.session.get(t.context.url);
-
-    // Open all treeitems
-    await openAllExpandableTreeitems(t);
-
-    const items = await t.context.queryElements(t, ex.treeitemSelector);
-
-    for (let test of charIndexTestOpened) {
-      // Send character to treeitem
-      await items[test.sendIndex].sendKeys(test.sendChar);
-
-      // Test that the focus switches to the appropriate treeitem
-      t.true(
-        await checkFocus(t, ex.treeitemSelector, test.endIndex),
-        'Sending character ' +
-          test.sendChar +
-          ' to treeitem ' +
-          test.sendIndex +
-          ' should move the foucs to treeitem ' +
-          test.endIndex
-      );
-    }
   }
-);
 
-ariaTest.failing(
+  // Reload page
+  await t.context.session.get(t.context.url);
+
+  // Open all treeitems
+  await openAllExpandableTreeitems(t);
+
+  const items = await t.context.queryElements(t, ex.treeitemSelector);
+
+  for (let test of charIndexTestOpened) {
+    // Send character to treeitem
+    await items[test.sendIndex].sendKeys(test.sendChar);
+
+    // Test that the focus switches to the appropriate treeitem
+    t.true(
+      await checkFocus(t, ex.treeitemSelector, test.endIndex),
+      'Sending character ' +
+        test.sendChar +
+        ' to treeitem ' +
+        test.sendIndex +
+        ' should move the foucs to treeitem ' +
+        test.endIndex
+    );
+  }
+});
+
+ariaTest(
   'asterisk key opens expandable treeitems',
   exampleFile,
   'key-asterisk',
   async (t) => {
-    /* Test that "*" ONLY opens all top level nodes and no other treeitems */
+    // Test that "*" ONLY opens all top level nodes and no other treeitems
 
     const topLevelTreeitems = await t.context.queryElements(
       t,
-      ex.topLevelTreeitemsSelector
+      ex.topLevelExpandableTreeitemsSelector
     );
     const nextLevelTreeitems = await t.context.queryElements(
       t,
-      ex.nextLevelTreeitemsSelector
+      ex.nextLevelExpandableTreeitemsSelector
     );
 
     // Send Key
@@ -768,61 +876,72 @@ ariaTest.failing(
 
     await assertAttributeValues(
       t,
-      ex.topLevelTreeitemsSelector,
+      ex.topLevelExpandableTreeitemsSelector,
       'aria-expanded',
       'true'
     );
     await assertAttributeValues(
       t,
-      ex.nextLevelExpandableTreeitemSelector,
+      ex.nextLevelExpandableTreeitemsSelector,
       'aria-expanded',
       'false'
     );
 
-    /* Test that "*" ONLY opens sibling treeitems at that level */
+    // Test that "*" on "about" child treeitems on that level
+
+    const aboutChildTreeitems = await t.context.queryElements(
+      t,
+      ex.aboutChildTreeitemsSelector
+    );
+
+    const aboutChildExpandableTreeitems = await t.context.queryElements(
+      t,
+      ex.aboutChildExpandableTreeitemsSelector
+    );
 
     // Send key
-    await nextLevelTreeitems[0].sendKeys('*');
 
-    // The sub exapndable  treeitems of first top level treeitem should all be open
+    await aboutChildTreeitems[0].sendKeys('*');
 
-    const subTreeitemsOfFirstExpandableTreeitem = await t.context.queryElements(
-      t,
-      ex.nextLevelExpandableTreeitemSelector,
-      topLevelTreeitems[0]
-    );
-    for (let el of subTreeitemsOfFirstExpandableTreeitem) {
+    // The child expandable treeitems of "About" top level treeitem should all be open
+
+    for (let el of aboutChildExpandableTreeitems) {
       t.true(
         (await el.getAttribute('aria-expanded')) === 'true',
-        'Sub treeitems under the first top level treeitem should all be opened after sending one "*" to subtreeitem under first top level treeitem'
+        'Sibling "' +
+          (await el.getText()) +
+          '" treeitem of "' +
+          (await aboutChildTreeitems[0].getText()) +
+          '" treeitem should all be opened after sending one "*" to the treeitem.'
       );
     }
 
-    // The sub-treeitems of second top level treeitem should all be closed
+    // Test that "*" on "admissions" child treeitems on that level
 
-    const subTreeitemsOfSecondExpandableTreeitem = await t.context.queryElements(
+    const admissionsChildTreeitems = await t.context.queryElements(
       t,
-      ex.nextLevelExpandableTreeitemSelector,
-      topLevelTreeitems[1]
+      ex.admissionsChildTreeitemsSelector
     );
-    for (let el of subTreeitemsOfSecondExpandableTreeitem) {
-      t.true(
-        (await el.getAttribute('aria-expanded')) === 'false',
-        'sub-treeitems under the second top level treeitem should all be closed after sending one "*" to subtreeitem under first top level treeitem'
-      );
-    }
 
-    // The sub-treeitems of third top level treeitem should all be closed
-
-    const subTreeitemsOfThirdExpandableTreeitem = await t.context.queryElements(
+    const admissionsChildExpandableTreeitems = await t.context.queryElements(
       t,
-      ex.nextLevelExpandableTreeitemSelector,
-      topLevelTreeitems[2]
+      ex.admissionsChildExpandableTreeitemsSelector
     );
-    for (let el of subTreeitemsOfThirdExpandableTreeitem) {
+
+    // Send key
+
+    await admissionsChildTreeitems[0].sendKeys('*');
+
+    // The child expandable treeitems of "admissions" top level treeitem should all be open
+
+    for (let el of admissionsChildExpandableTreeitems) {
       t.true(
-        (await el.getAttribute('aria-expanded')) === 'false',
-        'sub-treeitems under the third top level treeitem should all be closed after sending one "*" to subtreeitem under first top level treeitem'
+        (await el.getAttribute('aria-expanded')) === 'true',
+        'Sibling "' +
+          (await el.getText()) +
+          '" treeitem of "' +
+          (await admissionsChildTreeitems[0].getText()) +
+          '" treeitem should all be opened after sending one "*" to the treeitem.'
       );
     }
   }
