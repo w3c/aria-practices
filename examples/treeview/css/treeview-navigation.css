@@ -113,17 +113,19 @@
   left: 6px;
 }
 
+.treeview-navigation a[role="treeitem"][aria-current] {
+  background-color: #ddd;
+}
+
 /* disable default keyboard focus styling for treeitems
    Keyboard focus is styled with the following CSS */
 
 .treeview-navigation a[role="treeitem"]:focus {
   outline: 0;
-  background-color: #ddd;
   padding: 2px;
   border: 2px #005a9c solid;
 }
 
-.treeview-navigation a[role="treeitem"][aria-current]:focus,
 .treeview-navigation a[role="treeitem"][aria-current]:hover {
   color: #005a9c;
 }
