@@ -23,18 +23,12 @@ class MenuButtonActionsActiveDescendant {
 
     this.buttonNode.addEventListener(
       'keydown',
-      this.handleButtonKeydown.bind(this)
+      this.onButtonKeydown.bind(this)
     );
 
-    this.buttonNode.addEventListener(
-      'click',
-      this.handleButtonClick.bind(this)
-    );
+    this.buttonNode.addEventListener('click', this.onButtonClick.bind(this));
 
-    this.menuNode.addEventListener(
-      'keydown',
-      this.handleMenuKeydown.bind(this)
-    );
+    this.menuNode.addEventListener('keydown', this.onMenuKeydown.bind(this));
 
     var nodes = domNode.querySelectorAll('[role="menuitem"]');
 
@@ -44,11 +38,11 @@ class MenuButtonActionsActiveDescendant {
       menuitem.tabIndex = -1;
       this.firstChars.push(menuitem.textContent.trim()[0].toLowerCase());
 
-      menuitem.addEventListener('click', this.handleMenuitemClick.bind(this));
+      menuitem.addEventListener('click', this.onMenuitemClick.bind(this));
 
       menuitem.addEventListener(
         'mouseover',
-        this.handleMenuitemMouseover.bind(this)
+        this.onMenuitemMouseover.bind(this)
       );
 
       if (!this.firstMenuitem) {
@@ -57,12 +51,12 @@ class MenuButtonActionsActiveDescendant {
       this.lastMenuitem = menuitem;
     }
 
-    domNode.addEventListener('focusin', this.handleFocusin.bind(this));
-    domNode.addEventListener('focusout', this.handleFocusout.bind(this));
+    domNode.addEventListener('focusin', this.onFocusin.bind(this));
+    domNode.addEventListener('focusout', this.onFocusout.bind(this));
 
     window.addEventListener(
       'mousedown',
-      this.handleBackgroundMousedown.bind(this),
+      this.onBackgroundMousedown.bind(this),
       true
     );
   }
@@ -185,15 +179,15 @@ class MenuButtonActionsActiveDescendant {
 
   // Menu event handlers
 
-  handleFocusin(event) {
+  onFocusin(event) {
     this.domNode.classList.add('focus');
   }
 
-  handleFocusout(event) {
+  onFocusout(event) {
     this.domNode.classList.remove('focus');
   }
 
-  handleButtonKeydown(event) {
+  onButtonKeydown(event) {
     var tgt = event.currentTarget,
       key = event.key,
       flag = false;
@@ -231,7 +225,7 @@ class MenuButtonActionsActiveDescendant {
     }
   }
 
-  handleButtonClick(event) {
+  onButtonClick(event) {
     if (this.isOpen()) {
       this.closePopup();
     } else {
@@ -241,7 +235,7 @@ class MenuButtonActionsActiveDescendant {
     event.preventDefault();
   }
 
-  handleMenuKeydown(event) {
+  onMenuKeydown(event) {
     var tgt = event.currentTarget,
       key = event.key,
       flag = false;
@@ -322,18 +316,18 @@ class MenuButtonActionsActiveDescendant {
     }
   }
 
-  handleMenuitemMouseover(event) {
+  onMenuitemMouseover(event) {
     var tgt = event.currentTarget;
     this.setFocusToMenuitem(tgt);
   }
 
-  handleMenuitemClick(event) {
+  onMenuitemClick(event) {
     var tgt = event.currentTarget;
     this.closePopup();
     this.performMenuAction(tgt);
   }
 
-  handleBackgroundMousedown(event) {
+  onBackgroundMousedown(event) {
     if (!this.domNode.contains(event.target)) {
       if (this.isOpen()) {
         this.closePopup();
