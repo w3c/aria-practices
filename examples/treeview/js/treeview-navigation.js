@@ -18,10 +18,7 @@ class TreeViewNavigation {
       return;
     }
 
-    document.body.addEventListener(
-      'focusin',
-      this.handleBodyFocusin.bind(this)
-    );
+    document.body.addEventListener('focusin', this.onBodyFocusin.bind(this));
 
     this.treeNode = node;
     this.navNode = node.parentElement;
@@ -29,8 +26,8 @@ class TreeViewNavigation {
     this.treeitems = this.treeNode.querySelectorAll('[role="treeitem"]');
     for (let i = 0; i < this.treeitems.length; i++) {
       let ti = this.treeitems[i];
-      ti.addEventListener('keydown', this.handleKeydown.bind(this));
-      ti.addEventListener('click', this.handleLinkClick.bind(this));
+      ti.addEventListener('keydown', this.onKeydown.bind(this));
+      ti.addEventListener('click', this.onLinkClick.bind(this));
       // first tree item is in tab sequence of page
       if (i == 0) {
         ti.tabIndex = 0;
@@ -40,7 +37,7 @@ class TreeViewNavigation {
       var groupNode = this.getGroupNode(ti);
       if (groupNode) {
         var span = ti.querySelector('span');
-        span.addEventListener('click', this.handleSpanClick.bind(this));
+        span.addEventListener('click', this.onSpanClick.bind(this));
       }
     }
 
@@ -316,9 +313,8 @@ class TreeViewNavigation {
 
   // Event handlers
 
-  handleBodyFocusin(event) {
+  onBodyFocusin(event) {
     var tgt = event.target;
-    console.log('[handleBodyFocusin]: ' + this.treeNode.contains(tgt));
 
     if (this.treeNode.contains(tgt)) {
       this.navNode.classList.add('focus');
@@ -328,7 +324,7 @@ class TreeViewNavigation {
     }
   }
 
-  handleSpanClick(event) {
+  onSpanClick(event) {
     var tgt = event.currentTarget;
 
     if (this.isExpanded(tgt.parentNode)) {
@@ -341,7 +337,7 @@ class TreeViewNavigation {
     event.stopPropagation();
   }
 
-  handleLinkClick(event) {
+  onLinkClick(event) {
     var tgt = event.currentTarget;
     this.updateContent(tgt.href, tgt.textContent.trim());
 
@@ -349,7 +345,7 @@ class TreeViewNavigation {
     event.stopPropagation();
   }
 
-  handleKeydown(event) {
+  onKeydown(event) {
     var tgt = event.currentTarget,
       flag = false,
       key = event.key;
