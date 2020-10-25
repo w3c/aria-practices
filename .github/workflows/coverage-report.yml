@@ -29,7 +29,7 @@ jobs:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             const fs = require('fs');
-            const commentBody = '```' + fs.readFileSync('coverage.log', 'utf8') + '```';
+            const commentBody = fs.readFileSync('coverage.log', 'utf8');
 
             if (commentBody.length === 0) {
               return

@@ -1,7 +1,3 @@
-/* eslint no-restricted-properties: 0 */
-
-'use strict';
-
 const { By } = require('selenium-webdriver');
 
 /**
@@ -14,6 +10,7 @@ const { By } = require('selenium-webdriver');
  * @returns {Promise} Resolves to array of elements
  */
 module.exports = async function assertNoElements(t, selector, message) {
+  // eslint-disable-next-line no-restricted-properties
   const elements = await t.context.session.findElements(By.css(selector));
   const errorMessage =
     message || 'Should return no results for CSS selector ' + selector;
