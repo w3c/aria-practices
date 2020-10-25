@@ -61,15 +61,8 @@ class MenuButtonActionsActiveDescendant {
       this.lastMenuitem = menuitem;
     }
 
-    domNode.addEventListener(
-      'focusin',
-      this.handleFocusin.bind(this)
-    );
-
-    domNode.addEventListener(
-      'focusout',
-      this.handleFocusout.bind(this)
-    );
+    domNode.addEventListener('focusin', this.handleFocusin.bind(this));
+    domNode.addEventListener('focusout', this.handleFocusout.bind(this));
 
     window.addEventListener(
       'mousedown',
