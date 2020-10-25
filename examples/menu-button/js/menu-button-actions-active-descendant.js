@@ -9,271 +9,195 @@
 
 'use strict';
 
-var MenuButtonActionsActiveDescendant = function (domNode, performMenuAction) {
-  this.domNode = domNode;
-  this.performMenuAction = performMenuAction;
-  this.buttonNode = domNode.querySelector('button');
-  this.menuNode = domNode.querySelector('[role="menu"]');
-  this.currentMenuitem = {};
-  this.menuitemNodes = [];
-  this.firstMenuitem = false;
-  this.lastMenuitem = false;
-  this.firstChars = [];
+class MenuButtonActionsActiveDescendant {
 
-  this.buttonNode.addEventListener(
-    'keydown',
-    this.handleButtonKeydown.bind(this)
-  );
-  this.buttonNode.addEventListener('click', this.handleButtonClick.bind(this));
+  constructor(domNode, performMenuAction) {
+    this.domNode = domNode;
+    this.performMenuAction = performMenuAction;
+    this.buttonNode = domNode.querySelector('button');
+    this.menuNode = domNode.querySelector('[role="menu"]');
+    this.currentMenuitem = {};
+    this.menuitemNodes = [];
+    this.firstMenuitem = false;
+    this.lastMenuitem = false;
+    this.firstChars = [];
 
-  this.menuNode.addEventListener('keydown', this.handleMenuKeydown.bind(this));
-
-  var nodes = domNode.querySelectorAll('[role="menuitem"]');
-
-  for (var i = 0; i < nodes.length; i++) {
-    var menuitem = nodes[i];
-    this.menuitemNodes.push(menuitem);
-    menuitem.tabIndex = -1;
-    this.firstChars.push(menuitem.textContent.trim()[0].toLowerCase());
-
-    menuitem.addEventListener('click', this.handleMenuitemClick.bind(this));
-    menuitem.addEventListener(
-      'mouseover',
-      this.handleMenuitemMouseover.bind(this)
+    this.buttonNode.addEventListener(
+      'keydown',
+      this.handleButtonKeydown.bind(this)
     );
+    this.buttonNode.addEventListener('click', this.handleButtonClick.bind(this));
 
-    if (!this.firstMenuitem) {
-      this.firstMenuitem = menuitem;
+    this.menuNode.addEventListener('keydown', this.handleMenuKeydown.bind(this));
+
+    var nodes = domNode.querySelectorAll('[role="menuitem"]');
+
+    for (var i = 0; i < nodes.length; i++) {
+      var menuitem = nodes[i];
+      this.menuitemNodes.push(menuitem);
+      menuitem.tabIndex = -1;
+      this.firstChars.push(menuitem.textContent.trim()[0].toLowerCase());
+
+      menuitem.addEventListener('click', this.handleMenuitemClick.bind(this));
+      menuitem.addEventListener(
+        'mouseover',
+        this.handleMenuitemMouseover.bind(this)
+      );
+
+      if (!this.firstMenuitem) {
+        this.firstMenuitem = menuitem;
+      }
+      this.lastMenuitem = menuitem;
     }
-    this.lastMenuitem = menuitem;
+
+    domNode.addEventListener('focusin', this.handleFocusin.bind(this));
+    domNode.addEventListener('focusout', this.handleFocusout.bind(this));
+
+    window.addEventListener(
+      'mousedown',
+      this.handleBackgroundMousedown.bind(this),
+      true
+    );
   }
 
-  domNode.addEventListener('focusin', this.handleFocusin.bind(this));
-  domNode.addEventListener('focusout', this.handleFocusout.bind(this));
-
-  window.addEventListener(
-    'mousedown',
-    this.handleBackgroundMousedown.bind(this),
-    true
-  );
-};
-
-MenuButtonActionsActiveDescendant.prototype.setFocusToMenuitem = function (
-  newMenuitem
-) {
-  for (var i = 0; i < this.menuitemNodes.length; i++) {
-    var menuitem = this.menuitemNodes[i];
-    if (menuitem === newMenuitem) {
-      this.currentMenuitem = newMenuitem;
-      menuitem.classList.add('focus');
-      this.menuNode.setAttribute('aria-activedescendant', newMenuitem.id);
-    } else {
-      menuitem.classList.remove('focus');
-    }
-  }
-};
-
-MenuButtonActionsActiveDescendant.prototype.setFocusToFirstMenuitem = function () {
-  this.setFocusToMenuitem(this.firstMenuitem);
-};
-
-MenuButtonActionsActiveDescendant.prototype.setFocusToLastMenuitem = function () {
-  this.setFocusToMenuitem(this.lastMenuitem);
-};
-
-MenuButtonActionsActiveDescendant.prototype.setFocusToPreviousMenuitem = function () {
-  var newMenuitem, index;
-
-  if (this.currentMenuitem === this.firstMenuitem) {
-    newMenuitem = this.lastMenuitem;
-  } else {
-    index = this.menuitemNodes.indexOf(this.currentMenuitem);
-    newMenuitem = this.menuitemNodes[index - 1];
-  }
-
-  this.setFocusToMenuitem(newMenuitem);
-
-  return newMenuitem;
-};
-
-MenuButtonActionsActiveDescendant.prototype.setFocusToNextMenuitem = function () {
-  var newMenuitem, index;
-
-  if (this.currentMenuitem === this.lastMenuitem) {
-    newMenuitem = this.firstMenuitem;
-  } else {
-    index = this.menuitemNodes.indexOf(this.currentMenuitem);
-    newMenuitem = this.menuitemNodes[index + 1];
-  }
-  this.setFocusToMenuitem(newMenuitem);
-
-  return newMenuitem;
-};
-
-MenuButtonActionsActiveDescendant.prototype.setFocusByFirstCharacter = function (
-  char
-) {
-  var start, index;
-
-  if (char.length > 1) {
-    return;
-  }
-
-  char = char.toLowerCase();
-
-  // Get start index for search based on position of currentItem
-  start = this.menuitemNodes.indexOf(this.currentMenuitem) + 1;
-  if (start >= this.menuitemNodes.length) {
-    start = 0;
-  }
-
-  // Check remaining slots in the menu
-  index = this.firstChars.indexOf(char, start);
-
-  // If not found in remaining slots, check from beginning
-  if (index === -1) {
-    index = this.firstChars.indexOf(char, 0);
-  }
-
-  // If match was found...
-  if (index > -1) {
-    this.setFocusToMenuitem(this.menuitemNodes[index]);
-  }
-};
-
-// Utilities
-
-MenuButtonActionsActiveDescendant.prototype.getIndexFirstChars = function (
-  startIndex,
-  char
-) {
-  for (var i = startIndex; i < this.firstChars.length; i++) {
-    if (char === this.firstChars[i]) {
-      return i;
-    }
-  }
-  return -1;
-};
-
-// Popup menu methods
-
-MenuButtonActionsActiveDescendant.prototype.openPopup = function () {
-  var rect = this.menuNode.getBoundingClientRect();
-  this.menuNode.style.display = 'block';
-  this.buttonNode.setAttribute('aria-expanded', 'true');
-  this.menuNode.focus();
-  this.setFocusToFirstMenuitem();
-};
-
-MenuButtonActionsActiveDescendant.prototype.closePopup = function () {
-  if (this.isOpen()) {
-    this.buttonNode.removeAttribute('aria-expanded');
-    this.menuNode.setAttribute('aria-activedescendant', '');
+  setFocusToMenuitem(newMenuitem) {
     for (var i = 0; i < this.menuitemNodes.length; i++) {
-      this.menuitemNodes[i].classList.remove('focus');
+      var menuitem = this.menuitemNodes[i];
+      if (menuitem === newMenuitem) {
+        this.currentMenuitem = newMenuitem;
+        menuitem.classList.add('focus');
+        this.menuNode.setAttribute('aria-activedescendant', newMenuitem.id);
+      } else {
+        menuitem.classList.remove('focus');
+      }
     }
-    this.menuNode.style.display = 'none';
-    this.buttonNode.focus();
-  }
-};
-
-MenuButtonActionsActiveDescendant.prototype.isOpen = function () {
-  return this.buttonNode.getAttribute('aria-expanded') === 'true';
-};
-
-// Menu event handlers
-
-MenuButtonActionsActiveDescendant.prototype.handleFocusin = function (event) {
-  this.domNode.classList.add('focus');
-};
-
-MenuButtonActionsActiveDescendant.prototype.handleFocusout = function (event) {
-  this.domNode.classList.remove('focus');
-};
-
-MenuButtonActionsActiveDescendant.prototype.handleButtonKeydown = function (
-  event
-) {
-  var tgt = event.currentTarget,
-    key = event.key,
-    flag = false;
-
-  switch (key) {
-    case ' ':
-    case 'Enter':
-    case 'ArrowDown':
-    case 'Down':
-      this.openPopup();
-      this.setFocusToFirstMenuitem();
-      flag = true;
-      break;
-
-    case 'Esc':
-    case 'Escape':
-      this.closePopup();
-      flag = true;
-      break;
-
-    case 'Up':
-    case 'ArrowUp':
-      this.openPopup();
-      this.setFocusToLastMenuitem();
-      flag = true;
-      break;
-
-    default:
-      break;
   }
 
-  if (flag) {
-    event.stopPropagation();
-    event.preventDefault();
-  }
-};
-
-MenuButtonActionsActiveDescendant.prototype.handleButtonClick = function (
-  event
-) {
-  if (this.isOpen()) {
-    this.closePopup();
-  } else {
-    this.openPopup();
-  }
-  event.stopPropagation();
-  event.preventDefault();
-};
-
-MenuButtonActionsActiveDescendant.prototype.handleMenuKeydown = function (
-  event
-) {
-  var tgt = event.currentTarget,
-    key = event.key,
-    flag = false;
-
-  function isPrintableCharacter(str) {
-    return str.length === 1 && str.match(/\S/);
+  setFocusToFirstMenuitem() {
+    this.setFocusToMenuitem(this.firstMenuitem);
   }
 
-  if (event.ctrlKey || event.altKey || event.metaKey) {
-    return;
+  setFocusToLastMenuitem() {
+    this.setFocusToMenuitem(this.lastMenuitem);
   }
 
-  if (event.shiftKey) {
-    if (isPrintableCharacter(key)) {
-      this.setFocusByFirstCharacter(key);
-      flag = true;
+  setFocusToPreviousMenuitem() {
+    var newMenuitem, index;
+
+    if (this.currentMenuitem === this.firstMenuitem) {
+      newMenuitem = this.lastMenuitem;
+    } else {
+      index = this.menuitemNodes.indexOf(this.currentMenuitem);
+      newMenuitem = this.menuitemNodes[index - 1];
     }
 
-    if (event.key === 'Tab') {
-      this.closePopup();
-      flag = true;
+    this.setFocusToMenuitem(newMenuitem);
+
+    return newMenuitem;
+  }
+
+  setFocusToNextMenuitem() {
+    var newMenuitem, index;
+
+    if (this.currentMenuitem === this.lastMenuitem) {
+      newMenuitem = this.firstMenuitem;
+    } else {
+      index = this.menuitemNodes.indexOf(this.currentMenuitem);
+      newMenuitem = this.menuitemNodes[index + 1];
     }
-  } else {
+    this.setFocusToMenuitem(newMenuitem);
+
+    return newMenuitem;
+  }
+
+  setFocusByFirstCharacter(char) {
+    var start, index;
+
+    if (char.length > 1) {
+      return;
+    }
+
+    char = char.toLowerCase();
+
+    // Get start index for search based on position of currentItem
+    start = this.menuitemNodes.indexOf(this.currentMenuitem) + 1;
+    if (start >= this.menuitemNodes.length) {
+      start = 0;
+    }
+
+    // Check remaining slots in the menu
+    index = this.firstChars.indexOf(char, start);
+
+    // If not found in remaining slots, check from beginning
+    if (index === -1) {
+      index = this.firstChars.indexOf(char, 0);
+    }
+
+    // If match was found...
+    if (index > -1) {
+      this.setFocusToMenuitem(this.menuitemNodes[index]);
+    }
+  }
+
+  // Utilities
+
+  getIndexFirstChars(startIndex, char) {
+    for (var i = startIndex; i < this.firstChars.length; i++) {
+      if (char === this.firstChars[i]) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  // Popup menu methods
+
+  openPopup() {
+    var rect = this.menuNode.getBoundingClientRect();
+    this.menuNode.style.display = 'block';
+    this.buttonNode.setAttribute('aria-expanded', 'true');
+    this.menuNode.focus();
+    this.setFocusToFirstMenuitem();
+  }
+
+  closePopup() {
+    if (this.isOpen()) {
+      this.buttonNode.removeAttribute('aria-expanded');
+      this.menuNode.setAttribute('aria-activedescendant', '');
+      for (var i = 0; i < this.menuitemNodes.length; i++) {
+        this.menuitemNodes[i].classList.remove('focus');
+      }
+      this.menuNode.style.display = 'none';
+      this.buttonNode.focus();
+    }
+  }
+
+  isOpen() {
+    return this.buttonNode.getAttribute('aria-expanded') === 'true';
+  }
+
+  // Menu event handlers
+
+  handleFocusin(event) {
+    this.domNode.classList.add('focus');
+  }
+
+  handleFocusout(event) {
+    this.domNode.classList.remove('focus');
+  }
+
+  handleButtonKeydown(event) {
+    var tgt = event.currentTarget,
+      key = event.key,
+      flag = false;
+
     switch (key) {
       case ' ':
       case 'Enter':
-        this.closePopup();
-        this.performMenuAction(this.currentMenuitem);
+      case 'ArrowDown':
+      case 'Down':
+        this.openPopup();
+        this.setFocusToFirstMenuitem();
         flag = true;
         break;
 
@@ -285,71 +209,132 @@ MenuButtonActionsActiveDescendant.prototype.handleMenuKeydown = function (
 
       case 'Up':
       case 'ArrowUp':
-        this.setFocusToPreviousMenuitem();
-        flag = true;
-        break;
-
-      case 'ArrowDown':
-      case 'Down':
-        this.setFocusToNextMenuitem();
-        flag = true;
-        break;
-
-      case 'Home':
-      case 'PageUp':
-        this.setFocusToFirstMenuitem();
-        flag = true;
-        break;
-
-      case 'End':
-      case 'PageDown':
+        this.openPopup();
         this.setFocusToLastMenuitem();
         flag = true;
         break;
 
-      case 'Tab':
-        this.closePopup();
-        break;
-
       default:
-        if (isPrintableCharacter(key)) {
-          this.setFocusByFirstCharacter(key);
-          flag = true;
-        }
         break;
+    }
+
+    if (flag) {
+      event.stopPropagation();
+      event.preventDefault();
     }
   }
 
-  if (flag) {
+  handleButtonClick(event) {
+    if (this.isOpen()) {
+      this.closePopup();
+    } else {
+      this.openPopup();
+    }
     event.stopPropagation();
     event.preventDefault();
   }
-};
 
-MenuButtonActionsActiveDescendant.prototype.handleMenuitemMouseover = function (
-  event
-) {
-  var tgt = event.currentTarget;
-  this.setFocusToMenuitem(tgt);
-};
+  handleMenuKeydown(event) {
+    var tgt = event.currentTarget,
+      key = event.key,
+      flag = false;
 
-MenuButtonActionsActiveDescendant.prototype.handleMenuitemClick = function (
-  event
-) {
-  var tgt = event.currentTarget;
-  this.closePopup();
-  this.performMenuAction(tgt);
-};
+    function isPrintableCharacter(str) {
+      return str.length === 1 && str.match(/\S/);
+    }
 
-MenuButtonActionsActiveDescendant.prototype.handleBackgroundMousedown = function (
-  event
-) {
-  if (!this.domNode.contains(event.target)) {
-    if (this.isOpen()) {
-      this.closePopup();
+    if (event.ctrlKey || event.altKey || event.metaKey) {
+      return;
+    }
+
+    if (event.shiftKey) {
+      if (isPrintableCharacter(key)) {
+        this.setFocusByFirstCharacter(key);
+        flag = true;
+      }
+
+      if (event.key === 'Tab') {
+        this.closePopup();
+        flag = true;
+      }
+    } else {
+      switch (key) {
+        case ' ':
+        case 'Enter':
+          this.closePopup();
+          this.performMenuAction(this.currentMenuitem);
+          flag = true;
+          break;
+
+        case 'Esc':
+        case 'Escape':
+          this.closePopup();
+          flag = true;
+          break;
+
+        case 'Up':
+        case 'ArrowUp':
+          this.setFocusToPreviousMenuitem();
+          flag = true;
+          break;
+
+        case 'ArrowDown':
+        case 'Down':
+          this.setFocusToNextMenuitem();
+          flag = true;
+          break;
+
+        case 'Home':
+        case 'PageUp':
+          this.setFocusToFirstMenuitem();
+          flag = true;
+          break;
+
+        case 'End':
+        case 'PageDown':
+          this.setFocusToLastMenuitem();
+          flag = true;
+          break;
+
+        case 'Tab':
+          this.closePopup();
+          break;
+
+        default:
+          if (isPrintableCharacter(key)) {
+            this.setFocusByFirstCharacter(key);
+            flag = true;
+          }
+          break;
+      }
+    }
+
+    if (flag) {
+      event.stopPropagation();
+      event.preventDefault();
     }
   }
-};
+
+  handleMenuitemMouseover(event) {
+    var tgt = event.currentTarget;
+    this.setFocusToMenuitem(tgt);
+  }
+
+  handleMenuitemClick(event) {
+    var tgt = event.currentTarget;
+    this.closePopup();
+    this.performMenuAction(tgt);
+  }
+
+  handleBackgroundMousedown(event) {
+    if (!this.domNode.contains(event.target)) {
+      if (this.isOpen()) {
+        this.closePopup();
+      }
+    }
+  }
+
+}
 
 // Initialize menu buttons
 
@@ -362,9 +347,6 @@ window.addEventListener('load', function () {
 
   var menuButtons = document.querySelectorAll('.menu-button-actions');
   for (var i = 0; i < menuButtons.length; i++) {
-    var menuButton = new MenuButtonActionsActiveDescendant(
-      menuButtons[i],
-      performMenuAction
-    );
+    new MenuButtonActionsActiveDescendant(menuButtons[i], performMenuAction);
   }
 });
