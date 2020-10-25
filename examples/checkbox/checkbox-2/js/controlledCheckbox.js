@@ -1,35 +1,39 @@
 /*
- *   This content is licensed according to the W3C Software License at
- *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
- *
- *   File:   controlledCheckbox.js
- *
- *   Desc:   ControlledCheckbox widget that implements ARIA Authoring Practices
- *           for a mixed checkbox
- */
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*
+*   File:   controlledCheckbox.js
+*
+*   Desc:   ControlledCheckbox widget that implements ARIA Authoring Practices
+*           for a mixed checkbox
+*/
 
 'use strict';
 
 /*
- *   @constructor ControlledCheckbox
- *
- *
- */
+*   @constructor ControlledCheckbox
+*
+*
+*/
 var ControlledCheckbox = function (domNode, controllerObj) {
+
   this.domNode = domNode;
   this.controller = controllerObj;
   this.lastState = false;
+
 };
 
 ControlledCheckbox.prototype.init = function () {
+
   this.lastState = this.isChecked();
 
   console.log(this.lastState);
 
   this.domNode.addEventListener('change', this.handleChange.bind(this));
 
-  this.domNode.addEventListener('keydown', this.handleKeyup.bind(this), true);
-  this.domNode.addEventListener('click', this.handleClick.bind(this), true);
+  this.domNode.addEventListener('keydown',    this.handleKeyup.bind(this), true);
+  this.domNode.addEventListener('click',      this.handleClick.bind(this), true);
+
 };
 
 ControlledCheckbox.prototype.isChecked = function () {
@@ -45,6 +49,7 @@ ControlledCheckbox.prototype.isChecked = function () {
 ControlledCheckbox.prototype.setChecked = function (value) {
   // if standard input[type=checkbox]
   if (typeof this.domNode.checked === 'boolean') {
+
     switch (value) {
       case 'true':
         this.domNode.checked = true;
@@ -65,6 +70,7 @@ ControlledCheckbox.prototype.setChecked = function (value) {
 
   // If ARIA checkbox widget
   if (typeof this.domNode.getAttribute('aria-checked') === 'string') {
+
     switch (value) {
       case 'true':
       case 'false':
@@ -74,7 +80,8 @@ ControlledCheckbox.prototype.setChecked = function (value) {
       case 'last':
         if (this.lastState) {
           this.domNode.setAttribute('aria-checked', 'true');
-        } else {
+        }
+        else {
           this.domNode.setAttribute('aria-checked', 'false');
         }
         break;
@@ -98,3 +105,4 @@ ControlledCheckbox.prototype.handleKeyup = function (event) {
 ControlledCheckbox.prototype.handleClick = function (event) {
   this.lastState = this.isChecked();
 };
+

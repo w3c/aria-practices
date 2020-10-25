@@ -1,3 +1,5 @@
+'use strict';
+
 const { By, Key } = require('selenium-webdriver');
 const assert = require('assert');
 
@@ -16,7 +18,8 @@ const focusMatchesElement = async function (t, selector) {
  * @param {obj} t                   - ava execution object
  * @param {Array} tabOrderSelectors - elements in tab order
  */
-module.exports = async function assertTabOrder(t, tabOrderSelectors) {
+module.exports = async function assertTabOrder (t, tabOrderSelectors) {
+
   // Focus on the first element in the list
   await t.context.session.executeScript(function () {
     selector = arguments[0];
@@ -34,3 +37,4 @@ module.exports = async function assertTabOrder(t, tabOrderSelectors) {
 
   t.pass();
 };
+

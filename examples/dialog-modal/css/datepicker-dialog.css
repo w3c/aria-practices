@@ -33,7 +33,7 @@
   top: 0.25em;
   margin: 0;
   padding: 4px;
-  border: 0 solid #005a9c;
+  border: 0px solid #005a9c;
   background-color: white;
   border-radius: 5px;
 }
@@ -45,18 +45,18 @@
 }
 
 .datepicker .fa-calendar-alt {
-  color: hsl(216, 89%, 51%);
+    color: hsl(216, 89%, 51%);
 }
 
 .datepicker button.icon:focus {
   outline: none;
   padding: 2px;
   border-width: 2px;
-  background-color: #def;
+  background-color: #DEF;
 }
 
 .datepicker input:focus {
-  background-color: #def;
+  background-color: #DEF;
   outline: 2px solid #005a9c;
   outline-offset: 1px;
 }
@@ -223,6 +223,7 @@
   border: 1px solid rgb(100, 100, 100);
 }
 
+
 .datepicker-dialog table.dates td[aria-selected] {
   padding: 1px;
   border: 2px dotted rgb(100, 100, 100);
@@ -237,6 +238,7 @@
   background-color: hsl(216, 80%, 51%);
   color: white;
 }
+
 
 .datepicker-dialog .dialog-message {
   padding-top: 0.25em;

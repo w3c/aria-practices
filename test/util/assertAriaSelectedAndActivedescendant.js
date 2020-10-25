@@ -1,3 +1,5 @@
+'use strict';
+
 const { By } = require('selenium-webdriver');
 const assert = require('assert');
 
@@ -10,12 +12,8 @@ const assert = require('assert');
  * @param {String} optionsSelector - selector to select list of candidate elements for focus
  * @param {Number} index           - index of element in list returned by optionsSelector with focus
  */
-module.exports = async function assertAriaSelectedAndActivedescendant(
-  t,
-  activedescendantSelector,
-  optionsSelector,
-  index
-) {
+module.exports = async function assertAriaSelectedAndActivedescendant (t, activedescendantSelector, optionsSelector, index) {
+
   // Confirm the option at the index has aria-selected set to true
 
   const options = await t.context.queryElements(t, optionsSelector);
@@ -23,10 +21,7 @@ module.exports = async function assertAriaSelectedAndActivedescendant(
   assert.strictEqual(
     await options[index].getAttribute('aria-selected'),
     'true',
-    'aria-selected should be on item at index ' +
-      index +
-      ' for items: ' +
-      optionsSelector
+    'aria-selected should be on item at index ' + index + ' for items: ' + optionsSelector
   );
 
   // Confirm aria-activedescendant refers to the correct option
@@ -38,10 +33,7 @@ module.exports = async function assertAriaSelectedAndActivedescendant(
       .findElement(By.css(activedescendantSelector))
       .getAttribute('aria-activedescendant'),
     optionId,
-    'aria-activedescendant should be set to ' +
-      optionId +
-      ' for items: ' +
-      activedescendantSelector
+    'aria-activedescendant should be set to ' + optionId + ' for items: ' + activedescendantSelector
   );
 
   // Confirm the focus is on the aria-activedescendent element
@@ -54,8 +46,7 @@ module.exports = async function assertAriaSelectedAndActivedescendant(
 
   assert(
     focused,
-    'document focus should be on aria-activedescendant element: ' +
-      activedescendantSelector
+    'document focus should be on aria-activedescendant element: ' + activedescendantSelector
   );
 
   t.pass();

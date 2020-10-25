@@ -5,12 +5,15 @@
 
 .combobox-datepicker .group {
   display: inline-flex;
-  position: relative;
-  width: 12.125rem;
 }
 
 .combobox-datepicker label {
   display: block;
+}
+
+.combobox-datepicker .group {
+  position: relative;
+  width: 12.125rem;
 }
 
 .combobox-datepicker .group input,
@@ -59,7 +62,7 @@
 
 .combobox-datepicker .group.focus input,
 .combobox-datepicker .group.focus button {
-  background-color: #def;
+  background-color: #DEF;
 }
 
 .combobox-datepicker .group polygon {
@@ -120,9 +123,6 @@
 
 .combobox-datepicker .dates {
   width: 320px;
-  padding-left: 1em;
-  padding-right: 1em;
-  padding-top: 1em;
 }
 
 .combobox-datepicker .prev-year,
@@ -183,6 +183,7 @@
   border: 1px solid black;
 }
 
+
 .combobox-datepicker .fa-calendar-alt {
   color: hsl(216, 89%, 51%);
 }
@@ -191,6 +192,12 @@
   display: inline-block;
   width: 12em;
   text-align: center;
+}
+
+.combobox-datepicker .dates {
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 1em;
 }
 
 .combobox-datepicker .dates th,
@@ -212,6 +219,7 @@
   font-size: 15px;
   background: #eee;
 }
+
 
 .combobox-datepicker .dates td[aria-selected] {
   padding: 1px;

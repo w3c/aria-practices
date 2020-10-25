@@ -1,5 +1,5 @@
 {
-  "extends": ["../.eslintrc.json", "plugin:ava/recommended"],
+  "extends": "../.eslintrc.json",
   "parserOptions": {
     "ecmaVersion": 8
   }

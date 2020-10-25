@@ -1,3 +1,5 @@
+'use strict';
+
 const assert = require('assert');
 
 /**
@@ -7,30 +9,20 @@ const assert = require('assert');
  * @param {String} selector  - elements to test
  * @param {String} attribute - attribute that should not exist
  */
-module.exports = async function assertAttributeDNE(t, selector, attribute) {
+module.exports = async function assertAttributeDNE (t, selector, attribute) {
   const numElements = (await t.context.queryElements(t, selector)).length;
 
   for (let index = 0; index < numElements; index++) {
-    const attributeExists = await t.context.session.executeScript(
-      function () {
-        let [selector, index, attribute] = arguments;
-        let elements = document.querySelectorAll(selector);
-        return elements[index].hasAttribute(attribute);
-      },
-      selector,
-      index,
-      attribute
-    );
+    const attributeExists = await t.context.session.executeScript(function () {
+      let [selector, index, attribute] = arguments;
+      let elements = document.querySelectorAll(selector);
+      return elements[index].hasAttribute(attribute);
+    }, selector, index, attribute);
 
     assert(
       !attributeExists,
-      'Attribute "' +
-        attribute +
-        '" should not exist on element at index ' +
-        index +
-        ' of elements found by selector "' +
-        selector +
-        '"'
+      'Attribute "' + attribute + '" should not exist on element at index ' + index +
+        ' of elements found by selector "' + selector + '"'
     );
   }
 

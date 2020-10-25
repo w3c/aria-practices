@@ -1,3 +1,5 @@
+'use strict';
+
 const { By, Key } = require('selenium-webdriver');
 const assert = require('assert');
 
@@ -8,7 +10,7 @@ const assert = require('assert');
  * @param {string} elementSelector  - element selector string
  * @param {string} message          - optional assertion message
  */
-module.exports = async function assertHasFocus(t, selector, message) {
+module.exports = async function assertHasFocus (t, selector, message) {
   const hasFocus = t.context.session.wait(
     async function () {
       return t.context.session.executeScript(function () {

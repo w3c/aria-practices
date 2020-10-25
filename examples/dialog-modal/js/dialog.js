@@ -1,7 +1,7 @@
 /*
- *   This content is licensed according to the W3C Software License at
- *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
- */
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*/
 
 'use strict';
 
@@ -29,10 +29,8 @@ aria.Utils = aria.Utils || {};
   aria.Utils.focusFirstDescendant = function (element) {
     for (var i = 0; i < element.childNodes.length; i++) {
       var child = element.childNodes[i];
-      if (
-        aria.Utils.attemptFocus(child) ||
-        aria.Utils.focusFirstDescendant(child)
-      ) {
+      if (aria.Utils.attemptFocus(child) ||
+          aria.Utils.focusFirstDescendant(child)) {
         return true;
       }
     }
@@ -49,10 +47,8 @@ aria.Utils = aria.Utils || {};
   aria.Utils.focusLastDescendant = function (element) {
     for (var i = element.childNodes.length - 1; i >= 0; i--) {
       var child = element.childNodes[i];
-      if (
-        aria.Utils.attemptFocus(child) ||
-        aria.Utils.focusLastDescendant(child)
-      ) {
+      if (aria.Utils.attemptFocus(child) ||
+          aria.Utils.focusLastDescendant(child)) {
         return true;
       }
     }
@@ -74,11 +70,12 @@ aria.Utils = aria.Utils || {};
     aria.Utils.IgnoreUtilFocusChanges = true;
     try {
       element.focus();
-    } catch (e) {
+    }
+    catch (e) {
       // continue regardless of error
     }
     aria.Utils.IgnoreUtilFocusChanges = false;
-    return document.activeElement === element;
+    return (document.activeElement === element);
   }; // end attemptFocus
 
   /* Modals can open modals. Keep track of them with this array. */
@@ -147,8 +144,7 @@ aria.Utils = aria.Utils || {};
       });
     if (!isDialog) {
       throw new Error(
-        'Dialog() requires a DOM element with ARIA role of dialog or alertdialog.'
-      );
+        'Dialog() requires a DOM element with ARIA role of dialog or alertdialog.');
     }
 
     // Wrap in an individual backdrop element if one doesn't exist
@@ -157,13 +153,11 @@ aria.Utils = aria.Utils || {};
     var backdropClass = 'dialog-backdrop';
     if (this.dialogNode.parentNode.classList.contains(backdropClass)) {
       this.backdropNode = this.dialogNode.parentNode;
-    } else {
+    }
+    else {
       this.backdropNode = document.createElement('div');
       this.backdropNode.className = backdropClass;
-      this.dialogNode.parentNode.insertBefore(
-        this.backdropNode,
-        this.dialogNode
-      );
+      this.dialogNode.parentNode.insertBefore(this.backdropNode, this.dialogNode);
       this.backdropNode.appendChild(this.dialogNode);
     }
     this.backdropNode.classList.add('active');
@@ -173,19 +167,22 @@ aria.Utils = aria.Utils || {};
 
     if (typeof focusAfterClosed === 'string') {
       this.focusAfterClosed = document.getElementById(focusAfterClosed);
-    } else if (typeof focusAfterClosed === 'object') {
+    }
+    else if (typeof focusAfterClosed === 'object') {
       this.focusAfterClosed = focusAfterClosed;
-    } else {
+    }
+    else {
       throw new Error(
-        'the focusAfterClosed parameter is required for the aria.Dialog constructor.'
-      );
+        'the focusAfterClosed parameter is required for the aria.Dialog constructor.');
     }
 
     if (typeof focusFirst === 'string') {
       this.focusFirst = document.getElementById(focusFirst);
-    } else if (typeof focusFirst === 'object') {
+    }
+    else if (typeof focusFirst === 'object') {
       this.focusFirst = focusFirst;
-    } else {
+    }
+    else {
       this.focusFirst = null;
     }
 
@@ -193,16 +190,12 @@ aria.Utils = aria.Utils || {};
     // While this dialog is open, we use these to make sure that focus never
     // leaves the document even if dialogNode is the first or last node.
     var preDiv = document.createElement('div');
-    this.preNode = this.dialogNode.parentNode.insertBefore(
-      preDiv,
-      this.dialogNode
-    );
+    this.preNode = this.dialogNode.parentNode.insertBefore(preDiv,
+      this.dialogNode);
     this.preNode.tabIndex = 0;
     var postDiv = document.createElement('div');
-    this.postNode = this.dialogNode.parentNode.insertBefore(
-      postDiv,
-      this.dialogNode.nextSibling
-    );
+    this.postNode = this.dialogNode.parentNode.insertBefore(postDiv,
+      this.dialogNode.nextSibling);
     this.postNode.tabIndex = 0;
 
     // If this modal is opening on top of one that is already open,
@@ -218,7 +211,8 @@ aria.Utils = aria.Utils || {};
 
     if (this.focusFirst) {
       this.focusFirst.focus();
-    } else {
+    }
+    else {
       aria.Utils.focusFirstDescendant(this.dialogNode);
     }
 
@@ -253,7 +247,8 @@ aria.Utils = aria.Utils || {};
     // If a dialog was open underneath this one, restore its listeners.
     if (aria.OpenDialogList.length > 0) {
       aria.getCurrentDialog().addListeners();
-    } else {
+    }
+    else {
       document.body.classList.remove(aria.Utils.dialogOpenClass);
     }
   }; // end close
@@ -271,11 +266,8 @@ aria.Utils = aria.Utils || {};
    *  Optional ID or DOM node specifying where to place focus in the new dialog when it opens.
    *  If not specified, the first focusable element will receive focus.
    */
-  aria.Dialog.prototype.replace = function (
-    newDialogId,
-    newFocusAfterClosed,
-    newFocusFirst
-  ) {
+  aria.Dialog.prototype.replace = function (newDialogId, newFocusAfterClosed,
+    newFocusFirst) {
     var closedDialog = aria.getCurrentDialog();
     aria.OpenDialogList.pop();
     this.removeListeners();
@@ -303,7 +295,8 @@ aria.Utils = aria.Utils || {};
     var currentDialog = aria.getCurrentDialog();
     if (currentDialog.dialogNode.contains(event.target)) {
       currentDialog.lastFocus = event.target;
-    } else {
+    }
+    else {
       aria.Utils.focusFirstDescendant(currentDialog.dialogNode);
       if (currentDialog.lastFocus == document.activeElement) {
         aria.Utils.focusLastDescendant(currentDialog.dialogNode);
@@ -323,14 +316,12 @@ aria.Utils = aria.Utils || {};
     }
   }; // end closeDialog
 
-  window.replaceDialog = function (
-    newDialogId,
-    newFocusAfterClosed,
-    newFocusFirst
-  ) {
+  window.replaceDialog = function (newDialogId, newFocusAfterClosed,
+    newFocusFirst) {
     var topDialog = aria.getCurrentDialog();
     if (topDialog.dialogNode.contains(document.activeElement)) {
       topDialog.replace(newDialogId, newFocusAfterClosed, newFocusFirst);
     }
   }; // end replaceDialog
-})();
+
+}());

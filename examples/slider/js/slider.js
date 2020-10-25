@@ -1,16 +1,17 @@
 /*
- *   This content is licensed according to the W3C Software License at
- *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
- *
- *   File:   slider.js
- *
- *   Desc:   Slider widget that implements ARIA Authoring Practices
- */
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*
+*   File:   slider.js
+*
+*   Desc:   Slider widget that implements ARIA Authoring Practices
+*/
 
 'use strict';
 
 // Create Slider that contains value, valuemin, valuemax, and valuenow
-var Slider = function (domNode) {
+var Slider = function (domNode)  {
+
   this.domNode = domNode;
   this.railDomNode = domNode.parentNode;
 
@@ -22,31 +23,32 @@ var Slider = function (domNode) {
 
   this.railWidth = 0;
 
-  this.thumbWidth = 8;
+  this.thumbWidth  = 8;
   this.thumbHeight = 28;
 
   this.keyCode = Object.freeze({
-    left: 37,
-    up: 38,
-    right: 39,
-    down: 40,
-    pageUp: 33,
-    pageDown: 34,
-    end: 35,
-    home: 36,
+    'left': 37,
+    'up': 38,
+    'right': 39,
+    'down': 40,
+    'pageUp': 33,
+    'pageDown': 34,
+    'end': 35,
+    'home': 36
   });
 };
 
 // Initialize slider
 Slider.prototype.init = function () {
+
   if (this.domNode.getAttribute('aria-valuemin')) {
-    this.valueMin = parseInt(this.domNode.getAttribute('aria-valuemin'));
+    this.valueMin = parseInt((this.domNode.getAttribute('aria-valuemin')));
   }
   if (this.domNode.getAttribute('aria-valuemax')) {
-    this.valueMax = parseInt(this.domNode.getAttribute('aria-valuemax'));
+    this.valueMax = parseInt((this.domNode.getAttribute('aria-valuemax')));
   }
   if (this.domNode.getAttribute('aria-valuenow')) {
-    this.valueNow = parseInt(this.domNode.getAttribute('aria-valuenow'));
+    this.valueNow = parseInt((this.domNode.getAttribute('aria-valuenow')));
   }
 
   this.railWidth = parseInt(this.railDomNode.style.width.slice(0, -2));
@@ -54,10 +56,10 @@ Slider.prototype.init = function () {
   this.valueDomNode = this.railDomNode.nextElementSibling;
 
   if (this.valueDomNode) {
+
     this.valueDomNode.innerHTML = '0';
-    this.valueDomNode.style.left =
-      this.railDomNode.offsetLeft + this.railWidth + 10 + 'px';
-    this.valueDomNode.style.top = this.railDomNode.offsetTop - 8 + 'px';
+    this.valueDomNode.style.left = (this.railDomNode.offsetLeft + this.railWidth + 10) + 'px';
+    this.valueDomNode.style.top = (this.railDomNode.offsetTop - 8) + 'px';
   }
 
   if (this.domNode.tabIndex != 0) {
@@ -66,21 +68,23 @@ Slider.prototype.init = function () {
 
   this.domNode.style.width = this.thumbWidth + 'px';
   this.domNode.style.height = this.thumbHeight + 'px';
-  this.domNode.style.top = this.thumbHeight / -2 + 'px';
+  this.domNode.style.top = (this.thumbHeight / -2) + 'px';
 
-  this.domNode.addEventListener('keydown', this.handleKeyDown.bind(this));
+  this.domNode.addEventListener('keydown',    this.handleKeyDown.bind(this));
   // add onmousedown, move, and onmouseup
   this.domNode.addEventListener('mousedown', this.handleMouseDown.bind(this));
 
-  this.domNode.addEventListener('focus', this.handleFocus.bind(this));
-  this.domNode.addEventListener('blur', this.handleBlur.bind(this));
+  this.domNode.addEventListener('focus',      this.handleFocus.bind(this));
+  this.domNode.addEventListener('blur',       this.handleBlur.bind(this));
 
   this.railDomNode.addEventListener('click', this.handleClick.bind(this));
 
   this.moveSliderTo(this.valueNow);
+
 };
 
 Slider.prototype.moveSliderTo = function (value) {
+
   if (value > this.valueMax) {
     value = this.valueMax;
   }
@@ -93,11 +97,9 @@ Slider.prototype.moveSliderTo = function (value) {
 
   this.domNode.setAttribute('aria-valuenow', this.valueNow);
 
-  var pos =
-    Math.round(
-      (this.valueNow * this.railWidth) / (this.valueMax - this.valueMin)
-    ) -
-    this.thumbWidth / 2;
+  var pos = Math.round(
+    (this.valueNow * this.railWidth) / (this.valueMax - this.valueMin)
+  ) - (this.thumbWidth / 2);
 
   this.domNode.style.left = pos + 'px';
 
@@ -106,9 +108,11 @@ Slider.prototype.moveSliderTo = function (value) {
   }
 
   updateColorBox();
+
 };
 
 Slider.prototype.handleKeyDown = function (event) {
+
   var flag = false;
 
   switch (event.keyCode) {
@@ -152,6 +156,7 @@ Slider.prototype.handleKeyDown = function (event) {
     event.preventDefault();
     event.stopPropagation();
   }
+
 };
 
 Slider.prototype.handleFocus = function (event) {
@@ -166,22 +171,24 @@ Slider.prototype.handleBlur = function (event) {
 
 // Initialise Sliders on the page
 window.addEventListener('load', function () {
+
   var sliders = document.querySelectorAll('[role=slider]');
 
   for (var i = 0; i < sliders.length; i++) {
     var s = new Slider(sliders[i]);
     s.init();
   }
+
 });
 
 Slider.prototype.handleMouseDown = function (event) {
+
   var self = this;
 
   var handleMouseMove = function (event) {
+
     var diffX = event.pageX - self.railDomNode.offsetLeft;
-    self.valueNow = parseInt(
-      ((self.valueMax - self.valueMin) * diffX) / self.railWidth
-    );
+    self.valueNow = parseInt(((self.valueMax - self.valueMin) * diffX) / self.railWidth);
     self.moveSliderTo(self.valueNow);
 
     event.preventDefault();
@@ -189,8 +196,10 @@ Slider.prototype.handleMouseDown = function (event) {
   };
 
   var handleMouseUp = function (event) {
+
     document.removeEventListener('mousemove', handleMouseMove);
     document.removeEventListener('mouseup', handleMouseUp);
+
   };
 
   // bind a mousemove event handler to move pointer
@@ -204,18 +213,19 @@ Slider.prototype.handleMouseDown = function (event) {
 
   // Set focus to the clicked handle
   this.domNode.focus();
+
 };
 
 // handleMouseMove has the same functionality as we need for handleMouseClick on the rail
 Slider.prototype.handleClick = function (event) {
+
   var diffX = event.pageX - this.railDomNode.offsetLeft;
-  this.valueNow = parseInt(
-    ((this.valueMax - this.valueMin) * diffX) / this.railWidth
-  );
+  this.valueNow = parseInt(((this.valueMax - this.valueMin) * diffX) / this.railWidth);
   this.moveSliderTo(this.valueNow);
 
   event.preventDefault();
   event.stopPropagation();
+
 };
 
 /* ---------------------------------------------------------------- */
@@ -223,16 +233,11 @@ Slider.prototype.handleClick = function (event) {
 /* ---------------------------------------------------------------- */
 
 function updateColorBox() {
-  function getColorHex() {
-    var r = parseInt(
-      document.getElementById('idRedValue').getAttribute('aria-valuenow')
-    ).toString(16);
-    var g = parseInt(
-      document.getElementById('idGreenValue').getAttribute('aria-valuenow')
-    ).toString(16);
-    var b = parseInt(
-      document.getElementById('idBlueValue').getAttribute('aria-valuenow')
-    ).toString(16);
+
+  function getColorHex () {
+    var r = parseInt(document.getElementById('idRedValue').getAttribute('aria-valuenow')).toString(16);
+    var g = parseInt(document.getElementById('idGreenValue').getAttribute('aria-valuenow')).toString(16);
+    var b = parseInt(document.getElementById('idBlueValue').getAttribute('aria-valuenow')).toString(16);
 
     if (r.length === 1) {
       r = '0' + r;
@@ -247,14 +252,10 @@ function updateColorBox() {
     return '#' + r + g + b;
   }
 
-  function getColorRGB() {
+  function getColorRGB () {
     var r = document.getElementById('idRedValue').getAttribute('aria-valuenow');
-    var g = document
-      .getElementById('idGreenValue')
-      .getAttribute('aria-valuenow');
-    var b = document
-      .getElementById('idBlueValue')
-      .getAttribute('aria-valuenow');
+    var g = document.getElementById('idGreenValue').getAttribute('aria-valuenow');
+    var b = document.getElementById('idBlueValue').getAttribute('aria-valuenow');
 
     return r + ', ' + g + ', ' + b;
   }
@@ -262,6 +263,7 @@ function updateColorBox() {
   var node = document.getElementById('idColorBox');
 
   if (node) {
+
     var color = getColorHex();
 
     node.style.backgroundColor = color;
@@ -271,5 +273,6 @@ function updateColorBox() {
 
     node = document.getElementById('idColorValueRGB');
     node.value = getColorRGB();
+
   }
 }

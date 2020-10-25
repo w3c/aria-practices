@@ -1,14 +1,15 @@
 /*
- *   This content is licensed according to the W3C Software License at
- *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
- */
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*/
 
 'use strict';
 
 var ComboboxAutocomplete = function (comboboxNode, buttonNode, listboxNode) {
+
   this.comboboxNode = comboboxNode;
-  this.buttonNode = buttonNode;
-  this.listboxNode = listboxNode;
+  this.buttonNode   = buttonNode;
+  this.listboxNode  = listboxNode;
 
   this.comboboxHasVisualFocus = false;
   this.listboxHasVisualFocus = false;
@@ -21,58 +22,39 @@ var ComboboxAutocomplete = function (comboboxNode, buttonNode, listboxNode) {
 
   this.allOptions = [];
 
-  this.option = null;
-  this.firstOption = null;
-  this.lastOption = null;
+  this.option   = null;
+  this.firstOption  = null;
+  this.lastOption   = null;
 
   this.filteredOptions = [];
-  this.filter = '';
+  this.filter   = '';
 };
 
 ComboboxAutocomplete.prototype.init = function () {
+
   var autocomplete = this.comboboxNode.getAttribute('aria-autocomplete');
 
   if (typeof autocomplete === 'string') {
     autocomplete = autocomplete.toLowerCase();
-    this.isNone = autocomplete === 'none';
-    this.isList = autocomplete === 'list';
-    this.isBoth = autocomplete === 'both';
-  } else {
+    this.isNone  = autocomplete === 'none';
+    this.isList  = autocomplete === 'list';
+    this.isBoth  = autocomplete === 'both';
+  }
+  else {
     // default value of autocomplete
     this.isNone = true;
   }
 
-  this.comboboxNode.addEventListener(
-    'keydown',
-    this.handleComboboxKeyDown.bind(this)
-  );
-  this.comboboxNode.addEventListener(
-    'keyup',
-    this.handleComboboxKeyUp.bind(this)
-  );
-  this.comboboxNode.addEventListener(
-    'click',
-    this.handleComboboxClick.bind(this)
-  );
-  this.comboboxNode.addEventListener(
-    'focus',
-    this.handleComboboxFocus.bind(this)
-  );
-  this.comboboxNode.addEventListener(
-    'blur',
-    this.handleComboboxBlur.bind(this)
-  );
+  this.comboboxNode.addEventListener('keydown', this.handleComboboxKeyDown.bind(this));
+  this.comboboxNode.addEventListener('keyup',   this.handleComboboxKeyUp.bind(this));
+  this.comboboxNode.addEventListener('click',   this.handleComboboxClick.bind(this));
+  this.comboboxNode.addEventListener('focus',   this.handleComboboxFocus.bind(this));
+  this.comboboxNode.addEventListener('blur',    this.handleComboboxBlur.bind(this));
 
   // initialize pop up menu
 
-  this.listboxNode.addEventListener(
-    'mouseover',
-    this.handleListboxMouseover.bind(this)
-  );
-  this.listboxNode.addEventListener(
-    'mouseout',
-    this.handleListboxMouseout.bind(this)
-  );
+  this.listboxNode.addEventListener('mouseover', this.handleListboxMouseover.bind(this));
+  this.listboxNode.addEventListener('mouseout',  this.handleListboxMouseout.bind(this));
 
   // Traverse the element children of domNode: configure each with
   // option role behavior and store reference in.options array.
@@ -82,9 +64,10 @@ ComboboxAutocomplete.prototype.init = function () {
     var node = nodes[i];
     this.allOptions.push(node);
 
-    node.addEventListener('click', this.handleOptionClick.bind(this));
-    node.addEventListener('mouseover', this.handleOptionMouseover.bind(this));
-    node.addEventListener('mouseout', this.handleOptionMouseout.bind(this));
+    node.addEventListener('click',      this.handleOptionClick.bind(this));
+    node.addEventListener('mouseover',  this.handleOptionMouseover.bind(this));
+    node.addEventListener('mouseout',   this.handleOptionMouseout.bind(this));
+
   }
 
   this.filterOptions();
@@ -96,16 +79,18 @@ ComboboxAutocomplete.prototype.init = function () {
   if (button && button.tagName === 'BUTTON') {
     button.addEventListener('click', this.handleButtonClick.bind(this));
   }
+
 };
 
 ComboboxAutocomplete.prototype.getLowercaseContent = function (node) {
   return node.textContent.toLowerCase();
-};
+}
 
 ComboboxAutocomplete.prototype.setActiveDescendant = function (option) {
   if (option && this.listboxHasVisualFocus) {
     this.comboboxNode.setAttribute('aria-activedescendant', option.id);
-  } else {
+  }
+  else {
     this.comboboxNode.setAttribute('aria-activedescendant', '');
   }
 };
@@ -113,7 +98,7 @@ ComboboxAutocomplete.prototype.setActiveDescendant = function (option) {
 ComboboxAutocomplete.prototype.setValue = function (value) {
   this.filter = value;
   this.comboboxNode.value = this.filter;
-  this.comboboxNode.setSelectionRange(this.filter.length, this.filter.length);
+  this.comboboxNode.setSelectionRange(this.filter.length,this.filter.length);
   this.filterOptions();
 };
 
@@ -128,17 +113,12 @@ ComboboxAutocomplete.prototype.setOption = function (option, flag) {
     this.setActiveDescendant(this.option);
 
     if (this.isBoth) {
-      this.comboboxNode.value = this.option.textContent;
+        this.comboboxNode.value = this.option.textContent;
       if (flag) {
-        this.comboboxNode.setSelectionRange(
-          this.option.textContent.length,
-          this.option.textContent.length
-        );
-      } else {
-        this.comboboxNode.setSelectionRange(
-          this.filter.length,
-          this.option.textContent.length
-        );
+        this.comboboxNode.setSelectionRange(this.option.textContent.length,this.option.textContent.length);
+      }
+      else {
+        this.comboboxNode.setSelectionRange(this.filter.length,this.option.textContent.length);
       }
     }
   }
@@ -172,6 +152,7 @@ ComboboxAutocomplete.prototype.removeVisualFocusAll = function () {
 // ComboboxAutocomplete Events
 
 ComboboxAutocomplete.prototype.filterOptions = function () {
+
   // do not filter any options if autocomplete is none
   if (this.isNone) {
     this.filter = '';
@@ -181,15 +162,12 @@ ComboboxAutocomplete.prototype.filterOptions = function () {
   var currentOption = this.option;
   var filter = this.filter.toLowerCase();
 
-  this.filteredOptions = [];
+  this.filteredOptions    = [];
   this.listboxNode.innerHTML = '';
 
   for (var i = 0; i < this.allOptions.length; i++) {
     option = this.allOptions[i];
-    if (
-      filter.length === 0 ||
-      this.getLowercaseContent(option).indexOf(filter) === 0
-    ) {
+    if (filter.length === 0 || this.getLowercaseContent(option).indexOf(filter) === 0) {
       this.filteredOptions.push(option);
       this.listboxNode.appendChild(option);
     }
@@ -199,37 +177,38 @@ ComboboxAutocomplete.prototype.filterOptions = function () {
   var numItems = this.filteredOptions.length;
   if (numItems > 0) {
     this.firstOption = this.filteredOptions[0];
-    this.lastOption = this.filteredOptions[numItems - 1];
+    this.lastOption  = this.filteredOptions[numItems - 1];
 
     if (currentOption && this.filteredOptions.indexOf(currentOption) >= 0) {
       option = currentOption;
-    } else {
+    }
+    else {
       option = this.firstOption;
     }
-  } else {
+  }
+  else {
     this.firstOption = null;
     option = null;
-    this.lastOption = null;
+    this.lastOption  = null;
   }
 
   return option;
 };
 
 ComboboxAutocomplete.prototype.setCurrentOptionStyle = function (option) {
+
   for (var i = 0; i < this.filteredOptions.length; i++) {
     var opt = this.filteredOptions[i];
     if (opt === option) {
       opt.setAttribute('aria-selected', 'true');
-      if (
-        this.listboxNode.scrollTop + this.listboxNode.offsetHeight <
-        opt.offsetTop + opt.offsetHeight
-      ) {
-        this.listboxNode.scrollTop =
-          opt.offsetTop + opt.offsetHeight - this.listboxNode.offsetHeight;
-      } else if (this.listboxNode.scrollTop > opt.offsetTop + 2) {
-        this.listboxNode.scrollTop = opt.offsetTop;
+      if ((this.listboxNode.scrollTop + this.listboxNode.offsetHeight) < (opt.offsetTop + opt.offsetHeight)) {
+          this.listboxNode.scrollTop = opt.offsetTop + opt.offsetHeight - this.listboxNode.offsetHeight;
       }
-    } else {
+      else if (this.listboxNode.scrollTop > (opt.offsetTop + 2)) {
+          this.listboxNode.scrollTop = opt.offsetTop;
+      }
+    }
+    else {
       opt.removeAttribute('aria-selected');
     }
   }
@@ -280,12 +259,7 @@ ComboboxAutocomplete.prototype.close = function (force) {
     force = false;
   }
 
-  if (
-    force ||
-    (!this.comboboxHasVisualFocus &&
-      !this.listboxHasVisualFocus &&
-      !this.hasHover)
-  ) {
+  if (force || (!this.comboboxHasVisualFocus && !this.listboxHasVisualFocus && !this.hasHover)) {
     this.setCurrentOptionStyle(false);
     this.listboxNode.style.display = 'none';
     this.comboboxNode.setAttribute('aria-expanded', 'false');
@@ -299,14 +273,15 @@ ComboboxAutocomplete.prototype.close = function (force) {
 ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
   var flag = false,
     char = event.key,
-    altKey = event.altKey;
+    altKey   = event.altKey;
 
   if (event.ctrlKey || event.shiftKey) {
     return;
   }
 
   switch (event.key) {
-    case 'Enter':
+
+    case "Enter":
       if (this.listboxHasVisualFocus) {
         this.setValue(this.option.textContent);
       }
@@ -315,20 +290,19 @@ ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
       flag = true;
       break;
 
-    case 'Down':
-    case 'ArrowDown':
+    case "Down":
+    case "ArrowDown":
       if (this.filteredOptions.length > 0) {
         if (altKey) {
           this.open();
-        } else {
+        }
+        else {
           this.open();
-          if (
-            this.listboxHasVisualFocus ||
-            (this.isBoth && this.filteredOptions.length > 1)
-          ) {
+          if (this.listboxHasVisualFocus || (this.isBoth && this.filteredOptions.length > 1)) {
             this.setOption(this.getNextOption(this.option), true);
             this.setVisualFocusListbox();
-          } else {
+          }
+          else {
             this.setOption(this.firstOption, true);
             this.setVisualFocusListbox();
           }
@@ -337,12 +311,14 @@ ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
       flag = true;
       break;
 
-    case 'Up':
-    case 'ArrowUp':
+    case "Up":
+    case "ArrowUp":
+
       if (this.hasOptions()) {
         if (this.listboxHasVisualFocus) {
           this.setOption(this.getPreviousOption(this.option), true);
-        } else {
+        }
+        else {
           this.open();
           if (!altKey) {
             this.setOption(this.lastOption, true);
@@ -353,14 +329,15 @@ ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
       flag = true;
       break;
 
-    case 'Esc':
-    case 'Escape':
+    case "Esc":
+    case "Escape":
       if (this.isOpen()) {
         this.close(true);
         this.filter = this.comboboxNode.value;
         this.filterOptions();
         this.setVisualFocusCombobox();
-      } else {
+      }
+      else {
         this.setValue('');
         this.comboboxNode.value = '';
       }
@@ -368,7 +345,7 @@ ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
       flag = true;
       break;
 
-    case 'Tab':
+    case "Tab":
       this.close(true);
       if (this.listboxHasVisualFocus) {
         if (this.option) {
@@ -377,16 +354,17 @@ ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
       }
       break;
 
-    case 'Home':
-      this.comboboxNode.setSelectionRange(0, 0);
+    case "Home":
+      this.comboboxNode.setSelectionRange(0,0);
       flag = true;
       break;
 
-    case 'End':
+    case "End":
       var length = this.comboboxNode.value.length;
-      this.comboboxNode.setSelectionRange(length, length);
+      this.comboboxNode.setSelectionRange(length,length);
       flag = true;
       break;
+
 
     default:
       break;
@@ -396,11 +374,12 @@ ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
     event.stopPropagation();
     event.preventDefault();
   }
+
 };
 
 ComboboxAutocomplete.prototype.isPrintableCharacter = function (str) {
   return str.length === 1 && str.match(/\S/);
-};
+}
 
 ComboboxAutocomplete.prototype.handleComboboxKeyUp = function (event) {
   var flag = false,
@@ -415,32 +394,34 @@ ComboboxAutocomplete.prototype.handleComboboxKeyUp = function (event) {
   if (this.comboboxNode.value.length < this.filter.length) {
     this.filter = this.comboboxNode.value;
     this.option = null;
-    this.filterOptions();
+    this.filterOptions()
   }
 
-  if (event.key === 'Escape' || event.key === 'Esc') {
+  if (event.key === "Escape" || event.key === "Esc") {
     return;
   }
 
   switch (event.key) {
-    case 'Backspace':
+
+    case "Backspace":
       this.setVisualFocusCombobox();
       this.setCurrentOptionStyle(false);
       this.filter = this.comboboxNode.value;
       this.option = null;
-      this.filterOptions();
+      this.filterOptions()
       flag = true;
       break;
 
-    case 'Left':
-    case 'ArrowLeft':
-    case 'Right':
-    case 'ArrowRight':
-    case 'Home':
-    case 'End':
+    case "Left":
+    case "ArrowLeft":
+    case "Right":
+    case "ArrowRight":
+    case "Home":
+    case "End":
       if (this.isBoth) {
         this.filter = this.comboboxNode.value;
-      } else {
+      }
+      else {
         this.option = null;
         this.setCurrentOptionStyle(false);
       }
@@ -461,11 +442,7 @@ ComboboxAutocomplete.prototype.handleComboboxKeyUp = function (event) {
               this.open();
             }
 
-            if (
-              this.getLowercaseContent(option).indexOf(
-                this.comboboxNode.value.toLowerCase()
-              ) === 0
-            ) {
+            if (this.getLowercaseContent(option).indexOf(this.comboboxNode.value.toLowerCase()) === 0) {
               this.option = option;
               if (this.isBoth || this.listboxHasVisualFocus) {
                 this.setCurrentOptionStyle(option);
@@ -473,16 +450,19 @@ ComboboxAutocomplete.prototype.handleComboboxKeyUp = function (event) {
                   this.setOption(option);
                 }
               }
-            } else {
+            }
+            else {
               this.option = null;
               this.setCurrentOptionStyle(false);
             }
-          } else {
+          }
+          else {
             this.close();
             this.option = null;
             this.setActiveDescendant(false);
           }
-        } else if (this.comboboxNode.value.length) {
+        }
+        else if (this.comboboxNode.value.length) {
           this.open();
         }
       }
@@ -494,12 +474,14 @@ ComboboxAutocomplete.prototype.handleComboboxKeyUp = function (event) {
     event.stopPropagation();
     event.preventDefault();
   }
+
 };
 
 ComboboxAutocomplete.prototype.handleComboboxClick = function (event) {
   if (this.isOpen()) {
     this.close(true);
-  } else {
+  }
+  else {
     this.open();
   }
 };
@@ -522,12 +504,14 @@ ComboboxAutocomplete.prototype.handleComboboxBlur = function (event) {
 ComboboxAutocomplete.prototype.handleButtonClick = function (event) {
   if (this.isOpen()) {
     this.close(true);
-  } else {
+  }
+  else {
     this.open();
   }
   this.comboboxNode.focus();
   this.setVisualFocusCombobox();
 };
+
 
 /* Listbox Events */
 
@@ -550,6 +534,7 @@ ComboboxAutocomplete.prototype.handleOptionClick = function (event) {
 ComboboxAutocomplete.prototype.handleOptionMouseover = function (event) {
   this.hasHover = true;
   this.open();
+
 };
 
 ComboboxAutocomplete.prototype.handleOptionMouseout = function (event) {
@@ -557,17 +542,20 @@ ComboboxAutocomplete.prototype.handleOptionMouseout = function (event) {
   setTimeout(this.close.bind(this, false), 300);
 };
 
+
 // Initialize comboboxes
 
 window.addEventListener('load', function () {
+
   var comboboxes = document.querySelectorAll('.combobox-list');
 
   for (var i = 0; i < comboboxes.length; i++) {
     var combobox = comboboxes[i];
     var comboboxNode = combobox.querySelector('input');
-    var buttonNode = combobox.querySelector('button');
-    var listboxNode = combobox.querySelector('[role="listbox"]');
+    var buttonNode   = combobox.querySelector('button');
+    var listboxNode  = combobox.querySelector('[role="listbox"]');
     var cba = new ComboboxAutocomplete(comboboxNode, buttonNode, listboxNode);
     cba.init();
   }
+
 });

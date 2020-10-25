@@ -510,7 +510,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       <section class="notoc">
         <h4>Examples</h4>
         <ul>
-          <li><a href="examples/carousel/carousel-1-prev-next.html">Auto-Rotating Image Carousel with Buttons for Slide Control:</a> A basic image carousel that demonstrates the accessibility features necessary for carousels that rotate automatically on page load and also enables users to choose which slide is displayed with buttons for previous and next slide.</li>
+          <li><a href="examples/carousel/carousel-1.html">Auto-Rotating Image Carousel with Buttons for Slide Control:</a> A basic image carousel that demonstrates the accessibility features necessary for carousels that rotate automatically on page load and also enables users to choose which slide is displayed with buttons for previous and next slide.</li>
           <li><a href="examples/carousel/carousel-2-tablist.html">Auto-Rotating Image Carousel with Tabs for Slide Control:</a> An image carousel that demonstrates accessibility features necessary for carousels that rotate automatically on page load and also enables users to choose which slide is displayed with a set of tabs.</li>
         </ul>
       </section>
@@ -995,7 +995,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
               <li>In either case, focus is visually distinct from selection so users can readily see if a value is selected or not.</li>
             </ul>
         </li>
-          <li>If nodes in the tree are arranged horizontally (<a href="#aria-orientation" class="property-reference">aria-orientation</a> is set to <code>horizontal</code>):
+          <li>If nodes in the tree are arranged horizontally (<a href="aria-orientation" class="property-reference">aria-orientation</a> is set to <code>horizontal</code>):
             <ol>
               <li><kbd>Down Arrow</kbd> performs as <kbd>Right Arrow</kbd> is described above, and vice versa.</li>
               <li><kbd>Up Arrow</kbd> performs as <kbd>Left Arrow</kbd> is described above, and vice versa.</li>
@@ -4586,7 +4586,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
             </tr>
             <tr>
               <td><a href="#marquee" class="role-reference"><code>marquee</code></a></td>
-              <td>Discretionary</td>
+              <td>Required</td>
               <td>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</td>
             </tr>
             <tr>
@@ -4809,7 +4809,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
                 <ul>
                   <li>Helps screen reader users understand the context and purpose of the search landmark.</li>
                   <li>Named using <code>aria-labelledby</code> if a visible label is present, otherwise with <code>aria-label</code>.</li>
-                  <li>See the <a href="#aria_lh_search">Search Landmark</a> section.</li>
+                  <li>See the <a href="aria_lh_search">Search Landmark</a> section.</li>
                 </ul>
               </td>
             </tr>
@@ -7049,7 +7049,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
         <li>Minor revisions of guidance or implementation were made to the following design patterns and examples:
           <ul>
             <li>Editor Menubar Example: Updated example so that meta data used by the scripts is specified using <code>data-</code> attributes instead of with <code>rel</code> attributes.</li>
-            <li>Radio Group with Active Descendant Example: Removed unused key codes and fixed linting issues.</li>
+            <li>Radio Group with Active Descendant Example: Removed unused keycodes and fixed linting issues.</li>
           </ul>
         </li>
       </ul>
@@ -7086,7 +7086,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
             <li>Dialog Examples: Fixed IE11 incompatibility in role validity check.</li>
             <li>Single-select listbox example: Fix a bug with aria-selected.</li>
             <li>Grid Examples: Fixed how event listeners were cleaned up.</li>
-            <li>Menubar Examples: Applied role="none" where missing from elements in menubar and changed visual design to better distinguish between menuitemradio and menuitemcheckbox elements.</li>
+            <li>Menubar Examples: Applied role="none" where missing from elements in menubar and changed visual design to better distinguish between menuitemradio and meuitemcheckbox elements.</li>
             <li>Radio Group Example: Fixed documentation of elements used in attributes table.</li>
             <li>Spin Button Pattern: Added aria-invalid guidance for values outside allowed range.</li>
             <li>Toolbar Pattern: Clarified keyboard guidance for Tab and Shift+Tab and revised description to remove guidance that conflicted with updated radio group pattern.</li>

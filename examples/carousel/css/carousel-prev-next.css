@@ -1,3 +1,4 @@
+
 /* .carousel */
 
 img.reload {
@@ -20,7 +21,7 @@ img.reload {
   padding: 5px;
 }
 
-.carousel .carousel-items.focus {
+.carousel .carousel-items.focus  {
   padding: 2px;
   border: solid 3px #005a9c;
 }
@@ -47,6 +48,10 @@ img.reload {
 
 .carousel .carousel-item .carousel-caption a {
   cursor: pointer;
+}
+
+
+.carousel .carousel-item .carousel-caption a {
   text-decoration: underline;
   color: #fff;
   font-weight: 600;
@@ -57,6 +62,7 @@ img.reload {
   display: inline-block;
   margin: 0;
   padding: 6px;
+  display: inline-block;
   background-color: rgba(0, 0, 0, 0.65);
   border-radius: 5px;
   border: 0 solid transparent;
@@ -72,8 +78,6 @@ img.reload {
   border: 2px solid #fff;
   background-color: rgba(0, 0, 0, 1);
   outline: none;
-  border-width: 2px solid #fff;
-  color: #fff;
 }
 
 .carousel .carousel-item .carousel-caption p {
@@ -108,12 +112,6 @@ img.reload {
 .carousel .controls button {
   position: absolute;
   z-index: 10;
-  flex: 0 0 auto;
-  margin: 0;
-  padding: 0;
-  border: none;
-  background: transparent;
-  outline: none;
 }
 
 .carousel .controls button.previous {
@@ -124,7 +122,19 @@ img.reload {
   right: 18px;
 }
 
+
 /* SVG Controls */
+
+
+.carousel .controls button {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  outline: none;
+  z-index: 10;
+}
 
 .carousel .controls svg .background {
   stroke: black;
@@ -161,6 +171,7 @@ img.reload {
   stroke: white;
 }
 
+
 .carousel .controls svg polygon {
   fill: white;
   stroke: white;
@@ -193,6 +204,7 @@ img.reload {
   height: 36px;
 }
 
+
 .carousel.carousel-moreaccessible .controls button.previous {
   right: 60px;
 }
@@ -202,8 +214,8 @@ img.reload {
 }
 
 .carousel-moreaccessible .carousel-items,
-.carousel-moreaccessible .carousel-items.focus {
-  padding: 0;
+.carousel-moreaccessible .carousel-items.focus  {
+  padding: 0px;
   border: none;
 }
 
@@ -246,6 +258,15 @@ img.reload {
   border-radius: 5px;
 }
 
+.carousel .carousel-item .carousel-caption a:focus {
+  padding: 4px;
+  border-width: 2px solid #fff;
+  background-color: rgba(0, 0, 0, 1);
+  color: #fff;
+  outline: none;
+}
+
+
 .carousel-moreaccessible .carousel-item .carousel-caption span.contrast,
 .carousel-moreaccessible .carousel-item .carousel-caption span.contrast:hover {
   background-color: transparent;
@@ -282,3 +303,4 @@ img.reload {
   left: 0;
   padding: 0.25em 0.25em 0;
 }
+

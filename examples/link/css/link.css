@@ -21,7 +21,7 @@
 
 [role="link"].link3::before {
   display: block;
-  content: url("../images/w3c-logo.png");
+  content: url('../images/w3c-logo.png');
   width: 153px;
   height: 104px;
 }
