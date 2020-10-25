@@ -10,7 +10,6 @@
 'use strict';
 
 class MenuButtonLinks {
-
   constructor(domNode) {
     this.domNode = domNode;
     this.buttonNode = domNode.querySelector('button');
@@ -82,9 +81,7 @@ class MenuButtonLinks {
     this.setFocusToMenuitem(this.lastMenuitem);
   }
 
-  setFocusToPreviousMenuitem(
-    currentMenuitem
-  ) {
+  setFocusToPreviousMenuitem(currentMenuitem) {
     var newMenuitem, index;
 
     if (currentMenuitem === this.firstMenuitem) {
@@ -327,7 +324,6 @@ class MenuButtonLinks {
       }
     }
   }
-
 }
 
 // Initialize menu buttons

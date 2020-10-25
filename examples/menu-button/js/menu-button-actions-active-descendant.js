@@ -10,7 +10,6 @@
 'use strict';
 
 class MenuButtonActionsActiveDescendant {
-
   constructor(domNode, performMenuAction) {
     this.domNode = domNode;
     this.performMenuAction = performMenuAction;
@@ -45,10 +44,7 @@ class MenuButtonActionsActiveDescendant {
       menuitem.tabIndex = -1;
       this.firstChars.push(menuitem.textContent.trim()[0].toLowerCase());
 
-      menuitem.addEventListener(
-        'click',
-        this.handleMenuitemClick.bind(this)
-      );
+      menuitem.addEventListener('click', this.handleMenuitemClick.bind(this));
 
       menuitem.addEventListener(
         'mouseover',
@@ -344,7 +340,6 @@ class MenuButtonActionsActiveDescendant {
       }
     }
   }
-
 }
 
 // Initialize menu buttons

@@ -10,7 +10,6 @@
 'use strict';
 
 class MenuButtonActions {
-
   constructor(domNode, performMenuAction) {
     this.domNode = domNode;
     this.performMenuAction = performMenuAction;
@@ -43,10 +42,7 @@ class MenuButtonActions {
         this.handleMenuitemKeydown.bind(this)
       );
 
-      menuitem.addEventListener(
-        'click',
-        this.handleMenuitemClick.bind(this)
-      );
+      menuitem.addEventListener('click', this.handleMenuitemClick.bind(this));
 
       menuitem.addEventListener(
         'mouseover',
@@ -59,11 +55,7 @@ class MenuButtonActions {
       this.lastMenuitem = menuitem;
     }
 
-    domNode.addEventListener(
-      'focusin',
-      this.handleFocusin.bind(this)
-    );
-
+    domNode.addEventListener('focusin', this.handleFocusin.bind(this));
     domNode.addEventListener('focusout', this.handleFocusout.bind(this));
 
     window.addEventListener(
@@ -345,7 +337,6 @@ class MenuButtonActions {
       }
     }
   }
-
 }
 
 // Initialize menu buttons
