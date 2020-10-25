@@ -26,9 +26,16 @@ class MenuButtonActionsActiveDescendant {
       'keydown',
       this.handleButtonKeydown.bind(this)
     );
-    this.buttonNode.addEventListener('click', this.handleButtonClick.bind(this));
 
-    this.menuNode.addEventListener('keydown', this.handleMenuKeydown.bind(this));
+    this.buttonNode.addEventListener(
+      'click',
+      this.handleButtonClick.bind(this)
+    );
+
+    this.menuNode.addEventListener(
+      'keydown',
+      this.handleMenuKeydown.bind(this)
+    );
 
     var nodes = domNode.querySelectorAll('[role="menuitem"]');
 
@@ -38,7 +45,11 @@ class MenuButtonActionsActiveDescendant {
       menuitem.tabIndex = -1;
       this.firstChars.push(menuitem.textContent.trim()[0].toLowerCase());
 
-      menuitem.addEventListener('click', this.handleMenuitemClick.bind(this));
+      menuitem.addEventListener(
+        'click',
+        this.handleMenuitemClick.bind(this)
+      );
+
       menuitem.addEventListener(
         'mouseover',
         this.handleMenuitemMouseover.bind(this)
@@ -50,8 +61,15 @@ class MenuButtonActionsActiveDescendant {
       this.lastMenuitem = menuitem;
     }
 
-    domNode.addEventListener('focusin', this.handleFocusin.bind(this));
-    domNode.addEventListener('focusout', this.handleFocusout.bind(this));
+    domNode.addEventListener(
+      'focusin',
+      this.handleFocusin.bind(this)
+    );
+
+    domNode.addEventListener(
+      'focusout',
+      this.handleFocusout.bind(this)
+    );
 
     window.addEventListener(
       'mousedown',
