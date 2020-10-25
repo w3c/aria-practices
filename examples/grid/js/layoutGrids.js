@@ -1,7 +1,7 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ */
 
 'use strict';
 
@@ -41,14 +41,12 @@ window.addEventListener('load', function () {
     endIndexText.innerText = endIndex + 1;
     if (startIndex <= 0) {
       previousButton.setAttribute('disabled', 'true');
-    }
-    else {
+    } else {
       previousButton.removeAttribute('disabled');
     }
     if (endIndex >= 18) {
       nextButton.setAttribute('disabled', 'true');
-    }
-    else {
+    } else {
       nextButton.removeAttribute('disabled');
     }
   });
@@ -77,9 +75,9 @@ window.addEventListener('load', function () {
   firstGridCell.addEventListener('focus', setupInstructions);
 });
 
-function PillList (grid, input, submitButton, formUpdateText) {
+function PillList(grid, input, submitButton, formUpdateText) {
   // Hardcoded to work for example 2
-  this.pillIDs = {length: 2, 1: true, 2: true};
+  this.pillIDs = { length: 2, 1: true, 2: true };
   this.nextPillID = 3;
   this.grid = grid;
   this.input = input;
@@ -89,7 +87,10 @@ function PillList (grid, input, submitButton, formUpdateText) {
   this.input.addEventListener('keydown', this.checkSubmitItem.bind(this));
   this.submitButton.addEventListener('click', this.submitItemForm.bind(this));
   this.grid.gridNode.addEventListener('click', this.checkRemovePill.bind(this));
-  this.grid.gridNode.addEventListener('keydown', this.checkRemovePill.bind(this));
+  this.grid.gridNode.addEventListener(
+    'keydown',
+    this.checkRemovePill.bind(this)
+  );
 }
 
 PillList.prototype.checkSubmitItem = function (event) {
@@ -104,8 +105,7 @@ PillList.prototype.getRecipientsString = function () {
   var recipientCount = this.pillIDs.length;
   if (recipientCount === 1) {
     return '1 recipient total.';
-  }
-  else {
+  } else {
     return recipientCount + ' recipients total.';
   }
 };
@@ -115,7 +115,8 @@ PillList.prototype.submitItemForm = function () {
   this.addPillItem(newItem);
   this.input.value = '';
   this.input.focus();
-  this.formUpdateText.innerText = newItem + ' added. ' + this.getRecipientsString();
+  this.formUpdateText.innerText =
+    newItem + ' added. ' + this.getRecipientsString();
 };
 
 PillList.prototype.addPillItem = function (recipientName) {
@@ -132,15 +133,23 @@ PillList.prototype.addPillItem = function (recipientName) {
 
   newPillItem.innerHTML =
     '<span role="gridcell">' +
-      '<a id="r' + id + '" class="pill-name" tabindex="-1" href="#">' +
-        recipientName +
-      '</a>' +
+    '<a id="r' +
+    id +
+    '" class="pill-name" tabindex="-1" href="#">' +
+    recipientName +
+    '</a>' +
     '</span>' +
     '<span role="gridcell">' +
-      '<span id="rb' + id + '" class="pill-remove" tabindex="-1" role="button"' +
-        'aria-label="Remove" aria-labelledby="rb' + id + ' r' + id + '">' +
-        'X' +
-      '</span>' +
+    '<span id="rb' +
+    id +
+    '" class="pill-remove" tabindex="-1" role="button"' +
+    'aria-label="Remove" aria-labelledby="rb' +
+    id +
+    ' r' +
+    id +
+    '">' +
+    'X' +
+    '</span>' +
     '</span>';
 
   this.grid.gridNode.append(newPillItem);
@@ -159,12 +168,14 @@ PillList.prototype.addPillItem = function (recipientName) {
 
 PillList.prototype.checkRemovePill = function (event) {
   var pillItem, pillID, pillName;
-  var isClickEvent = (event.type === 'click');
+  var isClickEvent = event.type === 'click';
   var key = event.which || event.keyCode;
 
-  if (!isClickEvent &&
-      key !== aria.KeyCode.RETURN &&
-      key !== aria.KeyCode.SPACE) {
+  if (
+    !isClickEvent &&
+    key !== aria.KeyCode.RETURN &&
+    key !== aria.KeyCode.SPACE
+  ) {
     return;
   }
 
@@ -172,14 +183,14 @@ PillList.prototype.checkRemovePill = function (event) {
     pillItem = event.target.parentNode.parentNode;
     pillID = pillItem.getAttribute('data-id');
     pillName = pillItem.querySelector('.pill-name').innerText;
-  }
-  else {
+  } else {
     return;
   }
 
   delete this.pillIDs[pillID];
   this.pillIDs.length--;
-  this.formUpdateText.innerText = pillName + ' removed. ' + this.getRecipientsString();
+  this.formUpdateText.innerText =
+    pillName + ' removed. ' + this.getRecipientsString();
 
   pillItem.remove();
   this.grid.setupFocusGrid();
@@ -187,8 +198,9 @@ PillList.prototype.checkRemovePill = function (event) {
   if (this.grid.isValidCell(this.grid.focusedRow, this.grid.focusedCol)) {
     // First, try to focus on the next pill
     this.grid.focusCell(this.grid.focusedRow, this.grid.focusedCol);
-  }
-  else if (this.grid.isValidCell(--this.grid.focusedRow, this.grid.focusedCol)) {
+  } else if (
+    this.grid.isValidCell(--this.grid.focusedRow, this.grid.focusedCol)
+  ) {
     // If there is no next pill, try to focus on the previous pill
     this.grid.focusCell(this.grid.focusedRow, this.grid.focusedCol);
   }

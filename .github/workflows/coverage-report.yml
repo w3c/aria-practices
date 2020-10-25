@@ -1,0 +1,60 @@
+name: Regression Tests Coverage Report
+
+on:
+  pull_request_target:
+    paths:
+    - "examples/**"
+    - "test/**"
+    - "!examples/landmarks/**"
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: refs/pull/${{ github.event.pull_request.number }}/head
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run coverage report
+        run: |
+          node test/util/report.js >> coverage.log || true
+
+      - name: Comment on PR
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const fs = require('fs');
+            const commentBody = fs.readFileSync('coverage.log', 'utf8');
+
+            if (commentBody.length === 0) {
+              return
+            }
+            // Get the existing comments.
+            const {data: comments} = await github.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.number,
+            })
+            // Find any comment already made by the bot.
+            const botComment = comments.find(comment => comment.user.id === 41898282)
+
+            if (botComment) {
+              await github.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: commentBody
+              })
+            } else {
+              await github.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.number,
+                body: commentBody
+              })
+            }
