@@ -43,7 +43,7 @@ class MenubarNavigation {
       '#home',
       'Mythical University'
     );
-    this.updateContent(location.href, getLinkNameFromURL(location.href));
+    this.updateContent(linkURL, linkTitle, false);
 
     function getLinkNameFromURL(url) {
       function capitalize(str) {
@@ -60,7 +60,7 @@ class MenubarNavigation {
     }
   }
 
-  updateContent(linkURL, linkName) {
+  updateContent(linkURL, linkName, moveFocus) {
     var h1Node, paraNodes, menuitemNode;
 
     // Update content area
@@ -68,7 +68,9 @@ class MenubarNavigation {
     if (h1Node) {
       h1Node.textContent = linkName;
       h1Node.tabIndex = -1;
-      h1Node.focus();
+      if (moveFocus) {
+        h1Node.focus();
+      }
     }
     paraNodes = document.querySelectorAll('#ex1 .main p');
     paraNodes.forEach(
