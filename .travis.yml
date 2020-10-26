@@ -6,12 +6,6 @@ node_js:
 git:
   depth: 3
 
-stages:
-- Lint
+install: true
 
-jobs:
-
-  include:
-    - stage: Lint
-      name: HTML Linting
-      script: npm run vnu-jar
+script: true
