@@ -15,6 +15,15 @@
   font-style: italic;
 }
 
+#ex1 .main {
+  padding-top: 1em;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 5em;
+  border-left: 2px solid #eee;
+  border-right: 2px solid #eee;
+}
+
 #ex1 footer {
   border: #005a9c solid 2px;
   background: #005a9c;
@@ -24,16 +33,19 @@
   padding-left: 1em;
 }
 
+#ex1 nav {
+  margin: 0;
+  padding: 0;
+  border: 2px solid #eee;
+}
+
 .menubar-navigation {
   margin: 0;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
   padding: 7px;
   font-size: 110%;
   list-style: none;
   background-color: #eee;
   border: #eee solid 1px;
-  border-radius: 5px;
 }
 
 .menubar-navigation li {
@@ -116,6 +128,22 @@
   background-image: url("../images/separator.svg");
   background-position: center;
   background-repeat: repeat-x;
+}
+
+/* aria-current styling */
+
+.menubar-navigation [role="menuitem"][aria-current]::after {
+  content: url("../images/aria-current.svg");
+  position: relative;
+  top: 2px;
+  left: 6px;
+}
+
+.menubar-navigation [role="menuitem"][aria-current]:focus::after {
+  content: url("../images/aria-current-focus.svg");
+  position: relative;
+  top: 2px;
+  left: 6px;
 }
 
 /* focus styling */
