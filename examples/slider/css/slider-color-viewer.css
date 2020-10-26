@@ -29,7 +29,7 @@
 }
 
 .color-picker-sliders .color-info input:focus {
-  outline: 2px solid  #034575;
+  outline: 2px solid #034575;
   background: #def;
 }
 
@@ -68,7 +68,7 @@
 .color-group .color-slider:focus text,
 .color-group .color-slider:hover text {
   fill: currentColor;
-  fill-opacity: 1.0;
+  fill-opacity: 1;
   font: bold;
 }
 

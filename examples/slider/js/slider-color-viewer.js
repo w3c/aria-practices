@@ -1,17 +1,16 @@
 'use strict';
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   slider.js
-*
-*   Desc:   ColorViewerSliders widget that implements ARIA Authoring Practices
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   slider.js
+ *
+ *   Desc:   ColorViewerSliders widget that implements ARIA Authoring Practices
+ */
 
 // Create ColorViewerSliders that contains value, valuemin, valuemax, and valuenow
 class ColorViewerSliders {
   constructor(domNode) {
-
     this.domNode = domNode;
 
     this.sliders = {};
@@ -20,76 +19,124 @@ class ColorViewerSliders {
     this.initSliderRefs(this.sliders, 'green');
     this.initSliderRefs(this.sliders, 'blue');
 
-    this.thumbWidth  = this.sliders.red.thumbNode.getBBox().width;
+    this.thumbWidth = this.sliders.red.thumbNode.getBBox().width;
     this.railWidth = this.sliders.red.railNode.getBBox().width;
     this.offsetLeft = 6;
 
     this.colorBoxNode = domNode.querySelector('.color-box');
     this.colorValueHexNode = domNode.querySelector('input.color-value-hex');
     this.colorValueRGBNode = domNode.querySelector('input.color-value-rgb');
-
   }
 
   initSliderRefs(sliderRef, color) {
     sliderRef[color] = {};
     var n = this.domNode.querySelector('.color-group.' + color);
-    sliderRef[color].groupNode  = n;
+    sliderRef[color].groupNode = n;
     sliderRef[color].sliderNode = n.querySelector('.color-slider');
-    sliderRef[color].valueNode  = n.querySelector('.value');
-    sliderRef[color].thumbNode  = n.querySelector('.thumb');
-    sliderRef[color].railNode   = n.querySelector('.rail');
-    sliderRef[color].fillNode   = n.querySelector('.fill');
-    sliderRef[color].dec10Node  = n.querySelector('.dec10');
-    sliderRef[color].decNode    = n.querySelector('.dec');
-    sliderRef[color].incNode    = n.querySelector('.inc');
-    sliderRef[color].inc10Node  = n.querySelector('.inc10');
+    sliderRef[color].valueNode = n.querySelector('.value');
+    sliderRef[color].thumbNode = n.querySelector('.thumb');
+    sliderRef[color].railNode = n.querySelector('.rail');
+    sliderRef[color].fillNode = n.querySelector('.fill');
+    sliderRef[color].dec10Node = n.querySelector('.dec10');
+    sliderRef[color].decNode = n.querySelector('.dec');
+    sliderRef[color].incNode = n.querySelector('.inc');
+    sliderRef[color].inc10Node = n.querySelector('.inc10');
   }
 
   // Initialize slider
   init() {
-
     for (var slider in this.sliders) {
-
       if (this.sliders[slider].sliderNode.tabIndex != 0) {
         this.sliders[slider].sliderNode.tabIndex = 0;
       }
 
-      this.sliders[slider].railNode.addEventListener('click', this.onRailClick.bind(this));
+      this.sliders[slider].railNode.addEventListener(
+        'click',
+        this.onRailClick.bind(this)
+      );
 
-      this.sliders[slider].sliderNode.addEventListener('keydown', this.onSliderKeyDown.bind(this));
+      this.sliders[slider].sliderNode.addEventListener(
+        'keydown',
+        this.onSliderKeyDown.bind(this)
+      );
 
-      this.sliders[slider].sliderNode.addEventListener('mousedown',this.onThumbMouseDown.bind(this));
-      this.sliders[slider].sliderNode.addEventListener('focus', this.onFocus.bind(this));
-      this.sliders[slider].sliderNode.addEventListener('blur', this.onBlur.bind(this));
+      this.sliders[slider].sliderNode.addEventListener(
+        'mousedown',
+        this.onThumbMouseDown.bind(this)
+      );
+      this.sliders[slider].sliderNode.addEventListener(
+        'focus',
+        this.onFocus.bind(this)
+      );
+      this.sliders[slider].sliderNode.addEventListener(
+        'blur',
+        this.onBlur.bind(this)
+      );
 
-      this.sliders[slider].dec10Node.addEventListener('click', this.onDec10Click.bind(this));
-      this.sliders[slider].dec10Node.addEventListener('focus', this.onFocus.bind(this));
-      this.sliders[slider].dec10Node.addEventListener('blur', this.onBlur.bind(this));
+      this.sliders[slider].dec10Node.addEventListener(
+        'click',
+        this.onDec10Click.bind(this)
+      );
+      this.sliders[slider].dec10Node.addEventListener(
+        'focus',
+        this.onFocus.bind(this)
+      );
+      this.sliders[slider].dec10Node.addEventListener(
+        'blur',
+        this.onBlur.bind(this)
+      );
 
-      this.sliders[slider].decNode.addEventListener('click', this.onDecClick.bind(this));
-      this.sliders[slider].decNode.addEventListener('focus', this.onFocus.bind(this));
-      this.sliders[slider].decNode.addEventListener('blur', this.onBlur.bind(this));
+      this.sliders[slider].decNode.addEventListener(
+        'click',
+        this.onDecClick.bind(this)
+      );
+      this.sliders[slider].decNode.addEventListener(
+        'focus',
+        this.onFocus.bind(this)
+      );
+      this.sliders[slider].decNode.addEventListener(
+        'blur',
+        this.onBlur.bind(this)
+      );
 
-      this.sliders[slider].incNode.addEventListener('click', this.onIncClick.bind(this));
-      this.sliders[slider].incNode.addEventListener('focus', this.onFocus.bind(this));
-      this.sliders[slider].incNode.addEventListener('blur', this.onBlur.bind(this));
+      this.sliders[slider].incNode.addEventListener(
+        'click',
+        this.onIncClick.bind(this)
+      );
+      this.sliders[slider].incNode.addEventListener(
+        'focus',
+        this.onFocus.bind(this)
+      );
+      this.sliders[slider].incNode.addEventListener(
+        'blur',
+        this.onBlur.bind(this)
+      );
 
-      this.sliders[slider].inc10Node.addEventListener('click', this.onInc10Click.bind(this));
-      this.sliders[slider].inc10Node.addEventListener('focus', this.onFocus.bind(this));
-      this.sliders[slider].inc10Node.addEventListener('blur', this.onBlur.bind(this));
+      this.sliders[slider].inc10Node.addEventListener(
+        'click',
+        this.onInc10Click.bind(this)
+      );
+      this.sliders[slider].inc10Node.addEventListener(
+        'focus',
+        this.onFocus.bind(this)
+      );
+      this.sliders[slider].inc10Node.addEventListener(
+        'blur',
+        this.onBlur.bind(this)
+      );
 
-      this.moveSliderTo(this.sliders[slider], this.getValueNow(this.sliders[slider]));
-
+      this.moveSliderTo(
+        this.sliders[slider],
+        this.getValueNow(this.sliders[slider])
+      );
     }
   }
 
   getSlider(domNode) {
-
     if (!domNode.classList.contains('color-slider')) {
       if (domNode.tagName.toLowerCase() === 'rect') {
         domNode = domNode.parentNode.parentNode;
-      }
-      else {
+      } else {
         domNode = domNode.parentNode.querySelector('.color-slider');
       }
     }
@@ -118,7 +165,6 @@ class ColorViewerSliders {
   }
 
   moveSliderTo(slider, value) {
-
     var valueMin = this.getValueMin(slider);
     var valueNow = this.getValueNow(slider);
     var valueMax = this.getValueMax(slider);
@@ -138,18 +184,23 @@ class ColorViewerSliders {
 
     var n = valueNow * this.railWidth;
     var d = valueMax - valueMin;
-    var pos = Math.round((valueNow * (this.railWidth - this.thumbWidth)) / (valueMax - valueMin)) + this.offsetLeft;
+    var pos =
+      Math.round(
+        (valueNow * (this.railWidth - this.thumbWidth)) / (valueMax - valueMin)
+      ) + this.offsetLeft;
     slider.thumbNode.setAttribute('x', pos);
 
     slider.valueNode.textContent = valueNow;
     var valueWidth = slider.valueNode.getBBox().width;
-    slider.valueNode.setAttribute('x', pos - ((valueWidth + this.thumbWidth) / 2) + this.thumbWidth);
+    slider.valueNode.setAttribute(
+      'x',
+      pos - (valueWidth + this.thumbWidth) / 2 + this.thumbWidth
+    );
 
     this.updateColorBox();
   }
 
   onSliderKeyDown(event) {
-
     var flag = false;
 
     var slider = this.getSlider(event.currentTarget);
@@ -203,32 +254,32 @@ class ColorViewerSliders {
       event.preventDefault();
       event.stopPropagation();
     }
-
   }
 
   onThumbMouseDown(event) {
-
     var slider = this.getSlider(event.currentTarget);
 
     var valueMin = this.getValueMin(slider);
     var valueNow = this.getValueNow(slider);
     var valueMax = this.getValueMax(slider);
 
-    var onMouseMove = function(event) {
-      var diffX = event.pageX - slider.sliderNode.offsetLeft - (this.thumbWidth / 2);
-      valueNow = Math.round(((valueMax - valueMin) * diffX) / (this.railWidth - this.thumbWidth));
+    var onMouseMove = function (event) {
+      var diffX =
+        event.pageX - slider.sliderNode.offsetLeft - this.thumbWidth / 2;
+      valueNow = Math.round(
+        ((valueMax - valueMin) * diffX) / (this.railWidth - this.thumbWidth)
+      );
       this.moveSliderTo(slider, valueNow);
       event.preventDefault();
       event.stopPropagation();
     }.bind(this);
 
-    var onMouseUp = function(event) {
-
+    var onMouseUp = function (event) {
       document.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mouseup', onMouseUp);
     };
 
-      // bind a mousemove event handler to move pointer
+    // bind a mousemove event handler to move pointer
     document.addEventListener('mousemove', onMouseMove);
 
     // bind a mouseup event handler to stop tracking mouse movements
@@ -239,24 +290,24 @@ class ColorViewerSliders {
 
     // Set focus to the clicked on
     slider.sliderNode.focus();
-
   }
 
   // handleMouseMove has the same functionality as we need for handleMouseClick on the rail
   onRailClick(event) {
-
     var slider = this.getSlider(event.currentTarget);
 
     var valueMin = this.getValueMin(slider);
     var valueNow = this.getValueNow(slider);
     var valueMax = this.getValueMax(slider);
 
-    var diffX = event.pageX - slider.sliderNode.offsetLeft - (this.thumbWidth / 2);
-    valueNow = Math.round(((valueMax - valueMin) * diffX) / (this.railWidth - this.thumbWidth));
+    var diffX =
+      event.pageX - slider.sliderNode.offsetLeft - this.thumbWidth / 2;
+    valueNow = Math.round(
+      ((valueMax - valueMin) * diffX) / (this.railWidth - this.thumbWidth)
+    );
     this.moveSliderTo(slider, valueNow);
     event.preventDefault();
     event.stopPropagation();
-
   }
 
   onChangeClick(event, n) {
@@ -303,9 +354,15 @@ class ColorViewerSliders {
   }
 
   getColorHex() {
-    var r = parseInt(this.sliders.red.sliderNode.getAttribute('aria-valuenow')).toString(16);
-    var g = parseInt(this.sliders.green.sliderNode.getAttribute('aria-valuenow')).toString(16);
-    var b = parseInt(this.sliders.blue.sliderNode.getAttribute('aria-valuenow')).toString(16);
+    var r = parseInt(
+      this.sliders.red.sliderNode.getAttribute('aria-valuenow')
+    ).toString(16);
+    var g = parseInt(
+      this.sliders.green.sliderNode.getAttribute('aria-valuenow')
+    ).toString(16);
+    var b = parseInt(
+      this.sliders.blue.sliderNode.getAttribute('aria-valuenow')
+    ).toString(16);
 
     if (r.length === 1) {
       r = '0' + r;
@@ -329,7 +386,6 @@ class ColorViewerSliders {
   }
 
   updateColorBox() {
-
     if (this.colorBoxNode) {
       this.colorBoxNode.style.backgroundColor = this.getColorHex();
     }

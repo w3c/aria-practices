@@ -1,0 +1,40 @@
+name: HTML Linting
+on:
+  push:
+    branches-ignore:
+      - "dependabot/**"
+    paths:
+      - "package*.json"
+      - ".vnurc"
+      - "aria-practices.html"
+      - "examples/**/*.html"
+      - ".github/workflows/lint-html.yml"
+      - ".github/workflows/vnu-jar-problem-matcher.json"
+
+  pull_request:
+    paths:
+      - "package*.json"
+      - ".vnurc"
+      - "aria-practices.html"
+      - "examples/**/*.html"
+      - ".github/workflows/lint-html.yml"
+      - ".github/workflows/vnu-jar-problem-matcher.json"
+
+jobs:
+  lint-html:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2.1.2
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: HTML Validator
+        run: |
+          echo "::add-matcher::.github/workflows/vnu-jar-problem-matcher.json"
+          npm run lint:html

@@ -1,7 +1,3 @@
-/* eslint no-restricted-properties: 0 */
-
-'use strict';
-
 const { By } = require('selenium-webdriver');
 
 /**
@@ -15,9 +11,10 @@ const { By } = require('selenium-webdriver');
  */
 module.exports = async function queryElements(t, selector, context) {
   context = context || t.context.session;
+  // eslint-disable-next-line no-restricted-properties
   const result = await context.findElements(By.css(selector));
   if (result.length === 0) {
     t.fail(`Element query returned no results: ${selector}`);
   }
   return result;
-}
+};
