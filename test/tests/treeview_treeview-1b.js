@@ -172,7 +172,7 @@ ariaTest(
 );
 
 ariaTest(
-  '"aria-setsize" atrribute on treeitem',
+  '"aria-setsize" attribute on treeitem',
   exampleFile,
   'treeitem-aria-setsize',
   async (t) => {
