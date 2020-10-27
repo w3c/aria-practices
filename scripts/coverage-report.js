@@ -529,7 +529,7 @@ addGuidanceToRole(
   'complementary',
   '../aria-practices.html',
   'Complementary',
-  'aria_lh_complemtary'
+  'aria_lh_complementary'
 );
 
 addLandmarkRole(
