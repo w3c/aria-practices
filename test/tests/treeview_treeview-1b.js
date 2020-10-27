@@ -769,7 +769,7 @@ ariaTest('characters move focus', exampleFile, 'key-character', async (t) => {
         test.sendChar +
         ' to treeitem ' +
         test.sendIndex +
-        ' should move the foucs to treeitem ' +
+        ' should move the focus to treeitem ' +
         test.endIndex
     );
 
@@ -800,7 +800,7 @@ ariaTest('characters move focus', exampleFile, 'key-character', async (t) => {
         test.sendChar +
         ' to treeitem ' +
         test.sendIndex +
-        ' should move the foucs to treeitem ' +
+        ' should move the focus to treeitem ' +
         test.endIndex
     );
   }
