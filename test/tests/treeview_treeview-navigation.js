@@ -2,6 +2,7 @@ const { ariaTest } = require('..');
 const { Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
+const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertRovingTabindex = require('../util/assertRovingTabindex');
 const assertAriaOwns = require('../util/assertAriaOwns');
 
@@ -169,11 +170,11 @@ ariaTest(
 );
 
 ariaTest(
-  'aria-label on section element',
+  'aria-labelledy on section element',
   exampleFile,
-  'region-aria-label',
+  'region-aria-labelledby',
   async (t) => {
-    await assertAriaLabelExists(t, ex.regionSelector);
+    await assertAriaLabelledby(t, ex.regionSelector);
   }
 );
 

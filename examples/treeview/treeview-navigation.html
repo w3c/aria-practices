@@ -58,7 +58,7 @@
           <!-- NOTE: In a real website the header element would be a top level element and it would
                    not need the role="banner" attribute to be a banner landmark -->
           <header role="banner">
-            <div class="title">Mythical University</div>
+            <div class="title" id="id_website_title">Mythical University</div>
             <div class="tagline">Using a Tree widget pattern for navigational links</div>
           </header>
           <div class="body">
@@ -249,7 +249,7 @@
             </nav>
 
             <!-- NOTE: In a real website the following SECTION element should be MAIN element -->
-            <section class="page" aria-label="Mythical University sample page content">
+            <section class="page" aria-labelledby="id_website_title id_page_title">
               <h1 class="page_title" id="id_page_title">Mythical University</h1>
               <div class="content">
                 <p></p>
@@ -399,7 +399,7 @@
           <tbody>
             <tr data-test-id="banner-role">
               <th scope="row"><code>banner</code></th>
-              <td><code>role==&quot;banner=&quot;</code></td>
+              <td><code>role=&quot;banner&quot;</code></td>
               <td><code>header</code></td>
               <td>
                 <ul>
@@ -418,7 +418,7 @@
             </tr>
             <tr data-test-id="navigation-aria-label">
               <td></td>
-              <th scope="row"><code>aria-label==&quot;<em>navigation label</em>=&quot;</code></th>
+              <th scope="row"><code>aria-label=&quot;<em>navigation label</em>&quot;</code></th>
               <td><code>nav</code></td>
               <td>
                 The <code>aria-label</code> attribute provides an accessible name for the <code>navigation</code> landmark.
@@ -435,17 +435,17 @@
                 </ul>
               </td>
             </tr>
-            <tr data-test-id="region-aria-label">
+            <tr data-test-id="region-aria-labelledby">
               <td></td>
-              <th scope="row"><code>aria-label==&quot;<em>region label</em>=&quot;</code></th>
+              <th scope="row"><code>aria-labelledby=&quot;<em>IDREFs</em>&quot;</code></th>
               <td><code>section</code></td>
               <td>
-                The <code>aria-label</code> attribute provides an accessible name for the <code>region</code> landmark.
+                The <code>aria-labelledby</code> attribute provides an accessible name for the <code>region</code> landmark by concatenating the website and page titles.
               </td>
             </tr>
             <tr data-test-id="contentinfo-role">
               <th scope="row"><code>contentinfo</code></th>
-              <td><code>role==&quot;contentinfo=&quot;</code></td>
+              <td><code>role=&quot;contentinfo&quot;</code></td>
               <td><code>footer</code></td>
               <td>
                 <ul>
