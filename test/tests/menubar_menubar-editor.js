@@ -458,7 +458,7 @@ ariaTest(
 );
 
 ariaTest(
-  'Test "aria-checked" attirbute on role="menuitemcheckbox"',
+  'Test "aria-checked" attribute on role="menuitemcheckbox"',
   exampleFile,
   'menuitemcheckbox-aria-checked',
   async (t) => {
