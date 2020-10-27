@@ -475,7 +475,7 @@ ariaTest(
       'false'
     );
 
-    // And corrospondingly, neither item should have a visible checkmark
+    // And correspondingly, neither item should have a visible checkmark
     for (let checkIndex = 0; checkIndex < 2; checkIndex++) {
       const checkmark = await checkmarkVisible(
         t,
@@ -506,7 +506,7 @@ ariaTest(
       'true'
     );
 
-    // And corrospondingly, both items should have a visible checkmark
+    // And correspondingly, both items should have a visible checkmark
     for (let checkIndex = 0; checkIndex < 2; checkIndex++) {
       const checkmark = await checkmarkVisible(
         t,
