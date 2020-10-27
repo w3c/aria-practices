@@ -24,7 +24,7 @@ const valuesDay = [
   'fourteen',
   'fifteenth',
   'sixteenth',
-  'seveneenth',
+  'seventeenth',
   'eighteenth',
   'nineteenth',
   'twentieth',

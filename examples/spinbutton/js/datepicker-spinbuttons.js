@@ -43,7 +43,7 @@ var DatePickerSpinButtons = function (domNode) {
     'fourteen',
     'fifteenth',
     'sixteenth',
-    'seveneenth',
+    'seventeenth',
     'eighteenth',
     'nineteenth',
     'twentieth',
