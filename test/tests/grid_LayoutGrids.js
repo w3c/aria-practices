@@ -226,7 +226,7 @@ ariaTest(
     t.is(
       rowElements.length,
       Number(rowCount),
-      '"aria-rowcount" attribute should match the number of [role="row"] divs in example: ' +
+      '"aria-rowcount" attribute should match the number of [role="row"] div elements in example: ' +
         gridSelector
     );
   }
