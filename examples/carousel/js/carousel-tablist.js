@@ -314,7 +314,7 @@ CarouselTablist.prototype.handleTabpanelFocusOut = function () {
   this.hasFocus = false;
 };
 
-/* Iniitalize Carousel Tablists and options */
+/* Initialize Carousel Tablists and options */
 
 window.addEventListener(
   'load',
