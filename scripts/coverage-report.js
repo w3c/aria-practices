@@ -774,7 +774,7 @@ $('.props_with_more_than_one_examples_count').html(
   countMoreThanOneExample.toString()
 );
 
-// cheeio seems to fold the doctype lines despite the template
+// cheerio seems to fold the doctype lines despite the template
 const result = $.html()
   .replace('<!DOCTYPE html>', '<!DOCTYPE html>\n')
   .replace(
