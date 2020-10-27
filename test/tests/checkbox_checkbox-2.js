@@ -98,7 +98,7 @@ ariaTest(
     t.is(
       await checkbox.getAttribute('aria-checked'),
       'false',
-      'The control checkbox should have attribute aria-checked = "false" after clicking checkbox twice (with no parially checked state)'
+      'The control checkbox should have attribute aria-checked = "false" after clicking checkbox twice (with no partially checked state)'
     );
 
     assertNoElements(
@@ -175,7 +175,7 @@ ariaTest(
     t.is(
       await checkbox.getAttribute('aria-checked'),
       'true',
-      'The control checkbox should have attribute aria-checked = "true" after clicking checkbox twice (with no parially checked state)'
+      'The control checkbox should have attribute aria-checked = "true" after clicking checkbox twice (with no partially checked state)'
     );
 
     t.is(
