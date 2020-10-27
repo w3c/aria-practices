@@ -13,7 +13,7 @@
     "lint:es": "eslint .",
     "lint:js": "npm run lint:es",
     "lint:html": "npm run vnu-jar",
-    "lint:spelling": "cspell \"examples/**/*.html\" \"aria-practices.html\"",
+    "lint:spelling": "cspell \"**/*.*\"",
     "regression": "ava --timeout=1m",
     "regression-report": "node test/util/report",
     "test": "npm run lint && npm run regression",
