@@ -1018,7 +1018,7 @@ ariaTest(
           changedStyle,
           'Sending key "ENTER" to submenuitem "' +
             itemText +
-            '" should change the style attribute on the Text Sampe.'
+            '" should change the style attribute on the Text Sample.'
         );
       }
     }
