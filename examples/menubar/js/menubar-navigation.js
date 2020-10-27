@@ -11,6 +11,8 @@
 
 class MenubarNavigation {
   constructor(domNode) {
+    var linkURL, linkTitle;
+
     this.domNode = domNode;
 
     this.menuitems = [];
@@ -39,6 +41,14 @@ class MenubarNavigation {
     domNode.querySelector('[role=menuitem]').tabIndex = 0;
 
     // Initial content for page
+    if (location.href.split('#').length > 1) {
+      linkURL = location.href;
+      linkTitle = getLinkNameFromURL(location.href);
+    } else {
+      linkURL = location.href + '#home';
+      linkTitle = 'Home';
+    }
+
     this.contentGenerator = new NavigationContentGenerator(
       '#home',
       'Mythical University'
@@ -89,7 +99,9 @@ class MenubarNavigation {
         item.removeAttribute('aria-current');
       }
     });
-    document.location.href = linkURL;
+    if (linkURL !== location.href) {
+      location.href = linkURL;
+    }
   }
 
   getMenuitems(domNode, depth) {

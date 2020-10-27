@@ -135,15 +135,14 @@
 .menubar-navigation [role="menuitem"][aria-current]::after {
   content: url("../images/aria-current.svg");
   position: relative;
-  top: 2px;
-  left: 6px;
+  left: 4px;
 }
 
-.menubar-navigation [role="menuitem"][aria-current]:focus::after {
-  content: url("../images/aria-current-focus.svg");
-  position: relative;
-  top: 2px;
-  left: 6px;
+.menubar-navigation [role="menuitem"][aria-current] {
+  padding: 4px;
+  border: 2px solid #9c4200;
+  background-color: #9c4200;
+  color: white;
 }
 
 /* focus styling */
