@@ -953,7 +953,7 @@ function formatInfo(info) {
 
 /*
 *   normalize: Trim leading and trailing whitespace and condense all
-*   interal sequences of whitespace to a single space. Adapted from
+*   internal sequences of whitespace to a single space. Adapted from
 *   Mozilla documentation on String.prototype.trim polyfill. Handles
 *   BOM and NBSP characters.
 */
