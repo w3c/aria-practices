@@ -743,7 +743,7 @@ ariaTest(
     t.is(
       focusedId,
       gridcellId(lastrow, 1),
-      'After left arrow sent to popup, aria-activedescendant should be set to the last row, last gricell: ' +
+      'After left arrow sent to popup, aria-activedescendant should be set to the last row, last gridcell: ' +
         gridcellId(lastrow, 1)
     );
 
