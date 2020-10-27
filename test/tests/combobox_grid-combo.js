@@ -701,7 +701,7 @@ ariaTest(
           .isDisplayed());
       },
       t.context.waitTime,
-      'Timeout waiting for gridbox to close afer escape'
+      'Timeout waiting for gridbox to close after escape'
     );
 
     // Confirm the grid is closed and the textbox is cleared
