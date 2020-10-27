@@ -59,7 +59,7 @@ const getExampleFiles = function (currentDirPath, exampleFiles) {
 };
 
 /**
- * Return human readible name for a "Keyboard Support" table row.
+ * Return human readable name for a "Keyboard Support" table row.
  *
  * @param {jQuery object} $         - loaded Cheerio dom
  * @param {jQuery object} $tableRow - root example directory
@@ -69,7 +69,7 @@ const getKeyboardRowName = function ($, $tableRow) {
 };
 
 /**
- * Return human readible name for an "Attributes" table row.
+ * Return human readable name for an "Attributes" table row.
  *
  * @param {jQuery object} $         - loaded Cheerio dom
  * @param {jQuery object} $tableRow - root example directory
