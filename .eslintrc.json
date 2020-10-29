@@ -1,5 +1,5 @@
 {
-  "extends": "eslint:recommended",
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "env": {
     "browser": true,
     "es6": true
@@ -12,6 +12,7 @@
     "no-restricted-properties": [2, {
       "property": "findElements",
       "message": "Please use t.context.queryElements()."
-    }]
+    }],
+    "strict": [2, "global"]
   }
 }

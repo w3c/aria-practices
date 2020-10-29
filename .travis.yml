@@ -6,47 +6,6 @@ node_js:
 git:
   depth: 3
 
-stages:
-- Test
-- Deploy
+install: true
 
-jobs:
-  fast_finish: true
-  allow_failures:
-    - env: ALLOW_FAILURE=true
-
-  include:
-    - stage: Test
-      name: CSS Linting
-      script: npm run lint:css
-    - stage: Test
-      name: JS Linting
-      script: npm run lint:es
-    - stage: Test
-      name: HTML Linting
-      script: npm run vnu-jar
-    - stage: Test
-      name: Spellcheck
-      script: npm run lint:spelling
-      env: ALLOW_FAILURE=true
-
-    - stage: Test
-      name: AVA Regression Tests
-      addons:
-        firefox: latest
-      script: scripts/regression-tests.sh
-      env: TEST_WAIT_TIME=1000
-    - stage: Test
-      name: Regression Tests Coverage Report
-      script: node test/util/report.js
-      env: ALLOW_FAILURE=true
-    - stage: Deploy
-      if: branch = master AND type != pull_request
-      script: skip
-      before_deploy: scripts/travis-before_deploy.sh
-      deploy:
-        provider: script
-        skip_cleanup: true
-        script: /tmp/deploy/travis-deploy.sh
-        on:
-          branch: master
+script: true

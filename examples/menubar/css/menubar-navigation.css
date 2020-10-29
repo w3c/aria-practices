@@ -1,0 +1,114 @@
+.menubar-navigation {
+  margin: 0;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  padding: 7px;
+  font-size: 110%;
+  list-style: none;
+  background-color: #eee;
+  border: #eee solid 1px;
+  border-radius: 5px;
+}
+
+.menubar-navigation li {
+  margin: 0;
+  padding: 0;
+  border: 0 solid black;
+  list-style: none;
+}
+
+.menubar-navigation > li {
+  display: inline-block;
+  position: relative;
+}
+
+.menubar-navigation > li li {
+  display: block;
+}
+
+.menubar-navigation [role="menu"] [role="menuitem"],
+.menubar-navigation [role="menu"] [role="separator"] {
+  display: block;
+  width: 12em;
+  margin: 0;
+}
+
+.menubar-navigation [role="menuitem"],
+.menubar-navigation [role="separator"] {
+  padding: 6px;
+  background-color: #eee;
+  border: 0 solid #eee;
+  color: black;
+  border-radius: 5px;
+}
+
+.menubar-navigation [role="menuitem"] svg {
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+.menubar-navigation [role="menuitem"] svg.down {
+  padding-left: 0.125em;
+}
+
+.menubar-navigation [role="menuitem"] svg.right {
+  position: absolute;
+  padding-top: 0.35em;
+  right: 0.75em;
+}
+
+.menubar-navigation [role="menuitem"][aria-expanded="true"] svg.down {
+  transform: rotate(180deg);
+}
+
+.menubar-navigation [role="menuitem"][aria-expanded="true"] svg.right {
+  transform: rotate(90deg) translate(5px, -5px);
+}
+
+.menubar-navigation > li > [role="menuitem"] {
+  display: inline-block;
+}
+
+.menubar-navigation [role="menu"] {
+  display: none;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  padding: 7px 4px;
+  border: 2px solid #034575;
+  border-radius: 5px;
+  background-color: #eee;
+}
+
+.menubar-navigation [role="group"] {
+  margin: 0;
+  padding: 0;
+}
+
+.menubar-navigation [role="separator"] {
+  padding-top: 3px;
+  background-image: url("../images/separator.svg");
+  background-position: center;
+  background-repeat: repeat-x;
+}
+
+/* focus styling */
+
+.menubar-navigation.focus {
+  padding: 6px;
+  border: #034575 solid 2px;
+}
+
+.menubar-navigation [role="menuitem"][aria-expanded="true"],
+.menubar-navigation [role="menuitem"]:focus,
+.menubar-navigation [role="menuitem"]:hover {
+  background: #034575;
+  color: #fff;
+  outline: none;
+}
+
+.menubar-navigation [role="menuitem"]:focus,
+.menubar-navigation [role="menuitem"]:hover {
+  padding: 2px;
+  border: 4px solid #034575;
+}

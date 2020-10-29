@@ -63,12 +63,6 @@
   stroke: gray;
 }
 
-.combobox button[aria-expanded="true"] polygon.arrow,
-.combobox .group.focus polygon.arrow {
-  fill: black;
-  stroke: black;
-}
-
 ul[role="listbox"] {
   margin: 0;
   padding: 0;

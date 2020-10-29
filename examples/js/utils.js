@@ -1,3 +1,4 @@
+'use strict';
 /**
  * @namespace aria
  */
@@ -23,7 +24,7 @@ aria.KeyCode = {
   UP: 38,
   RIGHT: 39,
   DOWN: 40,
-  DELETE: 46
+  DELETE: 46,
 };
 
 aria.Utils = aria.Utils || {};
@@ -54,17 +55,19 @@ aria.Utils.remove = function (item) {
   if (item.remove && typeof item.remove === 'function') {
     return item.remove();
   }
-  if (item.parentNode &&
-      item.parentNode.removeChild &&
-      typeof item.parentNode.removeChild === 'function') {
+  if (
+    item.parentNode &&
+    item.parentNode.removeChild &&
+    typeof item.parentNode.removeChild === 'function'
+  ) {
     return item.parentNode.removeChild(item);
   }
   return false;
 };
 
 aria.Utils.isFocusable = function (element) {
-  if (element.tabIndex > 0 || (element.tabIndex === 0 && element.getAttribute('tabIndex') !== null)) {
-    return true;
+  if (element.tabIndex < 0) {
+    return false;
   }
 
   if (element.disabled) {
@@ -75,7 +78,7 @@ aria.Utils.isFocusable = function (element) {
     case 'A':
       return !!element.href && element.rel != 'ignore';
     case 'INPUT':
-      return element.type != 'hidden' && element.type != 'file';
+      return element.type != 'hidden';
     case 'BUTTON':
     case 'SELECT':
     case 'TEXTAREA':
@@ -97,8 +100,7 @@ aria.Utils.getAncestorBySelector = function (element, selector) {
   while (ancestor === null) {
     if (aria.Utils.matches(currentNode.parentNode, selector)) {
       ancestor = currentNode.parentNode;
-    }
-    else {
+    } else {
       currentNode = currentNode.parentNode;
     }
   }
@@ -107,7 +109,7 @@ aria.Utils.getAncestorBySelector = function (element, selector) {
 };
 
 aria.Utils.hasClass = function (element, className) {
-  return (new RegExp('(\\s|^)' + className + '(\\s|$)')).test(element.className);
+  return new RegExp('(\\s|^)' + className + '(\\s|$)').test(element.className);
 };
 
 aria.Utils.addClass = function (element, className) {

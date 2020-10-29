@@ -254,6 +254,7 @@ require(["core/pubsubhub"], function(respecEvents) {
                 }
             });
     // delete any terms that were not referenced.
+            if (!respecConfig.definitionMap) return;
             Object.keys(termNames).forEach(function(term) {
                 var $p = $("#"+term);
                 if ($p) {
@@ -282,13 +283,3 @@ function fixIncludes(utils, content) {
     updateReferences(base);
     return (base.innerHTML);
 }
-
-// Fix the scroll-to-fragID problem:
-require(["core/pubsubhub"], function (respecEvents) {
-    "use strict";
-    respecEvents.sub("end-all", function () {
-        if(window.location.hash) {
-            window.location = window.location.hash;
-        }
-    });
-});

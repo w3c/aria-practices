@@ -9,20 +9,18 @@ const assert = require('assert');
  * @param {String} elementSelector - the element with aria-controls set
  */
 
-module.exports = async function assertAriaControls (t, elementSelector) {
+module.exports = async function assertAriaControls(t, elementSelector) {
   const elements = await t.context.queryElements(t, elementSelector);
 
-  assert.ok(
-    elements.length,
-    'CSS elector returned no results: ' + elementSelector
-  );
-
   for (let element of elements) {
-    const ariaControlsExists = await t.context.session.executeScript(async function () {
-      const selector = arguments[0];
-      let el = document.querySelector(selector);
-      return el.hasAttribute('aria-controls');
-    }, elementSelector);
+    const ariaControlsExists = await t.context.session.executeScript(
+      async function () {
+        const selector = arguments[0];
+        let el = document.querySelector(selector);
+        return el.hasAttribute('aria-controls');
+      },
+      elementSelector
+    );
 
     assert.ok(
       ariaControlsExists,
@@ -33,7 +31,8 @@ module.exports = async function assertAriaControls (t, elementSelector) {
 
     assert.ok(
       controlId,
-      '"aria-controls" attribute should have a value on element(s): ' + elementSelector
+      '"aria-controls" attribute should have a value on element(s): ' +
+        elementSelector
     );
 
     const controlEl = await t.context.queryElements(t, `#${controlId}`);
@@ -41,7 +40,10 @@ module.exports = async function assertAriaControls (t, elementSelector) {
     assert.equal(
       controlEl.length,
       1,
-      'Element with id "' + controlId + '" should exist as reference by "aria-controls" on: ' + elementSelector
+      'Element with id "' +
+        controlId +
+        '" should exist as reference by "aria-controls" on: ' +
+        elementSelector
     );
   }
   t.pass();

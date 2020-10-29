@@ -1,9 +1,11 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   FontMenu.js
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   FontMenu.js
+ */
+
+'use strict';
 
 var FontMenu = function (domNode, controllerObj) {
   var elementChildren,
@@ -26,7 +28,9 @@ var FontMenu = function (domNode, controllerObj) {
     var menuitem = childElement.firstElementChild;
 
     if (menuitem && menuitem === 'A') {
-      throw new Error(msgPrefix + 'Cannot have descendant elements are A elements.');
+      throw new Error(
+        msgPrefix + 'Cannot have descendant elements are A elements.'
+      );
     }
     childElement = childElement.nextElementSibling;
   }
@@ -34,24 +38,24 @@ var FontMenu = function (domNode, controllerObj) {
   this.domNode = domNode;
   this.controller = controllerObj;
 
-  this.menuitems = [];      // See PopupMenu init method
-  this.firstChars = [];      // See PopupMenu init method
+  this.menuitems = []; // See PopupMenu init method
+  this.firstChars = []; // See PopupMenu init method
 
-  this.firstItem = null;    // See PopupMenu init method
-  this.lastItem = null;    // See PopupMenu init method
+  this.firstItem = null; // See PopupMenu init method
+  this.lastItem = null; // See PopupMenu init method
 
-  this.hasFocus = false;   // See MenuItem handleFocus, handleBlur
-  this.hasHover = false;   // See PopupMenu handleMouseover, handleMouseout
+  this.hasFocus = false; // See MenuItem handleFocus, handleBlur
+  this.hasHover = false; // See PopupMenu handleMouseover, handleMouseout
 };
 
 /*
-*   @method FontMenu.prototype.init
-*
-*   @desc
-*       Add domNode event listeners for mouseover and mouseout. Traverse
-*       domNode children to configure each menuitem and populate menuitems
-*       array. Initialize firstItem and lastItem properties.
-*/
+ *   @method FontMenu.prototype.init
+ *
+ *   @desc
+ *       Add domNode event listeners for mouseover and mouseout. Traverse
+ *       domNode children to configure each menuitem and populate menuitems
+ *       array. Initialize firstItem and lastItem properties.
+ */
 FontMenu.prototype.init = function () {
   var menuitemElements, menuitemElement, menuItem, textContent, numItems;
 
@@ -102,12 +106,10 @@ FontMenu.prototype.setFocusToController = function (command) {
 
   if (command === 'previous') {
     this.controller.toolbar.setFocusToPrevious(this.controller.toolbarItem);
-  }
-  else {
+  } else {
     if (command === 'next') {
       this.controller.toolbar.setFocusToNext(this.controller.toolbarItem);
-    }
-    else {
+    } else {
       this.controller.domNode.focus();
     }
   }
@@ -134,8 +136,7 @@ FontMenu.prototype.setFocusToPreviousItem = function (currentItem) {
 
   if (currentItem === this.firstItem) {
     this.lastItem.domNode.focus();
-  }
-  else {
+  } else {
     index = this.menuitems.indexOf(currentItem);
     this.menuitems[index - 1].domNode.focus();
   }
@@ -146,8 +147,7 @@ FontMenu.prototype.setFocusToNextItem = function (currentItem) {
 
   if (currentItem === this.lastItem) {
     this.firstItem.domNode.focus();
-  }
-  else {
+  } else {
     index = this.menuitems.indexOf(currentItem);
     this.menuitems[index + 1].domNode.focus();
   }
@@ -223,7 +223,7 @@ FontMenu.prototype.open = function () {
   // Set CSS properties
   this.domNode.style.display = 'block';
   this.domNode.style.position = 'absolute';
-  this.domNode.style.top = (rect.height - 1) + 'px';
+  this.domNode.style.top = rect.height - 1 + 'px';
   this.domNode.style.left = '0px';
   this.domNode.style.zIndex = 100;
 
@@ -236,7 +236,10 @@ FontMenu.prototype.close = function (force) {
     force = false;
   }
 
-  if (force || (!this.hasFocus && !this.hasHover && !this.controller.hasHover)) {
+  if (
+    force ||
+    (!this.hasFocus && !this.hasHover && !this.controller.hasHover)
+  ) {
     this.domNode.style.display = 'none';
     this.controller.domNode.removeAttribute('aria-expanded');
   }
