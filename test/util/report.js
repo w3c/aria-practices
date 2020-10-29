@@ -159,7 +159,7 @@ const processDocumentationInExampleFiles = function (
 /**
  * Runs ava tests in coverage mode to collect data on which tests exist.
  * After running, `exampleCoverage[example].missingTests` will be an array of
- * only data-test-ids for which no regresison test was found.
+ * only data-test-ids for which no regression test was found.
  *
  * @param {Object} exampleCoverage - object with existing coverage information
  */
