@@ -403,6 +403,10 @@ function addOpenInCodePenForm(
     css: '',
     js: '',
     head: '<base href="' + location.href + '">',
+    css_external:
+      location.origin +
+      '/examples/css/core.css;' +
+      'https://www.w3.org/StyleSheets/TR/2016/base.css',
   };
 
   var totalFetchedFiles = 0;
