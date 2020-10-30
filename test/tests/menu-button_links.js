@@ -46,18 +46,6 @@ const openMenu = async function (t) {
   );
 };
 
-const waitForUrlChange = async function (t) {
-  await t.context.session.wait(
-    () => {
-      return t.context.session.getCurrentUrl().then((url) => {
-        return url != t.context.url;
-      });
-    },
-    t.context.waitTime,
-    'Timeout waiting for url to update'
-  );
-};
-
 const waitForNoAriaExpanded = async function (t) {
   return t.context.session.wait(
     async function () {
@@ -270,13 +258,24 @@ ariaTest('"enter" on role="menuitem"', exampleFile, 'menu-enter', async (t) => {
     await t.context.session.get(t.context.url);
     const item = (await t.context.queryElements(t, ex.menuitemSelector))[index];
 
+    // Update url to remove external reference for dependable testing
+    const newUrl = t.context.url + '#test-url-change';
+    await t.context.session.executeScript(
+      function () {
+        let [selector, index, newUrl] = arguments;
+        document.querySelectorAll(selector)[index].href = newUrl;
+      },
+      ex.menuitemSelector,
+      index,
+      newUrl
+    );
+
     await openMenu(t);
     await item.sendKeys(Key.ENTER);
-    await waitForUrlChange(t);
 
-    t.not(
+    t.is(
       await t.context.session.getCurrentUrl(),
-      t.context.url,
+      newUrl,
       'Key enter when focus on list item at index ' +
         index +
         'should active the link'

@@ -439,21 +439,24 @@ ariaTest(
     // Assert that the attribute value "aria-expanded" on all folders is "true"
     await assertAttributeValues(t, ex.folderSelector, 'aria-expanded', 'true');
 
+    // Update url to remove external reference for dependable testing
+    const newUrl = t.context.url + '#test-url-change';
+    await t.context.session.executeScript(
+      function () {
+        let [selector, newUrl] = arguments;
+        document.querySelectorAll(selector)[0].href = newUrl;
+      },
+      ex.linkSelector,
+      newUrl
+    );
+
     // Test a leaf node
     let leafnodes = await t.context.queryElements(t, ex.linkSelector);
     await leafnodes[0].sendKeys(Key.ENTER);
 
-    await t.context.session
-      .wait(() => {
-        return t.context.session.getCurrentUrl().then((url) => {
-          return url != t.context.url;
-        });
-      }, t.context.waitTime)
-      .catch(() => {});
-
-    t.not(
+    t.is(
       await t.context.session.getCurrentUrl(),
-      t.context.url,
+      newUrl,
       'ENTER key on first element found by selector "' +
         ex.linkSelector +
         '" should activate link.'
@@ -470,7 +473,7 @@ ariaTest.failing(
     let folders = await t.context.queryElements(t, ex.folderSelector);
 
     // Going through all closed folder elements in dom order will open parent
-    // folders first, therefore all child folders will be visible before sending "enter"
+    // folders first, therefore all child folders will be visible before sending "space"
     for (let folder of folders) {
       await folder.sendKeys(Key.SPACE);
     }
@@ -478,21 +481,24 @@ ariaTest.failing(
     // Assert that the attribute value "aria-expanded" on all folders is "true"
     await assertAttributeValues(t, ex.folderSelector, 'aria-expanded', 'true');
 
+    // Update url to remove external reference for dependable testing
+    const newUrl = t.context.url + '#test-url-change';
+    await t.context.session.executeScript(
+      function () {
+        let [selector, newUrl] = arguments;
+        document.querySelectorAll(selector)[0].href = newUrl;
+      },
+      ex.linkSelector,
+      newUrl
+    );
+
     // Test a leaf node
     let leafnodes = await t.context.queryElements(t, ex.linkSelector);
     await leafnodes[0].sendKeys(Key.SPACE);
 
-    await t.context.session
-      .wait(() => {
-        return t.context.session.getCurrentUrl().then((url) => {
-          return url != t.context.url;
-        });
-      }, t.context.waitTime)
-      .catch(() => {});
-
-    t.not(
+    t.is(
       await t.context.session.getCurrentUrl(),
-      t.context.url,
+      newUrl,
       'SPACE key on first element found by selector "' +
         ex.linkSelector +
         '" should activate link.'
