@@ -398,7 +398,10 @@ function addOpenInCodePenForm(
     ''
   );
 
+  var path = location.pathname.split('/');
+  var filename = path.length > 0 ? path[path.length - 1].replace('.html', '') : '';
   var postJson = {
+    title: filename,
     html: exampleHtml,
     css: '',
     js: '',
