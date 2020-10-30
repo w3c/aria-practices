@@ -1,5 +1,3 @@
-'use strict';
-
 const { ariaTest } = require('..');
 const assertAriaDescribedby = require('../util/assertAriaDescribedby');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
