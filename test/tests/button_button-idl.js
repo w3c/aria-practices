@@ -8,7 +8,7 @@ const assertAttributeValues = require('../util/assertAttributeValues');
 const ex = {
   printSelector: '#action',
   toggleSelector: '#toggle',
-  svg: '#example svg',
+  svgSelector: '#example svg',
 };
 
 // Attributes
@@ -69,7 +69,7 @@ ariaTest(
   exampleFile,
   'svg-aria-hidden',
   async (t) => {
-    await assertAttributeValues(t, ex.svg, 'aria-hidden', 'true');
+    await assertAttributeValues(t, ex.svgSelector, 'aria-hidden', 'true');
   }
 );
 
