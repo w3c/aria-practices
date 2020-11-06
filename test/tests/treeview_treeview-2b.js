@@ -3,6 +3,7 @@ const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertRovingTabindex = require('../util/assertRovingTabindex');
+const replaceExternalLink = require('../util/replaceExternalLink');
 
 const exampleFile = 'treeview/treeview-2/treeview-2b.html';
 
@@ -441,14 +442,7 @@ ariaTest(
 
     // Update url to remove external reference for dependable testing
     const newUrl = t.context.url + '#test-url-change';
-    await t.context.session.executeScript(
-      function () {
-        let [selector, newUrl] = arguments;
-        document.querySelectorAll(selector)[0].href = newUrl;
-      },
-      ex.linkSelector,
-      newUrl
-    );
+    await replaceExternalLink(t, newUrl, ex.linkSelector, 0);
 
     // Test a leaf node
     let leafnodes = await t.context.queryElements(t, ex.linkSelector);
@@ -483,14 +477,7 @@ ariaTest.failing(
 
     // Update url to remove external reference for dependable testing
     const newUrl = t.context.url + '#test-url-change';
-    await t.context.session.executeScript(
-      function () {
-        let [selector, newUrl] = arguments;
-        document.querySelectorAll(selector)[0].href = newUrl;
-      },
-      ex.linkSelector,
-      newUrl
-    );
+    await replaceExternalLink(t, newUrl, ex.linkSelector, 0);
 
     // Test a leaf node
     let leafnodes = await t.context.queryElements(t, ex.linkSelector);

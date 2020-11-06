@@ -4,6 +4,7 @@ const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaControls = require('../util/assertAriaControls');
 const assertAriaRoles = require('../util/assertAriaRoles');
+const replaceExternalLink = require('../util/replaceExternalLink');
 
 const exampleFile = 'menu-button/menu-button-links.html';
 
@@ -260,15 +261,7 @@ ariaTest('"enter" on role="menuitem"', exampleFile, 'menu-enter', async (t) => {
 
     // Update url to remove external reference for dependable testing
     const newUrl = t.context.url + '#test-url-change';
-    await t.context.session.executeScript(
-      function () {
-        let [selector, index, newUrl] = arguments;
-        document.querySelectorAll(selector)[index].href = newUrl;
-      },
-      ex.menuitemSelector,
-      index,
-      newUrl
-    );
+    await replaceExternalLink(t, newUrl, ex.menuitemSelector, index);
 
     await openMenu(t);
     await item.sendKeys(Key.ENTER);
