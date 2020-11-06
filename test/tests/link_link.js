@@ -108,7 +108,7 @@ ariaTest(
       await t.context.session.executeScript(
         function () {
           let [selector, newUrl] = arguments;
-          document.querySelector(selector).onkeydown = function () {
+          document.querySelector(selector).onkeydown = function (event) {
             goToLink(event, newUrl);
           };
         },
