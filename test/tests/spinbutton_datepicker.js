@@ -407,38 +407,23 @@ ariaTest(
 );
 
 ariaTest('up arrow on month', exampleFile, 'spinbutton-up-arrow', async (t) => {
-  let control = parseInt(ex.monthNow) + 1;
+  let date = new Date();
 
-  // Send up arrow to day date spinner
   let monthSpinner = await t.context.session.findElement(
     By.css(ex.monthSelector)
   );
-  await monthSpinner.sendKeys(Key.ARROW_UP);
 
-  // Add a month to the control
-  control = (control + 1) % 12;
-
-  t.is(
-    await monthSpinner.getText(),
-    valuesMonth[control - 1],
-    'After sending 1 up arrow to the month spinner, the month should be: ' +
-      valuesMonth[control - 1]
-  );
-
-  // Send up arrow 30 more times to date spinner
-  for (let i = 1; i <= 30; i++) {
+  // Send up arrow 12 times to date spinner
+  for (let i = 1; i <= 12; i++) {
     await monthSpinner.sendKeys(Key.ARROW_UP);
+    const index = new Date(date.setMonth(date.getMonth() + 1)).getMonth();
+    console.log(index);
+    t.is(
+      await monthSpinner.getText(),
+      valuesMonth[index],
+      `After sending ${i} up arrows to the month spinner, the month should be: ${valuesMonth[index]}`
+    );
   }
-
-  // Add 30 months to the control
-  control = (control + 30) % 12;
-
-  t.is(
-    await monthSpinner.getText(),
-    valuesMonth[control - 1],
-    'After sending 31 up arrows to the month spinner, the month should be: ' +
-      valuesMonth[control - 1]
-  );
 });
 
 ariaTest(
