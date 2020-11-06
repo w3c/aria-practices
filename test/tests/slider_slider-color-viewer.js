@@ -10,7 +10,24 @@ const exampleFile = 'slider/slider-color-viewer.html';
 const ex = {
   groupSelector: '#ex1 [role="group"]',
   sliderSelector: '#ex1 [role="slider"]',
-  buttonSelector: '#ex1 button.change',
+  redButtonSelectors: [
+    '#ex1 .red .dec10',
+    '#ex1 .red .dec',
+    '#ex1 .red .inc',
+    '#ex1 .red .inc10',
+  ],
+  greenButtonSelectors: [
+    '#ex1 .green .dec10',
+    '#ex1 .green .dec',
+    '#ex1 .green .inc',
+    '#ex1 .green .inc10',
+  ],
+  blueButtonSelectors: [
+    '#ex1 .blue .dec10',
+    '#ex1 .blue .dec',
+    '#ex1 .blue .inc',
+    '#ex1 .blue .inc10',
+  ],
   hexTextInput: '#ex1 .color-info .color-value-hex',
   rgbTextInput: '#ex1 .color-info .color-value-rgb',
   colorBox: '#ex1 .color-info .color-box',
@@ -461,7 +478,7 @@ ariaTest(
     await redSlider.sendKeys(Key.END);
 
     t.is(
-      await redSlider.getAttribute('aria-valuenow'),
+      await await redSlider.getAttribute('aria-valuenow'),
       '255',
       'After sending 1 end key to the red slider, the value of the red slider should be 255'
     );
@@ -766,6 +783,360 @@ ariaTest(
     // Send 1 key to blue slider
     const blueSlider = sliders[2];
     await blueSlider.sendKeys(Key.PAGE_DOWN);
+  }
+);
+
+// Test decrease by 10 buttons
+ariaTest(
+  'decrease 10 button changes slider value by 10',
+  exampleFile,
+  'key-page-down',
+  async (t) => {
+    await sendAllSlidersToEnd(t);
+
+    const sliders = await t.context.queryElements(t, ex.sliderSelector);
+    const redDec10Button = await t.context.queryElement(
+      t,
+      ex.redButtonSelectors[0]
+    );
+    const greenDec10Button = await t.context.queryElement(
+      t,
+      ex.greenButtonSelectors[0]
+    );
+    const blueDec10Button = await t.context.queryElement(
+      t,
+      ex.blueButtonSelectors[0]
+    );
+
+    // Click on the red dec 10 button
+    const redSlider = sliders[0];
+    await redDec10Button.click();
+
+    t.is(
+      await redSlider.getAttribute('aria-valuenow'),
+      '245',
+      'After clicking on dec 10 button, the value of the red slider should be 245'
+    );
+    t.true(
+      await testDisplayMatchesValue(t, '245, 255, 255'),
+      'Display should match rgb(245, 255, 255)'
+    );
+
+    // Send more than 25 clicks to red dec 10 button
+    for (let i = 0; i < 26; i++) {
+      await redDec10Button.click();
+    }
+
+    t.is(
+      await redSlider.getAttribute('aria-valuenow'),
+      '0',
+      'After sending 26 clicks, the value of the red slider should be 0'
+    );
+    t.true(
+      await testDisplayMatchesValue(t, '0, 255, 255'),
+      'Display should match rgb(0, 255, 255)'
+    );
+
+    // Send 1 click to green dec 10 button
+    const greenSlider = sliders[1];
+    await greenDec10Button.click();
+
+    t.is(
+      await greenSlider.getAttribute('aria-valuenow'),
+      '245',
+      'After sending 1 click to the blue dec 10 button, the value of the green slider should be 245'
+    );
+    t.true(
+      await testDisplayMatchesValue(t, '0, 245, 255'),
+      'Display should match rgb(0, 245, 255)'
+    );
+
+    // Send more than 25 click to green dec 10 button
+    for (let i = 0; i < 26; i++) {
+      await greenDec10Button.click();
+    }
+
+    t.is(
+      await greenSlider.getAttribute('aria-valuenow'),
+      '0',
+      'After sending 26 clicks, the value of the green slider should be 0'
+    );
+    t.true(
+      await testDisplayMatchesValue(t, '0, 0, 255'),
+      'Display should match rgb(0, 0, 255)'
+    );
+
+    // Click on the red dec 10 button
+    const blueSlider = sliders[2];
+    await blueDec10Button.click();
+
+    t.is(
+      await blueSlider.getAttribute('aria-valuenow'),
+      '245',
+      'After clicking on dec 10 button, the value of the blue slider should be 245'
+    );
+    t.true(
+      await testDisplayMatchesValue(t, '0, 0, 245'),
+      'Display should match rgb(0, 0, 245)'
+    );
+
+    // Send more than 25 clicks to blue dec 10 button
+    for (let i = 0; i < 26; i++) {
+      await blueDec10Button.click();
+    }
+
+    t.is(
+      await blueSlider.getAttribute('aria-valuenow'),
+      '0',
+      'After sending 26 clicks, the value of the blue slider should be 0'
+    );
+    t.true(
+      await testDisplayMatchesValue(t, '0, 0, 0'),
+      'Display should match rgb(0, 0, 0)'
+    );
+  }
+);
+
+// Test decrease by one buttons
+ariaTest(
+  'decrease by one button changes slider value by 1',
+  exampleFile,
+  'key-left-arrow',
+  async (t) => {
+    await sendAllSlidersToEnd(t);
+
+    const sliders = await t.context.queryElements(t, ex.sliderSelector);
+    const redDecButton = await t.context.queryElement(
+      t,
+      ex.redButtonSelectors[1]
+    );
+    const greenDecButton = await t.context.queryElement(
+      t,
+      ex.greenButtonSelectors[1]
+    );
+    const blueDecButton = await t.context.queryElement(
+      t,
+      ex.blueButtonSelectors[1]
+    );
+
+    // Click on the red dec one button
+    const redSlider = sliders[0];
+    await redDecButton.click();
+
+    t.is(
+      await redSlider.getAttribute('aria-valuenow'),
+      '254',
+      'After clicking on dec one button, the value of the red slider should be 245'
+    );
+    t.true(
+      await testDisplayMatchesValue(t, '254, 255, 255'),
+      'Display should match rgb(254, 255, 255)'
+    );
+
+    // Send 1 click to green dec one button
+    const greenSlider = sliders[1];
+    await greenDecButton.click();
+
+    t.is(
+      await greenSlider.getAttribute('aria-valuenow'),
+      '254',
+      'After sending 1 click to the blue dec one button, the value of the green slider should be 245'
+    );
+    t.true(
+      await testDisplayMatchesValue(t, '254, 254, 255'),
+      'Display should match rgb(254, 254, 255)'
+    );
+
+    // Click on the red dec 10 button
+    const blueSlider = sliders[2];
+    await blueDecButton.click();
+
+    t.is(
+      await blueSlider.getAttribute('aria-valuenow'),
+      '254',
+      'After clicking on dec one button, the value of the blue slider should be 245'
+    );
+    t.true(
+      await testDisplayMatchesValue(t, '254, 254, 254'),
+      'Display should match rgb(254, 254, 254)'
+    );
+  }
+);
+
+// Test increase by one buttons
+ariaTest(
+  'increase by one button changes slider value by 1',
+  exampleFile,
+  'key-right-arrow',
+  async (t) => {
+    await sendAllSlidersToBeginning(t);
+
+    const sliders = await t.context.queryElements(t, ex.sliderSelector);
+    const redIncButton = await t.context.queryElement(
+      t,
+      ex.redButtonSelectors[2]
+    );
+    const greenIncButton = await t.context.queryElement(
+      t,
+      ex.greenButtonSelectors[2]
+    );
+    const blueIncButton = await t.context.queryElement(
+      t,
+      ex.blueButtonSelectors[2]
+    );
+
+    // Click on the red dec one button
+    const redSlider = sliders[0];
+    await redIncButton.click();
+
+    t.is(
+      await redSlider.getAttribute('aria-valuenow'),
+      '1',
+      'After clicking on inc one button, the value of the red slider should be 1'
+    );
+    t.true(
+      await testDisplayMatchesValue(t, '1, 0, 0'),
+      'Display should match rgb(1, 0, 0)'
+    );
+
+    // Send 1 click to green dec one button
+    const greenSlider = sliders[1];
+    await greenIncButton.click();
+
+    t.is(
+      await greenSlider.getAttribute('aria-valuenow'),
+      '1',
+      'After sending 1 click to the blue inc one button, the value of the green slider should be 1'
+    );
+    t.true(
+      await testDisplayMatchesValue(t, '1, 1, 0'),
+      'Display should match rgb(1, 1, 0)'
+    );
+
+    // Click on the red dec 10 button
+    const blueSlider = sliders[2];
+    await blueIncButton.click();
+
+    t.is(
+      await blueSlider.getAttribute('aria-valuenow'),
+      '1',
+      'After clicking on inc one button, the value of the blue slider should be 1'
+    );
+    t.true(
+      await testDisplayMatchesValue(t, '1, 1, 1'),
+      'Display should match rgb(1, 1, 1)'
+    );
+  }
+);
+
+// Test increase by 10 buttons
+ariaTest(
+  'increase 10 button changes slider value by 10',
+  exampleFile,
+  'key-page-down',
+  async (t) => {
+    await sendAllSlidersToBeginning(t);
+
+    const sliders = await t.context.queryElements(t, ex.sliderSelector);
+    const redInc10Button = await t.context.queryElement(
+      t,
+      ex.redButtonSelectors[3]
+    );
+    const greenInc10Button = await t.context.queryElement(
+      t,
+      ex.greenButtonSelectors[3]
+    );
+    const blueInc10Button = await t.context.queryElement(
+      t,
+      ex.blueButtonSelectors[3]
+    );
+
+    // Click on the red dec 10 button
+    const redSlider = sliders[0];
+    await redInc10Button.click();
+
+    t.is(
+      await redSlider.getAttribute('aria-valuenow'),
+      '10',
+      'After clicking on inc 10 button, the value of the red slider should be 10'
+    );
+    t.true(
+      await testDisplayMatchesValue(t, '10, 0, 0'),
+      'Display should match rgb(10, 0, 0)'
+    );
+
+    // Send more than 25 clicks to red inc 10 button
+    for (let i = 0; i < 26; i++) {
+      await redInc10Button.click();
+    }
+
+    t.is(
+      await redSlider.getAttribute('aria-valuenow'),
+      '255',
+      'After sending 26 clicks, the value of the red slider should be 255'
+    );
+    t.true(
+      await testDisplayMatchesValue(t, '255, 0, 0'),
+      'Display should match rgb(255, 0, 0)'
+    );
+
+    // Send 1 click to green inc 10 button
+    const greenSlider = sliders[1];
+    await greenInc10Button.click();
+
+    t.is(
+      await greenSlider.getAttribute('aria-valuenow'),
+      '10',
+      'After sending 1 click to the blue inc 10 button, the value of the green slider should be 10'
+    );
+    t.true(
+      await testDisplayMatchesValue(t, '255, 10, 0'),
+      'Display should match rgb(255, 10, 0)'
+    );
+
+    // Send more than 25 click to green inc 10 button
+    for (let i = 0; i < 26; i++) {
+      await greenInc10Button.click();
+    }
+
+    t.is(
+      await greenSlider.getAttribute('aria-valuenow'),
+      '255',
+      'After sending 26 clicks, the value of the green slider should be 255'
+    );
+    t.true(
+      await testDisplayMatchesValue(t, '255, 255, 0'),
+      'Display should match rgb(255, 255, 0)'
+    );
+
+    // Click on the red inc 10 button
+    const blueSlider = sliders[2];
+    await blueInc10Button.click();
+
+    t.is(
+      await blueSlider.getAttribute('aria-valuenow'),
+      '10',
+      'After clicking on inc 10 button, the value of the blue slider should be 10'
+    );
+    t.true(
+      await testDisplayMatchesValue(t, '255, 255, 10'),
+      'Display should match rgb(255, 255, 10)'
+    );
+
+    // Send more than 25 clicks to blue dec 10 button
+    for (let i = 0; i < 26; i++) {
+      await blueInc10Button.click();
+    }
+
+    t.is(
+      await blueSlider.getAttribute('aria-valuenow'),
+      '255',
+      'After sending 26 clicks, the value of the blue slider should be 255'
+    );
+    t.true(
+      await testDisplayMatchesValue(t, '255, 255, 255'),
+      'Display should match rgb(255, 255, 255)'
+    );
   }
 );
 
