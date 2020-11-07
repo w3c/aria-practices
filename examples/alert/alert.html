@@ -23,7 +23,7 @@
       <li><a href="https://github.com/w3c/aria-practices/projects/20">Related Issues</a></li>
       <li><a href="../../#alert">Design Pattern</a></li>
     </ul>
-  </nav>    
+  </nav>
     <main>
     <h1>Alert Example</h1>
     <p>
@@ -35,7 +35,9 @@
       <li><a href="../dialog-modal/alertdialog.html">Alert Dialog Example</a>: A confirmation prompt that demonstrates an alert dialog.</li>
     </ul>
     <section>
-      <h2 id="ex_label">Example</h2>
+      <div class="example-header">
+        <h2 id="ex_label">Example</h2>
+      </div>
       <p>
         This is just a test.
         A typical alert is triggered by an event, such as an error, warning condition, or the arrival of information that is important in the context of the user's task.
@@ -113,7 +115,7 @@
 
     <section>
       <h2>Javascript and CSS Source Code</h2>
-      <ul>
+      <ul id="css_js_files">
         <li>
           CSS:
           <a href="css/alert.css" type="tex/css">alert.css</a>
@@ -131,7 +133,7 @@
       <pre><code id="sc1"></code></pre>
       <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
       <script>
-        sourceCode.add('sc1', 'ex1');
+        sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
         sourceCode.make();
       </script>
     </section>
