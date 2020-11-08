@@ -1,5 +1,5 @@
 /**
- * Replace and href with an link -- typically use url fragement -- to test behavior related to link following
+ * Replace and href with an link -- typically use url fragment -- to test behavior related to link following
  *
  * @param {ExecutionContext} t - Test execution context
  * @param {String} newUrl - the url to replace the external url
