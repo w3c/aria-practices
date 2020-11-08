@@ -379,7 +379,7 @@ ariaTest(
     );
     await daySpinner.sendKeys(Key.ARROW_DOWN);
 
-    // Subract a day to the control
+    // Subtract a day to the control
     control = (control - 1) % daysInMonth;
 
     t.is(
@@ -439,7 +439,7 @@ ariaTest(
     );
     await monthSpinner.sendKeys(Key.ARROW_DOWN);
 
-    // Subract a month to the control
+    // Subtract a month to the control
     control = (control - 1) % 12;
 
     t.is(
@@ -508,7 +508,7 @@ ariaTest(
     );
     await yearSpinner.sendKeys(Key.ARROW_DOWN);
 
-    // Subract a year to the control
+    // Subtract a year to the control
     let lastYear = (parseInt(ex.yearNow) - 1).toString();
 
     t.is(
@@ -591,7 +591,7 @@ ariaTest.failing(
     );
     await daySpinner.sendKeys(Key.PAGE_DOWN);
 
-    // Subract 5 days to the control
+    // Subtract 5 days to the control
     control = (control - 5) % daysInMonth;
 
     t.is(
@@ -673,7 +673,7 @@ ariaTest.failing(
     );
     await monthSpinner.sendKeys(Key.PAGE_DOWN);
 
-    // Subract 5 month to the control
+    // Subtract 5 month to the control
     control = (control - 5) % 12;
 
     t.is(
