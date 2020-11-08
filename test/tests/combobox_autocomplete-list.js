@@ -1,5 +1,3 @@
-'use strict';
-
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
@@ -156,6 +154,28 @@ ariaTest(
       ex.textboxSelector,
       'aria-activedescendant',
       null
+    );
+  }
+);
+
+ariaTest(
+  '"id" attribute on combobox element',
+  exampleFile,
+  'combobox-id',
+  async (t) => {
+    const combobox = await t.context.session.findElement(
+      By.css(ex.textboxSelector)
+    );
+    const id = await combobox.getAttribute('id');
+
+    console.log(id);
+    t.truthy(id, '"id" attribute should exist on combobox');
+
+    const label = await t.context.queryElements(t, `[for="${id}"]`);
+    t.is(
+      label.length,
+      1,
+      `There should be one element that labels the combobox with: [for="${id}"]`
     );
   }
 );

@@ -1,5 +1,3 @@
-'use strict';
-
 const assert = require('assert');
 const { path: binaryPath } = require('geckodriver');
 const { spawn } = require('child_process');
