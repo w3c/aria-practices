@@ -122,7 +122,7 @@
   }
 
   // Either focus the next, previous, first, or last tab
-  // depening on key pressed
+  // depending on key pressed
   function switchTabOnArrowPress(event) {
     var pressed = event.keyCode;
 

@@ -44,7 +44,9 @@
         <li><a href="menu-button-links.html">Navigation Menu Button</a>: A button that opens a menu of items that behave as links.</li>
       </ul>
       <section>
-        <h2 id="ex_label">Example</h2>
+        <div class="example-header">
+          <h2 id="ex_label">Example</h2>
+        </div>
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>        
         <div id="ex1">
           <div class="menu_button">
@@ -321,9 +323,9 @@
       <section>
         <h2>Javascript and CSS Source Code</h2>
 
-        <ul>
+        <ul id="css_js_files">
           <li>CSS: <a href="css/menuButtonAction.css" type="text/css">MenubuttonAction.css</a></li>
-          <li>Javascript: <a href="js/Menubutton2.js" type="text/javascript">Menubutton2.js</a></li>
+          <li>Javascript: <a href="js/Menubutton.js" type="text/javascript">Menubutton2.js</a></li>
           <li>Javascript: <a href="js/MenuItemActionActivedescendant.js" type="text/javascript">MenuItemActionActivedescendant.js</a></li>
           <li>Javascript: <a href="js/PopupMenuActionActivedescendant.js" type="text/javascript">PopupMenuActionActivedescendant.js</a></li>
         </ul>
@@ -339,7 +341,7 @@
           If you change the ID of either the 'ex1' div or the 'sc1' div, be sure to update the sourceCode.add function parameters.
           -->
         <script>
-          sourceCode.add('sc1', 'ex1');
+          sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
           sourceCode.make();
         </script>
       </section>

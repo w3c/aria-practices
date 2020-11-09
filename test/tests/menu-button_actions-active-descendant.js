@@ -393,7 +393,7 @@ ariaTest('"escape" on role="menu"', exampleFile, 'menu-escape', async (t) => {
 });
 
 // This test is flaky, so is commented out for now.
-// We are traking it in issue:https://github.com/w3c/aria-practices/issues/1415
+// We are tracking it in issue:https://github.com/w3c/aria-practices/issues/1415
 // ariaTest('"down arrow" on role="menu"', exampleFile, 'menu-down-arrow', async (t) => {
 
 //   await openMenu(t);
@@ -411,7 +411,7 @@ ariaTest('"escape" on role="menu"', exampleFile, 'menu-escape', async (t) => {
 // });
 
 // This test is flaky, so is commented out for now.
-// We are traking it in issue:https://github.com/w3c/aria-practices/issues/1415
+// We are tracking it in issue:https://github.com/w3c/aria-practices/issues/1415
 // ariaTest('"up arrow" on role="menu"', exampleFile, 'menu-up-arrow', async (t) => {
 
 //   await openMenu(t);
@@ -503,7 +503,7 @@ ariaTest('"end" on role="menu"', exampleFile, 'menu-end', async (t) => {
 });
 
 // This test is flaky, so is commented out for now.
-// We are traking it in issue:https://github.com/w3c/aria-practices/issues/1415
+// We are tracking it in issue:https://github.com/w3c/aria-practices/issues/1415
 // ariaTest('"character" on role="menu"', exampleFile, 'menu-character', async (t) => {
 //   const charIndexTest = [
 //     { sendChar: 'x', sendIndex: 0, endIndex: 0 },
