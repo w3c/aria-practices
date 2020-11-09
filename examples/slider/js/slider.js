@@ -164,7 +164,7 @@ Slider.prototype.handleBlur = function (event) {
   this.railDomNode.classList.remove('focus');
 };
 
-// Initialise Sliders on the page
+// Initialize Sliders on the page
 window.addEventListener('load', function () {
   var sliders = document.querySelectorAll('[role=slider]');
 

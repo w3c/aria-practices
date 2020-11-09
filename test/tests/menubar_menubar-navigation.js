@@ -717,7 +717,7 @@ ariaTest(
         await checkFocus(t, ex.menubarMenuitemSelector, 0),
         'Sending key "HOME" to menuitem ' +
           menuIndex +
-          ' in menubar should move the foucs to the first menuitem'
+          ' in menubar should move the focus to the first menuitem'
       );
     }
   }
@@ -746,7 +746,7 @@ ariaTest(
         await checkFocus(t, ex.menubarMenuitemSelector, ex.numMenus - 1),
         'Sending key "END" to menuitem ' +
           menuIndex +
-          ' in menubar should move the foucs to the last menuitem'
+          ' in menubar should move the focus to the last menuitem'
       );
     }
   }
@@ -779,7 +779,7 @@ ariaTest(
           test.sendChar +
           ' to menuitem ' +
           test.sendIndex +
-          ' in menubar should move the foucs to menuitem ' +
+          ' in menubar should move the focus to menuitem ' +
           test.endIndex
       );
     }

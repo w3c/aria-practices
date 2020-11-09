@@ -2,7 +2,7 @@ const { By } = require('selenium-webdriver');
 const assert = require('assert');
 
 /**
- * Confirm the aria-describedby attribute and corrosponding element.
+ * Confirm the aria-describedby attribute and corresponding element.
  *
  * @param {obj} t                  - ava execution object
  * @param {String} elementSelector - the element with aria-describedby set
