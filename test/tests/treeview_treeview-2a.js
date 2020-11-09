@@ -3,6 +3,7 @@ const { Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertRovingTabindex = require('../util/assertRovingTabindex');
+const replaceExternalLink = require('../util/replaceExternalLink');
 
 const exampleFile = 'treeview/treeview-2/treeview-2a.html';
 
@@ -272,21 +273,17 @@ ariaTest(
     // Assert that the attribute value "aria-expanded" on all folders is "true"
     await assertAttributeValues(t, ex.folderSelector, 'aria-expanded', 'true');
 
+    // Update url to remove external reference for dependable testing
+    const newUrl = t.context.url + '#test-url-change';
+    await replaceExternalLink(t, newUrl, ex.linkSelector, 0);
+
     // Test a leaf node
     let leafnodes = await t.context.queryElements(t, ex.linkSelector);
     await leafnodes[0].sendKeys(Key.ENTER);
 
-    await t.context.session
-      .wait(() => {
-        return t.context.session.getCurrentUrl().then((url) => {
-          return url != t.context.url;
-        });
-      }, t.context.waitTime)
-      .catch(() => {});
-
-    t.not(
+    t.is(
       await t.context.session.getCurrentUrl(),
-      t.context.url,
+      newUrl,
       'ENTER key on first element found by selector "' +
         ex.linkSelector +
         '" should activate link.'
@@ -311,21 +308,17 @@ ariaTest.failing(
     // Assert that the attribute value "aria-expanded" on all folders is "true"
     await assertAttributeValues(t, ex.folderSelector, 'aria-expanded', 'true');
 
+    // Update url to remove external reference for dependable testing
+    const newUrl = t.context.url + '#test-url-change';
+    await replaceExternalLink(t, newUrl, ex.linkSelector, 0);
+
     // Test a leaf node
     let leafnodes = await t.context.queryElements(t, ex.linkSelector);
     await leafnodes[0].sendKeys(Key.SPACE);
 
-    await t.context.session
-      .wait(() => {
-        return t.context.session.getCurrentUrl().then((url) => {
-          return url != t.context.url;
-        });
-      }, t.context.waitTime)
-      .catch(() => {});
-
-    t.not(
+    t.is(
       await t.context.session.getCurrentUrl(),
-      t.context.url,
+      newUrl,
       'SPACE key on first element found by selector "' +
         ex.linkSelector +
         '" should activate link.'
