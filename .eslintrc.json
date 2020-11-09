@@ -1,7 +1,8 @@
 {
   "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "env": {
-    "browser": true
+    "browser": true,
+    "es6": true
   },
   "parserOptions": {
     "ecmaVersion": 6
@@ -9,10 +10,36 @@
   "rules": {
     "no-unused-vars": 0,
     "no-undef": 0,
-    "no-restricted-properties": [2, {
-      "property": "findElements",
-      "message": "Please use t.context.queryElements()."
-    }],
     "strict": [2, "global"]
-  }
+  },
+  "overrides": [
+    {
+      "files": "test/**/*.js",
+      "parserOptions": {
+        "ecmaVersion": 8
+      },
+      "extends": ["plugin:ava/recommended"],
+      "env": {
+        "node": true
+      },
+      "rules": {
+        "no-restricted-properties": [
+          2,
+          {
+            "property": "findElements",
+            "message": "Please use t.context.queryElements()."
+          }
+        ]
+      }
+    },
+    {
+      "files": "scripts/*.js",
+      "env": {
+        "node": true
+      },
+      "rules": {
+        "no-console": 0
+      }
+    }
+  ]
 }
