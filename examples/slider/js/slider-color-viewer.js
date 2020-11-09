@@ -400,7 +400,7 @@ class ColorViewerSliders {
   }
 }
 
-// Initialize ColorViewerSliderss on the page
+// Initialize ColorViewerSliders on the page
 window.addEventListener('load', function () {
   var cps = document.querySelectorAll('.color-picker-sliders');
   for (let i = 0; i < cps.length; i++) {
