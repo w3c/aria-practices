@@ -294,7 +294,7 @@ function stripIndentation(textContent) {
  *
  * **Case 2: `textContent` is on the same line as opening tag**:
  *
- * We already know there is atleast one newline, because case 1 didn’t return.
+ * We already know there is at least one newline, because case 1 didn’t return.
  * We can now find the first indented line that contains any non-whitespace
  * character in order to determine present indentation.
  *
