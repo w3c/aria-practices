@@ -50,7 +50,7 @@ aria.RestaurantData = [
   {
     name: "Emperor's Mongolian",
     rating: 5,
-    type: 'Mongolian, Barbequeue, Buffets',
+    type: 'Mongolian, Barbecue, Buffets',
     street: '123 Blueberry Ln',
     citystate: 'La Verne, CA',
     phone: '(111) 111-1111',

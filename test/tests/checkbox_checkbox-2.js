@@ -10,7 +10,7 @@ const exampleFile = 'checkbox/checkbox-2/checkbox-2.html';
 const ex = {
   checkboxSelector: '#ex1 [role="checkbox"]',
   condimentsSelector: '#ex1 input[type="checkbox"]',
-  checkedCondsSelector: '#ex1 [type="checkbox"]:checked',
+  checkedCondimentsSelector: '#ex1 [type="checkbox"]:checked',
   allCheckboxes: [
     '#ex1 [role="checkbox"]',
     '#ex1 #cond1',
@@ -21,8 +21,11 @@ const ex = {
   numCondiments: 4,
 };
 
-const uncheckAllConds = async function (t) {
-  const checkboxes = await t.context.queryElements(t, ex.checkedCondsSelector);
+const uncheckAllCondiments = async function (t) {
+  const checkboxes = await t.context.queryElements(
+    t,
+    ex.checkedCondimentsSelector
+  );
   for (let checkbox of checkboxes) {
     await checkbox.click();
   }
@@ -81,7 +84,7 @@ ariaTest(
   exampleFile,
   'checkbox-aria-checked-false',
   async (t) => {
-    await uncheckAllConds(t);
+    await uncheckAllCondiments(t);
     let checkbox = t.context.session.findElement(By.css(ex.checkboxSelector));
 
     t.is(
@@ -98,13 +101,13 @@ ariaTest(
     t.is(
       await checkbox.getAttribute('aria-checked'),
       'false',
-      'The control checkbox should have attribute aria-checked = "false" after clicking checkbox twice (with no parially checked state)'
+      'The control checkbox should have attribute aria-checked = "false" after clicking checkbox twice (with no partially checked state)'
     );
 
     assertNoElements(
       t,
-      ex.checkedCondsSelector,
-      'No condiments should be selected via: ' + ex.checkedCondsSelector
+      ex.checkedCondimentsSelector,
+      'No condiments should be selected via: ' + ex.checkedCondimentsSelector
     );
   }
 );
@@ -114,7 +117,7 @@ ariaTest(
   exampleFile,
   'checkbox-aria-checked-mixed',
   async (t) => {
-    await uncheckAllConds(t);
+    await uncheckAllCondiments(t);
     let checkbox = t.context.session.findElement(By.css(ex.checkboxSelector));
 
     // Check one box
@@ -140,9 +143,9 @@ ariaTest(
     );
 
     t.is(
-      (await t.context.queryElements(t, ex.checkedCondsSelector)).length,
+      (await t.context.queryElements(t, ex.checkedCondimentsSelector)).length,
       1,
-      '1 condiments should be selected via: ' + ex.checkedCondsSelector
+      '1 condiments should be selected via: ' + ex.checkedCondimentsSelector
     );
   }
 );
@@ -152,7 +155,7 @@ ariaTest(
   exampleFile,
   'checkbox-aria-checked-true',
   async (t) => {
-    await uncheckAllConds(t);
+    await uncheckAllCondiments(t);
     let checkbox = t.context.session.findElement(By.css(ex.checkboxSelector));
 
     // Check the all boxes
@@ -175,15 +178,15 @@ ariaTest(
     t.is(
       await checkbox.getAttribute('aria-checked'),
       'true',
-      'The control checkbox should have attribute aria-checked = "true" after clicking checkbox twice (with no parially checked state)'
+      'The control checkbox should have attribute aria-checked = "true" after clicking checkbox twice (with no partially checked state)'
     );
 
     t.is(
-      (await t.context.queryElements(t, ex.checkedCondsSelector)).length,
+      (await t.context.queryElements(t, ex.checkedCondimentsSelector)).length,
       ex.numCondiments,
       ex.numCondiments +
         ' condiments should be selected via: ' +
-        ex.checkedCondsSelector
+        ex.checkedCondimentsSelector
     );
   }
 );
@@ -203,7 +206,7 @@ ariaTest(
   'key-space',
   async (t) => {
     // Check one box
-    await uncheckAllConds(t);
+    await uncheckAllCondiments(t);
     const condiments = await t.context.queryElements(t, ex.condimentsSelector);
     await condiments[0].click();
 
@@ -219,12 +222,12 @@ ariaTest(
     );
 
     t.is(
-      (await t.context.queryElements(t, ex.checkedCondsSelector)).length,
+      (await t.context.queryElements(t, ex.checkedCondimentsSelector)).length,
       ex.numCondiments,
       'After sending SPACE to the checkbox in a mixed state, ' +
         ex.numCondiments +
         ' condiments should be selected via: ' +
-        ex.checkedCondsSelector
+        ex.checkedCondimentsSelector
     );
 
     // Send SPACE key to checkbox to change state
@@ -239,9 +242,9 @@ ariaTest(
 
     assertNoElements(
       t,
-      ex.checkedCondsSelector,
+      ex.checkedCondimentsSelector,
       'After sending SPACE to the checkbox in a check state, 0 condiments should be selected via: ' +
-        ex.checkedCondsSelector
+        ex.checkedCondimentsSelector
     );
 
     // Send SPACE key to checkbox to change state
@@ -255,10 +258,10 @@ ariaTest(
     );
 
     t.is(
-      (await t.context.queryElements(t, ex.checkedCondsSelector)).length,
+      (await t.context.queryElements(t, ex.checkedCondimentsSelector)).length,
       1,
       'After sending SPACE to the checkbox in a uncheck state, 1 condiments should be selected via: ' +
-        ex.checkedCondsSelector
+        ex.checkedCondimentsSelector
     );
   }
 );
