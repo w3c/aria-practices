@@ -178,6 +178,9 @@ ariaPropertiesAndStates.forEach(function (prop) {
   indexOfPropertiesAndStatesInGuidance[prop] = [];
 });
 
+let indexOfExamplesWithHighContrastSupport = [];
+let indexOfExamplesWithNoDocumentedHighContrastSupport = [];
+
 console.log('Generating index...');
 
 function getColumn(data, indexStart) {
@@ -317,9 +320,12 @@ glob
       .replace('Example', '')
       .trim();
 
+    let highContrast = data.toLowerCase().indexOf('high contrast') > 0;
+
     let example = {
       title: title,
       ref: ref,
+      highContrast: highContrast,
     };
 
     addExampleToRoles(getRolesFromExample(data), example);
@@ -327,6 +333,12 @@ glob
       getPropertiesAndStatesFromExample(data),
       example
     );
+
+    if (highContrast) {
+      indexOfExamplesWithHighContrastSupport.push(example);
+    } else {
+      indexOfExamplesWithNoDocumentedHighContrastSupport.push(example);
+    }
   });
 
 // Index roles, properties and states used in guidance
@@ -601,8 +613,14 @@ addGuidanceToRole(
 );
 
 function getListItem(item) {
+  let highContrast = '';
+  let title = '';
+  if (item.highContrast) {
+    highContrast = ' (<abbr title="High Contrast Support">HC</abbr>)';
+    title = 'High Contrast Support';
+  }
   return `
-        <li><a href="${item.ref}">${item.title}</a></li>`;
+                <li><a href="${item.ref}" title="${title}">${item.title}</a>${highContrast}</li>`;
 }
 
 function getListHTML(list) {
@@ -772,6 +790,42 @@ let PropsWithMoreThanOneExample = sortedPropertiesAndStates.reduce(function (
 $('#props_with_more_than_one_tbody').html(PropsWithMoreThanOneExample);
 $('.props_with_more_than_one_examples_count').html(
   countMoreThanOneExample.toString()
+);
+
+let countExamplesWithHighContrastSupport = 0;
+let ExamplesWithHighContrastSupport = indexOfExamplesWithHighContrastSupport.reduce(
+  function (set, ex) {
+    countExamplesWithHighContrastSupport += 1;
+    return `${set}
+          <li><a href="${ex.href}">${ex.title}</a></li>
+          `;
+  },
+  ''
+);
+
+$('#examples_with_high_contrast_support_ul').html(
+  ExamplesWithHighContrastSupport
+);
+$('.examples_with_high_contrast_support_count').html(
+  countExamplesWithHighContrastSupport.toString()
+);
+
+let countExamplesWithNoDocumentedHighContrastSupport = 0;
+let ExamplesWithNoDocumentedHighContrastSupport = indexOfExamplesWithNoDocumentedHighContrastSupport.reduce(
+  function (set, ex) {
+    countExamplesWithNoDocumentedHighContrastSupport += 1;
+    return `${set}
+          <li><a href="${ex.href}">${ex.title}</a></li>
+          `;
+  },
+  ''
+);
+
+$('#examples_with_no_documented_high_contrast_support_ul').html(
+  ExamplesWithNoDocumentedHighContrastSupport
+);
+$('.examples_with_no_documented_high_contrast_support_count').html(
+  countExamplesWithNoDocumentedHighContrastSupport.toString()
 );
 
 // cheerio seems to fold the doctype lines despite the template

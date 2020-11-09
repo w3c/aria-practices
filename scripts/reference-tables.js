@@ -286,9 +286,12 @@ glob
       .replace('Example', '')
       .trim();
 
+    let highContrast = data.toLowerCase().indexOf('high contrast') > 0;
+
     let example = {
       title: title,
       ref: ref,
+      highContrast: highContrast,
     };
 
     addExampleToRoles(getRoles(data), example);
@@ -321,8 +324,14 @@ addLandmarkRole(['region'], true, 'Region Landmark', 'landmarks/region.html');
 addLandmarkRole(['search'], true, 'Search Landmark', 'landmarks/search.html');
 
 function exampleListItem(item) {
+  let highContrast = '';
+  let title = '';
+  if (item.highContrast) {
+    highContrast = ' (<abbr title="High Contrast Support">HC</abbr>)';
+    title = 'High Contrast Support';
+  }
   return `
-                <li><a href="${item.ref}">${item.title}</a></li>`;
+                <li><a href="${item.ref}" title="${title}">${item.title}</a>${highContrast}</li>`;
 }
 
 let sortedRoles = Object.getOwnPropertyNames(indexOfRoles).sort();

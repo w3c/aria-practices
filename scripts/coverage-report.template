@@ -30,6 +30,8 @@
       <li><a href="#props_with_no_examples">Properties and States with no Examples (<span class="props_with_no_examples_count"></span>)</a></li>
       <li><a href="#props_with_one_example">Properties and States with One Examples (<span class="props_with_one_example_count"></span>)</a></li>
       <li><a href="#props_with_more_than_one_example">Properties and States with More than One Example  (<span class="props_with_more_than_one_examples_count"></span>)</a></li>
+      <li><a href="#examples_with_high_contrast_support">Examples with High Contrast Support (<span class="examples_with_high_contrast_support_count"></span>)</a></li>
+      <li><a href="#examples_with_no_documented_high_contrast_support">Examples with No Documented High Contrast Support (<span class="examples_with_no_documented_high_contrast_support_count"></span>)</a></li>
     </ul>
 
     <section id="csv_files">
@@ -110,6 +112,20 @@
         <tbody id="props_with_more_than_one_tbody">
         </tbody>
       </table>
+    </section>
+
+    <section id="examples_with_high_contrast_support">
+      <h2 id="examples_with_high_contrast_support_label">Examples with High Contrast Support (<span class="examples_with_high_contrast_support_count"></span>)</h2>
+      <table aria-labelledby="examples_with_high_contrast_support_label" class="data attributes">
+      <ul id="examples_with_high_contrast_support_ul">
+      </ul>
+    </section>
+
+    <section id="examples_with_no_documented_high_contrast_support">
+      <h2 id="examples_with_no_documented_high_contrast_support_label">Examples with No Documented High Contrast Support (<span class="examples_with_no_documented_high_contrast_support_count"></span>)</h2>
+      <table aria-labelledby="examples_with_no_documented_high_contrast_support_label" class="data attributes">
+      <ul id="examples_with_no_documented_high_contrast_support_ul">
+      </ul>
     </section>
 
   <nav aria-label="ARIA Practices">
