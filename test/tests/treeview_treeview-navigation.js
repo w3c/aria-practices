@@ -135,10 +135,10 @@ ariaTest(
   exampleFile,
   'navigation-role',
   async (t) => {
-    const navs = await t.context.queryElements(t, ex.navigationSelector);
+    const navigations = await t.context.queryElements(t, ex.navigationSelector);
 
     t.is(
-      navs.length,
+      navigations.length,
       1,
       'One nav element should be found by selector: ' + ex.navigationSelector
     );
@@ -170,7 +170,7 @@ ariaTest(
 );
 
 ariaTest(
-  'aria-labelledy on section element',
+  'aria-labelledby on section element',
   exampleFile,
   'region-aria-labelledby',
   async (t) => {
@@ -191,7 +191,7 @@ ariaTest(
     t.is(
       contentinfos.length,
       1,
-      'One "role=contentifo" element should be found by selector: ' +
+      'One "role=contentinfo" element should be found by selector: ' +
         ex.contentinfoSelector
     );
 
@@ -851,7 +851,7 @@ ariaTest('characters move focus', exampleFile, 'key-character', async (t) => {
         test.sendChar +
         ' to treeitem ' +
         test.sendIndex +
-        ' should move the foucs to treeitem ' +
+        ' should move the focus to treeitem ' +
         test.endIndex
     );
   }
