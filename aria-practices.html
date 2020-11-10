@@ -4105,22 +4105,23 @@ However, most authors do not need such detailed understanding of the algorithms 
           </p>
           <pre><code>&lt;table&gt;
  &lt;caption&gt;Special opening hours&lt;/caption&gt;
- &lt;tr&gt;&lt;td&gt;30 May &lt;td&gt;Closed
- &lt;tr&gt;&lt;td&gt;6 June &lt;td&gt;11:00-16:00
+ &lt;tr&gt;&lt;td&gt;30 May&lt;/td&gt;&lt;td&gt;Closed&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;6 June&lt;/td&gt;&lt;td&gt;11:00-16:00&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;</code></pre>
           <p>The following example gives the table a number (<q>Table 1</q>) so it can be referenced. </p>
           <pre><code>&lt;table&gt;
  &lt;caption&gt;Table 1. Traditional dietary intake of Okinawans and other Japanese circa 1950&lt;/caption&gt;
  &lt;thead&gt;
   &lt;tr&gt;
-   &lt;th&gt;
-   &lt;th&gt;Okinawa, 1949
-   &lt;th&gt;Japan, 1950
+   &lt;th&gt;&lt;/th&gt;
+   &lt;th&gt;Okinawa, 1949&lt;/th&gt;
+   &lt;th&gt;Japan, 1950&lt;/th&gt;
+  &lt;/tr&gt;
  &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;th&gt;Total calories
-   &lt;td&gt;1785
-   &lt;td&gt;2068
+   &lt;th&gt;Total calories&lt;/th&gt;
+   &lt;td&gt;1785&lt;/td&gt;
+   &lt;td&gt;2068&lt;/td&gt;
 
   [...]
 
@@ -5236,12 +5237,12 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
   Calendar of upcoming events, weeks 27 through 31, with each week starting with
   Monday. The first column is the week number.
  &lt;/caption&gt;
- &lt;tr&gt;&lt;th&gt;Week&lt;th&gt;Monday&lt;th&gt;Tuesday&lt;th&gt;Wednesday&lt;th&gt;Thursday&lt;th&gt;Friday&lt;th&gt;Saturday&lt;th&gt;Sunday
- &lt;tr&gt;&lt;td&gt;27&lt;td&gt;&lt;td&gt;&lt;td&gt;&lt;td&gt;&lt;td&gt;&lt;td&gt;&lt;td&gt;
- &lt;tr&gt;&lt;td&gt;28&lt;td&gt;&lt;td&gt;&lt;td&gt;&lt;td&gt;&lt;td&gt;&lt;td&gt;&lt;td&gt;&lt;a href="/events/9856"&gt;Crown Princess's birthday&lt;/a&gt;
- &lt;tr&gt;&lt;td&gt;29&lt;td&gt;&lt;td&gt;&lt;td&gt;&lt;td&gt;&lt;td&gt;&lt;td&gt;&lt;td&gt;
- &lt;tr&gt;&lt;td&gt;30&lt;td&gt;&lt;td&gt;&lt;td&gt;&lt;td&gt;&lt;td&gt;&lt;td&gt;&lt;td&gt;
- &lt;tr&gt;&lt;td&gt;31&lt;td&gt;&lt;td&gt;&lt;td&gt;&lt;td&gt;&lt;td&gt;&lt;td&gt;&lt;td&gt;
+ &lt;tr&gt;&lt;th&gt;Week&lt;/th&gt;&lt;th&gt;Monday&lt;/th&gt;&lt;th&gt;Tuesday&lt;/th&gt;&lt;th&gt;Wednesday&lt;/th&gt;&lt;th&gt;Thursday&lt;/th&gt;&lt;th&gt;Friday&lt;/th&gt;&lt;th&gt;Saturday&lt;/th&gt;&lt;th&gt;Sunday&lt;/th&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;27&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;28&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="/events/9856"&gt;Crown Princess's birthday&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;29&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;30&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;31&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;</code></pre>
           <p>The HTML <code>figure</code> element can get its accessible <em>name</em> from its <code>figcaption</code> element, but it will not be used as the accessible <em>description</em>, even if it was not used as the accessible name. If the <code>figcaption</code> element is appropriate as an accessible description, and the accessible name is set using <code>aria-labelledby</code> or <code>aria-label</code>, then the <code>figcaption</code> can be explicitly set as the accessible description using the <code>aria-describedby</code> attribute.</p>
           <pre><code>&lt;h2 id="neutron"&gt;Neutron&lt;/h2&gt;
@@ -6300,7 +6301,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
                 &lt;span role=&quot;cell&quot;&gt;161&lt;/span&gt;
                 &lt;span role=&quot;cell&quot;&gt;B-&lt;/span&gt;
               &lt;/div&gt;
-              &lt;div role=&quot;row&quot;  aria-rowindex=&quot;51&quot;&gt;
+              &lt;div role=&quot;row&quot; aria-rowindex=&quot;51&quot;&gt;
                 &lt;span role=&quot;cell&quot;&gt;Henderson&lt;/span&gt;
                 &lt;span role=&quot;cell&quot;&gt;Alice&lt;/span&gt;
                 &lt;span role=&quot;cell&quot;&gt;94&lt;/span&gt;
@@ -6310,7 +6311,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
                 &lt;span role=&quot;cell&quot;&gt;180&lt;/span&gt;
                 &lt;span role=&quot;cell&quot;&gt;A-&lt;/span&gt;
               &lt;/div&gt;
-              &lt;div role=&quot;row&quot;  aria-rowindex=&quot;52&quot;&gt;
+              &lt;div role=&quot;row&quot; aria-rowindex=&quot;52&quot;&gt;
                 &lt;span role=&quot;cell&quot;&gt;Henderson&lt;/span&gt;
                 &lt;span role=&quot;cell&quot;&gt;Andrew&lt;/span&gt;
                 &lt;span role=&quot;cell&quot;&gt;82&lt;/span&gt;
