@@ -80,7 +80,7 @@ ariaTest(
   'button-aria-expanded',
   async (t) => {
     const hasAttribute = await t.context.session.executeScript(function () {
-      selector = arguments[0];
+      const selector = arguments[0];
       return document.querySelector(selector).hasAttribute('aria-expanded');
     }, ex.menubuttonSelector);
 
