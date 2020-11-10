@@ -8,7 +8,6 @@
     "ecmaVersion": 6
   },
   "rules": {
-    "no-undef": 0,
     "strict": [2, "global"]
   },
   "overrides": [
@@ -111,6 +110,38 @@
       ],
       "rules": {
         "no-unused-vars": 0
+      }
+    },
+    {
+      "files": [
+        "examples/checkbox/checkbox-2/js/checkboxMixed.js",
+        "examples/combobox/js/grid-combo-example.js",
+        "examples/combobox/js/grid-combo.js",
+        "examples/dialog-modal/js/alertdialog.js",
+        "examples/feed/js/main.js",
+        "examples/grid/js/dataGrids.js",
+        "examples/js/app.js",
+        "examples/landmarks/js/bootstrap-accessibility-2.js",
+        "examples/landmarks/js/show.js",
+        "examples/landmarks/js/tabs.js",
+        "examples/listbox/js/listbox-rearrangeable.js",
+        "examples/listbox/js/listbox-scrollable.js",
+        "examples/menubar/js/menubar-editor.js",
+        "examples/toolbar/js/FontMenu.js",
+        "examples/toolbar/js/FontMenuButton.js",
+        "examples/toolbar/js/FormatToolbar.js",
+        "examples/treeview/treeview-1/js/tree.js",
+        "examples/treeview/treeview-2/js/treeLinks.js",
+        "respec-config.js",
+        "test/tests/link_link.js",
+        "test/tests/menu-button_actions-active-descendant.js",
+        "test/tests/menu-button_actions.js",
+        "test/tests/menu-button_links.js",
+        "test/util/assertTabOrder.js",
+        "test/util/force-serial.js"
+      ],
+      "rules": {
+        "no-undef": 0
       }
     }
   ]
