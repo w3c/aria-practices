@@ -29,7 +29,13 @@ const checkFocus = function (t, selector, index) {
   );
 };
 
-const openMenu = async function (t) {
+const scrollToAndOpenMenu = async function (t) {
+  // Click the "last action" box to scroll the menu into view before opening the menu and sending enter
+  // This prevents a bug where when you click the menu button, the menu is opened and the page scrolls down
+  // to reveal the menu, which places the curser over the last menu item, which sets aria-activedescendent to
+  // the last item in the list.
+  await t.context.session.findElement(By.css(ex.lastactionSelector)).click();
+
   await t.context.session.findElement(By.css(ex.menubuttonSelector)).click();
 
   return t.context.session.wait(
@@ -90,7 +96,7 @@ ariaTest(
       'The popup should not be displayed if aria-expanded is false'
     );
 
-    await openMenu(t);
+    await scrollToAndOpenMenu(t);
 
     await assertAttributeValues(
       t,
@@ -120,13 +126,12 @@ ariaTest(
   }
 );
 
-// This test fails due to bug: https://github.com/w3c/aria-practices/issues/894
-ariaTest.failing(
+ariaTest(
   'tabindex="-1" on role="menu"',
   exampleFile,
   'menu-tabindex',
   async (t) => {
-    await openMenu(t);
+    await scrollToAndOpenMenu(t);
     await assertAttributeValues(t, ex.menuSelector, 'tabindex', '-1');
   }
 );
@@ -262,7 +267,7 @@ ariaTest('"enter" on role="menu"', exampleFile, 'menu-enter', async (t) => {
 
   // Select the FIRST item: Send ENTER to the menu while aria-activedescendant is the first item
 
-  await openMenu(t);
+  await scrollToAndOpenMenu(t);
   let itemText = await items[0].getText();
   await menu.sendKeys(Key.ENTER);
 
@@ -286,7 +291,7 @@ ariaTest('"enter" on role="menu"', exampleFile, 'menu-enter', async (t) => {
 
   // Select the SECOND item: Send ENTER to the menu while aria-activedescendant is the second item
 
-  await openMenu(t);
+  await scrollToAndOpenMenu(t);
   itemText = await items[1].getText();
   await menu.sendKeys(Key.ARROW_DOWN, Key.ENTER);
 
@@ -310,7 +315,7 @@ ariaTest('"enter" on role="menu"', exampleFile, 'menu-enter', async (t) => {
 
   // Select the THIRD item: Send ENTER to the menu while aria-activedescendant is the third item
 
-  await openMenu(t);
+  await scrollToAndOpenMenu(t);
   itemText = await items[2].getText();
   await menu.sendKeys(Key.ARROW_DOWN, Key.ARROW_DOWN, Key.ENTER);
 
@@ -334,7 +339,7 @@ ariaTest('"enter" on role="menu"', exampleFile, 'menu-enter', async (t) => {
 
   // Select the FOURTH item: Send ENTER to the menu while aria-activedescendant is the fourth item
 
-  await openMenu(t);
+  await scrollToAndOpenMenu(t);
   itemText = await items[3].getText();
   await menu.sendKeys(
     Key.ARROW_DOWN,
@@ -366,7 +371,7 @@ ariaTest('"escape" on role="menu"', exampleFile, 'menu-escape', async (t) => {
   const menu = await t.context.session.findElement(By.css(ex.menuSelector));
   const items = await t.context.queryElements(t, ex.menuitemSelector);
   for (let item of items) {
-    await openMenu(t);
+    await scrollToAndOpenMenu(t);
     const itemText = await item.getText();
     await item.sendKeys(Key.ESCAPE);
 
@@ -432,7 +437,7 @@ ariaTest('"escape" on role="menu"', exampleFile, 'menu-escape', async (t) => {
 ariaTest('"home" on role="menu"', exampleFile, 'menu-home', async (t) => {
   const menu = await t.context.session.findElement(By.css(ex.menuSelector));
   const items = await t.context.queryElements(t, ex.menuitemSelector);
-  await openMenu(t);
+  await scrollToAndOpenMenu(t);
 
   // Send HOME to the menu while aria-activedescendant is the first item
 
@@ -459,7 +464,7 @@ ariaTest('"end" on role="menu"', exampleFile, 'menu-end', async (t) => {
   const menu = await t.context.session.findElement(By.css(ex.menuSelector));
   const items = await t.context.queryElements(t, ex.menuitemSelector);
   const last = ex.numMenuitems - 1;
-  await openMenu(t);
+  await scrollToAndOpenMenu(t);
 
   // Send END to the menu while aria-activedescendant is the first item
 
