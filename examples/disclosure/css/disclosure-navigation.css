@@ -16,10 +16,16 @@
   min-width: 200px;
   padding: 0;
   position: absolute;
+  top: 100%;
 }
 
 .disclosure-nav li {
   margin: 0;
+}
+
+.disclosure-nav > li {
+  display: flex;
+  position: relative;
 }
 
 .disclosure-nav ul a {
@@ -43,12 +49,18 @@
   position: relative;
 }
 
-.disclosure-nav button {
+.disclosure-nav button,
+.disclosure-nav .main-link {
   align-items: center;
+  background-color: transparent;
   border: 1px solid transparent;
   border-right-color: #ccc;
   display: flex;
   padding: 1em;
+}
+
+.disclosure-nav .main-link {
+  border-right-color: transparent;
 }
 
 .disclosure-nav button::after {
@@ -61,7 +73,12 @@
   transform: rotate(45deg);
 }
 
-.disclosure-nav button:focus {
+.disclosure-nav .main-link + button::after {
+  margin-left: 0;
+}
+
+.disclosure-nav button:focus,
+.disclosure-nav .main-link:focus {
   border-color: #005a9c;
   outline: 5px solid rgba(0, 90, 156, 0.75);
   position: relative;

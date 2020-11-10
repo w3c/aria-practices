@@ -9,32 +9,46 @@
 
 var DisclosureNav = function (domNode) {
   this.rootNode = domNode;
-  this.triggerNodes = [];
   this.controlledNodes = [];
+  this.topLevelNodes = [];
   this.openIndex = null;
   this.useArrowKeys = true;
 };
 
 DisclosureNav.prototype.init = function () {
-  var buttons = this.rootNode.querySelectorAll(
-    'button[aria-expanded][aria-controls]'
+  var topNodes = this.rootNode.querySelectorAll(
+    '.main-link, button[aria-expanded][aria-controls]'
   );
-  for (var i = 0; i < buttons.length; i++) {
-    var button = buttons[i];
-    var menu = button.parentNode.querySelector('ul');
-    if (menu) {
-      // save ref to button and controlled menu
-      this.triggerNodes.push(button);
-      this.controlledNodes.push(menu);
+  this.topLevelNodes = [...topNodes];
 
-      // collapse menus
-      button.setAttribute('aria-expanded', 'false');
-      this.toggleMenu(menu, false);
+  // save button/menu pairs and collapse menus
+  for (var i = 0; i < this.topLevelNodes.length; i++) {
+    var node = this.topLevelNodes[i];
 
-      // attach event listeners
-      menu.addEventListener('keydown', this.handleMenuKeyDown.bind(this));
-      button.addEventListener('click', this.handleButtonClick.bind(this));
-      button.addEventListener('keydown', this.handleButtonKeyDown.bind(this));
+    // handle button + menu
+    if (
+      node.tagName.toLowerCase() === 'button' &&
+      node.hasAttribute('aria-controls')
+    ) {
+      var menu = node.parentNode.querySelector('ul');
+      if (menu) {
+        // save ref controlled menu
+        this.controlledNodes.push(menu);
+
+        // collapse menus
+        node.setAttribute('aria-expanded', 'false');
+        this.toggleMenu(menu, false);
+
+        // attach event listeners
+        menu.addEventListener('keydown', this.handleMenuKeyDown.bind(this));
+        node.addEventListener('click', this.handleButtonClick.bind(this));
+        node.addEventListener('keydown', this.handleButtonKeyDown.bind(this));
+      }
+    }
+    // handle links
+    else {
+      this.controlledNodes.push(null);
+      node.addEventListener('keydown', this.handleLinkKeyDown.bind(this));
     }
   }
 
@@ -54,9 +68,9 @@ DisclosureNav.prototype.toggleExpand = function (index, expanded) {
   }
 
   // handle menu at called index
-  if (this.triggerNodes[index]) {
+  if (this.topLevelNodes[index]) {
     this.openIndex = expanded ? index : null;
-    this.triggerNodes[index].setAttribute('aria-expanded', expanded);
+    this.topLevelNodes[index].setAttribute('aria-expanded', expanded);
     this.toggleMenu(this.controlledNodes[index], expanded);
   }
 };
@@ -103,7 +117,7 @@ DisclosureNav.prototype.handleBlur = function (event) {
 };
 
 DisclosureNav.prototype.handleButtonKeyDown = function (event) {
-  var targetButtonIndex = this.triggerNodes.indexOf(document.activeElement);
+  var targetButtonIndex = this.topLevelNodes.indexOf(document.activeElement);
 
   // close on escape
   if (event.key === 'Escape') {
@@ -122,13 +136,13 @@ DisclosureNav.prototype.handleButtonKeyDown = function (event) {
 
   // handle arrow key navigation between top-level buttons, if set
   else if (this.useArrowKeys) {
-    this.controlFocusByKey(event, this.triggerNodes, targetButtonIndex);
+    this.controlFocusByKey(event, this.topLevelNodes, targetButtonIndex);
   }
 };
 
 DisclosureNav.prototype.handleButtonClick = function (event) {
   var button = event.target;
-  var buttonIndex = this.triggerNodes.indexOf(button);
+  var buttonIndex = this.topLevelNodes.indexOf(button);
   var buttonExpanded = button.getAttribute('aria-expanded') === 'true';
   this.toggleExpand(buttonIndex, !buttonExpanded);
 };
@@ -145,13 +159,22 @@ DisclosureNav.prototype.handleMenuKeyDown = function (event) {
 
   // close on escape
   if (event.key === 'Escape') {
-    this.triggerNodes[this.openIndex].focus();
+    this.topLevelNodes[this.openIndex].focus();
     this.toggleExpand(this.openIndex, false);
   }
 
   // handle arrow key navigation within menu links, if set
   else if (this.useArrowKeys) {
     this.controlFocusByKey(event, menuLinks, currentIndex);
+  }
+};
+
+DisclosureNav.prototype.handleLinkKeyDown = function (event) {
+  var targetLinkIndex = this.topLevelNodes.indexOf(document.activeElement);
+
+  // handle arrow key navigation between top-level buttons, if set
+  if (this.useArrowKeys) {
+    this.controlFocusByKey(event, this.topLevelNodes, targetLinkIndex);
   }
 };
 
