@@ -19,6 +19,7 @@ class TreeViewNavigation {
     }
 
     document.body.addEventListener('focusin', this.onBodyFocusin.bind(this));
+    document.body.addEventListener('mousedown', this.onBodyFocusin.bind(this));
 
     this.treeNode = node;
     this.navNode = node.parentElement;
