@@ -198,7 +198,6 @@ const getRegressionTestCoverage = function (exampleCoverage) {
   // eslint-disable-next-line no-cond-assign
   while ((matchResults = testRegex.exec(avaResults))) {
     let example = matchResults[2];
-    let dataTestId = matchResults[3];
 
     // If the test file has a data-test-id, the data-test-id must exist on
     // the test page.

@@ -15,12 +15,6 @@ const ex = {
   lastactionSelector: '#action_output',
 };
 
-const getFocusText = function (t) {
-  return t.context.session.executeScript(function () {
-    return document.activeElement.textContent.trim();
-  });
-};
-
 const checkFocus = function (t, selector, index) {
   return t.context.session.executeScript(
     function () {

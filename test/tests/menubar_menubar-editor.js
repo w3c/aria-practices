@@ -1313,8 +1313,6 @@ ariaTest(
       ) {
         const item = items[itemIndex];
         const itemText = await item.getText();
-        // Account for wrapping
-        const nextItemIndex = itemIndex + 1;
 
         // Send UP to the item
         await item.sendKeys(Key.HOME);
@@ -1357,8 +1355,6 @@ ariaTest(
       ) {
         const item = items[itemIndex];
         const itemText = await item.getText();
-        // Account for wrapping
-        const nextItemIndex = itemIndex + 1;
 
         // Send UP to the item
         await item.sendKeys(Key.END);
