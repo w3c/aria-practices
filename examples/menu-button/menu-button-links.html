@@ -30,13 +30,13 @@
         This example demonstrates the
         <a href="../../#menubutton">menu button design pattern</a>
         for a button that displays a menu of link targets.
-        The menu items are made from HTML links and maintain their HTML link behaviors.
+        The menu items are made from HTML links, so they  maintain their HTML link behaviors.
         That is, activating a menuitem loads the link target, and the browser's link context menu and associated actions are available.
       </p>
       <p>
         In this implementation, an HTML <code>button</code> element reveals a menu structure made with an HTML <code>ul</code> element.
         The <code>menuitem</code> role is on the HTML <code>a</code> element contained by each <code>li</code> element so link behaviors are available when focus is set on the menu item.
-        Another reason the <code>menuitem</code> role is not on the <code>li</code> element is that the semantics of descendants of ARIA <code>menuitem</code> elements are not exposed in the accessibility tree.
+        Another reason for applying the <code>menuitem</code> role to the <code>a</code>code> element instead of the <code>li</code> element is that the semantics of descendants of <code>menuitem</code> elements are not exposed in the accessibility tree.
         That is, an item in a menu can only be a <code>menuitem</code> because accessibility APIs do not enable assistive technologies to render elements contained inside of an item in a menu.
         For a more detailed description of this constraint, see
         <a href="../../#children_presentational">Roles That Automatically Hide Semantics by Making Their Descendants Presentational.</a>
