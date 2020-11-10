@@ -11,10 +11,8 @@
     <script src="../js/app.js"></script>
 
     <!-- JS and CSS for this example -->
-    <link href="css/menuButtonAction.css" rel="stylesheet">
-    <script src="js/Menubutton.js" type="text/javascript"></script>
-    <script src="js/MenuItemActionActivedescendant.js" type="text/javascript"></script>
-    <script src="js/PopupMenuActionActivedescendant.js" type="text/javascript"></script>
+    <link href="css/menu-button-actions.css" rel="stylesheet">
+    <script src="js/menu-button-actions-active-descendant.js" type="text/javascript"></script>
   </head>
   <body>
     <nav aria-label="Related Links" class="feedback">
@@ -24,17 +22,17 @@
         <li><a href="https://github.com/w3c/aria-practices/projects/5">Related Issues</a></li>
         <li><a href="../../#menubutton">Design Pattern</a></li>
       </ul>
-    </nav>  
+    </nav>
     <main>
       <h1>Actions Menu Button Example Using aria-activedescendant</h1>
       <p>
-        This example demonstrates how the   
+        This example demonstrates how the
         <a href="../../#menubutton">menu button design pattern</a>
       can be used to create a button that opens an actions menu.
       In this example, choosing an action from the menu will cause the chosen action to be displayed in the <q>Last Action</q> edit box.
     </p>
     <p>
-    This implementation 
+    This implementation
     <a href="../../#kbd_focus_activedescendant">uses aria-activedescendant to manage focus</a>
     in the menu.
       </p>
@@ -44,45 +42,60 @@
         <li><a href="menu-button-links.html">Navigation Menu Button</a>: A button that opens a menu of items that behave as links.</li>
       </ul>
       <section>
-        <h2 id="ex_label">Example</h2>
-        <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>        
+        <div class="example-header">
+          <h2 id="ex_label">Example</h2>
+        </div>
+        <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div id="ex1">
-          <div class="menu_button">
+          <div class="menu-button-actions">
             <button type="button"
                 id="menubutton1"
                 aria-haspopup="true"
                 aria-controls="menu1"
                 >
               Actions
+              <svg xmlns="http://www.w3.org/2000/svg" class="down" width="12" height="9" viewBox="0 0 12 9">
+                <polygon points="1 0, 11 0, 6 8"/>
+              </svg>
             </button>
-            <ul id="menu1" role="menu" aria-labelledby="menubutton1" aria-activedescendant="mi1">
-              <li id="mi1" role="menuitem"  onclick="updateLastAction(event)">Action 1</li>
-              <li id="mi2" role="menuitem"  onclick="updateLastAction(event)">Action 2</li>
-              <li id="mi3" role="menuitem"  onclick="updateLastAction(event)">Action 3</li>
-              <li id="mi4" role="menuitem"  onclick="updateLastAction(event)">Action 4</li>
+            <ul id="menu1"
+                role="menu"
+                tabindex="-1"
+                aria-labelledby="menubutton1"
+                aria-activedescendant="mi1">
+              <li id="mi1" role="menuitem">Action 1</li>
+              <li id="mi2" role="menuitem">Action 2</li>
+              <li id="mi3" role="menuitem">Action 3</li>
+              <li id="mi4" role="menuitem">Action 4</li>
             </ul>
           </div>
         <p>
-          <label>Last Action: <input id="action_output" type="text" value=""></label>
+          <label>Last Action: <input class="action" id="action_output" type="text" value=""></label>
         </p>
-
-        <script type="text/javascript">
-
-          document.getElementById("action_output").value = "none";
-
-          function updateLastAction(event) {
-            document.getElementById("action_output").value = event.currentTarget.innerHTML;
-          }
-
-          window.onload=function() {
-            var menubutton = new Menubutton(document.getElementById('menubutton1'));
-            menubutton.init();
-          }
-
-          </script>
-
         </div>
         <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
+      </section>
+
+      <section>
+        <h2>Accessibility Features</h2>
+        <ol>
+          <li>A down arrow icon is included to help users understand that the button opens a menu.</li>
+          <li>To support operating system high contrast settings:
+            <ul>
+              <li>
+                Because transparent borders are visible on some systems with operating system high contrast settings enabled, transparency cannot be used to create a visual difference between the element that is focused an other elements.
+                Instead of using transparency, the focused element has a thicker border and less padding.
+                When an element receives focus, its border changes from 1 to 3 pixels and padding is reduced by 2 pixels.
+                When an element loses focus, its border changes from 3 pixels to 1 and padding is increased by 2 pixels.
+              </li>
+              <li>Because background color and text color styles can be overridden by operating system high contrast settings, a border is used to ensure the button has a visible boundary when high contrast mode is enabled.</li>
+              <li>
+                To ensure the arrow icons used to indicate the expanded or collapsed state have sufficient contrast with the background when high contrast settings invert colors, the CSS <code>currentColor</code> value for the <code>fill</code> and <code>stroke</code> properties of the SVG <code>polygon</code> element is used to synchronize the color with text content.
+                If specific colors are used to specify the <code>fill</code> and <code>stroke</code> properties, these colors will remain the same in high contrast mode, which could lead to insufficient contrast between the icon and the background or even make the icon invisible if its color matches the high contrast mode background.
+              </li>
+            </ul>
+          </li>
+        </ol>
       </section>
 
       <section>
@@ -224,7 +237,7 @@
                     <li>Added when the menu is open.</li>
                     <li>Indicates that the menu is displayed and that activating the menu button closes the menu.</li>
                     <li>The <code>aria-expanded</code> attribute is removed when the menu is closed.</li>
-                    <li>Included to support touch devices where screen reader users can touch the menu button when the menu is displayed. Keyboard users cannot focus the menu button when the menu is open.</li>  
+                    <li>Included to support touch devices where screen reader users can touch the menu button when the menu is displayed. Keyboard users cannot focus the menu button when the menu is open.</li>
                   </ul>
                 </td>
             </tr>
@@ -292,7 +305,7 @@
                   <li>The <code>IDREF</code> value is updated when keys that move the focus indicator among menu items are pressed.</li>
                   <li>Enables assistive technologies to know which element the application regards as focused while DOM focus remains on the <code>ul</code> element with role <code>menu</code>.</li>
                   <li>
-                    For more information about this focus management technique, see 
+                    For more information about this focus management technique, see
                     <a href="../../#kbd_focus_activedescendant">Using aria-activedescendant to Manage Focus.</a>
                   </li>
                 </ul>
@@ -321,11 +334,9 @@
       <section>
         <h2>Javascript and CSS Source Code</h2>
 
-        <ul>
-          <li>CSS: <a href="css/menuButtonAction.css" type="text/css">MenubuttonAction.css</a></li>
-          <li>Javascript: <a href="js/Menubutton2.js" type="text/javascript">Menubutton2.js</a></li>
-          <li>Javascript: <a href="js/MenuItemActionActivedescendant.js" type="text/javascript">MenuItemActionActivedescendant.js</a></li>
-          <li>Javascript: <a href="js/PopupMenuActionActivedescendant.js" type="text/javascript">PopupMenuActionActivedescendant.js</a></li>
+        <ul id="css_js_files">
+          <li>CSS: <a href="css/menu-button-actions.css" type="text/css">menu-button-actions.css</a></li>
+          <li>Javascript: <a href="js/menu-button-actions-active-descendant.js" type="text/javascript">menu-button-actions-active-descendant.js</a></li>
         </ul>
       </section>
       <section>
@@ -339,7 +350,7 @@
           If you change the ID of either the 'ex1' div or the 'sc1' div, be sure to update the sourceCode.add function parameters.
           -->
         <script>
-          sourceCode.add('sc1', 'ex1');
+          sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
           sourceCode.make();
         </script>
       </section>

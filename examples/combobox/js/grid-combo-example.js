@@ -49,7 +49,7 @@ var FRUITS_AND_VEGGIES = [
   ['Olive', 'Vegetable'],
   ['Onion', 'Vegetable'],
   ['Orange', 'Fruit'],
-  ['Parship', 'Vegetable'],
+  ['Parsnip', 'Vegetable'],
   ['Pea', 'Vegetable'],
   ['Pear', 'Fruit'],
   ['Pineapple', 'Fruit'],

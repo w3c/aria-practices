@@ -294,7 +294,7 @@ function stripIndentation(textContent) {
  *
  * **Case 2: `textContent` is on the same line as opening tag**:
  *
- * We already know there is atleast one newline, because case 1 didn’t return.
+ * We already know there is at least one newline, because case 1 didn’t return.
  * We can now find the first indented line that contains any non-whitespace
  * character in order to determine present indentation.
  *
@@ -380,6 +380,8 @@ function addOpenInCodePenForm(
 
   var button = document.createElement('button');
   button.innerText = 'Open In CodePen';
+  button.id = buttonId;
+  button.style.display = 'none';
 
   form.appendChild(input);
   form.appendChild(button);
@@ -396,11 +398,19 @@ function addOpenInCodePenForm(
     ''
   );
 
+  var path = location.pathname.split('/');
+  var filename =
+    path.length > 0 ? path[path.length - 1].replace('.html', '') : '';
   var postJson = {
+    title: filename,
     html: exampleHtml,
     css: '',
     js: '',
     head: '<base href="' + location.href + '">',
+    css_external:
+      location.origin +
+      '/examples/css/core.css;' +
+      'https://www.w3.org/StyleSheets/TR/2016/base.css',
   };
 
   var totalFetchedFiles = 0;
@@ -421,32 +431,36 @@ function addOpenInCodePenForm(
         }
         totalFetchedFiles++;
       } else {
-        hideButton(buttonId, 'Could not load resource: ' + href);
+        console.warn(
+          "Not showing 'Open in Codepen' button. Could not load resource: " +
+            href
+        );
       }
     };
     request.onerror = function () {
-      hideButton(buttonId, 'Could not load resource: ' + fileLink.href);
+      console.warn(
+        "Not showing 'Open in Codepen' button. Could not load resource: " +
+          fileLink.href
+      );
     };
     request.send();
   }
 
   var timerId = setInterval(() => {
-    console.log(totalFetchedFiles);
     if (totalFetchedFiles === fileLinks.length) {
-      document.getElementById(jsonInputId).value = JSON.stringify(postJson);
       clearInterval(timerId);
+      document.getElementById(jsonInputId).value = JSON.stringify(postJson);
+      var button = document.getElementById(buttonId);
+      button.style.display = '';
     }
   }, 500);
 
   setTimeout(() => {
     clearInterval(timerId);
+    console.warn(
+      "Not showing 'Open in Codepen' button. Timeout when loading resource."
+    );
   }, 10000);
-}
-
-function hideButton(buttonId, errorMsg) {
-  let button = document.querySelector(buttonId);
-  button.style.display = 'none';
-  console.log("Removing 'Open in Codepen button'. " + errorMsg);
 }
 
 var sourceCode = new aria.widget.SourceCode();

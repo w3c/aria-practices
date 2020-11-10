@@ -230,7 +230,7 @@ MenubarNavigation.prototype.setFocusByFirstCharacter = function (
   }
 };
 
-// Utitlities
+// Utilities
 
 MenubarNavigation.prototype.getIndexFirstChars = function (
   menuId,

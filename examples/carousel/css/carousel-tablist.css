@@ -10,6 +10,7 @@ img.reload {
 
 .carousel-tablist {
   background-color: #eee;
+  max-width: 900px;
 }
 
 .carousel-tablist .carousel-inner {

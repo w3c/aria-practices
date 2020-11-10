@@ -4,6 +4,7 @@ const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaControls = require('../util/assertAriaControls');
 const assertAriaRoles = require('../util/assertAriaRoles');
+const replaceExternalLink = require('../util/replaceExternalLink');
 
 const exampleFile = 'menu-button/menu-button-links.html';
 
@@ -32,7 +33,9 @@ const openMenu = async function (t) {
     .getAttribute('aria-expanded');
 
   if (expanded !== 'true') {
-    await t.context.session.findElement(By.css(ex.menubuttonSelector)).click();
+    await t.context.session
+      .findElement(By.css(ex.menubuttonSelector))
+      .sendKeys(Key.ENTER);
   }
 
   return t.context.session.wait(
@@ -43,18 +46,6 @@ const openMenu = async function (t) {
     },
     t.context.waitTime,
     'Timeout waiting for menu to open after click'
-  );
-};
-
-const waitForUrlChange = async function (t) {
-  await t.context.session.wait(
-    () => {
-      return t.context.session.getCurrentUrl().then((url) => {
-        return url != t.context.url;
-      });
-    },
-    t.context.waitTime,
-    'Timeout waiting for url to update'
   );
 };
 
@@ -270,13 +261,16 @@ ariaTest('"enter" on role="menuitem"', exampleFile, 'menu-enter', async (t) => {
     await t.context.session.get(t.context.url);
     const item = (await t.context.queryElements(t, ex.menuitemSelector))[index];
 
+    // Update url to remove external reference for dependable testing
+    const newUrl = t.context.url + '#test-url-change';
+    await replaceExternalLink(t, newUrl, ex.menuitemSelector, index);
+
     await openMenu(t);
     await item.sendKeys(Key.ENTER);
-    await waitForUrlChange(t);
 
-    t.not(
+    t.is(
       await t.context.session.getCurrentUrl(),
-      t.context.url,
+      newUrl,
       'Key enter when focus on list item at index ' +
         index +
         'should active the link'
@@ -290,16 +284,23 @@ ariaTest(
   'menu-escape',
   async (t) => {
     const items = await t.context.queryElements(t, ex.menuitemSelector);
-    for (let index = 0; index < ex.numMenuitems; index++) {
+    for (let index = 0; index < items.length; index++) {
       const item = items[index];
 
       await openMenu(t);
       await item.sendKeys(Key.ESCAPE);
       await waitForNoAriaExpanded(t);
 
+      // fixes for running regression tests on windows
+      let url = t.context.url;
+      if (url.indexOf('\\') >= 0) {
+        url = url.replace(/\\/g, '/');
+        url = url.replace('file://C:', 'file:///C:');
+      }
+
       t.is(
         await t.context.session.getCurrentUrl(),
-        t.context.url,
+        url,
         'Key escape when focus on list item at index ' +
           index +
           ' should not activate the link'
