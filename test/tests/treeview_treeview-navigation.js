@@ -135,10 +135,10 @@ ariaTest(
   exampleFile,
   'navigation-role',
   async (t) => {
-    const navigations = await t.context.queryElements(t, ex.navigationSelector);
+    const navs = await t.context.queryElements(t, ex.navigationSelector);
 
     t.is(
-      navigations.length,
+      navs.length,
       1,
       'One nav element should be found by selector: ' + ex.navigationSelector
     );
