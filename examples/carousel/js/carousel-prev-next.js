@@ -94,16 +94,16 @@ var CarouselPreviousNext = function (node, options) {
   // Carousel item events
 
   for (var i = 0; i < this.carouselItemNodes.length; i++) {
-    var caouselItemNode = this.carouselItemNodes[i];
+    var carouselItemNode = this.carouselItemNodes[i];
 
     // support stopping rotation when any element receives focus in the tabpanel
-    caouselItemNode.addEventListener('focusin', this.handleFocusIn.bind(this));
-    caouselItemNode.addEventListener(
+    carouselItemNode.addEventListener('focusin', this.handleFocusIn.bind(this));
+    carouselItemNode.addEventListener(
       'focusout',
       this.handleFocusOut.bind(this)
     );
 
-    var imageLinkNode = caouselItemNode.querySelector('.carousel-image a');
+    var imageLinkNode = carouselItemNode.querySelector('.carousel-image a');
 
     if (imageLinkNode) {
       imageLinkNode.addEventListener(

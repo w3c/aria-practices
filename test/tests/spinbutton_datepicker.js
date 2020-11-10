@@ -1,4 +1,5 @@
 const { ariaTest } = require('..');
+const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaRoles = require('../util/assertAriaRoles');
@@ -23,7 +24,7 @@ const valuesDay = [
   'fourteen',
   'fifteenth',
   'sixteenth',
-  'seveneenth',
+  'seventeenth',
   'eighteenth',
   'nineteenth',
   'twentieth',
@@ -328,3 +329,521 @@ ariaTest(
     );
   }
 );
+
+// keys
+
+ariaTest('up arrow on day', exampleFile, 'spinbutton-up-arrow', async (t) => {
+  let control = parseInt(ex.dayNow);
+  let daysInMonth = parseInt(ex.dayMax);
+
+  // Send up arrow to day date spinner
+  let daySpinner = await t.context.session.findElement(By.css(ex.daySelector));
+  await daySpinner.sendKeys(Key.ARROW_UP);
+
+  // Add a day to the control
+  control = (control + 1) % daysInMonth;
+
+  t.is(
+    parseInt(await daySpinner.getText()),
+    control,
+    'After sending 1 up arrow to the day spinner, the day should be: ' + control
+  );
+
+  // Send up arrow 30 more times to date spinner
+  for (let i = 1; i <= 30; i++) {
+    await daySpinner.sendKeys(Key.ARROW_UP);
+  }
+
+  // Add 30 days to the control
+  control = (control + 30) % daysInMonth;
+
+  t.is(
+    parseInt(await daySpinner.getText()),
+    control,
+    'After sending 31 up arrows to the day spinner, the day should be: ' +
+      control
+  );
+});
+
+ariaTest(
+  'down arrow on day',
+  exampleFile,
+  'spinbutton-down-arrow',
+  async (t) => {
+    let control = parseInt(ex.dayNow);
+    let daysInMonth = parseInt(ex.dayMax);
+
+    // Send down arrow to day date spinner
+    let daySpinner = await t.context.session.findElement(
+      By.css(ex.daySelector)
+    );
+    await daySpinner.sendKeys(Key.ARROW_DOWN);
+
+    // Subtract a day to the control
+    control = (control - 1) % daysInMonth;
+
+    t.is(
+      parseInt(await daySpinner.getText()),
+      control,
+      'After sending 1 down arrow to the day spinner, the day should be: ' +
+        control
+    );
+
+    // Send down arrow 30 more times to date spinner
+    for (let i = 1; i <= 30; i++) {
+      await daySpinner.sendKeys(Key.ARROW_DOWN);
+    }
+
+    // Subtract 30 days to the control
+    control = daysInMonth + ((control - 30) % daysInMonth);
+
+    t.is(
+      parseInt(await daySpinner.getText()),
+      control,
+      'After sending 31 down arrows to the day spinner, the day should be: ' +
+        control
+    );
+  }
+);
+
+ariaTest('up arrow on month', exampleFile, 'spinbutton-up-arrow', async (t) => {
+  let date = new Date();
+
+  let monthSpinner = await t.context.session.findElement(
+    By.css(ex.monthSelector)
+  );
+
+  // Send up arrow 12 times to date spinner
+  for (let i = 1; i <= 12; i++) {
+    await monthSpinner.sendKeys(Key.ARROW_UP);
+    const index = new Date(date.setMonth(date.getMonth() + 1)).getMonth();
+    console.log(index);
+    t.is(
+      await monthSpinner.getText(),
+      valuesMonth[index],
+      `After sending ${i} up arrows to the month spinner, the month should be: ${valuesMonth[index]}`
+    );
+  }
+});
+
+ariaTest(
+  'down arrow on month',
+  exampleFile,
+  'spinbutton-down-arrow',
+  async (t) => {
+    let control = parseInt(ex.monthNow) + 1;
+
+    // Send down arrow to month date spinner
+    let monthSpinner = await t.context.session.findElement(
+      By.css(ex.monthSelector)
+    );
+    await monthSpinner.sendKeys(Key.ARROW_DOWN);
+
+    // Subtract a month to the control
+    control = (control - 1) % 12;
+
+    t.is(
+      await monthSpinner.getText(),
+      valuesMonth[control - 1],
+      'After sending 1 down arrow to the month spinner, the month should be: ' +
+        valuesMonth[control - 1]
+    );
+
+    // Send down arrow 30 more times to date spinner
+    for (let i = 1; i <= 30; i++) {
+      await monthSpinner.sendKeys(Key.ARROW_DOWN);
+    }
+
+    // Subtract 30 months to the control
+    control = 12 + ((control - 30) % 12);
+
+    t.is(
+      await monthSpinner.getText(),
+      valuesMonth[control - 1],
+      'After sending 31 down arrows to the month spinner, the month should be: ' +
+        valuesMonth[control - 1]
+    );
+  }
+);
+
+ariaTest('up arrow on year', exampleFile, 'spinbutton-up-arrow', async (t) => {
+  // Send up arrow to day date spinner
+  let yearSpinner = await t.context.session.findElement(
+    By.css(ex.yearSelector)
+  );
+  await yearSpinner.sendKeys(Key.ARROW_UP);
+
+  let nextYear = (parseInt(ex.yearNow) + 1).toString();
+
+  t.is(
+    await yearSpinner.getText(),
+    nextYear,
+    'After sending 1 up arrow to the year spinner, the year should be: ' +
+      nextYear
+  );
+
+  let manyYears = parseInt(ex.yearMax) - parseInt(ex.yearNow);
+  for (let i = 1; i <= manyYears; i++) {
+    await yearSpinner.sendKeys(Key.ARROW_UP);
+  }
+
+  t.is(
+    await yearSpinner.getText(),
+    ex.yearMax,
+    'After sending ' +
+      (manyYears + 1) +
+      ' up arrows to the year spinner, the year should be: ' +
+      ex.yearMax
+  );
+});
+
+ariaTest(
+  'down arrow on year',
+  exampleFile,
+  'spinbutton-down-arrow',
+  async (t) => {
+    // Send down arrow to year date spinner
+    let yearSpinner = await t.context.session.findElement(
+      By.css(ex.yearSelector)
+    );
+    await yearSpinner.sendKeys(Key.ARROW_DOWN);
+
+    // Subtract a year to the control
+    let lastYear = (parseInt(ex.yearNow) - 1).toString();
+
+    t.is(
+      await yearSpinner.getText(),
+      lastYear,
+      'After sending 1 down arrow to the year spinner, the year should be: ' +
+        lastYear
+    );
+
+    let manyYears = parseInt(ex.yearNow) - parseInt(ex.yearMin);
+    for (let i = 1; i <= manyYears; i++) {
+      await yearSpinner.sendKeys(Key.ARROW_DOWN);
+    }
+
+    t.is(
+      await yearSpinner.getText(),
+      ex.yearMin,
+      'After sending ' +
+        manyYears +
+        ' down arrows to the year spinner, the year should be: ' +
+        ex.yearMin
+    );
+  }
+);
+
+// The bug causing this test to fail is tracked in https://github.com/w3c/aria-practices/issues/1426
+ariaTest.failing(
+  'page up on day',
+  exampleFile,
+  'spinbutton-page-up',
+  async (t) => {
+    let control = parseInt(ex.dayNow);
+    let daysInMonth = parseInt(ex.dayMax);
+
+    // Send page up to day date spinner
+    let daySpinner = await t.context.session.findElement(
+      By.css(ex.daySelector)
+    );
+    await daySpinner.sendKeys(Key.PAGE_UP);
+
+    // Add a day to the control
+    control = (control + 5) % daysInMonth;
+
+    t.is(
+      parseInt(await daySpinner.getText()),
+      control,
+      'After sending 1 page up to the day spinner, the day should be: ' +
+        control
+    );
+
+    // Send page up 5 more times to date spinner
+    for (let i = 1; i <= 5; i++) {
+      await daySpinner.sendKeys(Key.PAGE_UP);
+    }
+
+    // Add 25 days to the control
+    control = (control + 25) % daysInMonth;
+
+    t.is(
+      parseInt(await daySpinner.getText()),
+      control,
+      'After sending 6 page ups to the day spinner, the day should be: ' +
+        control
+    );
+  }
+);
+
+// The bug causing this test to fail is tracked in https://github.com/w3c/aria-practices/issues/1426
+ariaTest.failing(
+  'page down on day',
+  exampleFile,
+  'spinbutton-page-down',
+  async (t) => {
+    let control = parseInt(ex.dayNow);
+    let daysInMonth = parseInt(ex.dayMax);
+
+    // Send page down to day date spinner
+    let daySpinner = await t.context.session.findElement(
+      By.css(ex.daySelector)
+    );
+    await daySpinner.sendKeys(Key.PAGE_DOWN);
+
+    // Subtract 5 days to the control
+    control = (control - 5) % daysInMonth;
+
+    t.is(
+      parseInt(await daySpinner.getText()),
+      control,
+      'After sending 1 page down to the day spinner, the day should be: ' +
+        control
+    );
+
+    // Send page down 5 more times to date spinner
+    for (let i = 1; i <= 5; i++) {
+      await daySpinner.sendKeys(Key.PAGE_DOWN);
+    }
+
+    // Subtract 25 days to the control
+    control = daysInMonth + ((control - 25) % daysInMonth);
+
+    t.is(
+      parseInt(await daySpinner.getText()),
+      control,
+      'After sending 6 page downs to the day spinner, the day should be: ' +
+        control
+    );
+  }
+);
+
+// The bug causing this test to fail is tracked in https://github.com/w3c/aria-practices/issues/1426
+ariaTest.failing(
+  'page up on month',
+  exampleFile,
+  'spinbutton-page-up',
+  async (t) => {
+    let control = parseInt(ex.monthNow) + 1;
+
+    // Send page up to day date spinner
+    let monthSpinner = await t.context.session.findElement(
+      By.css(ex.monthSelector)
+    );
+    await monthSpinner.sendKeys(Key.PAGE_UP);
+
+    // Add 5 month to the control
+    control = (control + 5) % 12;
+
+    t.is(
+      await monthSpinner.getText(),
+      valuesMonth[control - 1],
+      'After sending 1 page up to the month spinner, the month should be: ' +
+        valuesMonth[control - 1]
+    );
+
+    // Send page up 2 more times to date spinner
+    for (let i = 1; i <= 2; i++) {
+      await monthSpinner.sendKeys(Key.PAGE_UP);
+    }
+
+    // Add 10 months to the control
+    control = (control + 10) % 12;
+
+    t.is(
+      await monthSpinner.getText(),
+      valuesMonth[control - 1],
+      'After sending 3 page ups to the month spinner, the month should be: ' +
+        valuesMonth[control - 1]
+    );
+  }
+);
+
+// The bug causing this test to fail is tracked in https://github.com/w3c/aria-practices/issues/1426
+ariaTest.failing(
+  'page down on month',
+  exampleFile,
+  'spinbutton-page-down',
+  async (t) => {
+    let control = parseInt(ex.monthNow) + 1;
+
+    // Send page down to month date spinner
+    let monthSpinner = await t.context.session.findElement(
+      By.css(ex.monthSelector)
+    );
+    await monthSpinner.sendKeys(Key.PAGE_DOWN);
+
+    // Subtract 5 month to the control
+    control = (control - 5) % 12;
+
+    t.is(
+      await monthSpinner.getText(),
+      valuesMonth[control - 1],
+      'After sending 1 page down to the month spinner, the month should be: ' +
+        valuesMonth[control - 1]
+    );
+
+    // Send page down 2 more times to date spinner
+    for (let i = 1; i <= 2; i++) {
+      await monthSpinner.sendKeys(Key.PAGE_DOWN);
+    }
+
+    // Subtract 30 months to the control
+    control = 12 + ((control - 10) % 12);
+
+    t.is(
+      await monthSpinner.getText(),
+      valuesMonth[control - 1],
+      'After sending 3 page downs to the month spinner, the month should be: ' +
+        valuesMonth[control - 1]
+    );
+  }
+);
+
+ariaTest('page up on year', exampleFile, 'spinbutton-page-up', async (t) => {
+  // Send page up to day date spinner
+  let yearSpinner = await t.context.session.findElement(
+    By.css(ex.yearSelector)
+  );
+  await yearSpinner.sendKeys(Key.PAGE_UP);
+
+  let nextYear = (parseInt(ex.yearNow) + 5).toString();
+
+  t.is(
+    await yearSpinner.getText(),
+    nextYear,
+    'After sending 1 page up to the year spinner, the year should be: ' +
+      nextYear
+  );
+
+  let manyYears = Math.ceil((parseInt(ex.yearMax) - parseInt(ex.yearNow)) / 5);
+  for (let i = 1; i <= manyYears; i++) {
+    await yearSpinner.sendKeys(Key.PAGE_UP);
+  }
+
+  t.is(
+    await yearSpinner.getText(),
+    ex.yearMax,
+    'After sending ' +
+      (manyYears + 1) +
+      ' page ups to the year spinner, the year should be: ' +
+      ex.yearMax
+  );
+});
+
+ariaTest(
+  'down arrow on year',
+  exampleFile,
+  'spinbutton-page-down',
+  async (t) => {
+    // Send down arrow to year date spinner
+    let yearSpinner = await t.context.session.findElement(
+      By.css(ex.yearSelector)
+    );
+    await yearSpinner.sendKeys(Key.PAGE_UP);
+    await yearSpinner.sendKeys(Key.PAGE_DOWN);
+
+    t.is(
+      await yearSpinner.getText(),
+      ex.yearNow,
+      'After sending 1 up arrow, then 1 down arrow to the year spinner, the year should be: ' +
+        ex.yearNow
+    );
+
+    let manyYears = Math.ceil(
+      (parseInt(ex.yearNow) - parseInt(ex.yearMin)) / 5
+    );
+    for (let i = 1; i <= manyYears; i++) {
+      await yearSpinner.sendKeys(Key.PAGE_DOWN);
+    }
+
+    t.is(
+      await yearSpinner.getText(),
+      ex.yearMin,
+      'After sending ' +
+        manyYears +
+        ' down arrows to the year spinner, the year should be: ' +
+        ex.yearMin
+    );
+  }
+);
+
+ariaTest('home on day', exampleFile, 'spinbutton-home', async (t) => {
+  // Send home to day date spinner
+  let daySpinner = await t.context.session.findElement(By.css(ex.daySelector));
+  await daySpinner.sendKeys(Key.HOME);
+
+  t.is(
+    await daySpinner.getText(),
+    '1',
+    'After sending home to the day spinner, the day should be: 1'
+  );
+});
+
+ariaTest('end on day', exampleFile, 'spinbutton-end', async (t) => {
+  // Send home to day date spinner
+  let daySpinner = await t.context.session.findElement(By.css(ex.daySelector));
+  await daySpinner.sendKeys(Key.END);
+
+  t.is(
+    await daySpinner.getText(),
+    ex.dayMax,
+    'After sending end to the day spinner, the day should be: ' + ex.dayMax
+  );
+});
+
+ariaTest('home on month', exampleFile, 'spinbutton-home', async (t) => {
+  // Send home to month date spinner
+  let monthSpinner = await t.context.session.findElement(
+    By.css(ex.monthSelector)
+  );
+  await monthSpinner.sendKeys(Key.HOME);
+
+  t.is(
+    await monthSpinner.getText(),
+    'January',
+    'After sending home to the month spinner, the month should be: January'
+  );
+});
+
+ariaTest('end on month', exampleFile, 'spinbutton-end', async (t) => {
+  // Send home to month date spinner
+  let monthSpinner = await t.context.session.findElement(
+    By.css(ex.monthSelector)
+  );
+  await monthSpinner.sendKeys(Key.END);
+
+  t.is(
+    await monthSpinner.getText(),
+    'December',
+    'After sending end to the month spinner, the month should be: December'
+  );
+});
+
+ariaTest('home on year', exampleFile, 'spinbutton-home', async (t) => {
+  // Send home to year date spinner
+  let yearSpinner = await t.context.session.findElement(
+    By.css(ex.yearSelector)
+  );
+  await yearSpinner.sendKeys(Key.HOME);
+
+  t.is(
+    await yearSpinner.getText(),
+    ex.yearMin,
+    'After sending home to the year spinner, the year should be: ' + ex.yearMin
+  );
+});
+
+ariaTest('end on year', exampleFile, 'spinbutton-end', async (t) => {
+  // Send home to year date spinner
+  let yearSpinner = await t.context.session.findElement(
+    By.css(ex.yearSelector)
+  );
+  await yearSpinner.sendKeys(Key.END);
+
+  t.is(
+    await yearSpinner.getText(),
+    ex.yearMax,
+    'After sending end to the year spinner, the year should be: ' + ex.yearMax
+  );
+});

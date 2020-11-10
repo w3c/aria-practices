@@ -254,7 +254,7 @@ ComboboxAutocomplete.prototype.getNextOption = function (currentOption) {
 /* MENU DISPLAY METHODS */
 
 ComboboxAutocomplete.prototype.doesOptionHaveFocus = function () {
-  return this.combobocNode.getAttribute('aria-activedescendant') !== '';
+  return this.comboboxNode.getAttribute('aria-activedescendant') !== '';
 };
 
 ComboboxAutocomplete.prototype.isOpen = function () {

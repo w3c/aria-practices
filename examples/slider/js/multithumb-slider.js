@@ -224,7 +224,7 @@ Slider.prototype.handleMouseDown = function (event) {
 
 // };
 
-// Initialise Sliders on the page
+// Initialize Sliders on the page
 window.addEventListener('load', function () {
   var sliders = document.querySelectorAll('[role=slider]');
 

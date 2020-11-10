@@ -686,7 +686,7 @@ ariaTest(
     t.deepEqual(
       await getValueAndText(t, ex.heatSelector),
       ['0', ex.heatValues[0]],
-      'After sending 6 arrow downx key to the heat slider, aria-valuenow should be "0" and aria-value-text should be: ' +
+      'After sending 6 arrow down key to the heat slider, aria-valuenow should be "0" and aria-value-text should be: ' +
         ex.heatValues[0]
     );
   }

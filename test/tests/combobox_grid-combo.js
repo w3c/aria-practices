@@ -299,7 +299,7 @@ ariaTest(
 ariaTest(
   'Test down key press with focus on combobox',
   exampleFile,
-  'popup-key-down-arrow',
+  'textbox-key-down-arrow',
   async (t) => {
     // Send ARROW_DOWN to the combobox
     await t.context.session
@@ -433,7 +433,7 @@ ariaTest(
 ariaTest(
   'Test up key press with focus on combobox',
   exampleFile,
-  'popup-key-up-arrow',
+  'textbox-key-up-arrow',
   async (t) => {
     // Send ARROW_UP to the combobox
     await t.context.session
@@ -701,7 +701,7 @@ ariaTest(
           .isDisplayed());
       },
       t.context.waitTime,
-      'Timeout waiting for gridbox to close afer escape'
+      'Timeout waiting for gridbox to close after escape'
     );
 
     // Confirm the grid is closed and the textbox is cleared
@@ -743,7 +743,7 @@ ariaTest(
     t.is(
       focusedId,
       gridcellId(lastrow, 1),
-      'After left arrow sent to popup, aria-activedescendant should be set to the last row, last gricell: ' +
+      'After left arrow sent to popup, aria-activedescendant should be set to the last row, last gridcell: ' +
         gridcellId(lastrow, 1)
     );
 

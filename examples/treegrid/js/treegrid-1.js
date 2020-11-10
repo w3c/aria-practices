@@ -4,7 +4,7 @@ function TreeGrid(treegridElem, doAllowRowFocus, doStartRowFocus) {
   function initAttributes() {
     // Make sure focusable elements are not in the tab order
     // They will be added back in for the active row
-    setTabIndexOfFocusableElems(treegridElem, -1);
+    setTabIndexOfFocusableElements(treegridElem, -1);
 
     // Add tabindex="0" to first row, "-1" to other rows
     // We will use the roving tabindex method since aria-activedescendant
@@ -32,7 +32,7 @@ function TreeGrid(treegridElem, doAllowRowFocus, doStartRowFocus) {
   }
 
   function setTabIndexForCell(cell, tabIndex) {
-    var focusable = getFocusableElems(cell)[0] || cell;
+    var focusable = getFocusableElements(cell)[0] || cell;
     focusable.tabIndex = tabIndex;
   }
 
@@ -49,7 +49,7 @@ function TreeGrid(treegridElem, doAllowRowFocus, doStartRowFocus) {
     return Array.prototype.slice.call(nodeList);
   }
 
-  function getFocusableElems(root) {
+  function getFocusableElements(root) {
     // textarea not supported as a cell widget as it's multiple lines
     // and needs up/down keys
     // These should all be descendants of a cell
@@ -57,11 +57,11 @@ function TreeGrid(treegridElem, doAllowRowFocus, doStartRowFocus) {
     return Array.prototype.slice.call(nodeList);
   }
 
-  function setTabIndexOfFocusableElems(root, tabIndex) {
-    var focusableElems = getFocusableElems(root);
-    var index = focusableElems.length;
+  function setTabIndexOfFocusableElements(root, tabIndex) {
+    var focusableElements = getFocusableElements(root);
+    var index = focusableElements.length;
     while (index--) {
-      focusableElems[index].tabIndex = tabIndex;
+      focusableElements[index].tabIndex = tabIndex;
     }
   }
 
@@ -93,7 +93,7 @@ function TreeGrid(treegridElem, doAllowRowFocus, doStartRowFocus) {
   function focusCell(cell) {
     // Check for focusable child such as link or textbox
     // and use that if available
-    var focusableChildren = getFocusableElems(cell);
+    var focusableChildren = getFocusableElements(cell);
     focus(focusableChildren[0] || cell);
   }
 
@@ -142,7 +142,7 @@ function TreeGrid(treegridElem, doAllowRowFocus, doStartRowFocus) {
   // Set whether interactive elements within a row are tabbable
   function enableTabbingInActiveRowDescendants(isTabbingOn, row) {
     if (row) {
-      setTabIndexOfFocusableElems(row, isTabbingOn ? 0 : -1);
+      setTabIndexOfFocusableElements(row, isTabbingOn ? 0 : -1);
       if (isTabbingOn) {
         enableTabbingInActiveRowDescendants.tabbingRow = row;
       } else {
