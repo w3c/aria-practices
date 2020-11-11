@@ -3,6 +3,8 @@
  *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
  */
 
+/* global aria */
+
 'use strict';
 
 /**
@@ -13,17 +15,17 @@
 
 window.addEventListener('load', function () {
   var ex1 = document.getElementById('ex1');
-  var ex1Grid = new aria.Grid(ex1.querySelector('[role="grid"]'));
+  new aria.Grid(ex1.querySelector('[role="grid"]'));
 
   var ex2 = document.getElementById('ex2');
-  var ex2Grid = new aria.Grid(ex2.querySelector('[role="grid"]'));
+  new aria.Grid(ex2.querySelector('[role="grid"]'));
 
   var ex3 = document.getElementById('ex3');
   var ex3Grid = new aria.Grid(ex3.querySelector('[role="grid"]'));
   var toggleButton = document.getElementById('toggle_column_btn');
   var toggledOn = true;
 
-  toggleButton.addEventListener('click', function (event) {
+  toggleButton.addEventListener('click', function () {
     toggledOn = !toggledOn;
 
     ex3Grid.toggleColumn(2, toggledOn);
