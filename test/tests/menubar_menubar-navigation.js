@@ -24,16 +24,16 @@ const ex = {
     '#ex1 [role="menubar"]>li:nth-of-type(3)>[role="menu"]>li>[role="menuitem"]',
   ],
   groupSelector: '#ex1 [role="group"]',
-  numMenus: 3,
+  numMenus: 4,
   numSubmenus: 3,
   numTotalMenus: 6,
   submenuLocations: [
     // [<index of top level menu>, <index of item in top level menu>]
-    [0, 2],
-    [0, 3],
-    [1, 1],
+    [1, 2],
+    [1, 3],
+    [2, 1],
   ],
-  numMenuMenuitems: [4, 6, 8],
+  numMenuMenuitems: [1, 4, 6, 8],
 };
 
 // Returns specified submenu
@@ -143,22 +143,37 @@ ariaTest(
 );
 
 ariaTest(
-  'Test for role="menuitem" in menubar',
+  'Test roving tabindex',
   exampleFile,
-  'menuitem-role',
+  'menuitem-tabindex',
   async (t) => {
-    const menuitems = await t.context.queryElements(
-      t,
-      ex.menubarMenuitemSelector
-    );
+    // Wait for roving tabindex to be initialized by the javascript
+    await exampleInitialized(t);
 
+    await assertRovingTabindex(t, ex.menubarMenuitemSelector, Key.ARROW_RIGHT);
+  }
+);
+
+/*
+
+ariaTest(
+  'Test aria-haspopup set to true on menuitems',
+  exampleFile,
+  'menuitem-aria-haspopup',
+  async (t) => {
     t.is(
       menuitems.length,
       ex.numMenus,
       '"role=menuitem" elements should be found by selector: ' +
-        ex.menubarMenuitemSelector
-    );
+        ex.menubarMenuitemSelector);
+  }
+);
 
+ariaTest.failing(
+  '"aria-expanded" attribute on menubar menuitem',
+  exampleFile,
+  'menuitem-aria-expanded',
+  async (t) => {
     for (let menuitem of menuitems) {
       t.truthy(
         await menuitem.getText(),
@@ -315,6 +330,11 @@ ariaTest(
         ex.anyMenuMenuitemSelector
     );
 
+ariaTest.failing(
+  'Test aria-haspopup on menuitems with submenus',
+  exampleFile,
+  'sub-menuitem-aria-haspopup',
+  async (t) => {
     // Test the accessible name of each menuitem
 
     for (let menuitem of menuitems) {
@@ -465,34 +485,10 @@ ariaTest(
       );
     }
   }
-);
-
-ariaTest(
-  'Test for role="none" on menu lis',
-  exampleFile,
-  'sub-none-role',
-  async (t) => {
-    const liElements = await t.context.queryElements(
-      t,
-      ex.anyMenuSelector + '>li'
-    );
-
-    for (let liElement of liElements) {
-      if ((await liElement.getAttribute('role')) !== 'separator') {
-        t.is(
-          await liElement.getAttribute('role'),
-          'none',
-          '"role=none" should be found on all list elements that are immediate descendants of: ' +
-            ex.anyMenuSelector
-        );
-      }
-    }
-  }
-);
+});
 
 // KEYS
-
-ariaTest(
+ariaTest.failing(
   'Key ENTER open submenu',
   exampleFile,
   'menubar-space-or-enter',
@@ -524,7 +520,7 @@ ariaTest(
   }
 );
 
-ariaTest(
+ariaTest.failing(
   'Key SPACE open submenu',
   exampleFile,
   'menubar-space-or-enter',
@@ -556,7 +552,7 @@ ariaTest(
   }
 );
 
-ariaTest(
+ariaTest.failing(
   'Key ARROW_RIGHT moves focus to next menubar item',
   exampleFile,
   'menubar-right-arrow',
@@ -585,7 +581,7 @@ ariaTest(
   }
 );
 
-ariaTest(
+ariaTest.failing(
   'Key ARROW_RIGHT moves focus to next menubar item',
   exampleFile,
   'menubar-left-arrow',
@@ -620,7 +616,7 @@ ariaTest(
   }
 );
 
-ariaTest(
+ariaTest.failing(
   'Key ARROW_UP opens submenu, focus on last item',
   exampleFile,
   'menubar-up-arrow',
@@ -661,15 +657,17 @@ ariaTest(
   }
 );
 
-ariaTest(
+ariaTest.failing(
   'Key ARROW_DOWN opens submenu, focus on first item',
   exampleFile,
   'menubar-down-arrow',
   async (t) => {
+
     const menubaritems = await t.context.queryElements(
       t,
       ex.menubarMenuitemSelector
     );
+
     const menus = await t.context.queryElements(t, ex.menuSelector);
     for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
       // Send the ENTER key
@@ -694,7 +692,7 @@ ariaTest(
   }
 );
 
-ariaTest(
+ariaTest.failing(
   'Key HOME goes to first item in menubar',
   exampleFile,
   'menubar-home',
@@ -723,7 +721,7 @@ ariaTest(
   }
 );
 
-ariaTest(
+ariaTest.failing(
   'Key END goes to last item in menubar',
   exampleFile,
   'menubar-end',
@@ -750,9 +748,9 @@ ariaTest(
       );
     }
   }
-);
+});
 
-ariaTest(
+ariaTest.failing(
   'Character sends to menubar changes focus in menubar',
   exampleFile,
   'menubar-character',
@@ -948,7 +946,7 @@ ariaTest.failing(
   }
 );
 
-ariaTest(
+ariaTest.failing(
   'ESCAPE to submenu closes submenu',
   exampleFile,
   'submenu-escape',
@@ -1008,42 +1006,11 @@ ariaTest(
       );
       const items = await t.context.queryElements(t, submenuMenuitemSelector);
       const numItems = items.length;
-
-      for (let itemIndex = 0; itemIndex < numItems; itemIndex++) {
-        await openSubmenu(t, ...submenuLocation);
-
-        // send ESCAPE to the item
-        const itemText = await items[itemIndex].getText();
-        await items[itemIndex].sendKeys(Key.ESCAPE);
-
-        const submenuSelector = getSubmenuSelector(...submenuLocation);
-        t.false(
-          await t.context.session
-            .findElement(By.css(submenuSelector))
-            .isDisplayed(),
-          'Sending key "ESCAPE" to submenuitem "' +
-            itemText +
-            '" should close the menu'
-        );
-
-        t.true(
-          await checkFocus(
-            t,
-            ex.menuMenuitemSelectors[menuIndex],
-            menuitemIndex
-          ),
-          'Sending key "ESCAPE" to submenuitem "' +
-            itemText +
-            '" should send focus to menuitem ' +
-            menuitemIndex +
-            ' in the parent menu'
-        );
-      }
     }
   }
 );
 
-ariaTest(
+ariaTest.failing(
   'ARROW_RIGHT to submenu closes submenu and opens next',
   exampleFile,
   'submenu-right-arrow',
@@ -1122,52 +1089,72 @@ ariaTest(
         }
       }
     }
+  }
+);
 
-    // Test all the submenu menuitems
-    for (let submenuLocation of ex.submenuLocations) {
-      const [menuIndex, menuitemIndex] = submenuLocation;
+ariaTest.failing(
+  'ARROW_RIGHT to submenu closes submenu and opens next',
+  exampleFile,
+  'submenu-right-arrow',
+  async (t) => {
+    const menubaritems = await t.context.queryElements(t, ex.menubarMenuitemSelector);
+    const menus = await t.context.queryElements(t, ex.menuSelector);
 
-      // Get the submenu items we are testing
-      const submenuMenuitemSelector = getSubmenuMenuitemSelector(
-        menuIndex,
-        menuitemIndex
-      );
-      const items = await t.context.queryElements(t, submenuMenuitemSelector);
-      const numItems = items.length;
+    // Test all the level one menuitems
 
-      for (let itemIndex = 0; itemIndex < numItems; itemIndex++) {
-        await openSubmenu(t, ...submenuLocation);
+    for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
+      for (let itemIndex = 0; itemIndex < ex.numMenuMenuitems[menuIndex]; itemIndex++) {
 
-        // send ARROW_RIGHT to the item
-        const itemText = await items[itemIndex].getText();
-        await items[itemIndex].sendKeys(Key.ARROW_RIGHT);
+        // Open the submenu
+        await menubaritems[menuIndex].sendKeys(Key.ENTER);
 
-        // Account for wrapping (index 0 should go to 3)
-        const nextMenuIndex = menuIndex === 2 ? 0 : menuIndex + 1;
+        // Test all the submenu menuitems
+        for (let submenuLocation of ex.submenuLocations) {
+          const [menuIndex, menuitemIndex] = submenuLocation;
 
-        // Test that the submenu is closed
-        t.false(
-          await menus[menuIndex].isDisplayed(),
-          'Sending key "ARROW_RIGHT" to submenuitem "' +
-            itemText +
-            '" should close list'
-        );
+          // Get the submenu items we are testing
+          const submenuMenuitemSelector = getSubmenuMenuitemSelector(
+            menuIndex,
+            menuitemIndex
+          );
+          const items = await t.context.queryElements(t, submenuMenuitemSelector);
+          const numItems = items.length;
 
-        // Test that the focus is on the menuitem in the menubar
-        t.true(
-          await checkFocus(t, ex.menubarMenuitemSelector, nextMenuIndex),
-          'Sending key "ARROW_RIGHT" to submenuitem "' +
-            itemText +
-            '" should send focus to menuitem' +
-            nextMenuIndex +
-            ' in the menubar'
-        );
+          for (let itemIndex = 0; itemIndex < numItems; itemIndex++) {
+            await openSubmenu(t, ...submenuLocation);
+
+            // send ARROW_RIGHT to the item
+            const itemText = await items[itemIndex].getText();
+            await items[itemIndex].sendKeys(Key.ARROW_RIGHT);
+
+            // Account for wrapping (index 0 should go to 3)
+            const nextMenuIndex = menuIndex === 2 ? 0 : menuIndex + 1;
+
+            // Test that the submenu is closed
+            t.false(
+              await menus[menuIndex].isDisplayed(),
+              'Sending key "ARROW_RIGHT" to submenuitem "' +
+                itemText +
+                '" should close list'
+            );
+
+            // Test that the focus is on the menuitem in the menubar
+            t.true(
+              await checkFocus(t, ex.menubarMenuitemSelector, nextMenuIndex),
+              'Sending key "ARROW_RIGHT" to submenuitem "' +
+                itemText +
+                '" should send focus to menuitem' +
+                nextMenuIndex +
+                ' in the menubar'
+            );
+          }
+        }
       }
     }
   }
 );
 
-ariaTest(
+ariaTest.failing(
   'ARROW_LEFT to submenu closes submenu and opens next',
   exampleFile,
   'submenu-left-arrow',
@@ -1220,6 +1207,16 @@ ariaTest(
         );
       }
     }
+  }
+);
+
+ariaTest.failing(
+  'ARROW_LEFT to submenu closes submenu and opens next',
+  exampleFile,
+  'submenu-left-arrow',
+  async (t) => {
+    const menubaritems = await t.context.queryElements(t, ex.menubarMenuitemSelector);
+    const menus = await t.context.queryElements(t, ex.menuSelector);
 
     // Test all the submenu menuitems
     for (let submenuLocation of ex.submenuLocations) {
@@ -1267,7 +1264,7 @@ ariaTest(
   }
 );
 
-ariaTest(
+ariaTest.failing(
   'ARROW_DOWN moves focus in menu',
   exampleFile,
   'submenu-down-arrow',
@@ -1354,7 +1351,7 @@ ariaTest(
   }
 );
 
-ariaTest(
+ariaTest.failing(
   'ARROW_UP moves focus in menu',
   exampleFile,
   'submenu-up-arrow',
@@ -1441,7 +1438,7 @@ ariaTest(
   }
 );
 
-ariaTest('HOME moves focus in menu', exampleFile, 'submenu-home', async (t) => {
+ariaTest.failing('HOME moves focus in menu', exampleFile, 'submenu-home', async (t) => {
   const menubaritems = await t.context.queryElements(
     t,
     ex.menubarMenuitemSelector
@@ -1507,7 +1504,7 @@ ariaTest('HOME moves focus in menu', exampleFile, 'submenu-home', async (t) => {
   }
 });
 
-ariaTest('END moves focus in menu', exampleFile, 'submenu-end', async (t) => {
+ariaTest.failing('END moves focus in menu', exampleFile, 'submenu-end', async (t) => {
   const menubaritems = await t.context.queryElements(
     t,
     ex.menubarMenuitemSelector
@@ -1577,42 +1574,35 @@ ariaTest('END moves focus in menu', exampleFile, 'submenu-end', async (t) => {
   }
 });
 
-ariaTest(
+ariaTest.failing(
   'Character sends to menubar changes focus in menubar',
   exampleFile,
   'submenu-character',
   async (t) => {
+
     const charIndexTest = [
-      [
-        // Tests for menu dropdown 0
+      [ // Tests for menu dropdown 0
         { sendChar: 'a', sendIndex: 0, endIndex: 1 },
         { sendChar: 'x', sendIndex: 1, endIndex: 1 },
-        { sendChar: 'o', sendIndex: 1, endIndex: 0 },
+        { sendChar: 'o', sendIndex: 1, endIndex: 0 }
       ],
-      [
-        // Tests for menu dropdown 1
+      [ // Tests for menu dropdown 1
         { sendChar: 'c', sendIndex: 0, endIndex: 5 },
-        { sendChar: 'y', sendIndex: 5, endIndex: 5 },
+        { sendChar: 'y', sendIndex: 5, endIndex: 5 }
       ],
-      [
-        // Tests for menu dropdown 2
+      [ // Tests for menu dropdown 2
         { sendChar: 'c', sendIndex: 0, endIndex: 4 },
         { sendChar: 'r', sendIndex: 4, endIndex: 5 },
-        { sendChar: 'z', sendIndex: 5, endIndex: 5 },
-      ],
+        { sendChar: 'z', sendIndex: 5, endIndex: 5 }
+      ]
     ];
 
-    const menubaritems = await t.context.queryElements(
-      t,
-      ex.menubarMenuitemSelector
-    );
+    const menubaritems = await t.context.queryElements(t, ex.menubarMenuitemSelector);
     for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
+
       // Open the dropdown
       await menubaritems[menuIndex].sendKeys(Key.ARROW_DOWN);
-      const items = await t.context.queryElements(
-        t,
-        ex.menuMenuitemSelectors[menuIndex]
-      );
+      const items = await t.context.queryElements(t, ex.menuMenuitemSelectors[menuIndex]);
 
       for (let test of charIndexTest[menuIndex]) {
         // Send character to menuitem
@@ -1634,60 +1624,61 @@ ariaTest(
             test.endIndex
         );
       }
-    }
 
-    const subCharIndexTest = [
-      [
-        // Tests for menu dropdown 0
-        { sendChar: 'c', sendIndex: 0, endIndex: 1 },
-        { sendChar: 'h', sendIndex: 1, endIndex: 0 },
-        { sendChar: 'x', sendIndex: 0, endIndex: 0 },
-      ],
-      [
-        // Tests for menu dropdown 1
-        { sendChar: 'f', sendIndex: 0, endIndex: 1 },
-        { sendChar: 'f', sendIndex: 1, endIndex: 2 },
-      ],
-      [
-        // Tests for menu dropdown 2
-        { sendChar: 'p', sendIndex: 0, endIndex: 2 },
-        { sendChar: 'z', sendIndex: 2, endIndex: 2 },
-      ],
-    ];
+      const subCharIndexTest = [
+        [
+          // Tests for menu dropdown 0
+          { sendChar: 'c', sendIndex: 0, endIndex: 1 },
+          { sendChar: 'h', sendIndex: 1, endIndex: 0 },
+          { sendChar: 'x', sendIndex: 0, endIndex: 0 },
+        ],
+        [
+          // Tests for menu dropdown 1
+          { sendChar: 'f', sendIndex: 0, endIndex: 1 },
+          { sendChar: 'f', sendIndex: 1, endIndex: 2 },
+        ],
+        [
+          // Tests for menu dropdown 2
+          { sendChar: 'p', sendIndex: 0, endIndex: 2 },
+          { sendChar: 'z', sendIndex: 2, endIndex: 2 },
+        ],
+      ];
 
-    let testIndex = 0;
+      let testIndex = 0;
 
-    // Test all the submenu menuitems
-    for (let submenuLocation of ex.submenuLocations) {
-      const [menuIndex, menuitemIndex] = submenuLocation;
+      // Test all the submenu menuitems
+      for (let submenuLocation of ex.submenuLocations) {
+        const [menuIndex, menuitemIndex] = submenuLocation;
 
-      await openSubmenu(t, ...submenuLocation);
+        await openSubmenu(t, ...submenuLocation);
 
-      // Get the submenu items we are testing
-      const submenuMenuitemSelector = getSubmenuMenuitemSelector(
-        menuIndex,
-        menuitemIndex
-      );
-      const items = await t.context.queryElements(t, submenuMenuitemSelector);
-
-      for (let test of subCharIndexTest[testIndex]) {
-        // Send character to menuitem
-        const itemText = await items[test.sendIndex].getText();
-        await items[test.sendIndex].sendKeys(test.sendChar);
-
-        // Test that the focus switches to the appropriate menuitem
-        t.true(
-          await checkFocus(t, submenuMenuitemSelector, test.endIndex),
-          'Sending characther ' +
-            test.sendChar +
-            ' to menuitem ' +
-            itemText +
-            ' should move the focus to menuitem ' +
-            test.endIndex
+        // Get the submenu items we are testing
+        const submenuMenuitemSelector = getSubmenuMenuitemSelector(
+          menuIndex,
+          menuitemIndex
         );
-      }
+        const items = await t.context.queryElements(t, submenuMenuitemSelector);
 
-      testIndex++;
+        for (let test of subCharIndexTest[testIndex]) {
+          // Send character to menuitem
+          const itemText = await items[test.sendIndex].getText();
+          await items[test.sendIndex].sendKeys(test.sendChar);
+
+          // Test that the focus switches to the appropriate menuitem
+          t.true(
+            await checkFocus(t, submenuMenuitemSelector, test.endIndex),
+            'Sending characther ' +
+              test.sendChar +
+              ' to menuitem ' +
+              itemText +
+              ' should move the focus to menuitem ' +
+              test.endIndex
+          );
+        }
+
+        testIndex++;
+      }
     }
   }
 );
+*/

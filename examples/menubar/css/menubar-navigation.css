@@ -1,13 +1,51 @@
+#ex1 header {
+  border: #005a9c solid 2px;
+  background: #005a9c;
+  color: white;
+  text-align: center;
+}
+
+#ex1 header .title {
+  font-size: 2.5em;
+  font-weight: bold;
+  font-family: serif;
+}
+
+#ex1 header .tagline {
+  font-style: italic;
+}
+
+#ex1 .main {
+  padding-top: 1em;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 5em;
+  border-left: 2px solid #eee;
+  border-right: 2px solid #eee;
+}
+
+#ex1 footer {
+  border: #005a9c solid 2px;
+  background: #005a9c;
+  font-family: serif;
+  color: white;
+  font-style: italic;
+  padding-left: 1em;
+}
+
+#ex1 nav {
+  margin: 0;
+  padding: 0;
+  border: 2px solid #eee;
+}
+
 .menubar-navigation {
   margin: 0;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
   padding: 7px;
   font-size: 110%;
   list-style: none;
   background-color: #eee;
   border: #eee solid 1px;
-  border-radius: 5px;
 }
 
 .menubar-navigation li {
@@ -90,6 +128,21 @@
   background-image: url("../images/separator.svg");
   background-position: center;
   background-repeat: repeat-x;
+}
+
+/* aria-current styling */
+
+.menubar-navigation [role="menuitem"][aria-current]::after {
+  content: url("../images/aria-current.svg");
+  position: relative;
+  left: 4px;
+}
+
+.menubar-navigation [role="menuitem"][aria-current] {
+  padding: 4px;
+  border: 2px solid #9c4200;
+  background-color: #9c4200;
+  color: white;
 }
 
 /* focus styling */
