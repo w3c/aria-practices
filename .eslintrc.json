@@ -46,11 +46,7 @@
         "examples/alert/js/alert.js",
         "examples/checkbox/checkbox-1/js/checkbox.js",
         "examples/checkbox/checkbox-2/js/checkboxMixed.js",
-        "examples/checkbox/checkbox-2/js/controlledCheckbox.js",
-        "examples/combobox/js/combobox-autocomplete.js",
-        "examples/combobox/js/combobox-datepicker.js",
-        "examples/combobox/js/grid-combo-example.js",
-        "examples/combobox/js/grid-combo.js"
+        "examples/checkbox/checkbox-2/js/controlledCheckbox.js"
       ],
       "rules": {
         "no-unused-vars": 0
@@ -58,9 +54,7 @@
     },
     {
       "files": [
-        "examples/checkbox/checkbox-2/js/checkboxMixed.js",
-        "examples/combobox/js/grid-combo-example.js",
-        "examples/combobox/js/grid-combo.js"
+        "examples/checkbox/checkbox-2/js/checkboxMixed.js"
       ],
       "rules": {
         "no-undef": 0
