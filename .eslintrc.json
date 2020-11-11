@@ -39,14 +39,6 @@
       "rules": {
         "no-console": 0
       }
-    },
-    {
-      "files": [
-        "examples/accordion/js/accordion.js"
-      ],
-      "rules": {
-        "no-unused-vars": 0
-      }
     }
   ]
 }

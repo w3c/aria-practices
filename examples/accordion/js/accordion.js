@@ -21,9 +21,6 @@ Array.prototype.slice
     var triggers = Array.prototype.slice.call(
       accordion.querySelectorAll('.Accordion-trigger')
     );
-    var panels = Array.prototype.slice.call(
-      accordion.querySelectorAll('.Accordion-panel')
-    );
 
     accordion.addEventListener('click', function (event) {
       var target = event.target;
@@ -78,11 +75,6 @@ Array.prototype.slice
       var target = event.target;
       var key = event.which.toString();
 
-      var isExpanded = target.getAttribute('aria-expanded') == 'true';
-      var allowToggle = allowMultiple
-        ? allowMultiple
-        : accordion.hasAttribute('data-allow-toggle');
-
       // 33 = Page Up, 34 = Page Down
       var ctrlModifier = event.ctrlKey && key.match(/33|34/);
 
@@ -120,11 +112,11 @@ Array.prototype.slice
     accordion
       .querySelectorAll('.Accordion-trigger')
       .forEach(function (trigger) {
-        trigger.addEventListener('focus', function (event) {
+        trigger.addEventListener('focus', function () {
           accordion.classList.add('focus');
         });
 
-        trigger.addEventListener('blur', function (event) {
+        trigger.addEventListener('blur', function () {
           accordion.classList.remove('focus');
         });
       });
