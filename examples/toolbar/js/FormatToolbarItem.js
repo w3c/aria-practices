@@ -159,7 +159,7 @@ FormatToolbarItem.prototype.handleHideAllPopupLabels = function (event) {
   }
 };
 
-FormatToolbarItem.prototype.handleBlur = function (event) {
+FormatToolbarItem.prototype.handleBlur = function () {
   this.toolbar.domNode.classList.remove('focus');
 
   if (this.domNode.classList.contains('nightmode')) {
@@ -168,7 +168,7 @@ FormatToolbarItem.prototype.handleBlur = function (event) {
   this.hidePopupLabel();
 };
 
-FormatToolbarItem.prototype.handleFocus = function (event) {
+FormatToolbarItem.prototype.handleFocus = function () {
   this.toolbar.domNode.classList.add('focus');
 
   if (this.domNode.classList.contains('nightmode')) {
@@ -177,12 +177,12 @@ FormatToolbarItem.prototype.handleFocus = function (event) {
   this.showPopupLabel();
 };
 
-FormatToolbarItem.prototype.handleMouseLeave = function (event) {
+FormatToolbarItem.prototype.handleMouseLeave = function () {
   this.hasHover = false;
   setTimeout(this.hidePopupLabel.bind(this), this.popupLabelDelay);
 };
 
-FormatToolbarItem.prototype.handleMouseOver = function (event) {
+FormatToolbarItem.prototype.handleMouseOver = function () {
   this.showPopupLabel();
   this.hasHover = true;
 };
@@ -256,7 +256,7 @@ FormatToolbarItem.prototype.handleKeyDown = function (event) {
   }
 };
 
-FormatToolbarItem.prototype.handleClick = function (e) {
+FormatToolbarItem.prototype.handleClick = function () {
   if (this.buttonAction == 'link') {
     return;
   }

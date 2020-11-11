@@ -5,6 +5,8 @@
  *   File:   FormatToolbar.js
  */
 
+/* global FormatToolbarItem, FontMenuButton, SpinButton */
+
 'use strict';
 
 /**
@@ -106,8 +108,7 @@ FormatToolbar.prototype.selectTextContent = function () {
 FormatToolbar.prototype.updateDisable = function (
   copyButton,
   cutButton,
-  pasteButton,
-  selectedContent
+  pasteButton
 ) {
   var start = this.textarea.selectionStart;
   var end = this.textarea.selectionEnd;
@@ -131,7 +132,7 @@ FormatToolbar.prototype.selectText = function (start, end, textarea) {
     return true;
   }
 };
-FormatToolbar.prototype.copyTextContent = function (toolbarItem) {
+FormatToolbar.prototype.copyTextContent = function () {
   if (this.copyButton.getAttribute('aria-disabled') === 'true') {
     return;
   }
@@ -213,7 +214,7 @@ FormatToolbar.prototype.changeFontSize = function (value) {
   this.textarea.style.fontSize = value + 'pt';
 };
 
-FormatToolbar.prototype.toggleNightMode = function (toolbarItem) {
+FormatToolbar.prototype.toggleNightMode = function () {
   if (this.nightModeCheck.checked) {
     this.textarea.style.color = '#eee';
     this.textarea.style.background = 'black';
@@ -339,11 +340,11 @@ FormatToolbar.prototype.setFocusToPrevious = function (currentItem) {
   this.setFocusItem(newItem);
 };
 
-FormatToolbar.prototype.setFocusToFirst = function (currentItem) {
+FormatToolbar.prototype.setFocusToFirst = function () {
   this.setFocusItem(this.firstItem);
 };
 
-FormatToolbar.prototype.setFocusToLast = function (currentItem) {
+FormatToolbar.prototype.setFocusToLast = function () {
   this.setFocusItem(this.lastItem);
 };
 

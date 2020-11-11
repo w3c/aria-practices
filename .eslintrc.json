@@ -75,12 +75,7 @@
         "examples/slider/js/slider.js",
         "examples/slider/js/text-slider.js",
         "examples/slider/js/vertical-slider.js",
-        "examples/tabs/tabs-2/js/tabs.js",
-        "examples/toolbar/js/FontMenu.js",
-        "examples/toolbar/js/FontMenuButton.js",
-        "examples/toolbar/js/FontMenuItem.js",
-        "examples/toolbar/js/FormatToolbar.js",
-        "examples/toolbar/js/FormatToolbarItem.js"
+        "examples/tabs/tabs-2/js/tabs.js"
       ],
       "rules": {
         "no-unused-vars": 0
@@ -100,10 +95,7 @@
         "examples/landmarks/js/tabs.js",
         "examples/listbox/js/listbox-rearrangeable.js",
         "examples/listbox/js/listbox-scrollable.js",
-        "examples/menubar/js/menubar-editor.js",
-        "examples/toolbar/js/FontMenu.js",
-        "examples/toolbar/js/FontMenuButton.js",
-        "examples/toolbar/js/FormatToolbar.js"
+        "examples/menubar/js/menubar-editor.js"
       ],
       "rules": {
         "no-undef": 0
