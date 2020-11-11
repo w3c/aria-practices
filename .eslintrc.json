@@ -74,8 +74,7 @@
         "examples/slider/js/multithumb-slider.js",
         "examples/slider/js/slider.js",
         "examples/slider/js/text-slider.js",
-        "examples/slider/js/vertical-slider.js",
-        "examples/tabs/tabs-2/js/tabs.js"
+        "examples/slider/js/vertical-slider.js"
       ],
       "rules": {
         "no-unused-vars": 0
