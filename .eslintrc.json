@@ -42,8 +42,7 @@
     },
     {
       "files": [
-        "examples/accordion/js/accordion.js",
-        "examples/alert/js/alert.js"
+        "examples/accordion/js/accordion.js"
       ],
       "rules": {
         "no-unused-vars": 0
