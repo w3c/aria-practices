@@ -7,8 +7,6 @@
  *   Desc:   Vertical slider widget that implements ARIA Authoring Practices
  */
 
-'use strict';
-
 // Create Vertical Slider that contains value, valuemin, valuemax, and valuenow
 var VSlider = function (domNode) {
   this.domNode = domNode;
@@ -209,7 +207,7 @@ VSlider.prototype.handleClick = function (event) {
   event.stopPropagation();
 };
 
-// Initialise VSliders on the page
+// Initialize VSliders on the page
 window.addEventListener('load', function () {
   var sliders = document.querySelectorAll(
     '.aria-widget-vertical-slider [role=slider]'

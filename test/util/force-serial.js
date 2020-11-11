@@ -21,7 +21,7 @@ function bindPort(port) {
 }
 
 /**
- * Exceute an asynchronous operation in isolation of any similarly-scheduled
+ * Execute an asynchronous operation in isolation of any similarly-scheduled
  * operations across processes.
  *
  * @param {Number} port - TCP/IP port to use as a resource lock

@@ -4,8 +4,6 @@
  *
  */
 
-'use strict';
-
 /**
  * ARIA Menu Button example
  * @function onload
@@ -300,7 +298,7 @@ aria.widget.Menu.prototype.eventBlur = function (event, menu) {
  *
  * @memberOf aria.widget.Menu
  *
- * @desc  eventFoucs event handler for Menu Object
+ * @desc  eventFocus event handler for Menu Object
  *        NOTE: The menu parameter is needed to provide a reference to the specific
  *               menu
  */

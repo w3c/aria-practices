@@ -7,8 +7,6 @@
  *   Desc:   Creates a menubar of hierarchical set of links
  */
 
-'use strict';
-
 class MenubarNavigation {
   constructor(domNode) {
     var linkURL, linkTitle;
@@ -280,7 +278,7 @@ class MenubarNavigation {
     }
   }
 
-  // Utitlities
+  // Utilities
 
   getIndexFirstChars(menuId, startIndex, char) {
     for (var i = startIndex; i < this.firstChars[menuId].length; i++) {

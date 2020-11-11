@@ -3,8 +3,6 @@
  *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
  */
 
-'use strict';
-
 var aria = aria || {};
 
 /**
@@ -56,7 +54,7 @@ window.addEventListener('load', function () {
   // Setup NUX; activates when the first grid cell is focused
   var gridNUX = document.getElementById('grid-nux');
   var firstGridCell = document.querySelector('#ex1 [tabindex="0"]');
-  var NUXclose = document.getElementById('close-nux-button');
+  var NUXCloseButton = document.getElementById('close-nux-button');
   var closeNUX = function () {
     aria.Utils.addClass(gridNUX, 'hidden');
     firstGridCell.focus();
@@ -65,8 +63,8 @@ window.addEventListener('load', function () {
     firstGridCell.removeEventListener('focus', setupInstructions);
     aria.Utils.removeClass(gridNUX, 'hidden');
 
-    NUXclose.addEventListener('click', closeNUX);
-    NUXclose.addEventListener('keyup', function (event) {
+    NUXCloseButton.addEventListener('click', closeNUX);
+    NUXCloseButton.addEventListener('keyup', function (event) {
       if (event.which === aria.KeyCode.RETURN) {
         closeNUX();
       }

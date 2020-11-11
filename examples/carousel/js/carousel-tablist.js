@@ -5,8 +5,6 @@
  *
  */
 
-'use strict';
-
 // takes options object: { accessibleCaptions: boolean, autoplay: boolean, playButton: boolean }
 // defaults are: { accessibleCaptions: true, autoplay: false, playButton: true }
 
@@ -314,7 +312,7 @@ CarouselTablist.prototype.handleTabpanelFocusOut = function () {
   this.hasFocus = false;
 };
 
-/* Iniitalize Carousel Tablists and options */
+/* Initialize Carousel Tablists and options */
 
 window.addEventListener(
   'load',

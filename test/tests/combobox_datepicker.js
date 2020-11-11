@@ -106,7 +106,7 @@ ariaTest(
 );
 
 ariaTest(
-  'Combobox: has aria-contorls set to "id-dialog-1"',
+  'Combobox: has aria-controls set to "id-dialog-1"',
   exampleFile,
   'textbox-aria-controls',
   async (t) => {
@@ -120,7 +120,7 @@ ariaTest(
 );
 
 ariaTest(
-  'Combobox: has aria-contorls set to "id-descrption-1"',
+  'Combobox: has aria-controls set to "id-descrption-1"',
   exampleFile,
   'textbox-aria-describedby',
   async (t) => {
@@ -543,7 +543,7 @@ ariaTest(
   }
 );
 
-// TODO(zcorpan): Missing tests. Either mark as "test-not-required" or write the test.
+// TODO: Missing tests. Either mark as "test-not-required" or write the test.
 ariaTest.failing(
   `Test not implemented: grid-space`,
   exampleFile,

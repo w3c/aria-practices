@@ -3,10 +3,8 @@
  *   This content is licensed according to the W3C Software License at
  *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
  *
- *   File:   coberage-report.js
+ *   File:   coverage-report.js
  */
-
-'use strict';
 
 const fs = require('fs');
 const path = require('path');
@@ -529,7 +527,7 @@ addGuidanceToRole(
   'complementary',
   '../aria-practices.html',
   'Complementary',
-  'aria_lh_complemtary'
+  'aria_lh_complementary'
 );
 
 addLandmarkRole(
@@ -774,7 +772,7 @@ $('.props_with_more_than_one_examples_count').html(
   countMoreThanOneExample.toString()
 );
 
-// cheeio seems to fold the doctype lines despite the template
+// cheerio seems to fold the doctype lines despite the template
 const result = $.html()
   .replace('<!DOCTYPE html>', '<!DOCTYPE html>\n')
   .replace(

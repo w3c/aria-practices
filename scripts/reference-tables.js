@@ -6,8 +6,6 @@
  *   File:   reference-tables.js
  */
 
-'use strict';
-
 const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
@@ -371,7 +369,7 @@ let examplesByProps = sortedPropertiesAndStates.reduce(function (set, prop) {
 
 $('#examples_by_props_tbody').html(examplesByProps);
 
-// cheeio seems to fold the doctype lines despite the template
+// cheerio seems to fold the doctype lines despite the template
 const result = $.html()
   .replace('<!DOCTYPE html>', '<!DOCTYPE html>\n')
   .replace(
