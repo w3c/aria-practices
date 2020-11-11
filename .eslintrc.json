@@ -65,8 +65,7 @@
         "examples/checkbox/checkbox-2/js/checkboxMixed.js",
         "examples/combobox/js/grid-combo-example.js",
         "examples/combobox/js/grid-combo.js",
-        "examples/dialog-modal/js/alertdialog.js",
-        "examples/feed/js/main.js"
+        "examples/dialog-modal/js/alertdialog.js"
       ],
       "rules": {
         "no-undef": 0
