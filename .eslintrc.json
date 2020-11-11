@@ -52,9 +52,7 @@
         "examples/combobox/js/grid-combo-example.js",
         "examples/combobox/js/grid-combo.js",
         "examples/dialog-modal/js/alertdialog.js",
-        "examples/dialog-modal/js/dialog.js",
-        "examples/disclosure/js/disclosureButton.js",
-        "examples/disclosure/js/disclosureMenu.js"
+        "examples/dialog-modal/js/dialog.js"
       ],
       "rules": {
         "no-unused-vars": 0

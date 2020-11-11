@@ -79,15 +79,15 @@ ButtonExpand.prototype.handleKeydown = function (event) {
   }
 };
 
-ButtonExpand.prototype.handleClick = function (event) {
+ButtonExpand.prototype.handleClick = function () {
   this.toggleExpand();
 };
 
-ButtonExpand.prototype.handleFocus = function (event) {
+ButtonExpand.prototype.handleFocus = function () {
   this.domNode.classList.add('focus');
 };
 
-ButtonExpand.prototype.handleBlur = function (event) {
+ButtonExpand.prototype.handleBlur = function () {
   this.domNode.classList.remove('focus');
 };
 
@@ -95,7 +95,7 @@ ButtonExpand.prototype.handleBlur = function (event) {
 
 window.addEventListener(
   'load',
-  function (event) {
+  function () {
     var buttons = document.querySelectorAll(
       'button[aria-expanded][aria-controls]'
     );
