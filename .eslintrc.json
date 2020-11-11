@@ -67,9 +67,7 @@
         "examples/listbox/js/listbox.js",
         "examples/menu-button/js/menu-button-actions-active-descendant.js",
         "examples/menu-button/js/menu-button-actions.js",
-        "examples/menu-button/js/menu-button-links.js",
-        "examples/menubar/js/menubar-editor.js",
-        "examples/menubar/js/menubar-navigation.js"
+        "examples/menu-button/js/menu-button-links.js"
       ],
       "rules": {
         "no-unused-vars": 0
@@ -88,8 +86,7 @@
         "examples/landmarks/js/show.js",
         "examples/landmarks/js/tabs.js",
         "examples/listbox/js/listbox-rearrangeable.js",
-        "examples/listbox/js/listbox-scrollable.js",
-        "examples/menubar/js/menubar-editor.js"
+        "examples/listbox/js/listbox-scrollable.js"
       ],
       "rules": {
         "no-undef": 0
