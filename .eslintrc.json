@@ -64,10 +64,7 @@
         "examples/link/js/link.js",
         "examples/listbox/js/listbox-collapsible.js",
         "examples/listbox/js/listbox-scrollable.js",
-        "examples/listbox/js/listbox.js",
-        "examples/menu-button/js/menu-button-actions-active-descendant.js",
-        "examples/menu-button/js/menu-button-actions.js",
-        "examples/menu-button/js/menu-button-links.js"
+        "examples/listbox/js/listbox.js"
       ],
       "rules": {
         "no-unused-vars": 0
