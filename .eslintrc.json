@@ -57,8 +57,7 @@
         "examples/disclosure/js/disclosureMenu.js",
         "examples/grid/js/dataGrid.js",
         "examples/grid/js/dataGrids.js",
-        "examples/grid/js/layoutGrids.js",
-        "examples/js/examples.js"
+        "examples/grid/js/layoutGrids.js"
       ],
       "rules": {
         "no-unused-vars": 0
@@ -71,8 +70,7 @@
         "examples/combobox/js/grid-combo.js",
         "examples/dialog-modal/js/alertdialog.js",
         "examples/feed/js/main.js",
-        "examples/grid/js/dataGrids.js",
-        "examples/js/app.js"
+        "examples/grid/js/dataGrids.js"
       ],
       "rules": {
         "no-undef": 0
