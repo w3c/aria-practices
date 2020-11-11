@@ -203,7 +203,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
             </ul>
           </li>
           <li><kbd>Tab</kbd>: Moves focus to the next focusable element; all focusable elements in the accordion are included in the page <kbd>Tab</kbd> sequence.</li>
-          <li><kbd>Shift + Tab</kbd>: Moves focus to the previous focusable element; all focusable elements in the accordion are included in the page <kbd>Tab</kbd> sequence.</li>
+          <li><kbd>Shift</kbd> + <kbd>Tab</kbd>: Moves focus to the previous focusable element; all focusable elements in the accordion are included in the page <kbd>Tab</kbd> sequence.</li>
           <li>
             <kbd>Down Arrow</kbd> (Optional): If focus is on an accordion header, moves focus to the next accordion header.
             If focus is on the last accordion header, either does nothing or moves focus to the first accordion header.
@@ -454,7 +454,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
                 If the button is activated with a shortcut key, the focus usually remains in
                 the context from which the shortcut key was activated. For example, if <kbd>Alt
                   + U</kbd> were assigned to an &quot;Up&quot; button that moves the currently focused
-                item in a list one position higher in the list, pressing <kbd>Alt + U</kbd> when the
+                item in a list one position higher in the list, pressing <kbd>Alt</kbd> + <kbd>U</kbd> when the
                 focus is in the list would not move the focus from the list.
               </li>
             </ul>
@@ -539,7 +539,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
             If the carousel has an auto-rotate feature, automatic slide rotation stops when any element in the carousel receives keyboard focus.
             It does not resume unless the user activates the rotation control.
           </li>
-          <li><kbd>Tab</kbd> and <kbd>Shift + Tab</kbd>: Move focus through the interactive elements of the carousel as specified by the page tab sequence -- scripting for <kbd>Tab</kbd> is not necessary.</li>
+          <li><kbd>Tab</kbd> and <kbd>Shift</kbd> + <kbd>Tab</kbd>: Move focus through the interactive elements of the carousel as specified by the page tab sequence -- scripting for <kbd>Tab</kbd> is not necessary.</li>
           <li>
             Button elements implement the keyboard interaction defined in the <a href="#button">button pattern</a>.
             Note: Activating the rotation control, next slide, and previous slide do not move focus, so users may easily repetitively activate them as many times as desired.
@@ -828,8 +828,8 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
             </ul>
           </li>
           <li>If the combobox is editable, it supports standard single line text editing keys appropriate for the device platform (see note below).</li>
-          <li><kbd>Alt + Down Arrow</kbd> (Optional): If the popup is available but not displayed, displays the popup without moving focus.</li>
-          <li><kbd>Alt + Up Arrow</kbd> (Optional): If the popup is displayed:
+          <li><kbd>Alt</kbd> + <kbd>Down Arrow</kbd> (Optional): If the popup is available but not displayed, displays the popup without moving focus.</li>
+          <li><kbd>Alt</kbd> + <kbd>Up Arrow</kbd> (Optional): If the popup is displayed:
             <ul>
               <li>If the popup contains focus, returns focus to the combobox.</li>
               <li>Closes the popup.</li>
@@ -921,8 +921,8 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
               <li>If the combobox is editable, returns focus to the combobox and places the cursor after the last character.</li>
             </ul>
           </li>
-          <li><kbd>Control + Home</kbd> (optional): moves focus to the first row.</li>
-          <li><kbd>Control + End</kbd> (Optional): moves focus to the last row.</li>
+          <li><kbd>Control</kbd> + <kbd>Home</kbd> (optional): moves focus to the first row.</li>
+          <li><kbd>Control</kbd> + <kbd>End</kbd> (Optional): moves focus to the last row.</li>
           <li>Any printable character: If the combobox is editable, returns the focus to the combobox without closing the popup and types the character.</li>
           <li><kbd>Backspace</kbd> (Optional): If the combobox is editable, returns focus to the combobox and deletes the character prior to the cursor.</li>
           <li><kbd>Delete</kbd> (Optional): If the combobox is editable, returns focus to the combobox, removes the selected state if a suggestion was selected, and removes the inline autocomplete string if present.</li>
@@ -1091,7 +1091,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       </p>
       <p>
         Like non-modal dialogs, modal dialogs contain their tab sequence.
-        That is, <kbd>Tab</kbd> and <kbd>Shift + Tab</kbd> do not move focus outside the dialog.
+        That is, <kbd>Tab</kbd> and <kbd>Shift</kbd> + <kbd>Tab</kbd> do not move focus outside the dialog.
         However, unlike most non-modal dialogs, modal dialogs do not provide means for moving keyboard focus outside the dialog window without closing the dialog.
       </p>
       <p>
@@ -1119,7 +1119,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
               <li>If focus is on the last tabbable element inside the dialog, moves focus to the first tabbable element inside the dialog. </li>
             </ul>
           </li>
-          <li><kbd>Shift + Tab</kbd>:
+          <li><kbd>Shift</kbd> + <kbd>Tab</kbd>:
             <ul>
               <li>Moves focus to the previous tabbable element inside the dialog.</li>
               <li>If focus is on the first tabbable element inside the dialog, moves focus to the last tabbable element inside the dialog.</li>
@@ -1323,8 +1323,8 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         <ul>
           <li><kbd>Page Down</kbd>: Move focus to next article.</li>
           <li><kbd>Page Up</kbd>: Move focus to previous article.</li>
-          <li><kbd>Control + End</kbd>: Move focus to the first focusable element after the feed.</li>
-          <li><kbd>Control + Home</kbd>: Move focus to the first focusable element before the feed.</li>
+          <li><kbd>Control</kbd> + <kbd>End</kbd>: Move focus to the first focusable element after the feed.</li>
+          <li><kbd>Control</kbd> + <kbd>Home</kbd>: Move focus to the first focusable element before the feed.</li>
         </ul>
         <ol class="note">
           <li>Due to the lack of convention, providing easily discoverable keyboard interface documentation is especially important.</li>
@@ -1338,8 +1338,8 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
                 Users move focus into the nested feed from the content of the containing article with <kbd>Tab</kbd>.
                 This may be slow if the article contains a significant number of links, buttons, or other widgets.
                </li>
-              <li>Provide a key for moving focus from the elements in the containing article to the first item in the nested feed, e.g., <kbd>Alt + Page Down</kbd>.</li>
-              <li>To continue reading the outer feed, <kbd>Control + End</kbd> moves focus to the next article in the outer feed.</li>
+              <li>Provide a key for moving focus from the elements in the containing article to the first item in the nested feed, e.g., <kbd>Alt</kbd> + <kbd>Page Down</kbd>.</li>
+              <li>To continue reading the outer feed, <kbd>Control</kbd> + <kbd>End</kbd> moves focus to the next article in the outer feed.</li>
             </ul>
           </li>
           <li>In the rare circumstance that a feed article contains a widget that uses the above suggested keys, the feed navigation key will operate the contained widget, and the user needs to move focus to an element that does not utilize the feed navigation keys in order to navigate the feed.</li>
@@ -1466,8 +1466,8 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
             <li><kbd>Page Up</kbd>: Moves focus up an author-determined number of rows, typically scrolling so the top row in the currently visible set of rows becomes one of the last visible rows. If focus is in the first row of the grid, focus does not move.</li>
             <li><kbd>Home</kbd>: moves focus to the first cell in the row that contains focus.</li>
             <li><kbd>End</kbd>: moves focus to the last cell in the row that contains focus.</li>
-            <li><kbd>Control + Home</kbd>: moves focus to the first cell in the first row.</li>
-            <li><kbd>Control + End</kbd>: moves focus to the last cell in the last row.</li>
+            <li><kbd>Control</kbd> + <kbd>Home</kbd>: moves focus to the first cell in the first row.</li>
+            <li><kbd>Control</kbd> + <kbd>End</kbd>: moves focus to the last cell in the last row.</li>
           </ul>
           <ul class="note">
             <li>
@@ -1478,17 +1478,17 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
               While navigation keys, such as arrow keys, are moving focus from cell to cell, they are not available to do something like operate a combobox or move an editing caret inside of a cell.
               If this functionality is needed, see <a href="#gridNav_inside">Editing and Navigating Inside a Cell</a>.
             </li>
-            <li>If navigation functions can dynamically add more rows or columns to the DOM, key events that move focus to the beginning or end of the grid, such as <kbd>control + End</kbd>, may move focus to the last row in the DOM rather than the last available row in the back-end data.</li>
+            <li>If navigation functions can dynamically add more rows or columns to the DOM, key events that move focus to the beginning or end of the grid, such as <kbd>Control</kbd> + <kbd>End</kbd>, may move focus to the last row in the DOM rather than the last available row in the back-end data.</li>
           </ul>
           <p>If a grid supports selection of cells, rows, or columns, the following keys are commonly used for these functions.</p>
           <ul>
-            <li><kbd>Control + Space</kbd>: selects the column that contains the focus.</li>
-            <li><kbd>Shift + Space</kbd>: Selects the row that contains the focus. If the grid includes a column with checkboxes for selecting rows, this key can serve as a shortcut for checking the box when focus is not on the checkbox.</li>
-            <li><kbd>Control + A</kbd>: Selects all cells.</li>
-            <li><kbd>Shift + Right Arrow</kbd>: Extends selection one cell to the right.</li>
-            <li><kbd>Shift + Left Arrow</kbd>: Extends selection one cell to the left.</li>
-            <li><kbd>Shift + Down Arrow</kbd>: Extends selection one cell down.</li>
-            <li><kbd>Shift + Up Arrow</kbd>: Extends selection one cell Up.</li>
+            <li><kbd>Control</kbd> + <kbd>Space</kbd>: selects the column that contains the focus.</li>
+            <li><kbd>Shift</kbd> + <kbd>Space</kbd>: Selects the row that contains the focus. If the grid includes a column with checkboxes for selecting rows, this key can serve as a shortcut for checking the box when focus is not on the checkbox.</li>
+            <li><kbd>Control</kbd> + <kbd>A</kbd>: Selects all cells.</li>
+            <li><kbd>Shift</kbd> + <kbd>Right Arrow</kbd>: Extends selection one cell to the right.</li>
+            <li><kbd>Shift</kbd> + <kbd>Left Arrow</kbd>: Extends selection one cell to the left.</li>
+            <li><kbd>Shift</kbd> + <kbd>Down Arrow</kbd>: Extends selection one cell down.</li>
+            <li><kbd>Shift</kbd> + <kbd>Up Arrow</kbd>: Extends selection one cell Up.</li>
           </ul>
           <p class="note">See <a href="#kbd_common_conventions"></a> for cut, copy, and paste key assignments.</p>
         </section>
@@ -1559,8 +1559,8 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
               <kbd>End</kbd>: moves focus to the last cell in the row that contains focus.
               Optionally, if the grid has a single column or fewer than three cells per row, focus may instead move to the last cell in the grid.
             </li>
-            <li><kbd>Control + Home</kbd> (optional): moves focus to the first cell in the first row.</li>
-            <li><kbd>Control + End</kbd> (Optional): moves focus to the last cell in the last row.</li>
+            <li><kbd>Control</kbd> + <kbd>Home</kbd> (optional): moves focus to the first cell in the first row.</li>
+            <li><kbd>Control</kbd> + <kbd>End</kbd> (Optional): moves focus to the last cell in the last row.</li>
           </ul>
           <ul class="note">
             <li>
@@ -1571,22 +1571,22 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
               While navigation keys, such as arrow keys, are moving focus from cell to cell, they are not available to do something like operate a combobox or move an editing caret inside of a cell.
               If this functionality is needed, see <a href="#gridNav_inside">Editing and Navigating Inside a Cell</a>.
             </li>
-            <li>If navigation functions can dynamically add more rows or columns to the DOM, key events that move focus to the beginning or end of the grid, such as <kbd>control + End</kbd>, may move focus to the last row in the DOM rather than the last available row in the back-end data.</li>
+            <li>If navigation functions can dynamically add more rows or columns to the DOM, key events that move focus to the beginning or end of the grid, such as <kbd>Control</kbd> + <kbd>End</kbd>, may move focus to the last row in the DOM rather than the last available row in the back-end data.</li>
           </ul>
 
           <p>It would be unusual for a layout grid to provide functions that require cell selection. If it did, though, the following keys are commonly used for these functions.</p>
 
           <ul>
-            <li><kbd>Control + Space</kbd>: selects the column that contains the focus.</li>
+            <li><kbd>Control</kbd> + <kbd>Space</kbd>: selects the column that contains the focus.</li>
             <li>
-              <kbd>Shift + Space</kbd>: Selects the row that contains the focus.
+              <kbd>Shift</kbd> + <kbd>Space</kbd>: Selects the row that contains the focus.
               If the grid includes a column with checkboxes for selecting rows, this key can serve as a shortcut for checking the box when focus is not on the checkbox.
             </li>
-            <li><kbd>Control + A</kbd>: Selects all cells.</li>
-            <li><kbd>Shift + Right Arrow</kbd>: Extends selection one cell to the right.</li>
-            <li><kbd>Shift + Left Arrow</kbd>: Extends selection one cell to the left.</li>
-            <li><kbd>Shift + Down Arrow</kbd>: Extends selection one cell down.</li>
-            <li><kbd>Shift + Up Arrow</kbd>: Extends selection one cell Up.</li>
+            <li><kbd>Control</kbd> + <kbd>A</kbd>: Selects all cells.</li>
+            <li><kbd>Shift</kbd> + <kbd>Right Arrow</kbd>: Extends selection one cell to the right.</li>
+            <li><kbd>Shift</kbd> + <kbd>Left Arrow</kbd>: Extends selection one cell to the left.</li>
+            <li><kbd>Shift</kbd> + <kbd>Down Arrow</kbd>: Extends selection one cell down.</li>
+            <li><kbd>Shift</kbd> + <kbd>Up Arrow</kbd>: Extends selection one cell Up.</li>
           </ul>
           <p class="note">See <a href="#kbd_common_conventions"></a> for cut, copy, and paste key assignments.</p>
         </section>
@@ -1679,7 +1679,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
               Optionally, the focus movement may wrap inside a single cell or within the grid itself.
             </li>
             <li>
-              <kbd>Shift + Tab</kbd>: moves focus to the previous widget in the grid.
+              <kbd>Shift</kbd> + <kbd>Tab</kbd>: moves focus to the previous widget in the grid.
               Optionally, the focus movement may wrap inside a single cell or within the grid itself.
             </li>
           </ul>
@@ -1761,7 +1761,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         <h4>Keyboard Interaction</h4>
         <ul>
           <li><kbd>Enter</kbd>: Executes the link and moves focus to the link target.</li>
-          <li><kbd>Shift + F10</kbd> (Optional): Opens a context menu for the link.</li>
+          <li><kbd>Shift</kbd> + <kbd>F10</kbd> (Optional): Opens a context menu for the link.</li>
         </ul>
       </section>
 
@@ -1846,25 +1846,25 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
               <li>Recommended selection model -- holding modifier keys is not necessary:
                 <ul>
                   <li><kbd>Space</kbd>: changes the selection state of the focused option.</li>
-                  <li><kbd>Shift + Down Arrow</kbd> (Optional): Moves focus to and toggles the selected state of the next option.</li>
-                  <li><kbd>Shift + Up Arrow</kbd> (Optional): Moves focus to and toggles the selected state of the previous option.</li>
-                  <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous items from the most recently selected item to the focused item.</li>
-                  <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the focused option and all options up to the first option. Optionally, moves focus to the first option.</li>
-                  <li><kbd>Control + Shift + End</kbd> (Optional): Selects the focused option and all options down to the last option. Optionally, moves focus to the last option.</li>
-                  <li><kbd>Control + A</kbd> (Optional): Selects all options in the list. Optionally, if all options are selected, it may also unselect all options.</li>
+                  <li><kbd>Shift</kbd> + <kbd>Down Arrow</kbd> (Optional): Moves focus to and toggles the selected state of the next option.</li>
+                  <li><kbd>Shift</kbd> + <kbd>Up Arrow</kbd> (Optional): Moves focus to and toggles the selected state of the previous option.</li>
+                  <li><kbd>Shift</kbd> + <kbd>Space</kbd> (Optional): Selects contiguous items from the most recently selected item to the focused item.</li>
+                  <li><kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>Home</kbd> (Optional): Selects the focused option and all options up to the first option. Optionally, moves focus to the first option.</li>
+                  <li><kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>End</kbd> (Optional): Selects the focused option and all options down to the last option. Optionally, moves focus to the last option.</li>
+                  <li><kbd>Control</kbd> + <kbd>A</kbd> (Optional): Selects all options in the list. Optionally, if all options are selected, it may also unselect all options.</li>
                 </ul>
               </li>
               <li>Alternative selection model -- moving focus without holding a <kbd>Shift</kbd> or <kbd>Control</kbd> modifier unselects all selected nodes except the focused node:
               <ul>
-                  <li><kbd>Shift + Down Arrow</kbd>: Moves focus to and toggles the selection state of the next option.</li>
-                  <li><kbd>Shift + Up Arrow</kbd>: Moves focus to and toggles the selection state of the previous option.</li>
-                  <li><kbd>Control + Down Arrow</kbd>: Moves focus to the next option without changing its selection state.</li>
-                  <li><kbd>Control + Up Arrow</kbd>: Moves focus to the previous option without changing its selection state.</li>
-                  <li><kbd>Control + Space</kbd> Changes the selection state of the focused option. </li>
-                  <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous items from the most recently selected item to the focused item.</li>
-                  <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the focused option and all options up to the first option. Optionally, moves focus to the first option.</li>
-                  <li><kbd>Control + Shift + End</kbd> (Optional): Selects the focused option and all options down to the last option. Optionally, moves focus to the last option.</li>
-                  <li><kbd>Control + A</kbd> (Optional): Selects all options in the list. Optionally, if all options are selected, it may also unselect all options.</li>
+                  <li><kbd>Shift</kbd> + <kbd>Down Arrow</kbd>: Moves focus to and toggles the selection state of the next option.</li>
+                  <li><kbd>Shift</kbd> + <kbd>Up Arrow</kbd>: Moves focus to and toggles the selection state of the previous option.</li>
+                  <li><kbd>Control</kbd> + <kbd>Down Arrow</kbd>: Moves focus to the next option without changing its selection state.</li>
+                  <li><kbd>Control</kbd> + <kbd>Up Arrow</kbd>: Moves focus to the previous option without changing its selection state.</li>
+                  <li><kbd>Control</kbd> + <kbd>Space</kbd> Changes the selection state of the focused option. </li>
+                  <li><kbd>Shift</kbd> + <kbd>Space</kbd> (Optional): Selects contiguous items from the most recently selected item to the focused item.</li>
+                  <li><kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>Home</kbd> (Optional): Selects the focused option and all options up to the first option. Optionally, moves focus to the first option.</li>
+                  <li><kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>End</kbd> (Optional): Selects the focused option and all options down to the last option. Optionally, moves focus to the last option.</li>
+                  <li><kbd>Control</kbd> + <kbd>A</kbd> (Optional): Selects all options in the list. Optionally, if all options are selected, it may also unselect all options.</li>
                 </ul>
               </li>
             </ul>
@@ -1922,7 +1922,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       <p>
         A <a href="#menu" class="role-reference">menu</a> is a widget that offers a list of choices to the user, such as a set of actions or functions.
         Menu widgets behave like native operating system menus, such as the menus that pull down from the menubars commonly found at the top of many desktop application windows.
-        A menu is usually opened, or made visible, by activating a <a href="#menubutton">menu button</a>, choosing an item in a menu that opens a sub menu, or by invoking a command, such as <kbd>Shift + F10</kbd> in Windows, that opens a context specific menu.
+        A menu is usually opened, or made visible, by activating a <a href="#menubutton">menu button</a>, choosing an item in a menu that opens a sub menu, or by invoking a command, such as <kbd>Shift</kbd> + <kbd>F10</kbd> in Windows, that opens a context specific menu.
         When a user activates a choice in a menu, the menu usually closes unless the choice opened a submenu.
       </p>
 
@@ -2027,14 +2027,14 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
           <li>Any key that corresponds to a printable character (Optional): Move focus to the next item in the current menu whose label begins with that printable character.</li>
           <li><kbd>Escape</kbd>: Close the menu that contains focus and return focus to the element or context, e.g., menu button or parent <code>menuitem</code>, from which the menu was opened.</li>
           <li><kbd>Tab</kbd>: Moves focus to the next element in the tab sequence, and if the item that had focus is not in a <code>menubar</code>, closes its <code>menu</code> and all open parent <code>menu</code> containers.</li>
-          <li><kbd>Shift + Tab</kbd>: Moves focus to the previous element in the tab sequence, and if the item that had focus is not in a <code>menubar</code>, closes its <code>menu</code> and all open parent <code>menu</code> containers.</li>
+          <li><kbd>Shift</kbd> + <kbd>Tab</kbd>: Moves focus to the previous element in the tab sequence, and if the item that had focus is not in a <code>menubar</code>, closes its <code>menu</code> and all open parent <code>menu</code> containers.</li>
         </ul>
         <ol class="note">
           <li>Disabled menu items are focusable but cannot be activated. </li>
           <li>A <a href="#separator" class="role-reference">separator</a> in a menu is not focusable or interactive.</li>
           <li>
             If a menu is opened or a menubar receives focus as a result of a context action, <kbd>Escape</kbd> or <kbd>Enter</kbd> may return focus to the invoking context.
-            For example, a rich text editor may have a menubar that receives focus when a shortcut key, e.g., <kbd>alt + F10</kbd>, is pressed while editing.
+            For example, a rich text editor may have a menubar that receives focus when a shortcut key, e.g., <kbd>Alt</kbd> + <kbd>F10</kbd>, is pressed while editing.
             In this case, pressing <kbd>Escape</kbd> or activating a command from the menu may return focus to the editor.
           </li>
           <li>
@@ -2231,7 +2231,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
           </p>
           <ul>
             <li>
-              <kbd>Tab</kbd> and <kbd>Shift + Tab</kbd>:
+              <kbd>Tab</kbd> and <kbd>Shift</kbd> + <kbd>Tab</kbd>:
               Move focus into and out of the radio group.
               When focus moves into a radio group :
               <ul>
@@ -2668,7 +2668,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
               <li><kbd>Space or Enter</kbd>: Activates the tab if it was not activated automatically on focus.</li>
               <li><kbd>Home</kbd> (Optional): Moves focus to the first tab. Optionally, activates the newly focused tab (See note below).</li>
               <li><kbd>End</kbd> (Optional): Moves focus to the last tab. Optionally, activates the newly focused tab (See note below).</li>
-              <li><kbd>Shift + F10</kbd>: If the tab has an associated popup menu, opens the menu. </li>
+              <li><kbd>Shift</kbd> + <kbd>F10</kbd>: If the tab has an associated popup menu, opens the menu. </li>
               <li>
                 <kbd>Delete</kbd> (Optional): If deletion is allowed, deletes (closes) the current tab element and its associated tab panel,
                 sets focus on the tab following the tab that was closed, and optionally activates the newly focused tab. If there is not a tab that followed the tab that was deleted,
@@ -2750,7 +2750,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <ul>
-          <li><kbd>Tab</kbd> and <kbd>Shift + Tab</kbd>: Move focus into and out of the toolbar. When focus moves into a toolbar:
+          <li><kbd>Tab</kbd> and <kbd>Shift</kbd> + <kbd>Tab</kbd>: Move focus into and out of the toolbar. When focus moves into a toolbar:
             <ul>
               <li>If focus is moving into the toolbar for the first time, focus is set on the first control that is not disabled.</li>
               <li>If the toolbar has previously contained focus, focus is optionally set on the control that last had focus. Otherwise, it is set on the first control that is not disabled.</li>
@@ -2944,25 +2944,25 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
               <li>Recommended selection model -- holding a modifier key while moving focus is not necessary:
                 <ul>
                   <li><kbd>Space</kbd>: Toggles the selection state of the focused node.</li>
-                  <li><kbd>Shift + Down Arrow</kbd> (Optional): Moves focus to and toggles the selection state of the next node.</li>
-                  <li><kbd>Shift + Up Arrow</kbd> (Optional): Moves focus to and toggles the selection state of the previous node.</li>
-                  <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous nodes from the most recently selected node to the current node.</li>
-                  <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the node with focus and all nodes up to the first node. Optionally, moves focus to the first node.</li>
-                  <li><kbd>Control + Shift + End</kbd> (Optional): Selects the node with focus and all nodes down to the last node. Optionally, moves focus to the last node.</li>
-                  <li><kbd>Control + A</kbd> (Optional): Selects all nodes in the tree. Optionally, if all nodes are selected, it can also unselect all nodes.</li>
+                  <li><kbd>Shift</kbd> + <kbd>Down Arrow</kbd> (Optional): Moves focus to and toggles the selection state of the next node.</li>
+                  <li><kbd>Shift</kbd> + <kbd>Up Arrow</kbd> (Optional): Moves focus to and toggles the selection state of the previous node.</li>
+                  <li><kbd>Shift</kbd> + <kbd>Space</kbd> (Optional): Selects contiguous nodes from the most recently selected node to the current node.</li>
+                  <li><kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>Home</kbd> (Optional): Selects the node with focus and all nodes up to the first node. Optionally, moves focus to the first node.</li>
+                  <li><kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>End</kbd> (Optional): Selects the node with focus and all nodes down to the last node. Optionally, moves focus to the last node.</li>
+                  <li><kbd>Control</kbd> + <kbd>A</kbd> (Optional): Selects all nodes in the tree. Optionally, if all nodes are selected, it can also unselect all nodes.</li>
                 </ul>
               </li>
               <li>Alternative selection model -- Moving focus without holding the <kbd>Shift</kbd> or <kbd>Control</kbd> modifier unselects all selected nodes except for the focused node:
                 <ul>
-                  <li><kbd>Shift + Down Arrow</kbd>: Moves focus to and toggles the selection state of the next node.</li>
-                  <li><kbd>Shift + Up Arrow</kbd>: Moves focus to and toggles the selection state of the previous node.</li>
-                  <li><kbd>Control + Down Arrow</kbd>: Without changing the selection state, moves focus to the next node.</li>
-                  <li><kbd>Control + Up Arrow</kbd>: Without changing the selection state, moves focus to the previous node.</li>
-                  <li><kbd>Control + Space</kbd>: Toggles the selection state of the focused node.</li>
-                  <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous nodes from the most recently selected node to the current node.</li>
-                  <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the node with focus and all nodes up to the first node. Optionally, moves focus to the first node.</li>
-                  <li><kbd>Control + Shift + End</kbd> (Optional): Selects the node with focus and all nodes down to the last node. Optionally, moves focus to the last node.</li>
-                  <li><kbd>Control + A</kbd> (Optional): Selects all nodes in the tree. Optionally, if all nodes are selected, it can also unselect all nodes.</li>
+                  <li><kbd>Shift</kbd> + <kbd>Down Arrow</kbd>: Moves focus to and toggles the selection state of the next node.</li>
+                  <li><kbd>Shift</kbd> + <kbd>Up Arrow</kbd>: Moves focus to and toggles the selection state of the previous node.</li>
+                  <li><kbd>Control</kbd> + <kbd>Down Arrow</kbd>: Without changing the selection state, moves focus to the next node.</li>
+                  <li><kbd>Control</kbd> + <kbd>Up Arrow</kbd>: Without changing the selection state, moves focus to the previous node.</li>
+                  <li><kbd>Control</kbd> + <kbd>Space</kbd>: Toggles the selection state of the focused node.</li>
+                  <li><kbd>Shift</kbd> + <kbd>Space</kbd> (Optional): Selects contiguous nodes from the most recently selected node to the current node.</li>
+                  <li><kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>Home</kbd> (Optional): Selects the node with focus and all nodes up to the first node. Optionally, moves focus to the first node.</li>
+                  <li><kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>End</kbd> (Optional): Selects the node with focus and all nodes down to the last node. Optionally, moves focus to the last node.</li>
+                  <li><kbd>Control</kbd> + <kbd>A</kbd> (Optional): Selects all nodes in the tree. Optionally, if all nodes are selected, it can also unselect all nodes.</li>
                 </ul>
               </li>
             </ul>
@@ -3134,14 +3134,14 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
               </ul>
           </li>
           <li>
-            <kbd>Control + Home</kbd>:
+            <kbd>Control</kbd> + <kbd>Home</kbd>:
              <ul>
                 <li>If focus is on a row, moves focus to the first row.  If focus is in the first row, focus does not move.</li>
                 <li>If focus is on a cell, moves focus to the first cell in the column. If focus is in the first row, focus does not move.</li>
               </ul>
           </li>
           <li>
-            <kbd>Control + End</kbd>:
+            <kbd>Control</kbd> + <kbd>End</kbd>:
              <ul>
                 <li>If focus is on a row, moves focus to the last row.  If focus is in the last row, focus does not move.</li>
                 <li>If focus is on a cell, moves focus to the last cell in the column. If focus is in the last row, focus does not move.</li>
@@ -3157,48 +3157,48 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
             While navigation keys, such as arrow keys, are moving focus from cell to cell, they are not available to do something like operate a combobox or move an editing caret inside of a cell.
             If this functionality is needed, see <a href="#gridNav_inside">Editing and Navigating Inside a Cell</a>.
           </li>
-          <li>If navigation functions can dynamically add more rows or columns to the DOM, key events that move focus to the beginning or end of the grid, such as <kbd>control + End</kbd>, may move focus to the last row in the DOM rather than the last available row in the back-end data.</li>
+          <li>If navigation functions can dynamically add more rows or columns to the DOM, key events that move focus to the beginning or end of the grid, such as <kbd>Control</kbd> + <kbd>End</kbd>, may move focus to the last row in the DOM rather than the last available row in the back-end data.</li>
         </ul>
         <p>If a treegrid supports selection of cells, rows, or columns, the following keys are commonly used for these functions.</p>
         <ul>
           <li>
-            <kbd>Control + Space</kbd>:
+            <kbd>Control</kbd> + <kbd>Space</kbd>:
             <ul>
               <li>If focus is on a row, selects all cells.</li>
               <li>If focus is on a cell, selects the column that contains the focus.</li>
             </ul>
           </li>
           <li>
-            <kbd>Shift + Space</kbd>:
+            <kbd>Shift</kbd> + <kbd>Space</kbd>:
             <ul>
               <li>If focus is on a row, selects the row.</li>
               <li>If focus is on a cell, selects the row that contains the focus. If the treegrid includes a column with checkboxes for selecting rows, this key can serve as a shortcut for checking the box when focus is not on the checkbox.</li>
             </ul>
           </li>
-          <li><kbd>Control + A</kbd>: Selects all cells.</li>
+          <li><kbd>Control</kbd> + <kbd>A</kbd>: Selects all cells.</li>
           <li>
-            <kbd>Shift + Right Arrow</kbd>:
+            <kbd>Shift</kbd> + <kbd>Right Arrow</kbd>:
             <ul>
               <li>If focus is on a row, does not change selection.</li>
               <li>if focus is on a cell, extends selection one cell to the right.</li>
             </ul>
           </li>
           <li>
-            <kbd>Shift + Left Arrow</kbd>:
+            <kbd>Shift</kbd> + <kbd>Left Arrow</kbd>:
             <ul>
               <li>If focus is on a row, does not change selection.</li>
               <li>if focus is on a cell, extends selection one cell to the left.</li>
             </ul>
           </li>
           <li>
-            <kbd>Shift + Down Arrow</kbd>:
+            <kbd>Shift</kbd> + <kbd>Down Arrow</kbd>:
             <ul>
               <li>If focus is on a row, extends selection to all the cells in the next row.</li>
               <li>If focus is on a cell, extends selection one cell down.</li>
             </ul>
           </li>
           <li>
-            <kbd>Shift + Up Arrow</kbd>:
+            <kbd>Shift</kbd> + <kbd>Up Arrow</kbd>:
             <ul>
               <li>If focus is on a row, extends selection to all the cells in the previous row.</li>
               <li>If focus is on a cell, extends selection one cell up.</li>
@@ -5535,7 +5535,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
       <p>
         As described in section <a href="#kbd_generalnav"></a>, the tab sequence should include only one focusable element of a composite UI component.
-        Once a composite contains focus, keys other than <kbd>Tab</kbd> and <kbd>Shift + Tab</kbd> enable the user to move focus among its focusable elements.
+        Once a composite contains focus, keys other than <kbd>Tab</kbd> and <kbd>Shift</kbd> + <kbd>Tab</kbd> enable the user to move focus among its focusable elements.
         Authors are free to choose which keys move focus inside of a composite, but they are strongly advised to use the same key bindings as similar components in common GUI operating systems as demonstrated in <a href="#aria_ex"></a>.
       </p>
 
@@ -5719,32 +5719,32 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
         <tbody>
           <tr>
             <th scope="row">open context menu</th>
-            <td><kbd>Shift + F10</kbd></td>
+            <td><kbd>Shift</kbd> + <kbd>F10</kbd></td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">Copy to clipboard</th>
-            <td><kbd>Control + C</kbd></td>
-            <td><kbd>Command + C</kbd></td>
+            <td><kbd>Control</kbd> + <kbd>C</kbd></td>
+            <td><kbd>Command</kbd> + <kbd>C</kbd></td>
           </tr>
           <tr>
             <th scope="row">Paste from clipboard</th>
-            <td><kbd>Control + V</kbd></td>
-            <td><kbd>Command + V</kbd></td>
+            <td><kbd>Control</kbd> + <kbd>V</kbd></td>
+            <td><kbd>Command</kbd> + <kbd>V</kbd></td>
           </tr>
           <tr>
             <th scope="row">Cut to clipboard</th>
-            <td><kbd>Control + X</kbd></td>
-            <td><kbd>Command + X</kbd></td>
+            <td><kbd>Control</kbd> + <kbd>X</kbd></td>
+            <td><kbd>Command</kbd> + <kbd>X</kbd></td>
           </tr>
           <tr>
             <th scope="row">undo last action</th>
-            <td><kbd>Control + Z</kbd></td>
-            <td><kbd>Command + Z</kbd></td>
+            <td><kbd>Control</kbd> + <kbd>Z</kbd></td>
+            <td><kbd>Command</kbd> + <kbd>Z</kbd></td>
           </tr>
           <tr>
             <th scope="row">Redo action</th>
-            <td><kbd>Control + Y</kbd></td>
+            <td><kbd>Control</kbd> + <kbd>Y</kbd></td>
             <td>Command + Shift + Z</td>
           </tr>
         </tbody>
@@ -5844,7 +5844,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
         <h4>Assigning Keyboard Shortcuts</h4>
         <p>When choosing the keys to assign to a shortcut, there are many factors to consider.</p>
         <ul>
-          <li>Making the shortcut easy to learn and remember by using a mnemonic (e.g., <kbd>Control + S</kbd> for "Save") or following a logical or spacial pattern.</li>
+          <li>Making the shortcut easy to learn and remember by using a mnemonic (e.g., <kbd>Control</kbd> + <kbd>S</kbd> for "Save") or following a logical or spacial pattern.</li>
           <li> Localizing the interface, including for differences in which keys are available and how they behave and for language considerations that could impact mnemonics. </li>
           <li>Avoiding and managing conflicts with key assignments used by an assistive technology, the browser, or the operating system.</li>
         </ul>

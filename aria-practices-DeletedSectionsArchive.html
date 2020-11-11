@@ -184,7 +184,7 @@
                 <h4>Keyboard Interaction</h4>
                 <ul>
                     <li>With focus in an empty text box, press <kbd>Down Arrow</kbd>, <kbd>Up
-                            Arrow</kbd>, <kbd>Alt + Down Arrow</kbd>, or <kbd>Alt + Up Arrow</kbd> to
+                        Arrow</kbd>, <kbd>Alt</kbd> + <kbd>Arrow</kbd>, or <kbd>Alt</kbd> + <kbd>Up Arrow</kbd> to
                         display the entire list of choices. Focus remains in the text box and no
                         choice is highlighted.
                         <ul>
@@ -278,7 +278,7 @@
                                 <kbd>Escape</kbd> closes the drop down and leaves the typed text
                                 displayed in the text box. Need to consider if pressing <kbd>Escape</kbd>
                                 again should clear the typed text. The user must press the <kbd>Down</kbd>
-                                arrow or <kbd>Alt + Down</kbd> arrow or click the associated icon to
+                                arrow or <kbd>Alt</kbd> + <kbd>Down</kbd> arrow or click the associated icon to
                                 invoke the drop-down list of choices again.
                             </li>
                         </ul>
@@ -341,11 +341,11 @@
                 <ul>
                     <li><kbd>Left Arrow</kbd> or <kbd>Right Arrow</kbd> move the caret within
                         the edit field.</li>
-                    <li><kbd>Alt + Up/Down Arrow</kbd> opens and closes the list.</li>
+                    <li><kbd>Alt</kbd> + <kbd>Up</kbd>/<kbd>Down Arrow</kbd> opens and closes the list.</li>
                     <li><kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> moves focus up and down
                         the list. As focus moves inside the dropdown list, the edit field is
                         updated.</li>
-                    <li><kbd>Page Up / Page Down</kbd> selects the next/previous pages item
+                    <li><kbd>Page Up</kbd> / <kbd>Page Down</kbd> selects the next/previous pages item
                         depending on the lists size.</li>
                     <li><kbd>Escape</kbd> closes the dropdown list, returns focus to the edit
                         field, and does not change the current selection.</li>
@@ -536,7 +536,7 @@
                 Focus initially is placed on today's date.
               </li>
               <li>
-                <kbd>Shift + Tab</kbd> - reverses the direction of the tab order.
+                <kbd>Shift</kbd> + <kbd>Tab</kbd> - reverses the direction of the tab order.
                 Once in the widget, a Shift+Tab will take the user to the previous focusable element in the tab order.
               </li>
               <li>
@@ -547,8 +547,8 @@
                 <kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd> - advances one day to the next, also in a continuum.
                 Visually focus is moved from day to day and wraps from row to row in a grid of days and weeks.
               </li>
-              <li><kbd>Control + Page Up</kbd> - Moves to the same date in the previous year.</li>
-              <li><kbd>Control + Page Down</kbd> - Moves to the same date in the next year.</li>
+              <li><kbd>Control</kbd> + <kbd>Page Up</kbd> - Moves to the same date in the previous year.</li>
+              <li><kbd>Control</kbd> + <kbd>Page Down</kbd> - Moves to the same date in the next year.</li>
               <li>
                 <kbd>Space</kbd> -
                 <ul>
@@ -556,7 +556,7 @@
                   <li>
                     Contiguous Mode: Similar to selecting a range of text.
                     <kbd>Space</kbd> selects the first date.
-                    <kbd>Shift + Arrow</kbd>s add to the selection.
+                    <kbd>Shift</kbd> + <kbd>Arrow</kbd>s add to the selection.
                     Pressing <kbd>Space</kbd> again deselects the previous selections and selects the current focused date.
                   </li>
                 </ul>
@@ -678,9 +678,9 @@
         <ul>
           <li><kbd>Escape</kbd> The tooltip dialog is closed by pressing the escape key when focus is within the dialog, mouse clicking on a close icon, or mouse clicking outside of the dialog onto the application.</li>
           <li><kbd>Tab</kbd> Focus must be held within the dialog until it is cancelled or submitted. As the user presses tab to move within items in the dialog, pressing tab with focus on the last focusable item in the dialog will move focus back to the first focusable item in the dialog.</li>
-          <li><kbd>Shift + Tab</kbd> Likewise, if the user is shift-tabbing through elements in the dialog, pressing shift-tab with focus on the first focusable item in the dialog will move focus to the last item in the dialog.</li>
+          <li><kbd>Shift</kbd> + <kbd>Tab</kbd> Likewise, if the user is shift-tabbing through elements in the dialog, pressing shift-tab with focus on the first focusable item in the dialog will move focus to the last item in the dialog.</li>
         </ul>
-        <p class="note">It is modal because focus is trapped within the dialog as the user navigates via the <kbd>Tab</kbd> and <kbd>Shift + Tab</kbd> key.</p>
+        <p class="note">It is modal because focus is trapped within the dialog as the user navigates via the <kbd>Tab</kbd> and <kbd>Shift</kbd> + <kbd>Tab</kbd> key.</p>
         <p class="note">Unlike a true modal dialog, the user can click outside of the dialog, however in that case the tooltip dialog is immediately closed.</p>
         <p class="note">A tooltip dialog can not be moved/dragged.</p>
         <p class="note">Other than the close and move behavior, all other behaviors of a modal dialog are implemented by the tooltip dialog.</p>
@@ -735,7 +735,7 @@
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <ul>
-          <li><kbd>Control + F1</kbd>
+          <li><kbd>Control</kbd> + <kbd>F1</kbd>
             <ul>
               <li>Posts the Popup Help widget. </li>
               <li>Input focus is placed on the first interactive element in the Popup Help. </li>
@@ -782,9 +782,9 @@
               </li>
             </ul>
           </li>
-          <li><kbd>Shift + Tab</kbd>
+          <li><kbd>Shift</kbd> + <kbd>Tab</kbd>
             <ul>
-              <li>As with other keyboard conventions described here, the <kbd>Shift + Tab</kbd> has the effect of moving the focus up rather than down and follows the same conventions as described for the modal and non-modal <kbd>Tab</kbd> key above. </li>
+              <li>As with other keyboard conventions described here, the <kbd>Shift</kbd> + <kbd>Tab</kbd> has the effect of moving the focus up rather than down and follows the same conventions as described for the modal and non-modal <kbd>Tab</kbd> key above. </li>
             </ul>
           </li>
           <li><kbd>Enter</kbd>
@@ -832,12 +832,12 @@
           <li>The edit control is provided by the browser; it provides the keyboard support for navigating, adding, removing and   selecting text, so that behavior is not defined by the rich internet application. </li>
           <li>The browser should also provide a keyboard mechanism   for navigating into and out of the edit control. Within most browsers the edit   control is put into the tab order of the page and can be navigated into, out of,   and through using the tab and shift-tab keys like any standard form control. </li>
           <li>A rich text editor widget needs to provide a user   interface for interacting with the browser provided edit control. Interaction   between the user interface and editor is defined here assuming that a toolbar is   used. </li>
-          <li><kbd>Tab</kbd> and <kbd>Shift + Tab</kbd> - If not provided by the browser, the rich   text editor widget provides a keyboard mechanism to move into and out of the   edit control. Tab and shift-tab are the recommended keystrokes. The toolbar or   other user interface component associated with the editor is placed in the tab   order immediately before the editor. To set an attribute on text within the edit   control the user sets focus into the edit control, moves the insertion point,   selects text and presses shift-tab to move focus from the editor back to the   toolbar. The user navigates through the toolbar (see toolbar behavior) to a   desired attribute and invokes that attribute. When an attribute is invoked, that   attribute is applied to the selected text in the editor and focus moves back   into the editor at the previous insertion point with the selection intact. </li>
+          <li><kbd>Tab</kbd> and <kbd>Shift</kbd> + <kbd>Tab</kbd> - If not provided by the browser, the rich   text editor widget provides a keyboard mechanism to move into and out of the   edit control. Tab and shift-tab are the recommended keystrokes. The toolbar or   other user interface component associated with the editor is placed in the tab   order immediately before the editor. To set an attribute on text within the edit   control the user sets focus into the edit control, moves the insertion point,   selects text and presses shift-tab to move focus from the editor back to the   toolbar. The user navigates through the toolbar (see toolbar behavior) to a   desired attribute and invokes that attribute. When an attribute is invoked, that   attribute is applied to the selected text in the editor and focus moves back   into the editor at the previous insertion point with the selection intact. </li>
           <li><strong>Options:</strong>
             <ul>
-              <li>Rather than using <kbd>Shift + Tab</kbd> to move focus from within the editor to the   toolbar, another key combination could be used (<kbd>Alt + Up Arrow</kbd>, <kbd>Control + Shift + Letter</kbd>,   etc.). This would eliminate the need to put the user interface control (in this   example a toolbar) into the tab order immediately before the editor component.   However, there are drawbacks to using a different keystroke to navigate to the   user interface:
+              <li>Rather than using <kbd>Shift</kbd> + <kbd>Tab</kbd> to move focus from within the editor to the   toolbar, another key combination could be used (<kbd>Alt</kbd> + <kbd>Up Arrow</kbd>, <kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>Letter</kbd>,   etc.). This would eliminate the need to put the user interface control (in this   example a toolbar) into the tab order immediately before the editor component.   However, there are drawbacks to using a different keystroke to navigate to the   user interface:
                 <ol>
-                    <li>It is not as &quot;discoverable&quot; as relying on the standard <kbd>Tab/Shift + Tab</kbd>   behavior; </li>
+                  <li>It is not as &quot;discoverable&quot; as relying on the standard <kbd>Tab/Shift</kbd> + <kbd>Tab</kbd> behavior; </li>
                   <li>It is difficult to find key combinations which are not already captured by   the browser or assistive technology. </li>
                   <li>Focus could stay within the toolbar after the user invokes an attribute. The   user would then have to press an additional key to move focus back into the   editor. This would allow multiple attributes to be set on the current selection   without having to return back to the user interface but it would add an extra   key sequence after setting just a single attribute. Requiring a keystroke to   move focus back into the editor would also require modifying the toolbar   behavior to intercept this keystroke and to know how to set focus back to the   component (the editor) that the toolbar is associated with. </li>
                 </ol>
@@ -848,8 +848,8 @@
 
         <p>Optionally, if the developer wishes to provide the   ability to insert a tab into the document, it is recommended one of the   following methods be used.            </p>
         <ul>
-          <li>Provide indent and outdent buttons in the menu. Keyboard shortcuts to the   buttons should be <kbd>Control + M</kbd> for indent and <kbd>Control + Shift + M</kbd> for outdent. </li>
-          <li>Provide a button in the menu to toggle the use of <kbd>Tab</kbd> between the two modes.   If this button is used, then <kbd>Control + M</kbd> is recommended as a   keyboard shortcut to toggle the button. </li>
+          <li>Provide indent and outdent buttons in the menu. Keyboard shortcuts to the   buttons should be <kbd>Control</kbd> + <kbd>M</kbd> for indent and <kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> for outdent. </li>
+          <li>Provide a button in the menu to toggle the use of <kbd>Tab</kbd> between the two modes.   If this button is used, then <kbd>Control</kbd> + <kbd>M</kbd> is recommended as a   keyboard shortcut to toggle the button. </li>
         </ul>
       </section>
 
@@ -1075,20 +1075,20 @@
                 <ul>
                   <li>The initial tab enters the grid with focus on the first cell of the first row, often a header. </li>
                   <li>Once in the grid a second tab moves out of the grid to the next tab stop. </li>
-                  <li>Once focus is established in the grid, a <kbd>Tab</kbd> into or a <kbd>Shift + Tab</kbd> into the   grid will return to the cell which last had focus. </li>
+                  <li>Once focus is established in the grid, a <kbd>Tab</kbd> into or a <kbd>Shift</kbd> + <kbd>Tab</kbd> into the   grid will return to the cell which last had focus. </li>
                 </ul>
               </li>
               <li><kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd> keys  navigate between columns. If the   next cell in the row is empty, focus should not move. </li>
               <li><kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> The down arrow moves focus to the first column of a child row, if expanded. Otherwise focus is moved to the same column in the next row. Up arrow performs the same navigation but in reverse. </li>
-              <li><kbd>Control + Left</kbd> and <kbd>Control + Right Arrows</kbd> expand or collapse rows. </li>
+              <li><kbd>Control</kbd> + <kbd>Left</kbd> and <kbd>Control</kbd> + <kbd>Right Arrows</kbd> expand or collapse rows. </li>
               <li>If the cell contains an editable field, the <kbd>Enter</kbd> key starts edit mode and the <kbd>Escape</kbd> key exits edit mode. </li>
               <li>Selecting Cells
                 <ul>
-                  <li><kbd>Control + Space</kbd> selects the current column. </li>
-                  <li><kbd>Shift + Space</kbd> selects the current row. </li>
-                  <li><kbd>Control + A</kbd> selects the entire grid. </li>
-                  <li><kbd>Shift + Arrow</kbd> selects contiguous cells. </li>
-                  <li><kbd>Shift + F8</kbd> Allows additional cells to be added to a   previous selection to accomplish non-contiguous selection. </li>
+                  <li><kbd>Control</kbd> + <kbd>Space</kbd> selects the current column. </li>
+                  <li><kbd>Shift</kbd> + <kbd>Space</kbd> selects the current row. </li>
+                  <li><kbd>Control</kbd> + <kbd>A</kbd> selects the entire grid. </li>
+                  <li><kbd>Shift</kbd> + <kbd>Arrow</kbd> selects contiguous cells. </li>
+                  <li><kbd>Shift</kbd> + <kbd>F8</kbd> Allows additional cells to be added to a   previous selection to accomplish non-contiguous selection. </li>
                 </ul>
                   <p class="note">See <a href="#aria_ex_widget">Global Recommendations</a> for information on cut, copy and paste. </p>
               </li>
@@ -1107,7 +1107,7 @@
               <li><kbd>Enter</kbd> pressed while focus is on an actionable item will   enter Actionable Mode. Focus will remain on the actionable item that has focus. </li>
               <li>Optionally, alphanumeric keys pressed while focus is on an actionable item will enter Actionable Mode. Focus will remain on the actionable item that has focus. </li>
               <li><kbd>Tab</kbd> will move to the next actionable (tabbable) item in the   grid and stay within the grid wrapping at the bottom. In this mode each tabbable   object in each cell of the grid can be reached with the tab key. If multiple   tabbable items are located inside a single grid cell, the tab will stop at each   one. When the last tabbable item in a cell is reached the next tab will move to   the next tabbable item in the grid, wrapping at the last tabbable item in the   grid. </li>
-              <li><kbd>Shift + Tab</kbd> moves to the previous actionable (tabbable) item   in the grid and stays within the grid, wrapping at the top. </li>
+              <li><kbd>Shift</kbd> + <kbd>Tab</kbd> moves to the previous actionable (tabbable) item   in the grid and stays within the grid, wrapping at the top. </li>
               <li><kbd>Escape</kbd> exits Actionable mode (by which the user may enter text or perform an action to complete a operation) and returns to Navigation Mode (where the user is allowed to move focus among elements). If a widget is in the current grid cell that also uses the <kbd>Escape</kbd> key, then it should cancel the event propagation. A subsequent press of the <kbd>Escape</kbd> key will return focus to the parent widget.</li>
             </ul>
           </li>
@@ -1154,11 +1154,11 @@
           </li>
           <li>Method 3: Hot Keys
             <ul>
-              <li><kbd>Control + Alt + N</kbd> next, finish </li>
-              <li><kbd>Control + Alt + P</kbd> previous </li>
+              <li><kbd>Control</kbd> + <kbd>Alt</kbd> + <kbd>N</kbd> next, finish </li>
+              <li><kbd>Control</kbd> + <kbd>Alt</kbd> + <kbd>P</kbd> previous </li>
               <li><kbd>Escape</kbd> cancel, exit without saving </li>
-              <li><kbd>Control + Alt + R</kbd> reset current page to default settings </li>
-              <li><kbd>Control + Alt + S</kbd> save and exit </li>
+              <li><kbd>Control</kbd> + <kbd>Alt</kbd> + <kbd>R</kbd> reset current page to default settings </li>
+              <li><kbd>Control</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd> save and exit </li>
               </ul>
           </li>
           <li>Method 4: Like a <a href="#dialog_nonmodal">Dialog</a> </li>
@@ -1887,7 +1887,7 @@ excommunication&lt;/dd&gt;
 
       <ul>
         <li>
-          If the keypress is a <kbd>Shift + Tab</kbd> key and the target == the first tab navigable object, then set focus to the last tab-navigable object and stop the key press event. If there is only a single tab focusable item, then focus does not have to be set, but the key press event must be stopped.
+          If the keypress is a <kbd>Shift</kbd> + <kbd>Tab</kbd> key and the target == the first tab navigable object, then set focus to the last tab-navigable object and stop the key press event. If there is only a single tab focusable item, then focus does not have to be set, but the key press event must be stopped.
         </li>
         <li>
           If the keypress is a <kbd>Tab</kbd> key and the target == the last tab navigable object, then set focus to the first tab-navigable object and stop the keypress event. If there is only a single tab-focusable item, then focus does not have to be set but the keypress event must be stopped.

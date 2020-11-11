@@ -29,7 +29,7 @@
     <h1>Date Picker Combobox Example</h1>
     <p>
       The below date picker demonstrates an implementation of the <a href="../../#combobox">combobox design pattern</a> that opens a dialog.
-      The date picker dialog is opened by activating the choose date button or by moving keyboard focus to the combobox and pressing <kbd>Down Arrow</kbd> or <kbd>Alt + Down Arrow</kbd>.
+      The date picker dialog is opened by activating the choose date button or by moving keyboard focus to the combobox and pressing <kbd>Down Arrow</kbd> or <kbd>Alt</kbd> + <kbd>Down Arrow</kbd>.
       The  dialog contains an implementation of the <a href="../../#grid">grid pattern</a> for displaying a calendar and enabling selection of a date.
       Additional buttons in the dialog are available for changing the month and year shown in the grid.
     </p>
@@ -42,7 +42,7 @@
       <li><a href="combobox-autocomplete-none.html">Editable Combobox Without Autocomplete</a>: An editable combobox that demonstrates the behavior associated with <code>aria-autocomplete=none</code>.</li>
       <li><a href="grid-combo.html">Editable Combobox with Grid Popup</a>: An editable combobox that presents suggestions in a grid, enabling users to navigate descriptive information about each suggestion.</li>
     </ul>
-    
+
   <section>
     <div class="example-header">
       <h2 id="ex_label">Example</h2>
@@ -214,7 +214,7 @@
     <ul>
      <li>The description of the date format is associated with the combobox via <code>aria-describedby</code>, making it available to assistive technologies as an accessible description.</li>
       <li>
-        While the down arrow icon is excluded from the <kbd>Tab</kbd> sequence as specified in the <code>combobox</code> design pattern, it is made accessible to assistive technologies as the Choose Date button. 
+        While the down arrow icon is excluded from the <kbd>Tab</kbd> sequence as specified in the <code>combobox</code> design pattern, it is made accessible to assistive technologies as the Choose Date button.
         This enables assistive technology users who might not have a keyboard, e.g., someone using a touch-based screen reader, to open the date picker dialog.
       </li>
       <li>In the dialog, shortcut keys are assigned to the additional buttons for changing the month and year displayed in the calendar.</li>
@@ -249,7 +249,7 @@
         </thead>
         <tbody>
             <tr data-test-id="combobox-down-arrow">
-                <th><kbd>Down Arrow</kbd>,<br><kbd>ALT + Down Arrow</kbd></th>
+                <th><kbd>Down Arrow</kbd>,<br><kbd>ALT</kbd> + <kbd>Down Arrow</kbd></th>
                 <td>
                   <ul>
                   <li>Open the date picker dialog.</li>
@@ -289,7 +289,7 @@
               </td>
             </tr>
             <tr data-test-id="dialog-shift-tab">
-              <th><kbd>Shift + TAB</kbd></th>
+              <th><kbd>Shift</kbd> + <kbd>TAB</kbd></th>
               <td>
                 <ul>
                   <li>Moves focus to previous element in the dialog <kbd>Tab</kbd> sequence.</li>
@@ -483,7 +483,7 @@
             <th scope="row"><code>aria-expanded="true"</code></th>
             <td><code>input</code></td>
             <td>
-              Indicates that the combobox is expanded, i.e., the &quot;Choose Date&quot; dialog is open. 
+              Indicates that the combobox is expanded, i.e., the &quot;Choose Date&quot; dialog is open.
             </td>
           </tr>
           <tr data-test-id="textbox-aria-autocomplete">
