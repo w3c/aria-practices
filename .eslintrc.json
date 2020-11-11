@@ -35,9 +35,6 @@
       "files": "scripts/*.js",
       "env": {
         "node": true
-      },
-      "rules": {
-        "no-console": 0
       }
     }
   ]
