@@ -60,8 +60,7 @@
         "examples/grid/js/layoutGrids.js",
         "examples/js/examples.js",
         "examples/landmarks/js/bootstrap-accessibility-2.js",
-        "examples/landmarks/js/show.js",
-        "examples/link/js/link.js"
+        "examples/landmarks/js/show.js"
       ],
       "rules": {
         "no-unused-vars": 0
