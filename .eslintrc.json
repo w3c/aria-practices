@@ -50,9 +50,7 @@
         "examples/combobox/js/combobox-autocomplete.js",
         "examples/combobox/js/combobox-datepicker.js",
         "examples/combobox/js/grid-combo-example.js",
-        "examples/combobox/js/grid-combo.js",
-        "examples/dialog-modal/js/alertdialog.js",
-        "examples/dialog-modal/js/dialog.js"
+        "examples/combobox/js/grid-combo.js"
       ],
       "rules": {
         "no-unused-vars": 0
@@ -62,8 +60,7 @@
       "files": [
         "examples/checkbox/checkbox-2/js/checkboxMixed.js",
         "examples/combobox/js/grid-combo-example.js",
-        "examples/combobox/js/grid-combo.js",
-        "examples/dialog-modal/js/alertdialog.js"
+        "examples/combobox/js/grid-combo.js"
       ],
       "rules": {
         "no-undef": 0
