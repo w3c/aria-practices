@@ -70,11 +70,7 @@
         "examples/menu-button/js/menu-button-links.js",
         "examples/menubar/js/menubar-editor.js",
         "examples/menubar/js/menubar-navigation.js",
-        "examples/meter/js/meter.js",
-        "examples/slider/js/multithumb-slider.js",
-        "examples/slider/js/slider.js",
-        "examples/slider/js/text-slider.js",
-        "examples/slider/js/vertical-slider.js"
+        "examples/meter/js/meter.js"
       ],
       "rules": {
         "no-unused-vars": 0
