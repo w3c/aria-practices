@@ -67,14 +67,14 @@ Checkbox.prototype.handleKeydown = function (event) {
   }
 };
 
-Checkbox.prototype.handleClick = function (event) {
+Checkbox.prototype.handleClick = function () {
   this.toggleCheckbox();
 };
 
-Checkbox.prototype.handleFocus = function (event) {
+Checkbox.prototype.handleFocus = function () {
   this.domNode.classList.add('focus');
 };
 
-Checkbox.prototype.handleBlur = function (event) {
+Checkbox.prototype.handleBlur = function () {
   this.domNode.classList.remove('focus');
 };

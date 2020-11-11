@@ -43,21 +43,10 @@
     {
       "files": [
         "examples/accordion/js/accordion.js",
-        "examples/alert/js/alert.js",
-        "examples/checkbox/checkbox-1/js/checkbox.js",
-        "examples/checkbox/checkbox-2/js/checkboxMixed.js",
-        "examples/checkbox/checkbox-2/js/controlledCheckbox.js"
+        "examples/alert/js/alert.js"
       ],
       "rules": {
         "no-unused-vars": 0
-      }
-    },
-    {
-      "files": [
-        "examples/checkbox/checkbox-2/js/checkboxMixed.js"
-      ],
-      "rules": {
-        "no-undef": 0
       }
     }
   ]
