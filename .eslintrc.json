@@ -58,9 +58,7 @@
         "examples/grid/js/dataGrid.js",
         "examples/grid/js/dataGrids.js",
         "examples/grid/js/layoutGrids.js",
-        "examples/js/examples.js",
-        "examples/landmarks/js/bootstrap-accessibility-2.js",
-        "examples/landmarks/js/show.js"
+        "examples/js/examples.js"
       ],
       "rules": {
         "no-unused-vars": 0
@@ -74,10 +72,7 @@
         "examples/dialog-modal/js/alertdialog.js",
         "examples/feed/js/main.js",
         "examples/grid/js/dataGrids.js",
-        "examples/js/app.js",
-        "examples/landmarks/js/bootstrap-accessibility-2.js",
-        "examples/landmarks/js/show.js",
-        "examples/landmarks/js/tabs.js"
+        "examples/js/app.js"
       ],
       "rules": {
         "no-undef": 0
