@@ -149,7 +149,6 @@ ariaTest(
   async (t) => {
     // Wait for roving tabindex to be initialized by the javascript
     await exampleInitialized(t);
-
     await assertRovingTabindex(t, ex.menubarMenuitemSelector, Key.ARROW_RIGHT);
   }
 );
