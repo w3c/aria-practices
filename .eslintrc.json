@@ -61,10 +61,7 @@
         "examples/js/examples.js",
         "examples/landmarks/js/bootstrap-accessibility-2.js",
         "examples/landmarks/js/show.js",
-        "examples/link/js/link.js",
-        "examples/listbox/js/listbox-collapsible.js",
-        "examples/listbox/js/listbox-scrollable.js",
-        "examples/listbox/js/listbox.js"
+        "examples/link/js/link.js"
       ],
       "rules": {
         "no-unused-vars": 0
@@ -81,9 +78,7 @@
         "examples/js/app.js",
         "examples/landmarks/js/bootstrap-accessibility-2.js",
         "examples/landmarks/js/show.js",
-        "examples/landmarks/js/tabs.js",
-        "examples/listbox/js/listbox-rearrangeable.js",
-        "examples/listbox/js/listbox-scrollable.js"
+        "examples/landmarks/js/tabs.js"
       ],
       "rules": {
         "no-undef": 0
