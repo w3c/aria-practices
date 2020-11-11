@@ -69,8 +69,7 @@
         "examples/menu-button/js/menu-button-actions.js",
         "examples/menu-button/js/menu-button-links.js",
         "examples/menubar/js/menubar-editor.js",
-        "examples/menubar/js/menubar-navigation.js",
-        "examples/meter/js/meter.js"
+        "examples/menubar/js/menubar-navigation.js"
       ],
       "rules": {
         "no-unused-vars": 0
