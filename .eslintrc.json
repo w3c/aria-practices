@@ -80,9 +80,7 @@
         "examples/toolbar/js/FontMenuButton.js",
         "examples/toolbar/js/FontMenuItem.js",
         "examples/toolbar/js/FormatToolbar.js",
-        "examples/toolbar/js/FormatToolbarItem.js",
-        "examples/treeview/treeview-1/js/treeitem.js",
-        "examples/treeview/treeview-2/js/treeitemLinks.js"
+        "examples/toolbar/js/FormatToolbarItem.js"
       ],
       "rules": {
         "no-unused-vars": 0
@@ -105,9 +103,7 @@
         "examples/menubar/js/menubar-editor.js",
         "examples/toolbar/js/FontMenu.js",
         "examples/toolbar/js/FontMenuButton.js",
-        "examples/toolbar/js/FormatToolbar.js",
-        "examples/treeview/treeview-1/js/tree.js",
-        "examples/treeview/treeview-2/js/treeLinks.js"
+        "examples/toolbar/js/FormatToolbar.js"
       ],
       "rules": {
         "no-undef": 0
