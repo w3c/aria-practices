@@ -1,11 +1,11 @@
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
-const assertAttributeExists = require('../util/assertAttributeExists');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertRovingTabindex = require('../util/assertRovingTabindex');
+const assertAriaOwns = require('../util/assertAriaOwns');
 
 const exampleFile = 'menubar/menubar-navigation.html';
 
@@ -291,6 +291,15 @@ ariaTest(
       'aria-haspopup',
       'true'
     );
+  }
+);
+
+ariaTest(
+  'Test aria-owns exists on menubar menuitems with popup menus',
+  exampleFile,
+  'menubar-menuitem-aria-owns',
+  async (t) => {
+    await assertAriaOwns(t, ex.menubarMenuitemWithPopupSelector);
   }
 );
 
