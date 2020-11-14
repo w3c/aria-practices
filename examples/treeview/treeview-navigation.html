@@ -26,9 +26,14 @@
     </nav>
     <main>
       <h1>Navigation Treeview Example</h1>
+      <p><strong>CAUTION!</strong> Before considering use of the <a href="../../#TreeView">ARIA tree pattern</a> for site navigation, it is important to understand:</p>
+      <ul>
+        <li>Correct implementation of the <code>tree</code> role requires implementation of complex functionality that is not needed for typical site navigation that is styled to look like a tree with expandable sections.</li>
+        <li>A pattern more suited for typical site navigation with expandable groups of links is the <a href="../../#disclosure">disclosure pattern.</a></li>
+      </ul>
   <p>
     The below example demonstrates how the
-    <a href="../../../#TreeView">Treeview Design Pattern</a>
+    <a href="../../#TreeView">Treeview Design Pattern</a>
     can be used to build a navigation tree for a set of hierarchically organized web pages.
     In this example, the user can browse a set of pages about foods that is organized into categories.
     Activating an item in the tree will open a page about the chosen food.
