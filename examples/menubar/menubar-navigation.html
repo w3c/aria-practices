@@ -65,7 +65,7 @@
             </li>
             <li role="none">
               <a role="menuitem"
-                 aria-haspopup="true"
+                aria-haspopup="true"
                 aria-expanded="false"
                 aria-owns="sub-menu-about"
                 href="#about">
@@ -226,8 +226,8 @@
         <!--  NOTE: The following SECTION element should be a MAIN element
           in actual website -->
         <div class="main">
-          <section aria-label="Updated content from treeview navigation">
-            <h1 class="page_title">Mythical University</h1>
+          <section aria-labelledby="id-page-title">
+            <h1 id="id-page-title" class="page_title">Mythical University</h1>
             <div class="content">
               <p></p>
             </div>
@@ -501,12 +501,12 @@
             </ul>
           </td>
         </tr>
-        <tr data-test-id="region-aria-label">
+        <tr data-test-id="region-aria-labelledby">
           <td></td>
-          <th scope="row"><code>aria-label=&quot;<em>region label</em>&quot;</code></th>
+          <th scope="row"><code>aria-labelledby=&quot;<em>idref</em>&quot;</code></th>
           <td><code>section</code></td>
           <td>
-            The <code>aria-label</code> attribute provides an accessible name for the <code>region</code> landmark.
+            The <code>aria-labelledby</code> attribute provides an accessible name from the h1 element for the page title.
           </td>
         </tr>
         <tr data-test-id="contentinfo-role">
@@ -583,7 +583,7 @@
             </ul>
           </td>
         </tr>
-        <tr data-test-id="menuitem-tabindex">
+        <tr data-test-id="menubar-menuitem-tabindex">
           <td></td>
           <th>
             <code>tabindex=&quot;-1&quot;</code>
@@ -595,7 +595,7 @@
             Makes the <code>a</code> element keyboard focusable, but <strong>not</strong> part of the tab sequence.
           </td>
         </tr>
-        <tr data-test-id="menuitem-tabindex">
+        <tr data-test-id="menubar-menuitem-tabindex">
           <td></td>
           <th>
             <code>tabindex=&quot;0&quot;</code>
@@ -612,7 +612,7 @@
             </ul>
           </td>
         </tr>
-        <tr data-test-id="menuitem-aria-current">
+        <tr data-test-id="menubar-menuitem-aria-current">
           <td></td>
           <th>
             <code>aria-current=&quot;page&quot;</code>
@@ -627,7 +627,7 @@
             </ul>
           </td>
         </tr>
-        <tr data-test-id="menuitem-aria-haspopup">
+        <tr data-test-id="menubar-menuitem-aria-haspopup">
           <td></td>
           <th>
             <code>aria-haspopup=&quot;true&quot;</code>
@@ -637,7 +637,7 @@
           </td>
           <td>Indicates the menuitem has a submenu.</td>
         </tr>
-        <tr data-test-id="menuitem-aria-expanded">
+        <tr data-test-id="menubar-menuitem-aria-expanded-true">
           <td></td>
           <th>
             <code>aria-expanded=&quot;true&quot;</code>
@@ -647,7 +647,7 @@
           </td>
           <td>Indicates the submenu is open.</td>
         </tr>
-        <tr data-test-id="menuitem-aria-expanded">
+        <tr data-test-id="menubar-menuitem-aria-expanded-false">
           <td></td>
           <th>
             <code>aria-expanded=&quot;false&quot;</code>
@@ -657,13 +657,13 @@
           </td>
           <td>Indicates the submenu is closed.</td>
         </tr>
-        <tr data-test-id="menuitem-aria-owns">
+        <tr data-test-id="menubar-menuitem-aria-owns">
           <td></td>
           <th scope="row"><code>aria-owns=&quot;IDREF&quot;</code></th>
           <td><code>a</code></td>
           <td>Refers to the element with role <code>menu</code> that contains the sub-menu <code>menuitem</code> elements.</td>
         </tr>
-        <tr data-test-id="none-role">
+        <tr data-test-id="menubar-role-none">
           <th>
             <code>none</code>
           </th>
@@ -720,7 +720,7 @@
             </ul>
           </td>
         </tr>
-        <tr data-test-id="sub-menuitem-role">
+        <tr data-test-id="menu-menuitem-role">
           <th>
             <code>menuitem</code>
           </th>
@@ -735,7 +735,7 @@
             </ul>
           </td>
         </tr>
-        <tr data-test-id="sub-menuitem-tabindex">
+        <tr data-test-id="menu-menuitem-tabindex">
           <td></td>
           <th>
             <code>tabindex=&quot;-1&quot;</code>
@@ -745,7 +745,7 @@
           </td>
           <td>Keeps the <code>a</code> element focusable but removes it from the <kbd>Tab</kbd> sequence.</td>
         </tr>
-        <tr data-test-id="sub-menuitem-aria-haspopup">
+        <tr data-test-id="menu-menuitem-aria-haspopup">
           <td></td>
           <th>
             <code>aria-haspopup=&quot;true&quot;</code>
@@ -755,7 +755,7 @@
           </td>
           <td>Indicates the menu item has a submenu.</td>
         </tr>
-        <tr data-test-id="sub-menuitem-aria-expanded">
+        <tr data-test-id="menu-menuitem-aria-expanded">
           <td></td>
           <th>
             <code>aria-expanded=&quot;true&quot;</code>
@@ -765,7 +765,7 @@
           </td>
           <td>Indicates the submenu is open.</td>
         </tr>
-        <tr data-test-id="sub-menuitem-aria-expanded">
+        <tr data-test-id="menu-menuitem-aria-expanded">
           <td></td>
           <th>
             <code>aria-expanded=&quot;false&quot;</code>
@@ -775,7 +775,7 @@
           </td>
           <td>Indicates the submenu is closed.</td>
         </tr>
-        <tr data-test-id="sub-none-role">
+        <tr data-test-id="menu-role-none">
           <th>
             <code>none</code>
           </th>

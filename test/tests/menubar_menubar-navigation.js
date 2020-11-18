@@ -2,21 +2,36 @@ const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
+const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertRovingTabindex = require('../util/assertRovingTabindex');
+const assertAriaOwns = require('../util/assertAriaOwns');
 
 const exampleFile = 'menubar/menubar-navigation.html';
 
 const ex = {
+  // landmark selectors
+  bannerSelector: '#ex1 header',
+  navigationSelector: '#ex1 nav',
+  regionSelector: '#ex1 section',
+  contentinfoSelector: '#ex1 footer',
+
   // menubar selector
   menubarSelector: '#ex1 [role="menubar"]',
+  numberOfMenuitems: 31,
 
   // menu selectors
   anyMenuSelector: '#ex1 [role="menu"]',
   menuSelector: '#ex1 [role="menubar"]>li>[role="menu"]',
 
-  // menuitem selectors
+  // Menubar menuitem selectors
   menubarMenuitemSelector: '#ex1 [role="menubar"]>li>[role="menuitem"]',
+  menubarMenuitemWithPopupSelector: '#ex1 [role="menubar"]>li>[aria-haspopup]',
+  menubarMenuitemWithExpandedSelector:
+    '#ex1 [role="menubar"]>li>[aria-expanded]',
+  menubarMenuitemWithOwnsSelector: '#ex1 [role="menubar"]>li>[aria-owns]',
+
+  // Menu menuitem selectors
   anyMenuMenuitemSelector: '#ex1 [role="menu"]>li>[role="menuitem"]',
   menuMenuitemSelectors: [
     '#ex1 [role="menubar"]>li:nth-of-type(1)>[role="menu"]>li>[role="menuitem"]',
@@ -122,6 +137,103 @@ const doesMenuitemHaveSubmenu = function (menuIndex, menuitemIndex) {
   return false;
 };
 
+// Tests for landmark roles in example
+
+ariaTest(
+  'role="banner" on header element',
+  exampleFile,
+  'banner-role',
+  async (t) => {
+    const banners = await t.context.queryElements(t, ex.bannerSelector);
+
+    t.is(
+      banners.length,
+      1,
+      'One "role=banner" element should be found by selector: ' +
+        ex.bannerSelector
+    );
+
+    t.is(
+      await banners[0].getTagName(),
+      'header',
+      'role="banner" should be found on a "header"'
+    );
+  }
+);
+
+ariaTest(
+  'nav element identifies navigation landmark',
+  exampleFile,
+  'navigation-role',
+  async (t) => {
+    const navs = await t.context.queryElements(t, ex.navigationSelector);
+
+    t.is(
+      navs.length,
+      1,
+      'One nav element should be found by selector: ' + ex.navigationSelector
+    );
+  }
+);
+
+ariaTest(
+  'aria-label on nav element',
+  exampleFile,
+  'navigation-aria-label',
+  async (t) => {
+    await assertAriaLabelExists(t, ex.navigationSelector);
+  }
+);
+
+ariaTest(
+  'section element identifies region landmark',
+  exampleFile,
+  'region-role',
+  async (t) => {
+    const regions = await t.context.queryElements(t, ex.regionSelector);
+
+    t.is(
+      regions.length,
+      1,
+      'One section element should be found by selector: ' + ex.regionSelector
+    );
+  }
+);
+
+ariaTest(
+  'aria-labelledby on section element',
+  exampleFile,
+  'region-aria-labelledby',
+  async (t) => {
+    await assertAriaLabelledby(t, ex.regionSelector);
+  }
+);
+
+ariaTest(
+  'role="contentinfo" on footer element',
+  exampleFile,
+  'contentinfo-role',
+  async (t) => {
+    const contentinfos = await t.context.queryElements(
+      t,
+      ex.contentinfoSelector
+    );
+
+    t.is(
+      contentinfos.length,
+      1,
+      'One "role=contentinfo" element should be found by selector: ' +
+        ex.contentinfoSelector
+    );
+
+    t.is(
+      await contentinfos[0].getTagName(),
+      'footer',
+      'role="contentinfo" should be found on a "footer"'
+    );
+  }
+);
+
 // Attributes
 
 ariaTest(
@@ -130,6 +242,15 @@ ariaTest(
   'menubar-role',
   async (t) => {
     await assertAriaRoles(t, 'ex1', 'menubar', 1, 'ul');
+  }
+);
+
+ariaTest(
+  'Test for role="menuitem" on a elements',
+  exampleFile,
+  'menuitem-role',
+  async (t) => {
+    await assertAriaRoles(t, 'ex1', 'menuitem', ex.numberOfMenuitems, 'a');
   }
 );
 
@@ -145,26 +266,72 @@ ariaTest(
 ariaTest(
   'Test roving tabindex',
   exampleFile,
-  'menuitem-tabindex',
+  'menubar-menuitem-tabindex',
   async (t) => {
     // Wait for roving tabindex to be initialized by the javascript
     await exampleInitialized(t);
-
     await assertRovingTabindex(t, ex.menubarMenuitemSelector, Key.ARROW_RIGHT);
   }
 );
 
-/*
-ariaTest('Test aria-haspopup set to true on menuitems',
+ariaTest(
+  'Test aria-haspopup set to true on menuitems with popup menus',
   exampleFile,
-  'menuitem-aria-haspopup',
+  'menubar-menuitem-aria-haspopup',
   async (t) => {
-    t.is(
-      menuitems.length,
-      ex.numMenus,
-      '"role=menuitem" elements should be found by selector: ' +
-        ex.menubarMenuitemSelector
+    await assertAttributeValues(
+      t,
+      ex.menubarMenuitemWithExpandedSelector,
+      'aria-haspopup',
+      'true'
     );
+    await assertAttributeValues(
+      t,
+      ex.menubarMenuitemWithOwnsSelector,
+      'aria-haspopup',
+      'true'
+    );
+  }
+);
+
+ariaTest(
+  'Test aria-owns exists on menubar menuitems with popup menus',
+  exampleFile,
+  'menubar-menuitem-aria-owns',
+  async (t) => {
+    await assertAriaOwns(t, ex.menubarMenuitemWithPopupSelector);
+  }
+);
+
+ariaTest(
+  'Test aria-expanded on menubar menuitems set to false when popup is closed',
+  exampleFile,
+  'menubar-menuitem-aria-expanded-false',
+  async (t) => {
+    await assertAttributeValues(
+      t,
+      ex.menubarMenuitemWithPopupSelector,
+      'aria-expanded',
+      'false'
+    );
+  }
+);
+
+ariaTest.failing(
+  'Test aria-expanded on menubar menuitems set to true when popup is open',
+  exampleFile,
+  'menubar-menuitem-aria-expanded-true',
+  async (t) => {
+    await assertAttributeValues(
+      t,
+      ex.menubarMenuitemWithPopupSelector,
+      'aria-expanded',
+      'true'
+    );
+  }
+);
+
+/*
 
 ariaTest.failing(
   '"aria-expanded" attribute on menubar menuitem',

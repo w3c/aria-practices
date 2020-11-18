@@ -71,6 +71,10 @@ class MenubarNavigation {
   updateContent(linkURL, linkName, moveFocus) {
     var h1Node, paraNodes, menuitemNode;
 
+    if (typeof moveFocus !== 'boolean') {
+      moveFocus = true;
+    }
+
     // Update content area
     h1Node = document.querySelector('#ex1 .main h1');
     if (h1Node) {
