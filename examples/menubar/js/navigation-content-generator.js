@@ -5,6 +5,8 @@
  *   File: navigation-content-generator.js
  */
 
+'use strict';
+
 class NavigationContentGenerator {
   constructor(siteURL, siteName) {
     this.siteName = siteName;
