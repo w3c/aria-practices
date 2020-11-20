@@ -37,8 +37,8 @@ class TreeViewNavigation {
       }
       var groupNode = this.getGroupNode(ti);
       if (groupNode) {
-        var span = ti.querySelector('span');
-        span.addEventListener('click', this.onSpanClick.bind(this));
+        var span = ti.querySelector('span.icon');
+        span.addEventListener('click', this.onIconClick.bind(this));
       }
     }
 
@@ -325,13 +325,13 @@ class TreeViewNavigation {
     }
   }
 
-  onSpanClick(event) {
+  onIconClick(event) {
     var tgt = event.currentTarget;
 
-    if (this.isExpanded(tgt.parentNode)) {
-      this.collapseTreeitem(tgt.parentNode);
+    if (this.isExpanded(tgt.parentNode.parentNode)) {
+      this.collapseTreeitem(tgt.parentNode.parentNode);
     } else {
-      this.expandTreeitem(tgt.parentNode);
+      this.expandTreeitem(tgt.parentNode.parentNode);
     }
 
     event.preventDefault();

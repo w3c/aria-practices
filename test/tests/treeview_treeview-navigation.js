@@ -38,7 +38,7 @@ const ex = {
 
 const openAllExpandableTreeitems = async function (t) {
   const closedExpandableTreeitemsSelector =
-    ex.treeitemSelector + '[aria-expanded="false"] span.minus';
+    ex.treeitemSelector + '[aria-expanded="false"] span.icon';
   let closedTreeitems = await t.context.queryElements(
     t,
     closedExpandableTreeitemsSelector

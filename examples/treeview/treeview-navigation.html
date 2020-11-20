@@ -50,7 +50,7 @@
         <li><a href="treeview-1/treeview-1a.html">File Directory Treeview using <em>computed</em> properties</a></li>
         <li><a href="treeview-1/treeview-1b.html">File Directory Treeview using <em>declared</em> properties</a></li>
       </ul>
-      
+
       <section>
         <div class="example-header">
           <h2 id="ex_label">Example</h2>
@@ -71,7 +71,7 @@
                   <a role="treeitem"
                      href="#home"
                      aria-current='page'>
-                    Home
+                    <span class="label">Home</span>
                   </a>
                 </li>
                 <li role="none">
@@ -79,45 +79,61 @@
                      aria-expanded="false"
                      aria-owns="id-about-subtree"
                      href="#about">
-                    <span class="minus">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9">
-                       <polygon points="1 0, 11 0, 6 8"  fill="currentColor" stroke= "currentColor" />
-                      </svg>
+                    <span class="label">
+                      <span class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="10" viewBox="0 0 13 10">
+                         <polygon points="2 1, 12 1, 7 9"/>
+                        </svg>
+                      </span>
+                      About
                     </span>
-                    About
                   </a>
                   <ul id="id-about-subtree"
                       role="group"
                       aria-label="About">
                     <li role="none">
-                      <a role="treeitem" href="#overview">Overview</a>
+                      <a role="treeitem" href="#overview">
+                        <span class="label">Overview</span>
+                      </a>
                     </li>
                     <li role="none">
-                      <a role="treeitem" href="#adminstration">Administration</a>
+                      <a role="treeitem" href="#adminstration">
+                        <span class="label">Administration</span>
+                      </a>
                     </li>
                     <li role="none">
                       <a role="treeitem"
                          aria-expanded="false"
                          aria-owns="id-facts-subtree"
                          href="#facts">
-                        <span class="minus">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9">
-                           <polygon points="1 0, 11 0, 6 8"  fill="currentColor" stroke= "currentColor" />
-                          </svg>
+                        <span class="label">
+                          <span class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="10" viewBox="0 0 13 10">
+                             <polygon points="2 1, 12 1, 7 9"/>
+                            </svg>
+                          </span>
+                          Facts
                         </span>
-                        Facts
                       </a>
                       <ul id="id-facts-subtree"
                           role="group"
                           aria-label="Facts">
                         <li role="none">
-                          <a role="treeitem" href="#history">History</a>
+                          <a role="treeitem" href="#history">
+                          <span class="label">History</span>
+                          </a>
                         </li>
                         <li role="none">
-                          <a role="treeitem" href="#current-statistics">Current Statistics</a>
+                          <a role="treeitem" href="#current-statistics">
+                            <span class="label">
+                              Current Statistics
+                            </span>
+                          </a>
                         </li>
                         <li role="none">
-                          <a role="treeitem" href="#awards">Awards</a>
+                          <a role="treeitem" href="#awards">
+                            <span class="label">Awards</span>
+                          </a>
                         </li>
                       </ul>
                     </li>
@@ -126,24 +142,34 @@
                           aria-expanded="false"
                           aria-owns="id-campus-tours-subtree"
                           href="#campus-tours">
-                        <span class="minus">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9">
-                           <polygon points="1 0, 11 0, 6 8"  fill="currentColor" stroke= "currentColor" />
-                          </svg>
+                        <span class="label">
+                          <span class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="10" viewBox="0 0 13 10">
+                             <polygon points="2 1, 12 1, 7 9"/>
+                            </svg>
+                          </span>
+                          Campus Tours
                         </span>
-                        Campus Tours
                       </a>
                       <ul id="id-campus-tours-subtree"
                           role="group"
                           aria-label="Campus Tours">
                         <li role="none">
-                          <a role="treeitem" href="#for-prospective-students">For Prospective Students</a>
+                          <a role="treeitem" href="#for-prospective-students">
+                            <span class="label">
+                              For Prospective Students
+                            </span>
+                        </a>
                         </li>
                         <li role="none">
-                          <a role="treeitem" href="#for-alumni">For Alumni</a>
+                          <a role="treeitem" href="#for-alumni">
+                            <span class="label">For Alumni</span>
+                          </a>
                         </li>
                         <li role="none">
-                          <a role="treeitem" href="#for-visitors">For Visitors</a>
+                          <a role="treeitem" href="#for-visitors">
+                            <span class="label">For Visitors</span>
+                          </a>
                         </li>
                       </ul>
                     </li>
@@ -154,56 +180,76 @@
                      aria-expanded="false"
                      aria-owns="id-admissions-subtree"
                      href="#admissions">
-                    <span class="minus">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9">
-                       <polygon points="1 0, 11 0, 6 8"  fill="currentColor" stroke= "currentColor" />
-                      </svg>
+                    <span class="label">
+                      <span class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="10" viewBox="0 0 13 10">
+                         <polygon points="2 1, 12 1, 7 9"/>
+                        </svg>
+                      </span>
+                      Admissions
                     </span>
-                    Admissions
                   </a>
                   <ul id="id-admissions-subtree"
                       role="group"
                       aria-label="Admissions">
                     <li role="none">
-                      <a role="treeitem" href="#apply">Apply</a>
+                      <a role="treeitem" href="#apply">
+                        <span class="label">Apply</span>
+                      </a>
                     </li>
                     <li role="none">
                       <a role="treeitem"
                           aria-expanded="false"
                           aria-owns="id-tuition-subtree"
                           href="#tuition">
-                        <span class="minus">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9">
-                           <polygon points="1 0, 11 0, 6 8"  fill="currentColor" stroke= "currentColor" />
-                          </svg>
+                        <span class="label">
+                          <span class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="10" viewBox="0 0 13 10">
+                             <polygon points="2 1, 12 1, 7 9"/>
+                            </svg>
+                          </span>
+                          Tuition
                         </span>
-                        Tuition
                       </a>
                       <ul id="id-tuition-subtree"
                           role="group"
                           aria-label="Tuition">
                         <li role="none">
-                          <a role="treeitem" href="#undergraduate">Undergraduate</a>
+                          <a role="treeitem" href="#undergraduate">
+                            <span class="label">Undergraduate</span>
+                          </a>
                         </li>
                         <li role="none">
-                          <a role="treeitem" href="#graduate">Graduate</a>
+                          <a role="treeitem" href="#graduate">
+                            <span class="label">Graduate</span>
+                          </a>
                         </li>
                         <li role="none">
-                          <a role="treeitem" href="#professional-schools">Professional Schools</a>
+                          <a role="treeitem" href="#professional-schools">
+                            <span class="label">Professional Schools</span>
+                          </a>
                         </li>
                       </ul>
                     </li>
                     <li role="none">
-                      <a role="treeitem" href="#signup">Sign Up</a>
+                      <a role="treeitem" href="#signup">
+                        <span class="label">Sign Up</span>
+                      </a>
                     </li>
                     <li role="none">
-                      <a role="treeitem" href="#visit">Visit</a>
+                      <a role="treeitem" href="#visit">
+                        <span class="label">Visit</span>
+                      </a>
                     </li>
                     <li role="none">
-                      <a role="treeitem" href="#photo-tour">Photo Tour</a>
+                      <a role="treeitem" href="#photo-tour">
+                        <span class="label">Photo Tour</span>
+                      </a>
                     </li>
                     <li role="none">
-                      <a role="treeitem" href="#connect">Connect</a>
+                      <a role="treeitem" href="#connect">
+                        <span class="label">Connect</span>
+                      </a>
                     </li>
                   </ul>
                 </li>
@@ -212,39 +258,57 @@
                      aria-expanded="false"
                      aria-owns="id-academics-subtree"
                      href="#academics">
-                    <span class="minus">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9">
-                       <polygon points="1 0, 11 0, 6 8"  fill="currentColor" stroke= "currentColor" />
-                      </svg>
+                    <span class="label">
+                      <span class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="10" viewBox="0 0 13 10">
+                         <polygon points="2 1, 12 1, 7 9"/>
+                        </svg>
+                      </span>
+                      Academics
                     </span>
-                    Academics
                   </a>
                   <ul id="id-academics-subtree"
                       role="group"
                       aria-label="Academics">
                     <li role="none">
-                      <a role="treeitem" href="#colleges-and-schools">Colleges &amp; Schools</a>
+                      <a role="treeitem" href="#colleges-and-schools">
+                        <span class="label">Colleges &amp; Schools</span>
+                      </a>
                     </li>
                     <li role="none">
-                      <a role="treeitem" href="#programs-of-study">Programs of Study</a>
+                      <a role="treeitem" href="#programs-of-study">
+                        <span class="label">Programs of Study</span>
+                      </a>
                     </li>
                     <li role="none">
-                      <a role="treeitem" href="#honors-programs">Honors Programs</a>
+                      <a role="treeitem" href="#honors-programs">
+                        <span class="label">Honors Programs</span>
+                      </a>
                     </li>
                     <li role="none">
-                      <a role="treeitem" href="#online-courses">Online Courses</a>
+                      <a role="treeitem" href="#online-courses">
+                        <span class="label">Online Courses</span>
+                      </a>
                     </li>
                     <li role="none">
-                      <a role="treeitem" href="#course-explorer">Course Explorer</a>
+                      <a role="treeitem" href="#course-explorer">
+                        <span class="label">Course Explorer</span>
+                      </a>
                     </li>
                     <li role="none">
-                      <a role="treeitem" href="#register-for-classes">Register for Classes</a>
+                      <a role="treeitem" href="#register-for-classes">
+                        <span class="label">Register for Classes</span>
+                      </a>
                     </li>
                     <li role="none">
-                      <a role="treeitem" href="#academic-calendar">Academic Calendar</a>
+                      <a role="treeitem" href="#academic-calendar">
+                        <span class="label">Academic Calendar</span>
+                      </a>
                     </li>
                     <li role="none">
-                      <a role="treeitem" href="#tanscripts">Transcripts</a>
+                      <a role="treeitem" href="#tanscripts">
+                        <span class="label">Transcripts</span>
+                      </a>
                     </li>
                   </ul>
                 </li>
