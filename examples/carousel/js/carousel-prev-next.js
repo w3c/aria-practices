@@ -5,6 +5,8 @@
  *
  */
 
+'use strict';
+
 var CarouselPreviousNext = function (node, options) {
   // merge passed options with defaults
   options = Object.assign(

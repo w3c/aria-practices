@@ -5,6 +5,8 @@
  *
  */
 
+'use strict';
+
 // takes options object: { accessibleCaptions: boolean, autoplay: boolean, playButton: boolean }
 // defaults are: { accessibleCaptions: true, autoplay: false, playButton: true }
 
