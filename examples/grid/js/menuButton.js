@@ -4,6 +4,8 @@
  *
  */
 
+'use strict';
+
 /**
  * ARIA Menu Button example
  * @function onload

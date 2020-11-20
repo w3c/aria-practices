@@ -1,3 +1,5 @@
+'use strict';
+
 var aria = aria || {};
 
 aria.Utils = aria.Utils || {};

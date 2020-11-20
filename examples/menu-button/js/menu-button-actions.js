@@ -7,6 +7,8 @@
  *   Desc:   Creates a menu button that opens a menu of actions
  */
 
+'use strict';
+
 class MenuButtonActions {
   constructor(domNode, performMenuAction) {
     this.domNode = domNode;

@@ -3,6 +3,8 @@
  *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
  */
 
+'use strict';
+
 var ComboboxAutocomplete = function (comboboxNode, buttonNode, listboxNode) {
   this.comboboxNode = comboboxNode;
   this.buttonNode = buttonNode;

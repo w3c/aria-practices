@@ -5,6 +5,8 @@
  * ARIA Combobox Examples
  */
 
+'use strict';
+
 var FRUITS_AND_VEGGIES = [
   ['Apple', 'Fruit'],
   ['Artichoke', 'Vegetable'],
