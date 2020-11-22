@@ -70,8 +70,24 @@ class MenubarNavigation {
     }
   }
 
+  getParentMenuitem(menuitem) {
+    var node = menuitem.parentNode;
+    if (node) {
+      node = node.parentNode;
+      if (node) {
+        node = node.previousElementSibling;
+        if (node) {
+          if (node.getAttribute('role') === 'menuitem') {
+            return node;
+          }
+        }
+      }
+    }
+    return false;
+  }
+
   updateContent(linkURL, linkName, moveFocus) {
-    var h1Node, paraNodes, menuitemNode;
+    var h1Node, paraNodes, menuitemNode, pathNode;
 
     if (typeof moveFocus !== 'boolean') {
       moveFocus = true;
@@ -97,10 +113,18 @@ class MenubarNavigation {
 
     // Update aria-current
     this.menuitems.forEach((item) => {
+      item.removeAttribute('aria-current');
+      item.classList.remove('aria-current-path');
+    });
+
+    this.menuitems.forEach((item) => {
       if (item.href === linkURL) {
         item.setAttribute('aria-current', 'page');
-      } else {
-        item.removeAttribute('aria-current');
+        pathNode = this.getParentMenuitem(item);
+        while (pathNode) {
+          pathNode.classList.add('aria-current-path');
+          pathNode = this.getParentMenuitem(pathNode);
+        }
       }
     });
     if (linkURL !== location.href) {
