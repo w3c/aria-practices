@@ -36,7 +36,7 @@
       <h2>CSV Files of Role, Properties and States Coverage</h2>
       <ul>
         <li><a href="role-coverage.csv">CSV file of role coverage</a></li>
-        <li><a href="prop-coverage.csv">CSV file of properies and states coverage</a></li>
+        <li><a href="prop-coverage.csv">CSV file of properties and states coverage</a></li>
       </ul>
     </section>
 

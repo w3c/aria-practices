@@ -41,7 +41,9 @@
         <li><a href="../checkbox-1/checkbox-1.html">Checkbox (Two State)</a>: Simple two state checkbox.</li>
       </ul>
       <section>
-        <h2 id="ex_label">Example</h2>
+        <div class="example-header">
+          <h2 id="ex_label">Example</h2>
+        </div>
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div  id="ex1">
            <fieldset>
@@ -197,7 +199,7 @@
 
        <section>
         <h2>Javascript and CSS Source Code</h2>
-        <ul>
+        <ul id="css_js_files">
           <li>CSS: <a href="../css/checkbox.css" type="text/css">checkbox.css</a></li>
           <li>Javascript: <a href="js/checkboxMixed.js" type="text/javascript">checkboxMixed.js</a></li>
           <li>Javascript: <a href="js/controlledCheckbox.js" type="text/javascript">controlledCheckbox.js</a></li>
@@ -210,7 +212,7 @@
         <pre><code id="sc1"></code></pre>
         <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
         <script>
-          sourceCode.add('sc1', 'ex1');
+          sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
           sourceCode.make();
         </script>
       </section>
