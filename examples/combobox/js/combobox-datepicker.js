@@ -58,82 +58,73 @@ class ComboboxDatePicker {
 
     this.comboboxNode.addEventListener(
       'keydown',
-      this.handleComboboxKeyDown.bind(this)
+      this.onComboboxKeyDown.bind(this)
     );
     this.comboboxNode.addEventListener(
       'click',
-      this.handleComboboxClick.bind(this)
+      this.onComboboxClick.bind(this)
     );
     this.comboboxNode.addEventListener(
       'focus',
-      this.handleComboboxFocus.bind(this)
+      this.onComboboxFocus.bind(this)
     );
-    this.comboboxNode.addEventListener(
-      'blur',
-      this.handleComboboxBlur.bind(this)
-    );
+    this.comboboxNode.addEventListener('blur', this.onComboboxBlur.bind(this));
 
     this.buttonNode.addEventListener(
       'keydown',
-      this.handleButtonKeyDown.bind(this)
+      this.onButtonKeyDown.bind(this)
     );
-    this.buttonNode.addEventListener(
-      'click',
-      this.handleButtonClick.bind(this)
-    );
+    this.buttonNode.addEventListener('click', this.onButtonClick.bind(this));
 
-    this.okButtonNode.addEventListener('click', this.handleOkButton.bind(this));
-    this.okButtonNode.addEventListener(
-      'keydown',
-      this.handleOkButton.bind(this)
-    );
+    this.okButtonNode.addEventListener('click', this.onOkButton.bind(this));
+    this.okButtonNode.addEventListener('keydown', this.onOkButton.bind(this));
 
     this.cancelButtonNode.addEventListener(
       'click',
-      this.handleCancelButton.bind(this)
+      this.onCancelButton.bind(this)
     );
     this.cancelButtonNode.addEventListener(
       'keydown',
-      this.handleCancelButton.bind(this)
+      this.onCancelButton.bind(this)
     );
 
     this.prevMonthNode.addEventListener(
       'click',
-      this.handlePreviousMonthButton.bind(this)
+      this.onPreviousMonthButton.bind(this)
     );
     this.nextMonthNode.addEventListener(
       'click',
-      this.handleNextMonthButton.bind(this)
+      this.onNextMonthButton.bind(this)
     );
     this.prevYearNode.addEventListener(
       'click',
-      this.handlePreviousYearButton.bind(this)
+      this.onPreviousYearButton.bind(this)
     );
     this.nextYearNode.addEventListener(
       'click',
-      this.handleNextYearButton.bind(this)
+      this.onNextYearButton.bind(this)
     );
 
     this.prevMonthNode.addEventListener(
       'keydown',
-      this.handlePreviousMonthButton.bind(this)
+      this.onPreviousMonthButton.bind(this)
     );
     this.nextMonthNode.addEventListener(
       'keydown',
-      this.handleNextMonthButton.bind(this)
+      this.onNextMonthButton.bind(this)
     );
     this.prevYearNode.addEventListener(
       'keydown',
-      this.handlePreviousYearButton.bind(this)
+      this.onPreviousYearButton.bind(this)
     );
     this.nextYearNode.addEventListener(
       'keydown',
-      this.handleNextYearButton.bind(this)
+      this.onNextYearButton.bind(this)
     );
 
     document.body.addEventListener(
       'mouseup',
-      this.handleBackgroundMouseUp.bind(this),
+      this.onBackgroundMouseUp.bind(this),
       true
     );
 
@@ -147,9 +138,9 @@ class ComboboxDatePicker {
         var cell = document.createElement('td');
 
         cell.setAttribute('tabindex', '-1');
-        cell.addEventListener('click', this.handleDayClick.bind(this));
-        cell.addEventListener('keydown', this.handleDayKeyDown.bind(this));
-        cell.addEventListener('focus', this.handleDayFocus.bind(this));
+        cell.addEventListener('click', this.onDayClick.bind(this));
+        cell.addEventListener('keydown', this.onDayKeyDown.bind(this));
+        cell.addEventListener('focus', this.onDayFocus.bind(this));
 
         cell.innerHTML = '-1';
 
@@ -265,7 +256,7 @@ class ComboboxDatePicker {
     }
   }
 
-  handleOkButton(event) {
+  onOkButton(event) {
     var flag = false;
 
     switch (event.type) {
@@ -305,7 +296,7 @@ class ComboboxDatePicker {
     }
   }
 
-  handleCancelButton(event) {
+  onCancelButton(event) {
     var flag = false;
 
     switch (event.type) {
@@ -337,7 +328,7 @@ class ComboboxDatePicker {
     }
   }
 
-  handleNextYearButton(event) {
+  onNextYearButton(event) {
     var flag = false;
 
     switch (event.type) {
@@ -373,7 +364,7 @@ class ComboboxDatePicker {
     }
   }
 
-  handlePreviousYearButton(event) {
+  onPreviousYearButton(event) {
     var flag = false;
 
     switch (event.type) {
@@ -419,7 +410,7 @@ class ComboboxDatePicker {
     }
   }
 
-  handleNextMonthButton(event) {
+  onNextMonthButton(event) {
     var flag = false;
 
     switch (event.type) {
@@ -455,7 +446,7 @@ class ComboboxDatePicker {
     }
   }
 
-  handlePreviousMonthButton(event) {
+  onPreviousMonthButton(event) {
     var flag = false;
 
     switch (event.type) {
@@ -612,7 +603,7 @@ class ComboboxDatePicker {
     }
   }
 
-  handleDayKeyDown(event) {
+  onDayKeyDown(event) {
     var flag = false;
 
     switch (event.key) {
@@ -702,7 +693,7 @@ class ComboboxDatePicker {
     }
   }
 
-  handleDayClick(event) {
+  onDayClick(event) {
     if (!this.isDayDisabled(event.currentTarget)) {
       this.setComboboxDate(event.currentTarget);
       this.close();
@@ -712,7 +703,7 @@ class ComboboxDatePicker {
     event.preventDefault();
   }
 
-  handleDayFocus() {
+  onDayFocus() {
     this.setMessage(this.messageCursorKeys);
   }
 
@@ -762,7 +753,7 @@ class ComboboxDatePicker {
     }
   }
 
-  handleComboboxKeyDown(event) {
+  onComboboxKeyDown(event) {
     var flag = false,
       char = event.key,
       altKey = event.altKey;
@@ -804,7 +795,7 @@ class ComboboxDatePicker {
     }
   }
 
-  handleComboboxClick(event) {
+  onComboboxClick(event) {
     if (this.isOpen()) {
       this.close(false);
     } else {
@@ -815,15 +806,15 @@ class ComboboxDatePicker {
     event.preventDefault();
   }
 
-  handleComboboxFocus(event) {
+  onComboboxFocus(event) {
     event.currentTarget.parentNode.classList.add('focus');
   }
 
-  handleComboboxBlur(event) {
+  onComboboxBlur(event) {
     event.currentTarget.parentNode.classList.remove('focus');
   }
 
-  handleButtonKeyDown(event) {
+  onButtonKeyDown(event) {
     if (event.key === 'Enter' || event.key === ' ') {
       this.open();
       this.setFocusDay();
@@ -833,7 +824,7 @@ class ComboboxDatePicker {
     }
   }
 
-  handleButtonClick(event) {
+  onButtonClick(event) {
     if (this.isOpen()) {
       this.close();
     } else {
@@ -845,7 +836,7 @@ class ComboboxDatePicker {
     event.preventDefault();
   }
 
-  handleBackgroundMouseUp(event) {
+  onBackgroundMouseUp(event) {
     if (
       !this.comboboxNode.contains(event.target) &&
       !this.buttonNode.contains(event.target) &&
