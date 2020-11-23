@@ -4,6 +4,12 @@
 /*@cc_on @*/
 /*@if (@_jscript_version >= 5.8) @*/
 /*jslint devel: true */
+/*! skipto - v3.1.0 - 2020-11-12
+ * https://github.com/paypal/skipto
+ * Copyright (c) 2020 PayPal Accessibility Team and University of Illinois; Licensed BSD */
+/*@cc_on @*/
+/*@if (@_jscript_version >= 5.8) @*/
+/*jslint devel: true */
 /* ========================================================================
  * Copyright (c) <2020> PayPal
  * All rights reserved.
@@ -13,7 +19,9 @@
  * Neither the name of PayPal or any of its subsidiaries or affiliates nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * ======================================================================== */
+
 'use strict';
+
 (function () {
   var SkipTo = {
     domNode: null,
@@ -374,7 +382,7 @@
       for (name in appConfigSettings) {
         //overwrite values of our local config, based on the external config
         if (
-          typeof this.config[name] !== 'undefined' &&
+          typeof localConfig[name] !== 'undefined' &&
           ((typeof appConfigSettings[name] === 'string' &&
             appConfigSettings[name].length > 0) ||
             typeof appConfigSettings[name] === 'boolean')
@@ -910,6 +918,7 @@
         } else {
           node.tabIndex = -1;
           node.focus();
+          node.scrollIntoView({ block: 'center' });
         }
       }
     },
@@ -1289,4 +1298,13 @@
     console.log('SkipTo loaded...');
   });
 })();
+/*@end @*/
+
+var SkipToConfig = {
+  settings: {
+    skipTo: {
+      colorTheme: 'aria',
+    },
+  },
+};
 /*@end @*/
