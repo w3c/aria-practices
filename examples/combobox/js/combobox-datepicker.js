@@ -142,7 +142,7 @@ class ComboboxDatePicker {
         cell.addEventListener('keydown', this.onDayKeyDown.bind(this));
         cell.addEventListener('focus', this.onDayFocus.bind(this));
 
-        cell.innerHTML = '-1';
+        cell.textContent = '-1';
 
         row.appendChild(cell);
         this.days.push(cell);
@@ -172,7 +172,7 @@ class ComboboxDatePicker {
     var i, flag;
     var fd = this.focusDay;
 
-    this.monthYearNode.innerHTML =
+    this.monthYearNode.textContent =
       this.monthLabels[fd.getMonth()] + ' ' + fd.getFullYear();
 
     var firstDayOfMonth = new Date(fd.getFullYear(), fd.getMonth(), 1);
@@ -581,10 +581,10 @@ class ComboboxDatePicker {
 
     if (disable) {
       domNode.classList.add('disabled');
-      domNode.innerHTML = '';
+      domNode.textContent = '';
     } else {
       domNode.classList.remove('disabled');
-      domNode.innerHTML = day.getDate();
+      domNode.textContent = day.getDate();
       if (selected) {
         domNode.setAttribute('aria-selected', 'true');
         domNode.setAttribute('tabindex', '0');
