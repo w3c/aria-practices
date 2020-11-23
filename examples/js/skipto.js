@@ -1,10 +1,4 @@
-/*! skipto - v3.1.0 - 2020-11-09
- * https://github.com/paypal/skipto
- * Copyright (c) 2020 PayPal Accessibility Team and University of Illinois; Licensed BSD */
-/*@cc_on @*/
-/*@if (@_jscript_version >= 5.8) @*/
-/*jslint devel: true */
-/*! skipto - v3.1.0 - 2020-11-12
+/*! skipto - v3.1.0 - 2020-11-23
  * https://github.com/paypal/skipto
  * Copyright (c) 2020 PayPal Accessibility Team and University of Illinois; Licensed BSD */
 /*@cc_on @*/
@@ -705,33 +699,33 @@
     },
 
     createMenu: function () {
-      var groupNode, landmarkElems, headingElems;
+      var groupNode, landmarkElements, headingElements;
       // remove current menu items from menu
       while (this.menuNode.lastElementChild) {
         this.menuNode.removeChild(this.menuNode.lastElementChild);
       }
 
       // Create landmarks group
-      landmarkElems = this.getLandmarks();
+      landmarkElements = this.getLandmarks();
       groupNode = this.addMenuitemGroup(
         'id-skip-to-group-landmarks',
         this.config.landmarkImportantGroupLabel
       );
       this.addMenuitemsToGroup(
         groupNode,
-        landmarkElems,
+        landmarkElements,
         this.config.msgNoLandmarksFound
       );
 
       // Create headings group
-      headingElems = this.getHeadings();
+      headingElements = this.getHeadings();
       groupNode = this.addMenuitemGroup(
         'id-skip-to-group-headings',
         this.config.headingImportantGroupLabel
       );
       this.addMenuitemsToGroup(
         groupNode,
-        headingElems,
+        headingElements,
         this.config.msgNoHeadingsFound
       );
 
@@ -1032,7 +1026,7 @@
         }
       }
     },
-    // methods to extract lanndmarks, headings and ids
+    // methods to extract landmarks, headings and ids
     normalizeName: function (name) {
       if (typeof name === 'string')
         return name.replace(/\w\S*/g, function (txt) {
@@ -1184,12 +1178,12 @@
         targets = this.config.landmarks;
       }
       var landmarks = document.querySelectorAll(targets);
-      var mainElems = [];
-      var searchElems = [];
-      var navElems = [];
-      var asideElems = [];
-      var footerElems = [];
-      var otherElems = [];
+      var mainElements = [];
+      var searchElements = [];
+      var navElements = [];
+      var asideElements = [];
+      var footerElements = [];
+      var otherElements = [];
       var dataId = '';
       for (var i = 0, j = 0, len = landmarks.length; i < len; i = i + 1) {
         var landmark = landmarks[i];
@@ -1262,33 +1256,33 @@
           // For sorting landmarks into groups
           switch (tagName) {
             case 'main':
-              mainElems.push(landmarkItem);
+              mainElements.push(landmarkItem);
               break;
             case 'search':
-              searchElems.push(landmarkItem);
+              searchElements.push(landmarkItem);
               break;
             case 'nav':
-              navElems.push(landmarkItem);
+              navElements.push(landmarkItem);
               break;
             case 'aside':
-              asideElems.push(landmarkItem);
+              asideElements.push(landmarkItem);
               break;
             case 'footer':
-              footerElems.push(landmarkItem);
+              footerElements.push(landmarkItem);
               break;
             default:
-              otherElems.push(landmarkItem);
+              otherElements.push(landmarkItem);
               break;
           }
         }
       }
       return [].concat(
-        mainElems,
-        searchElems,
-        navElems,
-        asideElems,
-        footerElems,
-        otherElems
+        mainElements,
+        searchElements,
+        navElements,
+        asideElements,
+        footerElements,
+        otherElements
       );
     },
   };
@@ -1298,7 +1292,6 @@
     console.log('SkipTo loaded...');
   });
 })();
-/*@end @*/
 
 var SkipToConfig = {
   settings: {
