@@ -33,7 +33,9 @@ const openMenu = async function (t) {
     .getAttribute('aria-expanded');
 
   if (expanded !== 'true') {
-    await t.context.session.findElement(By.css(ex.menubuttonSelector)).click();
+    await t.context.session
+      .findElement(By.css(ex.menubuttonSelector))
+      .sendKeys(Key.ENTER);
   }
 
   return t.context.session.wait(
@@ -282,16 +284,23 @@ ariaTest(
   'menu-escape',
   async (t) => {
     const items = await t.context.queryElements(t, ex.menuitemSelector);
-    for (let index = 0; index < ex.numMenuitems; index++) {
+    for (let index = 0; index < items.length; index++) {
       const item = items[index];
 
       await openMenu(t);
       await item.sendKeys(Key.ESCAPE);
       await waitForNoAriaExpanded(t);
 
+      // fixes for running regression tests on windows
+      let url = t.context.url;
+      if (url.indexOf('\\') >= 0) {
+        url = url.replace(/\\/g, '/');
+        url = url.replace('file://C:', 'file:///C:');
+      }
+
       t.is(
         await t.context.session.getCurrentUrl(),
-        t.context.url,
+        url,
         'Key escape when focus on list item at index ' +
           index +
           ' should not activate the link'
