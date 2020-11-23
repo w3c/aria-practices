@@ -162,7 +162,7 @@
   border: 2px solid #034575;
 }
 
-.menubar-navigation [role="menu"] [aria-expanded="true"].aria-curent-path,
+.menubar-navigation [role="menu"] [aria-expanded="true"].aria-current-path,
 .menubar-navigation [role="menu"] [role="menuitem"].aria-current-path:focus,
 .menubar-navigation [role="menu"] [role="menuitem"].aria-current-path:hover,
 .menubar-navigation [role="menu"] [role="menuitem"][aria-current]:focus,
