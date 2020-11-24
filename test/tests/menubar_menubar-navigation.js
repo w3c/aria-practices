@@ -1,5 +1,6 @@
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
+const assert = require('assert');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
@@ -22,7 +23,8 @@ const ex = {
 
   // menu selectors
   anyMenuSelector: '#ex1 [role="menu"]',
-  menuSelector: '#ex1 [role="menubar"]>li>[role="menu"]',
+  submenuExpandableMenuitemsSelector:
+    '#ex1 [role="menubar"]>li>[role="menu"]>li>[aria-expanded]',
 
   // Menubar menuitem selectors
   menubarMenuitemSelector: '#ex1 [role="menubar"]>li>[role="menuitem"]',
@@ -38,6 +40,15 @@ const ex = {
     '#ex1 [role="menubar"]>li:nth-of-type(2)>[role="menu"]>li>[role="menuitem"]',
     '#ex1 [role="menubar"]>li:nth-of-type(3)>[role="menu"]>li>[role="menuitem"]',
   ],
+
+  // Submenu item selectors
+  submenuMenuitemsWithOwns: '#ex1 [role="menu"] [role="menuitem"][aria-owns]',
+  submenuMenuitemsWithHasPopup:
+    '#ex1 [role="menu"] [role="menuitem"][aria-haspopup]',
+  submenuMenuitemsWithExpanded:
+    '#ex1 [role="menu"] [role="menuitem"][aria-expanded]',
+
+  // Selectors for testing expandable menus in submenus
   groupSelector: '#ex1 [role="group"]',
   numMenus: 4,
   numSubmenus: 3,
@@ -317,57 +328,52 @@ ariaTest(
   }
 );
 
-ariaTest.failing(
+ariaTest(
   'Test aria-expanded on menubar menuitems set to true when popup is open',
   exampleFile,
   'menubar-menuitem-aria-expanded-true',
   async (t) => {
-    await assertAttributeValues(
+    const menubaritems = await t.context.queryElements(
       t,
-      ex.menubarMenuitemWithPopupSelector,
-      'aria-expanded',
-      'true'
+      ex.menubarMenuitemWithPopupSelector
     );
-  }
-);
 
-/*
+    for (let i = 0; i < menubaritems.length; i++) {
+      const menubaritem = menubaritems[i];
+      await menubaritem.sendKeys(Key.ARROW_DOWN);
 
-ariaTest.failing(
-  '"aria-expanded" attribute on menubar menuitem',
-  exampleFile,
-  'menuitem-aria-expanded',
-  async (t) => {
-    for (let menuitem of menuitems) {
-      t.truthy(
-        await menuitem.getText(),
-        '"role=menuitem" elements should all have accessible text content: ' +
-          ex.menubarMenuitemSelector
+      assert.strictEqual(
+        await menubaritem.getAttribute('aria-expanded'),
+        'true',
+        'aria-expanded should be "true" for "' + menubaritem.getText() + '"'
       );
+      t.pass();
     }
   }
 );
 
 ariaTest(
-  'Test roving tabindex',
+  'Test aria-haspopup set to true on sub menu menuitems with popups',
   exampleFile,
-  'menuitem-tabindex',
-  async (t) => {
-    // Wait for roving tabindex to be initialized by the javascript
-    await exampleInitialized(t);
-
-    await assertRovingTabindex(t, ex.menubarMenuitemSelector, Key.ARROW_RIGHT);
-  }
-);
-
-ariaTest(
-  'Test aria-haspopup set to true on menuitems',
-  exampleFile,
-  'menuitem-aria-haspopup',
+  'menu-menuitem-aria-haspopup',
   async (t) => {
     await assertAttributeValues(
       t,
-      ex.menubarMenuitemSelector,
+      ex.submenuMenuitemsWithOwns,
+      'aria-haspopup',
+      'true'
+    );
+
+    await assertAttributeValues(
+      t,
+      ex.submenuMenuitemsWithExpanded,
+      'aria-haspopup',
+      'true'
+    );
+
+    await assertAttributeValues(
+      t,
+      ex.submenuMenuitemsWithHasPopup,
       'aria-haspopup',
       'true'
     );
@@ -375,71 +381,104 @@ ariaTest(
 );
 
 ariaTest(
-  '"aria-expanded" attribute on menubar menuitem',
+  '"aria-expanded" attribute on sub-menu menuitem',
   exampleFile,
-  'menuitem-aria-expanded',
+  'menu-menuitem-aria-expanded-false',
   async (t) => {
-    // Before interating with page, make sure aria-expanded is set to false
+    // Before interacting with page, make sure aria-expanded is set to false
     await assertAttributeValues(
       t,
-      ex.menubarMenuitemSelector,
+      ex.submenuMenuitemsWithExpanded,
       'aria-expanded',
       'false'
     );
 
     // AND make sure no submenus are visible
-    const submenus = await t.context.queryElements(t, ex.menuSelector);
+    const submenus = await t.context.queryElements(
+      t,
+      ex.submenuMenuitemsWithExpanded
+    );
     for (let submenu of submenus) {
+      const menuId = await submenu.getAttribute('aria-owns');
+      const menuSelector = '#' + menuId;
+      const menuElement = await t.context.queryElement(t, menuSelector);
+
       t.false(
-        await submenu.isDisplayed(),
-        'No submenus (found by selector: ' +
-          ex.menuSelector +
-          ') should be displayed on load'
+        await menuElement.isDisplayed(),
+        'Submenu with ID "' + menuId + ' should NOT be displayed on load'
       );
     }
+  }
+);
 
-    const menuitems = await t.context.queryElements(
+ariaTest(
+  '"aria-expanded" attribute on sub-menu menuitem',
+  exampleFile,
+  'menu-menuitem-aria-expanded-true',
+  async (t) => {
+    const menubarMenuitems = await t.context.queryElements(
       t,
       ex.menubarMenuitemSelector
     );
 
-    for (let menuIndex = 0; menuIndex < menuitems.length; menuIndex++) {
-      // Send ARROW_DOWN to open submenu
-      await menuitems[menuIndex].sendKeys(Key.ARROW_DOWN);
+    for (let menubarMenuitem of menubarMenuitems) {
+      const menuId = await menubarMenuitem.getAttribute('aria-owns');
 
-      for (let item = 0; item < menuitems.length; item++) {
-        // Test attribute "aria-expanded" is only set for the opened submenu
-        const displayed = menuIndex === item ? true : false;
-        t.is(
-          await menuitems[item].getAttribute('aria-expanded'),
-          displayed.toString(),
-          'focus is on element ' +
-            menuIndex +
-            ' of elements "' +
-            ex.menubarMenuitemSelector +
-            '", therefore "aria-expanded" on menuitem ' +
-            item +
-            ' should be ' +
-            displayed
+      if (menuId) {
+        const menuSelector = '#' + menuId;
+        const menuElement = await t.context.queryElement(t, menuSelector);
+
+        await menubarMenuitem.sendKeys(Key.ARROW_DOWN);
+
+        t.true(
+          (await await menubarMenuitem.getAttribute('aria-expanded')) ===
+            'true',
+          'Submenu "' +
+            menubarMenuitem.getText() +
+            '" aria-expanded must be "true"'
         );
 
-        // Test the submenu is indeed displayed
-        t.is(
-          await submenus[item].isDisplayed(),
-          displayed,
-          'focus is on element ' +
-            menuIndex +
-            ' of elements "' +
-            ex.menubarMenuitemSelector +
-            '", therefore isDisplay of submenu ' +
-            item +
-            ' should return ' +
-            displayed
+        t.true(
+          await menuElement.isDisplayed(),
+          'Submenu with ID "' +
+            menuId +
+            '" should be displayed when menu is expanded'
         );
+
+        const expandableMenuitems = await t.context.queryElements(
+          t,
+          '[aria-expanded]',
+          menuElement,
+          true
+        );
+
+        for (let expandableMenuitem of expandableMenuitems) {
+          const submenuId = await expandableMenuitem.getAttribute('aria-owns');
+
+          if (submenuId) {
+            const submenuSelector = '#' + submenuId;
+            const submenuElement = await t.context.queryElement(
+              t,
+              submenuSelector
+            );
+
+            await expandableMenuitem.sendKeys(Key.ARROW_RIGHT);
+
+            t.true(
+              (await await expandableMenuitem.getAttribute('aria-expanded')) ===
+                'true',
+              'Submenu "' + submenuId + '" aria-expanded must be "true"'
+            );
+
+            t.true(
+              await submenuElement.isDisplayed(),
+              'Submenu with ID "' +
+                submenuId +
+                '" should be displayed when sub menu is expanded'
+            );
+          }
+        }
       }
-
-      // Send the ESCAPE to close submenu
-      await menuitems[menuIndex].sendKeys(Key.ESCAPE);
     }
   }
 );
@@ -447,7 +486,7 @@ ariaTest(
 ariaTest(
   'Test for role="none" on menubar li',
   exampleFile,
-  'none-role',
+  'menubar-role-none',
   async (t) => {
     const liElements = await t.context.queryElements(
       t,
@@ -465,6 +504,32 @@ ariaTest(
   }
 );
 
+ariaTest(
+  'Test for role="none" on menu li',
+  exampleFile,
+  'menu-role-none',
+  async (t) => {
+    const liElements = await t.context.queryElements(
+      t,
+      ex.anyMenuSelector + '>li'
+    );
+
+    for (let liElement of liElements) {
+      var isSeparator =
+        (await await liElement.getAttribute('role')) == 'separator';
+      if (!isSeparator) {
+        t.is(
+          await liElement.getAttribute('role'),
+          'none',
+          '"role=none" should be found on all list elements that are immediate descendants of: ' +
+            ex.anyMenuSelector
+        );
+      }
+    }
+  }
+);
+
+/*
 ariaTest('Test for role="menu" on ul', exampleFile, 'menu-role', async (t) => {
   await assertAriaRoles(t, 'ex1', 'menu', ex.numTotalMenus, 'ul');
 });
