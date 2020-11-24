@@ -11,7 +11,7 @@ const { By } = require('selenium-webdriver');
  * @returns {Promise} Resolves to array of elements
  */
 module.exports = async function queryElements(t, selector, context, noTest) {
-  if (typeof noTest === 'boolean') {
+  if (typeof noTest !== 'boolean') {
     noTest = false;
   }
   context = context || t.context.session;
