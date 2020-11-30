@@ -408,6 +408,7 @@ ariaTest(
 
 ariaTest('up arrow on month', exampleFile, 'spinbutton-up-arrow', async (t) => {
   let date = new Date();
+  date.setDate(1); // This is necessary to do the correct date math for months.
 
   let monthSpinner = await t.context.session.findElement(
     By.css(ex.monthSelector)
@@ -417,7 +418,6 @@ ariaTest('up arrow on month', exampleFile, 'spinbutton-up-arrow', async (t) => {
   for (let i = 1; i <= 12; i++) {
     await monthSpinner.sendKeys(Key.ARROW_UP);
     const index = new Date(date.setMonth(date.getMonth() + 1)).getMonth();
-    console.log(index);
     t.is(
       await monthSpinner.getText(),
       valuesMonth[index],
