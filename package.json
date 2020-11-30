@@ -32,7 +32,7 @@
   "devDependencies": {
     "ava": "^3.13.0",
     "cheerio": "^1.0.0-rc.2",
-    "cspell": "^4.1.5",
+    "cspell": "^4.2.3",
     "eslint": "^7.13.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-ava": "^11.0.0",
