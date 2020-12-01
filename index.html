@@ -2192,8 +2192,8 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         <p>
           The following description of keyboard behaviors assumes:</p>
           <ol>
-            <li>A horizontal <code>menubar</code> containing several <code>menuitem</code> elements.</li>
-            <li>All items in the <code>menubar</code> have child submenus that contain multiple vertically arranged items.</li>
+            <li>A horizontal <code>menubar</code> containing several <code>menuitem</code>, <code>menuitemradio</code>, or <code>menuitemcheckbox</code> elements.</li>
+            <li>Some <code>menuitem</code> elements in the <code>menubar</code> have child submenus that contain vertically arranged items.</li>
             <li>Some of the <code>menuitem</code> elements in the submenus have child submenus with items that are also vertically arranged.</li>
           </ol>
           <p>When reading the following descriptions, also keep in mind that:</p>
@@ -2225,14 +2225,14 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
           </li>
           <li><kbd>Down Arrow</kbd>:
             <ul>
-              <li>When focus is on a <code>menuitem</code> in a <code>menubar</code>, opens its submenu and places focus on the first item in the submenu.</li>
+              <li>When focus is on a <code>menuitem</code> in a <code>menubar</code>, and that <code>menuitem</code> has a submenu, opens the submenu and places focus on the first item in the submenu.</li>
             <li>When focus is in a <code>menu</code>, moves focus to the next item, optionally wrapping from the last to the first.</li>
             </ul>
           </li>
           <li><kbd>Up Arrow</kbd>:
             <ul>
             <li>When focus is in a <code>menu</code>, moves focus to the previous item, optionally wrapping from the first to the last.</li>
-            <li>(Optional): When focus is on a <code>menuitem</code> in a <code>menubar</code>, opens its submenu and places focus on the last item in the submenu.</li>
+            <li>(Optional): When focus is on a <code>menuitem</code> in a <code>menubar</code>, and that <code>menuitem</code> has a submenu, opens the submenu and places focus on the last item in the submenu.</li>
             </ul>
           </li>
           <li><kbd>Right Arrow</kbd>:
@@ -2242,9 +2242,9 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
               <li>When focus is in a <code>menu</code> and on an item that does not have a submenu, performs the following 3 actions:
               <ol>
                   <li>Closes the submenu and any parent menus.</li>
-                  <li>Moves focus to the next <code>menuitem</code> in the <code>menubar</code>.</li>
+                  <li>Moves focus to the next item in the <code>menubar</code>.</li>
                   <li>
-                    Either: (Recommended) opens the submenu of that <code>menuitem</code> without moving focus into the submenu,
+                    If focus is now on a <code>menuitem</code> with a submenu, either: (Recommended) opens the submenu of that <code>menuitem</code> without moving focus into the submenu,
                     or opens the submenu of that <code>menuitem</code> and places focus on the first item in the submenu.
                   </li>
                 </ol>
@@ -2259,9 +2259,9 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
               <li>When focus is in a submenu of an item in a <code>menubar</code>, performs the following 3 actions:
                 <ol>
                   <li>Closes the submenu.</li>
-                  <li>Moves focus to the previous <code>menuitem</code> in the <code>menubar</code>.</li>
+                  <li>Moves focus to the previous item in the <code>menubar</code>.</li>
                   <li>
-                    Either: (Recommended) opens the submenu of that <code>menuitem</code> without moving focus into the submenu,
+                    If focus is now on a <code>menuitem</code> with a submenu, either: (Recommended) opens the submenu of that <code>menuitem</code> without moving focus into the submenu,
                     or opens the submenu of that <code>menuitem</code> and places focus on the first item in the submenu.
                   </li>
                 </ol>
@@ -2270,8 +2270,8 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
           </li>
           <li><kbd>Home</kbd>: If arrow key wrapping is not supported, moves focus to the first item in the current <code>menu</code> or <code>menubar</code>.</li>
           <li><kbd>End</kbd>: If arrow key wrapping is not supported, moves focus to the last item in the current <code>menu</code> or <code>menubar</code>.</li>
-          <li>Any key that corresponds to a printable character (Optional): Move focus to   the next menu item in the current menu whose label begins with that printable character.</li>
-          <li><kbd>Escape</kbd>: Close the menu that contains focus and return focus to   the element or context, e.g., menu button or parent <code>menuitem</code>, from which the menu was opened. </li>
+          <li>Any key that corresponds to a printable character (Optional): Move focus to the next item in the current menu whose label begins with that printable character.</li>
+          <li><kbd>Escape</kbd>: Close the menu that contains focus and return focus to the element or context, e.g., menu button or parent <code>menuitem</code>, from which the menu was opened.</li>
           <li><kbd>Tab</kbd>: Moves focus to the next element in the tab sequence, and if the item that had focus is not in a <code>menubar</code>, closes its <code>menu</code> and all open parent <code>menu</code> containers.</li>
           <li><kbd>Shift + Tab</kbd>: Moves focus to the previous element in the tab sequence, and if the item that had focus is not in a <code>menubar</code>, closes its <code>menu</code> and all open parent <code>menu</code> containers.</li>
         </ul>
@@ -2279,13 +2279,13 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
           <li>Disabled menu items are focusable but cannot be activated. </li>
           <li>A <a href="https://w3c.github.io/aria/#separator" class="role-reference">separator</a> in a menu is not focusable or interactive.</li>
           <li>
-            If a menu is opened or a menubar receives focus as a result of a context action, <kbd>Escape</kbd> or <kbd>Enter</kbd> may return focus to   the invoking context.
+            If a menu is opened or a menubar receives focus as a result of a context action, <kbd>Escape</kbd> or <kbd>Enter</kbd> may return focus to the invoking context.
             For example, a rich text editor may have a menubar that receives focus when a shortcut key, e.g., <kbd>alt + F10</kbd>, is pressed while editing.
             In this case, pressing <kbd>Escape</kbd> or activating a command from the menu may return focus to the editor.
           </li>
           <li>
             Although it is recommended that authors avoid doing so, some implementations of navigation menubars may have <code>menuitem</code> elements that both perform a function and open a submenu.
-            In such implementations, <kbd>enter</kbd> and <kbd>Space</kbd> perform a navigation function, e.g., load new content,
+            In such implementations, <kbd>Enter</kbd> and <kbd>Space</kbd> perform a navigation function, e.g., load new content,
             while <kbd>Down Arrow</kbd>, in a horizontal menubar, opens the submenu associated with that same <code>menuitem</code>.
           </li>
           <li>
