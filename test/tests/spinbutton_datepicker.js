@@ -701,6 +701,23 @@ ariaTest('page up on month', exampleFile, 'spinbutton-page-up', async (t) => {
     'After sending page ups to the month spinner in December, the month should be: ' +
       valuesMonth[control - 1]
   );
+
+  // Set to December
+  await monthSpinner.sendKeys(Key.END);
+
+  // Set to August
+  for (let i = 1; i <= 4; i++) {
+    await monthSpinner.sendKeys(Key.DOWN);
+  }
+
+  await monthSpinner.sendKeys(Key.PAGE_UP);
+
+  t.is(
+    await monthSpinner.getText(),
+    valuesMonth[control - 1],
+    'After sending page up to the month spinner on August, the month should be: ' +
+      valuesMonth[control - 1]
+  );
 });
 
 ariaTest(
