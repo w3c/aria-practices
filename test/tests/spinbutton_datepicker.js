@@ -666,6 +666,23 @@ ariaTest('page down on day', exampleFile, 'spinbutton-page-down', async (t) => {
     'After sending page downs to the day spinner when set to 1, the day should be: ' +
       control
   );
+
+  // Set to first of month
+  await daySpinner.sendKeys(Key.HOME);
+
+  // Set to five
+  for (let i = 1; i <= 4; i++) {
+    await daySpinner.sendKeys(Key.UP);
+  }
+
+  await daySpinner.sendKeys(Key.PAGE_DOWN);
+
+  t.is(
+    parseInt(await daySpinner.getText()),
+    control,
+    'After sending page down to the day spinner when set to 5, the day should be: ' +
+      control
+  );
 });
 
 ariaTest('page up on month', exampleFile, 'spinbutton-page-up', async (t) => {
