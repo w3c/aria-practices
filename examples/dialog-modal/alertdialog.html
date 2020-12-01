@@ -61,7 +61,9 @@
         <li><a href="datepicker-dialog.html">Date Picker Dialog example</a>: Demonstrates a dialog containing a calendar grid for choosing a date.</li>
       </ul>
       <section>
-        <h2 id="ex_label">Example</h2>
+        <div class="example-header">
+          <h2 id="ex_label">Example</h2>
+        </div>
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div id="ex_alertdialog">
           <label for="notes">Notes</label>
@@ -213,7 +215,7 @@
       </section>
       <section>
         <h2 id="src_label">Javascript and CSS Source Code</h2>
-        <ul>
+        <ul id="css_js_files">
           <li> CSS: <a href="css/dialog.css" type="text/css">dialog.css</a></li>
           <li> Javascript: <a href="js/alertdialog.js" type="text/javascript">alertdialog.js</a>, <a href="js/dialog.js" type="text/javascript">dialog.js</a>, <a href="../js/utils.js">utils.js</a></li>
         </ul>
@@ -224,7 +226,7 @@
         <pre><code id="sc1"></code></pre>
         <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
         <script>
-          sourceCode.add('sc1', 'ex_alertdialog');
+          sourceCode.add('sc1', 'ex_alertdialog', 'ex_label', 'css_js_files');
           sourceCode.make();
         </script>
       </section>
