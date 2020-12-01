@@ -757,6 +757,23 @@ ariaTest(
       'After sending page down to the month spinner on January, the month should be: ' +
         valuesMonth[control - 1]
     );
+
+    // Set to January
+    await monthSpinner.sendKeys(Key.HOME);
+
+    // Set to May
+    for (let i = 1; i <= 4; i++) {
+      await monthSpinner.sendKeys(Key.ARROW_UP);
+    }
+
+    await monthSpinner.sendKeys(Key.PAGE_DOWN);
+
+    t.is(
+      await monthSpinner.getText(),
+      valuesMonth[control - 1],
+      'After sending page down to the month spinner on May, the month should be: ' +
+        valuesMonth[control - 1]
+    );
   }
 );
 
