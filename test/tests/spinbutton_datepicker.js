@@ -689,22 +689,25 @@ ariaTest('page up on month', exampleFile, 'spinbutton-page-up', async (t) => {
   );
 });
 
-// The bug causing this test to fail is tracked in https://github.com/w3c/aria-practices/issues/1426
-ariaTest.failing(
+ariaTest(
   'page down on month',
   exampleFile,
   'spinbutton-page-down',
   async (t) => {
-    let control = parseInt(ex.monthNow) + 1;
+    let control = 12;
 
     // Send page down to month date spinner
     let monthSpinner = await t.context.session.findElement(
       By.css(ex.monthSelector)
     );
+
+    // Set spinner to December
+    await monthSpinner.sendKeys(Key.END);
+
     await monthSpinner.sendKeys(Key.PAGE_DOWN);
 
     // Subtract 5 month to the control
-    control = (control - 5) % 12;
+    control -= 5;
 
     t.is(
       await monthSpinner.getText(),
@@ -718,13 +721,26 @@ ariaTest.failing(
       await monthSpinner.sendKeys(Key.PAGE_DOWN);
     }
 
-    // Subtract 30 months to the control
-    control = 12 + ((control - 10) % 12);
+    // Roll around to December
+    control = 12;
 
     t.is(
       await monthSpinner.getText(),
       valuesMonth[control - 1],
       'After sending 3 page downs to the month spinner, the month should be: ' +
+        valuesMonth[control - 1]
+    );
+
+    // Set to January
+    await monthSpinner.sendKeys(Key.HOME);
+
+    // Roll around to December
+    await monthSpinner.sendKeys(Key.PAGE_DOWN);
+
+    t.is(
+      await monthSpinner.getText(),
+      valuesMonth[control - 1],
+      'After sending page down to the month spinner on January, the month should be: ' +
         valuesMonth[control - 1]
     );
   }
