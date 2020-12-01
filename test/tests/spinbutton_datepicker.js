@@ -541,46 +541,46 @@ ariaTest(
 );
 
 // The bug causing this test to fail is tracked in https://github.com/w3c/aria-practices/issues/1426
-ariaTest.failing(
-  'page up on day',
-  exampleFile,
-  'spinbutton-page-up',
-  async (t) => {
-    let control = parseInt(ex.dayNow);
-    let daysInMonth = parseInt(ex.dayMax);
+ariaTest('page up on day', exampleFile, 'spinbutton-page-up', async (t) => {
+  let control = parseInt(ex.dayNow);
 
-    // Send page up to day date spinner
-    let daySpinner = await t.context.session.findElement(
-      By.css(ex.daySelector)
-    );
+  // Set to December for a 31 day month
+  let monthSpinner = await t.context.session.findElement(
+    By.css(ex.monthSelector)
+  );
+  await monthSpinner.sendKeys(Key.END);
+
+  // Send page up to day date spinner
+  let daySpinner = await t.context.session.findElement(By.css(ex.daySelector));
+
+  // Set to first of month
+  await daySpinner.sendKeys(Key.HOME);
+
+  await daySpinner.sendKeys(Key.PAGE_UP);
+
+  // Add a day to the control
+  control = 6;
+
+  t.is(
+    parseInt(await daySpinner.getText()),
+    control,
+    'After sending 1 page up to the day spinner, the day should be: ' + control
+  );
+
+  // Send page up 5 more times to date spinner
+  for (let i = 1; i <= 5; i++) {
     await daySpinner.sendKeys(Key.PAGE_UP);
-
-    // Add a day to the control
-    control = (control + 5) % daysInMonth;
-
-    t.is(
-      parseInt(await daySpinner.getText()),
-      control,
-      'After sending 1 page up to the day spinner, the day should be: ' +
-        control
-    );
-
-    // Send page up 5 more times to date spinner
-    for (let i = 1; i <= 5; i++) {
-      await daySpinner.sendKeys(Key.PAGE_UP);
-    }
-
-    // Add 25 days to the control
-    control = (control + 25) % daysInMonth;
-
-    t.is(
-      parseInt(await daySpinner.getText()),
-      control,
-      'After sending 6 page ups to the day spinner, the day should be: ' +
-        control
-    );
   }
-);
+
+  // Add 25 days to the control
+  control = 31;
+
+  t.is(
+    parseInt(await daySpinner.getText()),
+    control,
+    'After sending 6 page ups to the day spinner, the day should be: ' + control
+  );
+});
 
 // The bug causing this test to fail is tracked in https://github.com/w3c/aria-practices/issues/1426
 ariaTest.failing(
