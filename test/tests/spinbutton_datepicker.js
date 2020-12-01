@@ -582,7 +582,6 @@ ariaTest('page up on day', exampleFile, 'spinbutton-page-up', async (t) => {
   );
 });
 
-// The bug causing this test to fail is tracked in https://github.com/w3c/aria-practices/issues/1426
 ariaTest('page down on day', exampleFile, 'spinbutton-page-down', async (t) => {
   let control = parseInt(ex.dayNow);
 
@@ -622,6 +621,18 @@ ariaTest('page down on day', exampleFile, 'spinbutton-page-down', async (t) => {
     parseInt(await daySpinner.getText()),
     control,
     'After sending 6 page downs to the day spinner, the day should be: ' +
+      control
+  );
+
+  await daySpinner.sendKeys(Key.PAGE_DOWN);
+
+  // End of month if hit when at first of month.
+  control = 31;
+
+  t.is(
+    parseInt(await daySpinner.getText()),
+    control,
+    'After sending page downs to the day spinner when set to 1, the day should be: ' +
       control
   );
 });
