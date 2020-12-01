@@ -583,46 +583,48 @@ ariaTest('page up on day', exampleFile, 'spinbutton-page-up', async (t) => {
 });
 
 // The bug causing this test to fail is tracked in https://github.com/w3c/aria-practices/issues/1426
-ariaTest.failing(
-  'page down on day',
-  exampleFile,
-  'spinbutton-page-down',
-  async (t) => {
-    let control = parseInt(ex.dayNow);
-    let daysInMonth = parseInt(ex.dayMax);
+ariaTest('page down on day', exampleFile, 'spinbutton-page-down', async (t) => {
+  let control = parseInt(ex.dayNow);
 
-    // Send page down to day date spinner
-    let daySpinner = await t.context.session.findElement(
-      By.css(ex.daySelector)
-    );
+  // Set to December for a 31 day month
+  let monthSpinner = await t.context.session.findElement(
+    By.css(ex.monthSelector)
+  );
+  await monthSpinner.sendKeys(Key.END);
+
+  // Send page down to day date spinner
+  let daySpinner = await t.context.session.findElement(By.css(ex.daySelector));
+
+  // Set to 31st
+  await daySpinner.sendKeys(Key.END);
+
+  await daySpinner.sendKeys(Key.PAGE_DOWN);
+
+  // Subtract 5 days to the control
+  control = 26;
+
+  t.is(
+    parseInt(await daySpinner.getText()),
+    control,
+    'After sending 1 page down to the day spinner, the day should be: ' +
+      control
+  );
+
+  // Send page down 5 more times to date spinner
+  for (let i = 1; i <= 5; i++) {
     await daySpinner.sendKeys(Key.PAGE_DOWN);
-
-    // Subtract 5 days to the control
-    control = (control - 5) % daysInMonth;
-
-    t.is(
-      parseInt(await daySpinner.getText()),
-      control,
-      'After sending 1 page down to the day spinner, the day should be: ' +
-        control
-    );
-
-    // Send page down 5 more times to date spinner
-    for (let i = 1; i <= 5; i++) {
-      await daySpinner.sendKeys(Key.PAGE_DOWN);
-    }
-
-    // Subtract 25 days to the control
-    control = daysInMonth + ((control - 25) % daysInMonth);
-
-    t.is(
-      parseInt(await daySpinner.getText()),
-      control,
-      'After sending 6 page downs to the day spinner, the day should be: ' +
-        control
-    );
   }
-);
+
+  // Subtract 25 days to the control
+  control -= 25;
+
+  t.is(
+    parseInt(await daySpinner.getText()),
+    control,
+    'After sending 6 page downs to the day spinner, the day should be: ' +
+      control
+  );
+});
 
 // The bug causing this test to fail is tracked in https://github.com/w3c/aria-practices/issues/1426
 ariaTest.failing(
