@@ -135,7 +135,7 @@
         menuitemFocusBorderColor: '#ff552e',
       },
       aria: {
-        positionLeft: '380px',
+        positionLeft: '',
         buttonColor: '#005a9c;',
         buttonBackgroundColor: '#def',
         buttonBorderColor: '#def',
@@ -1131,7 +1131,7 @@
       var headingElementsArr = [];
       if (typeof targets !== 'string' || targets.length === 0) return;
       var headings = document.querySelectorAll(targets);
-      for (var i = 0, j = 0, len = headings.length; i < len; i += 1) {
+      for (var i = 0, len = headings.length; i < len; i += 1) {
         var heading = headings[i];
         var role = heading.getAttribute('role');
         if (typeof role === 'string' && role === 'presentation') continue;
@@ -1149,7 +1149,6 @@
           headingItem.tagName = heading.tagName.toLowerCase();
           headingItem.role = 'heading';
           headingElementsArr.push(headingItem);
-          j += 1;
           this.skipToIdIndex += 1;
         }
       }
@@ -1228,7 +1227,7 @@
       var allLandmarks = [];
       var dataId = '';
       console.log('\n\n== [getLandmarks] ==');
-      for (var i = 0, j = 0, len = landmarks.length; i < len; i = i + 1) {
+      for (var i = 0, len = landmarks.length; i < len; i = i + 1) {
         var landmark = landmarks[i];
         // if skipto is a landmark don't include it in the list
         if (landmark === this.domNode) {
@@ -1305,7 +1304,6 @@
               landmarks
             );
           }
-          j += 1;
           this.skipToIdIndex += 1;
           allLandmarks.push(landmarkItem);
           // For sorting landmarks into groups
@@ -1349,17 +1347,18 @@
     },
   };
   // Initialize skipto menu button with onload event
+  var SkipToConfig = {
+    settings: {
+      skipTo: {
+        colorTheme: 'aria',
+      },
+    },
+  };
+
   window.addEventListener('load', function () {
-    SkipTo.init(window.SkipToConfig || window.Wordpress || {});
+    SkipTo.init(SkipToConfig);
     console.log('SkipTo loaded...');
   });
 })();
 
-var SkipToConfig = {
-  settings: {
-    skipTo: {
-      colorTheme: 'aria',
-    },
-  },
-};
 /*@end @*/
