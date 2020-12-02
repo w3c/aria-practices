@@ -3,10 +3,10 @@ const assert = require('assert');
 /**
  * Confirm the dot value value of an element in javascript (testing the IDL Interface)
  *
- * @param {obj} t                  - ava execution object
- * @param {String} elementSelector - a selector that returns one element
- * @param {String} attr            - the attribute to access by javascript dot notation
- * @param {String} value           - the value of the attribute
+ * @param {object} t                  - ava execution object
+ * @param {string} elementSelector - a selector that returns one element
+ * @param {string} attr            - the attribute to access by javascript dot notation
+ * @param {string} value           - the value of the attribute
  */
 
 module.exports = async function assertDotValue(

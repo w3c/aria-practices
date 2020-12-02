@@ -14,8 +14,6 @@ var aria = aria || {};
  *  Combobox object representing the state and interactions for a combobox
  *  widget
  *
- * @param comboboxNode
- *  The DOM node pointing to the combobox
  * @param input
  *  The input node
  * @param grid

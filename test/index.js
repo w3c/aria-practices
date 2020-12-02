@@ -50,9 +50,9 @@ if (!coverageReportRun) {
  * Declare a test for a behavior documented on and demonstrated by an
  * aria-practices examples page.
  *
- * @param {String} desc - short description of the test
- * @param {String} page - path to the example file
- * @param {String} testId - unique identifier for the documented behavior
+ * @param {string} desc - short description of the test
+ * @param {string} page - path to the example file
+ * @param {string} testId - unique identifier for the documented behavior
  *                          within the demonstration page
  * @param {Function} body - script which implements the test
  */

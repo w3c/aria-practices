@@ -815,10 +815,6 @@ aria.Grid.prototype.getNextCell = function (
  *  Get next visible column to the right or left (direction) of the focused
  *  cell.
  *
- * @param direction
- *  Direction for where to check for cells. +1 to check to the right, -1 to
- *  check to the left
- *
  * @return
  *  Indices of the next visible cell in the specified direction. If no visible
  *  cells are found, returns false if the current cell is hidden and returns

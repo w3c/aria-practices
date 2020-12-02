@@ -304,7 +304,7 @@ FormatToolbar.prototype.activateItem = function (toolbarItem) {
  * @desc
  *  Focus on the specified item
  *
- * @param element
+ * @param item
  *  The item to focus on
  */
 FormatToolbar.prototype.setFocusItem = function (item) {
