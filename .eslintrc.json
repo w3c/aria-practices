@@ -8,7 +8,6 @@
     "ecmaVersion": 6
   },
   "rules": {
-    "jsdoc/check-tag-names": 0,
     "jsdoc/no-undefined-types": 0,
     "jsdoc/require-jsdoc": 0,
     "jsdoc/require-param-description": 0,

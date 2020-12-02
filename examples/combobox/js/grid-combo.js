@@ -8,9 +8,9 @@
 var aria = aria || {};
 
 /**
- * @constructor
+ * @class
  *
- * @desc
+ * @description
  *  Combobox object representing the state and interactions for a combobox
  *  widget
  *

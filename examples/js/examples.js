@@ -46,7 +46,7 @@ var VOID_ELEMENTS = [
  *
  * @property {Array} location Object containing the keyCodes used by the slider widget
  * @property {Array} code JQuery node object
- * @constructor SourceCode
+ * @class SourceCode
  * @memberof aria.widget
  */
 aria.widget.SourceCode = function () {
@@ -64,7 +64,7 @@ aria.widget.SourceCode = function () {
  * @param {string} exampleHeaderId - ID of header element under which the "Open in Codepen" button belongs
  * @param {string} cssJsFilesId    - ID of element containing links to all the relevent js and css files used for the example widget
  *
- * @method add
+ * @function add
  * @memberof aria.widget.SourceCode
  */
 aria.widget.SourceCode.prototype.add = function (
@@ -82,7 +82,7 @@ aria.widget.SourceCode.prototype.add = function (
 /**
  * Generates HTML content for source code
  *
- * @method make
+ * @function make
  * @memberof aria.widget.SourceCode
  */
 aria.widget.SourceCode.prototype.make = function () {
@@ -118,7 +118,7 @@ aria.widget.SourceCode.prototype.make = function () {
  * @param {number} indentLevel Level of indentation
  * @param {boolean} skipFirst Whether to skip the first node
  *
- * @method createCode
+ * @function createCode
  * @memberof aria.widget.SourceCode
  */
 aria.widget.SourceCode.prototype.createCode = function (

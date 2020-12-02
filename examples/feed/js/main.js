@@ -11,7 +11,7 @@
  * ARIA Feed Example
  *
  * @function onload
- * @desc Initialize the feed once the page has loaded
+ * @description Initialize the feed once the page has loaded
  */
 window.addEventListener('load', function () {
   var feedNode = document.getElementById('restaurant-feed');

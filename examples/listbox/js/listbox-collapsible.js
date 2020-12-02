@@ -3,7 +3,7 @@
  * ARIA Collapsible Dropdown Listbox Example
  *
  * @function onload
- * @desc Initialize the listbox example once the page has loaded
+ * @description Initialize the listbox example once the page has loaded
  */
 
 window.addEventListener('load', function () {

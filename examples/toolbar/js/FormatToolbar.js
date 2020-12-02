@@ -10,9 +10,9 @@
 'use strict';
 
 /**
- * @constructor
+ * @class
  *
- * @desc
+ * @description
  *  Format Toolbar object representing the state and interactions for a toolbar widget
  *  to format the text in a textarea element
  *
@@ -301,7 +301,7 @@ FormatToolbar.prototype.activateItem = function (toolbarItem) {
 };
 
 /**
- * @desc
+ * @description
  *  Focus on the specified item
  *
  * @param item
