@@ -140,6 +140,7 @@ class MenubarNavigation {
     this.menuitems.forEach((item) => {
       item.removeAttribute('aria-current');
       item.classList.remove('aria-current-path');
+      item.title = '';
     });
 
     this.menuitems.forEach((item) => {
@@ -148,6 +149,7 @@ class MenubarNavigation {
         pathNode = this.getParentMenuitem(item);
         while (pathNode) {
           pathNode.classList.add('aria-current-path');
+          pathNode.title = 'Contains current page link';
           pathNode = this.getParentMenuitem(pathNode);
         }
       }
