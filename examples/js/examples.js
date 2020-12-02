@@ -431,6 +431,7 @@ function addOpenInCodePenForm(
         }
         totalFetchedFiles++;
       } else {
+        // eslint-disable-next-line no-console
         console.warn(
           "Not showing 'Open in Codepen' button. Could not load resource: " +
             href
@@ -438,6 +439,7 @@ function addOpenInCodePenForm(
       }
     };
     request.onerror = function () {
+      // eslint-disable-next-line no-console
       console.warn(
         "Not showing 'Open in Codepen' button. Could not load resource: " +
           fileLink.href
@@ -457,6 +459,7 @@ function addOpenInCodePenForm(
 
   setTimeout(() => {
     clearInterval(timerId);
+    // eslint-disable-next-line no-console
     console.warn(
       "Not showing 'Open in Codepen' button. Timeout when loading resource."
     );

@@ -177,7 +177,6 @@ ariaTest(
     );
     const id = await combobox.getAttribute('id');
 
-    console.log(id);
     t.truthy(id, '"id" attribute should exist on combobox');
 
     const label = await t.context.queryElements(t, `[for="${id}"]`);
