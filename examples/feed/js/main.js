@@ -9,6 +9,7 @@
 
 /**
  * ARIA Feed Example
+ *
  * @function onload
  * @desc Initialize the feed once the page has loaded
  */

@@ -9,6 +9,7 @@
 
 /**
  * ARIA Listbox Examples
+ *
  * @function onload
  * @desc Initialize the listbox examples once the page has loaded
  */

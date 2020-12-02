@@ -9,6 +9,7 @@
 
 /**
  * ARIA Scrollable Listbox Example
+ *
  * @function onload
  * @desc Initialize the listbox example once the page has loaded
  */
