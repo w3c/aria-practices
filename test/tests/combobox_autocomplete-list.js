@@ -168,7 +168,6 @@ ariaTest(
     );
     const id = await combobox.getAttribute('id');
 
-    console.log(id);
     t.truthy(id, '"id" attribute should exist on combobox');
 
     const label = await t.context.queryElements(t, `[for="${id}"]`);
@@ -602,7 +601,7 @@ ariaTest(
 ariaTest(
   'Test backspace with focus on textbox',
   exampleFile,
-  'textbox-key-backspace',
+  'standard-single-line-editing-keys',
   async (t) => {
     t.plan(7);
 
@@ -615,7 +614,7 @@ ariaTest(
     // Get the value of the first option in the listbox
 
     const firstOption = await (
-      await t.context.queryElements(By.css(ex.optionsSelector))
+      await t.context.queryElements(t, ex.optionsSelector)
     )[0].getText();
 
     // Confirm that the value of the textbox is "a"
@@ -679,7 +678,7 @@ ariaTest(
 
     // Confirm that there are 56 options visible
     t.is(
-      await (await t.context.queryElements(By.css(ex.optionsSelector))).length,
+      await (await t.context.queryElements(t, ex.optionsSelector)).length,
       56,
       'key press "ARROW_DOWN" should result in all options being visible'
     );
@@ -691,7 +690,7 @@ ariaTest(
 ariaTest(
   'Test backspace with focus on textbox (2)',
   exampleFile,
-  'textbox-key-backspace',
+  'standard-single-line-editing-keys',
   async (t) => {
     t.plan(7);
 
@@ -762,7 +761,7 @@ ariaTest(
 
     // Confirm that there are 9 options visible
     t.is(
-      await (await t.context.queryElements(By.css(ex.optionsSelector))).length,
+      await (await t.context.queryElements(t, ex.optionsSelector)).length,
       9,
       'key press "ARROW_DOWN" should result in 9 options being visible'
     );
