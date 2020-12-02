@@ -15,28 +15,28 @@
  * limitations under the License.
  */
 
-function showLandmarks (event) {
+'use strict';
+
+function showLandmarks(event) {
   if (typeof window[initLandmarks] !== 'function') {
     window[initLandmarks] = initLandmarks();
   }
 
   if (window[initLandmarks].run()) {
     event.target.innerHTML = 'Hide Landmarks';
-  }
-  else {
+  } else {
     event.target.innerHTML = 'Show Landmarks';
   }
 }
 
-function showHeadings (event) {
+function showHeadings(event) {
   if (typeof window[initHeadings] !== 'function') {
     window[initHeadings] = initHeadings();
   }
 
   if (window[initHeadings].run()) {
     event.target.innerHTML = 'Hide Headings';
-  }
-  else {
+  } else {
     event.target.innerHTML = 'Show Headings';
   }
 }

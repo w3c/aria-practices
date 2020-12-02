@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Radio Group Example Using aria-activedescendant | WAI-ARIA Authoring Practices 1.2</title>
+
+    <!--  Core js and css shared by all examples; do not modify when using this template. -->
+    <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
+    <link rel="stylesheet" href="../css/core.css">
+    <script src="../js/examples.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    <script src="../js/app.js"></script>
+
+<!--  CSS and Javascript for this example -->
+    <link rel="stylesheet" href="css/radio.css">
+    <script src="js/radio-activedescendant.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <nav aria-label="Related Links" class="feedback">
+      <ul>
+        <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
+        <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
+        <li><a href="https://github.com/w3c/aria-practices/projects/22">Related Issues</a></li>
+        <li><a href="../../#radiobutton">Design Pattern</a></li>
+      </ul>
+    </nav>
+    <main role="main">
+      <h1>Radio Group Example Using aria-activedescendant</h1>
+      <p>
+        This example implements the features of the <a href="../../#radiobutton">Radio Group Design Pattern</a>
+        for two radio groups -- one for choosing a pizza crust and another for choosing a delivery method.
+        This implementation uses <code>aria-activedescendant</code> for informing assistive technologies which radio button has visual focus.
+      </p>
+      <p>Similar examples include: </p>
+      <ul>
+        <li><a href="radio.html">Radio Group Example Using Roving tabindex</a>: A radio button group that uses roving <code>tabindex</code> for managing keyboard focus.</li>
+      </ul>
+     <section>
+      <h2 id="ex_label">Example</h2>
+      <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
+      <div id="ex1">
+        <h3 id="group_label_1">Pizza Crust</h3>
+
+        <ul class="radiogroup-activedescendant"
+            role="radiogroup"
+            aria-labelledby="group_label_1"
+            aria-activedescendant="rb11"
+            tabindex="0">
+          <li id="rb11"
+              role="radio"
+              aria-checked="false">
+            Regular crust
+          </li>
+          <li id="rb12"
+              role="radio"
+              aria-checked="false">
+            Deep dish
+          </li>
+          <li id="rb13"
+              role="radio"
+              aria-checked="false">
+            Thin crust
+          </li>
+        </ul>
+
+        <h3 id="group_label_2">Pizza Delivery</h3>
+
+        <ul class="radiogroup-activedescendant"
+            role="radiogroup"
+            aria-labelledby="group_label_2"
+            aria-activedescendant="rb21"
+            tabindex="0">
+          <li id="rb21"
+              role="radio"
+              aria-checked="false">
+            Pick up
+          </li>
+          <li id="rb22"
+              role="radio"
+              aria-checked="false">
+            Home Delivery
+          </li>
+          <li id="rb23"
+              role="radio"
+              aria-checked="false">
+            Dine in Restaurant
+          </li>
+        </ul>
+
+      </div>
+      <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
+    </section>
+
+      <section>
+        <h2>Accessibility Features</h2>
+        <ul>
+          <li>Uses CSS attribute selectors for synchronizing <code>aria-checked</code> state with the visual state indicator.</li>
+          <li>
+            Uses CSS <code>:hover</code> and <code>:focus</code> pseudo-classes for styling visual keyboard focus and hover.
+            <ul>
+              <li>Focus indicator encompasses both radio button and label, making it easier to perceive which option is being chosen.</li>
+              <li>Hover changes background of both radio button and label, making it easier to perceive that clicking either the label or button will activate the radio button.</li>
+              <li>
+                Because transparent borders are visible on some systems with high contrast enabled, only the focused element has a visible border.
+                When focusable elements are not focused, they have a 0-width border and additional padding equal in width to the border that is used to indicate focus.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 id="kbd_label">Keyboard Support</h2>
+        <p>
+          <strong>NOTE:</strong> When visual focus is on a radio button in the radio group, DOM focus remains on the radio group container and the value of <code>aria-activedescendant</code> on the radio group refers to the radio button that is visually indicated as focused.
+          Where the following descriptions of keyboard commands mention focus, they are referring to the visual focus indicator, not DOM focus.
+          For more information about this focus management technique, see
+          <a href="../../#kbd_focus_activedescendant">Using aria-activedescendant to Manage Focus.</a>
+        </p>
+        <table aria-labelledby="kbd_label" class="def">
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-test-id="key-tab">
+              <th><kbd>Tab</kbd></th>
+              <td>
+                <ul>
+                  <li>Moves focus to the checked <code>radio</code> button in the <code>radiogroup</code>.</li>
+                  <li>If a <code>radio</code> button is not checked, focus moves to the first <code>radio</code> button in the group.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="key-space">
+              <th><kbd>Space</kbd></th>
+              <td>
+                <ul>
+                  <li>If the <code>radio</code> button with focus is not checked, changes the state to <code>checked</code>.</li>
+                  <li>Otherwise, does nothing.</li>
+                  <li>Note: The state where a radio is not checked only occurs on page load.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="key-down-right-arrow">
+              <th><kbd>Down arrow</kbd><br/><kbd>Right arrow</kbd></th>
+              <td>
+                <ul>
+                  <li>Moves focus to and checks the next <code>radio</code> button in the group.</li>
+                  <li>If focus is on the last <code>radio</code> button, moves focus to the first <code>radio</code> button.</li>
+                  <li>The state of the previously checked radio button is changed to unchecked.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="key-up-left-arrow">
+              <th><kbd>Up arrow</kbd><br/><kbd>Left arrow</kbd></th>
+              <td>
+                <ul>
+                  <li>Moves focus to and checks the previous <code>radio</code> button in the group.</li>
+                  <li>If focus is on the first <code>radio</code> button, moves focus to and checks the last <code>radio</code> button.</li>
+                  <li>The state of the previously checked radio button is changed to unchecked.</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+<section>
+        <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
+        <table aria-labelledby="rps_label" class="data attributes">
+          <thead>
+            <tr>
+              <th scope="col">Role</th>
+              <th scope="col">Attributes</th>
+              <th scope="col">Element</th>
+              <th scope="col">Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-test-id="radiogroup-role">
+              <th scope="row"><code>radiogroup</code></th>
+              <td></td>
+              <td><code>ul</code></td>
+              <td>Identifies the element as a container for a group of <code>radio</code> buttons.</td>
+            </tr>
+            <tr data-test-id="radiogroup-aria-labelledby">
+              <td></td>
+              <th scope="row"><code>aria-labelledby="[IDREF]"</code></th>
+              <td><code>ul</code></td>
+              <td>Refers to the element that contains the label of the radio group.</td>
+            </tr>
+            <tr data-test-id="radiogroup-tabindex">
+              <td></td>
+              <th scope="row"><code>tabindex=&quot;0&quot;</code></th>
+              <td><code>ul</code></td>
+              <td>
+                <ul>
+                  <li>Includes the radio group in the page <kbd>Tab</kbd> sequence.</li>
+                  <li>Applied to the radio group because <code>aria--activedescendant</code> is used to manage focus as described below.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="radiogroup-aria-activedescendant">
+              <td></td>
+              <th scope="row"><code>aria-activedescendant=&quot;[IDREF]&quot;</code></th>
+              <td><code>ul</code></td>
+              <td>
+                <ul>
+                  <li>When a radio button in the radio group is visually indicated as having keyboard focus, refers to that radio button.</li>
+                  <li>When arrow keys are pressed, the JavaScript changes the value.</li>
+                  <li>Enables assistive technologies to know which element the application regards as focused while DOM focus remains on the  radio group element.</li>
+                  <li>
+                    For more information about this focus management technique, see
+                    <a href="../../#kbd_focus_activedescendant">Using aria-activedescendant to Manage Focus.</a>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="radio-role">
+              <th scope="row"><code>radio</code></th>
+              <td></td>
+              <td><code>li</code></td>
+              <td>
+                <ul>
+                  <li>Identifies the element as an ARIA <code>radio</code> button.</li>
+                  <li>The accessible name is computed from the child text content of the element.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="radio-aria-checked">
+              <td></td>
+              <th scope="row"><code>aria-checked="false"</code></th>
+              <td><code>li</code></td>
+              <td>
+                <ul>
+                  <li>Identifies <code>radio</code> buttons which are not checked.</li>
+                  <li>CSS attribute selectors (e.g. <code>[aria-checked="false"]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
+                  <li>The CSS <code>::before</code> pseudo-element is used to indicate visual state of unchecked radio buttons to support high contrast settings in operating systems and browsers.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="radio-aria-checked">
+              <td></td>
+              <th scope="row"><code>aria-checked="true"</code></th>
+              <td><code>li</code></td>
+              <td>
+                <ul>
+                  <li>Identifies the <code>radio</code> button which is checked.</li>
+                  <li>CSS attribute selectors (e.g. <code>[aria-checked="true"]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
+                  <li>The CSS <code>::before</code> pseudo-element is used to indicate visual state of checked radio buttons to support high contrast settings in operating systems and browsers.</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Javascript and CSS Source Code</h2>
+        <ul>
+            <li>CSS: <a href="css/radio.css" type="tex/css">radio.css</a></li>
+            <li>Javascript: <a href="js/radio-activedescendant.js" type="text/javascript">radio-activedescendant.js</a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 id="sc1_label">HTML Source Code</h2>
+        <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
+        <pre><code id="sc1"></code></pre>
+        <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
+        <!--
+          The following script will show the reader the HTML source for the example that is in the div with ID 'ex1'.
+          It renders the HTML in the preceding div with ID 'sc1'.
+          If you change the ID of either the 'ex1' div or the 'sc1' div, be sure to update the sourceCode.add function parameters.
+          -->
+        <script>
+          sourceCode.add('sc1', 'ex1');
+          sourceCode.make();
+        </script>
+      </section>
+    </main>
+    <nav>
+      <a href="../../#radiobutton"> Radio Button Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
+    </nav>
+  </body>
+  </html>

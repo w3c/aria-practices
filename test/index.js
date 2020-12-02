@@ -1,4 +1,4 @@
-'use strict';
+/* eslint-disable ava/no-ignored-test-files */
 
 const path = require('path');
 const test = require('ava');
@@ -6,9 +6,11 @@ const webdriver = require('selenium-webdriver');
 const { By } = require('selenium-webdriver');
 
 const startGeckodriver = require('./util/start-geckodriver');
+const queryElement = require('./util/queryElement');
+const queryElements = require('./util/queryElements');
 
 let session, geckodriver;
-const firefoxArgs = process.env.CI ? [ '-headless' ] : [];
+const firefoxArgs = process.env.CI ? ['-headless'] : [];
 const testWaitTime = parseInt(process.env.TEST_WAIT_TIME) || 500;
 const coverageReportRun = process.env.REGRESSION_COVERAGE_REPORT;
 
@@ -19,22 +21,29 @@ if (!coverageReportRun) {
       .usingServer('http://localhost:' + geckodriver.port)
       .withCapabilities({
         'moz:firefoxOptions': {
-          args: firefoxArgs
-        }
+          args: firefoxArgs,
+        },
       })
       .forBrowser('firefox')
       .build();
     await session;
   });
 
+  test.after.always(async () => {
+    if (session) {
+      await session.close();
+    }
+
+    if (geckodriver) {
+      await geckodriver.stop();
+    }
+  });
+
   test.beforeEach((t) => {
     t.context.session = session;
     t.context.waitTime = testWaitTime;
-  });
-
-  test.after.always(() => {
-    return Promise.resolve(session && session.close())
-      .then(() => geckodriver && geckodriver.stop());
+    t.context.queryElement = queryElement;
+    t.context.queryElements = queryElements;
   });
 }
 
@@ -70,7 +79,7 @@ const _ariaTest = (desc, page, testId, body, failing) => {
   const testName = page + ' ' + selector + ': ' + desc;
 
   if (coverageReportRun) {
-    test(testName, async function (t) {
+    test(testName, function (t) {
       t.fail('All tests expect to fail. Running in coverage mode.');
     });
     return;
@@ -84,8 +93,9 @@ const _ariaTest = (desc, page, testId, body, failing) => {
     if (testId !== 'test-additional-behavior') {
       const assert = require('assert');
       assert(
-        (await t.context.session.findElements(By.css(selector))).length,
-        'Cannot find behavior description for this test in example page:' + testId
+        (await t.context.queryElements(t, selector)).length,
+        'Cannot find behavior description for this test in example page:' +
+          testId
       );
     }
 

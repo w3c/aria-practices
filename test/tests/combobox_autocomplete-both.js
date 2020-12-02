@@ -1,10 +1,8 @@
-'use strict';
-
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
-const assertAttributeDNE    = require('../util/assertAttributeDNE');
+const assertAttributeDNE = require('../util/assertAttributeDNE');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertAriaSelectedAndActivedescendant = require('../util/assertAriaSelectedAndActivedescendant');
 
@@ -16,235 +14,332 @@ const ex = {
   optionsSelector: '#ex1 [role="option"]',
   buttonSelector: '#ex1 button',
   numAOptions: 5,
-  secondAOption: 'Alaska'
-
+  secondAOption: 'Alaska',
 };
 
 const waitForFocusChange = async (t, textboxSelector, originalFocus) => {
-  await t.context.session.wait(async function () {
-    let newfocus = await t.context.session
-      .findElement(By.css(textboxSelector))
-      .getAttribute('aria-activedescendant');
-    return newfocus != originalFocus;
-  }, t.context.waitTime, 'Timeout waiting for "aria-activedescendant" value to change from: ' + originalFocus);
+  await t.context.session.wait(
+    async function () {
+      let newfocus = await t.context.session
+        .findElement(By.css(textboxSelector))
+        .getAttribute('aria-activedescendant');
+      return newfocus != originalFocus;
+    },
+    t.context.waitTime,
+    'Timeout waiting for "aria-activedescendant" value to change from: ' +
+      originalFocus
+  );
 };
 
 const confirmCursorIndex = async (t, selector, cursorIndex) => {
-  return t.context.session.executeScript(function () {
-    const [selector, cursorIndex] = arguments;
-    let item = document.querySelector(selector);
-    return item.selectionStart === cursorIndex;
-  }, selector, cursorIndex);
+  return t.context.session.executeScript(
+    function () {
+      const [selector, cursorIndex] = arguments;
+      let item = document.querySelector(selector);
+      return item.selectionStart === cursorIndex;
+    },
+    selector,
+    cursorIndex
+  );
 };
 
 // Attributes
 
-ariaTest('Test for role="combobox"', exampleFile, 'combobox-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'ex1', 'combobox', '1', 'input');
-});
+ariaTest(
+  'Test for role="combobox"',
+  exampleFile,
+  'combobox-role',
+  async (t) => {
+    await assertAriaRoles(t, 'ex1', 'combobox', '1', 'input');
+  }
+);
 
-ariaTest('"aria-autocomplete" on comboxbox element', exampleFile, 'combobox-aria-autocomplete', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex.textboxSelector, 'aria-autocomplete', 'both');
-});
+ariaTest(
+  '"aria-autocomplete" on comboxbox element',
+  exampleFile,
+  'combobox-aria-autocomplete',
+  async (t) => {
+    await assertAttributeValues(
+      t,
+      ex.textboxSelector,
+      'aria-autocomplete',
+      'both'
+    );
+  }
+);
 
-ariaTest('"aria-controls" attribute on combobox element', exampleFile, 'combobox-aria-controls', async (t) => {
-  t.plan(2);
+ariaTest(
+  '"aria-controls" attribute on combobox element',
+  exampleFile,
+  'combobox-aria-controls',
+  async (t) => {
+    const popupId = await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .getAttribute('aria-controls');
 
-  const popupId = await t.context.session
-    .findElement(By.css(ex.textboxSelector))
-    .getAttribute('aria-controls');
+    t.truthy(
+      popupId,
+      '"aria-controls" attribute should exist on: ' + ex.textboxSelector
+    );
 
-  t.truthy(
-    popupId,
-    '"aria-controls" attribute should exist on: ' + ex.textboxSelector
-  );
+    const popupElements = await t.context.queryElements(t, `#ex1 #${popupId}`);
 
-  const popupElements = await t.context.session
-    .findElement(By.id('ex1'))
-    .findElements(By.id(popupId));
+    t.is(
+      popupElements.length,
+      1,
+      'There should be a element with id "' +
+        popupId +
+        '" as referenced by the aria-controls attribute'
+    );
+  }
+);
 
-  t.is(
-    popupElements.length,
-    1,
-    'There should be a element with id "' + popupId + '" as referenced by the aria-controls attribute'
-  );
-});
+ariaTest(
+  '"aria-expanded" on combobox element',
+  exampleFile,
+  'combobox-aria-expanded',
+  async (t) => {
+    const combobox = await t.context.session.findElement(
+      By.css(ex.textboxSelector)
+    );
 
-ariaTest('"aria-expanded" on combobox element', exampleFile, 'combobox-aria-expanded', async (t) => {
-  t.plan(4);
+    // Check that aria-expanded is false and the listbox is not visible before interacting
 
-  const combobox = await t.context.session.findElement(By.css(ex.textboxSelector));
+    t.is(
+      await combobox.getAttribute('aria-expanded'),
+      'false',
+      'combobox element should have attribute "aria-expanded" set to false by default.'
+    );
 
-  // Check that aria-expanded is false and the listbox is not visible before interacting
+    const popupId = await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .getAttribute('aria-controls');
 
-  t.is(
-    await combobox.getAttribute('aria-expanded'),
-    'false',
-    'combobox element should have attribute "aria-expanded" set to false by default.'
-  );
+    const popupElement = await t.context.session
+      .findElement(By.id('ex1'))
+      .findElement(By.id(popupId));
 
-  const popupId = await t.context.session
-    .findElement(By.css(ex.textboxSelector))
-    .getAttribute('aria-controls');
+    t.false(
+      await popupElement.isDisplayed(),
+      "Popup element should not be displayed when 'aria-expanded' is false'"
+    );
 
-  const popupElement = await t.context.session
-    .findElement(By.id('ex1'))
-    .findElement(By.id(popupId));
+    // Send key "a" to textbox
 
-  t.false(
-    await popupElement.isDisplayed(),
-    'Popup element should not be displayed when \'aria-expanded\' is false\''
-  );
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys('a');
 
-  // Send key "a" to textbox
+    // Check that aria-expanded is true and the listbox is visible
 
-  await t.context.session
-    .findElement(By.css(ex.textboxSelector))
-    .sendKeys('a');
+    t.is(
+      await combobox.getAttribute('aria-expanded'),
+      'true',
+      'combobox element should have attribute "aria-expand" set to true after typing.'
+    );
 
-  // Check that aria-expanded is true and the listbox is visible
+    t.true(
+      await popupElement.isDisplayed(),
+      "Popup element should be displayed when 'aria-expanded' is true'"
+    );
+  }
+);
 
-  t.is(
-    await combobox.getAttribute('aria-expanded'),
-    'true',
-    'combobox element should have attribute "aria-expand" set to true after typing.'
-  );
+ariaTest(
+  '"aria-activedescendant" on combobox element',
+  exampleFile,
+  'combobox-aria-activedescendant',
+  async (t) => {
+    await assertAttributeValues(
+      t,
+      ex.textboxSelector,
+      'aria-activedescendant',
+      null
+    );
+  }
+);
 
-  t.true(
-    await popupElement.isDisplayed(),
-    'Popup element should be displayed when \'aria-expanded\' is true\''
-  );
+ariaTest(
+  '"id" attribute on combobox element',
+  exampleFile,
+  'combobox-id',
+  async (t) => {
+    const combobox = await t.context.session.findElement(
+      By.css(ex.textboxSelector)
+    );
+    const id = await combobox.getAttribute('id');
 
-});
+    console.log(id);
+    t.truthy(id, '"id" attribute should exist on combobox');
 
-ariaTest('"aria-activedescendant" on combobox element', exampleFile, 'combobox-aria-activedescendant', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex.textboxSelector, 'aria-activedescendant', null);
-});
+    const label = await t.context.queryElements(t, `[for="${id}"]`);
+    t.is(
+      label.length,
+      1,
+      `There should be one element that labels the combobox with: [for="${id}"]`
+    );
+  }
+);
 
-ariaTest('role "listbox" on ul element', exampleFile, 'listbox-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'ex1', 'listbox', '1', 'ul');
-});
+ariaTest(
+  'role "listbox" on ul element',
+  exampleFile,
+  'listbox-role',
+  async (t) => {
+    await assertAriaRoles(t, 'ex1', 'listbox', '1', 'ul');
+  }
+);
 
-ariaTest('"aria-label" attribute on listbox element', exampleFile, 'listbox-aria-label', async (t) => {
-  t.plan(1);
-  await assertAriaLabelExists(t, ex.listboxSelector);
-});
+ariaTest(
+  '"aria-label" attribute on listbox element',
+  exampleFile,
+  'listbox-aria-label',
+  async (t) => {
+    await assertAriaLabelExists(t, ex.listboxSelector);
+  }
+);
 
-ariaTest('role "option" on lu elements', exampleFile, 'option-role', async (t) => {
-  t.plan(1);
+ariaTest(
+  'role "option" on lu elements',
+  exampleFile,
+  'option-role',
+  async (t) => {
+    // Send arrow down to reveal all options
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys(Key.ARROW_DOWN);
+    await assertAriaRoles(t, 'ex1', 'option', '56', 'li');
+  }
+);
 
-  // Send arrow down to reveal all options
-  await t.context.session.findElement(By.css(ex.textboxSelector)).sendKeys(Key.ARROW_DOWN);
-  await assertAriaRoles(t, 'ex1', 'option', '56', 'li');
-});
+ariaTest(
+  '"aria-selected" attribute on options element',
+  exampleFile,
+  'option-aria-selected',
+  async (t) => {
+    // Send key "a"
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys('a');
+    await assertAttributeValues(
+      t,
+      ex.optionsSelector + ':nth-of-type(1)',
+      'aria-selected',
+      'true'
+    );
+  }
+);
 
-ariaTest('"aria-selected" attribute on options element', exampleFile, 'option-aria-selected', async (t) => {
-  t.plan(1);
+ariaTest(
+  'Button should have tabindex="-1"',
+  exampleFile,
+  'button-tabindex',
+  async (t) => {
+    const button = await t.context.session.findElement(
+      By.css(ex.buttonSelector)
+    );
 
-  // Send key "a"
-  await t.context.session.findElement(By.css(ex.textboxSelector)).sendKeys('a');
-  await assertAttributeValues(t, ex.optionsSelector + ':nth-of-type(1)', 'aria-selected', 'true');
-});
+    t.is(
+      await button.getAttribute('tabindex'),
+      '-1',
+      'tabindex should be set to "-1" on button'
+    );
+  }
+);
 
-ariaTest('Button should have tabindex="-1"', exampleFile, 'button-tabindex', async (t) => {
-  t.plan(1);
+ariaTest(
+  '"aria-label" attribute on button element',
+  exampleFile,
+  'button-aria-label',
+  async (t) => {
+    await assertAriaLabelExists(t, ex.buttonSelector);
+  }
+);
 
-  const button = await t.context.session.findElement(By.css(ex.buttonSelector))
+ariaTest(
+  '"aria-controls" attribute on button element',
+  exampleFile,
+  'button-aria-controls',
+  async (t) => {
+    const popupId = await t.context.session
+      .findElement(By.css(ex.buttonSelector))
+      .getAttribute('aria-controls');
 
-  t.is(
-    await button.getAttribute('tabindex'),
-    '-1',
-    'tabindex should be set to "-1" on button'
-  );
-});
+    t.truthy(
+      popupId,
+      '"aria-controls" attribute should exist on: ' + ex.buttonSelector
+    );
 
-ariaTest('"aria-label" attribute on button element', exampleFile, 'button-aria-label', async (t) => {
-  t.plan(1);
-  await assertAriaLabelExists(t, ex.buttonSelector);
-});
+    const popupElements = await t.context.queryElements(t, `#ex1 #${popupId}`);
 
+    t.is(
+      popupElements.length,
+      1,
+      'There should be a element with id "' +
+        popupId +
+        '" as referenced by the aria-controls attribute'
+    );
+  }
+);
 
-ariaTest('"aria-controls" attribute on button element', exampleFile, 'button-aria-controls', async (t) => {
-  t.plan(2);
+ariaTest(
+  '"aria-expanded" on button element',
+  exampleFile,
+  'button-aria-expanded',
+  async (t) => {
+    const button = await t.context.session.findElement(
+      By.css(ex.buttonSelector)
+    );
 
-  const popupId = await t.context.session
-    .findElement(By.css(ex.buttonSelector))
-    .getAttribute('aria-controls');
+    // Check that aria-expanded is false and the listbox is not visible before interacting
 
-  t.truthy(
-    popupId,
-    '"aria-controls" attribute should exist on: ' + ex.buttonSelector
-  );
+    t.is(
+      await button.getAttribute('aria-expanded'),
+      'false',
+      'button element should have attribute "aria-expanded" set to false by default.'
+    );
 
-  const popupElements = await t.context.session
-    .findElement(By.id('ex1'))
-    .findElements(By.id(popupId));
+    const popupId = await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .getAttribute('aria-controls');
 
-  t.is(
-    popupElements.length,
-    1,
-    'There should be a element with id "' + popupId + '" as referenced by the aria-controls attribute'
-  );
-});
+    const popupElement = await t.context.session
+      .findElement(By.id('ex1'))
+      .findElement(By.id(popupId));
 
-ariaTest('"aria-expanded" on button element', exampleFile, 'button-aria-expanded', async (t) => {
-  t.plan(4);
+    t.false(
+      await popupElement.isDisplayed(),
+      "Popup element should not be displayed when 'aria-expanded' is 'false'"
+    );
 
-  const button = await t.context.session.findElement(By.css(ex.buttonSelector));
+    // Send key "a" to textbox
 
-  // Check that aria-expanded is false and the listbox is not visible before interacting
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys('a');
 
-  t.is(
-    await button.getAttribute('aria-expanded'),
-    'false',
-    'button element should have attribute "aria-expanded" set to false by default.'
-  );
+    // Check that aria-expanded is true and the listbox is visible
 
-  const popupId = await t.context.session
-    .findElement(By.css(ex.textboxSelector))
-    .getAttribute('aria-controls');
+    t.is(
+      await button.getAttribute('aria-expanded'),
+      'true',
+      'button element should have attribute "aria-expand" set to true after typing.'
+    );
 
-  const popupElement = await t.context.session
-    .findElement(By.id('ex1'))
-    .findElement(By.id(popupId));
-
-  t.false(
-    await popupElement.isDisplayed(),
-    'Popup element should not be displayed when \'aria-expanded\' is \'false\''
-  );
-
-  // Send key "a" to textbox
-
-  await t.context.session
-    .findElement(By.css(ex.textboxSelector))
-    .sendKeys('a');
-
-  // Check that aria-expanded is true and the listbox is visible
-
-  t.is(
-    await button.getAttribute('aria-expanded'),
-    'true',
-    'button element should have attribute "aria-expand" set to true after typing.'
-  );
-
-  t.true(
-    await popupElement.isDisplayed(),
-    'Popup element should be displayed when \'aria-expanded\' is \'true\''
-  );
-
-});
+    t.true(
+      await popupElement.isDisplayed(),
+      "Popup element should be displayed when 'aria-expanded' is 'true'"
+    );
+  }
+);
 
 // Keys
 
-ariaTest('Test alt + down key press with focus on textbox',
-  exampleFile, 'textbox-key-alt-down-arrow', async (t) => {
-
-    t.plan(2);
-
+ariaTest(
+  'Test alt + down key press with focus on textbox',
+  exampleFile,
+  'textbox-key-alt-down-arrow',
+  async (t) => {
     // Send ARROW_DOWN to the textbox
     await t.context.session
       .findElement(By.css(ex.textboxSelector))
@@ -252,20 +347,21 @@ ariaTest('Test alt + down key press with focus on textbox',
 
     // Check that the listbox is displayed
     t.true(
-      await t.context.session.findElement(By.css(ex.listboxSelector)).isDisplayed(),
+      await t.context.session
+        .findElement(By.css(ex.listboxSelector))
+        .isDisplayed(),
       'In example the list box should display after ALT + ARROW_DOWN keypress'
     );
 
     await assertAttributeDNE(t, ex.optionsSelector, 'aria-selected');
+  }
+);
 
-  });
-
-
-ariaTest('Test down key press with focus on textbox',
-  exampleFile, 'textbox-key-down-arrow', async (t) => {
-
-    t.plan(2);
-
+ariaTest(
+  'Test down key press with focus on textbox',
+  exampleFile,
+  'textbox-key-down-arrow',
+  async (t) => {
     // Send ARROW_DOWN to the textbox
     await t.context.session
       .findElement(By.css(ex.textboxSelector))
@@ -273,7 +369,9 @@ ariaTest('Test down key press with focus on textbox',
 
     // Check that the listbox is displayed
     t.true(
-      await t.context.session.findElement(By.css(ex.listboxSelector)).isDisplayed(),
+      await t.context.session
+        .findElement(By.css(ex.listboxSelector))
+        .isDisplayed(),
       'In example ex3 listbox should display after ARROW_DOWN keypress'
     );
 
@@ -281,16 +379,20 @@ ariaTest('Test down key press with focus on textbox',
     await waitForFocusChange(t, ex.textboxSelector, null);
 
     // Check that the active descendent focus is correct
-    await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, 0);
+    await assertAriaSelectedAndActivedescendant(
+      t,
+      ex.textboxSelector,
+      ex.optionsSelector,
+      0
+    );
+  }
+);
 
-  });
-
-
-ariaTest('Test down key press with focus on list',
-  exampleFile, 'listbox-key-down-arrow', async (t) => {
-
-    t.plan(4);
-
+ariaTest(
+  'Test down key press with focus on list',
+  exampleFile,
+  'listbox-key-down-arrow',
+  async (t) => {
     // Send 'a' to text box, then send ARROW_DOWN to textbox to set focus on listbox
     await t.context.session
       .findElement(By.css(ex.textboxSelector))
@@ -309,17 +411,21 @@ ariaTest('Test down key press with focus on list',
       // Account for race condition
       await waitForFocusChange(t, ex.textboxSelector, oldfocus);
 
-      await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, i % ex.numAOptions);
+      await assertAriaSelectedAndActivedescendant(
+        t,
+        ex.textboxSelector,
+        ex.optionsSelector,
+        i % ex.numAOptions
+      );
     }
+  }
+);
 
-  });
-
-
-ariaTest('Test up key press with focus on textbox',
-  exampleFile, 'textbox-key-up-arrow', async (t) => {
-
-    t.plan(2);
-
+ariaTest(
+  'Test up key press with focus on textbox',
+  exampleFile,
+  'textbox-key-up-arrow',
+  async (t) => {
     // Send ARROW_UP to the textbox
     await t.context.session
       .findElement(By.css(ex.textboxSelector))
@@ -327,7 +433,9 @@ ariaTest('Test up key press with focus on textbox',
 
     // Check that the listbox is displayed
     t.true(
-      await t.context.session.findElement(By.css(ex.listboxSelector)).isDisplayed(),
+      await t.context.session
+        .findElement(By.css(ex.listboxSelector))
+        .isDisplayed(),
       'In example ex3 listbox should display after ARROW_UP keypress'
     );
 
@@ -335,16 +443,22 @@ ariaTest('Test up key press with focus on textbox',
     await waitForFocusChange(t, ex.textboxSelector, null);
 
     // Check that the active descendent focus is correct
-    let numOptions = (await t.context.session.findElements(By.css(ex.optionsSelector))).length;
-    await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, numOptions - 1);
-  });
+    let numOptions = (await t.context.queryElements(t, ex.optionsSelector))
+      .length;
+    await assertAriaSelectedAndActivedescendant(
+      t,
+      ex.textboxSelector,
+      ex.optionsSelector,
+      numOptions - 1
+    );
+  }
+);
 
-
-ariaTest('Test up key press with focus on listbox',
-  exampleFile, 'listbox-key-up-arrow', async (t) => {
-
-    t.plan(4);
-
+ariaTest(
+  'Test up key press with focus on listbox',
+  exampleFile,
+  'listbox-key-up-arrow',
+  async (t) => {
     // Send 'a' to text box, then send ARROW_UP to textbox to textbox to put focus in textbox
     // Up arrow should move selection to the last item in the list
     await t.context.session
@@ -353,11 +467,15 @@ ariaTest('Test up key press with focus on listbox',
 
     // Account for race condition
     await waitForFocusChange(t, ex.textboxSelector, '');
-    await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, ex.numAOptions-1);
+    await assertAriaSelectedAndActivedescendant(
+      t,
+      ex.textboxSelector,
+      ex.optionsSelector,
+      ex.numAOptions - 1
+    );
 
     // Test that ARROW_UP moves active descendant focus up one item in the listbox
-    for (let index = ex.numAOptions - 2; index > 0 ; index--) {
-
+    for (let index = ex.numAOptions - 2; index > 0; index--) {
       let oldfocus = await t.context.session
         .findElement(By.css(ex.textboxSelector))
         .getAttribute('aria-activedescendant');
@@ -369,16 +487,21 @@ ariaTest('Test up key press with focus on listbox',
 
       await waitForFocusChange(t, ex.textboxSelector, oldfocus);
 
-      await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, index);
+      await assertAriaSelectedAndActivedescendant(
+        t,
+        ex.textboxSelector,
+        ex.optionsSelector,
+        index
+      );
     }
-  });
+  }
+);
 
-
-ariaTest('Test enter key press with focus on textbox',
-  exampleFile, 'textbox-key-enter', async (t) => {
-
-    t.plan(2);
-
+ariaTest(
+  'Test enter key press with focus on textbox',
+  exampleFile,
+  'textbox-key-enter',
+  async (t) => {
     // Send key "a" to the textbox
 
     await t.context.session
@@ -387,7 +510,9 @@ ariaTest('Test enter key press with focus on textbox',
 
     // Get the value of the first option in the listbox
 
-    const firstOption = await t.context.session.findElement(By.css(ex.optionsSelector)).getText();
+    const firstOption = await t.context.session
+      .findElement(By.css(ex.optionsSelector))
+      .getText();
 
     // Send key ENTER
 
@@ -397,7 +522,12 @@ ariaTest('Test enter key press with focus on textbox',
 
     // Confirm that the listbox is still open
 
-    await assertAttributeValues(t, ex.textboxSelector, 'aria-expanded', 'false');
+    await assertAttributeValues(
+      t,
+      ex.textboxSelector,
+      'aria-expanded',
+      'false'
+    );
 
     // Confirm that the value of the textbox is now set to the first option
 
@@ -408,13 +538,16 @@ ariaTest('Test enter key press with focus on textbox',
       firstOption,
       'key press "ENTER" should result in first option in textbox'
     );
-  });
+  }
+);
 
 // "Test 1" in https://github.com/w3c/aria-practices/issues/1345
 
-ariaTest('Test backspace with focus on textbox',
-  exampleFile, 'textbox-key-backspace', async (t) => {
-
+ariaTest(
+  'Test backspace with focus on textbox',
+  exampleFile,
+  'textbox-key-backspace',
+  async (t) => {
     t.plan(8);
 
     // Send key "a" to the textbox
@@ -425,8 +558,9 @@ ariaTest('Test backspace with focus on textbox',
 
     // Get the value of the first option in the listbox
 
-    const firstOption = await(await t.context.session.findElements(By.css(ex.optionsSelector)))[0]
-      .getText();
+    const firstOption = await (
+      await t.context.queryElements(By.css(ex.optionsSelector))
+    )[0].getText();
 
     // Confirm that the value of the textbox is now set to the first option
 
@@ -499,18 +633,20 @@ ariaTest('Test backspace with focus on textbox',
 
     // Confirm that there are 56 options visible
     t.is(
-      await(await t.context.session.findElements(By.css(ex.optionsSelector))).length,
+      await (await t.context.queryElements(By.css(ex.optionsSelector))).length,
       56,
       'key press "ARROW_DOWN" should result in all options being visible'
     );
-
-  });
+  }
+);
 
 // "Test 2" in https://github.com/w3c/aria-practices/issues/1345
 
-ariaTest('Test backspace with focus on textbox (2)',
-  exampleFile, 'textbox-key-backspace', async (t) => {
-
+ariaTest(
+  'Test backspace with focus on textbox (2)',
+  exampleFile,
+  'textbox-key-backspace',
+  async (t) => {
     t.plan(8);
 
     // Send keys "no" to the textbox
@@ -525,7 +661,7 @@ ariaTest('Test backspace with focus on textbox (2)',
       await t.context.session
         .findElement(By.css(ex.textboxSelector))
         .getAttribute('value'),
-      "North Carolina",
+      'North Carolina',
       'key press "n" "o" should result in "North Carolina" in textbox'
     );
 
@@ -584,24 +720,24 @@ ariaTest('Test backspace with focus on textbox (2)',
       await t.context.session
         .findElement(By.css(ex.textboxSelector))
         .getAttribute('value'),
-      "Nebraska",
+      'Nebraska',
       'key press "ARROW_DOWN" should result in "Nebraska" in textbox'
     );
 
     // Confirm that there are 9 options visible
     t.is(
-      await(await t.context.session.findElements(By.css(ex.optionsSelector))).length,
+      await (await t.context.queryElements(By.css(ex.optionsSelector))).length,
       9,
       'key press "ARROW_DOWN" should result in 9 options being visible'
     );
+  }
+);
 
-  });
-
-ariaTest('Test enter key press with focus on listbox',
-  exampleFile, 'listbox-key-enter', async (t) => {
-
-    t.plan(2);
-
+ariaTest(
+  'Test enter key press with focus on listbox',
+  exampleFile,
+  'listbox-key-enter',
+  async (t) => {
     // Send key "a" to the textbox, then two ARROW_DOWNS
 
     await t.context.session
@@ -610,8 +746,9 @@ ariaTest('Test enter key press with focus on listbox',
 
     // Get the value of the second option in the listbox
 
-    const secondOption = await(await t.context.session.findElements(By.css(ex.optionsSelector)))[1]
-      .getText();
+    const secondOption = await (
+      await t.context.queryElements(t, ex.optionsSelector)
+    )[1].getText();
 
     // Send key ENTER
 
@@ -621,7 +758,12 @@ ariaTest('Test enter key press with focus on listbox',
 
     // Confirm that the listbox is closed
 
-    await assertAttributeValues(t, ex.textboxSelector, 'aria-expanded', 'false');
+    await assertAttributeValues(
+      t,
+      ex.textboxSelector,
+      'aria-expanded',
+      'false'
+    );
 
     // Confirm that the value of the textbox is now set to the second option
 
@@ -632,14 +774,14 @@ ariaTest('Test enter key press with focus on listbox',
       secondOption,
       'key press "ENTER" should result in second option in textbox'
     );
+  }
+);
 
-  });
-
-
-ariaTest('Test single escape key press with focus on textbox',
-  exampleFile, 'textbox-key-escape', async (t) => {
-    t.plan(2);
-
+ariaTest(
+  'Test single escape key press with focus on textbox',
+  exampleFile,
+  'textbox-key-escape',
+  async (t) => {
     // Send key "a", then key ESCAPE once to the textbox
 
     await t.context.session
@@ -648,7 +790,12 @@ ariaTest('Test single escape key press with focus on textbox',
 
     // Confirm the listbox is closed and the textbox is not cleared
 
-    await assertAttributeValues(t, ex.textboxSelector, 'aria-expanded', 'false');
+    await assertAttributeValues(
+      t,
+      ex.textboxSelector,
+      'aria-expanded',
+      'false'
+    );
     t.is(
       await t.context.session
         .findElement(By.css(ex.textboxSelector))
@@ -656,13 +803,14 @@ ariaTest('Test single escape key press with focus on textbox',
       'Alabama',
       'In key press "ESCAPE" should result in first option in textbox'
     );
+  }
+);
 
-  });
-
-ariaTest('Test double escape key press with focus on textbox',
-  exampleFile, 'textbox-key-escape', async (t) => {
-    t.plan(2);
-
+ariaTest(
+  'Test double escape key press with focus on textbox',
+  exampleFile,
+  'textbox-key-escape',
+  async (t) => {
     // Send key "a", then key ESCAPE twice to the textbox
 
     await t.context.session
@@ -671,7 +819,12 @@ ariaTest('Test double escape key press with focus on textbox',
 
     // Confirm the listbox is closed and the textbox is cleared
 
-    await assertAttributeValues(t, ex.textboxSelector, 'aria-expanded', 'false');
+    await assertAttributeValues(
+      t,
+      ex.textboxSelector,
+      'aria-expanded',
+      'false'
+    );
     t.is(
       await t.context.session
         .findElement(By.css(ex.textboxSelector))
@@ -679,13 +832,14 @@ ariaTest('Test double escape key press with focus on textbox',
       '',
       'In key press "ESCAPE" should result in first option in textbox'
     );
+  }
+);
 
-  });
-
-ariaTest('Test escape key press with focus on textbox',
-  exampleFile, 'listbox-key-escape', async (t) => {
-    t.plan(2);
-
+ariaTest(
+  'Test escape key press with focus on textbox',
+  exampleFile,
+  'listbox-key-escape',
+  async (t) => {
     // Send key "a" then key "ARROW_DOWN to put the focus on the listbox,
     // then key ESCAPE to the textbox
 
@@ -695,7 +849,12 @@ ariaTest('Test escape key press with focus on textbox',
 
     // Confirm the listbox is closed and the textboxed is cleared
 
-    await assertAttributeValues(t, ex.textboxSelector, 'aria-expanded', 'false');
+    await assertAttributeValues(
+      t,
+      ex.textboxSelector,
+      'aria-expanded',
+      'false'
+    );
     t.is(
       await t.context.session
         .findElement(By.css(ex.textboxSelector))
@@ -703,39 +862,51 @@ ariaTest('Test escape key press with focus on textbox',
       ex.secondAOption,
       'In listbox key press "ESCAPE" should result in second option in textbox'
     );
+  }
+);
 
-  });
-
-ariaTest('left arrow from focus on list puts focus on listbox and moves cursor right',
-  exampleFile, 'listbox-key-left-arrow', async (t) => {
-    t.plan(2);
-
+ariaTest(
+  'left arrow from focus on list puts focus on listbox and moves cursor right',
+  exampleFile,
+  'listbox-key-left-arrow',
+  async (t) => {
     // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox
-    const textbox = await t.context.session.findElement(By.css(ex.textboxSelector));
+    const textbox = await t.context.session.findElement(
+      By.css(ex.textboxSelector)
+    );
     await textbox.sendKeys('a', Key.ARROW_DOWN);
 
     // Send key "ARROW_LEFT"
     await textbox.sendKeys(Key.ARROW_LEFT);
 
     t.true(
-      await confirmCursorIndex(t, ex.textboxSelector, ex.secondAOption.length - 1),
-      'Cursor should be at index ' + (ex.secondAOption.length - 1) + ' after one ARROW_LEFT key'
+      await confirmCursorIndex(
+        t,
+        ex.textboxSelector,
+        ex.secondAOption.length - 1
+      ),
+      'Cursor should be at index ' +
+        (ex.secondAOption.length - 1) +
+        ' after one ARROW_LEFT key'
     );
 
     t.is(
       await textbox.getAttribute('aria-activedescendant'),
       '',
-      'Focus should be on the textbox after on ARROW_LEFT key',
+      'Focus should be on the textbox after on ARROW_LEFT key'
     );
-  });
+  }
+);
 
-
-ariaTest('Right arrow from focus on list puts focus on listbox',
-  exampleFile, 'listbox-key-right-arrow', async (t) => {
-    t.plan(2);
-
+ariaTest(
+  'Right arrow from focus on list puts focus on listbox',
+  exampleFile,
+  'listbox-key-right-arrow',
+  async (t) => {
     // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox
-    const textbox = await t.context.session.findElement(By.css(ex.textboxSelector));
+    const textbox = await t.context.session.findElement(
+      By.css(ex.textboxSelector)
+    );
     await textbox.sendKeys('a', Key.ARROW_DOWN);
 
     // Send key "RIGHT_ARROW"
@@ -743,22 +914,28 @@ ariaTest('Right arrow from focus on list puts focus on listbox',
 
     t.true(
       await confirmCursorIndex(t, ex.textboxSelector, ex.secondAOption.length),
-      'Cursor should be at index ' + ex.secondAOption.length + ' after one ARROW_RIGHT key'
+      'Cursor should be at index ' +
+        ex.secondAOption.length +
+        ' after one ARROW_RIGHT key'
     );
 
     t.is(
       await textbox.getAttribute('aria-activedescendant'),
       '',
-      'Focus should be on the textbox after on ARROW_RIGHT key',
+      'Focus should be on the textbox after on ARROW_RIGHT key'
     );
-  });
+  }
+);
 
-ariaTest('Home from focus on list puts focus on listbox and moves cursor',
-  exampleFile, 'listbox-key-home', async (t) => {
-    t.plan(2);
-
+ariaTest(
+  'Home from focus on list puts focus on listbox and moves cursor',
+  exampleFile,
+  'listbox-key-home',
+  async (t) => {
     // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox
-    const textbox = await t.context.session.findElement(By.css(ex.textboxSelector));
+    const textbox = await t.context.session.findElement(
+      By.css(ex.textboxSelector)
+    );
     await textbox.sendKeys('a', Key.ARROW_DOWN);
 
     // Send key "ARROW_HOME"
@@ -772,16 +949,20 @@ ariaTest('Home from focus on list puts focus on listbox and moves cursor',
     t.is(
       await textbox.getAttribute('aria-activedescendant'),
       '',
-      'Focus should be on the textbox after one ARROW_HOME key',
+      'Focus should be on the textbox after one ARROW_HOME key'
     );
-  });
+  }
+);
 
-ariaTest('End from focus on list puts focus on listbox',
-  exampleFile, 'listbox-key-end', async (t) => {
-    t.plan(2);
-
+ariaTest(
+  'End from focus on list puts focus on listbox',
+  exampleFile,
+  'listbox-key-end',
+  async (t) => {
     // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox
-    const textbox = await t.context.session.findElement(By.css(ex.textboxSelector));
+    const textbox = await t.context.session.findElement(
+      By.css(ex.textboxSelector)
+    );
     await textbox.sendKeys('a', Key.ARROW_DOWN);
 
     // Send key "END_ARROW"
@@ -789,29 +970,37 @@ ariaTest('End from focus on list puts focus on listbox',
 
     t.true(
       await confirmCursorIndex(t, ex.textboxSelector, ex.secondAOption.length),
-      'Cursor should be at index ' + ex.secondAOption.length + ' after one ARROW_END key'
+      'Cursor should be at index ' +
+        ex.secondAOption.length +
+        ' after one ARROW_END key'
     );
 
     t.is(
       await textbox.getAttribute('aria-activedescendant'),
       '',
-      'Focus should be on the textbox after on ARROW_END key',
+      'Focus should be on the textbox after on ARROW_END key'
     );
-  });
+  }
+);
 
-ariaTest('Sending character keys while focus is on listbox moves focus',
-  exampleFile, 'listbox-characters', async (t) => {
-    t.plan(2);
-
+ariaTest(
+  'Sending character keys while focus is on listbox moves focus',
+  exampleFile,
+  'listbox-characters',
+  async (t) => {
     // Send key "ARROW_DOWN" to put the focus on the listbox
-    const textbox = await t.context.session.findElement(By.css(ex.textboxSelector));
+    const textbox = await t.context.session.findElement(
+      By.css(ex.textboxSelector)
+    );
     await textbox.sendKeys(Key.ARROW_DOWN);
 
     // Send key "a"
     await textbox.sendKeys('a');
 
     // Get the value of the first option in the listbox
-    const firstOption = await t.context.session.findElement(By.css(ex.optionsSelector)).getText();
+    const firstOption = await t.context.session
+      .findElement(By.css(ex.optionsSelector))
+      .getText();
 
     t.is(
       await textbox.getAttribute('value'),
@@ -823,22 +1012,26 @@ ariaTest('Sending character keys while focus is on listbox moves focus',
     t.is(
       await textbox.getAttribute('aria-activedescendant'),
       '',
-      'Focus should be on the textbox after sending a character key while the focus is on the listbox',
+      'Focus should be on the textbox after sending a character key while the focus is on the listbox'
     );
+  }
+);
 
-  });
-
-ariaTest('Expected behavior for all other standard single line editing keys',
-  exampleFile, 'standard-single-line-editing-keys', async (t) => {
-    t.plan(1);
-
+ariaTest(
+  'Expected behavior for all other standard single line editing keys',
+  exampleFile,
+  'standard-single-line-editing-keys',
+  async (t) => {
     // Send key "a"
-    const textbox = await t.context.session.findElement(By.css(ex.textboxSelector));
+    const textbox = await t.context.session.findElement(
+      By.css(ex.textboxSelector)
+    );
     await textbox.sendKeys('a');
 
     t.is(
-      (await t.context.session.findElements(By.css(ex.optionsSelector))).length,
+      (await t.context.queryElements(t, ex.optionsSelector)).length,
       ex.numAOptions,
       'Sending standard editing keys should filter results'
     );
-  });
+  }
+);

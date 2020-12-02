@@ -1,6 +1,3 @@
-'use strict';
-
-const { By } = require('selenium-webdriver');
 const assert = require('assert');
 
 /**
@@ -14,15 +11,25 @@ const assert = require('assert');
  * @param {String} elementTag - the element the role should be found on
  */
 
-module.exports = async function assertAriaRoles (t, exampleId, role, roleCount, elementTag) {
+module.exports = async function assertAriaRoles(
+  t,
+  exampleId,
+  role,
+  roleCount,
+  elementTag
+) {
   const elementSelector = '#' + exampleId + ' [role="' + role + '"]';
 
-  const elements = await t.context.session.findElements(By.css(elementSelector));
+  const elements = await t.context.queryElements(t, elementSelector);
 
   assert.equal(
     elements.length,
     roleCount,
-    roleCount + ' role="' + role + '" elements should be found by selector "' + elementSelector +
+    roleCount +
+      ' role="' +
+      role +
+      '" elements should be found by selector "' +
+      elementSelector +
       '" in this example'
   );
 
@@ -30,7 +37,11 @@ module.exports = async function assertAriaRoles (t, exampleId, role, roleCount, 
     assert.equal(
       await element.getTagName(),
       elementTag,
-      'role="' + role + '" should be found on "' + elementTag + '" elements in this example'
+      'role="' +
+        role +
+        '" should be found on "' +
+        elementTag +
+        '" elements in this example'
     );
   }
 

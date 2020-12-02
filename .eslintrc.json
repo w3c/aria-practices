@@ -1,10 +1,18 @@
 {
-  "extends": "eslint:recommended",
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "env": {
     "browser": true
   },
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
   "rules": {
     "no-unused-vars": 0,
-    "no-undef": 0
+    "no-undef": 0,
+    "no-restricted-properties": [2, {
+      "property": "findElements",
+      "message": "Please use t.context.queryElements()."
+    }],
+    "strict": [2, "global"]
   }
 }
