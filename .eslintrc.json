@@ -14,7 +14,6 @@
     "jsdoc/require-param-type": 0,
     "jsdoc/require-returns-description": 0,
     "jsdoc/require-returns-type": 0,
-    "jsdoc/require-returns": 0,
     "strict": [2, "global"],
     "no-console": "error"
   },

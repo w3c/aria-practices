@@ -65,6 +65,7 @@ const getExampleFiles = function (currentDirPath, exampleFiles) {
  *
  * @param {jQuery} $         - loaded Cheerio dom
  * @param {jQuery} $tableRow - root example directory
+ * @returns {string}
  */
 const getKeyboardRowName = function ($, $tableRow) {
   return $('th', $tableRow).text().replace(/\n/g, ', ');
@@ -75,6 +76,7 @@ const getKeyboardRowName = function ($, $tableRow) {
  *
  * @param {jQuery} $         - loaded Cheerio dom
  * @param {jQuery} $tableRow - root example directory
+ * @returns {string}
  */
 const getAttributeRowName = function ($, $tableRow) {
   // use the containt 'th' text to identify the row. If there is no text

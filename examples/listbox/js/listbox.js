@@ -438,6 +438,7 @@ aria.Listbox.prototype.focusItem = function (element) {
  * @param index
  * @param start
  * @param end
+ * @returns {boolean}
  */
 aria.Listbox.prototype.checkInRange = function (index, start, end) {
   var rangeStart = start < end ? start : end;
@@ -512,7 +513,7 @@ aria.Listbox.prototype.checkUpDownButtons = function () {
   var activeElement = document.getElementById(this.activeDescendant);
 
   if (!this.moveUpDownEnabled) {
-    return false;
+    return;
   }
 
   if (!activeElement) {
@@ -547,7 +548,7 @@ aria.Listbox.prototype.checkUpDownButtons = function () {
  */
 aria.Listbox.prototype.addItems = function (items) {
   if (!items || !items.length) {
-    return false;
+    return;
   }
 
   items.forEach(

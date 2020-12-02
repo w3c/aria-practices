@@ -886,6 +886,8 @@ aria.Grid.prototype.toggleColumn = function (columnIndex, isShown) {
  *
  * @param selector
  *  Index of the column to toggle
+ *
+ * @returns matching element
  */
 aria.Grid.prototype.findClosest = function (element, selector) {
   if (aria.Utils.matches(element, selector)) {
