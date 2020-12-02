@@ -568,6 +568,7 @@ ariaTest(
   }
 );
 
+/*
 ariaTest(
   'Test for submenu role="menuitem"s with accessible names',
   exampleFile,
@@ -610,7 +611,6 @@ ariaTest(
   }
 );
 
-/*
 // KEYS
 ariaTest.failing(
   'Key ENTER open submenu',

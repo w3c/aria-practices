@@ -9,6 +9,31 @@
 
 'use strict';
 
+class NavigationContentGenerator {
+  constructor(siteURL, siteName) {
+    this.siteName = siteName;
+    this.siteURL = siteURL;
+    this.fillerTextSentences = [];
+
+    this.fillerTextSentences.push(
+      'The content on this page is associated with the <a href="$linkURL">$linkName</a> link for <a href="$siteURL">$siteName</a>.'
+    );
+  }
+
+  generateParagraph(linkURL, linkName) {
+    var content = '';
+    this.fillerTextSentences.forEach(
+      (s) =>
+        (content += s
+          .replace('$siteName', this.siteName)
+          .replace('$siteURL', this.siteURL)
+          .replace('$linkName', linkName)
+          .replace('$linkURL', linkURL))
+    );
+    return content;
+  }
+}
+
 class MenubarNavigation {
   constructor(domNode) {
     var linkURL, linkTitle;
