@@ -611,12 +611,6 @@ ariaTest(
       .findElement(By.css(ex.textboxSelector))
       .sendKeys('a');
 
-    // Get the value of the first option in the listbox
-
-    const firstOption = await (
-      await t.context.queryElements(t, ex.optionsSelector)
-    )[0].getText();
-
     // Confirm that the value of the textbox is "a"
 
     t.is(
