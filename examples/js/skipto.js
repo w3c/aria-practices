@@ -3,7 +3,7 @@
  * Copyright (c) 2020 PayPal Accessibility Team and University of Illinois; Licensed BSD */
 /*@cc_on @*/
 /*@if (@_jscript_version >= 5.8) @*/
-/*jslint devel: true */
+/*jslint developer: true */
 /* ========================================================================
  * Copyright (c) <2020> PayPal
  * All rights reserved.
