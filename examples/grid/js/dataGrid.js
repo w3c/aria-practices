@@ -137,7 +137,7 @@ aria.Grid.prototype.setupFocusGrid = function () {
  * @param col
  *  The index of the cell's column
  *
- * @returns
+ * @returns {boolean}
  *  Returns whether or not the focus could be set on the cell.
  */
 aria.Grid.prototype.setFocusPointer = function (row, col) {
@@ -176,7 +176,7 @@ aria.Grid.prototype.setFocusPointer = function (row, col) {
  * @param col
  *  The index of the cell's column
  *
- * @returns
+ * @returns {boolean}
  *  Returns whether or not the coordinates are within the grid's boundaries.
  */
 aria.Grid.prototype.isValidCell = function (row, col) {
@@ -199,7 +199,7 @@ aria.Grid.prototype.isValidCell = function (row, col) {
  * @param col
  *  The index of the cell's column
  *
- * @returns
+ * @returns {boolean}
  *  Returns whether or not the cell has been hidden.
  */
 aria.Grid.prototype.isHidden = function (row, col) {
@@ -744,7 +744,7 @@ aria.Grid.prototype.restructureGrid = function () {
  * X direction for where to check for cells. +1 to check to the right, -1 to
  * check to the left
  * @param directionY
- * @returns
+ * @returns {false | object}
  * Indices of the next cell in the specified direction. Returns the focused
  * cell if none are found.
  */
@@ -813,7 +813,7 @@ aria.Grid.prototype.getNextCell = function (
  * @description
 Get next visible column to the right or left (direction) of the focused
  * cell.
- * @returns
+ * @returns {false | object}
  * Indices of the next visible cell in the specified direction. If no visible
  * cells are found, returns false if the current cell is hidden and returns
  * the current cell if it is not hidden.
@@ -887,7 +887,7 @@ aria.Grid.prototype.toggleColumn = function (columnIndex, isShown) {
  * @param selector
  *  Index of the column to toggle
  *
- * @returns matching element
+ * @returns {object} matching element
  */
 aria.Grid.prototype.findClosest = function (element, selector) {
   if (aria.Utils.matches(element, selector)) {

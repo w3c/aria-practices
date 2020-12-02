@@ -572,7 +572,7 @@ aria.Listbox.prototype.addItems = function (items) {
  *  in a single select listbox and the items with aria-selected in a multi
  *  select listbox.
  *
- * @returns items
+ * @returns {Array}
  *  An array of items that were removed from the listbox
  */
 aria.Listbox.prototype.deleteItems = function () {

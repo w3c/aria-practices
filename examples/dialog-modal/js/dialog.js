@@ -23,7 +23,7 @@ aria.Utils = aria.Utils || {};
    *       found.
    * @param element
    *          DOM node for which to find the first focusable descendant.
-   * @returns
+   * @returns {boolean}
    *  true if a focusable element is found and focus is set.
    */
   aria.Utils.focusFirstDescendant = function (element) {
@@ -43,7 +43,7 @@ aria.Utils = aria.Utils || {};
    * @description Find the last descendant node that is focusable.
    * @param element
    *          DOM node for which to find the last focusable descendant.
-   * @returns
+   * @returns {boolean}
    *  true if a focusable element is found and focus is set.
    */
   aria.Utils.focusLastDescendant = function (element) {
@@ -63,7 +63,7 @@ aria.Utils = aria.Utils || {};
    * @description Set Attempt to set focus on the current node.
    * @param element
    *          The node to attempt to focus on.
-   * @returns
+   * @returns {boolean}
    *  true if element is focused.
    */
   aria.Utils.attemptFocus = function (element) {
@@ -85,7 +85,7 @@ aria.Utils = aria.Utils || {};
   aria.OpenDialogList = aria.OpenDialogList || new Array(0);
 
   /**
-   * @returns the last opened dialog (the current dialog)
+   * @returns {object} the last opened dialog (the current dialog)
    */
   aria.getCurrentDialog = function () {
     if (aria.OpenDialogList && aria.OpenDialogList.length) {
