@@ -2,7 +2,7 @@
  * https://github.com/paypal/skipto
  * Copyright (c) 2020 PayPal Accessibility Team and University of Illinois; Licensed BSD */
 /*@cc_on @*/
-/*@if (@_jscript_version >= 5.8) @*/
+/*@if (@_javascript_version >= 5.8) @*/
 /*jslint developer: true */
 /* ========================================================================
  * Copyright (c) <2020> PayPal
@@ -135,7 +135,7 @@
         menuitemFocusBorderColor: '#ff552e',
       },
       aria: {
-        positionLeft: '',
+        positionLeft: '380px',
         buttonColor: '#005a9c;',
         buttonBackgroundColor: '#def',
         buttonBorderColor: '#def',
@@ -1226,8 +1226,7 @@
       var otherElements = [];
       var allLandmarks = [];
       var dataId = '';
-      console.log('\n\n== [getLandmarks] ==');
-      for (var i = 0, len = landmarks.length; i < len; i = i + 1) {
+      for (var i = 0, len = landmarks.length; i < len; i += 1) {
         var landmark = landmarks[i];
         // if skipto is a landmark don't include it in the list
         if (landmark === this.domNode) {
@@ -1360,5 +1359,4 @@
     console.log('SkipTo loaded...');
   });
 })();
-
 /*@end @*/
