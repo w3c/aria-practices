@@ -39,6 +39,7 @@ const ignoreFiles = fs
  * object.
  *
  * @param {string} currentDirPath - root example directory
+ * @param exampleFiles
  */
 const getExampleFiles = function (currentDirPath, exampleFiles) {
   fs.readdirSync(currentDirPath).forEach(function (name) {

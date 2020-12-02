@@ -734,22 +734,19 @@ aria.Grid.prototype.restructureGrid = function () {
 
 /**
  * @description
- *  Get next cell to the right or left (direction) of the focused
- *  cell.
- *
+ * Get next cell to the right or left (direction) of the focused
+ * cell.
  * @param currRow
- *  Row index to start searching from
- *
+ * Row index to start searching from
  * @param currCol
- *  Column index to start searching from
- *
+ * Column index to start searching from
  * @param directionX
- *  X direction for where to check for cells. +1 to check to the right, -1 to
- *  check to the left
- *
+ * X direction for where to check for cells. +1 to check to the right, -1 to
+ * check to the left
+ * @param directionY
  * @returns
- *  Indices of the next cell in the specified direction. Returns the focused
- *  cell if none are found.
+ * Indices of the next cell in the specified direction. Returns the focused
+ * cell if none are found.
  */
 aria.Grid.prototype.getNextCell = function (
   currRow,
@@ -811,14 +808,15 @@ aria.Grid.prototype.getNextCell = function (
 };
 
 /**
+ * @param directionX
+ * @param directionY
  * @description
- *  Get next visible column to the right or left (direction) of the focused
- *  cell.
- *
+Get next visible column to the right or left (direction) of the focused
+ * cell.
  * @returns
- *  Indices of the next visible cell in the specified direction. If no visible
- *  cells are found, returns false if the current cell is hidden and returns
- *  the current cell if it is not hidden.
+ * Indices of the next visible cell in the specified direction. If no visible
+ * cells are found, returns false if the current cell is hidden and returns
+ * the current cell if it is not hidden.
  */
 aria.Grid.prototype.getNextVisibleCell = function (directionX, directionY) {
   var nextCell = this.getNextCell(

@@ -360,6 +360,8 @@ aria.Listbox.prototype.checkClickItem = function (evt) {
 
 /**
  * Prevent text selection on shift + click for multiselect listboxes
+ *
+ * @param evt
  */
 aria.Listbox.prototype.checkMouseDown = function (evt) {
   if (
@@ -432,6 +434,10 @@ aria.Listbox.prototype.focusItem = function (element) {
 
 /**
  * Helper function to check if a number is within a range; no side effects.
+ *
+ * @param index
+ * @param start
+ * @param end
  */
 aria.Listbox.prototype.checkInRange = function (index, start, end) {
   var rangeStart = start < end ? start : end;
@@ -442,6 +448,9 @@ aria.Listbox.prototype.checkInRange = function (index, start, end) {
 
 /**
  * Select a range of options
+ *
+ * @param start
+ * @param end
  */
 aria.Listbox.prototype.selectRange = function (start, end) {
   // get start/end indices

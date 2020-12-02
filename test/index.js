@@ -65,6 +65,11 @@ const ariaTest = (desc, page, testId, body) => {
  * If the test passes when it is expected to fail, a failure will be reported.
  *
  * See arguments for ariaTest.
+ *
+ * @param desc
+ * @param page
+ * @param testId
+ * @param body
  */
 ariaTest.failing = (desc, page, testId, body) => {
   _ariaTest(desc, page, testId, body, 'FAILING');
