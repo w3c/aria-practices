@@ -411,6 +411,7 @@ function addOpenInCodePenForm(
       location.origin +
       '/examples/css/core.css;' +
       'https://www.w3.org/StyleSheets/TR/2016/base.css',
+    js_external: location.origin + 'examples/js/utils.js',
   };
 
   var totalFetchedFiles = 0;
