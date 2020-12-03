@@ -63,6 +63,32 @@ img.reload {
   border: 0 solid transparent;
 }
 
+.carousel-tablist-moreaccessible .carousel-items .carousel-image a {
+  display: block;
+  margin: 0;
+  padding: 5px;
+  text-decoration: none;
+  border: none;
+}
+
+.carousel-tablist-moreaccessible .carousel-item .carousel-caption a {
+  display: inline-block;
+  margin: 0;
+  padding: 6px;
+  color: black;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+}
+
+.carousel-tablist-moreaccessible .carousel-item .carousel-caption span.contrast,
+.carousel-tablist-moreaccessible
+  .carousel-item
+  .carousel-caption
+  span.contrast:hover {
+  background-color: transparent;
+}
+
 .carousel-tablist .carousel-item .carousel-caption a:hover,
 .carousel-tablist .carousel-item .carousel-caption span.contrast:hover {
   background-color: rgba(0, 0, 0, 1);
@@ -221,8 +247,20 @@ img.reload {
   stroke-width: 2px;
 }
 
+.carousel-tablist-moreaccessible [role="tab"] circle.tab-background {
+  z-index: 16;
+}
+
+.carousel-tablist-moreaccessible [role="tab"] circle.tab {
+  z-index: 18;
+}
+
 .carousel-tablist [role="tab"][aria-selected="true"] circle.tab {
   fill: white;
+}
+
+.carousel-tablist-moreaccessible [role="tab"] circle.border {
+  z-index: 14;
 }
 
 .carousel-tablist [role="tab"]:focus circle.border {
@@ -269,14 +307,6 @@ img.reload {
   border: none;
 }
 
-.carousel-tablist-moreaccessible .carousel-items .carousel-image a {
-  display: block;
-  margin: 0;
-  padding: 5px;
-  text-decoration: none;
-  border: none;
-}
-
 .carousel-tablist-moreaccessible .carousel-items.focus .carousel-image a {
   padding: 2px;
   border: 3px solid #005a9c;
@@ -296,24 +326,6 @@ img.reload {
   margin: 0;
   height: 60px;
   color: black;
-}
-
-.carousel-tablist-moreaccessible .carousel-item .carousel-caption a {
-  display: inline-block;
-  margin: 0;
-  padding: 6px;
-  color: black;
-  background-color: transparent;
-  border: none;
-  border-radius: 5px;
-}
-
-.carousel-tablist-moreaccessible .carousel-item .carousel-caption span.contrast,
-.carousel-tablist-moreaccessible
-  .carousel-item
-  .carousel-caption
-  span.contrast:hover {
-  background-color: transparent;
 }
 
 .carousel-tablist-moreaccessible .carousel-item .carousel-caption p {
@@ -352,16 +364,4 @@ img.reload {
 
 .carousel-tablist-moreaccessible [role="tab"] {
   z-index: 20;
-}
-
-.carousel-tablist-moreaccessible [role="tab"] circle.border {
-  z-index: 14;
-}
-
-.carousel-tablist-moreaccessible [role="tab"] circle.tab {
-  z-index: 18;
-}
-
-.carousel-tablist-moreaccessible [role="tab"] circle.tab-background {
-  z-index: 16;
 }
