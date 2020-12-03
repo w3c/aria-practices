@@ -370,17 +370,23 @@ ariaTest(
   exampleFile,
   'spinbutton-down-arrow',
   async (t) => {
-    let control = parseInt(ex.dayNow);
-    let daysInMonth = parseInt(ex.dayMax);
+    let control = 31;
+
+    // Set to December for a 31 day month
+    let monthSpinner = await t.context.session.findElement(
+      By.css(ex.monthSelector)
+    );
+    await monthSpinner.sendKeys(Key.END);
 
     // Send down arrow to day date spinner
     let daySpinner = await t.context.session.findElement(
       By.css(ex.daySelector)
     );
-    await daySpinner.sendKeys(Key.ARROW_DOWN);
 
-    // Subtract a day to the control
-    control = (control - 1) % daysInMonth;
+    // Set to first of month
+    await daySpinner.sendKeys(Key.HOME);
+
+    await daySpinner.sendKeys(Key.ARROW_DOWN);
 
     t.is(
       parseInt(await daySpinner.getText()),
@@ -395,7 +401,7 @@ ariaTest(
     }
 
     // Subtract 30 days to the control
-    control = daysInMonth + ((control - 30) % daysInMonth);
+    control -= 30;
 
     t.is(
       parseInt(await daySpinner.getText()),
@@ -408,6 +414,7 @@ ariaTest(
 
 ariaTest('up arrow on month', exampleFile, 'spinbutton-up-arrow', async (t) => {
   let date = new Date();
+  date.setDate(1); // This is necessary to do the correct date math for months.
 
   let monthSpinner = await t.context.session.findElement(
     By.css(ex.monthSelector)
@@ -417,7 +424,6 @@ ariaTest('up arrow on month', exampleFile, 'spinbutton-up-arrow', async (t) => {
   for (let i = 1; i <= 12; i++) {
     await monthSpinner.sendKeys(Key.ARROW_UP);
     const index = new Date(date.setMonth(date.getMonth() + 1)).getMonth();
-    console.log(index);
     t.is(
       await monthSpinner.getText(),
       valuesMonth[index],
