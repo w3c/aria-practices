@@ -1,4 +1,4 @@
-/*! skipto - v3.1.0 - 2020-12-01
+/*! skipto - v3.1.0 - 2020-12-03
  * https://github.com/paypal/skipto
  * Copyright (c) 2020 PayPal Accessibility Team and University of Illinois; Licensed BSD */
 /*@cc_on @*/
@@ -60,7 +60,7 @@
       headingLevelLabel: 'Heading level',
       mainLabel: 'main',
       searchLabel: 'search',
-      navLabel: 'nav',
+      navLabel: 'navigation',
       regionLabel: 'region',
       asideLabel: 'aside',
       footerLabel: 'footer',
