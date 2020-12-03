@@ -127,7 +127,9 @@ document.addEventListener('DOMContentLoaded', function () {
     <li>A screen reader user can easily understand the UI when all information in a row is announced as a single string without any separation.</li>
   </ul>
   <section>
-    <h2 id="ex_label">Example</h2>
+    <div class="example-header">
+      <h2 id="ex_label">Example</h2>
+    </div>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <!--
       Note the ID of the following div that contains the example HTML is used as a parameter for the sourceCode.add() function.
@@ -490,7 +492,7 @@ document.addEventListener('DOMContentLoaded', function () {
   <section>
     <h2>Javascript and CSS Source Code</h2>
     <!--  After the js and css files are named with the name of this example, change the href and text of the following 2 links to refer to the appropriate js and css files.  -->
-    <ul>
+    <ul id="css_js_files">
       <li>
         CSS:
         <a href="css/treegrid-1.css" type="text/css">treegrid-1.css</a>
@@ -513,7 +515,7 @@ document.addEventListener('DOMContentLoaded', function () {
       If you change the ID of either the 'ex1' div or the 'sc1' pre, be sure to update the sourceCode.add function parameters.
       -->
     <script>
-      sourceCode.add('sc1', 'ex1');
+      sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
       sourceCode.make();
     </script>
   </section>
