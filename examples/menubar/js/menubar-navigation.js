@@ -119,7 +119,7 @@ class MenubarNavigation {
     }
 
     // Update content area
-    h1Node = document.querySelector('#ex1 .main h1');
+    h1Node = document.querySelector('.page .main h1');
     if (h1Node) {
       h1Node.textContent = linkName;
       h1Node.tabIndex = -1;
@@ -127,7 +127,7 @@ class MenubarNavigation {
         h1Node.focus();
       }
     }
-    paraNodes = document.querySelectorAll('#ex1 .main p');
+    paraNodes = document.querySelectorAll('.page .main p');
     paraNodes.forEach(
       (p) =>
         (p.innerHTML = this.contentGenerator.renderParagraph(linkURL, linkName))
@@ -151,9 +151,6 @@ class MenubarNavigation {
         }
       }
     });
-    if (linkURL !== location.href) {
-      location.href = linkURL;
-    }
   }
 
   getMenuitems(domNode, depth) {
@@ -238,7 +235,9 @@ class MenubarNavigation {
       );
 
       menuitem.addEventListener('keydown', this.handleKeydown.bind(this));
-      menuitem.addEventListener('click', this.handleMenuitemClick.bind(this));
+      menuitem.addEventListener('click', this.handleMenuitemClick.bind(this), {
+        capture: true,
+      });
 
       menuitem.addEventListener(
         'mouseover',
