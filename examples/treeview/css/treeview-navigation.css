@@ -1,21 +1,21 @@
-#ex1 header {
+.page header {
   border: #005a9c solid 2px;
   background: #005a9c;
   color: white;
   text-align: center;
 }
 
-#ex1 header .title {
+.page header .title {
   font-size: 2.5em;
   font-weight: bold;
   font-family: serif;
 }
 
-#ex1 header .tagline {
+.page header .tagline {
   font-style: italic;
 }
 
-#ex1 footer {
+.page footer {
   border: #005a9c solid 2px;
   background: #005a9c;
   font-family: serif;
@@ -24,13 +24,13 @@
   padding-left: 1em;
 }
 
-#ex1 .body {
+.page .body {
   display: grid;
   grid-template-columns: auto auto;
   border: #eee solid 2px;
 }
 
-#ex1 .body nav {
+.page .body nav {
   margin: 0;
   padding: 6px;
   width: 17em;
@@ -38,18 +38,18 @@
   background: #eee;
 }
 
-#ex1 .body nav.focus {
+.page .body nav.focus {
   padding: 4px;
   border: 2px solid #005a9c;
 }
 
-#ex1 .body .page {
+.page .body .page {
   margin: 0.25em;
   padding: 0.25em;
   height: 30em;
 }
 
-#ex1 .body .page h1 {
+.page .body .page h1 {
   margin: 0;
   padding: 0;
 }
