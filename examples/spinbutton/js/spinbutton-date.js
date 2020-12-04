@@ -88,7 +88,11 @@ SpinButtonDate.prototype.setValue = function (value, flag) {
 
   if (value > this.valueMax) {
     if (this.wrap) {
-      value = this.valueMin;
+      // Handle zero based month values
+      if (this.valueMin === 0) {
+        value--;
+      }
+      value -= this.valueMax;
     } else {
       value = this.valueMax;
     }
@@ -96,7 +100,11 @@ SpinButtonDate.prototype.setValue = function (value, flag) {
 
   if (value < this.valueMin) {
     if (this.wrap) {
-      value = this.valueMax;
+      // Handle zero based month values
+      if (this.valueMin === 0) {
+        value++;
+      }
+      value += this.valueMax;
     } else {
       value = this.valueMin;
     }

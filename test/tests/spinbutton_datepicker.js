@@ -541,132 +541,111 @@ ariaTest(
 );
 
 // The bug causing this test to fail is tracked in https://github.com/w3c/aria-practices/issues/1426
-ariaTest.failing(
-  'page up on day',
-  exampleFile,
-  'spinbutton-page-up',
-  async (t) => {
-    let control = parseInt(ex.dayNow);
-    let daysInMonth = parseInt(ex.dayMax);
+ariaTest('page up on day', exampleFile, 'spinbutton-page-up', async (t) => {
+  let control = parseInt(ex.dayNow);
+  let daysInMonth = parseInt(ex.dayMax);
 
-    // Send page up to day date spinner
-    let daySpinner = await t.context.session.findElement(
-      By.css(ex.daySelector)
-    );
+  // Send page up to day date spinner
+  let daySpinner = await t.context.session.findElement(By.css(ex.daySelector));
+  await daySpinner.sendKeys(Key.PAGE_UP);
+
+  // Add a day to the control
+  control = (control + 5) % daysInMonth;
+
+  t.is(
+    parseInt(await daySpinner.getText()),
+    control,
+    'After sending 1 page up to the day spinner, the day should be: ' + control
+  );
+
+  // Send page up 5 more times to date spinner
+  for (let i = 1; i <= 5; i++) {
     await daySpinner.sendKeys(Key.PAGE_UP);
-
-    // Add a day to the control
-    control = (control + 5) % daysInMonth;
-
-    t.is(
-      parseInt(await daySpinner.getText()),
-      control,
-      'After sending 1 page up to the day spinner, the day should be: ' +
-        control
-    );
-
-    // Send page up 5 more times to date spinner
-    for (let i = 1; i <= 5; i++) {
-      await daySpinner.sendKeys(Key.PAGE_UP);
-    }
-
-    // Add 25 days to the control
-    control = (control + 25) % daysInMonth;
-
-    t.is(
-      parseInt(await daySpinner.getText()),
-      control,
-      'After sending 6 page ups to the day spinner, the day should be: ' +
-        control
-    );
   }
-);
+
+  // Add 25 days to the control
+  control = (control + 25) % daysInMonth;
+
+  t.is(
+    parseInt(await daySpinner.getText()),
+    control,
+    'After sending 6 page ups to the day spinner, the day should be: ' + control
+  );
+});
 
 // The bug causing this test to fail is tracked in https://github.com/w3c/aria-practices/issues/1426
-ariaTest.failing(
-  'page down on day',
-  exampleFile,
-  'spinbutton-page-down',
-  async (t) => {
-    let control = parseInt(ex.dayNow);
-    let daysInMonth = parseInt(ex.dayMax);
+ariaTest('page down on day', exampleFile, 'spinbutton-page-down', async (t) => {
+  let control = parseInt(ex.dayNow);
+  let daysInMonth = parseInt(ex.dayMax);
 
-    // Send page down to day date spinner
-    let daySpinner = await t.context.session.findElement(
-      By.css(ex.daySelector)
-    );
+  // Send page down to day date spinner
+  let daySpinner = await t.context.session.findElement(By.css(ex.daySelector));
+  await daySpinner.sendKeys(Key.PAGE_DOWN);
+
+  // Subtract 5 days to the control
+  control = (control - 5) % daysInMonth;
+
+  t.is(
+    parseInt(await daySpinner.getText()),
+    control,
+    'After sending 1 page down to the day spinner, the day should be: ' +
+      control
+  );
+
+  // Send page down 5 more times to date spinner
+  for (let i = 1; i <= 5; i++) {
     await daySpinner.sendKeys(Key.PAGE_DOWN);
-
-    // Subtract 5 days to the control
-    control = (control - 5) % daysInMonth;
-
-    t.is(
-      parseInt(await daySpinner.getText()),
-      control,
-      'After sending 1 page down to the day spinner, the day should be: ' +
-        control
-    );
-
-    // Send page down 5 more times to date spinner
-    for (let i = 1; i <= 5; i++) {
-      await daySpinner.sendKeys(Key.PAGE_DOWN);
-    }
-
-    // Subtract 25 days to the control
-    control = daysInMonth + ((control - 25) % daysInMonth);
-
-    t.is(
-      parseInt(await daySpinner.getText()),
-      control,
-      'After sending 6 page downs to the day spinner, the day should be: ' +
-        control
-    );
   }
-);
+
+  // Subtract 25 days to the control
+  control = daysInMonth + ((control - 25) % daysInMonth);
+
+  t.is(
+    parseInt(await daySpinner.getText()),
+    control,
+    'After sending 6 page downs to the day spinner, the day should be: ' +
+      control
+  );
+});
 
 // The bug causing this test to fail is tracked in https://github.com/w3c/aria-practices/issues/1426
-ariaTest.failing(
-  'page up on month',
-  exampleFile,
-  'spinbutton-page-up',
-  async (t) => {
-    let control = parseInt(ex.monthNow) + 1;
+ariaTest('page up on month', exampleFile, 'spinbutton-page-up', async (t) => {
+  let control = parseInt(ex.monthNow) + 1;
 
-    // Send page up to day date spinner
-    let monthSpinner = await t.context.session.findElement(
-      By.css(ex.monthSelector)
-    );
+  // Send page up to day date spinner
+  let monthSpinner = await t.context.session.findElement(
+    By.css(ex.monthSelector)
+  );
+  await monthSpinner.sendKeys(Key.PAGE_UP);
+
+  // Add 5 month to the control
+  control = (control + 5) % 12;
+
+  t.is(
+    await monthSpinner.getText(),
+    valuesMonth[control - 1],
+    'After sending 1 page up to the month spinner, the month should be: ' +
+      valuesMonth[control - 1]
+  );
+
+  // Send page up 2 more times to date spinner
+  for (let i = 1; i <= 2; i++) {
     await monthSpinner.sendKeys(Key.PAGE_UP);
-
-    // Add 5 month to the control
-    control = (control + 5) % 12;
-
-    t.is(
-      await monthSpinner.getText(),
-      valuesMonth[control - 1],
-      'After sending 1 page up to the month spinner, the month should be: ' +
-        valuesMonth[control - 1]
-    );
-
-    // Send page up 2 more times to date spinner
-    for (let i = 1; i <= 2; i++) {
-      await monthSpinner.sendKeys(Key.PAGE_UP);
-    }
-
-    // Add 10 months to the control
-    control = (control + 10) % 12;
-
-    t.is(
-      await monthSpinner.getText(),
-      valuesMonth[control - 1],
-      'After sending 3 page ups to the month spinner, the month should be: ' +
-        valuesMonth[control - 1]
-    );
   }
-);
+
+  // Add 10 months to the control
+  control = (control + 10) % 12;
+
+  t.is(
+    await monthSpinner.getText(),
+    valuesMonth[control - 1],
+    'After sending 3 page ups to the month spinner, the month should be: ' +
+      valuesMonth[control - 1]
+  );
+});
 
 // The bug causing this test to fail is tracked in https://github.com/w3c/aria-practices/issues/1426
-ariaTest.failing(
+ariaTest(
   'page down on month',
   exampleFile,
   'spinbutton-page-down',
