@@ -44,7 +44,7 @@ It is also highly recommended that you use a code editor that supports these too
 #### HTML
 
 HTML is validated against the [NU HTML Validator](https://github.com/validator/validator).
-Should a warning or error occur because a future ARIA feature is not yet implemented, it will be added to the [the .vnurc file](.vnurc), allowing the error to pass through.
+Should a warning or error occur because a future ARIA feature is not yet implemented, it will be added to the [.vnurc file](.vnurc), allowing the error to pass through.
 
 Run locally:
 
