@@ -20,7 +20,7 @@ class NavigationContentGenerator {
     );
   }
 
-  generateParagraph(linkURL, linkName) {
+  renderParagraph(linkURL, linkName) {
     var content = '';
     this.fillerTextSentences.forEach(
       (s) =>
@@ -130,10 +130,7 @@ class MenubarNavigation {
     paraNodes = document.querySelectorAll('#ex1 .main p');
     paraNodes.forEach(
       (p) =>
-        (p.innerHTML = this.contentGenerator.generateParagraph(
-          linkURL,
-          linkName
-        ))
+        (p.innerHTML = this.contentGenerator.renderParagraph(linkURL, linkName))
     );
 
     // Update aria-current
@@ -694,12 +691,12 @@ class MenubarNavigation {
         this.closePopupAll(tgt);
         this.openPopup(menuId, tgt);
       }
-      event.stopPropagation();
-      event.preventDefault();
     } else {
       this.updateContent(tgt.href, tgt.textContent.trim());
       this.closePopupAll();
     }
+    event.stopPropagation();
+    event.preventDefault();
   }
 
   handleMenuitemMouseover(event) {

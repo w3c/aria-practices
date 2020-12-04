@@ -1,21 +1,21 @@
-#ex1 [role="banner"] {
+.page header {
   border: #005a9c solid 2px;
   background: #005a9c;
   color: white;
   text-align: center;
 }
 
-#ex1 [role="banner"] .title {
+.page header .title {
   font-size: 2.5em;
   font-weight: bold;
   font-family: serif;
 }
 
-#ex1 [role="banner"] .tagline {
+.page header .tagline {
   font-style: italic;
 }
 
-#ex1 .main {
+.page .main {
   padding-top: 1em;
   padding-left: 5%;
   padding-right: 5%;
@@ -24,7 +24,7 @@
   border-right: 2px solid #eee;
 }
 
-#ex1 [role="contentinfo"] {
+.page footer {
   border: #005a9c solid 2px;
   background: #005a9c;
   font-family: serif;
@@ -33,7 +33,7 @@
   padding-left: 1em;
 }
 
-#ex1 nav {
+.page nav {
   margin: 0;
   padding: 0;
   border: 2px solid #eee;
@@ -125,7 +125,7 @@
 
 .menubar-navigation [role="separator"] {
   padding-top: 3px;
-  background-image: url("../images/separator.svg");
+  background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cline x1='0' y1='6' x2='12' y2='6' style='stroke:black;stroke-width:1' /%3E%3C/svg%3E%0A");
   background-position: center;
   background-repeat: repeat-x;
 }
