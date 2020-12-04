@@ -1,17 +1,17 @@
-#ex1 header {
+#ex1 [role="banner"] {
   border: #005a9c solid 2px;
   background: #005a9c;
   color: white;
   text-align: center;
 }
 
-#ex1 header .title {
+#ex1 [role="banner"] .title {
   font-size: 2.5em;
   font-weight: bold;
   font-family: serif;
 }
 
-#ex1 header .tagline {
+#ex1 [role="banner"] .tagline {
   font-style: italic;
 }
 
@@ -24,7 +24,7 @@
   border-right: 2px solid #eee;
 }
 
-#ex1 footer {
+#ex1 [role="contentinfo"] {
   border: #005a9c solid 2px;
   background: #005a9c;
   font-family: serif;
