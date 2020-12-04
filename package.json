@@ -37,7 +37,7 @@
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-ava": "^11.0.0",
     "eslint-plugin-prettier": "^3.2.0",
-    "geckodriver": "^1.20.0",
+    "geckodriver": "^1.21.0",
     "glob": "^7.1.6",
     "husky": "^4.3.0",
     "lint-staged": "^10.5.1",
