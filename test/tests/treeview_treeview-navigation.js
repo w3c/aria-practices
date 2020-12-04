@@ -99,13 +99,6 @@ const isClosedExpandableTreeitem = async function (el) {
   return (await el.getAttribute('aria-expanded')) === 'false';
 };
 
-const hasAriaExpandedAttribute = async function (t, el) {
-  return t.context.session.executeScript(async function () {
-    const el = arguments[0];
-    return el.hasAttribute('aria-expanded');
-  }, el);
-};
-
 // Tests for landmark roles in example
 
 ariaTest(
@@ -240,8 +233,6 @@ ariaTest(
 
     // Check the role "treeitem" is on each a element
     for (let item of listitems) {
-      const hasAriaExpanded = await hasAriaExpandedAttribute(t, item);
-
       t.is(
         await item.getAttribute('role'),
         'treeitem',
@@ -289,8 +280,6 @@ ariaTest(
     for (let treeitem of expandableTreeitems) {
       // If the treeitem is displayed
       if (await treeitem.isDisplayed()) {
-        const treeitemText = await treeitem.getText();
-
         // By default, all expandable treeitems  will be closed
         t.is(await treeitem.getAttribute('aria-expanded'), 'false');
         t.is(await (await getOwnedElement(t, treeitem)).isDisplayed(), false);
@@ -628,9 +617,7 @@ ariaTest(
     const items = await t.context.queryElements(t, ex.treeitemSelector);
 
     let i = items.length - 1;
-    let count = 0;
     while (i > 0) {
-      count += 1;
       const isExpandable = await isExpandableTreeitem(items[i]);
       const isOpened = await isOpenedExpandableTreeitem(items[i]);
       const isTopLevel = isExpandableTreeitem
@@ -867,10 +854,6 @@ ariaTest(
     const topLevelTreeitems = await t.context.queryElements(
       t,
       ex.topLevelExpandableTreeitemsSelector
-    );
-    const nextLevelTreeitems = await t.context.queryElements(
-      t,
-      ex.nextLevelExpandableTreeitemsSelector
     );
 
     // Send Key
