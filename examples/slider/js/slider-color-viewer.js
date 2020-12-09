@@ -37,6 +37,9 @@ class ColorViewerSliders {
     sliderRef[color].thumbNode = n.querySelector('.thumb');
     sliderRef[color].railNode = n.querySelector('.rail');
     sliderRef[color].fillNode = n.querySelector('.fill');
+
+    // Increment and decrement buttons are optional for
+    // mobile support
     sliderRef[color].dec10Node = n.querySelector('.dec10');
     sliderRef[color].decNode = n.querySelector('.dec');
     sliderRef[color].incNode = n.querySelector('.inc');
@@ -73,57 +76,67 @@ class ColorViewerSliders {
         this.onBlur.bind(this)
       );
 
-      this.sliders[slider].dec10Node.addEventListener(
-        'click',
-        this.onDec10Click.bind(this)
-      );
-      this.sliders[slider].dec10Node.addEventListener(
-        'focus',
-        this.onFocus.bind(this)
-      );
-      this.sliders[slider].dec10Node.addEventListener(
-        'blur',
-        this.onBlur.bind(this)
-      );
+      // Increment and decrement buttons are optional for
+      // mobile support
+      if (this.sliders[slider].dec10Node) {
+        this.sliders[slider].dec10Node.addEventListener(
+          'click',
+          this.onDec10Click.bind(this)
+        );
+        this.sliders[slider].dec10Node.addEventListener(
+          'focus',
+          this.onFocus.bind(this)
+        );
+        this.sliders[slider].dec10Node.addEventListener(
+          'blur',
+          this.onBlur.bind(this)
+        );
+      }
 
-      this.sliders[slider].decNode.addEventListener(
-        'click',
-        this.onDecClick.bind(this)
-      );
-      this.sliders[slider].decNode.addEventListener(
-        'focus',
-        this.onFocus.bind(this)
-      );
-      this.sliders[slider].decNode.addEventListener(
-        'blur',
-        this.onBlur.bind(this)
-      );
+      if (this.sliders[slider].decNode) {
+        this.sliders[slider].decNode.addEventListener(
+          'click',
+          this.onDecClick.bind(this)
+        );
+        this.sliders[slider].decNode.addEventListener(
+          'focus',
+          this.onFocus.bind(this)
+        );
+        this.sliders[slider].decNode.addEventListener(
+          'blur',
+          this.onBlur.bind(this)
+        );
+      }
 
-      this.sliders[slider].incNode.addEventListener(
-        'click',
-        this.onIncClick.bind(this)
-      );
-      this.sliders[slider].incNode.addEventListener(
-        'focus',
-        this.onFocus.bind(this)
-      );
-      this.sliders[slider].incNode.addEventListener(
-        'blur',
-        this.onBlur.bind(this)
-      );
+      if (this.sliders[slider].incNode) {
+        this.sliders[slider].incNode.addEventListener(
+          'click',
+          this.onIncClick.bind(this)
+        );
+        this.sliders[slider].incNode.addEventListener(
+          'focus',
+          this.onFocus.bind(this)
+        );
+        this.sliders[slider].incNode.addEventListener(
+          'blur',
+          this.onBlur.bind(this)
+        );
+      }
 
-      this.sliders[slider].inc10Node.addEventListener(
-        'click',
-        this.onInc10Click.bind(this)
-      );
-      this.sliders[slider].inc10Node.addEventListener(
-        'focus',
-        this.onFocus.bind(this)
-      );
-      this.sliders[slider].inc10Node.addEventListener(
-        'blur',
-        this.onBlur.bind(this)
-      );
+      if (this.sliders[slider].inc10Node) {
+        this.sliders[slider].inc10Node.addEventListener(
+          'click',
+          this.onInc10Click.bind(this)
+        );
+        this.sliders[slider].inc10Node.addEventListener(
+          'focus',
+          this.onFocus.bind(this)
+        );
+        this.sliders[slider].inc10Node.addEventListener(
+          'blur',
+          this.onBlur.bind(this)
+        );
+      }
 
       this.moveSliderTo(
         this.sliders[slider],
@@ -182,8 +195,6 @@ class ColorViewerSliders {
 
     slider.fillNode.setAttribute('width', valueNow + 2 * this.offsetLeft);
 
-    var n = valueNow * this.railWidth;
-    var d = valueMax - valueMin;
     var pos =
       Math.round(
         (valueNow * (this.railWidth - this.thumbWidth)) / (valueMax - valueMin)
@@ -274,7 +285,7 @@ class ColorViewerSliders {
       event.stopPropagation();
     }.bind(this);
 
-    var onMouseUp = function (event) {
+    var onMouseUp = function () {
       document.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mouseup', onMouseUp);
     };
@@ -313,9 +324,7 @@ class ColorViewerSliders {
   onChangeClick(event, n) {
     var slider = this.getSlider(event.currentTarget);
 
-    var valueMin = this.getValueMin(slider);
     var valueNow = this.getValueNow(slider);
-    var valueMax = this.getValueMax(slider);
 
     valueNow = valueNow + n;
     this.moveSliderTo(slider, valueNow);

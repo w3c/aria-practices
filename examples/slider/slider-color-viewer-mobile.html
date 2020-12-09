@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Color Viewer Slider Example Using SVG | WAI-ARIA Authoring Practices 1.2</title>
+  <title>Color Viewer Slider Example Using SVG with Mobile Support| WAI-ARIA Authoring Practices 1.2</title>
 
   <!--  Core js and css shared by all examples; do not modify when using this template. -->
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -25,7 +25,7 @@
     </ul>
   </nav>
   <main>
-    <h1>Color Viewer Slider Example Using SVG</h1>
+    <h1>Color Viewer Slider Example Using SVG with Mobile Support</h1>
     <p>
       Following is an example of a color viewer that demonstrates the
       <a href="../../#slider">slider design pattern.</a>
@@ -35,8 +35,8 @@
     <p>Similar examples include: </p>
     <ul>
       <li>
-        <a href="slider-color-viewer-mobile.html">Slider Example with increment and decrement buttons</a>:
-        Color viewer with three sliders to choose RGB colors with additional buttons to support setting the slider value on mobile devices without a keyboard.
+        <a href="slider-color-viewer.html">Slider Example</a>:
+        Color viewer with three sliders to choose RGB colors.
       </li>
       <li>
         <a href="slider-2.html">Slider Examples with aria-orientation and aria-valuetext</a>:
@@ -53,6 +53,21 @@
               <h2 id="id-color-picker">Color Viewer</h2>
               <div id="id-red" class="label">Red</div>
               <div class="color-group red">
+                <button class="change dec10" aria-label="decrease red ten" tabindex="-1">
+                  <svg width="32" height="38" focusable="false">
+                    <circle class="hc-background" cx="14" cy="24" r="14"/>
+                    <circle class="background" cx="14" cy="24" r="12"/>
+                    <line x1="7" y1="24" x2="13" y2="24"/>
+                    <line x1="15" y1="24" x2="21" y2="24"/>
+                  </svg>
+                </button>
+                <button class="change dec" aria-label="decrease red one" tabindex="-1">
+                  <svg width="32" height="38" focusable="false">
+                    <circle class="hc-background" cx="14" cy="24" r="14"/>
+                    <circle class="background" cx="14" cy="24" r="12"/>
+                    <line x1="11" y1="24" x2="17" y2="24"/>
+                  </svg>
+                </button>
                 <div class="color-slider"
                     role="slider"
                     tabindex="0"
@@ -68,10 +83,43 @@
                     <rect class="thumb" x="132" y="18" rx="4"  width="16" height="16" />
                   </svg>
                 </div>
+                <button class="change inc" aria-label="increase red one" tabindex="-1">
+                  <svg width="32" height="38" focusable="false">
+                    <circle class="hc-background" cx="14" cy="24" r="14"/>
+                    <circle class="background" cx="14" cy="24" r="12"/>
+                    <line x1="10" y1="24" x2="18" y2="24"/>
+                    <line x1="14" y1="20" x2="14" y2="28"/>
+                  </svg>
+                </button>
+                <button class="change inc10" aria-label="increase red ten" tabindex="-1">
+                  <svg width="32" height="38" focusable="false">
+                    <circle class="hc-background" cx="14" cy="24" r="14"/>
+                    <circle class="background" cx="14" cy="24" r="12"/>
+                    <line x1="5" y1="24" x2="13" y2="24"/>
+                    <line x1="9" y1="20" x2="9" y2="28"/>
+                    <line x1="15" y1="24" x2="23" y2="24"/>
+                    <line x1="19" y1="20" x2="19" y2="28"/>
+                  </svg>
+                </button>
               </div>
 
               <div id="id-green" class="label">Green</div>
               <div class="color-group green">
+                <button class="change dec10" aria-label="decrease green ten" tabindex="-1">
+                  <svg width="32" height="38" focusable="false">
+                    <circle class="hc-background" cx="14" cy="24" r="14"/>
+                    <circle class="background" cx="14" cy="24" r="12"/>
+                    <line x1="7" y1="24" x2="13" y2="24"/>
+                    <line x1="15" y1="24" x2="21" y2="24"/>
+                  </svg>
+                </button>
+                <button class="change dec" aria-label="decrease green one" tabindex="-1">
+                  <svg width="32" height="38" focusable="false">
+                    <circle class="hc-background" cx="14" cy="24" r="14"/>
+                    <circle class="background" cx="14" cy="24" r="12"/>
+                    <line x1="11" y1="24" x2="17" y2="24"/>
+                  </svg>
+                </button>
                 <div class="color-slider"
                     role="slider"
                     tabindex="0"
@@ -87,10 +135,43 @@
                     <rect class="thumb" x="132" y="18" rx="4"  width="16" height="16" />
                    </svg>
                 </div>
+                <button class="change inc" aria-label="increase green one" tabindex="-1">
+                  <svg width="32" height="38" focusable="false">
+                    <circle class="hc-background" cx="14" cy="24" r="14"/>
+                    <circle class="background" cx="14" cy="24" r="12"/>
+                    <line x1="10" y1="24" x2="18" y2="24"/>
+                    <line x1="14" y1="20" x2="14" y2="28"/>
+                  </svg>
+                </button>
+                <button class="change inc10" aria-label="increase green ten" tabindex="-1">
+                  <svg width="32" height="38" focusable="false">
+                    <circle class="hc-background" cx="14" cy="24" r="14"/>
+                    <circle class="background" cx="14" cy="24" r="12"/>
+                    <line x1="5" y1="24" x2="13" y2="24"/>
+                    <line x1="9" y1="20" x2="9" y2="28"/>
+                    <line x1="15" y1="24" x2="23" y2="24"/>
+                    <line x1="19" y1="20" x2="19" y2="28"/>
+                  </svg>
+                </button>
               </div>
 
               <div id="id-blue" class="label">Blue</div>
               <div class="color-group blue">
+                <button class="change dec10" aria-label="decrease blue ten" tabindex="-1">
+                  <svg width="32" height="38" focusable="false">
+                    <circle class="hc-background" cx="14" cy="24" r="14"/>
+                    <circle class="background" cx="14" cy="24" r="12"/>
+                    <line x1="7" y1="24" x2="13" y2="24"/>
+                    <line x1="15" y1="24" x2="21" y2="24"/>
+                  </svg>
+                </button>
+                <button class="change dec" aria-label="decrease blue one" tabindex="-1">
+                  <svg width="32" height="38" focusable="false">
+                    <circle class="hc-background" cx="14" cy="24" r="14"/>
+                    <circle class="background" cx="14" cy="24" r="12"/>
+                    <line x1="11" y1="24" x2="17" y2="24"/>
+                  </svg>
+                </button>
                 <div class="color-slider"
                     role="slider"
                     tabindex="0"
@@ -106,6 +187,24 @@
                     <rect class="thumb" x="132" y="18" rx="4"  width="16" height="16" />
                   </svg>
                 </div>
+                <button class="change inc" aria-label="increase blue one" tabindex="-1">
+                  <svg width="32" height="38" focusable="false">
+                    <circle class="hc-background" cx="14" cy="24" r="14"/>
+                    <circle class="background" cx="14" cy="24" r="12"/>
+                    <line x1="10" y1="24" x2="18" y2="24"/>
+                    <line x1="14" y1="20" x2="14" y2="28"/>
+                  </svg>
+                </button>
+                <button class="change inc10" aria-label="increase blue ten" tabindex="-1">
+                  <svg width="32" height="38" focusable="false">
+                    <circle class="hc-background" cx="14" cy="24" r="14"/>
+                    <circle class="background" cx="14" cy="24" r="12"/>
+                    <line x1="5" y1="24" x2="13" y2="24"/>
+                    <line x1="9" y1="20" x2="9" y2="28"/>
+                    <line x1="15" y1="24" x2="23" y2="24"/>
+                    <line x1="19" y1="20" x2="19" y2="28"/>
+                  </svg>
+                </button>
               </div>
 
               <h3>Color View Box</h3>
@@ -134,60 +233,83 @@
         <li>Use of SVG enables high contrast support by including additional background <code>rect</code> and <code>circle</code> elements to provide contrast for the focus and hover border styling of the buttons and sliders.</li>
         <li>The placement of the slider value above the thumb supports users with low vision by allow them to more easily see the value of the slider as they move the thumb.</li>
         <li>The use of the <code>currentColor</code> for the slider value supports the visibility of the value in operating system high contrast modes.</li>
+        <li>
+          The increase and decrease buttons are not contained within the <code>div</code> with role <code>slider</code> so they can be separately focusable by users of touch screen readers.
+          However, they are excluded from the page <kbd>Tab</kbd> sequence with <code>tabindex="-1"</code> because they are redundant with the arrow key support provided for keyboard users.
+        </li>
         <li>The <code>svg</code> images have an attribute <code>focusable="false"</code> to mitigate a bug in Internet Explorer 11 that sets focusable to true when an <code>svg</code> image is inside a <code>button</code> element.</li>
       </ul>
     </section>
 
     <section>
-      <h2 id="kbd_label">Keyboard Support</h2>
-      <table aria-labelledby="kbd_label" class="def">
-        <thead>
-          <tr>
-            <th>Key</th>
-            <th>Function</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr data-test-id="key-right-arrow">
-            <th><kbd>Right Arrow</kbd></th>
-            <td>Increases slider value one step.</td>
-          </tr>
-          <tr data-test-id="key-up-arrow">
-            <th><kbd>Up Arrow</kbd></th>
-            <td>Increases slider value one step.</td>
-          </tr>
-          <tr data-test-id="key-left-arrow">
-            <th><kbd>Left Arrow</kbd></th>
-            <td>Decreases slider value one step.</td>
-          </tr>
-          <tr data-test-id="key-down-arrow">
-            <th><kbd>Down Arrow</kbd></th>
-            <td>Decreases slider value one step.</td>
-          </tr>
-          <tr data-test-id="key-page-up">
-            <th><kbd>Page Up</kbd></th>
-            <td>Increases slider value multiple steps. In this slider, jumps ten steps.</td>
-          </tr>
-          <tr data-test-id="key-page-down">
-            <th><kbd>Page Down</kbd></th>
-            <td>Decreases slider value multiple steps. In this slider, jumps ten steps.</td>
-          </tr>
-          <tr data-test-id="key-home">
-            <th><kbd>Home</kbd></th>
-            <td>Sets slider to its minimum value.</td>
-          </tr>
-          <tr data-test-id="key-end">
-            <th><kbd>End</kbd></th>
-            <td>Sets slider to its maximum value.</td>
-          </tr>
-        </tbody>
-      </table>
+        <h2 id="kbd_label">Keyboard Support</h2>
+
+        <h3 id="kbd_label_1">Slider</h3>
+        <table aria-labelledby="kbd_label_1 kbd_label" class="def">
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-test-id="key-right-arrow">
+              <th><kbd>Right Arrow</kbd></th>
+              <td>Increases slider value one step.</td>
+            </tr>
+            <tr data-test-id="key-up-arrow">
+              <th><kbd>Up Arrow</kbd></th>
+              <td>Increases slider value one step.</td>
+            </tr>
+            <tr data-test-id="key-left-arrow">
+              <th><kbd>Left Arrow</kbd></th>
+              <td>Decreases slider value one step.</td>
+            </tr>
+            <tr data-test-id="key-down-arrow">
+              <th><kbd>Down Arrow</kbd></th>
+              <td>Decreases slider value one step.</td>
+            </tr>
+            <tr data-test-id="key-page-up">
+              <th><kbd>Page Up</kbd></th>
+              <td>Increases slider value multiple steps. In this slider, jumps ten steps.</td>
+            </tr>
+            <tr data-test-id="key-page-down">
+              <th><kbd>Page Down</kbd></th>
+              <td>Decreases slider value multiple steps. In this slider, jumps ten steps.</td>
+            </tr>
+            <tr data-test-id="key-home">
+              <th><kbd>Home</kbd></th>
+              <td>Sets slider to its minimum value.</td>
+            </tr>
+            <tr data-test-id="key-end">
+              <th><kbd>End</kbd></th>
+              <td>Sets slider to its maximum value.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 id="kbd_label_2">Increase and Decrease Buttons</h3>
+        <table aria-labelledby="kbd_label_2 kbd_label" class="def">
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-test-id="button-space-enter">
+              <th><kbd>Space</kbd>, <kbd>Enter</kbd></th>
+              <td>Change the value of the slider by the value associated with the button.</td>
+            </tr>
+          </tbody>
+        </table>
 
     </section>
 
     <section>
       <h2 id="rps_label">Role, Property, State, and Tabindex Attributes</h2>
-      <table aria-labelledby="rps_label" class="data attributes">
+      <h3 id="rps_label_1">Slider</h3>
+      <table aria-labelledby="rps_label_1 rps_label" class="data attributes">
         <thead>
           <tr>
             <th scope="col">Role</th>
@@ -298,6 +420,51 @@
           </tr>
         </tbody>
       </table>
+
+      <h3 id="rps_label_2">Increase and Decrease Buttons</h3>
+      <table aria-labelledby="rps_label_2 rps_label" class="data attributes">
+        <thead>
+          <tr>
+            <th scope="col">Role</th>
+            <th scope="col">Attribute</th>
+            <th scope="col">Element</th>
+            <th scope="col">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+         <tr data-test-id="button-tabindex">
+            <td></td>
+            <th scope="row"><code>tabindex=<q>-1</q></code></th>
+            <td><code>button</code></td>
+            <td>
+              <ul>
+                <li>Removes the button from the tab sequence of the page.</li>
+                <li>The buttons are for touch screen support for changing the slider values by mobile assistive technologies and including the buttons in the tab order of the page is  redundant with slider keyboard support.</li>
+              </ul>
+            </td>
+          </tr>
+         <tr data-test-id="button-aria-label">
+            <td></td>
+            <th scope="row"><code>aria-label=<q>name</q></code></th>
+            <td><code>button</code></td>
+            <td>
+              <ul>
+                <li>Provide an accessible name for each button.</li>
+                <li>Accessible name includes the color and the size of the change to the slider value.</li>
+              </ul>
+            </td>
+          </tr>
+         <tr data-test-id="button-svg-focusable">
+            <td></td>
+            <th scope="row"><code>focusable=<q>false</q></code></th>
+            <td><code>svg</code></td>
+            <td>
+              <code>focusable=<q>false</q></code> fixes an Internet Explorer 11 issue that makes SVG images within button elements <code>focusable=<q>true</q></code> by default.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
     </section>
 
   <section>
