@@ -207,7 +207,8 @@
         "aria-labelledby=\"(?:[^\\\"]+|\\.)*\"",
         "aria-owns=\"(?:[^\\\"]+|\\.)*\"",
         "href=\"(?:[^\\\"]+|\\.)*\"",
-        "for=\"(?:[^\\\"]+|\\.)*\""
+        "for=\"(?:[^\\\"]+|\\.)*\"",
+        "url\\(\"data\\:image/svg\\+xml.*\"\\);"
     ],
     "allowCompoundWords": true,
     "ignorePaths": [
