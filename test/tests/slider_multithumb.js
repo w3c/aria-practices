@@ -16,8 +16,8 @@ const ex = {
   hotelMax: '400',
   flightMin: '0',
   flightMax: '1000',
-  hotelDefaultVals: ['100', '250'],
-  flightDefaultVals: ['100', '250'],
+  hotelDefaultValues: ['100', '250'],
+  flightDefaultValues: ['100', '250'],
   hotelLabelSelector: '#ex1 div.aria-widget-slider:nth-of-type(1) .rail-label',
   flightLabelSelector: '#ex1 div.aria-widget-slider:nth-of-type(2) .rail-label',
 };
@@ -83,9 +83,9 @@ ariaTest(
 
     t.is(
       await hotelSliders[0].getAttribute('aria-valuemax'),
-      ex.hotelDefaultVals[1],
+      ex.hotelDefaultValues[1],
       'Value of "aria-valuemax" for first hotel slider on page load should be: ' +
-        ex.hotelDefaultVals[1]
+        ex.hotelDefaultValues[1]
     );
     t.is(
       await hotelSliders[1].getAttribute('aria-valuemax'),
@@ -95,9 +95,9 @@ ariaTest(
     );
     t.is(
       await flightSliders[0].getAttribute('aria-valuemax'),
-      ex.flightDefaultVals[1],
+      ex.flightDefaultValues[1],
       'Value of "aria-valuemax" for first flight slider on page load should be: ' +
-        ex.flightDefaultVals[1]
+        ex.flightDefaultValues[1]
     );
 
     t.is(
@@ -130,9 +130,9 @@ ariaTest(
     );
     t.is(
       await hotelSliders[1].getAttribute('aria-valuemin'),
-      ex.hotelDefaultVals[0],
+      ex.hotelDefaultValues[0],
       'Value of "aria-valuemin" for second hotel slider on page load should be: ' +
-        ex.hotelDefaultVals[0]
+        ex.hotelDefaultValues[0]
     );
     t.is(
       await flightSliders[0].getAttribute('aria-valuemin'),
@@ -141,9 +141,9 @@ ariaTest(
     );
     t.is(
       await flightSliders[1].getAttribute('aria-valuemin'),
-      ex.flightDefaultVals[0],
+      ex.flightDefaultValues[0],
       'Value of "aria-valuemin" for second flight slider on page load should be: ' +
-        ex.flightDefaultVals[0]
+        ex.flightDefaultValues[0]
     );
   }
 );
@@ -164,27 +164,27 @@ ariaTest(
 
     t.is(
       await hotelSliders[0].getAttribute('aria-valuenow'),
-      ex.hotelDefaultVals[0],
+      ex.hotelDefaultValues[0],
       'Value of "aria-valuenow" for first hotel slider on page load should be: ' +
-        ex.hotelDefaultVals[0]
+        ex.hotelDefaultValues[0]
     );
     t.is(
       await hotelSliders[1].getAttribute('aria-valuenow'),
-      ex.hotelDefaultVals[1],
+      ex.hotelDefaultValues[1],
       'Value of "aria-valuenow" for second hotel slider on page load should be: ' +
-        ex.hotelDefaultVals[1]
+        ex.hotelDefaultValues[1]
     );
     t.is(
       await flightSliders[0].getAttribute('aria-valuenow'),
-      ex.flightDefaultVals[0],
+      ex.flightDefaultValues[0],
       'Value of "aria-valuenow" for first flight slider on page load should be: ' +
-        ex.flightDefaultVals[0]
+        ex.flightDefaultValues[0]
     );
     t.is(
       await flightSliders[1].getAttribute('aria-valuenow'),
-      ex.flightDefaultVals[1],
+      ex.flightDefaultValues[1],
       'Value of "aria-valuenow" for second flight slider on page load should be: ' +
-        ex.flightDefaultVals[1]
+        ex.flightDefaultValues[1]
     );
   }
 );
@@ -205,27 +205,27 @@ ariaTest(
 
     t.is(
       await hotelSliders[0].getAttribute('aria-valuetext'),
-      '$' + ex.hotelDefaultVals[0],
+      '$' + ex.hotelDefaultValues[0],
       'Value of "aria-valuetext" for first hotel slider on page load should be: $' +
-        ex.hotelDefaultVals[0]
+        ex.hotelDefaultValues[0]
     );
     t.is(
       await hotelSliders[1].getAttribute('aria-valuetext'),
-      '$' + ex.hotelDefaultVals[1],
+      '$' + ex.hotelDefaultValues[1],
       'Value of "aria-valuetext" for second hotel slider on page load should be: $' +
-        ex.hotelDefaultVals[1]
+        ex.hotelDefaultValues[1]
     );
     t.is(
       await flightSliders[0].getAttribute('aria-valuetext'),
-      '$' + ex.flightDefaultVals[0],
+      '$' + ex.flightDefaultValues[0],
       'Value of "aria-valuetext" for first flight slider on page load should be: $' +
-        ex.flightDefaultVals[0]
+        ex.flightDefaultValues[0]
     );
     t.is(
       await flightSliders[1].getAttribute('aria-valuetext'),
-      '$' + ex.flightDefaultVals[1],
+      '$' + ex.flightDefaultValues[1],
       'Value of "aria-valuetext" for second flight slider on page load should be: $' +
-        ex.flightDefaultVals[1]
+        ex.flightDefaultValues[1]
     );
   }
 );
@@ -257,7 +257,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      (parseInt(ex.hotelDefaultVals[0]) + 1).toString(),
+      (parseInt(ex.hotelDefaultValues[0]) + 1).toString(),
       hotelSliders[0],
       'aria-valuenow',
       hotelSliders[1],
@@ -270,7 +270,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      ex.hotelDefaultVals[1],
+      ex.hotelDefaultValues[1],
       hotelSliders[0],
       'aria-valuenow',
       hotelSliders[1],
@@ -284,7 +284,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      (parseInt(ex.hotelDefaultVals[1]) + 1).toString(),
+      (parseInt(ex.hotelDefaultValues[1]) + 1).toString(),
       hotelSliders[0],
       'aria-valuemax',
       hotelSliders[1],
@@ -320,7 +320,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      (parseInt(ex.flightDefaultVals[0]) + 1).toString(),
+      (parseInt(ex.flightDefaultValues[0]) + 1).toString(),
       flightSliders[0],
       'aria-valuenow',
       flightSliders[1],
@@ -333,7 +333,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      ex.flightDefaultVals[1],
+      ex.flightDefaultValues[1],
       flightSliders[0],
       'aria-valuenow',
       flightSliders[1],
@@ -347,7 +347,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      (parseInt(ex.flightDefaultVals[1]) + 1).toString(),
+      (parseInt(ex.flightDefaultValues[1]) + 1).toString(),
       flightSliders[0],
       'aria-valuemax',
       flightSliders[1],
@@ -387,7 +387,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      (parseInt(ex.hotelDefaultVals[0]) + 1).toString(),
+      (parseInt(ex.hotelDefaultValues[0]) + 1).toString(),
       hotelSliders[0],
       'aria-valuenow',
       hotelSliders[1],
@@ -400,7 +400,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      ex.hotelDefaultVals[1],
+      ex.hotelDefaultValues[1],
       hotelSliders[0],
       'aria-valuenow',
       hotelSliders[1],
@@ -414,7 +414,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      (parseInt(ex.hotelDefaultVals[1]) + 1).toString(),
+      (parseInt(ex.hotelDefaultValues[1]) + 1).toString(),
       hotelSliders[0],
       'aria-valuemax',
       hotelSliders[1],
@@ -450,7 +450,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      (parseInt(ex.flightDefaultVals[0]) + 1).toString(),
+      (parseInt(ex.flightDefaultValues[0]) + 1).toString(),
       flightSliders[0],
       'aria-valuenow',
       flightSliders[1],
@@ -463,7 +463,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      ex.flightDefaultVals[1],
+      ex.flightDefaultValues[1],
       flightSliders[0],
       'aria-valuenow',
       flightSliders[1],
@@ -477,7 +477,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      (parseInt(ex.flightDefaultVals[1]) + 1).toString(),
+      (parseInt(ex.flightDefaultValues[1]) + 1).toString(),
       flightSliders[0],
       'aria-valuemax',
       flightSliders[1],
@@ -517,7 +517,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      (parseInt(ex.hotelDefaultVals[0]) + 10).toString(),
+      (parseInt(ex.hotelDefaultValues[0]) + 10).toString(),
       hotelSliders[0],
       'aria-valuenow',
       hotelSliders[1],
@@ -530,7 +530,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      ex.hotelDefaultVals[1],
+      ex.hotelDefaultValues[1],
       hotelSliders[0],
       'aria-valuenow',
       hotelSliders[1],
@@ -544,7 +544,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      (parseInt(ex.hotelDefaultVals[1]) + 10).toString(),
+      (parseInt(ex.hotelDefaultValues[1]) + 10).toString(),
       hotelSliders[0],
       'aria-valuemax',
       hotelSliders[1],
@@ -580,7 +580,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      (parseInt(ex.flightDefaultVals[0]) + 10).toString(),
+      (parseInt(ex.flightDefaultValues[0]) + 10).toString(),
       flightSliders[0],
       'aria-valuenow',
       flightSliders[1],
@@ -593,7 +593,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      ex.flightDefaultVals[1],
+      ex.flightDefaultValues[1],
       flightSliders[0],
       'aria-valuenow',
       flightSliders[1],
@@ -607,7 +607,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      (parseInt(ex.flightDefaultVals[1]) + 10).toString(),
+      (parseInt(ex.flightDefaultValues[1]) + 10).toString(),
       flightSliders[0],
       'aria-valuemax',
       flightSliders[1],
@@ -647,7 +647,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      (parseInt(ex.hotelDefaultVals[0]) - 1).toString(),
+      (parseInt(ex.hotelDefaultValues[0]) - 1).toString(),
       hotelSliders[0],
       'aria-valuenow',
       hotelSliders[1],
@@ -674,7 +674,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      (parseInt(ex.hotelDefaultVals[1]) - 1).toString(),
+      (parseInt(ex.hotelDefaultValues[1]) - 1).toString(),
       hotelSliders[0],
       'aria-valuemax',
       hotelSliders[1],
@@ -710,7 +710,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      (parseInt(ex.flightDefaultVals[0]) - 1).toString(),
+      (parseInt(ex.flightDefaultValues[0]) - 1).toString(),
       flightSliders[0],
       'aria-valuenow',
       flightSliders[1],
@@ -737,7 +737,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      (parseInt(ex.flightDefaultVals[1]) - 1).toString(),
+      (parseInt(ex.flightDefaultValues[1]) - 1).toString(),
       flightSliders[0],
       'aria-valuemax',
       flightSliders[1],
@@ -777,7 +777,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      (parseInt(ex.hotelDefaultVals[0]) - 1).toString(),
+      (parseInt(ex.hotelDefaultValues[0]) - 1).toString(),
       hotelSliders[0],
       'aria-valuenow',
       hotelSliders[1],
@@ -804,7 +804,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      (parseInt(ex.hotelDefaultVals[1]) - 1).toString(),
+      (parseInt(ex.hotelDefaultValues[1]) - 1).toString(),
       hotelSliders[0],
       'aria-valuemax',
       hotelSliders[1],
@@ -840,7 +840,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      (parseInt(ex.flightDefaultVals[0]) - 1).toString(),
+      (parseInt(ex.flightDefaultValues[0]) - 1).toString(),
       flightSliders[0],
       'aria-valuenow',
       flightSliders[1],
@@ -867,7 +867,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      (parseInt(ex.flightDefaultVals[1]) - 1).toString(),
+      (parseInt(ex.flightDefaultValues[1]) - 1).toString(),
       flightSliders[0],
       'aria-valuemax',
       flightSliders[1],
@@ -907,7 +907,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      (parseInt(ex.hotelDefaultVals[0]) - 10).toString(),
+      (parseInt(ex.hotelDefaultValues[0]) - 10).toString(),
       hotelSliders[0],
       'aria-valuenow',
       hotelSliders[1],
@@ -934,7 +934,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      (parseInt(ex.hotelDefaultVals[1]) - 10).toString(),
+      (parseInt(ex.hotelDefaultValues[1]) - 10).toString(),
       hotelSliders[0],
       'aria-valuemax',
       hotelSliders[1],
@@ -970,7 +970,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      (parseInt(ex.flightDefaultVals[0]) - 10).toString(),
+      (parseInt(ex.flightDefaultValues[0]) - 10).toString(),
       flightSliders[0],
       'aria-valuenow',
       flightSliders[1],
@@ -997,7 +997,7 @@ ariaTest(
 
     await verifyAllValues(
       t,
-      (parseInt(ex.flightDefaultVals[1]) - 10).toString(),
+      (parseInt(ex.flightDefaultValues[1]) - 10).toString(),
       flightSliders[0],
       'aria-valuemax',
       flightSliders[1],
@@ -1030,7 +1030,7 @@ ariaTest('home sends value to minimum', exampleFile, 'key-home', async (t) => {
 
   await verifyAllValues(
     t,
-    ex.hotelDefaultVals[0],
+    ex.hotelDefaultValues[0],
     hotelSliders[0],
     'aria-valuemax',
     hotelSliders[1],
@@ -1064,7 +1064,7 @@ ariaTest('home sends value to minimum', exampleFile, 'key-home', async (t) => {
 
   await verifyAllValues(
     t,
-    ex.flightDefaultVals[0],
+    ex.flightDefaultValues[0],
     flightSliders[0],
     'aria-valuemax',
     flightSliders[1],
@@ -1096,7 +1096,7 @@ ariaTest('end sends value to minimum', exampleFile, 'key-end', async (t) => {
 
   await verifyAllValues(
     t,
-    ex.hotelDefaultVals[1],
+    ex.hotelDefaultValues[1],
     hotelSliders[0],
     'aria-valuenow',
     hotelSliders[1],
@@ -1128,7 +1128,7 @@ ariaTest('end sends value to minimum', exampleFile, 'key-end', async (t) => {
 
   await verifyAllValues(
     t,
-    ex.flightDefaultVals[1],
+    ex.flightDefaultValues[1],
     flightSliders[0],
     'aria-valuemax',
     flightSliders[1],

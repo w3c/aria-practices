@@ -59,7 +59,7 @@ const getExampleFiles = function (currentDirPath, exampleFiles) {
 };
 
 /**
- * Return human readible name for a "Keyboard Support" table row.
+ * Return human readable name for a "Keyboard Support" table row.
  *
  * @param {jQuery object} $         - loaded Cheerio dom
  * @param {jQuery object} $tableRow - root example directory
@@ -69,7 +69,7 @@ const getKeyboardRowName = function ($, $tableRow) {
 };
 
 /**
- * Return human readible name for an "Attributes" table row.
+ * Return human readable name for an "Attributes" table row.
  *
  * @param {jQuery object} $         - loaded Cheerio dom
  * @param {jQuery object} $tableRow - root example directory
@@ -159,7 +159,7 @@ const processDocumentationInExampleFiles = function (
 /**
  * Runs ava tests in coverage mode to collect data on which tests exist.
  * After running, `exampleCoverage[example].missingTests` will be an array of
- * only data-test-ids for which no regresison test was found.
+ * only data-test-ids for which no regression test was found.
  *
  * @param {Object} exampleCoverage - object with existing coverage information
  */

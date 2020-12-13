@@ -108,22 +108,22 @@ aria.Notes.prototype.loadSaved = function () {
 aria.Notes.prototype.discard = function () {
   localStorage.clear();
   this.notesInput.value = '';
-  this.toggleCtrls();
+  this.toggleControls();
 };
 
-aria.Notes.prototype.disableCtrls = function () {
+aria.Notes.prototype.disableControls = function () {
   this.controls.forEach(aria.Utils.disableCtrl);
 };
 
-aria.Notes.prototype.enableCtrls = function () {
+aria.Notes.prototype.enableControls = function () {
   this.controls.forEach(aria.Utils.enableCtrl);
 };
 
-aria.Notes.prototype.toggleCtrls = function () {
+aria.Notes.prototype.toggleControls = function () {
   if (this.hasContent) {
-    this.enableCtrls();
+    this.enableControls();
   } else {
-    this.disableCtrls();
+    this.disableControls();
   }
 };
 
@@ -151,7 +151,7 @@ aria.Notes.prototype.init = function () {
     this.toggleCurrent();
     this.saveBtn.addEventListener('click', this.save.bind(this, undefined));
     this.discardBtn.addEventListener('click', this.discard.bind(this));
-    this.notesInput.addEventListener('input', this.toggleCtrls.bind(this));
+    this.notesInput.addEventListener('input', this.toggleControls.bind(this));
     this.notesInput.addEventListener('input', this.toggleCurrent.bind(this));
     this.notesInput.addEventListener('keydown', this.keydownHandler.bind(this));
     this.initialized = true;

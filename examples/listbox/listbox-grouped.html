@@ -38,7 +38,9 @@
     <li><a href="listbox-collapsible.html">Collapsible Dropdown Listbox Example</a>: Single-select collapsible listbox that expands when activated, similar to HTML <code>select</code> with the attribute <code>size=&quot;1&quot;</code>.</li>
   </ul>
   <section>
-    <h2 id="ex_label">Example</h2>
+    <div class="example-header">
+      <h2 id="ex_label">Example</h2>
+    </div>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="ex">
       <div class="listbox-area">
@@ -211,7 +213,7 @@
 
   <section>
     <h2>Javascript and CSS Source Code</h2>
-    <ul>
+    <ul id="css_js_files">
       <li>
         CSS:
         <a href="css/listbox.css" type="tex/css">listbox.css</a>
@@ -228,7 +230,7 @@
     <div id="sc_start_sep" role="separator" aria-labelledby="sc_start_sep sc_label" aria-label="Start of "></div>
     <pre><code id="sc"></code></pre>
     <div id="sc_end_sep" role="separator" aria-labelledby="sc_end_sep sc_label" aria-label="End of"></div>
-    <script>sourceCode.add('sc', 'ex')</script>
+    <script>sourceCode.add('sc', 'ex', 'ex_label', 'css_js_files')</script>
     <script> sourceCode.make() </script>
   </section>
   </main>

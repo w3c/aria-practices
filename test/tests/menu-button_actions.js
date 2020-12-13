@@ -15,6 +15,12 @@ const ex = {
   lastactionSelector: '#action_output',
 };
 
+const getFocusText = function (t) {
+  return t.context.session.executeScript(function () {
+    return document.activeElement.textContent.trim();
+  });
+};
+
 const checkFocus = function (t, selector, index) {
   return t.context.session.executeScript(
     function () {
@@ -28,7 +34,9 @@ const checkFocus = function (t, selector, index) {
 };
 
 const openMenu = async function (t) {
-  return t.context.session.findElement(By.css(ex.menubuttonSelector)).click();
+  return await t.context.session
+    .findElement(By.css(ex.menubuttonSelector))
+    .sendKeys(Key.ARROW_DOWN);
 };
 
 // Attributes
@@ -304,7 +312,9 @@ ariaTest(
         await checkFocus(t, ex.menuitemSelector, index + 1),
         'down arrow on item "' +
           itemText +
-          '" should put focus on the next item.'
+          ' (' +
+          index +
+          ') " should put focus on the next item.'
       );
     }
 
@@ -313,7 +323,9 @@ ariaTest(
     const itemText = await items[items.length - 1].getText();
     t.true(
       await checkFocus(t, ex.menuitemSelector, 0),
-      'down arrow on item "' + itemText + '" should put focus to first item.'
+      'down arrow on item "' +
+        itemText +
+        ' (0) " should put focus to first item.'
     );
   }
 );
@@ -332,7 +344,11 @@ ariaTest(
     const itemText = await items[0].getText();
     t.true(
       await checkFocus(t, ex.menuitemSelector, items.length - 1),
-      'up arrow on item "' + itemText + '" should put focus to last item.'
+      'up arrow on item "' +
+        itemText +
+        ' (0 of ' +
+        items.length +
+        ') " should put focus to last item.'
     );
 
     for (let index = items.length - 1; index > 0; index--) {
@@ -341,9 +357,11 @@ ariaTest(
       const itemText = await items[index].getText();
       t.true(
         await checkFocus(t, ex.menuitemSelector, index - 1),
-        'down arrow on item "' +
+        'up arrow on item "' +
           itemText +
-          '" should put focus on the previous item.'
+          ' (' +
+          index +
+          ') " should put focus on the previous item.'
       );
     }
   }

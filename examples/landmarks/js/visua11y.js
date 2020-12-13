@@ -811,8 +811,8 @@ function nameFromNativeSemantics(element, recFlag) {
 *   separated list of IDREFs), visit each referenced element in the order it
 *   appears in the list and obtain its accessible name (skipping recursive
 *   aria-labelledby or aria-describedby calculations), and return an object
-*   with name property set to a string that is a space-separated concatena-
-*   tion of those results if any, otherwise return null.
+*   with name property set to a string that is a space-separated concatenation
+*   of those results if any, otherwise return null.
 */
 function nameFromAttributeIdRefs(element, attribute) {
   var value = getAttributeValue(element, attribute);
@@ -953,7 +953,7 @@ function formatInfo(info) {
 
 /*
 *   normalize: Trim leading and trailing whitespace and condense all
-*   interal sequences of whitespace to a single space. Adapted from
+*   internal sequences of whitespace to a single space. Adapted from
 *   Mozilla documentation on String.prototype.trim polyfill. Handles
 *   BOM and NBSP characters.
 */
