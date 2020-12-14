@@ -15,6 +15,7 @@
     "lint:js": "npm run lint:es",
     "lint:html": "npm run htmlhint && npm run vnu-jar",
     "lint:spelling": "cspell \"**/*.*\"",
+    "reference-tables": "node scripts/reference-tables.js",
     "regression": "ava --timeout=1m",
     "regression-report": "node test/util/report",
     "test": "npm run lint && npm run regression",
@@ -67,6 +68,10 @@
     "*.js": [
       "eslint --fix",
       "git add"
+    ],
+    "examples/**/*.html": [
+      "npm run reference-tables",
+      "git add examples/index.html"
     ]
   },
   "ava": {

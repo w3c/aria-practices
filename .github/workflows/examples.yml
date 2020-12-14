@@ -1,0 +1,33 @@
+name: Check examples/index.html
+
+on:
+  push:
+    branches-ignore:
+      - "dependabot/**"
+    paths:
+      - "package*.json"
+      - ".github/workflows/examples.yml"
+      - "examples/**"
+      - "scripts/reference-tables.*"
+  pull_request:
+    paths:
+      - "package*.json"
+      - ".github/workflows/examples.yml"
+      - "examples/**"
+      - "scripts/reference-tables.*"
+
+jobs:
+  examples:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate examples/index.html
+        run: npm run reference-tables
+
+      - name: Ensure no git changes
+        run: git diff --exit-code
