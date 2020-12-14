@@ -105,7 +105,6 @@ VSlider.prototype.moveVSliderTo = function (value) {
   if (this.valueDomNode) {
     this.valueDomNode.innerHTML = this.valueNow.toString();
     this.valueDomNode.style.left = this.railDomNode.offsetWidth / 2 - 2 + 'px';
-    console.log(this.valueDomNode.style.left);
   }
 };
 

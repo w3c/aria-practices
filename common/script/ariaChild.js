@@ -209,10 +209,16 @@ require(["core/pubsubhub"], function( respecEvents ) {
                                 if (prev != role.name) {
                                     output += "<li>";
                                     if (role.is === "state") {
-                                        output += "<sref title=\"" + role.name + "\">" + role.name + " (state)</sref>" + req;
+                                        output += "<sref "+(role.prohibited?"data-prohibited ":"")+(role.deprecated?"data-deprecated ":"") +"title=\"" + role.name + "\">" + role.name + " (state)</sref>" + req;
                                     } else {
-                                        output += "<pref>" + role.name + "</pref>" + req;
+                                        output += "<pref "+(role.prohibited?"data-prohibited ":"")+(role.deprecated?"data-deprecated ":"") + ">" + role.name + "</pref>" + req;
                                     }
+                                    if (role.prohibited) {
+                                        output += " (Except where prohibited)";
+                                    }
+                                    if (role.deprecated) {
+                                        output += " (Global use deprecated in ARIA 1.2)"
+                                    }                                    
                                     output += "</li>\n";
                                     prev = role.name;
                                 }
