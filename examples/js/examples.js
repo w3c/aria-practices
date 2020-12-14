@@ -159,7 +159,10 @@ aria.widget.SourceCode.prototype.createCode = function (
 
     switch (childNode.nodeType) {
       case Node.ELEMENT_NODE:
-        this.createCode(sourceCodeNode, childNode, indentLevel, false);
+        // To remove the SVG definitions from the example's source code, add the id `svg_definitions`
+        if (childNode.id !== 'svg_definitions') {
+          this.createCode(sourceCodeNode, childNode, indentLevel, false);
+        }
         break;
 
       case Node.TEXT_NODE:
@@ -411,6 +414,7 @@ function addOpenInCodePenForm(
       location.origin +
       '/examples/css/core.css;' +
       'https://www.w3.org/StyleSheets/TR/2016/base.css',
+    js_external: location.origin + 'examples/js/utils.js',
   };
 
   var totalFetchedFiles = 0;
