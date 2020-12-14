@@ -326,8 +326,9 @@
                 </div>
               </section>
             </div>
-            <!-- NOTE: In a real website the footer element would be a top level element and it would
-                     not need the role="contentinfo" attribute to be a contentinfo landmark -->
+            <!-- NOTE: In a real website the footer element would be a top level element, i.e., it would have the body as its scope.
+            If the scope of the footer element were body, browsers would automatically treat the header as an ARIA contentinfo,
+            so the footer would not need the role="contentinfo". -->
             <footer role="contentinfo">
               Mythical University footer information
             </footer>
