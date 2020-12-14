@@ -7,8 +7,8 @@
 
 'use strict';
 
-var ICON_MUTE_URL = 'images/mute.svg#icon-mute';
-var ICON_SOUND_URL = 'images/mute.svg#icon-sound';
+var ICON_MUTE_URL = '#icon-mute';
+var ICON_SOUND_URL = '#icon-sound';
 
 function init() {
   var actionButton = document.getElementById('action');

@@ -1864,7 +1864,7 @@ excommunication&lt;/dd&gt;
       <p>
         Search the contents of the dialog container to find the first and last tab focusable elements.
         This can be implemented by walking the DOM tree of the dialog container to find all visible and enabled anchor elements, input elements, and all elements that have a tabindex value greater than or equal to 0.
-        Remember that elements with a tabindex > 0 will appear in the tab order before all other focusable elements in ascending order by tabindex.
+        Remember that elements with a tabindex &gt; 0 will appear in the tab order before all other focusable elements in ascending order by tabindex.
         Store the first and last tab focusable items within variables in the scope of the dialog box code.
       </p>
 
@@ -1964,7 +1964,7 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
 </pre>
     </section>
     <section id="keyboard_js_tips">
-      <H3>Other Keyboard Interface Development Tips</H3>
+      <h3>Other Keyboard Interface Development Tips</h3>
 
       <p class="note">MCK: this section is a collection of keyboard related old content with a yet undecided fate.</p>
 
@@ -2185,12 +2185,12 @@ convey context and then <span class="property-reference">aria-owns</span>:</p>
 <p>First, consider the preferred method for using the W3C DOM to describe the relationship between
   <span class="role-reference">radiogroup</span> and <span class="role-reference">radio</span>  roles for HTML:</p>
 <pre>
-&lt;div id="radio_label">My radio label&lt;/div>
-&lt;ul role="radiogroup" aria-labelledby="radio_label">
-&lt;li role="radio">Item #1&lt;/li>
-&lt;li role="radio">Item #2&lt;/li>
-&lt;li role="radio">Item #3&lt;/li>
-&lt;/ul>
+&lt;div id="radio_label"&gt;My radio label&lt;/div&gt;
+&lt;ul role="radiogroup" aria-labelledby="radio_label"&gt;
+&lt;li role="radio"&gt;Item #1&lt;/li&gt;
+&lt;li role="radio"&gt;Item #2&lt;/li&gt;
+&lt;li role="radio"&gt;Item #3&lt;/li&gt;
+&lt;/ul&gt;
 </pre>
 <p>
 In this example, the elements with <code>role="radio"</code> are child nodes of the parent <code>role="radiogroup"</code> element node.

@@ -5,6 +5,8 @@
 
 'use strict';
 
+var aria = aria || {};
+
 /**
  * @constructor
  *
