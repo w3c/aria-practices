@@ -66,8 +66,6 @@ ButtonExpand.prototype.toggleExpand = function () {
 /* EVENT HANDLERS */
 
 ButtonExpand.prototype.handleKeydown = function (event) {
-  console.log('[keydown]');
-
   switch (event.keyCode) {
     case this.keyCode.RETURN:
       this.toggleExpand();
