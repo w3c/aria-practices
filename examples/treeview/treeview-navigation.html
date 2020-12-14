@@ -350,6 +350,8 @@
             Activating a tree item moves focus to the beginning of the new content, ideally a level one heading with content that matches the name of the tree item that was activated.
             Focusing on the heading informs screen reader users that navigation is complete and confirms the destination.
             This behavior is appropriate when common or important use case scenarios assume users want to start interacting with the loaded content after activating the tree item.
+            Note: Keyboard only users will need to navigate back to the navigation bar to activate other items to view changes in content.  To make navigation back to the treeview efficient, the treeview should be one tab stop away from the element with focus.
+
           </li>
           <li>
             Activating an item in the tree keeps focus on the activated item in the tree.
@@ -385,7 +387,6 @@
                 When an element receives focus, its border changes from 1 to 3 pixels and padding is reduced by 2 pixels.
                 When an element loses focus, its border changes from 3 pixels to 1 and padding is increased by 2 pixels.
               </li>
-              <li>Because background color and text color styles can be overridden by operating system high contrast settings, a border is used to ensure tree items have a visible boundary when high contrast mode is enabled.</li>
               <li>
                 To ensure the arrow icons used to indicate the expanded or collapsed state have sufficient contrast with the background when high contrast settings invert colors, the CSS <code>currentColor</code> value for the <code>fill</code> and <code>stroke</code> properties of the SVG <code>polygon</code> element is used to synchronize the color with text content.
                 If specific colors are used to specify the <code>fill</code> and <code>stroke</code> properties, these colors will remain the same in high contrast mode, which could lead to insufficient contrast between the icon and the background or even make the icon invisible if its color matches the high contrast mode background.
