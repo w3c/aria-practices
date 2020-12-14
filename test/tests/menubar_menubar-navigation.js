@@ -1011,7 +1011,16 @@ ariaTest(
             key +
             '" to menuitem "' +
             menuitemText +
-            '" should navigate to a new webpage.'
+            '" should update the content title.'
+        );
+
+        // Test that the focus switches to the title
+        t.true(
+          await checkFocus(t, ex.titleSelector, 0),
+          'Sending key "' +
+            key +
+            '" to menuitem "' +
+            '" the focus should be on the content title.'
         );
       }
     }
@@ -1019,20 +1028,23 @@ ariaTest(
 );
 
 /*
-ariaTest.failing(
+ariaTest(
   'ESCAPE to submenu closes submenu',
   exampleFile,
   'submenu-escape',
   async (t) => {
     const menubaritems = await t.context.queryElements(
       t,
-      ex.menubarMenuitemSelector
+      ex.menubarMenuitemWithPopupSelector
     );
+
+    const numMenubaritems = menubaritems.length;
+
     const menus = await t.context.queryElements(t, ex.menuSelector);
 
     // Test all the level one menuitems
 
-    for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
+    for (let menuIndex = 0; menuIndex < numMenubaritems; menuIndex++) {
       for (
         let itemIndex = 0;
         itemIndex < ex.numMenuMenuitems[menuIndex];
@@ -1047,7 +1059,7 @@ ariaTest.failing(
         );
         const itemText = await items[itemIndex].getText();
 
-        // send ARROW_RIGHT to the item
+        // send ESCAPE to the item
         await items[itemIndex].sendKeys(Key.ESCAPE);
 
         t.false(
@@ -1083,6 +1095,7 @@ ariaTest.failing(
   }
 );
 
+/*
 ariaTest.failing(
   'ARROW_RIGHT to submenu closes submenu and opens next',
   exampleFile,
