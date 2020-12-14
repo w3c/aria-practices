@@ -7,6 +7,8 @@
 
 'use strict';
 
+var aria = aria || {};
+
 var FRUITS_AND_VEGGIES = [
   ['Apple', 'Fruit'],
   ['Artichoke', 'Vegetable'],
