@@ -515,12 +515,12 @@
           <tbody>
             <tr data-test-id="banner-role">
               <th scope="row"><code>banner</code></th>
-              <td><code>role=&quot;banner&quot;</code></td>
+              <td><code>role="banner"</code></td>
               <td><code>header</code></td>
               <td>
                 <ul>
                   <li>Identifies the common content found at the top of most pages in a website.</li>
-                  <li>In a real web page the <code>header</code> element would typically not need <code>role=&quot;banner&quot;</code> attribute to define the landmark, but in this example the <code>header</code> element is not in the proper scope of the <code>body</code> element to identify is as a banner landmark, so it must be explicitly identified using the role attribute.</li>
+                  <li>In a real web page the <code>header</code> element would typically not need <code>role="banner"</code> attribute to define the landmark, but in this example the <code>header</code> element is not in the proper scope of the <code>body</code> element to identify is as a banner landmark, so it must be explicitly identified using the role attribute.</li>
                 </ul>
               </td>
             </tr>
@@ -529,12 +529,12 @@
               <td></td>
               <td><code>nav</code></td>
               <td>
-                Identifies the navigation menu for the page.
+                Identifies the region containing the navigation tree.
               </td>
             </tr>
             <tr data-test-id="navigation-aria-label">
               <td></td>
-              <th scope="row"><code>aria-label=&quot;<em>navigation label</em>&quot;</code></th>
+              <th scope="row"><code>aria-label="<em>navigation label</em>"</code></th>
               <td><code>nav</code></td>
               <td>
                 The <code>aria-label</code> attribute provides an accessible name for the <code>navigation</code> landmark.
@@ -553,7 +553,7 @@
             </tr>
             <tr data-test-id="region-aria-labelledby">
               <td></td>
-              <th scope="row"><code>aria-labelledby=&quot;<em>IDREFs</em>&quot;</code></th>
+              <th scope="row"><code>aria-labelledby="<em>IDREFs</em>"</code></th>
               <td><code>section</code></td>
               <td>
                 The <code>aria-labelledby</code> attribute provides an accessible name for the <code>region</code> landmark by concatenating the website and page titles.
@@ -561,12 +561,12 @@
             </tr>
             <tr data-test-id="contentinfo-role">
               <th scope="row"><code>contentinfo</code></th>
-              <td><code>role=&quot;contentinfo&quot;</code></td>
+              <td><code>role="contentinfo"</code></td>
               <td><code>footer</code></td>
               <td>
                 <ul>
                   <li>Identifies the common content found at the bottom of most pages in a website.</li>
-                  <li>In a real web page the <code>footer</code> element would typically not need <code>role=&quot;contentinfo&quot;</code> attribute to define the landmark, but in this example the <code>footer</code> element is not in the proper scope of the <code>body</code> element to identify is as a contentinfo landmark, so it must be explicitly identified using the role attribute.</li>
+                  <li>In a real web page the <code>footer</code> element would typically not need <code>role="contentinfo"</code> attribute to define the landmark, but in this example the <code>footer</code> element is not in the proper scope of the <code>body</code> element to identify is as a contentinfo landmark, so it must be explicitly identified using the role attribute.</li>
                 </ul>
               </td>
             </tr>
@@ -601,7 +601,7 @@
             </tr>
             <tr data-test-id="tree-aria-label">
               <td></td>
-              <th scope="row"><code>aria-label=&quot;Mythical University&quot;</code></th>
+              <th scope="row"><code>aria-label="Mythical University"</code></th>
               <td><code>ul</code></td>
               <td>Provides an accessible name for the <code>tree</code>.</td>
             </tr>
@@ -624,7 +624,7 @@
             </tr>
             <tr data-test-id="treeitem-tabindex">
               <td></td>
-              <th scope="row"><code>tabindex=&quot;-1&quot;</code></th>
+              <th scope="row"><code>tabindex="-1"</code></th>
               <td><code>a</code></td>
               <td>
                 <ul>
@@ -635,20 +635,20 @@
             </tr>
             <tr data-test-id="treeitem-tabindex">
               <td></td>
-              <th scope="row"><code>tabindex=&quot;0&quot;</code></th>
+              <th scope="row"><code>tabindex="0"</code></th>
               <td><code>a</code></td>
               <td>
                 <ul>
                   <li>Includes the element with the <code>treeitem</code> role in the tab sequence.</li>
-                  <li>Only one <code>treeitem</code> in the <code>tree</code> has <code>tabindex=&quot;0&quot;</code>.</li>
-                  <li>In this implementation <code>tabindex=&quot;0&quot;</code> stays on the treeitem with <code>aria-current=&quot;page&quot;</code>.
+                  <li>Only one <code>treeitem</code> in the <code>tree</code> has <code>tabindex="0"</code>.</li>
+                  <li>In this implementation <code>tabindex="0"</code> stays on the treeitem with <code>aria-current="page"</code>.
                   </li>
                  </ul>
               </td>
             </tr>
             <tr data-test-id="treeitem-aria-current">
               <td></td>
-              <th scope="row"><code>aria-current=&quot;page&quot;</code></th>
+              <th scope="row"><code>aria-current="page"</code></th>
               <td><code>a</code></td>
               <td>
                 <ul>
@@ -659,7 +659,7 @@
             </tr>
             <tr data-test-id="treeitem-aria-expanded">
               <td></td>
-              <th scope="row"><code>aria-expanded=&quot;false&quot;</code></th>
+              <th scope="row"><code>aria-expanded="false"</code></th>
               <td><code>a</code></td>
               <td>
                 <ul>
@@ -671,7 +671,7 @@
             </tr>
             <tr data-test-id="treeitem-aria-expanded">
               <td></td>
-              <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
+              <th scope="row"><code>aria-expanded="true"</code></th>
               <td><code>a</code></td>
               <td>
               <ul>
@@ -683,7 +683,7 @@
             </tr>
             <tr data-test-id="treeitem-aria-owns">
               <td></td>
-              <th scope="row"><code>aria-owns=&quot;IDREF&quot;</code></th>
+              <th scope="row"><code>aria-owns="IDREF"</code></th>
               <td><code>a</code></td>
               <td>Refers to the element with role <code>group</code> that contains the next level down <code>treeitem</code> elements.</td>
             </tr>
