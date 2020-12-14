@@ -339,9 +339,30 @@
 
       <section>
         <h2>Accessibility Features</h2>
+        <h3>Focus Movement After Content Load</h3>
+        <p>
+          An important aspect of designing a navigation tree experience is the behavior of keyboard focus when an item in the tree is activated.
+          If activating a tree item changes content on the page without triggering a browser page load, i.e., works like typical single-page apps, the focus position after the content load significantly effects efficiency for keyboard and assistive technology users.
+          Accessible navigation trees typically implement one of the following two behaviors:
+        </p>
         <ol>
+          <li>
+            Activating a tree item moves focus to the beginning of the new content, ideally a level one heading with content that matches the name of the tree item that was activated.
+            Focusing on the heading informs screen reader users that navigation is complete and confirms the destination.
+            This behavior is appropriate when common or important use case scenarios assume users want to start interacting with the loaded content after activating the tree item.
+          </li>
+          <li>
+            Activating an item in the tree keeps focus on the activated item in the tree.
+            In this case, the movement of <code>aria-current</code> to the currently focused tree item informs screen reader users that navigation is complete and confirms the destination.
+            This behavior is appropriate when common or important use case scenarios assume sighted keyboard users are likely to need to peruse content from multiple nodes in the tree before deciding to interact with the loaded content.
+            Note: screen reader users will need to navigate to the content to read it.
+            In some cases, it might be possible to help screen reader users more quickly perceive the nature of the loaded content without navigating to it by referencing a portion of the content with an <code>aria-describedby</code> attribute on the tree item.
+          </li>
+        </ol>
+        <p>The example on this page illustrates the first technique of focusing the level one heading in the newly loaded content.</p>
+        <h3>Assistive Technology Support Features</h3>
+        <ul>
           <li>Since the tree presents a site navigation system, it is wrapped in a navigation region implemented with a <code>nav</code> element that has an <code>aria-label</code> that matches the label on the tree.</li>
-          <li>To help communicate that the arrow keys are available for navigation within the tree, a border is added to the tree container when focus is within the tree.</li>
           <li>To ensure assistive technology users can identify and easily locate the tree item associated with the currently displayed page:
             <ul>
               <li>The <code>aria-current="page"</code> attribute is applied to the item in the tree associated with the currently displayed page.</li>
@@ -349,9 +370,13 @@
                 The tree item with <code>aria-current</code> is also the only item with <code>tabindex="0"</code>.
                 That is, when tabbing into the tree, focus always lands on the item representing the current page.
               </li>
-              <li>When focus leaves the tree, if the item representing the current page is in a branch that has been collapsed, that branch is expanded to ensure the current page item is visible. </li>
+              <li>When focus leaves the tree, if the item representing the current page is in a branch that has been collapsed, that branch is expanded to ensure the current page item is both visible and exposed as active to assistive technologies. </li>
             </ul>
           </li>
+        </ul>
+        <h3>Visual design and high contrast features</h3>
+        <ul>
+          <li>To help communicate that the arrow keys are available for navigation within the tree, a border is added to the tree container when focus is within the tree.</li>
           <li>To support operating system high contrast settings:
             <ul>
               <li>
@@ -367,7 +392,7 @@
               </li>
             </ul>
           </li>
-        </ol>
+        </ul>
       </section>
 
       <section>
