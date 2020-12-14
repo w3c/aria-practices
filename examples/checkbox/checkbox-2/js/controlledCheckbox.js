@@ -24,8 +24,6 @@ var ControlledCheckbox = function (domNode, controllerObj) {
 ControlledCheckbox.prototype.init = function () {
   this.lastState = this.isChecked();
 
-  console.log(this.lastState);
-
   this.domNode.addEventListener('change', this.handleChange.bind(this));
 
   this.domNode.addEventListener('keydown', this.handleKeyup.bind(this), true);
