@@ -12,7 +12,7 @@
   padding: 4px;
   padding-left: 30px;
   padding-right: 8px;
-  border: 0px solid transparent;
+  border: 0 solid transparent;
   border-radius: 5px;
   display: inline-block;
   position: relative;
@@ -30,7 +30,7 @@
   top: 50%;
   left: 11px;
   transform: translate(-20%, -50%);
-  content: '';
+  content: "";
 }
 
 [role="radio"]::before {
@@ -43,7 +43,11 @@
 [role="radio"][aria-checked="true"]::before {
   border-color: hsl(216, 80%, 50%);
   background: hsl(217, 95%, 68%);
-  background-image: linear-gradient(to bottom, hsl(217, 95%, 68%), hsl(216, 80%, 57%));
+  background-image: linear-gradient(
+    to bottom,
+    hsl(217, 95%, 68%),
+    hsl(216, 80%, 57%)
+  );
 }
 
 [role="radio"][aria-checked="true"]::after {
@@ -54,7 +58,11 @@
 }
 
 [role="radio"][aria-checked="true"]:active::before {
-  background-image: linear-gradient(to bottom, hsl(216, 80%, 57%), hsl(217, 95%, 68%) 60%);
+  background-image: linear-gradient(
+    to bottom,
+    hsl(216, 80%, 57%),
+    hsl(217, 95%, 68%) 60%
+  );
 }
 
 [role="radio"]:hover::before {

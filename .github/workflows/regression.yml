@@ -1,0 +1,59 @@
+name: Run regression tests
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/regression.yml"
+      - "package*.json"
+      - "test/**"
+      - "examples/**"
+      - "!examples/landmarks/**"
+      - "!examples/coding-template/**"
+  push:
+    branches-ignore:
+      - master
+      - "dependabot/**"
+    paths:
+      - ".github/workflows/regression.yml"
+      - "package*.json"
+      - "test/**"
+      - "examples/**"
+      - "!examples/landmarks/**"
+      - "!examples/coding-template/**"
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        CI_NODE_INDEX: [0, 1, 2, 3, 4]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2.1.2
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Run Ava on changed files in PR
+        run: ./scripts/regression-tests.sh
+        if: github.event_name == 'pull_request'
+        env:
+          COMMIT_RANGE: "origin/${{ github.base_ref }}...${{ github.sha }}"
+          CI_NODE_TOTAL: 5
+          CI_NODE_INDEX: ${{ matrix.CI_NODE_INDEX }}
+          TEST_WAIT_TIME: 10000
+
+      - name: Run Ava for changed files from origin branch
+        run: ./scripts/regression-tests.sh
+        if: github.event_name == 'push'
+        env:
+          COMMIT_RANGE: "origin/master...${{ github.ref }}"
+          CI_NODE_TOTAL: 5
+          CI_NODE_INDEX: ${{ matrix.CI_NODE_INDEX }}
+          TEST_WAIT_TIME: 10000

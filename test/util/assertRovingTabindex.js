@@ -1,5 +1,3 @@
-'use strict';
-
 const assert = require('assert');
 
 /**
@@ -10,22 +8,28 @@ const assert = require('assert');
                                       by default, focus should be on the first item
  * @param {webdriver.Key} key       - which key to change roving focus between items
  */
-module.exports = async function assertRovingTabindex (t, elementsSelector, key) {
-
+module.exports = async function assertRovingTabindex(t, elementsSelector, key) {
   // tabindex='0' is expected on the first element
   let elements = await t.context.queryElements(t, elementsSelector);
 
   // test only one element has tabindex="0"
   for (let tabableEl = 0; tabableEl < elements.length; tabableEl++) {
     for (let el = 0; el < elements.length; el++) {
-
       let tabindex = el === tabableEl ? '0' : '-1';
 
       assert.equal(
         await elements[el].getAttribute('tabindex'),
         tabindex,
-        'focus is on element ' + tabableEl + ' of ' + elements.length + ' elements "' + elementsSelector +
-          '", therefore tabindex on element ' + el + ' should be "' + tabindex
+        'focus is on element ' +
+          tabableEl +
+          ' of ' +
+          elements.length +
+          ' elements "' +
+          elementsSelector +
+          '", therefore tabindex on element ' +
+          el +
+          ' should be "' +
+          tabindex
       );
     }
 
@@ -35,4 +39,3 @@ module.exports = async function assertRovingTabindex (t, elementsSelector, key) 
 
   t.pass();
 };
-

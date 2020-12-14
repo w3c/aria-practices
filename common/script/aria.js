@@ -254,7 +254,7 @@ require(["core/pubsubhub"], function( respecEvents ) {
                                 fromAuthor += "<li><a href=\"#" + pnID + "\" class=\"role-reference\"><code>" + content + "</code></a>" + req + "</li>";
                             } 
                             if (!isAbstract && node.textContent.indexOf("content") !== -1) {
-                                fromContent += "<li><a href=\"#" + pnID + "\" class=\"role-reference\"><code>" + content + "</code></a>" + "</li>";
+                                fromContent += "<li><a href=\"#" + pnID + "\" class=\"role-reference\"><code>" + content + "</code></a>" + req + "</li>";
                             }
                             if (node.textContent.indexOf("prohibited") !== -1) {
                                 fromProhibited += "<li><a href=\"#" + pnID + "\" class=\"role-reference\"><code>" + content + "</code></a>" + req + "</li>";

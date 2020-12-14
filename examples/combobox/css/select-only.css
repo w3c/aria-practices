@@ -14,7 +14,7 @@
 .combo::after {
   border-bottom: 2px solid rgba(0, 0, 0, 0.75);
   border-right: 2px solid rgba(0, 0, 0, 0.75);
-  content: '';
+  content: "";
   display: block;
   height: 12px;
   pointer-events: none;
@@ -60,7 +60,7 @@
   border-radius: 0 0 4px 4px;
   display: none;
   max-height: 300px;
-  overflow-y:scroll;
+  overflow-y: scroll;
   left: 0;
   position: absolute;
   top: 100%;
@@ -93,7 +93,7 @@
 .combo-option[aria-selected="true"]::after {
   border-bottom: 2px solid #000;
   border-right: 2px solid #000;
-  content: '';
+  content: "";
   height: 16px;
   position: absolute;
   right: 15px;
