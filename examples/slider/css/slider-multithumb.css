@@ -11,41 +11,65 @@
   position: relative;
 }
 
+.slider-multithumb .slider-group .slider-value {
+  font-size: 80%;
+}
+
 .slider-multithumb .slider-group .rail {
   position: relative;
   top: 31px;
   left: 0;
   stroke: transparent;
   stroke-width: 2px;
-  fill: #ddd;
+  fill: currentColor;
 }
 
 .slider-multithumb .slider-group .slider-minimum,
 .slider-multithumb .slider-group .slider-maximum {
   position: absolute;
   left: 0;
-  top: 0;
+  top: 11px;
   outline: none;
+}
+
+.slider-multithumb .slider-group .slider-minimum .thumb,
+.slider-multithumb .slider-group .slider-maximum .thumb {
+  stroke-width: 0;
+  fill: #444;
+}
+
+.slider-multithumb .slider-group .slider-minimum .focus,
+.slider-multithumb .slider-group .slider-maximum .focus {
+  stroke-width: 0;
+  fill: transparent;
 }
 
 /* Focus and hover styling */
 
 .slider-multithumb.focus .slider-group .rail {
   stroke: currentColor;
+  fill: transparent;
+}
+
+.slider-multithumb .slider-group .slider-minimum:focus,
+.slider-multithumb .slider-group .slider-minimum:hover,
+.slider-multithumb .slider-group .slider-maximum:focus,
+.slider-multithumb .slider-group .slider-maximum:hover {
+  color: #005a9c;
 }
 
 .slider-multithumb .slider-group .slider-minimum:focus .thumb,
 .slider-multithumb .slider-group .slider-minimum:hover .thumb,
 .slider-multithumb .slider-group .slider-maximum:focus .thumb,
-.slider-multithumb .slider-group .slider-maximum:hover .thumb{
-  fill: #005a9c;
+.slider-multithumb .slider-group .slider-maximum:hover .thumb {
+  fill: currentColor;
 }
 
 .slider-multithumb .slider-group .slider-minimum:focus .focus,
 .slider-multithumb .slider-group .slider-minimum:hover .focus,
 .slider-multithumb .slider-group .slider-maximum:focus .focus,
-.slider-multithumb .slider-group .slider-maximum:hover .focus{
+.slider-multithumb .slider-group .slider-maximum:hover .focus {
   stroke-width: 2px;
   stroke: currentColor;
+  fill: currentColor;
 }
-
