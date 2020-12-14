@@ -59,8 +59,9 @@
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
 
         <div id="ex1">
-          <!-- NOTE: In a real website the header element would be a top level element and it would
-                   not need the role="banner" attribute to be a banner landmark -->
+          <!-- NOTE: In a real website the header element would be a top level element, i.e., it would have the body as its scope.
+            If the scope of the header element were body, browsers would automatically treat the header as an ARIA banner,
+            so the header would not need the role="banner". -->
           <div class="page">
             <header role="banner">
               <div class="title" id="id_website_title">Mythical University</div>
