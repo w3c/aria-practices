@@ -15,9 +15,7 @@ Bad value “meter” for attribute “role” on element “div”.
 
 # Warnings
 The “type” attribute is unnecessary for JavaScript resources.
- The “type” attribute for the “style” element is not needed and should be omitted.
 The “row” role is unnecessary for element “tr”.
 The “main” role is unnecessary for element “main”.
 Attribute “aria-activedescendant” value should either refer to a descendant element, or should be accompanied by attribute “aria-owns”.
 Section lacks heading. Consider using “h2”-“h6” elements to add identifying headings to all sections.
-The “type” attribute for the “style” element is not needed and should be omitted.
