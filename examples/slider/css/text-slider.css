@@ -40,7 +40,7 @@ div.aria-widget-text-slider div.value {
   position: absolute;
 }
 
-div.aria-widget-text-slider label {
+div.aria-widget-text-slider .label {
   display: block;
   margin-top: 0.5em;
   margin-bottom: 0.5em;

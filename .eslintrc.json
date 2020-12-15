@@ -1,18 +1,149 @@
 {
   "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "env": {
-    "browser": true
+    "browser": true,
+    "es6": true
   },
   "parserOptions": {
     "ecmaVersion": 6
   },
   "rules": {
-    "no-unused-vars": 0,
-    "no-undef": 0,
-    "no-restricted-properties": [2, {
-      "property": "findElements",
-      "message": "Please use t.context.queryElements()."
-    }],
-    "strict": [2, "global"]
-  }
+    "strict": [2, "global"],
+    "no-console": "error"
+  },
+  "overrides": [
+    {
+      "files": "test/**/*.js",
+      "parserOptions": {
+        "ecmaVersion": 8
+      },
+      "extends": ["plugin:ava/recommended"],
+      "env": {
+        "node": true
+      },
+      "rules": {
+        "no-restricted-properties": [
+          2,
+          {
+            "property": "findElements",
+            "message": "Please use t.context.queryElements()."
+          }
+        ]
+      }
+    },
+    {
+      "files": "scripts/*.js",
+      "env": {
+        "node": true
+      },
+      "rules": {
+        "no-console": 0
+      }
+    },
+    {
+      "files": [
+        "examples/accordion/js/accordion.js",
+        "examples/alert/js/alert.js",
+        "examples/checkbox/checkbox-1/js/checkbox.js",
+        "examples/checkbox/checkbox-2/js/checkboxMixed.js",
+        "examples/checkbox/checkbox-2/js/controlledCheckbox.js",
+        "examples/combobox/js/combobox-autocomplete.js",
+        "examples/combobox/js/combobox-datepicker.js",
+        "examples/combobox/js/grid-combo-example.js",
+        "examples/combobox/js/grid-combo.js",
+        "examples/dialog-modal/js/alertdialog.js",
+        "examples/dialog-modal/js/dialog.js",
+        "examples/disclosure/js/disclosureButton.js",
+        "examples/disclosure/js/disclosureMenu.js",
+        "examples/grid/js/dataGrid.js",
+        "examples/grid/js/dataGrids.js",
+        "examples/grid/js/layoutGrids.js",
+        "examples/js/examples.js",
+        "examples/landmarks/js/bootstrap-accessibility-2.js",
+        "examples/landmarks/js/show.js",
+        "examples/link/js/link.js",
+        "examples/listbox/js/listbox-collapsible.js",
+        "examples/listbox/js/listbox-scrollable.js",
+        "examples/listbox/js/listbox.js",
+        "examples/menu-button/js/menu-button-actions-active-descendant.js",
+        "examples/menu-button/js/menu-button-actions.js",
+        "examples/menu-button/js/menu-button-links.js",
+        "examples/menubar/js/menubar-editor.js",
+        "examples/menubar/js/menubar-navigation.js",
+        "examples/meter/js/meter.js",
+        "examples/slider/js/multithumb-slider.js",
+        "examples/slider/js/slider.js",
+        "examples/slider/js/text-slider.js",
+        "examples/slider/js/vertical-slider.js",
+        "examples/tabs/tabs-2/js/tabs.js",
+        "examples/toolbar/js/FontMenu.js",
+        "examples/toolbar/js/FontMenuButton.js",
+        "examples/toolbar/js/FontMenuItem.js",
+        "examples/toolbar/js/FormatToolbar.js",
+        "examples/toolbar/js/FormatToolbarItem.js",
+        "examples/treeview/treeview-1/js/treeitem.js",
+        "examples/treeview/treeview-2/js/treeitemLinks.js",
+        "respec-config.js",
+        "test/index.js",
+        "test/tests/accordion_accordion.js",
+        "test/tests/combobox_datepicker.js",
+        "test/tests/combobox_select-only.js",
+        "test/tests/dialog-modal_datepicker.js",
+        "test/tests/grid_LayoutGrids.js",
+        "test/tests/grid_dataGrids.js",
+        "test/tests/menu-button_actions.js",
+        "test/tests/menu-button_actions-active-descendant.js",
+        "test/tests/menubar_menubar-editor.js",
+        "test/tests/menubar_menubar-navigation.js",
+        "test/tests/slider_slider-2.js",
+        "test/tests/tabs_tabs-1.js",
+        "test/tests/tabs_tabs-2.js",
+        "test/util/assertHasFocus.js",
+        "test/tests/toolbar_toolbar.js",
+        "test/tests/treegrid_treegrid-1.js",
+        "test/tests/treeview_treeview-1a.js",
+        "test/tests/treeview_treeview-1b.js",
+        "test/tests/treeview_treeview-2a.js",
+        "test/tests/treeview_treeview-2b.js",
+        "test/util/assertAriaDescribedby.js",
+        "test/util/assertDotValue.js",
+        "test/util/report.js"
+      ],
+      "rules": {
+        "no-unused-vars": 0
+      }
+    },
+    {
+      "files": [
+        "examples/checkbox/checkbox-2/js/checkboxMixed.js",
+        "examples/combobox/js/grid-combo-example.js",
+        "examples/combobox/js/grid-combo.js",
+        "examples/dialog-modal/js/alertdialog.js",
+        "examples/feed/js/main.js",
+        "examples/grid/js/dataGrids.js",
+        "examples/js/app.js",
+        "examples/landmarks/js/bootstrap-accessibility-2.js",
+        "examples/landmarks/js/show.js",
+        "examples/landmarks/js/tabs.js",
+        "examples/listbox/js/listbox-rearrangeable.js",
+        "examples/listbox/js/listbox-scrollable.js",
+        "examples/menubar/js/menubar-editor.js",
+        "examples/toolbar/js/FontMenu.js",
+        "examples/toolbar/js/FontMenuButton.js",
+        "examples/toolbar/js/FormatToolbar.js",
+        "examples/treeview/treeview-1/js/tree.js",
+        "examples/treeview/treeview-2/js/treeLinks.js",
+        "respec-config.js",
+        "test/tests/link_link.js",
+        "test/tests/menu-button_actions-active-descendant.js",
+        "test/tests/menu-button_actions.js",
+        "test/tests/menu-button_links.js",
+        "test/util/assertTabOrder.js",
+        "test/util/force-serial.js"
+      ],
+      "rules": {
+        "no-undef": 0
+      }
+    }
+  ]
 }

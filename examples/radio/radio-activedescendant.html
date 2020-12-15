@@ -36,7 +36,9 @@
         <li><a href="radio.html">Radio Group Example Using Roving tabindex</a>: A radio button group that uses roving <code>tabindex</code> for managing keyboard focus.</li>
       </ul>
      <section>
-      <h2 id="ex_label">Example</h2>
+      <div class="example-header">
+        <h2 id="ex_label">Example</h2>
+      </div>
       <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
       <div id="ex1">
         <h3 id="group_label_1">Pizza Crust</h3>
@@ -260,7 +262,7 @@
 
       <section>
         <h2>Javascript and CSS Source Code</h2>
-        <ul>
+        <ul id="css_js_files">
             <li>CSS: <a href="css/radio.css" type="tex/css">radio.css</a></li>
             <li>Javascript: <a href="js/radio-activedescendant.js" type="text/javascript">radio-activedescendant.js</a></li>
         </ul>
@@ -277,7 +279,7 @@
           If you change the ID of either the 'ex1' div or the 'sc1' div, be sure to update the sourceCode.add function parameters.
           -->
         <script>
-          sourceCode.add('sc1', 'ex1');
+          sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
           sourceCode.make();
         </script>
       </section>

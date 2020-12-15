@@ -41,7 +41,9 @@
     </ul>
 
     <section>
+    <div class="example-header">
       <h2 id="ex_label">Example</h2>
+    </div>
 
       <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
 
@@ -53,9 +55,39 @@
         <a tabindex="0" role="button" id="toggle" aria-pressed="false">
           Mute
           <svg aria-hidden="true" focusable="false">
-            <use xlink:href="images/mute.svg#icon-sound"></use>
+            <use xlink:href="#icon-sound"></use>
           </svg>
         </a>
+
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display:none" id="svg_definitions">
+          <defs>
+            <symbol id="icon-mute" viewBox="0 0 75 75">
+              <polygon
+                 id="polygon1"
+                 points="39.389,13.769 22.235,28.606 6,28.606 6,47.699 21.989,47.699 39.389,62.75 39.389,13.769"
+                 style="stroke:currentColor;stroke-width:5;stroke-linejoin:round;fill:currentColor;" />
+              <path
+                 id="path3003"
+                 d="M 48.651772,50.269646 69.395223,25.971024"
+                 style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round" />
+              <path
+                 id="path3003-1"
+                 d="M 69.395223,50.269646 48.651772,25.971024"
+                 style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round"/>
+            </symbol>
+            <symbol id="icon-sound" viewBox="0 0 75 75">
+              <polygon points="39.389,13.769 22.235,28.606 6,28.606 6,47.699 21.989,47.699 39.389,62.75 39.389,13.769"
+                style="stroke:currentColor;stroke-width:5;stroke-linejoin:round;fill:currentColor;"/>
+              <path d="M 48.128,49.03 C 50.057,45.934 51.19,42.291 51.19,38.377 C 51.19,34.399 50.026,30.703 48.043,27.577"
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round"/>
+              <path d="M 55.082,20.537 C 58.777,25.523 60.966,31.694 60.966,38.377 C 60.966,44.998 58.815,51.115 55.178,56.076"
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round"/>
+              <path d="M 61.71,62.611 C 66.977,55.945 70.128,47.531 70.128,38.378 C 70.128,29.161 66.936,20.696 61.609,14.01"
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round"/>
+            </symbol>
+          </defs>
+        </svg>
+
       </div>
 
       <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
@@ -154,7 +186,7 @@
     <section>
       <h2>Javascript and CSS Source Code</h2>
 
-      <ul>
+      <ul id="css_js_files">
         <li>
           CSS:
           <a href="css/button.css" type="text/css">button.css</a>
@@ -176,7 +208,7 @@
       <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
 
       <script>
-        sourceCode.add('source1', 'example');
+        sourceCode.add('source1', 'example', 'ex_label', 'css_js_files');
         sourceCode.make();
       </script>
     </section>
