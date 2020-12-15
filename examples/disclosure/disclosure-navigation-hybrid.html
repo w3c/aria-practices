@@ -51,7 +51,9 @@
   </label>
 
   <section>
-    <h2 id="ex_label">Example</h2>
+    <div class="example-header">
+      <h2 id="ex_label">Example</h2>
+    </div>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of" ></div>
     <div id="ex1">
       <nav aria-label="Mythical University">
@@ -144,7 +146,7 @@
       <li>Since this set of disclosure buttons controls visibility of navigation links for the mythical university web site, the list that contains them is wrapped in a navigation landmark named <q>Mythical University</q>.</li>
       <li>
         The semantics of the list structure communicates the hierarchy of the navigation system to assistive technology users.
-        The top-level set of three buttons is in a list of three items, and the set of links controlled by each button is contained within a list nested inside the item with the controlling button.
+        The top-level items are a list of three link + button pairs, each pair within a single list item. The set of sub-links controlled by each button is contained within a list nested inside the item with the controlling button.
       </li>
       <li>
         If a dropdown is open and focus is inside the navigation region, pressing <kbd>Esc</kbd> will close the dropdown.
@@ -218,9 +220,9 @@
           </th>
           <td>
             <ul>
-              <li>If focus is on a button and its dropdown is collapsed, and it is not the last button, moves focus to the next button.</li>
-              <li>if focus is on a button and its dropdown is expanded, moves focus to the first link in the dropdown.</li>
-              <li>If focus is on a link, and it is not the last link, moves focus to the next link.</li>
+              <li>If focus is on a top-level link or button with a collapsed dropdown, and it is not the last top-level item, moves focus to the next top-level link or button.</li>
+              <li>if focus is on a top-level button and its dropdown is expanded, moves focus to the first link in the dropdown.</li>
+              <li>If focus is on a link within an expanded dropdown, and it is not the last link, moves focus to the next link.</li>
             </ul>
           </td>
         </tr>
@@ -232,8 +234,8 @@
           </th>
           <td>
             <ul>
-              <li>If focus is on a button, and it is not the first button, moves focus to the previous button.</li>
-              <li>If focus is on a link, and it is not the first link,  moves focus to the previous link.</li>
+              <li>If focus is on a top-level link or button, and it is not the first item, moves focus to the previous link or button.</li>
+              <li>If focus is on a link within an expanded dropdown, and it is not the first link,  moves focus to the previous link.</li>
             </ul>
           </td>
         </tr>
@@ -243,8 +245,8 @@
           </th>
           <td>
           <ul>
-              <li>If focus is on a button, and it is not the first button, moves focus to the first button.</li>
-              <li>If focus is on a link, and it is not the first link, moves focus to the first link.</li>
+              <li>If focus is on a top-level link button, and it is not the first item, moves focus to the first item.</li>
+              <li>If focus is on a link within an expanded dropdown, and it is not the first link, moves focus to the first link.</li>
             </ul>
           </td>
         </tr>
@@ -254,8 +256,8 @@
           </th>
           <td>
           <ul>
-              <li>If focus is on a button, and it is not the last button, moves focus to the last button.</li>
-              <li>If focus is on a link, and it is not the last link, moves focus to the last link.</li>
+              <li>If focus is on a top-level link or button, and it is not the last item, moves focus to the last item.</li>
+              <li>If focus is on a link within an expanded dropdown, and it is not the last link, moves focus to the last link.</li>
             </ul>
           </td>
         </tr>
@@ -346,7 +348,7 @@
   <section>
     <h2>Javascript and CSS Source Code</h2>
     <!--  After the js and css files are named with the name of this example, change the href and text of the following 2 links to refer to the appropriate js and css files.  -->
-    <ul>
+    <ul id="css_js_files">
       <li>
         CSS:
         <a href="css/disclosure-navigation.css" type="tex/css">disclosure-navigation.css</a>
@@ -364,7 +366,7 @@
     <pre><code id="sc1"></code></pre>
     <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of" ></div>
     <script>
-      sourceCode.add('sc1', 'ex1');
+      sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
       sourceCode.make();
     </script>
   </section>
