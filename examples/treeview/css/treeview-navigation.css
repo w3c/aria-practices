@@ -145,7 +145,7 @@
 }
 
 .treeview-navigation a[role="treeitem"]:hover {
-  background-color: #ccc;
+  background-color: #adddff;
   text-decoration: underline;
   padding-left: 4px;
   border-left: 5px solid #333;
