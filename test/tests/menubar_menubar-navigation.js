@@ -1038,70 +1038,73 @@ ariaTest(
   }
 );
 
-/*
 ariaTest(
   'ESCAPE to submenu closes submenu',
   exampleFile,
   'submenu-escape',
   async (t) => {
-    const menubaritems = await t.context.queryElements(
-      t,
-      ex.menubarMenuitemWithPopupSelector
-    );
+    const testMenuitems = [
+      [1, -1, 2],
+      [1, -1, 3],
+      [1, -1, 4],
+      [1, -1, 8],
+      [1, 4, 5],
+      [1, 4, 6],
+      [1, 4, 7],
+      [1, 8, 9],
+      [1, 8, 10],
+      [1, 8, 11],
+      [12, -1, 13],
+      [12, -1, 14],
+      [12, -1, 18],
+      [12, -1, 19],
+      [12, -1, 20],
+      [12, -1, 21],
+      [12, 14, 15],
+      [12, 14, 16],
+      [12, 14, 17],
+      [22, -1, 23],
+      [22, -1, 24],
+      [22, -1, 25],
+      [22, -1, 26],
+      [22, -1, 27],
+      [22, -1, 28],
+      [22, -1, 29],
+      [22, -1, 30],
+    ];
 
-    const numMenubaritems = menubaritems.length;
+    for (let i = 0; i < testMenuitems.length; i++) {
+      const testMenuitem = testMenuitems[i];
+      const indexMenubarOpen = testMenuitem[0];
+      const indexSubmenuOpen = testMenuitem[1];
+      const menuitemSendEscape = testMenuitem[2];
 
-    const menus = await t.context.queryElements(t, ex.menuSelector);
+      let indexMenuitem = indexMenubarOpen;
+      let menuitems = await t.context.queryElements(t, ex.anyMenuitemSelector);
 
-    // Test all the level one menuitems
-
-    for (let menuIndex = 0; menuIndex < numMenubaritems; menuIndex++) {
-      for (
-        let itemIndex = 0;
-        itemIndex < ex.numMenuMenuitems[menuIndex];
-        itemIndex++
-      ) {
-        // Open the submenu
-        await menubaritems[menuIndex].sendKeys(Key.ENTER);
-
-        const items = await t.context.queryElements(
-          t,
-          ex.menuMenuitemSelectors[menuIndex]
-        );
-        const itemText = await items[itemIndex].getText();
-
-        // send ESCAPE to the item
-        await items[itemIndex].sendKeys(Key.ESCAPE);
-
-        t.false(
-          await menus[menuIndex].isDisplayed(),
-          'Sending key "ESCAPE" to submenuitem "' +
-            itemText +
-            '" should close the menu'
-        );
-        t.true(
-          await checkFocus(t, ex.menubarMenuitemSelector, menuIndex),
-          'Sending key "ESCAPE" to submenuitem "' +
-            itemText +
-            '" should change the focus to menuitem ' +
-            menuIndex +
-            ' in the menubar'
-        );
+      // Open up menubar menu if needed
+      if (indexMenubarOpen >= 0) {
+        await menuitems[indexMenubarOpen].sendKeys(Key.ENTER);
+        menuitems = await t.context.queryElements(t, ex.anyMenuitemSelector);
       }
-    }
 
-    // Test all the submenu menuitems
+      // Open up submenu if needed
+      if (indexSubmenuOpen >= 0) {
+        indexMenuitem = indexSubmenuOpen;
+        await menuitems[indexSubmenuOpen].sendKeys(Key.ENTER);
+        menuitems = await t.context.queryElements(t, ex.anyMenuitemSelector);
+      }
 
-    for (let submenuLocation of ex.submenuLocations) {
-      const [menuIndex, menuitemIndex] = submenuLocation;
+      await menuitems[menuitemSendEscape].sendKeys(Key.ESCAPE);
 
-      // Get the submenu items we are testing
-      let submenuMenuitemSelector = getSubmenuMenuitemSelector(
-        menuIndex,
-        menuitemIndex
+      t.true(
+        await checkFocus(t, ex.anyMenuitemSelector, indexMenuitem),
+        'Sending key ESCAPE to menuitem "' +
+          menuitemSendEscape +
+          '" the focus should be on menuitem "' +
+          indexMenuitem +
+          '".'
       );
-      const items = await t.context.queryElements(t, submenuMenuitemSelector);
-      const numItems = items.length;
     }
   }
 );
