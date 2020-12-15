@@ -6814,7 +6814,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
     <h2>Describing Hierarchical Structure with <code>aria-level</code></h2>
     <p>
       When elements have a hierarchical relationship, such as headings of nested sections or data in tree structures, the value of <a href="#aria-level" class="property-reference">aria-level</a> communicates an element's level within the hierarchy to assistive technologies.
-      The value of <code>aria-level</code> is numeric, with <code>1</code> indicating the top level of the structure.
+      The value of <code>aria-level</code> is an integer greater than or equal to 1, with <code>1</code> indicating the top level of the structure.
       The number increases for each level of nesting.
     </p>
     <p>
@@ -6901,7 +6901,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
     <section id="aria-level_treeitem_role">
       <h3>Using <code>aria-level</code> with the <code>treeitem</code> Role</h3>
       <p>
-        As with <code>listitem</code> elements, browsers automatically compute an <code>aria-level</code> value for elements with role <code>treeitem</code>.
+        Browsers automatically compute an <code>aria-level</code> value for elements with role <code>treeitem</code>.
         The computed level for a <code>treeitem</code> element is based on the number of <code>group</code> elements in the ancestor chain between that <code>treeitem</code> and the element with role <code>tree</code>.
         The top-level <code>treeitem</code> elements, which are immediate descendants of the <code>tree</code> with no intervening <code>group</code>, have <code>aria-level</code> of <code>1</code>.
         However, in some implementations of the <a href="#TreeView">Tree View Design Pattern</a>, it is necessary to explicitly declare the <code>aria-level</code>.
@@ -6923,7 +6923,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
     <section id="aria-level_row_role">
       <h3>Using <code>aria-level</code> with the <code>row</code> Role</h3>
-      <p>The <code>aria-level</code> attribute can be used on an element with <code>row</code> role to describe nesting of rows in a <code>treegrid</code>, as is explained in the <a href="#treegrid">treegrid pattern</a>. In this example, the DOM tree does not represent the hierarchical relationship between rows. Each email is in a <code>tr</code> element, which are siblings in the DOM tree, therefore <code>aria-level</code> is necessary to communicate that the emails form a tree structure.</p>
+      <p>The <code>aria-level</code> attribute can be used on an element with <code>row</code> role to describe nesting of rows in a <code>treegrid</code>, as explained in the <a href="#treegrid">treegrid pattern</a>. In this example, the DOM tree does not represent the hierarchical relationship between rows. Each email is in a <code>tr</code> element, which are siblings in the DOM tree, therefore <code>aria-level</code> is necessary to communicate that the emails form a tree structure.</p>
       <pre><code>&lt;table role='treegrid'&gt;
   &lt;tr&gt;
   &lt;th&gt;From:&lt;/th&gt;
@@ -6939,7 +6939,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
   &lt;/tr&gt;
 &lt;/table&gt;
 </code></pre>
-      <p>Do not use <code>aria-level</code> on rows that are in a <code>grid</code> or a <code>table</code> because only rows in a <code>treegrid</code> table are expected to have a hierarchical relationship.</p>
+      <p>Do not use <code>aria-level</code> on rows that are in a <code>grid</code> or a <code>table</code> because only rows in a <code>treegrid</code> are expected to have a hierarchical relationship.</p>
     </section>
   </section>
 
