@@ -159,7 +159,10 @@ aria.widget.SourceCode.prototype.createCode = function (
 
     switch (childNode.nodeType) {
       case Node.ELEMENT_NODE:
-        this.createCode(sourceCodeNode, childNode, indentLevel, false);
+        // To remove the SVG definitions from the example's source code, add the id `svg_definitions`
+        if (childNode.id !== 'svg_definitions') {
+          this.createCode(sourceCodeNode, childNode, indentLevel, false);
+        }
         break;
 
       case Node.TEXT_NODE:
@@ -432,6 +435,7 @@ function addOpenInCodePenForm(
         }
         totalFetchedFiles++;
       } else {
+        // eslint-disable-next-line no-console
         console.warn(
           "Not showing 'Open in Codepen' button. Could not load resource: " +
             href
@@ -439,6 +443,7 @@ function addOpenInCodePenForm(
       }
     };
     request.onerror = function () {
+      // eslint-disable-next-line no-console
       console.warn(
         "Not showing 'Open in Codepen' button. Could not load resource: " +
           fileLink.href
@@ -458,6 +463,7 @@ function addOpenInCodePenForm(
 
   setTimeout(() => {
     clearInterval(timerId);
+    // eslint-disable-next-line no-console
     console.warn(
       "Not showing 'Open in Codepen' button. Timeout when loading resource."
     );
