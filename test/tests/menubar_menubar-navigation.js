@@ -632,6 +632,7 @@ ariaTest(
   async (t) => {
     const keys = ['ENTER', 'SPACE'];
     const keyCodes = { ENTER: Key.ENTER, SPACE: ' ' };
+    // Indexes are to menuitems in the menubar
     const menubarIndexes = [1, 2, 3];
     const menuIndexes = [0, 3, 5];
     const menuitemIndexes = [2, 13, 23];
@@ -940,6 +941,16 @@ ariaTest(
   exampleFile,
   'submenu-space-or-enter',
   async (t) => {
+    // Indexes to menuitems in the test
+    // first number is the menuitem to test
+    // second number is the index to ta menuitem that must be open
+    //  if number is -1 that means that menu does not need
+    //  to be open
+    // third number is the index to a menuitem that must be open
+    //  if number is -1 that means that menu does not need
+    //  to be open
+    // The text string is what the title should be when the link is
+    //   activated
     const testMenuitems = [
       [0, -1, -1, 'Home'],
       [2, 1, -1, 'Overview'],
