@@ -54,6 +54,10 @@
   padding: 0;
 }
 
+.page .main {
+  padding: 1em;
+}
+
 .treeview-navigation ul,
 .treeview-navigation li {
   margin: 0;
