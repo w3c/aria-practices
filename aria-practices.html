@@ -6908,42 +6908,10 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       <h3>Using <code>aria-level</code> with the <code>listitem</code> Role</h3>
       <p>
         Browsers automatically calculate the value of <code>aria-level</code> for elements with the <code>listitem</code> role.
-        However, in rare scenarios where the structure of the DOM tree does not represent the correct level of nesting, <code>aria-level</code> can be specified on elements with role <code>listitem</code> to override the value computed by the browser with the correct level.
+        While ARIA 1.2 supports <code>aria-level</code> on <code>listitem</code> elements, the Authoring Practices Task Force has not found a scenario where applying <code>aria-level</code> to a <code>listitem</code> is needed and has
+        <a href="https://github.com/w3c/aria/issues/1369">raised an issue</a>
+        suggesting the support be deprecated.
       </p>
-      <p>
-        For example, consider the following subset of a table of contents that includes only items within the current chapter and omits the top-level item (the chapter).
-        In this case, the first list item is semantically a second-level item.
-        This can be indicated using <code>aria-level</code> as follows:
-      </p>
-      <pre><code>&lt;h1>Preface&lt;/h1>
-&lt;h2>Table of Contents&lt;/h2>
-&lt;ul>
-  &lt;li aria-level="2">&lt;a href="#intended-audience">Intended audience&lt;/a>&lt;/li>
-  ...
-&lt;/ul>
-&lt;h2 id="intended-audience">Intended audience&lt;/h2>
-...
-</code></pre>
-
-      <p class="note">The implied (or default) role of an HTML <code>li</code> element is <code>listitem</code>.</p>
-
-      <p>
-        The <code>aria-level</code> property can also be used in conjuction with the <code>aria-posinset</code> and <code>aria-setsize</code> properties.
-        For example, when showing a subset of a long list, but it is still useful to communicate the original position and number of items in the list.
-      </p>
-
-      <div class="example">
-        <p>This is an example of a list of potential search categories:</p>
-
-        <pre><code>&lt;h1>Subject Search Terms&lt;/h1>
-&lt;ul>
-  &lt;li aria-level="1" aria-posinset="5" aria-setsize="21">Life Sciences&lt;/li>
-  &lt;li aria-level="2" aria-posinset="1" aria-setsize="10">Andrology&lt;/li>
-  &lt;li aria-level="2" aria-posinset="2" aria-setsize="10">Animal Physiology&lt;/li>
-  &lt;li aria-level="2" aria-posinset="3" aria-setsize="10">Biochemistry&lt;/li>
-  &lt;li aria-level="2" aria-posinset="4" aria-setsize="10">Bioinformatices&lt;/li>
-&lt;/ul></code></pre>
-      </div>
     </section>
 
     <section id="aria-level_treeitem_role">
