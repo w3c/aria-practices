@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/w3c/aria-practices#readme",
   "devDependencies": {
-    "ava": "^3.13.0",
+    "ava": "^3.14.0",
     "cheerio": "^1.0.0-rc.2",
     "cspell": "^4.2.5",
     "eslint": "^7.15.0",
