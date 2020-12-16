@@ -421,31 +421,43 @@ class MenubarNavigation {
     return false;
   }
 
+  setMenubarDataExpanded(value) {
+    this.domNode.setAttribute('data-menubar-item-expanded', value);
+  }
+
+  isMenubarDataExpandedTrue() {
+    return this.domNode.getAttribute('data-menubar-item-expanded') === 'true';
+  }
+
   openPopup(menuId, menuitem) {
     // set aria-expanded attribute
     var popupMenu = menuitem.nextElementSibling;
 
-    var rect = menuitem.getBoundingClientRect();
+    if (popupMenu) {
+      var rect = menuitem.getBoundingClientRect();
 
-    // Set CSS properties
-    if (this.isPopup[menuId]) {
-      popupMenu.parentNode.style.position = 'relative';
-      popupMenu.style.display = 'block';
-      popupMenu.style.position = 'absolute';
-      popupMenu.style.left = rect.width + 6 + 'px';
-      popupMenu.style.top = '0px';
-      popupMenu.style.zIndex = 100;
-    } else {
-      popupMenu.style.display = 'block';
-      popupMenu.style.position = 'absolute';
-      popupMenu.style.left = '0px';
-      popupMenu.style.top = rect.height + 8 + 'px';
-      popupMenu.style.zIndex = 100;
+      // Set CSS properties
+      if (this.isPopup[menuId]) {
+        popupMenu.parentNode.style.position = 'relative';
+        popupMenu.style.display = 'block';
+        popupMenu.style.position = 'absolute';
+        popupMenu.style.left = rect.width + 6 + 'px';
+        popupMenu.style.top = '0px';
+        popupMenu.style.zIndex = 100;
+      } else {
+        popupMenu.style.display = 'block';
+        popupMenu.style.position = 'absolute';
+        popupMenu.style.left = '0px';
+        popupMenu.style.top = rect.height + 8 + 'px';
+        popupMenu.style.zIndex = 100;
+      }
+
+      menuitem.setAttribute('aria-expanded', 'true');
+      this.setMenubarDataExpanded('true');
+      return this.getMenuId(popupMenu);
     }
 
-    menuitem.setAttribute('aria-expanded', 'true');
-
-    return this.getMenuId(popupMenu);
+    return false;
   }
 
   closePopout(menuitem) {
@@ -457,7 +469,6 @@ class MenubarNavigation {
       menu = this.getMenu(cmi);
       cmi = menu.previousElementSibling;
       menuId = this.getMenuId(cmi);
-      cmi.setAttribute('aria-expanded', 'false');
       menu.style.display = 'none';
     }
     cmi.focus();
@@ -552,8 +563,6 @@ class MenubarNavigation {
       option,
       value;
 
-    var isAnyPopupOpen = this.isAnyPopupOpen();
-
     switch (key) {
       case ' ':
       case 'Enter':
@@ -565,6 +574,7 @@ class MenubarNavigation {
           if (tgt.href !== '#') {
             this.closePopupAll();
             this.updateContent(tgt.href, tgt.textContent.trim());
+            this.setMenubarDataExpanded('false');
           }
         }
         flag = true;
@@ -573,7 +583,9 @@ class MenubarNavigation {
       case 'Esc':
       case 'Escape':
         this.openPopups = false;
-        this.closePopup(tgt);
+        mi = this.closePopup(tgt);
+        id = this.getMenuId(mi);
+        this.setMenubarDataExpanded('false');
         flag = true;
         break;
 
@@ -609,7 +621,7 @@ class MenubarNavigation {
       case 'ArrowLeft':
         if (this.isMenuHorizontal(menuId)) {
           mi = this.setFocusToPreviousMenuitem(menuId, tgt);
-          if (isAnyPopupOpen) {
+          if (this.isAnyPopupOpen() || this.isMenubarDataExpandedTrue()) {
             this.openPopup(menuId, mi);
           }
         } else {
@@ -631,7 +643,7 @@ class MenubarNavigation {
       case 'ArrowRight':
         if (this.isMenuHorizontal(menuId)) {
           mi = this.setFocusToNextMenuitem(menuId, tgt);
-          if (isAnyPopupOpen) {
+          if (this.isAnyPopupOpen() || this.isMenubarDataExpandedTrue()) {
             this.openPopup(menuId, mi);
           }
         } else {
@@ -662,6 +674,7 @@ class MenubarNavigation {
 
       case 'Tab':
         this.openPopups = false;
+        this.setMenubarDataExpanded('false');
         this.closePopup(tgt);
         break;
 

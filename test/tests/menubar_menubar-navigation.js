@@ -26,27 +26,16 @@ const ex = {
 
   // menu selectors
   anyMenuSelector: '#ex1 [role="menu"]',
-  submenuExpandableMenuitemsSelector:
-    '#ex1 [role="menubar"]>li>[role="menu"]>li>[aria-expanded]',
 
   // Menubar menuitem selectors
   menubarMenuitemSelector: '#ex1 [role="menubar"]>li>[role="menuitem"]',
   menubarMenuitemWithPopupSelector: '#ex1 [role="menubar"]>li>[aria-haspopup]',
-  menubarMenuitemWithExpandedSelector:
-    '#ex1 [role="menubar"]>li>[aria-expanded]',
-  menubarMenuitemWithOwnsSelector: '#ex1 [role="menubar"]>li>[aria-owns]',
 
   // Menuitem selectors
   anyMenuitemSelector: '#ex1 [role="menubar"] [role="menuitem"]',
 
   // Menu menuitem selectors
   anyMenuMenuitemSelector: '#ex1 [role="menu"]>li>[role="menuitem"]',
-  menuMenuitemSelectors: [
-    '#ex1 [role="menubar"]>li:nth-of-type(0)>[role="menu"]>li>[role="menuitem"]',
-    '#ex1 [role="menubar"]>li:nth-of-type(1)>[role="menu"]>li>[role="menuitem"]',
-    '#ex1 [role="menubar"]>li:nth-of-type(2)>[role="menu"]>li>[role="menuitem"]',
-    '#ex1 [role="menubar"]>li:nth-of-type(3)>[role="menu"]>li>[role="menuitem"]',
-  ],
 
   // Submenu item selectors
   submenuMenuitemsWithOwns: '#ex1 [role="menu"] [role="menuitem"][aria-owns]',
@@ -56,59 +45,44 @@ const ex = {
     '#ex1 [role="menu"] [role="menuitem"][aria-expanded]',
 
   // Selectors for testing expandable menus in submenus
-  groupSelector: '#ex1 [role="group"]',
-  numMenubarMenuitems: 4,
-  numMenus: 3,
-  numSubmenus: 3,
   numTotalMenus: 6,
   menuLocations: [1, 2, 3],
-  submenuLocations: [
-    // [<index of top level menu>, <index of item in top level menu>]
-    [1, 2],
-    [1, 3],
-    [2, 1],
+  // Numbers are the index of the menuitems in the entire menubar
+  // including submenus
+  keyboardTestMenuitems: [
+    [1, -1, [2, 3, 4, 8]],
+    [1, 4, [5, 6, 7]],
+    [1, 8, [9, 10, 11]],
+    [12, -1, [13, 14, 18, 19, 20, 21]],
+    [12, 14, [15, 16, 17]],
+    [22, -1, [23, 24, 25, 26, 27, 28, 29, 30]],
   ],
-  numMenuMenuitems: [0, 4, 6, 8],
-};
-
-// Returns specified submenu
-const getSubmenuSelector = function (menuIndex, menuitemIndex) {
-  return (
-    '#ex1 [role="menubar"]>li:nth-of-type(' +
-    (menuIndex + 1) +
-    ')>[role="menu"]>li:nth-of-type(' +
-    (menuitemIndex + 1) +
-    ')>[role="menu"]'
-  );
-};
-
-// Returns the menuitems of a specified submenu
-const getSubmenuMenuitemSelector = function (menuIndex, menuitemIndex) {
-  return (
-    '#ex1 [role="menubar"]>li:nth-of-type(' +
-    (menuIndex + 1) +
-    ')>[role="menu"]>li:nth-of-type(' +
-    (menuitemIndex + 1) +
-    ')>[role="menu"] [role="menuitem"]'
-  );
 };
 
 // await new Promise(resolve => setTimeout(resolve, 3000));
 
-const openSubmenu = async function (t, menuIndex, menuitemIndex) {
-  // Send ARROW_DOWN to open menu
-  const menubaritems = await t.context.queryElements(
-    t,
-    ex.menubarMenuitemSelector
-  );
-  await menubaritems[menuIndex].sendKeys(Key.ARROW_DOWN);
+const openMenus = async function (t, menuIndex, menuitemIndex) {
+  // Send ENTER to open menu
+  if (menuIndex >= 0) {
+    if (await isExpandable(t, ex.anyMenuitemSelector, menuIndex)) {
+      const menubaritems = await t.context.queryElements(
+        t,
+        ex.anyMenuitemSelector
+      );
+      await menubaritems[menuIndex].sendKeys(Key.ENTER);
+    }
+  }
 
-  // Get the menuitems for that menu and send ARROW_RIGHT to open the submenu
-  const menuitems = await t.context.queryElements(
-    t,
-    ex.menuMenuitemSelectors[menuIndex]
-  );
-  await menuitems[menuitemIndex].sendKeys(Key.ARROW_RIGHT);
+  // Get the menuitems for that menu and send ENTER to open the submenu
+  if (menuitemIndex >= 0) {
+    if (await isExpandable(t, ex.anyMenuitemSelector, menuitemIndex)) {
+      const menuitems = await t.context.queryElements(
+        t,
+        ex.anyMenuitemSelector
+      );
+      await menuitems[menuitemIndex].sendKeys(Key.ENTER);
+    }
+  }
   return;
 };
 
@@ -123,6 +97,34 @@ const compareText = async function (t, selector, text) {
     },
     selector,
     text
+  );
+};
+
+const isExpandable = async function (t, selector, index) {
+  return t.context.session.executeScript(
+    function () {
+      const [selector, index] = arguments;
+      const items = document.querySelectorAll(selector);
+      return items[index].hasAttribute('aria-expanded');
+    },
+    selector,
+    index
+  );
+};
+
+const checkOpen = async function (t, selector, index) {
+  return t.context.session.executeScript(
+    function () {
+      const [selector, index] = arguments;
+      const items = document.querySelectorAll(selector);
+      const test1 = items[index].getAttribute('aria-expanded') === 'true';
+      const id = items[index].getAttribute('aria-owns');
+      const menu = document.getElementById(id);
+      const test2 = menu.style.display != 'none';
+      return test1 && test2;
+    },
+    selector,
+    index
   );
 };
 
@@ -149,18 +151,6 @@ const checkFocus = async function (t, selector, index) {
     selector,
     index
   );
-};
-
-const doesMenuitemHaveSubmenu = function (menuIndex, menuitemIndex) {
-  for (let submenuLocation of ex.submenuLocations) {
-    if (
-      submenuLocation[0] === menuIndex &&
-      submenuLocation[1] === menuitemIndex
-    ) {
-      return true;
-    }
-  }
-  return false;
 };
 
 // Tests for landmark roles in example
@@ -396,20 +386,6 @@ ariaTest(
   exampleFile,
   'menu-menuitem-aria-haspopup',
   async (t) => {
-    await assertAttributeValues(
-      t,
-      ex.submenuMenuitemsWithOwns,
-      'aria-haspopup',
-      'true'
-    );
-
-    await assertAttributeValues(
-      t,
-      ex.submenuMenuitemsWithExpanded,
-      'aria-haspopup',
-      'true'
-    );
-
     await assertAttributeValues(
       t,
       ex.submenuMenuitemsWithHasPopup,
@@ -777,7 +753,7 @@ ariaTest(
         await menuElement.isDisplayed(),
         'Sending key ARROW_UP to menuitem referencing menu with id="' +
           menuId +
-          '" in menubar should display submenu'
+          '" in menubar should display submenu.'
       );
 
       // Check that focus is on first menuitem
@@ -787,7 +763,7 @@ ariaTest(
           menubarIndexes[i] +
           '" in menubar should send focus to menuitem index "' +
           menuitemIndexes[i] +
-          '" the last element in the submenu'
+          '" the last element in the submenu.'
       );
     }
   }
@@ -995,24 +971,12 @@ ariaTest(
         const indexSubmenuOpen = testMenuitem[2];
         const menuitemText = testMenuitem[3];
 
+        await openMenus(t, indexMenubarOpen, indexSubmenuOpen);
+
         let menuitems = await t.context.queryElements(
           t,
           ex.anyMenuitemSelector
         );
-
-        // Open up menubar menu if needed
-        if (indexMenubarOpen >= 0) {
-          await menuitems[indexMenubarOpen].sendKeys(Key.ENTER);
-
-          menuitems = await t.context.queryElements(t, ex.anyMenuitemSelector);
-        }
-
-        // Open up submenu if needed
-        if (indexSubmenuOpen >= 0) {
-          await menuitems[indexSubmenuOpen].sendKeys(Key.ENTER);
-
-          menuitems = await t.context.queryElements(t, ex.anyMenuitemSelector);
-        }
 
         await menuitems[indexMenuitem].sendKeys(keyCode);
 
@@ -1080,21 +1044,13 @@ ariaTest(
       const menuitemSendEscape = testMenuitem[2];
 
       let indexMenuitem = indexMenubarOpen;
-      let menuitems = await t.context.queryElements(t, ex.anyMenuitemSelector);
-
-      // Open up menubar menu if needed
-      if (indexMenubarOpen >= 0) {
-        await menuitems[indexMenubarOpen].sendKeys(Key.ENTER);
-        menuitems = await t.context.queryElements(t, ex.anyMenuitemSelector);
-      }
-
-      // Open up submenu if needed
       if (indexSubmenuOpen >= 0) {
         indexMenuitem = indexSubmenuOpen;
-        await menuitems[indexSubmenuOpen].sendKeys(Key.ENTER);
-        menuitems = await t.context.queryElements(t, ex.anyMenuitemSelector);
       }
 
+      await openMenus(t, indexMenubarOpen, indexSubmenuOpen);
+
+      let menuitems = await t.context.queryElements(t, ex.anyMenuitemSelector);
       await menuitems[menuitemSendEscape].sendKeys(Key.ESCAPE);
 
       t.true(
@@ -1109,676 +1065,461 @@ ariaTest(
   }
 );
 
-/*
-ariaTest.failing(
+ariaTest(
   'ARROW_RIGHT to submenu closes submenu and opens next',
   exampleFile,
   'submenu-right-arrow',
   async (t) => {
-    const menubaritems = await t.context.queryElements(
-      t,
-      ex.menubarMenuitemSelector
-    );
-    const menus = await t.context.queryElements(t, ex.menuSelector);
+    const testMenuitems = [
+      [1, -1, 2, 12],
+      [1, -1, 3, 12],
+      [1, 4, 5, 12],
+      [1, 4, 6, 12],
+      [1, 4, 7, 12],
+      [1, 8, 9, 12],
+      [1, 8, 10, 12],
+      [1, 8, 11, 12],
+      [12, -1, 13, 22],
+      [12, -1, 18, 22],
+      [12, -1, 19, 22],
+      [12, -1, 20, 22],
+      [12, -1, 21, 22],
+      [12, 14, 15, 22],
+      [12, 14, 16, 22],
+      [12, 14, 17, 22],
+      [22, -1, 23, 0],
+      [22, -1, 24, 0],
+      [22, -1, 25, 0],
+      [22, -1, 26, 0],
+      [22, -1, 27, 0],
+      [22, -1, 28, 0],
+      [22, -1, 29, 0],
+      [22, -1, 30, 0],
+      [0, -1, 0, 1],
+    ];
 
-    // Test all the level one menuitems
+    for (let i = 0; i < testMenuitems.length; i++) {
+      const testMenuitem = testMenuitems[i];
+      const indexMenubarOpen = testMenuitem[0];
+      const indexSubmenuOpen = testMenuitem[1];
+      const indexSendArrowRight = testMenuitem[2];
+      const indexIsOpen = testMenuitem[3];
 
-    for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
-      for (
-        let itemIndex = 0;
-        itemIndex < ex.numMenuMenuitems[menuIndex];
-        itemIndex++
-      ) {
-        // Open the submenu
-        await menubaritems[menuIndex].sendKeys(Key.ENTER);
+      await openMenus(t, indexMenubarOpen, indexSubmenuOpen);
 
-        const items = await t.context.queryElements(
-          t,
-          ex.menuMenuitemSelectors[menuIndex]
-        );
-        const itemText = await items[itemIndex].getText();
-        const hasSubmenu = await items[itemIndex].getAttribute('aria-haspopup');
+      let menuitems = await t.context.queryElements(t, ex.anyMenuitemSelector);
+      await menuitems[indexSendArrowRight].sendKeys(Key.ARROW_RIGHT);
 
-        // send ARROW_RIGHT to the item
-        await items[itemIndex].sendKeys(Key.ARROW_RIGHT);
-
-        if (hasSubmenu) {
-          const submenuSelector = getSubmenuSelector(menuIndex, itemIndex);
-          const submenuMenuitemSelector = getSubmenuMenuitemSelector(
-            menuIndex,
-            itemIndex
-          );
-
-          t.true(
-            await t.context.session
-              .findElement(By.css(submenuSelector))
-              .isDisplayed(),
-            'Sending key "ARROW_RIGHT" to menuitem "' +
-              itemText +
-              '" should open the submenu: ' +
-              submenuSelector
-          );
-          t.true(
-            await checkFocus(t, submenuMenuitemSelector, 0),
-            'Sending key "ARROW_RIGHT" to menuitem "' +
-              itemIndex +
-              '" should put focus on first item in submenu: ' +
-              submenuSelector
-          );
-        } else {
-          // Account for wrapping (index 0 should go to 3)
-          const nextMenuIndex = menuIndex === 2 ? 0 : menuIndex + 1;
-
-          // Test that the submenu is closed
-          t.false(
-            await menus[menuIndex].isDisplayed(),
-            'Sending key "ARROW_RIGHT" to submenuitem "' +
-              itemText +
-              '" should close list'
-          );
-
-          // Test that the focus is on the menuitem in the menubar
-          t.true(
-            await checkFocus(t, ex.menubarMenuitemSelector, nextMenuIndex),
-            'Sending key "ARROW_RIGHT" to submenuitem "' +
-              itemText +
-              '" should send focus to menuitem' +
-              nextMenuIndex +
-              ' in the menubar'
-          );
-        }
-      }
-    }
-  }
-);
-
-ariaTest.failing(
-  'ARROW_RIGHT to submenu closes submenu and opens next',
-  exampleFile,
-  'submenu-right-arrow',
-  async (t) => {
-    const menubaritems = await t.context.queryElements(t, ex.menubarMenuitemSelector);
-    const menus = await t.context.queryElements(t, ex.menuSelector);
-
-    // Test all the level one menuitems
-
-    for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
-      for (let itemIndex = 0; itemIndex < ex.numMenuMenuitems[menuIndex]; itemIndex++) {
-
-        // Open the submenu
-        await menubaritems[menuIndex].sendKeys(Key.ENTER);
-
-        // Test all the submenu menuitems
-        for (let submenuLocation of ex.submenuLocations) {
-          const [menuIndex, menuitemIndex] = submenuLocation;
-
-          // Get the submenu items we are testing
-          const submenuMenuitemSelector = getSubmenuMenuitemSelector(
-            menuIndex,
-            menuitemIndex
-          );
-          const items = await t.context.queryElements(t, submenuMenuitemSelector);
-          const numItems = items.length;
-
-          for (let itemIndex = 0; itemIndex < numItems; itemIndex++) {
-            await openSubmenu(t, ...submenuLocation);
-
-            // send ARROW_RIGHT to the item
-            const itemText = await items[itemIndex].getText();
-            await items[itemIndex].sendKeys(Key.ARROW_RIGHT);
-
-            // Account for wrapping (index 0 should go to 3)
-            const nextMenuIndex = menuIndex === 2 ? 0 : menuIndex + 1;
-
-            // Test that the submenu is closed
-            t.false(
-              await menus[menuIndex].isDisplayed(),
-              'Sending key "ARROW_RIGHT" to submenuitem "' +
-                itemText +
-                '" should close list'
-            );
-
-            // Test that the focus is on the menuitem in the menubar
-            t.true(
-              await checkFocus(t, ex.menubarMenuitemSelector, nextMenuIndex),
-              'Sending key "ARROW_RIGHT" to submenuitem "' +
-                itemText +
-                '" should send focus to menuitem' +
-                nextMenuIndex +
-                ' in the menubar'
-            );
-          }
-        }
-      }
-    }
-  }
-);
-
-ariaTest.failing(
-  'ARROW_LEFT to submenu closes submenu and opens next',
-  exampleFile,
-  'submenu-left-arrow',
-  async (t) => {
-    const menubaritems = await t.context.queryElements(
-      t,
-      ex.menubarMenuitemSelector
-    );
-    const menus = await t.context.queryElements(t, ex.menuSelector);
-
-    // Test all the level one menuitems
-
-    for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
-      for (
-        let itemIndex = 0;
-        itemIndex < ex.numMenuMenuitems[menuIndex];
-        itemIndex++
-      ) {
-        // Open the submenu
-        await menubaritems[menuIndex].sendKeys(Key.ENTER);
-
-        const items = await t.context.queryElements(
-          t,
-          ex.menuMenuitemSelectors[menuIndex]
-        );
-        const itemText = await items[itemIndex].getText();
-
-        // send ARROW_LEFT to the item
-        await items[itemIndex].sendKeys(Key.ARROW_LEFT);
-
-        // Account for wrapping (index 0 should go to 3)
-        const nextMenuIndex = menuIndex === 0 ? 2 : menuIndex - 1;
-
-        // Test that the submenu is closed
-        t.false(
-          await menus[menuIndex].isDisplayed(),
-          'Sending key "ARROW_LEFT" to submenuitem "' +
-            itemText +
-            '" should close list'
-        );
-
-        // Test that the focus is on the menuitem in the menubar
-        t.true(
-          await checkFocus(t, ex.menubarMenuitemSelector, nextMenuIndex),
-          'Sending key "ARROW_LEFT" to submenuitem "' +
-            itemText +
-            '" should send focus to menuitem' +
-            nextMenuIndex +
-            ' in the menubar'
-        );
-      }
-    }
-  }
-);
-
-ariaTest.failing(
-  'ARROW_LEFT to submenu closes submenu and opens next',
-  exampleFile,
-  'submenu-left-arrow',
-  async (t) => {
-    const menubaritems = await t.context.queryElements(t, ex.menubarMenuitemSelector);
-    const menus = await t.context.queryElements(t, ex.menuSelector);
-
-    // Test all the submenu menuitems
-    for (let submenuLocation of ex.submenuLocations) {
-      const [menuIndex, menuitemIndex] = submenuLocation;
-
-      // Get the submenu items we are testing
-      const submenuMenuitemSelector = getSubmenuMenuitemSelector(
-        menuIndex,
-        menuitemIndex
+      t.true(
+        await checkFocus(t, ex.anyMenuitemSelector, indexIsOpen),
+        'Sending key ARROW_RIGHT to menuitem "' +
+          indexSendArrowRight +
+          '" the focus should be on menuitem "' +
+          indexIsOpen +
+          '".'
       );
-      const items = await t.context.queryElements(t, submenuMenuitemSelector);
-      const numItems = items.length;
 
-      for (let itemIndex = 0; itemIndex < numItems; itemIndex++) {
-        await openSubmenu(t, ...submenuLocation);
-
-        // send ARROW_LEFT to the item
-        const itemText = await items[itemIndex].getText();
-        await items[itemIndex].sendKeys(Key.ARROW_LEFT);
-
-        const submenuSelector = getSubmenuSelector(...submenuLocation);
+      if (await isExpandable(t, ex.anyMenuitemSelector, indexMenubarOpen)) {
         t.false(
-          await t.context.session
-            .findElement(By.css(submenuSelector))
-            .isDisplayed(),
-          'Sending key "ARROW_LEFT" to submenuitem "' +
-            itemText +
-            '" should close the menu'
+          await checkOpen(t, ex.anyMenuitemSelector, indexMenubarOpen),
+          'Sending key ARROW_RIGHT to menuitem "' +
+            indexSendArrowRight +
+            '" the menubar menuitem "' +
+            indexMenubarOpen +
+            '" should be closed.'
         );
+      }
 
+      if (await isExpandable(t, ex.anyMenuitemSelector, indexIsOpen)) {
         t.true(
-          await checkFocus(
-            t,
-            ex.menuMenuitemSelectors[menuIndex],
-            menuitemIndex
-          ),
-          'Sending key "ARROW_LEFT" to submenuitem "' +
-            itemText +
-            '" should send focus to menuitem ' +
-            menuitemIndex +
-            ' in the parent menu'
+          await checkOpen(t, ex.anyMenuitemSelector, indexIsOpen),
+          'Sending key ARROW_RIGHT to menuitem "' +
+            indexSendArrowRight +
+            '" the menubar menuitem "' +
+            indexIsOpen +
+            '" should be open.'
         );
       }
     }
   }
 );
 
-ariaTest.failing(
+ariaTest(
+  'ARROW_RIGHT to expandable submenu opens popout menu',
+  exampleFile,
+  'submenu-right-arrow',
+  async (t) => {
+    const testMenuitems = [
+      [1, 4, 5],
+      [1, 8, 9],
+      [12, 14, 15],
+    ];
+
+    for (let i = 0; i < testMenuitems.length; i++) {
+      const testMenuitem = testMenuitems[i];
+      const indexMenubarOpen = testMenuitem[0];
+      const indexSendArrowRight = testMenuitem[1];
+      const indexHasFocus = testMenuitem[2];
+
+      await openMenus(t, indexMenubarOpen, -1);
+
+      let menuitems = await t.context.queryElements(t, ex.anyMenuitemSelector);
+      await menuitems[indexSendArrowRight].sendKeys(Key.ARROW_RIGHT);
+
+      t.true(
+        await checkFocus(t, ex.anyMenuitemSelector, indexHasFocus),
+        'Sending key ARROW_RIGHT to menuitem "' +
+          indexSendArrowRight +
+          '" the focus should be on menuitem "' +
+          indexHasFocus +
+          '".'
+      );
+
+      t.true(
+        await checkOpen(t, ex.anyMenuitemSelector, indexSendArrowRight),
+        'Sending key ARROW_RIGHT to menuitem "' +
+          indexSendArrowRight +
+          '" should open the popout menu.'
+      );
+    }
+  }
+);
+
+ariaTest(
+  'ARROW_LEFT to submenu closes submenu and opens next',
+  exampleFile,
+  'submenu-left-arrow',
+  async (t) => {
+    const testMenuitems = [
+      [22, -1, 23, 12],
+      [22, -1, 24, 12],
+      [22, -1, 25, 12],
+      [22, -1, 26, 12],
+      [22, -1, 27, 12],
+      [22, -1, 28, 12],
+      [22, -1, 29, 12],
+      [22, -1, 30, 12],
+      [12, -1, 13, 1],
+      [12, -1, 14, 1],
+      [12, -1, 18, 1],
+      [12, -1, 19, 1],
+      [12, -1, 20, 1],
+      [12, -1, 21, 1],
+      [1, -1, 2, 0],
+      [1, -1, 3, 0],
+      [1, -1, 4, 0],
+      [1, -1, 8, 0],
+      [0, -1, 0, 22],
+    ];
+
+    for (let i = 0; i < testMenuitems.length; i++) {
+      const testMenuitem = testMenuitems[i];
+      const indexMenubarOpen = testMenuitem[0];
+      const indexSubmenuOpen = testMenuitem[1];
+      const indexSendArrowLeft = testMenuitem[2];
+      const indexIsOpen = testMenuitem[3];
+
+      let indexMenuitem = indexMenubarOpen;
+      if (indexSubmenuOpen >= 0) {
+        indexMenuitem = indexSubmenuOpen;
+      }
+
+      await openMenus(t, indexMenubarOpen, indexSubmenuOpen);
+
+      let menuitems = await t.context.queryElements(t, ex.anyMenuitemSelector);
+      await menuitems[indexSendArrowLeft].sendKeys(Key.ARROW_LEFT);
+
+      t.true(
+        await checkFocus(t, ex.anyMenuitemSelector, indexIsOpen),
+        'Sending key ARROW_LEFT to menuitem "' +
+          indexSendArrowLeft +
+          '" the focus should be on menuitem "' +
+          indexIsOpen +
+          '".'
+      );
+
+      if (await isExpandable(t, ex.anyMenuitemSelector, indexMenubarOpen)) {
+        t.false(
+          await checkOpen(t, ex.anyMenuitemSelector, indexMenubarOpen),
+          'Sending key ARROW_LEFT to menuitem "' +
+            indexSendArrowLeft +
+            '" the menubar menuitem "' +
+            indexMenubarOpen +
+            '" should be closed.'
+        );
+      }
+
+      if (await isExpandable(t, ex.anyMenuitemSelector, indexIsOpen)) {
+        t.true(
+          await checkOpen(t, ex.anyMenuitemSelector, indexIsOpen),
+          'Sending key ARROW_LEFT to menuitem "' +
+            indexSendArrowLeft +
+            '" the menubar menuitem "' +
+            indexIsOpen +
+            '" should be open.'
+        );
+      }
+    }
+  }
+);
+
+ariaTest(
+  'ARROW_LEFT to popout menu closes popout and moves focus to submenu',
+  exampleFile,
+  'submenu-left-arrow',
+  async (t) => {
+    const testMenuitems = [
+      [12, 14, 15],
+      [12, 14, 16],
+      [12, 14, 17],
+    ];
+
+    for (let i = 0; i < testMenuitems.length; i++) {
+      const testMenuitem = testMenuitems[i];
+      const indexMenubarOpen = testMenuitem[0];
+      const indexSubmenuOpen = testMenuitem[1];
+      const indexSendArrowLeft = testMenuitem[2];
+
+      await openMenus(t, indexMenubarOpen, indexSubmenuOpen);
+
+      let menuitems = await t.context.queryElements(t, ex.anyMenuitemSelector);
+      await menuitems[indexSendArrowLeft].sendKeys(Key.ARROW_LEFT);
+
+      t.true(
+        await checkFocus(t, ex.anyMenuitemSelector, indexSubmenuOpen),
+        'Sending key ARROW_LEFT to menuitem "' +
+          indexSendArrowLeft +
+          '" the focus should be on menuitem "' +
+          indexSubmenuOpen +
+          '".'
+      );
+
+      t.false(
+        await checkOpen(t, ex.anyMenuitemSelector, indexSubmenuOpen),
+        'Sending key ARROW_LEFT to menuitem "' +
+          indexSendArrowLeft +
+          '" the menubar menuitem "' +
+          indexSubmenuOpen +
+          '" should be closed.'
+      );
+    }
+  }
+);
+
+ariaTest(
   'ARROW_DOWN moves focus in menu',
   exampleFile,
   'submenu-down-arrow',
   async (t) => {
-    const menubaritems = await t.context.queryElements(
-      t,
-      ex.menubarMenuitemSelector
-    );
-    const menus = await t.context.queryElements(t, ex.menuSelector);
+    for (let i = 0; i < ex.keyboardTestMenuitems.length; i++) {
+      const testMenuitem = ex.keyboardTestMenuitems[i];
+      const indexMenubarOpen = testMenuitem[0];
+      const indexSubmenuOpen = testMenuitem[1];
+      const menuitemIndexes = testMenuitem[2];
 
-    // Test all the level one menuitems
+      await openMenus(t, indexMenubarOpen, indexSubmenuOpen);
 
-    for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
-      for (
-        let itemIndex = 0;
-        itemIndex < ex.numMenuMenuitems[menuIndex];
-        itemIndex++
-      ) {
-        // Open the submenu
-        await menubaritems[menuIndex].sendKeys(Key.ENTER);
+      const len = menuitemIndexes.length;
 
-        const items = await t.context.queryElements(
+      for (let i = 0; i < len; i++) {
+        const indexSendArrowDown = menuitemIndexes[i];
+        const indexHasFocus = menuitemIndexes[(i + 1) % len];
+
+        let menuitems = await t.context.queryElements(
           t,
-          ex.menuMenuitemSelectors[menuIndex]
+          ex.anyMenuitemSelector
         );
-        const itemText = await items[itemIndex].getText();
+        await menuitems[indexSendArrowDown].sendKeys(Key.ARROW_DOWN);
 
-        // send ARROW_DOWN to the item
-        await items[itemIndex].sendKeys(Key.ARROW_DOWN);
-
-        // Account for wrapping (last item should move to first item)
-        const nextItemIndex =
-          itemIndex === ex.numMenuMenuitems[menuIndex] - 1 ? 0 : itemIndex + 1;
-
-        // Test that the focus is on the menuitem in the menubar
         t.true(
-          await checkFocus(
-            t,
-            ex.menuMenuitemSelectors[menuIndex],
-            nextItemIndex
-          ),
-          'Sending key "ARROW_DOWN" to submenuitem "' +
-            itemText +
-            '" should send focus to menuitem' +
-            nextItemIndex +
-            ' in the same menu'
-        );
-      }
-    }
-
-    // Test all the submenu menuitems
-    for (let submenuLocation of ex.submenuLocations) {
-      const [menuIndex, menuitemIndex] = submenuLocation;
-
-      // Get the submenu items we are testing
-      const submenuMenuitemSelector = getSubmenuMenuitemSelector(
-        menuIndex,
-        menuitemIndex
-      );
-      const items = await t.context.queryElements(t, submenuMenuitemSelector);
-      const numItems = items.length;
-
-      for (let itemIndex = 0; itemIndex < numItems; itemIndex++) {
-        await openSubmenu(t, ...submenuLocation);
-
-        // send ARROW_DOWN to the item
-        const itemText = await items[itemIndex].getText();
-        await items[itemIndex].sendKeys(Key.ARROW_DOWN);
-
-        // Account for wrapping (last item should move to first item)
-        const nextItemIndex = itemIndex === numItems - 1 ? 0 : itemIndex + 1;
-
-        // Test that the focus is on the menuitem in the menubar
-        t.true(
-          await checkFocus(t, submenuMenuitemSelector, nextItemIndex),
-          'Sending key "ARROW_DOWN" to submenuitem "' +
-            itemText +
-            '" should send focus to menuitem' +
-            nextItemIndex +
-            ' in the same menu'
+          await checkFocus(t, ex.anyMenuitemSelector, indexHasFocus),
+          'Sending key ARROW_DOWN to menuitem "' +
+            indexSendArrowDown +
+            '" the focus should be on menuitem "' +
+            indexHasFocus +
+            '".'
         );
       }
     }
   }
 );
 
-ariaTest.failing(
+ariaTest(
   'ARROW_UP moves focus in menu',
   exampleFile,
   'submenu-up-arrow',
   async (t) => {
-    const menubaritems = await t.context.queryElements(
-      t,
-      ex.menubarMenuitemSelector
-    );
-    const menus = await t.context.queryElements(t, ex.menuSelector);
+    for (let i = 0; i < ex.keyboardTestMenuitems.length; i++) {
+      const testMenuitem = ex.keyboardTestMenuitems[i];
+      const indexMenubarOpen = testMenuitem[0];
+      const indexSubmenuOpen = testMenuitem[1];
+      const menuitemIndexes = testMenuitem[2];
 
-    // Test all the level one menuitems
+      await openMenus(t, indexMenubarOpen, indexSubmenuOpen);
 
-    for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
-      for (
-        let itemIndex = 0;
-        itemIndex < ex.numMenuMenuitems[menuIndex];
-        itemIndex++
-      ) {
-        // Open the submenu
-        await menubaritems[menuIndex].sendKeys(Key.ENTER);
+      const len = menuitemIndexes.length;
 
-        const items = await t.context.queryElements(
+      for (let i = 1; i <= len; i++) {
+        const indexSendArrowUp = menuitemIndexes[i % len];
+        const indexHasFocus = menuitemIndexes[i - 1];
+
+        let menuitems = await t.context.queryElements(
           t,
-          ex.menuMenuitemSelectors[menuIndex]
+          ex.anyMenuitemSelector
         );
-        const itemText = await items[itemIndex].getText();
+        await menuitems[indexSendArrowUp].sendKeys(Key.ARROW_UP);
 
-        // send ARROW_UP to the item
-        await items[itemIndex].sendKeys(Key.ARROW_UP);
-
-        // Account for wrapping (last item should move to first item)
-        const nextItemIndex =
-          itemIndex === 0 ? ex.numMenuMenuitems[menuIndex] - 1 : itemIndex - 1;
-
-        // Test that the focus is on the menuitem in the menubar
         t.true(
-          await checkFocus(
-            t,
-            ex.menuMenuitemSelectors[menuIndex],
-            nextItemIndex
-          ),
-          'Sending key "ARROW_UP" to submenuitem "' +
-            itemText +
-            '" should send focus to menuitem' +
-            nextItemIndex +
-            ' in the same menu'
-        );
-      }
-    }
-
-    // Test all the submenu menuitems
-    for (let submenuLocation of ex.submenuLocations) {
-      const [menuIndex, menuitemIndex] = submenuLocation;
-
-      // Get the submenu items we are testing
-      const submenuMenuitemSelector = getSubmenuMenuitemSelector(
-        menuIndex,
-        menuitemIndex
-      );
-      const items = await t.context.queryElements(t, submenuMenuitemSelector);
-      const numItems = items.length;
-
-      for (let itemIndex = 0; itemIndex < numItems; itemIndex++) {
-        await openSubmenu(t, ...submenuLocation);
-
-        // send ARROW_UP to the item
-        const itemText = await items[itemIndex].getText();
-        await items[itemIndex].sendKeys(Key.ARROW_UP);
-
-        // Account for wrapping (last item should move to first item)
-        const nextItemIndex = itemIndex === 0 ? numItems - 1 : itemIndex - 1;
-
-        // Test that the focus is on the menuitem in the menubar
-        t.true(
-          await checkFocus(t, submenuMenuitemSelector, nextItemIndex),
-          'Sending key "ARROW_UP" to submenuitem "' +
-            itemText +
-            '" should send focus to menuitem' +
-            nextItemIndex +
-            ' in the same menu'
+          await checkFocus(t, ex.anyMenuitemSelector, indexHasFocus),
+          'Sending key ARROW_UP to menuitem "' +
+            indexSendArrowUp +
+            '" the focus should be on menuitem "' +
+            indexHasFocus +
+            '".'
         );
       }
     }
   }
 );
 
-ariaTest.failing('HOME moves focus in menu', exampleFile, 'submenu-home', async (t) => {
-  const menubaritems = await t.context.queryElements(
-    t,
-    ex.menubarMenuitemSelector
-  );
-  const menus = await t.context.queryElements(t, ex.menuSelector);
+ariaTest(
+  'HOME moves focus to first item in menu',
+  exampleFile,
+  'submenu-home',
+  async (t) => {
+    for (let i = 0; i < ex.keyboardTestMenuitems.length; i++) {
+      const testMenuitem = ex.keyboardTestMenuitems[i];
+      const indexMenubarOpen = testMenuitem[0];
+      const indexSubmenuOpen = testMenuitem[1];
+      const menuitemIndexes = testMenuitem[2];
 
-  // Test all the level one menuitems
+      await openMenus(t, indexMenubarOpen, indexSubmenuOpen);
 
-  for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
-    for (
-      let itemIndex = 0;
-      itemIndex < ex.numMenuMenuitems[menuIndex];
-      itemIndex++
-    ) {
-      // Open the submenu
-      await menubaritems[menuIndex].sendKeys(Key.ENTER);
+      const len = menuitemIndexes.length;
 
-      const items = await t.context.queryElements(
-        t,
-        ex.menuMenuitemSelectors[menuIndex]
-      );
-      const itemText = await items[itemIndex].getText();
+      for (let i = 0; i < len; i++) {
+        const indexSendHome = menuitemIndexes[i];
+        const indexHasFocus = menuitemIndexes[0];
 
-      // send HOME to the item
-      await items[itemIndex].sendKeys(Key.HOME);
-
-      // Test that the focus is on the menuitem in the menubar
-      t.true(
-        await checkFocus(t, ex.menuMenuitemSelectors[menuIndex], 0),
-        'Sending key "HOME" to submenuitem "' +
-          itemText +
-          '" should send focus to first  menuitem in the same menu'
-      );
-    }
-  }
-
-  // Test all the submenu menuitems
-  for (let submenuLocation of ex.submenuLocations) {
-    const [menuIndex, menuitemIndex] = submenuLocation;
-
-    // Get the submenu items we are testing
-    const submenuMenuitemSelector = getSubmenuMenuitemSelector(
-      menuIndex,
-      menuitemIndex
-    );
-    const items = await t.context.queryElements(t, submenuMenuitemSelector);
-    const numItems = items.length;
-
-    for (let itemIndex = 0; itemIndex < numItems; itemIndex++) {
-      await openSubmenu(t, ...submenuLocation);
-
-      // send HOME to the item
-      const itemText = await items[itemIndex].getText();
-      await items[itemIndex].sendKeys(Key.HOME);
-
-      t.true(
-        await checkFocus(t, submenuMenuitemSelector, 0),
-        'Sending key "HOME" to submenuitem "' +
-          itemText +
-          '" should send focus to the first menuitem in the same menu'
-      );
-    }
-  }
-});
-
-ariaTest.failing('END moves focus in menu', exampleFile, 'submenu-end', async (t) => {
-  const menubaritems = await t.context.queryElements(
-    t,
-    ex.menubarMenuitemSelector
-  );
-  const menus = await t.context.queryElements(t, ex.menuSelector);
-
-  // Test all the level one menuitems
-
-  for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
-    for (
-      let itemIndex = 0;
-      itemIndex < ex.numMenuMenuitems[menuIndex];
-      itemIndex++
-    ) {
-      // Open the submenu
-      await menubaritems[menuIndex].sendKeys(Key.ENTER);
-
-      const items = await t.context.queryElements(
-        t,
-        ex.menuMenuitemSelectors[menuIndex]
-      );
-      const itemText = await items[itemIndex].getText();
-
-      // send END to the item
-      await items[itemIndex].sendKeys(Key.END);
-
-      // Test that the focus is on the menuitem in the menubar
-      t.true(
-        await checkFocus(
+        let menuitems = await t.context.queryElements(
           t,
-          ex.menuMenuitemSelectors[menuIndex],
-          ex.numMenuMenuitems[menuIndex] - 1
-        ),
-        'Sending key "END" to submenuitem "' +
-          itemText +
-          '" should send focus to last menuitem in the same menu'
-      );
+          ex.anyMenuitemSelector
+        );
+        await menuitems[indexSendHome].sendKeys(Key.HOME);
+
+        t.true(
+          await checkFocus(t, ex.anyMenuitemSelector, indexHasFocus),
+          'Sending key HOME to menuitem "' +
+            indexSendHome +
+            '" the focus should be on menuitem "' +
+            indexHasFocus +
+            '".'
+        );
+      }
     }
   }
+);
 
-  // Test all the submenu menuitems
-  for (let submenuLocation of ex.submenuLocations) {
-    const [menuIndex, menuitemIndex] = submenuLocation;
+ariaTest(
+  'END moves focus to lest menuitem in the menu',
+  exampleFile,
+  'submenu-end',
+  async (t) => {
+    for (let i = 0; i < ex.keyboardTestMenuitems.length; i++) {
+      const testMenuitem = ex.keyboardTestMenuitems[i];
+      const indexMenubarOpen = testMenuitem[0];
+      const indexSubmenuOpen = testMenuitem[1];
+      const menuitemIndexes = testMenuitem[2];
 
-    // Get the submenu items we are testing
-    const submenuMenuitemSelector = getSubmenuMenuitemSelector(
-      menuIndex,
-      menuitemIndex
-    );
-    const items = await t.context.queryElements(t, submenuMenuitemSelector);
-    const numItems = items.length;
+      await openMenus(t, indexMenubarOpen, indexSubmenuOpen);
 
-    for (let itemIndex = 0; itemIndex < numItems; itemIndex++) {
-      await openSubmenu(t, ...submenuLocation);
+      const len = menuitemIndexes.length;
 
-      // send END to the item
-      const itemText = await items[itemIndex].getText();
-      await items[itemIndex].sendKeys(Key.END);
+      for (let i = 0; i < len; i++) {
+        const indexSendEnd = menuitemIndexes[i];
+        const indexHasFocus = menuitemIndexes[len - 1];
 
-      t.true(
-        await checkFocus(t, submenuMenuitemSelector, numItems - 1),
-        'Sending key "END" to submenuitem "' +
-          itemText +
-          '" should send focus to the last menuitem in the same menu'
-      );
+        let menuitems = await t.context.queryElements(
+          t,
+          ex.anyMenuitemSelector
+        );
+        await menuitems[indexSendEnd].sendKeys(Key.END);
+
+        t.true(
+          await checkFocus(t, ex.anyMenuitemSelector, indexHasFocus),
+          'Sending key END to menuitem "' +
+            indexSendEnd +
+            '" the focus should be on menuitem "' +
+            indexHasFocus +
+            '".'
+        );
+      }
     }
   }
-});
+);
 
-ariaTest.failing(
+ariaTest(
   'Character sends to menubar changes focus in menubar',
   exampleFile,
   'submenu-character',
   async (t) => {
-
-    const charIndexTest = [
-      [ // Tests for menu dropdown 0
-        { sendChar: 'a', sendIndex: 0, endIndex: 1 },
-        { sendChar: 'x', sendIndex: 1, endIndex: 1 },
-        { sendChar: 'o', sendIndex: 1, endIndex: 0 }
-      ],
-      [ // Tests for menu dropdown 1
-        { sendChar: 'c', sendIndex: 0, endIndex: 5 },
-        { sendChar: 'y', sendIndex: 5, endIndex: 5 }
-      ],
-      [ // Tests for menu dropdown 2
-        { sendChar: 'c', sendIndex: 0, endIndex: 4 },
-        { sendChar: 'r', sendIndex: 4, endIndex: 5 },
-        { sendChar: 'z', sendIndex: 5, endIndex: 5 }
-      ]
+    const testMenuitems = [
+      [2, 1, -1, 'z', 2],
+      [2, 1, -1, 'a', 3],
+      [3, 1, -1, 'c', 8],
+      [4, 1, -1, 'o', 2],
+      [5, 1, 4, 'a', 7],
+      [6, 1, 4, 'h', 5],
+      [7, 1, 4, 'z', 7],
+      [8, 1, -1, 'z', 8],
+      [9, 1, 8, 'f', 10],
+      [10, 1, 8, 'f', 11],
+      [11, 1, 8, 'f', 9],
+      [13, 12, -1, 'a', 13],
+      [13, 12, -1, 'v', 19],
+      [14, 12, -1, 'a', 13],
+      [15, 12, 14, 'p', 17],
+      [16, 12, 14, 'u', 15],
+      [17, 12, 14, 'g', 16],
+      [18, 12, -1, 't', 14],
+      [19, 12, -1, 'v', 19],
+      [20, 12, -1, 'v', 19],
+      [21, 12, -1, 'p', 20],
+      [23, 22, -1, 'h', 25],
+      [24, 22, -1, 'r', 28],
+      [25, 22, -1, '1', 25],
+      [26, 22, -1, 'c', 27],
+      [27, 22, -1, 'c', 23],
+      [28, 22, -1, 'p', 24],
+      [29, 22, -1, 'o', 26],
+      [30, 22, -1, 't', 30],
     ];
 
-    const menubaritems = await t.context.queryElements(t, ex.menubarMenuitemSelector);
-    for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
+    for (let i = 0; i < testMenuitems.length; i++) {
+      const testMenuitem = testMenuitems[i];
 
-      // Open the dropdown
-      await menubaritems[menuIndex].sendKeys(Key.ARROW_DOWN);
-      const items = await t.context.queryElements(t, ex.menuMenuitemSelectors[menuIndex]);
+      const indexMenuitem = testMenuitem[0];
+      const indexMenubarOpen = testMenuitem[1];
+      const indexSubmenuOpen = testMenuitem[2];
+      const testChar = testMenuitem[3];
+      const indexHasFocus = testMenuitem[4];
 
-      for (let test of charIndexTest[menuIndex]) {
-        // Send character to menuitem
-        const itemText = await items[test.sendIndex].getText();
-        await items[test.sendIndex].sendKeys(test.sendChar);
+      await openMenus(t, indexMenubarOpen, indexSubmenuOpen);
 
-        // Test that the focus switches to the appropriate menuitem
-        t.true(
-          await checkFocus(
-            t,
-            ex.menuMenuitemSelectors[menuIndex],
-            test.endIndex
-          ),
-          'Sending characther ' +
-            test.sendChar +
-            ' to menuitem ' +
-            itemText +
-            ' should move the focus to menuitem ' +
-            test.endIndex
-        );
-      }
+      let menuitems = await t.context.queryElements(t, ex.anyMenuitemSelector);
 
-      const subCharIndexTest = [
-        [
-          // Tests for menu dropdown 0
-          { sendChar: 'c', sendIndex: 0, endIndex: 1 },
-          { sendChar: 'h', sendIndex: 1, endIndex: 0 },
-          { sendChar: 'x', sendIndex: 0, endIndex: 0 },
-        ],
-        [
-          // Tests for menu dropdown 1
-          { sendChar: 'f', sendIndex: 0, endIndex: 1 },
-          { sendChar: 'f', sendIndex: 1, endIndex: 2 },
-        ],
-        [
-          // Tests for menu dropdown 2
-          { sendChar: 'p', sendIndex: 0, endIndex: 2 },
-          { sendChar: 'z', sendIndex: 2, endIndex: 2 },
-        ],
-      ];
+      await menuitems[indexMenuitem].sendKeys(testChar);
 
-      let testIndex = 0;
-
-      // Test all the submenu menuitems
-      for (let submenuLocation of ex.submenuLocations) {
-        const [menuIndex, menuitemIndex] = submenuLocation;
-
-        await openSubmenu(t, ...submenuLocation);
-
-        // Get the submenu items we are testing
-        const submenuMenuitemSelector = getSubmenuMenuitemSelector(
-          menuIndex,
-          menuitemIndex
-        );
-        const items = await t.context.queryElements(t, submenuMenuitemSelector);
-
-        for (let test of subCharIndexTest[testIndex]) {
-          // Send character to menuitem
-          const itemText = await items[test.sendIndex].getText();
-          await items[test.sendIndex].sendKeys(test.sendChar);
-
-          // Test that the focus switches to the appropriate menuitem
-          t.true(
-            await checkFocus(t, submenuMenuitemSelector, test.endIndex),
-            'Sending characther ' +
-              test.sendChar +
-              ' to menuitem ' +
-              itemText +
-              ' should move the focus to menuitem ' +
-              test.endIndex
-          );
-        }
-
-        testIndex++;
-      }
+      t.true(
+        await checkFocus(t, ex.anyMenuitemSelector, indexHasFocus),
+        'Sending "' +
+          testChar +
+          '" to menuitem "' +
+          indexMenuitem +
+          '" the focus should be on menuitem "' +
+          indexHasFocus +
+          '".'
+      );
     }
   }
 );
-*/
