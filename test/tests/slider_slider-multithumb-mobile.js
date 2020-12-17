@@ -52,7 +52,7 @@ const verifyAllValues = async function (
 ariaTest(
   '"tabindex" set to "-1" on input elements',
   exampleFile,
-  'tabindex',
+  'input-tabindex',
   async (t) => {
     await assertAttributeValues(t, ex.inputSelector, 'tabindex', '-1');
   }
