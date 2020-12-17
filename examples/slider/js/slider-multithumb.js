@@ -161,7 +161,7 @@ class SliderMultithumb {
 
       // move the SVG elements
       points = `${pos},${this.thumbTop}`;
-      points += ` ${pos + this.thumbWidth},${this.thumbTop + this.thumbHeight/2)}`;
+      points += ` ${pos + this.thumbWidth},${this.thumbTop + this.thumbHeight/2}`;
       points += ` ${pos},${this.thumbTop + this.thumbHeight}`;
 
       this.minSliderNode.setAttribute('points', points);
