@@ -1,10 +1,10 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+* This content is licensed according to the W3C Software License at
+* https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 *
-*   File:   slider-multithumb.js
+* File:   slider-multithumb.js
 *
-*   Desc:   A dual slider widget that implements ARIA Authoring Practices
+* Desc:   A dual slider widget that implements ARIA Authoring Practices
 */
 
 'use strict';
@@ -12,7 +12,6 @@
 // Create SliderMultithumb that contains two slider thumbs
 class SliderMultithumb {
   constructor(domNode) {
-
     this.domNode = domNode;
     this.railNode = domNode.querySelector('.rail');
 
@@ -27,7 +26,7 @@ class SliderMultithumb {
 
     if (this.minInputNode) {
       this.minInputNode.addEventListener('change', this.onInputChange.bind(this));
-      this.minInputNode.addEventListener('blur',   this.onInputChange.bind(this));
+      this.minInputNode.addEventListener('blur', this.onInputChange.bind(this));
       this.minInputNode.min = this.getValueMin(this.minSliderNode);
       this.minInputNode.max = this.getValueMax(this.minSliderNode);
     }
