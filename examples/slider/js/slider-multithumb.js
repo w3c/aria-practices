@@ -8,7 +8,6 @@
  */
 
 'use strict';
-
 class SliderMultithumb {
   constructor(domNode) {
     this.domNode = domNode;
