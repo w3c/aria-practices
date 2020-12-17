@@ -4,7 +4,7 @@ const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
 
-const exampleFile = 'slider/slider-multithumb.html';
+const exampleFile = 'slider/slider-multithumb-mobile.html';
 
 const ex = {
   sliderSelector: '#ex1 [role="slider"]',

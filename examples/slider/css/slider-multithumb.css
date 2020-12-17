@@ -1,75 +1,69 @@
 /* CSS Document */
 
 .slider-multithumb {
-  clear: both;
   padding-top: 0.5em;
   padding-bottom: 1em;
 }
 
-.slider-multithumb .slider-group {
-  display: inline-block;
-  position: relative;
+.slider-multithumb.mobile {
+  clear: both;
+  display: grid;
+  grid-template-columns: 100px 340px 100px;
+  grid-column-gap: 10px;
 }
 
-.slider-multithumb .slider-group .slider-value {
+.slider-multithumb.mobile .input-minimum,
+.slider-multithumb.mobile .input-maximum {
+  position: relative;
+  top: 20px;
+  height: 1.5em;
+}
+
+.slider-multithumb.mobile .input-minimum {
+  grid-column: 1;
+}
+
+.slider-multithumb.mobile .input-maximum {
+  grid-column: 3;
+}
+
+.slider-multithumb.mobile .slider-group {
+  grid-column: 2;
+}
+
+.slider-multithumb .slider-group .value {
   font-size: 80%;
+  color: currentColor;
 }
 
 .slider-multithumb .slider-group .rail {
-  position: relative;
-  top: 31px;
-  left: 0;
   stroke: transparent;
-  stroke-width: 2px;
-  fill: currentColor;
+  stroke-width: 1px;
+  fill: #ccc;
 }
 
 .slider-multithumb .slider-group .slider-minimum,
 .slider-multithumb .slider-group .slider-maximum {
-  position: absolute;
-  left: 0;
-  top: 11px;
-  outline: none;
-}
-
-.slider-multithumb .slider-group .slider-minimum .thumb,
-.slider-multithumb .slider-group .slider-maximum .thumb {
   stroke-width: 0;
   fill: #444;
 }
 
-.slider-multithumb .slider-group .slider-minimum .focus,
-.slider-multithumb .slider-group .slider-maximum .focus {
-  stroke-width: 0;
-  fill: transparent;
-}
-
 /* Focus and hover styling */
 
+.slider-multithumb.focus .slider-group {
+  color: #005a9c;
+}
+
 .slider-multithumb.focus .slider-group .rail {
-  stroke: currentColor;
-  fill: transparent;
+  stroke: #ADDDFF;
+  fill: #ADDDFF;
 }
 
 .slider-multithumb .slider-group .slider-minimum:focus,
 .slider-multithumb .slider-group .slider-minimum:hover,
 .slider-multithumb .slider-group .slider-maximum:focus,
 .slider-multithumb .slider-group .slider-maximum:hover {
-  color: #005a9c;
-}
-
-.slider-multithumb .slider-group .slider-minimum:focus .thumb,
-.slider-multithumb .slider-group .slider-minimum:hover .thumb,
-.slider-multithumb .slider-group .slider-maximum:focus .thumb,
-.slider-multithumb .slider-group .slider-maximum:hover .thumb {
-  fill: currentColor;
-}
-
-.slider-multithumb .slider-group .slider-minimum:focus .focus,
-.slider-multithumb .slider-group .slider-minimum:hover .focus,
-.slider-multithumb .slider-group .slider-maximum:focus .focus,
-.slider-multithumb .slider-group .slider-maximum:hover .focus {
-  stroke-width: 2px;
+  stroke-width: 3px;
   stroke: currentColor;
   fill: currentColor;
 }

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Horizontal Multi-Thumb Slider Example | WAI-ARIA Authoring Practices 1.2</title>
+    <title>Horizontal Multi-Thumb Slider Example with Mobile Support | WAI-ARIA Authoring Practices 1.2</title>
     <!--  Core js and css shared by all examples; do not modify when using this template. -->
     <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
     <link rel="stylesheet" href="../css/core.css">
@@ -23,7 +23,7 @@
       </ul>
     </nav>
     <main>
-      <h1>Horizontal Multi-Thumb Slider Example</h1>
+      <h1>Horizontal Multi-Thumb Slider Example with Mobile Support</h1>
       <p>
         The below example section includes a slider for setting a price range that demonstrates the
         <a href="../../#slidertwothumb">multi-thumb slider design pattern.</a>
@@ -42,8 +42,8 @@
           Three thermostat control single-thumb sliders that demonstrate using aria-orientation and aria-valuetext.
         </li>
         <li>
-          <a href="slider-multithumb-moible.html">Slider Examples for setting a range of values with mobile support</a>:
-          Two multithumb sliders for a setting a hotel and flight price range, with input boxes to support mobile browsers.
+          <a href="slider-multithumb.html">Slider Examples for setting a range of values</a>:
+          Two multi-thumb sliders for a setting a hotel and flight price range.
         </li>
       </ul>
       <section>
@@ -53,7 +53,18 @@
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div id="ex1">
           <h3>Hotel Price Range</h3>
-          <div class="slider-multithumb">
+          <div class="slider-multithumb mobile">
+            <span class="input-minimum">
+              $
+              <input type="number"
+                tabindex="-1"
+                size="4"
+                min="0"
+                max="100"
+                value="0"
+                aria-label="Hotel Minimum Price"
+                />
+            </span>
             <svg class="slider-group"  width="360" height="60">
               <rect class="rail"/>
               <g class="slider">
@@ -81,9 +92,31 @@
                   points="322,5 305,15 322,25"/>
               </g>
             </svg>
+            <span class="input-maximum">
+              $
+              <input type="number"
+                tabindex="-1"
+                class=""
+                size="4"
+                min="100"
+                max="400"
+                value="250"
+                aria-label="Hotel Maximum Price"
+                />
+            </span>
            </div>
           <h3>Flight Price Range</h3>
           <div class="slider-multithumb">
+            <span class="input-minimum">
+              $
+              <input type="number"
+                tabindex="-1"
+                size="4"
+                min="0"
+                max="250"
+                value="0"
+                aria-label="Flight Minimum Price"/>
+            </span>
             <svg class="slider-group"  width="360" height="60">
               <rect class="rail"/>
               <g class="slider">
@@ -111,6 +144,16 @@
                   points="22,5 5,15 22,25"/>
                </g>
              </svg>
+             <span class="input-maximum">
+               $
+               <input type="number"
+                tabindex="-1"
+                size="4"
+                min="250"
+                max="1000"
+                value="400"
+                aria-label="Flight Maximum Price"/>
+             </span>
            </div>
           </div>
         </div>
