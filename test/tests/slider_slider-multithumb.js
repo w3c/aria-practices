@@ -8,8 +8,7 @@ const exampleFile = 'slider/slider-multithumb.html';
 
 const ex = {
   sliderSelector: '#ex1 [role="slider"]',
-  hotelSliderSelector:
-    '#ex1 .slider-multithumb:nth-of-type(1) [role="slider"]',
+  hotelSliderSelector: '#ex1 .slider-multithumb:nth-of-type(1) [role="slider"]',
   flightSliderSelector:
     '#ex1 .slider-multithumb:nth-of-type(2) [role="slider"]',
   hotelMin: '0',
