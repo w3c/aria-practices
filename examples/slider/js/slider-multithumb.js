@@ -5,7 +5,7 @@
  *   File:   slider-multithumb.js
  *
  *   Desc:   A dual slider widget that implements ARIA Authoring Practices
-*/
+ */
 
 'use strict';
 
@@ -25,8 +25,10 @@ class SliderMultithumb {
     this.maxInputNode = domNode.querySelector('.input-maximum input');
 
     if (this.minInputNode) {
-      this.minInputNode.addEventListener('change', this.onInputChange.bind(this));
-      this.minInputNode.addEventListener('blur', this.onInputChange.bind(this));
+      this.minInputNode.addEventListener('change',
+       this.onInputChange.bind(this));
+      this.minInputNode.addEventListener('blur',
+        this.onInputChange.bind(this));
       this.minInputNode.min = this.getValueMin(this.minSliderNode);
       this.minInputNode.max = this.getValueMax(this.minSliderNode);
     }
@@ -57,15 +59,23 @@ class SliderMultithumb {
     this.sliderMinValue = this.getValueMin(this.minSliderNode);
     this.sliderMaxValue = this.getValueMax(this.maxSliderNode);
 
-    this.minSliderNode.addEventListener('keydown', this.onSliderKeydown.bind(this));
-    this.minSliderNode.addEventListener('mousedown', this.onSliderMousedown.bind(this));
-    this.minSliderNode.addEventListener('focus', this.onSliderFocus.bind(this));
-    this.minSliderNode.addEventListener('blur', this.onSliderBlur.bind(this));
+    this.minSliderNode.addEventListener('keydown',
+      this.onSliderKeydown.bind(this));
+    this.minSliderNode.addEventListener('mousedown',
+      this.onSliderMousedown.bind(this));
+    this.minSliderNode.addEventListener('focus',
+      this.onSliderFocus.bind(this));
+    this.minSliderNode.addEventListener('blur',
+      this.onSliderBlur.bind(this));
 
-    this.maxSliderNode.addEventListener('keydown', this.onSliderKeydown.bind(this));
-    this.maxSliderNode.addEventListener('mousedown', this.onSliderMousedown.bind(this));
-    this.maxSliderNode.addEventListener('focus', this.onSliderFocus.bind(this));
-    this.maxSliderNode.addEventListener('blur', this.onSliderBlur.bind(this));
+    this.maxSliderNode.addEventListener('keydown',
+      this.onSliderKeydown.bind(this));
+    this.maxSliderNode.addEventListener('mousedown',
+      this.onSliderMousedown.bind(this));
+    this.maxSliderNode.addEventListener('focus',
+      this.onSliderFocus.bind(this));
+    this.maxSliderNode.addEventListener('blur',
+      this.onSliderBlur.bind(this));
 
     this.moveSliderTo(this.minSliderNode, this.getValue(this.minSliderNode));
 
@@ -97,24 +107,27 @@ class SliderMultithumb {
     let valueMin = this.getValueMin(sliderNode);
     let valueMax = this.getValueMax(sliderNode);
 
-    return (value <= valueMax) && (value >= valueMin);
+    return value <= valueMax && value >= valueMin;
   }
 
   isOutOfRange(value) {
     let valueMin = this.getValueMin(this.minSliderNode);
     let valueMax = this.getValueMax(this.maxSliderNode);
 
-    return (value > valueMax) || (value < valueMin);
+    return value > valueMax || value < valueMin;
   }
 
   moveSliderTo(sliderNode, value) {
-    var valueMax, valueMin, pos, points = '', width;
+    var valueMax,
+      valueMin,
+      pos,
+      points = '',
+      width;
 
     if(this.isMinSlider(sliderNode)){
       valueMin = this.getValueMin(this.minSliderNode);
       valueMax = this.getValueMax(this.minSliderNode);
-    }
-    else{
+    } else{
       valueMin = this.getValueMin(this.maxSliderNode);
       valueMax = this.getValueMax(this.maxSliderNode);
     }
@@ -132,7 +145,8 @@ class SliderMultithumb {
     sliderNode.setAttribute('aria-valuetext', dollarValue);
 
     pos = this.railLeft;
-    pos += Math.round((value * (this.railWidth - this.thumbWidth)) / (this.sliderMaxValue - this.sliderMinValue));
+    pos += Math.round((value * (this.railWidth - this.thumbWidth)) /
+      (this.sliderMaxValue - this.sliderMinValue));
 
     if (this.isMinSlider(sliderNode)) {
 
@@ -147,19 +161,21 @@ class SliderMultithumb {
 
       // move the SVG elements
       points = `${pos},${this.thumbTop}`;
-      points += ` ${pos + this.thumbWidth},${this.thumbTop + (this.thumbHeight/2)}`;
+      points += ` ${pos + this.thumbWidth},${this.thumbTop + this.thumbHeight/2)}`;
       points += ` ${pos},${this.thumbTop + this.thumbHeight}`;
 
       this.minSliderNode.setAttribute('points', points);
       width = this.minSliderValueNode.getBoundingClientRect().width;
-      this.minSliderValueNode.setAttribute('x', (pos + this.thumbWidth - width - 2));
-      this.minSliderValueNode.setAttribute('y', this.valueTop);
+      this.minSliderValueNode.setAttribute(
+        'x', (pos + this.thumbWidth - width - 2));
+      this.minSliderValueNode.setAttribute(
+        'y', this.valueTop);
 
     }
     else {
-      points = `${pos + this.thumbWidth},${this.thumbTop + (this.thumbHeight/2)}`;
-      points += ` ${pos + (2 * this.thumbWidth)},${this.thumbTop}`;
-      points += ` ${pos + (2 * this.thumbWidth)},${this.thumbTop + this.thumbHeight}`;
+      points = `${pos + this.thumbWidth},${this.thumbTop + this.thumbHeight/2}`;
+      points += ` ${pos + 2 * this.thumbWidth},${this.thumbTop}`;
+      points += ` ${pos + 2 * this.thumbWidth},${this.thumbTop + this.thumbHeight}`;
 
       // move the SVG elements
       this.maxSliderNode.setAttribute('points', points);
@@ -225,7 +241,6 @@ class SliderMultithumb {
       event.preventDefault();
       event.stopPropagation();
     }
-
   }
 
   onSliderFocus(event) {
@@ -250,7 +265,9 @@ class SliderMultithumb {
         diffX -= (3 * self.thumbWidth) / 2;
       }
 
-      var value = parseInt(((self.sliderMaxValue - self.sliderMinValue) * diffX) / self.railWidth);
+      var value = parseInt(
+        ((self.sliderMaxValue - self.sliderMinValue) * diffX) /
+        self.railWidth);
 
       self.moveSliderTo(sliderNode, value);
 
@@ -274,7 +291,6 @@ class SliderMultithumb {
 
     // Set focus to the clicked handle
     sliderNode.focus();
-
   }
 
   onInputChange(event){
