@@ -7,9 +7,9 @@ const assertAriaRoles = require('../util/assertAriaRoles');
 const exampleFile = 'slider/slider-multithumb-mobile.html';
 
 const ex = {
+  inputSelector: '#ex1 input[type="number"]',
   sliderSelector: '#ex1 [role="slider"]',
-  hotelSliderSelector:
-    '#ex1 .slider-multithumb:nth-of-type(1) [role="slider"]',
+  hotelSliderSelector: '#ex1 .slider-multithumb:nth-of-type(1) [role="slider"]',
   flightSliderSelector:
     '#ex1 .slider-multithumb:nth-of-type(2) [role="slider"]',
   hotelMin: '0',
@@ -48,6 +48,15 @@ const verifyAllValues = async function (
 };
 
 // Attributes
+
+ariaTest(
+  '"tabindex" set to "-1" on input elements',
+  exampleFile,
+  'tabindex',
+  async (t) => {
+    await assertAttributeValues(t, ex.inputSelector, 'tabindex', '-1');
+  }
+);
 
 ariaTest(
   'role="slider" on div element',
