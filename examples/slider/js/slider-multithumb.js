@@ -8,7 +8,6 @@
  */
 
 'use strict';
-
 // Create SliderMultithumb that contains two slider thumbs
 class SliderMultithumb {
   constructor(domNode) {
