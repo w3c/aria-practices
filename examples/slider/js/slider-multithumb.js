@@ -24,16 +24,20 @@ class SliderMultithumb {
     this.maxInputNode = domNode.querySelector('.input-maximum input');
 
     if (this.minInputNode) {
-      this.minInputNode.addEventListener('change',
-       this.onInputChange.bind(this));
-      this.minInputNode.addEventListener('blur',
-        this.onInputChange.bind(this));
+      this.minInputNode.addEventListener(
+        'change',
+        this.onInputChange.bind(this)
+      );
+      this.minInputNode.addEventListener('blur', this.onInputChange.bind(this));
       this.minInputNode.min = this.getValueMin(this.minSliderNode);
       this.minInputNode.max = this.getValueMax(this.minSliderNode);
     }
 
     if (this.maxInputNode) {
-      this.maxInputNode.addEventListener('change', this.onInputChange.bind(this));
+      this.maxInputNode.addEventListener(
+        'change',
+        this.onInputChange.bind(this)
+      );
       this.minInputNode.addEventListener('blur', this.onInputChange.bind(this));
       this.maxInputNode.min = this.getValueMin(this.maxSliderNode);
       this.maxInputNode.max = this.getValueMax(this.maxSliderNode);
@@ -58,28 +62,31 @@ class SliderMultithumb {
     this.sliderMinValue = this.getValueMin(this.minSliderNode);
     this.sliderMaxValue = this.getValueMax(this.maxSliderNode);
 
-    this.minSliderNode.addEventListener('keydown',
-      this.onSliderKeydown.bind(this));
-    this.minSliderNode.addEventListener('mousedown',
-      this.onSliderMousedown.bind(this));
-    this.minSliderNode.addEventListener('focus',
-      this.onSliderFocus.bind(this));
-    this.minSliderNode.addEventListener('blur',
-      this.onSliderBlur.bind(this));
+    this.minSliderNode.addEventListener(
+      'keydown',
+      this.onSliderKeydown.bind(this)
+    );
+    this.minSliderNode.addEventListener(
+      'mousedown',
+      this.onSliderMousedown.bind(this)
+    );
+    this.minSliderNode.addEventListener('focus', this.onSliderFocus.bind(this));
+    this.minSliderNode.addEventListener('blur', this.onSliderBlur.bind(this));
 
-    this.maxSliderNode.addEventListener('keydown',
-      this.onSliderKeydown.bind(this));
-    this.maxSliderNode.addEventListener('mousedown',
-      this.onSliderMousedown.bind(this));
-    this.maxSliderNode.addEventListener('focus',
-      this.onSliderFocus.bind(this));
-    this.maxSliderNode.addEventListener('blur',
-      this.onSliderBlur.bind(this));
+    this.maxSliderNode.addEventListener(
+      'keydown',
+      this.onSliderKeydown.bind(this)
+    );
+    this.maxSliderNode.addEventListener(
+      'mousedown',
+      this.onSliderMousedown.bind(this)
+    );
+    this.maxSliderNode.addEventListener('focus', this.onSliderFocus.bind(this));
+    this.maxSliderNode.addEventListener('blur', this.onSliderBlur.bind(this));
 
     this.moveSliderTo(this.minSliderNode, this.getValue(this.minSliderNode));
 
     this.moveSliderTo(this.maxSliderNode, this.getValue(this.maxSliderNode));
-
   }
 
   getValue(sliderNode) {
@@ -90,7 +97,7 @@ class SliderMultithumb {
     return parseInt(sliderNode.getAttribute('aria-valuemin'));
   }
 
-  getValueMax(sliderNode){
+  getValueMax(sliderNode) {
     return parseInt(sliderNode.getAttribute('aria-valuemax'));
   }
 
@@ -105,14 +112,12 @@ class SliderMultithumb {
   isInRange(sliderNode, value) {
     let valueMin = this.getValueMin(sliderNode);
     let valueMax = this.getValueMax(sliderNode);
-
     return value <= valueMax && value >= valueMin;
   }
 
   isOutOfRange(value) {
     let valueMin = this.getValueMin(this.minSliderNode);
     let valueMax = this.getValueMax(this.maxSliderNode);
-
     return value > valueMax || value < valueMin;
   }
 
@@ -123,10 +128,10 @@ class SliderMultithumb {
       points = '',
       width;
 
-    if(this.isMinSlider(sliderNode)){
+    if (this.isMinSlider(sliderNode)) {
       valueMin = this.getValueMin(this.minSliderNode);
       valueMax = this.getValueMax(this.minSliderNode);
-    } else{
+    } else {
       valueMin = this.getValueMin(this.maxSliderNode);
       valueMax = this.getValueMax(this.maxSliderNode);
     }
@@ -144,11 +149,12 @@ class SliderMultithumb {
     sliderNode.setAttribute('aria-valuetext', dollarValue);
 
     pos = this.railLeft;
-    pos += Math.round((value * (this.railWidth - this.thumbWidth)) /
-      (this.sliderMaxValue - this.sliderMinValue));
+    pos += Math.round(
+      (value * (this.railWidth - this.thumbWidth)) /
+        (this.sliderMaxValue - this.sliderMinValue)
+    );
 
     if (this.isMinSlider(sliderNode)) {
-
       // update INPUT, label and ARIA attributes
       this.minSliderValueNode.textContent = dollarValue;
       this.maxSliderNode.setAttribute('aria-valuemin', value);
@@ -160,21 +166,26 @@ class SliderMultithumb {
 
       // move the SVG elements
       points = `${pos},${this.thumbTop}`;
-      points += ` ${pos + this.thumbWidth},${this.thumbTop + this.thumbHeight/2}`;
+      points += ` ${pos + this.thumbWidth},${
+        this.thumbTop + this.thumbHeight / 2
+      }`;
       points += ` ${pos},${this.thumbTop + this.thumbHeight}`;
 
       this.minSliderNode.setAttribute('points', points);
       width = this.minSliderValueNode.getBoundingClientRect().width;
       this.minSliderValueNode.setAttribute(
-        'x', (pos + this.thumbWidth - width - 2));
-      this.minSliderValueNode.setAttribute(
-        'y', this.valueTop);
-
-    }
-    else {
-      points = `${pos + this.thumbWidth},${this.thumbTop + this.thumbHeight/2}`;
+        'x',
+        pos + this.thumbWidth - width - 2
+      );
+      this.minSliderValueNode.setAttribute('y', this.valueTop);
+    } else {
+      points = `${pos + this.thumbWidth},${
+        this.thumbTop + this.thumbHeight / 2
+      }`;
       points += ` ${pos + 2 * this.thumbWidth},${this.thumbTop}`;
-      points += ` ${pos + 2 * this.thumbWidth},${this.thumbTop + this.thumbHeight}`;
+      points += ` ${pos + 2 * this.thumbWidth},${
+        this.thumbTop + this.thumbHeight
+      }`;
 
       // move the SVG elements
       this.maxSliderNode.setAttribute('points', points);
@@ -242,21 +253,17 @@ class SliderMultithumb {
     }
   }
 
-  onSliderFocus(event) {
-    this.domNode.classList.add('focus');};
+  onSliderFocus() {
+    this.domNode.classList.add('focus');
+  }
 
-    onSliderBlur(event) {
+  onSliderBlur() {
     this.domNode.classList.remove('focus');
   }
 
   onSliderMousedown(event) {
-    var sliderNode = event.currentTarget;
-    var isMinSlider = this.isMinSlider(sliderNode);
-    var self = this;
-
-    var onMousemove = function(event) {
-
-      var diffX = event.pageX - self.railNode.getBoundingClientRect().left;
+    var onMousemove = function (e) {
+      var diffX = e.pageX - self.railNode.getBoundingClientRect().left;
 
       if (isMinSlider) {
         diffX -= self.thumbWidth / 2;
@@ -265,19 +272,23 @@ class SliderMultithumb {
       }
 
       var value = parseInt(
-        ((self.sliderMaxValue - self.sliderMinValue) * diffX) /
-        self.railWidth);
+        ((self.sliderMaxValue - self.sliderMinValue) * diffX) / self.railWidth
+      );
 
       self.moveSliderTo(sliderNode, value);
 
-      event.preventDefault();
-      event.stopPropagation();
+      e.preventDefault();
+      e.stopPropagation();
     };
 
-    var onMouseup = function() {
+    var onMouseup = function () {
       document.removeEventListener('mousemove', onMousemove);
       document.removeEventListener('mouseup', onMouseup);
     };
+
+    var sliderNode = event.currentTarget;
+    var isMinSlider = this.isMinSlider(sliderNode);
+    var self = this;
 
     // bind a mousemove event handler to move pointer
     document.addEventListener('mousemove', onMousemove);
@@ -292,14 +303,14 @@ class SliderMultithumb {
     sliderNode.focus();
   }
 
-  onInputChange(event){
+  onInputChange(event) {
     var tgt = event.currentTarget,
-        value = tgt.value,
-        isNumber = typeof parseInt(value) === 'number';
+      value = tgt.value,
+      isNumber = typeof parseInt(value) === 'number';
 
-//    console.log('\n[onInputChange][   label]: ' + tgt.getAttribute('aria-label'));
-//    console.log('[onInputChange][isNumber]: ' + isNumber);
-//    console.log('[onInputChange][   value]: ' + value + ' ' + value.length + ' ' + typeof value);
+    //    console.log('\n[onInputChange][   label]: ' + tgt.getAttribute('aria-label'));
+    //    console.log('[onInputChange][isNumber]: ' + isNumber);
+    //    console.log('[onInputChange][   value]: ' + value + ' ' + value.length + ' ' + typeof value);
 
     if (this.isMinInput(tgt)) {
       if (value.length === 0) {
@@ -327,7 +338,6 @@ class SliderMultithumb {
 
 // Initialize Multithumb Slider widgets on the page
 window.addEventListener('load', function () {
-
   var slidersMultithumb = document.querySelectorAll('.slider-multithumb');
 
   for (let i = 0; i < slidersMultithumb.length; i++) {
