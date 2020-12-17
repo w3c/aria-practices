@@ -1,10 +1,10 @@
 /*
-* This content is licensed according to the W3C Software License at
-* https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-* File:   slider-multithumb.js
-*
-* Desc:   A dual slider widget that implements ARIA Authoring Practices
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   slider-multithumb.js
+ *
+ *   Desc:   A dual slider widget that implements ARIA Authoring Practices
 */
 
 'use strict';
@@ -33,7 +33,7 @@ class SliderMultithumb {
 
     if (this.maxInputNode) {
       this.maxInputNode.addEventListener('change', this.onInputChange.bind(this));
-      this.minInputNode.addEventListener('blur',   this.onInputChange.bind(this));
+      this.minInputNode.addEventListener('blur', this.onInputChange.bind(this));
       this.maxInputNode.min = this.getValueMin(this.maxSliderNode);
       this.maxInputNode.max = this.getValueMax(this.maxSliderNode);
     }
@@ -57,15 +57,15 @@ class SliderMultithumb {
     this.sliderMinValue = this.getValueMin(this.minSliderNode);
     this.sliderMaxValue = this.getValueMax(this.maxSliderNode);
 
-    this.minSliderNode.addEventListener('keydown',   this.onSliderKeydown.bind(this));
+    this.minSliderNode.addEventListener('keydown', this.onSliderKeydown.bind(this));
     this.minSliderNode.addEventListener('mousedown', this.onSliderMousedown.bind(this));
-    this.minSliderNode.addEventListener('focus',     this.onSliderFocus.bind(this));
-    this.minSliderNode.addEventListener('blur',      this.onSliderBlur.bind(this));
+    this.minSliderNode.addEventListener('focus', this.onSliderFocus.bind(this));
+    this.minSliderNode.addEventListener('blur', this.onSliderBlur.bind(this));
 
-    this.maxSliderNode.addEventListener('keydown',   this.onSliderKeydown.bind(this));
+    this.maxSliderNode.addEventListener('keydown', this.onSliderKeydown.bind(this));
     this.maxSliderNode.addEventListener('mousedown', this.onSliderMousedown.bind(this));
-    this.maxSliderNode.addEventListener('focus',     this.onSliderFocus.bind(this));
-    this.maxSliderNode.addEventListener('blur',      this.onSliderBlur.bind(this));
+    this.maxSliderNode.addEventListener('focus', this.onSliderFocus.bind(this));
+    this.maxSliderNode.addEventListener('blur', this.onSliderBlur.bind(this));
 
     this.moveSliderTo(this.minSliderNode, this.getValue(this.minSliderNode));
 
