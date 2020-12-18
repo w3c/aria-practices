@@ -1,8 +1,14 @@
 /* CSS Document */
 
 .slider-multithumb {
-  padding-top: 0.5em;
-  padding-bottom: 1em;
+  padding: 6px;
+  width: 550px;
+}
+
+.slider-multithumb.focus {
+  padding: 4px;
+  border: 2px solid #005a9c;
+  border-radius: 5px;
 }
 
 .slider-multithumb.mobile {

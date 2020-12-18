@@ -28,6 +28,8 @@ class SliderMultithumb {
         this.onInputChange.bind(this)
       );
       this.minInputNode.addEventListener('blur', this.onInputChange.bind(this));
+      this.minInputNode.addEventListener('blur', this.onSliderBlur.bind(this));
+      this.minInputNode.addEventListener('focus', this.onSliderBlur.bind(this));
       this.minInputNode.min = this.getValueMin(this.minSliderNode);
       this.minInputNode.max = this.getValueMax(this.minSliderNode);
     }
@@ -37,7 +39,9 @@ class SliderMultithumb {
         'change',
         this.onInputChange.bind(this)
       );
-      this.minInputNode.addEventListener('blur', this.onInputChange.bind(this));
+      this.maxInputNode.addEventListener('blur', this.onInputChange.bind(this));
+      this.maxInputNode.addEventListener('blur', this.onSliderBlur.bind(this));
+      this.maxInputNode.addEventListener('focus', this.onSliderBlur.bind(this));
       this.maxInputNode.min = this.getValueMin(this.maxSliderNode);
       this.maxInputNode.max = this.getValueMax(this.maxSliderNode);
     }
