@@ -307,10 +307,6 @@ class SliderMultithumb {
       value = tgt.value,
       isNumber = typeof parseInt(value) === 'number';
 
-    //    console.log('\n[onInputChange][   label]: ' + tgt.getAttribute('aria-label'));
-    //    console.log('[onInputChange][isNumber]: ' + isNumber);
-    //    console.log('[onInputChange][   value]: ' + value + ' ' + value.length + ' ' + typeof value);
-
     if (this.isMinInput(tgt)) {
       if (value.length === 0) {
         tgt.value = this.getValue(this.minSliderNode);
