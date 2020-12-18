@@ -1,23 +1,17 @@
-/*! skipto - v3.1.0 - 2020-12-03
- * https://github.com/paypal/skipto
- * Copyright (c) 2020 PayPal Accessibility Team and University of Illinois; Licensed BSD */
-/*@cc_on @*/
-/*@if (@_javascript_version >= 5.8) @*/
-/*jslint developer: true */
-/* ========================================================================
- * Copyright (c) <2020> PayPal
- * All rights reserved.
- * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
- * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
- * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
- * Neither the name of PayPal or any of its subsidiaries or affiliates nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- * ======================================================================== */
+/*
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   jumpto.js
+ *
+ *   Desc:   Jump to provides keyboard navigation to document structure
+ *           This feature is based on the ARIA APG menu button example
+ */
 
 'use strict';
 
 (function () {
-  var SkipTo = {
+  var JumpTo = {
     domNode: null,
     buttonNode: null,
     menuNode: null,
@@ -49,14 +43,14 @@
       accesskeyNotSupported: ' is not supported on this browser.',
       buttonTitle: 'Keyboard Navigation',
       buttonTitleWithAccesskey: 'Keyboard Navigation\nAccesskey is "$key"',
-      buttonLabel: 'Skip To Content',
+      buttonLabel: 'Jump To Content',
 
       // Menu labels and messages
       menuLabel: 'Landmarks and Headings',
-      landmarkImportantGroupLabel: 'Important Landmarks',
-      landmarkAllGroupLabel: 'All Landmarks',
-      headingImportantGroupLabel: 'Important Headings',
-      headingAllGroupLabel: 'All Headings',
+      landmarkSelectedGroupLabel: 'Landmarks',
+      landmarkAllGroupLabel: 'Landmarks',
+      headingSelectedGroupLabel: 'Headings',
+      headingAllGroupLabel: 'Headings',
       headingLevelLabel: 'Heading level',
       mainLabel: 'main',
       searchLabel: 'search',
@@ -72,18 +66,18 @@
       // Action labels and messages
       actionGroupLabel: 'Actions',
       actionShowHeadingsHelp:
-        'Toggles between showing "All" and "Important" headings.',
-      actionShowImportantHeadingsLabel: 'Show Important Headings ($num)',
-      actionShowAllHeadingsLabel: 'Show All headings ($num)',
+        'Toggles between showing "All" and "Selected" Headings.',
+      actionShowSelectedHeadingsLabel: 'Show Selected Headings ($num)',
+      actionShowAllHeadingsLabel: 'Show All Headings ($num)',
       actionShowLandmarksHelp:
-        'Toggles between showing "All" and "Important" landmarks.',
-      actionShowImportantLandmarksLabel: 'Show Important landmarks ($num)',
-      actionShowAllLandmarksLabel: 'Show All landmarks ($num)',
+        'Toggles between showing "All" and "Selected" Landmarks.',
+      actionShowSelectedLandmarksLabel: 'Show Selected Landmarks ($num)',
+      actionShowAllLandmarksLabel: 'Show All Landmarks ($num)',
 
-      actionShowImportantHeadingsAriaLabel: 'Show $num Important Headings',
-      actionShowAllHeadingsAriaLabel: 'Show All $num headings',
-      actionShowImportantLandmarksAriaLabel: 'Show $num Important landmarks',
-      actionShowAllLandmarksAriaLabel: 'Show All $num landmarks',
+      actionShowSelectedHeadingsAriaLabel: 'Show $num selected headings',
+      actionShowAllHeadingsAriaLabel: 'Show all $num headings',
+      actionShowSelectedLandmarksAriaLabel: 'Show $num selected landmarks',
+      actionShowAllLandmarksAriaLabel: 'Show all $num landmarks',
 
       // Selectors for landmark and headings sections
       landmarks:
@@ -108,39 +102,6 @@
     },
     colorThemes: {
       default: {
-        positionLeft: '46%',
-        buttonColor: '#1a1a1a',
-        buttonBackgroundColor: '#eeeeee',
-        buttonBorderColor: '#eeeeee',
-        buttonFocusColor: '#000000',
-        buttonFocusBackgroundColor: '#dcdcdc',
-        buttonFocusBorderColor: '#1a1a1a',
-        menuBackgroundColor: '#eeeeee',
-        menuBorderColor: '1a1a1a',
-        menuitemColor: '#1a1a1a',
-        menuitemBackgroundColor: '#eeeeee',
-        menuitemFocusColor: '#eeeeee',
-        menuitemFocusBackgroundColor: '#1a1a1a',
-        menuitemFocusBorderColor: '#1a1a1a',
-      },
-      illinois: {
-        positionLeft: '46%',
-        buttonColor: '#00132c',
-        buttonBackgroundColor: '#dddede',
-        buttonBorderColor: '#dddede',
-        buttonFocusColor: '#00132c',
-        buttonFocusBackgroundColor: '#cad9ef',
-        buttonFocusBorderColor: '#ff552e',
-        menuBackgroundColor: '#cad9ef',
-        menuitemLevelOpacity: '0.7',
-        menuBorderColor: '#ff552e',
-        menuitemColor: '#00132c',
-        menuitemBackgroundColor: '#cad9ef',
-        menuitemFocusColor: '#eeeeee',
-        menuitemFocusBackgroundColor: '#00132c',
-        menuitemFocusBorderColor: '#ff552e',
-      },
-      aria: {
         positionLeft: '',
         buttonColor: '#005a9c;',
         buttonBackgroundColor: '#def',
@@ -158,11 +119,11 @@
       },
     },
     defaultCSS:
-      '.skip-to.popup{position:absolute;top:-30em;left:-3000em}.skip-to,.skip-to.popup.focus{position:absolute;top:0;left:$positionLeft}.skip-to button{position:relative;margin:0;padding:6px 8px 6px 8px;border-width:0 1px 1px 1px;border-style:solid;border-radius:0 0 6px 6px;background-color:$buttonBackgroundColor;border-color:$buttonBorderColor;color:$buttonColor;z-index:1000}.skip-to [role=menu]{position:absolute;min-width:17em;display:none;margin:0;padding:.25rem;background-color:$menuBackgroundColor;border-width:2px;border-style:solid;border-color:$menuBorderColor;border-radius:5px;z-index:1000}.skip-to [role=group]{display:grid;grid-auto-rows:min-content;grid-row-gap:1px}.skip-to [role=separator]:first-child{border-radius:5px 5px 0 0}.skip-to [role=menuitem]{padding:3px;display:block;width:auto;border-width:0;border-style:solid;color:$menuitemColor;background-color:$menuitemBackgroundColor;z-index:1000;display:grid;overflow-y:auto;grid-template-columns:repeat(6,1.2rem) 1fr;grid-column-gap:2px;font-size:1em}.skip-to [role=menuitem] .label:first-letter,.skip-to [role=menuitem] .level:first-letter{text-decoration:underline;text-transform:uppercase}.skip-to [role=menuitem] .level{text-align:right;padding-right:4px}.skip-to [role=menuitem] .label{margin:0;padding:0;display:inline-block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.skip-to [role=menuitem].skip-to-h1 .level{grid-column:1}.skip-to [role=menuitem].skip-to-h2 .level{grid-column:2}.skip-to [role=menuitem].skip-to-h3 .level{grid-column:3}.skip-to [role=menuitem].skip-to-h4 .level{grid-column:4}.skip-to [role=menuitem].skip-to-h5 .level{grid-column:5}.skip-to [role=menuitem].skip-to-h6 .level{grid-column:8}.skip-to [role=menuitem].skip-to-h1 .label{grid-column:2/8}.skip-to [role=menuitem].skip-to-h2 .label{grid-column:3/8}.skip-to [role=menuitem].skip-to-h3 .label{grid-column:4/8}.skip-to [role=menuitem].skip-to-h4 .label{grid-column:5/8}.skip-to [role=menuitem].skip-to-h5 .label{grid-column:6/8}.skip-to [role=menuitem].skip-to-h6 .label{grid-column:7/8}.skip-to [role=menuitem].skip-to-h1.no-level .label{grid-column:1/8}.skip-to [role=menuitem].skip-to-h2.no-level .label{grid-column:2/8}.skip-to [role=menuitem].skip-to-h3.no-level .label{grid-column:3/8}.skip-to [role=menuitem].skip-to-h4.no-level .label{grid-column:4/8}.skip-to [role=menuitem].skip-to-h5.no-level .label{grid-column:5/8}.skip-to [role=menuitem].skip-to-h6.no-level .label{grid-column:6/8}.skip-to [role=menuitem].skip-to-nesting-level-1 .nesting{grid-column:1}.skip-to [role=menuitem].skip-to-nesting-level-2 .nesting{grid-column:2}.skip-to [role=menuitem].skip-to-nesting-level-3 .nesting{grid-column:3}.skip-to [role=menuitem].skip-to-nesting-level-0 .label{grid-column:1/8}.skip-to [role=menuitem].skip-to-nesting-level-1 .label{grid-column:2/8}.skip-to [role=menuitem].skip-to-nesting-level-2 .label{grid-column:3/8}.skip-to [role=menuitem].skip-to-nesting-level-3 .label{grid-column:4/8}.skip-to [role=menuitem].action .label,.skip-to [role=menuitem].no-items .label{grid-column:1/8}.skip-to [role=separator]{margin:1px 0 1px 0;padding:3px;display:block;width:auto;font-weight:700;text-align:left;border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:$menuitemColor;background-color:$menuitemBackgroundColor;color:$menuitemColor;z-index:1000}.skip-to [role=separator]:first-child{border-radius:5px 5px 0 0}.skip-to [role=menuitem].last{border-radius:0 0 5px 5px}.skip-to.focus{display:block}.skip-to button:focus,.skip-to button:hover{background-color:$buttonFocusBackgroundColor;color:$buttonFocusColor;outline:0}.skip-to button:focus{padding:4px 7px 5px 7px;border-width:2px 2px 2px 2px;border-color:$buttonFocusBorderColor}.skip-to [role=menuitem]:focus{padding:1px;border-width:2px;border-style:solid;border-color:$menuitemFocusBorderColor;background-color:$menuitemFocusBackgroundColor;color:$menuitemFocusColor;outline:0}',
+      '.jump-to.popup{position:absolute;top:-30em;left:-3000em}.jump-to,.jump-to.popup.focus{position:absolute;top:0;left:$positionLeft}.jump-to button{position:relative;margin:0;padding:6px 8px 6px 8px;border-width:0 1px 1px 1px;border-style:solid;border-radius:0 0 6px 6px;background-color:$buttonBackgroundColor;border-color:$buttonBorderColor;color:$buttonColor;z-index:1000}.jump-to [role=menu]{position:absolute;min-width:17em;display:none;margin:0;padding:.25rem;background-color:$menuBackgroundColor;border-width:2px;border-style:solid;border-color:$menuBorderColor;border-radius:5px;z-index:1000}.jump-to [role=group]{display:grid;grid-auto-rows:min-content;grid-row-gap:1px}.jump-to [role=separator]:first-child{border-radius:5px 5px 0 0}.jump-to [role=menuitem]{padding:3px;display:block;width:auto;border-width:0;border-style:solid;color:$menuitemColor;background-color:$menuitemBackgroundColor;z-index:1000;display:grid;overflow-y:auto;grid-template-columns:repeat(6,1.2rem) 1fr;grid-column-gap:2px;font-size:1em}.jump-to [role=menuitem] .label:first-letter,.jump-to [role=menuitem] .level:first-letter{text-decoration:underline;text-transform:uppercase}.jump-to [role=menuitem] .level{text-align:right;padding-right:4px}.jump-to [role=menuitem] .label{margin:0;padding:0;display:inline-block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.jump-to [role=menuitem].jump-to-h1 .level{grid-column:1}.jump-to [role=menuitem].jump-to-h2 .level{grid-column:2}.jump-to [role=menuitem].jump-to-h3 .level{grid-column:3}.jump-to [role=menuitem].jump-to-h4 .level{grid-column:4}.jump-to [role=menuitem].jump-to-h5 .level{grid-column:5}.jump-to [role=menuitem].jump-to-h6 .level{grid-column:8}.jump-to [role=menuitem].jump-to-h1 .label{grid-column:2/8}.jump-to [role=menuitem].jump-to-h2 .label{grid-column:3/8}.jump-to [role=menuitem].jump-to-h3 .label{grid-column:4/8}.jump-to [role=menuitem].jump-to-h4 .label{grid-column:5/8}.jump-to [role=menuitem].jump-to-h5 .label{grid-column:6/8}.jump-to [role=menuitem].jump-to-h6 .label{grid-column:7/8}.jump-to [role=menuitem].jump-to-h1.no-level .label{grid-column:1/8}.jump-to [role=menuitem].jump-to-h2.no-level .label{grid-column:2/8}.jump-to [role=menuitem].jump-to-h3.no-level .label{grid-column:3/8}.jump-to [role=menuitem].jump-to-h4.no-level .label{grid-column:4/8}.jump-to [role=menuitem].jump-to-h5.no-level .label{grid-column:5/8}.jump-to [role=menuitem].jump-to-h6.no-level .label{grid-column:6/8}.jump-to [role=menuitem].jump-to-nesting-level-1 .nesting{grid-column:1}.jump-to [role=menuitem].jump-to-nesting-level-2 .nesting{grid-column:2}.jump-to [role=menuitem].jump-to-nesting-level-3 .nesting{grid-column:3}.jump-to [role=menuitem].jump-to-nesting-level-0 .label{grid-column:1/8}.jump-to [role=menuitem].jump-to-nesting-level-1 .label{grid-column:2/8}.jump-to [role=menuitem].jump-to-nesting-level-2 .label{grid-column:3/8}.jump-to [role=menuitem].jump-to-nesting-level-3 .label{grid-column:4/8}.jump-to [role=menuitem].action .label,.jump-to [role=menuitem].no-items .label{grid-column:1/8}.jump-to [role=separator]{margin:1px 0 1px 0;padding:3px;display:block;width:auto;font-weight:700;text-align:left;border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:$menuitemColor;background-color:$menuitemBackgroundColor;color:$menuitemColor;z-index:1000}.jump-to [role=separator]:first-child{border-radius:5px 5px 0 0}.jump-to [role=menuitem].last{border-radius:0 0 5px 5px}.jump-to.focus{display:block}.jump-to button:focus,.jump-to button:hover{background-color:$buttonFocusBackgroundColor;color:$buttonFocusColor;outline:0}.jump-to button:focus{padding:4px 7px 5px 7px;border-width:2px 2px 2px 2px;border-color:$buttonFocusBorderColor}.jump-to [role=menuitem]:focus{padding:1px;border-width:2px;border-style:solid;border-color:$menuitemFocusBorderColor;background-color:$menuitemFocusBackgroundColor;color:$menuitemFocusColor;outline:0}',
 
     //
     // Functions related to configuring the features
-    // of skipTo
+    // of JumpTo
     //
 
     updateStyle: function (stylePlaceholder, value, defaultValue) {
@@ -302,7 +263,7 @@
       this.addCSSColors();
       this.renderStyleElement(this.defaultCSS);
       this.domNode = document.createElement(this.config.containerElement);
-      this.domNode.classList.add('skip-to');
+      this.domNode.classList.add('jump-to');
       if (this.isNotEmptyString(this.config.customClass)) {
         this.domNode.classList.add(this.config.customClass);
       }
@@ -391,7 +352,7 @@
           localConfig[name] = appConfigSettings[name];
         } else {
           console.log(
-            '** SkipTo Problem with user configuration option "' + name + '".'
+            '** JumpTo Problem with user configuration option "' + name + '".'
           );
         }
       }
@@ -497,14 +458,14 @@
         }
         menuitemNode.setAttribute('data-level', mi.level);
         if (mi.tagName && mi.tagName.length) {
-          menuitemNode.classList.add('skip-to-' + mi.tagName);
+          menuitemNode.classList.add('jump-to-' + mi.tagName);
         }
       }
 
       // add nesting level for landmarks
       if (mi.class.includes('landmark')) {
         menuitemNode.setAttribute('data-nesting', mi.nestingLevel);
-        menuitemNode.classList.add('skip-to-nesting-level-' + mi.nestingLevel);
+        menuitemNode.classList.add('jump-to-nesting-level-' + mi.nestingLevel);
 
         if (mi.nestingLevel > 0 && mi.nestingLevel > this.lastNestingLevel) {
           nestingNode = document.createElement('span');
@@ -563,7 +524,7 @@
       if (option === 'all') {
         return this.config.headingAllGroupLabel;
       }
-      return this.config.headingImportantGroupLabel;
+      return this.config.headingSelectedGroupLabel;
     },
 
     getShowMoreHeadingsSelector: function (option) {
@@ -576,7 +537,7 @@
     getShowMoreHeadingsLabel: function (option) {
       var label, n;
 
-      label = this.config.actionShowImportantHeadingsLabel;
+      label = this.config.actionShowSelectedHeadingsLabel;
 
       if (option === 'all') {
         label = this.config.actionShowAllHeadingsLabel;
@@ -594,7 +555,7 @@
     getShowMoreHeadingsAriaLabel: function (option) {
       var label, n;
 
-      label = this.config.actionShowImportantHeadingsAriaLabel;
+      label = this.config.actionShowSelectedHeadingsAriaLabel;
 
       if (option === 'all') {
         label = this.config.actionShowAllHeadingsAriaLabel;
@@ -616,7 +577,7 @@
       item.tagName = 'action';
       item.role = 'menuitem';
       item.class = 'action';
-      item.dataId = 'skip-to-more-headings';
+      item.dataId = 'jump-to-more-headings';
       var menuitemNode = this.renderMenuitemToGroup(groupNode, item);
       menuitemNode.setAttribute('data-show-heading-option', 'all');
       menuitemNode.title = this.config.actionShowHeadingsHelp;
@@ -625,7 +586,7 @@
     updateHeadingGroupMenuitems: function (option) {
       var selector = this.getShowMoreHeadingsSelector(option);
       var headings = this.getHeadings(selector);
-      var groupNode = document.getElementById('id-skip-to-group-headings');
+      var groupNode = document.getElementById('id-jump-to-group-headings');
       this.renderMenuitemsToGroup(
         groupNode,
         headings,
@@ -639,18 +600,18 @@
       }
 
       var labelNode = this.menuNode.querySelector(
-        '#id-skip-to-group-headings-label'
+        '#id-jump-to-group-headings-label'
       );
       labelNode.textContent = this.getHeadingsGroupLabel(option);
 
       if (option === 'all') {
-        option = 'important';
+        option = 'selected';
       } else {
         option = 'all';
       }
 
       var menuitemNode = this.menuNode.querySelector(
-        '[data-id=skip-to-more-headings]'
+        '[data-id=jump-to-more-headings]'
       );
       menuitemNode.setAttribute('data-show-heading-option', option);
       menuitemNode.setAttribute(
@@ -666,7 +627,7 @@
       if (option === 'all') {
         return this.config.landmarkAllGroupLabel;
       }
-      return this.config.landmarkImportantGroupLabel;
+      return this.config.landmarkSelectedGroupLabel;
     },
 
     getShowMoreLandmarksSelector: function (option) {
@@ -682,7 +643,7 @@
       if (option === 'all') {
         label = this.config.actionShowAllLandmarksLabel;
       } else {
-        label = this.config.actionShowImportantLandmarksLabel;
+        label = this.config.actionShowSelectedLandmarksLabel;
       }
 
       n = this.getLandmarks(this.getShowMoreLandmarksSelector(option));
@@ -701,7 +662,7 @@
       if (option === 'all') {
         label = this.config.actionShowAllLandmarksAriaLabel;
       } else {
-        label = this.config.actionShowImportantLandmarksAriaLabel;
+        label = this.config.actionShowSelectedLandmarksAriaLabel;
       }
 
       n = this.getLandmarks(this.getShowMoreLandmarksSelector(option));
@@ -721,7 +682,7 @@
       item.tagName = 'action';
       item.role = 'menuitem';
       item.class = 'action';
-      item.dataId = 'skip-to-more-landmarks';
+      item.dataId = 'jump-to-more-landmarks';
       var menuitemNode = this.renderMenuitemToGroup(groupNode, item);
       menuitemNode.setAttribute('data-show-landmark-option', 'all');
       menuitemNode.title = this.config.actionShowLandmarksHelp;
@@ -730,7 +691,7 @@
     updateLandmarksGroupMenuitems: function (option) {
       var selector = this.getShowMoreLandmarksSelector(option);
       var landmarks = this.getLandmarks(selector, option === 'all');
-      var groupNode = document.getElementById('id-skip-to-group-landmarks');
+      var groupNode = document.getElementById('id-jump-to-group-landmarks');
       this.renderMenuitemsToGroup(
         groupNode,
         landmarks,
@@ -744,18 +705,18 @@
       }
 
       var labelNode = this.menuNode.querySelector(
-        '#id-skip-to-group-landmarks-label'
+        '#id-jump-to-group-landmarks-label'
       );
       labelNode.textContent = this.getLandmarksGroupLabel(option);
 
       if (option === 'all') {
-        option = 'important';
+        option = 'selected';
       } else {
         option = 'all';
       }
 
       var menuitemNode = this.menuNode.querySelector(
-        '[data-id=skip-to-more-landmarks]'
+        '[data-id=jump-to-more-landmarks]'
       );
       menuitemNode.setAttribute('data-show-landmark-option', option);
       menuitemNode.setAttribute(
@@ -777,8 +738,8 @@
       // Create landmarks group
       landmarkElements = this.getLandmarks();
       groupNode = this.renderMenuitemGroup(
-        'id-skip-to-group-landmarks',
-        this.config.landmarkImportantGroupLabel
+        'id-jump-to-group-landmarks',
+        this.config.landmarkSelectedGroupLabel
       );
       this.renderMenuitemsToGroup(
         groupNode,
@@ -789,8 +750,8 @@
       // Create headings group
       headingElements = this.getHeadings();
       groupNode = this.renderMenuitemGroup(
-        'id-skip-to-group-headings',
-        this.config.headingImportantGroupLabel
+        'id-jump-to-group-headings',
+        this.config.headingSelectedGroupLabel
       );
       this.renderMenuitemsToGroup(
         groupNode,
@@ -801,11 +762,11 @@
       // Create actions, if enabled
       if (this.config.enableActions) {
         groupNode = this.renderMenuitemGroup(
-          'id-skip-to-group-actions',
+          'id-jump-to-group-actions',
           this.config.actionGroupLabel
         );
-        this.renderActionMoreHeadings(groupNode);
         this.renderActionMoreLandmarks(groupNode);
+        this.renderActionMoreHeadings(groupNode);
       }
 
       // Update list of menuitems
@@ -968,9 +929,9 @@
     },
     skipToElement: function (menuitem) {
       var inputNode = false;
-      var isSearch = menuitem.classList.contains('skip-to-search');
+      var isSearch = menuitem.classList.contains('jump-to-search');
       var node = document.querySelector(
-        '[data-skip-to-id="' + menuitem.getAttribute('data-id') + '"]'
+        '[data-jump-to-id="' + menuitem.getAttribute('data-id') + '"]'
       );
       if (node) {
         if (isSearch) {
@@ -992,12 +953,12 @@
           // this means there were no headings or landmarks in the list
           break;
 
-        case 'skip-to-more-headings':
+        case 'jump-to-more-headings':
           option = tgt.getAttribute('data-show-heading-option');
           this.updateHeadingGroupMenuitems(option);
           break;
 
-        case 'skip-to-more-landmarks':
+        case 'jump-to-more-landmarks':
           option = tgt.getAttribute('data-show-landmark-option');
           this.updateLandmarksGroupMenuitems(option);
           break;
@@ -1189,10 +1150,10 @@
         var role = heading.getAttribute('role');
         if (typeof role === 'string' && role === 'presentation') continue;
         if (this.isVisible(heading)) {
-          if (heading.hasAttribute('data-skip-to-id')) {
-            dataId = heading.getAttribute('data-skip-to-id');
+          if (heading.hasAttribute('data-jump-to-id')) {
+            dataId = heading.getAttribute('data-jump-to-id');
           } else {
-            heading.setAttribute('data-skip-to-id', this.skipToIdIndex);
+            heading.setAttribute('data-jump-to-id', this.skipToIdIndex);
             dataId = this.skipToIdIndex;
           }
           level = heading.tagName.substring(1);
@@ -1345,10 +1306,10 @@
           if (landmark.hasAttribute('aria-roledescription')) {
             tagName = landmark.getAttribute('aria-roledescription');
           }
-          if (landmark.hasAttribute('data-skip-to-id')) {
-            dataId = landmark.getAttribute('data-skip-to-id');
+          if (landmark.hasAttribute('data-jump-to-id')) {
+            dataId = landmark.getAttribute('data-jump-to-id');
           } else {
-            landmark.setAttribute('data-skip-to-id', this.skipToIdIndex);
+            landmark.setAttribute('data-jump-to-id', this.skipToIdIndex);
             dataId = this.skipToIdIndex;
           }
           var landmarkItem = {};
@@ -1406,18 +1367,8 @@
     },
   };
 
-  // Initialize skipto menu button with onload event
-  var SkipToConfig = {
-    settings: {
-      skipTo: {
-        colorTheme: 'aria',
-      },
-    },
-  };
-
   window.addEventListener('load', function () {
-    SkipTo.init(SkipToConfig);
-    console.log('SkipTo loaded...');
+    JumpTo.init();
+    console.log('JumpTo loaded...');
   });
 })();
-/*@end @*/
