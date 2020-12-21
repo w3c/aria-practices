@@ -547,8 +547,6 @@ ariaTest(
   exampleFile,
   'standard-single-line-editing-keys',
   async (t) => {
-    t.plan(8);
-
     // Send key "a" to the textbox
 
     await t.context.session
@@ -620,6 +618,15 @@ ariaTest(
 
     await assertAttributeValues(t, ex.textboxSelector, 'aria-expanded', 'true');
 
+    // Confirm aria-selected is set on the item "Alabama"
+
+    await assertAttributeValues(
+      t,
+      ex.optionsSelector + ':nth-of-type(1)',
+      'aria-selected',
+      'true'
+    );
+
     // Confirm that the value of the textbox is now set to the first option
 
     t.is(
@@ -646,8 +653,6 @@ ariaTest(
   exampleFile,
   'standard-single-line-editing-keys',
   async (t) => {
-    t.plan(8);
-
     // Send keys "no" to the textbox
 
     await t.context.session
