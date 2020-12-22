@@ -208,7 +208,7 @@
         "aria-owns=\"(?:[^\\\"]+|\\.)*\"",
         "href=\"(?:[^\\\"]+|\\.)*\"",
         "for=\"(?:[^\\\"]+|\\.)*\"",
-        "url\\(\"data\\:image/svg\\+xml.*\"\\);"
+        "url\\(\"data\\:image/svg\\+xml.*\"\\)[,;]"
     ],
     "allowCompoundWords": true,
     "ignorePaths": [
