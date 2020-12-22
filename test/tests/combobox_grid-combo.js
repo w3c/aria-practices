@@ -365,7 +365,7 @@ ariaTest(
 
     // Test that ARROW_DOWN moves active descendant focus on item in grid
     for (let i = 1; i < ex.numAOptions; i++) {
-      let oldfocus = await t.context.session
+      let oldFocus = await t.context.session
         .findElement(By.css(ex.comboboxSelector))
         .getAttribute('aria-activedescendant');
 
@@ -374,7 +374,7 @@ ariaTest(
         .sendKeys(Key.ARROW_DOWN);
 
       // Account for race condition
-      await waitForFocusChange(t, ex.comboboxSelector, oldfocus);
+      await waitForFocusChange(t, ex.comboboxSelector, oldFocus);
 
       // Check that the active descendent focus is correct
 
@@ -398,7 +398,7 @@ ariaTest(
     }
 
     // Sending ARROW_DOWN to the last item should put focus on the first
-    let oldfocus = await t.context.session
+    let oldFocus = await t.context.session
       .findElement(By.css(ex.comboboxSelector))
       .getAttribute('aria-activedescendant');
     await t.context.session
@@ -406,7 +406,7 @@ ariaTest(
       .sendKeys(Key.ARROW_DOWN);
 
     // Account for race condition
-    await waitForFocusChange(t, ex.comboboxSelector, oldfocus);
+    await waitForFocusChange(t, ex.comboboxSelector, oldFocus);
 
     // Focus should be on the first item
 
@@ -502,7 +502,7 @@ ariaTest(
 
     // Test that ARROW_UP moves active descendant focus up one item in the grid
     for (let index = ex.numAOptions - 2; index >= 0; index--) {
-      let oldfocus = await t.context.session
+      let oldFocus = await t.context.session
         .findElement(By.css(ex.comboboxSelector))
         .getAttribute('aria-activedescendant');
 
@@ -511,7 +511,7 @@ ariaTest(
         .findElement(By.css(ex.comboboxSelector))
         .sendKeys(Key.ARROW_UP);
 
-      await waitForFocusChange(t, ex.comboboxSelector, oldfocus);
+      await waitForFocusChange(t, ex.comboboxSelector, oldFocus);
 
       // Check that the active descendent focus is correct
 
@@ -537,7 +537,7 @@ ariaTest(
     }
 
     // Test that ARROW_UP, when on the first item, returns focus to the last item in the list
-    let oldfocus = await t.context.session
+    let oldFocus = await t.context.session
       .findElement(By.css(ex.comboboxSelector))
       .getAttribute('aria-activedescendant');
 
@@ -546,7 +546,7 @@ ariaTest(
       .findElement(By.css(ex.comboboxSelector))
       .sendKeys(Key.ARROW_UP);
 
-    await waitForFocusChange(t, ex.comboboxSelector, oldfocus);
+    await waitForFocusChange(t, ex.comboboxSelector, oldFocus);
 
     // Check that the active descendent focus is correct
 
