@@ -770,7 +770,7 @@ ariaTest(
       // Test that the focus switches to the appropriate menuitem
       t.true(
         await checkFocus(t, ex.menubarMenuitemSelector, test.endIndex),
-        'Sending characther ' +
+        'Sending character ' +
           test.sendChar +
           ' to menuitem ' +
           test.sendIndex +
@@ -1617,7 +1617,7 @@ ariaTest(
             ex.menuMenuitemSelectors[menuIndex],
             test.endIndex
           ),
-          'Sending characther ' +
+          'Sending character ' +
             test.sendChar +
             ' to menuitem ' +
             itemText +
@@ -1669,7 +1669,7 @@ ariaTest(
         // Test that the focus switches to the appropriate menuitem
         t.true(
           await checkFocus(t, submenuMenuitemSelector, test.endIndex),
-          'Sending characther ' +
+          'Sending character ' +
             test.sendChar +
             ' to menuitem ' +
             itemText +
