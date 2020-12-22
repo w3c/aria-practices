@@ -55,7 +55,7 @@ ariaTest(
 );
 
 ariaTest(
-  '"aria-autocomplete" on comboxbox element',
+  '"aria-autocomplete" on combobox element',
   exampleFile,
   'combobox-aria-autocomplete',
   async (t) => {
