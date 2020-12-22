@@ -585,7 +585,7 @@ ariaTest(
 );
 
 ariaTest(
-  'Text "aria-checked" appropriately set on role="menitemradio"',
+  'Text "aria-checked" appropriately set on role="menuitemradio"',
   exampleFile,
   'menuitemradio-aria-checked',
   async (t) => {
