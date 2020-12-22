@@ -376,7 +376,7 @@ ariaTest(
           await emailRows[index + 1].isDisplayed(),
           'Sending key ARROW RIGHT to email at index ' +
             index +
-            ' should open a thread, displaying the next email row(s) in the gridtree.'
+            ' should open a thread, displaying the next email row(s) in the treegrid.'
         );
       }
     }
