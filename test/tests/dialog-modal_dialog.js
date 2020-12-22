@@ -355,11 +355,11 @@ ariaTest(
 
     // Check that the focus returns to the last focusable element
     let totaltabs = ex.dialog1FocusableEls.length + 1;
-    let lastindex = ex.dialog1FocusableEls.length - 1;
+    let lastIndex = ex.dialog1FocusableEls.length - 1;
     t.true(
-      await checkFocus(t, ex.dialog1FocusableEls[lastindex]),
+      await checkFocus(t, ex.dialog1FocusableEls[lastIndex]),
       'Focus should be on "' +
-        ex.dialog1FocusableEls[lastindex] +
+        ex.dialog1FocusableEls[lastIndex] +
         '" after ' +
         totaltabs +
         ' tabs have been sent to dialog 1'
@@ -394,11 +394,11 @@ ariaTest(
 
     // Check that the focus returns to the last focusable element
     totaltabs = ex.dialog2FocusableEls.length + 2;
-    lastindex = ex.dialog2FocusableEls.length - 1;
+    lastIndex = ex.dialog2FocusableEls.length - 1;
     t.true(
-      await checkFocus(t, ex.dialog2FocusableEls[lastindex]),
+      await checkFocus(t, ex.dialog2FocusableEls[lastIndex]),
       'Focus should be on "' +
-        ex.dialog2FocusableEls[lastindex] +
+        ex.dialog2FocusableEls[lastIndex] +
         '" after ' +
         totaltabs +
         ' tabs have been sent to dialog 1'
@@ -429,11 +429,11 @@ ariaTest(
 
     // Check that the focus returns to the first focusable element
     totaltabs = ex.dialog3FocusableEls.length + 1;
-    lastindex = ex.dialog3FocusableEls.length - 1;
+    lastIndex = ex.dialog3FocusableEls.length - 1;
     t.true(
-      await checkFocus(t, ex.dialog3FocusableEls[lastindex]),
+      await checkFocus(t, ex.dialog3FocusableEls[lastIndex]),
       'Focus should be on "' +
-        ex.dialog3FocusableEls[lastindex] +
+        ex.dialog3FocusableEls[lastIndex] +
         '" after ' +
         totaltabs +
         ' tabs have been sent to dialog 3'
