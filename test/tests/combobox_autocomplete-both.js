@@ -851,7 +851,7 @@ ariaTest(
       .findElement(By.css(ex.textboxSelector))
       .sendKeys('a', Key.ARROW_DOWN, Key.ESCAPE);
 
-    // Confirm the listbox is closed and the textboxed is cleared
+    // Confirm the listbox is closed and the textbox is cleared
 
     await assertAttributeValues(
       t,
