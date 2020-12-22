@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/w3c/aria-practices.svg?branch=master)](https://travis-ci.com/w3c/aria-practices) [![Greenkeeper badge](https://badges.greenkeeper.io/w3c/aria-practices.svg)](https://greenkeeper.io/)
+[![Build Status](https://travis-ci.com/w3c/aria-practices.svg?branch=master)](https://travis-ci.com/w3c/aria-practices)
 
 # WAI-ARIA: Authoring Practices Guide
 
