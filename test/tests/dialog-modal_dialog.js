@@ -226,13 +226,13 @@ ariaTest(
     }
 
     // Check that the focus returns to the first focusable element
-    let totaltabs = ex.dialog1FocusableEls.length;
+    let totalTabs = ex.dialog1FocusableEls.length;
     t.true(
       await checkFocus(t, ex.dialog1FocusableEls[0]),
       'Focus should be on "' +
         ex.dialog1FocusableEls[0] +
         '" after ' +
-        totaltabs +
+        totalTabs +
         ' tabs have been sent to dialog 1'
     );
 
@@ -259,13 +259,13 @@ ariaTest(
     }
 
     // Check that the focus returns to the first focusable element
-    totaltabs = ex.dialog2FocusableEls.length + 1;
+    totalTabs = ex.dialog2FocusableEls.length + 1;
     t.true(
       await checkFocus(t, ex.dialog2FocusableEls[0]),
       'Focus should be on "' +
         ex.dialog2FocusableEls[0] +
         '" after ' +
-        totaltabs +
+        totalTabs +
         ' tabs have been sent to dialog 1'
     );
 
@@ -289,13 +289,13 @@ ariaTest(
     }
 
     // Check that the focus returns to the first focusable element
-    totaltabs = ex.dialog3FocusableEls.length + 1;
+    totalTabs = ex.dialog3FocusableEls.length + 1;
     t.true(
       await checkFocus(t, ex.dialog3FocusableEls[0]),
       'Focus should be on "' +
         ex.dialog3FocusableEls[0] +
         '" after ' +
-        totaltabs +
+        totalTabs +
         ' tabs have been sent to dialog 3'
     );
 
@@ -354,14 +354,14 @@ ariaTest(
     }
 
     // Check that the focus returns to the last focusable element
-    let totaltabs = ex.dialog1FocusableEls.length + 1;
+    let totalTabs = ex.dialog1FocusableEls.length + 1;
     let lastIndex = ex.dialog1FocusableEls.length - 1;
     t.true(
       await checkFocus(t, ex.dialog1FocusableEls[lastIndex]),
       'Focus should be on "' +
         ex.dialog1FocusableEls[lastIndex] +
         '" after ' +
-        totaltabs +
+        totalTabs +
         ' tabs have been sent to dialog 1'
     );
 
@@ -393,14 +393,14 @@ ariaTest(
     }
 
     // Check that the focus returns to the last focusable element
-    totaltabs = ex.dialog2FocusableEls.length + 2;
+    totalTabs = ex.dialog2FocusableEls.length + 2;
     lastIndex = ex.dialog2FocusableEls.length - 1;
     t.true(
       await checkFocus(t, ex.dialog2FocusableEls[lastIndex]),
       'Focus should be on "' +
         ex.dialog2FocusableEls[lastIndex] +
         '" after ' +
-        totaltabs +
+        totalTabs +
         ' tabs have been sent to dialog 1'
     );
 
@@ -428,14 +428,14 @@ ariaTest(
     }
 
     // Check that the focus returns to the first focusable element
-    totaltabs = ex.dialog3FocusableEls.length + 1;
+    totalTabs = ex.dialog3FocusableEls.length + 1;
     lastIndex = ex.dialog3FocusableEls.length - 1;
     t.true(
       await checkFocus(t, ex.dialog3FocusableEls[lastIndex]),
       'Focus should be on "' +
         ex.dialog3FocusableEls[lastIndex] +
         '" after ' +
-        totaltabs +
+        totalTabs +
         ' tabs have been sent to dialog 3'
     );
 
