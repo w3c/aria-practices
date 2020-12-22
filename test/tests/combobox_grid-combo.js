@@ -20,10 +20,10 @@ const ex = {
 const waitForFocusChange = async (t, comboboxSelector, originalFocus) => {
   await t.context.session.wait(
     async function () {
-      let newfocus = await t.context.session
+      let newFocus = await t.context.session
         .findElement(By.css(comboboxSelector))
         .getAttribute('aria-activedescendant');
-      return newfocus != originalFocus;
+      return newFocus != originalFocus;
     },
     t.context.waitTime,
     'Timeout waiting for "aria-activedescendant" value to change from "' +

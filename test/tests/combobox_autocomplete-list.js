@@ -19,10 +19,10 @@ const ex = {
 const waitForFocusChange = async (t, textboxSelector, originalFocus) => {
   await t.context.session.wait(
     async function () {
-      let newfocus = await t.context.session
+      let newFocus = await t.context.session
         .findElement(By.css(textboxSelector))
         .getAttribute('aria-activedescendant');
-      return newfocus != originalFocus;
+      return newFocus != originalFocus;
     },
     t.context.waitTime,
     'Error waiting for "aria-activedescendant" value to change from "' +
