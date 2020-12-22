@@ -212,7 +212,7 @@
         "for=\"(?:[^\\\"]+|\\.)*\"",
         "url\\(\"data\\:image/svg\\+xml.*\"\\)[,;]"
     ],
-    "allowCompoundWords": true,
+    "allowCompoundWords": false,
     "ignorePaths": [
         "**/*.min.js",
         "**/*.pack.js",
