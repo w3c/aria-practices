@@ -13,15 +13,15 @@ module.exports = async function assertRovingTabindex(t, elementsSelector, key) {
   let elements = await t.context.queryElements(t, elementsSelector);
 
   // test only one element has tabindex="0"
-  for (let tabableEl = 0; tabableEl < elements.length; tabableEl++) {
+  for (let tabbaleEl = 0; tabbaleEl < elements.length; tabbaleEl++) {
     for (let el = 0; el < elements.length; el++) {
-      let tabindex = el === tabableEl ? '0' : '-1';
+      let tabindex = el === tabbaleEl ? '0' : '-1';
 
       assert.equal(
         await elements[el].getAttribute('tabindex'),
         tabindex,
         'focus is on element ' +
-          tabableEl +
+          tabbaleEl +
           ' of ' +
           elements.length +
           ' elements "' +
@@ -34,7 +34,7 @@ module.exports = async function assertRovingTabindex(t, elementsSelector, key) {
     }
 
     // Send the tabindex="0" element the appropriate key to switch focus to the next element
-    await elements[tabableEl].sendKeys(key);
+    await elements[tabbaleEl].sendKeys(key);
   }
 
   t.pass();
