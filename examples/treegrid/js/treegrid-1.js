@@ -1,5 +1,4 @@
 'use strict';
-/* exported TreeGrid */
 function TreeGrid(treegridElem, doAllowRowFocus, doStartRowFocus) {
   function initAttributes() {
     // Make sure focusable elements are not in the tab order
@@ -521,3 +520,35 @@ function TreeGrid(treegridElem, doAllowRowFocus, doStartRowFocus) {
     true
   );
 }
+
+/* Init Script for TreeGrid */
+/* Get an object where each field represents a URL parameter */
+function getQuery() {
+  if (!getQuery.cached) {
+    getQuery.cached = {};
+    const queryStr = window.location.search.substring(1);
+    const vars = queryStr.split('&');
+    for (let i = 0; i < vars.length; i++) {
+      const pair = vars[i].split('=');
+      // If first entry with this name
+      getQuery.cached[pair[0]] = pair[1] && decodeURIComponent(pair[1]);
+    }
+  }
+  return getQuery.cached;
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Supports url parameter ?cell=force or ?cell=start (or leave out parameter)
+  var cellParam = getQuery().cell;
+  var doAllowRowFocus = cellParam !== 'force';
+  var doStartRowFocus = doAllowRowFocus && cellParam !== 'start';
+  TreeGrid(
+    document.getElementById('treegrid'),
+    doAllowRowFocus,
+    doStartRowFocus
+  );
+  var choiceElem = document.getElementById(
+    'option-cell-focus-' + (cellParam || 'allow')
+  );
+  choiceElem.setAttribute('aria-current', 'true');
+});
