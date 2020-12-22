@@ -8,7 +8,7 @@ const assertAttributeValues = require('../util/assertAttributeValues');
 const ex = {
   printSelector: '#action',
   toggleSelector: '#toggle',
-  svgSelector: '#example svg',
+  svgSelector: '#example a svg',
 };
 
 // Attributes
