@@ -32,7 +32,7 @@ const checkFocus = function (t, selector, index) {
 const scrollToAndOpenMenu = async function (t) {
   // Click the "last action" box to scroll the menu into view before opening the menu and sending enter
   // This prevents a bug where when you click the menu button, the menu is opened and the page scrolls down
-  // to reveal the menu, which places the curser over the last menu item, which sets aria-activedescendent to
+  // to reveal the menu, which places the curser over the last menu item, which sets aria-activedescendant to
   // the last item in the list.
   await t.context.session.findElement(By.css(ex.lastactionSelector)).click();
 
