@@ -13,7 +13,7 @@ const ex = {
   menuSelector: '#ex1 [role="menu"]',
   menuitemSelector: '#ex1 [role="menuitem"]',
   numMenuitems: 4,
-  lastactionSelector: '#action_output',
+  lastActionSelector: '#action_output',
   defaultAriaActivedescendantVal: 'mi1',
 };
 
@@ -34,7 +34,7 @@ const scrollToAndOpenMenu = async function (t) {
   // This prevents a bug where when you click the menu button, the menu is opened and the page scrolls down
   // to reveal the menu, which places the curser over the last menu item, which sets aria-activedescendant to
   // the last item in the list.
-  await t.context.session.findElement(By.css(ex.lastactionSelector)).click();
+  await t.context.session.findElement(By.css(ex.lastActionSelector)).click();
 
   await t.context.session.findElement(By.css(ex.menubuttonSelector)).click();
 
@@ -274,7 +274,7 @@ ariaTest('"enter" on role="menu"', exampleFile, 'menu-enter', async (t) => {
   t.is(
     itemText,
     await t.context.session
-      .findElement(By.css(ex.lastactionSelector))
+      .findElement(By.css(ex.lastActionSelector))
       .getAttribute('value'),
     'When first item is focused, key enter should select action: ' + itemText
   );
@@ -298,7 +298,7 @@ ariaTest('"enter" on role="menu"', exampleFile, 'menu-enter', async (t) => {
   t.is(
     itemText,
     await t.context.session
-      .findElement(By.css(ex.lastactionSelector))
+      .findElement(By.css(ex.lastActionSelector))
       .getAttribute('value'),
     'When second item is focused, key enter should select action: ' + itemText
   );
@@ -322,7 +322,7 @@ ariaTest('"enter" on role="menu"', exampleFile, 'menu-enter', async (t) => {
   t.is(
     itemText,
     await t.context.session
-      .findElement(By.css(ex.lastactionSelector))
+      .findElement(By.css(ex.lastActionSelector))
       .getAttribute('value'),
     'When third item is focused, key enter should select action: ' + itemText
   );
@@ -351,7 +351,7 @@ ariaTest('"enter" on role="menu"', exampleFile, 'menu-enter', async (t) => {
   t.is(
     itemText,
     await t.context.session
-      .findElement(By.css(ex.lastactionSelector))
+      .findElement(By.css(ex.lastActionSelector))
       .getAttribute('value'),
     'When fourth item is focused, key enter should select action: ' + itemText
   );
@@ -377,7 +377,7 @@ ariaTest('"escape" on role="menu"', exampleFile, 'menu-escape', async (t) => {
     t.not(
       itemText,
       await t.context.session
-        .findElement(By.css(ex.lastactionSelector))
+        .findElement(By.css(ex.lastActionSelector))
         .getAttribute('value'),
       'Key escape should not select action: ' + itemText
     );
