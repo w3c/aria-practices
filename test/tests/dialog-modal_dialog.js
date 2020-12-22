@@ -337,7 +337,7 @@ ariaTest(
 
     // Loop through the focusable elements backwards (focus is on first focusable element on popup)
     await sendShiftTabToSelector(t, ex.dialog1FocusableEls[0]);
-    let shifttabcount = 1;
+    let shiftTabCount = 1;
 
     for (let i = ex.dialog1FocusableEls.length - 1; i >= 0; i--) {
       t.true(
@@ -345,12 +345,12 @@ ariaTest(
         'Focus should be on item "' +
           ex.dialog1FocusableEls[i] +
           '" after ' +
-          shifttabcount +
+          shiftTabCount +
           ' shift tabs have been sent to dialog 1'
       );
 
       await sendShiftTabToSelector(t, ex.dialog1FocusableEls[i]);
-      shifttabcount++;
+      shiftTabCount++;
     }
 
     // Check that the focus returns to the last focusable element
@@ -376,7 +376,7 @@ ariaTest(
     // Second, focus will be on the first focusable element second, send SHIFT+TAB
     await sendShiftTabToSelector(t, ex.dialog2FocusableEls[0]);
 
-    shifttabcount = 2;
+    shiftTabCount = 2;
 
     // Loop through all focusable elements backward
     for (let i = ex.dialog2FocusableEls.length - 1; i >= 0; i--) {
@@ -385,11 +385,11 @@ ariaTest(
         'Focus should be on item "' +
           ex.dialog2FocusableEls[i] +
           '" after ' +
-          shifttabcount +
+          shiftTabCount +
           ' shift tabs have been sent to dialog 2'
       );
       await sendShiftTabToSelector(t, ex.dialog2FocusableEls[i]);
-      shifttabcount++;
+      shiftTabCount++;
     }
 
     // Check that the focus returns to the last focusable element
@@ -411,7 +411,7 @@ ariaTest(
 
     // Loop through the focusable elements backwards (focus is on first focusable element on popup)
     await sendShiftTabToSelector(t, ex.dialog3FocusableEls[0]);
-    shifttabcount = 1;
+    shiftTabCount = 1;
 
     for (let i = ex.dialog3FocusableEls.length - 1; i >= 0; i--) {
       t.true(
@@ -419,12 +419,12 @@ ariaTest(
         'Focus should be on item "' +
           ex.dialog3FocusableEls[i] +
           '" after ' +
-          shifttabcount +
+          shiftTabCount +
           ' shift tabs have been sent to dialog 3'
       );
 
       await sendShiftTabToSelector(t, ex.dialog3FocusableEls[i]);
-      shifttabcount++;
+      shiftTabCount++;
     }
 
     // Check that the focus returns to the first focusable element
