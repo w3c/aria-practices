@@ -183,9 +183,9 @@ const getRegressionTestCoverage = function (exampleCoverage) {
     'ava',
     'cli.js'
   );
-  const cmdargs = [...allTestFiles, '--tap', '-c', '1'];
+  const cmdArgs = [...allTestFiles, '--tap', '-c', '1'];
 
-  const output = spawnSync(cmd, cmdargs);
+  const output = spawnSync(cmd, cmdArgs);
   const avaResults = output.stdout.toString();
   const avaError = output.stderr.toString();
 
