@@ -36,8 +36,8 @@ const ex = {
     second: '#ex1 [role="radio"]:nth-child(2)',
     last: '#ex1 [role="radio"]:nth-child(3)',
   },
-  tabbaleItemAfterToolbarSelector: '#textarea1',
-  tabbaleItemBeforeToolbarSelector: 'body > main > p > a:last-of-type',
+  tabbableItemAfterToolbarSelector: '#textarea1',
+  tabbableItemBeforeToolbarSelector: 'body > main > p > a:last-of-type',
   toolbarSelector: '#ex1 [role="toolbar"]',
 };
 
@@ -552,7 +552,7 @@ ariaTest(
   exampleFile,
   'toolbar-tab',
   async (t) => {
-    let tabTarget = ex.tabbaleItemBeforeToolbarSelector;
+    let tabTarget = ex.tabbableItemBeforeToolbarSelector;
     await t.context.session.findElement(By.css(tabTarget)).sendKeys(Key.TAB);
     await assertHasFocus(t, ex.itemSelector);
   }
@@ -566,7 +566,7 @@ ariaTest(
     await t.context.session
       .findElement(By.css(ex.itemSelector))
       .sendKeys(Key.TAB);
-    await assertHasFocus(t, ex.tabbaleItemAfterToolbarSelector);
+    await assertHasFocus(t, ex.tabbableItemAfterToolbarSelector);
   }
 );
 
