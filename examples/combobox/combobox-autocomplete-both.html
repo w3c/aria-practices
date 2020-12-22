@@ -46,7 +46,9 @@
       <li><a href="combobox-datepicker.html">Date Picker Combobox</a>: An editable date input combobox that opens a dialog containing a calendar grid and buttons for navigating by month and year.</li>
     </ul>
     <section>
-      <h2 id="ex_label">Example</h2>
+      <div class="example-header">
+        <h2 id="ex_label">Example</h2>
+      </div>
       <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
       <div id="ex1">
         <label for="cb1-input">State</label>
@@ -492,7 +494,7 @@
 
     <section>
       <h2>Javascript and CSS Source Code</h2>
-      <ul>
+      <ul id="css_js_files">
         <li>
           CSS:
           <a href="css/combobox-autocomplete.css" type="text/css">combobox-autocomplete.css</a>
@@ -516,7 +518,7 @@
         It renders the HTML in the preceding pre element with ID 'sc1'.
         -->
       <script>
-        sourceCode.add('sc1', 'ex1');
+        sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
         sourceCode.make();
       </script>
     </section>

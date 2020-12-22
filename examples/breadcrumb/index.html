@@ -26,7 +26,9 @@
     <h1>Breadcrumb Example</h1>
     <p>The following example demonstrates the <a href="../../#breadcrumb">breadcrumb design pattern</a>.</p>
     <section>
-      <h2 id="ex_label">Example</h2>
+      <div class="example-header">
+        <h2 id="ex_label">Example</h2>
+      </div>
       <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
       <div id="ex1">
         <nav aria-label="Breadcrumb" class="breadcrumb">
@@ -113,7 +115,7 @@
 
     <section>
       <h2>Javascript and CSS Source Code</h2>
-      <ul>
+      <ul id="css_js_files">
         <li>
           CSS:
           <a href="css/breadcrumb.css" type="tex/css">breadcrumb.css</a>
@@ -127,7 +129,7 @@
       <pre><code id="sc1"></code></pre>
       <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
       <script>
-        sourceCode.add('sc1', 'ex1');
+        sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
         sourceCode.make();
       </script>
     </section>
