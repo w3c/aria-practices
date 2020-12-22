@@ -94,7 +94,7 @@ ariaTest(
 );
 
 ariaTest(
-  'Combobox: has aria-controls set to "id-descrption-1"',
+  'Combobox: has aria-controls set to "id-description-1"',
   exampleFile,
   'textbox-aria-describedby',
   async (t) => {
