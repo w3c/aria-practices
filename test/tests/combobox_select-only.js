@@ -35,7 +35,7 @@ ariaTest('role "option"', exampleFile, 'option-role', async (t) => {
       t.is(
         role,
         'option',
-        'Immediate descendents of the listbox should have role="option"'
+        'Immediate descendants of the listbox should have role="option"'
       );
     })
   );
