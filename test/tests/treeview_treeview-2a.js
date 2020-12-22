@@ -276,8 +276,8 @@ ariaTest(
     await replaceExternalLink(t, newUrl, ex.linkSelector, 0);
 
     // Test a leaf node
-    let leafnodes = await t.context.queryElements(t, ex.linkSelector);
-    await leafnodes[0].sendKeys(Key.ENTER);
+    let leafNodes = await t.context.queryElements(t, ex.linkSelector);
+    await leafNodes[0].sendKeys(Key.ENTER);
 
     t.is(
       await t.context.session.getCurrentUrl(),
@@ -311,8 +311,8 @@ ariaTest.failing(
     await replaceExternalLink(t, newUrl, ex.linkSelector, 0);
 
     // Test a leaf node
-    let leafnodes = await t.context.queryElements(t, ex.linkSelector);
-    await leafnodes[0].sendKeys(Key.SPACE);
+    let leafNodes = await t.context.queryElements(t, ex.linkSelector);
+    await leafNodes[0].sendKeys(Key.SPACE);
 
     t.is(
       await t.context.session.getCurrentUrl(),
