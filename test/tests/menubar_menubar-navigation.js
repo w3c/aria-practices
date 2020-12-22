@@ -976,13 +976,13 @@ ariaTest(
 
         t.false(
           await menus[menuIndex].isDisplayed(),
-          'Sending key "ESCAPE" to submenuitem "' +
+          'Sending key "ESCAPE" to submenu item "' +
             itemText +
             '" should close the menu'
         );
         t.true(
           await checkFocus(t, ex.menubarMenuitemSelector, menuIndex),
-          'Sending key "ESCAPE" to submenuitem "' +
+          'Sending key "ESCAPE" to submenu item "' +
             itemText +
             '" should change the focus to menuitem ' +
             menuIndex +
@@ -1016,7 +1016,7 @@ ariaTest(
           await t.context.session
             .findElement(By.css(submenuSelector))
             .isDisplayed(),
-          'Sending key "ESCAPE" to submenuitem "' +
+          'Sending key "ESCAPE" to submenu item "' +
             itemText +
             '" should close the menu'
         );
@@ -1027,7 +1027,7 @@ ariaTest(
             ex.menuMenuitemSelectors[menuIndex],
             menuitemIndex
           ),
-          'Sending key "ESCAPE" to submenuitem "' +
+          'Sending key "ESCAPE" to submenu item "' +
             itemText +
             '" should send focus to menuitem ' +
             menuitemIndex +
@@ -1100,7 +1100,7 @@ ariaTest(
           // Test that the submenu is closed
           t.false(
             await menus[menuIndex].isDisplayed(),
-            'Sending key "ARROW_RIGHT" to submenuitem "' +
+            'Sending key "ARROW_RIGHT" to submenu item "' +
               itemText +
               '" should close list'
           );
@@ -1108,7 +1108,7 @@ ariaTest(
           // Test that the focus is on the menuitem in the menubar
           t.true(
             await checkFocus(t, ex.menubarMenuitemSelector, nextMenuIndex),
-            'Sending key "ARROW_RIGHT" to submenuitem "' +
+            'Sending key "ARROW_RIGHT" to submenu item "' +
               itemText +
               '" should send focus to menuitem' +
               nextMenuIndex +
@@ -1143,7 +1143,7 @@ ariaTest(
         // Test that the submenu is closed
         t.false(
           await menus[menuIndex].isDisplayed(),
-          'Sending key "ARROW_RIGHT" to submenuitem "' +
+          'Sending key "ARROW_RIGHT" to submenu item "' +
             itemText +
             '" should close list'
         );
@@ -1151,7 +1151,7 @@ ariaTest(
         // Test that the focus is on the menuitem in the menubar
         t.true(
           await checkFocus(t, ex.menubarMenuitemSelector, nextMenuIndex),
-          'Sending key "ARROW_RIGHT" to submenuitem "' +
+          'Sending key "ARROW_RIGHT" to submenu item "' +
             itemText +
             '" should send focus to menuitem' +
             nextMenuIndex +
@@ -1199,7 +1199,7 @@ ariaTest(
         // Test that the submenu is closed
         t.false(
           await menus[menuIndex].isDisplayed(),
-          'Sending key "ARROW_LEFT" to submenuitem "' +
+          'Sending key "ARROW_LEFT" to submenu item "' +
             itemText +
             '" should close list'
         );
@@ -1207,7 +1207,7 @@ ariaTest(
         // Test that the focus is on the menuitem in the menubar
         t.true(
           await checkFocus(t, ex.menubarMenuitemSelector, nextMenuIndex),
-          'Sending key "ARROW_LEFT" to submenuitem "' +
+          'Sending key "ARROW_LEFT" to submenu item "' +
             itemText +
             '" should send focus to menuitem' +
             nextMenuIndex +
@@ -1240,7 +1240,7 @@ ariaTest(
           await t.context.session
             .findElement(By.css(submenuSelector))
             .isDisplayed(),
-          'Sending key "ARROW_LEFT" to submenuitem "' +
+          'Sending key "ARROW_LEFT" to submenu item "' +
             itemText +
             '" should close the menu'
         );
@@ -1251,7 +1251,7 @@ ariaTest(
             ex.menuMenuitemSelectors[menuIndex],
             menuitemIndex
           ),
-          'Sending key "ARROW_LEFT" to submenuitem "' +
+          'Sending key "ARROW_LEFT" to submenu item "' +
             itemText +
             '" should send focus to menuitem ' +
             menuitemIndex +
@@ -1303,7 +1303,7 @@ ariaTest(
             ex.menuMenuitemSelectors[menuIndex],
             nextItemIndex
           ),
-          'Sending key "ARROW_DOWN" to submenuitem "' +
+          'Sending key "ARROW_DOWN" to submenu item "' +
             itemText +
             '" should send focus to menuitem' +
             nextItemIndex +
@@ -1337,7 +1337,7 @@ ariaTest(
         // Test that the focus is on the menuitem in the menubar
         t.true(
           await checkFocus(t, submenuMenuitemSelector, nextItemIndex),
-          'Sending key "ARROW_DOWN" to submenuitem "' +
+          'Sending key "ARROW_DOWN" to submenu item "' +
             itemText +
             '" should send focus to menuitem' +
             nextItemIndex +
@@ -1389,7 +1389,7 @@ ariaTest(
             ex.menuMenuitemSelectors[menuIndex],
             nextItemIndex
           ),
-          'Sending key "ARROW_UP" to submenuitem "' +
+          'Sending key "ARROW_UP" to submenu item "' +
             itemText +
             '" should send focus to menuitem' +
             nextItemIndex +
@@ -1423,7 +1423,7 @@ ariaTest(
         // Test that the focus is on the menuitem in the menubar
         t.true(
           await checkFocus(t, submenuMenuitemSelector, nextItemIndex),
-          'Sending key "ARROW_UP" to submenuitem "' +
+          'Sending key "ARROW_UP" to submenu item "' +
             itemText +
             '" should send focus to menuitem' +
             nextItemIndex +
@@ -1463,7 +1463,7 @@ ariaTest('HOME moves focus in menu', exampleFile, 'submenu-home', async (t) => {
       // Test that the focus is on the menuitem in the menubar
       t.true(
         await checkFocus(t, ex.menuMenuitemSelectors[menuIndex], 0),
-        'Sending key "HOME" to submenuitem "' +
+        'Sending key "HOME" to submenu item "' +
           itemText +
           '" should send focus to first  menuitem in the same menu'
       );
@@ -1491,7 +1491,7 @@ ariaTest('HOME moves focus in menu', exampleFile, 'submenu-home', async (t) => {
 
       t.true(
         await checkFocus(t, submenuMenuitemSelector, 0),
-        'Sending key "HOME" to submenuitem "' +
+        'Sending key "HOME" to submenu item "' +
           itemText +
           '" should send focus to the first menuitem in the same menu'
       );
@@ -1532,7 +1532,7 @@ ariaTest('END moves focus in menu', exampleFile, 'submenu-end', async (t) => {
           ex.menuMenuitemSelectors[menuIndex],
           ex.numMenuMenuitems[menuIndex] - 1
         ),
-        'Sending key "END" to submenuitem "' +
+        'Sending key "END" to submenu item "' +
           itemText +
           '" should send focus to last menuitem in the same menu'
       );
@@ -1560,7 +1560,7 @@ ariaTest('END moves focus in menu', exampleFile, 'submenu-end', async (t) => {
 
       t.true(
         await checkFocus(t, submenuMenuitemSelector, numItems - 1),
-        'Sending key "END" to submenuitem "' +
+        'Sending key "END" to submenu item "' +
           itemText +
           '" should send focus to the last menuitem in the same menu'
       );
