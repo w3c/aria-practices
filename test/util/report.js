@@ -79,7 +79,7 @@ const getKeyboardRowName = function ($, $tableRow) {
  * @returns {string}
  */
 const getAttributeRowName = function ($, $tableRow) {
-  // use the containt 'th' text to identify the row. If there is no text
+  // use the 'th' contents text to identify the row. If there is no text
   // in the 'th' element, use the 'element' column text.
   let rowName = $('th', $tableRow).text();
   if (!rowName) {
