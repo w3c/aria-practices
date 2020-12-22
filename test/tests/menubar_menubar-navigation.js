@@ -319,13 +319,13 @@ ariaTest(
 
     for (let menuitem of menuitems) {
       // The menuitem is not visible, so we cannot use selenium's "getText" function
-      const menutext = await t.context.session.executeScript(function () {
+      const menuText = await t.context.session.executeScript(function () {
         const el = arguments[0];
         return el.innerHTML;
       }, menuitem);
 
       t.truthy(
-        menutext,
+        menuText,
         '"role=menuitem" elements should all have accessible text content: ' +
           ex.anyMenuMenuitemSelector
       );
