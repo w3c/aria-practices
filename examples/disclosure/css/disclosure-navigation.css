@@ -79,11 +79,11 @@
 }
 
 /* Styles for example page content section */
-.disclosure-pagecontent {
+.disclosure-page-content {
   border: 1px solid #ccc;
   padding: 1em;
 }
 
-.disclosure-pagecontent h3 {
+.disclosure-page-content h3 {
   margin-top: 0.5em;
 }
