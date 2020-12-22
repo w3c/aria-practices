@@ -467,7 +467,7 @@ ariaTest(
 );
 
 ariaTest(
-  'Tab should go through all tabbable items, then repear',
+  'Tab should go through all tabbable items, then repeat',
   exampleFile,
   'dialog-tab',
   async (t) => {
