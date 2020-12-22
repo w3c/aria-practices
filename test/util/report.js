@@ -171,8 +171,8 @@ const getRegressionTestCoverage = function (exampleCoverage) {
   process.env.REGRESSION_COVERAGE_REPORT = 1;
 
   const allTestFiles = [];
-  fs.readdirSync(testsPath).forEach(function (testfile) {
-    allTestFiles.push(path.join(testsPath, testfile));
+  fs.readdirSync(testsPath).forEach(function (testFile) {
+    allTestFiles.push(path.join(testsPath, testFile));
   });
 
   const cmd = path.resolve(
