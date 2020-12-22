@@ -186,17 +186,17 @@ const putFocusOnRow1Gridcell = async function (t, columnindex) {
 
 const putFocusOnLastRowGridcell = async function (t, columnindex) {
   let rows = await t.context.queryElements(t, ex.emailRowSelector);
-  let lastrow = rows.length - 1;
+  let lastRow = rows.length - 1;
 
   if (columnindex === 0) {
-    await rows[lastrow].sendKeys(Key.ARROW_RIGHT);
+    await rows[lastRow].sendKeys(Key.ARROW_RIGHT);
   } else if (columnindex === 1) {
-    await rows[lastrow].sendKeys(Key.ARROW_RIGHT);
-    await sendKeyToGridcellAndWait(t, lastrow, 0, Key.ARROW_RIGHT);
+    await rows[lastRow].sendKeys(Key.ARROW_RIGHT);
+    await sendKeyToGridcellAndWait(t, lastRow, 0, Key.ARROW_RIGHT);
   } else if (columnindex === 2) {
-    await rows[lastrow].sendKeys(Key.ARROW_RIGHT);
-    await sendKeyToGridcellAndWait(t, lastrow, 0, Key.ARROW_RIGHT);
-    await sendKeyToGridcellAndWait(t, lastrow, 1, Key.ARROW_RIGHT);
+    await rows[lastRow].sendKeys(Key.ARROW_RIGHT);
+    await sendKeyToGridcellAndWait(t, lastRow, 0, Key.ARROW_RIGHT);
+    await sendKeyToGridcellAndWait(t, lastRow, 1, Key.ARROW_RIGHT);
   }
 };
 

@@ -735,25 +735,25 @@ ariaTest(
     await combobox.sendKeys(Key.ARROW_LEFT);
 
     // Check that the active descendent focus is correct
-    let lastrow = ex.numAOptions - 1;
+    let lastRow = ex.numAOptions - 1;
 
     var focusedId = await t.context.session
       .findElement(By.css(ex.comboboxSelector))
       .getAttribute('aria-activedescendant');
     t.is(
       focusedId,
-      gridcellId(lastrow, 1),
+      gridcellId(lastRow, 1),
       'After left arrow sent to popup, aria-activedescendant should be set to the last row, last gridcell: ' +
-        gridcellId(lastrow, 1)
+        gridcellId(lastRow, 1)
     );
 
     var focusedElementClasses = await t.context.session
-      .findElement(By.id(gridcellId(lastrow, 1)))
+      .findElement(By.id(gridcellId(lastRow, 1)))
       .getAttribute('class');
     t.true(
       focusedElementClasses.includes(ex.gridcellFocusedClass),
       'Gridcell with id "' +
-        gridcellId(lastrow, 1) +
+        gridcellId(lastRow, 1) +
         '" should have visual focus'
     );
 
@@ -766,18 +766,18 @@ ariaTest(
       .getAttribute('aria-activedescendant');
     t.is(
       focusedId,
-      gridcellId(lastrow, 0),
+      gridcellId(lastRow, 0),
       'After left arrow sent twice to popup, aria-activedescendant should be set to the last row first gridcell: ' +
-        gridcellId(lastrow, 0)
+        gridcellId(lastRow, 0)
     );
 
     focusedElementClasses = await t.context.session
-      .findElement(By.id(gridcellId(lastrow, 0)))
+      .findElement(By.id(gridcellId(lastRow, 0)))
       .getAttribute('class');
     t.true(
       focusedElementClasses.includes(ex.gridcellFocusedClass),
       'Gridcell with id "' +
-        gridcellId(lastrow, 0) +
+        gridcellId(lastRow, 0) +
         '" should have visual focus'
     );
   }
