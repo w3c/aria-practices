@@ -370,8 +370,8 @@ ariaTest(
 
         const ariaPopup = menuitemHasSubmenu ? 'true' : null;
         const hasAriaPopupMsg = menuitemHasSubmenu
-          ? 'aria-haspop set to "true".'
-          : 'no aria-haspop attribute.';
+          ? 'aria-haspopup set to "true".'
+          : 'no aria-haspopup attribute.';
 
         t.is(
           await menuItems[menuitemIndex].getAttribute('aria-haspopup'),
