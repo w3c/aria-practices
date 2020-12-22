@@ -83,9 +83,9 @@ FormatToolbar.prototype.init = function () {
 };
 
 FormatToolbar.prototype.handleContainerClick = function () {
-  if ( event.target !== this.domNode ) return;
+  if (event.target !== this.domNode) return;
   this.setFocusCurrentItem();
-}
+};
 
 FormatToolbar.prototype.setFocusCurrentItem = function () {
   var item = this.domNode.querySelector('[tabindex="0"]');
