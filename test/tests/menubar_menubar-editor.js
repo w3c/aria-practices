@@ -201,7 +201,7 @@ ariaTest(
   exampleFile,
   'menubar-menuitem-aria-expanded',
   async (t) => {
-    // Before interating with page, make sure aria-expanded is set to false
+    // Before interacting with page, make sure aria-expanded is set to false
     await assertAttributeValues(
       t,
       ex.menubarMenuitemSelector,
