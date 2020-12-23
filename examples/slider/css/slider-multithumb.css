@@ -53,10 +53,17 @@
   fill: #ccc;
 }
 
-.slider-multithumb .slider-group .slider-minimum,
-.slider-multithumb .slider-group .slider-maximum {
+.slider-multithumb .slider-group .thumb {
   stroke-width: 0;
   fill: #444;
+}
+
+.slider-multithumb .slider-group .focus {
+  stroke-width: 3px;
+  stroke: transparent;
+  fill: transparent;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 /* Focus and hover styling */
@@ -70,11 +77,18 @@
   fill: #adddff;
 }
 
-.slider-multithumb .slider-group .slider-minimum:focus,
-.slider-multithumb .slider-group .slider-minimum:hover,
-.slider-multithumb .slider-group .slider-maximum:focus,
-.slider-multithumb .slider-group .slider-maximum:hover {
-  stroke-width: 3px;
+.slider-multithumb [role="slider"]:focus {
+  outline: none;
+}
+
+.slider-multithumb [role="slider"]:focus .focus {
   stroke: currentColor;
+}
+
+.slider-multithumb [role="slider"]:focus .thumb {
   fill: currentColor;
+}
+
+.slider-multithumb [role="slider"]:focus .value {
+  font-weight: bold;
 }

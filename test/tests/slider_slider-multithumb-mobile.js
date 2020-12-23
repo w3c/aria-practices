@@ -18,8 +18,10 @@ const ex = {
   flightMax: '1000',
   hotelDefaultValues: ['100', '250'],
   flightDefaultValues: ['100', '250'],
-  hotelLabelSelector: '#ex1 .slider-multithumb:nth-of-type(1) .slider .value',
-  flightLabelSelector: '#ex1 .slider-multithumb:nth-of-type(2) .slider .value',
+  hotelLabelSelector:
+    '#ex1 .slider-multithumb:nth-of-type(1) [role=slider] .value',
+  flightLabelSelector:
+    '#ex1 .slider-multithumb:nth-of-type(2) [role=slider] .value',
 };
 
 const verifyAllValues = async function (
@@ -63,7 +65,7 @@ ariaTest(
   exampleFile,
   'slider-role',
   async (t) => {
-    await assertAriaRoles(t, 'ex1', 'slider', '4', 'polygon');
+    await assertAriaRoles(t, 'ex1', 'slider', '4', 'g');
   }
 );
 
