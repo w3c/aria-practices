@@ -1344,6 +1344,5 @@
 
   window.addEventListener('load', function () {
     JumpTo.init();
-    console.log('JumpTo loaded...');
   });
 })();
