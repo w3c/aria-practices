@@ -6,6 +6,7 @@
  *
  *   Desc:   Jump to provides keyboard navigation to document structure
  *           This feature is based on the ARIA APG menu button example
+ *           NOTE: This code has been contributed to the SkipTo project
  */
 
 'use strict';
@@ -20,7 +21,7 @@
     lastMenuitem: false,
     firstChars: [],
     headingLevels: [],
-    skipToIdIndex: 1,
+    JumpToIdIndex: 1,
     showAllLandmarksSelector:
       'main, [role=main], [role=search], nav, [role=navigation], section[aria-label], section[aria-labelledby], section[title], [role=region][aria-label], [role=region][aria-labelledby], [role=region][title], form[aria-label], form[aria-labelledby], aside, [role=complementary], body > header, [role=banner], body > footer, [role=contentinfo]',
     showAllHeadingsSelector: 'h1, h2, h3, h4, h5, h6',
@@ -249,11 +250,8 @@
 
       return accesskey + this.config.accesskeyNotSupported;
     },
-    init: function (config) {
+    init: function () {
       var attachElement = document.body;
-      if (config) {
-        this.setUpConfig(config);
-      }
       if (typeof this.config.attachElement === 'string') {
         var node = document.querySelector(this.config.attachElement);
         if (node && node.nodeType === Node.ELEMENT_NODE) {
@@ -284,7 +282,7 @@
           }
         }
       }
-      // Place skip to at the beginning of the document
+      // Place jump to at the beginning of the document
       if (attachElement.firstElementChild) {
         attachElement.insertBefore(
           this.domNode,
@@ -333,29 +331,6 @@
         this.handleBackgroundMousedown.bind(this),
         true
       );
-    },
-    setUpConfig: function (appConfig) {
-      var localConfig = this.config,
-        name,
-        appConfigSettings =
-          typeof appConfig.settings !== 'undefined'
-            ? appConfig.settings.skipTo
-            : {};
-      for (name in appConfigSettings) {
-        //overwrite values of our local config, based on the external config
-        if (
-          typeof localConfig[name] !== 'undefined' &&
-          ((typeof appConfigSettings[name] === 'string' &&
-            appConfigSettings[name].length > 0) ||
-            typeof appConfigSettings[name] === 'boolean')
-        ) {
-          localConfig[name] = appConfigSettings[name];
-        } else {
-          console.log(
-            '** JumpTo Problem with user configuration option "' + name + '".'
-          );
-        }
-      }
     },
     renderStyleElement: function (cssString) {
       var styleNode = document.createElement('style');
@@ -927,7 +902,7 @@
       event.stopPropagation();
       event.preventDefault();
     },
-    skipToElement: function (menuitem) {
+    JumpToElement: function (menuitem) {
       var inputNode = false;
       var isSearch = menuitem.classList.contains('jump-to-search');
       var node = document.querySelector(
@@ -965,7 +940,7 @@
 
         default:
           this.closePopup();
-          this.skipToElement(tgt);
+          this.JumpToElement(tgt);
           break;
       }
     },
@@ -1153,8 +1128,8 @@
           if (heading.hasAttribute('data-jump-to-id')) {
             dataId = heading.getAttribute('data-jump-to-id');
           } else {
-            heading.setAttribute('data-jump-to-id', this.skipToIdIndex);
-            dataId = this.skipToIdIndex;
+            heading.setAttribute('data-jump-to-id', this.JumpToIdIndex);
+            dataId = this.JumpToIdIndex;
           }
           level = heading.tagName.substring(1);
           var headingItem = {};
@@ -1167,7 +1142,7 @@
           headingItem.role = 'heading';
           headingItem.level = level;
           headingElementsArr.push(headingItem);
-          this.skipToIdIndex += 1;
+          this.JumpToIdIndex += 1;
         }
       }
       return headingElementsArr;
@@ -1246,7 +1221,7 @@
       var dataId = '';
       for (var i = 0, len = landmarks.length; i < len; i += 1) {
         var landmark = landmarks[i];
-        // if skipto is a landmark don't include it in the list
+        // if JumpTo is a landmark don't include it in the list
         if (landmark === this.domNode) {
           continue;
         }
@@ -1309,8 +1284,8 @@
           if (landmark.hasAttribute('data-jump-to-id')) {
             dataId = landmark.getAttribute('data-jump-to-id');
           } else {
-            landmark.setAttribute('data-jump-to-id', this.skipToIdIndex);
-            dataId = this.skipToIdIndex;
+            landmark.setAttribute('data-jump-to-id', this.JumpToIdIndex);
+            dataId = this.JumpToIdIndex;
           }
           var landmarkItem = {};
           landmarkItem.dataId = dataId.toString();
@@ -1324,7 +1299,7 @@
               landmarks
             );
           }
-          this.skipToIdIndex += 1;
+          this.JumpToIdIndex += 1;
           allLandmarks.push(landmarkItem);
           // For sorting landmarks into groups
           switch (tagName) {
