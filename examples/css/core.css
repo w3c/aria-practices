@@ -55,6 +55,12 @@ table.data.attributes tbody td {
   hyphens: manual;
 }
 
+/* We need to override the top margin for the link example */
+
+th .example-header {
+  margin-top: 1em;
+}
+
 .example-header > :first-child {
   margin: 0;
 }
