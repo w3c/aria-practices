@@ -1,0 +1,94 @@
+/* CSS Document */
+
+.slider-multithumb {
+  padding: 6px;
+  width: 550px;
+}
+
+.slider-multithumb.focus {
+  padding: 4px;
+  border: 2px solid #005a9c;
+  border-radius: 5px;
+}
+
+.slider-multithumb.mobile {
+  clear: both;
+  display: grid;
+  grid-template-columns: 100px 340px 100px;
+  grid-column-gap: 10px;
+}
+
+.slider-multithumb.mobile .input-minimum,
+.slider-multithumb.mobile .input-maximum {
+  position: relative;
+  top: 20px;
+  height: 1.5em;
+}
+
+.slider-multithumb.mobile .input-minimum {
+  grid-column: 1;
+}
+
+.slider-multithumb.mobile .input-maximum {
+  grid-column: 3;
+}
+
+.slider-multithumb.mobile .slider-group {
+  grid-column: 2;
+}
+
+.slider-multithumb.mobile .input-minimum input,
+.slider-multithumb.mobile .input-maximum input {
+  width: 4em;
+}
+
+.slider-multithumb .slider-group .value {
+  font-size: 80%;
+  color: currentColor;
+}
+
+.slider-multithumb .slider-group .rail {
+  stroke: transparent;
+  stroke-width: 1px;
+  fill: #ccc;
+}
+
+.slider-multithumb .slider-group .thumb {
+  stroke-width: 0;
+  fill: #444;
+}
+
+.slider-multithumb .slider-group .focus {
+  stroke-width: 3px;
+  stroke: transparent;
+  fill: transparent;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Focus and hover styling */
+
+.slider-multithumb.focus .slider-group {
+  color: #005a9c;
+}
+
+.slider-multithumb.focus .slider-group .rail {
+  stroke: #adddff;
+  fill: #adddff;
+}
+
+.slider-multithumb [role="slider"]:focus {
+  outline: none;
+}
+
+.slider-multithumb [role="slider"]:focus .focus {
+  stroke: currentColor;
+}
+
+.slider-multithumb [role="slider"]:focus .thumb {
+  fill: currentColor;
+}
+
+.slider-multithumb [role="slider"]:focus .value {
+  font-weight: bold;
+}
