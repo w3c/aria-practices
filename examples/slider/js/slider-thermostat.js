@@ -327,7 +327,7 @@ class SliderThermostatText {
     this.textValues = [];
     for (let i = 0; i < this.buttonNodes.length; i++) {
       let buttonNode = this.buttonNodes[i];
-      this.textValues.push(buttonNode.textContent);
+      this.textValues.push(buttonNode.textContent.trim());
       buttonNode.addEventListener('click', this.onButtonClick.bind(this));
       buttonNode.addEventListener('keydown', this.onButtonKeydown.bind(this));
       buttonNode.addEventListener('focus', this.onSliderFocus.bind(this));

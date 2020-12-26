@@ -4,18 +4,19 @@ const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaRoles = require('../util/assertAriaRoles');
 
-const exampleFile = 'slider/slider-2.html';
+const exampleFile = 'slider/slider-thermostat.html';
 
 const ex = {
   sliderSelector: '#ex1 [role="slider"]',
-  tempSelector: '#ex1 #idTempThumb[role="slider"]',
-  fanSelector: '#ex1 #idFanThumb[role="slider"]',
-  heatSelector: '#ex1 #idHeatThumb[role="slider"]',
-  pageTempSelector: '#idTempValue',
+  tempSelector: '#id-temp',
+  fanSelector: '#id-fan',
+  heatSelector: '#id-hc',
+  pageTempSelector: '#id-temp .value',
   tempMax: '100',
   tempMin: '50',
   tempDefault: '68',
   tempPageInc: '10',
+  tempSuffix: '°F',
   fanMax: '3',
   fanMin: '0',
   heatMax: '2',
@@ -46,7 +47,7 @@ ariaTest(
   exampleFile,
   'slider-role',
   async (t) => {
-    await assertAriaRoles(t, 'ex1', 'slider', '3', 'div');
+    await assertAriaRoles(t, 'ex1', 'slider', '3', 'g');
   }
 );
 
@@ -196,7 +197,7 @@ ariaTest(
       await t.context.session
         .findElement(By.css(ex.pageTempSelector))
         .getText(),
-      sliderVal.toString(),
+      sliderVal.toString() + ex.tempSuffix,
       'Temp display should match value of slider: ' + sliderVal
     );
 
@@ -215,7 +216,7 @@ ariaTest(
       await t.context.session
         .findElement(By.css(ex.pageTempSelector))
         .getText(),
-      ex.tempMax,
+      ex.tempMax + ex.tempSuffix,
       'Temp display should match value of slider: ' + ex.tempMax
     );
 
@@ -297,7 +298,7 @@ ariaTest(
       await t.context.session
         .findElement(By.css(ex.pageTempSelector))
         .getText(),
-      sliderVal.toString(),
+      sliderVal.toString() + ex.tempSuffix,
       'Temp display should match value of slider: ' + sliderVal
     );
 
@@ -316,7 +317,7 @@ ariaTest(
       await t.context.session
         .findElement(By.css(ex.pageTempSelector))
         .getText(),
-      ex.tempMax,
+      ex.tempMax + ex.tempSuffix,
       'Temp display should match value of slider: ' + ex.tempMax
     );
 
@@ -398,7 +399,7 @@ ariaTest(
       await t.context.session
         .findElement(By.css(ex.pageTempSelector))
         .getText(),
-      sliderVal.toString(),
+      sliderVal.toString() + ex.tempSuffix,
       'Temp display should match value of slider: ' + sliderVal
     );
 
@@ -417,7 +418,7 @@ ariaTest(
       await t.context.session
         .findElement(By.css(ex.pageTempSelector))
         .getText(),
-      ex.tempMax,
+      ex.tempMax + ex.tempSuffix,
       'Temp display should match value of slider: ' + ex.tempMax
     );
   }
@@ -444,7 +445,7 @@ ariaTest(
       await t.context.session
         .findElement(By.css(ex.pageTempSelector))
         .getText(),
-      ex.tempMax,
+      ex.tempMax + ex.tempSuffix,
       'Temp display should match value of slider: ' + ex.tempMax
     );
 
@@ -504,7 +505,7 @@ ariaTest(
       await t.context.session
         .findElement(By.css(ex.pageTempSelector))
         .getText(),
-      tempVal.toString(),
+      tempVal.toString() + ex.tempSuffix,
       'Temp display should match value of slider: ' + tempVal
     );
 
@@ -513,7 +514,6 @@ ariaTest(
       await tempSlider.sendKeys(Key.ARROW_LEFT);
     }
 
-    let sliderVal = parseInt(ex.tempDefault) + 1;
     t.is(
       await tempSlider.getAttribute('aria-valuenow'),
       ex.tempMin.toString(),
@@ -524,7 +524,7 @@ ariaTest(
       await t.context.session
         .findElement(By.css(ex.pageTempSelector))
         .getText(),
-      ex.tempMin.toString(),
+      ex.tempMin.toString() + ex.tempSuffix,
       'Temp display should match value of slider: ' + ex.tempMin
     );
 
@@ -610,7 +610,7 @@ ariaTest(
       await t.context.session
         .findElement(By.css(ex.pageTempSelector))
         .getText(),
-      tempVal.toString(),
+      tempVal.toString() + ex.tempSuffix,
       'Temp display should match value of slider: ' + tempVal
     );
 
@@ -619,7 +619,6 @@ ariaTest(
       await tempSlider.sendKeys(Key.ARROW_DOWN);
     }
 
-    let sliderVal = parseInt(ex.tempDefault) + 1;
     t.is(
       await tempSlider.getAttribute('aria-valuenow'),
       ex.tempMin.toString(),
@@ -630,7 +629,7 @@ ariaTest(
       await t.context.session
         .findElement(By.css(ex.pageTempSelector))
         .getText(),
-      ex.tempMin.toString(),
+      ex.tempMin.toString() + ex.tempSuffix,
       'Temp display should match value of slider: ' + ex.tempMin
     );
 
@@ -714,7 +713,7 @@ ariaTest(
       await t.context.session
         .findElement(By.css(ex.pageTempSelector))
         .getText(),
-      sliderVal.toString(),
+      sliderVal.toString() + ex.tempSuffix,
       'Temp display should match value of slider: ' + sliderVal
     );
 
@@ -733,7 +732,7 @@ ariaTest(
       await t.context.session
         .findElement(By.css(ex.pageTempSelector))
         .getText(),
-      ex.tempMin,
+      ex.tempMin + ex.tempSuffix,
       'Temp display should match value of slider: ' + ex.tempMin
     );
   }
@@ -760,7 +759,7 @@ ariaTest(
       await t.context.session
         .findElement(By.css(ex.pageTempSelector))
         .getText(),
-      ex.tempMin,
+      ex.tempMin + ex.tempSuffix,
       'Temp display should match value of slider: ' + ex.tempMin
     );
 
