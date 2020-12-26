@@ -181,9 +181,23 @@
       <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
     </section>
 
+      <section>
+        <h2>Accessibility Features</h2>
+        <ul>
+          <li>A border is placed around the slider and related controls when the slider or a related element receives focus.</li>
+          <li>The placement of the slider value to the right of the thumb of the vertical supports users with low vision by allow them to more easily view the value of the slider as they move the thumb.</li>
+          <li>A circle SVG image is used for indicating the slider with keyboard focus.</li>
+          <li>The use SVG images enables the thumb, focus ring and rail of the slider to adapt to operating system high contrast colors.</li>
+          <li>The CSS <code>currentColor</code> value for the <code>fill</code> and <code>stroke</code> properties of the thumb and slider is used to support the override colors in high contrast mode.</li>
+          <li>The <code>input[type=number]</code> provides mobile assistive technology users a means to change the temperature when an external keyboard is not being used.</li>
+          <li>The <code>text[role=button]</code> provides mobile assistive technology users a means to change the Fan and Heat/Cool values  when an external keyboard is not being used.
+        </ul>
+      </section>
+
     <section>
       <h2 id="kbd_label" style="clear: both;">Keyboard Support</h2>
-      <table aria-labelledby="kbd_label" class="def">
+      <h3 id="kbd_label_1">Slider</h3>
+      <table aria-labelledby="kbd_label kbd_label_1" class="def">
         <thead>
           <tr>
             <th>Key</th>
@@ -241,11 +255,36 @@
           </tr>
         </tbody>
       </table>
+
+      <h3 id="kbd_label_2">Buttons</h3>
+      <table aria-labelledby="kbd_label kbd_label_2" class="def">
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-test-id="button-key-space">
+            <th>
+              <kbd>Space</kbd>
+            </th>
+            <td>
+              <ul>
+                <li>The buttons support mobile devices when a keyboard is not available.</li>
+                <li>Pressing the <kbd>space</kbd> key or clicking on the button changes the value of the slider referenced by <code>aria-controls</code> to the value in the <code>data-value</code> attribute of the button element.</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </section>
 
   <section>
       <h2 id="rps_label">Role, Property, State, and Tabindex Attributes</h2>
-      <table aria-labelledby="rps_label" class="data attributes">
+
+      <h3 id="rps_label_1">Slider</h3>
+      <table aria-labelledby="rps_label rps_label_1" class="data attributes">
         <thead>
           <tr>
             <th scope="col">Role</th>
@@ -354,6 +393,106 @@
           </tr>
         </tbody>
       </table>
+
+      <h3 id="rps_label_2">Input</h3>
+      <table aria-labelledby="rps_label rps_label_2" class="data attributes">
+        <thead>
+          <tr>
+            <th scope="col">Role</th>
+            <th scope="col">Attribute</th>
+            <th scope="col">Element</th>
+            <th scope="col">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-test-id="input-tabindex">
+            <td></td>
+            <th scope="row">
+              <code>tabindex=<q>-1</q></code>
+            </th>
+            <td>
+              <code>input</code>
+            </td>
+            <td>
+              <ul>
+                <li>The <code>input[type=number]</code> supports mobile access when an external keyboard is not available to operate the slider control directly.  Mobile devices provide an on-screen keyboard when input boxes receive focus for entering a temperature value.</li>
+                <li>Removes the <code>input</code> element from the tab order of the page.</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 id="rps_label_3">Buttons</h3>
+      <table aria-labelledby="rps_label rps_label_3" class="data attributes">
+        <thead>
+          <tr>
+            <th scope="col">Role</th>
+            <th scope="col">Attribute</th>
+            <th scope="col">Element</th>
+            <th scope="col">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-test-id="button-role">
+            <th scope="row">
+              <code>button</code>
+            </th>
+            <td></td>
+            <td>
+              <code>text</code>
+            </td>
+            <td>
+              <ul>
+                <li>Identifies the element as a button.</li>
+                <li>Set on the SVG <code>text</code> element that changes the value of the slider.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr data-test-id="button-tabindex">
+            <td></td>
+            <th scope="row">
+              <code>tabindex=<q>-1</q></code>
+            </th>
+            <td>
+              <code>text</code>
+            </td>
+            <td>
+              <ul>
+                <li>The <code>text[role=button]</code> supports mobile access when an external keyboard is not available to operate the slider directly.  Mobile devices provide an on-screen keyboard when input boxes receive focus for entering a temperature value.</li>
+                <li>Removes the <code>input</code> element from the tab order of the page.</li>
+              </ul>
+            </td>
+          <tr data-test-id="button-aria-label">
+            <td></td>
+            <th scope="row">
+              <code>aria-label=<q><em>label</em></q></code>
+            </th>
+            <td>
+              <code>text</code>
+            </td>
+            <td>
+              Defines the accessible name for each button describing how the associated slider will change (e.g. "Heating off", "Fan off" and "Fan auto").
+            </td>
+          </tr>
+          <tr data-test-id="button-aria-controls">
+            <td></td>
+            <th scope="row">
+              <code>aria-controls=<q>IDREF</q></code>
+            </th>
+            <td>
+              <code>text</code>
+            </td>
+            <td>
+              <ul>
+                <li>Identifies the content on the page that the button controls.</li>
+                <li>Refers to the SVG <code>g</code> elemthat contains identifies the slider.</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
     </section>
 
     <section>
