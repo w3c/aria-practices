@@ -40,6 +40,7 @@ class SliderThermostatVertical {
     // Dimensions of the slider focus ring, thumb and rail
 
     this.valueX = parseInt(this.sliderValueNode.getAttribute('x'));
+    this.valueHeight = this.sliderValueNode.getBoundingClientRect().height;
 
     this.railHeight = parseInt(this.railNode.getAttribute('height'));
     this.railWidth = parseInt(this.railNode.getAttribute('width'));
@@ -50,16 +51,14 @@ class SliderThermostatVertical {
     this.thumbWidth = parseInt(this.sliderThumbNode.getAttribute('width'));
     this.thumbHeight = parseInt(this.sliderThumbNode.getAttribute('height'));
 
-    this.focusRadius = parseInt(this.sliderFocusNode.getAttribute('r'));
+    this.focusX = parseInt(this.sliderFocusNode.getAttribute('x'));
+    this.focusWidth = parseInt(this.sliderFocusNode.getAttribute('width'));
+    this.focusHeight = parseInt(this.sliderFocusNode.getAttribute('height'));
 
     this.thumbX = this.railX + this.railWidth / 2 - this.thumbWidth / 2;
     this.sliderThumbNode.setAttribute('x', this.thumbX);
-
     this.sliderValueNode.setAttribute('x', this.valueX);
-    this.sliderValueNode.setAttribute('x', this.valueX);
-
-    this.sliderFocusNode.setAttribute('r', this.focusRadius);
-    this.sliderFocusNode.setAttribute('cx', this.railX + this.railWidth / 2);
+    this.sliderFocusNode.setAttribute('x', this.focusX);
 
     this.railNode.setAttribute('y', this.railY);
     this.railNode.setAttribute('x', this.railX);
@@ -136,11 +135,17 @@ class SliderThermostatVertical {
     this.sliderValueNode.textContent = degreeValue;
 
     // move the SVG focus ring and thumb elements
-    this.sliderFocusNode.setAttribute('cy', pos + this.thumbHeight / 2);
+    this.sliderFocusNode.setAttribute(
+      'y',
+      pos - (this.focusHeight - this.thumbHeight) / 2
+    );
     this.sliderThumbNode.setAttribute('y', pos);
 
     // Position value
-    this.sliderValueNode.setAttribute('y', pos + this.thumbHeight);
+    this.sliderValueNode.setAttribute(
+      'y',
+      pos + this.thumbHeight - (this.valueHeight - this.thumbHeight) / 2
+    );
   }
 
   onSliderKeydown(event) {
@@ -293,13 +298,14 @@ class SliderThermostatText {
     this.thumbWidth = parseInt(this.sliderThumbNode.getAttribute('width'));
     this.thumbHeight = parseInt(this.sliderThumbNode.getAttribute('height'));
 
-    this.focusRadius = parseInt(this.sliderFocusNode.getAttribute('r'));
+    this.focusHeight = parseInt(this.sliderFocusNode.getAttribute('height'));
+    this.focusWidth = parseInt(this.sliderFocusNode.getAttribute('width'));
 
     this.thumbY = this.railY + this.railHeight / 2 - this.thumbHeight / 2;
     this.sliderThumbNode.setAttribute('y', this.thumbY);
 
-    this.sliderFocusNode.setAttribute('r', this.focusRadius);
-    this.sliderFocusNode.setAttribute('cy', this.railY + this.railHeight / 2);
+    this.focusY = this.railY + this.railHeight / 2 - this.focusHeight / 2;
+    this.sliderFocusNode.setAttribute('y', this.focusY);
 
     this.railNode.setAttribute('y', this.railY);
     this.railNode.setAttribute('x', this.railX);
@@ -386,7 +392,10 @@ class SliderThermostatText {
     this.sliderNode.setAttribute('aria-valuetext', this.textValues[value]);
 
     // move the SVG focus ring and thumb elements
-    this.sliderFocusNode.setAttribute('cx', this.positions[value]);
+    this.sliderFocusNode.setAttribute(
+      'x',
+      this.positions[value] - this.focusWidth / 2
+    );
     this.sliderThumbNode.setAttribute(
       'x',
       this.positions[value] - this.thumbWidth / 2
