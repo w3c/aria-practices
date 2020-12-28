@@ -11,6 +11,7 @@ const exampleFile = 'slider/slider-thermostat.html';
 const ex = {
   sliderSelector: '#ex1 [role="slider"]',
   buttonSelector: '#ex1 [role="button"]',
+  inputSelector: '#ex1 input[type="number"]',
   tempSelector: '#id-temp',
   fanSelector: '#id-fan',
   heatSelector: '#id-hc',
@@ -46,6 +47,15 @@ const getValueAndText = async function (t, selector) {
 // Attributes
 
 ariaTest(
+  '"tabindex" set to "-1" on buttons',
+  exampleFile,
+  'input-tabindex',
+  async (t) => {
+    await assertAttributeValues(t, ex.inputSelector, 'tabindex', '-1');
+  }
+);
+
+ariaTest(
   'role="button" on SVG text element',
   exampleFile,
   'button-role',
@@ -57,7 +67,7 @@ ariaTest(
 ariaTest(
   '"tabindex" set to "-1" on buttons',
   exampleFile,
-  'tabindex',
+  'button-tabindex',
   async (t) => {
     await assertAttributeValues(t, ex.buttonSelector, 'tabindex', '-1');
   }
@@ -92,7 +102,7 @@ ariaTest(
 ariaTest(
   '"tabindex" set to "0" on sliders',
   exampleFile,
-  'tabindex',
+  'slider-tabindex',
   async (t) => {
     await assertAttributeValues(t, ex.sliderSelector, 'tabindex', '0');
   }
