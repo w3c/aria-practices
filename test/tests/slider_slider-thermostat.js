@@ -1,6 +1,8 @@
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
+const assertAriaControls = require('../util/assertAriaControls');
+const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaRoles = require('../util/assertAriaRoles');
 
@@ -8,6 +10,7 @@ const exampleFile = 'slider/slider-thermostat.html';
 
 const ex = {
   sliderSelector: '#ex1 [role="slider"]',
+  buttonSelector: '#ex1 [role="button"]',
   tempSelector: '#id-temp',
   fanSelector: '#id-fan',
   heatSelector: '#id-hc',
@@ -43,7 +46,42 @@ const getValueAndText = async function (t, selector) {
 // Attributes
 
 ariaTest(
-  'role="slider" on div element',
+  'role="button" on SVG text element',
+  exampleFile,
+  'button-role',
+  async (t) => {
+    await assertAriaRoles(t, 'ex1', 'button', '7', 'text');
+  }
+);
+
+ariaTest(
+  '"tabindex" set to "-1" on buttons',
+  exampleFile,
+  'tabindex',
+  async (t) => {
+    await assertAttributeValues(t, ex.buttonSelector, 'tabindex', '-1');
+  }
+);
+
+ariaTest(
+  '"aria-label" set on button',
+  exampleFile,
+  'button-aria-label',
+  async (t) => {
+    await assertAriaLabelExists(t, ex.buttonSelector);
+  }
+);
+
+ariaTest(
+  '"aria-control" attribute on role="button"',
+  exampleFile,
+  'button-aria-controls',
+  async (t) => {
+    await assertAriaControls(t, ex.buttonSelector);
+  }
+);
+ariaTest(
+  'role="slider" on SVG g element',
   exampleFile,
   'slider-role',
   async (t) => {
