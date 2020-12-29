@@ -10,7 +10,7 @@ const exampleFile = 'slider/slider-thermostat.html';
 
 const ex = {
   sliderSelector: '#ex1 [role="slider"]',
-  buttonSelector: '#ex1 [role="button"]',
+  buttonSelector: '#ex1 button',
   inputSelector: '#ex1 input[type="number"]',
   tempSelector: '#id-temp',
   fanSelector: '#id-fan',
@@ -56,15 +56,6 @@ ariaTest(
 );
 
 ariaTest(
-  'role="button" on SVG text element',
-  exampleFile,
-  'button-role',
-  async (t) => {
-    await assertAriaRoles(t, 'ex1', 'button', '7', 'text');
-  }
-);
-
-ariaTest(
   '"tabindex" set to "-1" on buttons',
   exampleFile,
   'button-tabindex',
@@ -83,13 +74,14 @@ ariaTest(
 );
 
 ariaTest(
-  '"aria-control" attribute on role="button"',
+  '"aria-controls" attribute of button',
   exampleFile,
   'button-aria-controls',
   async (t) => {
     await assertAriaControls(t, ex.buttonSelector);
   }
 );
+
 ariaTest(
   'role="slider" on SVG g element',
   exampleFile,

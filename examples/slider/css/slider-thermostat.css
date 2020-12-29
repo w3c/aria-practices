@@ -46,6 +46,10 @@
   color: currentColor;
 }
 
+.slider-thermostat-text [role="button"] {
+  color: currentColor;
+}
+
 .slider-thermostat-vertical .slider-group .rail,
 .slider-thermostat-text .slider-group .rail {
   stroke: transparent;
@@ -64,6 +68,21 @@
   stroke-width: 3px;
   stroke: transparent;
   fill: transparent;
+}
+
+.slider-thermostat-text .labels {
+  position: relative;
+}
+
+.slider-thermostat-text .labels button {
+  position: absolute;
+  top: -30px;
+  margin: 0;
+  padding: 4px;
+  border: none;
+  background: transparent;
+  display: inline-block;
+  font-size: 1.1em;
 }
 
 /* Focus and hover styling */
@@ -96,4 +115,5 @@
 
 .slider-thermostat-vertical [role="slider"]:focus .value {
   font-weight: bold;
+  color: currentColor;
 }

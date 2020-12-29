@@ -63,7 +63,7 @@
               aria-valuetext="68 degrees"
               aria-valuemax="100"
               aria-labelledby="id-temp-label">
-              <text class="value" x="84" y="150">68</text>
+              <text class="value" x="84" y="150">68</button>
               <rect class="focus"
                 x="35" y="145" width="84" height="24" rx="12" />
               <rect class="thumb"
@@ -74,7 +74,7 @@
 
         <div class="slider-thermostat-text">
           <div id="id-fan-label" class="label">Fan</div>
-          <svg class="slider-group" width="210" height="80">
+          <svg class="slider-group" width="210" height="85">
             <rect class="rail" x="25" y="25" width="132" height="6" rx="5"/>
             <g id="id-fan"
               role="slider"
@@ -90,50 +90,42 @@
               <rect class="thumb"
                 x="0" y="0" width="12" height="36" rx="5"/>
             </g>
-            <g class="labels">
-              <text role="button"
-                tabindex="-1"
-                aria-controls="id-fan"
-                data-value="0"
-                aria-label="Turn fan off"
-                x="0"
-                y="75">
-                Off
-              </text>
-              <text role="button"
-                tabindex="-1"
-                aria-controls="id-fan"
-                data-value="1"
-                aria-label="Set fan to low speed"
-                x="0"
-                y="75">
-                Low
-              </text>
-              <text role="button"
-                tabindex="-1"
-                aria-controls="id-fan"
-                data-value="2"
-                aria-label="Set fan to high speed"
-                x="0"
-                y="75">
-                High
-              </text>
-              <text  role="button"
-                tabindex="-1"
-                aria-controls="id-fan"
-                data-value="3"
-                aria-label="Set fan to auto"
-                x="0"
-                y="75">
-                Auto
-              </text>
-            </g>
           </svg>
+          <div class="labels">
+            <button
+              tabindex="-1"
+              aria-controls="id-fan"
+              data-value="0"
+              aria-label="Turn fan off">
+              Off
+            </button>
+            <button
+              tabindex="-1"
+              aria-controls="id-fan"
+              data-value="1"
+              aria-label="Set fan to low speed">
+              Low
+            </button>
+            <button
+              tabindex="-1"
+              aria-controls="id-fan"
+              data-value="2"
+              aria-label="Set fan to high speed">
+              High
+            </button>
+            <button
+              tabindex="-1"
+              aria-controls="id-fan"
+              data-value="3"
+              aria-label="Set fan to auto">
+              Auto
+            </button>
+          </div>
         </div>
 
         <div class="slider-thermostat-text">
           <div id="id-hc-label" class="label">Heat/Cool</div>
-          <svg class="slider-group" width="210" height="80">
+          <svg class="slider-group" width="210" height="85">
             <rect class="rail" x="25" y="25" width="92" height="6" rx="5"/>
             <g role="slider"
               aria-orientation="horizontal"
@@ -149,36 +141,30 @@
               <rect class="thumb"
                 x="0" y="0" width="12" height="36" rx="5"/>
             </g>
-            <g class="labels">
-              <text role="button"
-                tabindex="-1"
-                aria-controls="id-hc"
-                data-value="0"
-                aria-label="Heating and Cooling off"
-                x="0"
-                y="75">
-                Off
-              </text>
-              <text role="button"
-                tabindex="-1"
-                aria-controls="id-hc"
-                data-value="1"
-                aria-label="Heating on"
-                x="0"
-                y="75">
-                Heat
-              </text>
-              <text role="button"
-                tabindex="-1"
-                aria-controls="id-hc"
-                data-value="2"
-                aria-label="Cooling on"
-                x="0"
-                y="75">
-                Cool
-              </text>
-            </g>
           </svg>
+          <div class="labels">
+            <button
+              tabindex="-1"
+              aria-controls="id-hc"
+              data-value="0"
+              aria-label="Heating and Cooling off">
+              Off
+            </button>
+            <button
+              tabindex="-1"
+              aria-controls="id-hc"
+              data-value="1"
+              aria-label="Heating on">
+              Heat
+            </button>
+            <button
+              tabindex="-1"
+              aria-controls="id-hc"
+              data-value="2"
+              aria-label="Cooling on">
+              Cool
+            </button>
+          </div>
         </div>
       </div>
       <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
