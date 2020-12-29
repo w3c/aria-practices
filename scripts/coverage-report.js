@@ -241,7 +241,7 @@ function getPropertiesAndStatesFromExample(data) {
     for (let i = 0; i < ariaPropertiesAndStates.length; i++) {
       if (
         getColumn(data, indexStart) === 2 &&
-        code.indexOf(ariaPropertiesAndStates[i]) >= 0 &&
+        code.indexOf(ariaPropertiesAndStates[i] + '=') >= 0 &&
         propertiesAndStates.indexOf(ariaPropertiesAndStates[i]) < 0
       ) {
         propertiesAndStates.push(ariaPropertiesAndStates[i]);
