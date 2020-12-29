@@ -195,7 +195,6 @@ const getRegressionTestCoverage = function (exampleCoverage) {
 
   let testRegex = /^# (\S+) [>›] (\S+\.html) \[data-test-id="(\S+)"\]/gm;
   let matchResults;
-  // eslint-disable-next-line no-cond-assign
   while ((matchResults = testRegex.exec(avaResults))) {
     let example = matchResults[2];
 
