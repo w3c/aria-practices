@@ -1132,7 +1132,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
             <ul>
               <li>If a dialog primarily serves to present structured content (including multiple paragraphs, lists, tables, etc.) which would not make sense when announced as a single unbroken string of content by assistive technologies, then it is advisable to omit <code>aria-describedby</code> on the dialog itself, add <code>tabindex="-1"</code> to a static element at the start of the content, and initially focus that element.</li>
               <li>If content is large enough that focusing the first interactive element could cause the beginning of content to scroll out of view,
-                it is advisable to add <code>tabindex=<q>-1</q></code> to a static element at the top of the dialog, such as the dialog title or first paragraph, and initially focus that element.
+                it is advisable to add <code>tabindex="-1"</code> to a static element at the top of the dialog, such as the dialog title or first paragraph, and initially focus that element.
               </li>
               <li>
                 If a dialog contains the final step in a process that is not easily reversible, such as deleting data or completing a financial transaction,
