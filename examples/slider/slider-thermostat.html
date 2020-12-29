@@ -178,8 +178,8 @@
           <li>A circle SVG image is used for indicating the slider with keyboard focus.</li>
           <li>The use SVG images enables the thumb, focus ring and rail of the slider to adapt to operating system high contrast colors.</li>
           <li>The CSS <code>currentColor</code> value for the <code>fill</code> and <code>stroke</code> properties of the thumb and slider is used to support the override colors in high contrast mode.</li>
-          <li>The <code>input[type=number]</code> provides mobile assistive technology users a means to change the temperature when an external keyboard is not being used.</li>
-          <li>The <code>text[role=button]</code> provides mobile assistive technology users a means to change the Fan and Heat/Cool values  when an external keyboard is not being used.
+          <li>The <code>input[type=number]</code> element provides mobile assistive technology users a means to change the temperature when an external keyboard is not being used.</li>
+          <li>The <code>button</code> elements provides mobile assistive technology users a means to change the Fan and Heat/Cool values  when an external keyboard is not being used.
         </ul>
       </section>
 
@@ -256,7 +256,7 @@
         <tbody>
           <tr data-test-id="button-key-space">
             <th>
-              <kbd>Space</kbd>
+              <kbd>Space, Enter</kbd>
             </th>
             <td>
               <ul>
@@ -423,33 +423,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr data-test-id="button-role">
-            <th scope="row">
-              <code>button</code>
-            </th>
-            <td></td>
-            <td>
-              <code>text</code>
-            </td>
-            <td>
-              <ul>
-                <li>Identifies the element as a button.</li>
-                <li>Set on the SVG <code>text</code> element that changes the value of the slider.</li>
-              </ul>
-            </td>
-          </tr>
           <tr data-test-id="button-tabindex">
             <td></td>
             <th scope="row">
               <code>tabindex=<q>-1</q></code>
             </th>
             <td>
-              <code>text</code>
+              <code>button</code>
             </td>
             <td>
               <ul>
-                <li>The <code>text[role=button]</code> supports mobile access when an external keyboard is not available to operate the slider directly.  Mobile devices provide an on-screen keyboard when input boxes receive focus for entering a temperature value.</li>
-                <li>Removes the <code>input</code> element from the tab order of the page.</li>
+                <li>The <code>button</code> supports mobile access when an external keyboard is not available to operate the slider directly.  Mobile devices provide an on-screen keyboard when input boxes receive focus for entering a temperature value.</li>
+                <li>Removes the <code>button</code> element from the tab order of the page.</li>
               </ul>
             </td>
           <tr data-test-id="button-aria-label">
@@ -458,7 +443,7 @@
               <code>aria-label=<q><em>label</em></q></code>
             </th>
             <td>
-              <code>text</code>
+              <code>button</code>
             </td>
             <td>
               Defines the accessible name for each button describing how the associated slider will change (e.g. "Heating off", "Fan off" and "Fan auto").
@@ -470,12 +455,12 @@
               <code>aria-controls=<q>IDREF</q></code>
             </th>
             <td>
-              <code>text</code>
+              <code>button</code>
             </td>
             <td>
               <ul>
                 <li>Identifies the content on the page that the button controls.</li>
-                <li>Refers to the SVG <code>g</code> elemthat contains identifies the slider.</li>
+                <li>Refers to the SVG <code>g</code> element that contains identifies the slider.</li>
               </ul>
             </td>
           </tr>
