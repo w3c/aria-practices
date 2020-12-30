@@ -1185,7 +1185,8 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
           <li>
             Optionally, the <a href="#aria-describedby" class="property-reference">aria-describedby</a> property
             is set on the element with the <code>dialog</code> role to indicate which element or elements in the dialog contain content that describes the primary purpose or message of the dialog.
-            Specifying descriptive elements enables screen readers to announce the description along with the dialog title and initially focused element when the dialog opens. As noted previously, for dialogs that primarily serve to present large amounts of structured content, it is advisable <em>not</em> to use <code>aria-describedby</code> to point to the content of the dialog, as this would result in assistive technologies announcing the entirety of the structured content as a single unbroken message.
+            Specifying descriptive elements enables screen readers to announce the description along with the dialog title and initially focused element when the dialog opens, which is typically helpful only when the descriptive content is simple and can easily be understood without structural information.
+            It is advisable to omit specifying <code>aria-describedby</code> if the dialog content includes semantic structures, such as lists, tables, or multiple paragraphs, that need to be perceived in order to easily understand the content, i.e., if the content would be difficult to understand when announced as a single unbroken string.
           </li>
         </ul>
         <ul class="note">
