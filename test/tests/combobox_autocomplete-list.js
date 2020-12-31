@@ -168,7 +168,6 @@ ariaTest(
     );
     const id = await combobox.getAttribute('id');
 
-    console.log(id);
     t.truthy(id, '"id" attribute should exist on combobox');
 
     const label = await t.context.queryElements(t, `[for="${id}"]`);
@@ -593,6 +592,172 @@ ariaTest(
         .getAttribute('value'),
       firstOption,
       'key press "ENTER" should result in first option in textbox'
+    );
+  }
+);
+
+// "Test 3" in https://github.com/w3c/aria-practices/issues/1345
+
+ariaTest(
+  'Test backspace with focus on textbox',
+  exampleFile,
+  'standard-single-line-editing-keys',
+  async (t) => {
+    t.plan(7);
+
+    // Send key "a" to the textbox
+
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys('a');
+
+    // Confirm that the value of the textbox is "a"
+
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.textboxSelector))
+        .getAttribute('value'),
+      'a',
+      'key press "a" should result in "a" in textbox'
+    );
+
+    // Send key BACK_SPACE
+
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys(Key.BACK_SPACE);
+
+    // Confirm that the listbox is still open
+
+    await assertAttributeValues(t, ex.textboxSelector, 'aria-expanded', 'true');
+
+    // Confirm that the value of the textbox is now ""
+
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.textboxSelector))
+        .getAttribute('value'),
+      '',
+      'key press "BACK_SPACE" should result in deleting the "a"'
+    );
+
+    // Send key ARROW_DOWN
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys(Key.ARROW_DOWN);
+
+    // Confirm that the listbox is still open
+
+    await assertAttributeValues(t, ex.textboxSelector, 'aria-expanded', 'true');
+
+    // Confirm that the value of the textbox is still ""
+
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.textboxSelector))
+        .getAttribute('value'),
+      '',
+      'key press "ARROW_DOWN" should result in no change in textbox value'
+    );
+
+    // Confirm that "Alabama" option is aria-selected="true"
+
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.optionsSelector + '[aria-selected="true"]'))
+        .getText(),
+      'Alabama',
+      'key press "ARROW_DOWN" should result in "Alabama" option being selected'
+    );
+
+    // Confirm that there are 56 options visible
+    t.is(
+      await (await t.context.queryElements(t, ex.optionsSelector)).length,
+      56,
+      'key press "ARROW_DOWN" should result in all options being visible'
+    );
+  }
+);
+
+// "Test 4" in https://github.com/w3c/aria-practices/issues/1345
+
+ariaTest(
+  'Test backspace with focus on textbox (2)',
+  exampleFile,
+  'standard-single-line-editing-keys',
+  async (t) => {
+    t.plan(7);
+
+    // Send keys "no" to the textbox
+
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys('n', 'o');
+
+    // Confirm that the value of the textbox is now set to "no"
+
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.textboxSelector))
+        .getAttribute('value'),
+      'no',
+      'key press "n" "o" should result in "no" in textbox'
+    );
+
+    // Send key BACK_SPACE
+
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys(Key.BACK_SPACE);
+
+    // Confirm that the listbox is still open
+
+    await assertAttributeValues(t, ex.textboxSelector, 'aria-expanded', 'true');
+
+    // Confirm that the value of the textbox is now "n"
+
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.textboxSelector))
+        .getAttribute('value'),
+      'n',
+      'key press "BACK_SPACE" should result in deleting the "o"'
+    );
+
+    // Send key ARROW_DOWN
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys(Key.ARROW_DOWN);
+
+    // Confirm that the listbox is still open
+
+    await assertAttributeValues(t, ex.textboxSelector, 'aria-expanded', 'true');
+
+    // Confirm that the value of the textbox is still "n"
+
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.textboxSelector))
+        .getAttribute('value'),
+      'n',
+      'key press "ARROW_DOWN" should result in no change in textbox value'
+    );
+
+    // Confirm that "Nebraska" option is aria-selected="true"
+
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.optionsSelector + '[aria-selected="true"]'))
+        .getText(),
+      'Nebraska',
+      'key press "ARROW_DOWN" should result in "Nebraska" option being selected'
+    );
+
+    // Confirm that there are 9 options visible
+    t.is(
+      await (await t.context.queryElements(t, ex.optionsSelector)).length,
+      9,
+      'key press "ARROW_DOWN" should result in 9 options being visible'
     );
   }
 );
