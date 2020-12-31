@@ -11,6 +11,7 @@
 class SliderMultithumb {
   constructor(domNode) {
     this.domNode = domNode;
+    this.svgNode = domNode.querySelector('svg');
     this.railNode = domNode.querySelector('.rail');
 
     this.minSliderNode = domNode.querySelector('[role=slider].minimum');
@@ -56,33 +57,46 @@ class SliderMultithumb {
 
     // Dimensions of the slider focus ring, thumb and rail
 
-    this.valueTop = 12;
+    this.svgWidth = 360;
+    this.svgHeight = 80;
+
+    this.valueTop = 24;
+    this.valueHeight = this.minSliderValueNode.getBoundingClientRect().height;
 
     this.railHeight = 6;
     this.railWidth = 300;
-    this.railTop = 30;
-    this.railLeft = 10;
+    this.railY = 42;
+    this.railX = 10;
 
-    this.thumbWidth = 20;
+    this.thumbTop = 30;
+    this.thumbHeight = 30;
+    this.thumbWidth = 30;
     this.thumb2Width = 2 * this.thumbWidth;
-    this.thumbHeight = 20;
-    this.thumbTop = 23;
-
-    this.focusRadius = 16;
-    this.focusOffset = 8;
-
     this.thumbMiddle = this.thumbTop + this.thumbHeight / 2;
     this.thumbBottom = this.thumbTop + this.thumbHeight;
+
+    this.focusOffset = 8;
+    this.focusY = this.valueTop - this.valueHeight - this.focusOffset + 2;
+    this.focusWidth = this.thumbWidth + 2 * this.focusOffset;
+    this.focusHeight = this.thumbBottom - this.focusY + this.focusOffset + 2;
+
+    this.svgNode.setAttribute('width', this.svgWidth);
+    this.svgNode.setAttribute('height', this.svgHeight);
+
+    this.minSliderFocusNode.setAttribute('y', this.focusY);
+    this.maxSliderFocusNode.setAttribute('y', this.focusY);
+    this.minSliderFocusNode.setAttribute('width', this.focusWidth);
+    this.maxSliderFocusNode.setAttribute('width', this.focusWidth);
+    this.minSliderFocusNode.setAttribute('height', this.focusHeight);
+    this.maxSliderFocusNode.setAttribute('height', this.focusHeight);
+    this.minSliderFocusNode.setAttribute('rx', this.focusWidth / 2);
+    this.maxSliderFocusNode.setAttribute('rx', this.focusWidth / 2);
+
     this.minSliderValueNode.setAttribute('y', this.valueTop);
     this.maxSliderValueNode.setAttribute('y', this.valueTop);
 
-    this.minSliderFocusNode.setAttribute('r', this.focusRadius);
-    this.minSliderFocusNode.setAttribute('cy', this.thumbMiddle);
-    this.maxSliderFocusNode.setAttribute('r', this.focusRadius);
-    this.maxSliderFocusNode.setAttribute('cy', this.thumbMiddle);
-
-    this.railNode.setAttribute('y', this.railTop);
-    this.railNode.setAttribute('x', this.railLeft);
+    this.railNode.setAttribute('y', this.railY);
+    this.railNode.setAttribute('x', this.railX);
     this.railNode.setAttribute('height', this.railHeight);
     this.railNode.setAttribute('width', this.railWidth + this.thumbWidth);
 
@@ -155,7 +169,7 @@ class SliderMultithumb {
     var valueMax,
       valueMin,
       pos,
-      cx,
+      x,
       points = '',
       width;
 
@@ -179,7 +193,7 @@ class SliderMultithumb {
     sliderNode.setAttribute('aria-valuenow', value);
     sliderNode.setAttribute('aria-valuetext', dollarValue);
 
-    pos = this.railLeft;
+    pos = this.railX;
     pos += Math.round(
       (value * (this.railWidth - this.thumbWidth)) /
         (this.sliderMaxValue - this.sliderMinValue)
@@ -196,8 +210,8 @@ class SliderMultithumb {
       }
 
       // move the SVG focus ring and thumb elements
-      cx = `${pos + this.focusOffset}`;
-      this.minSliderFocusNode.setAttribute('cx', cx);
+      x = pos - this.focusOffset - 1;
+      this.minSliderFocusNode.setAttribute('x', x);
 
       points = `${pos},${this.thumbTop}`;
       points += ` ${pos + this.thumbWidth},${this.thumbMiddle}`;
@@ -214,8 +228,8 @@ class SliderMultithumb {
       this.minSliderRight = pos;
     } else {
       // move the SVG focus ring and thumb elements
-      cx = `${pos + 2 * this.thumbWidth - this.focusOffset + 1}`;
-      this.maxSliderFocusNode.setAttribute('cx', cx);
+      x = pos + this.thumbWidth - this.focusOffset + 1;
+      this.maxSliderFocusNode.setAttribute('x', x);
 
       points = `${pos + this.thumbWidth},${this.thumbMiddle}`;
       points += ` ${pos + this.thumb2Width},${this.thumbTop}`;

@@ -55,7 +55,7 @@
           <h3>Hotel Price Range</h3>
           <div class="slider-multithumb">
             <svg class="slider-group"  width="360" height="60">
-              <rect class="rail" width="300" height="6"/>
+              <rect class="rail"/>
               <g class="minimum"
                 role="slider"
                 tabindex="0"
@@ -64,11 +64,9 @@
                 aria-valuetext="$100"
                 aria-valuemax="250"
                 aria-label="Hotel Minimum Price">
-                <text class="value" x="0" y="10">0</text>
-                <circle class="focus"
-                  cx="11" cy="15" r="24" />
-                <polygon class="thumb"
-                  points="5,5 22,15 5,25"/>
+                <text class="value">0</text>
+                <rect class="focus"/>
+                <polygon class="thumb"/>
               </g>
               <g class="maximum"
                 role="slider"
@@ -78,18 +76,16 @@
                 aria-valuetext="$250"
                 aria-valuemax="400"
                 aria-label="Hotel Maximum Price">
-                <text class="value" x="300" y="10">0</text>
-                <circle class="focus"
-                  cx="308" cy="15" r="24" />
-                <polygon class="thumb"
-                  points="322,5 305,15 322,25"/>
+                <text class="value">0</text>
+                <rect class="focus"/>
+                <polygon class="thumb"/>
               </g>
             </svg>
-          </div>
+           </div>
           <h3>Flight Price Range</h3>
           <div class="slider-multithumb">
-            <svg class="slider-group"  width="360" height="60">
-              <rect class="rail" width="300" height="6"/>
+            <svg class="slider-group">
+              <rect class="rail"/>
               <g class="minimum"
                 role="slider"
                 tabindex="0"
@@ -98,11 +94,9 @@
                 aria-valuetext="$100"
                 aria-valuemax="250"
                 aria-label="Flight Minimum Price">
-                <text class="value" x="0" y="10">0</text>
-                <circle class="focus"
-                  cx="11" cy="15" r="24" />
-                <polygon class="thumb"
-                  points="5,5 22,15 5,25"/>
+                <text class="value">0</text>
+                <rect class="focus"/>
+                <polygon class="thumb"/>
               </g>
               <g class="maximum"
                 role="slider"
@@ -112,14 +106,12 @@
                 aria-valuetext="$250"
                 aria-valuemax="1000"
                 aria-label="Flight Maximum Price">
-                <text class="value" x="300" y="10">0</text>
-                <circle class="focus"
-                  cx="308" cy="15" r="24" />
-                <polygon class="thumb"
-                  points="322,5 305,15 322,25"/>
+                <text class="value">0</text>
+                <rect class="focus"/>
+                <polygon class="thumb"/>
               </g>
              </svg>
-           </div>
+          </div>
         </div>
         <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
       </section>
@@ -129,8 +121,8 @@
         <ul>
           <li>A border is placed around the entire multi-thumbslider when one of the elements within the slider receives focus.</li>
           <li>The placement of the slider value above the thumb supports users with low vision by allow them to more easily view the value of the slider as they move the thumb.</li>
-          <li>A circle SVG image is used for indicating the slider with keyboard focus.</li>
-          <li>The use SVG images enables the thumb, focus ring and rail of the slider to adapt to operating system high contrast colors.</li>
+          <li>The SVG <code>rect</code> element is used to encapsulate both the slider and slider value for the slider with keyboard focus.</li>
+          <li>The use SVG <code>polygon</code>, <code>rect</code> and <code>text</code> elements enables the thumb, focus ring, value and rail of the slider to adapt to operating system high contrast colors.</li>
           <li>The CSS <code>currentColor</code> value for the <code>fill</code> and <code>stroke</code> properties of the thumb and slider is used to support the override colors in high contrast mode.</li>
         </ul>
       </section>
