@@ -3,7 +3,7 @@
  *   This content is licensed according to the W3C Software License at
  *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
  *
- *   File:   slider.js
+ *   File:   slider-color-viewer.js
  *
  *   Desc:   ColorViewerSliders widget that implements ARIA Authoring Practices
  */
@@ -15,13 +15,29 @@ class ColorViewerSliders {
 
     this.sliders = {};
 
+    this.svgWidth = 310;
+    this.svgHeight = 50;
+    this.offsetLeft = 15;
+    this.borderWidth = 2;
+
+    this.valueY = 22;
+
+    this.railX = 15;
+    this.railY = 26;
+    this.railWidth = 275;
+    this.railHeight = 14;
+
+    this.thumbHeight = this.railHeight;
+    this.thumbWidth = this.thumbHeight;
+    this.rectRadius = this.railHeight / 4;
+
+    this.focusY = this.borderWidth;
+    this.focusWidth = 36;
+    this.focusHeight = 48;
+
     this.initSliderRefs(this.sliders, 'red');
     this.initSliderRefs(this.sliders, 'green');
     this.initSliderRefs(this.sliders, 'blue');
-
-    this.thumbWidth = this.sliders.red.thumbNode.getBBox().width;
-    this.railWidth = this.sliders.red.railNode.getBBox().width;
-    this.offsetLeft = 6;
 
     this.colorBoxNode = domNode.querySelector('.color-box');
     this.colorValueHexNode = domNode.querySelector('input.color-value-hex');
@@ -33,17 +49,143 @@ class ColorViewerSliders {
     var n = this.domNode.querySelector('.color-group.' + color);
     sliderRef[color].groupNode = n;
     sliderRef[color].sliderNode = n.querySelector('.color-slider');
-    sliderRef[color].valueNode = n.querySelector('.value');
-    sliderRef[color].thumbNode = n.querySelector('.thumb');
-    sliderRef[color].railNode = n.querySelector('.rail');
-    sliderRef[color].fillNode = n.querySelector('.fill');
+
+    sliderRef[color].svgNode = n.querySelector('.color-slider svg');
+    sliderRef[color].svgNode.setAttribute('width', this.svgWidth);
+    sliderRef[color].svgNode.setAttribute('height', this.svgHeight);
+
+    sliderRef[color].valueNode = n.querySelector('.color-slider .value');
+    sliderRef[color].valueNode.setAttribute('y', this.valueY);
+
+    sliderRef[color].thumbNode = n.querySelector('.color-slider .thumb');
+    sliderRef[color].thumbNode.setAttribute('width', this.thumbWidth);
+    sliderRef[color].thumbNode.setAttribute('height', this.thumbHeight);
+    sliderRef[color].thumbNode.setAttribute('y', this.railY);
+    sliderRef[color].thumbNode.setAttribute('rx', this.rectRadius);
+
+    sliderRef[color].focusNode = n.querySelector('.color-slider .focus');
+    sliderRef[color].focusNode.setAttribute(
+      'width',
+      this.focusWidth - this.borderWidth
+    );
+    sliderRef[color].focusNode.setAttribute(
+      'height',
+      this.focusHeight - this.borderWidth
+    );
+    sliderRef[color].focusNode.setAttribute('y', this.focusY);
+    sliderRef[color].focusNode.setAttribute('rx', this.rectRadius);
+
+    sliderRef[color].railNode = n.querySelector('.color-slider .rail');
+    sliderRef[color].railNode.setAttribute('x', this.railX);
+    sliderRef[color].railNode.setAttribute('y', this.railY);
+    sliderRef[color].railNode.setAttribute('width', this.railWidth);
+    sliderRef[color].railNode.setAttribute('height', this.railHeight);
+    sliderRef[color].railNode.setAttribute('rx', this.rectRadius);
+
+    sliderRef[color].fillNode = n.querySelector('.color-slider .fill');
+    sliderRef[color].fillNode.setAttribute('x', this.railX);
+    sliderRef[color].fillNode.setAttribute('y', this.railY);
+    sliderRef[color].fillNode.setAttribute('width', this.railWidth);
+    sliderRef[color].fillNode.setAttribute('height', this.railHeight);
+    sliderRef[color].fillNode.setAttribute('rx', this.rectRadius);
 
     // Increment and decrement buttons are optional for
     // mobile support
     sliderRef[color].dec10Node = n.querySelector('.dec10');
+    if (sliderRef[color].dec10Node) {
+      this.renderButton(sliderRef[color].dec10Node, 'dec10');
+    }
+
     sliderRef[color].decNode = n.querySelector('.dec');
+    if (sliderRef[color].decNode) {
+      this.renderButton(sliderRef[color].decNode, 'dec');
+    }
+
     sliderRef[color].incNode = n.querySelector('.inc');
+    if (sliderRef[color].incNode) {
+      this.renderButton(sliderRef[color].incNode, 'inc');
+    }
+
     sliderRef[color].inc10Node = n.querySelector('.inc10');
+    if (sliderRef[color].inc10Node) {
+      this.renderButton(sliderRef[color].inc10Node, 'inc10');
+    }
+  }
+
+  renderButton(node, option) {
+    let x, y;
+    let buttonSVGWidth = 39;
+    let buttonSVGHeight = 39;
+
+    let buttonCircleX = 19;
+    let buttonCircleY = 21;
+    let buttonCircleR = 12;
+
+    let lineLen = (2 * buttonCircleR) / 3;
+
+    let svgNode = node.querySelector('svg');
+    svgNode.setAttribute('width', buttonSVGWidth);
+    svgNode.setAttribute('height', buttonSVGHeight);
+
+    let backgroundNode = svgNode.querySelector('.background');
+    backgroundNode.setAttribute('cx', buttonCircleX);
+    backgroundNode.setAttribute('cy', buttonCircleY);
+    backgroundNode.setAttribute('r', buttonCircleR);
+
+    let hcBackgroundNode = svgNode.querySelector('.focus');
+    hcBackgroundNode.setAttribute('cx', buttonCircleX);
+    hcBackgroundNode.setAttribute('cy', buttonCircleY);
+    hcBackgroundNode.setAttribute('r', buttonCircleR + 2 * this.borderWidth);
+
+    var lines = svgNode.querySelectorAll('line');
+    if (option.indexOf('10') > 0) {
+      x = buttonCircleX - lineLen - 1;
+      lines[0].setAttribute('x1', x);
+      lines[0].setAttribute('y1', buttonCircleY);
+      x = x + lineLen;
+      lines[0].setAttribute('x2', x);
+      lines[0].setAttribute('y2', buttonCircleY);
+      x = x + 2;
+      lines[1].setAttribute('x1', x);
+      lines[1].setAttribute('y1', buttonCircleY);
+      x = x + lineLen;
+      lines[1].setAttribute('x2', x);
+      lines[1].setAttribute('y2', buttonCircleY);
+    } else {
+      x = buttonCircleX - lineLen / 2;
+      lines[0].setAttribute('x1', x);
+      lines[0].setAttribute('y1', buttonCircleY);
+      x = x + lineLen;
+      lines[0].setAttribute('x2', x);
+      lines[0].setAttribute('y2', buttonCircleY);
+    }
+
+    if (option.indexOf('inc') >= 0) {
+      if (option.indexOf('10') > 0) {
+        x = buttonCircleX - lineLen / 2 - 1;
+        y = buttonCircleY - lineLen / 2;
+        lines[2].setAttribute('x1', x);
+        lines[2].setAttribute('y1', y);
+        y = y + lineLen;
+        lines[2].setAttribute('x2', x);
+        lines[2].setAttribute('y2', y);
+
+        x = buttonCircleX + lineLen / 2 + 1;
+        y = buttonCircleY - lineLen / 2;
+        lines[3].setAttribute('x1', x);
+        lines[3].setAttribute('y1', y);
+        y = y + lineLen;
+        lines[3].setAttribute('x2', x);
+        lines[3].setAttribute('y2', y);
+      } else {
+        y = buttonCircleY - lineLen / 2;
+        lines[1].setAttribute('x1', buttonCircleX);
+        lines[1].setAttribute('y1', y);
+        y = y + lineLen;
+        lines[1].setAttribute('x2', buttonCircleX);
+        lines[1].setAttribute('y2', y);
+      }
+    }
   }
 
   // Initialize slider
@@ -178,6 +320,7 @@ class ColorViewerSliders {
   }
 
   moveSliderTo(slider, value) {
+    var pos, offsetX, valueWidth;
     var valueMin = this.getValueMin(slider);
     var valueNow = this.getValueNow(slider);
     var valueMax = this.getValueMax(slider);
@@ -193,20 +336,23 @@ class ColorViewerSliders {
     valueNow = value;
     slider.sliderNode.setAttribute('aria-valuenow', value);
 
-    slider.fillNode.setAttribute('width', valueNow + 2 * this.offsetLeft);
+    offsetX = Math.round(
+      (valueNow * (this.railWidth - this.thumbWidth)) / (valueMax - valueMin)
+    );
 
-    var pos =
-      Math.round(
-        (valueNow * (this.railWidth - this.thumbWidth)) / (valueMax - valueMin)
-      ) + this.offsetLeft;
+    pos = this.railX + offsetX;
+
     slider.thumbNode.setAttribute('x', pos);
+    slider.fillNode.setAttribute('width', offsetX + this.rectRadius);
 
     slider.valueNode.textContent = valueNow;
-    var valueWidth = slider.valueNode.getBBox().width;
-    slider.valueNode.setAttribute(
-      'x',
-      pos - (valueWidth + this.thumbWidth) / 2 + this.thumbWidth
-    );
+    valueWidth = slider.valueNode.getBBox().width;
+
+    pos = this.railX + offsetX - (valueWidth - this.thumbWidth) / 2;
+    slider.valueNode.setAttribute('x', pos);
+
+    pos = this.railX + offsetX - (this.focusWidth - this.thumbWidth) / 2;
+    slider.focusNode.setAttribute('x', pos);
 
     this.updateColorBox();
   }
@@ -349,17 +495,13 @@ class ColorViewerSliders {
   }
 
   onFocus(event) {
-    event.currentTarget.classList.add('focus');
-    var slider = this.getSlider(event.currentTarget);
-    slider.groupNode.classList.add('active');
+    let slider = this.getSlider(event.currentTarget);
+    slider.groupNode.classList.add('focus');
   }
 
   onBlur(event) {
-    event.currentTarget.classList.remove('focus');
-    var slider = this.getSlider(event.currentTarget);
-    if (!slider.groupNode.querySelector('.focus')) {
-      slider.groupNode.classList.remove('active');
-    }
+    let slider = this.getSlider(event.currentTarget);
+    slider.groupNode.classList.remove('focus');
   }
 
   getColorHex() {
@@ -408,10 +550,9 @@ class ColorViewerSliders {
     }
   }
 }
-
 // Initialize ColorViewerSliders on the page
 window.addEventListener('load', function () {
-  var cps = document.querySelectorAll('.color-picker-sliders');
+  var cps = document.querySelectorAll('.color-viewer-sliders');
   for (let i = 0; i < cps.length; i++) {
     let s = new ColorViewerSliders(cps[i]);
     s.init();

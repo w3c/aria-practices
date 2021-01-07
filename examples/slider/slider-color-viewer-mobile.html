@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,23 +51,23 @@
        </div>
           <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
           <div id="ex1">
-            <div class="color-picker-sliders" role="group" aria-labelledby="id-color-picker">
-              <h2 id="id-color-picker">Color Viewer</h2>
+            <div class="color-viewer-sliders" role="group" aria-labelledby="id-color-viewer">
+              <h2 id="id-color-viewer">Color Viewer</h2>
               <div id="id-red" class="label">Red</div>
               <div class="color-group red">
                 <button class="change dec10" aria-label="decrease red ten" tabindex="-1">
-                  <svg width="32" height="38" focusable="false">
-                    <circle class="hc-background" cx="14" cy="24" r="14"/>
-                    <circle class="background" cx="14" cy="24" r="12"/>
-                    <line x1="7" y1="24" x2="13" y2="24"/>
-                    <line x1="15" y1="24" x2="21" y2="24"/>
+                  <svg width="0" height="0" focusable="false">
+                    <circle class="focus" cx="0" cy="0" r="0"/>
+                    <circle class="background" cx="0" cy="0" r="0"/>
+                    <line x1="0" y1="0" x2="0" y2="0"/>
+                    <line x1="0" y1="0" x2="0" y2="0"/>
                   </svg>
                 </button>
                 <button class="change dec" aria-label="decrease red one" tabindex="-1">
-                  <svg width="32" height="38" focusable="false">
-                    <circle class="hc-background" cx="14" cy="24" r="14"/>
-                    <circle class="background" cx="14" cy="24" r="12"/>
-                    <line x1="11" y1="24" x2="17" y2="24"/>
+                  <svg width="0" height="0" focusable="false">
+                    <circle class="focus" cx="0" cy="0" r="0"/>
+                    <circle class="background" cx="0" cy="0" r="0"/>
+                    <line x1="0" y1="0" x2="0" y2="0"/>
                   </svg>
                 </button>
                 <div class="color-slider"
@@ -75,30 +77,33 @@
                     aria-valuenow="128"
                     aria-valuemax="255"
                     aria-labelledby="id-red">
-                  <svg width="290" height="38" focusable="false">
-                    <text class="value" x="125" y="12">128</text>
-                    <rect class="hc-background" x="4" y="16" rx="6" width="279" height="20" fill="white"/>
-                    <rect class="rail" x="6" y="18" rx="4" width="275" height="16"/>
-                    <rect class="fill red" x="6" y="19" rx="4" width= "128" height="14" />
-                    <rect class="thumb" x="132" y="18" rx="4"  width="16" height="16" />
+                  <!-- SVG position and dimension values added through Javascript -->
+                  <svg width="0" height="0">
+                    <text class="value" x="0" y="0">128</text>
+                    <rect class="rail"  x="0" y="0" rx="0" width="0" height="0"/>
+                    <rect class="fill"  x="0" y="0" rx="0" width="0" height="0"/>
+                    <rect class="thumb" x="0" y="0" rx="0" width="0" height="0"/>
+                    <rect class="focus" x="0" y="0" rx="0" width="0" height="0"/>
                   </svg>
                 </div>
+
+
                 <button class="change inc" aria-label="increase red one" tabindex="-1">
-                  <svg width="32" height="38" focusable="false">
-                    <circle class="hc-background" cx="14" cy="24" r="14"/>
-                    <circle class="background" cx="14" cy="24" r="12"/>
-                    <line x1="10" y1="24" x2="18" y2="24"/>
-                    <line x1="14" y1="20" x2="14" y2="28"/>
+                  <svg width="0" height="0" focusable="false">
+                    <circle class="focus" cx="0" cy="0" r="0"/>
+                    <circle class="background" cx="0" cy="0" r="0"/>
+                    <line x1="0" y1="0" x2="0" y2="0"/>
+                    <line x1="0" y1="0" x2="0" y2="0"/>
                   </svg>
                 </button>
                 <button class="change inc10" aria-label="increase red ten" tabindex="-1">
-                  <svg width="32" height="38" focusable="false">
-                    <circle class="hc-background" cx="14" cy="24" r="14"/>
-                    <circle class="background" cx="14" cy="24" r="12"/>
-                    <line x1="5" y1="24" x2="13" y2="24"/>
-                    <line x1="9" y1="20" x2="9" y2="28"/>
-                    <line x1="15" y1="24" x2="23" y2="24"/>
-                    <line x1="19" y1="20" x2="19" y2="28"/>
+                  <svg width="0" height="0" focusable="false">
+                    <circle class="focus" cx="0" cy="0" r="0"/>
+                    <circle class="background" cx="0" cy="0" r="0"/>
+                    <line x1="0" y1="0" x2="0" y2="0"/>
+                    <line x1="0" y1="0" x2="0" y2="0"/>
+                    <line x1="0" y1="0" x2="0" y2="0"/>
+                    <line x1="0" y1="0" x2="0" y2="0"/>
                   </svg>
                 </button>
               </div>
@@ -106,18 +111,18 @@
               <div id="id-green" class="label">Green</div>
               <div class="color-group green">
                 <button class="change dec10" aria-label="decrease green ten" tabindex="-1">
-                  <svg width="32" height="38" focusable="false">
-                    <circle class="hc-background" cx="14" cy="24" r="14"/>
-                    <circle class="background" cx="14" cy="24" r="12"/>
-                    <line x1="7" y1="24" x2="13" y2="24"/>
-                    <line x1="15" y1="24" x2="21" y2="24"/>
+                  <svg width="0" height="0" focusable="false">
+                    <circle class="focus" cx="0" cy="0" r="10"/>
+                    <circle class="background" cx="0" cy="0" r="0"/>
+                    <line x1="0" y1="0" x2="0" y2="0"/>
+                    <line x1="0" y1="0" x2="0" y2="0"/>
                   </svg>
                 </button>
                 <button class="change dec" aria-label="decrease green one" tabindex="-1">
-                  <svg width="32" height="38" focusable="false">
-                    <circle class="hc-background" cx="14" cy="24" r="14"/>
-                    <circle class="background" cx="14" cy="24" r="12"/>
-                    <line x1="11" y1="24" x2="17" y2="24"/>
+                  <svg width="0" height="0" focusable="false">
+                    <circle class="focus" cx="0" cy="0" r="0"/>
+                    <circle class="background" cx="0" cy="0" r="0"/>
+                    <line x1="0" y1="0" x2="0" y2="0"/>
                   </svg>
                 </button>
                 <div class="color-slider"
@@ -127,30 +132,31 @@
                     aria-valuenow="128"
                     aria-valuemax="255"
                     aria-labelledby="id-green">
-                  <svg width="290" height="38" focusable="false">
-                    <text class="value" x="125" y="12">128</text>
-                    <rect class="hc-background" x="4" y="16" rx="6" width="279" height="20" fill="white"/>
-                    <rect class="rail" x="6" y="18" rx="4" width="275" height="16"/>
-                    <rect class="fill green" x="6" y="19" rx="4" width= "128" height="14" />
-                    <rect class="thumb" x="132" y="18" rx="4"  width="16" height="16" />
-                   </svg>
+                  <!-- SVG position and dimension values added through Javascript -->
+                  <svg width="0" height="0">
+                    <text class="value" x="0" y="0">128</text>
+                    <rect class="rail"  x="0" y="0" rx="0" width="0" height="0"/>
+                    <rect class="fill"  x="0" y="0" rx="0" width="0" height="0"/>
+                    <rect class="thumb" x="0" y="0" rx="0" width="0" height="0"/>
+                    <rect class="focus" x="0" y="0" rx="0" width="0" height="0"/>
+                  </svg>
                 </div>
                 <button class="change inc" aria-label="increase green one" tabindex="-1">
-                  <svg width="32" height="38" focusable="false">
-                    <circle class="hc-background" cx="14" cy="24" r="14"/>
-                    <circle class="background" cx="14" cy="24" r="12"/>
-                    <line x1="10" y1="24" x2="18" y2="24"/>
-                    <line x1="14" y1="20" x2="14" y2="28"/>
+                  <svg width="0" height="0" focusable="false">
+                    <circle class="focus" cx="0" cy="0" r="0"/>
+                    <circle class="background" cx="0" cy="0" r="0"/>
+                    <line x1="0" y1="0" x2="0" y2="0"/>
+                    <line x1="0" y1="0" x2="0" y2="0"/>
                   </svg>
                 </button>
                 <button class="change inc10" aria-label="increase green ten" tabindex="-1">
-                  <svg width="32" height="38" focusable="false">
-                    <circle class="hc-background" cx="14" cy="24" r="14"/>
-                    <circle class="background" cx="14" cy="24" r="12"/>
-                    <line x1="5" y1="24" x2="13" y2="24"/>
-                    <line x1="9" y1="20" x2="9" y2="28"/>
-                    <line x1="15" y1="24" x2="23" y2="24"/>
-                    <line x1="19" y1="20" x2="19" y2="28"/>
+                  <svg width="0" height="0" focusable="false">
+                    <circle class="focus" cx="0" cy="0" r="0"/>
+                    <circle class="background" cx="0" cy="0" r="0"/>
+                    <line x1="0" y1="0" x2="0" y2="0"/>
+                    <line x1="0" y1="0" x2="0" y2="0"/>
+                    <line x1="0" y1="0" x2="0" y2="0"/>
+                    <line x1="0" y1="0" x2="0" y2="0"/>
                   </svg>
                 </button>
               </div>
@@ -158,18 +164,18 @@
               <div id="id-blue" class="label">Blue</div>
               <div class="color-group blue">
                 <button class="change dec10" aria-label="decrease blue ten" tabindex="-1">
-                  <svg width="32" height="38" focusable="false">
-                    <circle class="hc-background" cx="14" cy="24" r="14"/>
-                    <circle class="background" cx="14" cy="24" r="12"/>
-                    <line x1="7" y1="24" x2="13" y2="24"/>
-                    <line x1="15" y1="24" x2="21" y2="24"/>
+                  <svg width="0" height="0" focusable="false">
+                    <circle class="focus" cx="0" cy="0" r="0"/>
+                    <circle class="background" cx="0" cy="0" r="0"/>
+                    <line x1="0" y1="0" x2="0" y2="0"/>
+                    <line x1="0" y1="0" x2="0" y2="0"/>
                   </svg>
                 </button>
                 <button class="change dec" aria-label="decrease blue one" tabindex="-1">
-                  <svg width="32" height="38" focusable="false">
-                    <circle class="hc-background" cx="14" cy="24" r="14"/>
-                    <circle class="background" cx="14" cy="24" r="12"/>
-                    <line x1="11" y1="24" x2="17" y2="24"/>
+                  <svg width="0" height="0" focusable="false">
+                    <circle class="focus" cx="0" cy="0" r="0"/>
+                    <circle class="background" cx="0" cy="0" r="0"/>
+                    <line x1="0" y1="0" x2="0" y2="0"/>
                   </svg>
                 </button>
                 <div class="color-slider"
@@ -179,30 +185,31 @@
                     aria-valuenow="128"
                     aria-valuemax="255"
                     aria-labelledby="id-blue">
-                  <svg width="290" height="38" focusable="false">
-                    <text class="value" x="125" y="12">128</text>
-                    <rect class="hc-background" x="4" y="16" rx="6" width="279" height="20" fill="white"/>
-                    <rect class="rail" x="6" y="18" rx="4" width="275" height="16"/>
-                    <rect class="fill blue" x="6" y="19" rx="4" width= "128" height="14" />
-                    <rect class="thumb" x="132" y="18" rx="4"  width="16" height="16" />
+                  <!-- SVG position and dimension values added through Javascript -->
+                  <svg width="0" height="0">
+                    <text class="value" x="0" y="0">128</text>
+                    <rect class="rail"  x="0" y="0" rx="0" width="0" height="0"/>
+                    <rect class="fill"  x="0" y="0" rx="0" width="0" height="0"/>
+                    <rect class="thumb" x="0" y="0" rx="0" width="0" height="0"/>
+                    <rect class="focus" x="0" y="0" rx="0" width="0" height="0"/>
                   </svg>
                 </div>
                 <button class="change inc" aria-label="increase blue one" tabindex="-1">
-                  <svg width="32" height="38" focusable="false">
-                    <circle class="hc-background" cx="14" cy="24" r="14"/>
-                    <circle class="background" cx="14" cy="24" r="12"/>
-                    <line x1="10" y1="24" x2="18" y2="24"/>
-                    <line x1="14" y1="20" x2="14" y2="28"/>
+                  <svg width="0" height="0" focusable="false">
+                    <circle class="focus" cx="0" cy="0" r="0"/>
+                    <circle class="background" cx="0" cy="0" r="0"/>
+                    <line x1="0" y1="0" x2="0" y2="0"/>
+                    <line x1="0" y1="0" x2="0" y2="0"/>
                   </svg>
                 </button>
                 <button class="change inc10" aria-label="increase blue ten" tabindex="-1">
-                  <svg width="32" height="38" focusable="false">
-                    <circle class="hc-background" cx="14" cy="24" r="14"/>
-                    <circle class="background" cx="14" cy="24" r="12"/>
-                    <line x1="5" y1="24" x2="13" y2="24"/>
-                    <line x1="9" y1="20" x2="9" y2="28"/>
-                    <line x1="15" y1="24" x2="23" y2="24"/>
-                    <line x1="19" y1="20" x2="19" y2="28"/>
+                  <svg width="0" height="0" focusable="false">
+                    <circle class="focus" cx="0" cy="0" r="0"/>
+                    <circle class="background" cx="0" cy="0" r="0"/>
+                    <line x1="0" y1="0" x2="0" y2="0"/>
+                    <line x1="0" y1="0" x2="0" y2="0"/>
+                    <line x1="0" y1="0" x2="0" y2="0"/>
+                    <line x1="0" y1="0" x2="0" y2="0"/>
                   </svg>
                 </button>
               </div>

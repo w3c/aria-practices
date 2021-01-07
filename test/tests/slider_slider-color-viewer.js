@@ -459,9 +459,9 @@ ariaTest(
     await redSlider.sendKeys(Key.END);
 
     t.is(
-      await await redSlider.getAttribute('aria-valuenow'),
+      await redSlider.getAttribute('aria-valuenow'),
       '255',
-      'After sending 1 end key to the red slider, the value of the red slider should be 255'
+      'After sending end key to the red slider, the value of the red slider should be 255'
     );
     t.true(
       await testDisplayMatchesValue(t, '255, 0, 0'),
