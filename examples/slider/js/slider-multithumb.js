@@ -315,23 +315,23 @@ class SliderMultithumb {
 
   onSliderMousedown(event) {
     var onMousemove = function (e) {
-      var diffX = e.pageX - self.railNode.getBoundingClientRect().left;
+      var diffX = e.pageX - this.railNode.getBoundingClientRect().left;
 
       if (isMinSlider) {
-        diffX -= self.thumbWidth / 2;
+        diffX -= this.thumbWidth / 2;
       } else {
-        diffX -= (3 * self.thumbWidth) / 2;
+        diffX -= (3 * this.thumbWidth) / 2;
       }
 
       var value = parseInt(
-        ((self.sliderMaxValue - self.sliderMinValue) * diffX) / self.railWidth
+        ((this.sliderMaxValue - this.sliderMinValue) * diffX) / this.railWidth
       );
 
-      self.moveSliderTo(sliderNode, value);
+      this.moveSliderTo(sliderNode, value);
 
       e.preventDefault();
       e.stopPropagation();
-    };
+    }.bind(this);
 
     var onMouseup = function () {
       document.removeEventListener('mousemove', onMousemove);
@@ -340,7 +340,6 @@ class SliderMultithumb {
 
     var sliderNode = event.currentTarget;
     var isMinSlider = this.isMinSlider(sliderNode);
-    var self = this;
 
     // bind a mousemove event handler to move pointer
     document.addEventListener('mousemove', onMousemove);

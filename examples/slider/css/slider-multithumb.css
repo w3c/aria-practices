@@ -2,7 +2,7 @@
 
 .slider-multithumb {
   padding: 6px;
-  width: 550px;
+  width: 350px;
 }
 
 .slider-multithumb.focus {
@@ -16,6 +16,7 @@
   display: grid;
   grid-template-columns: 100px 340px 100px;
   grid-column-gap: 10px;
+  width: 550px;
 }
 
 .slider-multithumb.mobile .input-minimum,
@@ -90,5 +91,6 @@
 }
 
 .slider-multithumb [role="slider"]:focus .value {
+  color: currentColor;
   font-weight: bold;
 }
