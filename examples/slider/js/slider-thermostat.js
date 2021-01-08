@@ -222,23 +222,21 @@ class SliderThermostatVertical {
 
   onSliderMousedown(event) {
     var onMousemove = function (e) {
-      var y = self.getSVGPoint(e).y;
-      var min = self.getValueMin();
-      var max = self.getValueMax();
-      var diffY = y - self.railY;
-      var value = Math.round(max - (diffY * (max - min)) / self.railHeight);
-      self.moveSliderTo(value);
+      var y = this.getSVGPoint(e).y;
+      var min = this.getValueMin();
+      var max = this.getValueMax();
+      var diffY = y - this.railY;
+      var value = Math.round(max - (diffY * (max - min)) / this.railHeight);
+      this.moveSliderTo(value);
 
       e.preventDefault();
       e.stopPropagation();
-    };
+    }.bind(this);
 
     var onMouseup = function () {
       document.removeEventListener('mousemove', onMousemove);
       document.removeEventListener('mouseup', onMouseup);
     };
-
-    var self = this;
 
     // bind a mousemove event handler to move pointer
     document.addEventListener('mousemove', onMousemove);
@@ -475,23 +473,21 @@ class SliderThermostatText {
 
   onSliderMousedown(event) {
     var onMousemove = function (e) {
-      var x = self.getSVGPoint(e).x;
-      var min = self.getValueMin();
-      var max = self.getValueMax();
-      var diffX = x - self.railX;
-      var value = Math.round((diffX * (max - min)) / self.railWidth);
-      self.moveSliderTo(value);
+      var x = this.getSVGPoint(e).x;
+      var min = this.getValueMin();
+      var max = this.getValueMax();
+      var diffX = x - this.railX;
+      var value = Math.round((diffX * (max - min)) / this.railWidth);
+      this.moveSliderTo(value);
 
       e.preventDefault();
       e.stopPropagation();
-    };
+    }.bind(this);
 
     var onMouseup = function () {
       document.removeEventListener('mousemove', onMousemove);
       document.removeEventListener('mouseup', onMouseup);
     };
-
-    var self = this;
 
     // bind a mousemove event handler to move pointer
     document.addEventListener('mousemove', onMousemove);
