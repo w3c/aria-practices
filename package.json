@@ -11,7 +11,7 @@
     "htmlhint": "htmlhint \"**/*.html\" -i \"common/**/*.html\" -f unix",
     "lint": "npm run lint:es && npm run lint:css && npm run lint:html && npm run lint:spelling",
     "lint:css": "stylelint **/*.css",
-    "lint:es": "eslint .",
+    "lint:es": "eslint . --report-unused-disable-directives",
     "lint:js": "npm run lint:es",
     "lint:html": "npm run htmlhint && npm run vnu-jar",
     "lint:spelling": "cspell \"**/*.*\"",

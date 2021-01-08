@@ -154,7 +154,6 @@ class MenuButtonActionsActiveDescendant {
   // Popup menu methods
 
   openPopup() {
-    var rect = this.menuNode.getBoundingClientRect();
     this.menuNode.style.display = 'block';
     this.buttonNode.setAttribute('aria-expanded', 'true');
     this.menuNode.focus();
@@ -179,17 +178,16 @@ class MenuButtonActionsActiveDescendant {
 
   // Menu event handlers
 
-  onFocusin(event) {
+  onFocusin() {
     this.domNode.classList.add('focus');
   }
 
-  onFocusout(event) {
+  onFocusout() {
     this.domNode.classList.remove('focus');
   }
 
   onButtonKeydown(event) {
-    var tgt = event.currentTarget,
-      key = event.key,
+    var key = event.key,
       flag = false;
 
     switch (key) {
@@ -236,8 +234,7 @@ class MenuButtonActionsActiveDescendant {
   }
 
   onMenuKeydown(event) {
-    var tgt = event.currentTarget,
-      key = event.key,
+    var key = event.key,
       flag = false;
 
     function isPrintableCharacter(str) {

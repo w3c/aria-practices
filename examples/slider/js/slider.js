@@ -154,12 +154,12 @@ Slider.prototype.handleKeyDown = function (event) {
   }
 };
 
-Slider.prototype.handleFocus = function (event) {
+Slider.prototype.handleFocus = function () {
   this.domNode.classList.add('focus');
   this.railDomNode.classList.add('focus');
 };
 
-Slider.prototype.handleBlur = function (event) {
+Slider.prototype.handleBlur = function () {
   this.domNode.classList.remove('focus');
   this.railDomNode.classList.remove('focus');
 };
@@ -188,7 +188,7 @@ Slider.prototype.handleMouseDown = function (event) {
     event.stopPropagation();
   };
 
-  var handleMouseUp = function (event) {
+  var handleMouseUp = function () {
     document.removeEventListener('mousemove', handleMouseMove);
     document.removeEventListener('mouseup', handleMouseUp);
   };

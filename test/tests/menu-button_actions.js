@@ -15,12 +15,6 @@ const ex = {
   lastactionSelector: '#action_output',
 };
 
-const getFocusText = function (t) {
-  return t.context.session.executeScript(function () {
-    return document.activeElement.textContent.trim();
-  });
-};
-
 const checkFocus = function (t, selector, index) {
   return t.context.session.executeScript(
     function () {
@@ -70,7 +64,7 @@ ariaTest(
   'menu-button-aria-expanded',
   async (t) => {
     const hasAttribute = await t.context.session.executeScript(function () {
-      selector = arguments[0];
+      const selector = arguments[0];
       return document.querySelector(selector).hasAttribute('aria-expanded');
     }, ex.menubuttonSelector);
 

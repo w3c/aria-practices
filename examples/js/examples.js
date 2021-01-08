@@ -2,6 +2,8 @@
  * @namespace aria
  */
 
+/* exported sourceCode */
+
 'use strict';
 
 var aria = aria || {};

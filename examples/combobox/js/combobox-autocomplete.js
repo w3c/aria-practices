@@ -294,7 +294,6 @@ class ComboboxAutocomplete {
 
   onComboboxKeyDown(event) {
     var flag = false,
-      char = event.key,
       altKey = event.altKey;
 
     if (event.ctrlKey || event.shiftKey) {
@@ -492,7 +491,7 @@ class ComboboxAutocomplete {
     }
   }
 
-  onComboboxClick(event) {
+  onComboboxClick() {
     if (this.isOpen()) {
       this.close(true);
     } else {
@@ -500,7 +499,7 @@ class ComboboxAutocomplete {
     }
   }
 
-  onComboboxFocus(event) {
+  onComboboxFocus() {
     this.filter = this.comboboxNode.value;
     this.filterOptions();
     this.setVisualFocusCombobox();
@@ -508,14 +507,14 @@ class ComboboxAutocomplete {
     this.setCurrentOptionStyle(null);
   }
 
-  onComboboxBlur(event) {
+  onComboboxBlur() {
     this.comboboxHasVisualFocus = false;
     this.setCurrentOptionStyle(null);
     this.removeVisualFocusAll();
     setTimeout(this.close.bind(this, false), 300);
   }
 
-  onButtonClick(event) {
+  onButtonClick() {
     if (this.isOpen()) {
       this.close(true);
     } else {
@@ -527,11 +526,11 @@ class ComboboxAutocomplete {
 
   /* Listbox Events */
 
-  onListboxMouseover(event) {
+  onListboxMouseover() {
     this.hasHover = true;
   }
 
-  onListboxMouseout(event) {
+  onListboxMouseout() {
     this.hasHover = false;
     setTimeout(this.close.bind(this, false), 300);
   }
@@ -543,12 +542,12 @@ class ComboboxAutocomplete {
     this.close(true);
   }
 
-  onOptionMouseover(event) {
+  onOptionMouseover() {
     this.hasHover = true;
     this.open();
   }
 
-  onOptionMouseout(event) {
+  onOptionMouseout() {
     this.hasHover = false;
     setTimeout(this.close.bind(this, false), 300);
   }

@@ -1,6 +1,3 @@
-const { By, Key } = require('selenium-webdriver');
-const assert = require('assert');
-
 /**
  * Confirm the continuous subset of elements are in tab order for a test page
  *

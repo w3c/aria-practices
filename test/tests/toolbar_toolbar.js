@@ -41,24 +41,6 @@ const ex = {
   toolbarSelector: '#ex1 [role="toolbar"]',
 };
 
-const clickAndWait = async function (t, selector) {
-  let element = await t.context.session.findElement(By.css(selector));
-  await element.click();
-
-  return await t.context.session
-    .wait(
-      async function () {
-        let tabindex = await element.getAttribute('tabindex');
-        return tabindex === '0';
-      },
-      t.context.waitTime,
-      'Timeout waiting for click to set tabindex="0" on: ' + selector
-    )
-    .catch((err) => {
-      return err;
-    });
-};
-
 const sendKeyAndAssertSelectorIsHidden = async function (
   t,
   key,

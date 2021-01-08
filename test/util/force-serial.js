@@ -8,7 +8,7 @@ function bindPort(port) {
     });
   };
 
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     server.listen(port, () => resolve(release));
     server.on('error', (err) => {
       if (err.code === 'EADDRINUSE') {

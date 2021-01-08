@@ -143,12 +143,12 @@ TSlider.prototype.handleKeyDown = function (event) {
   }
 };
 
-TSlider.prototype.handleFocus = function (event) {
+TSlider.prototype.handleFocus = function () {
   this.domNode.classList.add('focus');
   this.railDomNode.classList.add('focus');
 };
 
-TSlider.prototype.handleBlur = function (event) {
+TSlider.prototype.handleBlur = function () {
   this.domNode.classList.remove('focus');
   this.railDomNode.classList.remove('focus');
 };
@@ -167,7 +167,7 @@ TSlider.prototype.handleMouseDown = function (event) {
     event.stopPropagation();
   };
 
-  var handleMouseUp = function (event) {
+  var handleMouseUp = function () {
     document.removeEventListener('mousemove', handleMouseMove);
     document.removeEventListener('mouseup', handleMouseUp);
   };

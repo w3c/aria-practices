@@ -214,8 +214,6 @@ ariaTest(
     for (let folder of folders) {
       // If the folder is displayed
       if (await folder.isDisplayed()) {
-        const folderText = await folder.getText();
-
         // By default, all folders will be closed
         t.is(await folder.getAttribute('aria-expanded'), 'false');
         t.is(
@@ -270,9 +268,7 @@ ariaTest(
   exampleFile,
   'treeitem-aria-setsize',
   async (t) => {
-    for (const [level, levelSelectors] of Object.entries(
-      ex.groupItemSelectors
-    )) {
+    for (const [, levelSelectors] of Object.entries(ex.groupItemSelectors)) {
       for (const selector of levelSelectors) {
         const items = await t.context.queryElements(t, selector);
         const setsize = items.length;
@@ -315,9 +311,7 @@ ariaTest(
   exampleFile,
   'treeitem-aria-posinset',
   async (t) => {
-    for (const [level, levelSelectors] of Object.entries(
-      ex.groupItemSelectors
-    )) {
+    for (const [, levelSelectors] of Object.entries(ex.groupItemSelectors)) {
       for (const selector of levelSelectors) {
         const items = await t.context.queryElements(t, selector);
         let pos = 0;

@@ -39,7 +39,6 @@ MenubarNavigation.prototype.getMenuitems = function (domNode, depth) {
   var nodes = [];
 
   var initMenu = this.initMenu.bind(this);
-  var menuitemGroups = this.menuitemGroups;
   var popups = this.popups;
 
   function findMenuitems(node) {
@@ -89,7 +88,7 @@ MenubarNavigation.prototype.getMenuitems = function (domNode, depth) {
 };
 
 MenubarNavigation.prototype.initMenu = function (menu, depth) {
-  var menuitems, menuitem, role, nextElement;
+  var menuitems, menuitem, role;
 
   var menuId = this.getMenuId(menu);
 
@@ -152,17 +151,11 @@ MenubarNavigation.prototype.setFocusToMenuitem = function (
   }
 };
 
-MenubarNavigation.prototype.setFocusToFirstMenuitem = function (
-  menuId,
-  currentMenuitem
-) {
+MenubarNavigation.prototype.setFocusToFirstMenuitem = function (menuId) {
   this.setFocusToMenuitem(menuId, this.firstMenuitem[menuId]);
 };
 
-MenubarNavigation.prototype.setFocusToLastMenuitem = function (
-  menuId,
-  currentMenuitem
-) {
+MenubarNavigation.prototype.setFocusToLastMenuitem = function (menuId) {
   this.setFocusToMenuitem(menuId, this.lastMenuitem[menuId]);
 };
 
@@ -299,7 +292,6 @@ MenubarNavigation.prototype.getMenuId = function (node) {
 };
 
 MenubarNavigation.prototype.getMenu = function (menuitem) {
-  var id = false;
   var menu = menuitem;
   var role = menuitem.getAttribute('role');
 
@@ -433,12 +425,12 @@ MenubarNavigation.prototype.hasFocus = function () {
 
 // Menu event handlers
 
-MenubarNavigation.prototype.handleMenubarFocusin = function (event) {
+MenubarNavigation.prototype.handleMenubarFocusin = function () {
   // if the menubar or any of its menus has focus, add styling hook for hover
   this.domNode.classList.add('focus');
 };
 
-MenubarNavigation.prototype.handleMenubarFocusout = function (event) {
+MenubarNavigation.prototype.handleMenubarFocusout = function () {
   // remove styling hook for hover on menubar item
   this.domNode.classList.remove('focus');
 };
@@ -450,10 +442,7 @@ MenubarNavigation.prototype.handleKeydown = function (event) {
     menuId = this.getMenuId(tgt),
     id,
     popupMenuId,
-    mi,
-    role,
-    option,
-    value;
+    mi;
 
   var isAnyPopupOpen = this.isAnyPopupOpen();
 
@@ -625,6 +614,6 @@ MenubarNavigation.prototype.handleBackgroundMousedown = function (event) {
 window.addEventListener('load', function () {
   var menubarNavs = document.querySelectorAll('.menubar-navigation');
   for (var i = 0; i < menubarNavs.length; i++) {
-    var menubarNav = new MenubarNavigation(menubarNavs[i]);
+    new MenubarNavigation(menubarNavs[i]);
   }
 });

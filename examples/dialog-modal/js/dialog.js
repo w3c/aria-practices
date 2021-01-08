@@ -276,7 +276,6 @@ aria.Utils = aria.Utils || {};
     newFocusAfterClosed,
     newFocusFirst
   ) {
-    var closedDialog = aria.getCurrentDialog();
     aria.OpenDialogList.pop();
     this.removeListeners();
     aria.Utils.remove(this.preNode);
@@ -285,7 +284,7 @@ aria.Utils = aria.Utils || {};
     this.backdropNode.classList.remove('active');
 
     var focusAfterClosed = newFocusAfterClosed || this.focusAfterClosed;
-    var dialog = new aria.Dialog(newDialogId, focusAfterClosed, newFocusFirst);
+    new aria.Dialog(newDialogId, focusAfterClosed, newFocusFirst);
   }; // end replace
 
   aria.Dialog.prototype.addListeners = function () {
@@ -313,7 +312,7 @@ aria.Utils = aria.Utils || {};
   }; // end trapFocus
 
   window.openDialog = function (dialogId, focusAfterClosed, focusFirst) {
-    var dialog = new aria.Dialog(dialogId, focusAfterClosed, focusFirst);
+    new aria.Dialog(dialogId, focusAfterClosed, focusFirst);
   };
 
   window.closeDialog = function (closeButton) {

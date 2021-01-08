@@ -1,14 +1,10 @@
 const { ariaTest } = require('..');
-const { By, Key } = require('selenium-webdriver');
+const { Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAttributeDNE = require('../util/assertAttributeDNE');
-const assertAriaControls = require('../util/assertAriaControls');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
-const assertAriaDescribedby = require('../util/assertAriaDescribedby');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
-const assertRovingTabindex = require('../util/assertRovingTabindex');
-const assertTabOrder = require('../util/assertTabOrder');
 
 const exampleFile = 'combobox/combobox-datepicker.html';
 
@@ -45,28 +41,6 @@ ex.allFocusableElementsInDialog = [
   ex.nextMonth,
   ex.nextYear,
 ];
-
-const clickFirstOfMonth = async function (t) {
-  let today = new Date();
-  today.setUTCHours(0, 0, 0, 0);
-
-  let firstOfMonth = new Date(today);
-  firstOfMonth.setDate(1);
-  let firstOfMonthString = today.toISOString().split('T')[0];
-
-  return (
-    await t.context.queryElement(t, `[data-date=${firstOfMonthString}]`)
-  ).click();
-};
-
-const clickToday = async function (t) {
-  let today = new Date();
-  today.setUTCHours(0, 0, 0, 0);
-  let todayString = today.toISOString().split('T')[0];
-  return (
-    await t.context.queryElement(t, `[data-date=${todayString}]`)
-  ).click();
-};
 
 const setDateToJanFirst2019 = async function (t) {
   await (await t.context.queryElement(t, ex.comboboxSelector)).click();

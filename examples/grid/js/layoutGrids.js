@@ -16,13 +16,13 @@ var aria = aria || {};
 window.addEventListener('load', function () {
   // Setup Example 1
   var ex1 = document.getElementById('ex1');
-  var ex1Grid = new aria.Grid(ex1.querySelector('[role="grid"]'));
+  new aria.Grid(ex1.querySelector('[role="grid"]'));
 
   // Setup Example 2
   var ex2 = document.getElementById('ex2');
   var ex2Grid = new aria.Grid(ex2.querySelector('[role="grid"]'));
 
-  var pillList = new PillList(
+  new PillList(
     ex2Grid,
     document.getElementById('add-recipient-input'),
     document.getElementById('add-recipient-button'),
