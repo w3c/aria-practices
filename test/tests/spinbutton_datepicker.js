@@ -437,22 +437,25 @@ ariaTest(
   exampleFile,
   'spinbutton-down-arrow',
   async (t) => {
-    let control = parseInt(ex.monthNow) + 1;
+    let control = 0;
 
     // Send down arrow to month date spinner
     let monthSpinner = await t.context.session.findElement(
       By.css(ex.monthSelector)
     );
+    // Set to January
+    await monthSpinner.sendKeys(Key.HOME);
+
     await monthSpinner.sendKeys(Key.ARROW_DOWN);
 
     // Subtract a month to the control
-    control = (control - 1) % 12;
+    control = 11;
 
     t.is(
       await monthSpinner.getText(),
-      valuesMonth[control - 1],
+      valuesMonth[control],
       'After sending 1 down arrow to the month spinner, the month should be: ' +
-        valuesMonth[control - 1]
+        valuesMonth[control]
     );
 
     // Send down arrow 30 more times to date spinner
@@ -465,9 +468,9 @@ ariaTest(
 
     t.is(
       await monthSpinner.getText(),
-      valuesMonth[control - 1],
+      valuesMonth[control],
       'After sending 31 down arrows to the month spinner, the month should be: ' +
-        valuesMonth[control - 1]
+        valuesMonth[control]
     );
   }
 );
