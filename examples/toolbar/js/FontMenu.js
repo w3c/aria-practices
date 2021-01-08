@@ -5,11 +5,12 @@
  *   File:   FontMenu.js
  */
 
+/* global FontMenuItem */
+
 'use strict';
 
 var FontMenu = function (domNode, controllerObj) {
-  var elementChildren,
-    msgPrefix = 'FontMenu constructor argument domNode ';
+  var msgPrefix = 'FontMenu constructor argument domNode ';
 
   // Check whether domNode is a DOM element
   if (!(domNode instanceof Element)) {
@@ -88,11 +89,11 @@ FontMenu.prototype.init = function () {
 
 /* EVENT HANDLERS */
 
-FontMenu.prototype.handleMouseover = function (event) {
+FontMenu.prototype.handleMouseover = function () {
   this.hasHover = true;
 };
 
-FontMenu.prototype.handleMouseout = function (event) {
+FontMenu.prototype.handleMouseout = function () {
   this.hasHover = false;
   setTimeout(this.close.bind(this, false), 300);
 };

@@ -8,6 +8,8 @@
  *           for a menu of links
  */
 
+/* global ControlledCheckbox */
+
 'use strict';
 
 /*
@@ -136,14 +138,14 @@ CheckboxMixed.prototype.handleKeydown = function (event) {
   }
 };
 
-CheckboxMixed.prototype.handleClick = function (event) {
+CheckboxMixed.prototype.handleClick = function () {
   this.toggleCheckboxMixed();
 };
 
-CheckboxMixed.prototype.handleFocus = function (event) {
+CheckboxMixed.prototype.handleFocus = function () {
   this.domNode.classList.add('focus');
 };
 
-CheckboxMixed.prototype.handleBlur = function (event) {
+CheckboxMixed.prototype.handleBlur = function () {
   this.domNode.classList.remove('focus');
 };

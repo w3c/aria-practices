@@ -110,10 +110,8 @@ TreeitemLink.prototype.isExpanded = function () {
 /* EVENT HANDLERS */
 
 TreeitemLink.prototype.handleKeydown = function (event) {
-  var tgt = event.currentTarget,
-    flag = false,
-    char = event.key,
-    clickEvent;
+  var flag = false,
+    char = event.key;
 
   function isPrintableCharacter(str) {
     return str.length === 1 && str.match(/\S/);
@@ -242,7 +240,7 @@ TreeitemLink.prototype.handleClick = function (event) {
   }
 };
 
-TreeitemLink.prototype.handleFocus = function (event) {
+TreeitemLink.prototype.handleFocus = function () {
   var node = this.domNode;
   if (this.isExpandable) {
     node = node.firstElementChild;
@@ -250,7 +248,7 @@ TreeitemLink.prototype.handleFocus = function (event) {
   node.classList.add('focus');
 };
 
-TreeitemLink.prototype.handleBlur = function (event) {
+TreeitemLink.prototype.handleBlur = function () {
   var node = this.domNode;
   if (this.isExpandable) {
     node = node.firstElementChild;
