@@ -17,7 +17,6 @@ class ColorViewerSliders {
 
     this.svgWidth = 310;
     this.svgHeight = 50;
-    this.offsetLeft = 15;
     this.borderWidth = 2;
 
     this.valueY = 22;
@@ -53,6 +52,7 @@ class ColorViewerSliders {
     sliderRef[color].svgNode = n.querySelector('.color-slider svg');
     sliderRef[color].svgNode.setAttribute('width', this.svgWidth);
     sliderRef[color].svgNode.setAttribute('height', this.svgHeight);
+    sliderRef[color].svgPoint = sliderRef[color].svgNode.createSVGPoint();
 
     sliderRef[color].valueNode = n.querySelector('.color-slider .value');
     sliderRef[color].valueNode.setAttribute('y', this.valueY);
@@ -287,6 +287,15 @@ class ColorViewerSliders {
     }
   }
 
+  // Get point in global SVG space
+  getSVGPoint(slider, event) {
+    slider.svgPoint.x = event.clientX;
+    slider.svgPoint.y = event.clientY;
+    return slider.svgPoint.matrixTransform(
+      slider.svgNode.getScreenCTM().inverse()
+    );
+  }
+
   getSlider(domNode) {
     if (!domNode.classList.contains('color-slider')) {
       if (domNode.tagName.toLowerCase() === 'rect') {
@@ -414,19 +423,16 @@ class ColorViewerSliders {
   }
 
   onThumbMouseDown(event) {
-    var slider = this.getSlider(event.currentTarget);
-
-    var valueMin = this.getValueMin(slider);
-    var valueNow = this.getValueNow(slider);
-    var valueMax = this.getValueMax(slider);
+    let slider = this.getSlider(event.currentTarget);
 
     var onMouseMove = function (event) {
-      var diffX =
-        event.pageX - slider.sliderNode.offsetLeft - this.thumbWidth / 2;
-      valueNow = Math.round(
-        ((valueMax - valueMin) * diffX) / (this.railWidth - this.thumbWidth)
-      );
-      this.moveSliderTo(slider, valueNow);
+      let x = this.getSVGPoint(slider, event).x;
+      let min = this.getValueMin(slider);
+      let max = this.getValueMax(slider);
+      let diffX = x - this.railX;
+      let value = Math.round((diffX * (max - min)) / this.railWidth);
+      this.moveSliderTo(slider, value);
+
       event.preventDefault();
       event.stopPropagation();
     }.bind(this);
@@ -453,18 +459,18 @@ class ColorViewerSliders {
   onRailClick(event) {
     var slider = this.getSlider(event.currentTarget);
 
-    var valueMin = this.getValueMin(slider);
-    var valueNow = this.getValueNow(slider);
-    var valueMax = this.getValueMax(slider);
+    var x = this.getSVGPoint(slider, event).x;
+    var min = this.getValueMin(slider);
+    var max = this.getValueMax(slider);
+    var diffX = x - this.railX;
+    var value = Math.round((diffX * (max - min)) / this.railWidth);
+    this.moveSliderTo(slider, value);
 
-    var diffX =
-      event.pageX - slider.sliderNode.offsetLeft - this.thumbWidth / 2;
-    valueNow = Math.round(
-      ((valueMax - valueMin) * diffX) / (this.railWidth - this.thumbWidth)
-    );
-    this.moveSliderTo(slider, valueNow);
     event.preventDefault();
     event.stopPropagation();
+
+    // Set focus to the clicked handle
+    slider.sliderNode.focus();
   }
 
   onChangeClick(event, n) {
