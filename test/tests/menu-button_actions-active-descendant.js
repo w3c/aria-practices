@@ -80,7 +80,7 @@ ariaTest(
   'button-aria-expanded',
   async (t) => {
     const hasAttribute = await t.context.session.executeScript(function () {
-      selector = arguments[0];
+      const selector = arguments[0];
       return document.querySelector(selector).hasAttribute('aria-expanded');
     }, ex.menubuttonSelector);
 
@@ -368,7 +368,6 @@ ariaTest('"enter" on role="menu"', exampleFile, 'menu-enter', async (t) => {
 });
 
 ariaTest('"escape" on role="menu"', exampleFile, 'menu-escape', async (t) => {
-  const menu = await t.context.session.findElement(By.css(ex.menuSelector));
   const items = await t.context.queryElements(t, ex.menuitemSelector);
   for (let item of items) {
     await scrollToAndOpenMenu(t);
@@ -436,7 +435,6 @@ ariaTest('"escape" on role="menu"', exampleFile, 'menu-escape', async (t) => {
 
 ariaTest('"home" on role="menu"', exampleFile, 'menu-home', async (t) => {
   const menu = await t.context.session.findElement(By.css(ex.menuSelector));
-  const items = await t.context.queryElements(t, ex.menuitemSelector);
   await scrollToAndOpenMenu(t);
 
   // Send HOME to the menu while aria-activedescendant is the first item
@@ -462,7 +460,6 @@ ariaTest('"home" on role="menu"', exampleFile, 'menu-home', async (t) => {
 
 ariaTest('"end" on role="menu"', exampleFile, 'menu-end', async (t) => {
   const menu = await t.context.session.findElement(By.css(ex.menuSelector));
-  const items = await t.context.queryElements(t, ex.menuitemSelector);
   const last = ex.numMenuitems - 1;
   await scrollToAndOpenMenu(t);
 

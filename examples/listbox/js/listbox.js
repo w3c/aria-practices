@@ -33,7 +33,7 @@ aria.Listbox = function (listboxNode) {
   this.moveButton = null;
   this.keysSoFar = '';
   this.handleFocusChange = function () {};
-  this.handleItemChange = function (event, items) {};
+  this.handleItemChange = function () {};
   this.registerEvents();
 };
 
@@ -169,7 +169,6 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
       this.focusLastItem();
 
       if (this.multiselectable && evt.shiftKey && evt.ctrlKey) {
-        var startItem = allOptions[this.startRangeIndex];
         this.selectRange(this.startRangeIndex, allOptions.length - 1);
       }
       break;

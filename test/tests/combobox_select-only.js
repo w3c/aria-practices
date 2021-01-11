@@ -1022,7 +1022,7 @@ ariaTest(
 
     // type "b" as many times as there are matching options
     // focus should wrap and end up on second option again
-    const keys = matchingOps.map((op) => 'b');
+    const keys = matchingOps.map(() => 'b');
     await combobox.sendKeys(...keys);
     matchingId = await options[matchingOps[1]].getAttribute('id');
     t.is(
