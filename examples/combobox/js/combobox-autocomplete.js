@@ -573,6 +573,6 @@ window.addEventListener('load', function () {
     var comboboxNode = combobox.querySelector('input');
     var buttonNode = combobox.querySelector('button');
     var listboxNode = combobox.querySelector('[role="listbox"]');
-    var cba = new ComboboxAutocomplete(comboboxNode, buttonNode, listboxNode);
+    new ComboboxAutocomplete(comboboxNode, buttonNode, listboxNode);
   }
 });
