@@ -51,6 +51,22 @@ const openAllExpandableTreeitems = async function (t) {
   }
 };
 
+const closeAllTopLevelExpandableTreeitems = async function (t) {
+  const openExpandableTreeitemsSelector =
+    ex.topLevelExpandableTreeitemsSelector + '[aria-expanded="true"] span.icon';
+
+  let openTreeitems = await t.context.queryElements(
+    t,
+    openExpandableTreeitemsSelector
+  );
+
+  // Going through all open expandable tree elements in dom order will close parent
+  // treeitems first, therefore all child treeitems will be invisible
+  for (let treeitem of openTreeitems) {
+    await treeitem.click();
+  }
+};
+
 const checkFocus = async function (t, selector, index) {
   return t.context.session.executeScript(
     function (/* selector, index*/) {
@@ -268,6 +284,41 @@ ariaTest(
 );
 
 ariaTest(
+  'treeitem aria-current="page" is visible after focus leaves treeview widget',
+  exampleFile,
+  'treeitem-aria-current',
+  async (t) => {
+    const nextLevelExpandableTreeitems = await t.context.queryElements(
+      t,
+      ex.nextLevelExpandableTreeitemsSelector
+    );
+
+    const h1Element = await t.context.queryElement(t, ex.h1Selector);
+
+    for (let i = 0; i < nextLevelExpandableTreeitems.length; i++) {
+      // select activate link to move aria-current to a lower level page
+      await openAllExpandableTreeitems(t);
+      await nextLevelExpandableTreeitems[i].sendKeys(Key.ENTER);
+
+      // Close parent treeview items so link with aria-current is not visible
+      await closeAllTopLevelExpandableTreeitems(t);
+
+      // Move focus to the main content area
+      await h1Element.click();
+
+      // Check is menuitem with aria-current is visible
+
+      t.true(
+        await nextLevelExpandableTreeitems[i].isDisplayed(),
+        'After moving focus the link index ' +
+          i +
+          ' with aria-current should be visible.'
+      );
+    }
+  }
+);
+
+ariaTest(
   'aria-expanded attribute on treeitem matches dom',
   exampleFile,
   'treeitem-aria-expanded',
@@ -287,7 +338,7 @@ ariaTest(
         // Send enter to the treeitem
         await treeitem.sendKeys(Key.ARROW_RIGHT);
 
-        // After click, it should be open
+        // After keypress, it should be open
         t.is(await treeitem.getAttribute('aria-expanded'), 'true');
         t.is(await (await getOwnedElement(t, treeitem)).isDisplayed(), true);
       }
