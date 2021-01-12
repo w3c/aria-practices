@@ -513,7 +513,6 @@ ariaTest(
       await tempSlider.sendKeys(Key.ARROW_LEFT);
     }
 
-    let sliderVal = parseInt(ex.tempDefault) + 1;
     t.is(
       await tempSlider.getAttribute('aria-valuenow'),
       ex.tempMin.toString(),
@@ -619,7 +618,6 @@ ariaTest(
       await tempSlider.sendKeys(Key.ARROW_DOWN);
     }
 
-    let sliderVal = parseInt(ex.tempDefault) + 1;
     t.is(
       await tempSlider.getAttribute('aria-valuenow'),
       ex.tempMin.toString(),

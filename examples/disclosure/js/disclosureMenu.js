@@ -164,7 +164,7 @@ DisclosureNav.prototype.updateKeyControls = function (useArrowKeys) {
 
 window.addEventListener(
   'load',
-  function (event) {
+  function () {
     var menus = document.querySelectorAll('.disclosure-nav');
     var disclosureMenus = [];
 
@@ -175,7 +175,7 @@ window.addEventListener(
 
     // listen to arrow key checkbox
     var arrowKeySwitch = document.getElementById('arrow-behavior-switch');
-    arrowKeySwitch.addEventListener('change', function (event) {
+    arrowKeySwitch.addEventListener('change', function () {
       var checked = arrowKeySwitch.checked;
       for (var i = 0; i < disclosureMenus.length; i++) {
         disclosureMenus[i].updateKeyControls(checked);

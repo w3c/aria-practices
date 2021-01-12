@@ -107,13 +107,6 @@ const checkFocusOnParentEmail = async function (t, emailIndex) {
   );
 };
 
-const isTopLevelFolder = async function (t, el) {
-  return t.context.session.executeScript(function () {
-    const el = arguments[0];
-    return el.parentElement.getAttribute('role') === 'tree';
-  }, el);
-};
-
 const isOpenedThread = async function (el) {
   return (await el.getAttribute('aria-expanded')) === 'true';
 };

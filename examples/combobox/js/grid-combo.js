@@ -180,7 +180,7 @@ aria.GridCombobox.prototype.handleInputKeyDown = function (evt) {
   }
 };
 
-aria.GridCombobox.prototype.handleInputFocus = function (evt) {
+aria.GridCombobox.prototype.handleInputFocus = function () {
   this.updateResults();
 };
 

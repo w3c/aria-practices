@@ -222,7 +222,7 @@ Treeitem.prototype.handleClick = function (event) {
   }
 };
 
-Treeitem.prototype.handleFocus = function (event) {
+Treeitem.prototype.handleFocus = function () {
   var node = this.domNode;
   if (this.isExpandable) {
     node = node.firstElementChild;
@@ -230,7 +230,7 @@ Treeitem.prototype.handleFocus = function (event) {
   node.classList.add('focus');
 };
 
-Treeitem.prototype.handleBlur = function (event) {
+Treeitem.prototype.handleBlur = function () {
   var node = this.domNode;
   if (this.isExpandable) {
     node = node.firstElementChild;

@@ -91,7 +91,8 @@
   cursor: pointer;
 
   /* Load both right away so there is no lag when we need the other */
-  background-image: url("expand-icon.svg"), url("expand-icon-highlighted.svg");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpolygon fill='black' points='2,0 2,10 10,5'%3E%3C/polygon%3E%3C/svg%3E%0A"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpolygon fill='hsl(216, 94%25, 50%25)' points='2,0 2,10 10,5'%3E%3C/polygon%3E%3C/svg%3E%0A");
   background-repeat: no-repeat;
 }
 
@@ -104,5 +105,5 @@
 #treegrid tr[aria-expanded] > td:focus:first-child::before,
 #treegrid tr:focus > td[aria-expanded]:first-child::before,
 #treegrid tr > td[aria-expanded]:focus:first-child::before {
-  background-image: url("expand-icon-highlighted.svg");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpolygon fill='hsl(216, 94%25, 50%25)' points='2,0 2,10 10,5'%3E%3C/polygon%3E%3C/svg%3E%0A");
 }

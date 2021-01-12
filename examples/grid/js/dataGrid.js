@@ -708,7 +708,7 @@ aria.Grid.prototype.restructureGrid = function () {
   this.gridNode.innerHTML = '';
   this.gridNode.append(newRow);
 
-  cells.forEach(function (cell, index) {
+  cells.forEach(function (cell) {
     var cellWidth = cell.offsetWidth;
 
     if (currentWidth > 0 && currentWidth >= gridWidth - cellWidth) {
@@ -835,9 +835,6 @@ aria.Grid.prototype.getNextVisibleCell = function (directionX, directionY) {
   if (!nextCell) {
     return false;
   }
-
-  var rowCount = this.grid.length;
-  var colCount = this.grid[nextCell.row].length;
 
   while (this.isHidden(nextCell.row, nextCell.col)) {
     var currRow = nextCell.row;

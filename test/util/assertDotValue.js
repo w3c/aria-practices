@@ -1,4 +1,3 @@
-const { By } = require('selenium-webdriver');
 const assert = require('assert');
 
 /**
@@ -18,7 +17,7 @@ module.exports = async function assertDotValue(
 ) {
   let valueOfAttr = await t.context.session.executeScript(
     async function () {
-      const [selector, attr, value] = arguments;
+      const [selector, attr] = arguments;
       let el = document.querySelector(selector);
       return el[attr];
     },

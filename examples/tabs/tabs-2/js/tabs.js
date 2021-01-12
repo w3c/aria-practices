@@ -219,23 +219,4 @@
     target.parentElement.removeChild(target);
     panel.parentElement.removeChild(panel);
   }
-
-  // Determine whether there should be a delay
-  // when user navigates with the arrow keys
-  function determineDelay() {
-    var hasDelay = tablist.hasAttribute('data-delay');
-    var delay = 0;
-
-    if (hasDelay) {
-      var delayValue = tablist.getAttribute('data-delay');
-      if (delayValue) {
-        delay = delayValue;
-      } else {
-        // If no value is specified, default to 300ms
-        delay = 300;
-      }
-    }
-
-    return delay;
-  }
 })();

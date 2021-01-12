@@ -169,6 +169,7 @@
         "Thiel",
         "Thiers",
         "thomascorthals",
+        "togglable",
         "transactinide",
         "transuranic",
         "Transuranium",
@@ -209,7 +210,7 @@
         "aria-owns=\"(?:[^\\\"]+|\\.)*\"",
         "href=\"(?:[^\\\"]+|\\.)*\"",
         "for=\"(?:[^\\\"]+|\\.)*\"",
-        "url\\(\"data\\:image/svg\\+xml.*\"\\);"
+        "url\\(\"data\\:image/svg\\+xml.*\"\\)[,;]"
     ],
     "allowCompoundWords": true,
     "ignorePaths": [

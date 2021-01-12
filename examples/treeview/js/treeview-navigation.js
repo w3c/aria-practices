@@ -128,7 +128,20 @@ class TreeViewNavigation {
     this.updateAriaCurrent(linkURL);
   }
 
+  getAriaCurrentURL() {
+    let url = false;
+    let node = this.treeNode.querySelector('[aria-current]');
+    if (node) {
+      url = node.href;
+    }
+    return url;
+  }
+
   updateAriaCurrent(url) {
+    if (typeof url !== 'string') {
+      url = this.getAriaCurrentURL();
+    }
+
     this.treeitems.forEach((item) => {
       if (item.href === url) {
         item.setAttribute('aria-current', 'page');
@@ -345,7 +358,7 @@ class TreeViewNavigation {
       this.navNode.classList.add('focus');
     } else {
       this.navNode.classList.remove('focus');
-      this.updateAriaCurrent(document.location.href);
+      this.updateAriaCurrent();
     }
   }
 

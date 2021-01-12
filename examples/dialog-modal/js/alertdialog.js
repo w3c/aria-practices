@@ -1,3 +1,5 @@
+/* global closeDialog, openDialog */
+
 'use strict';
 
 var aria = aria || {};
@@ -19,7 +21,7 @@ aria.Utils.triggerAlert = function (alertEl, content) {
       alertEl.classList.remove('hidden');
       alertEl.addEventListener(
         'transitionend',
-        function (e) {
+        function () {
           if (!this.classList.contains('active')) {
             this.classList.add('hidden');
           }
