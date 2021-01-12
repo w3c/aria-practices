@@ -199,6 +199,9 @@ window.addEventListener(
     var examplePageHeading = document.getElementById('mythical-page-heading');
     for (var k = 0; k < links.length; k++) {
       links[k].addEventListener('click', function (event) {
+        // add preventDefault for Codepen functionality
+        event.preventDefault();
+
         var pageTitle = event.target.innerText;
         examplePageHeading.innerText = pageTitle;
 

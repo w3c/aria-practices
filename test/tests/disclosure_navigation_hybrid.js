@@ -309,8 +309,8 @@ ariaTest(
     await buttons[1].sendKeys(Key.ARROW_DOWN);
     await assertHasFocus(
       t,
-      ex.buttonSelectors[2],
-      "down arrow moves focus to next button if active button's menu is closed"
+      ex.topItemSelectors[4],
+      "down arrow moves focus to next item if active button's menu is closed"
     );
   }
 );
@@ -332,7 +332,7 @@ ariaTest(
     await items[0].sendKeys(Key.END);
     await assertHasFocus(
       t,
-      ex.topItemSelectors[2],
+      ex.topItemSelectors[ex.topItemSelectors.length - 1],
       'end key moves focus to last item'
     );
   }
