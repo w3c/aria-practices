@@ -869,7 +869,7 @@ ariaTest(
       let popup = await items[i].findElement(By.css('span.popup-label'));
       t.true(
         await popup.isDisplayed(),
-        `Clicking menu item ${i} should display a popup and is not, this test might be broken.`
+        `Clicking menu item ${i} should display a popup and if not, this test might be broken.`
       );
 
       await items[i].sendKeys(Key.ESCAPE);
@@ -1100,7 +1100,7 @@ ariaTest(
 );
 
 ariaTest(
-  'Test key enter on copy/past/cut keys',
+  'Test key enter on copy/paste/cut keys',
   exampleFile,
   'toolbar-button-enter-or-space',
   async (t) => {
@@ -1191,7 +1191,7 @@ ariaTest(
 );
 
 ariaTest(
-  'Test key space on copy/past/cut keys',
+  'Test key space on copy/paste/cut keys',
   exampleFile,
   'toolbar-button-enter-or-space',
   async (t) => {
