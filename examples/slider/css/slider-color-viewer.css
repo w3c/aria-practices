@@ -1,0 +1,161 @@
+/* CSS Document */
+
+.color-viewer-sliders label {
+  display: block;
+}
+
+.color-box-sliders .label {
+  margin-top: 0;
+  margin-bottom: 1 em;
+}
+
+.color-viewer-sliders .color-box {
+  width: 200px;
+  height: 200px;
+  border: black solid medium;
+  text-align: center;
+  padding: 0.25em;
+  forced-color-adjust: none;
+}
+
+.color-viewer-sliders .color-info {
+  padding-top: 5px;
+}
+
+.color-viewer-sliders .color-info label {
+  margin-top: 0.25em;
+  display: block;
+}
+
+.color-group {
+  padding: 4px;
+  color: #005a9c;
+  width: 490px;
+}
+
+.color-group > button,
+.color-group > div {
+  display: inline;
+}
+
+.color-group .color-slider .value {
+  fill: currentColor;
+}
+
+.color-group.focus .color-slider .value,
+.color-group .color-slider:focus .value,
+.color-group .color-slider:hover .value {
+  font-weight: bold;
+}
+
+.color-group .color-slider {
+  margin: 0;
+  padding: 0;
+}
+
+.color-group .color-slider .valueBackground {
+  fill: white;
+  stroke-width: 0;
+}
+
+.color-group .color-slider .rail {
+  fill: #bbb;
+  stroke: transparent;
+  stroke-width: 2px;
+  opacity: 0.5;
+}
+
+.color-group .color-slider .fill {
+  stroke-width: 0;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.color-group.green .color-slider .fill {
+  fill: green;
+}
+
+.color-group.red .color-slider .fill {
+  fill: red;
+}
+
+.color-group.blue .color-slider .fill {
+  fill: blue;
+}
+
+.color-group .color-slider .thumb {
+  fill: #666;
+  stroke: transparent;
+  stroke-width: 2px;
+}
+
+.color-group .color-slider .focus {
+  fill: transparent;
+  stroke: transparent;
+  stroke-width: 2px;
+}
+
+.color-group.focus .color-slider .fill,
+.color-group .color-slider:focus .fill,
+.color-group .color-slider:hover .fill {
+  opacity: 1;
+}
+
+.color-group.focus .color-slider .rail,
+.color-group .color-slider:focus .rail,
+.color-group .color-slider:hover .rail {
+  fill: transparent;
+  stroke: currentColor;
+  opacity: 1;
+}
+
+.color-group .color-slider:focus .thumb,
+.color-group .color-slider:hover .thumb {
+  fill: #ddd;
+  stroke: currentColor;
+  opacity: 1;
+}
+
+.color-group .color-slider:focus .focus,
+.color-group .color-slider:hover .focus {
+  stroke: currentColor;
+}
+
+.color-group button.dec10,
+.color-group button.dec,
+.color-group button.inc,
+.color-group button.inc10 {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  color: currentColor;
+}
+
+.color-group button .focus {
+  stroke: transparent;
+  stroke-width: 2px;
+  fill: transparent;
+}
+
+.color-group button line,
+.color-group button .background {
+  fill: transparent;
+  stroke: currentColor;
+  stroke-width: 2px;
+}
+
+.color-group button line {
+  stroke: currentColor;
+  stroke-width: 2px;
+}
+
+.color-group button:focus,
+.color-group .color-slider:focus {
+  outline: none;
+}
+
+.color-group button:focus .focus,
+.color-group button:hover .focus {
+  stroke: currentColor;
+}
