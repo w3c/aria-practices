@@ -7,7 +7,6 @@ const assertAttributeDNE = require('../util/assertAttributeDNE');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertRovingTabindex = require('../util/assertRovingTabindex');
 const assertHasFocus = require('../util/assertHasFocus');
-const assertNoElements = require('../util/assertNoElements');
 const assertAttributeCanBeToggled = require('../util/assertAttributeCanBeToggled');
 
 const exampleFile = 'toolbar/toolbar.html';
