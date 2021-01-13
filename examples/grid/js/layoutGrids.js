@@ -16,7 +16,7 @@ var aria = aria || {};
 window.addEventListener('load', function () {
   // Setup Example 1
   if (document.getElementById('ex1-grid')) {
-    var ex1Grid = new aria.Grid(document.getElementById('ex1-grid'));
+    new aria.Grid(document.getElementById('ex1-grid'));
 
     // Setup NUX; activates when the first grid cell is focused
     var gridNUX = document.getElementById('grid-nux');
@@ -44,7 +44,7 @@ window.addEventListener('load', function () {
   if (document.getElementById('ex2-grid')) {
     var ex2Grid = new aria.Grid(document.getElementById('ex2-grid'));
 
-    var pillList = new PillList(
+    new PillList(
       ex2Grid,
       document.getElementById('add-recipient-input'),
       document.getElementById('add-recipient-button'),

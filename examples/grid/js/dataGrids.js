@@ -17,13 +17,13 @@ window.addEventListener('load', function () {
   // Initialize Example 1 Grid (if it is present in the DOM)
   var ex1GridElement = document.getElementById('ex1-grid');
   if (ex1GridElement) {
-    var ex1Grid = new aria.Grid(ex1GridElement);
+    new aria.Grid(ex1GridElement);
   }
 
   // Initialize Example 2 Grid (if it is present in the DOM)
   var ex2GridElement = document.getElementById('ex2-grid');
   if (ex2GridElement) {
-    var ex2Grid = new aria.Grid(ex2GridElement);
+    new aria.Grid(ex2GridElement);
   }
 
   // Initialize Example 3 Grid (if it is present in the DOM)
@@ -33,7 +33,7 @@ window.addEventListener('load', function () {
     var toggleButton = document.getElementById('toggle_column_btn');
     var toggledOn = true;
 
-    toggleButton.addEventListener('click', function (event) {
+    toggleButton.addEventListener('click', function () {
       toggledOn = !toggledOn;
 
       ex3Grid.toggleColumn(2, toggledOn);
