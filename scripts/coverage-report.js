@@ -239,9 +239,10 @@ function getPropertiesAndStatesFromExample(data) {
     let code = data.substring(indexStart + 6, indexEnd);
 
     for (let i = 0; i < ariaPropertiesAndStates.length; i++) {
+      const hasPropOrState = RegExp(ariaPropertiesAndStates[i] + '\\b');
       if (
         getColumn(data, indexStart) === 2 &&
-        code.indexOf(ariaPropertiesAndStates[i] + '=') >= 0 &&
+        hasPropOrState.test(code) &&
         propertiesAndStates.indexOf(ariaPropertiesAndStates[i]) < 0
       ) {
         propertiesAndStates.push(ariaPropertiesAndStates[i]);
