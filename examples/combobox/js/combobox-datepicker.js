@@ -754,9 +754,7 @@ class ComboboxDatePicker {
   }
 
   onComboboxKeyDown(event) {
-    var flag = false,
-      char = event.key,
-      altKey = event.altKey;
+    var flag = false;
 
     if (event.ctrlKey || event.shiftKey) {
       return;

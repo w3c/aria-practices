@@ -1128,13 +1128,15 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         <li><kbd>Escape</kbd>: Closes the dialog.</li>
         </ul>
         <ol class="note">
-          <li> When a dialog opens, focus placement depends on the nature and size of the content.
+          <li>When a dialog opens, focus moves to an element contained in the dialog. Generally, focus is initially set on the first focusable element. However, the most appropriate focus placement will depend on the nature and size of the content. Examples include:
             <ul>
-              <li>In all circumstances, focus moves to an element contained in the dialog.</li>
-              <li>Unless a condition where doing otherwise is advisable, focus is initially set on the first focusable element.</li>
               <li>
-                If content is large enough that focusing the first interactive element could cause the beginning of content to scroll out of view,
-                it is advisable to add <code>tabindex=<q>-1</q></code> to a static element at the top of the dialog, such as the dialog title or first paragraph, and initially focus that element.
+                If the dialog content includes semantic structures, such as lists, tables, or multiple paragraphs, that need to be perceived in order to easily understand the content, i.e., if the content would be difficult to understand when announced as a single unbroken string, then it is advisable to add <code>tabindex="-1"</code> to a static element at the start of the content and initially focus that element.
+                This makes it easier for assistive technology users to read the content by navigating the semantic structures.
+                Additionally, it is advisable to omit applying <code>aria-describedby</code> to the dialog container in this scenario.
+              </li>
+              <li>If content is large enough that focusing the first interactive element could cause the beginning of content to scroll out of view,
+                it is advisable to add <code>tabindex="-1"</code> to a static element at the top of the dialog, such as the dialog title or first paragraph, and initially focus that element.
               </li>
               <li>
                 If a dialog contains the final step in a process that is not easily reversible, such as deleting data or completing a financial transaction,
@@ -1183,7 +1185,8 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
           <li>
             Optionally, the <a href="#aria-describedby" class="property-reference">aria-describedby</a> property
             is set on the element with the <code>dialog</code> role to indicate which element or elements in the dialog contain content that describes the primary purpose or message of the dialog.
-            Specifying descriptive elements enables screen readers to announce the description along with the dialog title and initially focused element when the dialog opens.
+            Specifying descriptive elements enables screen readers to announce the description along with the dialog title and initially focused element when the dialog opens, which is typically helpful only when the descriptive content is simple and can easily be understood without structural information.
+            It is advisable to omit specifying <code>aria-describedby</code> if the dialog content includes semantic structures, such as lists, tables, or multiple paragraphs, that need to be perceived in order to easily understand the content, i.e., if the content would be difficult to understand when announced as a single unbroken string.
           </li>
         </ul>
         <ul class="note">

@@ -1,3 +1,5 @@
+/* global goToLink */
+
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');

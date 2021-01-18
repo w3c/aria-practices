@@ -76,12 +76,6 @@ Meter.prototype.setValue = function (value) {
 /* Code for example page */
 
 window.addEventListener('load', function () {
-  // helper function to randomize example meter value
-  function getRandomValue(min, max) {
-    var range = max - min;
-    return Math.floor(Math.random() * range + min);
-  }
-
   // init meters
   var meterEls = document.querySelectorAll('[role=meter]');
   var meters = [];

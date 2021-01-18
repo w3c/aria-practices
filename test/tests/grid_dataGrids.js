@@ -448,7 +448,6 @@ ariaTest(
     // Examples 1 and 2
     for (let example of [1, 2]) {
       const gridSelector = ex[example].gridSelector;
-      const lastColumn = ex[example].lastColumn;
       const lastRow = ex[example].lastRow;
 
       // Index starts at 2 to skip header
@@ -489,7 +488,6 @@ ariaTest(
   'key-left-arrow',
   async (t) => {
     let gridSelector = ex[3].gridSelector;
-    let lastColumn = ex[3].lastColumn;
     let lastRow = ex[3].lastRow;
     let rowSelector = ex[3].rowSelector;
 
@@ -873,7 +871,6 @@ ariaTest(
     // Examples 1, 2, and 3
     for (let example of [1, 2, 3]) {
       const gridSelector = ex[example].gridSelector;
-      const rowSelector = ex[example].rowSelector;
       const lastColumn = ex[example].lastColumn;
       const lastRow = ex[example].lastRow;
       const firstInteractiveRow = ex[example].firstInteractiveRow;
@@ -930,7 +927,6 @@ ariaTest(
     // Examples 1, 2, and 3
     for (let example of [1, 2, 3]) {
       const gridSelector = ex[example].gridSelector;
-      const rowSelector = ex[example].rowSelector;
       const lastColumn = ex[example].lastColumn;
       const lastRow = ex[example].lastRow;
 

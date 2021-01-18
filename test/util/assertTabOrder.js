@@ -19,7 +19,7 @@ const focusMatchesElement = async function (t, selector) {
 module.exports = async function assertTabOrder(t, tabOrderSelectors) {
   // Focus on the first element in the list
   await t.context.session.executeScript(function () {
-    selector = arguments[0];
+    const selector = arguments[0];
     document.querySelector(selector).focus();
   }, tabOrderSelectors[0]);
 

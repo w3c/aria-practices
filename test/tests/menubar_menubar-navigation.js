@@ -352,11 +352,6 @@ ariaTest(
   exampleFile,
   'sub-menuitem-aria-haspopup',
   async (t) => {
-    const menubarMenuitems = await t.context.queryElements(
-      t,
-      ex.menubarMenuitemSelector
-    );
-
     for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
       const menuItems = await t.context.queryElements(
         t,
@@ -1276,7 +1271,6 @@ ariaTest(
       t,
       ex.menubarMenuitemSelector
     );
-    const menus = await t.context.queryElements(t, ex.menuSelector);
 
     // Test all the level one menuitems
 
@@ -1363,7 +1357,6 @@ ariaTest(
       t,
       ex.menubarMenuitemSelector
     );
-    const menus = await t.context.queryElements(t, ex.menuSelector);
 
     // Test all the level one menuitems
 
@@ -1446,7 +1439,6 @@ ariaTest('HOME moves focus in menu', exampleFile, 'submenu-home', async (t) => {
     t,
     ex.menubarMenuitemSelector
   );
-  const menus = await t.context.queryElements(t, ex.menuSelector);
 
   // Test all the level one menuitems
 
@@ -1512,7 +1504,6 @@ ariaTest('END moves focus in menu', exampleFile, 'submenu-end', async (t) => {
     t,
     ex.menubarMenuitemSelector
   );
-  const menus = await t.context.queryElements(t, ex.menuSelector);
 
   // Test all the level one menuitems
 

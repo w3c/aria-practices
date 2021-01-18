@@ -21,7 +21,7 @@ window.addEventListener('load', function () {
  *
  */
 
-function addAlert(event) {
+function addAlert() {
   var example = document.getElementById('example');
   var template = document.getElementById('alert-template').innerHTML;
 
