@@ -9,8 +9,9 @@
 
 /**
  * ARIA Listbox Examples
+ *
  * @function onload
- * @desc Initialize the listbox examples once the page has loaded
+ * @description Initialize the listbox examples once the page has loaded
  */
 
 window.addEventListener('load', function () {

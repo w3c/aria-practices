@@ -9,8 +9,9 @@
 
 /**
  * ARIA Grid Examples
+ *
  * @function onload
- * @desc Initialize the grid examples once the page has loaded
+ * @description Initialize the grid examples once the page has loaded
  */
 
 window.addEventListener('load', function () {

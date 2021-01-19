@@ -46,7 +46,7 @@ var VOID_ELEMENTS = [
  *
  * @property {Array} location Object containing the keyCodes used by the slider widget
  * @property {Array} code JQuery node object
- * @constructor SourceCode
+ * @class SourceCode
  * @memberof aria.widget
  */
 aria.widget.SourceCode = function () {
@@ -60,11 +60,11 @@ aria.widget.SourceCode = function () {
  * Adds source code
  *
  * @param {string} locationId      - ID of `code` element that will display the example html
- * @param {string} codeID          - ID of element containing only and all of the html used to render the example widget
+ * @param {string} codeId          - ID of element containing only and all of the html used to render the example widget
  * @param {string} exampleHeaderId - ID of header element under which the "Open in Codepen" button belongs
  * @param {string} cssJsFilesId    - ID of element containing links to all the relevent js and css files used for the example widget
  *
- * @method add
+ * @function add
  * @memberof aria.widget.SourceCode
  */
 aria.widget.SourceCode.prototype.add = function (
@@ -82,7 +82,7 @@ aria.widget.SourceCode.prototype.add = function (
 /**
  * Generates HTML content for source code
  *
- * @method make
+ * @function make
  * @memberof aria.widget.SourceCode
  */
 aria.widget.SourceCode.prototype.make = function () {
@@ -114,11 +114,11 @@ aria.widget.SourceCode.prototype.make = function () {
  * Creates the HTML for one node
  *
  * @param {HTMLElement} sourceCodeNode element to put the source code in
- * @param {Object} node DOM Element node to use to generate the source code
- * @param {Number} indentLevel Level of indentation
- * @param {Boolean} skipFirst Whether to skip the first node
+ * @param {object} node DOM Element node to use to generate the source code
+ * @param {number} indentLevel Level of indentation
+ * @param {boolean} skipFirst Whether to skip the first node
  *
- * @method createCode
+ * @function createCode
  * @memberof aria.widget.SourceCode
  */
 aria.widget.SourceCode.prototype.createCode = function (
@@ -210,8 +210,8 @@ aria.widget.SourceCode.prototype.createCode = function (
 /**
  * Returns the indentation string based on a given indent level.
  *
- * @param {Number} indentLevel
- * @returns {String}
+ * @param {number} indentLevel
+ * @returns {string}
  */
 function indentation(indentLevel) {
   return DEFAULT_INDENT.repeat(indentLevel);
@@ -232,8 +232,8 @@ function indentation(indentLevel) {
  * //> true
  * ```
  *
- * @param {String} nodeContent content of a node to test for whitespace characters
- * @returns {Boolean}
+ * @param {string} nodeContent content of a node to test for whitespace characters
+ * @returns {boolean}
  */
 function hasText(nodeContent) {
   if (typeof nodeContent !== 'string') {
@@ -246,8 +246,8 @@ function hasText(nodeContent) {
 /**
  * Replaces the characters `<` and `>` with their respective HTML entities.
  *
- * @param {String} textContent
- * @returns {String}
+ * @param {string} textContent
+ * @returns {string}
  */
 function sanitizeNodeValue(textContent) {
   if (typeof textContent !== 'string') {
@@ -264,8 +264,8 @@ function sanitizeNodeValue(textContent) {
 /**
  * Strips any leading indentation from the text content of a node.
  *
- * @param {String} textContent
- * @returns {String}
+ * @param {string} textContent
+ * @returns {string}
  */
 function stripIndentation(textContent) {
   var textIndentation = detectIndentation(textContent);
@@ -312,8 +312,8 @@ function stripIndentation(textContent) {
  *
  * Return the indentation level.
  *
- * @param {String} textContent
- * @returns {Number} The level of indentation
+ * @param {string} textContent
+ * @returns {number} The level of indentation
  */
 function detectIndentation(textContent) {
   // Case 1
@@ -342,9 +342,9 @@ function detectIndentation(textContent) {
 /**
  * Prepends each line of a string with the provided indentation string.
  *
- * @param {String} input
- * @param {String} indentation
- * @returns {String}
+ * @param {string} input
+ * @param {string} indentation
+ * @returns {string}
  */
 function indentLines(input, indentation) {
   var lines = input.split('\n');
@@ -359,10 +359,10 @@ function indentLines(input, indentation) {
 /**
  * Creates and adds an "Open in CodePen" button
  *
- * @param {String} exampleIndex - the example number, if there are multiple examples
- * @param {String} exampleHeaderId - the example header to place the button next to
- * @param {String} exampleCodeId - the example html code
- * @param {String} exampleFilesId - the element containing all relevent CSS and JS file
+ * @param {string} exampleIndex - the example number, if there are multiple examples
+ * @param {string} exampleHeaderId - the example header to place the button next to
+ * @param {string} exampleCodeId - the example html code
+ * @param {string} exampleFilesId - the element containing all relevent CSS and JS file
  */
 function addOpenInCodePenForm(
   exampleIndex,
