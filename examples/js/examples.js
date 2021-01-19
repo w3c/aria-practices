@@ -62,7 +62,7 @@ aria.widget.SourceCode = function () {
  * @param {string} locationId      - ID of `code` element that will display the example html
  * @param {string} codeId          - ID of element containing only and all of the html used to render the example widget
  * @param {string} exampleHeaderId - ID of header element under which the "Open in Codepen" button belongs
- * @param {string} cssJsFilesId    - ID of element containing links to all the relevent js and css files used for the example widget
+ * @param {string} cssJsFilesId    - ID of element containing links to all the relevant js and css files used for the example widget
  *
  * @function add
  * @memberof aria.widget.SourceCode
@@ -362,7 +362,7 @@ function indentLines(input, indentation) {
  * @param {string} exampleIndex - the example number, if there are multiple examples
  * @param {string} exampleHeaderId - the example header to place the button next to
  * @param {string} exampleCodeId - the example html code
- * @param {string} exampleFilesId - the element containing all relevent CSS and JS file
+ * @param {string} exampleFilesId - the element containing all relevant CSS and JS file
  */
 function addOpenInCodePenForm(
   exampleIndex,

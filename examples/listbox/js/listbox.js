@@ -359,7 +359,7 @@ aria.Listbox.prototype.checkClickItem = function (evt) {
 };
 
 /**
- * Prevent text selection on shift + click for multiselect listboxes
+ * Prevent text selection on shift + click for multi-select listboxes
  *
  * @param evt
  */
