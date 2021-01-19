@@ -1,6 +1,6 @@
 /**
  * Create a file '.env' with the following:
- *   GITHUB_TOKEN=yourkey
+ *   GITHUB_TOKEN=yourKey
  *   GITHUB_PROJECT_COLUMN_ID=yourColumnId
  *
  * If you want a new project created, you do not have to include a GITHUB_PROJECT_COLUMN_ID
