@@ -4,7 +4,7 @@ const { By } = require('selenium-webdriver');
  * Return an array of elements by selector. Wraps Selenium's findElements, but with a failing text for empty queries
  *
  * @param {ExecutionContext} t - Test execution context
- * @param {String} selector - CSS selector string
+ * @param {string} selector - CSS selector string
  * @param {Element} context - Element to query within, defaulting to t.context.session
  *
  * @returns {Promise} Resolves to array of elements

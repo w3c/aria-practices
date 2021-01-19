@@ -3,10 +3,10 @@ const assert = require('assert');
 /**
  * Confirm the value of an attribute on an element.
  *
- * @param {obj} t                  - ava execution object
- * @param {String} elementSelector - the element to check
- * @param {String} attribute       - the attribute
- * @param {String} value           - the value
+ * @param {object} t                  - ava execution object
+ * @param {string} elementSelector - the element to check
+ * @param {string} attribute       - the attribute
+ * @param {string} value           - the value
  */
 module.exports = async function assertAttributeValues(
   t,

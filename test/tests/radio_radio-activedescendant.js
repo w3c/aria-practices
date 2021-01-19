@@ -183,19 +183,19 @@ ariaTest(
       // Right arrow moves focus to right
       for (let index = 0; index < radios.length; index++) {
         await radiogroup.sendKeys(Key.ARROW_RIGHT);
-        const newindex = (index + 1) % radios.length;
+        const newIndex = (index + 1) % radios.length;
 
         await assertAriaActivedescendant(
           t,
           radiogroupSelector,
           radioSelector,
-          newindex
+          newIndex
         );
         t.is(
-          await radios[newindex].getAttribute('aria-checked'),
+          await radios[newIndex].getAttribute('aria-checked'),
           'true',
           'Radio at index ' +
-            newindex +
+            newIndex +
             ' should be checked after ARROW_RIGHT to radio' +
             ' at index ' +
             index
@@ -221,19 +221,19 @@ ariaTest(
       // Down arrow moves focus to right
       for (let index = 0; index < radios.length; index++) {
         await radiogroup.sendKeys(Key.ARROW_DOWN);
-        const newindex = (index + 1) % radios.length;
+        const newIndex = (index + 1) % radios.length;
 
         await assertAriaActivedescendant(
           t,
           radiogroupSelector,
           radioSelector,
-          newindex
+          newIndex
         );
         t.is(
-          await radios[newindex].getAttribute('aria-checked'),
+          await radios[newIndex].getAttribute('aria-checked'),
           'true',
           'Radio at index ' +
-            newindex +
+            newIndex +
             ' should be checked after ARROW_DOWN to radio' +
             ' at index ' +
             index
@@ -259,19 +259,19 @@ ariaTest(
       // Left arrow moves focus to left
       for (let index of [0, 2, 1]) {
         await radiogroup.sendKeys(Key.ARROW_LEFT);
-        const newindex = index - 1 === -1 ? 2 : index - 1;
+        const newIndex = index - 1 === -1 ? 2 : index - 1;
 
         await assertAriaActivedescendant(
           t,
           radiogroupSelector,
           radioSelector,
-          newindex
+          newIndex
         );
         t.is(
-          await radios[newindex].getAttribute('aria-checked'),
+          await radios[newIndex].getAttribute('aria-checked'),
           'true',
           'Radio at index ' +
-            newindex +
+            newIndex +
             ' should be checked after ARROW_LEFT to radio' +
             ' at index ' +
             index
@@ -297,19 +297,19 @@ ariaTest(
       // Up arrow moves focus to up
       for (let index of [0, 2, 1]) {
         await radiogroup.sendKeys(Key.ARROW_UP);
-        const newindex = index - 1 === -1 ? 2 : index - 1;
+        const newIndex = index - 1 === -1 ? 2 : index - 1;
 
         await assertAriaActivedescendant(
           t,
           radiogroupSelector,
           radioSelector,
-          newindex
+          newIndex
         );
         t.is(
-          await radios[newindex].getAttribute('aria-checked'),
+          await radios[newIndex].getAttribute('aria-checked'),
           'true',
           'Radio at index ' +
-            newindex +
+            newIndex +
             ' should be checked after ARROW_UP to radio' +
             ' at index ' +
             index

@@ -47,11 +47,13 @@
   <section>
     <h2>Examples</h2>
     <section>
-      <h3 id="ex1_label">Example 1: Minimal Data Grid</h3>
+      <div class="example-header">
+        <h3 id="ex1_label">Example 1: Minimal Data Grid</h3>
+      </div>
       <div role="separator" id="ex1_start_sep" aria-labelledby="ex1_start_sep ex1_label" aria-label="Start of"></div>
       <div id="ex1">
         <h4 id="grid1Label">Transactions January 1 through January 6</h4>
-        <table role="grid" aria-labelledby="grid1Label" class="data">
+        <table id="ex1-grid" role="grid" aria-labelledby="grid1Label" class="data">
           <tr>
             <th>Date</th>
             <th>Type</th>
@@ -135,11 +137,13 @@
       </ol>
     </section>
     <section>
-      <h3 id="ex2_label">Example 2: Sortable Data Grid With Editable Cells</h3>
+      <div class="example-header">
+        <h3 id="ex2_label">Example 2: Sortable Data Grid With Editable Cells</h3>
+      </div>
       <div role="separator" id="ex2_start_sep" aria-labelledby="ex2_start_sep ex2_label" aria-label="Start of"></div>
       <div id="ex2">
         <h4 id="grid2Label">Transactions January 1 through January 7</h4>
-        <table role="grid" aria-labelledby="grid2Label" class="data">
+        <table id="ex2-grid" role="grid" aria-labelledby="grid2Label" class="data">
           <tr>
             <th aria-sort="ascending">
               <span tabindex="-1" role="button">Date</span>
@@ -333,13 +337,15 @@
       </ol>
     </section>
     <section>
-      <h3 id="ex3_label">Example 3: Scrollable Data Grid With Column Hiding</h3>
+      <div class="example-header">
+        <h3 id="ex3_label">Example 3: Scrollable Data Grid With Column Hiding</h3>
+      </div>
       <div role="separator" id="ex3_start_sep" aria-labelledby="ex3_start_sep ex3_label" aria-label="Start of"></div>
       <div id="ex3">
         <h4 id="grid3Label">Transactions for January 1 through January 15</h4>
         <button type="button" id="toggle_column_btn" name="toggle_columns">Hide Type and
           Category</button>
-        <table role="grid" aria-labelledby="grid3Label" aria-rowcount="16" aria-colcount="6"
+        <table  id="ex3-grid" role="grid" aria-labelledby="grid3Label" aria-rowcount="16" aria-colcount="6"
           data-per-page="5" class="data">
           <tr data-fixed="true">
             <th>Date</th>
@@ -789,7 +795,7 @@
 
   <section>
     <h2>Javascript and CSS Source Code</h2>
-    <ul>
+    <ul id="css_js_files">
       <li>CSS:
         <ul>
           <li><a href="css/dataGrids.css" type="tex/css">dataGrids.css</a></li>
@@ -813,19 +819,19 @@
     <div id="sc1_start_sep" role="separator" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of HTML for"></div>
     <pre><code id="sc1"></code></pre>
     <div id="sc1_end_sep" role="separator" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of HTML for"></div>
-    <script>sourceCode.add('sc1', 'ex1')</script>
+    <script>sourceCode.add('sc1', 'ex1', 'ex1_label', 'css_js_files')</script>
 
     <h3 id="sc2_label">Example 2: Sortable Data Grid With Editable Cells</h3>
     <div id="sc2_start_sep" role="separator" aria-labelledby="sc2_start_sep sc2_label" aria-label="Start of HTML for"></div>
     <pre><code id="sc2"></code></pre>
     <div id="sc2_end_sep" role="separator" aria-labelledby="sc2_end_sep sc2_label" aria-label="End of HTML for"></div>
-    <script>sourceCode.add('sc2', 'ex2')</script>
+    <script>sourceCode.add('sc2', 'ex2', 'ex2_label', 'css_js_files')</script>
 
     <h3 id="sc3_label">Example 3: Scrollable Data Grid With Column Hiding</h3>
     <div id="sc3_start_sep" role="separator" aria-labelledby="sc3_start_sep sc3_label" aria-label="Start of HTML for"></div>
     <pre><code id="sc3"></code></pre>
     <div id="sc3_end_sep" role="separator" aria-labelledby="sc3_end_sep sc3_label" aria-label="End of HTML for"></div>
-    <script>sourceCode.add('sc3', 'ex3') </script>
+    <script>sourceCode.add('sc3', 'ex3', 'ex3_label', 'css_js_files') </script>
     <!--  After all source has been added, run make to do the insert.  -->
     <script> sourceCode.make(); </script>
   </section>

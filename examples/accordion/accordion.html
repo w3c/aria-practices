@@ -34,7 +34,9 @@
     be expanded at a time.
   </p>
   <section>
-    <h2 id="ex_label">Example</h2>
+    <div class="example-header">
+      <h2 id="ex_label">Example</h2>
+    </div>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="coding-arena">
       <div class="demo-block">
@@ -325,7 +327,7 @@
 
   <section>
     <h2>Javascript and CSS Source Code</h2>
-    <ul>
+    <ul id="css_js_files">
       <li>CSS: <a href="css/accordion.css" type="tex/css">accordion.css</a></li>
       <li>JavaScript: <a href="js/accordion.js" type="text/javascript">accordion.js</a></li>
     </ul>
@@ -337,7 +339,7 @@
     <pre><code id="sc1"></code></pre>
     <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
     <script>
-      sourceCode.add('sc1', 'coding-arena');
+      sourceCode.add('sc1', 'coding-arena', 'ex_label', 'css_js_files');
       sourceCode.make();
     </script>
   </section>

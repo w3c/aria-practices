@@ -12,7 +12,7 @@ const ex = {
   menuSelector: '#ex1 [role="menu"]',
   menuitemSelector: '#ex1 [role="menuitem"]',
   numMenuitems: 4,
-  lastactionSelector: '#action_output',
+  lastActionSelector: '#action_output',
 };
 
 const checkFocus = function (t, selector, index) {
@@ -236,7 +236,7 @@ ariaTest(
       t.is(
         itemText,
         await t.context.session
-          .findElement(By.css(ex.lastactionSelector))
+          .findElement(By.css(ex.lastActionSelector))
           .getAttribute('value'),
         'Key enter should select action: ' + itemText
       );
@@ -270,7 +270,7 @@ ariaTest(
       t.not(
         itemText,
         await t.context.session
-          .findElement(By.css(ex.lastactionSelector))
+          .findElement(By.css(ex.lastActionSelector))
           .getAttribute('value'),
         'Key escape should not select action: ' + itemText
       );

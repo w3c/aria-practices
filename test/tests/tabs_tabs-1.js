@@ -20,7 +20,7 @@ const ex = {
     // button id, tab id
     ['#nils', '#nils-tab'],
     ['#agnes', '#agnes-tab'],
-    ['#complex', '#complexcomplex'],
+    ['#complex', '#complex-complex'],
   ],
 };
 

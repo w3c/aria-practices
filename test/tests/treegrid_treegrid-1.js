@@ -165,17 +165,17 @@ const sendKeyToRowAndWait = async function (t, rowIndex, key) {
   }, 500);
 };
 
-const putFocusOnRow1Gridcell = async function (t, columnindex) {
-  if (columnindex === 0) {
+const putFocusOnRow1Gridcell = async function (t, columnIndex) {
+  if (columnIndex === 0) {
     await t.context.session
       .findElement(By.css(ex.emailRowSelector))
       .sendKeys(Key.ARROW_RIGHT);
-  } else if (columnindex === 1) {
+  } else if (columnIndex === 1) {
     await t.context.session
       .findElement(By.css(ex.emailRowSelector))
       .sendKeys(Key.ARROW_RIGHT);
     await sendKeyToGridcellAndWait(t, 0, 0, Key.ARROW_RIGHT);
-  } else if (columnindex === 2) {
+  } else if (columnIndex === 2) {
     await t.context.session
       .findElement(By.css(ex.emailRowSelector))
       .sendKeys(Key.ARROW_RIGHT);
@@ -184,19 +184,19 @@ const putFocusOnRow1Gridcell = async function (t, columnindex) {
   }
 };
 
-const putFocusOnLastRowGridcell = async function (t, columnindex) {
+const putFocusOnLastRowGridcell = async function (t, columnIndex) {
   let rows = await t.context.queryElements(t, ex.emailRowSelector);
-  let lastrow = rows.length - 1;
+  let lastRow = rows.length - 1;
 
-  if (columnindex === 0) {
-    await rows[lastrow].sendKeys(Key.ARROW_RIGHT);
-  } else if (columnindex === 1) {
-    await rows[lastrow].sendKeys(Key.ARROW_RIGHT);
-    await sendKeyToGridcellAndWait(t, lastrow, 0, Key.ARROW_RIGHT);
-  } else if (columnindex === 2) {
-    await rows[lastrow].sendKeys(Key.ARROW_RIGHT);
-    await sendKeyToGridcellAndWait(t, lastrow, 0, Key.ARROW_RIGHT);
-    await sendKeyToGridcellAndWait(t, lastrow, 1, Key.ARROW_RIGHT);
+  if (columnIndex === 0) {
+    await rows[lastRow].sendKeys(Key.ARROW_RIGHT);
+  } else if (columnIndex === 1) {
+    await rows[lastRow].sendKeys(Key.ARROW_RIGHT);
+    await sendKeyToGridcellAndWait(t, lastRow, 0, Key.ARROW_RIGHT);
+  } else if (columnIndex === 2) {
+    await rows[lastRow].sendKeys(Key.ARROW_RIGHT);
+    await sendKeyToGridcellAndWait(t, lastRow, 0, Key.ARROW_RIGHT);
+    await sendKeyToGridcellAndWait(t, lastRow, 1, Key.ARROW_RIGHT);
   }
 };
 
@@ -376,7 +376,7 @@ ariaTest(
           await emailRows[index + 1].isDisplayed(),
           'Sending key ARROW RIGHT to email at index ' +
             index +
-            ' should open a thread, displaying the next email row(s) in the gridtree.'
+            ' should open a thread, displaying the next email row(s) in the treegrid.'
         );
       }
     }
@@ -556,23 +556,23 @@ ariaTest(
     await openAllThreads(t);
     const emailRows = await t.context.queryElements(t, ex.emailRowSelector);
 
-    for (let columnindex = 0; columnindex < 3; columnindex++) {
-      await putFocusOnRow1Gridcell(t, columnindex);
+    for (let columnIndex = 0; columnIndex < 3; columnIndex++) {
+      await putFocusOnRow1Gridcell(t, columnIndex);
 
       for (let rowindex = 0; rowindex < emailRows.length - 1; rowindex++) {
         // Send ARROW DOWN to gridcell
         await sendKeyToGridcellAndWait(
           t,
           rowindex,
-          columnindex,
+          columnIndex,
           Key.ARROW_DOWN
         );
         t.true(
-          await checkFocusOnGridcell(t, rowindex + 1, columnindex),
+          await checkFocusOnGridcell(t, rowindex + 1, columnIndex),
           'Sending key ARROW DOWN to cell at row index ' +
             rowindex +
             ' and column index ' +
-            columnindex +
+            columnIndex +
             ' should move focus to the next email'
         );
       }
@@ -581,13 +581,13 @@ ariaTest(
       await sendKeyToGridcellAndWait(
         t,
         emailRows.length - 1,
-        columnindex,
+        columnIndex,
         Key.ARROW_DOWN
       );
       t.true(
-        await checkFocusOnGridcell(t, emailRows.length - 1, columnindex),
+        await checkFocusOnGridcell(t, emailRows.length - 1, columnIndex),
         'Sending key ARROW DOWN to the cell at column index ' +
-          columnindex +
+          columnIndex +
           ' in the last row should not move focus'
       );
     }
@@ -630,28 +630,28 @@ ariaTest(
     await openAllThreads(t);
     const emailRows = await t.context.queryElements(t, ex.emailRowSelector);
 
-    for (let columnindex = 0; columnindex < 3; columnindex++) {
-      await putFocusOnLastRowGridcell(t, columnindex);
+    for (let columnIndex = 0; columnIndex < 3; columnIndex++) {
+      await putFocusOnLastRowGridcell(t, columnIndex);
 
       for (let rowindex = emailRows.length - 1; rowindex > 0; rowindex--) {
         // Send ARROW UP to gridcell
-        await sendKeyToGridcellAndWait(t, rowindex, columnindex, Key.ARROW_UP);
+        await sendKeyToGridcellAndWait(t, rowindex, columnIndex, Key.ARROW_UP);
         t.true(
-          await checkFocusOnGridcell(t, rowindex - 1, columnindex),
+          await checkFocusOnGridcell(t, rowindex - 1, columnIndex),
           'Sending key ARROW UP to cell at row index ' +
             rowindex +
             ' and column index ' +
-            columnindex +
+            columnIndex +
             ' should move focus to the previous email'
         );
       }
 
       // Send ARROW UP to first row
-      await sendKeyToGridcellAndWait(t, 0, columnindex, Key.ARROW_UP);
+      await sendKeyToGridcellAndWait(t, 0, columnIndex, Key.ARROW_UP);
       t.true(
-        await checkFocusOnGridcell(t, 0, columnindex),
+        await checkFocusOnGridcell(t, 0, columnIndex),
         'Sending key ARROW UUP to the cell at column index ' +
-          columnindex +
+          columnIndex +
           ' in the first row should not move focus'
       );
     }

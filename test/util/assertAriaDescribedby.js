@@ -3,8 +3,8 @@ const assert = require('assert');
 /**
  * Confirm the aria-describedby attribute and corresponding element.
  *
- * @param {obj} t                  - ava execution object
- * @param {String} elementSelector - the element with aria-describedby set
+ * @param {object} t                  - ava execution object
+ * @param {string} elementSelector - the element with aria-describedby set
  */
 
 module.exports = async function assertAriaDescribedby(t, elementSelector) {

@@ -142,7 +142,7 @@ ariaTest(
 ariaTest(
   'aria-expanded attribute on treeitem matches dom',
   exampleFile,
-  'treeitem-ariaexpanded',
+  'treeitem-aria-expanded',
   async (t) => {
     const folders = await t.context.queryElements(t, ex.folderSelector);
 
