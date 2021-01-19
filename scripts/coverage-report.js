@@ -180,49 +180,65 @@ ariaPropertiesAndStates.forEach(function (prop) {
 
 console.log('Generating index...');
 
-function getColumn(data, indexStart) {
-  let count = 0;
-  let index = data.lastIndexOf('<tr', indexStart);
-
-  while (index > 0 && index <= indexStart) {
-    let indexTd = data.indexOf('<td', index);
-    let indexTh = data.indexOf('<th', index);
-
-    index = Math.min(indexTh, indexTd);
-
-    if (index <= indexStart) {
-      count += 1;
+function getDataAttributeTables(data) {
+  let dataAttributeTables = [];
+  let indexStart = 0,
+    indexEnd = -1;
+  // Get data attribute tables
+  do {
+    indexStart = data.indexOf('data attributes', indexStart);
+    if (indexStart >= 0) {
+      indexEnd = data.indexOf('</table>', indexStart);
     }
+    if (indexStart >= 0 && indexEnd >= 0) {
+      dataAttributeTables.push(data.substr(indexStart, indexEnd));
+      indexStart = indexEnd + 1;
+    }
+  } while (indexStart >= 0 && indexEnd >= 0);
 
-    index += 1;
+  return dataAttributeTables;
+}
+
+function getIndexStartAndEnd(table, indexStart) {
+  indexStart = table.indexOf('<code>', indexStart);
+  if (indexStart < 0) {
+    return [-1, -1];
   }
+  let indexEnd = table.indexOf('</code>', indexStart);
+  let indexEqual = table.indexOf('=', indexStart);
 
-  return count;
+  if (indexEqual >= 0) {
+    indexEnd = Math.min(indexEnd, indexEqual);
+  }
+  return [indexStart, indexEnd];
 }
 
 function getRolesFromExample(data) {
   let roles = [];
 
-  let indexStart = data.indexOf('<code>', 0);
-  let indexEnd = data.indexOf('</code>', indexStart);
+  let tables = getDataAttributeTables(data);
 
-  while (indexStart > 1 && indexEnd > 1) {
-    let code = data.substring(indexStart + 6, indexEnd).trim();
+  for (let i = 0; i < tables.length; i++) {
+    let table = tables[i];
 
-    for (let i = 0; i < ariaRoles.length; i++) {
-      if (
-        getColumn(data, indexStart) === 1 &&
-        code == ariaRoles[i] &&
-        roles.indexOf(ariaRoles[i]) < 0
-      ) {
-        roles.push(ariaRoles[i]);
+    let indexStart = 0,
+      indexEnd;
+    [indexStart, indexEnd] = getIndexStartAndEnd(table, indexStart);
+
+    while (indexStart > 1 && indexEnd > 1) {
+      let code = table.substring(indexStart + 6, indexEnd).trim();
+      if (code.indexOf('aria') !== 0) {
+        console.log('  [roleOrElement]: ' + code);
+        for (let i = 0; i < ariaRoles.length; i++) {
+          if (code == ariaRoles[i] && roles.indexOf(ariaRoles[i]) < 0) {
+            roles.push(ariaRoles[i]);
+          }
+        }
       }
-    }
-
-    indexStart = data.indexOf('<code>', indexEnd);
-
-    if (indexStart > 0) {
-      indexEnd = data.indexOf('</code>', indexStart);
+      indexStart = table.indexOf('<code>', indexEnd + 1);
+      if (indexStart >= 0) {
+        [indexStart, indexEnd] = getIndexStartAndEnd(table, indexStart);
+      }
     }
   }
 
@@ -232,30 +248,34 @@ function getRolesFromExample(data) {
 function getPropertiesAndStatesFromExample(data) {
   let propertiesAndStates = [];
 
-  let indexStart = data.indexOf('<code>', 0);
-  let indexEnd = data.indexOf('</code>', indexStart);
+  let tables = getDataAttributeTables(data);
 
-  while (indexStart > 1 && indexEnd > 1) {
-    let code = data.substring(indexStart + 6, indexEnd);
+  for (let i = 0; i < tables.length; i++) {
+    let table = tables[i];
+    let indexStart = 0,
+      indexEnd;
+    [indexStart, indexEnd] = getIndexStartAndEnd(table, indexStart);
 
-    for (let i = 0; i < ariaPropertiesAndStates.length; i++) {
-      const hasPropOrState = RegExp(ariaPropertiesAndStates[i] + '\\b');
-      if (
-        getColumn(data, indexStart) === 2 &&
-        hasPropOrState.test(code) &&
-        propertiesAndStates.indexOf(ariaPropertiesAndStates[i]) < 0
-      ) {
-        propertiesAndStates.push(ariaPropertiesAndStates[i]);
+    while (indexStart > 1 && indexEnd > 1) {
+      let code = table.substring(indexStart + 6, indexEnd);
+      if (code.indexOf('aria') === 0) {
+        console.log('  [propertyOrState]: ' + code);
+        for (let i = 0; i < ariaPropertiesAndStates.length; i++) {
+          const hasPropOrState = RegExp(ariaPropertiesAndStates[i] + '\\b');
+          if (
+            hasPropOrState.test(code) &&
+            propertiesAndStates.indexOf(ariaPropertiesAndStates[i]) < 0
+          ) {
+            propertiesAndStates.push(ariaPropertiesAndStates[i]);
+          }
+        }
+      }
+      indexStart = table.indexOf('<code>', indexEnd + 1);
+      if (indexStart >= 0) {
+        [indexStart, indexEnd] = getIndexStartAndEnd(table, indexStart);
       }
     }
-
-    indexStart = data.indexOf('<code>', indexEnd);
-
-    if (indexStart > 0) {
-      indexEnd = data.indexOf('</code>', indexStart);
-    }
   }
-
   return propertiesAndStates;
 }
 
@@ -308,6 +328,7 @@ glob
     nodir: true,
   })
   .forEach(function (file) {
+    console.log('[file]: ' + file);
     let data = fs.readFileSync(file, 'utf8');
     let ref = file.replace('examples/', '../examples/');
     let title = data
