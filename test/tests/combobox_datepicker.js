@@ -94,7 +94,7 @@ ariaTest(
 );
 
 ariaTest(
-  'Combobox: has aria-controls set to "id-descrption-1"',
+  'Combobox: has aria-controls set to "id-description-1"',
   exampleFile,
   'textbox-aria-describedby',
   async (t) => {
@@ -255,8 +255,12 @@ ariaTest(
     let allButtons = await t.context.queryElements(t, ex.allDates);
 
     // test only one element has tabindex="0"
-    for (let tabableEl = 0; tabableEl < focusableButtons.length; tabableEl++) {
-      let dateSelected = await focusableButtons[tabableEl].getText();
+    for (
+      let tabbableEl = 0;
+      tabbableEl < focusableButtons.length;
+      tabbableEl++
+    ) {
+      let dateSelected = await focusableButtons[tabbableEl].getText();
 
       for (let el = 0; el < allButtons.length; el++) {
         let date = await allButtons[el].getText();
@@ -279,7 +283,7 @@ ariaTest(
           await allButtons[el].getAttribute('tabindex'),
           tabindex,
           'focus is on day ' +
-            (tabableEl + 1) +
+            (tabbableEl + 1) +
             ' therefore the button number ' +
             el +
             ' should have tab index set to: ' +
@@ -288,7 +292,7 @@ ariaTest(
       }
 
       // Send the tabindex="0" element the appropriate key to switch focus to the next element
-      await focusableButtons[tabableEl].sendKeys(Key.ARROW_RIGHT);
+      await focusableButtons[tabbableEl].sendKeys(Key.ARROW_RIGHT);
     }
   }
 );
@@ -463,7 +467,7 @@ ariaTest(
 );
 
 ariaTest(
-  'Tab should go through all tabbable items, then repear',
+  'Tab should go through all tabbable items, then repeat',
   exampleFile,
   'dialog-tab',
   async (t) => {

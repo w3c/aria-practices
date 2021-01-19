@@ -20,10 +20,10 @@ const ex = {
 const waitForFocusChange = async (t, textboxSelector, originalFocus) => {
   await t.context.session.wait(
     async function () {
-      let newfocus = await t.context.session
+      let newFocus = await t.context.session
         .findElement(By.css(textboxSelector))
         .getAttribute('aria-activedescendant');
-      return newfocus != originalFocus;
+      return newFocus != originalFocus;
     },
     t.context.waitTime,
     'Timeout waiting for "aria-activedescendant" value to change from: ' +
@@ -55,7 +55,7 @@ ariaTest(
 );
 
 ariaTest(
-  '"aria-autocomplete" on comboxbox element',
+  '"aria-autocomplete" on combobox element',
   exampleFile,
   'combobox-aria-autocomplete',
   async (t) => {
@@ -399,7 +399,7 @@ ariaTest(
 
     // Test that ARROW_DOWN moves active descendant focus on item in listbox
     for (let i = 2; i < ex.numAOptions + 1; i++) {
-      let oldfocus = await t.context.session
+      let oldFocus = await t.context.session
         .findElement(By.css(ex.textboxSelector))
         .getAttribute('aria-activedescendant');
 
@@ -408,7 +408,7 @@ ariaTest(
         .sendKeys(Key.ARROW_DOWN);
 
       // Account for race condition
-      await waitForFocusChange(t, ex.textboxSelector, oldfocus);
+      await waitForFocusChange(t, ex.textboxSelector, oldFocus);
 
       await assertAriaSelectedAndActivedescendant(
         t,
@@ -475,7 +475,7 @@ ariaTest(
 
     // Test that ARROW_UP moves active descendant focus up one item in the listbox
     for (let index = ex.numAOptions - 2; index > 0; index--) {
-      let oldfocus = await t.context.session
+      let oldFocus = await t.context.session
         .findElement(By.css(ex.textboxSelector))
         .getAttribute('aria-activedescendant');
 
@@ -484,7 +484,7 @@ ariaTest(
         .findElement(By.css(ex.textboxSelector))
         .sendKeys(Key.ARROW_UP);
 
-      await waitForFocusChange(t, ex.textboxSelector, oldfocus);
+      await waitForFocusChange(t, ex.textboxSelector, oldFocus);
 
       await assertAriaSelectedAndActivedescendant(
         t,
@@ -851,7 +851,7 @@ ariaTest(
       .findElement(By.css(ex.textboxSelector))
       .sendKeys('a', Key.ARROW_DOWN, Key.ESCAPE);
 
-    // Confirm the listbox is closed and the textboxed is cleared
+    // Confirm the listbox is closed and the textbox is cleared
 
     await assertAttributeValues(
       t,

@@ -118,10 +118,10 @@ ariaTest(
   'treeitem-role',
   async (t) => {
     // Get all the list items in the tree structure
-    const listitems = await t.context.queryElements(t, '#ex1 [role="tree"] li');
+    const listItems = await t.context.queryElements(t, '#ex1 [role="tree"] li');
 
     // Check the role "treeitem" is on the list item (in the case of a directory) or contained link
-    for (let item of listitems) {
+    for (let item of listItems) {
       const hasAriaExpanded = await hasAriaExpandedAttribute(t, item);
 
       // if "aria-expanded" is contained on the list item, it is a directory
@@ -145,9 +145,9 @@ ariaTest(
 
 ariaTest('role="none" on "li" element', exampleFile, 'none-role', async (t) => {
   // Get all the list items in the tree structure
-  const listitems = await t.context.queryElements(t, '#ex1 [role="tree"] li');
+  const listItems = await t.context.queryElements(t, '#ex1 [role="tree"] li');
 
-  for (let item of listitems) {
+  for (let item of listItems) {
     const hasAriaExpanded = await hasAriaExpandedAttribute(t, item);
 
     // if "aria-expanded" is not on the list item, it is a leaf node
@@ -276,8 +276,8 @@ ariaTest(
     await replaceExternalLink(t, newUrl, ex.linkSelector, 0);
 
     // Test a leaf node
-    let leafnodes = await t.context.queryElements(t, ex.linkSelector);
-    await leafnodes[0].sendKeys(Key.ENTER);
+    let leafNodes = await t.context.queryElements(t, ex.linkSelector);
+    await leafNodes[0].sendKeys(Key.ENTER);
 
     t.is(
       await t.context.session.getCurrentUrl(),
@@ -311,8 +311,8 @@ ariaTest.failing(
     await replaceExternalLink(t, newUrl, ex.linkSelector, 0);
 
     // Test a leaf node
-    let leafnodes = await t.context.queryElements(t, ex.linkSelector);
-    await leafnodes[0].sendKeys(Key.SPACE);
+    let leafNodes = await t.context.queryElements(t, ex.linkSelector);
+    await leafNodes[0].sendKeys(Key.SPACE);
 
     t.is(
       await t.context.session.getCurrentUrl(),

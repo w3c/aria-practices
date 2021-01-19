@@ -44,7 +44,7 @@ module.exports = async function assertAriaSelectedAndActivedescendant(
       activedescendantSelector
   );
 
-  // Confirm the focus is on the aria-activedescendent element
+  // Confirm the focus is on the aria-activedescendant element
 
   const focused = await t.context.session.executeScript(function () {
     const selector = arguments[0];

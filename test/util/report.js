@@ -79,7 +79,7 @@ const getKeyboardRowName = function ($, $tableRow) {
  * @returns {string}
  */
 const getAttributeRowName = function ($, $tableRow) {
-  // use the containt 'th' text to identify the row. If there is no text
+  // use the 'th' contents text to identify the row. If there is no text
   // in the 'th' element, use the 'element' column text.
   let rowName = $('th', $tableRow).text();
   if (!rowName) {
@@ -171,8 +171,8 @@ const getRegressionTestCoverage = function (exampleCoverage) {
   process.env.REGRESSION_COVERAGE_REPORT = 1;
 
   const allTestFiles = [];
-  fs.readdirSync(testsPath).forEach(function (testfile) {
-    allTestFiles.push(path.join(testsPath, testfile));
+  fs.readdirSync(testsPath).forEach(function (testFile) {
+    allTestFiles.push(path.join(testsPath, testFile));
   });
 
   const cmd = path.resolve(
@@ -183,9 +183,9 @@ const getRegressionTestCoverage = function (exampleCoverage) {
     'ava',
     'cli.js'
   );
-  const cmdargs = [...allTestFiles, '--tap', '-c', '1'];
+  const cmdArgs = [...allTestFiles, '--tap', '-c', '1'];
 
-  const output = spawnSync(cmd, cmdargs);
+  const output = spawnSync(cmd, cmdArgs);
   const avaResults = output.stdout.toString();
   const avaError = output.stderr.toString();
 

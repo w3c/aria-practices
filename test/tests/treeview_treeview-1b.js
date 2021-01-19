@@ -131,7 +131,7 @@ ariaTest('role="tree" on ul element', exampleFile, 'tree-role', async (t) => {
 ariaTest(
   'aria-labelledby on role="tree" element',
   exampleFile,
-  'tree-arialabelledby',
+  'tree-aria-labelledby',
   async (t) => {
     await assertAriaLabelledby(t, ex.treeSelector);
   }

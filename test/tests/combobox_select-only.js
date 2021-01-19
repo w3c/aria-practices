@@ -35,7 +35,7 @@ ariaTest('role "option"', exampleFile, 'option-role', async (t) => {
       t.is(
         role,
         'option',
-        'Immediate descendents of the listbox should have role="option"'
+        'Immediate descendants of the listbox should have role="option"'
       );
     })
   );
@@ -1055,7 +1055,7 @@ ariaTest(
     // type first letter
     await combobox.sendKeys(fourthName[0]);
 
-    // fourth op should not be hightlighted after only first letter
+    // fourth op should not be highlighted after only first letter
     t.not(
       await combobox.getAttribute('aria-activedescendant'),
       fourthId,
