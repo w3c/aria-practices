@@ -3,9 +3,9 @@ const assert = require('assert');
 /**
  * Assert a given attribute does not exist on all elements selected by selector
  *
- * @param {obj} t            - ava execution object
- * @param {String} selector  - elements to test
- * @param {String} attribute - attribute that should not exist
+ * @param {object} t            - ava execution object
+ * @param {string} selector  - elements to test
+ * @param {string} attribute - attribute that should not exist
  */
 module.exports = async function assertAttributeDNE(t, selector, attribute) {
   const numElements = (await t.context.queryElements(t, selector)).length;

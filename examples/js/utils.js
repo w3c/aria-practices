@@ -6,7 +6,7 @@
 var aria = aria || {};
 
 /**
- * @desc
+ * @description
  *  Key code constants
  */
 aria.KeyCode = {

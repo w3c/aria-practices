@@ -3,8 +3,8 @@ const assert = require('assert');
 /**
  * Confirm the roving tabindex has been initialized for a list of elements.
  *
- * @param {obj} t                   - ava execution object
- * @param {String} elementsSelector - selector for elements which have roving tabindex
+ * @param {object} t                   - ava execution object
+ * @param {string} elementsSelector - selector for elements which have roving tabindex
                                       by default, focus should be on the first item
  * @param {webdriver.Key} key       - which key to change roving focus between items
  */

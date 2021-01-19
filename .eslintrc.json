@@ -1,5 +1,5 @@
 {
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "extends": ["eslint:recommended", "plugin:jsdoc/recommended", "plugin:prettier/recommended"],
   "env": {
     "browser": true,
     "es6": true
@@ -8,6 +8,11 @@
     "ecmaVersion": 6
   },
   "rules": {
+    "jsdoc/no-undefined-types": 0,
+    "jsdoc/require-jsdoc": 0,
+    "jsdoc/require-param-description": 0,
+    "jsdoc/require-param-type": 0,
+    "jsdoc/require-returns-description": 0,
     "strict": [2, "global"],
     "no-console": "error"
   },

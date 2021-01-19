@@ -90,7 +90,7 @@ function searchVeggies(searchString) {
 
 /**
  * @function onload
- * @desc Initialize the combobox examples once the page has loaded
+ * @description Initialize the combobox examples once the page has loaded
  */
 window.addEventListener('load', function () {
   new aria.GridCombobox(

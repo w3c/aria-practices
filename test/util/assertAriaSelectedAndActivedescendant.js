@@ -5,10 +5,10 @@ const assert = require('assert');
  * Assert the aria-activedescendant focus is correctly set to the item that has
  * attribute aria-selected set to "true" in a list of options.
  *
- * @param {obj} t                  - ava execution object
- * @param {String} activedescendantSelector - selector for element with aria-activeDescendant set
- * @param {String} optionsSelector - selector to select list of candidate elements for focus
- * @param {Number} index           - index of element in list returned by optionsSelector with focus
+ * @param {object} t                  - ava execution object
+ * @param {string} activedescendantSelector - selector for element with aria-activeDescendant set
+ * @param {string} optionsSelector - selector to select list of candidate elements for focus
+ * @param {number} index           - index of element in list returned by optionsSelector with focus
  */
 module.exports = async function assertAriaSelectedAndActivedescendant(
   t,
