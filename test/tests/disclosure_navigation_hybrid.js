@@ -79,18 +79,14 @@ ariaTest(
     for (let b = 0; b < buttons.length; b++) {
       const links = await t.context.queryElements(t, 'a', menus[b]);
 
-      for (let l = 0; l < links.length; l++) {
+      if (links.length > 0) {
         await buttons[b].click();
-        await links[l].click();
+        await links[0].click();
 
         t.is(
-          await links[l].getAttribute('aria-current'),
+          await links[0].getAttribute('aria-current'),
           'page',
-          'after clicking link at index ' +
-            l +
-            ' on menu ' +
-            b +
-            'aria-current should be set to page'
+          `after clicking link at index 0 on menu ${b}, aria-current should be set to page`
         );
 
         let ariaCurrentLinks = await t.context.queryElements(
@@ -101,11 +97,7 @@ ariaTest(
         t.is(
           ariaCurrentLinks.length,
           1,
-          'after clicking link at index ' +
-            l +
-            ' on menu ' +
-            b +
-            ', only one link should have aria-current set'
+          `after clicking link at index 0 on menu ${b}, only one link should have aria-current set`
         );
       }
     }

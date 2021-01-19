@@ -79,6 +79,11 @@ class DisclosureNav {
     }
   }
 
+  // public function to close open menu
+  close() {
+    this.toggleExpand(this.openIndex, false);
+  }
+
   onBlur(event) {
     var menuContainsFocus = this.rootNode.contains(event.relatedTarget);
     if (!menuContainsFocus && this.openIndex !== null) {
@@ -187,31 +192,36 @@ window.addEventListener(
 
     // listen to arrow key checkbox
     var arrowKeySwitch = document.getElementById('arrow-behavior-switch');
-    arrowKeySwitch.addEventListener('change', function () {
-      var checked = arrowKeySwitch.checked;
-      for (var i = 0; i < disclosureMenus.length; i++) {
-        disclosureMenus[i].updateKeyControls(checked);
-      }
-    });
-
-    // fake link behavior
-    var links = document.querySelectorAll('[href="#mythical-page-content"]');
-    var examplePageHeading = document.getElementById('mythical-page-heading');
-    for (var k = 0; k < links.length; k++) {
-      links[k].addEventListener('click', function (event) {
-        // add preventDefault for Codepen functionality
-        event.preventDefault();
-
-        var pageTitle = event.target.innerText;
-        examplePageHeading.innerText = pageTitle;
-
-        // handle aria-current
-        for (var n = 0; n < links.length; n++) {
-          links[n].removeAttribute('aria-current');
+    if (arrowKeySwitch) {
+      arrowKeySwitch.addEventListener('change', function (event) {
+        var checked = arrowKeySwitch.checked;
+        for (var i = 0; i < disclosureMenus.length; i++) {
+          disclosureMenus[i].updateKeyControls(checked);
         }
-        this.setAttribute('aria-current', 'page');
       });
     }
+
+    // fake link behavior
+    disclosureMenus.forEach((disclosureNav, i) => {
+      var links = menus[i].querySelectorAll('[href="#mythical-page-content"]');
+      var examplePageHeading = document.getElementById('mythical-page-heading');
+      for (var k = 0; k < links.length; k++) {
+        links[k].addEventListener('click', (event) => {
+          // add preventDefault for Codepen functionality, then manually close dropdown
+          event.preventDefault();
+          disclosureNav.close();
+
+          var pageTitle = event.target.innerText;
+          examplePageHeading.innerText = pageTitle;
+
+          // handle aria-current
+          for (var n = 0; n < links.length; n++) {
+            links[n].removeAttribute('aria-current');
+          }
+          event.target.setAttribute('aria-current', 'page');
+        });
+      }
+    });
   },
   false
 );
