@@ -349,7 +349,7 @@ ariaTest(
       if (await expandableTreeitems[i].isDisplayed()) {
         const treeitemText = await expandableTreeitems[i].getText();
 
-        // Send enter to the expandale treeitem
+        // Send enter to the expandable treeitem
         await expandableTreeitems[i].sendKeys(Key.ARROW_LEFT);
 
         // After sending enter, it should be closed
