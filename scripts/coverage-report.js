@@ -228,9 +228,9 @@ function getRolesFromExample(data) {
     while (indexStart > 1 && indexEnd > 1) {
       let code = table.substring(indexStart + 6, indexEnd).trim();
       if (code.indexOf('aria') !== 0) {
-        console.log('  [roleOrElement]: ' + code);
         for (let i = 0; i < ariaRoles.length; i++) {
           if (code == ariaRoles[i] && roles.indexOf(ariaRoles[i]) < 0) {
+            console.log('  [role]: ' + code);
             roles.push(ariaRoles[i]);
           }
         }
@@ -259,13 +259,13 @@ function getPropertiesAndStatesFromExample(data) {
     while (indexStart > 1 && indexEnd > 1) {
       let code = table.substring(indexStart + 6, indexEnd);
       if (code.indexOf('aria') === 0) {
-        console.log('  [propertyOrState]: ' + code);
         for (let i = 0; i < ariaPropertiesAndStates.length; i++) {
           const hasPropOrState = RegExp(ariaPropertiesAndStates[i] + '\\b');
           if (
             hasPropOrState.test(code) &&
             propertiesAndStates.indexOf(ariaPropertiesAndStates[i]) < 0
           ) {
+            console.log('  [propertyOrState]: ' + code);
             propertiesAndStates.push(ariaPropertiesAndStates[i]);
           }
         }
