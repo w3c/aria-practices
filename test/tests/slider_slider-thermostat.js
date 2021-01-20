@@ -9,6 +9,7 @@ const assertAriaRoles = require('../util/assertAriaRoles');
 const exampleFile = 'slider/slider-thermostat.html';
 
 const ex = {
+  railRects: '#ex1 rect.rail',
   sliderSelector: '#ex1 [role="slider"]',
   buttonSelector: '#ex1 button',
   inputSelector: '#ex1 input[type="number"]',
@@ -45,6 +46,15 @@ const getValueAndText = async function (t, selector) {
 };
 
 // Attributes
+
+ariaTest(
+  'SVG rects used for the rail have aria-hidden',
+  exampleFile,
+  'aria-hidden',
+  async (t) => {
+    await assertAttributeValues(t, ex.railRects, 'aria-hidden', 'true');
+  }
+);
 
 ariaTest(
   '"tabindex" set to "-1" on buttons',

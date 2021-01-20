@@ -50,10 +50,10 @@
               tabindex="-1"
               value="68"
               aria-labelledby="id-temp-label">
-            Degrees
+            °F
           </div>
           <svg class="slider-group"  width="140" height="340">
-            <rect class="rail" x="60" y="20" width="6" height="300" rx="5"/>
+            <rect class="rail" x="60" y="20" width="8" height="300" rx="5"  aria-hidden="true"/>
             <g role="slider"
               id="id-temp"
               aria-orientation="vertical"
@@ -63,19 +63,19 @@
               aria-valuetext="68 degrees"
               aria-valuemax="100"
               aria-labelledby="id-temp-label">
-              <text class="value" x="84" y="150">68</text>
+              <text class="value" x="94" y="150">68</text>
               <rect class="focus"
-                x="35" y="145" width="84" height="24" rx="12" />
+                x="35" y="170" width="100" height="24" rx="12" />
               <rect class="thumb"
-                 x="35" y="145" width="36" height="12" rx="5"/>
+                 x="35" y="145" width="48" height="14" rx="5"/>
             </g>
           </svg>
         </div>
 
         <div class="slider-thermostat-text">
           <div id="id-fan-label" class="label">Fan</div>
-          <svg class="slider-group" width="210" height="85">
-            <rect class="rail" x="25" y="25" width="132" height="6" rx="5"/>
+          <svg class="slider-group" width="210" height="105">
+            <rect class="rail" x="35" y="35" width="132" height="8" rx="5" aria-hidden="true"/>
             <g id="id-fan"
               role="slider"
               aria-orientation="horizontal"
@@ -86,9 +86,9 @@
               aria-valuemax="3"
               aria-labelledby="id-fan-label">
               <rect class="focus"
-                x="0" y="0" width="24" height="48" rx="12"/>
+                x="0" y="0" width="28" height="60" rx="12"/>
               <rect class="thumb"
-                x="0" y="0" width="12" height="36" rx="5"/>
+                x="0" y="0" width="14" height="48" rx="5"/>
             </g>
           </svg>
           <div class="labels">
@@ -125,8 +125,8 @@
 
         <div class="slider-thermostat-text">
           <div id="id-hc-label" class="label">Heat/Cool</div>
-          <svg class="slider-group" width="210" height="85">
-            <rect class="rail" x="25" y="25" width="92" height="6" rx="5"/>
+          <svg class="slider-group" width="210" height="105">
+            <rect class="rail" x="35" y="35" width="92" height="8" rx="5" aria-hidden="true"/>
             <g role="slider"
               aria-orientation="horizontal"
               id="id-hc"
@@ -137,9 +137,9 @@
               aria-valuemax="2"
               aria-labelledby="id-hc-label">
               <rect class="focus"
-                x="0" y="0" width="24" height="48" rx="12"/>
+                x="0" y="0" width="28" height="60" rx="12"/>
               <rect class="thumb"
-                x="0" y="0" width="12" height="36" rx="5"/>
+                x="0" y="0" width="14" height="48" rx="5"/>
             </g>
           </svg>
           <div class="labels">
@@ -176,8 +176,8 @@
           <li>A border is placed around the slider and related controls when the slider or a related element receives focus.</li>
           <li>The placement of the slider value to the right of the thumb of the vertical supports users with low vision by allow them to more easily view the value of the slider as they move the thumb.</li>
           <li>A circle SVG image is used for indicating the slider with keyboard focus.</li>
-          <li>The use SVG images enables the thumb, focus ring and rail of the slider to adapt to operating system high contrast colors.</li>
-          <li>The CSS <code>currentColor</code> value for the <code>fill</code> and <code>stroke</code> properties of the thumb and slider is used to support the override colors in high contrast mode.</li>
+          <li>The use SVG images enables the thumb, focus ring and rail of the slider to adapt to operating system high contrast color schemes and settings.</li>
+          <li>The CSS <code>currentColor</code> value for the <code>fill</code> and <code>stroke</code> properties for the rail, thumb and slider supports user selected color schemes in operating system high contrast mode.</li>
           <li>The <code>input[type=number]</code> element provides mobile assistive technology users a means to change the temperature when an external keyboard is not being used.</li>
           <li>The <code>button</code> elements provides mobile assistive technology users a means to change the Fan and Heat/Cool values  when an external keyboard is not being used.</li>
           <li>The <code>button</code> elements receive a border style when hovered for users to identify the elements as interactive.  Border is not rendered by default since the content of the buttons is primarily as visual labels for values of the slider positions.  The buttons are only a secondary way to set the value of the slider.</li>
@@ -290,7 +290,7 @@
             </th>
             <td></td>
             <td>
-              <code>div</code>
+              <code>g</code>
             </td>
             <td>
               <ul>
@@ -305,7 +305,7 @@
               <code>tabindex=<q>0</q></code>
             </th>
             <td>
-              <code>div</code>
+              <code>g</code>
             </td>
             <td>Includes the slider thumb in the page tab sequence.</td>
           </tr>
@@ -315,7 +315,7 @@
               <code>aria-orientation</code>
             </th>
             <td>
-              <code>div</code>
+              <code>g</code>
             </td>
             <td>
               <ul>
@@ -331,7 +331,7 @@
               <code>aria-valuemax=<q>NUMBER</q></code>
             </th>
             <td>
-              <code>div</code>
+              <code>g</code>
             </td>
             <td>Specifies a numeric value that is the maximum value the slider can have.</td>
           </tr>
@@ -341,7 +341,7 @@
               <code>aria-valuemin=<q>NUMBER</q></code>
             </th>
             <td>
-              <code>div</code>
+              <code>g</code>
             </td>
             <td>Specifies a numeric value that is the minimum value the slider can have.</td>
           </tr>
@@ -351,7 +351,7 @@
               <code>aria-valuenow=<q>NUMBER</q></code>
             </th>
             <td>
-              <code>div</code>
+              <code>g</code>
             </td>
             <td>A numeric value that is the current value of the slider.</td>
           </tr>
@@ -361,7 +361,7 @@
               <code>aria-valuetext=<q>STRING</q></code>
             </th>
             <td>
-              <code>div</code>
+              <code>g</code>
             </td>
             <td>
               <ul>
@@ -377,9 +377,19 @@
               <code>aria-labelledby=<q>IDREF</q></code>
             </th>
             <td>
-              <code>div</code>
+              <code>g</code>
             </td>
             <td>Refers to the element containing the name of the slider.</td>
+          </tr>
+          <tr data-test-id="aria-hidden">
+            <td></td>
+            <th scope="row">
+              <code>aria-hidden=<q>true</q></code>
+            </th>
+            <td>
+              <code>rect</code>
+            </td>
+            <td>Removes the SVG <code>rect</code> element from the accessibility tree, since some screen readers will describe it as an image separate from the slider.</td>
           </tr>
         </tbody>
       </table>

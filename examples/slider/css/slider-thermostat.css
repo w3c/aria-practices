@@ -43,20 +43,21 @@
 
 .slider-thermostat-vertical .slider-group .value {
   font-size: 80%;
-  color: currentColor;
+  fill: currentColor;
 }
 
 .slider-thermostat-vertical .slider-group .rail,
 .slider-thermostat-text .slider-group .rail {
-  stroke: transparent;
-  stroke-width: 1px;
-  fill: #ccc;
+  stroke: currentColor;
+  stroke-width: 2px;
+  fill: currentColor;
+  fill-opacity: 25%;
 }
 
 .slider-thermostat-vertical .slider-group .thumb,
 .slider-thermostat-text .slider-group .thumb {
   stroke-width: 0;
-  fill: #444;
+  fill: currentColor;
 }
 
 .slider-thermostat-vertical .slider-group .focus,
@@ -73,8 +74,8 @@
 .slider-thermostat-text .labels button {
   position: absolute;
   top: -30px;
-  margin: 0;
-  padding: 4px;
+  margin: 2px;
+  padding: 6px;
   border: none;
   background: transparent;
   display: inline-block;
@@ -84,7 +85,7 @@
 /* Focus and hover styling */
 
 .slider-thermostat-text .labels button:hover {
-  padding: 2px;
+  padding: 4px;
   border: 2px #005a9c solid;
   border-radius: 5px;
 }
@@ -96,7 +97,7 @@
 
 .slider-thermostat-vertical.focus .slider-group .rail,
 .slider-thermostat-text.focus .slider-group .rail {
-  stroke: #adddff;
+  stroke: currentColor;
   fill: #adddff;
 }
 
@@ -117,5 +118,5 @@
 
 .slider-thermostat-vertical [role="slider"]:focus .value {
   font-weight: bold;
-  color: currentColor;
+  fill: currentColor;
 }

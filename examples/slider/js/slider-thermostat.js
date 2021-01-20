@@ -16,6 +16,9 @@ class SliderThermostatVertical {
     this.svgNode = domNode.querySelector('svg');
     this.svgPoint = this.svgNode.createSVGPoint();
 
+    this.borderWidth = 2;
+    this.borderWidth2 = 2 * this.borderWidth;
+
     this.railNode = domNode.querySelector('.rail');
     this.sliderNode = domNode.querySelector('[role=slider]');
     this.sliderValueNode = this.sliderNode.querySelector('.value');
@@ -59,11 +62,6 @@ class SliderThermostatVertical {
     this.sliderThumbNode.setAttribute('x', this.thumbX);
     this.sliderValueNode.setAttribute('x', this.valueX);
     this.sliderFocusNode.setAttribute('x', this.focusX);
-
-    this.railNode.setAttribute('y', this.railY);
-    this.railNode.setAttribute('x', this.railX);
-    this.railNode.setAttribute('height', this.railHeight);
-    this.railNode.setAttribute('width', this.railWidth);
 
     this.railNode.addEventListener('click', this.onRailClick.bind(this));
     this.sliderNode.addEventListener(
@@ -119,16 +117,15 @@ class SliderThermostatVertical {
       value = valueMin;
     }
 
-    var degreeValue = value + '°F';
+    let degreeValue = value + '°F';
     this.inputNode.value = value;
     this.sliderNode.setAttribute('aria-valuenow', value);
     this.sliderNode.setAttribute('aria-valuetext', degreeValue);
 
-    pos = this.railY + this.railHeight - this.thumbHeight;
-    pos -= Math.round(
-      ((value - valueMin) * (this.railHeight - this.thumbHeight)) /
-        (valueMax - valueMin)
-    );
+    let height = this.railHeight - this.thumbHeight + this.borderWidth2;
+
+    pos = this.railY + height - 1;
+    pos -= Math.round(((value - valueMin) * height) / (valueMax - valueMin));
     this.sliderNode.setAttribute('y', pos);
 
     // update INPUT, label and ARIA attributes
@@ -144,7 +141,10 @@ class SliderThermostatVertical {
     // Position value
     this.sliderValueNode.setAttribute(
       'y',
-      pos + this.thumbHeight - (this.valueHeight - this.thumbHeight) / 2
+      pos -
+        this.borderWidth +
+        this.thumbHeight -
+        (this.valueHeight - this.thumbHeight) / 2
     );
   }
 
