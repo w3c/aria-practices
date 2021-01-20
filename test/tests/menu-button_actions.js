@@ -12,13 +12,7 @@ const ex = {
   menuSelector: '#ex1 [role="menu"]',
   menuitemSelector: '#ex1 [role="menuitem"]',
   numMenuitems: 4,
-  lastactionSelector: '#action_output',
-};
-
-const getFocusText = function (t) {
-  return t.context.session.executeScript(function () {
-    return document.activeElement.textContent.trim();
-  });
+  lastActionSelector: '#action_output',
 };
 
 const checkFocus = function (t, selector, index) {
@@ -70,7 +64,7 @@ ariaTest(
   'menu-button-aria-expanded',
   async (t) => {
     const hasAttribute = await t.context.session.executeScript(function () {
-      selector = arguments[0];
+      const selector = arguments[0];
       return document.querySelector(selector).hasAttribute('aria-expanded');
     }, ex.menubuttonSelector);
 
@@ -242,7 +236,7 @@ ariaTest(
       t.is(
         itemText,
         await t.context.session
-          .findElement(By.css(ex.lastactionSelector))
+          .findElement(By.css(ex.lastActionSelector))
           .getAttribute('value'),
         'Key enter should select action: ' + itemText
       );
@@ -276,7 +270,7 @@ ariaTest(
       t.not(
         itemText,
         await t.context.session
-          .findElement(By.css(ex.lastactionSelector))
+          .findElement(By.css(ex.lastActionSelector))
           .getAttribute('value'),
         'Key escape should not select action: ' + itemText
       );

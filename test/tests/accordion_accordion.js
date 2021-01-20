@@ -449,8 +449,6 @@ ariaTest(
   exampleFile,
   'key-down-arrow',
   async (t) => {
-    const buttons = await t.context.queryElements(t, ex.buttonSelector);
-
     // Confirm focus moves through remaining items
     for (let index = 0; index < ex.buttonsInOrder.length - 1; index++) {
       let itemSelector = ex.buttonsInOrder[index];
@@ -482,8 +480,6 @@ ariaTest(
   exampleFile,
   'key-up-arrow',
   async (t) => {
-    const buttons = await t.context.queryElements(t, ex.buttonSelector);
-
     // Confirm focus moves through remaining items
     for (let index = ex.buttonsInOrder.length - 1; index > 0; index--) {
       let itemSelector = ex.buttonsInOrder[index];
@@ -519,7 +515,6 @@ ariaTest(
   exampleFile,
   'key-home',
   async (t) => {
-    const buttons = await t.context.queryElements(t, ex.buttonSelector);
     const lastIndex = ex.buttonsInOrder.length - 1;
 
     // Confirm focus moves through remaining items
@@ -542,7 +537,6 @@ ariaTest(
   exampleFile,
   'key-end',
   async (t) => {
-    const buttons = await t.context.queryElements(t, ex.buttonSelector);
     const lastIndex = ex.buttonsInOrder.length - 1;
 
     // Confirm focus moves through remaining items

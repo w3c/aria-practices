@@ -8,14 +8,12 @@
 var aria = aria || {};
 
 /**
- * @constructor
+ * @class
  *
- * @desc
+ * @description
  *  Combobox object representing the state and interactions for a combobox
  *  widget
  *
- * @param comboboxNode
- *  The DOM node pointing to the combobox
  * @param input
  *  The input node
  * @param grid
@@ -180,7 +178,7 @@ aria.GridCombobox.prototype.handleInputKeyDown = function (evt) {
   }
 };
 
-aria.GridCombobox.prototype.handleInputFocus = function (evt) {
+aria.GridCombobox.prototype.handleInputFocus = function () {
   this.updateResults();
 };
 

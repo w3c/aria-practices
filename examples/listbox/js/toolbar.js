@@ -11,9 +11,9 @@
 var aria = aria || {};
 
 /**
- * @constructor
+ * @class
  *
- * @desc
+ * @description
  *  Toolbar object representing the state and interactions for a toolbar widget
  *
  * @param toolbarNode
@@ -27,7 +27,7 @@ aria.Toolbar = function (toolbarNode) {
 };
 
 /**
- * @desc
+ * @description
  *  Register events for the toolbar interactions
  */
 aria.Toolbar.prototype.registerEvents = function () {
@@ -39,7 +39,7 @@ aria.Toolbar.prototype.registerEvents = function () {
 };
 
 /**
- * @desc
+ * @description
  *  Handle various keyboard controls; LEFT/RIGHT will shift focus; DOWN
  *  activates a menu button if it is the focused item.
  *
@@ -72,7 +72,7 @@ aria.Toolbar.prototype.checkFocusChange = function (evt) {
 };
 
 /**
- * @desc
+ * @description
  *  Selects a toolbar item if it is clicked
  *
  * @param evt
@@ -85,7 +85,7 @@ aria.Toolbar.prototype.checkClickItem = function (evt) {
 };
 
 /**
- * @desc
+ * @description
  *  Deselect the specified item
  *
  * @param element
@@ -98,7 +98,7 @@ aria.Toolbar.prototype.deselectItem = function (element) {
 };
 
 /**
- * @desc
+ * @description
  *  Deselect the currently selected item and select the specified item
  *
  * @param element
@@ -113,7 +113,7 @@ aria.Toolbar.prototype.selectItem = function (element) {
 };
 
 /**
- * @desc
+ * @description
  *  Focus on the specified item
  *
  * @param element

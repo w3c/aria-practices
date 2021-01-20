@@ -9,70 +9,74 @@ var aria = aria || {};
 
 /**
  * ARIA Grid Examples
+ *
  * @function onload
- * @desc Initialize the grid examples once the page has loaded
+ * @description Initialize the grid examples once the page has loaded
  */
 
 window.addEventListener('load', function () {
   // Setup Example 1
-  var ex1 = document.getElementById('ex1');
-  var ex1Grid = new aria.Grid(ex1.querySelector('[role="grid"]'));
+  if (document.getElementById('ex1-grid')) {
+    new aria.Grid(document.getElementById('ex1-grid'));
+
+    // Setup NUX; activates when the first grid cell is focused
+    var gridNUX = document.getElementById('grid-nux');
+    var firstGridCell = document.querySelector('#ex1-grid [tabindex="0"]');
+    var NUXCloseButton = document.getElementById('close-nux-button');
+    var closeNUX = function () {
+      aria.Utils.addClass(gridNUX, 'hidden');
+      firstGridCell.focus();
+    };
+    var setupInstructions = function () {
+      firstGridCell.removeEventListener('focus', setupInstructions);
+      aria.Utils.removeClass(gridNUX, 'hidden');
+
+      NUXCloseButton.addEventListener('click', closeNUX);
+      NUXCloseButton.addEventListener('keyup', function (event) {
+        if (event.which === aria.KeyCode.RETURN) {
+          closeNUX();
+        }
+      });
+    };
+    firstGridCell.addEventListener('focus', setupInstructions);
+  }
 
   // Setup Example 2
-  var ex2 = document.getElementById('ex2');
-  var ex2Grid = new aria.Grid(ex2.querySelector('[role="grid"]'));
+  if (document.getElementById('ex2-grid')) {
+    var ex2Grid = new aria.Grid(document.getElementById('ex2-grid'));
 
-  var pillList = new PillList(
-    ex2Grid,
-    document.getElementById('add-recipient-input'),
-    document.getElementById('add-recipient-button'),
-    document.getElementById('form-action-text')
-  );
+    new PillList(
+      ex2Grid,
+      document.getElementById('add-recipient-input'),
+      document.getElementById('add-recipient-button'),
+      document.getElementById('form-action-text')
+    );
+  }
 
   // Setup Example 3
-  var ex3 = document.getElementById('ex3');
-  var ex3Grid = new aria.Grid(ex3.querySelector('[role="grid"]'));
-  var startIndexText = document.getElementById('ex3_start_index');
-  var endIndexText = document.getElementById('ex3_end_index');
-  var previousButton = document.getElementById('ex3_pageup_button');
-  var nextButton = document.getElementById('ex3_pagedown_button');
-  ex3Grid.setPaginationChangeHandler(function (startIndex, endIndex) {
-    startIndexText.innerText = startIndex + 1;
-    endIndexText.innerText = endIndex + 1;
-    if (startIndex <= 0) {
-      previousButton.setAttribute('disabled', 'true');
-    } else {
-      previousButton.removeAttribute('disabled');
-    }
-    if (endIndex >= 18) {
-      nextButton.setAttribute('disabled', 'true');
-    } else {
-      nextButton.removeAttribute('disabled');
-    }
-  });
-  previousButton.addEventListener('click', ex3Grid.movePageUp.bind(ex3Grid));
-  nextButton.addEventListener('click', ex3Grid.movePageDown.bind(ex3Grid));
-
-  // Setup NUX; activates when the first grid cell is focused
-  var gridNUX = document.getElementById('grid-nux');
-  var firstGridCell = document.querySelector('#ex1 [tabindex="0"]');
-  var NUXCloseButton = document.getElementById('close-nux-button');
-  var closeNUX = function () {
-    aria.Utils.addClass(gridNUX, 'hidden');
-    firstGridCell.focus();
-  };
-  var setupInstructions = function () {
-    firstGridCell.removeEventListener('focus', setupInstructions);
-    aria.Utils.removeClass(gridNUX, 'hidden');
-
-    NUXCloseButton.addEventListener('click', closeNUX);
-    NUXCloseButton.addEventListener('keyup', function (event) {
-      if (event.which === aria.KeyCode.RETURN) {
-        closeNUX();
+  if (document.getElementById('ex3-grid')) {
+    var ex3Grid = new aria.Grid(document.getElementById('ex3-grid'));
+    var startIndexText = document.getElementById('ex3_start_index');
+    var endIndexText = document.getElementById('ex3_end_index');
+    var previousButton = document.getElementById('ex3_pageup_button');
+    var nextButton = document.getElementById('ex3_pagedown_button');
+    ex3Grid.setPaginationChangeHandler(function (startIndex, endIndex) {
+      startIndexText.innerText = startIndex + 1;
+      endIndexText.innerText = endIndex + 1;
+      if (startIndex <= 0) {
+        previousButton.setAttribute('disabled', 'true');
+      } else {
+        previousButton.removeAttribute('disabled');
+      }
+      if (endIndex >= 18) {
+        nextButton.setAttribute('disabled', 'true');
+      } else {
+        nextButton.removeAttribute('disabled');
       }
     });
-  };
-  firstGridCell.addEventListener('focus', setupInstructions);
+    previousButton.addEventListener('click', ex3Grid.movePageUp.bind(ex3Grid));
+    nextButton.addEventListener('click', ex3Grid.movePageDown.bind(ex3Grid));
+  }
 });
 
 function PillList(grid, input, submitButton, formUpdateText) {

@@ -7,6 +7,8 @@
  *   Desc:   Creates a menubar to control the styling of text in a textarea element
  */
 
+/* global StyleManager */
+
 'use strict';
 
 var MenubarEditor = function (domNode) {
@@ -92,7 +94,7 @@ MenubarEditor.prototype.getMenuitems = function (domNode) {
 };
 
 MenubarEditor.prototype.initMenu = function (menu) {
-  var i, menuitems, menuitem, role, nextElement;
+  var i, menuitems, menuitem, role;
 
   var menuId = this.getMenuId(menu);
 
@@ -347,7 +349,6 @@ MenubarEditor.prototype.getMenuId = function (node) {
 };
 
 MenubarEditor.prototype.getMenu = function (menuitem) {
-  var id = false;
   var menu = menuitem;
   var role = menuitem.getAttribute('role');
 
@@ -496,11 +497,11 @@ MenubarEditor.prototype.isOpen = function (menuitem) {
 
 // Menu event handlers
 
-MenubarEditor.prototype.handleFocusin = function (event) {
+MenubarEditor.prototype.handleFocusin = function () {
   this.domNode.classList.add('focus');
 };
 
-MenubarEditor.prototype.handleFocusout = function (event) {
+MenubarEditor.prototype.handleFocusout = function () {
   this.domNode.classList.remove('focus');
 };
 
@@ -704,6 +705,6 @@ MenubarEditor.prototype.handleMenuitemMouseover = function (event) {
 window.addEventListener('load', function () {
   var menubarEditors = document.querySelectorAll('.menubar-editor');
   for (var i = 0; i < menubarEditors.length; i++) {
-    var menubarEditor = new MenubarEditor(menubarEditors[i]);
+    new MenubarEditor(menubarEditors[i]);
   }
 });

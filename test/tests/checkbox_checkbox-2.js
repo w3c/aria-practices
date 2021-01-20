@@ -66,7 +66,7 @@ ariaTest(
       ex.numCondiments,
       'The attribute "aria-controls" should have ' +
         ex.numCondiments +
-        ' values seperated by spaces'
+        ' values separated by spaces'
     );
 
     for (let id of controls) {

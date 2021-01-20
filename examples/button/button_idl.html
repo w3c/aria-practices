@@ -32,7 +32,7 @@
     </p>
     <p>
       The JavaScript for the example buttons on this page uses the <a href="https://www.w3.org/TR/wai-aria-1.2/#idl-interface">IDL Interface defined in ARIA 1.2</a>.
-      The purpose of these examples is to illustrate how to use IDL for ARIA Attribute Reflection and provide a test case for browser and assistive technology interoperability.
+      The purpose of these examples is to illustrate how to use ARIA Attribute Reflection and provide a test case for browser and assistive technology interoperability.
       Specifically, the <code>role</code> and <code>ariaPressed</code> attributes are accessed using dot notation instead of <code>setAttribute()</code> and <code>getAttribute()</code>.
       In all other respects, these examples are identical to the <a href="button.html">Button Examples</a>.
     </p>
@@ -42,12 +42,14 @@
         <h2 id="ex_label">Example</h2>
       </div>
 
-      <p>
-        <strong>IMPORTANT:</strong> This example uses features of the draft ARIA 1.2 specification. As a draft specification, it is subject to change. Support provided by browsers or assistive technologies is experimental.
-      </p>
       <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
-
+      
       <div id="example">
+        <p class="advisement">
+          <strong>IMPORTANT:</strong> This example is coded using syntax that was not introduced until version 1.2 of the ARIA specification.
+          When using a <a href="https://github.com/w3c/aria-practices/issues/1692" target="_blank">browser that does not yet provide support for ARIA attribute reflection</a>, the buttons will not be styled correctly.
+        </p>
+
         <p>This <q>Print</q> action button uses a <code>div</code> element.</p>
         <div tabindex="0" id="action">Print Page</div>
 

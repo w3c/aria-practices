@@ -11,9 +11,9 @@
 var aria = aria || {};
 
 /**
- * @constructor
+ * @class
  *
- * @desc
+ * @description
  *  Listbox object representing the state and interactions for a listbox widget
  *
  * @param listboxNode
@@ -33,12 +33,12 @@ aria.Listbox = function (listboxNode) {
   this.moveButton = null;
   this.keysSoFar = '';
   this.handleFocusChange = function () {};
-  this.handleItemChange = function (event, items) {};
+  this.handleItemChange = function () {};
   this.registerEvents();
 };
 
 /**
- * @desc
+ * @description
  *  Register events for the listbox interactions
  */
 aria.Listbox.prototype.registerEvents = function () {
@@ -55,7 +55,7 @@ aria.Listbox.prototype.registerEvents = function () {
 };
 
 /**
- * @desc
+ * @description
  *  If there is no activeDescendant, focus on the first option
  */
 aria.Listbox.prototype.setupFocus = function () {
@@ -65,7 +65,7 @@ aria.Listbox.prototype.setupFocus = function () {
 };
 
 /**
- * @desc
+ * @description
  *  Focus on the first option
  */
 aria.Listbox.prototype.focusFirstItem = function () {
@@ -77,7 +77,7 @@ aria.Listbox.prototype.focusFirstItem = function () {
 };
 
 /**
- * @desc
+ * @description
  *  Focus on the last option
  */
 aria.Listbox.prototype.focusLastItem = function () {
@@ -89,7 +89,7 @@ aria.Listbox.prototype.focusLastItem = function () {
 };
 
 /**
- * @desc
+ * @description
  *  Handle various keyboard controls; UP/DOWN will shift focus; SPACE selects
  *  an item.
  *
@@ -169,7 +169,6 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
       this.focusLastItem();
 
       if (this.multiselectable && evt.shiftKey && evt.ctrlKey) {
-        var startItem = allOptions[this.startRangeIndex];
         this.selectRange(this.startRangeIndex, allOptions.length - 1);
       }
       break;
@@ -339,7 +338,7 @@ aria.Listbox.prototype.findMatchInRange = function (
 };
 
 /**
- * @desc
+ * @description
  *  Check if an item is clicked on. If so, focus on it and select it.
  *
  * @param evt
@@ -360,7 +359,9 @@ aria.Listbox.prototype.checkClickItem = function (evt) {
 };
 
 /**
- * Prevent text selection on shift + click for multiselect listboxes
+ * Prevent text selection on shift + click for multi-select listboxes
+ *
+ * @param evt
  */
 aria.Listbox.prototype.checkMouseDown = function (evt) {
   if (
@@ -373,7 +374,7 @@ aria.Listbox.prototype.checkMouseDown = function (evt) {
 };
 
 /**
- * @desc
+ * @description
  *  Toggle the aria-selected value
  *
  * @param element
@@ -391,7 +392,7 @@ aria.Listbox.prototype.toggleSelectItem = function (element) {
 };
 
 /**
- * @desc
+ * @description
  *  Defocus the specified item
  *
  * @param element
@@ -408,7 +409,7 @@ aria.Listbox.prototype.defocusItem = function (element) {
 };
 
 /**
- * @desc
+ * @description
  *  Focus on the specified item
  *
  * @param element
@@ -433,6 +434,11 @@ aria.Listbox.prototype.focusItem = function (element) {
 
 /**
  * Helper function to check if a number is within a range; no side effects.
+ *
+ * @param index
+ * @param start
+ * @param end
+ * @returns {boolean}
  */
 aria.Listbox.prototype.checkInRange = function (index, start, end) {
   var rangeStart = start < end ? start : end;
@@ -443,6 +449,9 @@ aria.Listbox.prototype.checkInRange = function (index, start, end) {
 
 /**
  * Select a range of options
+ *
+ * @param start
+ * @param end
  */
 aria.Listbox.prototype.selectRange = function (start, end) {
   // get start/end indices
@@ -497,14 +506,14 @@ aria.Listbox.prototype.updateScroll = function () {
 };
 
 /**
- * @desc
+ * @description
  *  Enable/disable the up/down arrows based on the activeDescendant.
  */
 aria.Listbox.prototype.checkUpDownButtons = function () {
   var activeElement = document.getElementById(this.activeDescendant);
 
   if (!this.moveUpDownEnabled) {
-    return false;
+    return;
   }
 
   if (!activeElement) {
@@ -531,7 +540,7 @@ aria.Listbox.prototype.checkUpDownButtons = function () {
 };
 
 /**
- * @desc
+ * @description
  *  Add the specified items to the listbox. Assumes items are valid options.
  *
  * @param items
@@ -539,7 +548,7 @@ aria.Listbox.prototype.checkUpDownButtons = function () {
  */
 aria.Listbox.prototype.addItems = function (items) {
   if (!items || !items.length) {
-    return false;
+    return;
   }
 
   items.forEach(
@@ -558,12 +567,12 @@ aria.Listbox.prototype.addItems = function (items) {
 };
 
 /**
- * @desc
+ * @description
  *  Remove all of the selected items from the listbox; Removes the focused items
  *  in a single select listbox and the items with aria-selected in a multi
  *  select listbox.
  *
- * @returns items
+ * @returns {Array}
  *  An array of items that were removed from the listbox
  */
 aria.Listbox.prototype.deleteItems = function () {
@@ -603,7 +612,7 @@ aria.Listbox.prototype.clearActiveDescendant = function () {
 };
 
 /**
- * @desc
+ * @description
  *  Shifts the currently focused item up on the list. No shifting occurs if the
  *  item is already at the top of the list.
  */
@@ -624,7 +633,7 @@ aria.Listbox.prototype.moveUpItems = function () {
 };
 
 /**
- * @desc
+ * @description
  *  Shifts the currently focused item down on the list. No shifting occurs if
  *  the item is already at the end of the list.
  */
@@ -645,7 +654,7 @@ aria.Listbox.prototype.moveDownItems = function () {
 };
 
 /**
- * @desc
+ * @description
  *  Delete the currently selected items and add them to the sibling list.
  */
 aria.Listbox.prototype.moveItems = function () {
@@ -658,7 +667,7 @@ aria.Listbox.prototype.moveItems = function () {
 };
 
 /**
- * @desc
+ * @description
  *  Enable Up/Down controls to shift items up and down.
  *
  * @param upButton
@@ -676,7 +685,7 @@ aria.Listbox.prototype.enableMoveUpDown = function (upButton, downButton) {
 };
 
 /**
- * @desc
+ * @description
  *  Enable Move controls. Moving removes selected items from the current
  *  list and adds them to the sibling list.
  *

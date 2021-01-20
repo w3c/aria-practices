@@ -5,6 +5,8 @@
  *   File:   FontMenuButton.js
  */
 
+/* global FontMenu */
+
 'use strict';
 
 function FontMenuButton(node, toolbar, toolbarItem) {
@@ -65,7 +67,7 @@ FontMenuButton.prototype.handleKeyDown = function (event) {
   }
 };
 
-FontMenuButton.prototype.handleClick = function (event, menuButton) {
+FontMenuButton.prototype.handleClick = function () {
   if (this.fontMenu.isOpen()) {
     this.fontMenu.close();
   } else {
