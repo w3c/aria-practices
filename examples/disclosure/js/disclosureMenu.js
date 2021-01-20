@@ -193,7 +193,7 @@ window.addEventListener(
     // listen to arrow key checkbox
     var arrowKeySwitch = document.getElementById('arrow-behavior-switch');
     if (arrowKeySwitch) {
-      arrowKeySwitch.addEventListener('change', function (event) {
+      arrowKeySwitch.addEventListener('change', function () {
         var checked = arrowKeySwitch.checked;
         for (var i = 0; i < disclosureMenus.length; i++) {
           disclosureMenus[i].updateKeyControls(checked);
