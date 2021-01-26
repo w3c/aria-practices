@@ -249,15 +249,15 @@
       <li>Focus Movement After Menu Item Activated
         <ul>
         <li>An important aspect of designing a navigation menubar experience is the behavior of keyboard focus when an item in the menubar is activated. If activating a menbar item changes content on the page without triggering a browser page load, i.e., works like typical single-page apps, the focus position after the content load significantly effects efficiency for keyboard and assistive technology users.</li>
-        <li>This example behaves like a single page app and activating a menu item moves focus to the beginning of the new content, a level one heading with content that matches the name of the menu item that was activated. Focusing on the heading informs screen reader users that navigation is complete and confirms the destination. This behavior is appropriate when common or important use case scenarios assume users want to start interacting with the loaded content after activating the tree item.</li>
-        <li>Keyboard users will need to navigate back to the navigation tree to view other pages. To optimize keyboard efficiency, this example locates the tree immediately before the content display area in the Tab sequence. </li>
+        <li>This example behaves like a single page app and activating a menu item moves focus to the beginning of the new content, a level one heading with content that matches the name of the menu item that was activated. Focusing on the heading informs screen reader users that navigation is complete and confirms the destination. This behavior is appropriate when common or important use case scenarios assume users want to start interacting with the loaded content after activating the menu item.</li>
+        <li>Keyboard users will need to navigate back to the navigation menubar to view other pages. To optimize keyboard efficiency, this example locates the menubar immediately before the content display area in the Tab sequence. </li>
       </ul>
       <li>To help communicate that the arrow keys are available for directional navigation within the menubar and its submenus, a border is added to the menubar container when focus is within the menubar.</li>
       <li>To support operating system high contrast settings:
         <ul>
           <li>Focus is highlighted by adding and removing a border around the menu item with focus.</li>
           <li>The arrow icons indicating the current state of expandable menus use in-line SVG images with the CSS <code>currentColor</code> value for the <code>fill</code> and <code>stroke</code> properties of the <code>polygon</code> element.</li>
-          <li>The <code>menuitem</code> with <code>aria-current</code> is styled with a 2px border so it can be identified in high contrast mode.</li>
+          <li>The example provides a visual indication of the current menu item and the path of menu items need to be followed to view current menu item.  The <code>menuitem</code> with <code>aria-current</code> is styled with a 5 pixel border on the left side so it can be identified visually in high contrast mode.  The ancestor expandable menu item in the menubar has a 5 pixel bottom border to visually indicate it contains the current menu item.  If the current menu item is nested within an deeper sub-menu, the ancestor expandable sub-menu item has a left side 5 pixel border.</li>
         </ul>
       </li>
       <li>Since the menubar presents a site navigation system, it is wrapped in a navigation region implemented with a <code>nav</code> element that has an <code>aria-label</code> that matches the label on the menubar.</li>
