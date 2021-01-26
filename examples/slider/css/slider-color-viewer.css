@@ -29,8 +29,11 @@
 
 .color-group {
   padding: 4px;
-  color: #005a9c;
   width: 490px;
+}
+
+.color-group.focus {
+  color: #005a9c;
 }
 
 .color-group > button,
@@ -38,7 +41,8 @@
   display: inline;
 }
 
-.color-group .color-slider .value {
+.color-group .value {
+  color: currentColor;
   fill: currentColor;
 }
 
@@ -60,9 +64,9 @@
 
 .color-group .color-slider .rail {
   fill: #bbb;
-  stroke: transparent;
+  stroke: currentColor;
   stroke-width: 2px;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 
 .color-group .color-slider .fill {
@@ -85,7 +89,7 @@
 
 .color-group .color-slider .thumb {
   fill: #666;
-  stroke: transparent;
+  stroke: currentColor;
   stroke-width: 2px;
 }
 
