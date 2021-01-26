@@ -68,9 +68,9 @@ class SliderMultithumb {
     this.railY = 42;
     this.railX = 10;
 
-    this.thumbTop = 30;
-    this.thumbHeight = 30;
-    this.thumbWidth = 30;
+    this.thumbTop = 31;
+    this.thumbHeight = 28;
+    this.thumbWidth = 28;
     this.thumb2Width = 2 * this.thumbWidth;
     this.thumbMiddle = this.thumbTop + this.thumbHeight / 2;
     this.thumbBottom = this.thumbTop + this.thumbHeight;
@@ -99,6 +99,7 @@ class SliderMultithumb {
     this.railNode.setAttribute('x', this.railX);
     this.railNode.setAttribute('height', this.railHeight);
     this.railNode.setAttribute('width', this.railWidth + this.thumbWidth);
+    this.railNode.setAttribute('rx', this.railHeight / 2);
 
     this.sliderMinValue = this.getValueMin(this.minSliderNode);
     this.sliderMaxValue = this.getValueMax(this.maxSliderNode);

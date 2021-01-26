@@ -46,17 +46,19 @@
 .slider-multithumb .slider-group .value {
   font-size: 80%;
   color: currentColor;
+  fill: currentColor;
 }
 
 .slider-multithumb .slider-group .rail {
-  stroke: transparent;
-  stroke-width: 1px;
+  stroke: currentColor;
+  stroke-width: 2px;
   fill: #ccc;
 }
 
 .slider-multithumb .slider-group .thumb {
-  stroke-width: 0;
-  fill: #444;
+  stroke: transparent;
+  stroke-width: 2px;
+  fill: currentColor;
 }
 
 .slider-multithumb .slider-group .focus {
@@ -74,7 +76,7 @@
 }
 
 .slider-multithumb.focus .slider-group .rail {
-  stroke: #adddff;
+  stroke: currentColor;
   fill: #adddff;
 }
 
@@ -87,7 +89,7 @@
 }
 
 .slider-multithumb [role="slider"]:focus .thumb {
-  fill: currentColor;
+  stroke: currentColor;
 }
 
 .slider-multithumb [role="slider"]:focus .value {
