@@ -889,7 +889,7 @@ ariaTest(
         .findElement(By.css(ex.textboxSelector))
         .getAttribute('value'),
       'a',
-      'Click outside of a textbox will close the testbox without selecting the highlighted value'
+      'Click outside of a textbox will close the textbox without selecting the highlighted value'
     );
   }
 );
@@ -932,7 +932,7 @@ ariaTest(
         .findElement(By.css(ex.textboxSelector))
         .getAttribute('value'),
       'a',
-      'Click outside of a textbox will close the testbox without selecting the highlighted value'
+      'Click outside of a textbox will close the textbox without selecting the highlighted value'
     );
   }
 );
