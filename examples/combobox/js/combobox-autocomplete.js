@@ -515,7 +515,8 @@ class ComboboxAutocomplete {
   onBackgroundMouseUp(event) {
     if (
       !this.comboboxNode.contains(event.target) &&
-      !this.listboxNode.contains(event.target)
+      !this.listboxNode.contains(event.target) &&
+      !this.buttonNode.contains(event.target)
     ) {
       this.comboboxHasVisualFocus = false;
       this.setCurrentOptionStyle(null);
