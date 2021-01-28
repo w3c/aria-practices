@@ -367,13 +367,13 @@ ariaTest(
     );
 
     for (let i = 0; i < menubarItems.length; i++) {
-      const menubaritem = menubarItems[i];
-      await menubaritem.sendKeys(Key.ARROW_DOWN);
+      const menubarItem = menubarItems[i];
+      await menubarItem.sendKeys(Key.ARROW_DOWN);
 
       assert.strictEqual(
-        await menubaritem.getAttribute('aria-expanded'),
+        await menubarItem.getAttribute('aria-expanded'),
         'true',
-        'aria-expanded should be "true" for "' + menubaritem.getText() + '"'
+        'aria-expanded should be "true" for "' + menubarItem.getText() + '"'
       );
       t.pass();
     }
@@ -826,9 +826,9 @@ ariaTest(
       ex.menubarMenuitemSelector
     );
 
-    const nummenubarItems = menubarItems.length;
+    const numMenubarItems = menubarItems.length;
 
-    for (let menuIndex = 0; menuIndex < nummenubarItems; menuIndex++) {
+    for (let menuIndex = 0; menuIndex < numMenubarItems; menuIndex++) {
       // Send the ARROW_RIGHT key to move the focus to later menu item for every test
       for (let i = 0; i < menuIndex; i++) {
         await menubarItems[i].sendKeys(Key.ARROW_RIGHT);
@@ -858,9 +858,9 @@ ariaTest(
       ex.menubarMenuitemSelector
     );
 
-    const nummenubarItems = menubarItems.length;
+    const numMenubarItems = menubarItems.length;
 
-    for (let menuIndex = 0; menuIndex < nummenubarItems; menuIndex++) {
+    for (let menuIndex = 0; menuIndex < numMenubarItems; menuIndex++) {
       // Send the ARROW_RIGHT key to move the focus to later menu item for every test
       for (let i = 0; i < menuIndex; i++) {
         await menubarItems[i].sendKeys(Key.ARROW_RIGHT);
@@ -871,7 +871,7 @@ ariaTest(
 
       // Test that the focus is on the last item in the list
       t.true(
-        await checkFocus(t, ex.menubarMenuitemSelector, nummenubarItems - 1),
+        await checkFocus(t, ex.menubarMenuitemSelector, numMenubarItems - 1),
         'Sending key "END" to menuitem ' +
           menuIndex +
           ' in menubar should move the focus to the last menuitem'
