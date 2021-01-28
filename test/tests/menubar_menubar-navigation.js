@@ -64,11 +64,11 @@ const openMenus = async function (t, menuIndex, menuitemIndex) {
   // Send ENTER to open menu
   if (menuIndex >= 0) {
     if (await isExpandable(t, ex.anyMenuitemSelector, menuIndex)) {
-      const menubaritems = await t.context.queryElements(
+      const menubarItems = await t.context.queryElements(
         t,
         ex.anyMenuitemSelector
       );
-      await menubaritems[menuIndex].sendKeys(Key.ENTER);
+      await menubarItems[menuIndex].sendKeys(Key.ENTER);
     }
   }
 
@@ -361,13 +361,13 @@ ariaTest(
   exampleFile,
   'menubar-menuitem-aria-expanded-true',
   async (t) => {
-    const menubaritems = await t.context.queryElements(
+    const menubarItems = await t.context.queryElements(
       t,
       ex.menubarMenuitemWithPopupSelector
     );
 
-    for (let i = 0; i < menubaritems.length; i++) {
-      const menubaritem = menubaritems[i];
+    for (let i = 0; i < menubarItems.length; i++) {
+      const menubaritem = menubarItems[i];
       await menubaritem.sendKeys(Key.ARROW_DOWN);
 
       assert.strictEqual(
@@ -621,13 +621,13 @@ ariaTest(
       const keyCode = keyCodes[key];
 
       for (let i = 0; i < menubarIndexes.length; i++) {
-        const menubaritems = await t.context.queryElements(
+        const menubarItems = await t.context.queryElements(
           t,
           ex.menubarMenuitemSelector
         );
 
         const menubarIndex = menubarIndexes[i];
-        await menubaritems[menubarIndex].sendKeys(keyCode);
+        await menubarItems[menubarIndex].sendKeys(keyCode);
 
         const menus = await t.context.queryElements(t, ex.anyMenuSelector);
 
@@ -665,19 +665,19 @@ ariaTest(
   exampleFile,
   'menubar-right-arrow',
   async (t) => {
-    const menubaritems = await t.context.queryElements(
+    const menubarItems = await t.context.queryElements(
       t,
       ex.menubarMenuitemSelector
     );
 
-    const numMenuitems = menubaritems.length;
+    const numMenuitems = menubarItems.length;
 
     for (let menuIndex = 0; menuIndex < numMenuitems + 1; menuIndex++) {
       const currentIndex = menuIndex % numMenuitems;
       const nextIndex = (menuIndex + 1) % numMenuitems;
 
       // Send the ARROW_RIGHT key
-      await menubaritems[currentIndex].sendKeys(Key.ARROW_RIGHT);
+      await menubarItems[currentIndex].sendKeys(Key.ARROW_RIGHT);
 
       // Test the focus is on the next item mod the number of items to account for wrapping
       t.true(
@@ -696,15 +696,15 @@ ariaTest(
   exampleFile,
   'menubar-left-arrow',
   async (t) => {
-    const menubaritems = await t.context.queryElements(
+    const menubarItems = await t.context.queryElements(
       t,
       ex.menubarMenuitemSelector
     );
 
-    const numMenuitems = menubaritems.length;
+    const numMenuitems = menubarItems.length;
 
     // Send the ARROW_LEFT key to the first menuitem
-    await menubaritems[0].sendKeys(Key.ARROW_LEFT);
+    await menubarItems[0].sendKeys(Key.ARROW_LEFT);
 
     // Test the focus is on the last menu item
     t.true(
@@ -714,7 +714,7 @@ ariaTest(
 
     for (let menuIndex = numMenuitems - 1; menuIndex > 0; menuIndex--) {
       // Send the ARROW_LEFT key
-      await menubaritems[menuIndex].sendKeys(Key.ARROW_LEFT);
+      await menubarItems[menuIndex].sendKeys(Key.ARROW_LEFT);
 
       // Test the focus is on the previous menuitem
       t.true(
@@ -738,13 +738,13 @@ ariaTest(
     const menuitemIndexes = [8, 21, 30];
 
     for (let i = 0; i < menubarIndexes.length; i++) {
-      const menubaritems = await t.context.queryElements(
+      const menubarItems = await t.context.queryElements(
         t,
         ex.menubarMenuitemSelector
       );
 
       const menubarIndex = menubarIndexes[i];
-      await menubaritems[menubarIndex].sendKeys(Key.UP);
+      await menubarItems[menubarIndex].sendKeys(Key.UP);
 
       const menus = await t.context.queryElements(t, ex.anyMenuSelector);
 
@@ -782,13 +782,13 @@ ariaTest(
     const menuitemIndexes = [2, 13, 23];
 
     for (let i = 0; i < menubarIndexes.length; i++) {
-      const menubaritems = await t.context.queryElements(
+      const menubarItems = await t.context.queryElements(
         t,
         ex.menubarMenuitemSelector
       );
 
       const menubarIndex = menubarIndexes[i];
-      await menubaritems[menubarIndex].sendKeys(Key.DOWN);
+      await menubarItems[menubarIndex].sendKeys(Key.DOWN);
 
       const menus = await t.context.queryElements(t, ex.anyMenuSelector);
 
@@ -821,21 +821,21 @@ ariaTest(
   exampleFile,
   'menubar-home',
   async (t) => {
-    const menubaritems = await t.context.queryElements(
+    const menubarItems = await t.context.queryElements(
       t,
       ex.menubarMenuitemSelector
     );
 
-    const numMenubaritems = menubaritems.length;
+    const nummenubarItems = menubarItems.length;
 
-    for (let menuIndex = 0; menuIndex < numMenubaritems; menuIndex++) {
+    for (let menuIndex = 0; menuIndex < nummenubarItems; menuIndex++) {
       // Send the ARROW_RIGHT key to move the focus to later menu item for every test
       for (let i = 0; i < menuIndex; i++) {
-        await menubaritems[i].sendKeys(Key.ARROW_RIGHT);
+        await menubarItems[i].sendKeys(Key.ARROW_RIGHT);
       }
 
       // Send the key HOME
-      await menubaritems[menuIndex].sendKeys(Key.HOME);
+      await menubarItems[menuIndex].sendKeys(Key.HOME);
 
       // Test that the focus is on the first item in the list
       t.true(
@@ -853,25 +853,25 @@ ariaTest(
   exampleFile,
   'menubar-end',
   async (t) => {
-    const menubaritems = await t.context.queryElements(
+    const menubarItems = await t.context.queryElements(
       t,
       ex.menubarMenuitemSelector
     );
 
-    const numMenubaritems = menubaritems.length;
+    const nummenubarItems = menubarItems.length;
 
-    for (let menuIndex = 0; menuIndex < numMenubaritems; menuIndex++) {
+    for (let menuIndex = 0; menuIndex < nummenubarItems; menuIndex++) {
       // Send the ARROW_RIGHT key to move the focus to later menu item for every test
       for (let i = 0; i < menuIndex; i++) {
-        await menubaritems[i].sendKeys(Key.ARROW_RIGHT);
+        await menubarItems[i].sendKeys(Key.ARROW_RIGHT);
       }
 
       // Send the key END
-      await menubaritems[menuIndex].sendKeys(Key.END);
+      await menubarItems[menuIndex].sendKeys(Key.END);
 
       // Test that the focus is on the last item in the list
       t.true(
-        await checkFocus(t, ex.menubarMenuitemSelector, numMenubaritems - 1),
+        await checkFocus(t, ex.menubarMenuitemSelector, nummenubarItems - 1),
         'Sending key "END" to menuitem ' +
           menuIndex +
           ' in menubar should move the focus to the last menuitem'
@@ -893,18 +893,18 @@ ariaTest(
       { sendChar: 'a', sendIndex: 3, endIndex: 1 },
     ];
 
-    const menubaritems = await t.context.queryElements(
+    const menubarItems = await t.context.queryElements(
       t,
       ex.menubarMenuitemSelector
     );
     for (let test of charIndexTest) {
       // Send character to menuitem
-      await menubaritems[test.sendIndex].sendKeys(test.sendChar);
+      await menubarItems[test.sendIndex].sendKeys(test.sendChar);
 
       // Test that the focus switches to the appropriate menuitem
       t.true(
         await checkFocus(t, ex.menubarMenuitemSelector, test.endIndex),
-        'Sending characther ' +
+        'Sending character ' +
           test.sendChar +
           ' to menuitem ' +
           test.sendIndex +
