@@ -5,12 +5,14 @@
  *   File:   FormatToolbar.js
  */
 
+/* global FormatToolbarItem, FontMenuButton, SpinButton */
+
 'use strict';
 
 /**
- * @constructor
+ * @class
  *
- * @desc
+ * @description
  *  Format Toolbar object representing the state and interactions for a toolbar widget
  *  to format the text in a textarea element
  *
@@ -47,6 +49,7 @@ FormatToolbar.prototype.init = function () {
     this.domNode.getBoundingClientRect().width - 12 + 'px';
   this.textarea.addEventListener('mouseup', this.selectTextContent.bind(this));
   this.textarea.addEventListener('keyup', this.selectTextContent.bind(this));
+  this.domNode.addEventListener('click', this.handleContainerClick.bind(this));
 
   this.selected = this.textarea.selectText;
 
@@ -81,6 +84,16 @@ FormatToolbar.prototype.init = function () {
   }
 };
 
+FormatToolbar.prototype.handleContainerClick = function () {
+  if (event.target !== this.domNode) return;
+  this.setFocusCurrentItem();
+};
+
+FormatToolbar.prototype.setFocusCurrentItem = function () {
+  var item = this.domNode.querySelector('[tabindex="0"]');
+  item.focus();
+};
+
 FormatToolbar.prototype.selectTextContent = function () {
   this.start = this.textarea.selectionStart;
   this.end = this.textarea.selectionEnd;
@@ -95,8 +108,7 @@ FormatToolbar.prototype.selectTextContent = function () {
 FormatToolbar.prototype.updateDisable = function (
   copyButton,
   cutButton,
-  pasteButton,
-  selectedContent
+  pasteButton
 ) {
   var start = this.textarea.selectionStart;
   var end = this.textarea.selectionEnd;
@@ -120,7 +132,7 @@ FormatToolbar.prototype.selectText = function (start, end, textarea) {
     return true;
   }
 };
-FormatToolbar.prototype.copyTextContent = function (toolbarItem) {
+FormatToolbar.prototype.copyTextContent = function () {
   if (this.copyButton.getAttribute('aria-disabled') === 'true') {
     return;
   }
@@ -202,7 +214,7 @@ FormatToolbar.prototype.changeFontSize = function (value) {
   this.textarea.style.fontSize = value + 'pt';
 };
 
-FormatToolbar.prototype.toggleNightMode = function (toolbarItem) {
+FormatToolbar.prototype.toggleNightMode = function () {
   if (this.nightModeCheck.checked) {
     this.textarea.style.color = '#eee';
     this.textarea.style.background = 'black';
@@ -289,10 +301,10 @@ FormatToolbar.prototype.activateItem = function (toolbarItem) {
 };
 
 /**
- * @desc
+ * @description
  *  Focus on the specified item
  *
- * @param element
+ * @param item
  *  The item to focus on
  */
 FormatToolbar.prototype.setFocusItem = function (item) {
@@ -328,11 +340,11 @@ FormatToolbar.prototype.setFocusToPrevious = function (currentItem) {
   this.setFocusItem(newItem);
 };
 
-FormatToolbar.prototype.setFocusToFirst = function (currentItem) {
+FormatToolbar.prototype.setFocusToFirst = function () {
   this.setFocusItem(this.firstItem);
 };
 
-FormatToolbar.prototype.setFocusToLast = function (currentItem) {
+FormatToolbar.prototype.setFocusToLast = function () {
   this.setFocusItem(this.lastItem);
 };
 

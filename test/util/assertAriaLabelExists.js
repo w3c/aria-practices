@@ -3,8 +3,8 @@ const assert = require('assert');
 /**
  * Confirm the aria-label value exists.
  *
- * @param {obj} t                  - ava execution object
- * @param {String} elementSelector - the element with aria-labelledby set
+ * @param {object} t                  - ava execution object
+ * @param {string} elementSelector - the element with aria-labelledby set
  */
 
 module.exports = async function assertAriaLabel(t, elementSelector) {

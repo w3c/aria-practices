@@ -54,12 +54,14 @@
   <section>
     <h2>Examples</h2>
     <section>
-      <h3 id="ex1_label">Example 1: Simple List of Links</h3>
+      <div class="example-header">
+        <h3 id="ex1_label">Example 1: Simple List of Links</h3>
+      </div>
       <p>This example presents a list of links titled &quot;Related Documents&quot; in a grid. </p>
       <div role="separator" id="ex1_start_sep" aria-labelledby="ex1_start_sep ex1_label" aria-label="Start of"></div>
       <div id="ex1">
         <h4 id="grid1_label">Related Documents</h4>
-        <div role="grid" class="list-links" aria-labelledby="grid1_label" data-wrap-cols="true" data-wrap-rows="true" data-restructure="true">
+        <div id="ex1-grid" role="grid" class="list-links" aria-labelledby="grid1_label" data-wrap-cols="true" data-wrap-rows="true" data-restructure="true">
           <div role="row">
             <span role="gridcell" class="list-link"><a tabindex="-1" href="http://www.w3.org/TR/wai-aria-1.1/">ARIA 1.1 Specification</a></span>
             <span role="gridcell" class="list-link"><a tabindex="-1" href="https://www.w3.org/TR/core-aam-1.1/">Core Accessibility API Mappings 1.1</a></span>
@@ -129,7 +131,9 @@
       </ol>
     </section>
     <section>
-      <h3 id="ex2_label">Example 2: Pill List For a List of Message Recipients</h3>
+      <div class="example-header">
+        <h3 id="ex2_label">Example 2: Pill List For a List of Message Recipients</h3>
+      </div>
       <p>
         Add recipients by typing a string in the &quot;New Recipient Name&quot; field and pressing <kbd>Enter</kbd> or activating the &quot;Add&quot; button.
         See how this grid behaves as the number of elements increases.
@@ -144,7 +148,7 @@
          -->
         <div class="recipient-list">
           <span id="send_to_label">Send To:</span>
-          <div role="grid" class="pill-list" aria-labelledby="send_to_label"  data-wrap-cols="true">
+          <div id="ex2-grid" role="grid" class="pill-list" aria-labelledby="send_to_label"  data-wrap-cols="true">
             <div role="row" class="pill-item" data-id="1">
               <span role="gridcell"><a id="r1" class="pill-name" tabindex="-1" href="#">Recipient Name 1</a></span>
               <span role="gridcell"><span id="rb1" class="pill-remove" tabindex="-1" role="button" aria-label="Remove" aria-labelledby="rb1 r1"> X </span></span>
@@ -184,7 +188,9 @@
         </ol>
     </section>
     <section>
-      <h3 id="ex3_label">Example 3: Scrollable Search Results</h3>
+      <div class="example-header">
+        <h3 id="ex3_label">Example 3: Scrollable Search Results</h3>
+      </div>
       <p>
         This example demonstrates how a grid can make moving through an infinitely large data set as easy and efficient for keyboard users as it is for mouse users.
         It presents a hypothetical set of search results for W3C resources about WAI-ARIA.
@@ -196,7 +202,7 @@
           Showing results <span id="ex3_start_index">1</span> to <span id="ex3_end_index">5</span> of 19
         </div>
 
-        <div role="grid" aria-labelledby="ex3_search_results_label" aria-rowcount="19" data-per-page="5" data-wrap-cols="true">
+        <div id="ex3-grid" role="grid" aria-labelledby="ex3_search_results_label" aria-rowcount="19" data-per-page="5" data-wrap-cols="true">
           <div role="row">
             <div role="gridcell"><h5 class="ex3_result_header">
                 <a tabindex="-1" href="https://www.w3.org/WAI/intro/aria">WAI-ARIA Overview
@@ -691,7 +697,7 @@
 
   <section>
     <h2>Javascript and CSS Source Code</h2>
-    <ul>
+    <ul id="css_js_files">
       <li>CSS:
         <ul>
           <li><a href="css/layoutGrids.css" type="tex/css">layoutGrids.css</a></li>
@@ -713,19 +719,19 @@
     <div id="sc1_start_sep" role="separator" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of HTML for"></div>
     <pre><code id="sc1"></code></pre>
     <div id="sc1_end_sep" role="separator" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of HTML for"></div>
-    <script>sourceCode.add('sc1', 'ex1')</script>
+    <script>sourceCode.add('sc1', 'ex1', 'ex1_label', 'css_js_files')</script>
 
     <h3 id="sc2_label">Example 2: Pill List For Components Like a List of Message Recipients</h3>
     <div id="sc2_start_sep" role="separator" aria-labelledby="sc2_start_sep sc2_label" aria-label="Start of HTML for"></div>
     <pre><code id="sc2"></code></pre>
     <div id="sc2_end_sep" role="separator" aria-labelledby="sc2_end_sep sc2_label" aria-label="End of HTML for"></div>
-    <script>sourceCode.add('sc2', 'ex2')</script>
+    <script>sourceCode.add('sc2', 'ex2', 'ex2_label', 'css_js_files')</script>
 
     <h3 id="sc3_label">Example 3: Scrollable Search Results</h3>
     <div id="sc3_start_sep" role="separator" aria-labelledby="sc3_start_sep sc3_label" aria-label="Start of HTML for"></div>
     <pre><code id="sc3"></code></pre>
     <div id="sc3_end_sep" role="separator" aria-labelledby="sc3_end_sep sc3_label" aria-label="End of HTML for"></div>
-    <script>sourceCode.add('sc3', 'ex3') </script>
+    <script>sourceCode.add('sc3', 'ex3', 'ex3_label', 'css_js_files') </script>
     <!--  After all source has been added, run make to do the insert.  -->
     <script> sourceCode.make() </script>
   </section>

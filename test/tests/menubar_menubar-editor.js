@@ -201,7 +201,7 @@ ariaTest(
   exampleFile,
   'menubar-menuitem-aria-expanded',
   async (t) => {
-    // Before interating with page, make sure aria-expanded is set to false
+    // Before interacting with page, make sure aria-expanded is set to false
     await assertAttributeValues(
       t,
       ex.menubarMenuitemSelector,
@@ -327,13 +327,13 @@ ariaTest(
 
     for (let menuitem of menuitems) {
       // The menuitem is not visible, so we cannot use selenium's "getText" function
-      const menutext = await t.context.session.executeScript(function () {
+      const menuText = await t.context.session.executeScript(function () {
         const el = arguments[0];
         return el.innerHTML;
       }, menuitem);
 
       t.truthy(
-        menutext,
+        menuText,
         '"role=menuitem" elements should all have accessible text content: ' +
           ex.submenuMenuitemSelector
       );
@@ -585,7 +585,7 @@ ariaTest(
 );
 
 ariaTest(
-  'Text "aria-checked" appropriately set on role="menitemradio"',
+  'Text "aria-checked" appropriately set on role="menuitemradio"',
   exampleFile,
   'menuitemradio-aria-checked',
   async (t) => {
@@ -987,7 +987,7 @@ ariaTest(
         // Test that the submenu is closed
         t.false(
           await submenus[menuIndex].isDisplayed(),
-          'Sending key "ENTER" to submenuitem "' +
+          'Sending key "ENTER" to submenu item "' +
             itemText +
             '" should close list'
         );
@@ -995,7 +995,7 @@ ariaTest(
         // Test that the focus is back on the menuitem in the menubar
         t.true(
           await checkFocus(t, ex.menubarMenuitemSelector, menuIndex),
-          'Sending key "ENTER" to submenuitem "' +
+          'Sending key "ENTER" to submenu item "' +
             itemText +
             '" should change the focus to menuitem ' +
             menuIndex +
@@ -1016,7 +1016,7 @@ ariaTest(
         t.is(
           currentStyle != originalStyle,
           changedStyle,
-          'Sending key "ENTER" to submenuitem "' +
+          'Sending key "ENTER" to submenu item "' +
             itemText +
             '" should change the style attribute on the Text Sample.'
         );
@@ -1058,7 +1058,7 @@ ariaTest(
         // make sure focus is on the menuitem and the popup is submenu is closed
         t.false(
           await submenus[menuIndex].isDisplayed(),
-          'Sending key "ESCAPE" to submenuitem "' +
+          'Sending key "ESCAPE" to submenu item "' +
             itemText +
             '" should close list'
         );
@@ -1066,7 +1066,7 @@ ariaTest(
         // Test that the focus is back on the menuitem in the menubar
         t.true(
           await checkFocus(t, ex.menubarMenuitemSelector, menuIndex),
-          'Sending key "ESCAPE" to submenuitem "' +
+          'Sending key "ESCAPE" to submenu item "' +
             itemText +
             '" should change the focus to menuitem ' +
             menuIndex +
@@ -1111,7 +1111,7 @@ ariaTest(
         // Test that the submenu is closed
         t.false(
           await submenus[menuIndex].isDisplayed(),
-          'Sending key "ARROW_RIGHT" to submenuitem "' +
+          'Sending key "ARROW_RIGHT" to submenu item "' +
             itemText +
             '" should close list'
         );
@@ -1119,7 +1119,7 @@ ariaTest(
         // Test that the next submenu is open
         t.true(
           await submenus[nextMenuIndex].isDisplayed(),
-          'Sending key "ARROW_RIGHT" to submenuitem "' +
+          'Sending key "ARROW_RIGHT" to submenu item "' +
             itemText +
             '" should open submenu ' +
             nextMenuIndex
@@ -1128,7 +1128,7 @@ ariaTest(
         // Test that the focus is on the menuitem in the menubar
         t.true(
           await checkFocus(t, ex.menubarMenuitemSelector, nextMenuIndex),
-          'Sending key "ARROW_RIGHT" to submenuitem "' +
+          'Sending key "ARROW_RIGHT" to submenu item "' +
             itemText +
             '" should send focus to menuitem' +
             nextMenuIndex +
@@ -1174,7 +1174,7 @@ ariaTest(
         // Test that the submenu is closed
         t.false(
           await submenus[menuIndex].isDisplayed(),
-          'Sending key "ARROW_LEFT" to submenuitem "' +
+          'Sending key "ARROW_LEFT" to submenu item "' +
             itemText +
             '" should close list'
         );
@@ -1182,7 +1182,7 @@ ariaTest(
         // Test that the next submenu is open
         t.true(
           await submenus[nextMenuIndex].isDisplayed(),
-          'Sending key "ARROW_LEFT" to submenuitem "' +
+          'Sending key "ARROW_LEFT" to submenu item "' +
             itemText +
             '" should open submenu ' +
             nextMenuIndex
@@ -1191,7 +1191,7 @@ ariaTest(
         // Test that the focus is on the menuitem in the menubar
         t.true(
           await checkFocus(t, ex.menubarMenuitemSelector, nextMenuIndex),
-          'Sending key "ARROW_LEFT" to submenuitem "' +
+          'Sending key "ARROW_LEFT" to submenu item "' +
             itemText +
             '" should send focus to menuitem' +
             nextMenuIndex +
@@ -1313,8 +1313,6 @@ ariaTest(
       ) {
         const item = items[itemIndex];
         const itemText = await item.getText();
-        // Account for wrapping
-        const nextItemIndex = itemIndex + 1;
 
         // Send UP to the item
         await item.sendKeys(Key.HOME);
@@ -1357,8 +1355,6 @@ ariaTest(
       ) {
         const item = items[itemIndex];
         const itemText = await item.getText();
-        // Account for wrapping
-        const nextItemIndex = itemIndex + 1;
 
         // Send UP to the item
         await item.sendKeys(Key.END);

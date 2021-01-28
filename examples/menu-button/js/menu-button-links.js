@@ -67,11 +67,11 @@ class MenuButtonLinks {
     });
   }
 
-  setFocusToFirstMenuitem(currentMenuitem) {
+  setFocusToFirstMenuitem() {
     this.setFocusToMenuitem(this.firstMenuitem);
   }
 
-  setFocusToLastMenuitem(currentMenuitem) {
+  setFocusToLastMenuitem() {
     this.setFocusToMenuitem(this.lastMenuitem);
   }
 
@@ -147,7 +147,6 @@ class MenuButtonLinks {
   // Popup menu methods
 
   openPopup() {
-    var rect = this.menuNode.getBoundingClientRect();
     this.menuNode.style.display = 'block';
     this.buttonNode.setAttribute('aria-expanded', 'true');
   }
@@ -165,17 +164,16 @@ class MenuButtonLinks {
 
   // Menu event handlers
 
-  onFocusin(event) {
+  onFocusin() {
     this.domNode.classList.add('focus');
   }
 
-  onFocusout(event) {
+  onFocusout() {
     this.domNode.classList.remove('focus');
   }
 
   onButtonKeydown(event) {
-    var tgt = event.currentTarget,
-      key = event.key,
+    var key = event.key,
       flag = false;
 
     switch (key) {
@@ -325,6 +323,6 @@ class MenuButtonLinks {
 window.addEventListener('load', function () {
   var menuButtons = document.querySelectorAll('.menu-button-links');
   for (let i = 0; i < menuButtons.length; i++) {
-    var menuButton = new MenuButtonLinks(menuButtons[i]);
+    new MenuButtonLinks(menuButtons[i]);
   }
 });

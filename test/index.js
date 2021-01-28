@@ -3,7 +3,6 @@
 const path = require('path');
 const test = require('ava');
 const webdriver = require('selenium-webdriver');
-const { By } = require('selenium-webdriver');
 
 const startGeckodriver = require('./util/start-geckodriver');
 const queryElement = require('./util/queryElement');
@@ -15,7 +14,7 @@ const testWaitTime = parseInt(process.env.TEST_WAIT_TIME) || 500;
 const coverageReportRun = process.env.REGRESSION_COVERAGE_REPORT;
 
 if (!coverageReportRun) {
-  test.before(async (t) => {
+  test.before(async () => {
     geckodriver = await startGeckodriver(1022, 12 * 1000);
     session = new webdriver.Builder()
       .usingServer('http://localhost:' + geckodriver.port)
@@ -51,9 +50,9 @@ if (!coverageReportRun) {
  * Declare a test for a behavior documented on and demonstrated by an
  * aria-practices examples page.
  *
- * @param {String} desc - short description of the test
- * @param {String} page - path to the example file
- * @param {String} testId - unique identifier for the documented behavior
+ * @param {string} desc - short description of the test
+ * @param {string} page - path to the example file
+ * @param {string} testId - unique identifier for the documented behavior
  *                          within the demonstration page
  * @param {Function} body - script which implements the test
  */
@@ -66,6 +65,11 @@ const ariaTest = (desc, page, testId, body) => {
  * If the test passes when it is expected to fail, a failure will be reported.
  *
  * See arguments for ariaTest.
+ *
+ * @param desc
+ * @param page
+ * @param testId
+ * @param body
  */
 ariaTest.failing = (desc, page, testId, body) => {
   _ariaTest(desc, page, testId, body, 'FAILING');

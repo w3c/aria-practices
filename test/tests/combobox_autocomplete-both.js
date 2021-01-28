@@ -20,10 +20,10 @@ const ex = {
 const waitForFocusChange = async (t, textboxSelector, originalFocus) => {
   await t.context.session.wait(
     async function () {
-      let newfocus = await t.context.session
+      let newFocus = await t.context.session
         .findElement(By.css(textboxSelector))
         .getAttribute('aria-activedescendant');
-      return newfocus != originalFocus;
+      return newFocus != originalFocus;
     },
     t.context.waitTime,
     'Timeout waiting for "aria-activedescendant" value to change from: ' +
@@ -55,7 +55,7 @@ ariaTest(
 );
 
 ariaTest(
-  '"aria-autocomplete" on comboxbox element',
+  '"aria-autocomplete" on combobox element',
   exampleFile,
   'combobox-aria-autocomplete',
   async (t) => {
@@ -399,7 +399,7 @@ ariaTest(
 
     // Test that ARROW_DOWN moves active descendant focus on item in listbox
     for (let i = 2; i < ex.numAOptions + 1; i++) {
-      let oldfocus = await t.context.session
+      let oldFocus = await t.context.session
         .findElement(By.css(ex.textboxSelector))
         .getAttribute('aria-activedescendant');
 
@@ -408,7 +408,7 @@ ariaTest(
         .sendKeys(Key.ARROW_DOWN);
 
       // Account for race condition
-      await waitForFocusChange(t, ex.textboxSelector, oldfocus);
+      await waitForFocusChange(t, ex.textboxSelector, oldFocus);
 
       await assertAriaSelectedAndActivedescendant(
         t,
@@ -475,7 +475,7 @@ ariaTest(
 
     // Test that ARROW_UP moves active descendant focus up one item in the listbox
     for (let index = ex.numAOptions - 2; index > 0; index--) {
-      let oldfocus = await t.context.session
+      let oldFocus = await t.context.session
         .findElement(By.css(ex.textboxSelector))
         .getAttribute('aria-activedescendant');
 
@@ -484,7 +484,7 @@ ariaTest(
         .findElement(By.css(ex.textboxSelector))
         .sendKeys(Key.ARROW_UP);
 
-      await waitForFocusChange(t, ex.textboxSelector, oldfocus);
+      await waitForFocusChange(t, ex.textboxSelector, oldFocus);
 
       await assertAriaSelectedAndActivedescendant(
         t,
@@ -540,6 +540,203 @@ ariaTest(
   }
 );
 
+// "Test 1" in https://github.com/w3c/aria-practices/issues/1345
+
+ariaTest(
+  'Test backspace with focus on textbox',
+  exampleFile,
+  'standard-single-line-editing-keys',
+  async (t) => {
+    // Send key "a" to the textbox
+
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys('a');
+
+    // Get the value of the first option in the listbox
+
+    const firstOption = await (
+      await t.context.queryElements(t, ex.optionsSelector)
+    )[0].getText();
+
+    // Confirm that the value of the textbox is now set to the first option
+
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.textboxSelector))
+        .getAttribute('value'),
+      firstOption,
+      'key press "a" should result in first option in textbox'
+    );
+
+    // Send key BACK_SPACE
+
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys(Key.BACK_SPACE);
+
+    // Confirm that the listbox is still open
+
+    await assertAttributeValues(t, ex.textboxSelector, 'aria-expanded', 'true');
+
+    // Confirm that the value of the textbox is now "A"
+
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.textboxSelector))
+        .getAttribute('value'),
+      'A',
+      'key press "BACK_SPACE" should result in deleting the autocompleted text'
+    );
+
+    // Send key BACK_SPACE
+
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys(Key.BACK_SPACE);
+
+    // Confirm that the listbox is still open
+
+    await assertAttributeValues(t, ex.textboxSelector, 'aria-expanded', 'true');
+
+    // Confirm that the value of the textbox is now ""
+
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.textboxSelector))
+        .getAttribute('value'),
+      '',
+      'key press "BACK_SPACE" should result in deleting the "A"'
+    );
+
+    // Send key ARROW_DOWN
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys(Key.ARROW_DOWN);
+
+    // Confirm that the listbox is still open
+
+    await assertAttributeValues(t, ex.textboxSelector, 'aria-expanded', 'true');
+
+    // Confirm aria-selected is set on the item "Alabama"
+
+    await assertAttributeValues(
+      t,
+      ex.optionsSelector + ':nth-of-type(1)',
+      'aria-selected',
+      'true'
+    );
+
+    // Confirm that the value of the textbox is now set to the first option
+
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.textboxSelector))
+        .getAttribute('value'),
+      firstOption,
+      'key press "ARROW_DOWN" should result in first option in textbox'
+    );
+
+    // Confirm that there are 56 options visible
+    t.is(
+      await (await t.context.queryElements(t, ex.optionsSelector)).length,
+      56,
+      'key press "ARROW_DOWN" should result in all options being visible'
+    );
+  }
+);
+
+// "Test 2" in https://github.com/w3c/aria-practices/issues/1345
+
+ariaTest(
+  'Test backspace with focus on textbox (2)',
+  exampleFile,
+  'standard-single-line-editing-keys',
+  async (t) => {
+    // Send keys "no" to the textbox
+
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys('n', 'o');
+
+    // Confirm that the value of the textbox is now set to "North Carolina"
+
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.textboxSelector))
+        .getAttribute('value'),
+      'North Carolina',
+      'key press "n" "o" should result in "North Carolina" in textbox'
+    );
+
+    // Send key BACK_SPACE
+
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys(Key.BACK_SPACE);
+
+    // Confirm that the listbox is still open
+
+    await assertAttributeValues(t, ex.textboxSelector, 'aria-expanded', 'true');
+
+    // Confirm that the value of the textbox is now "No"
+
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.textboxSelector))
+        .getAttribute('value'),
+      'No',
+      'key press "BACK_SPACE" should result in deleting the autocompleted text'
+    );
+
+    // Send key BACK_SPACE
+
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys(Key.BACK_SPACE);
+
+    // Confirm that the listbox is still open
+
+    await assertAttributeValues(t, ex.textboxSelector, 'aria-expanded', 'true');
+
+    // Confirm that the value of the textbox is now "N"
+
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.textboxSelector))
+        .getAttribute('value'),
+      'N',
+      'key press "BACK_SPACE" should result in deleting the "o"'
+    );
+
+    // Send key ARROW_DOWN
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys(Key.ARROW_DOWN);
+
+    // Confirm that the listbox is still open
+
+    await assertAttributeValues(t, ex.textboxSelector, 'aria-expanded', 'true');
+
+    // Confirm that the value of the textbox is now set to "Nebraska"
+
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.textboxSelector))
+        .getAttribute('value'),
+      'Nebraska',
+      'key press "ARROW_DOWN" should result in "Nebraska" in textbox'
+    );
+
+    // Confirm that there are 9 options visible
+    t.is(
+      await (await t.context.queryElements(t, ex.optionsSelector)).length,
+      9,
+      'key press "ARROW_DOWN" should result in 9 options being visible'
+    );
+  }
+);
+
 ariaTest(
   'Test enter key press with focus on listbox',
   exampleFile,
@@ -551,7 +748,7 @@ ariaTest(
       .findElement(By.css(ex.textboxSelector))
       .sendKeys('a', Key.ARROW_DOWN);
 
-    // Get the value of the first option in the listbox
+    // Get the value of the second option in the listbox
 
     const secondOption = await (
       await t.context.queryElements(t, ex.optionsSelector)
@@ -563,7 +760,7 @@ ariaTest(
       .findElement(By.css(ex.textboxSelector))
       .sendKeys(Key.ENTER);
 
-    // Confirm that the listbox is still open
+    // Confirm that the listbox is closed
 
     await assertAttributeValues(
       t,
@@ -654,7 +851,7 @@ ariaTest(
       .findElement(By.css(ex.textboxSelector))
       .sendKeys('a', Key.ARROW_DOWN, Key.ESCAPE);
 
-    // Confirm the listbox is closed and the textboxed is cleared
+    // Confirm the listbox is closed and the textbox is cleared
 
     await assertAttributeValues(
       t,

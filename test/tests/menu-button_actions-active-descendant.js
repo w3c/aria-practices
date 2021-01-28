@@ -13,7 +13,7 @@ const ex = {
   menuSelector: '#ex1 [role="menu"]',
   menuitemSelector: '#ex1 [role="menuitem"]',
   numMenuitems: 4,
-  lastactionSelector: '#action_output',
+  lastActionSelector: '#action_output',
   defaultAriaActivedescendantVal: 'mi1',
 };
 
@@ -32,9 +32,9 @@ const checkFocus = function (t, selector, index) {
 const scrollToAndOpenMenu = async function (t) {
   // Click the "last action" box to scroll the menu into view before opening the menu and sending enter
   // This prevents a bug where when you click the menu button, the menu is opened and the page scrolls down
-  // to reveal the menu, which places the curser over the last menu item, which sets aria-activedescendent to
+  // to reveal the menu, which places the curser over the last menu item, which sets aria-activedescendant to
   // the last item in the list.
-  await t.context.session.findElement(By.css(ex.lastactionSelector)).click();
+  await t.context.session.findElement(By.css(ex.lastActionSelector)).click();
 
   await t.context.session.findElement(By.css(ex.menubuttonSelector)).click();
 
@@ -80,7 +80,7 @@ ariaTest(
   'button-aria-expanded',
   async (t) => {
     const hasAttribute = await t.context.session.executeScript(function () {
-      selector = arguments[0];
+      const selector = arguments[0];
       return document.querySelector(selector).hasAttribute('aria-expanded');
     }, ex.menubuttonSelector);
 
@@ -274,7 +274,7 @@ ariaTest('"enter" on role="menu"', exampleFile, 'menu-enter', async (t) => {
   t.is(
     itemText,
     await t.context.session
-      .findElement(By.css(ex.lastactionSelector))
+      .findElement(By.css(ex.lastActionSelector))
       .getAttribute('value'),
     'When first item is focused, key enter should select action: ' + itemText
   );
@@ -298,7 +298,7 @@ ariaTest('"enter" on role="menu"', exampleFile, 'menu-enter', async (t) => {
   t.is(
     itemText,
     await t.context.session
-      .findElement(By.css(ex.lastactionSelector))
+      .findElement(By.css(ex.lastActionSelector))
       .getAttribute('value'),
     'When second item is focused, key enter should select action: ' + itemText
   );
@@ -322,7 +322,7 @@ ariaTest('"enter" on role="menu"', exampleFile, 'menu-enter', async (t) => {
   t.is(
     itemText,
     await t.context.session
-      .findElement(By.css(ex.lastactionSelector))
+      .findElement(By.css(ex.lastActionSelector))
       .getAttribute('value'),
     'When third item is focused, key enter should select action: ' + itemText
   );
@@ -351,7 +351,7 @@ ariaTest('"enter" on role="menu"', exampleFile, 'menu-enter', async (t) => {
   t.is(
     itemText,
     await t.context.session
-      .findElement(By.css(ex.lastactionSelector))
+      .findElement(By.css(ex.lastActionSelector))
       .getAttribute('value'),
     'When fourth item is focused, key enter should select action: ' + itemText
   );
@@ -368,7 +368,6 @@ ariaTest('"enter" on role="menu"', exampleFile, 'menu-enter', async (t) => {
 });
 
 ariaTest('"escape" on role="menu"', exampleFile, 'menu-escape', async (t) => {
-  const menu = await t.context.session.findElement(By.css(ex.menuSelector));
   const items = await t.context.queryElements(t, ex.menuitemSelector);
   for (let item of items) {
     await scrollToAndOpenMenu(t);
@@ -378,7 +377,7 @@ ariaTest('"escape" on role="menu"', exampleFile, 'menu-escape', async (t) => {
     t.not(
       itemText,
       await t.context.session
-        .findElement(By.css(ex.lastactionSelector))
+        .findElement(By.css(ex.lastActionSelector))
         .getAttribute('value'),
       'Key escape should not select action: ' + itemText
     );
@@ -436,7 +435,6 @@ ariaTest('"escape" on role="menu"', exampleFile, 'menu-escape', async (t) => {
 
 ariaTest('"home" on role="menu"', exampleFile, 'menu-home', async (t) => {
   const menu = await t.context.session.findElement(By.css(ex.menuSelector));
-  const items = await t.context.queryElements(t, ex.menuitemSelector);
   await scrollToAndOpenMenu(t);
 
   // Send HOME to the menu while aria-activedescendant is the first item
@@ -462,7 +460,6 @@ ariaTest('"home" on role="menu"', exampleFile, 'menu-home', async (t) => {
 
 ariaTest('"end" on role="menu"', exampleFile, 'menu-end', async (t) => {
   const menu = await t.context.session.findElement(By.css(ex.menuSelector));
-  const items = await t.context.queryElements(t, ex.menuitemSelector);
   const last = ex.numMenuitems - 1;
   await scrollToAndOpenMenu(t);
 

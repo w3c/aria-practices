@@ -6,8 +6,6 @@
  *   File:   reference-tables.js
  */
 
-'use strict';
-
 const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
@@ -374,6 +372,7 @@ $('#examples_by_props_tbody').html(examplesByProps);
 // cheerio seems to fold the doctype lines despite the template
 const result = $.html()
   .replace('<!DOCTYPE html>', '<!DOCTYPE html>\n')
+  .replace('</body></html>', '</body></html>\n')
   .replace(
     '<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">',
     '<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">\n'

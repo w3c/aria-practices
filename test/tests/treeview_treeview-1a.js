@@ -142,15 +142,13 @@ ariaTest(
 ariaTest(
   'aria-expanded attribute on treeitem matches dom',
   exampleFile,
-  'treeitem-ariaexpanded',
+  'treeitem-aria-expanded',
   async (t) => {
     const folders = await t.context.queryElements(t, ex.folderSelector);
 
     for (let folder of folders) {
       // If the folder is displayed
       if (await folder.isDisplayed()) {
-        const folderText = await folder.getText();
-
         // By default, all folders will be closed
         t.is(await folder.getAttribute('aria-expanded'), 'false');
         t.is(

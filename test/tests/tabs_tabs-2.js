@@ -20,7 +20,7 @@ const ex = {
     // button id, tab id
     ['#nils', '#nils-tab'],
     ['#agnes', '#agnes-tab'],
-    ['#complex', '#complexcomplex'],
+    ['#complex', '#complex-complex'],
   ],
 };
 
@@ -365,7 +365,6 @@ ariaTest(
 
 ariaTest('HOME key moves focus', exampleFile, 'key-home', async (t) => {
   const tabs = await t.context.queryElements(t, ex.tabSelector);
-  const tabpanels = await t.context.queryElements(t, ex.tabpanelSelector);
   for (let index = 0; index < tabs.length; index++) {
     // Put focus on the tab
     await openTabAtIndex(t, index);
@@ -383,7 +382,6 @@ ariaTest('HOME key moves focus', exampleFile, 'key-home', async (t) => {
 
 ariaTest('END key moves focus', exampleFile, 'key-end', async (t) => {
   const tabs = await t.context.queryElements(t, ex.tabSelector);
-  const tabpanels = await t.context.queryElements(t, ex.tabpanelSelector);
   for (let index = 0; index < tabs.length; index++) {
     // Put focus on the tab
     await openTabAtIndex(t, index);

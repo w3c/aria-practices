@@ -63,10 +63,8 @@ FontMenuItem.prototype.init = function () {
 /* EVENT HANDLERS */
 
 FontMenuItem.prototype.handleKeydown = function (event) {
-  var tgt = event.currentTarget,
-    flag = false,
-    char = event.key,
-    clickEvent;
+  var flag = false,
+    char = event.key;
 
   function isPrintableCharacter(str) {
     return str.length === 1 && str.match(/\S/);
@@ -143,26 +141,26 @@ FontMenuItem.prototype.handleKeydown = function (event) {
   }
 };
 
-FontMenuItem.prototype.handleClick = function (event) {
+FontMenuItem.prototype.handleClick = function () {
   this.fontMenu.setFontFamily(this, this.font);
   this.fontMenu.setFocusToController();
   this.fontMenu.close(true);
 };
 
-FontMenuItem.prototype.handleFocus = function (event) {
+FontMenuItem.prototype.handleFocus = function () {
   this.fontMenu.setFocus();
 };
 
-FontMenuItem.prototype.handleBlur = function (event) {
+FontMenuItem.prototype.handleBlur = function () {
   this.fontMenu.removeFocus();
 };
 
-FontMenuItem.prototype.handleMouseover = function (event) {
+FontMenuItem.prototype.handleMouseover = function () {
   this.fontMenu.hasHover = true;
   this.fontMenu.open();
 };
 
-FontMenuItem.prototype.handleMouseout = function (event) {
+FontMenuItem.prototype.handleMouseout = function () {
   this.fontMenu.hasHover = false;
   setTimeout(this.fontMenu.close.bind(this.fontMenu, false), 300);
 };

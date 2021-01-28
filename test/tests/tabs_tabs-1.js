@@ -1,5 +1,5 @@
 const { ariaTest } = require('..');
-const { By, Key } = require('selenium-webdriver');
+const { Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaControls = require('../util/assertAriaControls');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
@@ -20,7 +20,7 @@ const ex = {
     // button id, tab id
     ['#nils', '#nils-tab'],
     ['#agnes', '#agnes-tab'],
-    ['#complex', '#complexcomplex'],
+    ['#complex', '#complex-complex'],
   ],
 };
 
