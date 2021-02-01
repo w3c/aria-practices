@@ -40,7 +40,7 @@
     "eslint-config-prettier": "^7.2.0",
     "babel-eslint": "^10.1.0",
     "eslint-plugin-ava": "^11.0.0",
-    "eslint-plugin-jsdoc": "^31.0.7",
+    "eslint-plugin-jsdoc": "^31.6.0",
     "eslint-plugin-prettier": "^3.3.1",
     "geckodriver": "^1.21.1",
     "glob": "^7.1.6",
