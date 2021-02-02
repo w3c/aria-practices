@@ -60,12 +60,12 @@
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="ex1">
       <div class="page">
-        <!-- NOTE: In a real website the header element would typically be a top
-           level element and it would not need the role="banner" attribute to be
-            a banner landmark -->
+        <!-- NOTE: In an actual website, the header element would be a top level element, i.e., it would have the body as its scope.
+          If the scope of the header element were body, browsers would automatically treat the header as an ARIA banner,
+          so the header would not need the role="banner". -->
         <header role="banner">
           <div class="title">Mythical University</div>
-          <div class="tagline">Using a Menubar pattern for navigation links</div>
+          <div class="tagline">Using a Menubar for navigation links</div>
         </header>
         <nav aria-label="Mythical University">
           <ul class="menubar-navigation" role="menubar" aria-label="Mythical University">
@@ -234,8 +234,8 @@
             </li>
           </ul>
         </nav>
-        <!--  NOTE: The following SECTION element should be a MAIN element
-          in actual website -->
+        <!--  NOTE: The following SECTION element would be a MAIN element
+          in an actual website -->
         <div class="main">
           <section aria-labelledby="id-page-title">
             <h1 id="id-page-title" class="page_title">Mythical University</h1>
@@ -244,9 +244,9 @@
             </div>
           </section>
         </div>
-        <!-- NOTE: In a real website the footer element would typically be a
-          top level element and it would not need the role="contentinfo
-          attribute to be a contentinfo landmark -->
+          <!-- NOTE: In an actual website, the footer element would be a top level element, i.e., it would have the body as its scope.
+          If the scope of the footer element were body, browsers would automatically treat the footer as an ARIA contentinfo landmark,
+          so the footer would not need the role="contentinfo". -->
         <footer role="contentinfo">
           Mythical University footer information
         </footer>
