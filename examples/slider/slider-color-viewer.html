@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Color Viewer Slider Example | WAI-ARIA Authoring Practices 1.2</title>
+
+  <!--  Core js and css shared by all examples; do not modify when using this template. -->
+  <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
+  <link rel="stylesheet" href="../css/core.css">
+  <script src="../js/examples.js"></script>
+  <script src="../js/highlight.pack.js"></script>
+  <script src="../js/app.js"></script>
+
+  <!-- example js and css files -->
+  <link rel="stylesheet" type="text/css" href="css/slider-color-viewer.css">
+  <script src="js/slider-color-viewer.js" type="text/javascript"></script>
+</head>
+<body>
+  <nav aria-label="Related Links" class="feedback">
+    <ul>
+      <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/projects/3">Related Issues</a></li>
+      <li><a href="../../#slider">Design Pattern</a></li>
+    </ul>
+  </nav>
+  <main>
+    <h1>Color Viewer Slider Example</h1>
+    <p>
+      Following is an example of a color viewer that demonstrates the
+      <a href="../../#slider">slider design pattern.</a>
+      Change the background of the color view box by adjusting the sliders for red, green, and blue values.
+      The HEX and RGB values of the chosen color are displayed by the color view box.
+    </p>
+    <p>Similar examples include: </p>
+    <ul>
+      <li>
+        <a href="slider-2.html">Slider Examples with aria-orientation and aria-valuetext</a>:
+        Three thermostat control sliders that demonstrate using aria-orientation and aria-valuetext.
+      </li>
+    </ul>
+    <section>
+       <div class="example-header">
+          <h2 id="ex_label">Example</h2>
+       </div>
+          <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
+          <div id="ex1">
+            <div class="color-viewer-sliders" role="group" aria-labelledby="id-color-viewer">
+              <h2 id="id-color-viewer">Color Viewer</h2>
+              <div id="id-red" class="label">Red</div>
+              <div class="color-group red">
+                <div class="color-slider"
+                    role="slider"
+                    tabindex="0"
+                    aria-valuemin="0"
+                    aria-valuenow="128"
+                    aria-valuemax="255"
+                    aria-labelledby="id-red">
+                  <!-- SVG position and dimension values added through Javascript -->
+                  <svg width="0" height="0" aria-hidden="true">
+                    <text class="value" x="0" y="0">128</text>
+                    <rect class="rail"  x="0" y="0" rx="0" width="0" height="0"/>
+                    <rect class="fill"  x="0" y="0" rx="0" width="0" height="0"/>
+                    <rect class="thumb" x="0" y="0" rx="0" width="0" height="0"/>
+                    <rect class="focus" x="0" y="0" rx="0" width="0" height="0"/>
+                  </svg>
+                </div>
+              </div>
+
+              <div id="id-green" class="label">Green</div>
+              <div class="color-group green">
+                <div class="color-slider"
+                    role="slider"
+                    tabindex="0"
+                    aria-valuemin="0"
+                    aria-valuenow="128"
+                    aria-valuemax="255"
+                    aria-labelledby="id-green">
+                  <!-- SVG position and dimension values added through Javascript -->
+                  <svg width="0" height="0" aria-hidden="true">
+                    <text class="value" x="0" y="0">128</text>
+                    <rect class="rail"  x="0" y="0" rx="0" width="0" height="0"/>
+                    <rect class="fill"  x="0" y="0" rx="0" width="0" height="0"/>
+                    <rect class="thumb" x="0" y="0" rx="0" width="0" height="0"/>
+                    <rect class="focus" x="0" y="0" rx="0" width="0" height="0"/>
+                  </svg>
+                </div>
+              </div>
+
+              <div id="id-blue" class="label">Blue</div>
+              <div class="color-group blue">
+                  <!-- SVG position and dimension values added through Javascript -->
+                <div class="color-slider"
+                    role="slider"
+                    tabindex="0"
+                    aria-valuemin="0"
+                    aria-valuenow="128"
+                    aria-valuemax="255"
+                    aria-labelledby="id-blue">
+                  <svg width="0" height="0" aria-hidden="true">
+                    <text class="value" x="0" y="0">128</text>
+                    <rect class="rail"  x="0" y="0" rx="0" width="0" height="0"/>
+                    <rect class="fill"  x="0" y="0" rx="0" width="0" height="0"/>
+                    <rect class="thumb" x="0" y="0" rx="0" width="0" height="0"/>
+                    <rect class="focus" x="0" y="0" rx="0" width="0" height="0"/>
+                  </svg>
+                </div>
+              </div>
+
+              <h3>Color View Box</h3>
+              <div class="color-info">
+                <div class="color-box"></div>
+                <label>
+                  Color (HEX):
+                  <input type="text" readonly class="color-value-hex" value="">
+                </label>
+                <label>
+                  Color (RGB):
+                  <input type="text" readonly class="color-value-rgb" value="">
+                </label>
+              </div>
+            </div>
+          </div>
+          <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
+    </section>
+
+  <section>
+      <h2>Accessibility Features</h2>
+      <ul>
+        <li>
+          The three sliders are wrapped in a group to help assistive technology users understand that all three elements together represent a color viewer.
+        </li>
+        <li>
+          The placement of the slider value above the thumb supports users with low vision by making it easier to view the current value when the thumb is dragged.
+        </li>
+        <li>
+          Use of SVG enables high contrast support by providing a means for <code>text</code> and <code>rect</code> element to adapt to high contrast colors using the <code>currentColor</code> value for the <code>stroke</code> and <code>fill</code> properties.
+        </li>
+        <li>
+          Uses <code>pointer</code> events, instead of <code>mouse</code> events, for tracking the movement of the thumb to support the use of the sliders on touch devices.
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 id="kbd_label">Keyboard Support</h2>
+      <table aria-labelledby="kbd_label" class="def">
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-test-id="key-right-arrow">
+            <th><kbd>Right Arrow</kbd></th>
+            <td>Increases slider value one step.</td>
+          </tr>
+          <tr data-test-id="key-up-arrow">
+            <th><kbd>Up Arrow</kbd></th>
+            <td>Increases slider value one step.</td>
+          </tr>
+          <tr data-test-id="key-left-arrow">
+            <th><kbd>Left Arrow</kbd></th>
+            <td>Decreases slider value one step.</td>
+          </tr>
+          <tr data-test-id="key-down-arrow">
+            <th><kbd>Down Arrow</kbd></th>
+            <td>Decreases slider value one step.</td>
+          </tr>
+          <tr data-test-id="key-page-up">
+            <th><kbd>Page Up</kbd></th>
+            <td>Increases slider value multiple steps. In this slider, jumps ten steps.</td>
+          </tr>
+          <tr data-test-id="key-page-down">
+            <th><kbd>Page Down</kbd></th>
+            <td>Decreases slider value multiple steps. In this slider, jumps ten steps.</td>
+          </tr>
+          <tr data-test-id="key-home">
+            <th><kbd>Home</kbd></th>
+            <td>Sets slider to its minimum value.</td>
+          </tr>
+          <tr data-test-id="key-end">
+            <th><kbd>End</kbd></th>
+            <td>Sets slider to its maximum value.</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </section>
+
+    <section>
+      <h2 id="rps_label">Role, Property, State, and Tabindex Attributes</h2>
+      <table aria-labelledby="rps_label" class="data attributes">
+        <thead>
+          <tr>
+            <th scope="col">Role</th>
+            <th scope="col">Attribute</th>
+            <th scope="col">Element</th>
+            <th scope="col">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+         <tr data-test-id="group-role">
+            <th scope="row"><code>group</code></th>
+            <td></td>
+            <td><code>div</code></td>
+            <td>
+              <ul>
+                <li>Identifies the <code>div</code> as a group of sliders.</li>
+                <li>The group provides a means to inform assistive technology users that the three sliders are all related to the single purpose of choosing a color.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr data-test-id="group-aria-labelledby">
+            <td></td>
+            <th scope="row"><code>aria-labelledby="IDREF"</code></th>
+            <td><code>div</code></td>
+            <td>
+              <ul>
+                <li>Contains the ID that reference the <code>div</code> element that provide the accessible name for the group.</li>
+                <li>One ID refers to the visible label <q>Color Viewer</q>.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr data-test-id="slider-role">
+            <th scope="row">
+              <code>slider</code>
+            </th>
+            <td></td>
+            <td>
+              <code>div</code>
+            </td>
+            <td>
+              <ul>
+                <li>Identifies the element as a slider.</li>
+                <li>Set on the <code>div</code> that represents as the movable thumb because it is the operable element that represents the slider value.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr data-test-id="tabindex">
+            <td></td>
+            <th scope="row">
+              <code>tabindex=<q>0</q></code>
+            </th>
+            <td>
+              <code>div</code>
+            </td>
+            <td>Includes the slider thumb in the page tab sequence.</td>
+          </tr>
+          <tr data-test-id="aria-valuemax">
+            <td></td>
+            <th scope="row">
+              <code>aria-valuemax=<q>255</q></code>
+            </th>
+            <td>
+              <code>div</code>
+            </td>
+            <td>Specifies the maximum value of the slider.</td>
+          </tr>
+          <tr data-test-id="aria-valuemin">
+            <td></td>
+            <th scope="row">
+              <code>aria-valuemin=<q>0</q></code>
+            </th>
+            <td>
+              <code>div</code>
+            </td>
+            <td>Specifies the minimum value of the slider.</td>
+          </tr>
+          <tr data-test-id="aria-valuenow">
+            <td></td>
+            <th scope="row">
+              <code>aria-valuenow=<q>NUMBER</q></code>
+            </th>
+            <td>
+              <code>div</code>
+            </td>
+            <td>Indicates the current value of the slider.</td>
+          </tr>
+          <tr data-test-id="aria-labelledby">
+            <td></td>
+            <th scope="row">
+              <code>aria-labelledby=<q>IDREF</q></code>
+            </th>
+            <td>
+              <code>div</code>
+            </td>
+            <td>Refers to the element containing the name of the slider.</td>
+          </tr>
+          <tr data-test-id="svg-aria-hidden">
+            <td></td>
+            <th scope="row"><code>aria-hidden=<q>true</q></code></th>
+            <td><code>svg</code></td>
+            <td>Removes the SVG elements from the accessibility tree.  Some assistive technologies will describe the SVG elements, unless they are explicitly hidden.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  <section>
+        <h2>Javascript and CSS Source Code</h2>
+        <ul id="css_js_files">
+          <li>CSS: <a href="css/slider-color-viewer.css" type="text/css">slider-color-viewer.css</a></li>
+          <li>Javascript: <a href="js/slider-color-viewer.js" type="text/javascript">slider-color-viewer.js</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="sc1_label">HTML Source Code</h2>
+        <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
+        <pre><code id="sc1"></code></pre>
+        <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
+        <script>
+          sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
+          sourceCode.make();
+        </script>
+    </section>
+
+  </main>
+  <nav>
+    <a href="../../#slider">Slider Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+  </nav>
+</body>
+</html>
