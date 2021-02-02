@@ -36,7 +36,6 @@
   color: #005a9c;
 }
 
-.color-group > button,
 .color-group > div {
   display: inline;
 }
@@ -91,6 +90,7 @@
   fill: #666;
   stroke: currentColor;
   stroke-width: 2px;
+  touch-action: pan-y;
 }
 
 .color-group .color-slider .focus {
@@ -122,44 +122,5 @@
 
 .color-group .color-slider:focus .focus,
 .color-group .color-slider:hover .focus {
-  stroke: currentColor;
-}
-
-.color-group button.dec10,
-.color-group button.dec,
-.color-group button.inc,
-.color-group button.inc10 {
-  padding: 0;
-  margin: 0;
-  border: none;
-  background: none;
-  color: currentColor;
-}
-
-.color-group button .focus {
-  stroke: transparent;
-  stroke-width: 2px;
-  fill: transparent;
-}
-
-.color-group button line,
-.color-group button .background {
-  fill: transparent;
-  stroke: currentColor;
-  stroke-width: 2px;
-}
-
-.color-group button line {
-  stroke: currentColor;
-  stroke-width: 2px;
-}
-
-.color-group button:focus,
-.color-group .color-slider:focus {
-  outline: none;
-}
-
-.color-group button:focus .focus,
-.color-group button:hover .focus {
   stroke: currentColor;
 }
