@@ -510,12 +510,15 @@
       <tbody>
         <tr data-test-id="banner-role">
           <th scope="row"><code>banner</code></th>
-          <td><code>role=&quot;banner&quot;</code></td>
+          <td></td>
           <td><code>header</code></td>
           <td>
             <ul>
-              <li>Identifies the common content found at the top of most pages in a website.</li>
-              <li>In a real web page the <code>header</code> element would typically not need <code>role=&quot;banner&quot;</code> attribute to define the landmark, but in this example the <code>header</code> element is not in the proper scope of the <code>body</code> element to identify is as a banner landmark, so it must be explicitly identified using the role attribute.</li>
+              <li>Identifies the top section of content that is common across pages in a web site.</li>
+              <li>
+                NOTE: The <code>banner</code> role declaration is only necessary because it is an example that is nested inside the content of this page.
+                In an actual website, the header element would be a top level element, i.e., it would have the body as its scope.
+                If the scope of the header element were body, browsers would automatically treat the header as an ARIA banner, so the header would not need <code>role="banner"</code>.
             </ul>
           </td>
         </tr>
@@ -524,15 +527,15 @@
           <td></td>
           <td><code>nav</code></td>
           <td>
-            Identifies the navigation menu for the page.
+            Identifies the region containing the mythical university navigation.
           </td>
         </tr>
         <tr data-test-id="navigation-aria-label">
           <td></td>
-          <th scope="row"><code>aria-label=&quot;<em>navigation label</em>&quot;</code></th>
+          <th scope="row"><code>aria-label="Mythical University"</code></th>
           <td><code>nav</code></td>
           <td>
-            The <code>aria-label</code> attribute provides an accessible name for the <code>navigation</code> landmark.
+            Provides an accessible name for the <code>navigation</code> landmark that describes the purpose of the navigation.
           </td>
         </tr>
         <tr data-test-id="region-role">
@@ -541,8 +544,8 @@
           <td><code>section</code></td>
           <td>
             <ul>
-              <li>Identifies the main content region of the page in this example.</li>
-              <li>In a real web page this region would typically be identified by a <code>main</code> landmark, but since this example already has a main landmark, this section is identified using the <code>region</code> landmark.</li>
+              <li>Identifies the main content region of the page depicted in the example.</li>
+              <li>In an actual web page, this region would be identified by a <code>main</code> landmark, but since this page already has a main landmark, role <code>region</code> is used to avoid having two <code>main</code> landmarks on the page.</li>
             </ul>
           </td>
         </tr>
@@ -551,17 +554,21 @@
           <th scope="row"><code>aria-labelledby=&quot;<em>idref</em>&quot;</code></th>
           <td><code>section</code></td>
           <td>
-            The <code>aria-labelledby</code> attribute provides an accessible name from the h1 element for the page title.
+            Provides the region with an accessible name from the <code>h1</code> element.
           </td>
         </tr>
         <tr data-test-id="contentinfo-role">
           <th scope="row"><code>contentinfo</code></th>
-          <td><code>role=&quot;contentinfo&quot;</code></td>
+          <td></td>
           <td><code>footer</code></td>
           <td>
             <ul>
-              <li>Identifies the common content found at the bottom of most pages in a website.</li>
-              <li>In a real web page the <code>footer</code> element would typically not need <code>role=&quot;contentinfo&quot;</code> attribute to define the landmark, but in this example the <code>footer</code> element is not in the proper scope of the <code>body</code> element to identify is as a contentinfo landmark, so it must be explicitly identified using the role attribute.</li>
+              <li>Identifies the bottom section of content common across pages in a web site.</li>
+              <li>
+                NOTE: The <code>contentinfo</code> role declaration is only necessary because the footer is an example that is nested inside the content of this page.
+                In an actual website, the footer element would be a top level element, i.e., it would have the body as its scope.
+                If the scope of the footer element were body, browsers would automatically treat the footer as a ARIA <code>contentinfo</code> landmark, so the footer would not need <code>role="contentinfo"</code>.
+              </li>
             </ul>
           </td>
         </tr>
