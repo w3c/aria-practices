@@ -30,6 +30,7 @@
 .color-group {
   padding: 4px;
   width: 490px;
+  touch-action: pan-y;
 }
 
 .color-group.focus {
@@ -54,7 +55,6 @@
 .color-group .color-slider {
   margin: 0;
   padding: 0;
-  touch-action: pan-y;
 }
 
 .color-group .color-slider .valueBackground {
