@@ -274,11 +274,25 @@
         </li>
       </ul>
       <li>To help communicate that the arrow keys are available for directional navigation within the menubar and its submenus, a border is added to the menubar container when focus is within the menubar.</li>
+      <li>To help users locate the menu item that loads the currently displayed page, visual indicators of the path to that menu item are added to the menu items in the path:
+        <ul>
+          <li>The parent menubar item in the path has an extra thick (5 pixel) bottom border.</li>
+          <li>If the current page menu item is nested within a deeper submenu, the parent submenu item in the path has an extra thick left side border.</li>
+          <li>Finally, the menu item that loads the currently displayed page is styled with an extra thick border on the left side.</li>
+        </ul>
+      </li>
       <li>To support operating system high contrast settings:
         <ul>
-          <li>Focus is highlighted by adding and removing a border around the menu item with focus.</li>
-          <li>The arrow icons indicating the current state of expandable menus use in-line SVG images with the CSS <code>currentColor</code> value for the <code>fill</code> and <code>stroke</code> properties of the <code>polygon</code> element.</li>
-          <li>The example provides a visual indication of the current menu item and the path of menu items need to be followed to view current menu item.  The <code>menuitem</code> with <code>aria-current</code> is styled with a 5 pixel border on the left side so it can be identified visually in high contrast mode.  The ancestor expandable menu item in the menubar has a 5 pixel bottom border to visually indicate it contains the current menu item.  If the current menu item is nested within an deeper sub-menu, the ancestor expandable sub-menu item has a left side 5 pixel border.</li>
+          <li>
+            Because transparent borders are visible on some systems with operating system high contrast settings enabled, transparency cannot be used to create a visual difference between the element that is focused an other elements.
+            Instead of using transparency, the focused element has a thicker border and less padding.
+            When an element receives focus, its border changes from 1 to 3 pixels and padding is reduced by 2 pixels.
+            When an element loses focus, its border changes from 3 pixels to 1 and padding is increased by 2 pixels.
+          </li>
+          <li>
+            To ensure the arrow icons used to indicate the expanded or collapsed state have sufficient contrast with the background when high contrast settings invert colors, the CSS <code>currentColor</code> value for the <code>fill</code> and <code>stroke</code> properties of the SVG <code>polygon</code> element is used to synchronize the color with text content.
+            If specific colors are used to specify the <code>fill</code> and <code>stroke</code> properties, these colors will remain the same in high contrast mode, which could lead to insufficient contrast between the icon and the background or even make the icon invisible if its color matches the high contrast mode background.
+          </li>
         </ul>
       </li>
       <li>Since the menubar presents a site navigation system, it is wrapped in a navigation region implemented with a <code>nav</code> element that has an <code>aria-label</code> that matches the label on the menubar.</li>
@@ -688,7 +702,7 @@
           <td></td>
           <th scope="row"><code>aria-owns=&quot;IDREF&quot;</code></th>
           <td><code>a</code></td>
-          <td>Refers to the element with role <code>menu</code> that contains the sub-menu <code>menuitem</code> elements.</td>
+          <td>Refers to the element with role <code>menu</code> that contains the submenu <code>menuitem</code> elements.</td>
         </tr>
         <tr data-test-id="menubar-role-none">
           <th>
