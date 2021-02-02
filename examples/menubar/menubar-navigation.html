@@ -314,7 +314,12 @@
           <th>
             <kbd>Space</kbd><br><kbd>Enter</kbd>
           </th>
-          <td>Opens submenu and moves focus to first item in the submenu.</td>
+          <td>
+            <ul>
+              <li>If the item is a parent menu item, opens submenu and moves focus to first item in the submenu.</li>
+              <li>Otherwise, activates the menu item, which loads new content and places focus on the heading that titles the content.</li>
+            </ul>
+          </td>
         </tr>
         <tr data-test-id="menubar-right-arrow">
           <th>
