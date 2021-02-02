@@ -54,6 +54,7 @@
 .color-group .color-slider {
   margin: 0;
   padding: 0;
+  touch-action: pan-y;
 }
 
 .color-group .color-slider .valueBackground {
@@ -90,7 +91,6 @@
   fill: #666;
   stroke: currentColor;
   stroke-width: 2px;
-  touch-action: pan-y;
 }
 
 .color-group .color-slider .focus {
