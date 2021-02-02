@@ -27,17 +27,9 @@
   <main>
     <h1>Color Viewer Slider Example</h1>
   <div class="advisement">
-    <p><strong>CAUTION!</strong> Before considering use of the <a href="../../#slider">ARIA slider pattern</a> for custom range controls, it is important to understand:</p>
-    <ul>
-      <li>The use of the <code>slider</code> role is dependent on the implementation of increment and decrement events to change the value of the slider.</li>
-      <li>
-        Mobile technologies using primarily touch interfaces have not implemented techniques to allow decrementing and incrementing the value of the slider using touch commands.
-      </li>
-      <li>
-        If the devices you plan to support include primarily touch devices the use of the <code>slider</code> pattern should be avoided.
-      </li>
-    </ul>
-  </div>    <p>
+    <p><strong>WARNING!</strong> Users of touch-based assistive technologies may not be able to fully operate widgets that implement the <code>slider</code> pattern because APIs for capturing the necessary gestures and commands from assistive technologies are not yet available. Authors should fully test widgets using this pattern with assistive technologies before considering incorporation into production systems.</p>
+  </div>
+   <p>
       Following is an example of a color viewer that demonstrates the
       <a href="../../#slider">slider design pattern.</a>
       Change the background of the color view box by adjusting the sliders for red, green, and blue values.
