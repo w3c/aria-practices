@@ -78,14 +78,13 @@
               <a role="menuitem"
                 aria-haspopup="true"
                 aria-expanded="false"
-                aria-owns="sub-menu-about"
                 href="#about">
                 About
                 <svg xmlns="http://www.w3.org/2000/svg" class="down" width="12" height="9" viewBox="0 0 12 9">
                  <polygon points="1 0, 11 0, 6 8"/>
                 </svg>
               </a>
-              <ul role="menu" id="sub-menu-about" aria-label="About">
+              <ul role="menu" aria-label="About">
                 <li role="none">
                   <a role="menuitem" href="#overview">Overview</a>
                 </li>
@@ -96,14 +95,13 @@
                   <a role="menuitem"
                      aria-haspopup="true"
                      aria-expanded="false"
-                     aria-owns="sub-menu-facts"
                      href="#facts">
                     Facts
                     <svg xmlns="http://www.w3.org/2000/svg" class="right" width="9" height="12" viewBox="0 0 9 12">
                      <polygon points="0 1, 0 11, 8 6"/>
                     </svg>
                   </a>
-                  <ul role="menu" id="sub-menu-facts" aria-label="Facts">
+                  <ul role="menu" aria-label="Facts">
                     <li role="none">
                       <a role="menuitem" href="#history">History</a>
                     </li>
@@ -119,14 +117,13 @@
                   <a role="menuitem"
                      aria-haspopup="true"
                      aria-expanded="false"
-                     aria-owns="sub-menu-tours"
                      href="#campus-tours">
                     Campus Tours
                     <svg xmlns="http://www.w3.org/2000/svg" class="right" width="9" height="12" viewBox="0 0 9 12">
                      <polygon points="0 1, 0 11, 8 6"/>
                     </svg>
                   </a>
-                  <ul role="menu" id="sub-menu-tours" aria-label="Campus Tours">
+                  <ul role="menu" aria-label="Campus Tours">
                     <li role="none">
                       <a role="menuitem" href="#for-prospective-students">For prospective students</a>
                     </li>
@@ -144,14 +141,13 @@
               <a role="menuitem"
                  aria-haspopup="true"
                  aria-expanded="false"
-                 aria-owns="sub-menu-admissions"
                  href="#admissions">
                 Admissions
                 <svg xmlns="http://www.w3.org/2000/svg" class="down" width="12" height="9" viewBox="0 0 12 9">
                  <polygon points="1 0, 11 0, 6 8"/>
                 </svg>
               </a>
-              <ul role="menu" id="sub-menu-admissions" aria-label="Admissions">
+              <ul role="menu" aria-label="Admissions">
                 <li role="none">
                   <a role="menuitem" href="#apply">Apply</a>
                 </li>
@@ -159,14 +155,13 @@
                   <a role="menuitem"
                       aria-haspopup="true"
                       aria-expanded="false"
-                      aria-owns="sub-menu-tuition"
                       href="#tuition">
                     Tuition
                     <svg xmlns="http://www.w3.org/2000/svg" class="right" width="9" height="12" viewBox="0 0 9 12">
                      <polygon points="0 1, 0 11, 8 6"/>
                     </svg>
                   </a>
-                  <ul role="menu" id="sub-menu-tuition" aria-label="Tuition">
+                  <ul role="menu" aria-label="Tuition">
                     <li role="none">
                       <a role="menuitem" href="#undergraduate">Undergraduate</a>
                     </li>
@@ -197,7 +192,6 @@
               <a role="menuitem"
                  aria-haspopup="true"
                 aria-expanded="false"
-                aria-owns="sub-menu-academics"
                 href="#academics">
                 Academics
                 <svg xmlns="http://www.w3.org/2000/svg" class="down" width="12" height="9" viewBox="0 0 12 9">
@@ -709,12 +703,6 @@
             <code>a</code>
           </td>
           <td>Indicates the submenu is closed.</td>
-        </tr>
-        <tr data-test-id="menubar-menuitem-aria-owns">
-          <td></td>
-          <th scope="row"><code>aria-owns=&quot;IDREF&quot;</code></th>
-          <td><code>a</code></td>
-          <td>Refers to the element with role <code>menu</code> that contains the submenu <code>menuitem</code> elements.</td>
         </tr>
         <tr data-test-id="menubar-role-none">
           <th>

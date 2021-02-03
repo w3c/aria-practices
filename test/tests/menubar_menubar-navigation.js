@@ -32,12 +32,13 @@ const ex = {
 
   // Menuitem selectors
   anyMenuitemSelector: '#ex1 [role="menubar"] [role="menuitem"]',
+  anyExpandableMenuitemSelector:
+    '#ex1 [role="menubar"] [role="menuitem"][aria-expanded]',
 
   // Menu menuitem selectors
   anyMenuMenuitemSelector: '#ex1 [role="menu"]>li>[role="menuitem"]',
 
   // Submenu item selectors
-  submenuMenuitemsWithOwns: '#ex1 [role="menu"] [role="menuitem"][aria-owns]',
   submenuMenuitemsWithHasPopup:
     '#ex1 [role="menu"] [role="menuitem"][aria-haspopup]',
   submenuMenuitemsWithExpanded:
@@ -117,8 +118,7 @@ const checkOpen = async function (t, selector, index) {
       const [selector, index] = arguments;
       const items = document.querySelectorAll(selector);
       const test1 = items[index].getAttribute('aria-expanded') === 'true';
-      const id = items[index].getAttribute('aria-owns');
-      const menu = document.getElementById(id);
+      const menu = items[index].nextElementSibling;
       const test2 = menu.style.display != 'none';
       return test1 && test2;
     },
@@ -313,27 +313,6 @@ ariaTest(
 );
 
 ariaTest(
-  'Test aria-owns exists on menubar menuitems with popup menus',
-  exampleFile,
-  'menubar-menuitem-aria-owns',
-  async (t) => {
-    const menuitems = await t.context.queryElements(
-      t,
-      ex.menubarMenuitemSelector
-    );
-    for (let i = 0; i < ex.menuLocations.length; i++) {
-      let menuitem = menuitems[ex.menuLocations[i]];
-      t.truthy(
-        await menuitem.getAttribute('aria-owns'),
-        'Attribute "aria-owns" should be found on element with label "' +
-          menuitem.getText() +
-          '"'
-      );
-    }
-  }
-);
-
-ariaTest(
   'Test aria-expanded on menubar menuitems set to false when popup is closed',
   exampleFile,
   'menubar-menuitem-aria-expanded-false',
@@ -412,14 +391,11 @@ ariaTest(
       t,
       ex.submenuMenuitemsWithExpanded
     );
-    for (let submenu of submenus) {
-      const menuId = await submenu.getAttribute('aria-owns');
-      const menuSelector = '#' + menuId;
-      const menuElement = await t.context.queryElement(t, menuSelector);
 
+    for (let i = 0; i < submenus.length; i++) {
       t.false(
-        await menuElement.isDisplayed(),
-        'Submenu with ID "' + menuId + ' should NOT be displayed on load'
+        await checkOpen(t, ex.submenuMenuitemsWithExpanded, i),
+        'Submenu with index "' + i + ' should NOT be displayed on load'
       );
     }
   }
@@ -430,73 +406,28 @@ ariaTest(
   exampleFile,
   'menu-menuitem-aria-expanded-true',
   async (t) => {
-    const menubarMenuitems = await t.context.queryElements(
-      t,
-      ex.menubarMenuitemSelector
-    );
+    const testMenuitems = [
+      [1, 4],
+      [1, 8],
+      [12, 14],
+    ];
 
-    const menuitemIndexes = [1, 2];
+    for (let i = 0; i < testMenuitems.length; i++) {
+      const testMenuitem = testMenuitems[i];
+      const indexMenubarOpen = testMenuitem[0];
+      const indexSendArrowRight = testMenuitem[1];
 
-    for (let index = 0; index < menuitemIndexes.length; index += 1) {
-      const menubarMenuitem = menubarMenuitems[menuitemIndexes[index]];
+      await openMenus(t, indexMenubarOpen, -1);
 
-      const menuId = await menubarMenuitem.getAttribute('aria-owns');
+      let menuitems = await t.context.queryElements(t, ex.anyMenuitemSelector);
+      await menuitems[indexSendArrowRight].sendKeys(Key.ARROW_RIGHT);
 
-      if (menuId) {
-        const menuSelector = '#' + menuId;
-        const menuElement = await t.context.queryElement(t, menuSelector);
-
-        await menubarMenuitem.sendKeys(Key.ARROW_DOWN);
-
-        t.true(
-          (await await menubarMenuitem.getAttribute('aria-expanded')) ===
-            'true',
-          'Submenu "' +
-            menubarMenuitem.getText() +
-            '" aria-expanded must be "true"'
-        );
-
-        t.true(
-          await menuElement.isDisplayed(),
-          'Submenu with ID "' +
-            menuId +
-            '" should be displayed when menu is expanded'
-        );
-
-        const expandableMenuitems = await t.context.queryElements(
-          t,
-          '[aria-expanded]',
-          menuElement,
-          true
-        );
-
-        for (let expandableMenuitem of expandableMenuitems) {
-          const submenuId = await expandableMenuitem.getAttribute('aria-owns');
-
-          if (submenuId) {
-            const submenuSelector = '#' + submenuId;
-            const submenuElement = await t.context.queryElement(
-              t,
-              submenuSelector
-            );
-
-            await expandableMenuitem.sendKeys(Key.ARROW_RIGHT);
-
-            t.true(
-              (await await expandableMenuitem.getAttribute('aria-expanded')) ===
-                'true',
-              'Submenu "' + submenuId + '" aria-expanded must be "true"'
-            );
-
-            t.true(
-              await submenuElement.isDisplayed(),
-              'Submenu with ID "' +
-                submenuId +
-                '" should be displayed when sub menu is expanded'
-            );
-          }
-        }
-      }
+      t.true(
+        await checkOpen(t, ex.anyMenuitemSelector, indexSendArrowRight),
+        'Menuitem with index "' +
+          indexSendArrowRight +
+          '"" should be displayed on load'
+      );
     }
   }
 );
