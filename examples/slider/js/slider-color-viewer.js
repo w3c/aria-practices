@@ -40,6 +40,11 @@ class ColorViewerSliders {
     this.initSliderRefs(this.sliders, 'green');
     this.initSliderRefs(this.sliders, 'blue');
 
+    document.body.addEventListener(
+      'pointerup',
+      this.onThumbPointerUp.bind(this)
+    );
+
     this.colorBoxNode = domNode.querySelector('.color-box');
     this.colorValueHexNode = domNode.querySelector('input.color-value-hex');
     this.colorValueRGBNode = domNode.querySelector('input.color-value-rgb');
@@ -121,11 +126,6 @@ class ColorViewerSliders {
       this.sliders[slider].valueNode.addEventListener(
         'pointerdown',
         this.onThumbPointerDown.bind(this)
-      );
-
-      document.body.addEventListener(
-        'pointerup',
-        this.onThumbPointerUp.bind(this)
       );
 
       this.sliders[slider].sliderNode.addEventListener(
