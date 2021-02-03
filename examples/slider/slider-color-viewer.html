@@ -50,64 +50,65 @@
           <div id="ex1">
             <div class="color-viewer-sliders" role="group" aria-labelledby="id-color-viewer">
               <h2 id="id-color-viewer">Color Viewer</h2>
-              <div id="id-red" class="label">Red</div>
-              <div class="color-group red">
-                <div class="color-slider"
-                    role="slider"
-                    tabindex="0"
-                    aria-valuemin="0"
-                    aria-valuenow="128"
-                    aria-valuemax="255"
-                    aria-labelledby="id-red">
-                  <!-- SVG position and dimension values added through Javascript -->
-                  <svg width="0" height="0" aria-hidden="true">
-                    <text class="value" x="0" y="0">128</text>
-                    <rect class="rail"  x="0" y="0" rx="0" width="0" height="0"/>
-                    <rect class="fill"  x="0" y="0" rx="0" width="0" height="0"/>
-                    <rect class="thumb" x="0" y="0" rx="0" width="0" height="0"/>
-                    <rect class="focus" x="0" y="0" rx="0" width="0" height="0"/>
-                  </svg>
-                </div>
+
+              <div class="color-slider red"
+                  role="slider"
+                  tabindex="0"
+                  aria-valuemin="0"
+                  aria-valuenow="128"
+                  aria-valuemax="255"
+                  aria-labelledby="id-red">
+                <div id="id-red" class="label">Red</div>
+
+                <!-- SVG position and dimension values added through Javascript -->
+
+                <svg width="0" height="0" aria-hidden="true">
+                  <text class="value" x="0" y="0">128</text>
+                  <rect class="rail"  x="0" y="0" rx="0" width="0" height="0"/>
+                  <rect class="fill"  x="0" y="0" rx="0" width="0" height="0"/>
+                  <rect class="thumb" x="0" y="0" rx="0" width="0" height="0"/>
+                  <rect class="focus" x="0" y="0" rx="0" width="0" height="0"/>
+                </svg>
               </div>
 
-              <div id="id-green" class="label">Green</div>
-              <div class="color-group green">
-                <div class="color-slider"
-                    role="slider"
-                    tabindex="0"
-                    aria-valuemin="0"
-                    aria-valuenow="128"
-                    aria-valuemax="255"
-                    aria-labelledby="id-green">
-                  <!-- SVG position and dimension values added through Javascript -->
-                  <svg width="0" height="0" aria-hidden="true">
-                    <text class="value" x="0" y="0">128</text>
-                    <rect class="rail"  x="0" y="0" rx="0" width="0" height="0"/>
-                    <rect class="fill"  x="0" y="0" rx="0" width="0" height="0"/>
-                    <rect class="thumb" x="0" y="0" rx="0" width="0" height="0"/>
-                    <rect class="focus" x="0" y="0" rx="0" width="0" height="0"/>
-                  </svg>
-                </div>
+              <div class="color-slider green"
+                  role="slider"
+                  tabindex="0"
+                  aria-valuemin="0"
+                  aria-valuenow="128"
+                  aria-valuemax="255"
+                  aria-labelledby="id-green">
+                <div id="id-green" class="label">Green</div>
+
+                <!-- SVG position and dimension values added through Javascript -->
+
+                <svg width="0" height="0" aria-hidden="true">
+                  <text class="value" x="0" y="0">128</text>
+                  <rect class="rail"  x="0" y="0" rx="0" width="0" height="0"/>
+                  <rect class="fill"  x="0" y="0" rx="0" width="0" height="0"/>
+                  <rect class="thumb" x="0" y="0" rx="0" width="0" height="0"/>
+                  <rect class="focus" x="0" y="0" rx="0" width="0" height="0"/>
+                </svg>
               </div>
 
-              <div id="id-blue" class="label">Blue</div>
-              <div class="color-group blue">
-                  <!-- SVG position and dimension values added through Javascript -->
-                <div class="color-slider"
-                    role="slider"
-                    tabindex="0"
-                    aria-valuemin="0"
-                    aria-valuenow="128"
-                    aria-valuemax="255"
-                    aria-labelledby="id-blue">
-                  <svg width="0" height="0" aria-hidden="true">
-                    <text class="value" x="0" y="0">128</text>
-                    <rect class="rail"  x="0" y="0" rx="0" width="0" height="0"/>
-                    <rect class="fill"  x="0" y="0" rx="0" width="0" height="0"/>
-                    <rect class="thumb" x="0" y="0" rx="0" width="0" height="0"/>
-                    <rect class="focus" x="0" y="0" rx="0" width="0" height="0"/>
-                  </svg>
-                </div>
+              <div class="color-slider blue"
+                  role="slider"
+                  tabindex="0"
+                  aria-valuemin="0"
+                  aria-valuenow="128"
+                  aria-valuemax="255"
+                  aria-labelledby="id-blue">
+                <div id="id-blue" class="label">Blue</div>
+
+                <!-- SVG position and dimension values added through Javascript -->
+
+                <svg width="0" height="0" aria-hidden="true">
+                  <text class="value" x="0" y="0">128</text>
+                  <rect class="rail"  x="0" y="0" rx="0" width="0" height="0"/>
+                  <rect class="fill"  x="0" y="0" rx="0" width="0" height="0"/>
+                  <rect class="thumb" x="0" y="0" rx="0" width="0" height="0"/>
+                  <rect class="focus" x="0" y="0" rx="0" width="0" height="0"/>
+                </svg>
               </div>
 
               <h3>Color View Box</h3>
@@ -135,6 +136,9 @@
         </li>
         <li>
           The placement of the slider value above the thumb supports users with low vision by making it easier to view the current value when the thumb is dragged.
+        </li>
+        <li>
+          In addition to the focus ring around the entire slider and slider label, there is an additional focus ring around the thumb and slider value to highlight the interactive nature of the thumb.
         </li>
         <li>
           Use of SVG enables high contrast support by providing a means for <code>text</code> and <code>rect</code> element to adapt to high contrast colors using the <code>currentColor</code> value for the <code>stroke</code> and <code>fill</code> properties.

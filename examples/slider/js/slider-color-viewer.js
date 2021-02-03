@@ -47,25 +47,24 @@ class ColorViewerSliders {
 
   initSliderRefs(sliderRef, color) {
     sliderRef[color] = {};
-    var n = this.domNode.querySelector('.color-group.' + color);
-    sliderRef[color].groupNode = n;
-    sliderRef[color].sliderNode = n.querySelector('.color-slider');
+    var n = this.domNode.querySelector('.color-slider.' + color);
+    sliderRef[color].sliderNode = n;
 
-    sliderRef[color].svgNode = n.querySelector('.color-slider svg');
+    sliderRef[color].svgNode = n.querySelector('svg');
     sliderRef[color].svgNode.setAttribute('width', this.svgWidth);
     sliderRef[color].svgNode.setAttribute('height', this.svgHeight);
     sliderRef[color].svgPoint = sliderRef[color].svgNode.createSVGPoint();
 
-    sliderRef[color].valueNode = n.querySelector('.color-slider .value');
+    sliderRef[color].valueNode = n.querySelector('.value');
     sliderRef[color].valueNode.setAttribute('y', this.valueY);
 
-    sliderRef[color].thumbNode = n.querySelector('.color-slider .thumb');
+    sliderRef[color].thumbNode = n.querySelector('.thumb');
     sliderRef[color].thumbNode.setAttribute('width', this.thumbWidth);
     sliderRef[color].thumbNode.setAttribute('height', this.thumbHeight);
     sliderRef[color].thumbNode.setAttribute('y', this.railY);
     sliderRef[color].thumbNode.setAttribute('rx', this.rectRadius);
 
-    sliderRef[color].focusNode = n.querySelector('.color-slider .focus');
+    sliderRef[color].focusNode = n.querySelector('.focus');
     sliderRef[color].focusNode.setAttribute(
       'width',
       this.focusWidth - this.borderWidth
@@ -113,22 +112,25 @@ class ColorViewerSliders {
         'pointerdown',
         this.onThumbPointerDown.bind(this)
       );
-      this.sliders[slider].sliderNode.addEventListener(
+
+      this.sliders[slider].valueNode.addEventListener(
+        'keydown',
+        this.onSliderKeyDown.bind(this)
+      );
+
+      this.sliders[slider].valueNode.addEventListener(
+        'pointerdown',
+        this.onThumbPointerDown.bind(this)
+      );
+
+      document.body.addEventListener(
         'pointerup',
         this.onThumbPointerUp.bind(this)
       );
+
       this.sliders[slider].sliderNode.addEventListener(
         'pointermove',
         this.onThumbPointerMove.bind(this)
-      );
-
-      this.sliders[slider].sliderNode.addEventListener(
-        'focus',
-        this.onFocus.bind(this)
-      );
-      this.sliders[slider].sliderNode.addEventListener(
-        'blur',
-        this.onBlur.bind(this)
       );
 
       this.moveSliderTo(
@@ -290,7 +292,7 @@ class ColorViewerSliders {
   onThumbPointerMove(event) {
     if (
       this.pointerSlider &&
-      this.pointerSlider.groupNode.contains(event.target)
+      this.pointerSlider.sliderNode.contains(event.target)
     ) {
       let x = this.getSVGPoint(this.pointerSlider, event).x;
       let min = this.getValueMin(this.pointerSlider);
@@ -320,16 +322,6 @@ class ColorViewerSliders {
 
     // Set focus to the clicked handle
     slider.sliderNode.focus();
-  }
-
-  onFocus(event) {
-    let slider = this.getSlider(event.currentTarget);
-    slider.groupNode.classList.add('focus');
-  }
-
-  onBlur(event) {
-    let slider = this.getSlider(event.currentTarget);
-    slider.groupNode.classList.remove('focus');
   }
 
   getColorHex() {

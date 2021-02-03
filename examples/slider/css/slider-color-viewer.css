@@ -4,11 +4,6 @@
   display: block;
 }
 
-.color-box-sliders .label {
-  margin-top: 0;
-  margin-bottom: 1 em;
-}
-
 .color-viewer-sliders .color-box {
   width: 200px;
   height: 200px;
@@ -27,100 +22,100 @@
   display: block;
 }
 
-.color-group {
+.color-slider {
+  margin-top: 1em;
   padding: 4px;
-  width: 490px;
   touch-action: pan-y;
+  width: 350px;
+  outline: none;
 }
 
-.color-group.focus {
-  color: #005a9c;
+.color-slider div,
+.color-slider svg {
+  display: block;
+  width: 350px;
 }
 
-.color-group > div {
-  display: inline;
+.color-slider .label {
+  font-weight: bold;
 }
 
-.color-group .value {
+.color-slider .value {
   color: currentColor;
   fill: currentColor;
 }
 
-.color-group.focus .color-slider .value,
-.color-group .color-slider:focus .value,
-.color-group .color-slider:hover .value {
-  font-weight: bold;
-}
-
-.color-group .color-slider {
-  margin: 0;
-  padding: 0;
-}
-
-.color-group .color-slider .valueBackground {
+.color-slider .valueBackground {
   fill: white;
   stroke-width: 0;
 }
 
-.color-group .color-slider .rail {
+.color-slider .rail {
   fill: #bbb;
   stroke: currentColor;
   stroke-width: 2px;
   opacity: 0.8;
 }
 
-.color-group .color-slider .fill {
+.color-slider .fill {
   stroke-width: 0;
   opacity: 0.5;
   pointer-events: none;
 }
 
-.color-group.green .color-slider .fill {
-  fill: green;
-}
-
-.color-group.red .color-slider .fill {
+.color-slider.red .fill {
   fill: red;
 }
 
-.color-group.blue .color-slider .fill {
+.color-slider.green .fill {
+  fill: green;
+}
+
+.color-slider.blue .fill {
   fill: blue;
 }
 
-.color-group .color-slider .thumb {
+.color-slider .thumb {
   fill: #666;
   stroke: currentColor;
   stroke-width: 2px;
 }
 
-.color-group .color-slider .focus {
+.color-slider .focus {
   fill: transparent;
   stroke: transparent;
   stroke-width: 2px;
 }
 
-.color-group.focus .color-slider .fill,
-.color-group .color-slider:focus .fill,
-.color-group .color-slider:hover .fill {
+.color-slider:focus {
+  outline: 2px currentColor solid;
+}
+
+.color-slider:focus .value,
+.color-slider:hover .value {
+  font-weight: bold;
+}
+
+.color-slider:focus .fill,
+.color-slider:hover .fill {
   opacity: 1;
 }
 
-.color-group.focus .color-slider .rail,
-.color-group .color-slider:focus .rail,
-.color-group .color-slider:hover .rail {
+.color-slider:focus .rail,
+.color-slider:hover .rail {
   fill: transparent;
   stroke: currentColor;
   opacity: 1;
 }
 
-.color-group .color-slider:focus .thumb,
-.color-group .color-slider:hover .thumb {
+.color-slider:focus .thumb,
+.color-slider:hover .thumb {
   fill: #ddd;
   stroke: currentColor;
   opacity: 1;
 }
 
-.color-group .color-slider:focus .focus,
-.color-group .color-slider:hover .focus {
+.color-slider:focus .focus,
+.color-slider:hover .focus {
   stroke: currentColor;
 }
