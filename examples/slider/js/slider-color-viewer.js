@@ -13,6 +13,8 @@ class ColorViewerSliders {
   constructor(domNode) {
     this.domNode = domNode;
 
+    this.pointerSlider = false;
+
     this.sliders = {};
 
     this.svgWidth = 310;
@@ -111,6 +113,15 @@ class ColorViewerSliders {
         'pointerdown',
         this.onThumbPointerDown.bind(this)
       );
+      this.sliders[slider].sliderNode.addEventListener(
+        'pointerup',
+        this.onThumbPointerUp.bind(this)
+      );
+      this.sliders[slider].sliderNode.addEventListener(
+        'pointermove',
+        this.onThumbPointerMove.bind(this)
+      );
+
       this.sliders[slider].sliderNode.addEventListener(
         'focus',
         this.onFocus.bind(this)
@@ -263,36 +274,34 @@ class ColorViewerSliders {
   }
 
   onThumbPointerDown(event) {
-    let slider = this.getSlider(event.currentTarget);
+    this.pointerSlider = this.getSlider(event.currentTarget);
 
-    var onPointerMove = function (event) {
-      let x = this.getSVGPoint(slider, event).x;
-      let min = this.getValueMin(slider);
-      let max = this.getValueMax(slider);
-      let diffX = x - this.railX;
-      let value = Math.round((diffX * (max - min)) / this.railWidth);
-      this.moveSliderTo(slider, value);
-
-      event.preventDefault();
-      event.stopPropagation();
-    }.bind(this);
-
-    var onPointerUp = function () {
-      document.removeEventListener('pointermove', onPointerMove);
-      document.removeEventListener('pointerup', onPointerUp);
-    };
-
-    // bind a pointer move event handler to move thumb
-    document.addEventListener('pointermove', onPointerMove);
-
-    // bind a pointer up event handler to stop tracking thumb movements
-    document.addEventListener('pointerup', onPointerUp);
+    // Set focus to the clicked on
+    this.pointerSlider.sliderNode.focus();
 
     event.preventDefault();
     event.stopPropagation();
+  }
 
-    // Set focus to the clicked on
-    slider.sliderNode.focus();
+  onThumbPointerUp() {
+    this.pointerSlider = false;
+  }
+
+  onThumbPointerMove(event) {
+    if (
+      this.pointerSlider &&
+      this.pointerSlider.groupNode.contains(event.target)
+    ) {
+      let x = this.getSVGPoint(this.pointerSlider, event).x;
+      let min = this.getValueMin(this.pointerSlider);
+      let max = this.getValueMax(this.pointerSlider);
+      let diffX = x - this.railX;
+      let value = Math.round((diffX * (max - min)) / this.railWidth);
+      this.moveSliderTo(this.pointerSlider, value);
+
+      event.preventDefault();
+      event.stopPropagation();
+    }
   }
 
   // handle click event on the rail
