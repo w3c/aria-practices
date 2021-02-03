@@ -280,8 +280,8 @@
           <li>
             Because transparent borders are visible on some systems with operating system high contrast settings enabled, transparency cannot be used to create a visual difference between the element that is focused an other elements.
             Instead of using transparency, the focused element has a thicker border and less padding.
-            When an element receives focus, its border changes from 1 to 3 pixels and padding is reduced by 2 pixels.
-            When an element loses focus, its border changes from 3 pixels to 1 and padding is increased by 2 pixels.
+            When an element receives focus, its border changes from 0 to 2 pixels and padding is reduced by 2 pixels.
+            When an element loses focus, its border changes from 2 to 0 pixels and padding is increased by 2 pixels.
           </li>
           <li>
             To ensure the arrow icons used to indicate the expanded or collapsed state have sufficient contrast with the background when high contrast settings invert colors, the CSS <code>currentColor</code> value for the <code>fill</code> and <code>stroke</code> properties of the SVG <code>polygon</code> element is used to synchronize the color with text content.
