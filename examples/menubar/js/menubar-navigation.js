@@ -439,7 +439,7 @@ class MenubarNavigation {
         popupMenu.parentNode.style.position = 'relative';
         popupMenu.style.display = 'block';
         popupMenu.style.position = 'absolute';
-        popupMenu.style.left = rect.width + 6 + 'px';
+        popupMenu.style.left = rect.width + 10 + 'px';
         popupMenu.style.top = '0px';
         popupMenu.style.zIndex = 100;
       } else {
