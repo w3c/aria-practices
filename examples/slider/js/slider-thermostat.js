@@ -69,8 +69,8 @@ class SliderThermostatVertical {
       this.onSliderKeydown.bind(this)
     );
     this.sliderNode.addEventListener(
-      'mousedown',
-      this.onSliderMousedown.bind(this)
+      'pointerdown',
+      this.onSliderPointerdown.bind(this)
     );
     this.sliderNode.addEventListener('focus', this.onSliderFocus.bind(this));
     this.sliderNode.addEventListener('blur', this.onSliderBlur.bind(this));
@@ -220,8 +220,8 @@ class SliderThermostatVertical {
     this.sliderNode.focus();
   }
 
-  onSliderMousedown(event) {
-    var onMousemove = function (e) {
+  onSliderPointerdown(event) {
+    var onPointermove = function (e) {
       var y = this.getSVGPoint(e).y;
       var min = this.getValueMin();
       var max = this.getValueMax();
@@ -233,16 +233,16 @@ class SliderThermostatVertical {
       e.stopPropagation();
     }.bind(this);
 
-    var onMouseup = function () {
-      document.removeEventListener('mousemove', onMousemove);
-      document.removeEventListener('mouseup', onMouseup);
+    var onPointerup = function () {
+      document.removeEventListener('pointermove', onPointermove);
+      document.removeEventListener('pointerup', onPointerup);
     };
 
-    // bind a mousemove event handler to move pointer
-    document.addEventListener('mousemove', onMousemove);
+    // bind a pointermove event handler to move pointer
+    document.addEventListener('pointermove', onPointermove);
 
-    // bind a mouseup event handler to stop tracking mouse movements
-    document.addEventListener('mouseup', onMouseup);
+    // bind a pointerup event handler to stop tracking pointer movements
+    document.addEventListener('pointerup', onPointerup);
 
     event.preventDefault();
     event.stopPropagation();
@@ -318,8 +318,8 @@ class SliderThermostatText {
       this.onSliderKeydown.bind(this)
     );
     this.sliderNode.addEventListener(
-      'mousedown',
-      this.onSliderMousedown.bind(this)
+      'pointerdown',
+      this.onSliderPointerdown.bind(this)
     );
     this.sliderNode.addEventListener('focus', this.onSliderFocus.bind(this));
     this.sliderNode.addEventListener('blur', this.onSliderBlur.bind(this));
@@ -471,8 +471,8 @@ class SliderThermostatText {
     this.sliderNode.focus();
   }
 
-  onSliderMousedown(event) {
-    var onMousemove = function (e) {
+  onSliderPointerdown(event) {
+    var onPointermove = function (e) {
       var x = this.getSVGPoint(e).x;
       var min = this.getValueMin();
       var max = this.getValueMax();
@@ -484,16 +484,16 @@ class SliderThermostatText {
       e.stopPropagation();
     }.bind(this);
 
-    var onMouseup = function () {
-      document.removeEventListener('mousemove', onMousemove);
-      document.removeEventListener('mouseup', onMouseup);
+    var onPointerup = function () {
+      document.removeEventListener('pointermove', onPointermove);
+      document.removeEventListener('pointerup', onPointerup);
     };
 
-    // bind a mousemove event handler to move pointer
-    document.addEventListener('mousemove', onMousemove);
+    // bind a pointermove event handler to move pointer
+    document.addEventListener('pointermove', onPointermove);
 
-    // bind a mouseup event handler to stop tracking mouse movements
-    document.addEventListener('mouseup', onMouseup);
+    // bind a pointerup event handler to stop tracking pointer movements
+    document.addEventListener('pointerup', onPointerup);
 
     event.preventDefault();
     event.stopPropagation();
