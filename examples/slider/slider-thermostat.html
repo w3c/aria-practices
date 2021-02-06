@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Slider Examples with aria-orientation and aria-valuetext | WAI-ARIA Authoring Practices 1.2</title>
+
+  <!--  Core js and css shared by all examples; do not modify when using this template. -->
+  <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
+  <link rel="stylesheet" href="../css/core.css">
+  <script src="../js/examples.js"></script>
+  <script src="../js/highlight.pack.js"></script>
+  <script src="../js/app.js"></script>
+
+  <link rel="stylesheet" href="css/slider-thermostat.css">
+  <script src="js/slider-thermostat.js"></script>
+</head>
+<body>
+  <nav aria-label="Related Links" class="feedback">
+    <ul>
+      <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/projects/3">Related Issues</a></li>
+      <li><a href="../../#slider">Design Pattern</a></li>
+    </ul>
+  </nav>
+  <main>
+    <h1>Slider Examples with aria-orientation and aria-valuetext</h1>
+    <p>
+      The following example of a hypothetical online thermostat demonstrates the
+      <a href="../../#slider">slider design pattern.</a>
+      The desired temperature is set with the first slider, which is vertically oriented.
+      Two horizontal sliders set fan speed and mode.
+      The horizontal sliders illustrate how to use <code>aria-valuetext</code> to provide assistive technologies with meaningful names for numeric values.
+    </p>
+    <p>Similar examples include: </p>
+    <ul>
+      <li><a href="slider-1.html">Horizontal Slider Examples</a>: Demonstrates using three horizontally aligned sliders to make a color picker.</li>
+    </ul>
+
+    <section>
+      <div class="example-header">
+        <h2 id="ex_label">Example</h2>
+      </div>
+      <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
+      <div id="ex1" class="example">
+        <div id="id-temp-label" class="label">Temperature</div>
+        <div class="slider-thermostat-vertical">
+          <div class="input-value">
+            <input type="number"
+              tabindex="-1"
+              value="68"
+              aria-labelledby="id-temp-label">
+            °F
+          </div>
+          <svg class="slider-group"  width="140" height="340">
+            <rect class="rail" x="60" y="20" width="8" height="300" rx="5"  aria-hidden="true"/>
+            <g role="slider"
+              id="id-temp"
+              aria-orientation="vertical"
+              tabindex="0"
+              aria-valuemin="50"
+              aria-valuenow="68"
+              aria-valuetext="68 degrees"
+              aria-valuemax="100"
+              aria-labelledby="id-temp-label">
+              <text class="value" x="94" y="150">68</text>
+              <rect class="focus"
+                x="35" y="170" width="100" height="24" rx="12" />
+              <rect class="thumb"
+                 x="35" y="145" width="48" height="14" rx="5"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="slider-thermostat-text">
+          <div id="id-fan-label" class="label">Fan</div>
+          <svg class="slider-group" width="210" height="105">
+            <rect class="rail" x="35" y="35" width="132" height="8" rx="5" aria-hidden="true"/>
+            <g id="id-fan"
+              role="slider"
+              aria-orientation="horizontal"
+              tabindex="0"
+              aria-valuemin="0"
+              aria-valuenow="0"
+              aria-valuetext="Off"
+              aria-valuemax="3"
+              aria-labelledby="id-fan-label">
+              <rect class="focus"
+                x="0" y="0" width="28" height="60" rx="12"/>
+              <rect class="thumb"
+                x="0" y="0" width="14" height="48" rx="5"/>
+            </g>
+          </svg>
+          <div class="labels">
+            <button
+              tabindex="-1"
+              aria-controls="id-fan"
+              data-value="0"
+              aria-label="Turn fan off">
+              Off
+            </button>
+            <button
+              tabindex="-1"
+              aria-controls="id-fan"
+              data-value="1"
+              aria-label="Set fan to low speed">
+              Low
+            </button>
+            <button
+              tabindex="-1"
+              aria-controls="id-fan"
+              data-value="2"
+              aria-label="Set fan to high speed">
+              High
+            </button>
+            <button
+              tabindex="-1"
+              aria-controls="id-fan"
+              data-value="3"
+              aria-label="Set fan to auto">
+              Auto
+            </button>
+          </div>
+        </div>
+
+        <div class="slider-thermostat-text">
+          <div id="id-hc-label" class="label">Heat/Cool</div>
+          <svg class="slider-group" width="210" height="105">
+            <rect class="rail" x="35" y="35" width="92" height="8" rx="5" aria-hidden="true"/>
+            <g role="slider"
+              aria-orientation="horizontal"
+              id="id-hc"
+              tabindex="0"
+              aria-valuemin="0"
+              aria-valuenow="0"
+              aria-valuetext="Off"
+              aria-valuemax="2"
+              aria-labelledby="id-hc-label">
+              <rect class="focus"
+                x="0" y="0" width="28" height="60" rx="12"/>
+              <rect class="thumb"
+                x="0" y="0" width="14" height="48" rx="5"/>
+            </g>
+          </svg>
+          <div class="labels">
+            <button
+              tabindex="-1"
+              aria-controls="id-hc"
+              data-value="0"
+              aria-label="Heating and Cooling off">
+              Off
+            </button>
+            <button
+              tabindex="-1"
+              aria-controls="id-hc"
+              data-value="1"
+              aria-label="Heating on">
+              Heat
+            </button>
+            <button
+              tabindex="-1"
+              aria-controls="id-hc"
+              data-value="2"
+              aria-label="Cooling on">
+              Cool
+            </button>
+          </div>
+        </div>
+      </div>
+      <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
+    </section>
+
+      <section>
+        <h2>Accessibility Features</h2>
+        <ul>
+          <li>A border is placed around the slider and related controls when the slider or a related element receives focus.</li>
+          <li>The placement of the slider value to the right of the thumb of the vertical supports users with low vision by allow them to more easily view the value of the slider as they move the thumb.</li>
+          <li>A circle SVG image is used for indicating the slider with keyboard focus.</li>
+          <li>The use SVG images enables the thumb, focus ring and rail of the slider to adapt to operating system high contrast color schemes and settings.</li>
+          <li>The CSS <code>currentColor</code> value for the <code>fill</code> and <code>stroke</code> properties for the rail, thumb and slider supports user selected color schemes in operating system high contrast mode.</li>
+          <li>The <code>input[type=number]</code> element provides mobile assistive technology users a means to change the temperature when an external keyboard is not being used.</li>
+          <li>The <code>button</code> elements provides mobile assistive technology users a means to change the Fan and Heat/Cool values  when an external keyboard is not being used.</li>
+          <li>The <code>button</code> elements receive a border style when hovered for users to identify the elements as interactive.  Border is not rendered by default since the content of the buttons is primarily as visual labels for values of the slider positions.  The buttons are only a secondary way to set the value of the slider.</li>
+        </ul>
+      </section>
+
+    <section>
+      <h2 id="kbd_label" style="clear: both;">Keyboard Support</h2>
+      <h3 id="kbd_label_1">Slider</h3>
+      <table aria-labelledby="kbd_label kbd_label_1" class="def">
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-test-id="key-right-arrow">
+            <th>
+              <kbd>Right Arrow</kbd>
+            </th>
+            <td>Increases slider value one step.</td>
+          </tr>
+          <tr data-test-id="key-up-arrow">
+            <th>
+              <kbd>Up Arrow</kbd>
+            </th>
+            <td>Increases slider value one step.</td>
+          </tr>
+          <tr data-test-id="key-left-arrow">
+            <th>
+              <kbd>Left Arrow</kbd>
+            </th>
+            <td>Decreases slider value one step.</td>
+          </tr>
+          <tr data-test-id="key-down-arrow">
+            <th>
+              <kbd>Down Arrow</kbd>
+            </th>
+            <td>Decreases slider value one step.</td>
+          </tr>
+          <tr data-test-id="key-page-up">
+            <th>
+              <kbd>Page Up</kbd>
+            </th>
+            <td>Increases temperature slider value multiple steps. In this slider, jumps ten steps.</td>
+          </tr>
+          <tr data-test-id="key-page-down">
+            <th>
+              <kbd>Page Down</kbd>
+            </th>
+            <td>Decreases temperature slider value multiple steps. In this slider, jumps ten steps.</td>
+          </tr>
+          <tr data-test-id="key-home">
+            <th>
+              <kbd>Home</kbd>
+            </th>
+            <td>Sets slider to its minimum value.</td>
+          </tr>
+          <tr data-test-id="key-end">
+            <th>
+              <kbd>End</kbd>
+            </th>
+            <td>Sets slider to its maximum value.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 id="kbd_label_2">Buttons</h3>
+      <table aria-labelledby="kbd_label kbd_label_2" class="def">
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-test-id="button-key-space">
+            <th>
+              <kbd>Space, Enter</kbd>
+            </th>
+            <td>
+              <ul>
+                <li>The buttons support mobile devices when a keyboard is not available.</li>
+                <li>Pressing the <kbd>space</kbd> key or clicking on the button changes the value of the slider referenced by <code>aria-controls</code> to the value in the <code>data-value</code> attribute of the button element.</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  <section>
+      <h2 id="rps_label">Role, Property, State, and Tabindex Attributes</h2>
+
+      <h3 id="rps_label_1">Slider</h3>
+      <table aria-labelledby="rps_label rps_label_1" class="data attributes">
+        <thead>
+          <tr>
+            <th scope="col">Role</th>
+            <th scope="col">Attribute</th>
+            <th scope="col">Element</th>
+            <th scope="col">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-test-id="slider-role">
+            <th scope="row">
+              <code>slider</code>
+            </th>
+            <td></td>
+            <td>
+              <code>g</code>
+            </td>
+            <td>
+              <ul>
+                <li>Identifies the element as a slider.</li>
+                <li>Set on the <code>div</code> that represents as the movable thumb because it is the operable element that represents the slider value.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr data-test-id="slider-tabindex">
+            <td></td>
+            <th scope="row">
+              <code>tabindex=<q>0</q></code>
+            </th>
+            <td>
+              <code>g</code>
+            </td>
+            <td>Includes the slider thumb in the page tab sequence.</td>
+          </tr>
+          <tr data-test-id="aria-orientation">
+            <td></td>
+            <th scope="row">
+              <code>aria-orientation</code>
+            </th>
+            <td>
+              <code>g</code>
+            </td>
+            <td>
+              <ul>
+                <li>Indicates the orientation of the slider element.</li>
+                <li>Set to <code>vertical</code> for the temperature slider.</li>
+                <li>Set to <code>horizontal</code> for the fan and heat/cool controls.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr data-test-id="aria-valuemax">
+            <td></td>
+            <th scope="row">
+              <code>aria-valuemax=<q>NUMBER</q></code>
+            </th>
+            <td>
+              <code>g</code>
+            </td>
+            <td>Specifies a numeric value that is the maximum value the slider can have.</td>
+          </tr>
+          <tr data-test-id="aria-valuemin">
+            <td></td>
+            <th scope="row">
+              <code>aria-valuemin=<q>NUMBER</q></code>
+            </th>
+            <td>
+              <code>g</code>
+            </td>
+            <td>Specifies a numeric value that is the minimum value the slider can have.</td>
+          </tr>
+          <tr data-test-id="aria-valuenow">
+            <td></td>
+            <th scope="row">
+              <code>aria-valuenow=<q>NUMBER</q></code>
+            </th>
+            <td>
+              <code>g</code>
+            </td>
+            <td>A numeric value that is the current value of the slider.</td>
+          </tr>
+          <tr data-test-id="aria-valuetext">
+            <td></td>
+            <th scope="row">
+              <code>aria-valuetext=<q>STRING</q></code>
+            </th>
+            <td>
+              <code>g</code>
+            </td>
+            <td>
+              <ul>
+                <li>A string value that provides a user-friendly name for the current value of the slider.</li>
+                <li>For the temperature slider, is the value of the slider appended with the text <q> degrees</q>.</li>
+                <li>For fan and heat/cool, is the text representation of the current state, e.g., <q>Off</q> or <q>Heat</q>.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr data-test-id="aria-labelledby">
+            <td></td>
+            <th scope="row">
+              <code>aria-labelledby=<q>IDREF</q></code>
+            </th>
+            <td>
+              <code>g</code>
+            </td>
+            <td>Refers to the element containing the name of the slider.</td>
+          </tr>
+          <tr data-test-id="aria-hidden">
+            <td></td>
+            <th scope="row">
+              <code>aria-hidden=<q>true</q></code>
+            </th>
+            <td>
+              <code>rect</code>
+            </td>
+            <td>Removes the SVG <code>rect</code> element from the accessibility tree, since some screen readers will describe it as an image separate from the slider.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 id="rps_label_2">Input</h3>
+      <table aria-labelledby="rps_label rps_label_2" class="data attributes">
+        <thead>
+          <tr>
+            <th scope="col">Role</th>
+            <th scope="col">Attribute</th>
+            <th scope="col">Element</th>
+            <th scope="col">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-test-id="input-tabindex">
+            <td></td>
+            <th scope="row">
+              <code>tabindex=<q>-1</q></code>
+            </th>
+            <td>
+              <code>input</code>
+            </td>
+            <td>
+              <ul>
+                <li>The <code>input[type=number]</code> supports mobile access when an external keyboard is not available to operate the slider control directly.  Mobile devices provide an on-screen keyboard when input boxes receive focus for entering a temperature value.</li>
+                <li>Removes the <code>input</code> element from the tab order of the page.</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 id="rps_label_3">Buttons</h3>
+      <table aria-labelledby="rps_label rps_label_3" class="data attributes">
+        <thead>
+          <tr>
+            <th scope="col">Role</th>
+            <th scope="col">Attribute</th>
+            <th scope="col">Element</th>
+            <th scope="col">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-test-id="button-tabindex">
+            <td></td>
+            <th scope="row">
+              <code>tabindex=<q>-1</q></code>
+            </th>
+            <td>
+              <code>button</code>
+            </td>
+            <td>
+              <ul>
+                <li>The <code>button</code> supports mobile access when an external keyboard is not available to operate the slider directly.  Mobile devices provide an on-screen keyboard when input boxes receive focus for entering a temperature value.</li>
+                <li>Removes the <code>button</code> element from the tab order of the page.</li>
+              </ul>
+            </td>
+          <tr data-test-id="button-aria-label">
+            <td></td>
+            <th scope="row">
+              <code>aria-label=<q><em>label</em></q></code>
+            </th>
+            <td>
+              <code>button</code>
+            </td>
+            <td>
+              Defines the accessible name for each button describing how the associated slider will change (e.g. "Heating off", "Fan off" and "Fan auto").
+            </td>
+          </tr>
+          <tr data-test-id="button-aria-controls">
+            <td></td>
+            <th scope="row">
+              <code>aria-controls=<q>IDREF</q></code>
+            </th>
+            <td>
+              <code>button</code>
+            </td>
+            <td>
+              <ul>
+                <li>Identifies the content on the page that the button controls.</li>
+                <li>Refers to the SVG <code>g</code> element that contains identifies the slider.</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </section>
+
+    <section>
+      <h2>Javascript and CSS Source Code</h2>
+      <ul id="css_js_files">
+        <li>CSS: <a href="css/slider-thermostat.css" type="text/css">slider-thermostat.css</a></li>
+        <li>Javascript: <a href="js/slider-thermostat.js" type="text/javascript">slider-thermostat.js</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 id="sc1_label">HTML Source Code</h2>
+      <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
+      <pre><code id="sc1"></code></pre>
+      <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
+      <script>
+        sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
+        sourceCode.make();
+      </script>
+    </section>
+  </main>
+  <nav>
+    <a href="../../#slider">Slider Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
+  </nav>
+</body>
+</html>
