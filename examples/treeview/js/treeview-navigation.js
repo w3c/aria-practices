@@ -492,8 +492,9 @@ class TreeViewNavigation {
 
 /**
  * ARIA Treeview example
+ *
  * @function onload
- * @desc  after page has loaded initialize all treeitems based on the role=treeitem
+ * @description  after page has loaded initialize all treeitems based on the role=treeitem
  */
 
 window.addEventListener('load', function () {

@@ -3,8 +3,8 @@ const assert = require('assert');
 /**
  * Confirm the aria-owns element.
  *
- * @param {obj} t                  - ava execution object
- * @param {String} elementSelector - the element with aria-owns set
+ * @param {object} t                  - ava execution object
+ * @param {string} elementSelector - the element with aria-owns set
  */
 
 module.exports = async function assertAriaOwns(t, elementSelector) {
