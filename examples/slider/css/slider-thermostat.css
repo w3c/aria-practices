@@ -13,6 +13,7 @@
   width: 12em;
 }
 
+.slider-thermostat-vertical label,
 .slider-thermostat-vertical .label,
 .slider-thermostat-text .label {
   font-weight: bold;

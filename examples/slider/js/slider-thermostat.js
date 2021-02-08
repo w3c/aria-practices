@@ -12,7 +12,7 @@
 class SliderThermostatVertical {
   constructor(domNode) {
     this.labelCelsiusAbbrev = '°C';
-    this.labelCelsius = ' degrees celsius ';
+    this.labelCelsius = ' degrees Celsius';
     this.changeValue = 0.1;
     this.bigChangeValue = 20 * this.changeValue;
 

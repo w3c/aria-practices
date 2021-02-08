@@ -47,16 +47,19 @@
         <div class="slider-thermostat" role="group" aria-labelledby="id-therm-label">
           <h3 id="id-therm-label">Thermostat</h3>
           <div class="slider-thermostat-vertical">
-            <div id="id-temp-label" class="label">Tempature</div>
             <div class="output-value">
+              <label id="id-temp-label"
+                for="id-temp-output">
+                Tempature
+              </label>
               <output
-                value="25 °C"
-                aria-labelledby="id-temp-label"/>s
+                id="id-temp-output"
+                for="id-temp-slider">25°C</output>
             </div>
             <svg class="slider-group"  width="145" height="340">
               <rect class="rail" x="60" y="20" width="8" height="300" rx="5"  aria-hidden="true"/>
               <g role="slider"
-                id="id-temp"
+                id="id-temp-slider"
                 aria-orientation="vertical"
                 tabindex="0"
                 aria-valuemin="10.0"
