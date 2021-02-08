@@ -1,10 +1,9 @@
 /* CSS Document */
 
-/* CSS Document */
-
-.slider-multithumb {
-  padding: 6px;
-  width: 550px;
+.slider-thermostat h3 {
+  color: black;
+  font-weight: bold;
+  font-size: 150%;
 }
 
 .slider-thermostat-vertical,
@@ -27,18 +26,16 @@
 }
 
 .slider-thermostat-vertical .value {
-  margin: 0.5em;
   position: relative;
   top: 20px;
   height: 1.5em;
 }
 
-.slider-thermostat-vertical .input-value {
-  padding-left: 38px;
-}
-
-.slider-thermostat-vertical .input-value input {
-  width: 4em;
+.slider-thermostat-vertical output {
+  padding-left: 24px;
+  font-weight: bold;
+  font-size: 200%;
+  font-family: sans-serif;
 }
 
 .slider-thermostat-vertical .slider-group .value {

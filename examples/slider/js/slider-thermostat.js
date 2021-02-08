@@ -11,7 +11,14 @@
 
 class SliderThermostatVertical {
   constructor(domNode) {
+    this.labelCelsiusAbbrev = '°C';
+    this.labelCelsius = ' degrees celsius ';
+    this.changeValue = 0.1;
+    this.bigChangeValue = 20 * this.changeValue;
+
     this.domNode = domNode;
+
+    this.isMoving = false;
 
     this.svgNode = domNode.querySelector('svg');
     this.svgPoint = this.svgNode.createSVGPoint();
@@ -27,18 +34,7 @@ class SliderThermostatVertical {
 
     // The input elements are optional to support mobile devices,
     // when a keyboard is not present
-    this.inputNode = domNode.querySelector('.input-value input');
-
-    if (this.inputNode) {
-      this.inputNode.addEventListener('change', this.onInputChange.bind(this));
-      this.inputNode.addEventListener('blur', this.onInputChange.bind(this));
-
-      this.inputNode.addEventListener('blur', this.onSliderBlur.bind(this));
-      this.inputNode.addEventListener('focus', this.onSliderFocus.bind(this));
-
-      this.inputNode.min = this.getValueMin();
-      this.inputNode.max = this.getValueMax();
-    }
+    this.outputNode = domNode.querySelector('.output-value output');
 
     // Dimensions of the slider focus ring, thumb and rail
 
@@ -70,8 +66,15 @@ class SliderThermostatVertical {
     );
     this.sliderNode.addEventListener(
       'pointerdown',
-      this.onSliderPointerdown.bind(this)
+      this.onSliderPointerDown.bind(this)
     );
+
+    // bind a pointermove event handler to move pointer
+    this.svgNode.addEventListener('pointermove', this.onPointerMove.bind(this));
+
+    // bind a pointerup event handler to stop tracking pointer movements
+    document.addEventListener('pointerup', this.onPointerUp.bind(this));
+
     this.sliderNode.addEventListener('focus', this.onSliderFocus.bind(this));
     this.sliderNode.addEventListener('blur', this.onSliderBlur.bind(this));
 
@@ -86,15 +89,15 @@ class SliderThermostatVertical {
   }
 
   getValue() {
-    return parseInt(this.sliderNode.getAttribute('aria-valuenow'));
+    return parseFloat(this.sliderNode.getAttribute('aria-valuenow'));
   }
 
   getValueMin() {
-    return parseInt(this.sliderNode.getAttribute('aria-valuemin'));
+    return parseFloat(this.sliderNode.getAttribute('aria-valuemin'));
   }
 
   getValueMax() {
-    return parseInt(this.sliderNode.getAttribute('aria-valuemax'));
+    return parseFloat(this.sliderNode.getAttribute('aria-valuemax'));
   }
 
   isInRange(value) {
@@ -117,10 +120,13 @@ class SliderThermostatVertical {
       value = valueMin;
     }
 
-    let degreeValue = value + '°F';
-    this.inputNode.value = value;
+    let valueOutput = value.toFixed(1) + this.labelCelsiusAbbrev;
+
+    let valueText = value.toFixed(1) + this.labelCelsius;
+
+    this.outputNode.value = valueOutput;
     this.sliderNode.setAttribute('aria-valuenow', value);
-    this.sliderNode.setAttribute('aria-valuetext', degreeValue);
+    this.sliderNode.setAttribute('aria-valuetext', valueText);
 
     let height = this.railHeight - this.thumbHeight + this.borderWidth2;
 
@@ -129,7 +135,7 @@ class SliderThermostatVertical {
     this.sliderNode.setAttribute('y', pos);
 
     // update INPUT, label and ARIA attributes
-    this.sliderValueNode.textContent = degreeValue;
+    this.sliderValueNode.textContent = valueOutput;
 
     // move the SVG focus ring and thumb elements
     this.sliderFocusNode.setAttribute(
@@ -157,23 +163,23 @@ class SliderThermostatVertical {
     switch (event.key) {
       case 'ArrowLeft':
       case 'ArrowDown':
-        this.moveSliderTo(value - 1);
+        this.moveSliderTo(value - this.changeValue);
         flag = true;
         break;
 
       case 'ArrowRight':
       case 'ArrowUp':
-        this.moveSliderTo(value + 1);
+        this.moveSliderTo(value + this.changeValue);
         flag = true;
         break;
 
       case 'PageDown':
-        this.moveSliderTo(value - 10);
+        this.moveSliderTo(value - this.bigChangeValue);
         flag = true;
         break;
 
       case 'PageUp':
-        this.moveSliderTo(value + 10);
+        this.moveSliderTo(value + this.bigChangeValue);
         flag = true;
         break;
 
@@ -205,12 +211,15 @@ class SliderThermostatVertical {
     this.domNode.classList.remove('focus');
   }
 
+  calcValue(y) {
+    let min = this.getValueMin();
+    let max = this.getValueMax();
+    let diffY = y - this.railY;
+    return max - (diffY * (max - min)) / this.railHeight;
+  }
+
   onRailClick(event) {
-    var y = this.getSVGPoint(event).y;
-    var min = this.getValueMin();
-    var max = this.getValueMax();
-    var diffY = y - this.railY;
-    var value = Math.round(max - (diffY * (max - min)) / this.railHeight);
+    var value = this.calcValue(this.getSVGPoint(event).y);
     this.moveSliderTo(value);
 
     event.preventDefault();
@@ -220,29 +229,8 @@ class SliderThermostatVertical {
     this.sliderNode.focus();
   }
 
-  onSliderPointerdown(event) {
-    var onPointermove = function (e) {
-      var y = this.getSVGPoint(e).y;
-      var min = this.getValueMin();
-      var max = this.getValueMax();
-      var diffY = y - this.railY;
-      var value = Math.round(max - (diffY * (max - min)) / this.railHeight);
-      this.moveSliderTo(value);
-
-      e.preventDefault();
-      e.stopPropagation();
-    }.bind(this);
-
-    var onPointerup = function () {
-      document.removeEventListener('pointermove', onPointermove);
-      document.removeEventListener('pointerup', onPointerup);
-    };
-
-    // bind a pointermove event handler to move pointer
-    document.addEventListener('pointermove', onPointermove);
-
-    // bind a pointerup event handler to stop tracking pointer movements
-    document.addEventListener('pointerup', onPointerup);
+  onSliderPointerDown(event) {
+    this.isMoving = true;
 
     event.preventDefault();
     event.stopPropagation();
@@ -251,20 +239,18 @@ class SliderThermostatVertical {
     this.sliderNode.focus();
   }
 
-  onInputChange(event) {
-    var tgt = event.currentTarget,
-      value = tgt.value,
-      isNumber = typeof parseInt(value) === 'number';
+  onPointerMove(event) {
+    if (this.isMoving) {
+      var value = this.calcValue(this.getSVGPoint(event).y);
+      this.moveSliderTo(value);
 
-    if (value.length === 0) {
-      tgt.value = this.getValue();
-    } else {
-      if (isNumber && this.isInRange(value)) {
-        this.moveSliderTo(parseInt(value));
-      } else {
-        tgt.value = this.getValue();
-      }
+      event.preventDefault();
+      event.stopPropagation();
     }
+  }
+
+  onPointerUp() {
+    this.isMoving = false;
   }
 }
 
@@ -275,6 +261,8 @@ class SliderThermostatVertical {
 class SliderThermostatText {
   constructor(domNode) {
     this.domNode = domNode;
+
+    this.isMoving = false;
 
     this.svgNode = domNode.querySelector('svg');
     this.svgPoint = this.svgNode.createSVGPoint();
@@ -317,10 +305,18 @@ class SliderThermostatText {
       'keydown',
       this.onSliderKeydown.bind(this)
     );
+
     this.sliderNode.addEventListener(
       'pointerdown',
-      this.onSliderPointerdown.bind(this)
+      this.onSliderPointerDown.bind(this)
     );
+
+    // bind a pointermove event handler to move pointer
+    this.svgNode.addEventListener('pointermove', this.onPointerMove.bind(this));
+
+    // bind a pointerup event handler to stop tracking pointer movements
+    document.addEventListener('pointerup', this.onPointerUp.bind(this));
+
     this.sliderNode.addEventListener('focus', this.onSliderFocus.bind(this));
     this.sliderNode.addEventListener('blur', this.onSliderBlur.bind(this));
 
@@ -471,35 +467,32 @@ class SliderThermostatText {
     this.sliderNode.focus();
   }
 
-  onSliderPointerdown(event) {
-    var onPointermove = function (e) {
-      var x = this.getSVGPoint(e).x;
-      var min = this.getValueMin();
-      var max = this.getValueMax();
-      var diffX = x - this.railX;
-      var value = Math.round((diffX * (max - min)) / this.railWidth);
-      this.moveSliderTo(value);
-
-      e.preventDefault();
-      e.stopPropagation();
-    }.bind(this);
-
-    var onPointerup = function () {
-      document.removeEventListener('pointermove', onPointermove);
-      document.removeEventListener('pointerup', onPointerup);
-    };
-
-    // bind a pointermove event handler to move pointer
-    document.addEventListener('pointermove', onPointermove);
-
-    // bind a pointerup event handler to stop tracking pointer movements
-    document.addEventListener('pointerup', onPointerup);
+  onSliderPointerDown(event) {
+    this.isMoving = true;
 
     event.preventDefault();
     event.stopPropagation();
 
     // Set focus to the clicked handle
     this.sliderNode.focus();
+  }
+
+  onPointerMove(event) {
+    if (this.isMoving) {
+      var x = this.getSVGPoint(event).x;
+      var min = this.getValueMin();
+      var max = this.getValueMax();
+      var diffX = x - this.railX;
+      var value = Math.round((diffX * (max - min)) / this.railWidth);
+      this.moveSliderTo(value);
+
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  }
+
+  onPointerUp() {
+    this.isMoving = false;
   }
 
   onButtonClick(event) {
