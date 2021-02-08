@@ -12,16 +12,17 @@ const ex = {
   railRects: '#ex1 rect.rail',
   sliderSelector: '#ex1 [role="slider"]',
   buttonSelector: '#ex1 button',
-  inputSelector: '#ex1 input[type="number"]',
+  groupSelector: '#ex1 [role="group"]',
   tempSelector: '#id-temp',
   fanSelector: '#id-fan',
   heatSelector: '#id-hc',
   pageTempSelector: '#id-temp .value',
-  tempMax: '100',
-  tempMin: '50',
-  tempDefault: '68',
-  tempPageInc: '10',
-  tempSuffix: '°F',
+  tempMax: '38.0',
+  tempMin: '10.0',
+  tempDefault: '25.0',
+  tempInc: '.1',
+  tempPageInc: '2.0',
+  tempSuffix: '°C',
   fanMax: '3',
   fanMin: '0',
   heatMax: '2',
@@ -48,20 +49,20 @@ const getValueAndText = async function (t, selector) {
 // Attributes
 
 ariaTest(
+  'role="group" on DIV element',
+  exampleFile,
+  'group-role',
+  async (t) => {
+    await assertAriaRoles(t, 'ex1', 'group', '1', 'div');
+  }
+);
+
+ariaTest(
   'SVG rects used for the rail have aria-hidden',
   exampleFile,
   'aria-hidden',
   async (t) => {
     await assertAttributeValues(t, ex.railRects, 'aria-hidden', 'true');
-  }
-);
-
-ariaTest(
-  '"tabindex" set to "-1" on buttons',
-  exampleFile,
-  'input-tabindex',
-  async (t) => {
-    await assertAttributeValues(t, ex.inputSelector, 'tabindex', '-1');
   }
 );
 
@@ -236,7 +237,7 @@ ariaTest(
     );
     await tempSlider.sendKeys(Key.ARROW_RIGHT);
 
-    let sliderVal = parseInt(ex.tempDefault) + 1;
+    let sliderVal = parseFloat(ex.tempDefault) + ex.tempInc;
     t.is(
       await tempSlider.getAttribute('aria-valuenow'),
       sliderVal.toString(),
@@ -251,15 +252,15 @@ ariaTest(
       'Temp display should match value of slider: ' + sliderVal
     );
 
-    // Send 51 more keys to temp slider
-    for (let i = 0; i < 51; i++) {
+    // Send 200 more keys to temp slider
+    for (let i = 0; i < 200; i++) {
       await tempSlider.sendKeys(Key.ARROW_RIGHT);
     }
 
     t.is(
       await tempSlider.getAttribute('aria-valuenow'),
       ex.tempMax,
-      'After sending 52 arrow right key, the value of the temp slider should be: ' +
+      'After sending 200 arrow right key, the value of the temp slider should be: ' +
         ex.tempMax
     );
     t.is(
@@ -337,7 +338,7 @@ ariaTest(
     );
     await tempSlider.sendKeys(Key.ARROW_UP);
 
-    let sliderVal = parseInt(ex.tempDefault) + 1;
+    let sliderVal = parseFloat(ex.tempDefault) + ex.tempInc;
     t.is(
       await tempSlider.getAttribute('aria-valuenow'),
       sliderVal.toString(),
@@ -352,15 +353,15 @@ ariaTest(
       'Temp display should match value of slider: ' + sliderVal
     );
 
-    // Send 51 more keys to temp slider
-    for (let i = 0; i < 51; i++) {
+    // Send 200 more keys to temp slider
+    for (let i = 0; i < 200; i++) {
       await tempSlider.sendKeys(Key.ARROW_UP);
     }
 
     t.is(
       await tempSlider.getAttribute('aria-valuenow'),
       ex.tempMax,
-      'After sending 52 arrow up key, the value of the temp slider should be: ' +
+      'After sending 200 arrow up key, the value of the temp slider should be: ' +
         ex.tempMax
     );
     t.is(
@@ -428,7 +429,7 @@ ariaTest(
 );
 
 ariaTest(
-  'page up increases slider value by 10',
+  'page up increases slider value by big step',
   exampleFile,
   'key-page-up',
   async (t) => {
@@ -438,7 +439,9 @@ ariaTest(
     );
     await tempSlider.sendKeys(Key.PAGE_UP);
 
-    let sliderVal = parseInt(ex.tempDefault) + 10;
+    let sliderVal = (
+      parseFloat(ex.tempDefault) + parseFloat(ex.tempPageInc)
+    ).toFixed(1);
     t.is(
       await tempSlider.getAttribute('aria-valuenow'),
       sliderVal.toString(),
@@ -453,15 +456,15 @@ ariaTest(
       'Temp display should match value of slider: ' + sliderVal
     );
 
-    // Send more than 5 keys to temp slider
-    for (let i = 0; i < 5; i++) {
+    // Send more than 10 keys to temp slider
+    for (let i = 0; i < 10; i++) {
       await tempSlider.sendKeys(Key.PAGE_UP);
     }
 
     t.is(
       await tempSlider.getAttribute('aria-valuenow'),
       ex.tempMax,
-      'After sending 5 page up key, the value of the temp slider should be: ' +
+      'After sending 10 page up key, the value of the temp slider should be: ' +
         ex.tempMax
     );
     t.is(
@@ -544,7 +547,7 @@ ariaTest(
     );
     await tempSlider.sendKeys(Key.ARROW_LEFT);
 
-    let tempVal = parseInt(ex.tempMax) - 1;
+    let tempVal = (parseFloat(ex.tempMax) - parseFloat(ex.tempInc)).toFixed(1);
     t.is(
       await tempSlider.getAttribute('aria-valuenow'),
       tempVal.toString(),
@@ -559,15 +562,15 @@ ariaTest(
       'Temp display should match value of slider: ' + tempVal
     );
 
-    // Send 51 more keys to temp slider
-    for (let i = 0; i < 51; i++) {
+    // Send 300 more keys to temp slider
+    for (let i = 0; i < 300; i++) {
       await tempSlider.sendKeys(Key.ARROW_LEFT);
     }
 
     t.is(
       await tempSlider.getAttribute('aria-valuenow'),
       ex.tempMin.toString(),
-      'After sending 53 arrow left key to the temp slider, "aria-valuenow": ' +
+      'After sending 300 arrow left key to the temp slider, "aria-valuenow": ' +
         ex.tempMin
     );
     t.is(
@@ -649,7 +652,7 @@ ariaTest(
     );
     await tempSlider.sendKeys(Key.ARROW_DOWN);
 
-    let tempVal = parseInt(ex.tempMax) - 1;
+    let tempVal = (parseFloat(ex.tempMax) - parseFloat(ex.tempInc)).toFixed(1);
     t.is(
       await tempSlider.getAttribute('aria-valuenow'),
       tempVal.toString(),
@@ -664,15 +667,15 @@ ariaTest(
       'Temp display should match value of slider: ' + tempVal
     );
 
-    // Send 51 more keys to temp slider
-    for (let i = 0; i < 51; i++) {
+    // Send 300 more keys to temp slider
+    for (let i = 0; i < 300; i++) {
       await tempSlider.sendKeys(Key.ARROW_DOWN);
     }
 
     t.is(
       await tempSlider.getAttribute('aria-valuenow'),
       ex.tempMin.toString(),
-      'After sending 53 arrow down key to the temp slider, "aria-valuenow": ' +
+      'After sending 300 arrow down key to the temp slider, "aria-valuenow": ' +
         ex.tempMin
     );
     t.is(
@@ -742,7 +745,7 @@ ariaTest(
 );
 
 ariaTest(
-  'page down decreases slider value by 10',
+  'page down decreases slider value by big step',
   exampleFile,
   'key-page-down',
   async (t) => {
@@ -752,7 +755,9 @@ ariaTest(
     );
     await tempSlider.sendKeys(Key.PAGE_DOWN);
 
-    let sliderVal = parseInt(ex.tempDefault) - 10;
+    let sliderVal = (
+      parseFloat(ex.tempDefault) - parseFloat(ex.tempPageInc)
+    ).toFixed(1);
     t.is(
       await tempSlider.getAttribute('aria-valuenow'),
       sliderVal.toString(),
@@ -767,15 +772,15 @@ ariaTest(
       'Temp display should match value of slider: ' + sliderVal
     );
 
-    // Send more than 5 keys to temp slider
-    for (let i = 0; i < 5; i++) {
+    // Send more than 20 keys to temp slider
+    for (let i = 0; i < 20; i++) {
       await tempSlider.sendKeys(Key.PAGE_DOWN);
     }
 
     t.is(
       await tempSlider.getAttribute('aria-valuenow'),
       ex.tempMin,
-      'After sending 5 page down key, the value of the temp slider should be: ' +
+      'After sending 20 page down key, the value of the temp slider should be: ' +
         ex.tempMin
     );
     t.is(

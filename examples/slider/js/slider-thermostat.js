@@ -125,7 +125,7 @@ class SliderThermostatVertical {
     let valueText = value.toFixed(1) + this.labelCelsius;
 
     this.outputNode.value = valueOutput;
-    this.sliderNode.setAttribute('aria-valuenow', value);
+    this.sliderNode.setAttribute('aria-valuenow', value.toFixed(1));
     this.sliderNode.setAttribute('aria-valuetext', valueText);
 
     let height = this.railHeight - this.thumbHeight + this.borderWidth2;
