@@ -6,6 +6,14 @@
   font-size: 150%;
 }
 
+.slider-thermostat-vertical {
+  touch-action: pan-x;
+}
+
+.slider-thermostat-text {
+  touch-action: pan-y;
+}
+
 .slider-thermostat-vertical,
 .slider-thermostat-text {
   margin-top: 1em;
