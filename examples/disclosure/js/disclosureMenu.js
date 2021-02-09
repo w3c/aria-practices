@@ -205,14 +205,22 @@ window.addEventListener(
     disclosureMenus.forEach((disclosureNav, i) => {
       var links = menus[i].querySelectorAll('[href="#mythical-page-content"]');
       var examplePageHeading = document.getElementById('mythical-page-heading');
+      var examplePageContainer = document.getElementById(
+        'mythical-page-content'
+      );
       for (var k = 0; k < links.length; k++) {
         links[k].addEventListener('click', (event) => {
           // add preventDefault for Codepen functionality, then manually close dropdown
           event.preventDefault();
           disclosureNav.close();
 
+          // change the heading text to fake a page change
           var pageTitle = event.target.innerText;
           examplePageHeading.innerText = pageTitle;
+
+          // move focus to the new "page" -- this is only for this (fake) example,
+          // normally any focus/updates would be handled natively by the browser
+          examplePageContainer.focus();
 
           // handle aria-current
           for (var n = 0; n < links.length; n++) {
