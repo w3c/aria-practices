@@ -10,8 +10,14 @@
 'use strict';
 class SliderMultithumb {
   constructor(domNode) {
+    this.isMoving = false;
+    this.movingSliderNode = false;
+
     this.domNode = domNode;
+
     this.svgNode = domNode.querySelector('svg');
+    this.svgPoint = this.svgNode.createSVGPoint();
+
     this.railNode = domNode.querySelector('.rail');
 
     this.minSliderNode = domNode.querySelector('[role=slider].minimum');
@@ -25,35 +31,6 @@ class SliderMultithumb {
 
     this.minSliderThumbNode = this.minSliderNode.querySelector('.thumb');
     this.maxSliderThumbNode = this.maxSliderNode.querySelector('.thumb');
-
-    // The input elements are optional to support mobile devices,
-    // when a keyboard is not present
-    this.minInputNode = domNode.querySelector('.input-minimum input');
-    this.maxInputNode = domNode.querySelector('.input-maximum input');
-
-    if (this.minInputNode) {
-      this.minInputNode.addEventListener(
-        'change',
-        this.onInputChange.bind(this)
-      );
-      this.minInputNode.addEventListener('blur', this.onInputChange.bind(this));
-      this.minInputNode.addEventListener('blur', this.onSliderBlur.bind(this));
-      this.minInputNode.addEventListener('focus', this.onSliderBlur.bind(this));
-      this.minInputNode.min = this.getValueMin(this.minSliderNode);
-      this.minInputNode.max = this.getValueMax(this.minSliderNode);
-    }
-
-    if (this.maxInputNode) {
-      this.maxInputNode.addEventListener(
-        'change',
-        this.onInputChange.bind(this)
-      );
-      this.maxInputNode.addEventListener('blur', this.onInputChange.bind(this));
-      this.maxInputNode.addEventListener('blur', this.onSliderBlur.bind(this));
-      this.maxInputNode.addEventListener('focus', this.onSliderBlur.bind(this));
-      this.maxInputNode.min = this.getValueMin(this.maxSliderNode);
-      this.maxInputNode.max = this.getValueMax(this.maxSliderNode);
-    }
 
     // Dimensions of the slider focus ring, thumb and rail
 
@@ -103,6 +80,7 @@ class SliderMultithumb {
 
     this.sliderMinValue = this.getValueMin(this.minSliderNode);
     this.sliderMaxValue = this.getValueMax(this.maxSliderNode);
+    this.sliderDiffValue = this.sliderMaxValue - this.sliderMinValue;
 
     this.minSliderRight = 0;
     this.maxSliderLeft = this.railWidth;
@@ -112,9 +90,10 @@ class SliderMultithumb {
       this.onSliderKeydown.bind(this)
     );
     this.minSliderNode.addEventListener(
-      'mousedown',
-      this.onSliderMousedown.bind(this)
+      'pointerdown',
+      this.onSliderPointerdown.bind(this)
     );
+
     this.minSliderNode.addEventListener('focus', this.onSliderFocus.bind(this));
     this.minSliderNode.addEventListener('blur', this.onSliderBlur.bind(this));
 
@@ -123,15 +102,28 @@ class SliderMultithumb {
       this.onSliderKeydown.bind(this)
     );
     this.maxSliderNode.addEventListener(
-      'mousedown',
-      this.onSliderMousedown.bind(this)
+      'pointerdown',
+      this.onSliderPointerdown.bind(this)
     );
+
+    // bind a pointermove event handler to move pointer
+    document.addEventListener('pointermove', this.onPointermove.bind(this));
+
+    // bind a pointerup event handler to stop tracking pointer movements
+    document.addEventListener('pointerup', this.onPointerup.bind(this));
+
     this.maxSliderNode.addEventListener('focus', this.onSliderFocus.bind(this));
     this.maxSliderNode.addEventListener('blur', this.onSliderBlur.bind(this));
 
     this.moveSliderTo(this.minSliderNode, this.getValue(this.minSliderNode));
 
     this.moveSliderTo(this.maxSliderNode, this.getValue(this.maxSliderNode));
+  }
+
+  getSVGPoint(event) {
+    this.svgPoint.x = event.clientX;
+    this.svgPoint.y = event.clientY;
+    return this.svgPoint.matrixTransform(this.svgNode.getScreenCTM().inverse());
   }
 
   getValue(sliderNode) {
@@ -148,10 +140,6 @@ class SliderMultithumb {
 
   isMinSlider(sliderNode) {
     return this.minSliderNode === sliderNode;
-  }
-
-  isMinInput(inputNode) {
-    return this.minInputNode === inputNode;
   }
 
   isInRange(sliderNode, value) {
@@ -201,14 +189,9 @@ class SliderMultithumb {
     );
 
     if (this.isMinSlider(sliderNode)) {
-      // update INPUT, label and ARIA attributes
+      // update ARIA attributes
       this.minSliderValueNode.textContent = dollarValue;
       this.maxSliderNode.setAttribute('aria-valuemin', value);
-
-      if (this.maxInputNode && this.minInputNode) {
-        this.maxInputNode.min = value;
-        this.minInputNode.value = value;
-      }
 
       // move the SVG focus ring and thumb elements
       x = pos - this.focusOffset - 1;
@@ -245,14 +228,9 @@ class SliderMultithumb {
       this.maxSliderValueNode.setAttribute('x', pos);
       this.maxSliderLeft = pos;
 
-      // update INPUT, label and ARIA attributes
+      // update label and ARIA attributes
       this.maxSliderValueNode.textContent = dollarValue;
       this.minSliderNode.setAttribute('aria-valuemax', value);
-
-      if (this.maxInputNode && this.minInputNode) {
-        this.minInputNode.max = value;
-        this.maxInputNode.value = value;
-      }
     }
   }
 
@@ -314,73 +292,37 @@ class SliderMultithumb {
     this.domNode.classList.remove('focus');
   }
 
-  onSliderMousedown(event) {
-    var onMousemove = function (e) {
-      var diffX = e.pageX - this.railNode.getBoundingClientRect().left;
-
-      if (isMinSlider) {
-        diffX -= this.thumbWidth / 2;
-      } else {
-        diffX -= (3 * this.thumbWidth) / 2;
-      }
-
-      var value = parseInt(
-        ((this.sliderMaxValue - this.sliderMinValue) * diffX) / this.railWidth
-      );
-
-      this.moveSliderTo(sliderNode, value);
-
-      e.preventDefault();
-      e.stopPropagation();
-    }.bind(this);
-
-    var onMouseup = function () {
-      document.removeEventListener('mousemove', onMousemove);
-      document.removeEventListener('mouseup', onMouseup);
-    };
-
-    var sliderNode = event.currentTarget;
-    var isMinSlider = this.isMinSlider(sliderNode);
-
-    // bind a mousemove event handler to move pointer
-    document.addEventListener('mousemove', onMousemove);
-
-    // bind a mouseup event handler to stop tracking mouse movements
-    document.addEventListener('mouseup', onMouseup);
+  onSliderPointerdown(event) {
+    this.isMoving = true;
+    this.movingSliderNode = event.currentTarget;
 
     event.preventDefault();
     event.stopPropagation();
 
     // Set focus to the clicked handle
-    sliderNode.focus();
+    this.movingSliderNode.focus();
   }
 
-  onInputChange(event) {
-    var tgt = event.currentTarget,
-      value = tgt.value,
-      isNumber = typeof parseInt(value) === 'number';
+  onPointermove(event) {
+    if (
+      this.isMoving &&
+      this.movingSliderNode &&
+      this.domNode.contains(event.target)
+    ) {
+      var x = this.getSVGPoint(event).x;
+      var diffX = x - this.railX;
+      var value = Math.round((diffX * this.sliderDiffValue) / this.railWidth);
 
-    if (this.isMinInput(tgt)) {
-      if (value.length === 0) {
-        tgt.value = this.getValue(this.minSliderNode);
-      } else {
-        if (isNumber && this.isInRange(this.minSliderNode, value)) {
-          this.moveSliderTo(this.minSliderNode, value);
-        } else {
-          tgt.value = this.getValue(this.minSliderNode);
-        }
-      }
-    } else {
-      if (value.length === 0) {
-        tgt.value = this.getValue(this.maxSliderNode);
-      } else {
-        if (isNumber && this.isInRange(this.maxSliderNode, value)) {
-          this.moveSliderTo(this.maxSliderNode, value);
-        } else {
-          tgt.value = this.getValue(this.maxSliderNode);
-        }
-      }
+      this.moveSliderTo(this.movingSliderNode, value);
+
+      event.preventDefault();
+      event.stopPropagation();
     }
+  }
+
+  onPointerup() {
+    this.isMoving = false;
+    this.movingSliderNode = false;
   }
 }
 
