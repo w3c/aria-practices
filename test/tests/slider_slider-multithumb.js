@@ -4,22 +4,23 @@ const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
 
-const exampleFile = 'slider/multithumb-slider.html';
+const exampleFile = 'slider/slider-multithumb.html';
 
 const ex = {
   sliderSelector: '#ex1 [role="slider"]',
-  hotelSliderSelector:
-    '#ex1 div.aria-widget-slider:nth-of-type(1) [role="slider"]',
+  hotelSliderSelector: '#ex1 .slider-multithumb:nth-of-type(1) [role="slider"]',
   flightSliderSelector:
-    '#ex1 div.aria-widget-slider:nth-of-type(2) [role="slider"]',
+    '#ex1 .slider-multithumb:nth-of-type(2) [role="slider"]',
   hotelMin: '0',
   hotelMax: '400',
   flightMin: '0',
   flightMax: '1000',
   hotelDefaultValues: ['100', '250'],
   flightDefaultValues: ['100', '250'],
-  hotelLabelSelector: '#ex1 div.aria-widget-slider:nth-of-type(1) .rail-label',
-  flightLabelSelector: '#ex1 div.aria-widget-slider:nth-of-type(2) .rail-label',
+  hotelLabelSelector:
+    '#ex1 .slider-multithumb:nth-of-type(1) [role=slider] .value',
+  flightLabelSelector:
+    '#ex1 .slider-multithumb:nth-of-type(2) [role=slider] .value',
 };
 
 const verifyAllValues = async function (
@@ -54,7 +55,7 @@ ariaTest(
   exampleFile,
   'slider-role',
   async (t) => {
-    await assertAriaRoles(t, 'ex1', 'slider', '4', 'img');
+    await assertAriaRoles(t, 'ex1', 'slider', '4', 'g');
   }
 );
 
