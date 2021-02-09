@@ -3,44 +3,13 @@
 .slider-multithumb {
   padding: 6px;
   width: 350px;
+  touch-action: pan-y;
 }
 
 .slider-multithumb.focus {
   padding: 4px;
   border: 2px solid #005a9c;
   border-radius: 5px;
-}
-
-.slider-multithumb.mobile {
-  clear: both;
-  display: grid;
-  grid-template-columns: 100px 340px 100px;
-  grid-column-gap: 10px;
-  width: 550px;
-}
-
-.slider-multithumb.mobile .input-minimum,
-.slider-multithumb.mobile .input-maximum {
-  position: relative;
-  top: 32px;
-  height: 1.5em;
-}
-
-.slider-multithumb.mobile .input-minimum {
-  grid-column: 1;
-}
-
-.slider-multithumb.mobile .input-maximum {
-  grid-column: 3;
-}
-
-.slider-multithumb.mobile .slider-group {
-  grid-column: 2;
-}
-
-.slider-multithumb.mobile .input-minimum input,
-.slider-multithumb.mobile .input-maximum input {
-  width: 4em;
 }
 
 .slider-multithumb .slider-group .value {
