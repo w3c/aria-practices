@@ -58,6 +58,15 @@ ariaTest(
 );
 
 ariaTest(
+  '"aria-labelledby" set on group',
+  exampleFile,
+  'group-aria-labelledby',
+  async (t) => {
+    await assertAriaLabelledby(t, ex.groupSelector);
+  }
+);
+
+ariaTest(
   'SVG rects used for the rail have aria-hidden',
   exampleFile,
   'aria-hidden',
