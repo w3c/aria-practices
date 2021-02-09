@@ -29,11 +29,23 @@
     </nav>
   <main>
   <h1>Navigation Menubar Example</h1>
+  <div class="advisement">
+    <p><strong>CAUTION!</strong> Before considering use of the <a href="../../#menu">ARIA menubar pattern</a> for site navigation, it is important to understand:</p>
+    <ul>
+      <li>The <code>menubar</code> pattern requires complex functionality that is unnecessary for typical site navigation that is styled to look like a menubar with expandable sections or <q>fly outs</q>.</li>
+      <li>
+        A pattern more suited for typical site navigation with expandable groups of links is the <a href="../../#disclosure">disclosure pattern.</a>
+        For an example, see <a href="../disclosure/disclosure-navigation.html">Example Disclosure for Navigation Menus</a>
+      </li>
+    </ul>
+  </div>
   <p>
     The following implementation of the
     <a href="../../#menu">design pattern for menubar</a>
-    demonstrates a menubar that provides site navigation menus.
-    Each item in the menubar represents a section of a web site for a mythical university and opens a submenu containing menu items that link to pages within that section.
+    demonstrates how a menubar can provide navigation menus.
+    The parent menu items in the menubar represent a section of a mythical university web site and open a submenu containing menu items that link to pages within that section.
+    The navigation system it illustrates is comparable to the navigation illustrated in the <a href="../disclosure/disclosure-navigation.html">Example of Disclosure for Navigation Menus</a>.
+    As noted above, the disclosure pattern is better suited for most web sites because few sites need the additional keyboard functionality required to support the ARIA <code>menubar</code> and <code>menu</code> roles.
   </p>
   <p>Similar examples include: </p>
   <ul>
@@ -47,153 +59,192 @@
     </div>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="ex1">
-      <nav aria-label="Mythical University">
-        <ul class="menubar-navigation" role="menubar" aria-label="Mythical University">
-          <li role="none">
-            <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">
-              About
-              <svg xmlns="http://www.w3.org/2000/svg" class="down" width="12" height="9" viewBox="0 0 12 9">
-               <polygon points="1 0, 11 0, 6 8"/>
-              </svg>
-            </a>
-            <ul role="menu" aria-label="About">
-              <li role="none">
-                <a role="menuitem" href="mb-about.html#overview">Overview</a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="mb-about.html#admin">Administration</a>
-              </li>
-              <li role="none">
-                <a role="menuitem"
-                   href="#"
-                   aria-haspopup="true"
-                   aria-expanded="false">
-                  Facts
-                  <svg xmlns="http://www.w3.org/2000/svg" class="right" width="9" height="12" viewBox="0 0 9 12">
-                   <polygon points="0 1, 0 11, 8 6"/>
-                  </svg>
-                </a>
-                <ul role="menu" aria-label="Facts">
-                  <li role="none">
-                    <a role="menuitem" href="mb-about.html#facts">History</a>
-                  </li>
-                  <li role="none">
-                    <a role="menuitem" href="mb-about.html#facts">Current Statistics</a>
-                  </li>
-                  <li role="none">
-                    <a role="menuitem" href="mb-about.html#facts">Awards</a>
-                  </li>
-                </ul>
-              </li>
-              <li role="none">
-                <a role="menuitem"
-                    href="#"
-                    aria-haspopup="true"
-                    aria-expanded="false">
-                  Campus Tours
-                  <svg xmlns="http://www.w3.org/2000/svg" class="right" width="9" height="12" viewBox="0 0 9 12">
-                   <polygon points="0 1, 0 11, 8 6"/>
-                  </svg>
-                </a>
-                <ul role="menu" aria-label="Campus Tours">
-                  <li role="none">
-                    <a role="menuitem" href="mb-about.html#tours">For prospective students</a>
-                  </li>
-                  <li role="none">
-                    <a role="menuitem" href="mb-about.html#tours">For alumni</a>
-                  </li>
-                  <li role="none">
-                    <a role="menuitem" href="mb-about.html#tours">For visitors</a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li role="none">
-            <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">
-              Admissions
-              <svg xmlns="http://www.w3.org/2000/svg" class="down" width="12" height="9" viewBox="0 0 12 9">
-               <polygon points="1 0, 11 0, 6 8"/>
-              </svg>
-            </a>
-            <ul role="menu" aria-label="Admissions">
-              <li role="none">
-                <a role="menuitem" href="mb-admissions.html#apply">Apply</a>
-              </li>
-              <li role="none">
-                <a role="menuitem"
-                    href="#"
-                    aria-haspopup="true"
-                    aria-expanded="false">
-                  Tuition
-                  <svg xmlns="http://www.w3.org/2000/svg" class="right" width="9" height="12" viewBox="0 0 9 12">
-                   <polygon points="0 1, 0 11, 8 6"/>
-                  </svg>
-                </a>
-                <ul role="menu" aria-label="Tuition">
-                  <li role="none">
-                    <a role="menuitem" href="mb-admissions.html#tuition">Undergraduate</a>
-                  </li>
-                  <li role="none">
-                    <a role="menuitem" href="mb-admissions.html#tuition">Graduate</a>
-                  </li>
-                  <li role="none">
-                    <a role="menuitem" href="mb-admissions.html#tuition">Professional Schools</a>
-                  </li>
-                </ul>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="mb-admissions.html#signup">Sign Up</a>
-              </li>
-              <li role="separator"></li>
-              <li role="none">
-                <a role="menuitem" href="mb-admissions.html#visit">Visit</a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="mb-admissions.html#photo">Photo Tour</a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="mb-admissions.html#connect">Connect</a>
-              </li>
-            </ul>
-          </li>
-          <li role="none">
-            <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">
-              Academics
-              <svg xmlns="http://www.w3.org/2000/svg" class="down" width="12" height="9" viewBox="0 0 12 9">
-               <polygon points="1 0, 11 0, 6 8"/>
-              </svg>
-            </a>
-            <ul role="menu" aria-label="Academics">
-              <li role="none">
-                <a role="menuitem" href="mb-academics.html#colleges">Colleges &amp; Schools</a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="mb-academics.html#programs">Programs of Study</a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="mb-academics.html#honors">Honors Programs</a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="mb-academics.html#online">Online Courses</a>
-              </li>
-              <li role="separator"></li>
-              <li role="none">
-                <a role="menuitem" href="mb-academics.html#explorer">Course Explorer</a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="mb-academics.html#register">Register for Class</a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="mb-academics.html#academic">Academic Calendar</a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="mb-academics.html#tanscripts">Transcripts</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
+      <div class="page">
+        <!-- NOTE: In an actual website, the header element would be a top level element, i.e., it would have the body as its scope.
+          If the scope of the header element were body, browsers would automatically treat the header as an ARIA banner,
+          so the header would not need the role="banner". -->
+        <header role="banner">
+          <div class="title">Mythical University</div>
+          <div class="tagline">Using a Menubar for navigation links</div>
+        </header>
+        <nav aria-label="Mythical University">
+          <ul class="menubar-navigation" role="menubar" aria-label="Mythical University">
+            <li role="none">
+              <a role="menuitem" href="#home">
+                Home
+              </a>
+            </li>
+            <li role="none">
+              <a role="menuitem"
+                aria-haspopup="true"
+                aria-expanded="false"
+                href="#about">
+                About
+                <svg xmlns="http://www.w3.org/2000/svg" class="down" width="12" height="9" viewBox="0 0 12 9">
+                 <polygon points="1 0, 11 0, 6 8"/>
+                </svg>
+              </a>
+              <ul role="menu" aria-label="About">
+                <li role="none">
+                  <a role="menuitem" href="#overview">Overview</a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="#administration">Administration</a>
+                </li>
+                <li role="none">
+                  <a role="menuitem"
+                     aria-haspopup="true"
+                     aria-expanded="false"
+                     href="#facts">
+                    Facts
+                    <svg xmlns="http://www.w3.org/2000/svg" class="right" width="9" height="12" viewBox="0 0 9 12">
+                     <polygon points="0 1, 0 11, 8 6"/>
+                    </svg>
+                  </a>
+                  <ul role="menu" aria-label="Facts">
+                    <li role="none">
+                      <a role="menuitem" href="#history">History</a>
+                    </li>
+                    <li role="none">
+                      <a role="menuitem" href="#current-statistics">Current Statistics</a>
+                    </li>
+                    <li role="none">
+                      <a role="menuitem" href="#awards">Awards</a>
+                    </li>
+                  </ul>
+                </li>
+                <li role="none">
+                  <a role="menuitem"
+                     aria-haspopup="true"
+                     aria-expanded="false"
+                     href="#campus-tours">
+                    Campus Tours
+                    <svg xmlns="http://www.w3.org/2000/svg" class="right" width="9" height="12" viewBox="0 0 9 12">
+                     <polygon points="0 1, 0 11, 8 6"/>
+                    </svg>
+                  </a>
+                  <ul role="menu" aria-label="Campus Tours">
+                    <li role="none">
+                      <a role="menuitem" href="#for-prospective-students">For prospective students</a>
+                    </li>
+                    <li role="none">
+                      <a role="menuitem" href="#for-alumni">For alumni</a>
+                    </li>
+                    <li role="none">
+                      <a role="menuitem" href="#for-visitors">For visitors</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li role="none">
+              <a role="menuitem"
+                 aria-haspopup="true"
+                 aria-expanded="false"
+                 href="#admissions">
+                Admissions
+                <svg xmlns="http://www.w3.org/2000/svg" class="down" width="12" height="9" viewBox="0 0 12 9">
+                 <polygon points="1 0, 11 0, 6 8"/>
+                </svg>
+              </a>
+              <ul role="menu" aria-label="Admissions">
+                <li role="none">
+                  <a role="menuitem" href="#apply">Apply</a>
+                </li>
+                <li role="none">
+                  <a role="menuitem"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                      href="#tuition">
+                    Tuition
+                    <svg xmlns="http://www.w3.org/2000/svg" class="right" width="9" height="12" viewBox="0 0 9 12">
+                     <polygon points="0 1, 0 11, 8 6"/>
+                    </svg>
+                  </a>
+                  <ul role="menu" aria-label="Tuition">
+                    <li role="none">
+                      <a role="menuitem" href="#undergraduate">Undergraduate</a>
+                    </li>
+                    <li role="none">
+                      <a role="menuitem" href="#graduate">Graduate</a>
+                    </li>
+                    <li role="none">
+                      <a role="menuitem" href="#professional-schools">Professional Schools</a>
+                    </li>
+                  </ul>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="#sign-up">Sign Up</a>
+                </li>
+                <li role="separator"></li>
+                <li role="none">
+                  <a role="menuitem" href="#visit">Visit</a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="#photo-tour">Photo Tour</a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="#connect">Connect</a>
+                </li>
+              </ul>
+            </li>
+            <li role="none">
+              <a role="menuitem"
+                 aria-haspopup="true"
+                aria-expanded="false"
+                href="#academics">
+                Academics
+                <svg xmlns="http://www.w3.org/2000/svg" class="down" width="12" height="9" viewBox="0 0 12 9">
+                 <polygon points="1 0, 11 0, 6 8"/>
+                </svg>
+              </a>
+              <ul role="menu" id="sub-menu-academics" aria-label="Academics">
+                <li role="none">
+                  <a role="menuitem" href="#colleges-and-schools">Colleges &amp; Schools</a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="#programs-of-study">Programs of Study</a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="#honors-programs">Honors Programs</a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="#online-courses">Online Courses</a>
+                </li>
+                <li role="separator"></li>
+                <li role="none">
+                  <a role="menuitem" href="#course-explorer">Course Explorer</a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="#register-for-class">Register for Class</a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="#academic-calendar">Academic Calendar</a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="#tanscripts">Transcripts</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+        <!--  NOTE: The following SECTION element would be a MAIN element
+          in an actual website -->
+        <div class="main">
+          <section aria-labelledby="id-page-title">
+            <h1 id="id-page-title" class="page_title">Mythical University</h1>
+            <div class="content">
+              <p></p>
+            </div>
+          </section>
+        </div>
+          <!-- NOTE: In an actual website, the footer element would be a top level element, i.e., it would have the body as its scope.
+          If the scope of the footer element were body, browsers would automatically treat the footer as an ARIA contentinfo landmark,
+          so the footer would not need the role="contentinfo". -->
+        <footer role="contentinfo">
+          Mythical University footer information
+        </footer>
+       </div>
     </div>
     <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
   </section>
@@ -201,11 +252,41 @@
   <section>
     <h2>Accessibility Features</h2>
     <ol>
+      <li>Menu items that trigger navigation move focus to the target page title:
+        <ul>
+        <li>
+          An important aspect of designing a navigation menu experience is where keyboard focus moves when an item that triggers navigation is activated and the menu closes.
+          If activating a menubar item changes content on the page without triggering a browser page load, i.e., works like typical single-page apps, the focus position after the content load significantly effects efficiency for keyboard and assistive technology users.
+        </li>
+        <li>
+          This example behaves like a single page app and activating a menu item that loads new content moves focus to the beginning of the new content, which is a level one heading with content that matches the name of the activated menu item.
+          Focusing on the heading informs screen reader users that navigation is complete and confirms the destination.
+        </li>
+        <li>
+          To view other pages, keyboard users need to navigate back to the menubar .
+          To optimize keyboard efficiency, this example locates the menubar immediately before the content display area in the Tab sequence.
+        </li>
+      </ul>
       <li>To help communicate that the arrow keys are available for directional navigation within the menubar and its submenus, a border is added to the menubar container when focus is within the menubar.</li>
+      <li>To help users locate the menu item that loads the currently displayed page, visual indicators of the path to that menu item are added to the menu items in the path:
+        <ul>
+          <li>The parent menubar item in the path has an extra thick (4 pixel) bottom border.</li>
+          <li>If the current page menu item is nested within a deeper submenu, the parent submenu item in the path has an extra thick (4 pixel) left side border.</li>
+          <li>Finally, the menu item that loads the currently displayed page is styled with an extra thick border on the left side.</li>
+        </ul>
+      </li>
       <li>To support operating system high contrast settings:
         <ul>
-          <li>Focus is highlighted by adding and removing a border around the menu item with focus.</li>
-          <li>The arrow icons indicating the current state of expandable menus use in-line SVG images with the CSS <code>currentColor</code> value for the <code>fill</code> and <code>stroke</code> properties of the <code>polygon</code> element.</li>
+          <li>
+            Because transparent borders are visible on some systems with operating system high contrast settings enabled, transparency cannot be used to create a visual difference between the element that is focused an other elements.
+            Instead of using transparency, the focused element has a thicker border and less padding.
+            When an element receives focus, its border changes from 0 to 2 pixels and padding is reduced by 2 pixels.
+            When an element loses focus, its border changes from 2 to 0 pixels and padding is increased by 2 pixels.
+          </li>
+          <li>
+            To ensure the arrow icons used to indicate the expanded or collapsed state have sufficient contrast with the background when high contrast settings invert colors, the CSS <code>currentColor</code> value for the <code>fill</code> and <code>stroke</code> properties of the SVG <code>polygon</code> element is used to synchronize the color with text content.
+            If specific colors are used to specify the <code>fill</code> and <code>stroke</code> properties, these colors will remain the same in high contrast mode, which could lead to insufficient contrast between the icon and the background or even make the icon invisible if its color matches the high contrast mode background.
+          </li>
         </ul>
       </li>
       <li>Since the menubar presents a site navigation system, it is wrapped in a navigation region implemented with a <code>nav</code> element that has an <code>aria-label</code> that matches the label on the menubar.</li>
@@ -227,7 +308,12 @@
           <th>
             <kbd>Space</kbd><br><kbd>Enter</kbd>
           </th>
-          <td>Opens submenu and moves focus to first item in the submenu.</td>
+          <td>
+            <ul>
+              <li>If the item is a parent menu item, opens submenu and moves focus to first item in the submenu.</li>
+              <li>Otherwise, activates the menu item, which loads new content and places focus on the heading that titles the content.</li>
+            </ul>
+          </td>
         </tr>
         <tr data-test-id="menubar-right-arrow">
           <th>
@@ -305,7 +391,7 @@
           <td>
             <ul>
               <li>If the item is a parent menu item, opens submenu and moves focus to first item in the submenu.</li>
-              <li>Otherwise, activates menu item, which  navigates to a dummy page. NOTE: use browser go-back function to return to this page.</li>
+              <li>Otherwise, activates the menu item, which loads new content and places focus on the heading that titles the content.</li>
             </ul>
           </td>
         </tr>
@@ -404,6 +490,85 @@
 
   <section>
     <h2 id="rps_label">Role, Property, State, and Tabindex Attributes</h2>
+
+    <h3 id="rps_label_1">Landmarks</h3>
+    <table aria-labelledby="rps_label_1 rps_label" class="data attributes">
+      <thead>
+        <tr>
+          <th scope="col">Role</th>
+          <th scope="col">Attribute</th>
+          <th scope="col">Element</th>
+          <th scope="col">Usage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-test-id="banner-role">
+          <th scope="row"><code>banner</code></th>
+          <td></td>
+          <td><code>header</code></td>
+          <td>
+            <ul>
+              <li>Identifies the top section of content that is common across pages in a web site.</li>
+              <li>
+                NOTE: The <code>banner</code> role declaration is only necessary because it is an example that is nested inside the content of this page.
+                In an actual website, the header element would be a top level element, i.e., it would have the body as its scope.
+                If the scope of the header element were body, browsers would automatically treat the header as an ARIA banner, so the header would not need <code>role="banner"</code>.
+            </ul>
+          </td>
+        </tr>
+        <tr data-test-id="navigation-role">
+          <th scope="row"><code>navigation</code></th>
+          <td></td>
+          <td><code>nav</code></td>
+          <td>
+            Identifies the region containing the mythical university navigation.
+          </td>
+        </tr>
+        <tr data-test-id="navigation-aria-label">
+          <td></td>
+          <th scope="row"><code>aria-label="Mythical University"</code></th>
+          <td><code>nav</code></td>
+          <td>
+            Provides an accessible name for the <code>navigation</code> landmark that describes the purpose of the navigation.
+          </td>
+        </tr>
+        <tr data-test-id="region-role">
+          <th scope="row"><code>region</code></th>
+          <td></td>
+          <td><code>section</code></td>
+          <td>
+            <ul>
+              <li>Identifies the main content region of the page depicted in the example.</li>
+              <li>In an actual web page, this region would be identified by a <code>main</code> landmark, but since this page already has a main landmark, role <code>region</code> is used to avoid having two <code>main</code> landmarks on the page.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr data-test-id="region-aria-labelledby">
+          <td></td>
+          <th scope="row"><code>aria-labelledby="<em>idref</em>"</code></th>
+          <td><code>section</code></td>
+          <td>
+            Provides the region with an accessible name from the <code>h1</code> element.
+          </td>
+        </tr>
+        <tr data-test-id="contentinfo-role">
+          <th scope="row"><code>contentinfo</code></th>
+          <td></td>
+          <td><code>footer</code></td>
+          <td>
+            <ul>
+              <li>Identifies the bottom section of content common across pages in a web site.</li>
+              <li>
+                NOTE: The <code>contentinfo</code> role declaration is only necessary because the footer is an example that is nested inside the content of this page.
+                In an actual website, the footer element would be a top level element, i.e., it would have the body as its scope.
+                If the scope of the footer element were body, browsers would automatically treat the footer as a ARIA <code>contentinfo</code> landmark, so the footer would not need <code>role="contentinfo"</code>.
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
     <h3 id="rps1_label">Menubar</h3>
     <table aria-labelledby="rps1_label rps_label" class="data attributes">
       <thead>
@@ -433,8 +598,7 @@
         <tr data-test-id="menubar-aria-label">
           <td></td>
           <th>
-            <code>aria-label=&quot;<em>string</em>&quot;
-            </code>
+            <code>aria-label="<em>string</em>"</code>
           </th>
           <td>
             <code>ul</code>
@@ -464,10 +628,10 @@
             </ul>
           </td>
         </tr>
-        <tr data-test-id="menuitem-tabindex">
+        <tr data-test-id="menubar-menuitem-tabindex">
           <td></td>
           <th>
-            <code>tabindex=&quot;-1&quot;</code>
+            <code>tabindex="-1"</code>
           </th>
           <td>
             <code>a</code>
@@ -476,10 +640,10 @@
             Makes the <code>a</code> element keyboard focusable, but <strong>not</strong> part of the tab sequence.
           </td>
         </tr>
-        <tr data-test-id="menuitem-tabindex">
+        <tr data-test-id="menubar-menuitem-tabindex">
           <td></td>
           <th>
-            <code>tabindex=&quot;0&quot;</code>
+            <code>tabindex="0"</code>
           </th>
           <td>
             <code>a</code>
@@ -487,43 +651,59 @@
           <td>
             <ul>
               <li>Includes the element in the <kbd>Tab</kbd> sequence.</li>
-              <li>Only one menubar item has <code>tabindex=&quot;0&quot;</code>.</li>
-              <li>On page load, the first menubar item has <code>tabindex=&quot;0&quot;</code>.</li>
+              <li>Only one menubar item has <code>tabindex="0"</code>.</li>
+              <li>On page load, the first menubar item has <code>tabindex="0"</code>.</li>
               <li>Focus is managed using <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
             </ul>
           </td>
         </tr>
-        <tr data-test-id="menuitem-aria-haspopup">
+        <tr data-test-id="menubar-menuitem-aria-current">
           <td></td>
           <th>
-            <code>aria-haspopup=&quot;true&quot;</code>
+            <code>aria-current="page"</code>
+          </th>
+          <td>
+            <code>a</code>
+          </td>
+          <td>
+            <ul>
+              <li>Identifies the link URL has the same URL as the web page.</li>
+              <li>If the link URL is not the same, the attribute is removed.</li>
+              <li>Menu items in the menubar in the path to the current page menu item are given a <code>title</code> attribute with the text content of "Contains current page link" to indicate to screen reader users the menu item contains the current page link.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr data-test-id="menubar-menuitem-aria-haspopup">
+          <td></td>
+          <th>
+            <code>aria-haspopup="true"</code>
           </th>
           <td>
             <code>a</code>
           </td>
           <td>Indicates the menuitem has a submenu.</td>
         </tr>
-        <tr data-test-id="menuitem-aria-expanded">
+        <tr data-test-id="menubar-menuitem-aria-expanded-true">
           <td></td>
           <th>
-            <code>aria-expanded=&quot;true&quot;</code>
+            <code>aria-expanded="true"</code>
           </th>
           <td>
             <code>a</code>
           </td>
           <td>Indicates the submenu is open.</td>
         </tr>
-        <tr data-test-id="menuitem-aria-expanded">
+        <tr data-test-id="menubar-menuitem-aria-expanded-false">
           <td></td>
           <th>
-            <code>aria-expanded=&quot;false&quot;</code>
+            <code>aria-expanded="false"</code>
           </th>
           <td>
             <code>a</code>
           </td>
           <td>Indicates the submenu is closed.</td>
         </tr>
-        <tr data-test-id="none-role">
+        <tr data-test-id="menubar-role-none">
           <th>
             <code>none</code>
           </th>
@@ -564,8 +744,7 @@
         <tr data-test-id="menu-aria-label">
           <td></td>
           <th>
-            <code>aria-label=&quot;<em>string</em>&quot;
-            </code>
+            <code>aria-label="<em>string</em>"</code>
           </th>
           <td>
             <code>ul</code>
@@ -580,7 +759,7 @@
             </ul>
           </td>
         </tr>
-        <tr data-test-id="sub-menuitem-role">
+        <tr data-test-id="menu-menuitem-role">
           <th>
             <code>menuitem</code>
           </th>
@@ -595,47 +774,47 @@
             </ul>
           </td>
         </tr>
-        <tr data-test-id="sub-menuitem-tabindex">
+        <tr data-test-id="menu-menuitem-tabindex">
           <td></td>
           <th>
-            <code>tabindex=&quot;-1&quot;</code>
+            <code>tabindex="-1"</code>
           </th>
           <td>
             <code>a</code>
           </td>
           <td>Keeps the <code>a</code> element focusable but removes it from the <kbd>Tab</kbd> sequence.</td>
         </tr>
-        <tr data-test-id="sub-menuitem-aria-haspopup">
+        <tr data-test-id="menu-menuitem-aria-haspopup">
           <td></td>
           <th>
-            <code>aria-haspopup=&quot;true&quot;</code>
+            <code>aria-haspopup="true"</code>
           </th>
           <td>
             <code>a</code>
           </td>
           <td>Indicates the menu item has a submenu.</td>
         </tr>
-        <tr data-test-id="sub-menuitem-aria-expanded">
+        <tr data-test-id="menu-menuitem-aria-expanded-true">
           <td></td>
           <th>
-            <code>aria-expanded=&quot;true&quot;</code>
+            <code>aria-expanded="true"</code>
           </th>
           <td>
             <code>a</code>
           </td>
           <td>Indicates the submenu is open.</td>
         </tr>
-        <tr data-test-id="sub-menuitem-aria-expanded">
+        <tr data-test-id="menu-menuitem-aria-expanded-false">
           <td></td>
           <th>
-            <code>aria-expanded=&quot;false&quot;</code>
+            <code>aria-expanded="false"</code>
           </th>
           <td>
             <code>a</code>
           </td>
           <td>Indicates the submenu is closed.</td>
         </tr>
-        <tr data-test-id="sub-none-role">
+        <tr data-test-id="menu-role-none">
           <th>
             <code>none</code>
           </th>
