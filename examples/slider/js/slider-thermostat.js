@@ -34,7 +34,7 @@ class SliderThermostatVertical {
 
     // The input elements are optional to support mobile devices,
     // when a keyboard is not present
-    this.outputNode = domNode.querySelector('.output-value output');
+    this.valueNode = domNode.querySelector('.temp-value');
 
     // Dimensions of the slider focus ring, thumb and rail
 
@@ -124,7 +124,7 @@ class SliderThermostatVertical {
 
     let valueText = value.toFixed(1) + this.labelCelsius;
 
-    this.outputNode.value = valueOutput;
+    this.valueNode.textContent = valueOutput;
     this.sliderNode.setAttribute('aria-valuenow', value.toFixed(1));
     this.sliderNode.setAttribute('aria-valuetext', valueText);
 
@@ -333,7 +333,8 @@ class SliderThermostatText {
       buttonNode.addEventListener('blur', this.onSliderBlur.bind(this));
 
       let width = buttonNode.getBoundingClientRect().width;
-      buttonNode.style.left = position - width / 2 + 'px';
+      let left = position - width / 2 + 'px';
+      buttonNode.style.left = left;
 
       this.positions.push(position);
       position += deltaPosition;
@@ -373,13 +374,7 @@ class SliderThermostatText {
     valueMin = this.getValueMin();
     valueMax = this.getValueMax();
 
-    if (value > valueMax) {
-      value = valueMax;
-    }
-
-    if (value < valueMin) {
-      value = valueMin;
-    }
+    value = Math.min(Math.max(value, valueMin), valueMax);
 
     this.sliderNode.setAttribute('aria-valuenow', value);
     this.sliderNode.setAttribute('aria-valuetext', this.textValues[value]);

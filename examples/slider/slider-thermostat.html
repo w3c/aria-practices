@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+
   <title>Slider Examples with aria-orientation and aria-valuetext | WAI-ARIA Authoring Practices 1.2</title>
 
   <!--  Core js and css shared by all examples; do not modify when using this template. -->
@@ -50,15 +51,8 @@
         <div class="slider-thermostat" role="group" aria-labelledby="id-therm-label">
           <h3 id="id-therm-label">Thermostat</h3>
           <div class="slider-thermostat-vertical">
-            <div class="output-value">
-              <label id="id-temp-label"
-                for="id-temp-output">
-                Temperature
-              </label>
-              <output
-                id="id-temp-output"
-                for="id-temp-slider">25°C</output>
-            </div>
+            <div id="id-temp-label" class="label">Temperature</div>
+            <div class="temp-value">25°C</div>
             <svg class="slider-group"  width="145" height="340">
               <rect class="rail" x="60" y="20" width="8" height="300" rx="5"  aria-hidden="true"/>
               <g role="slider"
@@ -81,8 +75,8 @@
 
           <div class="slider-thermostat-text">
             <div id="id-fan-label" class="label">Fan</div>
-            <svg class="slider-group" width="210" height="105">
-              <rect class="rail" x="35" y="35" width="132" height="8" rx="5" aria-hidden="true"/>
+            <svg class="slider-group" width="230" height="105">
+              <rect class="rail" x="35" y="35" width="160" height="8" rx="5" aria-hidden="true"/>
               <g id="id-fan"
                 role="slider"
                 aria-orientation="horizontal"
@@ -133,7 +127,7 @@
           <div class="slider-thermostat-text">
             <div id="id-hc-label" class="label">Heat/Cool</div>
             <svg class="slider-group" width="210" height="105">
-              <rect class="rail" x="35" y="35" width="92" height="8" rx="5" aria-hidden="true"/>
+              <rect class="rail" x="35" y="35" width="110" height="8" rx="5" aria-hidden="true"/>
               <g role="slider"
                 aria-orientation="horizontal"
                 id="id-hc"

@@ -6,11 +6,11 @@
   font-size: 150%;
 }
 
-.slider-thermostat-vertical {
+.slider-thermostat-vertical .slider-group {
   touch-action: pan-x;
 }
 
-.slider-thermostat-text {
+.slider-thermostat-text .slider-group {
   touch-action: pan-y;
 }
 
@@ -19,6 +19,10 @@
   margin-top: 1em;
   padding: 6px;
   width: 12em;
+}
+
+.slider-thermostat-text {
+  width: 14em;
 }
 
 .slider-thermostat-vertical label,
@@ -40,7 +44,7 @@
   height: 1.5em;
 }
 
-.slider-thermostat-vertical output {
+.slider-thermostat-vertical .temp-value {
   padding-left: 24px;
   font-weight: bold;
   font-size: 200%;
