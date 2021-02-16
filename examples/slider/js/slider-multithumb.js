@@ -170,13 +170,7 @@ class SliderMultithumb {
       valueMax = this.getValueMax(this.maxSliderNode);
     }
 
-    if (value > valueMax) {
-      value = valueMax;
-    }
-
-    if (value < valueMin) {
-      value = valueMin;
-    }
+    value = Math.min(Math.max(value, valueMin), valueMax);
 
     var dollarValue = '$' + value;
     sliderNode.setAttribute('aria-valuenow', value);
