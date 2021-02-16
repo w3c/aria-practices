@@ -749,7 +749,7 @@ ariaTest(
     t.is(
       await greenSlider.getAttribute('aria-valuenow'),
       '245',
-      'After sending 1 page down key to the blue slider, the value of the green slider should be 245'
+      'After sending 1 page down key to the green slider, the value of the green slider should be 245'
     );
     t.true(
       await testDisplayMatchesValue(t, '0, 245, 255'),
@@ -774,6 +774,31 @@ ariaTest(
     // Send 1 key to blue slider
     const blueSlider = sliders[2];
     await blueSlider.sendKeys(Key.PAGE_DOWN);
+
+    t.is(
+      await blueSlider.getAttribute('aria-valuenow'),
+      '245',
+      'After sending 1 page down key to the blue slider, the value of the green slider should be 245'
+    );
+    t.true(
+      await testDisplayMatchesValue(t, '0, 0, 245'),
+      'Display should match rgb(0, 0, 245)'
+    );
+
+    // Send more than 25 keys to blue slider
+    for (let i = 0; i < 26; i++) {
+      await blueSlider.sendKeys(Key.PAGE_DOWN);
+    }
+
+    t.is(
+      await greenSlider.getAttribute('aria-valuenow'),
+      '0',
+      'After sending 26 page down key, the value of the blue slider should be 0'
+    );
+    t.true(
+      await testDisplayMatchesValue(t, '0, 0, 0'),
+      'Display should match rgb(0, 0, 0)'
+    );
   }
 );
 

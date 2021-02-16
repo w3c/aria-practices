@@ -187,13 +187,7 @@ class ColorViewerSliders {
     var valueNow = this.getValueNow(slider);
     var valueMax = this.getValueMax(slider);
 
-    if (value > valueMax) {
-      value = valueMax;
-    }
-
-    if (value < valueMin) {
-      value = valueMin;
-    }
+    value = Math.min(Math.max(value, valueMin), valueMax);
 
     valueNow = value;
     slider.sliderNode.setAttribute('aria-valuenow', value);
