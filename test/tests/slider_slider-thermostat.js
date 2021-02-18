@@ -216,6 +216,82 @@ ariaTest(
 // Keys
 
 ariaTest(
+  'SPACE key changes fan value',
+  exampleFile,
+  'button-key-space',
+  async (t) => {
+    const fanSlider = await t.context.session.findElement(
+      By.css(ex.fanSelector)
+    );
+
+    const buttons = await t.context.queryElements(t, ex.buttonSelector);
+
+    for (let i = 0; i < buttons.length; i++) {
+      const button = buttons[i];
+      const label = await button.getAttribute('aria-label');
+
+      await button.sendKeys(' ');
+
+      t.is(
+        await fanSlider.getAttribute('aria-valuenow'),
+        i.toString(),
+        'After sending space key to button "' +
+          label +
+          '", "aria-valuenow" should be: ' +
+          i
+      );
+
+      t.is(
+        await fanSlider.getAttribute('aria-valuetext'),
+        ex.fanValues[i],
+        'After sending space key to button "' +
+          label +
+          '", "aria-valuenow" should be: ' +
+          ex.fanValues[i]
+      );
+    }
+  }
+);
+
+ariaTest(
+  'ENTER key changes fan value',
+  exampleFile,
+  'button-key-space',
+  async (t) => {
+    const fanSlider = await t.context.session.findElement(
+      By.css(ex.fanSelector)
+    );
+
+    const buttons = await t.context.queryElements(t, ex.buttonSelector);
+
+    for (let i = 0; i < buttons.length; i++) {
+      const button = buttons[i];
+      const label = await button.getAttribute('aria-label');
+
+      await button.sendKeys(Key.ENTER);
+
+      t.is(
+        await fanSlider.getAttribute('aria-valuenow'),
+        i.toString(),
+        'After sending space key to button "' +
+          label +
+          '", "aria-valuenow" should be: ' +
+          i
+      );
+
+      t.is(
+        await fanSlider.getAttribute('aria-valuetext'),
+        ex.fanValues[i],
+        'After sending space key to button "' +
+          label +
+          '", "aria-valuenow" should be: ' +
+          ex.fanValues[i]
+      );
+    }
+  }
+);
+
+ariaTest(
   'Right arrow increases slider value by 1',
   exampleFile,
   'key-right-arrow',

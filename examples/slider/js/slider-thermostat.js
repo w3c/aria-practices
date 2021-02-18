@@ -359,6 +359,7 @@ class SliderThermostatText {
 
       this.textValues.push(buttonNode.getAttribute('data-valuetext'));
       buttonNode.addEventListener('click', this.onButtonClick.bind(this));
+      buttonNode.addEventListener('keydown', this.onButtonKeydown.bind(this));
       buttonNode.addEventListener('focus', this.onSliderFocus.bind(this));
       buttonNode.addEventListener('blur', this.onSliderBlur.bind(this));
 
@@ -543,6 +544,18 @@ class SliderThermostatText {
     this.sliderNode.focus();
     event.preventDefault();
     event.stopPropagation();
+  }
+
+  onButtonKeydown(event) {
+    var tgt = event.currentTarget;
+
+    if (event.key === 'Enter' || event.key === ' ') {
+      var value = parseInt(tgt.getAttribute('data-value'));
+      this.moveSliderTo(value);
+      this.sliderNode.focus();
+      event.preventDefault();
+      event.stopPropagation();
+    }
   }
 }
 
