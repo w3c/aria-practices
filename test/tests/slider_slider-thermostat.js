@@ -11,11 +11,10 @@ const exampleFile = 'slider/slider-thermostat.html';
 const ex = {
   railRects: '#ex1 rect.rail',
   sliderSelector: '#ex1 [role="slider"]',
-  buttonSelector: '#ex1 button',
+  buttonSelector: '#ex1 [role="button"]',
   groupSelector: '#ex1 [role="group"]',
   tempSelector: '#id-temp-slider',
   fanSelector: '#id-fan',
-  heatSelector: '#id-hc',
   pageTempSelector: '#id-temp-slider .value',
   tempMax: '38.0',
   tempMin: '10.0',
@@ -25,10 +24,7 @@ const ex = {
   tempSuffix: '°C',
   fanMax: '3',
   fanMin: '0',
-  heatMax: '2',
-  heatMin: '0',
-  fanValues: ['Off', 'Low', 'High', 'Auto'],
-  heatValues: ['Off', 'Heat', 'Cool'],
+  fanValues: ['off', 'low', 'medium', 'high'],
 };
 
 const sendAllSlidersToEnd = async function (t) {
@@ -107,7 +103,7 @@ ariaTest(
   exampleFile,
   'slider-role',
   async (t) => {
-    await assertAriaRoles(t, 'ex1', 'slider', '3', 'g');
+    await assertAriaRoles(t, 'ex1', 'slider', '2', 'g');
   }
 );
 
@@ -137,12 +133,6 @@ ariaTest(
       'aria-orientation',
       'horizontal'
     );
-    await assertAttributeValues(
-      t,
-      ex.heatSelector,
-      'aria-orientation',
-      'horizontal'
-    );
   }
 );
 
@@ -158,12 +148,6 @@ ariaTest(
       ex.tempMax
     );
     await assertAttributeValues(t, ex.fanSelector, 'aria-valuemax', ex.fanMax);
-    await assertAttributeValues(
-      t,
-      ex.heatSelector,
-      'aria-valuemax',
-      ex.heatMax
-    );
   }
 );
 
@@ -179,12 +163,6 @@ ariaTest(
       ex.tempMin
     );
     await assertAttributeValues(t, ex.fanSelector, 'aria-valuemin', ex.fanMin);
-    await assertAttributeValues(
-      t,
-      ex.heatSelector,
-      'aria-valuemin',
-      ex.heatMin
-    );
   }
 );
 
@@ -200,7 +178,6 @@ ariaTest(
       ex.tempDefault
     );
     await assertAttributeValues(t, ex.fanSelector, 'aria-valuenow', '0');
-    await assertAttributeValues(t, ex.heatSelector, 'aria-valuenow', '0');
   }
 );
 
@@ -214,12 +191,6 @@ ariaTest(
       ex.fanSelector,
       'aria-valuetext',
       ex.fanValues[0]
-    );
-    await assertAttributeValues(
-      t,
-      ex.heatSelector,
-      'aria-valuetext',
-      ex.heatValues[0]
     );
   }
 );
@@ -306,33 +277,6 @@ ariaTest(
         '" and aria-value-text should be: ' +
         ex.fanValues[parseInt(ex.fanMax)]
     );
-
-    // Send 1 key to heat slider
-    const heatSlider = await t.context.session.findElement(
-      By.css(ex.heatSelector)
-    );
-    await heatSlider.sendKeys(Key.ARROW_RIGHT);
-
-    t.deepEqual(
-      await getValueAndText(t, ex.heatSelector),
-      ['1', ex.heatValues[1]],
-      'After sending 1 arrow right key to the heat slider, aria-valuenow should be "1" and aria-value-text should be: ' +
-        ex.heatValues[1]
-    );
-
-    // Send more than 5 keys to heat slider
-    for (let i = 0; i < 5; i++) {
-      await heatSlider.sendKeys(Key.ARROW_RIGHT);
-    }
-
-    t.deepEqual(
-      await getValueAndText(t, ex.heatSelector),
-      [ex.heatMax, ex.heatValues[parseInt(ex.heatMax)]],
-      'After sending 5 arrow right key to the heat slider, aria-valuenow should be "' +
-        ex.heatMax +
-        '" and aria-value-text should be: ' +
-        ex.heatValues[parseInt(ex.heatMax)]
-    );
   }
 );
 
@@ -406,33 +350,6 @@ ariaTest(
         ex.fanMax +
         '" and aria-value-text should be: ' +
         ex.fanValues[parseInt(ex.fanMax)]
-    );
-
-    // Send 1 key to heat slider
-    const heatSlider = await t.context.session.findElement(
-      By.css(ex.heatSelector)
-    );
-    await heatSlider.sendKeys(Key.ARROW_UP);
-
-    t.deepEqual(
-      await getValueAndText(t, ex.heatSelector),
-      ['1', ex.heatValues[1]],
-      'After sending 1 arrow up key to the heat slider, aria-valuenow should be "1" and aria-value-text should be: ' +
-        ex.heatValues[1]
-    );
-
-    // Send more than 5 keys to heat slider
-    for (let i = 0; i < 5; i++) {
-      await heatSlider.sendKeys(Key.ARROW_UP);
-    }
-
-    t.deepEqual(
-      await getValueAndText(t, ex.heatSelector),
-      [ex.heatMax, ex.heatValues[parseInt(ex.heatMax)]],
-      'After sending 6 arrow up key to the heat slider, aria-valuenow should be "' +
-        ex.heatMax +
-        '" and aria-value-text should be: ' +
-        ex.heatValues[parseInt(ex.heatMax)]
     );
   }
 );
@@ -525,21 +442,6 @@ ariaTest(
         '" and aria-value-text should be: ' +
         ex.fanValues[parseInt(ex.fanMax)]
     );
-
-    // Send key end to heat slider
-    const heatSlider = await t.context.session.findElement(
-      By.css(ex.heatSelector)
-    );
-    await heatSlider.sendKeys(Key.END);
-
-    t.deepEqual(
-      await getValueAndText(t, ex.heatSelector),
-      [ex.heatMax, ex.heatValues[parseInt(ex.heatMax)]],
-      'After sending key end to the heat slider, aria-valuenow should be "' +
-        ex.heatMax +
-        '" and aria-value-text should be: ' +
-        ex.heatValues[parseInt(ex.heatMax)]
-    );
   }
 );
 
@@ -617,34 +519,6 @@ ariaTest(
       'After sending 6 arrow left key to the fan slider, aria-valuenow should be "0" and aria-value-text should be: ' +
         ex.fanValues[0]
     );
-
-    // Send 1 key to heat slider
-    const heatSlider = await t.context.session.findElement(
-      By.css(ex.heatSelector)
-    );
-    await heatSlider.sendKeys(Key.ARROW_LEFT);
-
-    let heatVal = parseInt(ex.heatMax) - 1;
-    t.deepEqual(
-      await getValueAndText(t, ex.heatSelector),
-      [heatVal.toString(), ex.heatValues[heatVal]],
-      'After sending 1 arrow left key to the heat slider, aria-valuenow should be "' +
-        heatVal +
-        '" and aria-value-text should be: ' +
-        ex.heatValues[heatVal]
-    );
-
-    // Send more than 5 keys to heat slider
-    for (let i = 0; i < 5; i++) {
-      await heatSlider.sendKeys(Key.ARROW_LEFT);
-    }
-
-    t.deepEqual(
-      await getValueAndText(t, ex.heatSelector),
-      ['0', ex.heatValues[0]],
-      'After sending 6 arrow left key to the heat slider, aria-valuenow should be "0" and aria-value-text should be: ' +
-        ex.heatValues[0]
-    );
   }
 );
 
@@ -721,34 +595,6 @@ ariaTest(
       ['0', ex.fanValues[0]],
       'After sending 6 arrow down key to the fan slider, aria-valuenow should be "0" and aria-value-text should be: ' +
         ex.fanValues[0]
-    );
-
-    // Send 1 key to heat slider
-    const heatSlider = await t.context.session.findElement(
-      By.css(ex.heatSelector)
-    );
-    await heatSlider.sendKeys(Key.ARROW_DOWN);
-
-    let heatVal = parseInt(ex.heatMax) - 1;
-    t.deepEqual(
-      await getValueAndText(t, ex.heatSelector),
-      [heatVal.toString(), ex.heatValues[heatVal]],
-      'After sending 1 arrow down key to the heat slider, aria-valuenow should be "' +
-        heatVal +
-        '" and aria-value-text should be: ' +
-        ex.heatValues[heatVal]
-    );
-
-    // Send more than 5 keys to heat slider
-    for (let i = 0; i < 5; i++) {
-      await heatSlider.sendKeys(Key.ARROW_DOWN);
-    }
-
-    t.deepEqual(
-      await getValueAndText(t, ex.heatSelector),
-      ['0', ex.heatValues[0]],
-      'After sending 6 arrow down key to the heat slider, aria-valuenow should be "0" and aria-value-text should be: ' +
-        ex.heatValues[0]
     );
   }
 );
@@ -840,21 +686,6 @@ ariaTest(
         ex.fanMin +
         '" and aria-value-text should be: ' +
         ex.fanValues[parseInt(ex.fanMin)]
-    );
-
-    // Send key home to heat slider
-    const heatSlider = await t.context.session.findElement(
-      By.css(ex.heatSelector)
-    );
-    await heatSlider.sendKeys(Key.HOME);
-
-    t.deepEqual(
-      await getValueAndText(t, ex.heatSelector),
-      [ex.heatMin, ex.heatValues[parseInt(ex.heatMin)]],
-      'After sending key home to the heat slider, aria-valuenow should be "' +
-        ex.heatMin +
-        '" and aria-value-text should be: ' +
-        ex.heatValues[parseInt(ex.heatMin)]
     );
   }
 );

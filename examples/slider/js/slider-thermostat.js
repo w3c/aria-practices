@@ -272,7 +272,8 @@ class SliderThermostatText {
     this.sliderFocusNode = this.sliderNode.querySelector('.focus');
     this.sliderThumbNode = this.sliderNode.querySelector('.thumb');
 
-    this.buttonNodes = domNode.querySelectorAll('.labels button');
+    this.buttonNodes = domNode.querySelectorAll('[role=button]');
+    this.buttonPadding = 4;
 
     // Dimensions of the slider focus ring, thumb and rail
 
@@ -322,25 +323,70 @@ class SliderThermostatText {
 
     let deltaPosition =
       this.railWidth / (this.getValueMax() - this.getValueMin());
+
     let position = this.railY;
+
     this.positions = [];
     this.textValues = [];
+
+    let maxTextWidth = this.getWidthFromButtonText();
+    let textHeight = this.getHeightFromButtonText();
+
     for (let i = 0; i < this.buttonNodes.length; i++) {
       let buttonNode = this.buttonNodes[i];
-      this.textValues.push(buttonNode.textContent.trim());
+
+      let rectNode = buttonNode.querySelector('rect');
+      let textNode = buttonNode.querySelector('text');
+
+      let w = maxTextWidth + 2 * this.buttonPadding;
+      let h = textHeight + 2 * this.buttonPadding;
+      let x = position - w / 2;
+      let y = this.thumbY + this.thumbHeight + 2 * this.buttonPadding;
+
+      rectNode.setAttribute('width', w);
+      rectNode.setAttribute('height', h);
+      rectNode.setAttribute('x', x);
+      rectNode.setAttribute('y', y);
+
+      x =
+        x +
+        this.buttonPadding +
+        (maxTextWidth - textNode.getBoundingClientRect().width) / 2;
+      y = y + textHeight + this.buttonPadding / 2;
+
+      textNode.setAttribute('x', x);
+      textNode.setAttribute('y', y);
+
+      this.textValues.push(buttonNode.getAttribute('data-valuetext'));
       buttonNode.addEventListener('click', this.onButtonClick.bind(this));
       buttonNode.addEventListener('focus', this.onSliderFocus.bind(this));
       buttonNode.addEventListener('blur', this.onSliderBlur.bind(this));
-
-      let width = buttonNode.getBoundingClientRect().width;
-      let left = position - width / 2 + 'px';
-      buttonNode.style.left = left;
 
       this.positions.push(position);
       position += deltaPosition;
     }
 
     this.moveSliderTo(this.getValue());
+  }
+
+  getWidthFromButtonText() {
+    let width = 0;
+    for (let i = 0; i < this.buttonNodes.length; i++) {
+      let textNode = this.buttonNodes[i].querySelector('text');
+      if (textNode) {
+        width = Math.max(width, textNode.getBoundingClientRect().width);
+      }
+    }
+    return width;
+  }
+
+  getHeightFromButtonText() {
+    let height = 0;
+    let textNode = this.buttonNodes[0].querySelector('text');
+    if (textNode) {
+      height = textNode.getBoundingClientRect().height;
+    }
+    return height;
   }
 
   // Get point in global SVG space

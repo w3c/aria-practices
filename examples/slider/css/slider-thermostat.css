@@ -81,23 +81,21 @@
   position: relative;
 }
 
-.slider-thermostat-text .labels button {
-  position: absolute;
-  top: -30px;
-  margin: 2px;
-  padding: 6px;
-  border: none;
-  background: transparent;
-  display: inline-block;
-  font-size: 1em;
+.slider-thermostat-text [role="button"] rect {
+  fill: transparent;
+  stroke-width: 2px;
+  stroke: transparent;
+}
+
+.slider-thermostat-text [role="button"] text {
+  color: currentColor;
+  font-weight: bold;
 }
 
 /* Focus and hover styling */
 
-.slider-thermostat-text .labels button:hover {
-  padding: 4px;
-  border: 2px #005a9c solid;
-  border-radius: 5px;
+.slider-thermostat-text [role="button"]:hover rect {
+  stroke: currentColor;
 }
 
 .slider-thermostat-vertical.focus .slider-group,
