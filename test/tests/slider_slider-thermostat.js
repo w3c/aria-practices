@@ -72,6 +72,15 @@ ariaTest(
 );
 
 ariaTest(
+  'role="button" on G element',
+  exampleFile,
+  'button-role',
+  async (t) => {
+    await assertAriaRoles(t, 'ex1', 'button', '4', 'g');
+  }
+);
+
+ariaTest(
   '"tabindex" set to "-1" on buttons',
   exampleFile,
   'button-tabindex',

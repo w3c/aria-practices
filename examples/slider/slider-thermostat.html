@@ -319,7 +319,7 @@
             <td>
               <ul>
                 <li>Identifies the element as a slider.</li>
-                <li>Set on the <code>div</code> that represents as the movable thumb because it is the operable element that represents the slider value.</li>
+                <li>Set on the <code>g</code> element that represents as the movable thumb because it is the operable element that represents the slider value.</li>
               </ul>
             </td>
           </tr>
@@ -429,13 +429,25 @@
           </tr>
         </thead>
         <tbody>
+          <tr data-test-id="button-role">
+            <th scope="row">
+              <code>button</code>
+            </th>
+            <td></td>
+            <td>
+              <code>g</code>
+            </td>
+            <td>
+              Identifies the  <code>g</code> element as a button.
+            </td>
+          </tr>
           <tr data-test-id="button-tabindex">
             <td></td>
             <th scope="row">
               <code>tabindex=<q>-1</q></code>
             </th>
             <td>
-              <code>button</code>
+              <code>g</code>
             </td>
             <td>
               <ul>
@@ -449,10 +461,10 @@
               <code>aria-label=<q><em>label</em></q></code>
             </th>
             <td>
-              <code>button</code>
+              <code>g</code>
             </td>
             <td>
-              Defines the accessible name for each button describing how the associated slider will change (e.g. "Heating off", "Fan off" and "Fan auto").
+              Defines the accessible name for each button describing how the associated slider will change (e.g. "Set fan to medium speed").
             </td>
           </tr>
           <tr data-test-id="button-aria-controls">
@@ -461,7 +473,7 @@
               <code>aria-controls=<q>IDREF</q></code>
             </th>
             <td>
-              <code>button</code>
+              <code>g</code>
             </td>
             <td>
               <ul>
