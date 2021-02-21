@@ -9,7 +9,6 @@
         ]
       }
     ],
-    "no-descending-specificity": null,
     "prettier/prettier": [true, {"singleQuote": false}]
   }
 }
