@@ -211,10 +211,6 @@ window.addEventListener(
         links[k].href = '#mythical-page-content';
 
         links[k].addEventListener('click', (event) => {
-          // add preventDefault for Codepen functionality, then manually close dropdown
-          event.preventDefault();
-          disclosureNav.close();
-
           // change the heading text to fake a page change
           var pageTitle = event.target.innerText;
           examplePageHeading.innerText = pageTitle;
