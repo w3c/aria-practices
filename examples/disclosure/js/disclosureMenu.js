@@ -205,9 +205,6 @@ window.addEventListener(
     disclosureMenus.forEach((disclosureNav, i) => {
       var links = menus[i].querySelectorAll('[href="#mythical-page-content"]');
       var examplePageHeading = document.getElementById('mythical-page-heading');
-      var examplePageContainer = document.getElementById(
-        'mythical-page-content'
-      );
       for (var k = 0; k < links.length; k++) {
         // The codepen export script updates the internal link href with a full URL
         // we're just manually fixing that behavior here
