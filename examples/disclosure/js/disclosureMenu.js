@@ -209,6 +209,10 @@ window.addEventListener(
         'mythical-page-content'
       );
       for (var k = 0; k < links.length; k++) {
+        // The codepen export script updates the internal link href with a full URL
+        // we're just manually fixing that behavior here
+        links[k].href = '#mythical-page-content';
+
         links[k].addEventListener('click', (event) => {
           // add preventDefault for Codepen functionality, then manually close dropdown
           event.preventDefault();
@@ -217,10 +221,6 @@ window.addEventListener(
           // change the heading text to fake a page change
           var pageTitle = event.target.innerText;
           examplePageHeading.innerText = pageTitle;
-
-          // move focus to the new "page" -- this is only for this (fake) example,
-          // normally any focus/updates would be handled natively by the browser
-          examplePageContainer.focus();
 
           // handle aria-current
           for (var n = 0; n < links.length; n++) {
