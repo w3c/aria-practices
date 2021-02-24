@@ -29,9 +29,6 @@ class RangeThermostatVertical {
       'pointermove',
       this.onRangeChange.bind(this)
     );
-
-    this.rangeNode.addEventListener('focus', this.onRangeFocus.bind(this));
-    this.rangeNode.addEventListener('blur', this.onRangeBlur.bind(this));
   }
 
   onRangeChange() {
@@ -41,14 +38,6 @@ class RangeThermostatVertical {
       'aria-valuetext',
       parseFloat(this.rangeNode.value).toFixed(1) + this.labelCelsius
     );
-  }
-
-  onRangeFocus() {
-    this.domNode.classList.add('focus');
-  }
-
-  onRangeBlur() {
-    this.domNode.classList.remove('focus');
   }
 }
 
@@ -75,16 +64,11 @@ class RangeThermostatText {
       this.onRangeChange.bind(this)
     );
 
-    this.rangeNode.addEventListener('focus', this.onRangeFocus.bind(this));
-    this.rangeNode.addEventListener('blur', this.onRangeBlur.bind(this));
-
     this.textValues = [];
     for (let i = 0; i < this.buttonNodes.length; i++) {
       let buttonNode = this.buttonNodes[i];
-      this.textValues.push(buttonNode.textContent.trim());
+      this.textValues.push(buttonNode.getAttribute('data-valuetext'));
       buttonNode.addEventListener('click', this.onButtonClick.bind(this));
-      buttonNode.addEventListener('focus', this.onRangeFocus.bind(this));
-      buttonNode.addEventListener('blur', this.onRangeBlur.bind(this));
     }
   }
 
@@ -95,18 +79,11 @@ class RangeThermostatText {
     );
   }
 
-  onRangeFocus() {
-    this.domNode.classList.add('focus');
-  }
-
-  onRangeBlur() {
-    this.domNode.classList.remove('focus');
-  }
-
   onButtonClick(event) {
     var tgt = event.currentTarget;
     var value = parseInt(tgt.getAttribute('data-value'));
     this.rangeNode.value = value;
+    this.onRangeChange();
     this.rangeNode.focus();
     event.preventDefault();
     event.stopPropagation();

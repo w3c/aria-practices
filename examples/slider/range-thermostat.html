@@ -70,20 +70,21 @@
               aria-labelledby="id-temp-label">
           </div>
 
-          <div class="range-thermostat-text">
-            <label id="id-fan-label" for="id-fan">Fan</label>
+          <div id="id-fan" class="range-thermostat-text">
+            <label for="id-fan-input">Fan</label>
             <input type="range"
-              id="id-fan"
+              id="id-fan-input"
               class="text"
               min="0"
               value="0"
-              aria-valuetext="Off"
+              aria-valuetext="off"
               max="3">
             <div class="labels">
               <button
                 tabindex="-1"
                 aria-controls="id-fan"
                 data-value="0"
+                data-valuetext="off"
                 aria-label="Turn fan off">
                 Off
               </button>
@@ -91,6 +92,7 @@
                 tabindex="-1"
                 aria-controls="id-fan"
                 data-value="1"
+                data-valuetext="low"
                 aria-label="Set fan to low speed">
                 Low
               </button>
@@ -98,6 +100,7 @@
                 tabindex="-1"
                 aria-controls="id-fan"
                 data-value="2"
+                data-valuetext="medium"
                 aria-label="Set fan to medium speed">
                 <abbr title="Medium">Med</abbr>
               </button>
@@ -105,6 +108,7 @@
                 tabindex="-1"
                 aria-controls="id-fan"
                 data-value="3"
+                data-valuetext="high"
                 aria-label="Set fan to high speed">
                 High
               </button>

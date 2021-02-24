@@ -1,4 +1,5 @@
 const { ariaTest } = require('..');
+const { Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaControls = require('../util/assertAriaControls');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
@@ -8,11 +9,12 @@ const assertAriaRoles = require('../util/assertAriaRoles');
 const exampleFile = 'slider/range-thermostat.html';
 
 const ex = {
-  rangeSelector: '#ex1 [input="range"]',
+  rangeSelector: '#ex1 input[type="range"]',
   buttonSelector: '#ex1 button',
   groupSelector: '#ex1 [role="group"]',
   tempSelector: '#id-temp-range',
-  fanSelector: '#id-fan',
+  fanRangeSelector: '#id-fan-input',
+  fanButtonSelector: '#id-fan button',
   tempMax: '38.0',
   tempMin: '10.0',
   tempDefault: '25.0',
@@ -21,7 +23,7 @@ const ex = {
   tempSuffix: '°C',
   fanMax: '3',
   fanMin: '0',
-  fanValues: ['Off', 'Low', 'Med', 'High'],
+  fanValues: ['off', 'low', 'medium', 'high'],
 };
 
 // Attributes
@@ -98,7 +100,7 @@ ariaTest(
     );
     await assertAttributeValues(
       t,
-      ex.fanSelector,
+      ex.fanRangeSelector,
       'aria-valuetext',
       ex.fanValues[0]
     );
@@ -111,5 +113,50 @@ ariaTest(
   'range-aria-labelledby',
   async (t) => {
     await assertAriaLabelledby(t, ex.tempSelector);
+  }
+);
+
+// Keys
+
+ariaTest(
+  '"aria-valuetext" updated with button click value',
+  exampleFile,
+  'range-aria-valuetext',
+  async (t) => {
+    let i;
+    const range = await t.context.queryElement(t, ex.fanRangeSelector);
+    const buttons = await t.context.queryElements(t, ex.fanButtonSelector);
+
+    for (i = 0; i < buttons.length; i++) {
+      const button = buttons[i];
+
+      await button.click();
+
+      const valuetext = await button.getAttribute('data-valuetext');
+
+      await assertAttributeValues(
+        t,
+        ex.fanRangeSelector,
+        'aria-valuetext',
+        valuetext
+      );
+    }
+
+    await range.sendKeys(Key.HOME);
+
+    for (i = 0; i < buttons.length; i++) {
+      const button = buttons[i];
+
+      const valuetext = await button.getAttribute('data-valuetext');
+
+      await assertAttributeValues(
+        t,
+        ex.fanRangeSelector,
+        'aria-valuetext',
+        valuetext
+      );
+
+      await range.sendKeys(Key.ARROW_RIGHT);
+    }
   }
 );
