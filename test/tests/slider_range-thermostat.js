@@ -13,7 +13,6 @@ const ex = {
   groupSelector: '#ex1 [role="group"]',
   tempSelector: '#id-temp-range',
   fanSelector: '#id-fan',
-  heatSelector: '#id-hc',
   tempMax: '38.0',
   tempMin: '10.0',
   tempDefault: '25.0',
@@ -22,10 +21,7 @@ const ex = {
   tempSuffix: '°C',
   fanMax: '3',
   fanMin: '0',
-  heatMax: '2',
-  heatMin: '0',
-  fanValues: ['Off', 'Low', 'High', 'Auto'],
-  heatValues: ['Off', 'Heat', 'Cool'],
+  fanValues: ['Off', 'Low', 'Med', 'High'],
 };
 
 // Attributes
@@ -105,12 +101,6 @@ ariaTest(
       ex.fanSelector,
       'aria-valuetext',
       ex.fanValues[0]
-    );
-    await assertAttributeValues(
-      t,
-      ex.heatSelector,
-      'aria-valuetext',
-      ex.heatValues[0]
     );
   }
 );
