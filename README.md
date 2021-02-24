@@ -1,5 +1,3 @@
-
-
 # WAI-ARIA: Authoring Practices Guide
 
 This repository maintains the WAI-ARIA Authoring Practices Guide.
@@ -101,7 +99,7 @@ offending character is indicated by the number `8` after the colon. Change the
 variable `value_nodes` to `valueNodes` in your source file to eliminate this
 error.
 
-To see the complete list of style rules that are applied by ESLint, review the [.eslint.json](.eslint.json) file in the root of the project.
+To see the complete list of style rules that are applied by ESLint, review the [.eslintrc.json](.eslintrc.json) file in the root of the project.
 
 ### Editorial documentation
 
