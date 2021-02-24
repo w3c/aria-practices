@@ -20,7 +20,7 @@ class RangeThermostatVertical {
 
     // The input elements are optional to support mobile devices,
     // when a keyboard is not present
-    this.outputNode = domNode.querySelector('.output-value output');
+    this.valueNode = domNode.querySelector('.range-value');
 
     // bind a pointermove event handler to move pointer
     this.rangeNode.addEventListener('change', this.onRangeChange.bind(this));
@@ -32,7 +32,7 @@ class RangeThermostatVertical {
   }
 
   onRangeChange() {
-    this.outputNode.value =
+    this.valueNode.textContent =
       parseFloat(this.rangeNode.value).toFixed(1) + this.labelCelsiusAbbrev;
     this.rangeNode.setAttribute(
       'aria-valuetext',

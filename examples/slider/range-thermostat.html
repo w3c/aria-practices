@@ -49,15 +49,10 @@
           aria-labelledby="id-therm-label">
           <h3 id="id-therm-label">Thermostat</h3>
           <div class="range-thermostat-vertical">
-            <div class="output-value">
-              <label id="id-temp-label"
-                for="id-temp-output">
-                Temperature
-              </label>
-              <output
-                id="id-temp-output"
-                for="id-temp-range">25°C</output>
-            </div>
+            <label for="id-temp-range">
+              Temperature
+            </label>
+            <div class="range-value">25.0°C</div>
             <input type="range"
               id="id-temp-range"
               class="veritcal"
@@ -66,8 +61,7 @@
               aria-valuetext="25.0°C"
               max="38.0"
               step="0.1"
-              aria-orientation="vertical"
-              aria-labelledby="id-temp-label">
+              aria-orientation="vertical">
           </div>
 
           <div id="id-fan" class="range-thermostat-text">
@@ -154,16 +148,6 @@
             <td>
               Identifies the group of controls representing the thermostat.
             </td>
-          </tr>
-          <tr data-test-id="group-aria-labelledby">
-            <td></td>
-            <th scope="row">
-              <code>aria-labelledby=<q>IDREF</q></code>
-            </th>
-            <td>
-              <code>h2</code>
-            </td>
-            <td>Refers to the element containing the name of the thermostat group of controls.</td>
           </tr>
         </tbody>
       </table>

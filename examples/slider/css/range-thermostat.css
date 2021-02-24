@@ -27,8 +27,8 @@
   display: block;
 }
 
-.range-thermostat-vertical output {
-  padding-left: 24px;
+.range-thermostat-vertical .range-value {
+  margin-left: 102px;
   font-weight: bold;
   font-size: 200%;
   font-family: sans-serif;
@@ -61,10 +61,6 @@
   transform: rotate(270deg);
 }
 
-.range-thermostat-vertical input[type="range"]:focus {
-  outline: none;
-}
-
 .range-thermostat-vertical input[type="range"]::-webkit-slider-runnable-track {
   background: #3071a9;
   border: 2px solid currentColor;
@@ -83,8 +79,6 @@
   cursor: pointer;
   -webkit-appearance: none;
 }
-
-/* Range Text Controls */
 
 .range-thermostat-vertical
   input[type="range"]:focus::-webkit-slider-runnable-track {
@@ -108,8 +102,10 @@
   cursor: pointer;
 }
 
+/* Range Text Controls */
+
 .range-thermostat-text input[type="range"] {
-  margin: 20.25px 10px;
+  margin: 20.25px 12px;
   background-color: transparent;
   -webkit-appearance: none;
 }
@@ -159,6 +155,7 @@
 
 /* Focus and hover styling */
 
+.range-thermostat-vertical input[type="range"]:focus,
 .range-thermostat-text input[type="range"]:focus {
   outline: none;
 }
