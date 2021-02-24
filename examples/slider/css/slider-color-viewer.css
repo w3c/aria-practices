@@ -23,8 +23,9 @@
 }
 
 .color-slider {
-  margin-top: 1em;
-  padding: 4px;
+  margin: 0;
+  margin-bottom: 1em;
+  padding: 2px;
   touch-action: pan-y;
   width: 350px;
   outline: none;
@@ -37,6 +38,8 @@
 }
 
 .color-slider-label {
+  margin: 0;
+  padding: 0;
   font-weight: bold;
 }
 
