@@ -107,15 +107,6 @@ ariaTest(
   }
 );
 
-ariaTest(
-  '"range-aria-labelledby" set on temp range',
-  exampleFile,
-  'range-aria-labelledby',
-  async (t) => {
-    await assertAriaLabelledby(t, ex.tempSelector);
-  }
-);
-
 // Keys
 
 ariaTest(
