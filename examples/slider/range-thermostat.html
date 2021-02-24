@@ -117,8 +117,15 @@
       <section>
         <h2>Accessibility Features</h2>
         <ul>
-          <li>A border around the thumb is used for indicating the range control with keyboard focus.</li>
-          <li>The <code>button</code> elements receive a border style when hovered for users to identify the elements as interactive.  Border is not rendered by default since the content of the buttons is primarily as visual labels for values of the range positions.  The buttons are only a secondary way to set the value of the range.</li>
+          <li>
+            A border around the thumb is used for indicating the range control with keyboard focus.
+          </li>
+          <li>
+            The <code>button</code> elements receive a border style when hovered for users to identify the elements as interactive.  Border is not rendered by default since the content of the buttons is primarily as visual labels for values of the range positions.  The buttons are only a secondary way to set the value of the range.
+          </li>
+          <li>
+            The fan speed control could also be implemented as a radio group, since it is picking one of four values.  In this example the range control is also appropriate since the fan speed is a continuous range of values from off to the highest speed.  So if an assistive technology announced the value as a percentage it would still make sense as a percentage of maximum speed of the fan.
+          </li>
         </ul>
       </section>
 
