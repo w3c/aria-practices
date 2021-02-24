@@ -157,19 +157,20 @@
   <section>
     <h2>Accessibility Features</h2>
     <ol>
-      <li>Since this set of disclosure buttons controls visibility of navigation links for the mythical university web site, the list that contains them is wrapped in a navigation landmark named <q>Mythical University</q>.</li>
+      <li>Since this set of links and disclosure buttons provides  navigation for the mythical university web site, the list that contains them is wrapped in a navigation landmark named <q>Mythical University</q>.</li>
       <li>
-        The semantics of the list structure communicates the hierarchy of the navigation system to assistive technology users.
-        The top-level items are a list of three link + button pairs, each pair within a single list item. The set of sub-links controlled by each button is contained within a list nested inside the item with the controlling button.
+        The semantics of the list structure communicate the hierarchy of the navigation system to assistive technology users.
+        The top-level list has three items where each item contains a top-level link and an associated disclosure button.
+        The set of links controlled by a disclosure button is in a list nested inside the list item that contains the button.
       </li>
+      <li>To ensure the carets that indicate the presence and state of the disclosures are reliably rendered when operating system or browser high contrast settings are enabled, visual indication of the show/hide state is created using CSS <code>::after</code> pseudo element border styles.</li>
       <li>
         If a dropdown is open and focus is inside the navigation region, pressing <kbd>Esc</kbd> will close the dropdown.
         Moving focus out of the navigation region also closes an open dropdown.
       </li>
-      <li>The visual indicator of the show/hide state is created using CSS <code>::after</code> pseudo element border styles so the caret is reliably rendered in high contrast mode of operating systems and browsers.</li>
       <li>Optional navigation keys (Arrow keys, <kbd>Home</kbd>, and <kbd>End</kbd>):
         <ol>
-          <li>Implementing the optional arrow key support prevents the default page scroll behavior when focus is contained within the navigation region.</li>
+          <li>Enabling the optional arrow key support prevents the default page scroll behavior when focus is contained within the navigation region.</li>
           <li>
             Optional navigation key support is primarily for the benefit of keyboard users who are not running a screen reader.
             Screen readers that have both reading and interaction modes intercept these navigation keys and do not pass them to the page when the screen reader is in reading mode.
