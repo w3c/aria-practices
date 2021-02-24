@@ -84,22 +84,11 @@
   -webkit-appearance: none;
 }
 
+/* Range Text Controls */
+
 .range-thermostat-vertical
   input[type="range"]:focus::-webkit-slider-runnable-track {
   background: #3174ad;
-}
-
-.range-thermostat-text
-  input[type="range"]:focus::-webkit-slider-runnable-track {
-  background: #3174ad;
-}
-
-/* Range Text Controls */
-
-.range-thermostat-text input[type="range"] {
-  margin: 20.25px 10px;
-  background-color: transparent;
-  -webkit-appearance: none;
 }
 
 .range-thermostat-vertical input[type="range"]::-moz-range-track {
@@ -117,6 +106,17 @@
   border: 2px solid currentColor;
   border-radius: 7.5px;
   cursor: pointer;
+}
+
+.range-thermostat-text input[type="range"] {
+  margin: 20.25px 10px;
+  background-color: transparent;
+  -webkit-appearance: none;
+}
+
+.range-thermostat-text
+  input[type="range"]:focus::-webkit-slider-runnable-track {
+  background: #3174ad;
 }
 
 .range-thermostat-text input[type="range"]::-webkit-slider-runnable-track {
