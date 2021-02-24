@@ -161,14 +161,24 @@
       <section>
         <h2>Accessibility Features</h2>
         <ul>
-          <li>The placement of the slider value to the right of the thumb of the vertical slider supports users with low vision to view the value as they move the thumb with a pointer.</li>
-          <li>A outline around the label, rail and thumb is used for indicating the slider with keyboard focus.</li>
-          <li>A outline SVG graphic around the thumb is used for indicating the thumb with keyboard focus.</li>
-          <li>The use SVG graphics enables the thumb, focus ring and rail of the slider to adapt to operating system high contrast color schemes and settings.</li>
-          <li>The CSS <code>currentColor</code> value for the <code>fill</code> and <code>stroke</code> properties for the rail, thumb and slider supports user selected color schemes in operating system high contrast mode.</li>
-          <li>The <code>button</code> elements receive a border style when hovered for users to identify the elements as interactive.  Border is not rendered by default since the content of the buttons is primarily as visual labels for values of the slider positions.  The buttons are only a secondary way to set the value of the slider.</li>
-          <li>Uses <code>pointer</code> events, instead of <code>mouse</code> events, for tracking the movement of the thumb to support the use of the sliders on touch devices.</li>
-          <li>The fan speed control could also be implemented as a radio group, since it is picking one of four values.  In this example the slider role is also appropriate since the fan speed is a continuous range of values from off to the highest speed.  So if an assistive technology announced the value as a percentage it would still make sense as a percentage of maximum speed of the fan.</li>
+          <li>
+            The placement of the slider value to the right of the thumb of the vertical slider supports users with low vision to view the value as they move the thumb with a pointer.
+          </li>
+          <li>
+            A outline SVG graphic around the thumb is used for indicating the slider with keyboard focus.
+          </li>
+          <li>
+            To ensure the borders of the slider rail, thumb and focus ring have sufficient contrast with the background when high contrast settings invert colors, the CSS <code>currentColor</code> value for the <code>stroke</code> property is used for the SVG <code>rect</code> elements to synchronize the border color with text content. If specific colors are used to specify the <code>stroke</code> property, these colors will remain the same in high contrast mode, which could lead to insufficient contrast between the rail and the thumb or even make them invisible if its color matches the high contrast mode background.
+          </li>
+          <li>
+            The SVG elements with the <code>role=<q>button</q></code> receive a border when hovered for users to identify the elements as interactive.  Border is not rendered by default since the content of the buttons is primarily as visual labels for values of the slider positions.  The buttons are only a secondary way to set the value of the slider.
+          </li>
+          <li>
+            The use of <code>pointer</code> events supports assistive technologies on touch devices to change the value of slider using gestures.
+          </li>
+          <li>
+            The fan speed control could also be implemented as a radio group, since it is picking one of four values.  In this example the slider role is also appropriate since the fan speed is a continuous range of values from off to the highest speed.  So if an assistive technology announced the value as a percentage it would still make sense as a percentage of maximum speed of the fan.
+          </li>
         </ul>
       </section>
 

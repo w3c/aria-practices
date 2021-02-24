@@ -31,13 +31,6 @@
   font-weight: bold;
 }
 
-.slider-thermostat-vertical.focus,
-.slider-thermostat-text.focus {
-  padding: 4px;
-  border: 2px solid #005a9c;
-  border-radius: 5px;
-}
-
 .slider-thermostat-vertical .value {
   position: relative;
   top: 20px;
