@@ -36,7 +36,7 @@
   width: 350px;
 }
 
-.color-slider .label {
+.color-slider-label {
   font-weight: bold;
 }
 
@@ -85,10 +85,6 @@
   fill: transparent;
   stroke: transparent;
   stroke-width: 2px;
-}
-
-.color-slider:focus {
-  outline: 2px currentColor solid;
 }
 
 .color-slider:focus .value,

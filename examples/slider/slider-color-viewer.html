@@ -52,6 +52,7 @@
             <div class="color-viewer-sliders" role="group" aria-labelledby="id-color-viewer">
               <h2 id="id-color-viewer">Color Viewer</h2>
 
+              <div id="id-red" class="color-slider-label">Red</div>
               <div class="color-slider red"
                   role="slider"
                   tabindex="0"
@@ -59,7 +60,6 @@
                   aria-valuenow="128"
                   aria-valuemax="255"
                   aria-labelledby="id-red">
-                <div id="id-red" class="label">Red</div>
 
                 <!-- SVG position and dimension values added through Javascript -->
 
@@ -72,6 +72,7 @@
                 </svg>
               </div>
 
+              <div id="id-green" class="color-slider-label">Green</div>
               <div class="color-slider green"
                   role="slider"
                   tabindex="0"
@@ -79,7 +80,6 @@
                   aria-valuenow="128"
                   aria-valuemax="255"
                   aria-labelledby="id-green">
-                <div id="id-green" class="label">Green</div>
 
                 <!-- SVG position and dimension values added through Javascript -->
 
@@ -92,6 +92,7 @@
                 </svg>
               </div>
 
+              <div id="id-blue" class="color-slider-label">Blue</div>
               <div class="color-slider blue"
                   role="slider"
                   tabindex="0"
@@ -99,7 +100,6 @@
                   aria-valuenow="128"
                   aria-valuemax="255"
                   aria-labelledby="id-blue">
-                <div id="id-blue" class="label">Blue</div>
 
                 <!-- SVG position and dimension values added through Javascript -->
 
@@ -133,19 +133,19 @@
       <h2>Accessibility Features</h2>
       <ul>
         <li>
-          The three sliders are wrapped in a group to help assistive technology users understand that all three elements together represent a color viewer.
+          The three sliders are wrapped in a <code>group</code> to help assistive technology users understand that all three sliders together represent a color viewer.
         </li>
         <li>
           The placement of the slider value above the thumb supports users with low vision by making it easier to view the current value when the thumb is dragged.
         </li>
         <li>
-          In addition to the focus ring around the entire slider and slider label, there is an additional focus ring around the thumb and slider value to highlight the interactive nature of the thumb.
+          The focus ring around the thumb and the slider value highlight the interactive nature of the thumb.
         </li>
         <li>
-          Use of SVG enables high contrast support by providing a means for <code>text</code> and <code>rect</code> element to adapt to high contrast colors using the <code>currentColor</code> value for the <code>stroke</code> and <code>fill</code> properties.
+          To ensure the slider rail and thumb have sufficient contrast with the background when high contrast settings invert colors, the CSS <code>currentColor</code> value for the <code>stroke</code> property of the SVG <code>rect</code> elements to synchronize the color with text content. If specific colors are used to specify the <code>stroke</code> property, these colors will remain the same in high contrast mode, which could lead to insufficient contrast between the rail and the thumb or even make them invisible if its color matches the high contrast mode background.
         </li>
         <li>
-          Uses <code>pointer</code> events, instead of <code>mouse</code> events, for tracking the movement of the thumb to support the use of the sliders on touch devices.
+          The use of <code>pointer</code> events supports assistive technologies on touch devices to change the value of slider using gestures.
         </li>
       </ul>
     </section>

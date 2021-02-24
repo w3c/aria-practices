@@ -21,7 +21,7 @@ class ColorViewerSliders {
     this.svgHeight = 50;
     this.borderWidth = 2;
 
-    this.valueY = 22;
+    this.valueY = 20;
 
     this.railX = 15;
     this.railY = 26;
