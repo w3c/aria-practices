@@ -6,12 +6,6 @@
   touch-action: pan-y;
 }
 
-.slider-multithumb.focus {
-  padding: 4px;
-  border: 2px solid #005a9c;
-  border-radius: 5px;
-}
-
 .slider-multithumb .slider-group .value {
   font-size: 80%;
   color: currentColor;

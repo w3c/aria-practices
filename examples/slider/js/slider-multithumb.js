@@ -56,6 +56,7 @@ class SliderMultithumb {
     this.focusY = this.valueTop - this.valueHeight - this.focusOffset + 2;
     this.focusWidth = this.thumbWidth + 2 * this.focusOffset;
     this.focusHeight = this.thumbBottom - this.focusY + this.focusOffset + 2;
+    this.focusRadius = this.focusWidth / 8;
 
     this.svgNode.setAttribute('width', this.svgWidth);
     this.svgNode.setAttribute('height', this.svgHeight);
@@ -66,8 +67,8 @@ class SliderMultithumb {
     this.maxSliderFocusNode.setAttribute('width', this.focusWidth);
     this.minSliderFocusNode.setAttribute('height', this.focusHeight);
     this.maxSliderFocusNode.setAttribute('height', this.focusHeight);
-    this.minSliderFocusNode.setAttribute('rx', this.focusWidth / 2);
-    this.maxSliderFocusNode.setAttribute('rx', this.focusWidth / 2);
+    this.minSliderFocusNode.setAttribute('rx', this.focusRadius);
+    this.maxSliderFocusNode.setAttribute('rx', this.focusRadius);
 
     this.minSliderValueNode.setAttribute('y', this.valueTop);
     this.maxSliderValueNode.setAttribute('y', this.valueTop);
@@ -76,7 +77,7 @@ class SliderMultithumb {
     this.railNode.setAttribute('x', this.railX);
     this.railNode.setAttribute('height', this.railHeight);
     this.railNode.setAttribute('width', this.railWidth + this.thumbWidth);
-    this.railNode.setAttribute('rx', this.railHeight / 2);
+    this.railNode.setAttribute('rx', this.railHeight / 4);
 
     this.sliderMinValue = this.getValueMin(this.minSliderNode);
     this.sliderMaxValue = this.getValueMax(this.maxSliderNode);
