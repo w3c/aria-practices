@@ -80,11 +80,6 @@
   -webkit-appearance: none;
 }
 
-.range-thermostat-vertical
-  input[type="range"]:focus::-webkit-slider-runnable-track {
-  background: #3174ad;
-}
-
 .range-thermostat-vertical input[type="range"]::-moz-range-track {
   background: #3071a9;
   border: 2px solid currentColor;
@@ -108,11 +103,6 @@
   margin: 20.25px 12px;
   background-color: transparent;
   -webkit-appearance: none;
-}
-
-.range-thermostat-text
-  input[type="range"]:focus::-webkit-slider-runnable-track {
-  background: #3174ad;
 }
 
 .range-thermostat-text input[type="range"]::-webkit-slider-runnable-track {
@@ -155,15 +145,25 @@
 
 /* Focus and hover styling */
 
+.range-thermostat-text .labels button:hover {
+  padding: 4px;
+  border: 2px #005a9c solid;
+  border-radius: 5px;
+}
+
 .range-thermostat-vertical input[type="range"]:focus,
 .range-thermostat-text input[type="range"]:focus {
   outline: none;
 }
 
-.range-thermostat-text .labels button:hover {
-  padding: 4px;
-  border: 2px #005a9c solid;
-  border-radius: 5px;
+.range-thermostat-vertical
+  input[type="range"]:focus::-webkit-slider-runnable-track {
+  background: #3174ad;
+}
+
+.range-thermostat-text
+  input[type="range"]:focus::-webkit-slider-runnable-track {
+  background: #3174ad;
 }
 
 input[type="range"]:focus::-moz-range-thumb,
