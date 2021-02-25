@@ -129,7 +129,7 @@
             The focus ring includes both the thumb and the slider value to make it easier to identify the thumb with the thumb value.
           </li>
           <li>
-            To ensure the borders of the slider rail, thumb and focus ring have sufficient contrast with the background when high contrast settings invert colors, the CSS <code>currentColor</code> value for the <code>stroke</code> property is used for the SVG <code>rect</code> elements to synchronize the border color with text content. If specific colors are used to specify the <code>stroke</code> property, these colors will remain the same in high contrast mode, which could lead to insufficient contrast between the rail and the thumb or even make them invisible if its color matches the high contrast mode background.
+            To ensure the borders of the slider rail, thumb and focus ring have sufficient contrast with the background when high contrast settings invert colors, the CSS <code>currentColor</code> value for the <code>stroke</code> property is used for the inline SVG <code>rect</code> elements to synchronize the border color with text content. If specific colors are used to specify the <code>stroke</code> property, these colors will remain the same in high contrast mode, which could lead to insufficient contrast between the rail and the thumb or even make them invisible if its color matches the high contrast mode background.   NOTE: The use of inline SVG graphics are needed to support the use of the <code>currentColor</code> value.
           </li>
           <li>
             The use of <code>pointer</code> events supports assistive technologies on touch devices to change the value of slider using gestures.
