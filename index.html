@@ -150,16 +150,16 @@
       "aliasOf": "WAI-ARIA-1.1"
     }
   },
-  "publishDate": "2021-02-22",
-  "publishISODate": "2021-02-22T00:00:00.000Z",
-  "generatedSubtitle": "Editor's Draft 22 February 2021"
+  "publishDate": "2021-02-27",
+  "publishISODate": "2021-02-27T00:00:00.000Z",
+  "generatedSubtitle": "Editor's Draft 27 February 2021"
 }</script><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED"></head>
 <body class="h-entry informative"><div class="head">
     <a class="logo" href="https://www.w3.org/"><img alt="W3C" width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C"></a> <h1 id="title" class="title">WAI-ARIA Authoring Practices 1.2</h1>
     
     <h2>
       W3C Editor's Draft
-      <time class="dt-published" datetime="2021-02-22">22 February 2021</time>
+      <time class="dt-published" datetime="2021-02-27">27 February 2021</time>
     </h2>
     <dl>
       <dt>This version:</dt><dd>
@@ -348,7 +348,7 @@
       </p>
       <p>Some of ARIA is like a cloak; it covers up, or overrides, the original semantics or content.</p>
       <pre><code aria-busy="false" class="hljs javascript">
-        &lt;a role=<span class="hljs-string">"menuitem"</span>&gt;Assistive tech users perceive <span class="hljs-keyword">this</span> element <span class="hljs-keyword">as</span> an item <span class="hljs-keyword">in</span> a menu, not a link.&lt;/a&gt;
+        &lt;a role=<span class="hljs-string">"menuitem"</span>&gt;Assistive tech users perceive <span class="hljs-built_in">this</span> element <span class="hljs-keyword">as</span> an item <span class="hljs-keyword">in</span> a menu, not a link.&lt;/a&gt;
         <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"Assistive tech users can only perceive the contents of this aria-label, not the link text"</span>&gt;</span>Link Text<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span>
 </code></pre>
       <p>On the other hand, some uses of ARIA are more like suspenders or belts; they add meaning that provides essential support to the original content.</p>
@@ -4354,23 +4354,23 @@ However, most authors do not need such detailed understanding of the algorithms 
  <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>6 June<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>11:00-16:00<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span></code></pre>
           <p>The following example gives the table a number (<q>Table 1</q>) so it can be referenced. </p>
-          <pre><code aria-busy="false" class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
- <span class="hljs-tag">&lt;<span class="hljs-name">caption</span>&gt;</span>Table 1. Traditional dietary intake of Okinawans and other Japanese circa 1950<span class="hljs-tag">&lt;/<span class="hljs-name">caption</span>&gt;</span>
- <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Okinawa, 1949<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Japan, 1950<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
- <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Total calories<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>1785<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>2068<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+          <pre><code aria-busy="false" class="hljs css">&lt;<span class="hljs-selector-tag">table</span>&gt;
+ &lt;<span class="hljs-selector-tag">caption</span>&gt;<span class="hljs-selector-tag">Table</span> <span class="hljs-number">1</span>. Traditional dietary intake of Okinawans and other Japanese circa <span class="hljs-number">1950</span>&lt;/<span class="hljs-selector-tag">caption</span>&gt;
+ &lt;<span class="hljs-selector-tag">thead</span>&gt;
+  &lt;<span class="hljs-selector-tag">tr</span>&gt;
+   &lt;<span class="hljs-selector-tag">th</span>&gt;&lt;/<span class="hljs-selector-tag">th</span>&gt;
+   &lt;<span class="hljs-selector-tag">th</span>&gt;Okinawa, <span class="hljs-number">1949</span>&lt;/<span class="hljs-selector-tag">th</span>&gt;
+   &lt;<span class="hljs-selector-tag">th</span>&gt;Japan, <span class="hljs-number">1950</span>&lt;/<span class="hljs-selector-tag">th</span>&gt;
+  &lt;/<span class="hljs-selector-tag">tr</span>&gt;
+ &lt;<span class="hljs-selector-tag">tbody</span>&gt;
+  &lt;<span class="hljs-selector-tag">tr</span>&gt;
+   &lt;<span class="hljs-selector-tag">th</span>&gt;Total calories&lt;/<span class="hljs-selector-tag">th</span>&gt;
+   &lt;<span class="hljs-selector-tag">td</span>&gt;<span class="hljs-number">1785</span>&lt;/<span class="hljs-selector-tag">td</span>&gt;
+   &lt;<span class="hljs-selector-tag">td</span>&gt;<span class="hljs-number">2068</span>&lt;/<span class="hljs-selector-tag">td</span>&gt;
 
-  [...]
+  <span class="hljs-selector-attr">[...]</span>
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span></code></pre>
+&lt;/<span class="hljs-selector-tag">table</span>&gt;</code></pre>
           <p>Note: Above table content is from <a href="https://www.ncbi.nlm.nih.gov/pubmed/17986602">Caloric restriction, the traditional Okinawan diet, and healthy aging: the diet of the world's longest-lived people and its potential impact on morbidity and life span</a>.</p>
           <p>
             If a <code>table</code> is named using <code>aria-label</code> or <code>aria-labelledby</code>, then a <code>caption</code> element, if present, will become an accessible description.
@@ -6919,23 +6919,23 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
         The following example shows a temperature controller.
         In this example, <code>aria-valuenow</code> is meaningful to the user, and so <code>aria-valuetext</code> is not used.
       </p>
-      <pre><code aria-busy="false" class="hljs javascript">&lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"rail"</span>&gt;
-  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"thumb"</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"slider"</span> <span class="hljs-attr">aria-valuemin</span>=<span class="hljs-string">"50"</span> <span class="hljs-attr">aria-valuenow</span>=<span class="hljs-string">"68"</span> <span class="hljs-attr">aria-valuemax</span>=<span class="hljs-string">"100"</span>
+      <pre><code aria-busy="false" class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"rail"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"thumb"</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"slider"</span> <span class="hljs-attr">aria-valuemin</span>=<span class="hljs-string">"50"</span> <span class="hljs-attr">aria-valuenow</span>=<span class="hljs-string">"68"</span> <span class="hljs-attr">aria-valuemax</span>=<span class="hljs-string">"100"</span>
        <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"Temperature (F)"</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">"0"</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-&lt;/div&gt;</code></pre>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
       <p>The slider example above can be made using the HTML <code>&lt;input type="range"&gt;</code> element.</p>
       <pre><code aria-busy="false" class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"range"</span> <span class="hljs-attr">min</span>=<span class="hljs-string">"50"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"68"</span> <span class="hljs-attr">max</span>=<span class="hljs-string">"100"</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"Temperature (F)"</span>&gt;</span>
       </code></pre><p>The following example is a fan control. The <code>aria-valuenow</code> value is "1", which is not meaningful to the user. The <code>aria-valuetext</code> property is used so that assistive technology will surface its value ("low") instead.</p>
-      <pre><code aria-busy="false" class="hljs javascript">&lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"rail"</span>&gt;
-  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"thumb"</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"slider"</span> <span class="hljs-attr">aria-valuemin</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">aria-valuenow</span>=<span class="hljs-string">"1"</span> <span class="hljs-attr">aria-valuemax</span>=<span class="hljs-string">"3"</span>
+      <pre><code aria-busy="false" class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"rail"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"thumb"</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"slider"</span> <span class="hljs-attr">aria-valuemin</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">aria-valuenow</span>=<span class="hljs-string">"1"</span> <span class="hljs-attr">aria-valuemax</span>=<span class="hljs-string">"3"</span>
        <span class="hljs-attr">aria-valuetext</span>=<span class="hljs-string">"low"</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"Fan speed"</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">"0"</span> &gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"value"</span>&gt;</span> Off <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"value"</span>&gt;</span> Low <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"value"</span>&gt;</span> Medium <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"value"</span>&gt;</span> High <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-&lt;/div&gt;</code></pre>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"value"</span>&gt;</span> Off <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"value"</span>&gt;</span> Low <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"value"</span>&gt;</span> Medium <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"value"</span>&gt;</span> High <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
     </section>
 
     <section id="range_related_properties_spinbutton_role">
