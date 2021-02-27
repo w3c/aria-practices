@@ -3,7 +3,7 @@
   "attr-lowercase": ["viewBox"],
   "attr-no-duplication": true,
   "attr-unsafe-chars": true,
-  "attr-value-double-quotes": false,
+  "attr-value-double-quotes": true,
   "attr-value-not-empty": false,
   "doctype-first": true,
   "doctype-html5": false,
