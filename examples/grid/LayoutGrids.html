@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Layout Grid Examples | WAI-ARIA Authoring Practices 1.1</title>
+<title>Layout Grid Examples | WAI-ARIA Authoring Practices 1.2</title>
 
 <!--  Core js and css shared by all examples; do not modify when using this template. -->
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -54,18 +54,20 @@
   <section>
     <h2>Examples</h2>
     <section>
-      <h3 id="ex1_label">Example 1: Simple List of Links</h3>
+      <div class="example-header">
+        <h3 id="ex1_label">Example 1: Simple List of Links</h3>
+      </div>
       <p>This example presents a list of links titled &quot;Related Documents&quot; in a grid. </p>
       <div role="separator" id="ex1_start_sep" aria-labelledby="ex1_start_sep ex1_label" aria-label="Start of"></div>
       <div id="ex1">
         <h4 id="grid1_label">Related Documents</h4>
-        <div role="grid" class="list-links" aria-labelledby="grid1_label" data-wrap-cols="true" data-wrap-rows="true" data-restructure="true">
+        <div id="ex1-grid" role="grid" class="list-links" aria-labelledby="grid1_label" data-wrap-cols="true" data-wrap-rows="true" data-restructure="true">
           <div role="row">
             <span role="gridcell" class="list-link"><a tabindex="-1" href="http://www.w3.org/TR/wai-aria-1.1/">ARIA 1.1 Specification</a></span>
             <span role="gridcell" class="list-link"><a tabindex="-1" href="https://www.w3.org/TR/core-aam-1.1/">Core Accessibility API Mappings 1.1</a></span>
             <span role="gridcell" class="list-link"><a tabindex="-1" href="https://www.w3.org/WAI/intro/aria.php">WAI-ARIA Overview</a></span>
             <span role="gridcell" class="list-link"><a tabindex="-1" href="https://www.w3.org/WAI/intro/wcag">WCAG Overview</a></span>
-            <span role="gridcell" class="list-link"><a tabindex="-1" href="https://www.w3.org/TR/html5/">HTML 5 Specification</a></span>
+            <span role="gridcell" class="list-link"><a tabindex="-1" href="https://html.spec.whatwg.org/">HTML Specification</a></span>
             <span role="gridcell" class="list-link"><a tabindex="-1" href="https://www.w3.org/TR/SVG2/">SVG 2 Specification</a></span>
           </div>
         </div>
@@ -129,7 +131,9 @@
       </ol>
     </section>
     <section>
-      <h3 id="ex2_label">Example 2: Pill List For a List of Message Recipients</h3>
+      <div class="example-header">
+        <h3 id="ex2_label">Example 2: Pill List For a List of Message Recipients</h3>
+      </div>
       <p>
         Add recipients by typing a string in the &quot;New Recipient Name&quot; field and pressing <kbd>Enter</kbd> or activating the &quot;Add&quot; button.
         See how this grid behaves as the number of elements increases.
@@ -144,7 +148,7 @@
          -->
         <div class="recipient-list">
           <span id="send_to_label">Send To:</span>
-          <div role="grid" class="pill-list" aria-labelledby="send_to_label"  data-wrap-cols="true">
+          <div id="ex2-grid" role="grid" class="pill-list" aria-labelledby="send_to_label"  data-wrap-cols="true">
             <div role="row" class="pill-item" data-id="1">
               <span role="gridcell"><a id="r1" class="pill-name" tabindex="-1" href="#">Recipient Name 1</a></span>
               <span role="gridcell"><span id="rb1" class="pill-remove" tabindex="-1" role="button" aria-label="Remove" aria-labelledby="rb1 r1"> X </span></span>
@@ -157,7 +161,7 @@
 
           <div id="recipient-form">
             <input id="add-recipient-input" type="text" aria-label="Add Recipient" placeholder="New Recipient Name">
-            <button id="add-recipient-button">Add</button>
+            <button type="button" id="add-recipient-button">Add</button>
             <div class="accessible_elem">
               Last change to recipient list:
               <span aria-live="polite" aria-relevant="text" id="form-action-text"></span>
@@ -184,7 +188,9 @@
         </ol>
     </section>
     <section>
-      <h3 id="ex3_label">Example 3: Scrollable Search Results</h3>
+      <div class="example-header">
+        <h3 id="ex3_label">Example 3: Scrollable Search Results</h3>
+      </div>
       <p>
         This example demonstrates how a grid can make moving through an infinitely large data set as easy and efficient for keyboard users as it is for mouse users.
         It presents a hypothetical set of search results for W3C resources about WAI-ARIA.
@@ -196,7 +202,7 @@
           Showing results <span id="ex3_start_index">1</span> to <span id="ex3_end_index">5</span> of 19
         </div>
 
-        <div role="grid" aria-labelledby="ex3_search_results_label" aria-rowcount="19" data-per-page="5" data-wrap-cols="true">
+        <div id="ex3-grid" role="grid" aria-labelledby="ex3_search_results_label" aria-rowcount="19" data-per-page="5" data-wrap-cols="true">
           <div role="row">
             <div role="gridcell"><h5 class="ex3_result_header">
                 <a tabindex="-1" href="https://www.w3.org/WAI/intro/aria">WAI-ARIA Overview
@@ -240,7 +246,7 @@
               </h5></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
               tabindex="-1" role="gridcell"
             >Jul 21, 2016 - This version of ARIA 1.1 changes the aria-kbdshortcuts property to
-              aria-keyshortcuts , expands roles that can be used in combo boxes, adds a ...</span>
+              aria-keyshortcuts , expands roles that can be used in comboboxes, adds a ...</span>
           </div>
           <div role="row">
             <div role="gridcell"><h5 class="ex3_result_header">
@@ -372,8 +378,8 @@
         </div>
 
         <div class="ex3_pagination">
-          <button disabled id="ex3_pageup_button">Previous</button>
-          <button id="ex3_pagedown_button">Next</button>
+          <button type="button" disabled id="ex3_pageup_button">Previous</button>
+          <button type="button" id="ex3_pagedown_button">Next</button>
         </div>
       </div>
       <div role="separator" id="ex3_end_sep" aria-labelledby="ex3_end_sep ex3_label" aria-label="End of"></div>
@@ -417,7 +423,7 @@
       <dt>Whether focus can wrap to the first row in the next column or the last row in the previous column when <kbd>Down Arrow</kbd> and <kbd>Up Arrow</kbd> are pressed:</dt>
       <dd>
         The only condition where this wrapping is appropriate is when every cell in the grid belongs to a single logical set.
-        In other words, if presentation of all elements in a single row is logically equivalent to presenting the same elements in an arbetrary number of rows and columns,
+        In other words, if presentation of all elements in a single row is logically equivalent to presenting the same elements in an arbitrary number of rows and columns,
         then it is appropriate for <kbd>Down Arrow</kbd> and <kbd>Up Arrow</kbd> to behave as if all cells are in a single column.
         For instance, in example 1, all cells contain a navigation link.
         That set of six links could be presented in a single row, a single column, or divided into two rows of three or three rows of two; all these  presentations would be logically equivalent.
@@ -450,7 +456,7 @@
     <p>
       <strong>NOTE:</strong> The following table describes keyboard commands that move focus among grid cells.
       In the examples on this page, some cells contain a single focusable widget, and if a cell contains a widget, the cell is not focusable; the widget receives focus instead of the cell.
-      So, when a description says a command moves focus to a cell, the command may either focus the cell or a widget inside the cell.     
+      So, when a description says a command moves focus to a cell, the command may either focus the cell or a widget inside the cell.
     </p>
     <table aria-labelledby="kbd_label" class="def">
       <thead>
@@ -691,7 +697,7 @@
 
   <section>
     <h2>Javascript and CSS Source Code</h2>
-    <ul>
+    <ul id="css_js_files">
       <li>CSS:
         <ul>
           <li><a href="css/layoutGrids.css" type="tex/css">layoutGrids.css</a></li>
@@ -701,6 +707,7 @@
         <ul>
           <li><a href="js/layoutGrids.js" type="text/javascript">layoutGrids.js</a></li>
           <li><a href="js/dataGrid.js" type="text/javascript">dataGrid.js</a></li>
+          <li><a href="../js/utils.js">utils.js</a></li>
         </ul>
       </li>
     </ul>
@@ -712,26 +719,26 @@
     <div id="sc1_start_sep" role="separator" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of HTML for"></div>
     <pre><code id="sc1"></code></pre>
     <div id="sc1_end_sep" role="separator" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of HTML for"></div>
-    <script>sourceCode.add('sc1', 'ex1')</script>
+    <script>sourceCode.add('sc1', 'ex1', 'ex1_label', 'css_js_files')</script>
 
     <h3 id="sc2_label">Example 2: Pill List For Components Like a List of Message Recipients</h3>
     <div id="sc2_start_sep" role="separator" aria-labelledby="sc2_start_sep sc2_label" aria-label="Start of HTML for"></div>
     <pre><code id="sc2"></code></pre>
     <div id="sc2_end_sep" role="separator" aria-labelledby="sc2_end_sep sc2_label" aria-label="End of HTML for"></div>
-    <script>sourceCode.add('sc2', 'ex2')</script>
+    <script>sourceCode.add('sc2', 'ex2', 'ex2_label', 'css_js_files')</script>
 
     <h3 id="sc3_label">Example 3: Scrollable Search Results</h3>
     <div id="sc3_start_sep" role="separator" aria-labelledby="sc3_start_sep sc3_label" aria-label="Start of HTML for"></div>
     <pre><code id="sc3"></code></pre>
     <div id="sc3_end_sep" role="separator" aria-labelledby="sc3_end_sep sc3_label" aria-label="End of HTML for"></div>
-    <script>sourceCode.add('sc3', 'ex3') </script>
+    <script>sourceCode.add('sc3', 'ex3', 'ex3_label', 'css_js_files') </script>
     <!--  After all source has been added, run make to do the insert.  -->
     <script> sourceCode.make() </script>
   </section>
   </main>
   <nav>
     <!--  Update the pattern_ID parameter of this link to refer to the APG design pattern section related to this example.  -->
-    <a href="../../#grid">Grid Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../../#grid">Grid Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
   </nav>
 </body>
 </html>

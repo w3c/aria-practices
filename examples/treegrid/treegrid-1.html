@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 
-<title>Treegrid Email Inbox Example | WAI-ARIA Authoring Practices 1.1</title>
+<title>Treegrid Email Inbox Example | WAI-ARIA Authoring Practices 1.2</title>
 
 <!--  Core js and css shared by all examples; do not modify when using this template. -->
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -36,34 +36,6 @@
   }
 </style>
 <script src="js/treegrid-1.js" type="text/javascript"></script>
-<script>
-/* Init Script for TreeGrid */
-/* Get an object where each field represents a URL parameter */
-/* global TreeGrid */
-function getQuery () {
-  if (!getQuery.cached) {
-    getQuery.cached = {};
-    const queryStr = window.location.search.substring(1);
-    const vars = queryStr.split('&');
-    for (let i = 0; i<vars.length; i++) {
-      const pair = vars[i].split('=');
-      // If first entry with this name
-      getQuery.cached[pair[0]] = pair[1] && decodeURIComponent(pair[1]);
-    }
-  }
-  return getQuery.cached;
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-  // Supports url parameter ?cell=force or ?cell=start (or leave out parameter)
-  var cellParam = getQuery().cell;
-  var doAllowRowFocus = cellParam !== 'force';
-  var doStartRowFocus = doAllowRowFocus && cellParam !== 'start';
-  TreeGrid(document.getElementById('treegrid'), doAllowRowFocus, doStartRowFocus);
-  var choiceElem = document.getElementById('option-cell-focus-' + (cellParam || 'allow'));
-  choiceElem.setAttribute('aria-current', 'true');
-});
-</script>
 </head>
 <body>
   <nav aria-label="Related Links" class="feedback">
@@ -78,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
   <h1>Treegrid Email Inbox Example</h1>
   <p>
     <strong>NOTE:</strong> This example is new in APG 1.1 release 2.
-    Please provide feedback in 
+    Please provide feedback in
     <a href="https://github.com/w3c/aria-practices/issues/790">issue 790.</a>
   </p>
   <p>
@@ -127,7 +99,9 @@ document.addEventListener('DOMContentLoaded', function () {
     <li>A screen reader user can easily understand the UI when all information in a row is announced as a single string without any separation.</li>
   </ul>
   <section>
-    <h2 id="ex_label">Example</h2>
+    <div class="example-header">
+      <h2 id="ex_label">Example</h2>
+    </div>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <!--
       Note the ID of the following div that contains the example HTML is used as a parameter for the sourceCode.add() function.
@@ -161,8 +135,8 @@ document.addEventListener('DOMContentLoaded', function () {
              <td role="gridcell"><a href="mailto:joe@blahblahblah.blahblah">joe@blahblahblah.blahblah</a></td>
           </tr>
           <tr role="row" aria-level="2" aria-posinset="2" aria-setsize="3" aria-expanded="false">
-             <td role="gridcell">re: Treegrids are awesome
-             <td role="gridcell">They are great for showing a lot of data, like a grid
+             <td role="gridcell">re: Treegrids are awesome</td>
+             <td role="gridcell">They are great for showing a lot of data, like a grid</td>
              <td role="gridcell"><a href="mailto:billy@dangerous.fish">billy@dangerous.fish</a></td>
           </tr>
           <tr role="row" aria-level="3" aria-posinset="1" aria-setsize="1" class="hidden">
@@ -186,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function () {
              <td role="gridcell"><a href="mailto:issie@imadeadcatsadly.wascute">issie@imadeadcatsadly.wascute</a></td>
           </tr>
           <tr role="row" aria-level="4" aria-posinset="2" aria-setsize="2" class="hidden">
-             <td role="gridcell">re: Treegrids are awesome
+             <td role="gridcell">re: Treegrids are awesome</td>
              <td role="gridcell">I see, sometimes right arrow moves by column</td>
              <td role="gridcell"><a href="mailto:kitten@kittenseason.future">kitten@kittenseason.future</a></td>
           </tr>
@@ -203,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <p>
       <strong>NOTE:</strong> The following table includes descriptions of how keyboard commands move focus among cells and rows in the treegrid implementation on this page.
       In the example on this page, some cells contain a single focusable widget, and if a cell contains a widget, the cell is not focusable; the widget receives focus instead of the cell.
-      So, when a keyboard command description says a command moves focus to a cell, the command may either focus the cell or a widget inside the cell.     
+      So, when a keyboard command description says a command moves focus to a cell, the command may either focus the cell or a widget inside the cell.
     </p>
      <table aria-labelledby="kbd_label" class="def">
       <thead>
@@ -490,7 +464,7 @@ document.addEventListener('DOMContentLoaded', function () {
   <section>
     <h2>Javascript and CSS Source Code</h2>
     <!--  After the js and css files are named with the name of this example, change the href and text of the following 2 links to refer to the appropriate js and css files.  -->
-    <ul>
+    <ul id="css_js_files">
       <li>
         CSS:
         <a href="css/treegrid-1.css" type="text/css">treegrid-1.css</a>
@@ -513,14 +487,14 @@ document.addEventListener('DOMContentLoaded', function () {
       If you change the ID of either the 'ex1' div or the 'sc1' pre, be sure to update the sourceCode.add function parameters.
       -->
     <script>
-      sourceCode.add('sc1', 'ex1');
+      sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
       sourceCode.make();
     </script>
   </section>
   </main>
   <nav>
     <!--  Update the pattern_ID parameter of this link to refer to the APG design pattern section related to this example.  -->
-    <a href="../../#treegrid">Treegrid Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../../#treegrid">Treegrid Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
   </nav>
 </body>
 </html>

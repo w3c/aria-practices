@@ -18,8 +18,8 @@
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
           <h1>ARIA Landmarks Example</h1>
           <p id="inst" class="inst">Visually outline the landmarks and/or headings on the page using the following buttons.</p>
-          <button onclick="showLandmarks(event)" aria-describedby="inst">Show Landmarks</button>
-          <button onclick="showHeadings(event)"  aria-describedby="inst">Show Headings</button>
+          <button type="button" onclick="showLandmarks(event)" aria-describedby="inst">Show Landmarks</button>
+          <button type="button" onclick="showHeadings(event)"  aria-describedby="inst">Show Headings</button>
         </div>
       </header>
       <div class="row">
@@ -27,7 +27,7 @@
           <nav>
             <ul class="nav nav-pills nav-stacked">
               <li><a href="index.html">Principles</a></li>
-              <li><a href="HTML5.html">HTML5</a></li>
+              <li><a href="HTML5.html">HTML</a></li>
               <li><a href="banner.html">Banner</a></li>
               <li><a href="complementary.html">Complementary</a></li>
               <li class="active"><a href="contentinfo.html" aria-current="page">Contentinfo</a></li>
@@ -57,11 +57,37 @@
             </ul>
             <section aria-label="Coding Techniques">
               <ul id="myTabs" class="nav nav-tabs" role="tablist">
-                <li class="active"><a id="tab1" href="#tabpanel1" aria-controls="tabpanel1" role="tab" data-toggle="tab">ARIA Techniques</a></li>
-                <li><a id="tab2" href="#tabpanel2" aria-controls="tabpanel2"  role="tab" data-toggle="tab">HTML5 Techniques</a></li>
+                <li class="active"><a id="tab2" href="#tabpanel2" aria-controls="tabpanel2"  role="tab" data-toggle="tab">HTML Techniques</a></li>
+                <li><a id="tab1" href="#tabpanel1" aria-controls="tabpanel1" role="tab" data-toggle="tab">ARIA Techniques</a></li>
               </ul>
               <div class="tab-content">
-                <div id="tabpanel1" aria-labelledby="tab1" role="tabpanel" class="tab-pane active">
+                <div id="tabpanel2" aria-labelledby="tab2" role="tabpanel" class="tab-pane active">
+                  <ul>
+                    <li>The HTML <code>footer</code> element defines a <code>contentinfo</code> landmark when its context is the <code>body</code> element.</li>
+                    <li>
+                      The HTML <code>footer</code> element is not considered a <code>contentinfo</code> landmark when it is descendant of any of following elements:
+                      <ul>
+                        <li><code>article</code></li>
+                        <li><code>aside</code></li>
+                        <li><code>main</code></li>
+                        <li><code>nav</code></li>
+                        <li><code>section</code></li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <h3>HTML Example</h3>
+                    <div class="code">
+                            <strong>&lt;footer&gt;</strong>
+                    <br>
+                    <br>
+                            &nbsp;&nbsp;&lt;h2&gt;<em>Contact, Policies and Legal</em>&lt;h2&gt;<br>
+                    <br>
+                            &nbsp;&nbsp;.... <em>contentinfo area content</em> ....   <br>
+                    <br>
+                            <strong>&lt;/footer&gt;</strong>
+                    </div>
+                </div>
+                <div id="tabpanel1" aria-labelledby="tab1" role="tabpanel" class="tab-pane">
                   <p>A <code>role="contentinfo"</code> attribute is used to define a <code>contentinfo</code> landmark.</p>
                   <h3>ARIA Example</h3>
                     <div class="code">
@@ -72,32 +98,6 @@
                             &nbsp;&nbsp;.... <em>contentinfo area content</em> ....   <br>
                             <br>
                             &lt;/div&gt;<br>
-                    </div>
-                </div>
-                <div id="tabpanel2" aria-labelledby="tab2" role="tabpanel" class="tab-pane">
-                  <ul>
-                    <li>The HTML5 <code>footer</code> element defines a <code>contentinfo</code> landmark when its context is the <code>body</code> element.</li>
-                    <li>
-                      The HTML5 <code>footer</code> element is not considered a <code>contentinfo</code> landmark when it is descendant of any of following elements:
-                      <ul>
-                        <li><code>article</code></li>
-                        <li><code>aside</code></li>
-                        <li><code>main</code></li>
-                        <li><code>nav</code></li>
-                        <li><code>section</code></li>
-                      </ul>
-                    </li>
-                  </ul>
-                  <h3>HTML5 Example</h3>
-                    <div class="code">
-                            <strong>&lt;footer&gt;</strong>
-                    <br>
-                    <br>
-                            &nbsp;&nbsp;&lt;h2&gt;<em>Contact, Policies and Legal</em>&lt;h2&gt;<br>
-                    <br>
-                            &nbsp;&nbsp;.... <em>contentinfo area content</em> ....   <br>
-                    <br>
-                            <strong>&lt;/footer&gt;</strong>
                     </div>
                 </div>
               </div>
@@ -118,7 +118,7 @@
             </ul>
           </aside>
           <aside aria-labelledby="id3">
-            <h2 id="id3">Related W3C Documents</h2>
+            <h2 id="id3">Related Documents</h2>
             <ul>
               <li><a href="https://www.w3.org/TR/wai-aria-practices-1.1/">WAI-ARIA Authoring Practices 1.1</a></li>
               <li><a href="http://www.w3.org/TR/2014/REC-wai-aria-20140320/">WAI-ARIA 1.0 Specification</a></li>
@@ -126,8 +126,8 @@
               <li><a href="https://www.w3.org/TR/accname-aam-1.1/">Accessible Name and Description: Computation and API Mappings 1.1</a></li>
               <li><a href="http://www.w3.org/TR/core-aam-1.1/">Core Accessibility API Mappings 1.1</a></li>
               <li><a href="https://www.w3.org/TR/html-aam-1.0/">HTML Accessibility API Mappings 1.0</a></li>
-              <li><a href="http://www.w3.org/TR/html5/">HTML5 Specification</a></li>
-              <li><a href="https://www.w3.org/TR/html-aria/">ARIA in HTML</a>
+              <li><a href="https://html.spec.whatwg.org/">HTML Specification</a></li>
+              <li><a href="https://www.w3.org/TR/html-aria/">ARIA in HTML</a></li>
               <li><a href="https://www.w3.org/TR/using-aria/">Using ARIA in HTML</a></li>
               <li><a href="http://www.w3.org/TR/WCAG/">WCAG Specification</a></li>
             </ul>
@@ -140,7 +140,7 @@
             W3C ARIA Authoring Practices Task Force
           </div>
           <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
-            Copyright 2016
+            Copyright 2020
           </div>
         </footer>
       </div>

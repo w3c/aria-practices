@@ -8,7 +8,7 @@
     <link href="css/bootstrap-accessibility.css" rel="stylesheet" media="screen"/>
     <link href="css/visua11y.css" rel="stylesheet" media="screen"/>
     <link href="css/common.css" rel="stylesheet" media="screen"/>
-    <style type="text/css">
+    <style>
       label,
       input[type=submit] {
         display: block;
@@ -50,8 +50,8 @@
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
           <h1>ARIA Landmarks Example</h1>
           <p id="inst" class="inst">Visually outline the landmarks and/or headings on the page using the following buttons.</p>
-          <button onclick="showLandmarks(event)" aria-describedby="inst">Show Landmarks</button>
-          <button onclick="showHeadings(event)"  aria-describedby="inst">Show Headings</button>
+          <button type="button" onclick="showLandmarks(event)" aria-describedby="inst">Show Landmarks</button>
+          <button type="button" onclick="showHeadings(event)"  aria-describedby="inst">Show Headings</button>
         </div>
       </header>
       <div class="row">
@@ -59,7 +59,7 @@
           <nav>
             <ul class="nav nav-pills nav-stacked">
               <li><a href="index.html">Principles</a></li>
-              <li><a href="HTML5.html">HTML5</a></li>
+              <li><a href="HTML5.html">HTML</a></li>
               <li><a href="banner.html">Banner</a></li>
               <li><a href="complementary.html">Complementary</a></li>
               <li><a href="contentinfo.html">Contentinfo</a></li>
@@ -96,11 +96,86 @@
             </ul>
             <section aria-label="Coding Techniques">
               <ul id="myTabs" class="nav nav-tabs" role="tablist">
-                <li class="active"><a  id="tab1" href="#tabpanel1" aria-controls="tabpanel1"  role="tab" data-toggle="tab">ARIA Techniques</a></li>
-                <li><a  id="tab2" href="#tabpanel2" aria-controls="tabpanel2"  role="tab" data-toggle="tab">HTML5 Techniques</a></li>
+                <li class="active"><a  id="tab2" href="#tabpanel2" aria-controls="tabpanel2"  role="tab" data-toggle="tab">HTML Techniques</a></li>
+                <li><a  id="tab1" href="#tabpanel1" aria-controls="tabpanel1"  role="tab" data-toggle="tab">ARIA Techniques</a></li>
               </ul>
               <div class="tab-content">
-                <div id="tabpanel1" aria-labelledby="tab1" role="tabpanel" class="tab-pane active">
+                <div id="tabpanel2" aria-labelledby="tab2" role="tabpanel" class="tab-pane active">
+                  <p>If a <code>form</code> element has an accessible name it is considered <code>form</code> landmark.</p>
+
+                  <h3>HTML Form Landmark Example</h3>
+
+                  <p>Assume the following two forms (e.g. add contact and add organization) can be independently submitted from the same web page.</p>
+
+                  <form aria-labelledby="contact_html5">
+                    <fieldset>
+                      <legend id="contact_html5">Add Contact</legend>
+
+                      <label for="name_html5">Name</label>
+                      <input id="name_html5" type="text" size="25">
+
+                      <label for="email_html5">E-mail</label>
+                      <input id="email_html5" type="text" size="25">
+
+                      <label for="phone_html5">Phone</label>
+                      <input id="phone_html5" type="text" size="25">
+
+                      <input type="submit" value="Add Contact">
+
+                    </fieldset>
+                  </form>
+
+                  <form aria-labelledby="organization">
+                    <fieldset>
+                      <legend id="organization_html5">Add Organization</legend>
+
+                      <label for="org_html5">Organization</label>
+                      <input id="org_html5" type="text" size="25">
+
+                      <label for="www_html5">WWW</label>
+                      <input id="www_html5" type="text" size="25">
+
+                      <input type="submit" value="Add Organization">
+                    </fieldset>
+                  </form>
+
+                  <h3>Source Code</h3>
+                  <div class="code">
+
+                    &nbsp;&nbsp;&lt;<strong>form aria-labelledby="contact"</strong>&gt;
+                    <br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;fieldset&gt;<br>
+                    <br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;legend <strong>id="contact"</strong>&gt;Add Contact &lt;/legend&gt;
+                    <br/>
+                    <br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;... <em>form controls add contact</em> ...
+                    <br/>
+                    <br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;/fieldset&gt;
+                    <br/>
+                    &nbsp;&nbsp;&lt;<strong>/form</strong>&gt;
+                    <br/>
+                    <br/> &nbsp;&nbsp;...............
+                    <br/>
+                    <br/>
+                    &nbsp;&nbsp;&lt;<strong>form aria-labelledby="organization"</strong>&gt;
+                    <br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;fieldset&gt;<br>
+                    <br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;legend <strong>id="organization"</strong>&gt;Add Organization &lt;/legend&gt;
+                    <br>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;... <em>form controls add organization</em> ...
+                    <br>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;/fieldset&gt;
+                    <br>
+                    &nbsp;&nbsp;&lt;<strong>/form</strong>&gt;
+                    <br>
+                  </div>
+                </div>
+                <div id="tabpanel1" aria-labelledby="tab1" role="tabpanel" class="tab-pane">
                   <ul>
                     <li>The <code>role="form"</code> attribute defines a form landmark.</li>
                     <li>Use the <code>role="form"</code> to identify a region of the page; do not use it to identify every form field.</li>
@@ -176,84 +251,6 @@
                     <br>
                     &nbsp;&nbsp;&lt;/div&gt;
                     <br>
-
-
-                  </div>
-
-                </div>
-                <div id="tabpanel2" aria-labelledby="tab2" role="tabpanel" class="tab-pane">
-                  <p>If a <code>form</code> element has an accessible name it is considered <code>form</code> landmark.</p>
-
-                  <h3>HTML5 Form Landmark Example</h3>
-
-                  <p>Assume the following two forms (e.g. add contact and add organization) can be independently submitted from the same web page.</p>
-
-                  <form aria-labelledby="contact_html5">
-                    <fieldset>
-                      <legend id="contact_html5">Add Contact</legend>
-
-                      <label for="name_html5">Name</label>
-                      <input id="name_html5" type="text" size="25">
-
-                      <label for="email_html5">E-mail</label>
-                      <input id="email_html5" type="text" size="25">
-
-                      <label for="phone_html5">Phone</label>
-                      <input id="phone_html5" type="text" size="25">
-
-                      <input type="submit" value="Add Contact">
-
-                    </fieldset>
-                  </form>
-
-                  <form aria-labelledby="organization">
-                    <fieldset>
-                      <legend id="organization_html5">Add Organization</legend>
-
-                      <label for="org_html5">Organization</label>
-                      <input id="org_html5" type="text" size="25">
-
-                      <label for="www_html5">WWW</label>
-                      <input id="www_html5" type="text" size="25">
-
-                      <input type="submit" value="Add Organization">
-                    </fieldset>
-                  </form>
-
-                  <h3>Source Code</h3>
-                  <div class="code">
-
-                    &nbsp;&nbsp;&lt;<strong>form aria-labelledby="contact"</strong>&gt;
-                    <br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;fieldset&gt;<br>
-                    <br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;legend <strong>id="contact"</strong>&gt;Add Contact &lt;/legend&gt;
-                    <br/>
-                    <br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;... <em>form controls add contact</em> ...
-                    <br/>
-                    <br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;/fieldset&gt;
-                    <br/>
-                    &nbsp;&nbsp;&lt;<strong>/form</strong>&gt;
-                    <br/>
-                    <br/> &nbsp;&nbsp;...............
-                    <br/>
-                    <br/>
-                    &nbsp;&nbsp;&lt;<strong>form aria-labelledby="organization"</strong>&gt;
-                    <br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;fieldset&gt;<br>
-                    <br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;legend <strong>id="organization"</strong>&gt;Add Organization &lt;/legend&gt;
-                    <br>
-                    <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;... <em>form controls add organization</em> ...
-                    <br>
-                    <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;/fieldset&gt;
-                    <br>
-                    &nbsp;&nbsp;&lt;<strong>/form</strong>&gt;
-                    <br>
                   </div>
                 </div>
               </div>
@@ -275,7 +272,7 @@
             </ul>
           </aside>
           <aside aria-labelledby="id3">
-            <h2 id="id3">Related W3C Documents</h2>
+            <h2 id="id3">Related Documents</h2>
             <ul>
               <li><a href="https://www.w3.org/TR/wai-aria-practices-1.1/">WAI-ARIA Authoring Practices 1.1</a></li>
               <li><a href="http://www.w3.org/TR/2014/REC-wai-aria-20140320/">WAI-ARIA 1.0 Specification</a></li>
@@ -283,8 +280,8 @@
               <li><a href="https://www.w3.org/TR/accname-aam-1.1/">Accessible Name and Description: Computation and API Mappings 1.1</a></li>
               <li><a href="http://www.w3.org/TR/core-aam-1.1/">Core Accessibility API Mappings 1.1</a></li>
               <li><a href="https://www.w3.org/TR/html-aam-1.0/">HTML Accessibility API Mappings 1.0</a></li>
-              <li><a href="http://www.w3.org/TR/html5/">HTML5 Specification</a></li>
-              <li><a href="https://www.w3.org/TR/html-aria/">ARIA in HTML</a>
+              <li><a href="https://html.spec.whatwg.org/">HTML Specification</a></li>
+              <li><a href="https://www.w3.org/TR/html-aria/">ARIA in HTML</a></li>
               <li><a href="https://www.w3.org/TR/using-aria/">Using ARIA in HTML</a></li>
               <li><a href="http://www.w3.org/TR/WCAG/">WCAG Specification</a></li>
             </ul>
@@ -297,7 +294,7 @@
             W3C ARIA Authoring Practices Task Force
           </div>
           <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
-            Copyright 2016
+            Copyright 2020
           </div>
         </footer>
       </div>

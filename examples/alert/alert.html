@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Alert Example | WAI-ARIA Authoring Practices 1.1</title>
+    <title>Alert Example | WAI-ARIA Authoring Practices 1.2</title>
 
     <!--  Core js and css shared by all examples; do not modify when using this template. -->
     <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -23,7 +23,7 @@
       <li><a href="https://github.com/w3c/aria-practices/projects/20">Related Issues</a></li>
       <li><a href="../../#alert">Design Pattern</a></li>
     </ul>
-  </nav>    
+  </nav>
     <main>
     <h1>Alert Example</h1>
     <p>
@@ -35,14 +35,16 @@
       <li><a href="../dialog-modal/alertdialog.html">Alert Dialog Example</a>: A confirmation prompt that demonstrates an alert dialog.</li>
     </ul>
     <section>
-      <h2 id="ex_label">Example</h2>
+      <div class="example-header">
+        <h2 id="ex_label">Example</h2>
+      </div>
       <p>
         This is just a test.
         A typical alert is triggered by an event, such as an error, warning condition, or the arrival of information that is important in the context of the user's task.
       </p>
       <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
       <div id="ex1">
-        <button id="alert-trigger">Trigger Alert</button>
+        <button type="button" id="alert-trigger">Trigger Alert</button>
 
         <div id="example" role="alert"></div>
 
@@ -113,7 +115,7 @@
 
     <section>
       <h2>Javascript and CSS Source Code</h2>
-      <ul>
+      <ul id="css_js_files">
         <li>
           CSS:
           <a href="css/alert.css" type="tex/css">alert.css</a>
@@ -131,13 +133,13 @@
       <pre><code id="sc1"></code></pre>
       <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
       <script>
-        sourceCode.add('sc1', 'ex1');
+        sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
         sourceCode.make();
       </script>
     </section>
     </main>
     <nav>
-      <a href="../../#alert">Alert Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+      <a href="../../#alert">Alert Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
     </nav>
   </body>
 </html>

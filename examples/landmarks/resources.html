@@ -3,7 +3,7 @@
     <head>
         <title>Resources: ARIA Landmarks Example</title>
     <meta charset="utf-8">
-        
+
         <link href="css/bootstrap.css" rel="stylesheet" media="screen"/>
         <link href="css/bootstrap-theme.css" rel="stylesheet" media="screen"/>
         <link href="css/bootstrap-accessibility.css" rel="stylesheet" media="screen"/>
@@ -15,12 +15,12 @@
              <header class="row">
                 <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
                   <img src="images/w3c.png" alt="W3C Logo" />
-                </div> 
+                </div>
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                   <h1>ARIA Landmarks Example</h1>
                   <p id="inst" class="inst">Visually outline the landmarks and/or headings on the page using the following buttons.</p>
-                  <button onclick="showLandmarks(event)" aria-describedby="inst">Show Landmarks</button>
-                  <button onclick="showHeadings(event)"  aria-describedby="inst">Show Headings</button>
+                  <button type="button" onclick="showLandmarks(event)" aria-describedby="inst">Show Landmarks</button>
+                  <button type="button" onclick="showHeadings(event)"  aria-describedby="inst">Show Headings</button>
                 </div>
             </header>
             <div class="row">
@@ -28,7 +28,7 @@
                     <nav>
                         <ul class="nav nav-pills nav-stacked">
                             <li><a href="index.html">Principles</a></li>
-                            <li><a href="HTML5.html">HTML5</a></li>
+                            <li><a href="HTML5.html">HTML</a></li>
                             <li><a href="banner.html">Banner</a></li>
                             <li><a href="complementary.html">Complementary</a></li>
                             <li><a href="contentinfo.html">Contentinfo</a></li>
@@ -41,7 +41,7 @@
                             <li class="active"><a href="resources.html" aria-current="page">Resources</a></li>
                         </ul>
                     </nav>
-                </div>    
+                </div>
 
                 <div class="col-xs-12 col-sm-9 col-md-6 col-lg-7">
                     <main>
@@ -49,7 +49,7 @@
 
                         <section>
                           <h2>Read More</h2>
-                          <ul>    
+                          <ul>
                             <li><a href="https://www.w3.org/TR/WCAG20-TECHS/aria#ARIA11">ARIA11: Using ARIA landmarks to identify regions of a page</a> (WCAG 2.0 Technique)</li>
                             <li><a href="https://www.w3.org/TR/WCAG20-TECHS/aria#ARIA20">ARIA20: Using the region role to identify a region of the page</a> (WCAG 2.0 Technique)</li>
                             <li><a href="https://alistapart.com/column/wai-finding-with-aria-landmark-roles">WAI-finding with ARIA Landmark Roles</a> (A List Apart)</li>
@@ -68,16 +68,16 @@
                             <li><a href="http://accessibility-bookmarklets.org/">Accessibility Bookmarklets: Landmark Bookmarklet</a></li>
                             <li><a href="http://whatsock.com/training/matrices/visual-aria.htm">The Visual ARIA Bookmarklet</a></li>
                             <li><a href="http://paypal.github.io/skipto/">SkipTo, version 2.0</a> (PayPal)</li>
-                            <li><a href="http://ainspector.github.io/">AInspector Sidebar for Firefox</a> (Landmark Rule Category)</li>
-                            <li><a href="https://fae.disability.illinois.edu/">Functional Accessibility Evaluator 2.0</a> (Landmark Rule Category)</li>
+                            <li><a href="https://addons.mozilla.org/en-US/firefox/addon/ainspector-wcag/">AInspector WCAG for Firefox</a> (Landmark Rule Category)</li>
+                            <li><a href="https://fae.disability.illinois.edu/">Functional Accessibility Evaluator 2.1</a> (Landmark Rule Category)</li>
                           </ul>
 
-                        </section>  
+                        </section>
 
 
 
-                    </main>    
-                </div> 
+                    </main>
+                </div>
                  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
 
                     <aside aria-labelledby="id4">
@@ -93,7 +93,7 @@
                     </aside>
 
                     <aside aria-labelledby="id3">
-            <h2 id="id3">Related W3C Documents</h2>
+            <h2 id="id3">Related Documents</h2>
             <ul>
               <li><a href="https://www.w3.org/TR/wai-aria-practices-1.1/">WAI-ARIA Authoring Practices 1.1</a></li>
               <li><a href="http://www.w3.org/TR/2014/REC-wai-aria-20140320/">WAI-ARIA 1.0 Specification</a></li>
@@ -101,32 +101,32 @@
               <li><a href="https://www.w3.org/TR/accname-aam-1.1/">Accessible Name and Description: Computation and API Mappings 1.1</a></li>
               <li><a href="http://www.w3.org/TR/core-aam-1.1/">Core Accessibility API Mappings 1.1</a></li>
               <li><a href="https://www.w3.org/TR/html-aam-1.0/">HTML Accessibility API Mappings 1.0</a></li>
-              <li><a href="http://www.w3.org/TR/html5/">HTML5 Specification</a></li>
-              <li><a href="https://www.w3.org/TR/html-aria/">ARIA in HTML</a>
+              <li><a href="https://html.spec.whatwg.org/">HTML Specification</a></li>
+              <li><a href="https://www.w3.org/TR/html-aria/">ARIA in HTML</a></li>
               <li><a href="https://www.w3.org/TR/using-aria/">Using ARIA in HTML</a></li>
               <li><a href="http://www.w3.org/TR/WCAG/">WCAG Specification</a></li>
             </ul>
           </aside>
         </div>
-      </div>    
+      </div>
             <div class="well well-sm">
               <footer class="row">
                   <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     W3C ARIA Authoring Practices Task Force
                   </div>
                   <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
-                    Copyright 2016
+                    Copyright 2020
                   </div>
               </footer>
             </div>
         </div>
-        
-        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>        
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>        
+
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/bootstrap-accessibility.min.js"></script>
-        <script type="text/javascript" src="js/bootstrap-accessibility-2.js"></script>       
-        <script type="text/javascript" src="js/visua11y.js"></script>        
-        <script type="text/javascript" src="js/show.js"></script>        
+        <script type="text/javascript" src="js/bootstrap-accessibility-2.js"></script>
+        <script type="text/javascript" src="js/visua11y.js"></script>
+        <script type="text/javascript" src="js/show.js"></script>
 
 
         <script type="text/javascript" >
@@ -141,7 +141,7 @@
               }
             };
         </script>
-        
-        <script type="text/javascript" src="js/SkipTo.min.js"></script>      
+
+        <script type="text/javascript" src="js/SkipTo.min.js"></script>
     </body>
 </html>

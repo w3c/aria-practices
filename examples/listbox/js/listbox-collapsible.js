@@ -1,13 +1,15 @@
+'use strict';
 /**
  * ARIA Collapsible Dropdown Listbox Example
+ *
  * @function onload
- * @desc Initialize the listbox example once the page has loaded
+ * @description Initialize the listbox example once the page has loaded
  */
 
 window.addEventListener('load', function () {
   var button = document.getElementById('exp_button');
   var exListbox = new aria.Listbox(document.getElementById('exp_elem_list'));
-  var listboxButton = new aria.ListboxButton(button, exListbox);
+  new aria.ListboxButton(button, exListbox);
 });
 
 var aria = aria || {};
@@ -21,8 +23,14 @@ aria.ListboxButton = function (button, listbox) {
 aria.ListboxButton.prototype.registerEvents = function () {
   this.button.addEventListener('click', this.showListbox.bind(this));
   this.button.addEventListener('keyup', this.checkShow.bind(this));
-  this.listbox.listboxNode.addEventListener('blur', this.hideListbox.bind(this));
-  this.listbox.listboxNode.addEventListener('keydown', this.checkHide.bind(this));
+  this.listbox.listboxNode.addEventListener(
+    'blur',
+    this.hideListbox.bind(this)
+  );
+  this.listbox.listboxNode.addEventListener(
+    'keydown',
+    this.checkHide.bind(this)
+  );
   this.listbox.setHandleFocusChange(this.onFocusChange.bind(this));
 };
 

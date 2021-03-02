@@ -1,9 +1,9 @@
-/* exported TreeGrid */
-function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
-  function initAttributes () {
+'use strict';
+function TreeGrid(treegridElem, doAllowRowFocus, doStartRowFocus) {
+  function initAttributes() {
     // Make sure focusable elements are not in the tab order
     // They will be added back in for the active row
-    setTabIndexOfFocusableElems(treegridElem, -1);
+    setTabIndexOfFocusableElements(treegridElem, -1);
 
     // Add tabindex="0" to first row, "-1" to other rows
     // We will use the roving tabindex method since aria-activedescendant
@@ -15,8 +15,7 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
     while (index--) {
       if (doAllowRowFocus) {
         rows[index].tabIndex = index === startRowIndex ? 0 : -1;
-      }
-      else {
+      } else {
         setTabIndexForCellsInRow(rows[index], -1);
         moveAriaExpandedToFirstCell(rows[index]);
       }
@@ -31,12 +30,12 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
     setTabIndexForCell(firstCell);
   }
 
-  function setTabIndexForCell (cell, tabIndex) {
-    var focusable = getFocusableElems(cell)[0] || cell;
+  function setTabIndexForCell(cell, tabIndex) {
+    var focusable = getFocusableElements(cell)[0] || cell;
     focusable.tabIndex = tabIndex;
   }
 
-  function setTabIndexForCellsInRow (row, tabIndex) {
+  function setTabIndexForCellsInRow(row, tabIndex) {
     var cells = getNavigableCols(row);
     var cellIndex = cells.length;
     while (cellIndex--) {
@@ -44,12 +43,12 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
     }
   }
 
-  function getAllRows () {
+  function getAllRows() {
     var nodeList = treegridElem.querySelectorAll('tbody > tr');
     return Array.prototype.slice.call(nodeList);
   }
 
-  function getFocusableElems (root) {
+  function getFocusableElements(root) {
     // textarea not supported as a cell widget as it's multiple lines
     // and needs up/down keys
     // These should all be descendants of a cell
@@ -57,58 +56,64 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
     return Array.prototype.slice.call(nodeList);
   }
 
-  function setTabIndexOfFocusableElems (root, tabIndex) {
-    var focusableElems = getFocusableElems(root);
-    var index = focusableElems.length;
+  function setTabIndexOfFocusableElements(root, tabIndex) {
+    var focusableElements = getFocusableElements(root);
+    var index = focusableElements.length;
     while (index--) {
-      focusableElems[index].tabIndex = tabIndex;
+      focusableElements[index].tabIndex = tabIndex;
     }
   }
 
-  function getAllNavigableRows () {
-    var nodeList = treegridElem.querySelectorAll('tbody > tr:not([class~="hidden"])');
+  function getAllNavigableRows() {
+    var nodeList = treegridElem.querySelectorAll(
+      'tbody > tr:not([class~="hidden"])'
+    );
     // Convert to array so that we can use array methods on it
     return Array.prototype.slice.call(nodeList);
   }
 
-  function getNavigableCols (currentRow) {
+  function getNavigableCols(currentRow) {
     var nodeList = currentRow.getElementsByTagName('td');
     return Array.prototype.slice.call(nodeList);
   }
 
-  function restrictIndex (index, numItems) {
+  function restrictIndex(index, numItems) {
     if (index < 0) {
       return 0;
     }
     return index >= numItems ? index - 1 : index;
   }
 
-  function focus (elem) {
+  function focus(elem) {
     elem.tabIndex = 0; // Ensure focusable
     elem.focus();
   }
 
-  function focusCell (cell) {
+  function focusCell(cell) {
     // Check for focusable child such as link or textbox
     // and use that if available
-    var focusableChildren = getFocusableElems(cell);
+    var focusableChildren = getFocusableElements(cell);
     focus(focusableChildren[0] || cell);
   }
 
   // Restore tabIndex to what it should be when focus switches from
   // one treegrid item to another
-  function onFocusIn (event) {
+  function onFocusIn(event) {
     var newTreeGridFocus =
-      event.target !== window && treegridElem.contains(event.target) &&
-        event.target;
+      event.target !== window &&
+      treegridElem.contains(event.target) &&
+      event.target;
 
     // The last row we considered focused
     var oldCurrentRow = enableTabbingInActiveRowDescendants.tabbingRow;
     if (oldCurrentRow) {
       enableTabbingInActiveRowDescendants(false, oldCurrentRow);
     }
-    if (doAllowRowFocus && onFocusIn.prevTreeGridFocus &&
-      onFocusIn.prevTreeGridFocus.localName === 'td') {
+    if (
+      doAllowRowFocus &&
+      onFocusIn.prevTreeGridFocus &&
+      onFocusIn.prevTreeGridFocus.localName === 'td'
+    ) {
       // Was focused on td, remove tabIndex so that it's not focused on click
       onFocusIn.prevTreeGridFocus.removeAttribute('tabindex');
     }
@@ -134,13 +139,12 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
   }
 
   // Set whether interactive elements within a row are tabbable
-  function enableTabbingInActiveRowDescendants (isTabbingOn, row) {
+  function enableTabbingInActiveRowDescendants(isTabbingOn, row) {
     if (row) {
-      setTabIndexOfFocusableElems(row, isTabbingOn ? 0 : -1);
+      setTabIndexOfFocusableElements(row, isTabbingOn ? 0 : -1);
       if (isTabbingOn) {
         enableTabbingInActiveRowDescendants.tabbingRow = row;
-      }
-      else {
+      } else {
         if (enableTabbingInActiveRowDescendants.tabbingRow === row) {
           enableTabbingInActiveRowDescendants.tabbingRow = null;
         }
@@ -150,11 +154,11 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
 
   // The row with focus is the row that either has focus or an element
   // inside of it has focus
-  function getRowWithFocus () {
+  function getRowWithFocus() {
     return getContainingRow(document.activeElement);
   }
 
-  function getContainingRow (start) {
+  function getContainingRow(start) {
     var possibleRow = start;
     if (treegridElem.contains(possibleRow)) {
       while (possibleRow !== treegridElem) {
@@ -166,17 +170,17 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
     }
   }
 
-  function isRowFocused () {
+  function isRowFocused() {
     return getRowWithFocus() === document.activeElement;
   }
 
   // Note: contenteditable not currently supported
-  function isEditableFocused () {
+  function isEditableFocused() {
     var focusedElem = document.activeElement;
     return focusedElem.localName === 'input';
   }
 
-  function getColWithFocus (currentRow) {
+  function getColWithFocus(currentRow) {
     if (currentRow) {
       var possibleCol = document.activeElement;
       if (currentRow.contains(possibleCol)) {
@@ -190,17 +194,17 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
     }
   }
 
-  function getLevel (row) {
+  function getLevel(row) {
     return row && parseInt(row.getAttribute('aria-level'));
   }
 
   // Move backwards (direction = -1) or forwards (direction = 1)
   // If we also need to move down/up a level, requireLevelChange = true
   // When
-  function moveByRow (direction, requireLevelChange) {
+  function moveByRow(direction, requireLevelChange) {
     var currentRow = getRowWithFocus();
-    var requiredLevel = requireLevelChange && currentRow &&
-      getLevel(currentRow) + direction;
+    var requiredLevel =
+      requireLevelChange && currentRow && getLevel(currentRow) + direction;
     var rows = getAllNavigableRows();
     var numRows = rows.length;
     var rowIndex = currentRow ? rows.indexOf(currentRow) : -1;
@@ -214,15 +218,14 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
         return; // Failed to find required level, return without focus change
       }
       rowIndex = restrictIndex(rowIndex + direction, numRows);
-    }
-    while (requiredLevel && requiredLevel !== getLevel(rows[rowIndex]));
+    } while (requiredLevel && requiredLevel !== getLevel(rows[rowIndex]));
 
     if (!focusSameColInDifferentRow(currentRow, rows[rowIndex])) {
       focus(rows[rowIndex]);
     }
   }
 
-  function focusSameColInDifferentRow (fromRow, toRow) {
+  function focusSameColInDifferentRow(fromRow, toRow) {
     var currentCol = getColWithFocus(fromRow);
     if (!currentCol) {
       return;
@@ -241,7 +244,7 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
     return true;
   }
 
-  function moveToExtreme (direction) {
+  function moveToExtreme(direction) {
     var currentRow = getRowWithFocus();
     if (!currentRow) {
       return;
@@ -249,14 +252,13 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
     var currentCol = getColWithFocus(currentRow);
     if (currentCol) {
       moveToExtremeCol(direction, currentRow);
-    }
-    else {
+    } else {
       // Move to first/last row
       moveToExtremeRow(direction);
     }
   }
 
-  function moveByCol (direction) {
+  function moveByCol(direction) {
     var currentRow = getRowWithFocus();
     if (!currentRow) {
       return;
@@ -266,8 +268,8 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
     var currentCol = getColWithFocus(currentRow);
     var currentColIndex = cols.indexOf(currentCol);
     // First right arrow moves to first column
-    var newColIndex = (currentCol || direction < 0) ? currentColIndex +
-      direction : 0;
+    var newColIndex =
+      currentCol || direction < 0 ? currentColIndex + direction : 0;
     // Moving past beginning focuses row
     if (doAllowRowFocus && newColIndex < 0) {
       focus(currentRow);
@@ -277,14 +279,14 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
     focusCell(cols[newColIndex]);
   }
 
-  function moveToExtremeCol (direction, currentRow) {
+  function moveToExtremeCol(direction, currentRow) {
     // Move to first/last col
     var cols = getNavigableCols(currentRow);
     var desiredColIndex = direction < 0 ? 0 : cols.length - 1;
     focusCell(cols[desiredColIndex]);
   }
 
-  function moveToExtremeRow (direction) {
+  function moveToExtremeRow(direction) {
     var rows = getAllNavigableRows();
     var newRow = rows[direction > 0 ? rows.length - 1 : 0];
     if (!focusSameColInDifferentRow(getRowWithFocus(), newRow)) {
@@ -292,7 +294,7 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
     }
   }
 
-  function doPrimaryAction () {
+  function doPrimaryAction() {
     var currentRow = getRowWithFocus();
     if (!currentRow) {
       return;
@@ -300,8 +302,12 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
 
     // If row has focus, open message
     if (currentRow === document.activeElement) {
-      alert('Message from ' + currentRow.children[2].innerText + ':\n\n' +
-        currentRow.children[1].innerText);
+      alert(
+        'Message from ' +
+          currentRow.children[2].innerText +
+          ':\n\n' +
+          currentRow.children[1].innerText
+      );
       return;
     }
 
@@ -309,7 +315,7 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
     toggleExpanded(currentRow);
   }
 
-  function toggleExpanded (row) {
+  function toggleExpanded(row) {
     var cols = getNavigableCols(row);
     var currentCol = getColWithFocus(row);
     if (currentCol === cols[0] && isExpandable(row)) {
@@ -317,7 +323,7 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
     }
   }
 
-  function changeExpanded (doExpand, row) {
+  function changeExpanded(doExpand, row) {
     var currentRow = row || getRowWithFocus();
     if (!currentRow) {
       return;
@@ -338,16 +344,14 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
       // Only expand the next level if this level is expanded
       // and previous level is expanded
       doExpandLevel[rowLevel + 1] =
-        doExpandLevel[rowLevel] &&
-        isExpanded(nextRow);
+        doExpandLevel[rowLevel] && isExpanded(nextRow);
       var willHideRow = !doExpandLevel[rowLevel];
       var isRowHidden = nextRow.classList.contains('hidden');
 
       if (willHideRow !== isRowHidden) {
         if (willHideRow) {
           nextRow.classList.add('hidden');
-        }
-        else {
+        } else {
           nextRow.classList.remove('hidden');
         }
         didChange = true;
@@ -362,7 +366,7 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
   // Mirror aria-expanded from the row to the first cell in that row
   // (TBD is this a good idea? How else will screen reader user hear
   // that the cell represents the opportunity to collapse/expand rows?)
-  function moveAriaExpandedToFirstCell (row) {
+  function moveAriaExpandedToFirstCell(row) {
     var expandedValue = row.getAttribute('aria-expanded');
     var firstCell = getNavigableCols(row)[0];
     if (expandedValue) {
@@ -371,26 +375,26 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
     }
   }
 
-  function getAriaExpandedElem (row) {
+  function getAriaExpandedElem(row) {
     return doAllowRowFocus ? row : getNavigableCols(row)[0];
   }
 
-  function setAriaExpanded (row, doExpand) {
+  function setAriaExpanded(row, doExpand) {
     var elem = getAriaExpandedElem(row);
     elem.setAttribute('aria-expanded', doExpand);
   }
 
-  function isExpandable (row) {
+  function isExpandable(row) {
     var elem = getAriaExpandedElem(row);
     return elem.hasAttribute('aria-expanded');
   }
 
-  function isExpanded (row) {
+  function isExpanded(row) {
     var elem = getAriaExpandedElem(row);
     return elem.getAttribute('aria-expanded') === 'true';
   }
 
-  function onKeyDown (event) {
+  function onKeyDown(event) {
     var ENTER = 13;
     var UP = 38;
     var DOWN = 40;
@@ -401,15 +405,14 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
     var CTRL_HOME = -HOME;
     var CTRL_END = -END;
 
-    var numModifiersPressed = event.ctrlKey + event.altKey + event.shiftKey +
-      event.metaKey;
+    var numModifiersPressed =
+      event.ctrlKey + event.altKey + event.shiftKey + event.metaKey;
 
     var key = event.keyCode;
 
     if (numModifiersPressed === 1 && event.ctrlKey) {
       key = -key; // Treat as negative key value when ctrl pressed
-    }
-    else if (numModifiersPressed) {
+    } else if (numModifiersPressed) {
       return;
     }
 
@@ -422,18 +425,17 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
         break;
       case LEFT:
         if (isEditableFocused()) {
-          return;  // Leave key for editable area
+          return; // Leave key for editable area
         }
         if (isRowFocused()) {
           changeExpanded(false) || moveByRow(-1, true);
-        }
-        else {
+        } else {
           moveByCol(-1);
         }
         break;
       case RIGHT:
         if (isEditableFocused()) {
-          return;  // Leave key for editable area
+          return; // Leave key for editable area
         }
 
         // If row: try to expand
@@ -447,7 +449,7 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
         break;
       case HOME:
         if (isEditableFocused()) {
-          return;  // Leave key for editable area
+          return; // Leave key for editable area
         }
         moveToExtreme(-1);
         break;
@@ -456,7 +458,7 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
         break;
       case END:
         if (isEditableFocused()) {
-          return;  // Leave key for editable area
+          return; // Leave key for editable area
         }
         moveToExtreme(1);
         break;
@@ -474,7 +476,7 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
   // Toggle row expansion if the click is over the expando triangle
   // Since the triangle is a pseudo element we can't bind an event listener
   // to it. Another option is to have an actual element with role="presentation"
-  function onClick (event) {
+  function onClick(event) {
     var target = event.target;
     if (target.localName !== 'td') {
       return;
@@ -497,7 +499,7 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
   }
 
   // Double click on row toggles expansion
-  function onDoubleClick (event) {
+  function onDoubleClick(event) {
     var row = getContainingRow(event.target);
     if (row) {
       if (isExpandable(row)) {
@@ -512,7 +514,41 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
   treegridElem.addEventListener('click', onClick);
   treegridElem.addEventListener('dblclick', onDoubleClick);
   // Polyfill for focusin necessary for Firefox < 52
-  window.addEventListener(window.onfocusin ? 'focusin' : 'focus',
-    onFocusIn, true);
+  window.addEventListener(
+    window.onfocusin ? 'focusin' : 'focus',
+    onFocusIn,
+    true
+  );
 }
 
+/* Init Script for TreeGrid */
+/* Get an object where each field represents a URL parameter */
+function getQuery() {
+  if (!getQuery.cached) {
+    getQuery.cached = {};
+    const queryStr = window.location.search.substring(1);
+    const vars = queryStr.split('&');
+    for (let i = 0; i < vars.length; i++) {
+      const pair = vars[i].split('=');
+      // If first entry with this name
+      getQuery.cached[pair[0]] = pair[1] && decodeURIComponent(pair[1]);
+    }
+  }
+  return getQuery.cached;
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Supports url parameter ?cell=force or ?cell=start (or leave out parameter)
+  var cellParam = getQuery().cell;
+  var doAllowRowFocus = cellParam !== 'force';
+  var doStartRowFocus = doAllowRowFocus && cellParam !== 'start';
+  TreeGrid(
+    document.getElementById('treegrid'),
+    doAllowRowFocus,
+    doStartRowFocus
+  );
+  var choiceElem = document.getElementById(
+    'option-cell-focus-' + (cellParam || 'allow')
+  );
+  choiceElem.setAttribute('aria-current', 'true');
+});

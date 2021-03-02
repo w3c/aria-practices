@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Example Disclosure (Show/Hide) for Answers to Frequently Asked Questions | WAI-ARIA Authoring
-  Practices 1.1</title>
+<title>Example Disclosure (Show/Hide) for Answers to Frequently Asked Questions | WAI-ARIA Authoring Practices 1.2</title>
 
   <!--  Core js and css shared by all examples; do not modify when using this template. -->
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -38,14 +37,19 @@
     <li>
       <a href="disclosure-img-long-description.html">Example Disclosure (Show/Hide) for an Image Description</a>
     </li>
+    <li>
+      <a href="disclosure-navigation.html">Example Disclosure for Navigation Menus</a>
+    </li>
   </ul>
   <section>
-    <h2 id="ex_label">Example</h2>
+    <div class="example-header">
+      <h2 id="ex_label">Example</h2>
+    </div>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of" ></div>
     <div id="ex1">
       <dl class="faq">
         <dt>
-          <button aria-expanded="false" aria-controls="faq1_desc">What do I do if I have a permit for an assigned lot, but can't find a space there?</button>
+          <button type="button" aria-expanded="false" aria-controls="faq1_desc">What do I do if I have a permit for an assigned lot, but can't find a space there?</button>
         </dt>
         <dd>
           <p id="faq1_desc" class="desc">
@@ -55,7 +59,7 @@
           </p>
         </dd>
         <dt>
-          <button aria-expanded="false" aria-controls="faq2_desc">What do I do if I lose my permit or if my permit is stolen?</button>
+          <button type="button" aria-expanded="false" aria-controls="faq2_desc">What do I do if I lose my permit or if my permit is stolen?</button>
         </dt>
         <dd>
           <p id="faq2_desc" class="desc">You should come to the Parking office and report the
@@ -65,7 +69,7 @@
           </p>
         </dd>
         <dt>
-          <button aria-expanded="false" aria-controls="faq3_desc">Is there free parking on holidays?</button>
+          <button type="button" aria-expanded="false" aria-controls="faq3_desc">Is there free parking on holidays?</button>
         </dt>
         <dd>
           <p id="faq3_desc" class="desc">
@@ -76,7 +80,7 @@
           </p>
         </dd>
         <dt>
-          <button aria-expanded="false" aria-controls="faq4_desc">Do all parking facilities have the same enforcement rules?</button>
+          <button type="button" aria-expanded="false" aria-controls="faq4_desc">Do all parking facilities have the same enforcement rules?</button>
         </dt>
         <dd>
           <p id="faq4_desc" class="desc">
@@ -220,7 +224,7 @@
   <section>
     <h2>Javascript and CSS Source Code</h2>
     <!--  After the js and css files are named with the name of this example, change the href and text of the following 2 links to refer to the appropriate js and css files.  -->
-    <ul>
+    <ul id="css_js_files">
       <li>
         CSS:
         <a href="css/disclosure-faq.css" type="tex/css">disclosure-faq.css</a>
@@ -238,14 +242,13 @@
     <pre><code id="sc1"></code></pre>
     <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of" ></div>
     <script>
-      sourceCode.add('sc1', 'ex1');
+      sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
       sourceCode.make();
     </script>
   </section>
   </main>
   <nav>
-    <a href="../../#disclosure">Disclosure (Show/Hide) Design Pattern in WAI-ARIA Authoring
-      Practices 1.1</a>
+    <a href="../../#disclosure">Disclosure (Show/Hide) Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
   </nav>
 </body>
 </html>

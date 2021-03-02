@@ -1,18 +1,28 @@
+#!/usr/bin/env node
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   reference-tables.js
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   reference-tables.js
+ */
 
-var fs = require('fs');
-var i;
+const fs = require('fs');
+const path = require('path');
+const glob = require('glob');
+const cheerio = require('cheerio');
 
-var fileNameTemplate = 'reference-tables.template';
-var fileNameIndex = '../examples/index.html';
-var examplesDirectory = '../examples/';
+const exampleFilePath = path.join(__dirname, '..', 'examples', 'index.html');
+const exampleTemplatePath = path.join(__dirname, 'reference-tables.template');
 
-var ariaRoles = [
+let output = fs.readFileSync(exampleTemplatePath, function (err) {
+  console.log('Error reading aria index:', err);
+});
+
+const $ = cheerio.load(output);
+
+const ariaRoles = [
+  'alert',
+  'alertdialog',
   'application',
   'article',
   'banner',
@@ -24,6 +34,7 @@ var ariaRoles = [
   'complementary',
   'contentinfo',
   'definition',
+  'dialog',
   'directory',
   'document',
   'feed',
@@ -38,7 +49,9 @@ var ariaRoles = [
   'list',
   'listbox',
   'listitem',
+  'log',
   'main',
+  'marquee',
   'math',
   'menu',
   'menubar',
@@ -53,6 +66,7 @@ var ariaRoles = [
   'progressbar',
   'radio',
   'radiogroup',
+  // 'region', Region is generated differently from other roles
   'row',
   'rowgroup',
   'rowheader',
@@ -62,6 +76,7 @@ var ariaRoles = [
   'separator',
   'slider',
   'spinbutton',
+  'status',
   'switch',
   'tab',
   'table',
@@ -69,14 +84,15 @@ var ariaRoles = [
   'tabpanel',
   'term',
   'textbox',
+  'timer',
   'toolbar',
   'tooltip',
   'tree',
   'treegrid',
-  'treeitem'
+  'treeitem',
 ];
 
-var ariaPropertiesAndStates = [
+const ariaPropertiesAndStates = [
   'aria-activedescendant',
   'aria-atomic',
   'aria-autocomplete',
@@ -124,50 +140,23 @@ var ariaPropertiesAndStates = [
   'aria-valuemax',
   'aria-valuemin',
   'aria-valuenow',
-  'aria-valuetext'
+  'aria-valuetext',
 ];
 
-var indexOfRoles = [];
-var indexOfPropertiesAndStates = [];
+let indexOfRoles = {};
+let indexOfPropertiesAndStates = {};
 
 console.log('Generating index...');
 
-function replaceSection (id, content, newContent) {
-  var indexStart = content.indexOf(id);
-
-  if (indexStart > 0) {
-    indexStart = content.indexOf('>', indexStart) + 1;
-    indexEnd = indexStart + 1;
-
-    console.log('Replacing at: ' + indexStart + ' .... ' + indexEnd);
-
-    content = content.slice(0, indexStart) + newContent + content.slice(indexEnd);
-  }
-
-  return content;
-}
-
-function getTitle (data) {
-  title = data.substring(data.indexOf('<title>') + 7, data.indexOf('</title>'));
-
-  title = title.split('|');
-
-  title = title[0].replace('Examples', '');
-  title = title.replace('Example of', '');
-  title = title.replace('Example', '');
-
-  return title;
-}
-
-function getColumn (data, indexStart) {
-  var count = 0;
-  var index = data.lastIndexOf('<tr', indexStart);
+function getColumn(data, indexStart) {
+  let count = 0;
+  let index = data.lastIndexOf('<tr', indexStart);
 
   while (index > 0 && index <= indexStart) {
-    var indexTd = data.indexOf('<td', index);
-    var indexTh = data.indexOf('<th', index);
+    let indexTd = data.indexOf('<td', index);
+    let indexTh = data.indexOf('<th', index);
 
-    var index = Math.min(indexTh, indexTd);
+    index = Math.min(indexTh, indexTd);
 
     if (index <= indexStart) {
       count += 1;
@@ -179,19 +168,21 @@ function getColumn (data, indexStart) {
   return count;
 }
 
-function getRoles (data) {
-  var roles = [];
+function getRoles(data) {
+  let roles = [];
 
-  var indexStart = data.indexOf('<code>', 0);
-  var indexEnd = data.indexOf('</code>', indexStart);
+  let indexStart = data.indexOf('<code>', 0);
+  let indexEnd = data.indexOf('</code>', indexStart);
 
   while (indexStart > 1 && indexEnd > 1) {
-    code = data.substring(indexStart + 6, indexEnd).trim();
+    let code = data.substring(indexStart + 6, indexEnd).trim();
 
-    for (var i = 0; i < ariaRoles.length; i++) {
-      if ((getColumn(data, indexStart) === 1) &&
-          (code == ariaRoles[i]) &&
-          (roles.indexOf(ariaRoles[i]) < 0)) {
+    for (let i = 0; i < ariaRoles.length; i++) {
+      if (
+        getColumn(data, indexStart) === 1 &&
+        code == ariaRoles[i] &&
+        roles.indexOf(ariaRoles[i]) < 0
+      ) {
         roles.push(ariaRoles[i]);
       }
     }
@@ -206,19 +197,21 @@ function getRoles (data) {
   return roles;
 }
 
-function getPropertiesAndStates (data) {
-  var propertiesAndStates = [];
+function getPropertiesAndStates(data) {
+  let propertiesAndStates = [];
 
-  var indexStart = data.indexOf('<code>', 0);
-  var indexEnd = data.indexOf('</code>', indexStart);
+  let indexStart = data.indexOf('<code>', 0);
+  let indexEnd = data.indexOf('</code>', indexStart);
 
   while (indexStart > 1 && indexEnd > 1) {
-    code = data.substring(indexStart + 6, indexEnd);
+    let code = data.substring(indexStart + 6, indexEnd);
 
-    for (var i = 0; i < ariaPropertiesAndStates.length; i++) {
-      if ((getColumn(data, indexStart) === 2) &&
-          (code.indexOf(ariaPropertiesAndStates[i]) >= 0) &&
-          (propertiesAndStates.indexOf(ariaPropertiesAndStates[i]) < 0)) {
+    for (let i = 0; i < ariaPropertiesAndStates.length; i++) {
+      if (
+        getColumn(data, indexStart) === 2 &&
+        code.indexOf(ariaPropertiesAndStates[i]) >= 0 &&
+        propertiesAndStates.indexOf(ariaPropertiesAndStates[i]) < 0
+      ) {
         propertiesAndStates.push(ariaPropertiesAndStates[i]);
       }
     }
@@ -233,9 +226,9 @@ function getPropertiesAndStates (data) {
   return propertiesAndStates;
 }
 
-function addExampleToRoles (roles, example) {
-  for (var i = 0; i < roles.length; i++) {
-    var role = roles[i];
+function addExampleToRoles(roles, example) {
+  for (let i = 0; i < roles.length; i++) {
+    let role = roles[i];
 
     if (role === '') {
       continue;
@@ -248,10 +241,9 @@ function addExampleToRoles (roles, example) {
   }
 }
 
-function addExampleToPropertiesAndStates (props, example) {
-
-  for (var i = 0; i < props.length; i++) {
-    var prop = props[i];
+function addExampleToPropertiesAndStates(props, example) {
+  for (let i = 0; i < props.length; i++) {
+    let prop = props[i];
 
     if (prop === '') {
       continue;
@@ -264,125 +256,129 @@ function addExampleToPropertiesAndStates (props, example) {
   }
 }
 
-function addLandmarkRole (landmark, hasLabel, title, ref) {
-  var example = {};
+function addLandmarkRole(landmark, hasLabel, title, ref) {
+  let example = {
+    title: title,
+    ref: ref,
+  };
 
-  example.title = title;
-  example.ref = ref;
   addExampleToRoles(landmark, example);
   if (hasLabel) {
-    addExampleToPropertiesAndStates([ 'aria-labelledby' ], example);
+    addExampleToPropertiesAndStates(['aria-labelledby'], example);
   }
 }
 
-var count = 0;
+glob
+  .sync('examples/!(landmarks)/**/!(index).html', {
+    cwd: path.join(__dirname, '..'),
+    nodir: true,
+  })
+  .forEach(function (file) {
+    let data = fs.readFileSync(file, 'utf8');
+    let ref = file.replace('examples/', '');
+    let title = data
+      .substring(data.indexOf('<title>') + 7, data.indexOf('</title>'))
+      .split('|')[0]
+      .replace('Examples', '')
+      .replace('Example of', '')
+      .replace('Example', '')
+      .trim();
 
-function findHTMLFiles (path) {
-  fs.readdirSync(path).forEach(function (file) {
-    var newPath = path + '/' + file;
+    let example = {
+      title: title,
+      ref: ref,
+    };
 
-    var stats = fs.statSync(newPath);
-
-    if (stats.isDirectory()) {
-      findHTMLFiles(newPath);
-    }
-
-    if (stats.isFile() &&
-        (newPath.indexOf('.html') > 0) &&
-        (newPath.indexOf('index.html') < 0) &&
-        (newPath.indexOf('landmark') < 0)) {
-      count += 1;
-
-      var data = fs.readFileSync(newPath, 'utf8');
-
-      var ref = newPath;
-      var title = getTitle(data);
-      var roles = getRoles(data);
-      var props = getPropertiesAndStates(data);
-
-      console.log('\nFile ' + count + ': ' + ref);
-      console.log('Title  ' + count + ': ' + title);
-      console.log('Roles  ' + count + ': ' + roles);
-      console.log('Props  ' + count + ': ' + props);
-
-      var example = {};
-
-      example.title = title;
-      example.ref = ref;
-
-      addExampleToRoles(roles, example);
-
-      addExampleToPropertiesAndStates(props, example);
-    }
+    addExampleToRoles(getRoles(data), example);
+    addExampleToPropertiesAndStates(getPropertiesAndStates(data), example);
   });
-};
-
-findHTMLFiles(examplesDirectory);
 
 // Add landmark examples, since they are a different format
+addLandmarkRole(['banner'], false, 'Banner Landmark', 'landmarks/banner.html');
+addLandmarkRole(
+  ['complementary'],
+  true,
+  'Complementary Landmark',
+  'landmarks/complementary.html'
+);
+addLandmarkRole(
+  ['contentinfo'],
+  false,
+  'Contentinfo Landmark',
+  'landmarks/contentinfo.html'
+);
+addLandmarkRole(['form'], true, 'Form Landmark', 'landmarks/form.html');
+addLandmarkRole(['main'], true, 'Main Landmark', 'landmarks/main.html');
+addLandmarkRole(
+  ['navigation'],
+  true,
+  'Navigation Landmark',
+  'landmarks/navigation.html'
+);
+addLandmarkRole(['region'], true, 'Region Landmark', 'landmarks/region.html');
+addLandmarkRole(['search'], true, 'Search Landmark', 'landmarks/search.html');
 
-addLandmarkRole([ 'banner' ], false, 'Banner Landmark', examplesDirectory + 'landmarks/banner.html');
-addLandmarkRole([ 'complementary' ], true, 'Complementary Landmark', examplesDirectory + 'landmarks/complementary.html');
-addLandmarkRole([ 'contentinfo' ], false, 'Contentinfo Landmark', examplesDirectory + 'landmarks/contentinfo.html');
-addLandmarkRole([ 'form' ], true, 'Form Landmark', examplesDirectory + 'landmarks/form.html');
-addLandmarkRole([ 'main' ], true, 'Main Landmark', examplesDirectory + 'landmarks/main.html');
-addLandmarkRole([ 'navigation' ], true, 'Navigation Landmark', examplesDirectory + 'landmarks/navigation.html');
-addLandmarkRole([ 'region' ], true, 'Region Landmark', examplesDirectory + 'landmarks/region.html');
-addLandmarkRole([ 'search' ], true, 'Search Landmark', examplesDirectory + 'landmarks/search.html');
-
-var exampleIndexFile = fs.readFileSync(fileNameTemplate, function (err) {
-  console.log('Error reading aria index:', err);
-});
-
-var sorted = [];
-
-for (role in indexOfRoles) {
-  sorted.push(role);
+function exampleListItem(item) {
+  return `
+                <li><a href="${item.ref}">${item.title}</a></li>`;
 }
 
-sorted.sort();
+let sortedRoles = Object.getOwnPropertyNames(indexOfRoles).sort();
 
-var html = sorted.reduce(function (set,role) {
-  var examples = indexOfRoles[role];
+let examplesByRole = sortedRoles.reduce(function (set, role) {
+  let examples = indexOfRoles[role];
 
-  var examplesHTML = '';
+  let examplesHTML = '';
   if (examples.length === 1) {
-    examplesHTML = '    <a href="' + examples[0].ref + '">' + examples[0].title + '</a>';
+    examplesHTML = `<a href="${examples[0].ref}">${examples[0].title}</a>`;
+  } else {
+    examplesHTML = `
+              <ul>${examples.map(exampleListItem).join('')}
+              </ul>\n            `;
   }
-  else {
-    function exampleListItem (item) { return '      <li><a href="' + item.ref + '">' + item.title + '</a></li>';};
-    examplesHTML = '    <ul>' + examples.map(exampleListItem).join('\n') + '</ul>';
-  }
-  return set + '<tr>\n  <td><code>' + role + '</code></td>\n  <td>' + examplesHTML + '</td>\n</tr>';
+  return `${set}
+          <tr>
+            <td><code>${role}</code></td>
+            <td>${examplesHTML}</td>
+          </tr>`;
 }, '');
 
-exampleIndexFile = replaceSection('examples_by_role_tbody', exampleIndexFile, html);
+$('#examples_by_role_tbody').html(examplesByRole);
 
-sorted = [];
+let sortedPropertiesAndStates = Object.getOwnPropertyNames(
+  indexOfPropertiesAndStates
+).sort();
 
-for (prop in indexOfPropertiesAndStates) {
-  sorted.push(prop);
-}
+let examplesByProps = sortedPropertiesAndStates.reduce(function (set, prop) {
+  let examples = indexOfPropertiesAndStates[prop];
 
-sorted.sort();
-
-html = sorted.reduce(function (set,prop) {
-  var examples = indexOfPropertiesAndStates[prop];
-
-  var examplesHTML = '';
+  let examplesHTML = '';
   if (examples.length === 1) {
-    examplesHTML = '<a href="' + examples[0].ref + '">' + examples[0].title + '</a>';
+    examplesHTML = `<a href="${examples[0].ref}">${examples[0].title}</a>`;
+  } else {
+    examplesHTML = `
+              <ul>${examples.map(exampleListItem).join('')}
+              </ul>\n            `;
   }
-  else {
-    function exampleListItem (item) { return '      <li><a href="' + item.ref + '">' + item.title + '</a></li>';};
-    examplesHTML = '    <ul>' + examples.map(exampleListItem).join('\n') + '</ul>';
-  }
-  return set + '<tr>\n  <td><code>' + prop + '</code></td>\n  <td>' + examplesHTML + '</td>\n</tr>';
+  return `${set}
+          <tr>
+            <td><code>${prop}</code></td>
+            <td>${examplesHTML}</td>
+          </tr>`;
 }, '');
 
-exampleIndexFile = replaceSection('examples_by_props_tbody', exampleIndexFile, html);
+$('#examples_by_props_tbody').html(examplesByProps);
 
-fs.writeFile(fileNameIndex, exampleIndexFile, function (err) {
+// cheerio seems to fold the doctype lines despite the template
+const result = $.html()
+  .replace('<!DOCTYPE html>', '<!DOCTYPE html>\n')
+  .replace('</body></html>', '</body></html>\n')
+  .replace(
+    '<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">',
+    '<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">\n'
+  );
+
+fs.writeFile(exampleFilePath, result, function (err) {
   if (err) {
     console.log('Error saving updated aria practices:', err);
   }

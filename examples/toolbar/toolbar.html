@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Toolbar Example | WAI-ARIA Authoring Practices 1.1</title>
+<title>Toolbar Example | WAI-ARIA Authoring Practices 1.2</title>
 
 <!--  Core js and css shared by all examples; do not modify when using this template. -->
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -11,7 +11,6 @@
 <script src="../js/examples.js"></script>
 <script src="../js/highlight.pack.js"></script>
 <script src="../js/app.js"></script>
-<script src="../js/utils.js" type="text/javascript"></script>
 
 <!--  js and css for this example. -->
 
@@ -52,84 +51,81 @@
     <div id="ex1">
       <div class="format" role="toolbar" aria-label="Text Formatting" aria-controls="textarea1">
           <div class="group characteristics">
-            <button
-                class="item bold"
+            <button type="button"
+                class="item bold popup"
                 aria-pressed="false"
-                aria-label="bold"
                 value="bold"
                 tabindex="0">
-              <span class="fas fa-bold"></span>
+              <span class="fas fa-bold" aria-hidden="true"></span>
+              <span class="popup-label">Bold</span>
             </button>
-            <button
-                class="item italic"
-                aria-label="Italic"
+            <button type="button"
+                class="item italic popup"
                 aria-pressed="false"
                 value="italic"
                 tabindex="-1">
-              <span class="fas fa-italic"></span>
+              <span class="fas fa-italic" aria-hidden="true"></span>
+              <span class="popup-label">Italic</span>
             </button>
-            <button
-                class="item underline"
-                aria-label="Underline"
+            <button type="button"
+                class="item underline popup"
                 aria-pressed="false"
                 value="underline"
                 tabindex="-1">
-              <span class="fas fa-underline"></span>
+              <span class="fas fa-underline" aria-hidden="true"></span>
+              <span class="popup-label">Underline</span>
             </button>
           </div>
           <div class="group"
                role="radiogroup"
                aria-label="Text Alignment">
-            <button
+            <button type="button"
                 role="radio"
-                class="item align-left"
-                aria-label="Text align left"
+                class="item align-left popup"
                 aria-checked="true"
                 tabindex="-1">
-              <span class="fas fa-align-left"></span>
+              <span class="fas fa-align-left" aria-hidden="true"></span>
+              <span class="popup-label">Text Align Left</span>
             </button>
-            <button
+            <button type="button"
                 role="radio"
-                class="item align-center"
-                aria-label="Text align center"
+                class="item align-center popup"
                 aria-checked="false"
                 tabindex="-1">
-              <span class="fas fa-align-center"></span>
+              <span class="fas fa-align-center" aria-hidden="true"></span>
+              <span class="popup-label">Text Align Center</span>
             </button>
-            <button
+            <button type="button"
                 role="radio"
-                class="item align-right"
-                aria-label="Text align right"
+                class="item align-right popup"
                 aria-checked="false"
                 tabindex="-1">
-              <span class="fas fa-align-right"></span>
+              <span class="fas fa-align-right" aria-hidden="true"></span>
+              <span class="popup-label">Text Align Right</span>
             </button>
           </div>
           <div class="group">
-            <button
+            <button type="button"
                 class="item copy"
                 aria-disabled="true"
-                title="Copy selected text from textarea"
                 tabindex="-1">
               Copy
             </button>
-            <button
+            <button type="button"
                 class="item paste"
                 aria-disabled="true"
-                title="Paste last copied or cut text to textarea"
                 tabindex="-1">
                 Paste
             </button>
-            <button
+            <button type="button"
                 class="item cut"
                 aria-disabled="true"
-                title="Cut selected text from textarea"
                 tabindex="-1">
                 Cut
             </button>
           </div>
           <div class="menu-popup group" >
-            <button
+            <button type="button"
               aria-haspopup="true"
               aria-controls="menu1"
               class="item menu-button"
@@ -142,7 +138,7 @@
             <ul role="menu" id="menu1" aria-label="Font Family">
               <li role="menuitemradio" aria-checked="true" style="font-family: sans-serif">Sans-serif</li>
               <li role="menuitemradio" aria-checked="false" style="font-family: serif">Serif</li>
-              <li role="menuitemradio" aria-checked="false" style="font-family: monspace">Monospace</li>
+              <li role="menuitemradio" aria-checked="false" style="font-family: monospace">Monospace</li>
               <li role="menuitemradio" aria-checked="false" style="font-family: fantasy">Fantasy</li>
               <li role="menuitemradio" aria-checked="false" style="font-family: cursive">Cursive</li>
             </ul>
@@ -173,7 +169,7 @@
 
           <div class="group">
             <label class="input"><input id="checkbox" class="item nightmode" type="checkbox" tabindex="-1"> Night Mode</label>
-            <a id="link" class="item link" href="help.html" tabindex="-1" title="Opens help document in a new window">Help</a>
+            <a id="link" class="item link" href="help.html" tabindex="-1">Help</a>
           </div>
       </div>
       <label for="textarea1" class="hidden">Text Sample</label><br>
@@ -203,7 +199,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
         When any of the cut, copy and paste buttons are disabled they remain focusable to ensure screen reader users are aware of their presence.
         For additional guidance, see <a href="../../#kbd_disabled_controls">Focusability of disabled controls.</a>
       </li>
-      <li><kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd> navigate among elements in the toolbar so <kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> are available to: 
+      <li><kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd> navigate among elements in the toolbar so <kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> are available to:
         <ul>
           <li>Navigate among radios in the text alignment group. For instance, <kbd>Down Arrow</kbd> moves focus from last to first member in the group.</li>
           <li>Open the font menu button, which can also be opened with <kbd>Enter</kbd>.</li>
@@ -215,11 +211,18 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
     <ul>
       <li>
         When the toolbar has focus, the container element border is highlighted,
-        helping indicate that the container supports directional navigation with the arrow keys. 
+        helping indicate that the container supports directional navigation with the arrow keys.
       </li>
       <li>
         When a toolbar item has focus, its border is highlighted and the background color of the button also changes.
       </li>
+    </ul>
+    <h3>Button Popup Labels</h3>
+    <p>The bold, italic, underline, and text align buttons have popup labels that implement the requirements of <a href="https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus">WCAG Success Criterion 1.4.13 Content on Hover or Focus</a>:</p>
+    <ul>
+      <li>When a bold, italic, underline, or text align button receives focus or mouse hover, a popup appears above the button revealing its text label.</li>
+      <li>The popup label remains visible when the pointer hovers over the label content.</li>
+      <li>Pressing <kbd>Esc</kbd> hides the popup label .</li>
     </ul>
   </section>
 
@@ -273,6 +276,10 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
           <tr data-test-id="toolbar-end">
             <th><kbd>End</kbd></th>
             <td>Moves focus to the last control.</td>
+          </tr>
+          <tr data-test-id="toolbar-toggle-esc">
+            <th><kbd>ESC</kbd></th>
+            <td>If a button popup label is visible, hides it.</td>
           </tr>
         </tbody>
       </table>
@@ -482,8 +489,8 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
           </tr>
         </thead>
         <tbody>
-          <tr data-test-id="toolbar-checkbox-enter-or-space">
-            <th><kbd>Enter</kbd><br><kbd>Space</kbd></th>
+          <tr data-test-id="test-not-required">
+            <th><kbd>Space</kbd></th>
             <td>Toggles the state of the checkbox.</td>
           </tr>
         </tbody>
@@ -504,7 +511,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
           </tr>
         </thead>
         <tbody>
-          <tr data-test-id="toolbar-link-enter-or-space">
+          <tr data-test-id="test-not-required">
             <th><kbd>Enter</kbd><br><kbd>Space</kbd></th>
             <td>Activate the link.</td>
           </tr>
@@ -607,17 +614,6 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
           </tr>
         </thead>
         <tbody>
-          <tr data-test-id="toolbar-button-aria-label">
-            <td></td>
-            <th scope="row"><code>aria-label="LABEL_STRING"</code></th>
-            <td><code>button</code></td>
-            <td>
-              <ul>
-                <li>Provides an accessible name.</li>
-                <li>Used because the button does not contain text content that can serve as a label.</li>
-              </ul>
-            </td>
-          </tr>
           <tr data-test-id="toolbar-button-aria-pressed">
             <td></td>
             <th scope="row"><code>aria-pressed="true"</code></th>
@@ -629,6 +625,12 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
             <th scope="row"><code>aria-pressed=<q>false</q></code></th>
             <td><code>button</code></td>
             <td>Indicates the button is a toggle and that the styling controlled by the button has <strong>NOT</strong> been applied.</td>
+          </tr>
+          <tr data-test-id="toolbar-aria-hidden">
+            <td></td>
+            <th scope="row"><code>aria-hidden="true"</code></th>
+            <td><code>span</code></td>
+            <td>Hides the icon character from being included in the accessible name.</td>
           </tr>
         </tbody>
       </table>
@@ -668,13 +670,12 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
             <th scope="row"><code>radio</code></th>
             <td></td>
             <td><code>button</code></td>
-            <td>Identifies the <code>button</code> element  as a <code>radio</code> element.</td>
-          </tr>
-          <tr data-test-id="toolbar-radio-aria-label">
-            <td></td>
-            <th scope="row"><code>aria-label="ALIGNMENT_NAME_STRING"</code></th>
-            <td><code>button</code></td>
-            <td>Provides an accessible name for the radio button that indicates the type of text alignment it performs.</td>
+            <td>
+              <ul>
+                <li>Identifies the <code>button</code> element  as a <code>radio</code> button.</li>
+                <li>The accessible name comes from the child text content of the <code>button</code> element.</li>
+              </ul>
+            </td>
           </tr>
           <tr data-test-id="toolbar-radio-aria-checked">
             <td></td>
@@ -683,7 +684,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
             <td>
               <ul>
                 <li>Indicates the radio button is checked, i.e., the type of alignment currently applied to the text area.</li>
-                <li>Only one radio button in the group has <code>aria-checked</code> set to <code>true</code> at any given time.</li> 
+                <li>Only one radio button in the group has <code>aria-checked</code> set to <code>true</code> at any given time.</li>
               </ul>
             </td>
           </tr>
@@ -694,9 +695,15 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
             <td>
               <ul>
                 <li>Indicates the radio button is <strong>NOT</strong> checked.</li>
-                <li>All radio buttons in the group, except for one,  have <code>aria-checked</code> set to <code>false</code>.</li> 
+                <li>All radio buttons in the group, except for one,  have <code>aria-checked</code> set to <code>false</code>.</li>
               </ul>
             </td>
+          </tr>
+          <tr data-test-id="toolbar-aria-hidden">
+            <td></td>
+            <th scope="row"><code>aria-hidden="true"</code></th>
+            <td><code>span</code></td>
+            <td>Hides the icon character from being included in the accessible name.</td>
           </tr>
         </tbody>
       </table>
@@ -732,7 +739,6 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
           </tr>
         </tbody>
       </table>
-      <p>Note: In addition to the ARIA attributes, the accessible design includes the HTML <code>title</code> attribute for providing accessible descriptions of button actions.</p>
     </section>
 
     <section>
@@ -924,7 +930,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
               <ul>
                 <li>Provides a more user friendly announcement of the current value for screen reader users.</li>
                 <li><code>NUMBER_POINTS</code> is updated by JavaScript as the user adjusts the value of the spin button.</li>
-                <li>As users adjust the value, instead of hearing only a number, they will hear the current value followed by the word <q>Points</q>, e.g., <q>10 Points</q>.
+                <li>As users adjust the value, instead of hearing only a number, they will hear the current value followed by the word <q>Points</q>, e.g., <q>10 Points</q>.</li>
               </ul>
             </td>
           </tr>
@@ -976,7 +982,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
   </section>
   </main>
   <nav>
-    <a href="../../#toolbar">Toolbar Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../../#toolbar">Toolbar Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
   </nav>
 </body>
 </html>

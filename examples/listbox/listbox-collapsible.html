@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Collapsible Dropdown Listbox Example | WAI-ARIA Authoring Practices 1.1</title>
+<title>Collapsible Dropdown Listbox Example | WAI-ARIA Authoring Practices 1.2</title>
 
 <!--  Core js and css shared by all examples; do not modify when using this template. -->
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -29,10 +29,6 @@
   <main>
   <h1>Collapsible Dropdown Listbox Example</h1>
   <p>
-    <strong>NOTE:</strong> Provide feedback on this example page in
-    <a href="https://github.com/w3c/aria-practices/issues/557">issue 557.</a>
-  </p>
-  <p>
     The following example implementation of the
     <a href="../../#Listbox">design pattern for listbox</a>
     demonstrates a collapsible single-select listbox widget that is functionally similar to an HTML <code>select</code> input with the attribute <code>size=&quot;1&quot;</code>.
@@ -44,17 +40,20 @@
   <ul>
     <li><a href="listbox-scrollable.html">Scrollable Listbox Example</a>: Single-select listbox that scrolls to reveal more options, similar to HTML <code>select</code> with <code>size</code> attribute greater than one.</li>
     <li><a href="listbox-rearrangeable.html">Example Listboxes with Rearrangeable Options</a>: Examples of both single-select and multi-select listboxes with accompanying toolbars where options can be added, moved, and removed.</li>
+    <li><a href="listbox-grouped.html">Listbox Example with Grouped Options</a>: Single-select listbox with grouped options, similar to an HTML <code>select</code> with <code>optgroup</code> children.</li>
   </ul>
   <section>
-    <h2 id="ex_label">Example</h2>
+    <div class="example-header">
+      <h2 id="ex_label">Example</h2>
+    </div>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="ex">
       <p>Choose your favorite transuranic element (actinide or transactinide).</p>
       <div class="listbox-area">
         <div class="left-area">
-          <span id="exp_elem">Choose an element:</span>
+          <span id="exp_elem" class="listbox-label">Choose an element:</span>
           <div id="exp_wrapper">
-            <button aria-haspopup="listbox" aria-labelledby="exp_elem exp_button" id="exp_button">Neptunium</button>
+            <button type="button" aria-haspopup="listbox" aria-labelledby="exp_elem exp_button" id="exp_button">Neptunium</button>
             <ul id="exp_elem_list" tabindex="-1" role="listbox" aria-labelledby="exp_elem" class="hidden">
               <li id="exp_elem_Np" role="option">Neptunium</li>
               <li id="exp_elem_Pu" role="option">Plutonium</li>
@@ -284,18 +283,14 @@
 
   <section>
     <h2>Javascript and CSS Source Code</h2>
-    <ul>
+    <ul id="css_js_files">
       <li>
         CSS:
         <a href="css/listbox.css" type="tex/css">listbox.css</a>
       </li>
       <li>
         Javascript:
-        <a href="js/listbox.js" type="text/javascript">listbox.js</a>
-      </li>
-      <li>
-        Javascript:
-        <a href="js/listbox-collapsible.js" type="text/javascript">listbox-expandable.js</a>
+        <a href="js/listbox.js" type="text/javascript">listbox.js</a>, <a href="js/listbox-collapsible.js" type="text/javascript">listbox-collapsible</a>, <a href="../js/utils.js">utils.js</a>
       </li>
     </ul>
   </section>
@@ -305,12 +300,12 @@
     <div id="sc_start_sep" role="separator" aria-labelledby="sc_start_sep sc_label" aria-label="Start of "></div>
     <pre><code id="sc"></code></pre>
     <div id="sc_end_sep" role="separator" aria-labelledby="sc_end_sep sc_label" aria-label="End of"></div>
-    <script>sourceCode.add('sc', 'ex')</script>
+    <script>sourceCode.add('sc', 'ex', 'ex_label', 'css_js_files')</script>
     <script> sourceCode.make() </script>
   </section>
   </main>
   <nav>
-    <a href="../../#Listbox">Listbox Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../../#Listbox">Listbox Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
   </nav>
 </body>
 </html>

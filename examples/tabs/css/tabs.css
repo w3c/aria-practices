@@ -30,7 +30,7 @@
   left: -1px;
   border-radius: 0.2em 0.2em 0 0;
   border-top: 3px solid hsl(20, 96%, 48%);
-  content: '';
+  content: "";
 }
 
 [role="tab"][aria-selected="true"] {
@@ -52,7 +52,7 @@
   height: 0.3em;
   background: hsl(220, 43%, 99%);
   box-shadow: none;
-  content: '';
+  content: "";
 }
 
 [role="tab"]:hover,
@@ -78,6 +78,10 @@
   background: hsl(220, 43%, 99%);
 }
 
+[role="tabpanel"].is-hidden {
+  display: none;
+}
+
 [role="tabpanel"]:focus {
   border-color: hsl(20, 96%, 48%);
   box-shadow: 0 0 0.2em hsl(20, 96%, 48%);
@@ -91,7 +95,7 @@
   left: -1px;
   border-bottom: 3px solid hsl(20, 96%, 48%);
   border-radius: 0 0 0.2em 0.2em;
-  content: '';
+  content: "";
 }
 
 [role="tabpanel"] p {

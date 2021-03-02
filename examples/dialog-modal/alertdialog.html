@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Alert Dialog Example | WAI-ARIA Authoring Practices 1.1</title>
+    <title>Alert Dialog Example | WAI-ARIA Authoring Practices 1.2</title>
     <!--  Core js and css shared by all examples; do not modify when using this template. -->
     <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
     <link rel="stylesheet" href="../css/core.css">
@@ -58,9 +58,12 @@
       <ul>
         <li><a href="../alert/alert.html">Alert</a>: a basic alert.</li>
         <li><a href="dialog.html">Modal Dialog Example</a>: An example demonstrating multiple layers of modal dialogs with both small and large amounts of content.</li>
+        <li><a href="datepicker-dialog.html">Date Picker Dialog example</a>: Demonstrates a dialog containing a calendar grid for choosing a date.</li>
       </ul>
       <section>
-        <h2 id="ex_label">Example</h2>
+        <div class="example-header">
+          <h2 id="ex_label">Example</h2>
+        </div>
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div id="ex_alertdialog">
           <label for="notes">Notes</label>
@@ -212,9 +215,9 @@
       </section>
       <section>
         <h2 id="src_label">Javascript and CSS Source Code</h2>
-        <ul>
+        <ul id="css_js_files">
           <li> CSS: <a href="css/dialog.css" type="text/css">dialog.css</a></li>
-          <li> Javascript: <a href="js/alertdialog.js" type="text/javascript">alertdialog.js</a>, <a href="js/dialog.js" type="text/javascript">dialog.js</a></li>
+          <li> Javascript: <a href="js/alertdialog.js" type="text/javascript">alertdialog.js</a>, <a href="js/dialog.js" type="text/javascript">dialog.js</a>, <a href="../js/utils.js">utils.js</a></li>
         </ul>
       </section>
       <section>
@@ -223,13 +226,13 @@
         <pre><code id="sc1"></code></pre>
         <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
         <script>
-          sourceCode.add('sc1', 'ex_alertdialog');
+          sourceCode.add('sc1', 'ex_alertdialog', 'ex_label', 'css_js_files');
           sourceCode.make();
         </script>
       </section>
     </main>
     <nav>
-      <a href="../../#alertdialog">Alert and Message Dialogs Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+      <a href="../../#alertdialog">Alert and Message Dialogs Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
     </nav>
   </body>
 </html>

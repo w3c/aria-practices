@@ -1,21 +1,25 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   FormatToolbar.js
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   FormatToolbar.js
+ */
+
+/* global FormatToolbarItem, FontMenuButton, SpinButton */
+
+'use strict';
 
 /**
- * @constructor
+ * @class
  *
- * @desc
+ * @description
  *  Format Toolbar object representing the state and interactions for a toolbar widget
  *  to format the text in a textarea element
  *
  * @param domNode
  *  The DOM node pointing to the element with the toolbar tole
  */
-FormatToolbar = function (domNode) {
+function FormatToolbar(domNode) {
   this.domNode = domNode;
   this.firstItem = null;
   this.lastItem = null;
@@ -33,29 +37,30 @@ FormatToolbar = function (domNode) {
   this.selected = null;
 
   this.nightModeCheck = null;
-
-};
+}
 
 FormatToolbar.prototype.init = function () {
   var i, items, toolbarItem, menuButton;
 
-  this.textarea = document.getElementById(this.domNode.getAttribute('aria-controls'));
-  this.textarea.style.width = (this.domNode.getBoundingClientRect().width - 12) + 'px';
+  this.textarea = document.getElementById(
+    this.domNode.getAttribute('aria-controls')
+  );
+  this.textarea.style.width =
+    this.domNode.getBoundingClientRect().width - 12 + 'px';
   this.textarea.addEventListener('mouseup', this.selectTextContent.bind(this));
   this.textarea.addEventListener('keyup', this.selectTextContent.bind(this));
+  this.domNode.addEventListener('click', this.handleContainerClick.bind(this));
 
   this.selected = this.textarea.selectText;
 
-  this.copyButton  = this.domNode.querySelector('.copy');
-  this.cutButton   = this.domNode.querySelector('.cut');
+  this.copyButton = this.domNode.querySelector('.copy');
+  this.cutButton = this.domNode.querySelector('.cut');
   this.pasteButton = this.domNode.querySelector('.paste');
 
   this.nightModeCheck = this.domNode.querySelector('.nightmode');
-  items            = this.domNode.querySelectorAll('.item');
-
+  items = this.domNode.querySelectorAll('.item');
 
   for (i = 0; i < items.length; i++) {
-
     toolbarItem = new FormatToolbarItem(items[i], this);
     toolbarItem.init();
 
@@ -71,32 +76,48 @@ FormatToolbar.prototype.init = function () {
     this.toolbarItems.push(toolbarItem);
   }
 
-  var spinButtons = this.domNode.querySelectorAll('[role=spinbutton]');;
+  var spinButtons = this.domNode.querySelectorAll('[role=spinbutton]');
 
-  for (var i = 0; i < spinButtons.length; i++) {
+  for (i = 0; i < spinButtons.length; i++) {
     var s = new SpinButton(spinButtons[i], this);
     s.init();
   }
+};
 
+FormatToolbar.prototype.handleContainerClick = function () {
+  if (event.target !== this.domNode) return;
+  this.setFocusCurrentItem();
+};
+
+FormatToolbar.prototype.setFocusCurrentItem = function () {
+  var item = this.domNode.querySelector('[tabindex="0"]');
+  item.focus();
 };
 
 FormatToolbar.prototype.selectTextContent = function () {
   this.start = this.textarea.selectionStart;
   this.end = this.textarea.selectionEnd;
   this.selected = this.textarea.value.substring(this.start, this.end);
-  this.updateDisable(this.copyButton, this.cutButton, this.pasteButton, this.selected);
-
+  this.updateDisable(
+    this.copyButton,
+    this.cutButton,
+    this.pasteButton,
+    this.selected
+  );
 };
-FormatToolbar.prototype.updateDisable = function (copyButton, cutButton, pasteButton, selectedContent) {
+FormatToolbar.prototype.updateDisable = function (
+  copyButton,
+  cutButton,
+  pasteButton
+) {
   var start = this.textarea.selectionStart;
   var end = this.textarea.selectionEnd;
   if (start !== end) {
     copyButton.setAttribute('aria-disabled', false);
-    cutButton.setAttribute('aria-disabled',  false);
-  }
-  else {
+    cutButton.setAttribute('aria-disabled', false);
+  } else {
     copyButton.setAttribute('aria-disabled', true);
-    cutButton.setAttribute('aria-disabled',  true);
+    cutButton.setAttribute('aria-disabled', true);
   }
   if (this.ourClipboard.length > 0) {
     pasteButton.setAttribute('aria-disabled', false);
@@ -104,21 +125,25 @@ FormatToolbar.prototype.updateDisable = function (copyButton, cutButton, pasteBu
 };
 
 FormatToolbar.prototype.selectText = function (start, end, textarea) {
-  if (typeof(textarea.selectionStart != undefined)) {
+  if (typeof textarea.selectionStart !== 'undefined') {
     textarea.focus();
     textarea.selectionStart = start;
     textarea.selectionEnd = end;
     return true;
   }
 };
-FormatToolbar.prototype.copyTextContent = function (toolbarItem) {
+FormatToolbar.prototype.copyTextContent = function () {
   if (this.copyButton.getAttribute('aria-disabled') === 'true') {
     return;
   }
   this.selectText(this.start, this.end, this.textarea);
   this.ourClipboard = this.selected;
-  this.updateDisable(this.copyButton, this.cutButton, this.pasteButton, this.selected);
-
+  this.updateDisable(
+    this.copyButton,
+    this.cutButton,
+    this.pasteButton,
+    this.selected
+  );
 };
 
 FormatToolbar.prototype.cutTextContent = function (toolbarItem) {
@@ -127,9 +152,14 @@ FormatToolbar.prototype.cutTextContent = function (toolbarItem) {
   }
   this.copyTextContent(toolbarItem);
   var str = this.textarea.value;
-  this.textarea.value = str.replace(str.substring(this.start, this.end),'');
+  this.textarea.value = str.replace(str.substring(this.start, this.end), '');
   this.selected = '';
-  this.updateDisable(this.copyButton, this.cutButton, this.pasteButton, this.selected);
+  this.updateDisable(
+    this.copyButton,
+    this.cutButton,
+    this.pasteButton,
+    this.selected
+  );
 };
 
 FormatToolbar.prototype.pasteTextContent = function () {
@@ -137,18 +167,24 @@ FormatToolbar.prototype.pasteTextContent = function () {
     return;
   }
   var str = this.textarea.value;
-  this.textarea.value = str.slice(0,this.textarea.selectionStart) + this.ourClipboard + str.slice(this.textarea.selectionEnd);
+  this.textarea.value =
+    str.slice(0, this.textarea.selectionStart) +
+    this.ourClipboard +
+    str.slice(this.textarea.selectionEnd);
   this.textarea.focus();
-  this.updateDisable(this.copyButton, this.cutButton, this.pasteButton, this.selected);
+  this.updateDisable(
+    this.copyButton,
+    this.cutButton,
+    this.pasteButton,
+    this.selected
+  );
 };
-
 
 FormatToolbar.prototype.toggleBold = function (toolbarItem) {
   if (toolbarItem.isPressed()) {
     this.textarea.style.fontWeight = 'normal';
     toolbarItem.resetPressed();
-  }
-  else {
+  } else {
     this.textarea.style.fontWeight = 'bold';
     toolbarItem.setPressed();
   }
@@ -158,8 +194,7 @@ FormatToolbar.prototype.toggleUnderline = function (toolbarItem) {
   if (toolbarItem.isPressed()) {
     this.textarea.style.textDecoration = 'none';
     toolbarItem.resetPressed();
-  }
-  else {
+  } else {
     this.textarea.style.textDecoration = 'underline';
     toolbarItem.setPressed();
   }
@@ -169,8 +204,7 @@ FormatToolbar.prototype.toggleItalic = function (toolbarItem) {
   if (toolbarItem.isPressed()) {
     this.textarea.style.fontStyle = 'normal';
     toolbarItem.resetPressed();
-  }
-  else {
+  } else {
     this.textarea.style.fontStyle = 'italic';
     toolbarItem.setPressed();
   }
@@ -180,22 +214,18 @@ FormatToolbar.prototype.changeFontSize = function (value) {
   this.textarea.style.fontSize = value + 'pt';
 };
 
-FormatToolbar.prototype.toggleNightMode = function (toolbarItem) {
+FormatToolbar.prototype.toggleNightMode = function () {
   if (this.nightModeCheck.checked) {
     this.textarea.style.color = '#eee';
     this.textarea.style.background = 'black';
-  }
-  else {
+  } else {
     this.textarea.style.color = 'black';
     this.textarea.style.background = 'white';
   }
 };
 
 FormatToolbar.prototype.redirectLink = function (toolbarItem) {
-  window.open(
-    toolbarItem.domNode.href,
-    '_blank'
-  );
+  window.open(toolbarItem.domNode.href, '_blank');
 };
 
 FormatToolbar.prototype.setAlignment = function (toolbarItem) {
@@ -267,15 +297,14 @@ FormatToolbar.prototype.activateItem = function (toolbarItem) {
       break;
     default:
       break;
-
   }
 };
 
 /**
- * @desc
+ * @description
  *  Focus on the specified item
  *
- * @param element
+ * @param item
  *  The item to focus on
  */
 FormatToolbar.prototype.setFocusItem = function (item) {
@@ -292,8 +321,7 @@ FormatToolbar.prototype.setFocusToNext = function (currentItem) {
 
   if (currentItem === this.lastItem) {
     newItem = this.firstItem;
-  }
-  else {
+  } else {
     index = this.toolbarItems.indexOf(currentItem);
     newItem = this.toolbarItems[index + 1];
   }
@@ -305,33 +333,38 @@ FormatToolbar.prototype.setFocusToPrevious = function (currentItem) {
 
   if (currentItem === this.firstItem) {
     newItem = this.lastItem;
-  }
-  else {
+  } else {
     index = this.toolbarItems.indexOf(currentItem);
     newItem = this.toolbarItems[index - 1];
   }
   this.setFocusItem(newItem);
 };
 
-FormatToolbar.prototype.setFocusToFirst = function (currentItem) {
+FormatToolbar.prototype.setFocusToFirst = function () {
   this.setFocusItem(this.firstItem);
 };
 
-FormatToolbar.prototype.setFocusToLast = function (currentItem) {
+FormatToolbar.prototype.setFocusToLast = function () {
   this.setFocusItem(this.lastItem);
 };
 
+FormatToolbar.prototype.hidePopupLabels = function () {
+  var tps = this.domNode.querySelectorAll('button .popup-label');
+  tps.forEach(function (tp) {
+    tp.classList.remove('show');
+  });
+};
 
 // Initialize toolbars
 
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-* ARIA Toolbar Examples
-* @function onload
-* @desc Initialize the toolbar example once the page has loaded
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ * ARIA Toolbar Examples
+ * @function onload
+ * @desc Initialize the toolbar example once the page has loaded
+ */
 
 window.addEventListener('load', function () {
   var toolbars = document.querySelectorAll('[role="toolbar"].format');

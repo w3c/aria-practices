@@ -1,7 +1,7 @@
 .Accordion {
   margin: 0;
   padding: 0;
-  border: 2px solid hsl(0, 0%, 82%);
+  border: 2px solid hsl(0, 0%, 52%);
   border-radius: 7px;
   width: 20em;
 }
@@ -12,7 +12,7 @@
 }
 
 .Accordion.focus {
-  border-color: hsl(216, 94%, 73%);
+  border-color: hsl(216, 94%, 43%);
 }
 
 .Accordion.focus h3 {
@@ -20,7 +20,7 @@
 }
 
 .Accordion > * + * {
-  border-top: 1px solid hsl(0, 0%, 82%);
+  border-top: 1px solid hsl(0, 0%, 52%);
 }
 
 .Accordion-trigger {
@@ -40,6 +40,10 @@
 .Accordion-trigger:focus,
 .Accordion-trigger:hover {
   background: hsl(216, 94%, 94%);
+}
+
+.Accordion-trigger:focus {
+  outline: 4px solid transparent;
 }
 
 .Accordion *:first-child .Accordion-trigger {
@@ -64,11 +68,11 @@ button {
 }
 
 .Accordion-trigger:focus .Accordion-title {
-  border-color: hsl(216, 94%, 73%);
+  border-color: hsl(216, 94%, 43%);
 }
 
 .Accordion-icon {
-  border: solid hsl(0, 0%, 62%);
+  border: solid currentColor;
   border-width: 0 2px 2px 0;
   height: 0.5rem;
   pointer-events: none;
@@ -81,7 +85,7 @@ button {
 
 .Accordion-trigger:focus .Accordion-icon,
 .Accordion-trigger:hover .Accordion-icon {
-  border-color: hsl(216, 94%, 73%);
+  border-color: hsl(216, 94%, 43%);
 }
 
 .Accordion-trigger[aria-expanded="true"] .Accordion-icon {
@@ -105,7 +109,7 @@ fieldset {
 }
 
 input {
-  border: 1px solid hsl(0, 0%, 62%);
+  border: 1px solid hsl(0, 0%, 42%);
   border-radius: 0.3em;
   display: block;
   font-size: inherit;

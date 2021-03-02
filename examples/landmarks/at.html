@@ -18,8 +18,8 @@
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
           <h1>ARIA Landmarks Example</h1>
           <p id="inst" class="inst">Visually outline the landmarks and/or headings on the page using the following buttons.</p>
-          <button onclick="showLandmarks(event)" aria-describedby="inst">Show Landmarks</button>
-          <button onclick="showHeadings(event)"  aria-describedby="inst">Show Headings</button>
+          <button type="button" onclick="showLandmarks(event)" aria-describedby="inst">Show Landmarks</button>
+          <button type="button" onclick="showHeadings(event)"  aria-describedby="inst">Show Headings</button>
         </div>
       </header>
       <div class="row">
@@ -27,7 +27,7 @@
           <nav>
             <ul class="nav nav-pills nav-stacked">
               <li><a href="index.html">Principles</a></li>
-              <li><a href="HTML5.html">HTML5</a></li>
+              <li><a href="HTML5.html">HTML</a></li>
               <li><a href="banner.html">Banner</a></li>
               <li><a href="complementary.html">Complementary</a></li>
               <li><a href="contentinfo.html">Contentinfo</a></li>
@@ -45,14 +45,13 @@
           <main>
             <h1>Assistive Technology</h1>
 
-            <p>The following sections demonstrate how various popular 
+            <p>The following sections demonstrate how various popular
             assistive technologies support landmark navigation</p>
 
             <ul>
               <li><a href="#jaws">JAWS Screen Reader for Windows</a></li>
               <li><a href="#nvda">NVDA Screen Reader for Windows</a></li>
-              <li><a href="#we">Window-Eyes Screen Reader for Windows</a></li>
-              <li><a href="#vo">Voice Over Screen Reader for OSX</a></li>
+              <li><a href="#vo">VoiceOver Screen Reader for macOS</a></li>
               <li><a href="#orca">ORCA Screen Reader for Linux/Gnome</a></li>
             </ul>
 
@@ -86,12 +85,12 @@
                     <td>List of landmarks</td>
                   </tr>
                 </tbody>
-                
+
               </table>
 
               <p>Screen shot of list of landmarks in JAWS</p>
-              <p><img src="images/landmarks-jaws.png" alt="Screen shot of list of landmarks in voice over"></p>
-            
+              <p><img src="images/landmarks-jaws.png" alt="Screen shot of list of landmarks in JAWS"></p>
+
             </section>
 
             <section aria-labelledby="nvda">
@@ -120,45 +119,15 @@
                     <td>List of landmarks</td>
                   </tr>
                 </tbody>
-                
-              </table>         
+
+              </table>
               <p>Screen shot of list of landmarks in NVDA</p>
-                <p><img src="images/landmarks-nvda.png" alt="Screen shot of list of landmarks in voice over"></p>
-            </section>
-
-            <section aria-labelledby="we">
-            <h2 id="we">Window-Eyes Screen Reader for Windows</h2>
-               <p>The following commands are available in Window-Eyes screen reader (since version 8.4) for navigating landmarks:</p>
-
-              <table class="table table-striped table-hover" aria-labelledby="we">
-
-                <thead>
-                  <tr>
-                    <th>Command</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>;</td>
-                    <td>Go to next landmark</td>
-                  </tr>
-                  <tr>
-                    <td>Shift+;</td>
-                    <td>Go to previous landmark</td>
-                  </tr>
-                  <tr>
-                    <td>Insert+Tab, Alt+K</td>
-                    <td>List of landmarks</td>
-                  </tr>
-                </tbody>
-                
-              </table>         
+                <p><img src="images/landmarks-nvda.png" alt="Screen shot of list of landmarks in N V D A"></p>
             </section>
 
             <section aria-labelledby="vo">
-            <h2 id="vo">Voice Over Screen Reader for OS X (Mac OS)</h2>
-               <p>The following commands are available in Voice Over screen reader for OS X El Capitan (10.11) for navigating landmarks:</p>
+            <h2 id="vo">VoiceOver Screen Reader for macOS</h2>
+               <p>The following commands are available in VoiceOver screen reader for navigating landmarks:</p>
               <table class="table table-striped table-hover" aria-labelledby="vo">
 
                 <thead>
@@ -181,9 +150,9 @@
                     <td>List of landmarks</td>
                   </tr>
                 </tbody>
-                
-              </table>         
-             <p>Screen shot of list of landmarks in Voice Over</p>
+
+              </table>
+             <p>Screen shot of list of landmarks in VoiceOver</p>
             <p><img src="images/landmarks-vo.png" alt="Screen shot of list of landmarks in voice over"></p>
             </section>
 
@@ -233,7 +202,7 @@
             </ul>
           </aside>
           <aside aria-labelledby="id3">
-            <h2 id="id3">Related W3C Documents</h2>
+            <h2 id="id3">Related Documents</h2>
             <ul>
               <li><a href="https://www.w3.org/TR/wai-aria-practices-1.1/">WAI-ARIA Authoring Practices 1.1</a></li>
               <li><a href="http://www.w3.org/TR/2014/REC-wai-aria-20140320/">WAI-ARIA 1.0 Specification</a></li>
@@ -241,8 +210,8 @@
               <li><a href="https://www.w3.org/TR/accname-aam-1.1/">Accessible Name and Description: Computation and API Mappings 1.1</a></li>
               <li><a href="http://www.w3.org/TR/core-aam-1.1/">Core Accessibility API Mappings 1.1</a></li>
               <li><a href="https://www.w3.org/TR/html-aam-1.0/">HTML Accessibility API Mappings 1.0</a></li>
-              <li><a href="http://www.w3.org/TR/html5/">HTML5 Specification</a></li>
-              <li><a href="https://www.w3.org/TR/html-aria/">ARIA in HTML</a>
+              <li><a href="https://html.spec.whatwg.org/">HTML Specification</a></li>
+              <li><a href="https://www.w3.org/TR/html-aria/">ARIA in HTML</a></li>
               <li><a href="https://www.w3.org/TR/using-aria/">Using ARIA in HTML</a></li>
               <li><a href="http://www.w3.org/TR/WCAG/">WCAG Specification</a></li>
             </ul>
@@ -255,18 +224,18 @@
             W3C ARIA Authoring Practices Task Force
           </div>
           <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
-            Copyright 2016
+            Copyright 2020
           </div>
         </footer>
       </div>
     </div>
-    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>        
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>        
-    <script type="text/javascript" src="js/tabs.js"></script>        
-    <script type="text/javascript" src="js/bootstrap-accessibility.min.js"></script>        
-    <script type="text/javascript" src="js/bootstrap-accessibility-2.js"></script>        
-    <script type="text/javascript" src="js/visua11y.js"></script>        
-    <script type="text/javascript" src="js/show.js"></script>        
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/tabs.js"></script>
+    <script type="text/javascript" src="js/bootstrap-accessibility.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-accessibility-2.js"></script>
+    <script type="text/javascript" src="js/visua11y.js"></script>
+    <script type="text/javascript" src="js/show.js"></script>
     <script type="text/javascript" >
       // Use the SkipTo defaults, but just showing custom configuration
       var SkipToConfig =
@@ -279,6 +248,6 @@
         }
       };
     </script>
-    <script type="text/javascript" src="js/SkipTo.min.js"></script>      
+    <script type="text/javascript" src="js/SkipTo.min.js"></script>
   </body>
 </html>

@@ -17,7 +17,7 @@ ul.checkboxes {
   top: 50%;
   left: 7px;
   transform: translate(-50%, -50%);
-  content: '';
+  content: "";
 }
 
 [role="checkbox"]::before {
@@ -29,14 +29,22 @@ ul.checkboxes {
 }
 
 [role="checkbox"]:active::before {
-  background-image: linear-gradient(to bottom, hsl(300, 3%, 73%), hsl(300, 3%, 93%) 30%);
+  background-image: linear-gradient(
+    to bottom,
+    hsl(300, 3%, 73%),
+    hsl(300, 3%, 93%) 30%
+  );
 }
 
 [role="checkbox"][aria-checked="mixed"]::before,
 [role="checkbox"][aria-checked="true"]::before {
   border-color: hsl(216, 80%, 50%);
   background: hsl(217, 95%, 68%);
-  background-image: linear-gradient(to bottom, hsl(217, 95%, 68%), hsl(216, 80%, 57%));
+  background-image: linear-gradient(
+    to bottom,
+    hsl(217, 95%, 68%),
+    hsl(216, 80%, 57%)
+  );
 }
 
 [role="checkbox"][aria-checked="mixed"]::after {
@@ -59,7 +67,11 @@ ul.checkboxes {
 
 [role="checkbox"][aria-checked="mixed"]:active::before,
 [role="checkbox"][aria-checked="true"]:active::before {
-  background-image: linear-gradient(to bottom, hsl(216, 80%, 57%), hsl(217, 95%, 68%));
+  background-image: linear-gradient(
+    to bottom,
+    hsl(216, 80%, 57%),
+    hsl(217, 95%, 68%)
+  );
 }
 
 [role="checkbox"]:focus {

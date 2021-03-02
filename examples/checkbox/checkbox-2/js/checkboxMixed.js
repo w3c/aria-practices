@@ -1,27 +1,30 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   CheckboxMixed.js
-*
-*   Desc:   CheckboxMixed widget that implements ARIA Authoring Practices
-*           for a menu of links
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   CheckboxMixed.js
+ *
+ *   Desc:   CheckboxMixed widget that implements ARIA Authoring Practices
+ *           for a menu of links
+ */
+
+/* global ControlledCheckbox */
+
+'use strict';
 
 /*
-*   @constructor CheckboxMixed
-*
-*
-*/
+ *   @constructor CheckboxMixed
+ *
+ *
+ */
 var CheckboxMixed = function (domNode) {
-
   this.domNode = domNode;
 
   this.controlledCheckboxes = [];
 
   this.keyCode = Object.freeze({
-    'RETURN': 13,
-    'SPACE': 32
+    RETURN: 13,
+    SPACE: 32,
   });
 };
 
@@ -37,17 +40,15 @@ CheckboxMixed.prototype.init = function () {
     this.controlledCheckboxes.push(ccb);
   }
 
-  this.domNode.addEventListener('keydown',    this.handleKeydown.bind(this));
-  this.domNode.addEventListener('click',      this.handleClick.bind(this));
-  this.domNode.addEventListener('focus',      this.handleFocus.bind(this));
-  this.domNode.addEventListener('blur',       this.handleBlur.bind(this));
+  this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
+  this.domNode.addEventListener('click', this.handleClick.bind(this));
+  this.domNode.addEventListener('focus', this.handleFocus.bind(this));
+  this.domNode.addEventListener('blur', this.handleBlur.bind(this));
 
   this.updateCheckboxMixed();
-
 };
 
 CheckboxMixed.prototype.updateCheckboxMixed = function () {
-
   var count = 0;
 
   for (var i = 0; i < this.controlledCheckboxes.length; i++) {
@@ -58,12 +59,10 @@ CheckboxMixed.prototype.updateCheckboxMixed = function () {
 
   if (count === 0) {
     this.domNode.setAttribute('aria-checked', 'false');
-  }
-  else {
+  } else {
     if (count === this.controlledCheckboxes.length) {
       this.domNode.setAttribute('aria-checked', 'true');
-    }
-    else {
+    } else {
       this.domNode.setAttribute('aria-checked', 'mixed');
       this.updateControlledStates();
     }
@@ -72,12 +71,13 @@ CheckboxMixed.prototype.updateCheckboxMixed = function () {
 
 CheckboxMixed.prototype.updateControlledStates = function () {
   for (var i = 0; i < this.controlledCheckboxes.length; i++) {
-    this.controlledCheckboxes[i].lastState = this.controlledCheckboxes[i].isChecked();
+    this.controlledCheckboxes[i].lastState = this.controlledCheckboxes[
+      i
+    ].isChecked();
   }
 };
 
 CheckboxMixed.prototype.anyLastChecked = function () {
-
   var count = 0;
 
   for (var i = 0; i < this.controlledCheckboxes.length; i++) {
@@ -87,36 +87,29 @@ CheckboxMixed.prototype.anyLastChecked = function () {
   }
 
   return count > 0;
-
 };
 
 CheckboxMixed.prototype.setControlledCheckboxes = function (value) {
-
   for (var i = 0; i < this.controlledCheckboxes.length; i++) {
     this.controlledCheckboxes[i].setChecked(value);
   }
 
   this.updateCheckboxMixed();
-
 };
 
 CheckboxMixed.prototype.toggleCheckboxMixed = function () {
-
   var state = this.domNode.getAttribute('aria-checked');
 
   if (state === 'false') {
     if (this.anyLastChecked()) {
       this.setControlledCheckboxes('last');
-    }
-    else {
+    } else {
       this.setControlledCheckboxes('true');
     }
-  }
-  else {
+  } else {
     if (state === 'mixed') {
       this.setControlledCheckboxes('true');
-    }
-    else {
+    } else {
       this.setControlledCheckboxes('false');
     }
   }
@@ -145,15 +138,14 @@ CheckboxMixed.prototype.handleKeydown = function (event) {
   }
 };
 
-CheckboxMixed.prototype.handleClick = function (event) {
+CheckboxMixed.prototype.handleClick = function () {
   this.toggleCheckboxMixed();
 };
 
-CheckboxMixed.prototype.handleFocus = function (event) {
+CheckboxMixed.prototype.handleFocus = function () {
   this.domNode.classList.add('focus');
 };
 
-CheckboxMixed.prototype.handleBlur = function (event) {
+CheckboxMixed.prototype.handleBlur = function () {
   this.domNode.classList.remove('focus');
 };
-

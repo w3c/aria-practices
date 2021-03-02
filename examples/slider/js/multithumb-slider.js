@@ -1,15 +1,16 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   slider.js
-*
-*   Desc:   Slider widget that implements ARIA Authoring Practices
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   slider.js
+ *
+ *   Desc:   Slider widget that implements ARIA Authoring Practices
+ */
+
+'use strict';
 
 // Create Slider that contains value, valuemin, valuemax, and valuenow
-var Slider = function (domNode)  {
-
+var Slider = function (domNode) {
   this.domNode = domNode;
   this.railDomNode = domNode.parentNode;
 
@@ -24,42 +25,38 @@ var Slider = function (domNode)  {
   this.railWidth = 0;
   this.railBorderWidth = 1;
 
-  this.thumbWidth  = 20;
+  this.thumbWidth = 20;
   this.thumbHeight = 24;
 
   this.keyCode = Object.freeze({
-    'left': 37,
-    'up': 38,
-    'right': 39,
-    'down': 40,
-    'pageUp': 33,
-    'pageDown': 34,
-    'end': 35,
-    'home': 36
+    left: 37,
+    up: 38,
+    right: 39,
+    down: 40,
+    pageUp: 33,
+    pageDown: 34,
+    end: 35,
+    home: 36,
   });
 };
 
 // Initialize slider
 Slider.prototype.init = function () {
-
   if (this.domNode.previousElementSibling) {
     this.minDomNode = this.domNode.previousElementSibling;
-    this.railMin = parseInt((this.minDomNode.getAttribute('aria-valuemin')));
+    this.railMin = parseInt(this.minDomNode.getAttribute('aria-valuemin'));
+  } else {
+    this.railMin = parseInt(this.domNode.getAttribute('aria-valuemin'));
   }
-  else {
-    this.railMin = parseInt((this.domNode.getAttribute('aria-valuemin')));
-  };
 
   if (this.domNode.nextElementSibling) {
     this.maxDomNode = this.domNode.nextElementSibling;
-    this.railMax = parseInt((this.maxDomNode.getAttribute('aria-valuemax')));
+    this.railMax = parseInt(this.maxDomNode.getAttribute('aria-valuemax'));
+  } else {
+    this.railMax = parseInt(this.domNode.getAttribute('aria-valuemax'));
   }
 
-  else {
-    this.railMax = parseInt((this.domNode.getAttribute('aria-valuemax')));
-  }
-
-  this.valueNow = parseInt((this.domNode.getAttribute('aria-valuenow')));
+  this.valueNow = parseInt(this.domNode.getAttribute('aria-valuenow'));
 
   this.railWidth = parseInt(this.railDomNode.style.width.slice(0, -2));
 
@@ -75,13 +72,12 @@ Slider.prototype.init = function () {
     this.domNode.tabIndex = 0;
   }
 
-  this.domNode.addEventListener('keydown',    this.handleKeyDown.bind(this));
+  this.domNode.addEventListener('keydown', this.handleKeyDown.bind(this));
   this.domNode.addEventListener('mousedown', this.handleMouseDown.bind(this));
-  this.domNode.addEventListener('focus',      this.handleFocus.bind(this));
-  this.domNode.addEventListener('blur',       this.handleBlur.bind(this));
+  this.domNode.addEventListener('focus', this.handleFocus.bind(this));
+  this.domNode.addEventListener('blur', this.handleBlur.bind(this));
 
   this.moveSliderTo(this.valueNow);
-
 };
 
 Slider.prototype.moveSliderTo = function (value) {
@@ -110,13 +106,17 @@ Slider.prototype.moveSliderTo = function (value) {
     this.maxDomNode.setAttribute('aria-valuemin', this.valueNow);
   }
 
-  var pos = Math.round(((this.valueNow - this.railMin) * (this.railWidth - 2 * (this.thumbWidth - this.railBorderWidth))) / (this.railMax - this.railMin));
+  var pos = Math.round(
+    ((this.valueNow - this.railMin) *
+      (this.railWidth - 2 * (this.thumbWidth - this.railBorderWidth))) /
+      (this.railMax - this.railMin)
+  );
 
   if (this.minDomNode) {
-    this.domNode.style.left = (pos + this.thumbWidth - this.railBorderWidth) + 'px';
-  }
-  else {
-    this.domNode.style.left = (pos - this.railBorderWidth) + 'px';
+    this.domNode.style.left =
+      pos + this.thumbWidth - this.railBorderWidth + 'px';
+  } else {
+    this.domNode.style.left = pos - this.railBorderWidth + 'px';
   }
 
   if (this.labelDomNode) {
@@ -125,7 +125,6 @@ Slider.prototype.moveSliderTo = function (value) {
 };
 
 Slider.prototype.handleKeyDown = function (event) {
-
   var flag = false;
 
   switch (event.keyCode) {
@@ -169,41 +168,38 @@ Slider.prototype.handleKeyDown = function (event) {
     event.preventDefault();
     event.stopPropagation();
   }
-
 };
 
-Slider.prototype.handleFocus = function (event) {
+Slider.prototype.handleFocus = function () {
   this.domNode.classList.add('focus');
   this.railDomNode.classList.add('focus');
 };
 
-Slider.prototype.handleBlur = function (event) {
+Slider.prototype.handleBlur = function () {
   this.domNode.classList.remove('focus');
   this.railDomNode.classList.remove('focus');
 };
 
 Slider.prototype.handleMouseDown = function (event) {
-
   var self = this;
 
   var handleMouseMove = function (event) {
-
     var diffX = event.pageX - self.railDomNode.offsetLeft;
-    self.valueNow = self.railMin + parseInt(((self.railMax - self.railMin) * diffX) / self.railWidth);
+    self.valueNow =
+      self.railMin +
+      parseInt(((self.railMax - self.railMin) * diffX) / self.railWidth);
     self.moveSliderTo(self.valueNow);
 
     event.preventDefault();
     event.stopPropagation();
   };
 
-  var handleMouseUp = function (event) {
-
+  var handleMouseUp = function () {
     document.removeEventListener('mousemove', handleMouseMove);
     document.removeEventListener('mouseup', handleMouseUp);
-
   };
 
-    // bind a mousemove event handler to move pointer
+  // bind a mousemove event handler to move pointer
   document.addEventListener('mousemove', handleMouseMove);
 
   // bind a mouseup event handler to stop tracking mouse movements
@@ -214,7 +210,6 @@ Slider.prototype.handleMouseDown = function (event) {
 
   // Set focus to the clicked handle
   this.domNode.focus();
-
 };
 
 // handleMouseMove has the same functionality as we need for handleMouseClick on the rail
@@ -229,14 +224,12 @@ Slider.prototype.handleMouseDown = function (event) {
 
 // };
 
-// Initialise Sliders on the page
+// Initialize Sliders on the page
 window.addEventListener('load', function () {
-
-  var sliders = document.querySelectorAll('[role=slider]');;
+  var sliders = document.querySelectorAll('[role=slider]');
 
   for (var i = 0; i < sliders.length; i++) {
     var s = new Slider(sliders[i]);
     s.init();
   }
-
 });

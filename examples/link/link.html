@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 
-<title>Link Examples | WAI-ARIA Authoring Practices 1.1</title>
+<title>Link Examples | WAI-ARIA Authoring Practices 1.2</title>
 
 <!--  Core js and css shared by all examples; do not modify when using this template. -->
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -50,7 +50,7 @@
       <tbody>
         <tr>
           <th>
-            1
+            <div class="example-header"><span id="ex1_label">1</span></div>
           </th>
           <td>
             <code>span</code> element with text content.
@@ -59,15 +59,15 @@
             <span
                 tabindex="0"
                 role="link"
-                onclick="goToLink(event, 'http://www.w3.org/')"
-                onKeyDown="goToLink(event, 'http://www.w3.org/')">
+                onclick="goToLink(event, 'https://www.w3.org/')"
+                onkeydown="goToLink(event, 'https://www.w3.org/')">
               W3C website
             </span>
           </td>
         </tr>
         <tr>
           <th>
-            2
+            <div class="example-header"><span id="ex2_label">2</span></div>
           </th>
           <td>
             <code>img</code> element with <code>alt</code> attribute.
@@ -76,15 +76,15 @@
             <img
               tabindex="0"
               role="link"
-              onclick="goToLink(event, 'http://www.w3.org/')"
-              onKeyDown="goToLink(event, 'http://www.w3.org/')"
-              src="images/w3c-logo.png"
+              onclick="goToLink(event, 'https://www.w3.org/')"
+              onkeydown="goToLink(event, 'https://www.w3.org/')"
+              src="images/w3c-logo.svg"
               alt="W3C Website">
           </td>
         </tr>
         <tr>
           <th>
-            3
+            <div class="example-header"><span id="ex3_label">3</span></div>
           </th>
           <td>
             CSS <code>:before</code> content property on a <code>span</code> element.
@@ -94,8 +94,8 @@
               tabindex="0"
               role="link"
               class="link3"
-              onclick="goToLink(event, 'http://www.w3.org/TR/wai-aria-practices/')"
-              onKeyDown="goToLink(event, 'http://www.w3.org/TR/wai-aria-practices/')"
+              onclick="goToLink(event, 'https://www.w3.org/TR/wai-aria-practices/')"
+              onkeydown="goToLink(event, 'https://www.w3.org/TR/wai-aria-practices/')"
               aria-label="W3C website"></span>
           </td>
         </tr>
@@ -167,6 +167,7 @@
           <td><code>span</code></td>
           <td>
             Example 3: Defines the accessible name of the link.
+          </td>
         </tr>
       </tbody>
     </table>
@@ -174,7 +175,7 @@
 
   <section>
     <h2>Javascript and CSS Source Code</h2>
-    <ul>
+    <ul id="css_js_files">
       <li>
         CSS:
         <a href="css/link.css" type="tex/css">link.css</a>
@@ -201,15 +202,15 @@
     <pre><code id="sc3"></code></pre>
     <div role="separator" id="sc3_end_sep" aria-labelledby="sc3_end_sep sc3_label" aria-label="End of"></div>
     <script>
-      sourceCode.add('sc1', 'ex1');
-      sourceCode.add('sc2', 'ex2');
-      sourceCode.add('sc3', 'ex3');
+      sourceCode.add('sc1', 'ex1', 'ex1_label', 'css_js_files');
+      sourceCode.add('sc2', 'ex2', 'ex2_label', 'css_js_files');
+      sourceCode.add('sc3', 'ex3', 'ex3_label', 'css_js_files');
       sourceCode.make();
     </script>
   </section>
   </main>
   <nav>
-    <a href="../../#link">Link Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../../#link">Link Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
   </nav>
 </body>
 </html>

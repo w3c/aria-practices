@@ -13,126 +13,21 @@
 var roleInfo = {};
 
 require(["core/pubsubhub"], function( respecEvents ) {
-    respecEvents.sub("end-all", function() {
-        var m = document.URL;
-        if (m.match(/\#saveRoles/)) {
-            var $modal
-            ,   $overlay
-            ,   buttons = {}
-            ;
-            var conf, doc, msg;
-            var ui = {
-                closeModal: function () {
-                    if ($overlay) {
-                        $overlay.fadeOut(200, function () { $overlay.remove(); $overlay = null; });
-                    }
-                    if (!$modal) {
-                        return;
-                    }
-                    $modal.remove();
-                    $modal = null;
-                }
-            ,   freshModal: function (title, content) {
-                    if ($modal) {
-                        $modal.remove();
-                    }
-                    if ($overlay) {
-                        $overlay.remove();
-                    }
-                    var width = 500;
-                    $overlay = $("<div id='respec-overlay' class='removeOnSave'></div>").hide();
-                    $modal = $("<div id='respec-modal' class='removeOnSave'><h3></h3><div class='inside'></div></div>").hide();
-                    $modal.find("h3").text(title);
-                    $modal.find(".inside").append(content);
-                    $("body")
-                        .append($overlay)
-                        .append($modal);
-                    $overlay
-                        .click(this.closeModal)
-                        .css({
-                            display:    "block"
-                        ,   opacity:    0
-                        ,   position:   "fixed"
-                        ,   zIndex:     10000
-                        ,   top:        "0px"
-                        ,   left:       "0px"
-                        ,   height:     "100%"
-                        ,   width:      "100%"
-                        ,   background: "#000"
-                        })
-                        .fadeTo(200, 0.5)
-                        ;
-                    $modal
-                        .css({
-                            display:        "block"
-                        ,   position:       "fixed"
-                        ,   opacity:        0
-                        ,   zIndex:         11000
-                        ,   left:           "50%"
-                        ,   marginLeft:     -(width/2) + "px"
-                        ,   top:            "100px"
-                        ,   background:     "#fff"
-                        ,   border:         "5px solid #666"
-                        ,   borderRadius:   "5px"
-                        ,   width:          width + "px"
-                        ,   padding:        "0 20px 20px 20px"
-                        ,   maxHeight:      ($(window).height() - 150) + "px"
-                        ,   overflowY:      "auto"
-                        })
-                        .fadeTo(200, 1)
-                        ;
-                }
-            };
-            var supportsDownload = $("<a href='foo' download='x'>A</a>")[0].download === "x"
-            ;
-            var $div = $("<div></div>")
-            ,   buttonCSS = {
-                    background:     "#eee"
-                ,   border:         "1px solid #000"
-                ,   borderRadius:   "5px"
-                ,   padding:        "5px"
-                ,   margin:         "5px"
-                ,   display:        "block"
-                ,   width:          "100%"
-                ,   color:          "#000"
-                ,   textDecoration: "none"
-                ,   textAlign:      "center"
-                ,   fontSize:       "inherit"
-                }
-            ,   addButton = function (title, content, fileName, popupContent) {
-                    if (supportsDownload) {
-                        $("<a></a>")
-                            .appendTo($div)
-                            .text(title)
-                            .css(buttonCSS)
-                            .attr({
-                                href:   "data:text/html;charset=utf-8," + encodeURIComponent(content)
-                            ,   download:   fileName
-                            })
-                            .click(function () {
-                                ui.closeModal();
-                            })
-                            ;
-                    }
-                    else {
-                        $("<button></button>")
-                            .appendTo($div)
-                            .text(title)
-                            .css(buttonCSS)
-                            .click(function () {
-                                popupContent();
-                                ui.closeModal();
-                            })
-                            ;
-                    }
-                    
-                }
-            ;
-            var s = "var roleInfo = " + JSON.stringify(roleInfo, null, '\t') ;
-            addButton("Save Role Values", s, "roleInfo.js", s) ;
-            ui.freshModal("Save Roles, States, and Properties", $div);
-        }
-    });
+
+    const button = respecUI.addCommand("Save roles as JSON", showAriaSave, null, "☁️");
+
+    function showAriaSave() {
+      const json = JSON.stringify(roleInfo, null, '  ') ;
+      const href = "data:text/html;charset=utf-8," + encodeURIComponent(json);
+      const ariaUI = document.createElement("div");
+      ariaUI.classList.add("respec-save-buttons");
+      ariaUI.innerHTML = `
+        <a href="${href}" download="roleInfo.json" class="respec-save-button">Save JSON</a>
+      `
+      respecUI.freshModal("Save Aria roles as JSON", ariaUI, button);
+      ariaUI.querySelector("a").focus();
+    }
+
 
     respecEvents.sub("end", function( msg ) {
         if (msg == "w3c/conformance") {
@@ -159,7 +54,7 @@ require(["core/pubsubhub"], function( respecEvents ) {
                     }
                     sp.className = type + "-name";
                     sp.title = title;
-                    sp.innerHTML = "<code>" + content + "</code> <span class=\"type-indicator\">(" + type + ")</span>";
+                    sp.innerHTML = "<code>" + content + "</code> <span class=\"type-indicator\">" + type + "</span>";
                     sp.setAttribute("aria-describedby", "desc-" + title);
                     var dRef = item.nextElementSibling;
                     var desc = dRef.firstElementChild.innerHTML;
@@ -172,9 +67,14 @@ require(["core/pubsubhub"], function( respecEvents ) {
                     propList[title] = { is: type, title: title, name: content, desc: desc, roles: [] };
                     var abstract = container.querySelector("." + type + "-applicability");
                     if ((abstract.textContent || abstract.innerText) === "All elements of the base markup") {
-                        globalSP.push({ is: type, title: title, name: content, desc: desc });
+                        globalSP.push({ is: type, title: title, name: content, desc: desc, prohibited: false, deprecated: false });
                     }
-                    
+                    else if ((abstract.textContent || abstract.innerText) === "All elements of the base markup except for some roles or elements that prohibit its use") {
+                        globalSP.push({ is: type, title: title, name: content, desc: desc, prohibited: true, deprecated: false });
+                    } 
+                    else if ((abstract.textContent || abstract.innerText) === "Use as a global deprecated in ARIA 1.2") {
+                        globalSP.push({ is: type, title: title, name: content, desc: desc, prohibited: false, deprecated: true });
+                    }
                     // the rdef is gone.  if we are in a div, convert that div to a section
 
                     if (container.nodeName.toLowerCase() == "div") {
@@ -219,9 +119,15 @@ require(["core/pubsubhub"], function( respecEvents ) {
                         var lItem = sortedList[i];
                         globalSPIndex += "<li>";
                         if (lItem.is === "state") {
-                            globalSPIndex += "<sref title=\"" + lItem.name + "\">" + lItem.name + " (state)</sref>";
+                            globalSPIndex += "<sref "+(lItem.prohibited?"data-prohibited ":"")+(lItem.deprecated?"data-deprecated ":"") +"title=\"" + lItem.name + "\">" + lItem.name + " (state)</sref>";
                         } else {
-                            globalSPIndex += "<pref>" + lItem.name + "</pref>";
+                            globalSPIndex += "<pref "+(lItem.prohibited?"data-prohibited ":"")+(lItem.deprecated?"data-deprecated ":"") +">" + lItem.name + "</pref>";
+                        }
+                        if (lItem.prohibited) {
+                            globalSPIndex += " (Except where prohibited)";
+                        }
+                        if (lItem.deprecated) {
+                            globalSPIndex += " (Global use deprecated in ARIA 1.2)"
                         }
                         globalSPIndex += "</li>\n";
                     }
@@ -259,6 +165,9 @@ require(["core/pubsubhub"], function( respecEvents ) {
                 var roleIndex = "";
                 var fromAuthor = "";
                 var fromContent = "";
+                var fromEncapsulation = "";
+                var fromLegend = "";
+                var fromProhibited = "";
 
                 $.each(document.querySelectorAll("rdef"), function(i,item) {
                     var container = item.parentNode;
@@ -280,7 +189,7 @@ require(["core/pubsubhub"], function( respecEvents ) {
                         type = "abstract role";
                         isAbstract = true;
                     }
-                    sp.innerHTML = "<code>" + content + "</code> <span class=\"type-indicator\">(" + type + ")</span>";
+                    sp.innerHTML = "<code>" + content + "</code> <span class=\"type-indicator\">" + type + "</span>";
                     // sp.id = title;
                     sp.setAttribute("aria-describedby", "desc-" + title);
                     var dRef = item.nextElementSibling;
@@ -310,7 +219,7 @@ require(["core/pubsubhub"], function( respecEvents ) {
                     }
                     // are there supported states / properties in this role?  
                     var attrs = [];
-                    $.each(container.querySelectorAll(".role-properties, .role-required-properties"), function(i, node) {
+                    $.each(container.querySelectorAll(".role-properties, .role-required-properties, .role-disallowed"), function(i, node) {
                         if (node && ((node.textContent && node.textContent.length !== 1) || (node.innerText && node.innerText.length !== 1))) {
                             // looks like we do
                             $.each(node.querySelectorAll("pref,sref"), function(i, item) {
@@ -319,11 +228,11 @@ require(["core/pubsubhub"], function( respecEvents ) {
                                     name = item.textContent || item.innerText;
                                 }
                                 var type = (item.localName === "pref" ? "property" : "state");
-                                var req = false;
-                                if ($(node).hasClass("role-required-properties") ) {
-                                    req = true;
-                                }
-                                attrs.push( { is: type, name: name, required: req } );
+                                var req = $(node).hasClass("role-required-properties");
+                                var dis = $(node).hasClass("role-disallowed");
+                                var dep = item.hasAttribute("data-deprecated");
+                                attrs.push( { is: type, name: name, required: req, disallowed: dis, deprecated: dep } );                                               
+
                                 // remember that the state or property is
                                 // referenced by this role
                                 propList[name].roles.push(title);
@@ -341,22 +250,21 @@ require(["core/pubsubhub"], function( respecEvents ) {
                                 req = " (name required)";
                             }
 
-                            if ($(node).find("li").length) {
-                                // there is a list; put it in both lists
+                            if (node.textContent.indexOf("author") !== -1) {
                                 fromAuthor += "<li><a href=\"#" + pnID + "\" class=\"role-reference\"><code>" + content + "</code></a>" + req + "</li>";
-                                if (!isAbstract) {
-                                    fromContent += "<li><a href=\"#" + pnID + "\" class=\"role-reference\"><code>" + content + "</code></a>" + "</li>";
-                                }
-                            } else {
-                                // it is a text node; use that
-                                if (node.textContent.indexOf("author") !== -1) {
-                                    fromAuthor += "<li><a href=\"#" + pnID + "\" class=\"role-reference\"><code>" + content + "</code></a>" + req + "</li>";
-                                } else if (node.textContent.indexOf("content") !== -1) {
-                                    if (!isAbstract) {
-                                        fromContent += "<li><a href=\"#" + pnID + "\" class=\"role-reference\"><code>" + content + "</code></a>" + "</li>";
-                                    }
-                                }
+                            } 
+                            if (!isAbstract && node.textContent.indexOf("content") !== -1) {
+                                fromContent += "<li><a href=\"#" + pnID + "\" class=\"role-reference\"><code>" + content + "</code></a>" + req + "</li>";
                             }
+                            if (node.textContent.indexOf("prohibited") !== -1) {
+                                fromProhibited += "<li><a href=\"#" + pnID + "\" class=\"role-reference\"><code>" + content + "</code></a>" + req + "</li>";
+                            }
+                            if (node.textContent.indexOf("encapsulation") !== -1) {
+                                fromEncapsulation += "<li><a href=\"#" + pnID + "\" class=\"role-reference\"><code>" + content + "</code></a>" + req + "</li>"; 
+                            }
+                            if (node.textContent.indexOf("legend") !== -1) {
+                                fromLegend += "<li><a href=\"#" + pnID + "\" class=\"role-reference\"><code>" + content + "</code></a>" + req + "</li>";
+                            }               
                         });
                     }
                     if (container.nodeName.toLowerCase() == "div") {
@@ -412,24 +320,41 @@ require(["core/pubsubhub"], function( respecEvents ) {
                                     });
                                 }
                             }
-                            var sortedList = [];
-                            sortedList = myList.sort(function(a,b) { return a.name < b.name ? -1 : a.name > b.name ? 1 : 0 });
+
+                            var reducedList = myList.reduce((uniqueList, item) => {
+                                return uniqueList.includes(item) ? uniqueList : [...uniqueList, item]
+                            }, [] )
+
+                            var sortedList = reducedList.sort((a,b) => { 
+                                if (a.name == b.name) {
+                                    // Ensure deprecated false properties occur first
+                                    if (a.deprecated !== b.deprecated) {
+                                        return a.deprecated ? 1 : b.deprecated ? -1 : 0
+                                    }
+                                }
+                                return a.name < b.name ? -1 : a.name > b.name ? 1 : 0 
+                            }, [] )
+
                             var prev;
                             for (var k = 0; k < sortedList.length; k++) {
-                                var role = sortedList[k];
+                                var property = sortedList[k];
                                 var req = "";
-                                if (role.required) {
+                                var dep = "";
+                                if (property.required) {
                                     req = " <strong>(required)</strong>";
                                 }
-                                if (prev != role.name) {
+                                if (property.deprecated) {
+                                    dep = " <strong>(deprecated on this role in ARIA 1.2)</strong>"
+                                }
+                                if (prev != property.name) {
                                     output += "<li>";
-                                    if (role.is === "state") {
-                                        output += "<sref title=\"" + role.name + "\">" + role.name + " (state)</sref>" + req;
+                                    if (property.is === "state") {
+                                        output += "<sref>" + property.name + "</sref> (state)" + req + dep;
                                     } else {
-                                        output += "<pref>" + role.name + "</pref>" + req;
+                                        output += "<pref>" + property.name + "</pref>" + req + dep;
                                     }
                                     output += "</li>\n";
-                                    prev = role.name;
+                                    prev = property.name;
                                 }
                             }
                             if (output !== "") {
@@ -503,6 +428,55 @@ require(["core/pubsubhub"], function( respecEvents ) {
                                 placeholder.innerHTML = output;
                             }
                         }
+                        else if (placeholder && (((placeholder.textContent || placeholder.innerText) ==="Use as a global deprecated in ARIA 1.2")) && item.roles.length)
+                        {
+                            // update the used in roles list
+                            var sortedList = [];
+                            sortedList = item.roles.sort();
+                            //remove roletype from the sorted list
+                            const index = sortedList.indexOf('roletype');
+                            if (index > -1) {
+                                sortedList.splice(index, 1);
+                            }
+
+
+                            for (var j = 0; j < sortedList.length; j++) {
+                                output += "<li><rref>" + sortedList[j] + "</rref></li>\n";
+                            }
+                            if (output !== "") {
+                                output = "<ul>\n" + output + "</ul>\n";
+                            }
+                            placeholder.innerHTML = output;
+                            // also update any inherited roles
+                            var myList = [];
+                            $.each(item.roles, function(j, role) {
+                                var children = getAllSubRoles(role);
+                                // Some subroles have required properties which are also required by the superclass.
+                                // Example: The checked state of radio, which is also required by superclass checkbox.
+                                // We only want to include these one time, so filter out the subroles.
+                                children = $.grep(children, function(subrole) {
+                                    return $.inArray(subrole, propList[item.name].roles) == -1;
+                                });
+                                $.merge(myList, children);
+                            });
+                            placeholder = section.querySelector(".state-descendants, .property-descendants");
+                            if (placeholder && myList.length) {
+                                sortedList = myList.sort();
+                                output = "";
+                                var last = "";
+                                for (j = 0; j < sortedList.length; j++) {
+                                    var sItem = sortedList[j];
+                                    if (last != sItem) {
+                                        output += "<li><rref>" + sItem + "</rref></li>\n";
+                                        last = sItem;
+                                    }
+                                }
+                                if (output !== "") {
+                                    output = "<ul>\n" + output + "</ul>\n";
+                                }
+                                placeholder.innerHTML = output;
+                            }                                
+                        }
                     });
                     
                     // spit out the index
@@ -535,6 +509,35 @@ require(["core/pubsubhub"], function( respecEvents ) {
                         parentNode.replaceChild(list, node);
                     }
 
+                    node = document.getElementById("index_fromencapsulation");
+                    if (node) {
+                        parentNode = node.parentNode;
+                        list = document.createElement("ul");
+                        list.id = "index_fromencapsulation";
+                        list.className = "compact";
+                        list.innerHTML = fromEncapsulation;
+                        parentNode.replaceChild(list, node);
+                    }
+
+                    node = document.getElementById("index_fromlegend");
+                    if (node) {
+                        parentNode = node.parentNode;
+                        list = document.createElement("ul");
+                        list.id = "index_fromlegend";
+                        list.className = "compact";
+                        list.innerHTML = fromLegend;
+                        parentNode.replaceChild(list, node);
+                    }
+
+                    node = document.getElementById("index_fromprohibited");
+                    if (node) {
+                        parentNode = node.parentNode;
+                        list = document.createElement("ul");
+                        list.id = "index_fromprohibited";
+                        list.className = "compact";
+                        list.innerHTML = fromProhibited;
+                        parentNode.replaceChild(list, node);
+                    }
                     // assuming we found some parent roles, update those parents with their children
                     for (var i=0; i < subRoles.length; i++) {
                         var item = subRoles[subRoles[i]];

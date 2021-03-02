@@ -1,0 +1,14 @@
+{
+  "extends": ["stylelint-config-standard", "stylelint-prettier/recommended"],
+  "rules": {
+    "media-feature-name-no-unknown": [
+      true,
+      {
+        "ignoreMediaFeatureNames": [
+          "forced-colors"
+        ]
+      }
+    ],
+    "prettier/prettier": [true, {"singleQuote": false}]
+  }
+}

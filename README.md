@@ -37,12 +37,14 @@ Pull requests that contain linting errors will not be merged until the errors ar
 1. Open the directory that contains your `aria-practices` repository in a terminal
 1. Run `npm install`
 
+The HTML validator also requires the installation of a JDK in order to run. If you don't already have a JDK installed, [download the latest JDK from Oracle](https://www.oracle.com/technetwork/java/javase/downloads/index.html).
+
 It is also highly recommended that you use a code editor that supports these tools and [EditorConfig](http://editorconfig.org/).
 
 #### HTML
 
 HTML is validated against the [NU HTML Validator](https://github.com/validator/validator).
-Should a warning or error occur because a future ARIA feature is not yet implemented, it will be added to the [the .vnurc file](.vnurc), allowing the error to pass through.
+Should a warning or error occur because a future ARIA feature is not yet implemented, it will be added to the [.vnurc file](.vnurc), allowing the error to pass through.
 
 Run locally:
 
@@ -77,7 +79,7 @@ npm run lint:js
 ### Test and fix your code
 
 1. Open a terminal window to the directory that contains the `aria-practices` repository
-1. The repository has a script defined that will test all JavaScript in the examples directory. To run it, execute the command `npm test`.
+1. The repository has a script defined that will test all JavaScript in the examples directory. To run it, execute the command `npm test`. Note: this may take a few minutes to run and will open several browser windows during the test that will gain focus.
 1. Many errors can be fixed automatically with the command `npm run fix`.
 1. After running fix, test again to see what you need to fix manually.
 
