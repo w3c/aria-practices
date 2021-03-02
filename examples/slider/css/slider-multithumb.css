@@ -40,7 +40,6 @@
 
 .slider-multithumb.focus .slider-group .rail {
   stroke: currentColor;
-  fill: #adddff;
 }
 
 .slider-multithumb [role="slider"]:focus {
