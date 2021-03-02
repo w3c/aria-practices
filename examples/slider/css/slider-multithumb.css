@@ -6,6 +6,10 @@
   touch-action: pan-y;
 }
 
+.slider-multithumb .slider-group {
+  color: #005a9c;
+}
+
 .slider-multithumb .slider-group .value {
   font-size: 80%;
   color: currentColor;
@@ -15,7 +19,8 @@
 .slider-multithumb .slider-group .rail {
   stroke: currentColor;
   stroke-width: 2px;
-  fill: #ccc;
+  fill: #ddd;
+  opacity: 0.6;
 }
 
 .slider-multithumb .slider-group .thumb {
@@ -24,7 +29,7 @@
   fill: currentColor;
 }
 
-.slider-multithumb .slider-group .focus {
+.slider-multithumb .slider-group .focus-ring {
   stroke-width: 3px;
   stroke: transparent;
   fill: transparent;
@@ -34,19 +39,22 @@
 
 /* Focus and hover styling */
 
-.slider-multithumb.focus .slider-group {
-  color: #005a9c;
+.slider-multithumb .slider-group g.rail,
+.slider-multithumb .slider-group g.focus {
+  color: black;
 }
 
-.slider-multithumb.focus .slider-group .rail {
-  stroke: currentColor;
+.slider-multithumb .slider-group.active g.rail {
+  fill: currentColor;
+  opacity: 0.4;
 }
 
 .slider-multithumb [role="slider"]:focus {
   outline: none;
 }
 
-.slider-multithumb [role="slider"]:focus .focus {
+.slider-multithumb [role="slider"]:hover .focus-ring,
+.slider-multithumb [role="slider"]:focus .focus-ring {
   stroke: currentColor;
 }
 
