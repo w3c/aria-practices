@@ -117,7 +117,6 @@ class SliderMultithumb {
     this.maxSliderNode.addEventListener('blur', this.onSliderBlur.bind(this));
 
     this.moveSliderTo(this.minSliderNode, this.getValue(this.minSliderNode));
-
     this.moveSliderTo(this.maxSliderNode, this.getValue(this.maxSliderNode));
   }
 
@@ -206,6 +205,10 @@ class SliderMultithumb {
       this.minSliderValueNode.setAttribute('x', pos);
       this.minSliderRight = pos;
     } else {
+      // update label and ARIA attributes
+      this.maxSliderValueNode.textContent = dollarValue;
+      this.minSliderNode.setAttribute('aria-valuemax', value);
+
       // move the SVG focus ring and thumb elements
       x = pos + this.thumbWidth - this.focusOffset + 1;
       this.maxSliderFocusNode.setAttribute('x', x);
@@ -220,12 +223,9 @@ class SliderMultithumb {
       if (pos - width < this.minSliderRight + 2) {
         pos = this.minSliderRight + width + 2;
       }
+
       this.maxSliderValueNode.setAttribute('x', pos);
       this.maxSliderLeft = pos;
-
-      // update label and ARIA attributes
-      this.maxSliderValueNode.textContent = dollarValue;
-      this.minSliderNode.setAttribute('aria-valuemax', value);
     }
   }
 
