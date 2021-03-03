@@ -19,8 +19,13 @@
 .slider-multithumb .slider-group .rail {
   stroke: currentColor;
   stroke-width: 2px;
-  fill: #ddd;
+  fill: transparent;
   opacity: 0.6;
+}
+
+.slider-multithumb .slider-group .range {
+  fill: currentColor;
+  opacity: 0.5;
 }
 
 .slider-multithumb .slider-group .thumb {
@@ -45,8 +50,11 @@
 }
 
 .slider-multithumb .slider-group.active g.rail {
+  opacity: 0.8;
+}
+
+.slider-multithumb .slider-group.active g.range {
   fill: currentColor;
-  opacity: 0.4;
 }
 
 .slider-multithumb [role="slider"]:focus {

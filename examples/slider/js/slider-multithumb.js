@@ -19,6 +19,7 @@ class SliderMultithumb {
     this.svgPoint = this.svgNode.createSVGPoint();
 
     this.railNode = domNode.querySelector('.rail rect');
+    this.rangeNode = domNode.querySelector('.range rect');
 
     this.minSliderNode = domNode.querySelector('[role=slider].minimum');
     this.maxSliderNode = domNode.querySelector('[role=slider].maximum');
@@ -78,6 +79,11 @@ class SliderMultithumb {
     this.railNode.setAttribute('height', this.railHeight);
     this.railNode.setAttribute('width', this.railWidth + this.thumbWidth);
     this.railNode.setAttribute('rx', this.railHeight / 2);
+
+    this.rangeNode.setAttribute('y', this.railY);
+    this.rangeNode.setAttribute('x', this.railX / 2);
+    this.rangeNode.setAttribute('height', this.railHeight);
+    this.rangeNode.setAttribute('width', 0);
 
     this.sliderMinValue = this.getValueMin(this.minSliderNode);
     this.sliderMaxValue = this.getValueMax(this.maxSliderNode);
@@ -154,6 +160,11 @@ class SliderMultithumb {
     return value > valueMax || value < valueMin;
   }
 
+  getXFromThumb(node) {
+    var points = node.getAttribute('points').split(',');
+    return parseInt(points[0]);
+  }
+
   moveSliderTo(sliderNode, value) {
     var valueMax,
       valueMin,
@@ -227,6 +238,14 @@ class SliderMultithumb {
       this.maxSliderValueNode.setAttribute('x', pos);
       this.maxSliderLeft = pos;
     }
+
+    // Set range rect
+
+    x = this.getXFromThumb(this.minSliderThumbNode) + this.thumbWidth / 2;
+    width =
+      this.getXFromThumb(this.maxSliderThumbNode) - x + this.thumbWidth / 2;
+    this.rangeNode.setAttribute('x', x);
+    this.rangeNode.setAttribute('width', width);
   }
 
   onSliderKeydown(event) {
