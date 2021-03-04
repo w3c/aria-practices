@@ -27,6 +27,7 @@ const uncheckAllCondiments = async function (t) {
     ex.checkedCondimentsSelector
   );
   for (let checkbox of checkboxes) {
+    var checked = await checkbox.getAttribute('checked');
     await checkbox.click();
   }
 };
