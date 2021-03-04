@@ -8,8 +8,6 @@
  *           for a menu of links
  */
 
-/* global ControlledCheckbox */
-
 'use strict';
 
 class CheckboxMixed {
