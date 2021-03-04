@@ -11,7 +11,7 @@
     <script src="../js/highlight.pack.js"></script>
     <script src="../js/app.js"></script>
 
-    <link href="css/checkbox.css" rel="stylesheet">
+    <link href="css/checkbox-mixed.css" rel="stylesheet">
     <script src="js/checkbox-mixed.js" type="text/javascript"></script>
   </head>
   <body>
@@ -31,9 +31,6 @@
         If none of the checkboxes in the set are checked, the mixed state checkbox is not checked, and if all members of the set are checked, the mixed state checkbox is checked.
         If the set contains both some checked and unchecked checkboxes, the mixed state checkbox is partially checked.
         Activating the tri-state checkbox changes the states of the checkboxes in the set.
-      </p>
-      <p>
-        This example also demonstrates use of <code>fieldset</code> and <code>Legend</code> elements for labeling the checkbox group.
       </p>
       <p>Similar examples include: </p>
       <ul>
@@ -66,6 +63,17 @@
         </div>
         <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
       </section>
+
+
+    <section>
+      <h2>Accessibility Features</h2>
+      <ul>
+        <li>To help assistive technology users understand that the mixed checkbox is made of a group of four HTML <code>input[type=<q>checkbox</q>]</code> elements and the ARIA checkbox widget <code>div[role=<q>checkbox</q>]</code>, the checkboxes are wrapped in a <code>fieldset</code> element which is labeled (e.g. Sandwich Condiments) with a <code>legend</code> element.</li>
+        <li>The default visual focus styling of checkboxes is visually difficult to discern.  To improve the identification of a checkbox with visual focus,  <code>focus</code> and <code>blur</code> event handlers are added to each checkbox to add and remove a class to the parent <code>label</code> element.  The class is used to define a border around the label and the checkbox when a checkbox has focus.</li>
+        <li>To provide a visual indication the labels can also be used to change the state of a checkbox, the background color is changed when the pointer moves over the checkbox or the label.</li>
+      </ul>
+    </section>
+
 
       <section>
         <h2 id="kbd_label">Keyboard Support</h2>
@@ -177,7 +185,7 @@
        <section>
         <h2>Javascript and CSS Source Code</h2>
         <ul id="css_js_files">
-          <li>CSS: <a href="css/checkbox.css" type="text/css">checkbox.css</a></li>
+          <li>CSS: <a href="css/checkbox-mixed.css" type="text/css">checkbox-mixed.css</a></li>
           <li>Javascript: <a href="js/checkbox-mixed.js" type="text/javascript">checkbox-mixed.js</a></li>
         </ul>
       </section>
