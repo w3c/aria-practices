@@ -1,5 +1,5 @@
 const { ariaTest } = require('..');
-const { By, Key } = require('selenium-webdriver');
+const { By } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertTabOrder = require('../util/assertTabOrder');
