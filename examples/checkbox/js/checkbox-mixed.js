@@ -12,8 +12,6 @@
 
 class CheckboxMixed {
   constructor(domNode) {
-    this.domNode = domNode;
-
     this.mixedNode = domNode.querySelector('[role="checkbox"]');
     this.checkboxNodes = domNode.querySelectorAll('input[type="checkbox"]');
 
@@ -32,7 +30,6 @@ class CheckboxMixed {
     }
 
     this.updateMixed();
-
   }
 
   updateMixed() {
@@ -67,7 +64,7 @@ class CheckboxMixed {
     var count = 0;
 
     for (var i = 0; i < this.checkboxNodes.length; i++) {
-      if (this.checkboxNodes[i].getAttribute('data-last-state')  == 'true') {
+      if (this.checkboxNodes[i].getAttribute('data-last-state') == 'true') {
         count++;
       }
     }
@@ -81,7 +78,8 @@ class CheckboxMixed {
 
       switch (value) {
         case 'last':
-          checkboxNode.checked = checkboxNode.getAttribute('data-last-state') === 'true';
+          checkboxNode.checked =
+            checkboxNode.getAttribute('data-last-state') === 'true';
           break;
 
         case 'true':
@@ -91,7 +89,6 @@ class CheckboxMixed {
         default:
           checkboxNode.checked = false;
           break;
-
       }
     }
     this.updateMixed();
@@ -117,8 +114,7 @@ class CheckboxMixed {
     this.updateMixed();
   }
 
-
-/* EVENT HANDLERS */
+  /* EVENT HANDLERS */
 
   onMixedKeydown(event) {
     var flag = false;
@@ -152,7 +148,10 @@ class CheckboxMixed {
   }
 
   onCheckboxClick(event) {
-    event.currentTarget.setAttribute('data-last-state', event.currentTarget.checked);
+    event.currentTarget.setAttribute(
+      'data-last-state',
+      event.currentTarget.checked
+    );
     this.updateMixed();
   }
 
@@ -163,7 +162,6 @@ class CheckboxMixed {
   onCheckboxBlur(event) {
     event.currentTarget.parentNode.classList.remove('focus');
   }
-
 }
 
 // Initialize mixed checkboxes on the page
