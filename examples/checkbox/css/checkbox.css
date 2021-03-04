@@ -68,7 +68,9 @@ ul.checkboxes {
   padding: 2px;
   padding-left: calc(28px - 2px);
   border: 2px solid #765;
+  border-radius: 5px;
   background-color: #def;
+  outline: none;
 }
 
 [role="checkbox"]:focus::before,
