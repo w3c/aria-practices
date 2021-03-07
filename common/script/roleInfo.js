@@ -1,4 +1,4 @@
-{
+var roleInfo = {
   "alert": {
     "name": "alert",
     "fragID": "alert",
