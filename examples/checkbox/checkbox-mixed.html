@@ -69,7 +69,7 @@
       <h2>Accessibility Features</h2>
       <ul>
         <li>To help assistive technology users understand that the mixed checkbox is made of a group of four HTML <code>input[type=<q>checkbox</q>]</code> elements and the ARIA checkbox widget <code>div[role=<q>checkbox</q>]</code>, the checkboxes are wrapped in a <code>fieldset</code> element which is labeled (e.g. Sandwich Condiments) with a <code>legend</code> element.</li>
-        <li>The default visual focus styling of checkboxes is visually difficult to discern.  To improve the identification of a checkbox with visual focus,  <code>focus</code> and <code>blur</code> event handlers are added to each checkbox to add and remove a class to the parent <code>label</code> element.  The class is used to define a border around the label and the checkbox when a checkbox has focus.</li>
+        <li>Because transparent borders are visible on some systems with operating system high contrast settings enabled, transparency cannot be used to create a visual difference between the element that is focused an other elements. Instead of using transparency, the focused element has a thicker border and less padding. When an element receives focus, its border changes from 0 to 2 pixels and padding is reduced by 2 pixels. When an element loses focus, its border changes from 2 pixels to 0 and padding is increased by 2 pixels.</li>
         <li>To provide a visual indication the labels can also be used to change the state of a checkbox, the background color is changed when the pointer moves over the checkbox or the label.</li>
       </ul>
     </section>
