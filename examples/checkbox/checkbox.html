@@ -59,7 +59,7 @@
       <h2>Accessibility Features</h2>
       <ul>
         <li>To help assistive technology users understand that the Sandwich Condiment options is made of a group of four checkboxes, the checkboxes are wrapped in a <code>group</code> labeled by the heading that labels the sandwich options.</li>
-        <li>The visual focus styling of a checkbox defines a border around the label and the visual state graphic when a checkbox has focus.</li>
+        <li>Because transparent borders are visible on some systems with operating system high contrast settings enabled, transparency cannot be used to create a visual difference between the element that is focused an other elements. Instead of using transparency, the focused element has a thicker border and less padding. When an element receives focus, its border changes from 0 to 2 pixels and padding is reduced by 2 pixels. When an element loses focus, its border changes from 2 pixels to 0 and padding is increased by 2 pixels.</li>
         <li>To provide a visual indication the labels can also be used to change the state of a checkbox, the background color is changed when the pointer moves over the checkbox or the label.</li>
       </ul>
     </section>
