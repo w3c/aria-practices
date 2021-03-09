@@ -81,7 +81,7 @@
     ]
   },
   "dependencies": {
-    "@octokit/rest": "^18.2.0",
+    "@octokit/rest": "^18.3.5",
     "dotenv": "^8.2.0"
   }
 }
