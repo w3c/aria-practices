@@ -1,8 +1,6 @@
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
-const assertAriaControls = require('../util/assertAriaControls');
-const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaRoles = require('../util/assertAriaRoles');
 

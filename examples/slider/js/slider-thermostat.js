@@ -332,7 +332,6 @@ class SliderThermostatText {
     let maxTextWidth = this.getWidthFromLabelText();
     let textHeight = this.getHeightFromLabelText();
 
-
     for (let i = 0; i < this.valueLabelNodes.length; i++) {
       let valueLabelNode = this.valueLabelNodes[i];
 
