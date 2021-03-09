@@ -160,7 +160,7 @@
             To ensure the borders of the slider rail, thumb and focus ring have sufficient contrast with the background when high contrast settings invert colors, the CSS <code>currentColor</code> value for the <code>stroke</code> property is used for the inline SVG <code>rect</code> elements to synchronize the border color with text content. If specific colors are used to specify the <code>stroke</code> property, these colors will remain the same in high contrast mode, which could lead to insufficient contrast between the rail and the thumb or even make them invisible if its color matches the high contrast mode background.  NOTE: The use of inline SVG graphics are needed to support the use of the <code>currentColor</code> value.
           </li>
           <li>
-            The SVG elements used to label the values (e.g. Off, Low, Medium and High) of the fan slider receive a border when hovered for users to identify the active area of labels as an alternative way to set the fan slider value with a touch or a pointer.
+            The SVG elements used to label the values of the fan slider (i.e. Off, Low, Medium and High) receive a border when hovered for users to identify the active area of labels as an alternative way to set the fan slider value with a touch or a pointer.
           </li>
           <li>
             The fan speed control could also be implemented as a radio group, since it is picking one of four values.  In this example the slider role is also appropriate since the fan speed is a continuous range of values from off to the highest speed.  So if an assistive technology announced the value as a percentage it would still make sense as a percentage of maximum speed of the fan.
