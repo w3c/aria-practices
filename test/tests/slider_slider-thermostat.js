@@ -11,7 +11,6 @@ const exampleFile = 'slider/slider-thermostat.html';
 const ex = {
   railRects: '#ex1 rect.rail',
   sliderSelector: '#ex1 [role="slider"]',
-  buttonSelector: '#ex1 [role="button"]',
   groupSelector: '#ex1 [role="group"]',
   tempSelector: '#id-temp-slider',
   fanSelector: '#id-fan',
@@ -68,42 +67,6 @@ ariaTest(
   'aria-hidden',
   async (t) => {
     await assertAttributeValues(t, ex.railRects, 'aria-hidden', 'true');
-  }
-);
-
-ariaTest(
-  'role="button" on G element',
-  exampleFile,
-  'button-role',
-  async (t) => {
-    await assertAriaRoles(t, 'ex1', 'button', '4', 'g');
-  }
-);
-
-ariaTest(
-  '"tabindex" set to "-1" on buttons',
-  exampleFile,
-  'button-tabindex',
-  async (t) => {
-    await assertAttributeValues(t, ex.buttonSelector, 'tabindex', '-1');
-  }
-);
-
-ariaTest(
-  '"aria-label" set on button',
-  exampleFile,
-  'button-aria-label',
-  async (t) => {
-    await assertAriaLabelExists(t, ex.buttonSelector);
-  }
-);
-
-ariaTest(
-  '"aria-controls" attribute of button',
-  exampleFile,
-  'button-aria-controls',
-  async (t) => {
-    await assertAriaControls(t, ex.buttonSelector);
   }
 );
 
@@ -214,82 +177,6 @@ ariaTest(
 );
 
 // Keys
-
-ariaTest(
-  'SPACE key changes fan value',
-  exampleFile,
-  'button-key-space',
-  async (t) => {
-    const fanSlider = await t.context.session.findElement(
-      By.css(ex.fanSelector)
-    );
-
-    const buttons = await t.context.queryElements(t, ex.buttonSelector);
-
-    for (let i = 0; i < buttons.length; i++) {
-      const button = buttons[i];
-      const label = await button.getAttribute('aria-label');
-
-      await button.sendKeys(' ');
-
-      t.is(
-        await fanSlider.getAttribute('aria-valuenow'),
-        i.toString(),
-        'After sending space key to button "' +
-          label +
-          '", "aria-valuenow" should be: ' +
-          i
-      );
-
-      t.is(
-        await fanSlider.getAttribute('aria-valuetext'),
-        ex.fanValues[i],
-        'After sending space key to button "' +
-          label +
-          '", "aria-valuenow" should be: ' +
-          ex.fanValues[i]
-      );
-    }
-  }
-);
-
-ariaTest(
-  'ENTER key changes fan value',
-  exampleFile,
-  'button-key-space',
-  async (t) => {
-    const fanSlider = await t.context.session.findElement(
-      By.css(ex.fanSelector)
-    );
-
-    const buttons = await t.context.queryElements(t, ex.buttonSelector);
-
-    for (let i = 0; i < buttons.length; i++) {
-      const button = buttons[i];
-      const label = await button.getAttribute('aria-label');
-
-      await button.sendKeys(Key.ENTER);
-
-      t.is(
-        await fanSlider.getAttribute('aria-valuenow'),
-        i.toString(),
-        'After sending space key to button "' +
-          label +
-          '", "aria-valuenow" should be: ' +
-          i
-      );
-
-      t.is(
-        await fanSlider.getAttribute('aria-valuetext'),
-        ex.fanValues[i],
-        'After sending space key to button "' +
-          label +
-          '", "aria-valuenow" should be: ' +
-          ex.fanValues[i]
-      );
-    }
-  }
-);
 
 ariaTest(
   'Right arrow increases slider value by 1',
