@@ -70,24 +70,20 @@
   fill: transparent;
 }
 
-.slider-thermostat-text .labels {
-  position: relative;
-}
-
-.slider-thermostat-text [role="button"] rect {
+.slider-thermostat-text .value-label rect {
   fill: transparent;
   stroke-width: 2px;
   stroke: transparent;
 }
 
-.slider-thermostat-text [role="button"] text {
+.slider-thermostat-text .value-label text {
   color: currentColor;
   font-weight: bold;
 }
 
 /* Focus and hover styling */
 
-.slider-thermostat-text [role="button"]:hover rect {
+.slider-thermostat-text .value-label:hover rect {
   stroke: currentColor;
 }
 

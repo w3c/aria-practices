@@ -35,12 +35,12 @@
       The following example of a hypothetical online thermostat demonstrates the
       <a href="../../#slider">slider design pattern.</a>
       The desired temperature is set with the first slider, which is vertically oriented.
-      Two horizontal sliders set fan speed and mode.
-      The horizontal sliders illustrate how to use <code>aria-valuetext</code> to provide assistive technologies with meaningful names for numeric values.
+      The second horizontal slider is used to set fan speeds.
+      The sliders illustrate how to use <code>aria-valuetext</code> to provide assistive technologies with meaningful names for numeric values.
     </p>
     <p>Similar examples include: </p>
     <ul>
-      <li><a href="slider-1.html">Horizontal Slider Examples</a>: Demonstrates using three horizontally aligned sliders to make a color picker.</li>
+      <li><a href="slider-color-viewer.html">Horizontal Slider Examples</a>: Demonstrates using three horizontally aligned sliders to make a color viewer.</li>
     </ul>
 
     <section>
@@ -95,12 +95,9 @@
                   x="0" y="0" width="14" height="48" rx="5"/>
               </g>
               <!-- Button positions set by Javascript calculations  -->
-              <g  role="button"
-                tabindex="-1"
-                aria-controls="id-fan"
+              <g  class="value-label"
                 data-value="0"
-                data-valuetext="off"
-                aria-label="Turn fan off">
+                data-valuetext="off">
                 <rect
                   x="0"
                   y="0"
@@ -109,12 +106,9 @@
                   rx="5" />
                   <text x="0" y="0">Off</text>
               </g>
-              <g  role="button"
-                tabindex="-1"
-                aria-controls="id-fan"
+              <g  class="value-label"
                 data-value="1"
-                data-valuetext="low"
-                aria-label="Set fan to low speed">
+                data-valuetext="low">
                 <rect
                   x="0"
                   y="0"
@@ -123,12 +117,9 @@
                   rx="5" />
                 <text x="0" y="0">Low</text>
               </g>
-              <g  role="button"
-                tabindex="-1"
-                aria-controls="id-fan"
+              <g  class="value-label"
                 data-value="2"
-                data-valuetext="medium"
-                aria-label="Set fan to medium speed">
+                data-valuetext="medium">
                 <rect
                   x="0"
                   y="0"
@@ -137,12 +128,9 @@
                   rx="5"/>
                 <text x="0" y="0">Med</text>
               </g>
-              <g  role="button"
-                tabindex="-1"
-                aria-controls="id-fan"
+              <g  class="value-label"
                 data-value="3"
-                data-valuetext="high"
-                aria-label="Set fan to high speed">
+                data-valuetext="high">
                 <rect
                   x="0"
                   y="0"
@@ -172,7 +160,7 @@
             To ensure the borders of the slider rail, thumb and focus ring have sufficient contrast with the background when high contrast settings invert colors, the CSS <code>currentColor</code> value for the <code>stroke</code> property is used for the inline SVG <code>rect</code> elements to synchronize the border color with text content. If specific colors are used to specify the <code>stroke</code> property, these colors will remain the same in high contrast mode, which could lead to insufficient contrast between the rail and the thumb or even make them invisible if its color matches the high contrast mode background.  NOTE: The use of inline SVG graphics are needed to support the use of the <code>currentColor</code> value.
           </li>
           <li>
-            The SVG elements with the <code>role=<q>button</q></code> receive a border when hovered for users to identify the elements as interactive.  Border is not rendered by default since the content of the buttons primarily provide labels for values of the fan slider positions.  The buttons are a secondary way to set the value of the fan slider.
+            The SVG elements used to label the values (e.g. Off, Low, Medium and High) of the fan slider receive a border when hovered for users to identify the active area of labels as an alternative way to set the fan slider value with a touch or a pointer.
           </li>
           <li>
             The fan speed control could also be implemented as a radio group, since it is picking one of four values.  In this example the slider role is also appropriate since the fan speed is a continuous range of values from off to the highest speed.  So if an assistive technology announced the value as a percentage it would still make sense as a percentage of maximum speed of the fan.
@@ -182,8 +170,7 @@
 
     <section>
       <h2 id="kbd_label" style="clear: both;">Keyboard Support</h2>
-      <h3 id="kbd_label_1">Slider</h3>
-      <table aria-labelledby="kbd_label kbd_label_1" class="def">
+      <table aria-labelledby="kbd_label" class="def">
         <thead>
           <tr>
             <th>Key</th>
@@ -242,35 +229,13 @@
         </tbody>
       </table>
 
-      <h3 id="kbd_label_2">Buttons</h3>
-      <table aria-labelledby="kbd_label kbd_label_2" class="def">
-        <thead>
-          <tr>
-            <th>Key</th>
-            <th>Function</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr data-test-id="button-key-space">
-            <th>
-              <kbd>Space, Enter</kbd>
-            </th>
-            <td>
-              <ul>
-                <li>The buttons support mobile devices when a keyboard is not available.</li>
-                <li>Pressing the <kbd>space</kbd> key or clicking on the button changes the value of the slider referenced by <code>aria-controls</code> to the value in the <code>data-value</code> attribute of the button element.</li>
-              </ul>
-            </td>
-          </tr>
-        </tbody>
-      </table>
     </section>
 
   <section>
       <h2 id="rps_label">Role, Property, State, and Tabindex Attributes</h2>
 
       <h3 id="rps_label_1">Group</h3>
-      <table aria-labelledby="rps_label rps_label_1" class="data attributes">
+      <table aria-labelledby="rps_label" class="data attributes">
         <thead>
           <tr>
             <th scope="col">Role</th>
@@ -425,74 +390,6 @@
           </tr>
         </tbody>
       </table>
-
-      <h3 id="rps_label_3">Buttons</h3>
-      <table aria-labelledby="rps_label rps_label_3" class="data attributes">
-        <thead>
-          <tr>
-            <th scope="col">Role</th>
-            <th scope="col">Attribute</th>
-            <th scope="col">Element</th>
-            <th scope="col">Usage</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr data-test-id="button-role">
-            <th scope="row">
-              <code>button</code>
-            </th>
-            <td></td>
-            <td>
-              <code>g</code>
-            </td>
-            <td>
-              Identifies the  <code>g</code> element as a button.
-            </td>
-          </tr>
-          <tr data-test-id="button-tabindex">
-            <td></td>
-            <th scope="row">
-              <code>tabindex=<q>-1</q></code>
-            </th>
-            <td>
-              <code>g</code>
-            </td>
-            <td>
-              <ul>
-                <li>The <code>button</code> supports mobile access when an external keyboard is not available to operate the slider directly.  Mobile devices provide an on-screen keyboard when input boxes receive focus for entering a temperature value.</li>
-                <li>Removes the <code>button</code> element from the tab order of the page.</li>
-              </ul>
-            </td>
-          <tr data-test-id="button-aria-label">
-            <td></td>
-            <th scope="row">
-              <code>aria-label=<q><em>label</em></q></code>
-            </th>
-            <td>
-              <code>g</code>
-            </td>
-            <td>
-              Defines the accessible name for each button describing how the associated slider will change (e.g. "Set fan to medium speed").
-            </td>
-          </tr>
-          <tr data-test-id="button-aria-controls">
-            <td></td>
-            <th scope="row">
-              <code>aria-controls=<q>IDREF</q></code>
-            </th>
-            <td>
-              <code>g</code>
-            </td>
-            <td>
-              <ul>
-                <li>Identifies the content on the page that the button controls.</li>
-                <li>Refers to the SVG <code>g</code> element that contains identifies the slider.</li>
-              </ul>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
     </section>
 
     <section>

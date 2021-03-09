@@ -272,8 +272,8 @@ class SliderThermostatText {
     this.sliderFocusNode = this.sliderNode.querySelector('.focus');
     this.sliderThumbNode = this.sliderNode.querySelector('.thumb');
 
-    this.buttonNodes = domNode.querySelectorAll('[role=button]');
-    this.buttonPadding = 4;
+    this.valueLabelNodes = domNode.querySelectorAll('.value-label');
+    this.valueLabelPadding = 4;
 
     // Dimensions of the slider focus ring, thumb and rail
 
@@ -329,19 +329,20 @@ class SliderThermostatText {
     this.positions = [];
     this.textValues = [];
 
-    let maxTextWidth = this.getWidthFromButtonText();
-    let textHeight = this.getHeightFromButtonText();
+    let maxTextWidth = this.getWidthFromLabelText();
+    let textHeight = this.getHeightFromLabelText();
 
-    for (let i = 0; i < this.buttonNodes.length; i++) {
-      let buttonNode = this.buttonNodes[i];
 
-      let rectNode = buttonNode.querySelector('rect');
-      let textNode = buttonNode.querySelector('text');
+    for (let i = 0; i < this.valueLabelNodes.length; i++) {
+      let valueLabelNode = this.valueLabelNodes[i];
 
-      let w = maxTextWidth + 2 * this.buttonPadding;
-      let h = textHeight + 2 * this.buttonPadding;
+      let rectNode = valueLabelNode.querySelector('rect');
+      let textNode = valueLabelNode.querySelector('text');
+
+      let w = maxTextWidth + 2 * this.valueLabelPadding;
+      let h = textHeight + 2 * this.valueLabelPadding;
       let x = position - w / 2;
-      let y = this.thumbY + this.thumbHeight + 2 * this.buttonPadding;
+      let y = this.thumbY + this.thumbHeight + 2 * this.valueLabelPadding;
 
       rectNode.setAttribute('width', w);
       rectNode.setAttribute('height', h);
@@ -350,18 +351,17 @@ class SliderThermostatText {
 
       x =
         x +
-        this.buttonPadding +
+        this.valueLabelPadding +
         (maxTextWidth - textNode.getBoundingClientRect().width) / 2;
-      y = y + textHeight + this.buttonPadding / 2;
+      y = y + textHeight + this.valueLabelPadding / 2;
 
       textNode.setAttribute('x', x);
       textNode.setAttribute('y', y);
 
-      this.textValues.push(buttonNode.getAttribute('data-valuetext'));
-      buttonNode.addEventListener('click', this.onButtonClick.bind(this));
-      buttonNode.addEventListener('keydown', this.onButtonKeydown.bind(this));
-      buttonNode.addEventListener('focus', this.onSliderFocus.bind(this));
-      buttonNode.addEventListener('blur', this.onSliderBlur.bind(this));
+      this.textValues.push(valueLabelNode.getAttribute('data-valuetext'));
+      valueLabelNode.addEventListener('click', this.onLabelClick.bind(this));
+      valueLabelNode.addEventListener('focus', this.onSliderFocus.bind(this));
+      valueLabelNode.addEventListener('blur', this.onSliderBlur.bind(this));
 
       this.positions.push(position);
       position += deltaPosition;
@@ -370,10 +370,10 @@ class SliderThermostatText {
     this.moveSliderTo(this.getValue());
   }
 
-  getWidthFromButtonText() {
+  getWidthFromLabelText() {
     let width = 0;
-    for (let i = 0; i < this.buttonNodes.length; i++) {
-      let textNode = this.buttonNodes[i].querySelector('text');
+    for (let i = 0; i < this.valueLabelNodes.length; i++) {
+      let textNode = this.valueLabelNodes[i].querySelector('text');
       if (textNode) {
         width = Math.max(width, textNode.getBoundingClientRect().width);
       }
@@ -381,9 +381,9 @@ class SliderThermostatText {
     return width;
   }
 
-  getHeightFromButtonText() {
+  getHeightFromLabelText() {
     let height = 0;
-    let textNode = this.buttonNodes[0].querySelector('text');
+    let textNode = this.valueLabelNodes[0].querySelector('text');
     if (textNode) {
       height = textNode.getBoundingClientRect().height;
     }
@@ -537,7 +537,7 @@ class SliderThermostatText {
     this.isMoving = false;
   }
 
-  onButtonClick(event) {
+  onLabelClick(event) {
     var tgt = event.currentTarget;
     var value = parseInt(tgt.getAttribute('data-value'));
     this.moveSliderTo(value);
@@ -546,7 +546,7 @@ class SliderThermostatText {
     event.stopPropagation();
   }
 
-  onButtonKeydown(event) {
+  onLabelKeydown(event) {
     var tgt = event.currentTarget;
 
     if (event.key === 'Enter' || event.key === ' ') {
