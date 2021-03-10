@@ -15,23 +15,23 @@
  *
  */
 class DisclosureButton {
-  constructor(domNode) {
-    this.domNode = domNode;
+  constructor(buttonNode) {
+    this.buttonNode = buttonNode;
     this.controlledNode = false;
 
-    var id = this.domNode.getAttribute('aria-controls');
+    var id = this.buttonNode.getAttribute('aria-controls');
 
     if (id) {
       this.controlledNode = document.getElementById(id);
     }
 
-    this.domNode.setAttribute('aria-expanded', 'false');
+    this.buttonNode.setAttribute('aria-expanded', 'false');
     this.hideContent();
 
-    this.domNode.addEventListener('keydown', this.onKeydown.bind(this));
-    this.domNode.addEventListener('click', this.onClick.bind(this));
-    this.domNode.addEventListener('focus', this.onFocus.bind(this));
-    this.domNode.addEventListener('blur', this.onBlur.bind(this));
+    this.buttonNode.addEventListener('keydown', this.onKeydown.bind(this));
+    this.buttonNode.addEventListener('click', this.onClick.bind(this));
+    this.buttonNode.addEventListener('focus', this.onFocus.bind(this));
+    this.buttonNode.addEventListener('blur', this.onBlur.bind(this));
   }
 
   showContent() {
@@ -47,16 +47,16 @@ class DisclosureButton {
   }
 
   toggleExpand() {
-    if (this.domNode.getAttribute('aria-expanded') === 'true') {
-      this.domNode.setAttribute('aria-expanded', 'false');
+    if (this.buttonNode.getAttribute('aria-expanded') === 'true') {
+      this.buttonNode.setAttribute('aria-expanded', 'false');
       this.hideContent();
     } else {
-      this.domNode.setAttribute('aria-expanded', 'true');
+      this.buttonNode.setAttribute('aria-expanded', 'true');
       this.showContent();
     }
   }
 
-/* EVENT HANDLERS */
+  /* EVENT HANDLERS */
 
   onKeydown(event) {
     switch (event.keyCode) {
@@ -77,11 +77,11 @@ class DisclosureButton {
   }
 
   onFocus() {
-    this.domNode.classList.add('focus');
+    this.buttonNode.classList.add('focus');
   }
 
   onBlur() {
-    this.domNode.classList.remove('focus');
+    this.buttonNode.classList.remove('focus');
   }
 }
 
