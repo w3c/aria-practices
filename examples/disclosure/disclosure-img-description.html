@@ -247,7 +247,11 @@
   <section>
     <h2>Accessibility Features</h2>
     <ol>
-    <li> The visual indication of expanded and collapsed states is synchronized with the value of <code>aria-expanded</code> using a CSS attribute selector and <code>:before</code> pseudo element that generates an image with the <code>content</code> property.</li>
+      <li> The visual indication of expanded and collapsed states is synchronized with the value of <code>aria-expanded</code> using a CSS attribute selector and <code>:before</code> pseudo element that defines an SVG graphic to visually identify the state of the disclosure button using the <code>content</code> property.</li>
+      <li>
+        To ensure the SVG graphic used to indicate the expanded or collapsed state has sufficient contrast with the background when high contrast settings invert colors, the CSS <code>currentColor</code> value for the <code>fill</code> and <code>stroke</code> properties of the SVG <code>polygon</code> element is used to synchronize the color with text content.
+        If specific colors are used to specify the <code>fill</code> and <code>stroke</code> properties, these colors will remain the same in high contrast mode, which could lead to insufficient contrast between the icon and the background or even make the icon invisible if its color matches the high contrast mode background.
+      </li>
       <li>The interactivity of the disclosure button is visually indicated on focus and hover:
         <ul>
           <li>The CSS <code>:focus</code> pseudo class is used to change the background and border colors.</li>
