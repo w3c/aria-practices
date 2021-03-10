@@ -9,18 +9,11 @@ const exampleFile = 'slider/slider-multithumb.html';
 const ex = {
   sliderSelector: '#ex1 [role="slider"]',
   hotelSliderSelector: '#ex1 .slider-multithumb:nth-of-type(1) [role="slider"]',
-  flightSliderSelector:
-    '#ex1 .slider-multithumb:nth-of-type(2) [role="slider"]',
   hotelMin: '0',
   hotelMax: '400',
-  flightMin: '0',
-  flightMax: '1000',
   hotelDefaultValues: ['100', '250'],
-  flightDefaultValues: ['100', '250'],
   hotelLabelSelector:
     '#ex1 .slider-multithumb:nth-of-type(1) [role=slider] .value',
-  flightLabelSelector:
-    '#ex1 .slider-multithumb:nth-of-type(2) [role=slider] .value',
 };
 
 const verifyAllValues = async function (
@@ -55,7 +48,7 @@ ariaTest(
   exampleFile,
   'slider-role',
   async (t) => {
-    await assertAriaRoles(t, 'ex1', 'slider', '4', 'g');
+    await assertAriaRoles(t, 'ex1', 'slider', '2', 'g');
   }
 );
 
@@ -77,10 +70,6 @@ ariaTest(
       t,
       ex.hotelSliderSelector
     );
-    const flightSliders = await t.context.queryElements(
-      t,
-      ex.flightSliderSelector
-    );
 
     t.is(
       await hotelSliders[0].getAttribute('aria-valuemax'),
@@ -94,19 +83,6 @@ ariaTest(
       'Value of "aria-valuemax" for second hotel slider on page load should be: ' +
         ex.hotelMax
     );
-    t.is(
-      await flightSliders[0].getAttribute('aria-valuemax'),
-      ex.flightDefaultValues[1],
-      'Value of "aria-valuemax" for first flight slider on page load should be: ' +
-        ex.flightDefaultValues[1]
-    );
-
-    t.is(
-      await flightSliders[1].getAttribute('aria-valuemax'),
-      ex.flightMax,
-      'Value of "aria-valuemax" for second flight slider on page load should be: ' +
-        ex.flightMax
-    );
   }
 );
 
@@ -118,10 +94,6 @@ ariaTest(
     const hotelSliders = await t.context.queryElements(
       t,
       ex.hotelSliderSelector
-    );
-    const flightSliders = await t.context.queryElements(
-      t,
-      ex.flightSliderSelector
     );
 
     t.is(
@@ -135,17 +107,6 @@ ariaTest(
       'Value of "aria-valuemin" for second hotel slider on page load should be: ' +
         ex.hotelDefaultValues[0]
     );
-    t.is(
-      await flightSliders[0].getAttribute('aria-valuemin'),
-      '0',
-      'Value of "aria-valuemin" for first flight slider on page load should be: "0"'
-    );
-    t.is(
-      await flightSliders[1].getAttribute('aria-valuemin'),
-      ex.flightDefaultValues[0],
-      'Value of "aria-valuemin" for second flight slider on page load should be: ' +
-        ex.flightDefaultValues[0]
-    );
   }
 );
 
@@ -157,10 +118,6 @@ ariaTest(
     const hotelSliders = await t.context.queryElements(
       t,
       ex.hotelSliderSelector
-    );
-    const flightSliders = await t.context.queryElements(
-      t,
-      ex.flightSliderSelector
     );
 
     t.is(
@@ -174,59 +131,6 @@ ariaTest(
       ex.hotelDefaultValues[1],
       'Value of "aria-valuenow" for second hotel slider on page load should be: ' +
         ex.hotelDefaultValues[1]
-    );
-    t.is(
-      await flightSliders[0].getAttribute('aria-valuenow'),
-      ex.flightDefaultValues[0],
-      'Value of "aria-valuenow" for first flight slider on page load should be: ' +
-        ex.flightDefaultValues[0]
-    );
-    t.is(
-      await flightSliders[1].getAttribute('aria-valuenow'),
-      ex.flightDefaultValues[1],
-      'Value of "aria-valuenow" for second flight slider on page load should be: ' +
-        ex.flightDefaultValues[1]
-    );
-  }
-);
-
-ariaTest(
-  '"aria-valuetext" reflects slider value',
-  exampleFile,
-  'aria-valuetext',
-  async (t) => {
-    const hotelSliders = await t.context.queryElements(
-      t,
-      ex.hotelSliderSelector
-    );
-    const flightSliders = await t.context.queryElements(
-      t,
-      ex.flightSliderSelector
-    );
-
-    t.is(
-      await hotelSliders[0].getAttribute('aria-valuetext'),
-      '$' + ex.hotelDefaultValues[0],
-      'Value of "aria-valuetext" for first hotel slider on page load should be: $' +
-        ex.hotelDefaultValues[0]
-    );
-    t.is(
-      await hotelSliders[1].getAttribute('aria-valuetext'),
-      '$' + ex.hotelDefaultValues[1],
-      'Value of "aria-valuetext" for second hotel slider on page load should be: $' +
-        ex.hotelDefaultValues[1]
-    );
-    t.is(
-      await flightSliders[0].getAttribute('aria-valuetext'),
-      '$' + ex.flightDefaultValues[0],
-      'Value of "aria-valuetext" for first flight slider on page load should be: $' +
-        ex.flightDefaultValues[0]
-    );
-    t.is(
-      await flightSliders[1].getAttribute('aria-valuetext'),
-      '$' + ex.flightDefaultValues[1],
-      'Value of "aria-valuetext" for second flight slider on page load should be: $' +
-        ex.flightDefaultValues[1]
     );
   }
 );
@@ -306,69 +210,6 @@ ariaTest(
       hotelLabels[1],
       'after END then one ARROW RIGHT to upper hotel slider'
     );
-
-    const flightSliders = await t.context.queryElements(
-      t,
-      ex.flightSliderSelector
-    );
-    const flightLabels = await t.context.queryElements(
-      t,
-      ex.flightLabelSelector
-    );
-
-    // Send 1 key to lower flight slider
-    await flightSliders[0].sendKeys(Key.ARROW_RIGHT);
-
-    await verifyAllValues(
-      t,
-      (parseInt(ex.flightDefaultValues[0]) + 1).toString(),
-      flightSliders[0],
-      'aria-valuenow',
-      flightSliders[1],
-      'aria-valuemin',
-      flightLabels[0],
-      'after one ARROW RIGHT to lower flight slider'
-    );
-
-    await flightSliders[0].sendKeys(Key.END, Key.ARROW_RIGHT);
-
-    await verifyAllValues(
-      t,
-      ex.flightDefaultValues[1],
-      flightSliders[0],
-      'aria-valuenow',
-      flightSliders[1],
-      'aria-valuemin',
-      flightLabels[0],
-      'after END then one ARROW RIGHT to lower flight slider'
-    );
-
-    // Send 1 key to lower upper slider
-    await flightSliders[1].sendKeys(Key.ARROW_RIGHT);
-
-    await verifyAllValues(
-      t,
-      (parseInt(ex.flightDefaultValues[1]) + 1).toString(),
-      flightSliders[0],
-      'aria-valuemax',
-      flightSliders[1],
-      'aria-valuenow',
-      flightLabels[1],
-      'after one ARROW RIGHT to lower flight slider'
-    );
-
-    await flightSliders[1].sendKeys(Key.END, Key.ARROW_RIGHT);
-
-    await verifyAllValues(
-      t,
-      ex.flightMax,
-      flightSliders[0],
-      'aria-valuemax',
-      flightSliders[1],
-      'aria-valuenow',
-      flightLabels[1],
-      'after END then one ARROW RIGHT to upper flight slider'
-    );
   }
 );
 
@@ -435,69 +276,6 @@ ariaTest(
       'aria-valuenow',
       hotelLabels[1],
       'after END then one ARROW UP to upper hotel slider'
-    );
-
-    const flightSliders = await t.context.queryElements(
-      t,
-      ex.flightSliderSelector
-    );
-    const flightLabels = await t.context.queryElements(
-      t,
-      ex.flightLabelSelector
-    );
-
-    // Send 1 key to lower flight slider
-    await flightSliders[0].sendKeys(Key.ARROW_UP);
-
-    await verifyAllValues(
-      t,
-      (parseInt(ex.flightDefaultValues[0]) + 1).toString(),
-      flightSliders[0],
-      'aria-valuenow',
-      flightSliders[1],
-      'aria-valuemin',
-      flightLabels[0],
-      'after one ARROW UP to lower flight slider'
-    );
-
-    await flightSliders[0].sendKeys(Key.END, Key.ARROW_UP);
-
-    await verifyAllValues(
-      t,
-      ex.flightDefaultValues[1],
-      flightSliders[0],
-      'aria-valuenow',
-      flightSliders[1],
-      'aria-valuemin',
-      flightLabels[0],
-      'after END then one ARROW UP to lower flight slider'
-    );
-
-    // Send 1 key to lower upper slider
-    await flightSliders[1].sendKeys(Key.ARROW_UP);
-
-    await verifyAllValues(
-      t,
-      (parseInt(ex.flightDefaultValues[1]) + 1).toString(),
-      flightSliders[0],
-      'aria-valuemax',
-      flightSliders[1],
-      'aria-valuenow',
-      flightLabels[1],
-      'after one ARROW UP to lower flight slider'
-    );
-
-    await flightSliders[1].sendKeys(Key.END, Key.ARROW_UP);
-
-    await verifyAllValues(
-      t,
-      ex.flightMax,
-      flightSliders[0],
-      'aria-valuemax',
-      flightSliders[1],
-      'aria-valuenow',
-      flightLabels[1],
-      'after END then one ARROW UP to upper flight slider'
     );
   }
 );
@@ -566,69 +344,6 @@ ariaTest(
       hotelLabels[1],
       'after END then one PAGE UP to upper hotel slider'
     );
-
-    const flightSliders = await t.context.queryElements(
-      t,
-      ex.flightSliderSelector
-    );
-    const flightLabels = await t.context.queryElements(
-      t,
-      ex.flightLabelSelector
-    );
-
-    // Send 1 key to lower flight slider
-    await flightSliders[0].sendKeys(Key.PAGE_UP);
-
-    await verifyAllValues(
-      t,
-      (parseInt(ex.flightDefaultValues[0]) + 10).toString(),
-      flightSliders[0],
-      'aria-valuenow',
-      flightSliders[1],
-      'aria-valuemin',
-      flightLabels[0],
-      'after one PAGE UP to lower flight slider'
-    );
-
-    await flightSliders[0].sendKeys(Key.END, Key.PAGE_UP);
-
-    await verifyAllValues(
-      t,
-      ex.flightDefaultValues[1],
-      flightSliders[0],
-      'aria-valuenow',
-      flightSliders[1],
-      'aria-valuemin',
-      flightLabels[0],
-      'after END then one PAGE UP to lower flight slider'
-    );
-
-    // Send 1 key to lower upper slider
-    await flightSliders[1].sendKeys(Key.PAGE_UP);
-
-    await verifyAllValues(
-      t,
-      (parseInt(ex.flightDefaultValues[1]) + 10).toString(),
-      flightSliders[0],
-      'aria-valuemax',
-      flightSliders[1],
-      'aria-valuenow',
-      flightLabels[1],
-      'after one PAGE UP to upper flight slider'
-    );
-
-    await flightSliders[1].sendKeys(Key.END, Key.PAGE_UP);
-
-    await verifyAllValues(
-      t,
-      ex.flightMax,
-      flightSliders[0],
-      'aria-valuemax',
-      flightSliders[1],
-      'aria-valuenow',
-      flightLabels[1],
-      'after END then one PAGE UP to upper flight slider'
-    );
   }
 );
 
@@ -695,69 +410,6 @@ ariaTest(
       'aria-valuenow',
       hotelLabels[1],
       'after HOME then one ARROW LEFT to upper hotel slider'
-    );
-
-    const flightSliders = await t.context.queryElements(
-      t,
-      ex.flightSliderSelector
-    );
-    const flightLabels = await t.context.queryElements(
-      t,
-      ex.flightLabelSelector
-    );
-
-    // Send 1 key to lower flight slider
-    await flightSliders[0].sendKeys(Key.ARROW_LEFT);
-
-    await verifyAllValues(
-      t,
-      (parseInt(ex.flightDefaultValues[0]) - 1).toString(),
-      flightSliders[0],
-      'aria-valuenow',
-      flightSliders[1],
-      'aria-valuemin',
-      flightLabels[0],
-      'after one ARROW LEFT to lower flight slider'
-    );
-
-    await flightSliders[0].sendKeys(Key.HOME, Key.ARROW_LEFT);
-
-    await verifyAllValues(
-      t,
-      ex.flightMin,
-      flightSliders[0],
-      'aria-valuenow',
-      flightSliders[1],
-      'aria-valuemin',
-      flightLabels[0],
-      'after HOME then one ARROW LEFT to lower flight slider'
-    );
-
-    // Send 1 key to lower upper slider
-    await flightSliders[1].sendKeys(Key.ARROW_LEFT);
-
-    await verifyAllValues(
-      t,
-      (parseInt(ex.flightDefaultValues[1]) - 1).toString(),
-      flightSliders[0],
-      'aria-valuemax',
-      flightSliders[1],
-      'aria-valuenow',
-      flightLabels[1],
-      'after one ARROW LEFT to upper flight slider'
-    );
-
-    await flightSliders[1].sendKeys(Key.HOME, Key.ARROW_LEFT);
-
-    await verifyAllValues(
-      t,
-      ex.flightMin,
-      flightSliders[0],
-      'aria-valuemax',
-      flightSliders[1],
-      'aria-valuenow',
-      flightLabels[1],
-      'after HOME then one ARROW LEFT to upper flight slider'
     );
   }
 );
@@ -826,69 +478,6 @@ ariaTest(
       hotelLabels[1],
       'after HOME then one ARROW DOWN to upper hotel slider'
     );
-
-    const flightSliders = await t.context.queryElements(
-      t,
-      ex.flightSliderSelector
-    );
-    const flightLabels = await t.context.queryElements(
-      t,
-      ex.flightLabelSelector
-    );
-
-    // Send 1 key to lower flight slider
-    await flightSliders[0].sendKeys(Key.ARROW_DOWN);
-
-    await verifyAllValues(
-      t,
-      (parseInt(ex.flightDefaultValues[0]) - 1).toString(),
-      flightSliders[0],
-      'aria-valuenow',
-      flightSliders[1],
-      'aria-valuemin',
-      flightLabels[0],
-      'after one ARROW DOWN to lower flight slider'
-    );
-
-    await flightSliders[0].sendKeys(Key.HOME, Key.ARROW_DOWN);
-
-    await verifyAllValues(
-      t,
-      ex.flightMin,
-      flightSliders[0],
-      'aria-valuenow',
-      flightSliders[1],
-      'aria-valuemin',
-      flightLabels[0],
-      'after HOME then one ARROW DOWN to lower flight slider'
-    );
-
-    // Send 1 key to lower upper slider
-    await flightSliders[1].sendKeys(Key.ARROW_DOWN);
-
-    await verifyAllValues(
-      t,
-      (parseInt(ex.flightDefaultValues[1]) - 1).toString(),
-      flightSliders[0],
-      'aria-valuemax',
-      flightSliders[1],
-      'aria-valuenow',
-      flightLabels[1],
-      'after one ARROW DOWN to upper flight slider'
-    );
-
-    await flightSliders[1].sendKeys(Key.HOME, Key.ARROW_DOWN);
-
-    await verifyAllValues(
-      t,
-      ex.flightMin,
-      flightSliders[0],
-      'aria-valuemax',
-      flightSliders[1],
-      'aria-valuenow',
-      flightLabels[1],
-      'after HOME then one ARROW DOWN to upper flight slider'
-    );
   }
 );
 
@@ -956,69 +545,6 @@ ariaTest(
       hotelLabels[1],
       'after HOME then one PAGE DOWN to upper hotel slider'
     );
-
-    const flightSliders = await t.context.queryElements(
-      t,
-      ex.flightSliderSelector
-    );
-    const flightLabels = await t.context.queryElements(
-      t,
-      ex.flightLabelSelector
-    );
-
-    // Send 1 key to lower flight slider
-    await flightSliders[0].sendKeys(Key.PAGE_DOWN);
-
-    await verifyAllValues(
-      t,
-      (parseInt(ex.flightDefaultValues[0]) - 10).toString(),
-      flightSliders[0],
-      'aria-valuenow',
-      flightSliders[1],
-      'aria-valuemin',
-      flightLabels[0],
-      'after one PAGE DOWN to lower flight slider'
-    );
-
-    await flightSliders[0].sendKeys(Key.HOME, Key.PAGE_DOWN);
-
-    await verifyAllValues(
-      t,
-      ex.flightMin,
-      flightSliders[0],
-      'aria-valuenow',
-      flightSliders[1],
-      'aria-valuemin',
-      flightLabels[0],
-      'after HOME then one PAGE DOWN to lower flight slider'
-    );
-
-    // Send 1 key to lower upper slider
-    await flightSliders[1].sendKeys(Key.PAGE_DOWN);
-
-    await verifyAllValues(
-      t,
-      (parseInt(ex.flightDefaultValues[1]) - 10).toString(),
-      flightSliders[0],
-      'aria-valuemax',
-      flightSliders[1],
-      'aria-valuenow',
-      flightLabels[1],
-      'after one PAGE DOWN to lower flight slider'
-    );
-
-    await flightSliders[1].sendKeys(Key.HOME, Key.PAGE_DOWN);
-
-    await verifyAllValues(
-      t,
-      ex.flightMin,
-      flightSliders[0],
-      'aria-valuemax',
-      flightSliders[1],
-      'aria-valuenow',
-      flightLabels[1],
-      'after HOME then one PAGE DOWN to upper flight slider'
-    );
   }
 );
 
@@ -1053,40 +579,6 @@ ariaTest('home sends value to minimum', exampleFile, 'key-home', async (t) => {
     hotelLabels[0],
     'after one HOME to lower hotel slider'
   );
-
-  const flightSliders = await t.context.queryElements(
-    t,
-    ex.flightSliderSelector
-  );
-  const flightLabels = await t.context.queryElements(t, ex.flightLabelSelector);
-
-  // Send 1 key to upper flight slider
-  await flightSliders[1].sendKeys(Key.HOME);
-
-  await verifyAllValues(
-    t,
-    ex.flightDefaultValues[0],
-    flightSliders[0],
-    'aria-valuemax',
-    flightSliders[1],
-    'aria-valuenow',
-    flightLabels[1],
-    'after one HOME to upper flight slider'
-  );
-
-  // Send 1 key to upper flight slider
-  await flightSliders[0].sendKeys(Key.HOME);
-
-  await verifyAllValues(
-    t,
-    ex.flightMin,
-    flightSliders[0],
-    'aria-valuenow',
-    flightSliders[1],
-    'aria-valuemin',
-    flightLabels[0],
-    'after one HOME to lower flight slider'
-  );
 });
 
 ariaTest('end sends value to minimum', exampleFile, 'key-end', async (t) => {
@@ -1117,37 +609,5 @@ ariaTest('end sends value to minimum', exampleFile, 'key-end', async (t) => {
     'aria-valuenow',
     hotelLabels[1],
     'after one END to upper hotel slider'
-  );
-
-  const flightSliders = await t.context.queryElements(
-    t,
-    ex.flightSliderSelector
-  );
-  const flightLabels = await t.context.queryElements(t, ex.flightLabelSelector);
-
-  await flightSliders[0].sendKeys(Key.END);
-
-  await verifyAllValues(
-    t,
-    ex.flightDefaultValues[1],
-    flightSliders[0],
-    'aria-valuemax',
-    flightSliders[1],
-    'aria-valuenow',
-    flightLabels[0],
-    'after one END to lower flight slider'
-  );
-
-  await flightSliders[1].sendKeys(Key.END);
-
-  await verifyAllValues(
-    t,
-    ex.flightMax,
-    flightSliders[0],
-    'aria-valuemax',
-    flightSliders[1],
-    'aria-valuenow',
-    flightLabels[1],
-    'after one END to upper flight slider'
   );
 });

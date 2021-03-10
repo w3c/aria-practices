@@ -31,22 +31,17 @@
       <p>The below example section includes a slider for setting a price range that demonstrates the
         <a href="../../#slidertwothumb">multi-thumb slider design pattern.</a>
         Users set a price range by moving the arrows (thumbs).
-        Each slider has two thumbs: one for the minimum price and one for the maximum price.
-        The price labels at the ends of the slider update as their corresponding thumbs are moved.
+        The slider has two thumbs: one for the minimum price and one for the maximum price.
       </p>
       <p>Similar examples include: </p>
       <ul>
         <li>
-          <a href="slider-1.html">Horizontal Slider Examples</a>:
-          Demonstrates using three horizontally aligned single-thumb sliders to make a color picker.
+          <a href="slider-color-viewer.html">Horizontal Slider Examples</a>:
+          Demonstrates using three horizontally aligned single-thumb sliders to make a color viewer.
         </li>
         <li>
-          <a href="slider-2.html">Slider Examples with aria-orientation and aria-valuetext</a>:
-          Three thermostat control single-thumb sliders that demonstrate using aria-orientation and aria-valuetext.
-        </li>
-        <li>
-          <a href="slider-multithumb-mobile.html">Slider Examples for setting a range of values with mobile support</a>:
-          Two multithumb sliders for a setting a hotel and flight price range, with input boxes to support mobile browsers.
+          <a href="slider-thermostat.html">Slider Examples with aria-orientation and aria-valuetext</a>:
+          A thermostat control with two single-thumb sliders that demonstrate using aria-orientation and aria-valuetext.
         </li>
       </ul>
       <section>
@@ -55,7 +50,7 @@
         </div>
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div id="ex1">
-          <h3>Hotel Price Range</h3>
+          <h3>Hotel Price Range (in <abbr title="United States Dollars">USD</abbr>)</h3>
           <div class="slider-multithumb">
             <svg class="slider-group"  width="360" height="60">
               <g class="rail">
@@ -69,7 +64,6 @@
                 tabindex="0"
                 aria-valuemin="0"
                 aria-valuenow="100"
-                aria-valuetext="$100"
                 aria-valuemax="250"
                 aria-label="Hotel Minimum Price">
                 <text class="value">0</text>
@@ -81,7 +75,6 @@
                 tabindex="0"
                 aria-valuemin="100"
                 aria-valuenow="250"
-                aria-valuetext="$250"
                 aria-valuemax="400"
                 aria-label="Hotel Maximum Price">
                 <text class="value">0</text>
@@ -90,41 +83,6 @@
               </g>
             </svg>
            </div>
-          <h3>Flight Price Range</h3>
-          <div class="slider-multithumb">
-            <svg class="slider-group">
-              <g class="rail">
-                <rect height="0" width="0"/>
-              </g>
-              <g class="range">
-                <rect height="0" width="0"/>
-              </g>
-              <g class="minimum"
-                role="slider"
-                tabindex="0"
-                aria-valuemin="0"
-                aria-valuenow="100"
-                aria-valuetext="$100"
-                aria-valuemax="250"
-                aria-label="Flight Minimum Price">
-                <text class="value">0</text>
-                <rect class="focus-ring" height="0" width="0"/>
-                <polygon class="thumb" points="0,0 0,0"/>
-              </g>
-              <g class="maximum"
-                role="slider"
-                tabindex="0"
-                aria-valuemin="100"
-                aria-valuenow="250"
-                aria-valuetext="$250"
-                aria-valuemax="1000"
-                aria-label="Flight Maximum Price">
-                <text class="value">0</text>
-                <rect class="focus-ring" height="0" width="0"/>
-                <polygon class="thumb" points="0,0 0,0"/>
-              </g>
-             </svg>
-          </div>
         </div>
         <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
       </section>
@@ -255,16 +213,6 @@
                 <code>img</code>
               </td>
               <td>Indicates the current value of the slider.</td>
-            </tr>
-            <tr data-test-id="aria-valuetext">
-              <td></td>
-              <th scope="row">
-                <code>aria-valuetext=<q>DOLLAR AMOUNT</q></code>
-              </th>
-              <td>
-                <code>img</code>
-              </td>
-              <td>Indicates the current value of the slider in dollars using the <q>$</q> character as a prefix.</td>
             </tr>
             <tr data-test-id="aria-label">
               <td></td>

@@ -171,7 +171,8 @@ class SliderMultithumb {
       pos,
       x,
       points = '',
-      width;
+      width,
+      dollarValue;
 
     if (this.isMinSlider(sliderNode)) {
       valueMin = this.getValueMin(this.minSliderNode);
@@ -183,9 +184,8 @@ class SliderMultithumb {
 
     value = Math.min(Math.max(value, valueMin), valueMax);
 
-    var dollarValue = '$' + value;
     sliderNode.setAttribute('aria-valuenow', value);
-    sliderNode.setAttribute('aria-valuetext', dollarValue);
+    dollarValue = '$' + value;
 
     pos = this.railX;
     pos += Math.round(
