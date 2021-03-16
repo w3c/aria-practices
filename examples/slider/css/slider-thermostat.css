@@ -16,6 +16,7 @@
 
 .slider-thermostat-vertical,
 .slider-thermostat-text {
+  color: black;
   margin-top: 1em;
   padding: 6px;
   width: 12em;
@@ -42,6 +43,7 @@
   font-weight: bold;
   font-size: 200%;
   font-family: sans-serif;
+  fill: currentColor;
 }
 
 .slider-thermostat-vertical .slider-group .value {
@@ -77,7 +79,7 @@
 }
 
 .slider-thermostat-text .value-label text {
-  color: currentColor;
+  fill: currentColor;
   font-weight: bold;
 }
 
@@ -87,8 +89,8 @@
   stroke: currentColor;
 }
 
-.slider-thermostat-vertical.focus .slider-group,
-.slider-thermostat-text.focus .slider-group {
+.slider-thermostat-vertical.focus,
+.slider-thermostat-text.focus {
   color: #005a9c;
 }
 
