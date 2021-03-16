@@ -359,8 +359,6 @@ class SliderThermostatText {
 
       this.textValues.push(valueLabelNode.getAttribute('data-valuetext'));
       valueLabelNode.addEventListener('click', this.onLabelClick.bind(this));
-      valueLabelNode.addEventListener('focus', this.onSliderFocus.bind(this));
-      valueLabelNode.addEventListener('blur', this.onSliderBlur.bind(this));
 
       this.positions.push(position);
       position += deltaPosition;
