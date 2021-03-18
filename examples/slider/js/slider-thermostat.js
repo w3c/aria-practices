@@ -348,10 +348,7 @@ class SliderThermostatText {
       rectNode.setAttribute('x', x);
       rectNode.setAttribute('y', y);
 
-      x =
-        x +
-        this.valueLabelPadding +
-        (maxTextWidth - textNode.getBoundingClientRect().width) / 2;
+      x = x + this.valueLabelPadding + (maxTextWidth - textNode.getBoundingClientRect().width) / 2;
       y = y + textHeight + this.valueLabelPadding / 2;
 
       textNode.setAttribute('x', x);
@@ -556,22 +553,46 @@ class SliderThermostatText {
   }
 }
 
-// Initialize Vertical Slider widgets on the page
-window.addEventListener('load', function () {
-  var slidersVertical = document.querySelectorAll(
-    '.slider-thermostat-vertical'
-  );
+class Thermostat {
+  constructor(domNode) {
+    this.thermostatNode = domNode;
+    this.h3Node = domNode.querySelector('h3');
+    this.svgNodes = domNode.querySelectorAll('svg');
 
-  for (let i = 0; i < slidersVertical.length; i++) {
-    new SliderThermostatVertical(slidersVertical[i]);
+    let slidersVertical = domNode.querySelectorAll(
+      '.slider-thermostat.vertical'
+    );
+
+    for (let i = 0; i < slidersVertical.length; i++) {
+      new SliderThermostatVertical(slidersVertical[i]);
+    }
+
+    let slidersText = domNode.querySelectorAll(
+      '.slider-thermostat.text'
+    );
+
+    for (let i = 0; i < slidersText.length; i++) {
+      new SliderThermostatText(slidersText[i]);
+    }
+
+    this.updateSVGCurrentColorValue();
   }
-});
 
-// Initialize Text Slider widgets on the page
+  updateSVGCurrentColorValue() {
+    // Get current computed color of the text for the H3 element
+    let color =  window.getComputedStyle(this.h3Node).getPropertyValue('color');
+
+    // set the color used by the currentColor value in the SVG
+    for (let i = 0; i < this.svgNodes.length; i++) {
+      this.svgNodes[i].setAttribute('color', color);
+    }
+  }
+}
+
 window.addEventListener('load', function () {
-  var slidersText = document.querySelectorAll('.slider-thermostat-text');
+  var thermostats = document.querySelectorAll('.thermostat');
 
-  for (let i = 0; i < slidersText.length; i++) {
-    new SliderThermostatText(slidersText[i]);
+  for (let i = 0; i < thermostats.length; i++) {
+    new Thermostat(thermostats[i]);
   }
 });

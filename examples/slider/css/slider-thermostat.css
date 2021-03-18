@@ -1,6 +1,6 @@
 /* CSS Document */
 
-.slider-thermostat h3 {
+.thermostat h3 {
   color: black;
   font-weight: bold;
   font-size: 150%;
@@ -14,108 +14,97 @@
   touch-action: pan-y;
 }
 
-.slider-thermostat-vertical,
-.slider-thermostat-text {
-  color: black;
+.slider-thermostat {
   margin-top: 1em;
   padding: 6px;
   width: 12em;
+  color: black;
 }
 
-.slider-thermostat-text {
+.slider-thermostat.text {
   width: 14em;
 }
 
-.slider-thermostat-vertical label,
-.slider-thermostat-vertical .label,
-.slider-thermostat-text .label {
+.slider-thermostat .label {
   font-weight: bold;
+  fill: currentColor;
+  color: currentColor;
 }
 
-.slider-thermostat-vertical .value {
+.slider-thermostat .value {
   position: relative;
   top: 20px;
   height: 1.5em;
+  font-size: 80%;
+  fill: currentColor;
 }
 
-.slider-thermostat-vertical .temp-value {
+.slider-thermostat.vertical .temp-value {
   padding-left: 24px;
   font-weight: bold;
   font-size: 200%;
   font-family: sans-serif;
   fill: currentColor;
+  color: currentColor;
 }
 
-.slider-thermostat-vertical .slider-group .value {
-  font-size: 80%;
-  fill: currentColor;
-}
-
-.slider-thermostat-vertical .slider-group .rail,
-.slider-thermostat-text .slider-group .rail {
+.slider-thermostat .rail {
   stroke: currentColor;
   stroke-width: 2px;
   fill: currentColor;
   fill-opacity: 25%;
 }
 
-.slider-thermostat-vertical .slider-group .thumb,
-.slider-thermostat-text .slider-group .thumb {
+.slider-thermostat .thumb {
   stroke-width: 0;
   fill: currentColor;
 }
 
-.slider-thermostat-vertical .slider-group .focus,
-.slider-thermostat-text .slider-group .focus {
+.slider-thermostat .focus {
   stroke-width: 3px;
   stroke: transparent;
   fill: transparent;
 }
 
-.slider-thermostat-text .value-label rect {
+.slider-thermostat.text .value-label rect {
   fill: transparent;
   stroke-width: 2px;
   stroke: transparent;
 }
 
-.slider-thermostat-text .value-label text {
+.slider-thermostat.text .value-label text {
   fill: currentColor;
   font-weight: bold;
 }
 
 /* Focus and hover styling */
 
-.slider-thermostat-text .value-label:hover rect {
+.slider-thermostat.text .value-label:hover rect {
   stroke: currentColor;
 }
 
-.slider-thermostat-vertical.focus,
-.slider-thermostat-text.focus {
+.slider-thermostat.focus [role="slider"] {
   color: #005a9c;
 }
 
-.slider-thermostat-vertical.focus .slider-group .rail,
-.slider-thermostat-text.focus .slider-group .rail {
+.slider-thermostat.focus [role="slider"] .rail {
   stroke: currentColor;
   fill: #adddff;
 }
 
-.slider-thermostat-vertical [role="slider"]:focus,
-.slider-thermostat-text [role="slider"]:focus {
+.slider-thermostat [role="slider"]:focus {
   outline: none;
 }
 
-.slider-thermostat-vertical [role="slider"]:focus .focus,
-.slider-thermostat-text [role="slider"]:focus .focus {
+.slider-thermostat [role="slider"]:focus .focus {
   stroke: currentColor;
 }
 
-.slider-thermostat-vertical [role="slider"]:focus .thumb,
-.slider-thermostat-text [role="slider"]:focus .thumb {
+.slider-thermostat [role="slider"]:focus .thumb {
   fill: currentColor;
 }
 
-.slider-thermostat-vertical [role="slider"]:focus .value {
+.slider-thermostat.vertical [role="slider"]:focus .value {
   font-weight: bold;
   fill: currentColor;
 }
