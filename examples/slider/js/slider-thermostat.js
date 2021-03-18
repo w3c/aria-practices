@@ -348,7 +348,10 @@ class SliderThermostatText {
       rectNode.setAttribute('x', x);
       rectNode.setAttribute('y', y);
 
-      x = x + this.valueLabelPadding + (maxTextWidth - textNode.getBoundingClientRect().width) / 2;
+      x =
+        x +
+        this.valueLabelPadding +
+        (maxTextWidth - textNode.getBoundingClientRect().width) / 2;
       y = y + textHeight + this.valueLabelPadding / 2;
 
       textNode.setAttribute('x', x);
@@ -580,7 +583,7 @@ class Thermostat {
 
   updateSVGCurrentColorValue() {
     // Get current computed color of the text for the H3 element
-    let color =  window.getComputedStyle(this.h3Node).getPropertyValue('color');
+    let color = window.getComputedStyle(this.h3Node).getPropertyValue('color');
 
     // set the color used by the currentColor value in the SVG
     for (let i = 0; i < this.svgNodes.length; i++) {
