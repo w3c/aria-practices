@@ -565,14 +565,11 @@ class Thermostat {
     let slidersVertical = domNode.querySelectorAll(
       '.slider-thermostat.vertical'
     );
-
     for (let i = 0; i < slidersVertical.length; i++) {
       new SliderThermostatVertical(slidersVertical[i]);
     }
 
-    let slidersText = domNode.querySelectorAll(
-      '.slider-thermostat.text'
-    );
+    let slidersText = domNode.querySelectorAll('.slider-thermostat.text');
 
     for (let i = 0; i < slidersText.length; i++) {
       new SliderThermostatText(slidersText[i]);
