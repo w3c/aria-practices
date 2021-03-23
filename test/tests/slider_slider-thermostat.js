@@ -51,14 +51,9 @@ ariaTest(
   }
 );
 
-ariaTest(
-  'role="presentation" on SVG element',
-  exampleFile,
-  'svg-presentation',
-  async (t) => {
-    await assertAriaRoles(t, 'ex1', 'presentation', '2', 'svg');
-  }
-);
+ariaTest('role="none" on SVG element', exampleFile, 'svg-none', async (t) => {
+  await assertAriaRoles(t, 'ex1', 'none', '2', 'svg');
+});
 
 ariaTest(
   '"aria-labelledby" set on group',
