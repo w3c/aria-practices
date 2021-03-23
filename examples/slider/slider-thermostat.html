@@ -55,7 +55,7 @@
           <div class="slider-thermostat vertical">
             <div id="id-temp-label" class="label">Temperature</div>
 
-            <svg class="slider-group"  width="145" height="360">
+            <svg role="none" class="slider-group"  width="145" height="360">
               <text class="temp-value label" x="28" y="35" >25°C</text>
               <rect class="rail" x="60" y="47" width="8" height="300" rx="5"  aria-hidden="true"/>
               <g role="slider"
@@ -78,7 +78,7 @@
 
           <div class="slider-thermostat text">
             <div id="id-fan-label" class="label">Fan</div>
-            <svg class="slider-group" width="230" height="105">
+            <svg role="none" class="slider-group" width="230" height="105">
               <rect class="rail" x="35" y="35" width="160" height="8" rx="5" aria-hidden="true"/>
               <g id="id-fan"
                 role="slider"
@@ -96,6 +96,7 @@
               </g>
               <!-- Button positions set by Javascript calculations  -->
               <g class="value-label label"
+                aria-hidden="true"
                 data-value="0"
                 data-valuetext="off">
                 <rect
@@ -107,6 +108,7 @@
                   <text x="0" y="0">Off</text>
               </g>
               <g  class="value-label label"
+                aria-hidden="true"
                 data-value="1"
                 data-valuetext="low">
                 <rect
@@ -117,7 +119,8 @@
                   rx="5" />
                 <text x="0" y="0">Low</text>
               </g>
-              <g  class="value-label"
+              <g  class="value-label label"
+                aria-hidden="true"
                 data-value="2"
                 data-valuetext="medium">
                 <rect
@@ -129,6 +132,7 @@
                 <text x="0" y="0">Med</text>
               </g>
               <g  class="value-label label"
+                aria-hidden="true"
                 data-value="3"
                 data-valuetext="high">
                 <rect
@@ -281,6 +285,18 @@
           </tr>
         </thead>
         <tbody>
+          <tr data-test-id="svg-none">
+            <th scope="row">
+              <code>none</code>
+            </th>
+            <td></td>
+            <td>
+              <code>svg</code>
+            </td>
+            <td>
+              The use of the <code>none</code> role on the SVG element ensures assistive technologies do not interpret the SVG element as an image or some other role.
+            </td>
+          </tr>
           <tr data-test-id="slider-role">
             <th scope="row">
               <code>slider</code>
@@ -378,7 +394,7 @@
             </td>
             <td>Refers to the element containing the name of the slider.</td>
           </tr>
-          <tr data-test-id="aria-hidden">
+          <tr data-test-id="aria-hidden-rect">
             <td></td>
             <th scope="row">
               <code>aria-hidden=<q>true</q></code>
@@ -387,6 +403,16 @@
               <code>rect</code>
             </td>
             <td>Removes the SVG <code>rect</code> element from the accessibility tree, since some screen readers will describe it as an image separate from the slider.</td>
+          </tr>
+          <tr data-test-id="aria-hidden-g">
+            <td></td>
+            <th scope="row">
+              <code>aria-hidden=<q>true</q></code>
+            </th>
+            <td>
+              <code>g</code>
+            </td>
+            <td>Removes the SVG <code>g</code> elements used for labeling the fan slider from the accessibility tree, since some screen readers will describe them as an images or text separate from the slider.</td>
           </tr>
         </tbody>
       </table>

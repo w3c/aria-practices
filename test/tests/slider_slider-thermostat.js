@@ -8,6 +8,7 @@ const exampleFile = 'slider/slider-thermostat.html';
 
 const ex = {
   railRects: '#ex1 rect.rail',
+  labelG: '#ex1 g.value-label',
   sliderSelector: '#ex1 [role="slider"]',
   groupSelector: '#ex1 [role="group"]',
   tempSelector: '#id-temp-slider',
@@ -51,6 +52,15 @@ ariaTest(
 );
 
 ariaTest(
+  'role="none" on SVG element',
+  exampleFile,
+  'svg-none',
+  async (t) => {
+    await assertAriaRoles(t, 'ex1', 'none', '2', 'svg');
+  }
+);
+
+ariaTest(
   '"aria-labelledby" set on group',
   exampleFile,
   'group-aria-labelledby',
@@ -62,9 +72,18 @@ ariaTest(
 ariaTest(
   'SVG rects used for the rail have aria-hidden',
   exampleFile,
-  'aria-hidden',
+  'aria-hidden-rect',
   async (t) => {
     await assertAttributeValues(t, ex.railRects, 'aria-hidden', 'true');
+  }
+);
+
+ariaTest(
+  'SVG g elements used for labels have aria-hidden',
+  exampleFile,
+  'aria-hidden-g',
+  async (t) => {
+    await assertAttributeValues(t, ex.labelG, 'aria-hidden', 'true');
   }
 );
 
