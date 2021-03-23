@@ -79,11 +79,6 @@
   color: #005a9c;
 }
 
-.slider-thermostat.focus [role="slider"] .rail {
-  stroke: currentColor;
-  fill: #adddff;
-}
-
 .slider-thermostat [role="slider"]:focus {
   outline: none;
 }

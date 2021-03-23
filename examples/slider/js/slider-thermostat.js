@@ -562,9 +562,11 @@ class Thermostat {
     this.h3Node = domNode.querySelector('h3');
     this.svgNodes = domNode.querySelectorAll('svg');
 
-    let sliderTempature = domNode.querySelector('.slider-thermostat.vertical');
-    if (sliderTempature) {
-      new SliderThermostatVertical(sliderTempature);
+    let sliderTemperature = domNode.querySelector(
+      '.slider-thermostat.vertical'
+    );
+    if (sliderTemperature) {
+      new SliderThermostatVertical(sliderTemperature);
     }
 
     let sliderFan = domNode.querySelector('.slider-thermostat.text');
