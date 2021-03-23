@@ -14,6 +14,7 @@ const ex = {
   optionsSelector: '#ex1 [role="option"]',
   buttonSelector: '#ex1 button',
   numAOptions: 5,
+  exampleHeadingSelector: '.example-header',
 };
 
 const waitForFocusChange = async (t, textboxSelector, originalFocus) => {
@@ -846,6 +847,92 @@ ariaTest(
         .getAttribute('value'),
       'a',
       'In listbox key press "ESCAPE" should result in first option in textbox'
+    );
+  }
+);
+
+ariaTest(
+  'Clicking outside of textbox and listbox when focus is on listbox closes listbox',
+  exampleFile,
+  'test-additional-behavior',
+  async (t) => {
+    // Send key "a" to open listbox then key "ARROW_DOWN" to put the focus on the listbox
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys('a', Key.ARROW_DOWN);
+
+    // click outside the listbox
+    await t.context.session
+      .findElement(By.css(ex.exampleHeadingSelector))
+      .click();
+
+    await t.context.session.wait(
+      async function () {
+        let listbox = await t.context.session.findElement(
+          By.css(ex.listboxSelector)
+        );
+        return !(await listbox.isDisplayed());
+      },
+      t.context.waitTime,
+      'Error waiting for listbox to close after outside click'
+    );
+
+    // Confirm the listbox is closed and the textbox is cleared
+    await assertAttributeValues(
+      t,
+      ex.textboxSelector,
+      'aria-expanded',
+      'false'
+    );
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.textboxSelector))
+        .getAttribute('value'),
+      'a',
+      'Click outside of a textbox will close the textbox without selecting the highlighted value'
+    );
+  }
+);
+
+ariaTest(
+  'Clicking outside of textbox and listbox when focus is on textbox closes listbox',
+  exampleFile,
+  'test-additional-behavior',
+  async (t) => {
+    // Send key "a" to open listbox to put focus on textbox
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys('a');
+
+    // click outside the listbox
+    await t.context.session
+      .findElement(By.css(ex.exampleHeadingSelector))
+      .click();
+
+    await t.context.session.wait(
+      async function () {
+        let listbox = await t.context.session.findElement(
+          By.css(ex.listboxSelector)
+        );
+        return !(await listbox.isDisplayed());
+      },
+      t.context.waitTime,
+      'Error waiting for listbox to close after outside click'
+    );
+
+    // Confirm the listbox is closed and the textbox is cleared
+    await assertAttributeValues(
+      t,
+      ex.textboxSelector,
+      'aria-expanded',
+      'false'
+    );
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.textboxSelector))
+        .getAttribute('value'),
+      'a',
+      'Click outside of a textbox will close the textbox without selecting the highlighted value'
     );
   }
 );

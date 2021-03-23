@@ -4,13 +4,15 @@ const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaRoles = require('../util/assertAriaRoles');
 
-const exampleFile = 'slider/slider-1.html';
+const exampleFile = 'slider/slider-color-viewer.html';
 
 const ex = {
+  groupSelector: '#ex1 [role="group"]',
   sliderSelector: '#ex1 [role="slider"]',
-  hexTextInput: '#idColorValueHex',
-  rgbTextInput: '#idColorValueRGB',
-  colorBox: '#idColorBox',
+  svgSelector: '#ex1 [role="slider"] svg',
+  hexTextInput: '#ex1 .color-info .color-value-hex',
+  rgbTextInput: '#ex1 .color-info .color-value-rgb',
+  colorBox: '#ex1 .color-info .color-box',
 };
 
 const testDisplayMatchesValue = async function (t, rgbString) {
@@ -72,7 +74,42 @@ const sendAllSlidersToEnd = async function (t) {
   }
 };
 
+const sendAllSlidersToBeginning = async function (t) {
+  const sliders = await t.context.queryElements(t, ex.sliderSelector);
+
+  for (let slider of sliders) {
+    await slider.sendKeys(Key.HOME);
+  }
+};
+
 // Attributes
+
+ariaTest(
+  '"aria-hidden" set to "true" on SVG elements',
+  exampleFile,
+  'svg-aria-hidden',
+  async (t) => {
+    await assertAttributeValues(t, ex.svgSelector, 'aria-hidden', 'true');
+  }
+);
+
+ariaTest(
+  'role="group" on div element',
+  exampleFile,
+  'group-role',
+  async (t) => {
+    await assertAriaRoles(t, 'ex1', 'group', '1', 'div');
+  }
+);
+
+ariaTest(
+  '"aria-labelledby" set on group',
+  exampleFile,
+  'aria-labelledby',
+  async (t) => {
+    await assertAriaLabelledby(t, ex.groupSelector);
+  }
+);
 
 ariaTest(
   'role="slider" on div element',
@@ -115,7 +152,7 @@ ariaTest(
   exampleFile,
   'aria-valuenow',
   async (t) => {
-    await assertAttributeValues(t, ex.sliderSelector, 'aria-valuenow', '0');
+    await assertAttributeValues(t, ex.sliderSelector, 'aria-valuenow', '128');
   }
 );
 
@@ -143,12 +180,12 @@ ariaTest(
 
     t.is(
       await redSlider.getAttribute('aria-valuenow'),
-      '1',
-      'After sending 1 arrow right key to the red slider, the value of the red slider should be 1'
+      '129',
+      'After sending 1 arrow right key to the red slider, the value of the red slider should be 129'
     );
     t.true(
-      await testDisplayMatchesValue(t, '1, 0, 0'),
-      'Display should match rgb(1, 0, 0)'
+      await testDisplayMatchesValue(t, '129, 128, 128'),
+      'Display should match rgb(129, 128, 128)'
     );
 
     // Send more than 255 keys to red slider
@@ -162,8 +199,8 @@ ariaTest(
       'After sending 260 arrow right key, the value of the red slider should be 255'
     );
     t.true(
-      await testDisplayMatchesValue(t, '255, 0, 0'),
-      'Display should match rgb(255, 0, 0)'
+      await testDisplayMatchesValue(t, '255, 128, 128'),
+      'Display should match rgb(255, 128, 128)'
     );
 
     // Send 1 key to green slider
@@ -172,12 +209,12 @@ ariaTest(
 
     t.is(
       await greenSlider.getAttribute('aria-valuenow'),
-      '1',
-      'After sending 1 arrow right key to the blue slider, the value of the green slider should be 1'
+      '129',
+      'After sending 1 arrow right key to the green slider, the value of the green slider should be 129'
     );
     t.true(
-      await testDisplayMatchesValue(t, '255, 1, 0'),
-      'Display should match rgb(255, 1, 0)'
+      await testDisplayMatchesValue(t, '255, 129, 128'),
+      'Display should match rgb(255, 129, 128)'
     );
 
     // Send more than 255 keys to green slider
@@ -191,8 +228,8 @@ ariaTest(
       'After sending 260 arrow right key, the value of the green slider should be 255'
     );
     t.true(
-      await testDisplayMatchesValue(t, '255, 255, 0'),
-      'Display should match rgb(255, 255, 0)'
+      await testDisplayMatchesValue(t, '255, 255, 128'),
+      'Display should match rgb(255, 255, 128)'
     );
 
     // Send 1 key to blue slider
@@ -201,12 +238,12 @@ ariaTest(
 
     t.is(
       await blueSlider.getAttribute('aria-valuenow'),
-      '1',
-      'After sending 1 arrow right key to the blue slider, the value of the blue slider should be 1'
+      '129',
+      'After sending 1 arrow right key to the blue slider, the value of the blue slider should be 129'
     );
     t.true(
-      await testDisplayMatchesValue(t, '255, 255, 1'),
-      'Display should match rgb(255, 255, 1)'
+      await testDisplayMatchesValue(t, '255, 255, 129'),
+      'Display should match rgb(255, 255, 129)'
     );
 
     // Send more than 255 keys to blue slider
@@ -239,15 +276,15 @@ ariaTest(
 
     t.is(
       await redSlider.getAttribute('aria-valuenow'),
-      '1',
-      'After sending 1 arrow up key to the red slider, the value of the red slider should be 1'
+      '129',
+      'After sending 1 arrow up key to the red slider, the value of the red slider should be 129'
     );
     t.true(
-      await testDisplayMatchesValue(t, '1, 0, 0'),
-      'Display should match rgb(1, 0, 0)'
+      await testDisplayMatchesValue(t, '129, 128, 128'),
+      'Display should match rgb(129, 128, 128)'
     );
 
-    // Send more than 255 keys to red slider
+    // Sen over 255 arrow up keys to the red slider
     for (let i = 0; i < 260; i++) {
       await redSlider.sendKeys(Key.ARROW_UP);
     }
@@ -258,8 +295,8 @@ ariaTest(
       'After sending 260 arrow up key, the value of the red slider should be 255'
     );
     t.true(
-      await testDisplayMatchesValue(t, '255, 0, 0'),
-      'Display should match rgb(255, 0, 0)'
+      await testDisplayMatchesValue(t, '255, 128, 128'),
+      'Display should match rgb(255, 128, 128)'
     );
 
     // Send 1 key to green slider
@@ -268,12 +305,12 @@ ariaTest(
 
     t.is(
       await greenSlider.getAttribute('aria-valuenow'),
-      '1',
-      'After sending 1 arrow up key to the blue slider, the value of the green slider should be 1'
+      '129',
+      'After sending 1 arrow up key to the blue slider, the value of the green slider should be 129'
     );
     t.true(
-      await testDisplayMatchesValue(t, '255, 1, 0'),
-      'Display should match rgb(255, 1, 0)'
+      await testDisplayMatchesValue(t, '255, 129, 128'),
+      'Display should match rgb(255, 129, 128)'
     );
 
     // Send more than 255 keys to green slider
@@ -287,8 +324,8 @@ ariaTest(
       'After sending 260 arrow up key, the value of the green slider should be 255'
     );
     t.true(
-      await testDisplayMatchesValue(t, '255, 255, 0'),
-      'Display should match rgb(255, 255, 0)'
+      await testDisplayMatchesValue(t, '255, 255, 128'),
+      'Display should match rgb(255, 255, 128)'
     );
 
     // Send 1 key to blue slider
@@ -297,12 +334,12 @@ ariaTest(
 
     t.is(
       await blueSlider.getAttribute('aria-valuenow'),
-      '1',
-      'After sending 1 arrow up key to the blue slider, the value of the blue slider should be 1'
+      '129',
+      'After sending 1 arrow up key to the blue slider, the value of the blue slider should be 129'
     );
     t.true(
-      await testDisplayMatchesValue(t, '255, 255, 1'),
-      'Display should match rgb(255, 255, 1)'
+      await testDisplayMatchesValue(t, '255, 255, 129'),
+      'Display should match rgb(255, 255, 129)'
     );
 
     // Send more than 255 keys to blue slider
@@ -335,15 +372,15 @@ ariaTest(
 
     t.is(
       await redSlider.getAttribute('aria-valuenow'),
-      '10',
-      'After sending 1 page up key to the red slider, the value of the red slider should be 10'
+      '138',
+      'After sending 1 page up key to the red slider, the value of the red slider should be 138'
     );
     t.true(
-      await testDisplayMatchesValue(t, '10, 0, 0'),
-      'Display should match rgb(10, 0, 0)'
+      await testDisplayMatchesValue(t, '138, 128, 128'),
+      'Display should match rgb(138, 128, 128)'
     );
 
-    // Send more than 26 keys to red slider
+    // Send over 26 page up keys to the red slider
     for (let i = 0; i < 26; i++) {
       await redSlider.sendKeys(Key.PAGE_UP);
     }
@@ -354,8 +391,8 @@ ariaTest(
       'After sending 26 page up key, the value of the red slider should be 255'
     );
     t.true(
-      await testDisplayMatchesValue(t, '255, 0, 0'),
-      'Display should match rgb(255, 0, 0)'
+      await testDisplayMatchesValue(t, '255, 128, 128'),
+      'Display should match rgb(255, 128, 128)'
     );
 
     // Send 1 key to green slider
@@ -364,12 +401,12 @@ ariaTest(
 
     t.is(
       await greenSlider.getAttribute('aria-valuenow'),
-      '10',
-      'After sending 1 page up key to the blue slider, the value of the green slider should be 10'
+      '138',
+      'After sending 1 page up key to the blue slider, the value of the green slider should be 138'
     );
     t.true(
-      await testDisplayMatchesValue(t, '255, 10, 0'),
-      'Display should match rgb(255, 10, 0)'
+      await testDisplayMatchesValue(t, '255, 138, 128'),
+      'Display should match rgb(255, 138, 128)'
     );
 
     // Send more than 26 keys to green slider
@@ -383,8 +420,8 @@ ariaTest(
       'After sending 260 page up key, the value of the green slider should be 255'
     );
     t.true(
-      await testDisplayMatchesValue(t, '255, 255, 0'),
-      'Display should match rgb(255, 255, 0)'
+      await testDisplayMatchesValue(t, '255, 255, 128'),
+      'Display should match rgb(255, 255, 128)'
     );
 
     // Send 1 key to blue slider
@@ -393,12 +430,12 @@ ariaTest(
 
     t.is(
       await blueSlider.getAttribute('aria-valuenow'),
-      '10',
-      'After sending 1 page up key to the blue slider, the value of the blue slider should be 10'
+      '138',
+      'After sending 1 page up key to the blue slider, the value of the blue slider should be 138'
     );
     t.true(
-      await testDisplayMatchesValue(t, '255, 255, 10'),
-      'Display should match rgb(255, 255, 10)'
+      await testDisplayMatchesValue(t, '255, 255, 138'),
+      'Display should match rgb(255, 255, 138)'
     );
 
     // Send more than 26 keys to blue slider
@@ -423,6 +460,8 @@ ariaTest(
   exampleFile,
   'key-end',
   async (t) => {
+    sendAllSlidersToBeginning(t);
+
     const sliders = await t.context.queryElements(t, ex.sliderSelector);
 
     // Send key end to red slider
@@ -432,7 +471,7 @@ ariaTest(
     t.is(
       await redSlider.getAttribute('aria-valuenow'),
       '255',
-      'After sending 1 end key to the red slider, the value of the red slider should be 255'
+      'After sending end key to the red slider, the value of the red slider should be 255'
     );
     t.true(
       await testDisplayMatchesValue(t, '255, 0, 0'),
@@ -710,7 +749,7 @@ ariaTest(
     t.is(
       await greenSlider.getAttribute('aria-valuenow'),
       '245',
-      'After sending 1 page down key to the blue slider, the value of the green slider should be 245'
+      'After sending 1 page down key to the green slider, the value of the green slider should be 245'
     );
     t.true(
       await testDisplayMatchesValue(t, '0, 245, 255'),
@@ -739,7 +778,7 @@ ariaTest(
     t.is(
       await blueSlider.getAttribute('aria-valuenow'),
       '245',
-      'After sending 1 page down key to the blue slider, the value of the blue slider should be 245'
+      'After sending 1 page down key to the blue slider, the value of the green slider should be 245'
     );
     t.true(
       await testDisplayMatchesValue(t, '0, 0, 245'),
@@ -752,7 +791,7 @@ ariaTest(
     }
 
     t.is(
-      await blueSlider.getAttribute('aria-valuenow'),
+      await greenSlider.getAttribute('aria-valuenow'),
       '0',
       'After sending 26 page down key, the value of the blue slider should be 0'
     );
