@@ -74,15 +74,6 @@ ariaTest(
 );
 
 ariaTest(
-  'SVG g elements used for labels have aria-hidden',
-  exampleFile,
-  'aria-hidden-g',
-  async (t) => {
-    await assertAttributeValues(t, ex.labelG, 'aria-hidden', 'true');
-  }
-);
-
-ariaTest(
   'role="slider" on SVG g element',
   exampleFile,
   'slider-role',

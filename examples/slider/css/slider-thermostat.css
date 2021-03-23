@@ -6,6 +6,16 @@
   font-size: 150%;
 }
 
+.thermostat svg {
+  forced-color-adjust: auto;
+}
+
+.slider-thermostat text {
+  font-weight: bold;
+  fill: currentColor;
+  font-family: sans-serif;
+}
+
 .slider-thermostat-vertical .slider-group {
   touch-action: pan-x;
 }
@@ -21,31 +31,16 @@
   color: black;
 }
 
-.slider-thermostat.text {
-  width: 14em;
-}
-
-.slider-thermostat .label {
-  font-weight: bold;
-  fill: currentColor;
-  color: currentColor;
-}
-
 .slider-thermostat .value {
   position: relative;
   top: 20px;
   height: 1.5em;
   font-size: 80%;
-  fill: currentColor;
 }
 
-.slider-thermostat.vertical .temp-value {
+.slider-thermostat .temp-value {
   padding-left: 24px;
-  font-weight: bold;
   font-size: 200%;
-  font-family: sans-serif;
-  fill: currentColor;
-  color: currentColor;
 }
 
 .slider-thermostat .rail {
@@ -61,27 +56,24 @@
 }
 
 .slider-thermostat .focus {
+  stroke: currentColor;
+  stroke-opacity: 0;
+  fill-opacity: 0;
   stroke-width: 3px;
-  stroke: transparent;
-  fill: transparent;
+  display: none;
+}
+
+.slider-thermostat.text {
+  width: 14em;
 }
 
 .slider-thermostat.text .value-label rect {
-  fill: transparent;
+  fill-opacity: 0;
   stroke-width: 2px;
-  stroke: transparent;
-}
-
-.slider-thermostat.text .value-label text {
-  fill: currentColor;
-  font-weight: bold;
+  stroke-opacity: 0;
 }
 
 /* Focus and hover styling */
-
-.slider-thermostat.text .value-label:hover rect {
-  stroke: currentColor;
-}
 
 .slider-thermostat.focus [role="slider"] {
   color: #005a9c;
@@ -97,14 +89,11 @@
 }
 
 .slider-thermostat [role="slider"]:focus .focus {
+  display: block;
+  stroke-opacity: 1;
+}
+
+.slider-thermostat.text .value-label:hover rect {
+  stroke-opacity: 1;
   stroke: currentColor;
-}
-
-.slider-thermostat [role="slider"]:focus .thumb {
-  fill: currentColor;
-}
-
-.slider-thermostat.vertical [role="slider"]:focus .value {
-  font-weight: bold;
-  fill: currentColor;
 }

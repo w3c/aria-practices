@@ -562,36 +562,20 @@ class Thermostat {
     this.h3Node = domNode.querySelector('h3');
     this.svgNodes = domNode.querySelectorAll('svg');
 
-    let slidersVertical = domNode.querySelectorAll(
-      '.slider-thermostat.vertical'
-    );
-    for (let i = 0; i < slidersVertical.length; i++) {
-      new SliderThermostatVertical(slidersVertical[i]);
+    let sliderTempature = domNode.querySelector('.slider-thermostat.vertical');
+    if (sliderTempature) {
+      new SliderThermostatVertical(sliderTempature);
     }
 
-    let slidersText = domNode.querySelectorAll('.slider-thermostat.text');
-
-    for (let i = 0; i < slidersText.length; i++) {
-      new SliderThermostatText(slidersText[i]);
-    }
-
-    this.updateSVGCurrentColorValue();
-  }
-
-  updateSVGCurrentColorValue() {
-    // Get current computed color of the text for the H3 element
-    let color = window.getComputedStyle(this.h3Node).getPropertyValue('color');
-
-    // set the color used by the currentColor value in the SVG
-    for (let i = 0; i < this.svgNodes.length; i++) {
-      this.svgNodes[i].setAttribute('color', color);
+    let sliderFan = domNode.querySelector('.slider-thermostat.text');
+    if (sliderFan) {
+      new SliderThermostatText(sliderFan);
     }
   }
 }
 
 window.addEventListener('load', function () {
   var thermostats = document.querySelectorAll('.thermostat');
-
   for (let i = 0; i < thermostats.length; i++) {
     new Thermostat(thermostats[i]);
   }
