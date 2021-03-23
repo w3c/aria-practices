@@ -21,4 +21,5 @@ Attribute “aria-activedescendant” value should either refer to a descendant 
 # https://github.com/w3c/aria-practices/issues/1678
 Section lacks heading. Consider using “h2”-“h6” elements to add identifying headings to all sections.
 # https://github.com/validator/validator/issues/1096
-An “svg” element can have a “role” attribute.
+Bad value “none” for attribute “role” on element “svg”.
+Bad value “presentation” for attribute “role” on element “svg”.
