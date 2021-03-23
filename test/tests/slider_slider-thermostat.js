@@ -52,11 +52,11 @@ ariaTest(
 );
 
 ariaTest(
-  'role="none" on SVG element',
+  'role="presentation" on SVG element',
   exampleFile,
-  'svg-none',
+  'svg-presentation',
   async (t) => {
-    await assertAriaRoles(t, 'ex1', 'none', '2', 'svg');
+    await assertAriaRoles(t, 'ex1', 'presentation', '2', 'svg');
   }
 );
 
