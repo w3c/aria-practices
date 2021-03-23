@@ -55,7 +55,7 @@
           <div class="slider-thermostat vertical">
             <div id="id-temp-label" class="label">Temperature</div>
 
-            <svg role="none" class="slider-group"  width="145" height="360">
+            <svg role="presentation" class="slider-group"  width="145" height="360">
               <text class="temp-value label" x="28" y="35" >25°C</text>
               <rect class="rail" x="60" y="47" width="8" height="300" rx="5"  aria-hidden="true"/>
               <g role="slider"
@@ -78,7 +78,7 @@
 
           <div class="slider-thermostat text">
             <div id="id-fan-label" class="label">Fan</div>
-            <svg role="none" class="slider-group" width="230" height="105">
+            <svg role="presentation" class="slider-group" width="230" height="105">
               <rect class="rail" x="35" y="35" width="160" height="8" rx="5" aria-hidden="true"/>
               <g id="id-fan"
                 role="slider"
@@ -285,16 +285,16 @@
           </tr>
         </thead>
         <tbody>
-          <tr data-test-id="svg-none">
+          <tr data-test-id="svg-presentation">
             <th scope="row">
-              <code>none</code>
+              <code>presentation</code>
             </th>
             <td></td>
             <td>
               <code>svg</code>
             </td>
             <td>
-              The use of the <code>none</code> role on the SVG element ensures assistive technologies do not interpret the SVG element as an image or some other role.
+              The use of the <code>presentation</code> role on the SVG element ensures assistive technologies do not interpret the SVG element as an image or some other role.
             </td>
           </tr>
           <tr data-test-id="slider-role">
