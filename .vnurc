@@ -20,3 +20,5 @@ The “row” role is unnecessary for element “tr”.
 Attribute “aria-activedescendant” value should either refer to a descendant element, or should be accompanied by attribute “aria-owns”.
 # https://github.com/w3c/aria-practices/issues/1678
 Section lacks heading. Consider using “h2”-“h6” elements to add identifying headings to all sections.
+# https://github.com/validator/validator/issues/1096
+An “svg” element can have a “role” attribute.
