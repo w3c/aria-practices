@@ -1,4 +1,4 @@
-.Accordion {
+.accordion {
   margin: 0;
   padding: 0;
   border: 2px solid hsl(0, 0%, 52%);
@@ -6,24 +6,24 @@
   width: 20em;
 }
 
-.Accordion h3 {
+.accordion h3 {
   margin: 0;
   padding: 0;
 }
 
-.Accordion.focus {
+.accordion:focus-within {
   border-color: hsl(216, 94%, 43%);
 }
 
-.Accordion.focus h3 {
+.accordion:focus-within h3 {
   background-color: hsl(0, 0%, 97%);
 }
 
-.Accordion > * + * {
+.accordion > * + * {
   border-top: 1px solid hsl(0, 0%, 52%);
 }
 
-.Accordion-trigger {
+.accordion-trigger {
   background: none;
   color: hsl(0, 0%, 13%);
   display: block;
@@ -37,28 +37,34 @@
   outline: none;
 }
 
-.Accordion-trigger:focus,
-.Accordion-trigger:hover {
+.accordion-trigger:focus,
+.accordion-trigger:hover {
   background: hsl(216, 94%, 94%);
 }
 
-.Accordion-trigger:focus {
+.accordion-trigger:focus {
   outline: 4px solid transparent;
 }
 
-.Accordion *:first-child .Accordion-trigger {
+.accordion > *:first-child .accordion-trigger,
+.accordion > *:first-child {
   border-radius: 5px 5px 0 0;
+}
+
+.accordion > *:last-child .accordion-trigger,
+.accordion > *:last-child {
+  border-radius: 0 0 5px 5px;
 }
 
 button {
   border-style: none;
 }
 
-.Accordion button::-moz-focus-inner {
+.accordion button::-moz-focus-inner {
   border: 0;
 }
 
-.Accordion-title {
+.accordion-title {
   display: block;
   pointer-events: none;
   border: transparent 2px solid;
@@ -67,11 +73,11 @@ button {
   outline: none;
 }
 
-.Accordion-trigger:focus .Accordion-title {
+.accordion-trigger:focus .accordion-title {
   border-color: hsl(216, 94%, 43%);
 }
 
-.Accordion-icon {
+.accordion-icon {
   border: solid currentColor;
   border-width: 0 2px 2px 0;
   height: 0.5rem;
@@ -83,22 +89,22 @@ button {
   width: 0.5rem;
 }
 
-.Accordion-trigger:focus .Accordion-icon,
-.Accordion-trigger:hover .Accordion-icon {
+.accordion-trigger:focus .accordion-icon,
+.accordion-trigger:hover .accordion-icon {
   border-color: hsl(216, 94%, 43%);
 }
 
-.Accordion-trigger[aria-expanded="true"] .Accordion-icon {
+.accordion-trigger[aria-expanded="true"] .accordion-icon {
   transform: translateY(-50%) rotate(-135deg);
 }
 
-.Accordion-panel {
+.accordion-panel {
   margin: 0;
   padding: 1em 1.5em;
 }
 
 /* For Edge bug https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/4806035/ */
-.Accordion-panel[hidden] {
+.accordion-panel[hidden] {
   display: none;
 }
 
