@@ -77,8 +77,6 @@
   stroke-width: 3px;
 }
 
-
-
 .slider-multithumb [role="slider"]:focus .thumb {
   stroke: currentColor;
 }
