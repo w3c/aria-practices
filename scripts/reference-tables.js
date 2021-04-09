@@ -12,6 +12,7 @@ const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
 const cheerio = require('cheerio');
+const HTMLParser = require('node-html-parser');
 
 const exampleFilePath = path.join(__dirname, '..', 'examples', 'index.html');
 const exampleTemplatePath = path.join(__dirname, 'reference-tables.template');
@@ -150,64 +151,19 @@ let indexOfPropertiesAndStates = {};
 
 console.log('Generating index...');
 
-function getDataAttributeTables(data) {
-  let dataAttributeTables = [];
-  let indexStart = 0,
-    indexEnd = -1;
-  // Get data attribute tables
-  do {
-    indexStart = data.indexOf('data attributes', indexStart);
-    if (indexStart >= 0) {
-      indexEnd = data.indexOf('</table>', indexStart);
-    }
-    if (indexStart >= 0 && indexEnd >= 0) {
-      dataAttributeTables.push(data.substr(indexStart, indexEnd));
-      indexStart = indexEnd + 1;
-    }
-  } while (indexStart >= 0 && indexEnd >= 0);
-
-  return dataAttributeTables;
-}
-
-function getIndexStartAndEnd(table, indexStart) {
-  indexStart = table.indexOf('<code>', indexStart);
-  if (indexStart < 0) {
-    return [-1, -1];
-  }
-  let indexEnd = table.indexOf('</code>', indexStart);
-  let indexEqual = table.indexOf('=', indexStart);
-
-  if (indexEqual >= 0) {
-    indexEnd = Math.min(indexEnd, indexEqual);
-  }
-  return [indexStart, indexEnd];
-}
-
-function getRoles(data) {
+function getRoles(html) {
   let roles = [];
 
-  let tables = getDataAttributeTables(data);
+  let exampleRoles = html.querySelectorAll(
+    'table.data.attributes tbody tr:nth-child(1) code'
+  );
 
-  for (let i = 0; i < tables.length; i++) {
-    let table = tables[i];
-
-    let indexStart = 0,
-      indexEnd;
-    [indexStart, indexEnd] = getIndexStartAndEnd(table, indexStart);
-
-    while (indexStart > 1 && indexEnd > 1) {
-      let code = table.substring(indexStart + 6, indexEnd).trim();
-      if (code.indexOf('aria') !== 0) {
-        for (let i = 0; i < ariaRoles.length; i++) {
-          if (code == ariaRoles[i] && roles.indexOf(ariaRoles[i]) < 0) {
-            console.log('  [role]: ' + code);
-            roles.push(ariaRoles[i]);
-          }
-        }
-      }
-      indexStart = table.indexOf('<code>', indexEnd + 1);
-      if (indexStart >= 0) {
-        [indexStart, indexEnd] = getIndexStartAndEnd(table, indexStart);
+  for (let i = 0; i < exampleRoles.length; i++) {
+    let code = exampleRoles[i].textContent.toLowerCase().trim();
+    for (let j = 0; j < ariaRoles.length; j++) {
+      if (code == ariaRoles[j] && roles.indexOf(ariaRoles[j]) < 0) {
+        console.log('  [role]: ' + code);
+        roles.push(ariaRoles[j]);
       }
     }
   }
@@ -215,37 +171,27 @@ function getRoles(data) {
   return roles;
 }
 
-function getPropertiesAndStates(data) {
+function getPropertiesAndStates(html) {
   let propertiesAndStates = [];
 
-  let tables = getDataAttributeTables(data);
+  let exampleProps = html.querySelectorAll(
+    'table.data.attributes tbody tr:nth-child(2) code'
+  );
 
-  for (let i = 0; i < tables.length; i++) {
-    let table = tables[i];
-    let indexStart = 0,
-      indexEnd;
-    [indexStart, indexEnd] = getIndexStartAndEnd(table, indexStart);
-
-    while (indexStart > 1 && indexEnd > 1) {
-      let code = table.substring(indexStart + 6, indexEnd);
-      if (code.indexOf('aria') === 0) {
-        for (let i = 0; i < ariaPropertiesAndStates.length; i++) {
-          const hasPropOrState = RegExp(ariaPropertiesAndStates[i] + '\\b');
-          if (
-            hasPropOrState.test(code) &&
-            propertiesAndStates.indexOf(ariaPropertiesAndStates[i]) < 0
-          ) {
-            console.log('  [propertyOrState]: ' + code);
-            propertiesAndStates.push(ariaPropertiesAndStates[i]);
-          }
-        }
-      }
-      indexStart = table.indexOf('<code>', indexEnd + 1);
-      if (indexStart >= 0) {
-        [indexStart, indexEnd] = getIndexStartAndEnd(table, indexStart);
+  for (let i = 0; i < exampleProps.length; i++) {
+    let code = exampleProps[i].textContent.toLowerCase().trim().split('=')[0];
+    for (let j = 0; j < ariaPropertiesAndStates.length; j++) {
+      const hasPropOrState = RegExp(ariaPropertiesAndStates[j] + '\\b');
+      if (
+        hasPropOrState.test(code) &&
+        propertiesAndStates.indexOf(ariaPropertiesAndStates[j]) < 0
+      ) {
+        console.log('  [propertyOrState]: ' + code);
+        propertiesAndStates.push(ariaPropertiesAndStates[j]);
       }
     }
   }
+
   return propertiesAndStates;
 }
 
@@ -305,10 +251,13 @@ glob
     }
 
     let data = fs.readFileSync(file, 'utf8');
+
+    let html = HTMLParser.parse(data);
+
     let ref = file.replace('examples/', '');
-    let title = data
-      .substring(data.indexOf('<title>') + 7, data.indexOf('</title>'))
-      .split('|')[0]
+    let title = html
+      .querySelector('title')
+      .textContent.split('|')[0]
       .replace('Examples', '')
       .replace('Example of', '')
       .replace('Example', '')
@@ -319,8 +268,8 @@ glob
       ref: ref,
     };
 
-    addExampleToRoles(getRoles(data), example);
-    addExampleToPropertiesAndStates(getPropertiesAndStates(data), example);
+    addExampleToRoles(getRoles(html), example);
+    addExampleToPropertiesAndStates(getPropertiesAndStates(html), example);
   });
 
 // Add landmark examples, since they are a different format
