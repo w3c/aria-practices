@@ -329,6 +329,12 @@ glob
   })
   .forEach(function (file) {
     console.log('[file]: ' + file);
+
+    if (file.toLowerCase().indexOf('deprecated') >= 0) {
+      console.log('  [ignored]');
+      return;
+    }
+
     let data = fs.readFileSync(file, 'utf8');
     let ref = file.replace('examples/', '../examples/');
     let title = data

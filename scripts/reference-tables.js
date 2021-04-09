@@ -299,7 +299,7 @@ glob
   .forEach(function (file) {
     console.log('[file]: ' + file);
 
-    if (file.toLowerCase().indexOf('depricated') >= 0) {
+    if (file.toLowerCase().indexOf('deprecated') >= 0) {
       console.log('  [ignored]');
       return;
     }
