@@ -162,7 +162,7 @@ function getRoles(html) {
     let code = exampleRoles[i].textContent.toLowerCase().trim();
     for (let j = 0; j < ariaRoles.length; j++) {
       const hasRole = RegExp(ariaRoles[j] + '\\b');
-      if (hasRole.test(code)  && roles.indexOf(ariaRoles[j]) < 0) {
+      if (hasRole.test(code) && roles.indexOf(ariaRoles[j]) < 0) {
         console.log('  [role]: ' + code);
         roles.push(ariaRoles[j]);
       }
