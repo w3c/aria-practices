@@ -161,7 +161,8 @@ function getRoles(html) {
   for (let i = 0; i < exampleRoles.length; i++) {
     let code = exampleRoles[i].textContent.toLowerCase().trim();
     for (let j = 0; j < ariaRoles.length; j++) {
-      if (code == ariaRoles[j] && roles.indexOf(ariaRoles[j]) < 0) {
+      const hasRole = RegExp(ariaRoles[j] + '\\b');
+      if (hasRole.test(code)  && roles.indexOf(ariaRoles[j]) < 0) {
         console.log('  [role]: ' + code);
         roles.push(ariaRoles[j]);
       }
@@ -266,6 +267,7 @@ glob
     let example = {
       title: title,
       ref: ref,
+      highContrast: data.toLowerCase().indexOf('high contrast') > 0,
     };
 
     addExampleToRoles(getRoles(html), example);
@@ -298,8 +300,14 @@ addLandmarkRole(['region'], true, 'Region Landmark', 'landmarks/region.html');
 addLandmarkRole(['search'], true, 'Search Landmark', 'landmarks/search.html');
 
 function exampleListItem(item) {
+  let ariaLabel = '';
+  let highContrast = '';
+  if (item.highContrast) {
+    ariaLabel = ` aria-label="${item.title} with High Contrast Support"`;
+    highContrast = ' (<abbr title="High Contrast Support">HC</abbr>)';
+  }
   return `
-                <li><a href="${item.ref}">${item.title}</a></li>`;
+                <li><a href="${item.ref}"${ariaLabel}>${item.title}</a>${highContrast}</li>`;
 }
 
 let sortedRoles = Object.getOwnPropertyNames(indexOfRoles).sort();
