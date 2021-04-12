@@ -365,7 +365,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
 
       <section class="notoc">
         <h4>Example</h4>
-        <p><a href="examples/breadcrumb/breadcrumb.html">Breadcrumb design pattern example</a></p>
+        <p><a href="examples/breadcrumb/index.html">Breadcrumb design pattern example</a></p>
       </section>
 
       <section class="notoc">
@@ -1228,8 +1228,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         <ul>
           <li><a href="examples/disclosure/disclosure-img-long-description.html">Disclosure (Show/Hide) of Image Description</a></li>
           <li><a href="examples/disclosure/disclosure-faq.html">Disclosure (Show/Hide) of Answers to Frequently Asked Questions</a></li>
-          <li><a href="examples/disclosure/disclosure-navigation.html">Disclosure (Show/Hide) Navigation Menu</a></li>
-          <li><a href="examples/disclosure/disclosure-navigation-hybrid.html">Disclosure (Show/Hide) Navigation Menu with Top-Level Links</a></li>
+          <li><a href="examples/disclosure/disclosure-navigation.html">Disclosure (Show/Hide) for Navigation Menus</a></li>
         </ul>
       </section>
 
@@ -2353,15 +2352,13 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         Sliders typically have a slider thumb that can be moved along a bar or track to change the value of the slider.
       </p>
       <p class="warning">
-        Some users of touch-based assistive technologies may experience difficulty utilizing widgets that implement this slider pattern because the gestures their assistive technology provides for operating sliders may not yet generate the necessary output.
-        To change the slider value, touch-based assistive technologies need to respond to user gestures for incrementing and decrementing the value by synthesizing key events.
-        This is a new convention that may not be fully implemented by some assistive technologies.
-        Authors should fully test slider widgets using assistive technologies on devices where touch is a primary input mechanism before considering incorporation into production systems.
+        Users of touch-based assistive technologies may not be able to fully operate widgets that implement this pattern because APIs for capturing the necessary gestures and commands from assistive technologies are not yet available.
+        Authors should fully test widgets using this pattern with assistive technologies before considering incorporation into production systems.
       </p>
       <section class="notoc">
         <h4>Examples</h4>
         <ul>
-          <li><a href="examples/slider/slider-color-viewer.html">Color Viewer Slider Examples</a>: Demonstrates using three horizontally aligned sliders to make a color viewer.</li>
+          <li><a href="examples/slider/slider-1.html">Horizontal Slider Examples</a>: Demonstrates using three horizontally aligned sliders to make a color picker.</li>
           <li><a href="examples/slider/slider-2.html">Slider Examples with aria-orientation and aria-valuetext</a>: Three thermostat control sliders that demonstrate using aria-orientation and aria-valuetext.</li>
         </ul>
       </section>
@@ -2421,10 +2418,8 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         However, in some multi-thumb sliders, each thumb sets a value that does not depend on the other thumb values.
       </p>
       <p class="warning">
-        Some users of touch-based assistive technologies may experience difficulty utilizing widgets that implement this slider pattern because the gestures their assistive technology provides for operating sliders may not yet generate the necessary output.
-        To change the slider value, touch-based assistive technologies need to respond to user gestures for incrementing and decrementing the value by synthesizing key events.
-        This is a new convention that may not be fully implemented by some assistive technologies.
-        Authors should fully test slider widgets using assistive technologies on devices where touch is a primary input mechanism before considering incorporation into production systems.
+        Users of touch-based assistive technologies may not be able to fully operate widgets that implement this pattern because APIs for capturing the necessary gestures and commands from assistive technologies are not yet available.
+        Authors should fully test widgets using this pattern with assistive technologies before considering incorporation into production systems.
       </p>
 
       <section class="notoc">
