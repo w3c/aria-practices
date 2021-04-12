@@ -50,7 +50,7 @@ ariaTest(
   exampleFile,
   'carousel-region-aria-roledescription',
   async (t) => {
-    // check the aria-roledescrption set to carousel
+    // check the aria-roledescription set to carousel
     await assertAttributeValues(
       t,
       ex.landmarkSelector,
@@ -163,7 +163,7 @@ ariaTest(
   exampleFile,
   'carousel-group-aria-roledescription',
   async (t) => {
-    // check the aria-roledescrption set to carousel
+    // check the aria-roledescription set to carousel
     await assertAttributeValues(
       t,
       ex.slideSelector,

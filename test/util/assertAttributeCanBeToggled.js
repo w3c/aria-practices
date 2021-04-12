@@ -3,10 +3,10 @@ const { By } = require('selenium-webdriver');
 /**
  * Asserts that an attribute to an element can either be toggled to a custom value, or true/false
  *
- * @param {obj} t                     - ava execution object
- * @param {string} elementSelector    - element selector string
+ * @param {object} t                     - ava execution object
+ * @param {string} selector    - element selector string
  * @param {string} attribute          - attribute to test
- * @param {WebDriver.Key} attribute   - key to sent to element that will toggle attribute
+ * @param {WebDriver.Key} key   - key to sent to element that will toggle attribute
  */
 module.exports = async function assertAttributeCanBeToggled(
   t,

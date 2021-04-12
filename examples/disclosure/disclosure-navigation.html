@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Example Disclosure for Navigation Menus | WAI-ARIA Authoring Practices 1.2</title>
+<title>Example Disclosure Navigation Menu | WAI-ARIA Authoring Practices 1.2</title>
 
   <!--  Core js and css shared by all examples; do not modify when using this template. -->
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -26,18 +26,24 @@
     </ul>
   </nav>
   <main>
-  <h1>Example Disclosure for Navigation Menus</h1>
-  <p>
-    The following example demonstrates using the
-    <a href="../../#disclosure">disclosure design pattern</a>
-    to show and hide dropdown lists of links in a navigation bar for a mythical university web site.
-    Each disclosure button represents a section of the web site, and expanding it shows a list of links to pages within that section.
-  </p>
-  <p><strong>Note:</strong> Although this example uses the word <q>menu</q> in the colloquial sense to refer to a set of navigation links, it does not use the WAI-ARIA <code>menu</code> role.</p>
-  <p>Similar examples include:</p>
+    <h1>Example Disclosure Navigation Menu</h1>
+    <div class="advisement">
+      <p>
+        Although this example uses the word "menu" in the colloquial sense to refer to a set of navigation links, it does not use the WAI-ARIA menu role.
+        That is because the menu and menubar roles require complex functionality, such as <a href="../../#kbd_general_within">composite widget focus management</a> and first-character navigation, that is unnecessary for typical site navigation.
+      </p>
+    </div>
+    <p>
+      The following example demonstrates using the
+      <a href="../../#disclosure">disclosure design pattern</a>
+      to show and hide dropdown lists of links in a navigation bar for a mythical university web site.
+      Each disclosure button represents a section of the web site, and expanding it shows a list of links to pages within that section.
+    </p>
+    <p>Similar examples include:</p>
   <ul>
     <li><a href="disclosure-faq.html">Example Disclosure (Show/Hide) for Answers to Frequently Asked Questions</a></li>
     <li><a href="disclosure-img-long-description.html">Example Disclosure (Show/Hide) for an Image Description</a></li>
+    <li><a href="disclosure-navigation-hybrid.html">Example Disclosure Navigation Menu with Top-Level Links</a></li>
     <li><a href="../menubar/menubar-navigation.html">Navigation Menubar Example</a></li>
   </ul>
   <h2>Example Usage Options</h2>
@@ -127,7 +133,7 @@
           </li>
         </ul>
       </nav>
-      <div id="mythical-page-content" class="disclosure-pagecontent" tabindex="-1" role="region" aria-label="Mythical University sample page content">
+      <div id="mythical-page-content" class="disclosure-page-content" tabindex="-1" role="region" aria-label="Mythical University sample page content">
         <h3 id="mythical-page-heading">Mythical University</h3>
         <p>Sample content section. Activating a link above will update and navigate to this region.</p>
       </div>

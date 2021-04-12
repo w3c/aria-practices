@@ -11,7 +11,7 @@
 var aria = aria || {};
 
 /**
- * @desc
+ * @description
  *  Values for aria-sort
  */
 aria.SortType = {
@@ -21,7 +21,7 @@ aria.SortType = {
 };
 
 /**
- * @desc
+ * @description
  *  DOM Selectors to find the grid components
  */
 aria.GridSelector = {
@@ -33,7 +33,7 @@ aria.GridSelector = {
 };
 
 /**
- * @desc
+ * @description
  *  CSS Class names
  */
 aria.CSSClass = {
@@ -41,9 +41,9 @@ aria.CSSClass = {
 };
 
 /**
- * @constructor
+ * @class
  *
- * @desc
+ * @description
  *  Grid object representing the state and interactions for a grid widget
  *
  *  Assumptions:
@@ -88,7 +88,7 @@ aria.Grid = function (gridNode) {
 };
 
 /**
- * @desc
+ * @description
  *  Creates a 2D array of the focusable cells in the grid.
  */
 aria.Grid.prototype.setupFocusGrid = function () {
@@ -128,7 +128,7 @@ aria.Grid.prototype.setupFocusGrid = function () {
 };
 
 /**
- * @desc
+ * @description
  *  If possible, set focus pointer to the cell with the specified coordinates
  *
  * @param row
@@ -137,7 +137,7 @@ aria.Grid.prototype.setupFocusGrid = function () {
  * @param col
  *  The index of the cell's column
  *
- * @returns
+ * @returns {boolean}
  *  Returns whether or not the focus could be set on the cell.
  */
 aria.Grid.prototype.setFocusPointer = function (row, col) {
@@ -176,7 +176,7 @@ aria.Grid.prototype.setFocusPointer = function (row, col) {
  * @param col
  *  The index of the cell's column
  *
- * @returns
+ * @returns {boolean}
  *  Returns whether or not the coordinates are within the grid's boundaries.
  */
 aria.Grid.prototype.isValidCell = function (row, col) {
@@ -199,7 +199,7 @@ aria.Grid.prototype.isValidCell = function (row, col) {
  * @param col
  *  The index of the cell's column
  *
- * @returns
+ * @returns {boolean}
  *  Returns whether or not the cell has been hidden.
  */
 aria.Grid.prototype.isHidden = function (row, col) {
@@ -210,7 +210,7 @@ aria.Grid.prototype.isHidden = function (row, col) {
 };
 
 /**
- * @desc
+ * @description
  *  Clean up grid events
  */
 aria.Grid.prototype.clearEvents = function () {
@@ -238,7 +238,7 @@ aria.Grid.prototype.clearEvents = function () {
 };
 
 /**
- * @desc
+ * @description
  *  Register grid events
  */
 aria.Grid.prototype.registerEvents = function () {
@@ -259,7 +259,7 @@ aria.Grid.prototype.registerEvents = function () {
 };
 
 /**
- * @desc
+ * @description
  *  Focus on the cell in the specified row and column
  *
  * @param row
@@ -290,7 +290,7 @@ aria.Grid.prototype.hideKeysIndicator = function () {
 };
 
 /**
- * @desc
+ * @description
  *  Triggered on keydown. Checks if an arrow key was pressed, and (if possible)
  *  moves focus to the next valid cell in the direction of the arrow key.
  *
@@ -361,7 +361,7 @@ aria.Grid.prototype.checkFocusChange = function (event) {
 };
 
 /**
- * @desc
+ * @description
  *  Reset focused row and col if it doesn't match focusedRow and focusedCol
  *
  * @param focusedTarget
@@ -388,7 +388,7 @@ aria.Grid.prototype.findFocusedItem = function (focusedTarget) {
 };
 
 /**
- * @desc
+ * @description
  *  Triggered on click. Finds the cell that was clicked on and focuses on it.
  *
  * @param event
@@ -414,7 +414,7 @@ aria.Grid.prototype.focusClickedCell = function (event) {
 };
 
 /**
- * @desc
+ * @description
  *  Triggered on click. Checks if user clicked on a header with aria-sort.
  *  If so, it sorts the column based on the aria-sort attribute.
  *
@@ -461,7 +461,7 @@ aria.Grid.prototype.delegateButtonHandler = function (event) {
 };
 
 /**
- * @desc
+ * @description
  *  Toggles the mode of an editable cell between displaying the edit button
  *  and displaying the editable input.
  *
@@ -496,7 +496,7 @@ aria.Grid.prototype.toggleEditMode = function (editCell, toggleOn, updateText) {
 };
 
 /**
- * @desc
+ * @description
  *  Sorts the column below the header node, based on the aria-sort attribute.
  *  aria-sort="none" => aria-sort="ascending"
  *  aria-sort="ascending" => aria-sort="descending"
@@ -544,7 +544,7 @@ aria.Grid.prototype.handleSort = function (headerNode) {
 };
 
 /**
- * @desc
+ * @description
  *  Sorts the grid's rows according to the specified compareFn
  *
  * @param compareFn
@@ -565,7 +565,7 @@ aria.Grid.prototype.sortRows = function (compareFn) {
 };
 
 /**
- * @desc
+ * @description
  *  Adds aria-rowindex and aria-colindex to the cells in the grid
  */
 aria.Grid.prototype.setupIndices = function () {
@@ -582,7 +582,7 @@ aria.Grid.prototype.setupIndices = function () {
 };
 
 /**
- * @desc
+ * @description
  *  Determines the per page attribute of the grid, and shows/hides rows
  *  accordingly.
  */
@@ -597,7 +597,7 @@ aria.Grid.prototype.setPaginationChangeHandler = function (onPaginationChange) {
 };
 
 /**
- * @desc
+ * @description
  *  Check if page up or page down was pressed, and show the next page if so.
  *
  * @param event
@@ -632,7 +632,7 @@ aria.Grid.prototype.movePageDown = function () {
 };
 
 /**
- * @desc
+ * @description
  *  Scroll the specified row into view in the specified direction
  *
  * @param startIndex
@@ -675,7 +675,7 @@ aria.Grid.prototype.showFromRow = function (startIndex, scrollDown) {
 };
 
 /**
- * @desc
+ * @description
  *  Throttle restructuring to only happen every 300ms
  */
 aria.Grid.prototype.checkRestructureGrid = function () {
@@ -689,7 +689,7 @@ aria.Grid.prototype.checkRestructureGrid = function () {
 };
 
 /**
- * @desc
+ * @description
  *  Restructure grid based on the size.
  */
 aria.Grid.prototype.restructureGrid = function () {
@@ -733,23 +733,20 @@ aria.Grid.prototype.restructureGrid = function () {
 };
 
 /**
- * @desc
- *  Get next cell to the right or left (direction) of the focused
- *  cell.
- *
+ * @description
+ * Get next cell to the right or left (direction) of the focused
+ * cell.
  * @param currRow
- *  Row index to start searching from
- *
+ * Row index to start searching from
  * @param currCol
- *  Column index to start searching from
- *
+ * Column index to start searching from
  * @param directionX
- *  X direction for where to check for cells. +1 to check to the right, -1 to
- *  check to the left
- *
- * @return
- *  Indices of the next cell in the specified direction. Returns the focused
- *  cell if none are found.
+ * X direction for where to check for cells. +1 to check to the right, -1 to
+ * check to the left
+ * @param directionY
+ * @returns {false | object}
+ * Indices of the next cell in the specified direction. Returns the focused
+ * cell if none are found.
  */
 aria.Grid.prototype.getNextCell = function (
   currRow,
@@ -811,18 +808,15 @@ aria.Grid.prototype.getNextCell = function (
 };
 
 /**
- * @desc
- *  Get next visible column to the right or left (direction) of the focused
- *  cell.
- *
- * @param direction
- *  Direction for where to check for cells. +1 to check to the right, -1 to
- *  check to the left
- *
- * @return
- *  Indices of the next visible cell in the specified direction. If no visible
- *  cells are found, returns false if the current cell is hidden and returns
- *  the current cell if it is not hidden.
+ * @param directionX
+ * @param directionY
+ * @description
+Get next visible column to the right or left (direction) of the focused
+ * cell.
+ * @returns {false | object}
+ * Indices of the next visible cell in the specified direction. If no visible
+ * cells are found, returns false if the current cell is hidden and returns
+ * the current cell if it is not hidden.
  */
 aria.Grid.prototype.getNextVisibleCell = function (directionX, directionY) {
   var nextCell = this.getNextCell(
@@ -852,7 +846,7 @@ aria.Grid.prototype.getNextVisibleCell = function (directionX, directionY) {
 };
 
 /**
- * @desc
+ * @description
  *  Show or hide the cells in the specified column
  *
  * @param columnIndex
@@ -883,7 +877,7 @@ aria.Grid.prototype.toggleColumn = function (columnIndex, isShown) {
 };
 
 /**
- * @desc
+ * @description
  *  Find the closest element matching the selector. Only checks parent and
  *  direct children.
  *
@@ -892,6 +886,8 @@ aria.Grid.prototype.toggleColumn = function (columnIndex, isShown) {
  *
  * @param selector
  *  Index of the column to toggle
+ *
+ * @returns {object} matching element
  */
 aria.Grid.prototype.findClosest = function (element, selector) {
   if (aria.Utils.matches(element, selector)) {

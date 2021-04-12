@@ -17,7 +17,7 @@ window.addEventListener('load', function () {
  *
  * @desc Adds an alert to the page
  *
- * @param   {Object}  event  -  Standard W3C event object
+ * @param   {object}  event  -  Standard W3C event object
  *
  */
 

@@ -19,11 +19,11 @@ aria.Utils = aria.Utils || {};
   aria.Utils.dialogOpenClass = 'has-dialog';
 
   /**
-   * @desc Set focus on descendant nodes until the first focusable element is
+   * @description Set focus on descendant nodes until the first focusable element is
    *       found.
    * @param element
    *          DOM node for which to find the first focusable descendant.
-   * @returns
+   * @returns {boolean}
    *  true if a focusable element is found and focus is set.
    */
   aria.Utils.focusFirstDescendant = function (element) {
@@ -40,10 +40,10 @@ aria.Utils = aria.Utils || {};
   }; // end focusFirstDescendant
 
   /**
-   * @desc Find the last descendant node that is focusable.
+   * @description Find the last descendant node that is focusable.
    * @param element
    *          DOM node for which to find the last focusable descendant.
-   * @returns
+   * @returns {boolean}
    *  true if a focusable element is found and focus is set.
    */
   aria.Utils.focusLastDescendant = function (element) {
@@ -60,10 +60,10 @@ aria.Utils = aria.Utils || {};
   }; // end focusLastDescendant
 
   /**
-   * @desc Set Attempt to set focus on the current node.
+   * @description Set Attempt to set focus on the current node.
    * @param element
    *          The node to attempt to focus on.
-   * @returns
+   * @returns {boolean}
    *  true if element is focused.
    */
   aria.Utils.attemptFocus = function (element) {
@@ -85,7 +85,7 @@ aria.Utils = aria.Utils || {};
   aria.OpenDialogList = aria.OpenDialogList || new Array(0);
 
   /**
-   * @returns the last opened dialog (the current dialog)
+   * @returns {object} the last opened dialog (the current dialog)
    */
   aria.getCurrentDialog = function () {
     if (aria.OpenDialogList && aria.OpenDialogList.length) {
@@ -114,8 +114,8 @@ aria.Utils = aria.Utils || {};
   document.addEventListener('keyup', aria.handleEscape);
 
   /**
-   * @constructor
-   * @desc Dialog object providing modal focus management.
+   * @class
+   * @description Dialog object providing modal focus management.
    *
    * Assumptions: The element serving as the dialog container is present in the
    * DOM and hidden. The dialog container has role='dialog'.
@@ -235,7 +235,7 @@ aria.Utils = aria.Utils || {};
   };
 
   /**
-   * @desc
+   * @description
    *  Hides the current top dialog,
    *  removes listeners of the top dialog,
    *  restore listeners of a parent dialog if one was open under the one that just closed,
@@ -259,7 +259,7 @@ aria.Utils = aria.Utils || {};
   }; // end close
 
   /**
-   * @desc
+   * @description
    *  Hides the current dialog and replaces it with another.
    *
    * @param newDialogId

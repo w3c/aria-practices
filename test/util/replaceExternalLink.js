@@ -2,9 +2,9 @@
  * Replace and href with an link -- typically use url fragment -- to test behavior related to link following
  *
  * @param {ExecutionContext} t - Test execution context
- * @param {String} newUrl - the url to replace the external url
- * @param {String} linkSelector - CSS selector string
- * @param {Number} index - if the link selector returns a list, the index of the item to test
+ * @param {string} newUrl - the url to replace the external url
+ * @param {string} linkSelector - CSS selector string
+ * @param {number} index - if the link selector returns a list, the index of the item to test
  *
  * @returns {Promise} Resolves to array of elements
  */

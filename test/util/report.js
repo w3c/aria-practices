@@ -38,7 +38,8 @@ const ignoreFiles = fs
  * Recursively find all example pages, saves to exampleFiles global
  * object.
  *
- * @param {String} currentDirPath - root example directory
+ * @param {string} currentDirPath - root example directory
+ * @param exampleFiles
  */
 const getExampleFiles = function (currentDirPath, exampleFiles) {
   fs.readdirSync(currentDirPath).forEach(function (name) {
@@ -62,8 +63,9 @@ const getExampleFiles = function (currentDirPath, exampleFiles) {
 /**
  * Return human readable name for a "Keyboard Support" table row.
  *
- * @param {jQuery object} $         - loaded Cheerio dom
- * @param {jQuery object} $tableRow - root example directory
+ * @param {jQuery} $         - loaded Cheerio dom
+ * @param {jQuery} $tableRow - root example directory
+ * @returns {string}
  */
 const getKeyboardRowName = function ($, $tableRow) {
   return $('th', $tableRow).text().replace(/\n/g, ', ');
@@ -72,11 +74,12 @@ const getKeyboardRowName = function ($, $tableRow) {
 /**
  * Return human readable name for an "Attributes" table row.
  *
- * @param {jQuery object} $         - loaded Cheerio dom
- * @param {jQuery object} $tableRow - root example directory
+ * @param {jQuery} $         - loaded Cheerio dom
+ * @param {jQuery} $tableRow - root example directory
+ * @returns {string}
  */
 const getAttributeRowName = function ($, $tableRow) {
-  // use the containt 'th' text to identify the row. If there is no text
+  // use the 'th' contents text to identify the row. If there is no text
   // in the 'th' element, use the 'element' column text.
   let rowName = $('th', $tableRow).text();
   if (!rowName) {
@@ -98,7 +101,7 @@ const getAttributeRowName = function ($, $tableRow) {
  * }
  *
  * @param {Array} exampleFiles     - all example files to process
- * @param {Object} exampleCoverage - object to add coverage information to
+ * @param {object} exampleCoverage - object to add coverage information to
  */
 const processDocumentationInExampleFiles = function (
   exampleFiles,
@@ -162,14 +165,14 @@ const processDocumentationInExampleFiles = function (
  * After running, `exampleCoverage[example].missingTests` will be an array of
  * only data-test-ids for which no regression test was found.
  *
- * @param {Object} exampleCoverage - object with existing coverage information
+ * @param {object} exampleCoverage - object with existing coverage information
  */
 const getRegressionTestCoverage = function (exampleCoverage) {
   process.env.REGRESSION_COVERAGE_REPORT = 1;
 
   const allTestFiles = [];
-  fs.readdirSync(testsPath).forEach(function (testfile) {
-    allTestFiles.push(path.join(testsPath, testfile));
+  fs.readdirSync(testsPath).forEach(function (testFile) {
+    allTestFiles.push(path.join(testsPath, testFile));
   });
 
   const cmd = path.resolve(
@@ -180,9 +183,9 @@ const getRegressionTestCoverage = function (exampleCoverage) {
     'ava',
     'cli.js'
   );
-  const cmdargs = [...allTestFiles, '--tap', '-c', '1'];
+  const cmdArgs = [...allTestFiles, '--tap', '-c', '1'];
 
-  const output = spawnSync(cmd, cmdargs);
+  const output = spawnSync(cmd, cmdArgs);
   const avaResults = output.stdout.toString();
   const avaError = output.stderr.toString();
 
