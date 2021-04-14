@@ -9,7 +9,7 @@ const assertRovingTabindex = require('../util/assertRovingTabindex');
 const assertHasFocus = require('../util/assertHasFocus');
 const assertAttributeCanBeToggled = require('../util/assertAttributeCanBeToggled');
 
-const exampleFile = 'toolbar/toolbar.html#nojumpto';
+const exampleFile = 'toolbar/toolbar.html';
 
 const ex = {
   buttonIconSelector: '#ex1 button span.fas',
