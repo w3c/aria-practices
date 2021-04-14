@@ -69,17 +69,11 @@
 
 // Add SkipTo.js to examples
 (function () {
-  window.SkipToConfig = {};
-  window.SkipToConfig.settings = {};
-  window.SkipToConfig.settings.skipTo = {};
-  window.SkipToConfig.settings.skipTo.buttonLabel = 'Jump To Content';
-  window.SkipToConfig.settings.skipTo.colorTheme = 'aria';
-
-  let head = document.getElementsByTagName('head')[0];
-  let scriptNode = document.createElement('script');
-  scriptNode.setAttribute(
-    'src',
-    'https://cdn.disability.illinois.edu/skipto.min.js'
-  );
-  head.appendChild(scriptNode);
+  let ref = window.location.href.split('examples')[0];
+  if (ref) {
+    let head = document.getElementsByTagName('head')[0];
+    let scriptNode = document.createElement('script');
+    scriptNode.setAttribute('src', ref + 'examples/js/jumpto.js');
+    head.appendChild(scriptNode);
+  }
 })();
