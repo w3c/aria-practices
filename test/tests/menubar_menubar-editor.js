@@ -5,7 +5,7 @@ const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertRovingTabindex = require('../util/assertRovingTabindex');
 
-const exampleFile = 'menubar/menubar-editor.html#nojumpto';
+const exampleFile = 'menubar/menubar-editor.html';
 
 const ex = {
   textareaSelector: '#ex1 textarea',
