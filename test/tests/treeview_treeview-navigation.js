@@ -6,7 +6,7 @@ const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertRovingTabindex = require('../util/assertRovingTabindex');
 const assertAriaOwns = require('../util/assertAriaOwns');
 
-const exampleFile = 'treeview/treeview-navigation.html';
+const exampleFile = 'treeview/treeview-navigation.html#nojumpto';
 
 const ex = {
   bannerSelector: '#ex1 header',
@@ -306,7 +306,7 @@ ariaTest(
       // Move focus to the main content area
       await h1Element.click();
 
-      // Check is menuitem with aria-current is visible
+      // Check is treeitem with aria-current is visible
 
       t.true(
         await nextLevelExpandableTreeitems[i].isDisplayed(),
