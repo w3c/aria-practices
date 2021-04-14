@@ -111,12 +111,6 @@
     init: function (config) {
       var node;
 
-      // If URL contains 'nojumpto' don't load jumpto, usually for regression testing
-      if (window.location.href.indexOf('?nojumpto') >= 0) {
-        window.location.href.replace('?nojumpto', '');
-        return;
-      }
-
       // Check if jumpto is already loaded
       if (document.querySelector('style#' + this.jumpToId)) {
         return;
@@ -183,7 +177,6 @@
       this.renderTooltip(this.domNode, this.buttonNode);
 
       this.menuNode = document.createElement('div');
-      this.menuNode.setAttribute('class', 'menu');
       this.domNode.appendChild(this.menuNode);
       this.buttonNode.addEventListener(
         'keydown',
@@ -733,6 +726,18 @@
     },
     handleFocusout: function () {
       this.domNode.classList.remove('focus');
+    },
+    handleMenuitemAction: function (tgt) {
+      switch (tgt.getAttribute('data-id')) {
+        case '':
+          // this means there were no headings or landmarks in the list
+          break;
+
+        default:
+          this.closePopup();
+          this.jumpToElement(tgt);
+          break;
+      }
     },
     handleButtonKeydown: function (event) {
       var key = event.key,
