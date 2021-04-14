@@ -10,6 +10,7 @@ const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
 const cheerio = require('cheerio');
+const HTMLParser = require('node-html-parser');
 
 const exampleFilePath = path.join(__dirname, '..', 'coverage', 'index.html');
 const exampleTemplatePath = path.join(__dirname, 'coverage-report.template');
@@ -178,78 +179,46 @@ ariaPropertiesAndStates.forEach(function (prop) {
 
 console.log('Generating index...');
 
-function getColumn(data, indexStart) {
-  let count = 0;
-  let index = data.lastIndexOf('<tr', indexStart);
-
-  while (index > 0 && index <= indexStart) {
-    let indexTd = data.indexOf('<td', index);
-    let indexTh = data.indexOf('<th', index);
-
-    index = Math.min(indexTh, indexTd);
-
-    if (index <= indexStart) {
-      count += 1;
-    }
-
-    index += 1;
-  }
-
-  return count;
-}
-
-function getRolesFromExample(data) {
+function getRoles(html) {
   let roles = [];
 
-  let indexStart = data.indexOf('<code>', 0);
-  let indexEnd = data.indexOf('</code>', indexStart);
+  let exampleRoles = html.querySelectorAll(
+    'table.data.attributes tbody tr:nth-child(1) code'
+  );
 
-  while (indexStart > 1 && indexEnd > 1) {
-    let code = data.substring(indexStart + 6, indexEnd).trim();
+  for (let i = 0; i < exampleRoles.length; i++) {
+    let code = exampleRoles[i].textContent.toLowerCase().trim();
+    for (let j = 0; j < ariaRoles.length; j++) {
+      const hasRole = RegExp(ariaRoles[j] + '\\b');
 
-    for (let i = 0; i < ariaRoles.length; i++) {
-      if (
-        getColumn(data, indexStart) === 1 &&
-        code == ariaRoles[i] &&
-        roles.indexOf(ariaRoles[i]) < 0
-      ) {
-        roles.push(ariaRoles[i]);
+      if (hasRole.test(code) && roles.indexOf(ariaRoles[j]) < 0) {
+        console.log('  [role]: ' + code);
+        roles.push(ariaRoles[j]);
       }
-    }
-
-    indexStart = data.indexOf('<code>', indexEnd);
-
-    if (indexStart > 0) {
-      indexEnd = data.indexOf('</code>', indexStart);
     }
   }
 
   return roles;
 }
 
-function getPropertiesAndStatesFromExample(data) {
+function getPropertiesAndStates(html) {
   let propertiesAndStates = [];
 
-  let indexStart = data.indexOf('<code>', 0);
-  let indexEnd = data.indexOf('</code>', indexStart);
+  let exampleProps = html.querySelectorAll(
+    'table.data.attributes tbody tr:nth-child(2) code'
+  );
 
-  while (indexStart > 1 && indexEnd > 1) {
-    let code = data.substring(indexStart + 6, indexEnd);
-
-    for (let i = 0; i < ariaPropertiesAndStates.length; i++) {
+  for (let i = 0; i < exampleProps.length; i++) {
+    let code = exampleProps[i].textContent.toLowerCase().trim().split('=')[0];
+    for (let j = 0; j < ariaPropertiesAndStates.length; j++) {
+      const hasPropOrState = RegExp(ariaPropertiesAndStates[j] + '\\b');
       if (
-        getColumn(data, indexStart) === 2 &&
-        code.indexOf(ariaPropertiesAndStates[i]) >= 0 &&
-        propertiesAndStates.indexOf(ariaPropertiesAndStates[i]) < 0
+        hasPropOrState.test(code) &&
+        propertiesAndStates.indexOf(ariaPropertiesAndStates[j]) < 0
       ) {
-        propertiesAndStates.push(ariaPropertiesAndStates[i]);
+        console.log('  [propertyOrState]: ' + code);
+        propertiesAndStates.push(ariaPropertiesAndStates[j]);
       }
-    }
-
-    indexStart = data.indexOf('<code>', indexEnd);
-
-    if (indexStart > 0) {
-      indexEnd = data.indexOf('</code>', indexStart);
     }
   }
 
@@ -305,11 +274,21 @@ glob
     nodir: true,
   })
   .forEach(function (file) {
+    console.log('[file]: ' + file);
+
+    if (file.toLowerCase().indexOf('deprecated') >= 0) {
+      console.log('  [ignored]');
+      return;
+    }
+
     let data = fs.readFileSync(file, 'utf8');
-    let ref = file.replace('examples/', '../examples/');
-    let title = data
-      .substring(data.indexOf('<title>') + 7, data.indexOf('</title>'))
-      .split('|')[0]
+
+    let html = HTMLParser.parse(data);
+
+    let ref = file.replace('examples/', '');
+    let title = html
+      .querySelector('title')
+      .textContent.split('|')[0]
       .replace('Examples', '')
       .replace('Example of', '')
       .replace('Example', '')
@@ -318,24 +297,25 @@ glob
     let example = {
       title: title,
       ref: ref,
+      highContrast: data.toLowerCase().indexOf('high contrast') > 0,
     };
 
-    addExampleToRoles(getRolesFromExample(data), example);
-    addExampleToPropertiesAndStates(
-      getPropertiesAndStatesFromExample(data),
-      example
-    );
+    addExampleToRoles(getRoles(html), example);
+    addExampleToPropertiesAndStates(getPropertiesAndStates(html), example);
   });
 
 // Index roles, properties and states used in guidance
 
-function getClosestId(data, index) {
+function getClosestId(node) {
   let id = '';
-  let indexStart = data.lastIndexOf('id="', index);
-  let indexEnd = data.indexOf('"', indexStart + 4);
 
-  if (indexStart >= 0 && indexEnd >= 0) {
-    id = data.substring(indexStart + 4, indexEnd);
+  node = node.parentNode;
+
+  while (node) {
+    if (node.id) {
+      return node.id;
+    }
+    node = node.parentNode;
   }
 
   return id;
@@ -363,113 +343,60 @@ function addGuidanceToPropertyOrState(prop, url, label, id) {
   indexOfPropertiesAndStatesInGuidance[prop].push(r);
 }
 
-function getHeaderContent(data, index) {
-  let content = '';
+function getRolesPropertiesAndStatesFromHeaders(html, url) {
+  let dataHeadings = html.querySelectorAll('h2, h3, h4, h4, h5, h6');
 
-  let indexStart = data.indexOf('>', index);
-  let indexEnd = data.indexOf('</h', indexStart);
+  for (let i = 0; i < dataHeadings.length; i++) {
+    let dataHeading = dataHeadings[i];
+    let tagName = dataHeading.tagName;
+    let content = dataHeading.textContent;
+    let contentItems = content.toLowerCase().split(' ');
 
-  if (indexStart > 1 && indexEnd > 1) {
-    content = data.substring(indexStart + 1, indexEnd).trim();
-
-    content = content.replace(/<code>/g, ' ');
-    content = content.replace(/<\/code>/g, ' ');
-  }
-
-  return content;
-}
-
-function getRolesPropertiesAndStatesFromHeaders(data, url) {
-  function getRolesPropertiesAndStatesFromHeader(level) {
-    let indexStart = data.indexOf('<h' + level + '>', 0);
-    let indexEnd = data.indexOf('</h' + level + '>', indexStart);
-
-    while (indexStart > 1 && indexEnd > 1) {
-      let content = getHeaderContent(data, indexStart);
-
-      let contentItems = content.toLowerCase().split(' ');
-
-      ariaRoles.forEach(function (role) {
-        if (contentItems.indexOf(role) >= 0) {
-          console.log('h' + level + ': ' + role + ', ' + content);
-          addGuidanceToRole(role, url, content, getClosestId(data, indexStart));
-        }
-      });
-
-      ariaPropertiesAndStates.forEach(function (prop) {
-        if (contentItems.indexOf(prop) >= 0) {
-          console.log('h' + level + ': ' + prop + ', ' + content);
-          addGuidanceToPropertyOrState(
-            prop,
-            url,
-            content,
-            getClosestId(data, indexStart)
-          );
-        }
-      });
-
-      indexStart = data.indexOf('<h' + level + '>', indexEnd);
-
-      if (indexStart > 0) {
-        indexEnd = data.indexOf('</h' + level + '>', indexStart);
+    ariaRoles.forEach(function (role) {
+      if (contentItems.indexOf(role) >= 0) {
+        console.log(tagName + ': ' + role + ', ' + content);
+        addGuidanceToRole(role, url, content, getClosestId(dataHeading));
       }
-    }
-  }
+    });
 
-  getRolesPropertiesAndStatesFromHeader(2);
-  getRolesPropertiesAndStatesFromHeader(3);
-  getRolesPropertiesAndStatesFromHeader(4);
-  getRolesPropertiesAndStatesFromHeader(5);
-  getRolesPropertiesAndStatesFromHeader(6);
+    ariaPropertiesAndStates.forEach(function (prop) {
+      if (contentItems.indexOf(prop) >= 0) {
+        console.log(tagName + ': ' + prop + ', ' + content);
+        addGuidanceToPropertyOrState(
+          prop,
+          url,
+          content,
+          getClosestId(dataHeading)
+        );
+      }
+    });
+  }
 }
 
-function getRolesFromDataAttributesOnHeaders(data, url) {
-  let indexStart = data.indexOf('data-aria-roles="', 0);
-  let indexEnd = data.indexOf('"', indexStart + 17);
+function getRolesFromDataAttributesOnHeaders(html, url) {
+  let dataRoles = html.querySelectorAll('[data-aria-roles]');
 
-  while (indexStart > 1 && indexEnd > 1) {
-    let content = getHeaderContent(data, indexStart);
-
-    let roles = data
-      .substring(indexStart + 17, indexEnd)
-      .trim()
-      .toLowerCase();
-
-    roles = roles.split(' ');
+  for (let i = 0; i < dataRoles.length; i++) {
+    let dataRole = dataRoles[i];
+    let roles = dataRole.textContent.split(' ');
+    let content = dataRole.textContent;
 
     ariaRoles.forEach(function (role) {
       if (roles.indexOf(role) >= 0) {
         console.log('data: ' + role + ', ' + content);
-        addGuidanceToRole(
-          role,
-          url,
-          content + ' (D)',
-          getClosestId(data, indexStart)
-        );
+        addGuidanceToRole(role, url, content + ' (D)', getClosestId(dataRole));
       }
     });
-
-    indexStart = data.indexOf('data-aria-roles="', indexEnd);
-
-    if (indexStart > 0) {
-      indexEnd = data.indexOf('"', indexStart + 17);
-    }
   }
 }
 
-function getPropertiesAndStatesFromDataAttributesOnHeaders(data, url) {
-  let indexStart = data.indexOf('data-aria-props="', 0);
-  let indexEnd = data.indexOf('"', indexStart + 17);
+function getPropertiesAndStatesFromDataAttributesOnHeaders(html, url) {
+  let dataProps = html.querySelectorAll('[data-aria-props]');
 
-  while (indexStart > 1 && indexEnd > 1) {
-    let content = getHeaderContent(data, indexStart);
-
-    let props = data
-      .substring(indexStart + 17, indexEnd)
-      .trim()
-      .toLowerCase();
-
-    props = props.split(' ');
+  for (let i = 0; i < dataProps.length; i++) {
+    let dataProp = dataProps[i];
+    let props = dataProp.textContent.split(' ');
+    let content = dataProp.textContent;
 
     ariaPropertiesAndStates.forEach(function (prop) {
       if (props.indexOf(prop) >= 0) {
@@ -478,22 +405,17 @@ function getPropertiesAndStatesFromDataAttributesOnHeaders(data, url) {
           prop,
           url,
           content + ' (D)',
-          getClosestId(data, indexStart)
+          getClosestId(dataProp)
         );
       }
     });
-
-    indexStart = data.indexOf('data-aria-props="', indexEnd);
-
-    if (indexStart > 0) {
-      indexEnd = data.indexOf('"', indexStart + 17);
-    }
   }
 }
-function getRolesPropertiesAndStatesFromGuidance(data, url) {
-  getRolesPropertiesAndStatesFromHeaders(data, url);
-  getRolesFromDataAttributesOnHeaders(data, url);
-  getPropertiesAndStatesFromDataAttributesOnHeaders(data, url);
+
+function getRolesPropertiesAndStatesFromGuidance(html, url) {
+  getRolesPropertiesAndStatesFromHeaders(html, url);
+  getRolesFromDataAttributesOnHeaders(html, url);
+  getPropertiesAndStatesFromDataAttributesOnHeaders(html, url);
 }
 
 let data = fs.readFileSync(
@@ -501,7 +423,9 @@ let data = fs.readFileSync(
   'utf8'
 );
 
-getRolesPropertiesAndStatesFromGuidance(data, '../aria-practices.html');
+let html = HTMLParser.parse(data);
+
+getRolesPropertiesAndStatesFromGuidance(html, '../aria-practices.html');
 
 // Add landmark examples, since they are a different format
 addLandmarkRole(
@@ -599,8 +523,14 @@ addGuidanceToRole(
 );
 
 function getListItem(item) {
+  let ariaLabel = '';
+  let highContrast = '';
+  if (item.highContrast) {
+    ariaLabel = ` aria-label="${item.title} with High Contrast Support"`;
+    highContrast = ' (<abbr title="High Contrast Support">HC</abbr>)';
+  }
   return `
-        <li><a href="${item.ref}">${item.title}</a></li>`;
+                <li><a href="${item.ref}"${ariaLabel}>${item.title}</a>${highContrast}</li>`;
 }
 
 function getListHTML(list) {
