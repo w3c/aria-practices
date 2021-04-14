@@ -306,7 +306,7 @@ ariaTest(
       // Move focus to the main content area
       await h1Element.click();
 
-      // Check is treeitem with aria-current is visible
+      // Check is menuitem with aria-current is visible
 
       t.true(
         await nextLevelExpandableTreeitems[i].isDisplayed(),
