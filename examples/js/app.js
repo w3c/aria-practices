@@ -67,7 +67,7 @@
   }
 })();
 
-// Add SkipTo.js to examples
+// Add jumpto.js to examples
 (function () {
   let ref = window.location.href.split('examples')[0];
   if (ref) {
