@@ -112,7 +112,8 @@
       var node;
 
       // If URL contains 'nojumpto' don't load jumpto, usually for regression testing
-      if (window.location.href.toLowerCase().indexOf('nojumpto') >= 0) {
+      if (window.location.href.indexOf('?nojumpto') >= 0) {
+        window.location.href.replace('?nojumpto', '');
         return;
       }
 
