@@ -183,7 +183,7 @@
       this.renderTooltip(this.domNode, this.buttonNode);
 
       this.menuNode = document.createElement('div');
-      this.menuNode.setAttribute('role', 'menu');
+      this.menuNode.setAttribute('class', 'menu');
       this.domNode.appendChild(this.menuNode);
       this.buttonNode.addEventListener(
         'keydown',
@@ -450,6 +450,9 @@
 
     renderMenuitemToGroup: function (groupNode, mi) {
       var tagNode, tagNodeChild, labelNode, nestingNode;
+
+      // only set role after menu button opens it to not interfere with regression tests
+      this.menuNode.setAttribute('role', 'menu');
 
       var menuitemNode = document.createElement('div');
       menuitemNode.setAttribute('role', 'menuitem');
