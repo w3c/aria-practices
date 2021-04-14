@@ -5,6 +5,7 @@
  *   File:   jumpto.js
  *
  *   Desc:   Jump to provides keyboard navigation to document structure
+ *           to support the bypass block requirement of WCAG 2.x
  *           This feature is based on the ARIA APG menu button example
  *           NOTE: This code has been contributed to the SkipTo.js project
  */
