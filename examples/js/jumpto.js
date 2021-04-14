@@ -110,8 +110,13 @@
     },
     init: function (config) {
       var node;
-      // Check if jumpto is already loaded
 
+      // Check URL says not to load jumpto, usually for regression testing
+      if (window.location.href.toLowerCase().indexOf('nojumpto') >= 0) {
+        return;
+      }
+
+      // Check if jumpto is already loaded
       if (document.querySelector('style#' + this.jumpToId)) {
         return;
       }
