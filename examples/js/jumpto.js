@@ -111,7 +111,7 @@
     init: function (config) {
       var node;
 
-      // Check URL says not to load jumpto, usually for regression testing
+      // If URL contains 'nojumpto' don't load jumpto, usually for regression testing
       if (window.location.href.toLowerCase().indexOf('nojumpto') >= 0) {
         return;
       }
