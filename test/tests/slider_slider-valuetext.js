@@ -45,8 +45,10 @@ const getValueAndText = async function (t, selector) {
 };
 
 const getSeekValueAndText = function (v, change) {
-  let minutesLabel = ' Minutes ';
-  let secondsLabel = ' Seconds';
+  let minutesLabel = 'Minutes';
+  let secondsLabel = 'Seconds';
+  let valuetext = '';
+
   v = parseInt(v) + change;
   if (v > parseInt(ex.seekMax)) {
     v = parseInt(ex.seekMax);
@@ -57,20 +59,28 @@ const getSeekValueAndText = function (v, change) {
   const value = v.toString();
 
   let minutes = parseInt(v / 60);
-  if (minutes === 1) {
-    minutesLabel = ' Minute ';
-  }
-
   let seconds = v % 60;
-  if (seconds === 1) {
-    secondsLabel = ' Second';
-  }
-  if (seconds < 10) {
-    seconds = '0' + seconds;
+
+  if (minutes === 1) {
+    minutesLabel = 'Minute';
   }
 
-  const text = minutes + minutesLabel + seconds + secondsLabel;
-  return [value, text];
+  if (minutes > 0) {
+    valuetext += minutes + ' ' + minutesLabel;
+  }
+
+  if (seconds === 1) {
+    secondsLabel = 'Second';
+  }
+
+  if (seconds > 0) {
+    if (minutes > 0) {
+      valuetext += ' ';
+    }
+    valuetext += seconds + ' ' + secondsLabel;
+  }
+
+  return [value, valuetext];
 };
 
 // Attributes

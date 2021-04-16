@@ -397,10 +397,42 @@ class SliderSeek {
     return value <= valueMax && value >= valueMin;
   }
 
+  getValueMinutesSeconds(minutes, seconds) {
+    if (seconds < 10) {
+      seconds = '0' + seconds;
+    }
+    return minutes + ':' + seconds;
+  }
+
+  getValueTextMinutesSeconds(minutes, seconds) {
+    let valuetext = '';
+    let minutesLabel = 'Minutes';
+    let secondsLabel = 'Seconds';
+
+    if (minutes === 1) {
+      minutesLabel = 'Minute';
+    }
+
+    if (minutes > 0) {
+      valuetext += minutes + ' ' + minutesLabel;
+    }
+
+    if (seconds === 1) {
+      secondsLabel = 'Second';
+    }
+
+    if (seconds > 0) {
+      if (minutes > 0) {
+        valuetext += ' ';
+      }
+      valuetext += seconds + ' ' + secondsLabel;
+    }
+
+    return valuetext;
+  }
+
   moveSliderTo(value) {
     let valueMax, valueMin, pos, minutes, seconds, width;
-    let minutesLabel = ' Minutes ';
-    let secondsLabel = ' Seconds';
 
     valueMin = this.getValueMin();
     valueMax = this.getValueMax();
@@ -411,24 +443,16 @@ class SliderSeek {
 
     minutes = parseInt(value / 60);
     seconds = value % 60;
-    if (seconds < 10) {
-      seconds = '0' + seconds;
-    }
 
-    this.sliderValueNode.textContent = minutes + ':' + seconds;
+    this.sliderValueNode.textContent = this.getValueMinutesSeconds(
+      minutes,
+      seconds
+    );
     width = this.sliderValueNode.getBoundingClientRect().width;
-
-    if (minutes === 1) {
-      minutesLabel = ' Minute ';
-    }
-
-    if (seconds === 1) {
-      secondsLabel = ' Second';
-    }
 
     this.sliderNode.setAttribute(
       'aria-valuetext',
-      minutes + minutesLabel + seconds + secondsLabel
+      this.getValueTextMinutesSeconds(minutes, seconds)
     );
 
     pos =
