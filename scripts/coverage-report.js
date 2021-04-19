@@ -285,7 +285,7 @@ glob
 
     let html = HTMLParser.parse(data);
 
-    let ref = file.replace('examples/', '');
+    let ref = file.replace('examples/', '../examples/');
     let title = html
       .querySelector('title')
       .textContent.split('|')[0]
