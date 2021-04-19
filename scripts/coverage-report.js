@@ -177,6 +177,8 @@ ariaPropertiesAndStates.forEach(function (prop) {
   indexOfPropertiesAndStatesInGuidance[prop] = [];
 });
 
+let indexOfExamples = [];
+
 console.log('Generating index...');
 
 function getRoles(html) {
@@ -267,6 +269,17 @@ function addLandmarkRole(landmark, hasLabel, title, ref) {
   }
 }
 
+function getNumberOfReferences(data, target) {
+  data = data.toLowerCase();
+  const hasTarget = RegExp('\\b' + target + '\\b', 'g');
+  let count = 0;
+  while (hasTarget.test(data)) {
+    count += 1;
+    hasTarget.lastIndex;
+  }
+  return count;
+}
+
 // Index roles, properties and states used in examples
 glob
   .sync('examples/!(landmarks)/**/!(index).html', {
@@ -275,6 +288,8 @@ glob
   })
   .forEach(function (file) {
     console.log('[file]: ' + file);
+    let dir = path.dirname(file);
+    console.log('[ dir]: ' + dir);
 
     if (file.toLowerCase().indexOf('deprecated') >= 0) {
       console.log('  [ignored]');
@@ -285,7 +300,37 @@ glob
 
     let html = HTMLParser.parse(data);
 
-    let ref = file.replace('examples/', '../examples/');
+    let dataJS = '';
+    let scripts = html.querySelectorAll('script[src]');
+    for (let i = 0; i < scripts.length; i++) {
+      let src = scripts[i].getAttribute('src');
+      if (
+        src.indexOf('examples.js') < 0 &&
+        src.indexOf('highlight.pack.js') < 0 &&
+        src.indexOf('app.js') < 0
+      ) {
+        console.log('  [script]: ' + src);
+        dataJS += fs.readFileSync(path.join(dir, src), 'utf8');
+      }
+      dataJS += ' ';
+    }
+
+    let dataCSS = '';
+    let cssFiles = html.querySelectorAll('link[href]');
+    for (let i = 0; i < cssFiles.length; i++) {
+      let href = cssFiles[i].getAttribute('href');
+      if (
+        href.indexOf('base.css') < 0 &&
+        href.indexOf('core.css') < 0 &&
+        href.indexOf('all.css') < 0
+      ) {
+        console.log('  [link]: ' + href);
+        dataCSS += fs.readFileSync(path.join(dir, href), 'utf8');
+      }
+      dataCSS += ' ';
+    }
+
+    let ref = path.join('..', file);
     let title = html
       .querySelector('title')
       .textContent.split('|')[0]
@@ -298,10 +343,22 @@ glob
       title: title,
       ref: ref,
       highContrast: data.toLowerCase().indexOf('high contrast') > 0,
+      svgHTML: html.querySelectorAll('svg').length,
+      svgCSS: getNumberOfReferences(dataCSS, 'svg'),
+      contentCSS: getNumberOfReferences(dataCSS, 'content'),
+      beforeCSS: getNumberOfReferences(dataCSS, ':before'),
+      afterCSS: getNumberOfReferences(dataCSS, ':after'),
+      svgJS: getNumberOfReferences(dataJS, 'svg'),
+      classJS: getNumberOfReferences(dataJS, 'constructor\\('),
+      prototypeJS: getNumberOfReferences(dataJS, '.prototype.'),
+      keyCodeJS: getNumberOfReferences(dataJS, '.keycode'),
+      hasExternalJS: dataJS.length > 0,
     };
 
     addExampleToRoles(getRoles(html), example);
     addExampleToPropertiesAndStates(getPropertiesAndStates(html), example);
+
+    indexOfExamples.push(example);
   });
 
 // Index roles, properties and states used in guidance
@@ -701,6 +758,76 @@ $('#props_with_more_than_one_tbody').html(PropsWithMoreThanOneExample);
 $('.props_with_more_than_one_examples_count').html(
   countMoreThanOneExample.toString()
 );
+
+// Example Coding Practices
+
+function htmlYesOrNo(flag) {
+  return flag
+    ? 'Yes'
+    : '<code aria-hidden="true">-</span><span class="sr-only">no</span>';
+}
+
+let IndexOfExample = indexOfExamples.reduce(function (set, example) {
+  let using = '';
+  if (example.hasExternalJS) {
+    if (example.classJS) {
+      using += 'class';
+    }
+    if (example.prototypeJS) {
+      if (example.classJS) {
+        using += ', ';
+      }
+      using += 'prototype';
+    }
+  }
+
+  return `${set}
+          <tr>
+            <td><a href="${example.ref}">${example.title}</code></td>
+            <td>${using}</td>
+            <td>${htmlYesOrNo(example.highContrast)}</td>
+            <td>${htmlYesOrNo(example.keyCodeJS)}</td>
+            <td>${htmlYesOrNo(example.svgHTML)}</td>
+            <td>${htmlYesOrNo(example.svgCSS)}</td>
+            <td>${htmlYesOrNo(example.svgJS)}</td>
+            <td>${htmlYesOrNo(example.beforeCSS)}</td>
+            <td>${htmlYesOrNo(example.afterCSS)}</td>
+            <td>${htmlYesOrNo(example.contentCSS)}</td>
+          </tr>`;
+}, '');
+
+let countClass = indexOfExamples.reduce(function (set, example) {
+  return set + (example.classJS ? 1 : 0);
+}, 0);
+
+let countPrototype = indexOfExamples.reduce(function (set, example) {
+  return set + (example.prototypeJS ? 1 : 0);
+}, 0);
+
+let countHighContrast = indexOfExamples.reduce(function (set, example) {
+  return set + (example.highContrast ? 1 : 0);
+}, 0);
+
+let countKeyCode = indexOfExamples.reduce(function (set, example) {
+  return set + (example.keyCodeJS ? 1 : 0);
+}, 0);
+
+let countSVG = indexOfExamples.reduce(function (set, example) {
+  let svg = example.svgHTML ? 1 : 0;
+  if (!svg && (example.svgCSS || example.svgJS)) {
+    svg = 1;
+  }
+
+  return set + svg;
+}, 0);
+
+$('#example_coding_features_tbody').html(IndexOfExample);
+$('#example_summary_total').html(indexOfExamples.length);
+$('#example_summary_hc').html(countHighContrast);
+$('#example_summary_svg').html(countSVG);
+$('#example_summary_keycode').html(countKeyCode);
+$('#example_summary_class').html(countClass);
+$('#example_summary_prototype').html(countPrototype);
 
 // cheerio seems to fold the doctype lines despite the template
 const result = $.html()

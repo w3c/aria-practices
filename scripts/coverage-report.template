@@ -9,6 +9,9 @@
   <script src="js/examples.js"></script>
   <script src="js/highlight.pack.js"></script>
   <script src="js/app.js"></script>
+  <style>
+    .sr-only {position: absolute; top: -30em;}
+  </style>
 </head>
 <body>
   <nav aria-label="ARIA Practices">
@@ -30,6 +33,7 @@
       <li><a href="#props_with_no_examples">Properties and States with no Examples (<span class="props_with_no_examples_count"></span>)</a></li>
       <li><a href="#props_with_one_example">Properties and States with One Examples (<span class="props_with_one_example_count"></span>)</a></li>
       <li><a href="#props_with_more_than_one_example">Properties and States with More than One Example  (<span class="props_with_more_than_one_examples_count"></span>)</a></li>
+      <li><a href="#example_coding_features">Example Coding Features</a></li>
     </ul>
 
     <section id="csv_files">
@@ -113,6 +117,62 @@
           </tr>
         </thead>
         <tbody id="props_with_more_than_one_tbody">
+        </tbody>
+      </table>
+    </section>
+
+    <section id="example_coding">
+      <h2 id="example_coding">Example Coding Practices</h2>
+
+      <h3 id="example_summary">Coding Summary</h3>
+      <table aria-labelledby="example_summary" class="data attributes">
+        <tbody>
+          <tr>
+            <th scope="row">Total Examples</th>
+            <td id="example_summary_total"></td>
+          </tr>
+          <tr>
+            <th scope="row">High Contrast Support</th>
+            <td id="example_summary_hc"></td>
+          </tr>
+          <tr>
+            <th scope="row">Uses SVG</th>
+            <td id="example_summary_svg"></td>
+          </tr>
+          <tr>
+            <th scope="row">Uses <code>event.KeyCode</code></th>
+            <td id="example_summary_keycode"></td>
+          </tr>
+          <tr>
+            <th scope="row">Use Class</th>
+            <td id="example_summary_class"></td>
+          </tr>
+          <tr>
+            <th scope="row">Use Prototype</th>
+            <td id="example_summary_prototype"></td>
+          </tr>
+        </tbody>
+      </table>
+
+
+
+      <h3 id="example_coding_features">Coding Features</h3>
+      <table aria-labelledby="example_coding_features" class="data attributes">
+        <thead>
+          <tr>
+            <th>Example</th>
+            <th>Created Using</th>
+            <th>High Contrast</th>
+            <th>Uses <code>event.keyCode</code></th>
+            <th>SVG in HTML</th>
+            <th>SVG in CSS</th>
+            <th>SVG in JS</th>
+            <th>CSS ::before</th>
+            <th>CSS ::after</th>
+            <th>CSS content</th>
+          </tr>
+        </thead>
+        <tbody id="example_coding_features_tbody">
         </tbody>
       </table>
     </section>
