@@ -33,7 +33,7 @@
       <li><a href="#props_with_no_examples">Properties and States with no Examples (<span class="props_with_no_examples_count"></span>)</a></li>
       <li><a href="#props_with_one_example">Properties and States with One Examples (<span class="props_with_one_example_count"></span>)</a></li>
       <li><a href="#props_with_more_than_one_example">Properties and States with More than One Example  (<span class="props_with_more_than_one_examples_count"></span>)</a></li>
-      <li><a href="#example_coding_features">Example Coding Features</a></li>
+      <li><a href="#example_coding">Example Coding Practices</a></li>
     </ul>
 
     <section id="csv_files">
@@ -156,8 +156,8 @@
 
 
 
-      <h3 id="example_coding_features">Coding Features</h3>
-      <table aria-labelledby="example_coding_features" class="data attributes">
+      <h3 id="example_coding_practices">Coding Practices</h3>
+      <table aria-labelledby="example_coding_practices" class="data attributes">
         <thead>
           <tr>
             <th>Example</th>
@@ -172,7 +172,7 @@
             <th>CSS content</th>
           </tr>
         </thead>
-        <tbody id="example_coding_features_tbody">
+        <tbody id="example_coding_practices_tbody">
         </tbody>
       </table>
     </section>
