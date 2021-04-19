@@ -11,6 +11,7 @@
   <script src="js/app.js"></script>
   <style>
     .sr-only {position: absolute; top: -30em;}
+    table.summary th { width: 12em; }
   </style>
 </head>
 <body>
@@ -125,7 +126,7 @@
       <h2 id="example_coding">Example Coding Practices</h2>
 
       <h3 id="example_summary">Coding Summary</h3>
-      <table aria-labelledby="example_summary" class="data attributes">
+      <table aria-labelledby="example_summary" class="data attributes summary">
         <tbody>
           <tr>
             <th scope="row">Total Examples</th>
@@ -156,7 +157,7 @@
 
 
 
-      <h3 id="example_coding_practices">Coding Practices</h3>
+      <h3 id="example_coding_practices">Coding Details</h3>
       <table aria-labelledby="example_coding_practices" class="data attributes">
         <thead>
           <tr>
