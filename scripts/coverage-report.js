@@ -292,7 +292,12 @@ glob
     console.log('[ dir]: ' + dir);
 
     // Ignore any files in the 'examples/js` directory
-    if (dir.indexOf(path.join('example', 'js')) >= 0) {
+    if (dir.indexOf('examples/js') >= 0) {
+      return;
+    }
+
+    // Ignore any files in the 'examples/template` directory
+    if (dir.indexOf('examples/coding-template') >= 0) {
       return;
     }
 
