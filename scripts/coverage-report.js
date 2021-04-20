@@ -369,6 +369,22 @@ glob
       prototypeJS: getNumberOfReferences(dataJS, '.prototype.'),
       keyCodeJS: getNumberOfReferences(dataJS, '.keyCode'),
       hasExternalJS: dataJS.length > 0,
+
+      mouseDown: getNumberOfReferences(dataJS, 'mousedown', true),
+      mouseEnter: getNumberOfReferences(dataJS, 'mouseenter', true),
+      mouseLeave: getNumberOfReferences(dataJS, 'mouseleave', true),
+      mouseMove: getNumberOfReferences(dataJS, 'mousemove', true),
+      mouseOut: getNumberOfReferences(dataJS, 'mouseout', true),
+      mouseOver: getNumberOfReferences(dataJS, 'mouseover', true),
+      mouseUp: getNumberOfReferences(dataJS, 'mouseup', true),
+
+      pointerDown: getNumberOfReferences(dataJS, 'pointerdown', true),
+      pointerEnter: getNumberOfReferences(dataJS, 'pointerenter', true),
+      pointerLeave: getNumberOfReferences(dataJS, 'pointerleave', true),
+      pointerMove: getNumberOfReferences(dataJS, 'pointermove', true),
+      pointerOut: getNumberOfReferences(dataJS, 'pointerout', true),
+      pointerOver: getNumberOfReferences(dataJS, 'pointerover', true),
+      pointerUp: getNumberOfReferences(dataJS, 'pointerup', true),
     };
 
     addExampleToRoles(getRoles(html), example);
@@ -796,6 +812,23 @@ let IndexOfExample = indexOfExamples.reduce(function (set, example) {
       using += 'prototype';
     }
   }
+
+  let mouseCount = example.mouseDown;
+  mouseCount += example.mouseEnter;
+  mouseCount += example.mouseLeave;
+  mouseCount += example.mouseMove;
+  mouseCount += example.mouseOut;
+  mouseCount += example.mouseOver;
+  mouseCount += example.mouseUp;
+
+  let pointerCount = example.pointerDown;
+  pointerCount += example.pointerEnter;
+  pointerCount += example.pointerLeave;
+  pointerCount += example.pointerMove;
+  pointerCount += example.pointerOut;
+  pointerCount += example.pointerOver;
+  pointerCount += example.pointerUp;
+
   return `${set}
           <tr>
             <td><a href="${example.ref}">${example.title}</code></td>
@@ -809,6 +842,8 @@ let IndexOfExample = indexOfExamples.reduce(function (set, example) {
             <td>${htmlYesOrNo(example.beforeCSS)}</td>
             <td>${htmlYesOrNo(example.afterCSS)}</td>
             <td>${htmlYesOrNo(example.contentCSS)}</td>
+            <td>${htmlYesOrNo(mouseCount)}</td>
+            <td>${htmlYesOrNo(pointerCount)}</td>
           </tr>`;
 }, '');
 
@@ -837,6 +872,30 @@ let countSVG = indexOfExamples.reduce(function (set, example) {
   return set + svg;
 }, 0);
 
+let countMouse = indexOfExamples.reduce(function (set, example) {
+  let count = example.mouseDown;
+  count += example.mouseEnter;
+  count += example.mouseLeave;
+  count += example.mouseMove;
+  count += example.mouseOut;
+  count += example.mouseOver;
+  count += example.mouseUp;
+
+  return set + (count ? 1 : 0);
+}, 0);
+
+let countPointer = indexOfExamples.reduce(function (set, example) {
+  let count = example.pointerDown;
+  count += example.pointerEnter;
+  count += example.pointerLeave;
+  count += example.pointerMove;
+  count += example.pointerOut;
+  count += example.pointerOver;
+  count += example.pointerUp;
+
+  return set + (count ? 1 : 0);
+}, 0);
+
 let countForceColorAdjust = indexOfExamples.reduce(function (set, example) {
   return set + (example.forceColorAdjust ? 1 : 0);
 }, 0);
@@ -849,6 +908,8 @@ $('#example_summary_force_color').html(countForceColorAdjust);
 $('#example_summary_keycode').html(countKeyCode);
 $('#example_summary_class').html(countClass);
 $('#example_summary_prototype').html(countPrototype);
+$('#example_summary_mouse').html(countMouse);
+$('#example_summary_pointer').html(countPointer);
 
 // cheerio seems to fold the doctype lines despite the template
 const result = $.html()

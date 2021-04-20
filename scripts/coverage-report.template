@@ -141,7 +141,7 @@
             <td id="example_summary_svg"></td>
           </tr>
           <tr>
-            <th scope="row">Force Color Adjust</th>
+            <th scope="row"><code>force-color-adjust</code></th>
             <td id="example_summary_force_color"></td>
           </tr>
           <tr>
@@ -155,6 +155,14 @@
           <tr>
             <th scope="row">Use Prototype</th>
             <td id="example_summary_prototype"></td>
+          </tr>
+          <tr>
+            <th scope="row">Mouse Events</th>
+            <td id="example_summary_mouse"></td>
+          </tr>
+          <tr>
+            <th scope="row">Pointer Events</th>
+            <td id="example_summary_pointer"></td>
           </tr>
         </tbody>
       </table>
@@ -172,10 +180,12 @@
             <th>SVG in HTML</th>
             <th>SVG in CSS</th>
             <th>SVG in JS</th>
-            <th>Force Color Adjust</th>
+            <th><code>force-color-adjust</code></th>
             <th>CSS ::before</th>
             <th>CSS ::after</th>
             <th>CSS content</th>
+            <th>Mouse Events</th>
+            <th>Pointer Events</th>
           </tr>
         </thead>
         <tbody id="example_coding_practices_tbody">
