@@ -291,6 +291,11 @@ glob
     let dir = path.dirname(file);
     console.log('[ dir]: ' + dir);
 
+    // Ignore any files in the 'examples/js` directory
+    if (dir.indexOf(path.join('example', 'js')) >= 0) {
+      return;
+    }
+
     if (file.toLowerCase().indexOf('deprecated') >= 0) {
       console.log('  [ignored]');
       return;
@@ -780,7 +785,6 @@ let IndexOfExample = indexOfExamples.reduce(function (set, example) {
       using += 'prototype';
     }
   }
-
   return `${set}
           <tr>
             <td><a href="${example.ref}">${example.title}</code></td>
@@ -821,7 +825,7 @@ let countSVG = indexOfExamples.reduce(function (set, example) {
   return set + svg;
 }, 0);
 
-$('#example_coding_features_tbody').html(IndexOfExample);
+$('#example_coding_practices_tbody').html(IndexOfExample);
 $('#example_summary_total').html(indexOfExamples.length);
 $('#example_summary_hc').html(countHighContrast);
 $('#example_summary_svg').html(countSVG);
