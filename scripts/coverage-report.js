@@ -269,8 +269,12 @@ function addLandmarkRole(landmark, hasLabel, title, ref) {
   }
 }
 
-function getNumberOfReferences(data, target) {
-  data = data.toLowerCase();
+function getNumberOfReferences(data, target, toLower) {
+  if (typeof toLower === 'boolean' && toLower) {
+    data = data.toLowerCase();
+    target = target.toLowerCase();
+  }
+
   const hasTarget = RegExp('\\b' + target + '\\b', 'g');
   let count = 0;
   while (hasTarget.test(data)) {
@@ -354,14 +358,15 @@ glob
       ref: ref,
       highContrast: data.toLowerCase().indexOf('high contrast') > 0,
       svgHTML: html.querySelectorAll('svg').length,
-      svgCSS: getNumberOfReferences(dataCSS, 'svg'),
-      contentCSS: getNumberOfReferences(dataCSS, 'content'),
+      svgCSS: getNumberOfReferences(dataCSS, 'svg', true),
+      contentCSS: getNumberOfReferences(dataCSS, 'content:'),
       beforeCSS: getNumberOfReferences(dataCSS, ':before'),
       afterCSS: getNumberOfReferences(dataCSS, ':after'),
-      svgJS: getNumberOfReferences(dataJS, 'svg'),
+      svgJS: getNumberOfReferences(dataJS, 'svg', true),
+      forceColorAdjust: getNumberOfReferences(dataCSS, 'forced-color-adjust'),
       classJS: getNumberOfReferences(dataJS, 'constructor\\('),
       prototypeJS: getNumberOfReferences(dataJS, '.prototype.'),
-      keyCodeJS: getNumberOfReferences(dataJS, '.keycode'),
+      keyCodeJS: getNumberOfReferences(dataJS, '.keyCode'),
       hasExternalJS: dataJS.length > 0,
     };
 
@@ -799,6 +804,7 @@ let IndexOfExample = indexOfExamples.reduce(function (set, example) {
             <td>${htmlYesOrNo(example.svgHTML)}</td>
             <td>${htmlYesOrNo(example.svgCSS)}</td>
             <td>${htmlYesOrNo(example.svgJS)}</td>
+            <td>${htmlYesOrNo(example.forceColorAdjust)}</td>
             <td>${htmlYesOrNo(example.beforeCSS)}</td>
             <td>${htmlYesOrNo(example.afterCSS)}</td>
             <td>${htmlYesOrNo(example.contentCSS)}</td>
@@ -830,10 +836,15 @@ let countSVG = indexOfExamples.reduce(function (set, example) {
   return set + svg;
 }, 0);
 
+let countForceColorAdjust = indexOfExamples.reduce(function (set, example) {
+  return set + (example.forceColorAdjust ? 1 : 0);
+}, 0);
+
 $('#example_coding_practices_tbody').html(IndexOfExample);
 $('#example_summary_total').html(indexOfExamples.length);
 $('#example_summary_hc').html(countHighContrast);
 $('#example_summary_svg').html(countSVG);
+$('#example_summary_force_color').html(countForceColorAdjust);
 $('#example_summary_keycode').html(countKeyCode);
 $('#example_summary_class').html(countClass);
 $('#example_summary_prototype').html(countPrototype);

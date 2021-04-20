@@ -141,6 +141,10 @@
             <td id="example_summary_svg"></td>
           </tr>
           <tr>
+            <th scope="row">Inherit colors</th>
+            <td id="example_summary_force_color"></td>
+          </tr>
+          <tr>
             <th scope="row">Uses <code>event.KeyCode</code></th>
             <td id="example_summary_keycode"></td>
           </tr>
@@ -168,6 +172,7 @@
             <th>SVG in HTML</th>
             <th>SVG in CSS</th>
             <th>SVG in JS</th>
+            <th>Force Color Adjust</th>
             <th>CSS ::before</th>
             <th>CSS ::after</th>
             <th>CSS content</th>
