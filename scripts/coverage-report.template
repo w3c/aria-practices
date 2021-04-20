@@ -141,7 +141,7 @@
             <td id="example_summary_svg"></td>
           </tr>
           <tr>
-            <th scope="row">Inherit colors</th>
+            <th scope="row">Force Color Adjust</th>
             <td id="example_summary_force_color"></td>
           </tr>
           <tr>
