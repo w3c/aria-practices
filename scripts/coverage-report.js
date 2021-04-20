@@ -523,12 +523,6 @@ addLandmarkRole(
   'Banner Landmark',
   '../examples/landmarks/banner.html'
 );
-addGuidanceToRole(
-  'banner',
-  '../aria-practices.html',
-  'Banner',
-  'aria_lh_banner'
-);
 
 addLandmarkRole(
   ['complementary'],
@@ -536,24 +530,12 @@ addLandmarkRole(
   'Complementary Landmark',
   '../examples/landmarks/complementary.html'
 );
-addGuidanceToRole(
-  'complementary',
-  '../aria-practices.html',
-  'Complementary',
-  'aria_lh_complementary'
-);
 
 addLandmarkRole(
   ['contentinfo'],
   false,
   'Contentinfo Landmark',
   '../examples/landmarks/contentinfo.html'
-);
-addGuidanceToRole(
-  'contentinfo',
-  '../aria-practices.html',
-  'Contentinfo',
-  'aria_lh_contentinfo'
 );
 
 addLandmarkRole(
@@ -570,19 +552,12 @@ addLandmarkRole(
   'Main Landmark',
   '../examples/landmarks/main.html'
 );
-addGuidanceToRole('main', '../aria-practices.html', 'Main', 'aria_lh_main');
 
 addLandmarkRole(
   ['navigation'],
   true,
   'Navigation Landmark',
   '../examples/landmarks/navigation.html'
-);
-addGuidanceToRole(
-  'navigation',
-  '../aria-practices.html',
-  'Navigation',
-  'aria_lh_navigation'
 );
 
 addLandmarkRole(
@@ -591,24 +566,12 @@ addLandmarkRole(
   'Region Landmark',
   '../examples/landmarks/region.html'
 );
-addGuidanceToRole(
-  'region',
-  '../aria-practices.html',
-  'Region',
-  'aria_lh_region'
-);
 
 addLandmarkRole(
   ['search'],
   true,
   'Search Landmark',
   '../examples/landmarks/search.html'
-);
-addGuidanceToRole(
-  'search',
-  '../aria-practices.html',
-  'Search',
-  'aria_lh_search'
 );
 
 function getListItem(item) {
