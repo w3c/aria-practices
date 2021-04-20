@@ -544,7 +544,6 @@ addLandmarkRole(
   'Form Landmark',
   '../examples/landmarks/form.html'
 );
-addGuidanceToRole('form', '../aria-practices.html', 'Form', 'aria_lh_form');
 
 addLandmarkRole(
   ['main'],
