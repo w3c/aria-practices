@@ -5,257 +5,158 @@
  *
  *   File:   slider-color-viewer.js
  *
- *   Desc:   ColorViewerSliders widget that implements ARIA Authoring Practices
+ *   Desc:   RatingSlider widget that implements ARIA Authoring Practices
  */
 
-// Create ColorViewerSliders that contains value, valuemin, valuemax, and valuenow
-class ColorViewerSliders {
+class RatingSlider {
   constructor(domNode) {
-    this.domNode = domNode;
+    this.sliderNode = domNode;
 
-    this.pointerSlider = false;
+    this.isMoving = false;
 
-    this.sliders = {};
+    this.svgNode = domNode.querySelector('svg');
 
-    this.svgWidth = 310;
-    this.svgHeight = 50;
-    this.borderWidth = 2;
+    this.starsWidth = 200;
+    this.starsX = 0;
 
-    this.valueY = 20;
+    this.svgPoint = this.svgNode.createSVGPoint();
 
-    this.railX = 15;
-    this.railY = 26;
-    this.railWidth = 275;
-    this.railHeight = 14;
+    // define possible slider positions
 
-    this.thumbHeight = this.railHeight;
-    this.thumbWidth = this.thumbHeight;
-    this.rectRadius = this.railHeight / 4;
-
-    this.focusY = this.borderWidth;
-    this.focusWidth = 36;
-    this.focusHeight = 48;
-
-    this.initSliderRefs(this.sliders, 'red');
-    this.initSliderRefs(this.sliders, 'green');
-    this.initSliderRefs(this.sliders, 'blue');
-
-    document.body.addEventListener(
-      'pointerup',
-      this.onThumbPointerUp.bind(this)
+    this.sliderNode.addEventListener(
+      'keydown',
+      this.onSliderKeydown.bind(this)
     );
 
-    this.colorBoxNode = domNode.querySelector('.color-box');
-    this.colorValueHexNode = domNode.querySelector('input.color-value-hex');
-    this.colorValueRGBNode = domNode.querySelector('input.color-value-rgb');
-  }
-
-  initSliderRefs(sliderRef, color) {
-    sliderRef[color] = {};
-    var n = this.domNode.querySelector('.color-slider.' + color);
-    sliderRef[color].sliderNode = n;
-
-    sliderRef[color].svgNode = n.querySelector('svg');
-    sliderRef[color].svgNode.setAttribute('width', this.svgWidth);
-    sliderRef[color].svgNode.setAttribute('height', this.svgHeight);
-    sliderRef[color].svgPoint = sliderRef[color].svgNode.createSVGPoint();
-
-    sliderRef[color].valueNode = n.querySelector('.value');
-    sliderRef[color].valueNode.setAttribute('y', this.valueY);
-
-    sliderRef[color].thumbNode = n.querySelector('.thumb');
-    sliderRef[color].thumbNode.setAttribute('width', this.thumbWidth);
-    sliderRef[color].thumbNode.setAttribute('height', this.thumbHeight);
-    sliderRef[color].thumbNode.setAttribute('y', this.railY);
-    sliderRef[color].thumbNode.setAttribute('rx', this.rectRadius);
-
-    sliderRef[color].focusNode = n.querySelector('.focus');
-    sliderRef[color].focusNode.setAttribute(
-      'width',
-      this.focusWidth - this.borderWidth
+    this.svgNode.addEventListener('click', this.onRailClick.bind(this));
+    this.svgNode.addEventListener(
+      'pointerdown',
+      this.onSliderPointerDown.bind(this)
     );
-    sliderRef[color].focusNode.setAttribute(
-      'height',
-      this.focusHeight - this.borderWidth
-    );
-    sliderRef[color].focusNode.setAttribute('y', this.focusY);
-    sliderRef[color].focusNode.setAttribute('rx', this.rectRadius);
 
-    sliderRef[color].railNode = n.querySelector('.color-slider .rail');
-    sliderRef[color].railNode.setAttribute('x', this.railX);
-    sliderRef[color].railNode.setAttribute('y', this.railY);
-    sliderRef[color].railNode.setAttribute('width', this.railWidth);
-    sliderRef[color].railNode.setAttribute('height', this.railHeight);
-    sliderRef[color].railNode.setAttribute('rx', this.rectRadius);
+    // bind a pointermove event handler to move pointer
+    this.svgNode.addEventListener('pointermove', this.onPointerMove.bind(this));
 
-    sliderRef[color].fillNode = n.querySelector('.color-slider .fill');
-    sliderRef[color].fillNode.setAttribute('x', this.railX);
-    sliderRef[color].fillNode.setAttribute('y', this.railY);
-    sliderRef[color].fillNode.setAttribute('width', this.railWidth);
-    sliderRef[color].fillNode.setAttribute('height', this.railHeight);
-    sliderRef[color].fillNode.setAttribute('rx', this.rectRadius);
-  }
-
-  // Initialize slider
-  init() {
-    for (var slider in this.sliders) {
-      if (this.sliders[slider].sliderNode.tabIndex != 0) {
-        this.sliders[slider].sliderNode.tabIndex = 0;
-      }
-
-      this.sliders[slider].railNode.addEventListener(
-        'click',
-        this.onRailClick.bind(this)
-      );
-
-      this.sliders[slider].sliderNode.addEventListener(
-        'keydown',
-        this.onSliderKeyDown.bind(this)
-      );
-
-      this.sliders[slider].sliderNode.addEventListener(
-        'pointerdown',
-        this.onThumbPointerDown.bind(this)
-      );
-
-      this.sliders[slider].valueNode.addEventListener(
-        'keydown',
-        this.onSliderKeyDown.bind(this)
-      );
-
-      this.sliders[slider].valueNode.addEventListener(
-        'pointerdown',
-        this.onThumbPointerDown.bind(this)
-      );
-
-      this.sliders[slider].sliderNode.addEventListener(
-        'pointermove',
-        this.onThumbPointerMove.bind(this)
-      );
-
-      this.moveSliderTo(
-        this.sliders[slider],
-        this.getValueNow(this.sliders[slider])
-      );
-    }
+    // bind a pointerup event handler to stop tracking pointer movements
+    document.addEventListener('pointerup', this.onPointerUp.bind(this));
   }
 
   // Get point in global SVG space
-  getSVGPoint(slider, event) {
-    slider.svgPoint.x = event.clientX;
-    slider.svgPoint.y = event.clientY;
-    return slider.svgPoint.matrixTransform(
-      slider.svgNode.getScreenCTM().inverse()
-    );
+  getSVGPoint(event) {
+    this.svgPoint.x = event.clientX;
+    this.svgPoint.y = event.clientY;
+    return this.svgPoint.matrixTransform(this.svgNode.getScreenCTM().inverse());
   }
 
-  getSlider(domNode) {
-    if (!domNode.classList.contains('color-slider')) {
-      if (domNode.tagName.toLowerCase() === 'rect') {
-        domNode = domNode.parentNode.parentNode;
-      } else {
-        domNode = domNode.parentNode.querySelector('.color-slider');
-      }
+  getValue() {
+    return parseFloat(this.sliderNode.getAttribute('aria-valuenow'));
+  }
+
+  getValueMin() {
+    return parseFloat(this.sliderNode.getAttribute('aria-valuemin'));
+  }
+
+  getValueMax() {
+    return parseFloat(this.sliderNode.getAttribute('aria-valuemax'));
+  }
+
+  isInRange(value) {
+    let valueMin = this.getValueMin();
+    let valueMax = this.getValueMax();
+    return value <= valueMax && value >= valueMin;
+  }
+
+  getValueText(value) {
+    switch (value) {
+      case 0:
+        return 'no stars';
+
+      case 0.5:
+        return 'one half star';
+
+      case 1.0:
+        return 'one star';
+
+      case 1.5:
+        return 'one and a half stars';
+
+      case 2.0:
+        return 'two stars';
+
+      case 2.5:
+        return 'two and a half stars';
+
+      case 3.0:
+        return 'three stars';
+
+      case 3.5:
+        return 'three and a half stars';
+
+      case 4.0:
+        return 'four stars';
+
+      case 4.5:
+        return 'four and a half stars';
+
+      case 5.0:
+        return 'five stars';
+
+      default:
+        break;
     }
 
-    if (this.sliders.red.sliderNode === domNode) {
-      return this.sliders.red;
-    }
-
-    if (this.sliders.green.sliderNode === domNode) {
-      return this.sliders.green;
-    }
-
-    return this.sliders.blue;
+    return 'Unexpected value: ' + value;
   }
 
-  getValueMin(slider) {
-    return parseInt(slider.sliderNode.getAttribute('aria-valuemin'));
-  }
+  moveSliderTo(value) {
+    let valueMax, valueMin;
 
-  getValueNow(slider) {
-    return parseInt(slider.sliderNode.getAttribute('aria-valuenow'));
-  }
-
-  getValueMax(slider) {
-    return parseInt(slider.sliderNode.getAttribute('aria-valuemax'));
-  }
-
-  moveSliderTo(slider, value) {
-    var pos, offsetX, valueWidth;
-    var valueMin = this.getValueMin(slider);
-    var valueNow = this.getValueNow(slider);
-    var valueMax = this.getValueMax(slider);
+    valueMin = this.getValueMin();
+    valueMax = this.getValueMax();
 
     value = Math.min(Math.max(value, valueMin), valueMax);
 
-    valueNow = value;
-    slider.sliderNode.setAttribute('aria-valuenow', value);
+    this.sliderNode.setAttribute('aria-valuenow', value);
 
-    offsetX = Math.round(
-      (valueNow * (this.railWidth - this.thumbWidth)) / (valueMax - valueMin)
-    );
-
-    pos = this.railX + offsetX;
-
-    slider.thumbNode.setAttribute('x', pos);
-    slider.fillNode.setAttribute('width', offsetX + this.rectRadius);
-
-    slider.valueNode.textContent = valueNow;
-    valueWidth = slider.valueNode.getBBox().width;
-
-    pos = this.railX + offsetX - (valueWidth - this.thumbWidth) / 2;
-    slider.valueNode.setAttribute('x', pos);
-
-    pos = this.railX + offsetX - (this.focusWidth - this.thumbWidth) / 2;
-    slider.focusNode.setAttribute('x', pos);
-
-    this.updateColorBox();
+    this.sliderNode.setAttribute('aria-valuetext', this.getValueText(value));
   }
 
-  onSliderKeyDown(event) {
+  onSliderKeydown(event) {
     var flag = false;
-
-    var slider = this.getSlider(event.currentTarget);
-
-    var valueMin = this.getValueMin(slider);
-    var valueNow = this.getValueNow(slider);
-    var valueMax = this.getValueMax(slider);
+    var value = this.getValue();
+    var valueMin = this.getValueMin();
+    var valueMax = this.getValueMax();
 
     switch (event.key) {
-      case 'Left':
       case 'ArrowLeft':
-      case 'Down':
       case 'ArrowDown':
-        this.moveSliderTo(slider, valueNow - 1);
+        this.moveSliderTo(value - 0.5);
         flag = true;
         break;
 
-      case 'Right':
       case 'ArrowRight':
-      case 'Up':
       case 'ArrowUp':
-        this.moveSliderTo(slider, valueNow + 1);
+        this.moveSliderTo(value + 0.5);
         flag = true;
         break;
 
       case 'PageDown':
-        this.moveSliderTo(slider, valueNow - 10);
+        this.moveSliderTo(value - 1);
         flag = true;
         break;
 
       case 'PageUp':
-        this.moveSliderTo(slider, valueNow + 10);
+        this.moveSliderTo(value + 1);
         flag = true;
         break;
 
       case 'Home':
-        this.moveSliderTo(slider, valueMin);
+        this.moveSliderTo(valueMin);
         flag = true;
         break;
 
       case 'End':
-        this.moveSliderTo(slider, valueMax);
+        this.moveSliderTo(valueMax);
         flag = true;
         break;
 
@@ -269,106 +170,54 @@ class ColorViewerSliders {
     }
   }
 
-  onThumbPointerDown(event) {
-    this.pointerSlider = this.getSlider(event.currentTarget);
-
-    // Set focus to the clicked on
-    this.pointerSlider.sliderNode.focus();
+  onRailClick(event) {
+    var x = this.getSVGPoint(event).x;
+    var min = this.getValueMin();
+    var max = this.getValueMax();
+    var diffX = x - this.starsX;
+    var value = Math.round((2 * (diffX * (max - min))) / this.starsWidth) / 2;
+    this.moveSliderTo(value);
 
     event.preventDefault();
     event.stopPropagation();
+
+    // Set focus to the clicked handle
+    this.sliderNode.focus();
   }
 
-  onThumbPointerUp() {
-    this.pointerSlider = false;
+  onSliderPointerDown(event) {
+    this.isMoving = true;
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    // Set focus to the clicked handle
+    this.sliderNode.focus();
   }
 
-  onThumbPointerMove(event) {
-    if (
-      this.pointerSlider &&
-      this.pointerSlider.sliderNode.contains(event.target)
-    ) {
-      let x = this.getSVGPoint(this.pointerSlider, event).x;
-      let min = this.getValueMin(this.pointerSlider);
-      let max = this.getValueMax(this.pointerSlider);
-      let diffX = x - this.railX;
-      let value = Math.round((diffX * (max - min)) / this.railWidth);
-      this.moveSliderTo(this.pointerSlider, value);
+  onPointerMove(event) {
+    if (this.isMoving) {
+      var x = this.getSVGPoint(event).x;
+      var min = this.getValueMin();
+      var max = this.getValueMax();
+      var diffX = x - this.starsX;
+      var value = Math.round((2 * (diffX * (max - min))) / this.starsWidth) / 2;
+      this.moveSliderTo(value);
 
       event.preventDefault();
       event.stopPropagation();
     }
   }
 
-  // handle click event on the rail
-  onRailClick(event) {
-    var slider = this.getSlider(event.currentTarget);
-
-    var x = this.getSVGPoint(slider, event).x;
-    var min = this.getValueMin(slider);
-    var max = this.getValueMax(slider);
-    var diffX = x - this.railX;
-    var value = Math.round((diffX * (max - min)) / this.railWidth);
-    this.moveSliderTo(slider, value);
-
-    event.preventDefault();
-    event.stopPropagation();
-
-    // Set focus to the clicked handle
-    slider.sliderNode.focus();
-  }
-
-  getColorHex() {
-    var r = parseInt(
-      this.sliders.red.sliderNode.getAttribute('aria-valuenow')
-    ).toString(16);
-    var g = parseInt(
-      this.sliders.green.sliderNode.getAttribute('aria-valuenow')
-    ).toString(16);
-    var b = parseInt(
-      this.sliders.blue.sliderNode.getAttribute('aria-valuenow')
-    ).toString(16);
-
-    if (r.length === 1) {
-      r = '0' + r;
-    }
-    if (g.length === 1) {
-      g = '0' + g;
-    }
-    if (b.length === 1) {
-      b = '0' + b;
-    }
-
-    return '#' + r + g + b;
-  }
-
-  getColorRGB() {
-    var r = this.sliders.red.sliderNode.getAttribute('aria-valuenow');
-    var g = this.sliders.green.sliderNode.getAttribute('aria-valuenow');
-    var b = this.sliders.blue.sliderNode.getAttribute('aria-valuenow');
-
-    return r + ', ' + g + ', ' + b;
-  }
-
-  updateColorBox() {
-    if (this.colorBoxNode) {
-      this.colorBoxNode.style.backgroundColor = this.getColorHex();
-    }
-
-    if (this.colorValueHexNode) {
-      this.colorValueHexNode.value = this.getColorHex();
-    }
-
-    if (this.colorValueRGBNode) {
-      this.colorValueRGBNode.value = this.getColorRGB();
-    }
+  onPointerUp() {
+    this.isMoving = false;
   }
 }
-// Initialize ColorViewerSliders on the page
+
+// Initialize RatingSliders on the page
 window.addEventListener('load', function () {
-  var cps = document.querySelectorAll('.color-viewer-sliders');
-  for (let i = 0; i < cps.length; i++) {
-    let s = new ColorViewerSliders(cps[i]);
-    s.init();
+  var sliders = document.querySelectorAll('.rating-slider');
+  for (let i = 0; i < sliders.length; i++) {
+    new RatingSlider(sliders[i]);
   }
 });

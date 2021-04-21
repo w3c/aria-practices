@@ -53,7 +53,7 @@
        </div>
           <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
           <div id="ex1">
-            <h3 id="id-rating">Rating</h3>
+            <div id="id-rating-label" class="label">Rating</div>
 
             <div class="rating-slider"
                 role="slider"
@@ -61,34 +61,52 @@
                 aria-valuemin="0"
                 aria-valuenow="0"
                 aria-valuemax="5"
-                aria-valuetext="0 stars"
-                aria-labelledby="id-rating">
+                aria-valuetext="no stars"
+                aria-labelledby="id-rating-label">
 
               <!-- SVG position and dimension values added through Javascript -->
 
-
-              <svg xmlns="http://www.w3.org/2000/svg" width="200" height="56">
+              <svg role="none" xmlns="http://www.w3.org/2000/svg" width="224" height="48">
                 <defs>
-                  <g id="star">
-                    <polygon class="left" points="2.0,13.4 11.7,20.5 8.0,31.1 17.7,24.8 17.7,2.0 14.0,13.4"/>
-                    <polygon class="right" points="17.7,2.0 17.7,24.8 27.4,31.9 23.7,20.5 33.4,13.4 21.4,13.4" fill="green"/>
+                  <g id="outline">
+                    <polygon points="2.0,13.4 11.7,20.5 8.0,31.1 17.7,24.8 27.4,31.9 23.7,20.5 33.4,13.4 21.4,13.4 17.7,2.0 14.0,13.4"/>
+                  </g>
+                  <g id="fill-left">
+                    <polygon points="2.0,13.4 11.7,20.5 8.0,31.1 17.7,24.8 17.7,2.0 14.0,13.4"/>
+                  </g>
+                  <g id="fill-right">
+                    <polygon points="17.7,2.0 17.7,24.8 27.4,31.9 23.7,20.5 33.4,13.4 21.4,13.4"/>
                   </g>
                 </defs>
-
-                <use xlink:href="#star" x="0" y="0" style="stroke-width:: 2px; stroke: green; fill: transparent"/>
-
-                <use xlink:href="#star" x="40" y="0" style="stroke-width:: 2px; stroke: green; fill: red"/>
-
-                <use xlink:href="#star" x="80" y="0" style="stroke-width:: 2px; stroke: green; fill: red"/>
-
-                <use xlink:href="#star" x="120" y="0" style="stroke-width:: 2px; stroke: green; fill: red"/>
-
-                <use xlink:href="#star" x="160" y="0" style="stroke-width:: 2px; stroke: green; fill: red"/>
+                <rect class="focus-ring" x="2" y="2" width="220" height="44" rx="5"/>
+                <g class="star-1">
+                  <use class="outline" xlink:href="#outline" x="10" y="6"/>
+                  <use class="fill-left" xlink:href="#fill-left" x="10" y="6"/>
+                  <use class="fill-right" xlink:href="#fill-right" x="10" y="6"/>
+                </g>
+                <g class="star-2">
+                  <use class="outline" xlink:href="#outline" x="50" y="6"/>
+                  <use class="fill-left" xlink:href="#fill-left" x="50" y="6"/>
+                  <use class="fill-right" xlink:href="#fill-right" x="50" y="6"/>
+                </g>
+                <g class="star-3">
+                  <use class="outline" xlink:href="#outline" x="90" y="6"/>
+                  <use class="fill-left" xlink:href="#fill-left" x="90" y="6"/>
+                  <use class="fill-right" xlink:href="#fill-right" x="90" y="6"/>
+                </g>
+                <g class="star-4">
+                  <use class="outline" xlink:href="#outline" x="130" y="6"/>
+                  <use class="fill-left" xlink:href="#fill-left" x="130" y="6"/>
+                  <use class="fill-right" xlink:href="#fill-right" x="130" y="6"/>
+                </g>
+                <g class="star-5">
+                  <use class="outline" xlink:href="#outline" x="170" y="6"/>
+                  <use class="fill-left" xlink:href="#fill-left" x="170" y="6"/>
+                  <use class="fill-right" xlink:href="#fill-right" x="170" y="6"/>
+                </g>
 
               </svg>
-
             </div>
-
           </div>
           <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
     </section>
@@ -117,35 +135,35 @@
         <tbody>
           <tr data-test-id="key-right-arrow">
             <th><kbd>Right Arrow</kbd></th>
-            <td>Increases slider value one step.</td>
+            <td>Increases slider one half star.</td>
           </tr>
           <tr data-test-id="key-up-arrow">
             <th><kbd>Up Arrow</kbd></th>
-            <td>Increases slider value one step.</td>
+            <td>Increases slider one half star.</td>
           </tr>
           <tr data-test-id="key-left-arrow">
             <th><kbd>Left Arrow</kbd></th>
-            <td>Decreases slider value one step.</td>
+            <td>Decreases slider one half star.</td>
           </tr>
           <tr data-test-id="key-down-arrow">
             <th><kbd>Down Arrow</kbd></th>
-            <td>Decreases slider value one step.</td>
+            <td>Decreases slider one half star.</td>
           </tr>
           <tr data-test-id="key-page-up">
             <th><kbd>Page Up</kbd></th>
-            <td>Increases slider value multiple steps. In this slider, jumps ten steps.</td>
+            <td>Increases slider value multiple steps. In this slider, jumps one star.</td>
           </tr>
           <tr data-test-id="key-page-down">
             <th><kbd>Page Down</kbd></th>
-            <td>Decreases slider value multiple steps. In this slider, jumps ten steps.</td>
+            <td>Decreases slider value multiple steps. In this slider, jumps one star.</td>
           </tr>
           <tr data-test-id="key-home">
             <th><kbd>Home</kbd></th>
-            <td>Sets slider to its minimum value.</td>
+            <td>Sets slider to its minimum value, no stars selected.</td>
           </tr>
           <tr data-test-id="key-end">
             <th><kbd>End</kbd></th>
-            <td>Sets slider to its maximum value.</td>
+            <td>Sets slider to its maximum value, all starts selected.</td>
           </tr>
         </tbody>
       </table>
