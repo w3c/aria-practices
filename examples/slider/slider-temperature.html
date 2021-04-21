@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Slider Example with aria-orientation and aria-valuetext | WAI-ARIA Authoring Practices 1.2</title>
+  <title>Temperature Selector Slider Example with aria-orientation and aria-valuetext | WAI-ARIA Authoring Practices 1.2</title>
 
   <!--  Core js and css shared by all examples; do not modify when using this template. -->
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -26,17 +26,16 @@
     </ul>
   </nav>
   <main>
-    <h1>Slider Examples with aria-orientation and aria-valuetext</h1>
+    <h1>Temperature Selector Slider Example with aria-orientation and aria-valuetext</h1>
     <div class="advisement">
       <p><strong>WARNING!</strong> Some users of touch-based assistive technologies may experience difficulty utilizing widgets that implement this slider pattern because the gestures their assistive technology provides for operating sliders may not yet generate the necessary output.  To change the slider value, touch-based assistive technologies need to respond to user gestures for incrementing and decrementing the value by synthesizing key events.  This is a new convention that may not be fully implemented by some assistive technologies.  Authors should fully test slider widgets using assistive technologies on devices where touch is a primary input mechanism before considering incorporation into production systems.
     </p>
     </div>
     <p>
-      The following examples are a temperature selector and seek control for a media player using the
+      The following example is a vertically oriented temperature selector with fixed point numerical values using the
       <a href="../../#slider">slider design pattern.</a>
-      The sliders illustrate how to use <code>aria-valuetext</code> to provide assistive technologies with meaningful names for numeric values.
-      The first slider is vertically oriented for setting a temperature with fixed point values and the <code>aria-valuetext</code> includes the Celsius temperature unit.
-      The second slider represents a slider to move or identify the current playing position in a audio or video media player and converts the seconds value in to minutes and seconds for <code>aria-valuetext</code>.
+      The slider illustrates how to use <code>aria-valuetext</code> to provide assistive technologies with meaningful names for numeric values.
+      The <code>aria-orientation</code> attribute identifies the slider is vertically oriented and <code>aria-valuetext</code> provides a more meaningful name by appending "degrees Celsius" temperature unit to the current value.
     </p>
     <p>Similar examples include: </p>
     <ul>
@@ -50,7 +49,7 @@
       <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
       <div id="ex1" class="example">
         <div class="slider-temperature">
-          <h3 id="id-temp-label" class="label">Temperature</h3>
+          <label id="id-temp-label" class="label">Temperature</label>
 
           <svg role="none" class="slider-group"  width="145" height="360">
             <text class="temp-value" x="28" y="35" >25°C</text>
@@ -213,8 +212,7 @@
             <td>
               <ul>
                 <li>Indicates the orientation of the slider element.</li>
-                <li>Set to <code>vertical</code> for the temperature slider.</li>
-                <li>Set to <code>horizontal</code> for the media seek slider.</li>
+                <li>Set to <code>vertical</code> for the temperature selector slider.</li>
               </ul>
             </td>
           </tr>
@@ -259,8 +257,7 @@
             <td>
               <ul>
                 <li>A string value that provides a user-friendly name for the current value of the slider.</li>
-                <li>For the temperature slider, is the value of the slider appended with the text <q> degrees</q>.</li>
-                <li>For media seek slider, is the text representation of the minutes and seconds.</li>
+                <li>For the temperature selector slider, is the value of the slider appended with the text <q> degrees Celsius</q>.</li>
               </ul>
             </td>
           </tr>
@@ -291,8 +288,8 @@
     <section>
       <h2>Javascript and CSS Source Code</h2>
       <ul id="css_js_files">
-        <li>CSS: <a href="css/slider-valuetext.css" type="text/css">slider-valuetext.css</a></li>
-        <li>Javascript: <a href="js/slider-valuetext.js" type="text/javascript">slider-valuetext.js</a></li>
+        <li>CSS: <a href="css/slider-temperature.css" type="text/css">slider-temperature.css</a></li>
+        <li>Javascript: <a href="js/slider-temperature.js" type="text/javascript">slider-temperature.js</a></li>
       </ul>
     </section>
 
