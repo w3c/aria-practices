@@ -16,6 +16,10 @@ class RatingSlider {
 
     this.svgNode = domNode.querySelector('svg');
 
+    // Inherit system text colors
+    //    var  color = getComputedStyle(this.sliderNode).color;
+    //    this.svgNode.setAttribute('color', color);
+
     this.starsWidth = 200;
     this.starsX = 0;
 
