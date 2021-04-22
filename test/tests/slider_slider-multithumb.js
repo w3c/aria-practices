@@ -8,6 +8,9 @@ const exampleFile = 'slider/slider-multithumb.html';
 
 const ex = {
   sliderSelector: '#ex1 [role="slider"]',
+  svgSelector: '#ex1 svg',
+  railSelector: '#ex1 g.rail',
+  rangeSelector: '#ex1 g.range',
   hotelSliderSelector: '#ex1 .slider-multithumb:nth-of-type(1) [role="slider"]',
   hotelMin: '0',
   hotelMax: '400',
@@ -42,6 +45,28 @@ const verifyAllValues = async function (
 };
 
 // Attributes
+
+ariaTest('role="none" on SVG element', exampleFile, 'svg-none', async (t) => {
+  await assertAriaRoles(t, 'ex1', 'none', '1', 'svg');
+});
+
+ariaTest(
+  'SVG g elements used for the rail have aria-hidden',
+  exampleFile,
+  'aria-hidden-g',
+  async (t) => {
+    await assertAttributeValues(t, ex.railSelector, 'aria-hidden', 'true');
+  }
+);
+
+ariaTest(
+  'SVG g elements used for the range have aria-hidden',
+  exampleFile,
+  'aria-hidden-g',
+  async (t) => {
+    await assertAttributeValues(t, ex.rangeSelector, 'aria-hidden', 'true');
+  }
+);
 
 ariaTest(
   'role="slider" on div element',

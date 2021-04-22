@@ -52,11 +52,11 @@
         <div id="ex1">
           <h3>Hotel Price Range (in <abbr title="United States Dollars">USD</abbr>)</h3>
           <div class="slider-multithumb">
-            <svg class="slider-group"  width="360" height="60">
-              <g class="rail">
+            <svg role="none" class="slider-group"  width="360" height="60">
+              <g aria-hidden="true" class="rail">
                 <rect height="0" width="0"/>
               </g>
-              <g class="range">
+              <g aria-hidden="true" class="range">
                 <rect height="0" width="0"/>
               </g>
               <g class="minimum"
@@ -160,13 +160,24 @@
             </tr>
           </thead>
           <tbody>
+          <tr data-test-id="svg-none">
+            <th scope="row">
+              <code>none</code>
+            </th>
+            <td></td>
+            <td>
+              <code>svg</code>
+            </td>
+            <td>
+              The use of the <code>none</code> role on the SVG element ensures assistive technologies do not interpret the SVG element as an image or some other role.
+            </td>
             <tr data-test-id="slider-role">
               <th scope="row">
                 <code>slider</code>
               </th>
               <td></td>
               <td>
-                <code>img</code>
+                <code>g</code>
               </td>
               <td>
                 <ul>
@@ -181,7 +192,7 @@
                 <code>tabindex=<q>0</q></code>
               </th>
               <td>
-                <code>img</code>
+                <code>g</code>
               </td>
               <td>Includes the slider thumb in the page tab sequence.</td>
             </tr>
@@ -191,7 +202,7 @@
                 <code>aria-valuemax=<q>NUMBER</q></code>
               </th>
               <td>
-                <code>img</code>
+                <code>g</code>
               </td>
               <td>Specifies the maximum value of the slider.</td>
             </tr>
@@ -201,7 +212,7 @@
                 <code>aria-valuemin=<q>NUMBER</q></code>
               </th>
               <td>
-                <code>img</code>
+                <code>g</code>
               </td>
               <td>Specifies the minimum value of the slider.</td>
             </tr>
@@ -211,7 +222,7 @@
                 <code>aria-valuenow=<q>NUMBER</q></code>
               </th>
               <td>
-                <code>img</code>
+                <code>g</code>
               </td>
               <td>Indicates the current value of the slider.</td>
             </tr>
@@ -221,9 +232,19 @@
                 <code>aria-label=<q>text</q></code>
               </th>
               <td>
-                <code>img</code>
+                <code>g</code>
               </td>
               <td>A label identifying the purpose of the slider, e.g., <q>Hotel Minimum Price</q>.</td>
+            </tr>
+            <tr data-test-id="aria-hidden-g">
+              <td></td>
+              <th scope="row">
+                <code>aria-hidden=<q>true</q></code>
+              </th>
+              <td>
+                <code>g</code>
+              </td>
+              <td>Removes the SVG <code>g</code> element and it's children from the accessibility tree, since some screen readers will describe it as an image separate from the slider.</td>
             </tr>
           </tbody>
         </table>
