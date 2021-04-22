@@ -12,3 +12,6 @@ Attribute “aria-posinset” not allowed on element “tr” at this point.
 Attribute “aria-setsize” not allowed on element “tr” at this point.
 # Ignoring role meter
 Bad value “meter” for attribute “role” on element “div”.
+# https://github.com/validator/validator/issues/1096
+Bad value “none” for attribute “role” on element “svg”.
+Bad value “presentation” for attribute “role” on element “svg”.
