@@ -20,7 +20,7 @@ class RatingSlider {
     //    var  color = getComputedStyle(this.sliderNode).color;
     //    this.svgNode.setAttribute('color', color);
 
-    this.starsWidth = 200;
+    this.starsWidth = 198;
     this.starsX = 0;
 
     this.svgPoint = this.svgNode.createSVGPoint();
