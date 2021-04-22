@@ -133,7 +133,7 @@
             <td id="example_summary_total"></td>
           </tr>
           <tr>
-            <th scope="row">High Contrast Support</th>
+            <th scope="row">High Contrast Documentation</th>
             <td id="example_summary_hc"></td>
           </tr>
           <tr>
@@ -141,12 +141,16 @@
             <td id="example_summary_svg"></td>
           </tr>
           <tr>
-            <th scope="row"><code>force-color-adjust</code></th>
+            <th scope="row">Uses <code>forced-color-adjust</code> on SVG</th>
             <td id="example_summary_force_color"></td>
           </tr>
           <tr>
             <th scope="row">Uses <code>event.KeyCode</code></th>
             <td id="example_summary_keycode"></td>
+          </tr>
+          <tr>
+            <th scope="row">Uses <code>event.which</code></th>
+            <td id="example_summary_which"></td>
           </tr>
           <tr>
             <th scope="row">Use Class</th>
@@ -167,30 +171,52 @@
         </tbody>
       </table>
 
-
-
-      <h3 id="example_coding_practices">Coding Details</h3>
+      <h3 id="example_coding_practices">Coding Practices</h3>
       <table aria-labelledby="example_coding_practices" class="data attributes">
         <thead>
           <tr>
             <th>Example</th>
             <th>Created Using</th>
-            <th>High Contrast</th>
             <th>Uses <code>event.keyCode</code></th>
-            <th>SVG in HTML</th>
-            <th>SVG in CSS</th>
-            <th>SVG in JS</th>
-            <th><code>force-color-adjust</code></th>
-            <th>CSS ::before</th>
-            <th>CSS ::after</th>
-            <th>CSS content</th>
-            <th>Mouse Events</th>
-            <th>Pointer Events</th>
+            <th>Uses <code>event.which</code></th>
+            <th>High Contrast Documentation</th>
           </tr>
         </thead>
         <tbody id="example_coding_practices_tbody">
         </tbody>
       </table>
+
+      <h3 id="example_graphics_techniques">Graphics Techniques</h3>
+      <table aria-labelledby="example_graphics_techniques" class="data attributes">
+        <thead>
+          <tr>
+            <th>Example</th>
+            <th>SVG in HTML</th>
+            <th>SVG in CSS</th>
+            <th>SVG in JS</th>
+            <th><code>forced-color-adjust</code></th>
+            <th>CSS ::before</th>
+            <th>CSS ::after</th>
+            <th>CSS content</th>
+          </tr>
+        </thead>
+        <tbody id="example_graphics_techniques_tbody">
+        </tbody>
+      </table>
+
+      <h3 id="example_mouse_pointer">Mouse and Pointer Events</h3>
+      <table aria-labelledby="example_mouse_pointer" class="data attributes">
+        <thead>
+          <tr>
+            <th>Example</th>
+            <th>Mouse Events</th>
+            <th>Pointer Events</th>
+          </tr>
+        </thead>
+        <tbody id="example_mouse_pointer_tbody">
+        </tbody>
+      </table>
+
     </section>
 
   <nav aria-label="ARIA Practices">

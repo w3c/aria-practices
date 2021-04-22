@@ -362,12 +362,13 @@ glob
       contentCSS: getNumberOfReferences(dataCSS, 'content'),
       beforeCSS: getNumberOfReferences(dataCSS, '::before'),
       afterCSS: getNumberOfReferences(dataCSS, '::after'),
-      forceColorAdjust: getNumberOfReferences(dataCSS, 'forced-color-adjust'),
+      forcedColorAdjust: getNumberOfReferences(dataCSS, 'forced-color-adjust'),
 
       svgJS: getNumberOfReferences(dataJS, 'svg', true),
       classJS: getNumberOfReferences(dataJS, 'constructor\\('),
       prototypeJS: getNumberOfReferences(dataJS, '.prototype.'),
       keyCodeJS: getNumberOfReferences(dataJS, '.keyCode'),
+      whichJS: getNumberOfReferences(dataJS, '.which'),
       hasExternalJS: dataJS.length > 0,
 
       mouseDown: getNumberOfReferences(dataJS, 'mousedown', true),
@@ -761,7 +762,10 @@ function htmlYesOrNo(flag) {
     : '<code aria-hidden="true">-</span><span class="sr-only">no</span>';
 }
 
-let IndexOfExample = indexOfExamples.reduce(function (set, example) {
+let IndexOfExampleCodingPractices = indexOfExamples.reduce(function (
+  set,
+  example
+) {
   let using = '';
   if (example.hasExternalJS) {
     if (example.classJS) {
@@ -775,6 +779,46 @@ let IndexOfExample = indexOfExamples.reduce(function (set, example) {
     }
   }
 
+  return `${set}
+          <tr>
+            <td><a href="${example.ref}">${example.title}</code></td>
+            <td>${using}</td>
+            <td>${htmlYesOrNo(example.keyCodeJS)}</td>
+            <td>${htmlYesOrNo(example.whichJS)}</td>
+            <td>${htmlYesOrNo(example.highContrast)}</td>
+          </tr>`;
+},
+'');
+
+let IndexOfExampleGraphics = indexOfExamples.reduce(function (set, example) {
+  let count = example.svgHTML;
+  count += example.svgCSS;
+  count += example.svgJS;
+  count += example.forcedColorAdjust;
+  count += example.beforeCSS;
+  count += example.afterCSS;
+  count += example.contentCSS;
+
+  if (count === 0) {
+    return `${set}`;
+  }
+  return `${set}
+          <tr>
+            <td><a href="${example.ref}">${example.title}</code></td>
+            <td>${htmlYesOrNo(example.svgHTML)}</td>
+            <td>${htmlYesOrNo(example.svgCSS)}</td>
+            <td>${htmlYesOrNo(example.svgJS)}</td>
+            <td>${htmlYesOrNo(example.forcedColorAdjust)}</td>
+            <td>${htmlYesOrNo(example.beforeCSS)}</td>
+            <td>${htmlYesOrNo(example.afterCSS)}</td>
+            <td>${htmlYesOrNo(example.contentCSS)}</td>
+          </tr>`;
+}, '');
+
+let IndexOfExampleMousePointer = indexOfExamples.reduce(function (
+  set,
+  example
+) {
   let mouseCount = example.mouseDown;
   mouseCount += example.mouseEnter;
   mouseCount += example.mouseLeave;
@@ -791,23 +835,18 @@ let IndexOfExample = indexOfExamples.reduce(function (set, example) {
   pointerCount += example.pointerOver;
   pointerCount += example.pointerUp;
 
+  if (mouseCount === 0 && pointerCount === 0) {
+    return `${set}`;
+  }
+
   return `${set}
           <tr>
             <td><a href="${example.ref}">${example.title}</code></td>
-            <td>${using}</td>
-            <td>${htmlYesOrNo(example.highContrast)}</td>
-            <td>${htmlYesOrNo(example.keyCodeJS)}</td>
-            <td>${htmlYesOrNo(example.svgHTML)}</td>
-            <td>${htmlYesOrNo(example.svgCSS)}</td>
-            <td>${htmlYesOrNo(example.svgJS)}</td>
-            <td>${htmlYesOrNo(example.forceColorAdjust)}</td>
-            <td>${htmlYesOrNo(example.beforeCSS)}</td>
-            <td>${htmlYesOrNo(example.afterCSS)}</td>
-            <td>${htmlYesOrNo(example.contentCSS)}</td>
             <td>${htmlYesOrNo(mouseCount)}</td>
             <td>${htmlYesOrNo(pointerCount)}</td>
           </tr>`;
-}, '');
+},
+'');
 
 let countClass = indexOfExamples.reduce(function (set, example) {
   return set + (example.classJS ? 1 : 0);
@@ -823,6 +862,10 @@ let countHighContrast = indexOfExamples.reduce(function (set, example) {
 
 let countKeyCode = indexOfExamples.reduce(function (set, example) {
   return set + (example.keyCodeJS ? 1 : 0);
+}, 0);
+
+let countWhich = indexOfExamples.reduce(function (set, example) {
+  return set + (example.whichJS ? 1 : 0);
 }, 0);
 
 let countSVG = indexOfExamples.reduce(function (set, example) {
@@ -858,16 +901,20 @@ let countPointer = indexOfExamples.reduce(function (set, example) {
   return set + (count ? 1 : 0);
 }, 0);
 
-let countForceColorAdjust = indexOfExamples.reduce(function (set, example) {
-  return set + (example.forceColorAdjust ? 1 : 0);
+let countForcedColorAdjust = indexOfExamples.reduce(function (set, example) {
+  return set + (example.forcedColorAdjust ? 1 : 0);
 }, 0);
 
-$('#example_coding_practices_tbody').html(IndexOfExample);
+$('#example_coding_practices_tbody').html(IndexOfExampleCodingPractices);
+$('#example_graphics_techniques_tbody').html(IndexOfExampleGraphics);
+$('#example_mouse_pointer_tbody').html(IndexOfExampleMousePointer);
+
 $('#example_summary_total').html(indexOfExamples.length);
 $('#example_summary_hc').html(countHighContrast);
 $('#example_summary_svg').html(countSVG);
-$('#example_summary_force_color').html(countForceColorAdjust);
+$('#example_summary_force_color').html(countForcedColorAdjust);
 $('#example_summary_keycode').html(countKeyCode);
+$('#example_summary_which').html(countWhich);
 $('#example_summary_class').html(countClass);
 $('#example_summary_prototype').html(countPrototype);
 $('#example_summary_mouse').html(countMouse);
