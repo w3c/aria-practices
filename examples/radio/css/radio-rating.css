@@ -70,7 +70,3 @@
   stroke: currentColor;
 }
 
-.rating-radio:focus svg .focus-ring-none {
-  stroke-width: 2px;
-  stroke: currentColor;
-}
