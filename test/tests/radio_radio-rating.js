@@ -30,6 +30,10 @@ const checkFocus = async function (t, selector, index) {
 
 // Attributes
 
+ariaTest('role="none" on SVG element', exampleFile, 'svg-none', async (t) => {
+  await assertAriaRoles(t, 'ex1', 'none', '2', 'svg');
+});
+
 ariaTest(
   'role="radiogroup" on div element',
   exampleFile,
