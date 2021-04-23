@@ -28,8 +28,6 @@ class RatingRadioGroup {
 
       rb.addEventListener('keydown', this.handleKeydown.bind(this));
       rb.addEventListener('click', this.handleClick.bind(this));
-      rb.addEventListener('focus', this.handleFocus.bind(this));
-      rb.addEventListener('blur', this.handleBlur.bind(this));
 
       this.radioButtons.push(rb);
 
@@ -38,10 +36,20 @@ class RatingRadioGroup {
       }
       this.lastRadioButton = rb;
     }
-    this.firstRadioButton.tabIndex = 0;
+    var value = groupNode.getAttribute('data-rating-value');
+    var index = parseInt(value);
+
+    if (value && index >= 0 && index < this.radioButtons.length) {
+      this.radioButtons[index].tabIndex = 0;
+    } else {
+      value = this.firstRadioButton.getAttribute('data-rating-value');
+      groupNode.getAttribute('data-rating-value', value);
+      this.firstRadioButton.tabIndex = 0;
+    }
   }
 
   setChecked(currentItem) {
+    this.groupNode.tabIndex = -1;
     for (var i = 0; i < this.radioButtons.length; i++) {
       var rb = this.radioButtons[i];
       rb.setAttribute('aria-checked', 'false');
@@ -118,14 +126,6 @@ class RatingRadioGroup {
 
   handleClick(event) {
     this.setChecked(event.currentTarget);
-  }
-
-  handleFocus(event) {
-    event.currentTarget.classList.add('focus');
-  }
-
-  handleBlur(event) {
-    event.currentTarget.classList.remove('focus');
   }
 }
 

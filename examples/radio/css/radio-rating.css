@@ -4,7 +4,7 @@
   display: block;
 }
 
-.rating-radio {
+.rating-radio svg g[role="radio"] {
   color: #005a9c;
 }
 
@@ -12,14 +12,20 @@
   forced-color-adjust: auto;
 }
 
-.rating-radio svg .focus-ring {
-  fill: #eee;
+.rating-radio svg .focus-ring,
+.rating-radio svg .focus-ring-none {
   stroke-width: 0;
   fill-opacity: 0;
 }
 
 .rating-radio svg .star {
   stroke-width: 2px;
+  stroke: currentColor;
+  fill-opacity: 0;
+}
+
+.rating-radio svg .star-none {
+  stroke-width: 3px;
   stroke: currentColor;
   fill-opacity: 0;
 }
@@ -33,11 +39,6 @@
 .rating-radio[data-rating-value="5"] svg .star {
   fill: currentColor;
   fill-opacity: 1;
-}
-
-.rating-radio svg .star-none {
-  stroke-opacity: 0;
-  fill-opacity: 0;
 }
 
 .rating-radio[data-rating-value="1"] svg .star-1 .star {
@@ -66,7 +67,16 @@
   outline: none;
 }
 
+.rating-radio svg g:focus {
+  outline: none;
+}
+
 .rating-radio svg g:focus .focus-ring {
+  stroke-width: 2px;
+  stroke: currentColor;
+}
+
+.rating-radio:focus svg .focus-ring-none {
   stroke-width: 2px;
   stroke: currentColor;
 }

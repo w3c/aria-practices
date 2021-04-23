@@ -35,7 +35,6 @@
     </p>
     <p>Similar examples include: </p>
     <ul>
-      <li>
        <li><a href="radio-activedescendant.html">Radio Group Example Using aria-activedescendant</a>: Radio button group that uses <code>aria-activedescendant</code> for managing keyboard focus.</li>
        <li><a href="radio.html">Radio Group Example Using Roving tabindex</a>: A radio button group that uses roving <code>tabindex</code> for managing keyboard focus.</li>
       </li>
@@ -46,8 +45,8 @@
        </div>
           <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
           <div id="ex1">
-            <div class="rating-radio" role="radiogroup" aria-labelledby="id-rating-label" data-rating-value="2">
-              <div id="id-rating-label" class="label">Rating</div>
+            <div class="rating-radio" role="radiogroup" aria-labelledby="id-rating-label" data-rating-value="">
+              <div id="id-rating-label" class="label">Rating 1 to 5 stars</div>
               <svg role="none" xmlns="http://www.w3.org/2000/svg" width="264" height="48">
                 <defs>
                   <g id="star">
@@ -57,44 +56,75 @@
                     <rect width="40" height="38" rx="4"/>
                   </g>
                   <g id="star-none">
-                    <polygon points="2,2 17,2  17,32 2,32"/>
-                  </g>
-                  <g id="focus-ring-none">
-                    <rect width="200" height="38" rx="4"/>
+                    <circle cx="16" cy="16" r="10"/>
+                    <line x1="12" y1="16" x2="20" y2="16"/>
                   </g>
                 </defs>
 
-                <g role="radio" tabindex="-1" data-rating="0" aria-label="no stars">
-                  <use class="star-none" xlink:href="#star" x="2" y="7"/>
-                  <use class="focus-ring" xlink:href="#focus-ring-none" x="28" y="5"/>
-                </g>
-
                 <g role="radio" tabindex="-1" data-rating="1" aria-label="one star" class="star-1 star-2 star-3 star-4 star-5" >
-                  <use class="star" xlink:href="#star" x="30" y="7"/>
-                  <use class="focus-ring" xlink:href="#focus-ring" x="28" y="5"/>
+                  <use class="star" xlink:href="#star" x="10" y="7"/>
+                  <use class="focus-ring" xlink:href="#focus-ring" x="8" y="5"/>
                 </g>
 
                 <g role="radio" tabindex="-1" data-rating="2" aria-label="two stars" class="star-2 star-3 star-4 star-5">
-                  <use class="star" xlink:href="#star" x="70" y="7"/>
-                  <use class="focus-ring" xlink:href="#focus-ring" x="68" y="5"/>
+                  <use class="star" xlink:href="#star" x="50" y="7"/>
+                  <use class="focus-ring" xlink:href="#focus-ring" x="48" y="5"/>
                 </g>
 
                 <g role="radio" tabindex="-1" data-rating="3" aria-label="three stars" class="star-3 star-4 star-5">
-                  <use class="star" xlink:href="#star" x="110" y="7"/>
-                  <use class="focus-ring" xlink:href="#focus-ring" x="108" y="5"/>
+                  <use class="star" xlink:href="#star" x="90" y="7"/>
+                  <use class="focus-ring" xlink:href="#focus-ring" x="88" y="5"/>
                 </g>
 
                 <g role="radio" tabindex="-1" data-rating="4" aria-label="four stars" class="star-4 star-5">
-                  <use class="star" xlink:href="#star" x="150" y="7"/>
-                  <use class="focus-ring" xlink:href="#focus-ring" x="148" y="5"/>
+                  <use class="star" xlink:href="#star" x="130" y="7"/>
+                  <use class="focus-ring" xlink:href="#focus-ring" x="128" y="5"/>
                 </g>
 
                 <g role="radio" tabindex="-1" data-rating="5" aria-label="five stars" class="star-5">
-                  <use class="star" xlink:href="#star" x="190" y="7"/>
-                  <use class="focus-ring" xlink:href="#focus-ring" x="188" y="5"/>
+                  <use class="star" xlink:href="#star" x="170" y="7"/>
+                  <use class="focus-ring" xlink:href="#focus-ring" x="168" y="5"/>
                 </g>
               </svg>
             </div>
+
+            <!-- Rating from 0 to 5 stars -->
+
+            <div class="rating-radio" role="radiogroup" aria-labelledby="id-rating-2-label" data-rating-value="">
+              <div id="id-rating-2-label" class="label">Rating 0 to 5 stars</div>
+              <svg role="none" xmlns="http://www.w3.org/2000/svg" width="264" height="48">
+                <g role="radio" tabindex="-1" data-rating="0" aria-label="no stars">
+                  <use class="star-none" xlink:href="#star-none" x="12" y="8"/>
+                  <use class="focus-ring" xlink:href="#focus-ring" x="8" y="5"/>
+                </g>
+
+                <g role="radio" tabindex="-1" data-rating="1" aria-label="one star" class="star-1 star-2 star-3 star-4 star-5" >
+                  <use class="star" xlink:href="#star" x="50" y="7"/>
+                  <use class="focus-ring" xlink:href="#focus-ring" x="48" y="5"/>
+                </g>
+
+                <g role="radio" tabindex="-1" data-rating="2" aria-label="two stars" class="star-2 star-3 star-4 star-5">
+                  <use class="star" xlink:href="#star" x="90" y="7"/>
+                  <use class="focus-ring" xlink:href="#focus-ring" x="88" y="5"/>
+                </g>
+
+                <g role="radio" tabindex="-1" data-rating="3" aria-label="three stars" class="star-3 star-4 star-5">
+                  <use class="star" xlink:href="#star" x="130" y="7"/>
+                  <use class="focus-ring" xlink:href="#focus-ring" x="128" y="5"/>
+                </g>
+
+                <g role="radio" tabindex="-1" data-rating="4" aria-label="four stars" class="star-4 star-5">
+                  <use class="star" xlink:href="#star" x="170" y="7"/>
+                  <use class="focus-ring" xlink:href="#focus-ring" x="168" y="5"/>
+                </g>
+
+                <g role="radio" tabindex="-1" data-rating="5" aria-label="five stars" class="star-5">
+                  <use class="star" xlink:href="#star" x="210" y="7"/>
+                  <use class="focus-ring" xlink:href="#focus-ring" x="208" y="5"/>
+                </g>
+              </svg>
+            </div>
+
           </div>
           <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
     </section>
@@ -103,7 +133,7 @@
       <h2>Accessibility Features</h2>
       <ul>
         <li>
-          To highlight the interactive nature of the rating stars a focus ring appears around the star that has focus.  If no star is selected the focus  ring is around all the stars.
+          To highlight the interactive nature of the rating stars a focus ring appears around the star or no-star icon that has focus.
         </li>
         <li>
           To ensure the stars have sufficient contrast with the background when high contrast settings invert colors, the CSS <code>currentColor</code> value for the <code>stroke</code> property is used for the SVG <code>rect</code> elements to synchronize the border color with text content.
@@ -209,7 +239,7 @@
             <tr data-test-id="radio-tabindex">
               <td></td>
               <th scope="row"><code>tabindex="-1"</code></th>
-              <td><code>div</code></td>
+              <td><code>g</code></td>
               <td>
                 <ul>
                   <li>Makes the element focusable but not part of the page <kbd>Tab</kbd> sequence.</li>
@@ -221,7 +251,7 @@
             <tr data-test-id="radio-tabindex">
               <td></td>
               <th scope="row"><code>tabindex="0"</code></th>
-              <td><code>div</code></td>
+              <td><code>g</code></td>
               <td>
                 <ul>
                   <li>Makes the radio button focusable and includes it in the page <kbd>Tab</kbd> sequence.</li>
@@ -235,7 +265,7 @@
             <tr data-test-id="radio-aria-checked">
               <td></td>
               <th scope="row"><code>aria-checked="false"</code></th>
-              <td><code>div</code></td>
+              <td><code>g</code></td>
               <td>
                 <ul>
                   <li>Identifies <code>radio</code> buttons which are not checked.</li>
@@ -247,7 +277,7 @@
             <tr data-test-id="radio-aria-checked">
               <td></td>
               <th scope="row"><code>aria-checked="true"</code></th>
-              <td><code>div</code></td>
+              <td><code>g</code></td>
               <td>
                 <ul>
                   <li>Identifies the <code>radio</code> button which is checked.</li>
