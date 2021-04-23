@@ -226,7 +226,15 @@ function linkCrossReferences() {
   } else {
     console.log('linkCrossReferences():  practicesURL is not defined.');
   }
+
+  // Update any terms linked using termref to be informative as all aria terms are linked informatively
+  Array.prototype.slice
+  .call(document.querySelectorAll('.termref'))
+  .forEach(function (item) {
+    item.classList.add("informative");
+  });
 }
+
 
 function updateReferences(base) {
   // update references to properties
@@ -350,70 +358,7 @@ function restrictReferences(utils, content) {
   return base.innerHTML;
 }
 
-// add a handler to come in after all the definitions are resolved
-//
-// New logic: If the reference is within a 'dl' element of
-// class 'termlist', and if the target of that reference is
-// also within a 'dl' element of class 'termlist', then
-// consider it an internal reference and ignore it -- assuming
-// it is not part of another included term.
 
-require(['core/pubsubhub'], function (respecEvents) {
-  'use strict';
-
-  respecEvents.sub('end', function (message) {
-    if (message === 'core/link-to-dfn') {
-      // all definitions are linked
-      Array.prototype.slice
-        .call(document.querySelectorAll('a.internalDFN'))
-        .forEach(function (item) {
-          var t = item.getAttribute('href');
-          if (item.closest('dl.termlist')) {
-            if (
-              document.querySelector(t) &&
-              document.querySelector(t).closest('dl.termlist')
-            ) {
-              // Figure out the id of the glossary term which holds this
-              // internal reference and see if it will be pruned (i.e.
-              // is in the termNames array). If it is, we can ignore
-              // this particular internal reference.
-              var dd = item.closest('dd');
-              var dfn =
-                dd &&
-                dd.previousElementSibling &&
-                dd.previousElementSibling.querySelector('dfn');
-              var parentTermId = addId(dfn, 'dfn', getDfnTitles(dfn)[0]);
-              if (termNames[parentTermId]) return;
-            }
-          }
-
-          var r = t.replace(/^#/, '');
-          if (termNames[r]) {
-            delete termNames[r];
-          }
-        });
-      // delete any terms that were not referenced.
-      if (!respecConfig.definitionMap) return;
-      Object.keys(termNames).forEach(function (term) {
-        var p = document.getElementById(term);
-
-        if (p) {
-          // Delete altered dfn elements and refs
-          p.parentNode.nextElementSibling.parentNode.removeChild(
-            p.parentNode.nextElementSibling
-          );
-          p.parentNode.parentNode.removeChild(p.parentNode);
-
-          getDfnTitles(p).forEach(function (item) {
-            if (respecConfig.definitionMap[item]) {
-              delete respecConfig.definitionMap[item];
-            }
-          });
-        }
-      });
-    }
-  });
-});
 
 // included files are brought in after proProc.  Create a DOM tree
 // of content then call the updateReferences method above on it.  Return
