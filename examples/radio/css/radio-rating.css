@@ -30,12 +30,6 @@
   fill-opacity: 0;
 }
 
-.rating-radio svg .fill-left,
-.rating-radio svg .fill-right {
-  stroke-width: 0;
-  fill-opacity: 0;
-}
-
 .rating-radio[data-rating-value="5"] svg .star {
   fill: currentColor;
   fill-opacity: 1;
