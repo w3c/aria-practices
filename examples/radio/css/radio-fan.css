@@ -1,0 +1,69 @@
+/* CSS Document */
+
+.fan-radio {
+  padding: 6px;
+  width: 350px;
+  touch-action: pan-y;
+}
+
+.fan-radio .label {
+  font-weight: bold;
+}
+
+.fan-radio svg {
+  forced-color-adjust: auto;
+}
+
+.fan-radio .slider {
+  color: #005a9c;
+}
+
+.fan-radio .rail {
+  stroke: currentColor;
+  stroke-width: 2px;
+  fill-opacity: 0;
+}
+
+.fan-radio .slider .thumb {
+  stroke-opacity: 0;
+  stroke-width: 2px;
+  fill: currentColor;
+}
+
+.fan-radio .slider .focus-ring {
+  stroke-opacity: 0;
+  fill-opacity: 0;
+}
+
+.fan-radio .value-label rect {
+  stroke-opacity: 0;
+  fill-opacity: 0;
+}
+
+.fan-radio .value-label text {
+  fill: currentColor;
+  font-weight: bold;
+}
+
+/* Focus and hover styling */
+
+.fan-radio:focus {
+  outline: none;
+}
+
+.fan-radio:focus .rail {
+  fill: currentColor;
+  fill-opacity: 0.4;
+}
+
+.fan-radio .slider:hover .focus-ring {
+  stroke: currentColor;
+  stroke-width: 2px;
+  stroke-opacity: 0.8;
+}
+
+.fan-radio:focus .slider .focus-ring {
+  stroke: currentColor;
+  stroke-opacity: 1;
+  stroke-width: 3px;
+}
