@@ -132,8 +132,8 @@ class RatingRadioGroup {
 // Initialize radio button group
 
 window.addEventListener('load', function () {
-  var rrgs = document.querySelectorAll('.rating-radio');
-  for (var i = 0; i < rrgs.length; i++) {
-    new RatingRadioGroup(rrgs[i]);
+  var radios = document.querySelectorAll('.rating-radio');
+  for (var i = 0; i < radios.length; i++) {
+    new RatingRadioGroup(radios[i]);
   }
 });
