@@ -10,6 +10,7 @@
 
 .rating-slider svg {
   forced-color-adjust: auto;
+  touch-action: pan-y;
 }
 
 .rating-slider svg .focus-ring {
