@@ -10,6 +10,7 @@
 
 .rating-radio svg {
   forced-color-adjust: auto;
+  touch-action: pan-y;
 }
 
 .rating-radio svg .focus-ring,
