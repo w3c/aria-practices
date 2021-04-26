@@ -67,7 +67,7 @@ const ariaRoles = [
   'progressbar',
   'radio',
   'radiogroup',
-  // 'region', Region is generated differently from other roles
+  'region',
   'row',
   'rowgroup',
   'rowheader',
