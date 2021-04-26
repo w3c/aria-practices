@@ -908,6 +908,24 @@ let IndexOfExampleCodingPractices = indexOfExamples.reduce(function (
   set,
   example
 ) {
+  function getDifference(a1, a2) {
+    let diff = [];
+
+    a1.forEach((item) => {
+      if (!a2.includes(item)) {
+        diff.push(item);
+      }
+    });
+
+    a2.forEach((item) => {
+      if (!a1.includes(item)) {
+        diff.push(item);
+      }
+    });
+
+    return diff;
+  }
+
   let using = '';
   if (example.hasExternalJS) {
     if (example.classJS) {
@@ -921,22 +939,23 @@ let IndexOfExampleCodingPractices = indexOfExamples.reduce(function (
     }
   }
 
-  let checkDocumentation = '';
+  let checkDocumentation = [];
 
-  let rolesDiff =
-    example.exampleRoles.length - example.documentationRoles.length;
-  let attributesDiff =
-    example.exampleAttributes.length - example.documentationAttributes.length;
+  let rolesDiff = getDifference(
+    example.exampleRoles,
+    example.documentationRoles
+  );
+  let attributesDiff = getDifference(
+    example.exampleAttributes,
+    example.documentationAttributes
+  );
 
-  if (rolesDiff) {
-    checkDocumentation += 'roles';
+  if (rolesDiff.length) {
+    checkDocumentation.push(rolesDiff);
   }
 
-  if (attributesDiff) {
-    if (rolesDiff) {
-      checkDocumentation += ', ';
-    }
-    checkDocumentation += 'aria-* attributes';
+  if (attributesDiff.length) {
+    checkDocumentation.push(attributesDiff);
   }
 
   return `${set}
@@ -948,8 +967,8 @@ let IndexOfExampleCodingPractices = indexOfExamples.reduce(function (
             <td>${htmlYesOrNo(example.highContrast)}</td>
             <td>${example.codeId}</td>
             <td>${example.exampleRoles.length}</td>
-            <td>${example.exampleAttributes.length}</td>
             <td>${example.documentationRoles.length}</td>
+            <td>${example.exampleAttributes.length}</td>
             <td>${example.documentationAttributes.length}</td>
             <td>${checkDocumentation}</td>
           </tr>`;
