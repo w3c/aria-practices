@@ -185,13 +185,13 @@ function getRoles(html) {
   let roles = [];
 
   let exampleRoles = html.querySelectorAll(
-    'table.data.attributes tbody th code'
+    'table.data.attributes tbody tr > th:first-child code'
   );
 
   for (let i = 0; i < exampleRoles.length; i++) {
     let code = exampleRoles[i].textContent.toLowerCase().trim();
     for (let j = 0; j < ariaRoles.length; j++) {
-      const hasRole = RegExp(ariaRoles[j] + '\\b');
+      const hasRole = RegExp('\\b' + ariaRoles[j] + '\\b');
 
       if (hasRole.test(code) && roles.indexOf(ariaRoles[j]) < 0) {
         console.log('  [role]: ' + code);
@@ -207,13 +207,13 @@ function getPropertiesAndStates(html) {
   let propertiesAndStates = [];
 
   let exampleProps = html.querySelectorAll(
-    'table.data.attributes tbody th code'
+    'table.data.attributes tbody tr > th:nth-child(2) code'
   );
 
   for (let i = 0; i < exampleProps.length; i++) {
     let code = exampleProps[i].textContent.toLowerCase().trim().split('=')[0];
     for (let j = 0; j < ariaPropertiesAndStates.length; j++) {
-      const hasPropOrState = RegExp(ariaPropertiesAndStates[j] + '\\b');
+      const hasPropOrState = RegExp('\\b' + ariaPropertiesAndStates[j] + '\\b');
       if (
         hasPropOrState.test(code) &&
         propertiesAndStates.indexOf(ariaPropertiesAndStates[j]) < 0
