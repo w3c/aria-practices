@@ -185,7 +185,7 @@ function getRoles(html) {
   let roles = [];
 
   let exampleRoles = html.querySelectorAll(
-    'table.data.attributes tbody tr:nth-child(1) code'
+    'table.data.attributes tbody th code'
   );
 
   for (let i = 0; i < exampleRoles.length; i++) {
@@ -207,7 +207,7 @@ function getPropertiesAndStates(html) {
   let propertiesAndStates = [];
 
   let exampleProps = html.querySelectorAll(
-    'table.data.attributes tbody tr:nth-child(2) code'
+    'table.data.attributes tbody th code'
   );
 
   for (let i = 0; i < exampleProps.length; i++) {
@@ -575,18 +575,17 @@ addLandmarkRole(
 );
 
 function getListItem(item) {
-  let ariaLabel = '';
   let highContrast = '';
   if (item.highContrast) {
-    ariaLabel = ` aria-label="${item.title} with High Contrast Support"`;
     highContrast = ' (<abbr title="High Contrast Support">HC</abbr>)';
   }
   return `
-                <li><a href="${item.ref}"${ariaLabel}>${item.title}</a>${highContrast}</li>`;
+                <li><a href="${item.ref}">${item.title}</a>${highContrast}</li>`;
 }
 
 function getListHTML(list) {
-  let html = '<abbr title="none" style="color: gray">-</abbr>';
+  //  let html = '<abbr title="none" style="color: gray">-</abbr>';
+  let html = '';
 
   if (list.length === 1) {
     html = `<a href="${list[0].ref}">${list[0].title}</a>\n`;
@@ -757,9 +756,7 @@ $('.props_with_more_than_one_examples_count').html(
 // Example Coding Practices
 
 function htmlYesOrNo(flag) {
-  return flag
-    ? 'Yes'
-    : '<code aria-hidden="true">-</span><span class="sr-only">no</span>';
+  return flag ? 'Yes' : '';
 }
 
 let IndexOfExampleCodingPractices = indexOfExamples.reduce(function (

@@ -153,7 +153,7 @@ function getRoles(html) {
   let roles = [];
 
   let exampleRoles = html.querySelectorAll(
-    'table.data.attributes tbody tr:nth-child(1) code'
+    'table.data.attributes tbody tr > th:first-child code'
   );
 
   for (let i = 0; i < exampleRoles.length; i++) {
@@ -174,7 +174,7 @@ function getPropertiesAndStates(html) {
   let propertiesAndStates = [];
 
   let exampleProps = html.querySelectorAll(
-    'table.data.attributes tbody tr:nth-child(2) code'
+    'table.data.attributes tbody tr > th:nth-child(2) code'
   );
 
   for (let i = 0; i < exampleProps.length; i++) {
@@ -298,14 +298,12 @@ addLandmarkRole(['region'], true, 'Region Landmark', 'landmarks/region.html');
 addLandmarkRole(['search'], true, 'Search Landmark', 'landmarks/search.html');
 
 function exampleListItem(item) {
-  let ariaLabel = '';
   let highContrast = '';
   if (item.highContrast) {
-    ariaLabel = ` aria-label="${item.title} with High Contrast Support"`;
     highContrast = ' (<abbr title="High Contrast Support">HC</abbr>)';
   }
   return `
-                <li><a href="${item.ref}"${ariaLabel}>${item.title}</a>${highContrast}</li>`;
+                <li><a href="${item.ref}">${item.title}</a>${highContrast}</li>`;
 }
 
 let sortedRoles = Object.getOwnPropertyNames(indexOfRoles).sort();
