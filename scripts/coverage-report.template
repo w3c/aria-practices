@@ -180,6 +180,12 @@
             <th>Uses <code>event.keyCode</code></th>
             <th>Uses <code>event.which</code></th>
             <th>High Contrast Documentation</th>
+            <th>Example Code ID</th>
+            <th>Defined Roles In Examples</th>
+            <th>Defined aria-* Attributes In Examples</th>
+            <th>Defined Roles In Documentation</th>
+            <th>Defined aria-* Attributes In Documentation</th>
+            <th>Check Documentation</th>
           </tr>
         </thead>
         <tbody id="example_coding_practices_tbody">

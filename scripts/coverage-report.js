@@ -228,6 +228,7 @@ function getPropertiesAndStates(html) {
 }
 
 function addExampleToRoles(roles, example) {
+  let items = [];
   for (let i = 0; i < roles.length; i++) {
     let role = roles[i];
 
@@ -239,10 +240,13 @@ function addExampleToRoles(roles, example) {
       indexOfRolesInExamples[role] = [];
     }
     indexOfRolesInExamples[role].push(example);
+    items.push(role);
   }
+  return items;
 }
 
 function addExampleToPropertiesAndStates(props, example) {
+  let items = [];
   for (let i = 0; i < props.length; i++) {
     let prop = props[i];
 
@@ -254,7 +258,10 @@ function addExampleToPropertiesAndStates(props, example) {
       indexOfPropertiesAndStatesInExamples[prop] = [];
     }
     indexOfPropertiesAndStatesInExamples[prop].push(example);
+    items.push(prop);
   }
+
+  return items;
 }
 
 function addLandmarkRole(landmark, hasLabel, title, ref) {
@@ -282,6 +289,128 @@ function getNumberOfReferences(data, target, toLower) {
     hasTarget.lastIndex;
   }
   return count;
+}
+
+function getUniqueRolesInExample(html) {
+  let roles = [];
+  ariaRoles.forEach((role) => {
+    let items = html.querySelectorAll('#ex1 [role=' + role + ']');
+    if (items.length) {
+      roles.push(role);
+    } else {
+      let items = html.querySelectorAll('#ex2 [role=' + role + ']');
+      if (items.length) {
+        roles.push(role);
+      } else {
+        let items = html.querySelectorAll('#ex3 [role=' + role + ']');
+        if (items.length) {
+          roles.push(role);
+        } else {
+          let id = getExampleCodeId(html);
+          items = html.querySelectorAll('#' + id + ' [role=' + role + ']');
+          if (items.length) {
+            roles.push(role);
+          } else {
+            // Check for elements with default landmark roles
+            switch (role) {
+              case 'banner':
+                items = html.querySelectorAll('#' + id + ' header');
+                if (items.length) {
+                  roles.push(role);
+                }
+                break;
+
+              case 'complementary':
+                items = html.querySelectorAll('#' + id + ' aside');
+                if (items.length) {
+                  roles.push(role);
+                }
+                break;
+
+              case 'contentinfo':
+                items = html.querySelectorAll('#' + id + ' footer');
+                if (items.length) {
+                  roles.push(role);
+                }
+                break;
+
+              case 'navigation':
+                items = html.querySelectorAll('#' + id + ' nav');
+                if (items.length) {
+                  roles.push(role);
+                }
+                break;
+
+              case 'region':
+                items = html.querySelectorAll(
+                  '#' + id + ' section[aria-label]'
+                );
+                if (items.length) {
+                  roles.push(role);
+                }
+                items = html.querySelectorAll(
+                  '#' + id + ' section[aria-labelledby]'
+                );
+                if (items.length) {
+                  roles.push(role);
+                }
+                items = html.querySelectorAll('#' + id + ' section[title]');
+                if (items.length) {
+                  roles.push(role);
+                }
+                break;
+
+              default:
+                break;
+            }
+          }
+        }
+      }
+    }
+  });
+  roles.forEach((role) => console.log('  [Example role]: ' + role));
+  console.log('  [Example Roles]: ' + roles.length);
+  return roles;
+}
+
+function getUniqueAriaAttributeInExample(html) {
+  let attributes = [];
+
+  ariaPropertiesAndStates.forEach(function (attribute) {
+    let items = html.querySelectorAll('#ex1 [' + attribute + ']');
+    if (items.length) {
+      attributes.push(attribute);
+    } else {
+      items = html.querySelectorAll('#ex2 [' + attribute + ']');
+      if (items.length) {
+        attributes.push(attribute);
+      } else {
+        items = html.querySelectorAll('#ex3 [' + attribute + ']');
+        if (items.length) {
+          attributes.push(attribute);
+        } else {
+          let id = getExampleCodeId(html);
+          items = html.querySelectorAll('#' + id + ' [' + attribute + ']');
+          if (items.length) {
+            attributes.push(attribute);
+          }
+        }
+      }
+    }
+  });
+  attributes.forEach((attribute) =>
+    console.log('  [Example aria-* Attribute]: ' + attribute)
+  );
+  console.log('  [Example aria-* Attributes]: ' + attributes.length);
+  return attributes;
+}
+
+function getExampleCodeId(html) {
+  let startSeparator = html.querySelector('[role="separator"]');
+  if (startSeparator && startSeparator.nextElementSibling.id) {
+    return startSeparator.nextElementSibling.id;
+  }
+  return 'not found';
 }
 
 // Index roles, properties and states used in examples
@@ -356,6 +485,12 @@ glob
     let example = {
       title: title,
       ref: ref,
+
+      codeId: getExampleCodeId(html),
+
+      exampleRoles: getUniqueRolesInExample(html),
+      exampleAttributes: getUniqueAriaAttributeInExample(html),
+
       highContrast: data.toLowerCase().indexOf('high contrast') > 0,
       svgHTML: html.querySelectorAll('svg').length,
       svgCSS: getNumberOfReferences(dataCSS, 'svg', true),
@@ -388,8 +523,18 @@ glob
       pointerUp: getNumberOfReferences(dataJS, 'pointerup', true),
     };
 
-    addExampleToRoles(getRoles(html), example);
-    addExampleToPropertiesAndStates(getPropertiesAndStates(html), example);
+    (example.documentationRoles = addExampleToRoles(getRoles(html), example)),
+      console.log(
+        '  [Documentation Roles]: ' + example.documentationRoles.length
+      );
+    (example.documentationAttributes = addExampleToPropertiesAndStates(
+      getPropertiesAndStates(html),
+      example
+    )),
+      console.log(
+        '  [Documentation aria-* Attributes]: ' +
+          example.documentationAttributes.length
+      );
 
     indexOfExamples.push(example);
   });
@@ -776,6 +921,24 @@ let IndexOfExampleCodingPractices = indexOfExamples.reduce(function (
     }
   }
 
+  let checkDocumentation = '';
+
+  let rolesDiff =
+    example.exampleRoles.length - example.documentationRoles.length;
+  let attributesDiff =
+    example.exampleAttributes.length - example.documentationAttributes.length;
+
+  if (rolesDiff) {
+    checkDocumentation += 'roles';
+  }
+
+  if (attributesDiff) {
+    if (rolesDiff) {
+      checkDocumentation += ', ';
+    }
+    checkDocumentation += 'aria-* attributes';
+  }
+
   return `${set}
           <tr>
             <td><a href="${example.ref}">${example.title}</code></td>
@@ -783,6 +946,12 @@ let IndexOfExampleCodingPractices = indexOfExamples.reduce(function (
             <td>${htmlYesOrNo(example.keyCodeJS)}</td>
             <td>${htmlYesOrNo(example.whichJS)}</td>
             <td>${htmlYesOrNo(example.highContrast)}</td>
+            <td>${example.codeId}</td>
+            <td>${example.exampleRoles.length}</td>
+            <td>${example.exampleAttributes.length}</td>
+            <td>${example.documentationRoles.length}</td>
+            <td>${example.documentationAttributes.length}</td>
+            <td>${checkDocumentation}</td>
           </tr>`;
 },
 '');
