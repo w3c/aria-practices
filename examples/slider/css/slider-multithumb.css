@@ -11,7 +11,7 @@
 }
 
 .slider-multithumb .slider-group {
-  color: #005a9c;
+  color: black;
 }
 
 .slider-multithumb .slider-group .value {
@@ -60,11 +60,12 @@
   fill-opacity: 1;
 }
 
-.slider-multithumb [role="slider"]:focus {
+.slider-multithumb .slider-group [role="slider"]:focus {
   outline: none;
+  color: #005a9c;
 }
 
-.slider-multithumb [role="slider"]:hover .focus-ring {
+.slider-multithumb .slider-group [role="slider"]:hover .focus-ring {
   stroke: currentColor;
   stroke-width: 1px;
   stroke-opacity: 0.8;
