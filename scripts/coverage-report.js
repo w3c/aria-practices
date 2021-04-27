@@ -291,7 +291,7 @@ function getNumberOfReferences(data, target, toLower) {
   return count;
 }
 
-function getUniqueRolesInExample(html) {
+function getUniqueRolesInExample(html, dataJS) {
   let roles = [];
   ariaRoles.forEach((role) => {
     let items = html.querySelectorAll('#ex1 [role=' + role + ']');
@@ -311,57 +311,65 @@ function getUniqueRolesInExample(html) {
           if (items.length) {
             roles.push(role);
           } else {
-            // Check for elements with default landmark roles
-            switch (role) {
-              case 'banner':
-                items = html.querySelectorAll('#' + id + ' header');
-                if (items.length) {
-                  roles.push(role);
-                }
-                break;
+            // Check Javascript
 
-              case 'complementary':
-                items = html.querySelectorAll('#' + id + ' aside');
-                if (items.length) {
-                  roles.push(role);
-                }
-                break;
+            const hasRole1 = RegExp(".role = '" + role, 'g');
+            const hasRole2 = RegExp('.role = "' + role, 'g');
+            if (hasRole1.test(dataJS) || hasRole2.test(dataJS)) {
+              roles.push(role);
+            } else {
+              // Check for elements with default landmark roles
+              switch (role) {
+                case 'banner':
+                  items = html.querySelectorAll('#' + id + ' header');
+                  if (items.length) {
+                    roles.push(role);
+                  }
+                  break;
 
-              case 'contentinfo':
-                items = html.querySelectorAll('#' + id + ' footer');
-                if (items.length) {
-                  roles.push(role);
-                }
-                break;
+                case 'complementary':
+                  items = html.querySelectorAll('#' + id + ' aside');
+                  if (items.length) {
+                    roles.push(role);
+                  }
+                  break;
 
-              case 'navigation':
-                items = html.querySelectorAll('#' + id + ' nav');
-                if (items.length) {
-                  roles.push(role);
-                }
-                break;
+                case 'contentinfo':
+                  items = html.querySelectorAll('#' + id + ' footer');
+                  if (items.length) {
+                    roles.push(role);
+                  }
+                  break;
 
-              case 'region':
-                items = html.querySelectorAll(
-                  '#' + id + ' section[aria-label]'
-                );
-                if (items.length) {
-                  roles.push(role);
-                }
-                items = html.querySelectorAll(
-                  '#' + id + ' section[aria-labelledby]'
-                );
-                if (items.length) {
-                  roles.push(role);
-                }
-                items = html.querySelectorAll('#' + id + ' section[title]');
-                if (items.length) {
-                  roles.push(role);
-                }
-                break;
+                case 'navigation':
+                  items = html.querySelectorAll('#' + id + ' nav');
+                  if (items.length) {
+                    roles.push(role);
+                  }
+                  break;
 
-              default:
-                break;
+                case 'region':
+                  items = html.querySelectorAll(
+                    '#' + id + ' section[aria-label]'
+                  );
+                  if (items.length) {
+                    roles.push(role);
+                  }
+                  items = html.querySelectorAll(
+                    '#' + id + ' section[aria-labelledby]'
+                  );
+                  if (items.length) {
+                    roles.push(role);
+                  }
+                  items = html.querySelectorAll('#' + id + ' section[title]');
+                  if (items.length) {
+                    roles.push(role);
+                  }
+                  break;
+
+                default:
+                  break;
+              }
             }
           }
         }
@@ -373,7 +381,7 @@ function getUniqueRolesInExample(html) {
   return roles;
 }
 
-function getUniqueAriaAttributeInExample(html) {
+function getUniqueAriaAttributeInExample(html, dataJS) {
   let attributes = [];
 
   ariaPropertiesAndStates.forEach(function (attribute) {
@@ -393,6 +401,19 @@ function getUniqueAriaAttributeInExample(html) {
           items = html.querySelectorAll('#' + id + ' [' + attribute + ']');
           if (items.length) {
             attributes.push(attribute);
+          } else {
+            const hasAttribute1 = RegExp(attribute, 'g');
+            let parts = attribute.split('-');
+            let attribute2 =
+              '.' +
+              parts[0] +
+              parts[1][0].toUpperCase() +
+              parts[1].substring(1, parts[1].length - 1);
+
+            const hasAttribute2 = RegExp(attribute2, 'g');
+            if (hasAttribute1.test(dataJS) || hasAttribute2.test(dataJS)) {
+              attributes.push(attribute);
+            }
           }
         }
       }
@@ -488,8 +509,8 @@ glob
 
       codeId: getExampleCodeId(html),
 
-      exampleRoles: getUniqueRolesInExample(html),
-      exampleAttributes: getUniqueAriaAttributeInExample(html),
+      exampleRoles: getUniqueRolesInExample(html, dataJS),
+      exampleAttributes: getUniqueAriaAttributeInExample(html, dataJS),
 
       highContrast: data.toLowerCase().indexOf('high contrast') > 0,
       svgHTML: html.querySelectorAll('svg').length,

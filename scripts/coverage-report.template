@@ -181,10 +181,10 @@
             <th>Uses <code>event.which</code></th>
             <th>High Contrast Documentation</th>
             <th>Example Code ID</th>
-            <th>Roles In Source Code</th>
-            <th>Roles In Documentation</th>
-            <th>aria-* Attributes In Source Code</th>
-            <th>aria-* Attributes In Documentation</th>
+            <th>Roles in Javascript and HTML</th>
+            <th>Roles in Documentation</th>
+            <th>aria-* Attributes in Javascript and HTML</th>
+            <th>aria-* Attributes in Documentation</th>
             <th>ARIA Features that are Different</th>
           </tr>
         </thead>
