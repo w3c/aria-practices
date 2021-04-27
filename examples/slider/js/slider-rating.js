@@ -31,6 +31,7 @@ class RatingSlider {
       'keydown',
       this.onSliderKeydown.bind(this)
     );
+    this.sliderNode.addEventListener('focus', this.onSliderFocus.bind(this));
 
     this.svgNode.addEventListener('click', this.onRailClick.bind(this));
     this.svgNode.addEventListener(
@@ -112,6 +113,48 @@ class RatingSlider {
     return 'Unexpected value: ' + value;
   }
 
+  getValueTextWithMax(value) {
+    switch (value) {
+      case 0:
+        return 'none of the five stars';
+
+      case 0.5:
+        return 'one half star of five stars';
+
+      case 1.0:
+        return 'one of five stars';
+
+      case 1.5:
+        return 'one and a half of five stars';
+
+      case 2.0:
+        return 'two of five stars';
+
+      case 2.5:
+        return 'two and a half of five stars';
+
+      case 3.0:
+        return 'three of five stars';
+
+      case 3.5:
+        return 'three and a half of five stars';
+
+      case 4.0:
+        return 'four of five stars';
+
+      case 4.5:
+        return 'four and a half of five stars';
+
+      case 5.0:
+        return 'five of five stars';
+
+      default:
+        break;
+    }
+
+    return 'Unexpected value: ' + value;
+  }
+
   moveSliderTo(value) {
     let valueMax, valueMin;
 
@@ -172,6 +215,11 @@ class RatingSlider {
       event.preventDefault();
       event.stopPropagation();
     }
+  }
+
+  onSliderFocus() {
+    let valuetext = this.getValueTextWithMax(this.getValue());
+    this.sliderNode.setAttribute('aria-valuetext', valuetext);
   }
 
   onRailClick(event) {
