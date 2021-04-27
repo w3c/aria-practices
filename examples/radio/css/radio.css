@@ -35,7 +35,8 @@
   content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='14' width='14' style='forced-color-adjust: auto;'%3E%3Ccircle cx='7' cy='7' r='6' stroke='rgb(0,90,156)' stroke-width='2' fill-opacity='0' /%3E%3Ccircle cx='7' cy='7' r='3' fill='rgb(0,90,156)' stroke-opacity='0' /%3E%3C/svg%3E");
 }
 
-[role="radio"].focus {
+[role="radio"].focus,
+[role="radio"]:hover {
   padding: 2px 6px 2px 6px;
   border: 2px solid hsl(216, 94%, 73%);
   background-color: hsl(216, 80%, 97%);
