@@ -606,7 +606,7 @@ function getEmbeddedControlValue(element) {
 *   getaccname.js
 *
 *   Note: Information in this module is based on the following documents:
-*   1. HTML Accessibility API Mappings 1.0 (http://rawgit.com/w3c/aria/master/html-aam/html-aam.html)
+*   1. HTML Accessibility API Mappings (latest editors draft) (http://rawgit.com/w3c/aria/master/html-aam/html-aam.html)
 *   2. SVG Accessibility API Mappings (http://rawgit.com/w3c/aria/master/svg-aam/svg-aam.html)
 */
 
