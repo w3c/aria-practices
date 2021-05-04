@@ -3,7 +3,7 @@
 if [[ "$CI" != "true" ]]
 then
   # When running this script locally, compare the current branch to master
-  COMMIT_RANGE="..master"
+  COMMIT_RANGE="..main"
 fi
 
 AVACMD="npm run regression -- -t"

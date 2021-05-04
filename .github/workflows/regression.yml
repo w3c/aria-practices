@@ -11,7 +11,7 @@ on:
       - "!examples/coding-template/**"
   push:
     branches-ignore:
-      - master
+      - main
       - "dependabot/**"
     paths:
       - ".github/workflows/regression.yml"
@@ -53,7 +53,7 @@ jobs:
         run: ./scripts/regression-tests.sh
         if: github.event_name == 'push'
         env:
-          COMMIT_RANGE: "origin/master...${{ github.ref }}"
+          COMMIT_RANGE: "origin/main...${{ github.ref }}"
           CI_NODE_TOTAL: 5
           CI_NODE_INDEX: ${{ matrix.CI_NODE_INDEX }}
           TEST_WAIT_TIME: 10000
