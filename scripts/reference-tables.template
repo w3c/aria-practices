@@ -27,6 +27,7 @@
     </ul>
     <section id="examples_by_roles">
       <h2 id="examples_by_role_label">Examples by Role</h2>
+      <div><strong>NOTE:</strong> The HC abbreviation means example has High Contrast support.</div>
       <table aria-labelledby="examples_by_role_label" class="data attributes">
         <thead>
           <tr>
@@ -40,6 +41,7 @@
     </section>
     <section id="examples_by_props">
       <h2 id="examples_by_props_label">Examples By Properties and States</h2>
+      <div><strong>NOTE:</strong> The HC abbreviation means example has High Contrast support.</div>
       <table aria-labelledby="examples_by_props_label" class="data attributes">
         <thead>
           <tr>
