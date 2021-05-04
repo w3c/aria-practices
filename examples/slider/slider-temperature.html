@@ -60,7 +60,7 @@
               tabindex="0"
               aria-valuemin="10.0"
               aria-valuenow="25.0"
-              aria-valuetext="25.0°C"
+              aria-valuetext="25.0 degrees Celsius"
               aria-valuemax="38.0"
               aria-labelledby="id-temp-label">
               <text class="value" x="94" y="150">25°C</text>
@@ -79,7 +79,7 @@
         <h2>Accessibility Features</h2>
         <ul>
           <li>
-            For people with visual impairments the current value of the slider is visible next to the thumb when it has focus or is being dragged.
+            The current value of the slider is visible next to the thumb, so when the thumb value is changed using a pointing device by a person with the visual impairment they can immediately see the change in value without have to move their visual attention to another part of the page.
           </li>
           <li>
             To ensure the borders of the slider rail, thumb and focus ring have sufficient contrast with the background when high contrast settings invert colors, the CSS <code>currentColor</code> value for the <code>stroke</code> property is used for the inline SVG <code>rect</code> elements to synchronize the border color with text content. If specific colors are used to specify the <code>stroke</code> property, these colors will remain the same in high contrast mode, which could lead to insufficient contrast between the rail and the thumb or even make them invisible if its color matches the high contrast mode background.  <br>
