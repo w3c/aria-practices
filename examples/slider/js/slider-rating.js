@@ -31,7 +31,6 @@ class RatingSlider {
       'keydown',
       this.onSliderKeydown.bind(this)
     );
-    this.sliderNode.addEventListener('focus', this.onSliderFocus.bind(this));
 
     this.svgNode.addEventListener('click', this.onRailClick.bind(this));
     this.svgNode.addEventListener(
@@ -44,6 +43,12 @@ class RatingSlider {
 
     // bind a pointerup event handler to stop tracking pointer movements
     document.addEventListener('pointerup', this.onPointerUp.bind(this));
+
+    this.addTotalStarsToRatingLabel();
+    this.sliderNode.addEventListener(
+      'blur',
+      this.addTotalStarsToRatingLabel.bind(this)
+    );
   }
 
   // Get point in global SVG space
@@ -217,7 +222,7 @@ class RatingSlider {
     }
   }
 
-  onSliderFocus() {
+  addTotalStarsToRatingLabel() {
     let valuetext = this.getValueTextWithMax(this.getValue());
     this.sliderNode.setAttribute('aria-valuetext', valuetext);
   }

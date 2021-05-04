@@ -13,7 +13,7 @@ const ex = {
   ratingMax: '5',
   ratingMin: '0',
   ratingDefault: '0',
-  ratingDefaultValue: 'no stars',
+  ratingDefaultValue: 'none of the five stars',
   ratingInc: 0.5,
   ratingPageInc: 1,
 };
