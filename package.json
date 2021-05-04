@@ -58,7 +58,7 @@
     "stylelint": "^13.11.0",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^20.0.0",
-    "stylelint-prettier": "^1.1.2",
+    "stylelint-prettier": "^1.2.0",
     "vnu-jar": "^21.2.5"
   },
   "lint-staged": {
