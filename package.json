@@ -48,7 +48,7 @@
     "geckodriver": "^1.22.1",
     "glob": "^7.1.6",
     "htmlhint": "^0.14.2",
-    "htmlparser2": "^6.0.0",
+    "htmlparser2": "^6.1.0",
     "husky": "^5.1.1",
     "lint-staged": "^10.5.4",
     "npm-merge-driver": "^2.3.6",
