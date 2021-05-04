@@ -50,7 +50,7 @@
       buttonTitleWithAccesskey: '', // deprecated in favor of buttonTooltipAccesskey
       buttonTooltip: '',
       buttonTooltipAccesskey: 'Shortcut Key: $key',
-      buttonLabel: 'Skip To Content',
+      buttonLabel: 'Jump To Content',
 
       // Menu labels and messages
       menuLabel: 'Landmarks and Headings',
