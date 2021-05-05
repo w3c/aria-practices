@@ -297,11 +297,6 @@ class SliderSeek {
 
   onSliderFocus() {
     this.domNode.classList.add('focus');
-    // Include total time in aria-valuetext
-    this.sliderNode.setAttribute(
-      'aria-valuetext',
-      this.getValueTextMinutesSeconds(this.getValue(), true)
-    );
   }
 
   onSliderBlur() {
