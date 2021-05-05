@@ -1,15 +1,9 @@
 [role="switch"] {
-  padding: 4px;
+  margin: 2px;
+  padding: 4px 4px 8px 8px;
   border: 0 solid #005a9c;
   border-radius: 5px;
-  margin: 2px;
   width: 14em;
-}
-
-[role="switch"]:focus {
-  padding: 2px;
-  border-width: 2px;
-  outline: none;
 }
 
 [role="switch"] .label {
@@ -51,4 +45,19 @@
 
 [role="switch"][aria-checked="true"]::after {
   content: "On";
+}
+
+[role="switch"]:focus {
+  padding: 2px 2px 6px 6px;
+  border-width: 2px;
+  outline: none;
+  background-color: #def;
+}
+
+[role="switch"]:focus span.switch {
+  background-color: white;
+}
+
+[role="switch"]:hover {
+  background-color: #def;
 }

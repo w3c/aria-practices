@@ -36,7 +36,10 @@ class Switch {
   }
 }
 
-// Initialize the Switch component on all matching DOM nodes
-Array.from(document.querySelectorAll('[role^=switch]')).forEach(
-  (element) => new Switch(element)
-);
+// Initialize switches
+window.addEventListener('load', function () {
+  // Initialize the Switch component on all matching DOM nodes
+  Array.from(document.querySelectorAll('[role^=switch]')).forEach(
+    (element) => new Switch(element)
+  );
+});
