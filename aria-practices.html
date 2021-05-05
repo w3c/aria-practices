@@ -2555,6 +2555,45 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       </section>
     </section>
 
+    <section class="widget" id="switch">
+      <h3>Switch</h3>
+      <p>
+        A switch is a type of checkbox that has on/off values, rather than the checked/unchecked values.
+      </p>
+      <section class="notoc">
+        <h4>Examples</h4>
+        <ul>
+          <li>
+            <a href="examples/switch/switch.html">Switch using <code>div</code> element Example</a>: Demonstrates switches used for turning on/off notifications.
+          </li>
+        </ul>
+      </section>
+
+      <section class="notoc">
+        <h4>Keyboard Interaction</h4>
+        <p>When the switch has focus, pressing the <kbd>Space</kbd> or <kbd>Enter</kbd> key changes the state of the switch.</p>
+      </section>
+
+      <section class="notoc">
+        <h4>WAI-ARIA Roles, States, and Properties</h4>
+        <ul>
+          <li>The switch has role <a href="#switch" class="role-reference">switch</a>.</li>
+          <li>
+            The switch has an accessible label provided by one of the following:
+            <ul>
+              <li>Visible text content contained within the element with role <code>switch</code>.</li>
+              <li>A visible label referenced by the value of <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a> set on the element with role <code>switch</code>.</li>
+              <li><a href="#aria-label" class="property-reference">aria-label</a> set on the element with role <code>switch</code>.</li>
+            </ul>
+          </li>
+          <li>When &quot;on&quot;, the checkbox element has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>true</code>.</li>
+          <li>When &quot;off&quot;, it has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>false</code>.</li>
+          <li>If a set of switches is presented as a logical group with a visible label, the switches are included in an element with role <a href="#group" class="role-reference" >group</a> that has the property <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a> set to the ID of the element containing the label.</li>
+          <li>If the presentation includes additional descriptive static text relevant to a switch or switch group, the switch or switch group has the property <a href="#aria-describedby" class="property-reference">aria-describedby</a> set to the ID of the element containing the description.</li>
+        </ul>
+      </section>
+    </section>
+
     <section class="widget" id="table">
       <h3>Table</h3>
       <p>
