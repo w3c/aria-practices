@@ -111,6 +111,12 @@ class SliderSeek {
     this.sliderValueNode.setAttribute('style', 'display: block');
     this.moveSliderTo(this.getValue());
     this.sliderValueNode.removeAttribute('style');
+
+    // Include total time in aria-valuetext when loaded
+    this.sliderNode.setAttribute(
+      'aria-valuetext',
+      this.getValueTextMinutesSeconds(this.getValue(), true)
+    );
   }
 
   getWidthFromLabelText() {
@@ -291,15 +297,20 @@ class SliderSeek {
 
   onSliderFocus() {
     this.domNode.classList.add('focus');
-    let valueNow = parseInt(this.sliderNode.getAttribute('aria-valuenow'));
+    // Include total time in aria-valuetext
     this.sliderNode.setAttribute(
       'aria-valuetext',
-      this.getValueTextMinutesSeconds(valueNow, true)
+      this.getValueTextMinutesSeconds(this.getValue(), true)
     );
   }
 
   onSliderBlur() {
     this.domNode.classList.remove('focus');
+    // Include total time in aria-valuetext
+    this.sliderNode.setAttribute(
+      'aria-valuetext',
+      this.getValueTextMinutesSeconds(this.getValue(), true)
+    );
   }
 
   onRailClick(event) {

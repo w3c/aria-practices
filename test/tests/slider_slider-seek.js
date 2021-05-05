@@ -14,7 +14,7 @@ const ex = {
   seekMax: '300',
   seekMin: '0',
   seekDefault: '90',
-  seekDefaultValue: '1 Minute 30 Seconds',
+  seekDefaultValue: '1 Minute 30 Seconds of 5 Minutes',
   seekInc: 1,
   seekPageInc: 15,
 };
