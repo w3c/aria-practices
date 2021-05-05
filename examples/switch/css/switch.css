@@ -1,68 +1,54 @@
-:root {
-  --toggle-circle-size: 1.5rem;
-  --toggle-spacing: 0.125rem;
-  --toggle-height: calc(var(--toggle-circle-size) + calc(2 * var(--toggle-spacing)));
-  --toggle-width: calc(2 * calc(var(--toggle-circle-size) + var(--toggle-spacing)));
-  --toggle-border-radius: calc(var(--toggle-height) / 2);
+[role="switch"] {
+  padding: 4px;
+  border: 0 solid #005a9c;
+  border-radius: 5px;
+  margin: 2px;
+  width: 14em;
 }
 
-* {
-    box-sizing: border-box;
-}
-
-*::before,
-*::after {
-    box-sizing: inherit;
-}
-
-[role^="switch"] {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+[role="switch"]:focus {
+  padding: 2px;
+  border-width: 2px;
   outline: none;
-  user-select: none;
-  max-width: 15em;
 }
 
-[role^="switch"] span:first-child {
-  width: 100%;
+[role="switch"] .label {
+  display: inline-block;
+  width: 8em;
 }
 
-[role^="switch"] span:last-child {
-  display: block;
-  flex-shrink: 0;
-  padding: var(--toggle-spacing);
-  width: var(--toggle-width);
-  height: var(--toggle-height);
-  border-radius: var(--toggle-border-radius);
-  background: #ccc;
-  transition: background-color cubic-bezier(0.23, 1, 0.32, 1) .4s;
+[role="switch"] .switch {
+  position: relative;
+  display: inline-block;
+  top: 6px;
+  border: 2px solid black;
+  border-radius: 12px;
+  height: 20px;
+  width: 40px;
 }
 
-[role^="switch"] span:last-child::before {
-  display: block;
-  width: var(--toggle-circle-size);
-  height: var(--toggle-circle-size);
-  border-radius: 50%;
-  background: #fff;
-  transition: transform cubic-bezier(0.23, 1, 0.32, 1) .4s;
-  content: '';
+[role="switch"]::after {
+  content: "Off";
 }
 
-[role^="switch"][aria-checked="true"] span:last-child {
-  background: #22AB34;
+[role="switch"] .switch span {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  display: inline-block;
+  border: 2px solid black;
+  border-radius: 8px;
+  height: 12px;
+  width: 12px;
+  background: black;
 }
 
-[role^="switch"][aria-checked="true"] span:last-child::before {
-  transform: translateX(var(--toggle-circle-size));
+[role="switch"][aria-checked="true"] .switch span {
+  left: 21px;
+  background: green;
+  border-color: green;
 }
 
-[role^="switch"]:focus span:last-child {
-  box-shadow:
-    0 0 0 1px #fff,
-    0 0 0 3px hsl(205, 75%, 76%);
-}
-
-[role^="switch"] + [role^="switch"] {
-  margin-top: 1em;
+[role="switch"][aria-checked="true"]::after {
+  content: "On";
 }

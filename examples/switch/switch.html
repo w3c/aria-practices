@@ -59,21 +59,24 @@
     <h2 id="ex_label">Example</h2>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="ex1">
-        <div id="switch-text"
-          role="switch checkbox"
+      <div role="group" aria-labelledby="id-notification-label">
+        <div id="id-notification-label" class="group-label">Notifications</div>
+        <div
+          role="switch"
           aria-checked="false"
           tabindex="0">
-            <span>Larger text</span>
-            <span></span>
+          <span class="label">E-mail</span>
+          <span class="switch"><span></span></span>
         </div>
 
-        <div id="switch-colours"
-          role="switch checkbox"
+        <div
+          role="switch"
           aria-checked="false"
           tabindex="0">
-            <span>Invert colours</span>
-            <span></span>
+          <span class="label">Text Message</span>
+          <span class="switch"><span></span></span>
         </div>
+      </div>
     </div>
     <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
   </section>
@@ -85,7 +88,6 @@
         Switches are commonly used when their effect is immediate and their state is automatically saved.
         That is, there is no need to activate a <q>save</q> button for changes caused by a switch to take effect and persist.
       </li>
-      <li>There is a fallback role of <code>checkbox</code> in case an assistive technology doesn’t support the <code>switch</code> role.</li>
     </ol>
   </section>
 
