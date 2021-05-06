@@ -29,6 +29,7 @@ button[role="switch"] svg rect {
 
 button[role="switch"] svg rect.off {
   display: block;
+  stroke: currentColor;
   fill: currentColor;
   fill-opacity: 1;
 }
@@ -57,13 +58,10 @@ button[role="switch"][aria-checked="true"]::after {
   content: "On";
 }
 
-button[role="switch"]:focus {
+button[role="switch"]:focus,
+button[role="switch"]:hover {
   padding: 2px 2px 6px 6px;
   border-width: 2px;
   outline: none;
-  background-color: #def;
-}
-
-button[role="switch"]:hover {
   background-color: #def;
 }
