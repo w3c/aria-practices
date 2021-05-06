@@ -3,7 +3,7 @@
   padding: 4px 4px 8px 8px;
   border: 0 solid #005a9c;
   border-radius: 5px;
-  width: 14em;
+  width: 13em;
 }
 
 [role="switch"] .label {
@@ -47,7 +47,8 @@
   content: "On";
 }
 
-[role="switch"]:focus {
+[role="switch"]:focus,
+[role="switch"]:hover {
   padding: 2px 2px 6px 6px;
   border-width: 2px;
   outline: none;
@@ -56,8 +57,4 @@
 
 [role="switch"]:focus span.switch {
   background-color: white;
-}
-
-[role="switch"]:hover {
-  background-color: #def;
 }
