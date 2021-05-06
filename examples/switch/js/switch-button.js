@@ -13,6 +13,13 @@ class ButtonSwitch {
   constructor(domNode) {
     this.switchNode = domNode;
     this.switchNode.addEventListener('click', () => this.toggleStatus());
+
+    // Set background color for the SVG container Rect
+    var color = getComputedStyle(this.switchNode).getPropertyValue(
+      'background-color'
+    );
+    var containerNode = this.switchNode.querySelector('rect.container');
+    containerNode.setAttribute('fill', color);
   }
 
   // Switch state of a switch

@@ -46,8 +46,8 @@
           role="switch"
           aria-checked="false">
           <span class="label">Living Room Lights</span>
-          <svg xmlns='http://www.w3.org/2000/svg' height='20' width='36' style='forced-color-adjust: auto;'>
-            <rect x="1" y="1" width="34" height="18" rx="4" />
+          <svg xmlns='http://www.w3.org/2000/svg' height='20' width='36'>
+            <rect class="container" x="1" y="1" width="34" height="18" rx="4" />
             <rect class="off" x="4" y="4" width="12" height="12" rx="4" />
             <rect class="on" x="20" y="4" width="12" height="12" rx="4" />
           </svg>
@@ -58,8 +58,8 @@
           role="switch"
           aria-checked="false">
           <span class="label">Outdoor Lights</span>
-          <svg xmlns='http://www.w3.org/2000/svg' height='20' width='36' style='forced-color-adjust: auto;'>
-            <rect x="1" y="1" width="34" height="18" rx="4" />
+          <svg xmlns='http://www.w3.org/2000/svg' height='20' width='36'>
+            <rect class="container" x="1" y="1" width="34" height="18" rx="4" />
             <rect class="off" x="4" y="4" width="12" height="12" rx="4" />
             <rect class="on" x="20" y="4" width="12" height="12" rx="4" />
           </svg>
@@ -82,7 +82,7 @@
         <li>
           To ensure the SVG graphics have sufficient contrast with the background when high contrast settings invert colors, the CSS <code>currentColor</code> value for the <code>stroke</code> and <code>fill</code> properties is used to synchronize the colors with text content.
           If specific colors were used to specify the <code>stroke</code> and <code>fill</code> properties, the color of these elements would remain the same in high contrast mode, which could lead to insufficient contrast between them and their background or even make them invisible if their color were to match the high contrast mode background.
-          <br/>NOTE: The SVG elements need to set the CSS <code>forced-color-adjust</code> property to <code>auto</code> for some browsers to support the <code>currentColor</code> value.
+          <br/>NOTE: The SVG elements need to set the CSS <code>forced-color-adjust</code> property to <code>auto</code> for some browsers to support the <code>currentColor</code> value.  The fill color of the container <code>rect</code> is set on initialization to use the initial background color of the <code>button</code> element for the fill color to keep the background color constant when the button is focused or hovered.
          </li>
       </ul>
     </section>

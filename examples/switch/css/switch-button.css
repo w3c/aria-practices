@@ -4,27 +4,36 @@ button[role="switch"] {
   padding: 4px 4px 8px 8px;
   border: 0 solid #005a9c;
   border-radius: 5px;
-  width: 18em;
+  width: 16em;
   text-align: left;
   background-color: white;
 }
 
 button[role="switch"] .label {
+  position: relative;
+  top: -3px;
   display: inline-block;
   padding: 0;
   margin: 0;
   width: 10em;
+  vertical-align: middle;
 }
 
 button[role="switch"] svg {
+  forced-color-adjust: auto;
   position: relative;
-  top: 5px;
+  top: 4px;
 }
 
 button[role="switch"] svg rect {
   fill-opacity: 0;
   stroke-width: 2;
   stroke: currentColor;
+}
+
+button[role="switch"] svg rect.container {
+  forced-color-adjust: none;
+  fill-opacity: 1;
 }
 
 button[role="switch"] svg rect.off {
