@@ -67,7 +67,7 @@ ariaTest(
 );
 
 ariaTest(
-  'key SPACE ets or unsets switch',
+  'key SPACE turns switch on and off',
   exampleFile,
   'key-space-enter',
   async (t) => {
@@ -88,7 +88,7 @@ ariaTest(
 );
 
 ariaTest(
-  'key Enter sets or unsets switch',
+  'key Enter turns switch on and off',
   exampleFile,
   'key-space-enter',
   async (t) => {
