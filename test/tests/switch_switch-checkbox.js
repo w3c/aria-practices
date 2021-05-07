@@ -1,6 +1,5 @@
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
-const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertTabOrder = require('../util/assertTabOrder');
 const assertInputChecked = require('../util/assertInputChecked');
@@ -8,46 +7,14 @@ const assertInputChecked = require('../util/assertInputChecked');
 const exampleFile = 'switch/switch-checkbox.html';
 
 const ex = {
-  groupSelector: '#ex1 [role="group"]',
   switchSelector: '#ex1 [role="switch"]',
-  switches: ['#id-switch-1', '#id-switch-2'],
+  switches: [
+    '#ex1 fieldset label:nth-child(2) input',
+    '#ex1 fieldset label:nth-child(3) input',
+  ],
 };
 
 // Attributes
-
-ariaTest('element h3 exists', exampleFile, 'h3', async (t) => {
-  let header = await t.context.queryElements(t, '#ex1 h3');
-
-  t.is(
-    header.length,
-    1,
-    'One h3 element exist within the example to label the switches'
-  );
-
-  t.truthy(
-    await header[0].getText(),
-    'One h3 element exist with readable content within the example to label the switches'
-  );
-});
-
-ariaTest(
-  'role="group" element exists',
-  exampleFile,
-  'group-role',
-  async (t) => {
-    await assertAriaRoles(t, 'ex1', 'group', '1', 'div');
-  }
-);
-
-ariaTest(
-  '"aria-labelledby" on group element',
-  exampleFile,
-  'group-aria-labelledby',
-  async (t) => {
-    await assertAriaLabelledby(t, ex.groupSelector);
-  }
-);
-
 ariaTest(
   'role="switch" elements exist',
   exampleFile,

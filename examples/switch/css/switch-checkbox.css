@@ -1,3 +1,11 @@
+fieldset {
+  width: 22em;
+}
+
+legend {
+  font-size: 110%;
+}
+
 label {
   display: block;
   margin: 0.5em;

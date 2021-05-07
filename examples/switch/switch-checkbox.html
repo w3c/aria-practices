@@ -39,8 +39,8 @@
     <h2 id="ex_label">Example</h2>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="ex1">
-      <div role="group" aria-labelledby="id-group-label">
-        <h3 id="id-group-label" >Accessibility Preferences</h3>
+      <fieldset>
+        <legend>Accessibility Preferences</legend>
         <label>
           <span class="label">Reduced motion</span>
           <input id="id-switch-1"
@@ -66,7 +66,7 @@
             </span>
           </span>
         </label>
-      </div>
+      </fieldset>
     </div>
     <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
   </section>
@@ -75,9 +75,10 @@
     <section>
       <h2>Accessibility Features</h2>
       <ul>
-        <li>To help assistive technology users understand that the accessibility preferences are made of a group of two switches, the switches are wrapped in a <code>group</code> labeled by the heading that labels the notification options.</li>
-        <li>To provide a visual indication the labels can also be used to change the state of a switch, the background color is changed and a border appears when the pointer moves over the switch or the label.</li>
-        <li>A visual text label of the state of the switch is placed after the graphic indication of the state to make it easier for users with visual or cognitive impairments to understand the current state of the switch.</li>
+        <li>To help assistive technology users understand that the accessibility preferences are made of a group of two switches, the switches are wrapped in a <code>fieldset</code> element labeled with a <code>legend</code> element.</li>
+        <li>To provide a visual indication the labels can also be used to change the state of a switch, the background color is changed and a border appears when the pointer moves over the switch or the label.  Including the border insures people with visual impairments can perceive the target area in high contrast modes.</li>
+        <li>A visual text label (i.e. &quot;on&quot; and &quot;off&quot;) of the state of the switch is placed after the graphic indication of the state to make it easier for users with visual or cognitive impairments to understand the current state of the switch.<br/>
+        NOTE: CSS attribute selectors are used ensure synchronization of the visual states with the value of the <code>input[type=&quot;checkbox&quot;].checked</code> property.</li>
         <li>The graphical rendering of the switch state uses 2 pixel borders for the container, and a 2 pixel border on the circle indicating the on and off position of the switch.  There is 2 pixels of space between the container border and the border of the circle.  The use of spacing and borders insures the graphic will be visible and discernible in high contrast modes used by people with visual impairments.
         </li>
       </ul>
@@ -126,36 +127,6 @@
         </tr>
       </thead>
       <tbody>
-          <tr data-test-id="h3">
-            <th scope="row"></th>
-            <td></td>
-            <td><code>h3</code></td>
-            <td>
-              <ul>
-                <li>Provides a grouping label for the group of switches.</li>
-              </ul>
-            </td>
-          </tr>
-          <tr data-test-id="group-role">
-            <th scope="row"><code>group</code></th>
-            <td></td>
-            <td><code>div</code></td>
-            <td>
-              <ul>
-                <li>Identifies the <code>div</code> element as a <code>group</code> container for the switches.</li>
-              </ul>
-            </td>
-          </tr>
-          <tr data-test-id="group-aria-labelledby">
-            <th scope="row"></th>
-            <td><code>aria-labelledby</code></td>
-            <td><code>div</code></td>
-            <td>
-              <ul>
-                <li>The <code>aria-labelledby</code> attribute references the <code>id</code> attribute of the <code>h3</code> element to define the accessible name for the group of switches.</li>
-              </ul>
-            </td>
-          </tr>
           <tr data-test-id="switch-role">
             <th scope="row"><code>switch</code></th>
             <td></td>
