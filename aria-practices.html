@@ -2565,7 +2565,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       </p>
       <ol>
         <li>Generic element (e.g. <code>div</code>): Requires setting the <a href="#switch" class="role-reference">switch</a> role, the <a href="#aria-checked" class="state-reference" >aria-checked</a> state, <code>tabindex=&quot;0&quot;</code> and setting both click and keyboard event handlers.</li>
-        <li><code>button</code> element: Requires setting the <a href="#switch" class="role-reference">switch</a> role, the <a href="#aria-checked" class="state-reference" >aria-checked</a> state and setting the click event handler, since the default action for the <kbd>Enter</kbd> and <kbd>Space</kbd> keyboard events is the click handler.</li>
+        <li><code>button</code> element: Requires setting the <a href="#switch" class="role-reference">switch</a> role, the <a href="#aria-checked" class="state-reference" >aria-checked</a> state and setting the click event handler, since the <code>button</code> element's default action for the <kbd>Enter</kbd> and <kbd>Space</kbd> keyboard events is the click handler.</li>
         <li><code>input[type=&quot;checkbox&quot;]</code> element: Requires setting the <a href="#switch" class="role-reference">switch</a> role.  The state of the switch is indicated using the <code>checked</code> property of the <code>input</code> element.  A <code>keydown</code> event handler is needed to support activation of the <kbd>Enter</kbd> key.  Other event handlers include <code>focus</code> and <code>blur</code> to set visual focus styling.
         </li>
       </ol>
