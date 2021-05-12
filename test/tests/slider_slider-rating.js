@@ -13,7 +13,7 @@ const ex = {
   ratingMax: '5',
   ratingMin: '0',
   ratingDefault: '0',
-  ratingDefaultValue: 'none of the five stars',
+  ratingDefaultValue: 'zero of five stars',
   ratingInc: 0.5,
   ratingPageInc: 1,
 };
@@ -34,7 +34,7 @@ const getRatingValueAndText = function (v, change) {
 
   switch (value) {
     case 0:
-      valuetext = 'no stars';
+      valuetext = 'zero stars';
       break;
 
     case 0.5:
