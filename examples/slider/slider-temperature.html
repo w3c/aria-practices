@@ -83,8 +83,8 @@
       <ul>
         <li>The display of the slider's current value remains adjacent to the thumb as the thumb is moved, so people with a small field of view (e.g., due to magnification) can easily see the value while focusing on the thumb as they move it.</li>
         <li>
-          To ensure the borders of the slider rail, thumb and focus ring have sufficient contrast with the background when high contrast settings invert colors, the color of the borders is synchronized with the color of the text content.
-          Support for the high contrast foreground color is achieved by using the CSS <code>currentColor</code> value for the <code>stroke</code> property of inline SVG <code>rect</code> elements.  To enable the high contrast background color to be the used as the contrasting color the <code>fill-opacity</code> attribute is set to zero.
+          To ensure the borders of the slider rail, thumb and focus ring have sufficient contrast with the background when high contrast settings invert colors, the color of the borders are synchronized with the color of the text content.
+          For example, support for using the high contrast foreground color for the focus ring border is achieved by using the CSS <code>currentColor</code> value for the <code>stroke</code> property of an inline SVG <code>rect</code> element.  To enable the high contrast background color to be the used as the contrasting color the <code>fill-opacity</code> attribute of the <code>rect</code> is set to zero.
           If specific colors were instead used to specify the <code>stroke</code> and <code>fill</code> properties, those colors would remain the same in high contrast mode, which could lead to insufficient contrast between the rail and the thumb or even make them invisible if their color matched the high contrast mode background.<br>
           Note: The SVG element needs to have the CSS <code>forced-color-adjust</code> property set to <code>auto</code> for the <code>currentColor</code> value to be updated in high contrast mode.
           Some browsers do not use <code>auto</code> for the default value.
