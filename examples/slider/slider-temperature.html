@@ -156,9 +156,8 @@
 
     </section>
 
-  <section>
+    <section>
       <h2 id="rps_label">Role, Property, State, and Tabindex Attributes</h2>
-
       <table aria-labelledby="rps_label rps_label" class="data attributes">
         <thead>
           <tr>
@@ -178,7 +177,7 @@
               <code>svg</code>
             </td>
             <td>
-              The use of the <code>none</code> role on the SVG element ensures assistive technologies do not interpret the SVG element as an image or some other role.
+              ensures assistive technologies do not present the SVG element as an image or any other type of meaningful element.
             </td>
           </tr>
           <tr data-test-id="slider-role">
@@ -192,7 +191,7 @@
             <td>
               <ul>
                 <li>Identifies the element as a slider.</li>
-                <li>Set on the <code>g</code> element that represents as the movable thumb because it is the operable element that represents the slider value.</li>
+                <li>Set on the <code>g</code> element that represents the movable thumb because it is the operable element that receives focus and conveys the value.</li>
               </ul>
             </td>
           </tr>
@@ -215,10 +214,7 @@
               <code>g</code>
             </td>
             <td>
-              <ul>
-                <li>Indicates the orientation of the slider element.</li>
-                <li>Set to <code>vertical</code> for the temperature selector slider.</li>
-              </ul>
+              Indicates the slider is vertically oriented.
             </td>
           </tr>
           <tr data-test-id="aria-valuemax">
@@ -229,7 +225,7 @@
             <td>
               <code>g</code>
             </td>
-            <td>Specifies a numeric value that is the maximum value the slider can have.</td>
+            <td>Specifies the numeric value that is the maximum allowed value of the slider.</td>
           </tr>
           <tr data-test-id="aria-valuemin">
             <td></td>
@@ -239,7 +235,7 @@
             <td>
               <code>g</code>
             </td>
-            <td>Specifies a numeric value that is the minimum value the slider can have.</td>
+            <td>Specifies the numeric value that is the minimum allowed value of the slider.</td>
           </tr>
           <tr data-test-id="aria-valuenow">
             <td></td>
@@ -260,10 +256,7 @@
               <code>g</code>
             </td>
             <td>
-              <ul>
-                <li>A string value that provides a user-friendly name for the current value of the slider.</li>
-                <li>For the temperature selector slider, is the value of the slider appended with the text <q> degrees Celsius</q>.</li>
-              </ul>
+              Provides a more user-friendly name for the current value of the slider by combining the current value with the string <q> degrees Celsius</q>.
             </td>
           </tr>
           <tr data-test-id="aria-labelledby">
