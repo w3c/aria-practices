@@ -18,11 +18,11 @@ jobs:
     env:
       GH_TOKEN: ${{ secrets.GH_TOKEN || github.token }}
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2.3.4
       with:
         path: main
 
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2.3.4
       with:
         path: deploy
         ref: gh-pages
