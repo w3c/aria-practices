@@ -79,7 +79,7 @@ class RatingSlider {
   getValueText(value) {
     switch (value) {
       case 0:
-        return 'no stars';
+        return 'zero stars';
 
       case 0.5:
         return 'one half star';
@@ -121,10 +121,10 @@ class RatingSlider {
   getValueTextWithMax(value) {
     switch (value) {
       case 0:
-        return 'none of the five stars';
+        return 'zero of five stars';
 
       case 0.5:
-        return 'one half star of five stars';
+        return 'one half of five stars';
 
       case 1.0:
         return 'one of five stars';
