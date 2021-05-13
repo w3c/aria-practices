@@ -262,7 +262,8 @@ ariaTest('"enter" on role="menuitem"', exampleFile, 'menu-enter', async (t) => {
     const item = (await t.context.queryElements(t, ex.menuitemSelector))[index];
 
     // Update url to remove external reference for dependable testing
-    const newUrl = (await t.context.session.getCurrentUrl()) + '#test-url-change';
+    const newUrl =
+      (await t.context.session.getCurrentUrl()) + '#test-url-change';
     await replaceExternalLink(t, newUrl, ex.menuitemSelector, index);
 
     await openMenu(t);
