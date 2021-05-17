@@ -43,7 +43,7 @@
     "eslint": "^7.20.0",
     "eslint-config-prettier": "^8.0.0",
     "eslint-plugin-ava": "^11.0.0",
-    "eslint-plugin-jsdoc": "^32.1.0",
+    "eslint-plugin-jsdoc": "^34.6.3",
     "eslint-plugin-prettier": "^3.3.1",
     "geckodriver": "^1.22.1",
     "glob": "^7.1.6",
