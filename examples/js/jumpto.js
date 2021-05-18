@@ -402,7 +402,7 @@
     getFirstChar: function (menuitem) {
       var c = '';
       var label = menuitem.querySelector('.label');
-      if (this.isNotEmptyString(label)) {
+      if (label && this.isNotEmptyString(label.textContent)) {
         c = label.textContent.trim()[0].toLowerCase();
       }
       return c;
