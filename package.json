@@ -16,7 +16,7 @@
     "lint:html": "npm run htmlhint && npm run vnu-jar",
     "lint:spelling": "cspell \"**/*.*\"",
     "reference-tables": "node scripts/reference-tables.js",
-    "regression": "ava --timeout=1m",
+    "regression": "echo 'Tip: use `DEBUG=1 npm run regression` to disable headless mode.'; ava --timeout=1m",
     "regression-report": "node test/util/report",
     "test": "npm run lint && npm run regression",
     "vnu-jar": "java -jar node_modules/vnu-jar/build/dist/vnu.jar --filterfile .vnurc --no-langdetect --skip-non-html aria-practices.html examples/",
