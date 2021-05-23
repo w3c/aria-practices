@@ -415,7 +415,8 @@ function addOpenInCodePenForm(
     css_external:
       location.origin +
       '/examples/css/core.css;' +
-      'https://www.w3.org/StyleSheets/TR/2016/base.css',
+      'https://www.w3.org/StyleSheets/TR/2016/base.css;' +
+      'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
     js_external: location.origin + 'examples/js/utils.js',
   };
 
