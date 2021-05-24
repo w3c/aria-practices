@@ -36,10 +36,14 @@
       </p>
     </div>
     <p>
-      The following example is seek control for a media player using the
-      <a href="../../#slider">slider design pattern.</a>
-      The slider illustrates how to use <code>aria-valuetext</code> to provide assistive technologies with meaningful names for numeric values.
-      The seek slider is used to move or identify the current playing position in a audio or video media player and converts the seconds value in to minutes and seconds for <code>aria-valuetext</code>.
+      The following example of the
+      <a href="../../#slider">slider design pattern</a>
+      illustrates a seek control that could be used to move the current play position in an audio or video media player.
+      The example demonstrates how to use <code>aria-valuetext</code> to provide assistive technology users with meaningful names for numeric values.
+      In this case, the value of the control is the position in seconds.
+      For example, if the play position were 4 minutes and 3 seconds from the start, the slider value is 243.
+      If <code>aria-valuetext</code> were not used, assistive technology users would be told that the position is <q>243</q>, which is significantly more difficult to comprehend than <q>4 minutes, 3 seconds</q>.
+      So, the code converts the slider value to a string that communicates the position in minutes and seconds and provides that value via <code>aria-valuetext</code>.
     </p>
     <p>Similar examples include: </p>
     <ul>
