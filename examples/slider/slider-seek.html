@@ -165,13 +165,13 @@
             <th>
               <kbd>Page Up</kbd>
             </th>
-            <td>Increases temperature slider value multiple steps. In this slider, jumps twenty steps (e.g. 15 seconds).</td>
+            <td>Increases slider value 15 steps.</td>
           </tr>
           <tr data-test-id="key-page-down">
             <th>
               <kbd>Page Down</kbd>
             </th>
-            <td>Decreases temperature slider value multiple steps. In this slider, jumps twenty steps (e.g. 15 seconds).</td>
+            <td>Decreases slider value 15 steps.</td>
           </tr>
           <tr data-test-id="key-home">
             <th>
@@ -187,10 +187,9 @@
           </tr>
         </tbody>
       </table>
-
     </section>
 
-  <section>
+    <section>
       <h2 id="rps_label">Role, Property, State, and Tabindex Attributes</h2>
 
       <table aria-labelledby="rps_label rps_label" class="data attributes">
@@ -280,9 +279,9 @@
             </td>
             <td>
               <ul>
-                <li>A string value that provides a user-friendly name for the current value of the slider.</li>
-                <li>For the seek slider, it is the text representation of the minutes and seconds.</li>
-                <li>When the slider thumb receives keyboard focus the maximum value is appended to <code>aria-valuetext</code>.  When the slider changes in value the maximum value is not included.</li>
+                <li>A string value that provides a user-friendly name for the current value of the slider. In this example, it is the value converted to minutes and seconds.</li>
+                <li>Additionally includes the maximum value in minutes when the slider is initialized and when the thumb receives keyboard focus.</li>
+                <li>Note: To prevent unnecessary screen reader verbosity,  the maximum value is not included when the value changes.</li>
               </ul>
             </td>
           </tr>
@@ -304,7 +303,7 @@
             <td>
               <code>rect</code>
             </td>
-            <td>Removes the SVG <code>rect</code> element from the accessibility tree, since some screen readers will describe it as an image separate from the slider.</td>
+            <td>Removes the SVG <code>rect</code> element from the accessibility tree to prevent assistive technologies from presenting it as an image separate from the slider.</td>
           </tr>
         </tbody>
       </table>
