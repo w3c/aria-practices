@@ -71,7 +71,7 @@
   stroke-opacity: 0.8;
 }
 
-.slider-multithumb [role="slider"]:focus:hover .focus-ring,
+.slider-multithumb [role="slider"]:hover .focus-ring,
 .slider-multithumb [role="slider"]:focus .focus-ring {
   stroke: currentColor;
   stroke-opacity: 1;
