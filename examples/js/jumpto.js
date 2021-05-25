@@ -69,8 +69,7 @@
       msgNoHeadingsFound: 'No headings found',
 
       // Selectors for landmark and headings sections
-      landmarks:
-        'main, [role="main"], [role="search"], nav, [role="navigation"], aside, [role="complementary"]',
+      landmarks: 'main, nav:first-of-type',
       headings: 'main h1, [role="main"] h1, main h2, [role="main"] h2',
 
       // Custom CSS position and colors
@@ -246,7 +245,6 @@
         this.config.enableTooltip = false;
       } else {
         this.tooltipNode.textContent = tooltip;
-        buttonNode.setAttribute('aria-describedby', id);
       }
 
       attachNode.appendChild(this.tooltipNode);
