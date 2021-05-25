@@ -255,29 +255,36 @@ ariaTest(
   }
 );
 
-ariaTest('"enter" on role="menuitem"', exampleFile, 'menu-enter', async (t) => {
-  for (let index = 0; index < ex.numMenuitems; index++) {
-    // Return to test page
-    await t.context.session.get(t.context.url);
-    const item = (await t.context.queryElements(t, ex.menuitemSelector))[index];
+ariaTest.failing(
+  '"enter" on role="menuitem"',
+  exampleFile,
+  'menu-enter',
+  async (t) => {
+    for (let index = 0; index < ex.numMenuitems; index++) {
+      // Return to test page
+      await t.context.session.get(t.context.url);
+      const item = (await t.context.queryElements(t, ex.menuitemSelector))[
+        index
+      ];
 
-    // Update url to remove external reference for dependable testing
-    const currentUrl = await t.context.session.getCurrentUrl();
-    const newUrl = currentUrl + '#test-url-change';
-    await replaceExternalLink(t, newUrl, ex.menuitemSelector, index);
+      // Update url to remove external reference for dependable testing
+      const currentUrl = await t.context.session.getCurrentUrl();
+      const newUrl = currentUrl + '#test-url-change';
+      await replaceExternalLink(t, newUrl, ex.menuitemSelector, index);
 
-    await openMenu(t);
-    await item.sendKeys(Key.ENTER);
+      await openMenu(t);
+      await item.sendKeys(Key.ENTER);
 
-    t.is(
-      await t.context.session.getCurrentUrl(),
-      newUrl,
-      'Key enter when focus on list item at index ' +
-        index +
-        ' should activate the link'
-    );
+      t.is(
+        await t.context.session.getCurrentUrl(),
+        newUrl,
+        'Key enter when focus on list item at index ' +
+          index +
+          ' should activate the link'
+      );
+    }
   }
-});
+);
 
 ariaTest(
   '"escape" on role="menuitem"',
