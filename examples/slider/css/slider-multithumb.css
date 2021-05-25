@@ -60,12 +60,12 @@
   fill-opacity: 1;
 }
 
-.slider-multithumb .slider-group [role="slider"]:focus {
+.slider-multithumb [role="slider"]:focus {
   outline: none;
   color: #005a9c;
 }
 
-.slider-multithumb .slider-group [role="slider"]:hover .focus-ring {
+.slider-multithumb [role="slider"]:hover .focus-ring {
   stroke: currentColor;
   stroke-width: 1px;
   stroke-opacity: 0.8;
