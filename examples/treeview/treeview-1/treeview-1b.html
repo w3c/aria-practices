@@ -43,7 +43,9 @@
         <li><a href="../treeview-navigation.html">Navigation Treeview Example</a></li>
       </ul>
       <section>
-        <h2 id="start">Example</h2>
+        <div class="example-header">
+          <h2 id="start">Example</h2>
+        </div>
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep start" aria-label="Start of"></div>
         <div id="ex1">
         <h3 id="tree1">File Viewer</h3>
@@ -659,7 +661,7 @@
 
      <section>
         <h2>Javascript and CSS Source Code</h2>
-        <ul>
+        <ul id="css_js_files">
           <li>
             CSS:
             <a href="css/tree.css" type="text/css">tree.css</a>
@@ -686,7 +688,7 @@
         <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
 
         <script>
-          sourceCode.add('sc1', 'ex1');
+          sourceCode.add('sc1', 'ex1', 'start', 'css_js_files');
           sourceCode.make();
         </script>
       </section>

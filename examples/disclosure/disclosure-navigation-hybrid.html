@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Example Disclosure Navigation Menu | WAI-ARIA Authoring Practices 1.2</title>
+<title>Example Disclosure Navigation Menu with Top-Level Links | WAI-ARIA Authoring Practices 1.2</title>
 
   <!--  Core js and css shared by all examples; do not modify when using this template. -->
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -26,26 +26,28 @@
     </ul>
   </nav>
   <main>
-    <h1>Example Disclosure Navigation Menu</h1>
+    <h1>Example Disclosure Navigation Menu with Top-Level Links</h1>
     <div class="advisement">
       <p>
         Although this example uses the word "menu" in the colloquial sense to refer to a set of navigation links, it does not use the WAI-ARIA menu role.
         That is because the menu and menubar roles require complex functionality, such as <a href="../../#kbd_general_within">composite widget focus management</a> and first-character navigation, that is unnecessary for typical site navigation.
       </p>
     </div>
+
     <p>
       The following example demonstrates using the
       <a href="../../#disclosure">disclosure design pattern</a>
       to show and hide dropdown lists of links in a navigation bar for a mythical university web site.
-      Each disclosure button represents a section of the web site, and expanding it shows a list of links to pages within that section.
+      Unlike the other <a href="disclosure-navigation.html">disclosure navigation menu example</a>, this example includes top-level links alongside the disclosure buttons.
     </p>
     <p>Similar examples include:</p>
-  <ul>
-    <li><a href="disclosure-faq.html">Example Disclosure (Show/Hide) for Answers to Frequently Asked Questions</a></li>
-    <li><a href="disclosure-img-long-description.html">Example Disclosure (Show/Hide) for an Image Description</a></li>
-    <li><a href="disclosure-navigation-hybrid.html">Example Disclosure Navigation Menu with Top-Level Links</a></li>
-    <li><a href="../menubar/menubar-navigation.html">Navigation Menubar Example</a></li>
-  </ul>
+    <ul>
+      <li><a href="disclosure-navigation.html">Example Disclosure Navigation Menu</a></li>
+      <li><a href="disclosure-faq.html">Example Disclosure (Show/Hide) for Answers to Frequently Asked Questions</a></li>
+      <li><a href="disclosure-img-long-description.html">Example Disclosure (Show/Hide) for an Image Description</a></li>
+      <li><a href="../menubar/menubar-navigation.html">Navigation Menubar Example</a></li>
+    </ul>
+
   <h2>Example Usage Options</h2>
   <p>
     This example demonstrates two different ways of implementing keyboard support.
@@ -57,14 +59,21 @@
   </label>
 
   <section>
-    <h2 id="ex_label">Example</h2>
+    <div class="example-header">
+      <h2 id="ex_label">Example</h2>
+    </div>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of" ></div>
     <div id="ex1">
+      <header class="sample-header">
+        <div class="title" id="id_website_title">Mythical University</div>
+        <div class="tagline">Using a disclosure + link pattern for navigation</div>
+      </header>
       <nav aria-label="Mythical University">
         <ul id="exTest" class="disclosure-nav">
           <li>
-            <button type="button" aria-expanded="true" aria-controls="id_about_menu">About</button>
-            <ul id="id_about_menu">
+            <a href="#mythical-page-content" class="main-link">About</a>
+            <button type="button" aria-expanded="false" aria-controls="id_about_menu" aria-label="More About pages"> </button>
+            <ul id="id_about_menu" style="display:none">
               <li>
                 <a href="#mythical-page-content">Overview</a>
               </li>
@@ -80,8 +89,9 @@
             </ul>
           </li>
           <li>
-            <button type="button" aria-expanded="true" aria-controls="id_admissions_menu">Admissions</button>
-            <ul id="id_admissions_menu">
+            <a href="#mythical-page-content" class="main-link">Admissions</a>
+            <button type="button" aria-expanded="false" aria-controls="id_admissions_menu" aria-label="More Admissions pages"> </button>
+            <ul id="id_admissions_menu" style="display:none">
               <li>
                 <a href="#mythical-page-content">Apply</a>
               </li>
@@ -103,8 +113,9 @@
             </ul>
           </li>
           <li>
-            <button type="button" aria-expanded="true" aria-controls="id_academics_menu">Academics</button>
-            <ul id="id_academics_menu">
+            <a href="#mythical-page-content" class="main-link">Academics</a>
+            <button type="button" aria-expanded="false" aria-controls="id_academics_menu" aria-label="More Academics pages"> </button>
+            <ul id="id_academics_menu" style="display:none">
               <li>
                 <a href="#mythical-page-content">Colleges &amp; Schools</a>
               </li>
@@ -133,10 +144,13 @@
           </li>
         </ul>
       </nav>
-      <div id="mythical-page-content" class="disclosure-page-content" tabindex="-1" role="region" aria-label="Mythical University sample page content">
-        <h3 id="mythical-page-heading">Mythical University</h3>
+      <div id="mythical-page-content" class="disclosure-page-content" tabindex="-1" role="region" aria-labelledby="mythical-page-heading">
+        <h3 id="mythical-page-heading">Home</h3>
         <p>Sample content section. Activating a link above will update and navigate to this region.</p>
       </div>
+      <footer class="sample-footer">
+        Mythical University footer information
+      </footer>
     </div>
     <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
   </section>
@@ -144,20 +158,19 @@
   <section>
     <h2>Accessibility Features</h2>
     <ol>
-      <li>Since this set of disclosure buttons controls visibility of navigation links for the mythical university web site, the list that contains them is wrapped in a navigation landmark named <q>Mythical University</q>.</li>
+      <li>Since this set of links and disclosure buttons provides  navigation for the mythical university web site, the list that contains them is wrapped in a navigation landmark named <q>Mythical University</q>.</li>
       <li>
-        The semantics of the list structure communicates the hierarchy of the navigation system to assistive technology users.
-        The top-level set of three buttons is in a list of three items, and the set of links controlled by each button is contained within a list nested inside the item with the controlling button.
+        The semantics of the list structure communicate the hierarchy of the navigation system to assistive technology users.
+        The top-level list has three items where each item contains a top-level link and an associated disclosure button.
+        The set of links controlled by a disclosure button is in a list nested inside the list item that contains the button.
       </li>
       <li>
         If a dropdown is open and focus is inside the navigation region, pressing <kbd>Esc</kbd> will close the dropdown.
         Moving focus out of the navigation region also closes an open dropdown.
-        Implementing this <kbd>Esc</kbd> behavior is necessary to meet the WCAG 2.1 <a href="https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html">1.4.13: Content on Hover or Focus</a> criterion.
       </li>
-      <li>The visual indicator of the show/hide state is created using CSS <code>::after</code> pseudo element border styles so the caret is reliably rendered in high contrast mode of operating systems and browsers.</li>
       <li>Optional navigation keys (Arrow keys, <kbd>Home</kbd>, and <kbd>End</kbd>):
         <ol>
-          <li>Implementing the optional arrow key support prevents the default page scroll behavior when focus is contained within the navigation region.</li>
+          <li>Enabling the optional arrow key support prevents the default page scroll behavior when focus is contained within the navigation region.</li>
           <li>
             Optional navigation key support is primarily for the benefit of keyboard users who are not running a screen reader.
             Screen readers that have both reading and interaction modes intercept these navigation keys and do not pass them to the page when the screen reader is in reading mode.
@@ -187,7 +200,7 @@
             <kbd>Tab</kbd><br>
             <kbd>Shift + Tab</kbd>
           </th>
-          <td>Move keyboard focus among top-level buttons, and if a dropdown is open, into and through links in the dropdown.</td>
+          <td>Move keyboard focus among top-level links and buttons, and if a dropdown is open,  through links in the dropdown.</td>
         </tr>
         <tr data-test-id="key-enter-space">
           <th>
@@ -221,9 +234,9 @@
           </th>
           <td>
             <ul>
-              <li>If focus is on a button and its dropdown is collapsed, and it is not the last button, moves focus to the next button.</li>
-              <li>if focus is on a button and its dropdown is expanded, moves focus to the first link in the dropdown.</li>
-              <li>If focus is on a link, and it is not the last link, moves focus to the next link.</li>
+              <li>If focus is on a top-level link or button with a collapsed dropdown, and it is not the last top-level item, moves focus to the next top-level link or button.</li>
+              <li>if focus is on a top-level button and its dropdown is expanded, moves focus to the first link in the dropdown.</li>
+              <li>If focus is on a link within an expanded dropdown, and it is not the last link, moves focus to the next link.</li>
             </ul>
           </td>
         </tr>
@@ -235,8 +248,8 @@
           </th>
           <td>
             <ul>
-              <li>If focus is on a button, and it is not the first button, moves focus to the previous button.</li>
-              <li>If focus is on a link, and it is not the first link,  moves focus to the previous link.</li>
+              <li>If focus is on a top-level link or button, and it is not the first item, moves focus to the previous link or button.</li>
+              <li>If focus is on a link within an expanded dropdown, and it is not the first link,  moves focus to the previous link.</li>
             </ul>
           </td>
         </tr>
@@ -246,8 +259,8 @@
           </th>
           <td>
           <ul>
-              <li>If focus is on a button, and it is not the first button, moves focus to the first button.</li>
-              <li>If focus is on a link, and it is not the first link, moves focus to the first link.</li>
+              <li>If focus is on a top-level link button, and it is not the first item, moves focus to the first item.</li>
+              <li>If focus is on a link within an expanded dropdown, and it is not the first link, moves focus to the first link.</li>
             </ul>
           </td>
         </tr>
@@ -257,8 +270,8 @@
           </th>
           <td>
           <ul>
-              <li>If focus is on a button, and it is not the last button, moves focus to the last button.</li>
-              <li>If focus is on a link, and it is not the last link, moves focus to the last link.</li>
+              <li>If focus is on a top-level link or button, and it is not the last item, moves focus to the last item.</li>
+              <li>If focus is on a link within an expanded dropdown, and it is not the last link, moves focus to the last link.</li>
             </ul>
           </td>
         </tr>
@@ -287,7 +300,7 @@
             <code>button</code>
           </td>
           <td>
-            The disclosure button controls visibility of the container identified by the <code>IDREF</code> value.
+            Indicates that the disclosure button controls visibility of the container identified by the <code>IDREF</code> value.
           </td>
         </tr>
         <tr data-test-id="button-aria-expanded">
@@ -349,7 +362,7 @@
   <section>
     <h2>Javascript and CSS Source Code</h2>
     <!--  After the js and css files are named with the name of this example, change the href and text of the following 2 links to refer to the appropriate js and css files.  -->
-    <ul>
+    <ul id="css_js_files">
       <li>
         CSS:
         <a href="css/disclosure-navigation.css" type="tex/css">disclosure-navigation.css</a>
@@ -367,7 +380,7 @@
     <pre><code id="sc1"></code></pre>
     <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of" ></div>
     <script>
-      sourceCode.add('sc1', 'ex1');
+      sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
       sourceCode.make();
     </script>
   </section>

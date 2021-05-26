@@ -57,6 +57,26 @@
   outline-offset: 2px;
 }
 
+.combobox-datepicker .dialog button {
+  border-style: none;
+  background: transparent;
+}
+
+.combobox-datepicker .dialog-ok-cancel-group button {
+  padding: 6px;
+  margin-left: 1em;
+  width: 5em;
+  background-color: hsl(216, 80%, 92%);
+  font-size: 0.85em;
+  color: black;
+  outline: none;
+  border-radius: 5px;
+}
+
+.combobox-datepicker .dialog button::-moz-focus-inner {
+  border: 0;
+}
+
 .combobox-datepicker .group.focus input,
 .combobox-datepicker .group.focus button {
   background-color: #def;
@@ -67,8 +87,8 @@
   stroke: transparent;
 }
 
-.combobox-datepicker .group button[aria-expanded="true"] polygon,
-.combobox-datepicker .group.focus polygon {
+.combobox-datepicker .group.focus polygon,
+.combobox-datepicker .group button[aria-expanded="true"] polygon {
   fill: black;
   stroke: white;
 }
@@ -107,15 +127,6 @@
   color: white;
   text-transform: none;
   font-weight: bold;
-}
-
-.combobox-datepicker .dialog button {
-  border-style: none;
-  background: transparent;
-}
-
-.combobox-datepicker .dialog button::-moz-focus-inner {
-  border: 0;
 }
 
 .combobox-datepicker .dates {
@@ -160,17 +171,6 @@
   margin-top: 1em;
   margin-bottom: 1em;
   margin-right: 1em;
-}
-
-.combobox-datepicker .dialog-ok-cancel-group button {
-  padding: 6px;
-  margin-left: 1em;
-  width: 5em;
-  background-color: hsl(216, 80%, 92%);
-  font-size: 0.85em;
-  color: black;
-  outline: none;
-  border-radius: 5px;
 }
 
 .combobox-datepicker .dialog-button:focus {
@@ -229,15 +229,15 @@
   background-color: hsl(216, 80%, 92%);
 }
 
-.combobox-datepicker .dates td:not(.disabled):hover {
-  padding: 2px;
-  border: 1px solid rgb(100, 100, 100);
-}
-
 .combobox-datepicker .dates td:focus {
   padding: 1px;
   border: 2px solid rgb(100, 100, 100);
   outline: 0;
+}
+
+.combobox-datepicker .dates td:not(.disabled):hover {
+  padding: 2px;
+  border: 1px solid rgb(100, 100, 100);
 }
 
 .combobox-datepicker .dialog-message {

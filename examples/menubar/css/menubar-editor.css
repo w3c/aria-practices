@@ -78,6 +78,13 @@
   text-decoration: line-through;
 }
 
+.menubar-editor [role="menubar"] [role="separator"] {
+  padding-top: 3px;
+  background-image: url("../images/separator.svg");
+  background-position: center;
+  background-repeat: repeat-x;
+}
+
 .menubar-editor [role="menubar"] [role="menuitem"],
 .menubar-editor [role="menubar"] [role="menuitemcheckbox"],
 .menubar-editor [role="menubar"] [role="menuitemradio"],
@@ -102,13 +109,6 @@
 .menubar-editor [role="menubar"] [role="menu"] [role="separator"] {
   padding-left: 27px;
   width: 8em;
-}
-
-.menubar-editor [role="menubar"] [role="separator"] {
-  padding-top: 3px;
-  background-image: url("../images/separator.svg");
-  background-position: center;
-  background-repeat: repeat-x;
 }
 
 .menubar-editor [role="menubar"] [role="menu"] [aria-checked="true"] {
