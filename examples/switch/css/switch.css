@@ -3,7 +3,11 @@
   padding: 4px 4px 8px 8px;
   border: 0 solid #005a9c;
   border-radius: 5px;
-  width: 13em;
+  width: 15em;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 [role="switch"] .label {
@@ -19,10 +23,6 @@
   border-radius: 12px;
   height: 20px;
   width: 40px;
-}
-
-[role="switch"]::after {
-  content: "Off";
 }
 
 [role="switch"] .switch span {
@@ -43,8 +43,20 @@
   border-color: green;
 }
 
-[role="switch"][aria-checked="true"]::after {
-  content: "On";
+[role="switch"] .on {
+  display: none;
+}
+
+[role="switch"] .off {
+  display: inline;
+}
+
+[role="switch"][aria-checked="true"] .on {
+  display: inline;
+}
+
+[role="switch"][aria-checked="true"] .off {
+  display: none;
 }
 
 [role="switch"]:focus,
