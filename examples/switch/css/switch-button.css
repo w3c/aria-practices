@@ -59,12 +59,20 @@ button[role="switch"][aria-checked="true"] svg rect.on {
   fill-opacity: 1;
 }
 
-button[role="switch"]::after {
-  content: "Off";
+button[role="switch"] span.off {
+  display: inline;
 }
 
-button[role="switch"][aria-checked="true"]::after {
-  content: "On";
+button[role="switch"] span.on {
+  display: none;
+}
+
+button[role="switch"][aria-checked="true"] span.off {
+  display: none;
+}
+
+button[role="switch"][aria-checked="true"] span.on {
+  display: inline;
 }
 
 button[role="switch"]:focus,
