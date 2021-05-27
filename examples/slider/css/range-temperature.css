@@ -1,0 +1,88 @@
+/* CSS Document */
+
+.range-temperature {
+  touch-action: pan-x;
+  margin-top: 1em;
+  padding: 6px;
+  width: 15em;
+}
+
+.range-temperature label {
+  font-weight: bold;
+  display: block;
+}
+
+.range-temperature .range-value {
+  margin-left: 102px;
+  font-weight: bold;
+  font-size: 200%;
+  font-family: sans-serif;
+}
+
+/* Range Vertical Controls */
+
+.range-temperature input[type="range"] {
+  width: 280px;
+  height: 300px;
+  background-color: transparent;
+  -webkit-appearance: none;
+  -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
+
+.range-temperature input[type="range"]::-webkit-slider-runnable-track {
+  background: #3071a9;
+  border: 2px solid currentColor;
+  border-radius: 4px;
+  height: 10px;
+  cursor: pointer;
+}
+
+.range-temperature input[type="range"]::-webkit-slider-thumb {
+  margin-top: -20.45px;
+  width: 13px;
+  height: 48px;
+  background: currentColor;
+  border: 2px solid currentColor;
+  border-radius: 7.5px;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
+.range-temperature input[type="range"]::-moz-range-track {
+  background: #3071a9;
+  border: 2px solid currentColor;
+  border-radius: 4px;
+  height: 10px;
+  cursor: pointer;
+}
+
+.range-temperature input[type="range"]::-moz-range-thumb {
+  width: 13px;
+  height: 48px;
+  background: currentColor;
+  border: 2px solid currentColor;
+  border-radius: 7.5px;
+  cursor: pointer;
+}
+
+/* Focus and hover styling */
+
+.range-temperature input[type="range"]:focus {
+  outline: none;
+}
+
+.range-temperature input[type="range"]:focus::-webkit-slider-runnable-track {
+  background: #3174ad;
+}
+
+.range-temperature input[type="range"]:focus::-webkit-slider-thumb,
+.range-temperature input[type="range"]:hover::-webkit-slider-thumb,
+.range-temperature input[type="range"]:focus::-moz-range-thumb,
+.range-temperature input[type="range"]:hover::-moz-range-thumb {
+  outline-offset: 4px;
+  outline: 4px #005a9c solid;
+}
