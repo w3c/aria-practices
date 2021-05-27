@@ -4,7 +4,7 @@
  *
  *   File:   range-temperature.js
  *
- *   Desc:   Vertical range widget that uses aria-valuetext and aria-oreintation
+ *   Desc:   Vertical range widget that uses aria-valuetext and aria-orientation
  */
 
 'use strict';
