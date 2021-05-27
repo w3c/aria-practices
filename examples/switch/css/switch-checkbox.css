@@ -18,6 +18,10 @@ label {
 label .label {
   display: inline-block;
   width: 9em;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 label input[role="switch"] {
@@ -26,6 +30,10 @@ label input[role="switch"] {
 
 label input[role="switch"] ~ .state {
   display: inline-block;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 label input[role="switch"] ~ .state > .container {
@@ -51,9 +59,12 @@ label input[role="switch"] ~ .state > .container > .position {
   opacity: 0.6;
 }
 
-label input[role="switch"] ~ .state::after {
-  padding-left: 4px;
-  content: "Off";
+label input[role="switch"] ~ .state span.off {
+  display: inline;
+}
+
+label input[role="switch"] ~ .state span.on {
+  display: none;
 }
 
 label input[role="switch"]:checked ~ .state > .container > .position {
@@ -63,9 +74,12 @@ label input[role="switch"]:checked ~ .state > .container > .position {
   opacity: 1;
 }
 
-label input[role="switch"]:checked ~ .state::after {
-  padding-left: 4px;
-  content: "On";
+label input[role="switch"]:checked ~ .state > span.off {
+  display: none;
+}
+
+label input[role="switch"]:checked ~ .state > span.on {
+  display: inline;
 }
 
 label.focus,
