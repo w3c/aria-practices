@@ -59,11 +59,11 @@ label input[role="switch"] ~ .state > .container > .position {
   opacity: 0.6;
 }
 
-label input[role="switch"] ~ .state span.off {
-  display: inline;
+label input[role="switch"]:not(:checked) ~ .state span.on {
+  display: none;
 }
 
-label input[role="switch"] ~ .state span.on {
+label input[role="switch"]:checked ~ .state > span.off {
   display: none;
 }
 
@@ -72,14 +72,6 @@ label input[role="switch"]:checked ~ .state > .container > .position {
   border-color: green;
   background: green;
   opacity: 1;
-}
-
-label input[role="switch"]:checked ~ .state > span.off {
-  display: none;
-}
-
-label input[role="switch"]:checked ~ .state > span.on {
-  display: inline;
 }
 
 label.focus,
