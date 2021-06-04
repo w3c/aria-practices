@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 .menubar-editor {
   margin: 0;
   padding: 2px;
@@ -44,19 +46,17 @@
 }
 
 .menubar-editor [role="menubar"] > li > [role="menuitem"]::after {
-  content: url("../images/down-arrow.svg");
-  padding-left: 0.25em;
-}
-
-.menubar-editor [role="menubar"] > li > [role="menuitem"]:focus::after {
-  content: url("../images/down-arrow-focus.svg");
+  content: "▼";
+  padding-left: 0.25rem;
+  font-size: 11px;
+  vertical-align: middle;
 }
 
 .menubar-editor
   [role="menubar"]
   > li
   > [role="menuitem"][aria-expanded="true"]::after {
-  content: url("../images/up-arrow-focus.svg");
+  content: "▲";
 }
 
 .menubar-editor [role="menubar"] [role="menu"] {
@@ -80,7 +80,15 @@
 
 .menubar-editor [role="menubar"] [role="separator"] {
   padding-top: 3px;
-  background-image: url("../images/separator.svg");
+  background-image: linear-gradient(
+    transparent 0%,
+    transparent 50%,
+    black 50%,
+    black 60%,
+    transparent 60%,
+    transparent 100%
+  );
+  background-size: 10px 10px;
   background-position: center;
   background-repeat: repeat-x;
 }
@@ -120,15 +128,17 @@
 .menubar-editor
   [role="menubar"]
   [role="menuitemradio"][aria-checked="true"]::before {
-  content: url("../images/radio-checked.svg");
-  padding-right: 3px;
+  content: "⦿";
+  display: inline-block;
+  width: 18px;
 }
 
 .menubar-editor
   [role="menubar"]
   [role="menuitemcheckbox"][aria-checked="true"]::before {
-  content: url("../images/checkbox-checked.svg");
-  padding-right: 3px;
+  content: "✓";
+  display: inline-block;
+  width: 18px;
 }
 
 /* focus and hover styling */
@@ -145,16 +155,11 @@
 
 .menubar-editor
   [role="menubar"]
-  [role="menuitemradio"][aria-checked="true"]:focus::before {
-  content: url("../images/radio-checked-focus.svg");
-  padding-right: 3px;
-}
-
+  [role="menuitemradio"][aria-checked="true"]:focus::before,
 .menubar-editor
   [role="menubar"]
   [role="menuitemcheckbox"][aria-checked="true"]:focus::before {
-  content: url("../images/checkbox-checked-focus.svg");
-  padding-right: 3px;
+  margin-left: -2px;
 }
 
 .menubar-editor [role="menubar"] [role="menuitem"]:hover {
