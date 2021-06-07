@@ -9,7 +9,7 @@ const queryElement = require('./util/queryElement');
 const queryElements = require('./util/queryElements');
 
 let session, geckodriver;
-const firefoxArgs = process.env.CI ? ['-headless'] : [];
+const firefoxArgs = process.env.DEBUG ? [] : ['-headless'];
 const testWaitTime = parseInt(process.env.TEST_WAIT_TIME) || 500;
 const coverageReportRun = process.env.REGRESSION_COVERAGE_REPORT;
 
