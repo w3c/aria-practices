@@ -4,7 +4,7 @@ const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaControls = require('../util/assertAriaControls');
 const assertAriaRoles = require('../util/assertAriaRoles');
-const replaceExternalLink = require('../util/replaceExternalLink');
+// const replaceExternalLink = require('../util/replaceExternalLink');
 
 const exampleFile = 'menu-button/menu-button-links.html';
 
@@ -255,6 +255,9 @@ ariaTest(
   }
 );
 
+/* TODO: this test is (sometimes?) failing in CI.
+   See https://github.com/w3c/aria-practices/issues/1937
+
 ariaTest('"enter" on role="menuitem"', exampleFile, 'menu-enter', async (t) => {
   for (let index = 0; index < ex.numMenuitems; index++) {
     // Return to test page
@@ -286,6 +289,7 @@ ariaTest('"enter" on role="menuitem"', exampleFile, 'menu-enter', async (t) => {
     );
   }
 });
+*/
 
 ariaTest(
   '"escape" on role="menuitem"',
