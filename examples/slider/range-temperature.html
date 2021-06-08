@@ -68,16 +68,81 @@
         <h2>Accessibility Features</h2>
         <ul>
           <li>
-            Keyboard support for the temperature control is provided by the native keyboard support for the <code>input[type=&quot;range&quot;]</code> element (i.e. Up/Down Arrow, Page Up/Down, Home and End keys).
-          </li>
-          <li>The accessible name for the temperature control is defined using the <code>label</code> element with the <code>for</code> attribute referencing the <code>id</code> of the range control.</li>
+            The accessible name for the temperature control is defined using the <code>label</code> element with the <code>for</code> attribute referencing the <code>id</code> of the range control.</li>
           <li>
             A border around the thumb is used for indicating the range control with keyboard focus using browser specific CSS properties.
+          </li>
+          <li>
+            The width of the rail is increased to provide a larger target for changing the value using a pointing device.
           </li>
         </ul>
       </section>
 
-  <section>
+    <section>
+      <h2 id="kbd_label">Keyboard Support</h2>
+      <p>Keyboard support for the temperature control is provided by the native browser support for the <code>input[type=&quot;range&quot;]</code> element.</p>
+      <table aria-labelledby="kbd_label" class="def">
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-test-id="key-right-arrow">
+            <th>
+              <kbd>Right Arrow</kbd>
+            </th>
+            <td>Increases slider value one step.</td>
+          </tr>
+          <tr data-test-id="key-up-arrow">
+            <th>
+              <kbd>Up Arrow</kbd>
+            </th>
+            <td>Increases slider value one step.</td>
+          </tr>
+          <tr data-test-id="key-left-arrow">
+            <th>
+              <kbd>Left Arrow</kbd>
+            </th>
+            <td>Decreases slider value one step.</td>
+          </tr>
+          <tr data-test-id="key-down-arrow">
+            <th>
+              <kbd>Down Arrow</kbd>
+            </th>
+            <td>Decreases slider value one step.</td>
+          </tr>
+          <tr data-test-id="key-page-up">
+            <th>
+              <kbd>Page Up</kbd>
+            </th>
+            <td>Increases temperature slider value multiple steps. In this slider, jumps 18 steps (e.g. 1.8°C) on most browsers.</td>
+          </tr>
+          <tr data-test-id="key-page-down">
+            <th>
+              <kbd>Page Down</kbd>
+            </th>
+            <td>Decreases temperature slider value multiple steps. In this slider, jumps 18 steps (e.g. 1.8°C) on most browsers.</td>
+          </tr>
+          <tr data-test-id="key-home">
+            <th>
+              <kbd>Home</kbd>
+            </th>
+            <td>Sets slider to its minimum value.</td>
+          </tr>
+          <tr data-test-id="key-end">
+            <th>
+              <kbd>End</kbd>
+            </th>
+            <td>Sets slider to its maximum value.</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </section>
+
+      <section>
       <h2 id="rps_label">Role, Property, State, and Tabindex Attributes</h2>
 
       <table aria-labelledby="rps_label" class="data attributes">

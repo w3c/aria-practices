@@ -15,20 +15,9 @@ class RangeTemperature {
     this.labelCelsius = ' degrees Celsius';
 
     this.domNode = domNode;
-
     this.rangeNode = domNode.querySelector('input[type="range"]');
-
-    // The input elements are optional to support mobile devices,
-    // when a keyboard is not present
     this.valueNode = domNode.querySelector('.range-value');
-
-    // bind a pointermove event handler to move pointer
-    this.rangeNode.addEventListener('change', this.onRangeChange.bind(this));
-    this.rangeNode.addEventListener('keydown', this.onRangeChange.bind(this));
-    this.rangeNode.addEventListener(
-      'pointermove',
-      this.onRangeChange.bind(this)
-    );
+    this.rangeNode.addEventListener('input', this.onRangeChange.bind(this));
   }
 
   onRangeChange() {
