@@ -24,11 +24,13 @@ class RangeTemperature {
     );
   }
 
-  onRangeChange() {
-    let valuetext =
-      parseFloat(this.rangeNode.value).toFixed(1) + this.labelCelsiusAbbrev;
-    this.valueNode.textContent = valuetext;
-    this.rangeNode.setAttribute('aria-valuetext', valuetext);
+  onRangeChange(event) {
+    if (this.domNode.contains(event.currentTarget)) {
+      let valuetext =
+        parseFloat(this.rangeNode.value).toFixed(1) + this.labelCelsiusAbbrev;
+      this.valueNode.textContent = valuetext;
+      this.rangeNode.setAttribute('aria-valuetext', valuetext);
+    }
   }
 }
 
