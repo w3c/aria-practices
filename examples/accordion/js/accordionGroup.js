@@ -7,7 +7,10 @@
 
 'use strict';
 
-import { Accordion } from './accordion.js';
+/*
+ * WARNING: This script depends on accordion.js existing at the time AccordionGroup is instantiated
+ * This would normally be done with import/export statements, but the APG does not currently use JS modules
+ */
 
 class AccordionGroup {
   constructor(accordionEls) {
@@ -17,6 +20,7 @@ class AccordionGroup {
     };
 
     this.accordions = accordionEls.map(
+      // eslint-disable-next-line no-undef
       (el) => new Accordion(el, accordionOptions)
     );
     this.openIndex = 0;
@@ -39,7 +43,6 @@ class AccordionGroup {
   }
 
   updateOpenIndex(newIndex) {
-    console.log('updating open index to', newIndex, 'from', this.openIndex);
     if (newIndex === this.openIndex) {
       return;
     }
@@ -52,5 +55,5 @@ class AccordionGroup {
 }
 
 // init accordions
-const accordionEls = [...document.querySelectorAll('.accordion-group h3')];
-new AccordionGroup(accordionEls);
+const accordionGroupEls = [...document.querySelectorAll('.accordion-group h3')];
+new AccordionGroup(accordionGroupEls);

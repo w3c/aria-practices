@@ -10,7 +10,7 @@
 // options are:
 // { onAccordionClick?: function, disableOpenButton?: boolean }
 
-export class Accordion {
+class Accordion {
   constructor(domNode, options = {}) {
     this.rootEl = domNode;
     this.buttonEl = this.rootEl.querySelector('button[aria-expanded]');
@@ -32,7 +32,6 @@ export class Accordion {
   }
 
   toggle(open) {
-    console.log('accordion toggle fn');
     // don't do anything if the open state doesn't change
     if (open === this.isOpen) {
       return;
