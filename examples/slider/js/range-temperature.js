@@ -18,6 +18,10 @@ class RangeTemperature {
     this.rangeNode = domNode.querySelector('input[type="range"]');
     this.valueNode = domNode.querySelector('.range-value');
     this.rangeNode.addEventListener('input', this.onRangeChange.bind(this));
+    this.rangeNode.addEventListener(
+      'pointermove',
+      this.onRangeChange.bind(this)
+    );
   }
 
   onRangeChange() {
