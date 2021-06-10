@@ -18,7 +18,6 @@
     domNode: null,
     buttonNode: null,
     menuNode: null,
-    tooltipNode: null,
     menuitemNodes: [],
     firstMenuitem: false,
     lastMenuitem: false,
@@ -27,15 +26,11 @@
     jumpToIdIndex: 1,
     contentSelector:
       'h1, h2, h3, h4, h5, h6, p, li, img, input, select, textarea',
-    showTooltipFocus: false,
-    showTooltipHover: false,
-    tooltipTimerDelay: 500, // in milliseconds
     // Default configuration values
     config: {
       // Feature switches
       enableHeadingLevelShortcuts: true,
       enableHelp: true,
-      enableTooltip: true,
       // Customization of button and menu
       accesskey: '0', // default is the number zero
       attachElement: 'header',
@@ -46,11 +41,8 @@
       customClass: '',
 
       // Button labels and messages
-      buttonTitle: '', // deprecated in favor of buttonTooltip
-      buttonTitleWithAccesskey: '', // deprecated in favor of buttonTooltipAccesskey
-      buttonTooltip: '',
-      buttonTooltipAccesskey: 'Shortcut Key: $key',
-      buttonLabel: 'Jump To Content',
+      buttonLabel: 'Jump To Content (Alt+$key)',
+      buttonAriaLabel: 'Jump To Content, shortcut Alt plus $key',
 
       // Menu labels and messages
       menuLabel: 'Landmarks and Headings',
@@ -96,7 +88,7 @@
       },
     },
     defaultCSS:
-      '.jump-to.popup{position:absolute;top:-30em;left:0}.jump-to,.jump-to.popup.focus{position:absolute;top:0;left:$positionLeft}.jump-to.fixed{position:fixed}.jump-to button{position:relative;margin:0;padding:6px 8px 6px 8px;border-width:0 1px 1px 1px;border-style:solid;border-radius:0 0 6px 6px;border-color:$buttonBackgroundColor;color:$menuTextColor;background-color:$buttonBackgroundColor;z-index:200}.jump-to .jump-to-tooltip{position:absolute;top:2.25em;left:8em;margin:1px;padding:4px;border:1px solid #ccc;box-shadow:2px 3px 5px #ddd;background-color:#eee;color:#000;font-family:Helvetica,Arial,Sans-Serif;font-variant-numeric:slash-zero;font-size:9pt;width:auto;display:none;white-space:nowrap;z-index:201}.jump-to .jump-to-tooltip.jump-to-show-tooltip{display:block}.jump-to [aria-expanded=true]+.jump-to-tooltip.jump-to-show-tooltip{display:none}.jump-to [role=menu]{position:absolute;min-width:17em;display:none;margin:0;padding:.25rem;background-color:$menuBackgroundColor;border-width:2px;border-style:solid;border-color:$focusBorderColor;border-radius:5px;z-index:1000}.jump-to [role=group]{display:grid;grid-auto-rows:min-content;grid-row-gap:1px}.jump-to [role=separator]:first-child{border-radius:5px 5px 0 0}.jump-to [role=menuitem]{padding:3px;width:auto;border-width:0;border-style:solid;color:$menuTextColor;background-color:$menuBackgroundColor;z-index:1000;display:grid;overflow-y:auto;grid-template-columns:repeat(6,1.2rem) 1fr;grid-column-gap:2px;font-size:1em}.jump-to [role=menuitem] .label,.jump-to [role=menuitem] .level{font-size:100%;font-weight:400;color:$menuTextColor;display:inline-block;background-color:$menuBackgroundColor;line-height:inherit;display:inline-block}.jump-to [role=menuitem] .level{text-align:right;padding-right:4px}.jump-to [role=menuitem] .label{text-align:left;margin:0;padding:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.jump-to [role=menuitem] .label:first-letter,.jump-to [role=menuitem] .level:first-letter{text-decoration:underline;text-transform:uppercase}.jump-to [role=menuitem].jump-to-h1 .level{grid-column:1}.jump-to [role=menuitem].jump-to-h2 .level{grid-column:2}.jump-to [role=menuitem].jump-to-h3 .level{grid-column:3}.jump-to [role=menuitem].jump-to-h4 .level{grid-column:4}.jump-to [role=menuitem].jump-to-h5 .level{grid-column:5}.jump-to [role=menuitem].jump-to-h6 .level{grid-column:8}.jump-to [role=menuitem].jump-to-h1 .label{grid-column:2/8}.jump-to [role=menuitem].jump-to-h2 .label{grid-column:3/8}.jump-to [role=menuitem].jump-to-h3 .label{grid-column:4/8}.jump-to [role=menuitem].jump-to-h4 .label{grid-column:5/8}.jump-to [role=menuitem].jump-to-h5 .label{grid-column:6/8}.jump-to [role=menuitem].jump-to-h6 .label{grid-column:7/8}.jump-to [role=menuitem].jump-to-h1.no-level .label{grid-column:1/8}.jump-to [role=menuitem].jump-to-h2.no-level .label{grid-column:2/8}.jump-to [role=menuitem].jump-to-h3.no-level .label{grid-column:3/8}.jump-to [role=menuitem].jump-to-h4.no-level .label{grid-column:4/8}.jump-to [role=menuitem].jump-to-h5.no-level .label{grid-column:5/8}.jump-to [role=menuitem].jump-to-h6.no-level .label{grid-column:6/8}.jump-to [role=menuitem].jump-to-nesting-level-1 .nesting{grid-column:1}.jump-to [role=menuitem].jump-to-nesting-level-2 .nesting{grid-column:2}.jump-to [role=menuitem].jump-to-nesting-level-3 .nesting{grid-column:3}.jump-to [role=menuitem].jump-to-nesting-level-0 .label{grid-column:1/8}.jump-to [role=menuitem].jump-to-nesting-level-1 .label{grid-column:2/8}.jump-to [role=menuitem].jump-to-nesting-level-2 .label{grid-column:3/8}.jump-to [role=menuitem].jump-to-nesting-level-3 .label{grid-column:4/8}.jump-to [role=menuitem].action .label,.jump-to [role=menuitem].no-items .label{grid-column:1/8}.jump-to [role=separator]{margin:1px 0 1px 0;padding:3px;display:block;width:auto;font-weight:700;border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:$menuTextColor;background-color:$menuBackgroundColor;color:$menuTextColor;z-index:1000}.jump-to [role=separator]:first-child{border-radius:5px 5px 0 0}.jump-to [role=menuitem].last{border-radius:0 0 5px 5px}.jump-to.focus{display:block}.jump-to button:focus,.jump-to button:hover{background-color:$menuBackgroundColor;color:$menuTextColor;outline:0}.jump-to button:focus,.jump-to button:hover{padding:4px 7px 5px 7px;border-width:2px;border-color:$focusBorderColor}.jump-to [role=menuitem]:focus{padding:1px;border-width:2px;border-style:solid;border-color:$focusBorderColor;background-color:$menuitemFocusBackgroundColor;color:$menuitemFocusTextColor;outline:0}.jump-to [role=menuitem]:focus .label,.jump-to [role=menuitem]:focus .level{background-color:$menuitemFocusBackgroundColor;color:$menuitemFocusTextColor}',
+      '.jump-to.popup{position:absolute;top:-30em;left:0}.jump-to,.jump-to.popup.focus{position:absolute;top:0;left:$positionLeft}.jump-to.fixed{position:fixed}.jump-to button{position:relative;margin:0;padding:6px 8px 6px 8px;border-width:0 1px 1px 1px;border-style:solid;border-radius:0 0 6px 6px;border-color:$buttonBackgroundColor;color:$menuTextColor;background-color:$buttonBackgroundColor;z-index:200}.jump-to [role=menu]{position:absolute;min-width:17em;display:none;margin:0;padding:.25rem;background-color:$menuBackgroundColor;border-width:2px;border-style:solid;border-color:$focusBorderColor;border-radius:5px;z-index:1000}.jump-to [role=group]{display:grid;grid-auto-rows:min-content;grid-row-gap:1px}.jump-to [role=separator]:first-child{border-radius:5px 5px 0 0}.jump-to [role=menuitem]{padding:3px;width:auto;border-width:0;border-style:solid;color:$menuTextColor;background-color:$menuBackgroundColor;z-index:1000;display:grid;overflow-y:auto;grid-template-columns:repeat(6,1.2rem) 1fr;grid-column-gap:2px;font-size:1em}.jump-to [role=menuitem] .label,.jump-to [role=menuitem] .level{font-size:100%;font-weight:400;color:$menuTextColor;display:inline-block;background-color:$menuBackgroundColor;line-height:inherit;display:inline-block}.jump-to [role=menuitem] .level{text-align:right;padding-right:4px}.jump-to [role=menuitem] .label{text-align:left;margin:0;padding:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.jump-to [role=menuitem] .label:first-letter,.jump-to [role=menuitem] .level:first-letter{text-decoration:underline;text-transform:uppercase}.jump-to [role=menuitem].jump-to-h1 .level{grid-column:1}.jump-to [role=menuitem].jump-to-h2 .level{grid-column:2}.jump-to [role=menuitem].jump-to-h3 .level{grid-column:3}.jump-to [role=menuitem].jump-to-h4 .level{grid-column:4}.jump-to [role=menuitem].jump-to-h5 .level{grid-column:5}.jump-to [role=menuitem].jump-to-h6 .level{grid-column:8}.jump-to [role=menuitem].jump-to-h1 .label{grid-column:2/8}.jump-to [role=menuitem].jump-to-h2 .label{grid-column:3/8}.jump-to [role=menuitem].jump-to-h3 .label{grid-column:4/8}.jump-to [role=menuitem].jump-to-h4 .label{grid-column:5/8}.jump-to [role=menuitem].jump-to-h5 .label{grid-column:6/8}.jump-to [role=menuitem].jump-to-h6 .label{grid-column:7/8}.jump-to [role=menuitem].jump-to-h1.no-level .label{grid-column:1/8}.jump-to [role=menuitem].jump-to-h2.no-level .label{grid-column:2/8}.jump-to [role=menuitem].jump-to-h3.no-level .label{grid-column:3/8}.jump-to [role=menuitem].jump-to-h4.no-level .label{grid-column:4/8}.jump-to [role=menuitem].jump-to-h5.no-level .label{grid-column:5/8}.jump-to [role=menuitem].jump-to-h6.no-level .label{grid-column:6/8}.jump-to [role=menuitem].jump-to-nesting-level-1 .nesting{grid-column:1}.jump-to [role=menuitem].jump-to-nesting-level-2 .nesting{grid-column:2}.jump-to [role=menuitem].jump-to-nesting-level-3 .nesting{grid-column:3}.jump-to [role=menuitem].jump-to-nesting-level-0 .label{grid-column:1/8}.jump-to [role=menuitem].jump-to-nesting-level-1 .label{grid-column:2/8}.jump-to [role=menuitem].jump-to-nesting-level-2 .label{grid-column:3/8}.jump-to [role=menuitem].jump-to-nesting-level-3 .label{grid-column:4/8}.jump-to [role=menuitem].action .label,.jump-to [role=menuitem].no-items .label{grid-column:1/8}.jump-to [role=separator]{margin:1px 0 1px 0;padding:3px;display:block;width:auto;font-weight:700;border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:$menuTextColor;background-color:$menuBackgroundColor;color:$menuTextColor;z-index:1000}.jump-to [role=separator]:first-child{border-radius:5px 5px 0 0}.jump-to [role=menuitem].last{border-radius:0 0 5px 5px}.jump-to.focus{display:block}.jump-to button:focus,.jump-to button:hover{background-color:$menuBackgroundColor;color:$menuTextColor;outline:0}.jump-to button:focus,.jump-to button:hover{padding:4px 7px 5px 7px;border-width:2px;border-color:$focusBorderColor}.jump-to [role=menuitem]:focus{padding:1px;border-width:2px;border-style:solid;border-color:$focusBorderColor;background-color:$menuitemFocusBackgroundColor;color:$menuitemFocusTextColor;outline:0}.jump-to [role=menuitem]:focus .label,.jump-to [role=menuitem]:focus .level{background-color:$menuitemFocusBackgroundColor;color:$menuitemFocusTextColor}',
 
     //
     // Functions related to configuring the features
@@ -167,14 +159,20 @@
         attachElement.appendChild(this.domNode);
       }
       this.buttonNode = document.createElement('button');
-      this.buttonNode.textContent = this.config.buttonLabel;
+      let label = this.config.buttonLabel.replace(
+        '$key',
+        this.config.accesskey
+      );
+      this.buttonNode.textContent = label;
+      let ariaLabel = this.config.buttonAriaLabel.replace(
+        '$key',
+        this.config.accesskey
+      );
+      this.buttonNode.setAttribute('aria-label', ariaLabel);
       this.buttonNode.setAttribute('aria-haspopup', 'true');
       this.buttonNode.setAttribute('aria-expanded', 'false');
-      this.buttonNode.setAttribute('accesskey', this.config.accesskey);
 
       this.domNode.appendChild(this.buttonNode);
-
-      this.renderTooltip(this.domNode, this.buttonNode);
 
       this.menuNode = document.createElement('div');
       this.domNode.appendChild(this.menuNode);
@@ -186,22 +184,12 @@
         'click',
         this.handleButtonClick.bind(this)
       );
-      this.buttonNode.addEventListener(
-        'focus',
-        this.handleButtonFocus.bind(this)
+      // Support shortcut key
+      document.addEventListener(
+        'keydown',
+        this.handleDocumentKeydown.bind(this)
       );
-      this.buttonNode.addEventListener(
-        'blur',
-        this.handleButtonBlur.bind(this)
-      );
-      this.buttonNode.addEventListener(
-        'pointerenter',
-        this.handleButtonPointerenter.bind(this)
-      );
-      this.buttonNode.addEventListener(
-        'pointerout',
-        this.handleButtonPointerout.bind(this)
-      );
+
       this.domNode.addEventListener('focusin', this.handleFocusin.bind(this));
       this.domNode.addEventListener('focusout', this.handleFocusout.bind(this));
       window.addEventListener(
@@ -209,52 +197,6 @@
         this.handleBackgroundPointerdown.bind(this),
         true
       );
-    },
-    renderTooltip: function (attachNode, buttonNode) {
-      var id = 'id-jump-to-tooltip';
-      var accesskey = this.getBrowserSpecificAccesskey(this.config.accesskey);
-
-      var tooltip = this.config.buttonTooltip;
-      // for backward compatibility, support 'this.config.buttonTitle' if defined
-      if (this.isNotEmptyString(this.config.buttonTitle)) {
-        tooltip = this.config.buttonTitle;
-      }
-
-      this.tooltipLeft = buttonNode.getBoundingClientRect().width;
-      this.tooltipTop = buttonNode.getBoundingClientRect().height;
-
-      this.tooltipNode = document.createElement('div');
-      this.tooltipNode.setAttribute('role', 'tooltip');
-      this.tooltipNode.id = id;
-      this.tooltipNode.classList.add('jump-to-tooltip');
-
-      if (this.isNotEmptyString(accesskey)) {
-        tooltip = this.config.buttonTooltipAccesskey.replace('$key', accesskey);
-        // for backward compatibility support 'buttonTitleWithAccesskey' if defined
-        if (this.isNotEmptyString(this.config.buttonTitleWithAccesskey)) {
-          tooltip = this.config.buttonTitleWithAccesskey.replace(
-            '$key',
-            accesskey
-          );
-        }
-      }
-
-      if (this.isEmptyString(tooltip)) {
-        // if there is no tooltip information
-        // do not display tooltip
-        this.config.enableTooltip = false;
-      } else {
-        this.tooltipNode.textContent = tooltip;
-      }
-
-      attachNode.appendChild(this.tooltipNode);
-      this.tooltipNode.style.left = this.tooltipLeft + 'px';
-      this.tooltipNode.style.top = this.tooltipTop + 'px';
-
-      // Temporarily show the tooltip to get rendered height
-      this.tooltipNode.classList.add('jump-to-show-tooltip');
-      this.tooltipHeight = this.tooltipNode.getBoundingClientRect().height;
-      this.tooltipNode.classList.remove('jump-to-show-tooltip');
     },
 
     updateStyle: function (stylePlaceholder, value, defaultValue) {
@@ -754,7 +696,6 @@
         case 'Escape':
           this.closePopup();
           this.buttonNode.focus();
-          this.hideTooltip();
           flag = true;
           break;
         case 'Up':
@@ -782,49 +723,23 @@
       event.stopPropagation();
       event.preventDefault();
     },
-    hideTooltip: function () {
-      this.showTooltipFocus = false;
-      if (this.config.enableTooltip) {
-        this.tooltipNode.classList.remove('jump-to-show-tooltip');
+    handleDocumentKeydown: function (event) {
+      var key = event.key,
+        flag = false;
+      if (
+        this.config.accesskey === key &&
+        event.altKey &&
+        !event.ctrlKey &&
+        !event.metaKey &&
+        !event.shiftKey
+      ) {
+        this.openPopup();
+        this.setFocusToFirstMenuitem();
+        flag = true;
       }
-    },
-    isTooltipHidden: function () {
-      return this.tooltipNode.className.indexOf('jump-to-show-tooltip') < 0;
-    },
-    showTooltip: function () {
-      if (this.showTooltipFocus || this.showTooltipHover) {
-        this.tooltipNode.classList.add('jump-to-show-tooltip');
-      }
-    },
-    handleButtonFocus: function () {
-      this.showTooltipFocus = true;
-      if (this.config.enableTooltip && this.isTooltipHidden()) {
-        this.tooltipNode.style.left = this.tooltipLeft + 'px';
-        this.tooltipNode.style.top = this.tooltipTop + 'px';
-        setTimeout(this.showTooltip.bind(this), this.tooltipTimerDelay);
-      }
-    },
-    handleButtonBlur: function () {
-      this.hideTooltip();
-    },
-    handleButtonPointerenter: function (event) {
-      this.showTooltipHover = true;
-      if (this.config.enableTooltip && this.isTooltipHidden()) {
-        var rect = this.buttonNode.getBoundingClientRect();
-        var left = Math.min(
-          this.tooltipLeft,
-          event.pageX - rect.left + this.tooltipHeight
-        );
-        this.tooltipNode.style.left = left + 'px';
-        var top = event.pageY - rect.top;
-        this.tooltipNode.style.top = top + 'px';
-        setTimeout(this.showTooltip.bind(this), this.tooltipTimerDelay);
-      }
-    },
-    handleButtonPointerout: function () {
-      this.showTooltipHover = false;
-      if (this.config.enableTooltip) {
-        this.tooltipNode.classList.remove('jump-to-show-tooltip');
+      if (flag) {
+        event.stopPropagation();
+        event.preventDefault();
       }
     },
     jumpToElement: function (menuitem) {
