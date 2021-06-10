@@ -24,8 +24,8 @@
     firstChars: [],
     headingLevels: [],
     jumpToIdIndex: 1,
-    isWindows: false,
-    isMac: false,
+    usesAltKey: false,
+    usesMetaKey: false,
     contentSelector:
       'h1, h2, h3, h4, h5, h6, p, li, img, input, select, textarea',
     // Default configuration values
@@ -110,8 +110,17 @@
       var node;
 
       let platform = navigator.platform.toLowerCase();
-      this.isWindows = platform.indexOf('win') >= 0;
-      this.isMac = platform.indexOf('mac') >= 0;
+      let userAgent = navigator.userAgent.toLowerCase();
+
+      let hasWin = platform.indexOf('win') >= 0;
+      let hasMac = platform.indexOf('mac') >= 0;
+      let hasLinux =
+        platform.indexOf('linux') >= 0 || platform.indexOf('bsd') >= 0;
+
+      let hasAndroid = userAgent.indexOf('android') >= 0;
+
+      this.usesAltKey = hasWin || (hasLinux && !hasAndroid);
+      this.usesMetaKey = hasMac;
 
       // Check if jumpto is already loaded
       if (document.querySelector('style#' + this.jumpToId)) {
@@ -174,13 +183,13 @@
       let buttonShortcut = '';
       let ariaLabel = '';
 
-      if (this.isWindows || this.isMac) {
+      if (this.usesAltKey || this.usesMetaKey) {
         buttonShortcut = this.config.buttonShortcut.replace(
           '$key',
           this.config.accesskey
         );
       }
-      if (this.isWindows) {
+      if (this.usesAltKey) {
         buttonShortcut = buttonShortcut.replace(
           '$modifier',
           this.config.windowsModifier
@@ -190,7 +199,7 @@
           this.config.accesskey
         );
       }
-      if (this.isMac) {
+      if (this.usesMetaKey) {
         buttonShortcut = buttonShortcut.replace(
           '$modifier',
           this.config.macModifier
@@ -221,7 +230,7 @@
         this.handleButtonClick.bind(this)
       );
       // Support shortcut key
-      if (this.isWindows || this.isMac) {
+      if (this.usesAltKey || this.usesMetaKey) {
         document.addEventListener(
           'keydown',
           this.handleDocumentKeydown.bind(this)
@@ -766,14 +775,14 @@
         flag = false;
 
       let altPressed =
-        this.isWindows &&
+        this.usesAltKey &&
         event.altKey &&
         !event.ctrlKey &&
         !event.metaKey &&
         !event.shiftKey;
 
       let commandPressed =
-        this.isMac &&
+        this.usesMetaKey &&
         !event.altKey &&
         !event.ctrlKey &&
         event.metaKey &&
