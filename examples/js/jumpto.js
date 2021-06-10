@@ -24,6 +24,8 @@
     firstChars: [],
     headingLevels: [],
     jumpToIdIndex: 1,
+    isWindows: false,
+    isMac: false,
     contentSelector:
       'h1, h2, h3, h4, h5, h6, p, li, img, input, select, textarea',
     // Default configuration values
@@ -41,8 +43,12 @@
       customClass: '',
 
       // Button labels and messages
-      buttonLabel: 'Jump To Content (Alt+$key)',
-      buttonAriaLabel: 'Jump To Content, shortcut Alt plus $key',
+      windowsModifier: 'Alt',
+      macModifier: '⌘',
+      buttonShortcut: ' ($modifier+$key)',
+      buttonLabel: 'Jump To Content',
+      windowButtonAriaLabel: 'Jump To Content, shortcut Alt plus $key',
+      macButtonAriaLabel: 'Jump To Content, shortcut Command plus $key',
 
       // Menu labels and messages
       menuLabel: 'Landmarks and Headings',
@@ -103,6 +109,10 @@
     init: function (config) {
       var node;
 
+      let platform = navigator.platform.toLowerCase();
+      this.isWindows = platform.indexOf('win') >= 0;
+      this.isMac = platform.indexOf('mac') >= 0;
+
       // Check if jumpto is already loaded
       if (document.querySelector('style#' + this.jumpToId)) {
         return;
@@ -159,16 +169,42 @@
         attachElement.appendChild(this.domNode);
       }
       this.buttonNode = document.createElement('button');
-      let label = this.config.buttonLabel.replace(
-        '$key',
-        this.config.accesskey
-      );
+
+      let label = this.config.buttonLabel;
+      let buttonShortcut = '';
+      let ariaLabel = '';
+
+      if (this.isWindows || this.isMac) {
+        buttonShortcut = this.config.buttonShortcut.replace(
+          '$key',
+          this.config.accesskey
+        );
+      }
+      if (this.isWindows) {
+        buttonShortcut = buttonShortcut.replace(
+          '$modifier',
+          this.config.windowsModifier
+        );
+        ariaLabel = this.config.windowButtonAriaLabel.replace(
+          '$key',
+          this.config.accesskey
+        );
+      }
+      if (this.isMac) {
+        buttonShortcut = buttonShortcut.replace(
+          '$modifier',
+          this.config.macModifier
+        );
+        ariaLabel = this.config.macButtonAriaLabel.replace(
+          '$key',
+          this.config.accesskey
+        );
+      }
       this.buttonNode.textContent = label;
-      let ariaLabel = this.config.buttonAriaLabel.replace(
-        '$key',
-        this.config.accesskey
-      );
-      this.buttonNode.setAttribute('aria-label', ariaLabel);
+      if (ariaLabel.length) {
+        this.buttonNode.textContent += buttonShortcut;
+        this.buttonNode.setAttribute('aria-label', ariaLabel);
+      }
       this.buttonNode.setAttribute('aria-haspopup', 'true');
       this.buttonNode.setAttribute('aria-expanded', 'false');
 
@@ -185,10 +221,12 @@
         this.handleButtonClick.bind(this)
       );
       // Support shortcut key
-      document.addEventListener(
-        'keydown',
-        this.handleDocumentKeydown.bind(this)
-      );
+      if (this.isWindows || this.isMac) {
+        document.addEventListener(
+          'keydown',
+          this.handleDocumentKeydown.bind(this)
+        );
+      }
 
       this.domNode.addEventListener('focusin', this.handleFocusin.bind(this));
       this.domNode.addEventListener('focusout', this.handleFocusout.bind(this));
@@ -726,13 +764,22 @@
     handleDocumentKeydown: function (event) {
       var key = event.key,
         flag = false;
-      if (
-        this.config.accesskey === key &&
+
+      let altPressed =
+        this.isWindows &&
         event.altKey &&
         !event.ctrlKey &&
         !event.metaKey &&
-        !event.shiftKey
-      ) {
+        !event.shiftKey;
+
+      let commandPressed =
+        this.isMac &&
+        !event.altKey &&
+        !event.ctrlKey &&
+        event.metaKey &&
+        !event.shiftKey;
+
+      if ((commandPressed || altPressed) && this.config.accesskey === key) {
         this.openPopup();
         this.setFocusToFirstMenuitem();
         flag = true;
