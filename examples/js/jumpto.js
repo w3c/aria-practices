@@ -25,7 +25,7 @@
     headingLevels: [],
     jumpToIdIndex: 1,
     usesAltKey: false,
-    usesMetaKey: false,
+    usesOptionKey: false,
     contentSelector:
       'h1, h2, h3, h4, h5, h6, p, li, img, input, select, textarea',
     // Default configuration values
@@ -34,8 +34,8 @@
       enableHeadingLevelShortcuts: true,
       enableHelp: true,
       // Customization of button and menu
-      accesskey: '0', // default is the number zero
-      attachElement: 'header',
+      altAccesskey: '0', // default is the number zero
+      optionAccesskey: 'º', // default is the character associated with option+0
       displayOption: 'static', // options: static (default), popup
       // container element, use containerClass for custom styling
       containerElement: 'div',
@@ -43,8 +43,8 @@
       customClass: '',
 
       // Button labels and messages
-      windowsModifier: 'Alt',
-      macModifier: '⌘',
+      altLabel: 'Alt',
+      optionLabel: 'Option',
       buttonShortcut: ' ($modifier+$key)',
       buttonLabel: 'Jump To Content',
       windowButtonAriaLabel: 'Jump To Content, shortcut Alt plus $key',
@@ -120,7 +120,7 @@
       let hasAndroid = userAgent.indexOf('android') >= 0;
 
       this.usesAltKey = hasWin || (hasLinux && !hasAndroid);
-      this.usesMetaKey = hasMac;
+      this.usesOptionKey = hasMac;
 
       // Check if jumpto is already loaded
       if (document.querySelector('style#' + this.jumpToId)) {
@@ -183,30 +183,30 @@
       let buttonShortcut = '';
       let ariaLabel = '';
 
-      if (this.usesAltKey || this.usesMetaKey) {
+      if (this.usesAltKey || this.usesOptionKey) {
         buttonShortcut = this.config.buttonShortcut.replace(
           '$key',
-          this.config.accesskey
+          this.config.altAccesskey
         );
       }
       if (this.usesAltKey) {
         buttonShortcut = buttonShortcut.replace(
           '$modifier',
-          this.config.windowsModifier
+          this.config.altLabel
         );
         ariaLabel = this.config.windowButtonAriaLabel.replace(
           '$key',
-          this.config.accesskey
+          this.config.altAccesskey
         );
       }
-      if (this.usesMetaKey) {
+      if (this.usesOptionKey) {
         buttonShortcut = buttonShortcut.replace(
           '$modifier',
-          this.config.macModifier
+          this.config.optionLabel
         );
         ariaLabel = this.config.macButtonAriaLabel.replace(
           '$key',
-          this.config.accesskey
+          this.config.altAccesskey
         );
       }
       this.buttonNode.textContent = label;
@@ -230,7 +230,7 @@
         this.handleButtonClick.bind(this)
       );
       // Support shortcut key
-      if (this.usesAltKey || this.usesMetaKey) {
+      if (this.usesAltKey || this.usesOptionKey) {
         document.addEventListener(
           'keydown',
           this.handleDocumentKeydown.bind(this)
@@ -310,41 +310,6 @@
         this.config.buttonBackgroundColor,
         theme.buttonBackgroundColor
       );
-    },
-
-    getBrowserSpecificAccesskey: function (accesskey) {
-      var userAgent = navigator.userAgent.toLowerCase();
-      var platform = navigator.platform.toLowerCase();
-
-      var hasWin = platform.indexOf('win') >= 0;
-      var hasMac = platform.indexOf('mac') >= 0;
-      var hasLinux =
-        platform.indexOf('linux') >= 0 || platform.indexOf('bsd') >= 0;
-
-      var hasAndroid = userAgent.indexOf('android') >= 0;
-      var hasFirefox = userAgent.indexOf('firefox') >= 0;
-      var hasChrome = userAgent.indexOf('chrome') >= 0;
-      var hasOpera = userAgent.indexOf('opr') >= 0;
-
-      if (typeof accesskey !== 'string' || accesskey.length === 0) {
-        return '';
-      }
-
-      if (hasWin || (hasLinux && !hasAndroid)) {
-        if (hasFirefox) {
-          return 'Shift + Alt + ' + accesskey;
-        } else {
-          if (hasChrome || hasOpera) {
-            return 'Alt + ' + accesskey;
-          }
-        }
-      }
-
-      if (hasMac) {
-        return 'Ctrl + Option + ' + accesskey;
-      }
-
-      return '';
     },
     setUpConfig: function (appConfig) {
       var localConfig = this.config,
@@ -778,17 +743,20 @@
         this.usesAltKey &&
         event.altKey &&
         !event.ctrlKey &&
-        !event.metaKey &&
-        !event.shiftKey;
+        !event.shiftKey &&
+        !event.metaKey;
 
-      let commandPressed =
-        this.usesMetaKey &&
-        !event.altKey &&
+      let optionPressed =
+        this.usesOptionKey &&
+        event.altKey &&
         !event.ctrlKey &&
-        event.metaKey &&
-        !event.shiftKey;
+        !event.shiftKey &&
+        !event.metaKey;
 
-      if ((commandPressed || altPressed) && this.config.accesskey === key) {
+      if (
+        (optionPressed && this.config.optionAccesskey === key) ||
+        (altPressed && this.config.altAccesskey === key)
+      ) {
         this.openPopup();
         this.setFocusToFirstMenuitem();
         flag = true;
