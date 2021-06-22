@@ -17,10 +17,14 @@ class RangeTemperature {
     this.domNode = domNode;
     this.rangeNode = domNode.querySelector('input[type="range"]');
     this.valueNode = domNode.querySelector('.range-value');
-    this.rangeNode.addEventListener('input', this.handleInput.bind(this));
+    this.rangeNode.addEventListener('change', this.handleChange.bind(this));
+    this.rangeNode.addEventListener(
+      'pointermove',
+      this.handleChange.bind(this)
+    );
   }
 
-  handleInput(event) {
+  handleChange(event) {
     if (this.domNode.contains(event.currentTarget)) {
       let valuetext =
         parseFloat(this.rangeNode.value).toFixed(1) + this.labelCelsiusAbbrev;
