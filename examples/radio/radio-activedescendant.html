@@ -108,6 +108,11 @@
               </li>
             </ul>
           </li>
+        <li>
+          To ensure the <code>data:image/svg+xml</code> SVG graphics in the CSS have sufficient contrast with the background when high contrast settings invert colors, the CSS <code>currentColor</code> value for the <code>stroke</code> and <code>fill</code> properties to synchronize the colors with text content.
+          If specific colors were used to specify the <code>stroke</code> and <code>fill</code> properties, the color of these elements would remain the same in high contrast mode, which could lead to insufficient contrast between them and their background or even make them invisible if their color were to match the high contrast mode background.
+          <br/>NOTE: The <code>data:image/svg+xml</code> SVG elements need to set the CSS <code>forced-color-adjust</code> property to <code>auto</code> for some browsers to support the <code>currentColor</code> value.
+         </li>
         </ul>
       </section>
 
