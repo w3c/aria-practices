@@ -1,11 +1,11 @@
 const { ariaTest } = require('..');
-const { By, Key } = require('selenium-webdriver');
+const { By } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertTabOrder = require('../util/assertTabOrder');
 
-const exampleFile = 'checkbox/checkbox-1/checkbox-1.html';
+const exampleFile = 'checkbox/checkbox.html';
 
 const ex = {
   groupSelector: '#ex1 [role="group"]',
@@ -184,7 +184,7 @@ ariaTest(
       // Send SPACE key to check box to select
       await t.context.session
         .findElement(By.css(checkboxSelector))
-        .sendKeys(Key.SPACE);
+        .sendKeys(' ');
 
       t.true(
         await waitAndCheckAriaChecked(t, checkboxSelector, 'true'),
@@ -201,7 +201,7 @@ ariaTest(
       // Send SPACE key to check box to unselect
       await t.context.session
         .findElement(By.css(checkboxSelector))
-        .sendKeys(Key.SPACE);
+        .sendKeys(' ');
 
       t.true(
         await waitAndCheckAriaChecked(t, checkboxSelector, 'false'),
