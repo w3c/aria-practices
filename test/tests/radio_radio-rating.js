@@ -13,7 +13,6 @@ const ex = {
   radioSelector: '#ex1 [role="radio"]',
   innerRadioSelector: '[role="radio"]',
   radiogroupSelector1: '#ex1 [role="radiogroup"]:nth-of-type(1) [role="radio"]',
-  radiogroupSelector2: '#ex1 [role="radiogroup"]:nth-of-type(2) [role="radio"]',
 };
 
 const checkFocus = async function (t, selector, index) {
@@ -31,7 +30,7 @@ const checkFocus = async function (t, selector, index) {
 // Attributes
 
 ariaTest('role="none" on SVG element', exampleFile, 'svg-none', async (t) => {
-  await assertAriaRoles(t, 'ex1', 'none', '2', 'svg');
+  await assertAriaRoles(t, 'ex1', 'none', '1', 'svg');
 });
 
 ariaTest(
@@ -39,7 +38,7 @@ ariaTest(
   exampleFile,
   'radiogroup-role',
   async (t) => {
-    await assertAriaRoles(t, 'ex1', 'radiogroup', '2', 'div');
+    await assertAriaRoles(t, 'ex1', 'radiogroup', '1', 'div');
   }
 );
 
@@ -57,7 +56,7 @@ ariaTest(
   exampleFile,
   'radio-role',
   async (t) => {
-    await assertAriaRoles(t, 'ex1', 'radio', '11', 'g');
+    await assertAriaRoles(t, 'ex1', 'radio', '5', 'g');
   }
 );
 
@@ -69,10 +68,6 @@ ariaTest(
     // Test first radio group
     let radios =
       ex.radiogroupSelector + ':nth-of-type(1) ' + ex.innerRadioSelector;
-    await assertRovingTabindex(t, radios, Key.ARROW_RIGHT);
-
-    // Test second radio group
-    radios = ex.radiogroupSelector + ':nth-of-type(2) ' + ex.innerRadioSelector;
     await assertRovingTabindex(t, radios, Key.ARROW_RIGHT);
   }
 );
@@ -123,24 +118,7 @@ ariaTest(
   'key-tab',
   async (t) => {
     // On page load, the first item in the radio list should be in tab index
-    await assertTabOrder(t, [
-      ex.radiogroupSelector1 + ':nth-of-type(1)',
-      ex.radiogroupSelector2 + ':nth-of-type(1)',
-    ]);
-
-    // Activate the second item in each radio list, to set roving tab index
-    await t.context.session
-      .findElement(By.css(ex.radiogroupSelector1 + ':nth-of-type(2)'))
-      .sendKeys(' ');
-    await t.context.session
-      .findElement(By.css(ex.radiogroupSelector2 + ':nth-of-type(2)'))
-      .sendKeys(' ');
-
-    // Now the second radio item in each list should be selected
-    await assertTabOrder(t, [
-      ex.radiogroupSelector1 + ':nth-of-type(2)',
-      ex.radiogroupSelector2 + ':nth-of-type(2)',
-    ]);
+    await assertTabOrder(t, [ex.radiogroupSelector1 + ':nth-of-type(1)']);
   }
 );
 
@@ -148,12 +126,6 @@ ariaTest('Selects radio item', exampleFile, 'key-space', async (t) => {
   const firstCrustSelector = ex.radiogroupSelector1 + ':nth-of-type(1)';
   await t.context.session.findElement(By.css(firstCrustSelector)).sendKeys(' ');
   await assertAttributeValues(t, firstCrustSelector, 'aria-checked', 'true');
-
-  const firstDeliverySelector = ex.radiogroupSelector2 + ':nth-of-type(1)';
-  await t.context.session
-    .findElement(By.css(firstDeliverySelector))
-    .sendKeys(' ');
-  await assertAttributeValues(t, firstDeliverySelector, 'aria-checked', 'true');
 });
 
 ariaTest(
