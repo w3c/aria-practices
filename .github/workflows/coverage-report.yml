@@ -3,9 +3,11 @@ name: Regression Tests Coverage Report
 on:
   pull_request_target:
     paths:
-    - "examples/**"
-    - "test/**"
-    - "!examples/landmarks/**"
+      - "package*.json"
+      - "test/**"
+      - "examples/**"
+      - "!examples/landmarks/**"
+      - "!examples/coding-template/**"
 
 jobs:
   report:
