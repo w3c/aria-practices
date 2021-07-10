@@ -52,7 +52,7 @@
     "husky": "^5.1.1",
     "lint-staged": "^10.5.4",
     "npm-merge-driver": "^2.3.6",
-    "pinst": "^2.1.4",
+    "pinst": "^2.1.6",
     "prettier": "^2.2.1",
     "selenium-webdriver": "^4.0.0-beta.1",
     "stylelint": "^13.11.0",
