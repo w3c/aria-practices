@@ -1,6 +1,7 @@
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAriaRoles = require('../util/assertAriaRoles');
+const assertAttributeValues = require('../util/assertAttributeValues');
 const assertTabOrder = require('../util/assertTabOrder');
 const assertInputChecked = require('../util/assertInputChecked');
 
@@ -8,6 +9,8 @@ const exampleFile = 'switch/switch-checkbox.html';
 
 const ex = {
   switchSelector: '#ex1 [role="switch"]',
+  spanOnSelector: '#ex1 span.on',
+  spanOffSelector: '#ex1 span.off',
   switches: [
     '#ex1 fieldset label:nth-child(2) input',
     '#ex1 fieldset label:nth-child(3) input',
@@ -21,6 +24,16 @@ ariaTest(
   'switch-role',
   async (t) => {
     await assertAriaRoles(t, 'ex1', 'switch', '2', 'input');
+  }
+);
+
+ariaTest(
+  '"aria-hidden" set to "true" on SPAN elements containing "on" and "off" ',
+  exampleFile,
+  'aria-hidden',
+  async (t) => {
+    await assertAttributeValues(t, ex.spanOnSelector, 'aria-hidden', 'true');
+    await assertAttributeValues(t, ex.spanOffSelector, 'aria-hidden', 'true');
   }
 );
 

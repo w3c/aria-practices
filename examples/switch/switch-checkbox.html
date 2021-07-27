@@ -43,8 +43,8 @@
     <div id="ex1">
       <fieldset>
         <legend>Accessibility Preferences</legend>
-        <div class="switch">
-          <label for="id-switch-1">Reduced motion</label>
+        <label>
+          <span class="label">Reduced motion</span>
           <input id="id-switch-1"
           type="checkbox"
           role="switch"/>
@@ -53,13 +53,13 @@
               <span class="position">
               </span>
             </span>
-            <span class="on">On</span>
-            <span class="off">Off</span>
+            <span class="on" aria-hidden="true">On</span>
+            <span class="off" aria-hidden="true">Off</span>
           </span>
-        </div>
+        </label>
 
-        <div class="switch">
-          <label for="id-switch-2">Show captions</label>
+        <label>
+          <span class="label">Show captions</span>
           <input id="id-switch-2"
           type="checkbox"
           role="switch"/>
@@ -68,10 +68,10 @@
               <span class="position">
               </span>
             </span>
-            <span class="on">On</span>
-            <span class="off">Off</span>
+            <span class="on" aria-hidden="true">On</span>
+            <span class="off" aria-hidden="true">Off</span>
           </span>
-        </div>
+        </label>
       </fieldset>
     </div>
     <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
@@ -141,6 +141,17 @@
               <ul>
                 <li>The <code>role=&quot;switch&quot;</code> attribute identified the <code>input[type=&quot;checkbox&quot;]</code> element as an ARIA <code>switch</code>.</li>
                 <li>The accessible name is defined using the <code>label</code> element.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr data-test-id="aria-hidden">
+            <td></td>
+            <th scope="row"><code>aria-hidden="true"</code></th>
+            <td><code>span.on</code> and <code>span.off</code></td>
+            <td>
+              <ul>
+                <li><code>aria-hidden</code> is used to remove visual &quot;on&quot; and &quot;off&quot; labels to the right of the switch from being part of the label for the switch.</li>
+                <li>The visual &quot;on&quot; and &quot;off&quot; text are not needed in the label because the state of the switch is conveyed through the <code>.checked</code> property of the <code>input</code> element.</li>
               </ul>
             </td>
           </tr>

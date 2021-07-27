@@ -6,7 +6,7 @@ legend {
   font-size: 110%;
 }
 
-.switch {
+label {
   display: block;
   margin: 0.5em;
   padding: 4px 4px 6px 6px;
@@ -15,12 +15,7 @@ legend {
   width: 16em;
 }
 
-.switch:hover,
-label:hover {
-  cursor: pointer;
-}
-
-.switch label {
+label .label {
   display: inline-block;
   width: 9em;
   -webkit-user-select: none;
@@ -29,11 +24,11 @@ label:hover {
   user-select: none;
 }
 
-.switch input[role="switch"] {
+label input[role="switch"] {
   opacity: 0;
 }
 
-.switch input[role="switch"] ~ .state {
+label input[role="switch"] ~ .state {
   display: inline-block;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -41,7 +36,7 @@ label:hover {
   user-select: none;
 }
 
-.switch input[role="switch"] ~ .state > .container {
+label input[role="switch"] ~ .state > .container {
   position: relative;
   top: 2px;
   display: inline-block;
@@ -51,7 +46,7 @@ label:hover {
   border-radius: 11px;
 }
 
-.switch input[role="switch"] ~ .state > .container > .position {
+label input[role="switch"] ~ .state > .container > .position {
   position: relative;
   top: 1px;
   left: 2px;
@@ -64,30 +59,31 @@ label:hover {
   opacity: 0.6;
 }
 
-.switch input[role="switch"]:not(:checked) ~ .state span.on {
+label input[role="switch"]:not(:checked) ~ .state span.on {
   display: none;
 }
 
-.switch input[role="switch"]:checked ~ .state > span.off {
+label input[role="switch"]:checked ~ .state > span.off {
   display: none;
 }
 
-.switch input[role="switch"]:checked ~ .state > .container > .position {
+label input[role="switch"]:checked ~ .state > .container > .position {
   left: 20px;
   border-color: green;
   background: green;
   opacity: 1;
 }
 
-.switch.focus,
-.switch:hover {
+label.focus,
+label:hover {
   padding: 2px 2px 4px 4px;
   border-width: 2px;
   outline: none;
   background-color: #def;
+  cursor: pointer;
 }
 
-.switch.focus span.container,
-.switch:hover span.container {
+label.focus span.container,
+label:hover span.container {
   background-color: white;
 }
