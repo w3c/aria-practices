@@ -6,7 +6,7 @@ legend {
   font-size: 110%;
 }
 
-label {
+.switch {
   display: block;
   margin: 0.5em;
   padding: 4px 4px 6px 6px;
@@ -15,7 +15,12 @@ label {
   width: 16em;
 }
 
-label .label {
+.switch:hover,
+label:hover {
+  cursor: pointer;
+}
+
+.switch label {
   display: inline-block;
   width: 9em;
   -webkit-user-select: none;
@@ -24,11 +29,11 @@ label .label {
   user-select: none;
 }
 
-label input[role="switch"] {
+.switch input[role="switch"] {
   opacity: 0;
 }
 
-label input[role="switch"] ~ .state {
+.switch input[role="switch"] ~ .state {
   display: inline-block;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -36,7 +41,7 @@ label input[role="switch"] ~ .state {
   user-select: none;
 }
 
-label input[role="switch"] ~ .state > .container {
+.switch input[role="switch"] ~ .state > .container {
   position: relative;
   top: 2px;
   display: inline-block;
@@ -46,7 +51,7 @@ label input[role="switch"] ~ .state > .container {
   border-radius: 11px;
 }
 
-label input[role="switch"] ~ .state > .container > .position {
+.switch input[role="switch"] ~ .state > .container > .position {
   position: relative;
   top: 1px;
   left: 2px;
@@ -59,30 +64,30 @@ label input[role="switch"] ~ .state > .container > .position {
   opacity: 0.6;
 }
 
-label input[role="switch"]:not(:checked) ~ .state span.on {
+.switch input[role="switch"]:not(:checked) ~ .state span.on {
   display: none;
 }
 
-label input[role="switch"]:checked ~ .state > span.off {
+.switch input[role="switch"]:checked ~ .state > span.off {
   display: none;
 }
 
-label input[role="switch"]:checked ~ .state > .container > .position {
+.switch input[role="switch"]:checked ~ .state > .container > .position {
   left: 20px;
   border-color: green;
   background: green;
   opacity: 1;
 }
 
-label.focus,
-label:hover {
+.switch.focus,
+.switch:hover {
   padding: 2px 2px 4px 4px;
   border-width: 2px;
   outline: none;
   background-color: #def;
 }
 
-label.focus span.container,
-label:hover span.container {
+.switch.focus span.container,
+.switch:hover span.container {
   background-color: white;
 }
