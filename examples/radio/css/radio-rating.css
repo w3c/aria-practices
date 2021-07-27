@@ -4,6 +4,10 @@
   display: block;
 }
 
+.rating-radio:hover {
+  cursor: pointer;
+}
+
 .rating-radio svg g[role="radio"] {
   color: #005a9c;
 }
