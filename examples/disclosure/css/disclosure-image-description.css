@@ -22,6 +22,7 @@ figure button:focus {
 
 figure button:hover {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 figure button:active {
