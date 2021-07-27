@@ -81,4 +81,5 @@ button[role="switch"]:hover {
   border-width: 2px;
   outline: none;
   background-color: #def;
+  cursor: pointer;
 }
