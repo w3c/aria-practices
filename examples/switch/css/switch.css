@@ -65,6 +65,7 @@
   border-width: 2px;
   outline: none;
   background-color: #def;
+  cursor: pointer;
 }
 
 [role="switch"]:focus span.switch {
