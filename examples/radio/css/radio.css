@@ -44,4 +44,5 @@
 
 [role="radio"]:hover {
   background-color: hsl(216, 80%, 92%);
+  cursor: pointer;
 }
