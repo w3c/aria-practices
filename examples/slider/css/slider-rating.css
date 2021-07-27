@@ -8,6 +8,10 @@
   color: #005a9c;
 }
 
+.rating-slider:hover {
+  cursor: pointer;
+}
+
 .rating-slider svg {
   forced-color-adjust: auto;
   touch-action: pan-y;
