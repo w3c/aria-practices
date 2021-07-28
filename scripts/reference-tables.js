@@ -10,6 +10,7 @@ const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
 const cheerio = require('cheerio');
+const HTMLParser = require('node-html-parser');
 
 const exampleFilePath = path.join(__dirname, '..', 'examples', 'index.html');
 const exampleTemplatePath = path.join(__dirname, 'reference-tables.template');
@@ -27,24 +28,31 @@ const ariaRoles = [
   'article',
   'banner',
   'button',
+  'caption',
   'cell',
   'checkbox',
+  'code',
   'columnheader',
   'combobox',
   'complementary',
   'contentinfo',
   'definition',
+  'deletion',
   'dialog',
   'directory',
   'document',
+  'emphasis',
   'feed',
   'figure',
   'form',
+  'generic',
   'grid',
   'gridcell',
   'group',
   'heading',
   'img',
+  'input',
+  'insertion',
   'link',
   'list',
   'listbox',
@@ -58,15 +66,17 @@ const ariaRoles = [
   'menuitem',
   'menuitemcheckbox',
   'menuitemradio',
+  'meter',
   'navigation',
   'none',
   'note',
   'option',
+  'paragraph',
   'presentation',
   'progressbar',
   'radio',
   'radiogroup',
-  // 'region', Region is generated differently from other roles
+  'region',
   'row',
   'rowgroup',
   'rowheader',
@@ -148,78 +158,45 @@ let indexOfPropertiesAndStates = {};
 
 console.log('Generating index...');
 
-function getColumn(data, indexStart) {
-  let count = 0;
-  let index = data.lastIndexOf('<tr', indexStart);
-
-  while (index > 0 && index <= indexStart) {
-    let indexTd = data.indexOf('<td', index);
-    let indexTh = data.indexOf('<th', index);
-
-    index = Math.min(indexTh, indexTd);
-
-    if (index <= indexStart) {
-      count += 1;
-    }
-
-    index += 1;
-  }
-
-  return count;
-}
-
-function getRoles(data) {
+function getRoles(html) {
   let roles = [];
 
-  let indexStart = data.indexOf('<code>', 0);
-  let indexEnd = data.indexOf('</code>', indexStart);
+  let exampleRoles = html.querySelectorAll(
+    'table.data.attributes tbody tr > th:first-child code'
+  );
 
-  while (indexStart > 1 && indexEnd > 1) {
-    let code = data.substring(indexStart + 6, indexEnd).trim();
-
-    for (let i = 0; i < ariaRoles.length; i++) {
-      if (
-        getColumn(data, indexStart) === 1 &&
-        code == ariaRoles[i] &&
-        roles.indexOf(ariaRoles[i]) < 0
-      ) {
-        roles.push(ariaRoles[i]);
+  for (let i = 0; i < exampleRoles.length; i++) {
+    let code = exampleRoles[i].textContent.toLowerCase().trim();
+    for (let j = 0; j < ariaRoles.length; j++) {
+      const hasRole = RegExp('\\b' + ariaRoles[j] + '\\b');
+      if (hasRole.test(code) && roles.indexOf(ariaRoles[j]) < 0) {
+        console.log('  [role]: ' + code);
+        roles.push(ariaRoles[j]);
       }
-    }
-
-    indexStart = data.indexOf('<code>', indexEnd);
-
-    if (indexStart > 0) {
-      indexEnd = data.indexOf('</code>', indexStart);
     }
   }
 
   return roles;
 }
 
-function getPropertiesAndStates(data) {
+function getPropertiesAndStates(html) {
   let propertiesAndStates = [];
 
-  let indexStart = data.indexOf('<code>', 0);
-  let indexEnd = data.indexOf('</code>', indexStart);
+  let exampleProps = html.querySelectorAll(
+    'table.data.attributes tbody tr > th:nth-child(2) code'
+  );
 
-  while (indexStart > 1 && indexEnd > 1) {
-    let code = data.substring(indexStart + 6, indexEnd);
-
-    for (let i = 0; i < ariaPropertiesAndStates.length; i++) {
+  for (let i = 0; i < exampleProps.length; i++) {
+    let code = exampleProps[i].textContent.toLowerCase().trim().split('=')[0];
+    for (let j = 0; j < ariaPropertiesAndStates.length; j++) {
+      const hasPropOrState = RegExp('\\b' + ariaPropertiesAndStates[j] + '\\b');
       if (
-        getColumn(data, indexStart) === 2 &&
-        code.indexOf(ariaPropertiesAndStates[i]) >= 0 &&
-        propertiesAndStates.indexOf(ariaPropertiesAndStates[i]) < 0
+        hasPropOrState.test(code) &&
+        propertiesAndStates.indexOf(ariaPropertiesAndStates[j]) < 0
       ) {
-        propertiesAndStates.push(ariaPropertiesAndStates[i]);
+        console.log('  [propertyOrState]: ' + code);
+        propertiesAndStates.push(ariaPropertiesAndStates[j]);
       }
-    }
-
-    indexStart = data.indexOf('<code>', indexEnd);
-
-    if (indexStart > 0) {
-      indexEnd = data.indexOf('</code>', indexStart);
     }
   }
 
@@ -274,11 +251,21 @@ glob
     nodir: true,
   })
   .forEach(function (file) {
+    console.log('[file]: ' + file);
+
+    if (file.toLowerCase().indexOf('deprecated') >= 0) {
+      console.log('  [ignored]');
+      return;
+    }
+
     let data = fs.readFileSync(file, 'utf8');
+
+    let html = HTMLParser.parse(data);
+
     let ref = file.replace('examples/', '');
-    let title = data
-      .substring(data.indexOf('<title>') + 7, data.indexOf('</title>'))
-      .split('|')[0]
+    let title = html
+      .querySelector('title')
+      .textContent.split('|')[0]
       .replace('Examples', '')
       .replace('Example of', '')
       .replace('Example', '')
@@ -287,10 +274,11 @@ glob
     let example = {
       title: title,
       ref: ref,
+      highContrast: data.toLowerCase().indexOf('high contrast') > 0,
     };
 
-    addExampleToRoles(getRoles(data), example);
-    addExampleToPropertiesAndStates(getPropertiesAndStates(data), example);
+    addExampleToRoles(getRoles(html), example);
+    addExampleToPropertiesAndStates(getPropertiesAndStates(html), example);
   });
 
 // Add landmark examples, since they are a different format
@@ -319,8 +307,12 @@ addLandmarkRole(['region'], true, 'Region Landmark', 'landmarks/region.html');
 addLandmarkRole(['search'], true, 'Search Landmark', 'landmarks/search.html');
 
 function exampleListItem(item) {
+  let highContrast = '';
+  if (item.highContrast) {
+    highContrast = ' (<abbr title="High Contrast Support">HC</abbr>)';
+  }
   return `
-                <li><a href="${item.ref}">${item.title}</a></li>`;
+                <li><a href="${item.ref}">${item.title}</a>${highContrast}</li>`;
 }
 
 let sortedRoles = Object.getOwnPropertyNames(indexOfRoles).sort();
