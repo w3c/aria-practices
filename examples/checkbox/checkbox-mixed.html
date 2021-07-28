@@ -70,10 +70,9 @@
       <ul>
         <li>To help assistive technology users understand that the mixed checkbox is made of a group of four HTML <code>input[type=<q>checkbox</q>]</code> elements and the ARIA checkbox widget <code>div[role=<q>checkbox</q>]</code>, the checkboxes are wrapped in a <code>fieldset</code> element which is labeled (e.g. Sandwich Condiments) with a <code>legend</code> element.</li>
         <li>Because transparent borders are visible on some systems with operating system high contrast settings enabled, transparency cannot be used to create a visual difference between the element that is focused an other elements. Instead of using transparency, the focused element has a thicker border and less padding. When an element receives focus, its border changes from 0 to 2 pixels and padding is reduced by 2 pixels. When an element loses focus, its border changes from 2 pixels to 0 and padding is increased by 2 pixels.</li>
-        <li>To provide a visual indication the labels can also be used to change the state of a checkbox, the background color is changed when the pointer moves over the checkbox or the label.</li>
+        <li>To provide a visual indication the labels can also be used to change the state of a checkbox, the background color changes, a border appears and the cursor changes to a pointer when a pointer hovers over the checkbox or label.  The border and pointer changes help people with visual impairments identify the element as interactive.</li>
       </ul>
     </section>
-
 
       <section>
         <h2 id="kbd_label">Keyboard Support</h2>
