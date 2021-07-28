@@ -87,10 +87,11 @@
                 Because transparent borders are visible on some systems with high contrast enabled, only the focused element has a visible border.
                 When focusable elements are not focused, they have a 0-width border and additional padding equal in width to the border that is used to indicate focus.
               </li>
+              <li>The cursor is changed to a pointer when hovering over the radio button to help people with visual impairments identify it as an interactive element.</li>
             </ul>
           </li>
         <li>
-          To ensure the borders of the inline SVG radio button graphics in the CSS have sufficient contrast with the background when high contrast settings invert colors, the color of the borders are synchronized with the color of the text content.
+          To ensure the borders of the inline SVG radio button graphics in the CSS file have sufficient contrast with the background when high contrast settings invert colors, the color of the borders are synchronized with the color of the text content.
           For example, the color of the radio button borders are set to match the foreground color of high contrast mode text by specifying the CSS <code>currentColor</code> value for the <code>stroke</code> property of the <code>circle</code> elements used to draw the radio button.
           To make the background of the <code>circle</code> elements match the high contrast background color, the <code>fill-opacity</code> attribute of the <code>rect</code> is set to zero.
           If specific colors were instead used to specify the <code>stroke</code> and <code>fill</code> properties, those colors would remain the same in high contrast mode, which could lead to insufficient contrast between the rail and the thumb or even make them invisible if their color matched the high contrast mode background.<br>
