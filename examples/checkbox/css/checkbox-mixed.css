@@ -117,6 +117,7 @@
 .checkbox-mixed [role="checkbox"]:hover,
 .checkbox-mixed label:hover {
   background-color: #def;
+  cursor: pointer;
 }
 
 .checkbox-mixed input:focus,
