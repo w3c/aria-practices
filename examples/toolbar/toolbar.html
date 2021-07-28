@@ -46,7 +46,9 @@
     This example also illustrates the <a href="../../#kbd_roving_tabindex">roving tabindex method</a> for managing focus within a component.
   </p>
   <section>
-    <h2 id="ex_label">Example</h2>
+    <div class="example-header">
+      <h2 id="ex_label">Example</h2>
+    </div>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="ex1">
       <div class="format" role="toolbar" aria-label="Text Formatting" aria-controls="textarea1">
@@ -954,7 +956,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
 
   <section>
     <h2>Javascript and CSS Source Code</h2>
-    <ul>
+    <ul id="css_js_files">
       <li>CSS: <a href="css/toolbar.css" type="text/css">toolbar.css</a></li>
       <li>CSS: <a href="css/menuButton.css" type="text/css">menuButton.css</a></li>
       <li>Javascript: <a href="js/FormatToolbar.js" type="text/javascript">FormatToolbar.js</a></li>
@@ -976,7 +978,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
       It renders the HTML in the preceding div with ID 'sc1'.
       -->
     <script>
-      sourceCode.add('sc1', 'ex1');
+      sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
       sourceCode.make();
     </script>
   </section>
