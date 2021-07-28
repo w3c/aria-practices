@@ -80,6 +80,7 @@ ul.checkboxes {
 
 [role="checkbox"]:hover {
   background-color: #def;
+  cursor: pointer;
 }
 
 [role="checkbox"]:focus::before {
