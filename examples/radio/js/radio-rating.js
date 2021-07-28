@@ -28,6 +28,8 @@ class RatingRadioGroup {
 
       rb.addEventListener('keydown', this.handleKeydown.bind(this));
       rb.addEventListener('click', this.handleClick.bind(this));
+      rb.addEventListener('pointerover', this.handlePointerover.bind(this));
+      rb.addEventListener('pointerleave', this.handlePointerleave.bind(this));
 
       this.radioButtons.push(rb);
 
@@ -36,6 +38,7 @@ class RatingRadioGroup {
       }
       this.lastRadioButton = rb;
     }
+
     var value = groupNode.getAttribute('data-rating-value');
     var index = parseInt(value);
 
@@ -55,8 +58,8 @@ class RatingRadioGroup {
       rb.setAttribute('aria-checked', 'false');
       rb.tabIndex = -1;
     }
-    var value = currentItem.getAttribute('data-rating');
-    this.groupNode.setAttribute('data-rating-value', value);
+    this.currentValue = currentItem.getAttribute('data-rating');
+    this.groupNode.setAttribute('data-rating-value', this.currentValue);
 
     currentItem.setAttribute('aria-checked', 'true');
     currentItem.tabIndex = 0;
@@ -126,6 +129,15 @@ class RatingRadioGroup {
 
   handleClick(event) {
     this.setChecked(event.currentTarget);
+  }
+
+  handlePointerover(event) {
+    var value = event.currentTarget.getAttribute('data-rating');
+    this.groupNode.setAttribute('data-rating-value', value);
+  }
+
+  handlePointerleave() {
+    this.groupNode.setAttribute('data-rating-value', this.currentValue);
   }
 }
 
