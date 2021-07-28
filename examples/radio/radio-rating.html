@@ -54,10 +54,6 @@
                   <g id="focus-ring">
                     <rect width="40" height="38" rx="4"/>
                   </g>
-                  <g id="star-none">
-                    <circle cx="16" cy="16" r="10"/>
-                    <line x1="12" y1="16" x2="20" y2="16"/>
-                  </g>
                 </defs>
 
                 <g role="radio" aria-checked="false" tabindex="-1" data-rating="1" aria-label="one star" class="star-1 star-2 star-3 star-4 star-5" >
@@ -94,12 +90,15 @@
       <h2>Accessibility Features</h2>
       <ul>
         <li>
-          To highlight the interactive nature of the rating stars a focus ring appears around the star or no-star icon that has focus.
+          To highlight the interactive nature of the rating stars a focus ring appears around the star icon that has focus.  When a pointer hovers over a star the cursor changes to a pointer and the number of filled stars is updated to include the hovered star.  When a pointer leaves a star, the filled stars are restored to indicate the currently checked star.
         </li>
         <li>
-          To ensure the stars have sufficient contrast with the background when high contrast settings invert colors, the CSS <code>currentColor</code> value for the <code>stroke</code> property is used for the SVG <code>rect</code> elements to synchronize the border color with text content.
-          If specific colors were used to specify the <code>stroke</code> property, the color of these elements would remain the same in high contrast mode, which could lead to insufficient contrast between them and their background or even make them invisible if their color were to match the high contrast mode background.
-          <br/>Note: The SVG element needs to have the CSS <code>forced-color-adjust</code> property set to the value <code>auto</code> for the <code>currentColor</code> value to be updated in high contrast modes, some browsers do not use <code>auto</code> for the default value.  In addition, some browsers the SVG <code>rect</code> and <code>polygon</code> elements may need to adjust their <code>stroke-opacity</code> and <code>fill-opacity</code> values in place of using the <code>transparent</code> value for setting the fill and stroke colors in high contrast modes.
+          To ensure the borders of the stars and the focus ring have sufficient contrast with the background when high contrast settings invert colors, the color of the borders are synchronized with the color of the text content.
+          For example, the color of the focus ring border is set to match the foreground color of  high contrast mode text by specifying the CSS <code>currentColor</code> value for the <code>stroke</code> property of the inline SVG <code>polygon</code> to draw the star borders and <code>rect</code> element used to draw the focus ring border.
+          To make the background of the <code>polygon</code> and <code>rect</code> elements match the high contrast background color, the <code>fill-opacity</code> attribute of the <code>rect</code> is set to zero.
+          If specific colors were instead used to specify the <code>stroke</code> and <code>fill</code> properties, those colors would remain the same in high contrast mode, which could lead to insufficient contrast between the rail and the thumb or even make them invisible if their color matched the high contrast mode background.<br>
+          Note: The SVG element needs to have the CSS <code>forced-color-adjust</code> property set to <code>auto</code> for the <code>currentColor</code> value to be updated in high contrast mode.
+          Some browsers do not use <code>auto</code> for the default value.
         </li>
       </ul>
     </section>
