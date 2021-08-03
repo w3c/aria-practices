@@ -49,7 +49,7 @@ ariaTest(
 ariaTest(
   'key SPACE turns switch on and off',
   exampleFile,
-  'key-space-enter',
+  'key-space',
   async (t) => {
     for (let switchSelector of ex.switches) {
       // Send SPACE key to check box to select
@@ -62,27 +62,6 @@ ariaTest(
       await t.context.session
         .findElement(By.css(switchSelector))
         .sendKeys(Key.SPACE);
-      await assertInputChecked(t, switchSelector, false);
-    }
-  }
-);
-
-ariaTest(
-  'key Enter turns switch on and off',
-  exampleFile,
-  'key-space-enter',
-  async (t) => {
-    for (let switchSelector of ex.switches) {
-      // Send Enter key to check box to select
-      await t.context.session
-        .findElement(By.css(switchSelector))
-        .sendKeys(Key.ENTER);
-      await assertInputChecked(t, switchSelector, true);
-
-      // Send Enter key to check box to unselect
-      await t.context.session
-        .findElement(By.css(switchSelector))
-        .sendKeys(Key.ENTER);
       await assertInputChecked(t, switchSelector, false);
     }
   }

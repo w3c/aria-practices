@@ -12,17 +12,8 @@
 class CheckboxSwitch {
   constructor(domNode) {
     this.switchNode = domNode;
-    this.switchNode.addEventListener('keydown', () => this.onKeydown(event));
     this.switchNode.addEventListener('focus', () => this.onFocus(event));
     this.switchNode.addEventListener('blur', () => this.onBlur(event));
-  }
-
-  onKeydown(event) {
-    if (event.key === 'Enter') {
-      event.currentTarget.checked = !event.currentTarget.checked;
-      event.stopPropagation();
-      event.preventDefault();
-    }
   }
 
   onFocus(event) {
