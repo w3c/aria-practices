@@ -2566,7 +2566,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       <ol>
         <li>Generic element (e.g. <code>div</code>): Requires setting the <a href="#switch" class="role-reference">switch</a> role, the <a href="#aria-checked" class="state-reference" >aria-checked</a> state, <code>tabindex=&quot;0&quot;</code> and setting both click and keyboard event handlers.</li>
         <li><code>button</code> element: Requires setting the <a href="#switch" class="role-reference">switch</a> role, the <a href="#aria-checked" class="state-reference" >aria-checked</a> state and setting the click event handler (NOTE: The <code>button</code> element's default action for the <kbd>Enter</kbd> and <kbd>Space</kbd> keyboard events is the click handler).</li>
-        <li><code>input[type=&quot;checkbox&quot;]</code> element: Requires setting the <a href="#switch" class="role-reference">switch</a> role.  The state of the switch is indicated using the <code>checked</code> property of the <code>input</code> element.  A <code>keydown</code> event handler is needed to support activation of the <kbd>Enter</kbd> key.  Other event handlers include <code>focus</code> and <code>blur</code> to set visual focus styling.
+        <li><code>input[type=&quot;checkbox&quot;]</code> element: Requires setting the <a href="#switch" class="role-reference">switch</a> role.  The state of the switch is indicated using the <code>checked</code> property of the <code>input</code> element.  Event handlers include <code>focus</code> and <code>blur</code> to set visual focus styling.
         </li>
       </ol>
       <section class="notoc">
@@ -2582,7 +2582,10 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
 
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
-        <p>When the switch has focus, pressing the <kbd>Space</kbd> or <kbd>Enter</kbd> key changes the state of the switch.</p>
+        <ul>
+          <li><kbd>Space</kbd>: When focus is on the switch, changes the state of the switch.</li>
+          <li><kbd>Enter</kbd> (Optional): When focus is on the switch, changes the state of the switch.</li>
+        </ul>
       </section>
 
       <section class="notoc">
@@ -2597,7 +2600,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
               <li><a href="#aria-label" class="property-reference">aria-label</a> set on the element with role <code>switch</code>.</li>
             </ul>
           </li>
-          <li>When &quot;on&quot;, the checkbox element has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>true</code>.</li>
+          <li>When &quot;on&quot;, the switch element has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>true</code>.</li>
           <li>When &quot;off&quot;, it has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>false</code>.
           </li>
           <li>When using <code>input[type=&quot;checkbox&quot;]</code> as the switch the <code>.checked</code> property should be used instead of <code>aria-checked</code> attribute, see <a href="https://www.w3.org/TR/wai-aria-1.2/#requiredState">Required States and Properties</a>.</li>
