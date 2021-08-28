@@ -97,18 +97,16 @@
         <h2>Accessibility Features</h2>
         <ul>
           <li>Uses CSS attribute selectors for synchronizing <code>aria-checked</code> state with the visual state indicator.</li>
-          <li>
-            Uses CSS <code>:hover</code> and <code>:focus</code> pseudo-classes for styling visual keyboard focus and hover.
+          <li>Uses CSS <code>:hover</code> and <code>:focus</code> pseudo-classes for styling visual keyboard focus and hover.
             <ul>
               <li>The focus indicator encompasses both the radio button and label, making it easier to perceive which option is being chosen.</li>
               <li>Hover changes background of both the radio button and label, making it easier to perceive that clicking either the label or button will activate the radio button.</li>
-              <li>
-                Because transparent borders are visible on some systems with high contrast enabled, only the focused element has a visible border.
-                When focusable elements are not focused, they have a 0-width border and additional padding equal in width to the border that is used to indicate focus.
-              </li>
-              <li>The cursor is changed to a pointer when hovering over the radio button to help people with visual impairments identify it as an interactive element.
-              </li>
+              <li>The cursor is changed to a pointer when hovering over the radio button to help people with visual impairments identify it as an interactive element.</li>
             </ul>
+          </li>
+          <li>
+            Because transparent borders are visible on some systems with high contrast enabled, only the focused element has a visible border.
+            When focusable elements are not focused, they have a 0-width border and additional padding equal in width to the border that is used to indicate focus.
           </li>
           <li>
             To ensure the inline SVG radio button graphics in the CSS file have sufficient contrast with the background when high contrast settings change the color of text content,
