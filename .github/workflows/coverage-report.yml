@@ -7,6 +7,10 @@ on:
     - "test/**"
     - "!examples/landmarks/**"
 
+permissions:
+  contents: read
+  issues: write
+
 jobs:
   report:
     runs-on: ubuntu-latest
