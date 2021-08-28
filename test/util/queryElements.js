@@ -6,7 +6,6 @@ const { By } = require('selenium-webdriver');
  * @param {ExecutionContext} t - Test execution context
  * @param {string} selector - CSS selector string
  * @param {Element} context - Element to query within, defaulting to t.context.session
- *
  * @returns {Promise} Resolves to array of elements
  */
 module.exports = async function queryElements(t, selector, context) {
