@@ -144,10 +144,10 @@
             <tr data-test-id="switch-role">
               <th scope="row"><code>switch</code></th>
               <td></td>
-              <td><code>input[type=&quot;checkbox&quot;]</code></td>
+              <td><code>input[type="checkbox"]</code></td>
               <td>
                 <ul>
-                  <li>The <code>role=&quot;switch&quot;</code> attribute identified the <code>input[type=&quot;checkbox&quot;]</code> element as an ARIA <code>switch</code>.</li>
+                  <li>Identifies the element as an ARIA <code>switch</code>.</li>
                   <li>The accessible name is defined using the <code>label</code> element.</li>
                 </ul>
               </td>
@@ -158,8 +158,8 @@
               <td><code>span.on</code> and <code>span.off</code></td>
               <td>
                 <ul>
-                  <li><code>aria-hidden</code> is used to remove visual &quot;on&quot; and &quot;off&quot; labels to the right of the switch from being part of the label for the switch.</li>
-                  <li>The visual &quot;on&quot; and &quot;off&quot; text are not needed in the label because the state of the switch is conveyed through the <code>.checked</code> property of the <code>input</code> element.</li>
+                  <li>Removes the strings <q>on</q> and <q>off</q> that appear to the right of the switch from the accessible name of the switch.</li>
+                  <li>These strings are included only for enhancing visual comprehension of the state; element states are not permitted in accessible names.</li>
                 </ul>
               </td>
             </tr>
