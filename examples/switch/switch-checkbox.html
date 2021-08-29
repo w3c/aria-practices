@@ -81,14 +81,14 @@
     <section>
       <h2>Accessibility Features</h2>
       <ul>
-        <li>To help assistive technology users understand each switch belongs to a set of switches related to <q>Accessibility Preferences</q>, the switches are wrapped in a <code>fieldset</code> element labeled with a <code>legend</code> element.</li>
+        <li>To help assistive technology users understand that each switch belongs to a set of switches related to <q>Accessibility Preferences</q>, the switches are wrapped in a <code>fieldset</code> element labeled with a <code>legend</code> element.</li>
         <li>
-          To provide a visual indication the labels can also be used to change the switch state, when the pointer moves over either the switch or the label, both the switch and label are treated with a border and background color change.
+          To provide a visual indicator that the labels can also be used to change the switch state, when the pointer moves over either the switch or the label, both the switch and label are treated with a border and background color change.
           Note that the border treatment is necessary for the target area to be perceivable when browser or operating system high contrast settings are enabled.
         </li>
         <li>
           A visual text label (<q>on</q> or <q>off</q>) of the state is rendered adjacent to the graphical state indicator to make understanding the state easier for users with visual or cognitive disabilities.<br/>
-          NOTE: To avoid redundant state announcement by screen readers, these labels are hidden from assistive technologies with <code>aria-hidden</code>, and CSS attribute selectors ensure the label display is synchronized with the value of the <code>input</code>.
+          NOTE: These labels are hidden from assistive technologies with <code>aria-hidden</code> to prevent screen readers from redundantly announcing the state, and CSS attribute selectors ensure the label display is synchronized with the value of the <code>input</code>.
         </li>
         <li>Spacing and borders are used to ensure the graphics will be visible and discernible when browser or operating system high contrast settings are enabled:
           <ul>
