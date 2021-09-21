@@ -31,11 +31,6 @@ button[role="switch"] svg rect {
   stroke: currentColor;
 }
 
-button[role="switch"] svg rect.container {
-  forced-color-adjust: none;
-  fill-opacity: 1;
-}
-
 button[role="switch"] svg rect.off {
   display: block;
   stroke: currentColor;

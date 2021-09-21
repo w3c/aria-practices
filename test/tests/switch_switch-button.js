@@ -14,6 +14,8 @@ const ex = {
     '#ex1 [role="group"] [role="switch"]:nth-of-type(1)',
     '#ex1 [role="group"] [role="switch"]:nth-of-type(2)',
   ],
+  spanOnSelector: '#ex1 span.on',
+  spanOffSelector: '#ex1 span.off',
 };
 
 const waitAndCheckAriaChecked = async function (t, selector, value) {
@@ -47,6 +49,16 @@ ariaTest('element h3 exists', exampleFile, 'h3', async (t) => {
     'One h3 element exist with readable content within the example to label the switches'
   );
 });
+
+ariaTest(
+  '"aria-hidden" set to "true" on SPAN elements containing "on" and "off" ',
+  exampleFile,
+  'aria-hidden',
+  async (t) => {
+    await assertAttributeValues(t, ex.spanOnSelector, 'aria-hidden', 'true');
+    await assertAttributeValues(t, ex.spanOffSelector, 'aria-hidden', 'true');
+  }
+);
 
 ariaTest(
   'role="group" element exists',
