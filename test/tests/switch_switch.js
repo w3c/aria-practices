@@ -15,7 +15,7 @@ const ex = {
     '#ex1 [role="group"] [role="switch"]:nth-of-type(2)',
   ],
   spanOnSelector: '#ex1 span.on',
-  spanOffSelector: '#ex1 span.off'
+  spanOffSelector: '#ex1 span.off',
 };
 
 const waitAndCheckAriaChecked = async function (t, selector, value) {
