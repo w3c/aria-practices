@@ -53,8 +53,8 @@
             <rect class="off" x="4" y="4" width="12" height="12" rx="4" />
             <rect class="on" x="20" y="4" width="12" height="12" rx="4" />
           </svg>
-          <span class="on">On</span>
-          <span class="off">Off</span>
+          <span class="on" aria-hidden="true">On</span>
+          <span class="off" aria-hidden="true">Off</span>
         </button>
 
         <button
@@ -67,8 +67,8 @@
             <rect class="off" x="4" y="4" width="12" height="12" rx="4" />
             <rect class="on" x="20" y="4" width="12" height="12" rx="4" />
           </svg>
-          <span class="on">On</span>
-          <span class="off">Off</span>
+          <span class="on" aria-hidden="true">On</span>
+          <span class="off" aria-hidden="true">Off</span>
         </button>
       </div>
     </div>
@@ -79,17 +79,38 @@
     <section>
       <h2>Accessibility Features</h2>
       <ul>
-        <li>To help assistive technology users understand that the environmental control options are made of a group of two switches, the switches are wrapped in a <code>group</code> labeled by the heading that labels the notification options.</li>
-        <li>Focus styling</li>
-        <li>To provide a visual indication the labels can also be used to change the state of a switch, the background color is changed and a border appears when the pointer moves over the switch or the label.  Including the border insures people with visual impairments can perceive the target area in high contrast modes.</li>
-        <li>A visual text label (i.e. &quot;on&quot; and &quot;off&quot;) of the state of the switch is placed after the graphic indication of the state to make it easier for users with visual or cognitive impairments to understand the current state of the switch.</li>
         <li>
-          The graphical rendering of the switch state uses 2 pixel borders for the container, and a 2 pixel border on the rectangle indicating the on and off position of the switch.  There is 2 pixels of space between the container border and the border of the rectangle.  The use of spacing and borders insures the graphic will be visible and discernible in high contrast modes used by people with visual impairments.
+          To help assistive technology users understand that the environmental control options are made of a group of two switches, the switches are wrapped in a <code>group</code> labeled by the heading that labels the notification options.
+        </li>
+        <li>
+          Uses CSS <code>:hover</code> and <code>:focus</code> pseudo-class for styling visual keyboard focus and hover.  The focus styling makes the relationship between the label and the switch perceivable to the user by creating a border around both the switch and the label and also changing the background color.
+          <ul>
+            <li>
+              The focus indicator encompasses both the switch and label to make it easier to perceive when the switch has focus.
+            </li>
+            <li>
+              The hover indicator is the same as focus indicator to make it easier to perceive that clicking either the label or switch will activate the switch.
+            </li>
+            <li>
+              The cursor is changed to a pointer when hovering over the switch to help people with visual impairments identify it as an interactive element.
+            </li>
+          </ul>
+        </li>
+        <li>
+          A visual text label (<q>on</q> or <q>off</q>) of the state is rendered adjacent to the graphical state indicator to make understanding the state easier for users with visual or cognitive disabilities.<br/>
+          NOTE: These labels are hidden from assistive technologies with <code>aria-hidden</code> to prevent screen readers from redundantly announcing the state, and CSS attribute selectors ensure the label display is synchronized with the value of the <code>aria-checked</code>.
+        </li>
+        <li>Spacing, stroke widths and fill are important to ensure the graphical states will be visible and discernible to people with visual impairments, including when browser or operating system high contrast settings are enabled:
+          <ul>
+            <li>Two pixel stroke width is used for the switch state container and a solid color is used for to fill the rectangles indicating the on and off states for the user to perceive the graphical state of the switch.</li>
+            <li>Two pixels of space is used between the container border and rectangles to make sure the user can perceive the difference between the container and the rectangles used to indicate the state of the switch.</li>
+          </ul>
         </li>
         <li>
           To ensure the SVG graphics have sufficient contrast with the background when high contrast settings invert colors, the CSS <code>currentColor</code> value for the <code>stroke</code> and <code>fill</code> properties is used to synchronize the colors with text content.
           If specific colors were used to specify the <code>stroke</code> and <code>fill</code> properties, the color of these elements would remain the same in high contrast mode, which could lead to insufficient contrast between them and their background or even make them invisible if their color were to match the high contrast mode background.
-          <br/>NOTE: The SVG elements need to set the CSS <code>forced-color-adjust</code> property to <code>auto</code> for some browsers to support the <code>currentColor</code> value.  The fill color of the container <code>rect</code> is set on initialization to use the initial background color of the <code>button</code> element for the fill color to keep the background color constant when the button is focused or hovered.
+          The <code>fill-opacity</code> of the container <code>rect</code> is set to zero for the background color of the page to provide the contrasting color to the <code>stroke</code> and <code>fill</code> colors.
+          <br/>NOTE: The SVG elements need to set the CSS <code>forced-color-adjust</code> property to <code>auto</code> for some browsers to support the <code>currentColor</code> value.
          </li>
       </ul>
     </section>
@@ -195,6 +216,17 @@
                   <li>Identifies the <code>switch</code> as on.</li>
                   <li>CSS attribute selectors (e.g. <code>[aria-checked=&quot;true&quot;]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
                 </ul>
+            </td>
+          </tr>
+          <tr data-test-id="aria-hidden">
+            <td></td>
+            <th scope="row"><code>aria-hidden="true"</code></th>
+            <td><code>span.on</code> and <code>span.off</code></td>
+            <td>
+              <ul>
+                <li>Removes the strings <q>on</q> and <q>off</q> that appear to the right of the switch from the accessible name of the switch.</li>
+                <li>These strings are included only for enhancing visual comprehension of the state; element states are not permitted in accessible names.</li>
+              </ul>
             </td>
           </tr>
       </tbody>
