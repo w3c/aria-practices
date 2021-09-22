@@ -1218,8 +1218,9 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
     <section class="widget" id="disclosure">
       <h3>Disclosure (Show/Hide)</h3>
       <p>
-        A disclosure is a <a href="#button">button</a> that controls visibility of a section of content.
-        When the controlled content is hidden, it is often styled as a typical push button with a right-pointing arrow or triangle to hint that activating the button will display additional content.
+        A disclosure is a widget that enables content to be either collapsed (hidden) or expanded (visible).
+        It has two elements: a disclosure <a href="#button">button</a> and a section of content whose visibility is controlled by the button.
+        When the controlled content is hidden, the button is often styled as a typical push button with a right-pointing arrow or triangle to hint that activating the button will display additional content.
         When the content is visible, the arrow or triangle typically points down.
       </p>
 
@@ -1810,7 +1811,6 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         <h4>Examples</h4>
         <ul>
           <li><a href="examples/listbox/listbox-scrollable.html">Scrollable Listbox Example</a>: Single-select listbox that scrolls to reveal more options, similar to HTML <code>select</code> with <code>size</code> attribute greater than one.</li>
-          <li><a href="examples/listbox/listbox-collapsible.html">Collapsible Dropdown Listbox Example</a>: Single-select collapsible listbox that expands when activated, similar to HTML <code>select</code> with the attribute <code>size=&quot;1&quot;</code>.</li>
           <li><a href="examples/listbox/listbox-rearrangeable.html">Example Listboxes with Rearrangeable Options</a>: Examples of both single-select and multi-select listboxes with accompanying toolbars where options can be added, moved, and removed.</li>
           <li><a href="examples/listbox/listbox-grouped.html">Listbox Example with Grouped Options</a>: Single-select listbox with grouped options, similar to an HTML <code>select</code> with <code>optgroup</code> children.</li>
         </ul>
@@ -2354,15 +2354,17 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       </p>
       <p class="warning">
         Some users of touch-based assistive technologies may experience difficulty utilizing widgets that implement this slider pattern because the gestures their assistive technology provides for operating sliders may not yet generate the necessary output.
-        To change the slider value, touch-based assistive technologies need to respond to user gestures for incrementing and decrementing the value by synthesizing key events.
+        To change the slider value, touch-based assistive technologies need to respond to user gestures for increasing and decreasing the value by synthesizing key events.
         This is a new convention that may not be fully implemented by some assistive technologies.
         Authors should fully test slider widgets using assistive technologies on devices where touch is a primary input mechanism before considering incorporation into production systems.
       </p>
       <section class="notoc">
         <h4>Examples</h4>
         <ul>
-          <li><a href="examples/slider/slider-color-viewer.html">Color Viewer Slider Examples</a>: Demonstrates using three horizontally aligned sliders to make a color viewer.</li>
-          <li><a href="examples/slider/slider-2.html">Slider Examples with aria-orientation and aria-valuetext</a>: Three thermostat control sliders that demonstrate using aria-orientation and aria-valuetext.</li>
+          <li><a href="examples/slider/slider-color-viewer.html">Color Viewer Slider Example</a>: Basic  horizontal sliders that illustrate setting numeric values for a color picker.</li>
+          <li><a href="examples/slider/slider-temperature.html">Vertical Temperature Slider Example</a>: Demonstrates using <code>aria-orientation</code> to specify vertical orientation and <code>aria-valuetext</code> to communicate unit of measure for a temperature input.</li>
+          <li><a href="examples/slider/slider-rating.html">Rating Slider Example</a>: Horizontal slider that demonstrates using <code>aria-valuetext</code> to communicate current and maximum value of a rating input for a five star rating scale.</li>
+          <li><a href="examples/slider/slider-seek.html">Media Seek Slider Example</a>: Horizontal slider that demonstrates using <code>aria-valuetext</code> to communicate current and maximum values of time in media to make the values easy to understand for assistive technology users by converting the total number of seconds to minutes and seconds.</li>
         </ul>
       </section>
 
@@ -2375,8 +2377,8 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
           <li><kbd>Down Arrow</kbd>: Decrease the value of the slider by one step.</li>
           <li><kbd>Home</kbd>: Set the slider to the first allowed value in its range.</li>
           <li><kbd>End</kbd>: Set the slider to the last allowed value in its range.</li>
-          <li><kbd>Page Up</kbd> (Optional): Increment the slider by an amount larger than the step change made by <kbd>Up Arrow</kbd>.</li>
-          <li><kbd>Page Down</kbd> (Optional): Decrement the slider by an amount larger than the step change made by <kbd>Down Arrow</kbd>.</li>
+          <li><kbd>Page Up</kbd> (Optional): Increase the slider value by an amount larger than the step change made by <kbd>Up Arrow</kbd>.</li>
+          <li><kbd>Page Down</kbd> (Optional): Decrease the slider value by an amount larger than the step change made by <kbd>Down Arrow</kbd>.</li>
         </ul>
         <ol class="note">
           <li>Focus is placed on the slider (the visual object that the mouse user would move, also known as the thumb.</li>
@@ -2422,14 +2424,14 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       </p>
       <p class="warning">
         Some users of touch-based assistive technologies may experience difficulty utilizing widgets that implement this slider pattern because the gestures their assistive technology provides for operating sliders may not yet generate the necessary output.
-        To change the slider value, touch-based assistive technologies need to respond to user gestures for incrementing and decrementing the value by synthesizing key events.
+        To change the slider value, touch-based assistive technologies need to respond to user gestures for increasing and decreasing the value by synthesizing key events.
         This is a new convention that may not be fully implemented by some assistive technologies.
         Authors should fully test slider widgets using assistive technologies on devices where touch is a primary input mechanism before considering incorporation into production systems.
       </p>
 
       <section class="notoc">
         <h4>Example</h4>
-        <p><a href="examples/slider/multithumb-slider.html">Multi-Thumb Slider Examples</a>: Demonstrates two-thumb sliders for picking price ranges for an airline flight and hotel reservation.</p>
+        <p><a href="examples/slider/slider-multithumb.html">Multi-Thumb Slider Examples</a>: Demonstrates a two-thumb slider for picking a price range for a hotel reservation.</p>
       </section>
 
       <section id="slidertwothumb_kbd_interaction" class="notoc">
@@ -2477,8 +2479,8 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         For example, in a widget that enables users to set an alarm, a spinbutton could allow users to select a number from 0 to 59 for the minute of an hour.
       </p>
       <p>
-        Spinbuttons often have three components, including a text field that displays the current value, an increment button, and a decrement button.
-        The text field is usually the only focusable component because the increment and decrement functions are keyboard accessible via arrow keys.
+        Spinbuttons often have three components, including a text field that displays the current value, an increase button, and a decrease button.
+        The text field is usually the only focusable component because the increase and decrease functions are keyboard accessible via arrow keys.
         Typically, the text field also allows users to directly edit the value.
       </p>
       <p>
