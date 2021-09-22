@@ -65,7 +65,6 @@ const startOnAnyPort = (port, timeout) => {
  * @param {number} port - the TCP/IP port from which to begin search
  * @param {number} timeout - the number of milliseconds to attempt to create a
  *                           server before reporting a failure
- *
  * @returns {Promise<object>} - an eventual value for interfacing with the
  *                               server. The `port` property is the numeric
  *                               TCP/IP port to which the server is bound. The
