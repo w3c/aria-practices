@@ -262,18 +262,27 @@ ariaTest('"enter" on role="menuitem"', exampleFile, 'menu-enter', async (t) => {
     const item = (await t.context.queryElements(t, ex.menuitemSelector))[index];
 
     // Update url to remove external reference for dependable testing
-    const newUrl = t.context.url + '#test-url-change';
+    const oldUrl = t.context.url;
+    const newUrl = oldUrl + '#test-url-change';
     await replaceExternalLink(t, newUrl, ex.menuitemSelector, index);
 
     await openMenu(t);
     await item.sendKeys(Key.ENTER);
+
+    await t.context.session.wait(
+      async function () {
+        return t.context.session.getCurrentUrl() !== oldUrl;
+      },
+      t.context.waitTime,
+      'The URL did not change'
+    );
 
     t.is(
       await t.context.session.getCurrentUrl(),
       newUrl,
       'Key enter when focus on list item at index ' +
         index +
-        'should active the link'
+        ' should active the link'
     );
   }
 });
