@@ -39,21 +39,24 @@ table.sortable th button span {
 }
 
 table.sortable th span::after {
-  content: "▼";
-  color: #bbb;
-  font-size: 80%;
+  content: "♢";
+  color: #888;
+  position: relative;
+  top: -2px;
 }
 
 table.sortable th[aria-sort="descending"] span::after {
   content: "▼";
   color: currentColor;
   font-size: 100%;
+  top: 0;
 }
 
 table.sortable th[aria-sort="ascending"] span::after {
   content: "▲";
   color: currentColor;
   font-size: 100%;
+  top: 0;
 }
 
 table.sortable td.num {
