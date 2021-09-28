@@ -31,7 +31,7 @@
   <h1>Sortable Table Example</h1>
   <p>
     The example below illustrates an implementation of the WAI-ARIA
-    <a href="../../#table">table design pattern</a> for a table with sortable rows.  The example uses HTML table markup to represent the header and data cells of the table.  The <code>aria-sort</code> attribute is added to the column header of column data used to sort the table.  A <code>button</code> element in the each sortable column header is used to change the sorting column and order.  The data values in the columns are either all text or all numbers.  and a class name is used to indicate (e.g &quot;num&quot;) which columns should be sorted as a number value.  One column (e.g. &quot;address&quot;) in the example table cannot be used to sort the table.
+    <a href="../../#table">table design pattern</a> for a table with sortable rows.  The example uses HTML table markup to represent the rows, caption, and header and data cells of the table.  The <code>aria-sort</code> attribute is added to the column header of the data used to sort the table.  A <code>button</code> element in the each sortable column header is used to change the sorting column and order.  The data values in the columns are either all text or all numbers and a class name is used to indicate (e.g &quot;num&quot;) which columns should be sorted as a number value.  One column (e.g. &quot;address&quot;) in the example table is not used to sort the table.
   </p>
   <p>Similar examples include: </p>
   <ul>
@@ -54,28 +54,28 @@
         <thead>
           <tr>
             <th>
-              <button aria-label="Sort First Name column in descending order">
+              <button aria-describedby="id-sort-descending">
                 First Name
-                <span></span>
+                <span aria-hidden="true"></span>
               </button>
             </th>
-            <th aria-sort="ascending">
-              <button aria-label="Sort Last Name column in descending order">
+            <th aria-sort="ascending" aria-label="Last Name">
+              <button aria-describedby="id-sort-descending">
                 Last Name
-                <span></span>
+                <span aria-hidden="true"></span>
               </button>
             </th>
             <th>
-              <button aria-label="Sort Company column in descending order">
+              <button  aria-describedby="id-sort-descending">
                 Company
-                <span></span>
+                <span aria-hidden="true"></span>
               </button>
             </th>
             <th>Address</th>
             <th class="num">
-              <button aria-label="Sort Favorite Number column in descending order">
+              <button aria-describedby="id-sort-descending">
                 Favorite Number
-                <span></span>
+                <span aria-hidden="true"></span>
               </button>
             </th>
           </tr>
@@ -111,6 +111,8 @@
           </tr>
         </tbody>
       </table>
+      <div id="id-sort-descending" hidden>sort in descending order</div>
+      <div id="id-sort-ascending" hidden>sort in ascending order</div>
     </div>
     <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
   </section>
@@ -119,8 +121,11 @@
     <h2>Accessibility Features</h2>
     <ul>
       <li>
-        HTML table markup is used to create the table and to identify the column headers for the data cells which supports the ARIA principle of using native element semantics whenever possible.<br/>
+        HTML table markup is used to create the rows, caption, and to identify the column headers for the data cells.  The use of HTML supports the ARIA principle of using native element semantics whenever possible.<br/>
         NOTE: The use of the <code>thead</code> and <code>tbody</code> elements to separate the header rows from the sortable data rows helps reduce the complexity of the sorting script.
+      </li>
+      <li>
+        Since the each column header cell and it's associated sorting button share the same accessible name, <code>aria-describedby</code> reference on the <code>button</code> element is used to provide additional information on the action of the button. This supports table navigation commands of screen readers to just provide the column header name when moving between columns and not include additional information about the button action.
       </li>
       <li>
         Uses CSS <code>:hover</code> and <code>:focus</code> pseudo-class for styling visual keyboard focus and hover for the sorting button.
@@ -129,7 +134,7 @@
             The focus indicator encompasses both the column label and sort direction icon to make it easier to perceive when the switch has focus.
           </li>
           <li>
-            The hover indicator is the same as focus indicator to make it easier to perceive that clicking either the column label or the sort direction icon will activate the sorting the table.  Including both the column label and the sort direction icon maximizes the target size of the sorting button to make it easier to activate with pointing devices for people with visual and movement impairments.
+            The hover indicator is the same as focus indicator to make it easier to perceive that clicking either the column label or the sort direction icon will activate the sorting the table.  Including both the column label and the sort direction icon maximizes the target size of the sorting button to make it easier to activate with pointing devices for people with visual and movement impairments.  CSS positioning and sizing is used to make the button fill most of the header cell area to maximize the target size to activate the button with a pointing device.
           </li>
           <li>
             The cursor is changed to a pointer when hovering over the button to help people with visual impairments identify it as an interactive element.
@@ -182,22 +187,32 @@
             </ul>
           </td>
         </tr>
-        <tr data-test-id="button-aria-label">
+        <tr data-test-id="button-aria-describedby">
           <td></td>
           <th scope="row">
-            <code>aria-label=&quot;<em>string</em>&quot;</code>
+            <code>aria-describedby=&quot;<em>IDREF</em>&quot;</code>
           </th>
           <td><code>button</code></td>
           <td>
             <ul>
               <li>
-                Provides an accessible name for each button used for sorting (e.g. &quot;Sort last name in descending order&quot;).
+                Provides an accessible description for each button used for sorting (e.g. &quot;Sort in descending order&quot;).
               </li>
               <li>
-                The labels for all the <code>button</code> elements are updated each time any button is activated to indicate any changes in action of each button.
+                The descriptions for all the <code>button</code> elements are updated each time any button is activated to indicate any changes in action of each button.
               </li>
             </ul>
-        </td>
+          </td>
+        </tr>
+        <tr data-test-id="span-aria-hidden">
+          <td></td>
+          <th scope="row">
+            <code>aria-hidden=&quot;true&quot;</code>
+          </th>
+          <td><code>span</code></td>
+          <td>
+            Removes the icon character from being part of the accessible name of the button.  The direction of the sort is defined using <code>aria-sort</code> attribute on the <code>th</code> element.
+          </td>
         </tr>
       </tbody>
     </table>
@@ -205,7 +220,6 @@
 
   <section>
     <h2>Javascript and CSS Source Code</h2>
-    <!--  After the js and css files are named with the name of this example, change the href and text of the following 2 links to refer to the appropriate js and css files.  -->
     <ul id="css_js_files">
       <li>
         CSS:

@@ -17,25 +17,19 @@ class SortableTable {
 
     this.sortColumns = [];
 
-    this.buttonLabelDescending = 'Sort %s column in descending order';
-    this.buttonLabelAscending = 'Sort %s column in ascending order';
-
     for (var i = 0; i < this.columnHeaders.length; i++) {
       var ch = this.columnHeaders[i];
-      var button = ch.querySelector('button');
-      if (button) {
-        var label = this.buttonLabelAscending.replace('%s', button.textContent);
-        button.setAttribute('aria-label', label);
+      var buttonNode = ch.querySelector('button');
+      if (buttonNode) {
+        buttonNode.setAttribute('aria-describedby', 'id-sort-descending');
         this.sortColumns.push(i);
-        button.setAttribute('data-column-index', i);
-        button.addEventListener('click', this.handleClick.bind(this));
+        buttonNode.setAttribute('data-column-index', i);
+        buttonNode.addEventListener('click', this.handleClick.bind(this));
       }
     }
   }
 
   setColumnHeaderSort(columnIndex) {
-    var label;
-
     if (typeof columnIndex === 'string') {
       columnIndex = parseInt(columnIndex);
     }
@@ -52,11 +46,7 @@ class SortableTable {
             'ascending',
             ch.classList.contains('num')
           );
-          label = this.buttonLabelAscending.replace(
-            '%s',
-            this.cleanTextContent(buttonNode)
-          );
-          buttonNode.setAttribute('aria-label', label);
+          buttonNode.setAttribute('aria-describedby', 'id-sort-descending');
         } else {
           ch.setAttribute('aria-sort', 'descending');
           this.sortColumn(
@@ -64,30 +54,15 @@ class SortableTable {
             'descending',
             ch.classList.contains('num')
           );
-          label = this.buttonLabelAscending.replace(
-            '%s',
-            this.cleanTextContent(buttonNode)
-          );
-          buttonNode.setAttribute('aria-label', label);
+          buttonNode.setAttribute('aria-describedby', 'id-sort-ascending');
         }
       } else {
         if (ch.hasAttribute('aria-sort') && buttonNode) {
           ch.removeAttribute('aria-sort');
-          label = this.buttonLabelDescending.replace(
-            '%s',
-            this.cleanTextContent(buttonNode)
-          );
-          buttonNode.setAttribute('aria-label', label);
+          buttonNode.setAttribute('aria-describedby', 'id-sort-descending');
         }
       }
     }
-  }
-
-  cleanTextContent(node) {
-    var text = node.textContent;
-    text = text.replace(/[\n\r]+/g, '');
-    text = text.trim();
-    return text;
   }
 
   sortColumn(columnIndex, sortValue, isNumber) {
