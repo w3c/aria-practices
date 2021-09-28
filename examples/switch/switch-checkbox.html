@@ -85,9 +85,6 @@
           To help assistive technology users understand that each switch belongs to a set of switches related to <q>Accessibility Preferences</q>, the switches are wrapped in a <code>fieldset</code> element labeled with a <code>legend</code> element.
         </li>
         <li>
-          Uses CSS attribute selectors for synchronizing <code>.checked</code> property of the <code>input</code> element with the graphically rendered state.
-        </li>
-        <li>
           Uses CSS <code>:hover</code> pseudo-class and <code>onfocus</code>/<code>onblur</code> event handlers for setting/removing a class name for styling visual keyboard focus and hover.  The focus styling makes the relationship between the label and the switch perceivable to the user by creating a border around both the switch and the label and also changing the background color.
           <ul>
             <li>
@@ -106,7 +103,7 @@
         </li>
         <li>
           A visual text label (<q>on</q> or <q>off</q>) of the state is rendered adjacent to the graphical state indicator to make understanding the state easier for users with visual or cognitive disabilities.<br/>
-          NOTE: These labels are hidden from assistive technologies with <code>aria-hidden</code> to prevent screen readers from redundantly announcing the state, and CSS attribute selectors ensure the label display is synchronized with the value of the <code>input</code>.
+          NOTE: These labels are hidden from assistive technologies with <code>aria-hidden</code> to prevent screen readers from redundantly announcing the state, and CSS attribute selectors ensure the label displayed is synchronized with the value of the <code>input</code>.
         </li>
         <li>
           Spacing, border widths and fill are important to ensure the graphical states will be visible and discernible to people with visual impairments, including when browser or operating system high contrast settings are enabled:
