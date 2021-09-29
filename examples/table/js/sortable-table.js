@@ -66,34 +66,7 @@ class SortableTable {
   }
 
   sortColumn(columnIndex, sortValue, isNumber) {
-    if (typeof isNumber !== 'boolean') {
-      isNumber = false;
-    }
-
-    var tbody = this.tableNode.querySelector('tbody');
-    var rowNodes = [];
-    var dataCells = [];
-
-    var rowNode = tbody.firstElementChild;
-
-    var index = 0;
-    while (rowNode) {
-      rowNodes.push(rowNode);
-      var rowCells = rowNode.querySelectorAll('th, td');
-      var dataCell = rowCells[columnIndex];
-
-      var data = {};
-      data.index = index;
-      data.value = dataCell.textContent.toLowerCase().trim();
-      if (isNumber) {
-        data.value = parseFloat(data.value);
-      }
-      dataCells.push(data);
-      rowNode = rowNode.nextElementSibling;
-      index += 1;
-    }
-
-    dataCells.sort((a, b) => {
+    function compareValues(a, b) {
       if (sortValue === 'ascending') {
         if (a.value === b.value) {
           return 0;
@@ -115,16 +88,45 @@ class SortableTable {
           }
         }
       }
-    });
+    }
+
+    if (typeof isNumber !== 'boolean') {
+      isNumber = false;
+    }
+
+    var tbodyNode = this.tableNode.querySelector('tbody');
+    var rowNodes = [];
+    var dataCells = [];
+
+    var rowNode = tbodyNode.firstElementChild;
+
+    var index = 0;
+    while (rowNode) {
+      rowNodes.push(rowNode);
+      var rowCells = rowNode.querySelectorAll('th, td');
+      var dataCell = rowCells[columnIndex];
+
+      var data = {};
+      data.index = index;
+      data.value = dataCell.textContent.toLowerCase().trim();
+      if (isNumber) {
+        data.value = parseFloat(data.value);
+      }
+      dataCells.push(data);
+      rowNode = rowNode.nextElementSibling;
+      index += 1;
+    }
+
+    dataCells.sort(compareValues);
 
     // remove rows
-    while (tbody.firstChild) {
-      tbody.removeChild(tbody.lastChild);
+    while (tbodyNode.firstChild) {
+      tbodyNode.removeChild(tbodyNode.lastChild);
     }
 
     // add sorted rows
     for (var i = 0; i < dataCells.length; i += 1) {
-      tbody.appendChild(rowNodes[dataCells[i].index]);
+      tbodyNode.appendChild(rowNodes[dataCells[i].index]);
     }
   }
 
