@@ -2562,25 +2562,34 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       <h3>Switch</h3>
       <p>
         A <a href="#switch" class="role-reference">switch</a> is an input widget that allows users to choose one of two values: <q>on</q> or <q>off</q>.
-        A switch is similar to a checkbox, which allows users to choose between the values of <q>checked</q> or <q>unchecked</q>.
-        However, unlike a switch, a checkbox can also allow a third value of <q>partially checked</q>.
+        Sswitches are similar to <a href="#checkbox">checkboxes</a> and <a href="#button">toggle buttons</a>, which can also serve as binary inputs.
+        One difference, however, is that switches can only be used for binary input while checkboxes and toggle buttons allow implementations the option of supporting a third middle state.
+        Checkboxes can be <q>checked</q> or <q>not checked</q> and can optionally also allow for a <q>partially checked</q> state.
+        Toggle buttons can be <q>pressed</q> or <q>not pressed</q> and can optionally allow for a <q>partially pressed</q> state.
       </p>
       <p>
-        Since switch and checkbox both offer binary input, semantically, they are often interchangeable.
-        Choosing whether switch or checkbox is most appropriate for a given implementation can   depend on visual design.
-        However, there are circumstances where the semantics of <q>on or off</q> are easier for assistive technology users to understand than the semantics of <q>checked or unchecked</q>, and vice versa.
-        For instance, screen reader output of <q>Lights switch button on</q> is more user friendly than <q>Lights checkbox checked</q> if the function of the widget were to turn some lights on or off.
+        Since switch, checkbox, and toggle button all offer binary input, they are often functionally interchangeable.
+        Choose the role that best matches both the visual design and semantics of the user interface.
+        For instance, there are some circumstances where the semantics of <q>on or off</q> would be easier for assistive technology users to understand than the semantics of <q>checked or unchecked</q>, and vice versa.
+        Consider a widget for turning lights on or off.
+        In this case, screen reader output of <q>Lights switch on</q> is more user friendly than <q>Lights checkbox checked</q> 
         However, if the same input were in a group of inputs labeled <q>Which of the following must be included in your pre-takeoff procedures?</q>, <q>Lights checkbox checked</q> would make more sense.
+      </p>
+      <p>
+        <strong>Important:</strong> it is critical the label on a switch does not change when its state changes.
       </p>
 
       <section class="notoc">
         <h4>Examples</h4>
         <ul>
+          <li>To be added.</li>
+          <!--  
           <li>
             <a href="examples/switch/switch.html">Switch using <code>div</code> element Example</a>: Demonstrates switches used for turning on/off notifications.</li>
           <li><a href="examples/switch/switch-button.html">Switch using <code>button</code> element Example</a>: Demonstrates switches used for turning on/off lights.</li>
           <li><a href="examples/switch/switch-checkbox.html">Switch using <code>input[type=&quot;checkbox&quot;]</code> element Example</a>: Demonstrates switches used for turning on/off accessibility preferences.
           </li>
+          -->
         </ul>
       </section>
 
