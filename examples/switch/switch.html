@@ -181,57 +181,48 @@
           <th scope="row"><code>switch</code></th>
           <td></td>
           <td><code>div</code></td>
-          <td>
-            <ul>
-              <li>The <code>role=&quot;switch&quot;</code> attribute identifies the <code>div</code> element as an ARIA <code>switch</code>.</li>
-              <li>The <code>switch</code> widget needs a <code>tabindex=&quot;0&quot;</code> value.</li>
-            </ul>
-          </td>
+          <td>Identifies the <code>div</code> element as a <code>switch</code>.</td>
         </tr>
         <tr data-test-id="switch-tabindex">
           <td></td>
-          <th scope="row"><code>tabindex=&quot;0&quot;</code></th>
+          <th scope="row"><code>tabindex="0"</code></th>
           <td><code>div</code></td>
-          <td>
-              <ul>
-                <li>The <code>div[&quot;switch&quot;]</code> is identified as an interactive element and is added to the tab order of the page by setting the <code>tabindex=&quot;0&quot;</code>.</li>
-                </ul>
-          </td>
+          <td>Includes the switch in the page <kbd>Tab</kbd> sequence.</td>
         </tr>
         <tr data-test-id="switch-aria-checked">
           <td></td>
-          <th scope="row"><code>aria-checked=&quot;false&quot;</code></th>
+          <th scope="row"><code>aria-checked="false"</code></th>
           <td><code>div</code></td>
           <td>
               <ul>
-                <li>Identifies the <code>switch</code> button as off.</li>
-                <li>CSS attribute selectors (e.g. <code>[aria-checked=&quot;false&quot;]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
+                <li>Indicates the <code>switch</code> is off.</li>
+                <li>CSS attribute selectors (e.g. <code>[aria-checked="false"]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
               </ul>
           </td>
         </tr>
         <tr data-test-id="switch-aria-checked">
           <td></td>
-          <th scope="row"><code>aria-checked=&quot;true&quot;</code></th>
+          <th scope="row"><code>aria-checked="true"</code></th>
           <td><code>div</code></td>
           <td>
-              <ul>
-                <li>Identified the <code>switch</code> as on.</li>
-                <li>CSS attribute selectors (e.g. <code>[aria-checked=&quot;true&quot;]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
-              </ul>
+            <ul>
+              <li>Indicates the <code>switch</code> is on.</li>
+              <li>CSS attribute selectors (e.g. <code>[aria-checked="true"]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
+            </ul>
           </td>
-          </tr>
-            <tr data-test-id="aria-hidden">
-              <td></td>
-              <th scope="row"><code>aria-hidden="true"</code></th>
-              <td><code>span.on</code> and <code>span.off</code></td>
-              <td>
-                <ul>
-                  <li>Removes the strings <q>on</q> and <q>off</q> that appear to the right of the switch from the accessible name of the switch.</li>
-                  <li>These strings are included only for enhancing visual comprehension of the state; element states are not permitted in accessible names.</li>
-                </ul>
-              </td>
-            </tr>
-          </tbody>
+        </tr>
+        <tr data-test-id="aria-hidden">
+          <td></td>
+          <th scope="row"><code>aria-hidden="true"</code></th>
+          <td><code>span.on</code> and <code>span.off</code></td>
+          <td>
+            <ul>
+              <li>Removes the strings <q>on</q> and <q>off</q> that appear to the right of the switch from the accessible name of the switch.</li>
+              <li>These strings are included only for enhancing visual comprehension of the state; element states are not permitted in accessible names.</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
     </table>
   </section>
 
