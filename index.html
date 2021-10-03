@@ -150,16 +150,16 @@
       "aliasOf": "WAI-ARIA-1.1"
     }
   },
-  "publishDate": "2021-09-28",
-  "publishISODate": "2021-09-28T00:00:00.000Z",
-  "generatedSubtitle": "Editor's Draft 28 September 2021"
+  "publishDate": "2021-10-03",
+  "publishISODate": "2021-10-03T00:00:00.000Z",
+  "generatedSubtitle": "Editor's Draft 03 October 2021"
 }</script><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED"></head>
 <body class="h-entry informative"><div class="head">
     <a class="logo" href="https://www.w3.org/"><img alt="W3C" width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C"></a> <h1 id="title" class="title">WAI-ARIA Authoring Practices 1.2</h1>
     
     <h2>
       W3C Editor's Draft
-      <time class="dt-published" datetime="2021-09-28">28 September 2021</time>
+      <time class="dt-published" datetime="2021-10-03">03 October 2021</time>
     </h2>
     <dl>
       <dt>This version:</dt><dd>
@@ -289,7 +289,7 @@
   </p><p>
                   This document is governed by the
                   <a id="w3c_process_revision" href="https://www.w3.org/2019/Process-20190301/">1 March 2019 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
-                </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#intro"><bdi class="secno">1. </bdi>Introduction</a></li><li class="tocline"><a class="tocxref" href="#read_me_first"><bdi class="secno">2. </bdi>Read Me First</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#no_aria_better_bad_aria"><bdi class="secno">2.1 </bdi>No ARIA is better than Bad ARIA</a></li><li class="tocline"><a class="tocxref" href="#browser_and_AT_support"><bdi class="secno">2.2 </bdi>Browser and Assistive Technology Support</a></li><li class="tocline"><a class="tocxref" href="#mobile_and_touch_support"><bdi class="secno">2.3 </bdi>Mobile and Touch Support</a></li></ol></li><li class="tocline"><a class="tocxref" href="#aria_ex"><bdi class="secno">3. </bdi>Design Patterns and Widgets</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#accordion"><bdi class="secno">3.1 </bdi>Accordion (Sections With Show/Hide Functionality)</a></li><li class="tocline"><a class="tocxref" href="#alert"><bdi class="secno">3.2 </bdi>Alert</a></li><li class="tocline"><a class="tocxref" href="#alertdialog"><bdi class="secno">3.3 </bdi>Alert and Message Dialogs</a></li><li class="tocline"><a class="tocxref" href="#breadcrumb"><bdi class="secno">3.4 </bdi>Breadcrumb</a></li><li class="tocline"><a class="tocxref" href="#button"><bdi class="secno">3.5 </bdi>Button</a></li><li class="tocline"><a class="tocxref" href="#carousel"><bdi class="secno">3.6 </bdi>Carousel (Slide Show or Image Rotator)</a></li><li class="tocline"><a class="tocxref" href="#checkbox"><bdi class="secno">3.7 </bdi>Checkbox</a></li><li class="tocline"><a class="tocxref" href="#combobox"><bdi class="secno">3.8 </bdi>Combobox</a></li><li class="tocline"><a class="tocxref" href="#dialog_modal"><bdi class="secno">3.9 </bdi>Dialog (Modal)</a></li><li class="tocline"><a class="tocxref" href="#disclosure"><bdi class="secno">3.10 </bdi>Disclosure (Show/Hide)</a></li><li class="tocline"><a class="tocxref" href="#feed"><bdi class="secno">3.11 </bdi>Feed</a></li><li class="tocline"><a class="tocxref" href="#grid"><bdi class="secno">3.12 </bdi>Grids : Interactive Tabular Data and Layout Containers</a></li><li class="tocline"><a class="tocxref" href="#link"><bdi class="secno">3.13 </bdi>Link</a></li><li class="tocline"><a class="tocxref" href="#Listbox"><bdi class="secno">3.14 </bdi>Listbox</a></li><li class="tocline"><a class="tocxref" href="#menu"><bdi class="secno">3.15 </bdi>Menu or Menu bar</a></li><li class="tocline"><a class="tocxref" href="#menubutton"><bdi class="secno">3.16 </bdi>Menu Button</a></li><li class="tocline"><a class="tocxref" href="#meter"><bdi class="secno">3.17 </bdi>Meter</a></li><li class="tocline"><a class="tocxref" href="#radiobutton"><bdi class="secno">3.18 </bdi>Radio Group</a></li><li class="tocline"><a class="tocxref" href="#slider"><bdi class="secno">3.19 </bdi>Slider</a></li><li class="tocline"><a class="tocxref" href="#slidertwothumb"><bdi class="secno">3.20 </bdi>Slider (Multi-Thumb)</a></li><li class="tocline"><a class="tocxref" href="#spinbutton"><bdi class="secno">3.21 </bdi>Spinbutton</a></li><li class="tocline"><a class="tocxref" href="#table"><bdi class="secno">3.22 </bdi>Table</a></li><li class="tocline"><a class="tocxref" href="#tabpanel"><bdi class="secno">3.23 </bdi>Tabs</a></li><li class="tocline"><a class="tocxref" href="#toolbar"><bdi class="secno">3.24 </bdi>Toolbar</a></li><li class="tocline"><a class="tocxref" href="#tooltip"><bdi class="secno">3.25 </bdi>Tooltip Widget</a></li><li class="tocline"><a class="tocxref" href="#TreeView"><bdi class="secno">3.26 </bdi>Tree View</a></li><li class="tocline"><a class="tocxref" href="#treegrid"><bdi class="secno">3.27 </bdi>Treegrid</a></li><li class="tocline"><a class="tocxref" href="#windowsplitter"><bdi class="secno">3.28 </bdi>Window Splitter</a></li></ol></li><li class="tocline"><a class="tocxref" href="#aria_landmark"><bdi class="secno">4. </bdi>Landmark Regions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#html-sectioning-elements"><bdi class="secno">4.1 </bdi>HTML Sectioning Elements</a></li><li class="tocline"><a class="tocxref" href="#general-principles-of-landmark-design"><bdi class="secno">4.2 </bdi>General Principles of Landmark Design</a></li><li class="tocline"><a class="tocxref" href="#landmark-roles"><bdi class="secno">4.3 </bdi>Landmark Roles</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#aria_lh_banner"><bdi class="secno">4.3.1 </bdi>Banner</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_complementary"><bdi class="secno">4.3.2 </bdi>Complementary</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_contentinfo"><bdi class="secno">4.3.3 </bdi>Contentinfo</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_form"><bdi class="secno">4.3.4 </bdi>Form</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_main"><bdi class="secno">4.3.5 </bdi>Main</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_navigation"><bdi class="secno">4.3.6 </bdi>Navigation</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_region"><bdi class="secno">4.3.7 </bdi>Region</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_search"><bdi class="secno">4.3.8 </bdi>Search</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#names_and_descriptions"><bdi class="secno">5. </bdi>Providing Accessible Names and Descriptions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#names_and_descriptions_definition"><bdi class="secno">5.1 </bdi>What ARE Accessible Names and Descriptions?</a></li><li class="tocline"><a class="tocxref" href="#names_and_descriptions_derivation"><bdi class="secno">5.2 </bdi>How Are Name and Description Strings Derived?</a></li><li class="tocline"><a class="tocxref" href="#accessible_names"><bdi class="secno">5.3 </bdi>Accessible Names</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#naming_cardinal_rules"><bdi class="secno">5.3.1 </bdi>Cardinal Rules of Naming</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#naming_rule_heed_warnings"><bdi class="secno">5.3.1.1 </bdi>Rule 1: Heed Warnings and Test Thoroughly</a></li><li class="tocline"><a class="tocxref" href="#naming_rule_visible_text"><bdi class="secno">5.3.1.2 </bdi>Rule 2: Prefer Visible Text</a></li><li class="tocline"><a class="tocxref" href="#naming_rule_native_techniques"><bdi class="secno">5.3.1.3 </bdi>Rule 3: Prefer Native Techniques</a></li><li class="tocline"><a class="tocxref" href="#naming_rule_avoid_fallback"><bdi class="secno">5.3.1.4 </bdi>Rule 4: Avoid Browser Fallback</a></li><li class="tocline"><a class="tocxref" href="#naming_rule_brief_names"><bdi class="secno">5.3.1.5 </bdi>Rule 5: Compose Brief, Useful Names</a></li></ol></li><li class="tocline"><a class="tocxref" href="#naming_techniques"><bdi class="secno">5.3.2 </bdi>Naming Techniques</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#naming_with_child_content"><bdi class="secno">5.3.2.1 </bdi>Naming with Child Content</a></li><li class="tocline"><a class="tocxref" href="#naming_with_aria-label"><bdi class="secno">5.3.2.2 </bdi>Naming with a String Attribute Via <code>aria-label</code></a></li><li class="tocline"><a class="tocxref" href="#naming_with_aria-labelledby"><bdi class="secno">5.3.2.3 </bdi>Naming with Referenced Content Via <code>aria-labelledby</code></a></li><li class="tocline"><a class="tocxref" href="#naming_with_labels"><bdi class="secno">5.3.2.4 </bdi>Naming Form Controls with the Label Element</a></li><li class="tocline"><a class="tocxref" href="#naming_with_legends"><bdi class="secno">5.3.2.5 </bdi>Naming Fieldsets with the Legend Element</a></li><li class="tocline"><a class="tocxref" href="#naming_with_captions"><bdi class="secno">5.3.2.6 </bdi>Naming Tables and Figures with Captions</a></li><li class="tocline"><a class="tocxref" href="#naming_with_fallback"><bdi class="secno">5.3.2.7 </bdi>Fallback Names Derived from Titles and Placeholders</a></li></ol></li><li class="tocline"><a class="tocxref" href="#naming_effectively"><bdi class="secno">5.3.3 </bdi>Composing Effective and User-friendly Accessible Names</a></li><li class="tocline"><a class="tocxref" href="#naming_role_guidance"><bdi class="secno">5.3.4 </bdi><span id="naming_role_guidance_heading">Accessible Name Guidance by Role</span></a></li><li class="tocline"><a class="tocxref" href="#name_calculation"><bdi class="secno">5.3.5 </bdi>Accessible name calculation</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#name_calculation_non-recursive_ex"><bdi class="secno">5.3.5.1 </bdi>Examples of non-recursive accessible name calculation</a></li><li class="tocline"><a class="tocxref" href="#name_calculation_recursive_ex"><bdi class="secno">5.3.5.2 </bdi>Examples of recursive accessible name calculation</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#accessible_descriptions"><bdi class="secno">5.4 </bdi>Accessible Descriptions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#describing_techniques"><bdi class="secno">5.4.1 </bdi>Describing Techniques</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#describing_with_aria-describedby"><bdi class="secno">5.4.1.1 </bdi>Describing by referencing content with <code>aria-describedby</code></a></li><li class="tocline"><a class="tocxref" href="#describing_with_captions"><bdi class="secno">5.4.1.2 </bdi>Describing Tables and Figures with Captions</a></li><li class="tocline"><a class="tocxref" href="#describing_with_title"><bdi class="secno">5.4.1.3 </bdi>Descriptions Derived from Titles</a></li></ol></li><li class="tocline"><a class="tocxref" href="#description_calculation"><bdi class="secno">5.4.2 </bdi>Accessible description calculation</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#keyboard"><bdi class="secno">6. </bdi>Developing a Keyboard Interface</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_generalnav"><bdi class="secno">6.1 </bdi>Fundamental Keyboard Navigation Conventions</a></li><li class="tocline"><a class="tocxref" href="#kbd_focus_discernable_predictable"><bdi class="secno">6.2 </bdi>Discernible and Predictable Keyboard Focus</a></li><li class="tocline"><a class="tocxref" href="#kbd_focus_vs_selection"><bdi class="secno">6.3 </bdi>Focus VS Selection and the Perception of Dual Focus</a></li><li class="tocline"><a class="tocxref" href="#kbd_selection_follows_focus"><bdi class="secno">6.4 </bdi>Deciding When to Make Selection Automatically Follow Focus</a></li><li class="tocline"><a class="tocxref" href="#kbd_general_between"><bdi class="secno">6.5 </bdi>Keyboard Navigation Between Components (The Tab Sequence)</a></li><li class="tocline"><a class="tocxref" href="#kbd_general_within"><bdi class="secno">6.6 </bdi> Keyboard Navigation Inside Components</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_roving_tabindex"><bdi class="secno">6.6.1 </bdi>Managing Focus Within Components Using a Roving tabindex</a></li><li class="tocline"><a class="tocxref" href="#kbd_focus_activedescendant"><bdi class="secno">6.6.2 </bdi>Managing Focus in Composites Using aria-activedescendant</a></li></ol></li><li class="tocline"><a class="tocxref" href="#kbd_disabled_controls"><bdi class="secno">6.7 </bdi>Focusability of disabled controls</a></li><li class="tocline"><a class="tocxref" href="#kbd_common_conventions"><bdi class="secno">6.8 </bdi>Key Assignment Conventions for Common Functions</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts"><bdi class="secno">6.9 </bdi>Keyboard Shortcuts</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_behavior_design"><bdi class="secno">6.9.1 </bdi>Designing the Scope and Behavior of Keyboard Shortcuts</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_design_basic"><bdi class="secno">6.9.1.1 </bdi>Ensure Basic Access Via Navigation </a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_design_choose_behavior"><bdi class="secno">6.9.1.2 </bdi>Choose Appropriate Shortcut Behavior</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_design_where"><bdi class="secno">6.9.1.3 </bdi>Choose Where to Add Shortcuts </a></li></ol></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assigning"><bdi class="secno">6.9.2 </bdi>Assigning Keyboard Shortcuts</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_opsys_conflicts"><bdi class="secno">6.9.2.1 </bdi>Operating System Key Conflicts</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_assistivetech_conflicts"><bdi class="secno">6.9.2.2 </bdi>Assistive Technology Key Conflicts</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_browser_conflicts"><bdi class="secno">6.9.2.3 </bdi>Browser Key Conflicts</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_intentional_conflicts"><bdi class="secno">6.9.2.4 </bdi>Intentional Key Conflicts</a></li></ol></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties"><bdi class="secno">7. </bdi>Grid and Table Properties</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_rows"><bdi class="secno">7.1 </bdi>Using <code>aria-rowcount</code> and <code>aria-rowindex</code></a></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_cols"><bdi class="secno">7.2 </bdi>Using <code>aria-colcount</code> and <code>aria-colindex</code></a><ol class="toc"><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_cols_contiguous"><bdi class="secno">7.2.1 </bdi>Using <code>aria-colindex</code> When Column Indices Are Contiguous</a></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_cols_noncontiguous"><bdi class="secno">7.2.2 </bdi>Using <code>aria-colindex</code> When Column Indices Are Not Contiguous</a></li></ol></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_spans"><bdi class="secno">7.3 </bdi>Defining cell spans using <code>aria-colspan</code> and <code>aria-rowspan</code></a></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_sort"><bdi class="secno">7.4 </bdi>Indicating sort order with <code>aria-sort</code></a></li></ol></li><li class="tocline"><a class="tocxref" href="#range_related_properties"><bdi class="secno">8. </bdi>Communicating Value and Limits for Range Widgets</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#range_related_properties_using_aria-valuemin_aria-valuemax_and_aria-valuenow"><bdi class="secno">8.1 </bdi>Using <code>aria-valuemin</code>, <code>aria-valuemax</code> and <code>aria-valuenow</code></a></li><li class="tocline"><a class="tocxref" href="#range_related_properties_using_aria-valuetext"><bdi class="secno">8.2 </bdi>Using <code>aria-valuetext</code></a></li><li class="tocline"><a class="tocxref" href="#range_related_properties_meter_role"><bdi class="secno">8.3 </bdi>Range properties with meter</a></li><li class="tocline"><a class="tocxref" href="#range_related_properties_progressbar_role"><bdi class="secno">8.4 </bdi>Range properties with progress bars</a></li><li class="tocline"><a class="tocxref" href="#range_related_properties_scrollbar_role"><bdi class="secno">8.5 </bdi>Range properties with scrollbars</a></li><li class="tocline"><a class="tocxref" href="#range_related_properties_slider_role"><bdi class="secno">8.6 </bdi>Range properties with sliders</a></li><li class="tocline"><a class="tocxref" href="#range_related_properties_spinbutton_role"><bdi class="secno">8.7 </bdi>Range properties with spin buttons</a></li></ol></li><li class="tocline"><a class="tocxref" href="#presentation_role"><bdi class="secno">9. </bdi>Intentionally Hiding Semantics with the <code>presentation</code> Role</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#presentation_role_effects"><bdi class="secno">9.1 </bdi>
+                </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#intro"><bdi class="secno">1. </bdi>Introduction</a></li><li class="tocline"><a class="tocxref" href="#read_me_first"><bdi class="secno">2. </bdi>Read Me First</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#no_aria_better_bad_aria"><bdi class="secno">2.1 </bdi>No ARIA is better than Bad ARIA</a></li><li class="tocline"><a class="tocxref" href="#browser_and_AT_support"><bdi class="secno">2.2 </bdi>Browser and Assistive Technology Support</a></li><li class="tocline"><a class="tocxref" href="#mobile_and_touch_support"><bdi class="secno">2.3 </bdi>Mobile and Touch Support</a></li></ol></li><li class="tocline"><a class="tocxref" href="#aria_ex"><bdi class="secno">3. </bdi>Design Patterns and Widgets</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#accordion"><bdi class="secno">3.1 </bdi>Accordion (Sections With Show/Hide Functionality)</a></li><li class="tocline"><a class="tocxref" href="#alert"><bdi class="secno">3.2 </bdi>Alert</a></li><li class="tocline"><a class="tocxref" href="#alertdialog"><bdi class="secno">3.3 </bdi>Alert and Message Dialogs</a></li><li class="tocline"><a class="tocxref" href="#breadcrumb"><bdi class="secno">3.4 </bdi>Breadcrumb</a></li><li class="tocline"><a class="tocxref" href="#button"><bdi class="secno">3.5 </bdi>Button</a></li><li class="tocline"><a class="tocxref" href="#carousel"><bdi class="secno">3.6 </bdi>Carousel (Slide Show or Image Rotator)</a></li><li class="tocline"><a class="tocxref" href="#checkbox"><bdi class="secno">3.7 </bdi>Checkbox</a></li><li class="tocline"><a class="tocxref" href="#combobox"><bdi class="secno">3.8 </bdi>Combobox</a></li><li class="tocline"><a class="tocxref" href="#dialog_modal"><bdi class="secno">3.9 </bdi>Dialog (Modal)</a></li><li class="tocline"><a class="tocxref" href="#disclosure"><bdi class="secno">3.10 </bdi>Disclosure (Show/Hide)</a></li><li class="tocline"><a class="tocxref" href="#feed"><bdi class="secno">3.11 </bdi>Feed</a></li><li class="tocline"><a class="tocxref" href="#grid"><bdi class="secno">3.12 </bdi>Grids : Interactive Tabular Data and Layout Containers</a></li><li class="tocline"><a class="tocxref" href="#link"><bdi class="secno">3.13 </bdi>Link</a></li><li class="tocline"><a class="tocxref" href="#Listbox"><bdi class="secno">3.14 </bdi>Listbox</a></li><li class="tocline"><a class="tocxref" href="#menu"><bdi class="secno">3.15 </bdi>Menu or Menu bar</a></li><li class="tocline"><a class="tocxref" href="#menubutton"><bdi class="secno">3.16 </bdi>Menu Button</a></li><li class="tocline"><a class="tocxref" href="#meter"><bdi class="secno">3.17 </bdi>Meter</a></li><li class="tocline"><a class="tocxref" href="#radiobutton"><bdi class="secno">3.18 </bdi>Radio Group</a></li><li class="tocline"><a class="tocxref" href="#slider"><bdi class="secno">3.19 </bdi>Slider</a></li><li class="tocline"><a class="tocxref" href="#slidertwothumb"><bdi class="secno">3.20 </bdi>Slider (Multi-Thumb)</a></li><li class="tocline"><a class="tocxref" href="#spinbutton"><bdi class="secno">3.21 </bdi>Spinbutton</a></li><li class="tocline"><a class="tocxref" href="#switch"><bdi class="secno">3.22 </bdi>Switch</a></li><li class="tocline"><a class="tocxref" href="#table"><bdi class="secno">3.23 </bdi>Table</a></li><li class="tocline"><a class="tocxref" href="#tabpanel"><bdi class="secno">3.24 </bdi>Tabs</a></li><li class="tocline"><a class="tocxref" href="#toolbar"><bdi class="secno">3.25 </bdi>Toolbar</a></li><li class="tocline"><a class="tocxref" href="#tooltip"><bdi class="secno">3.26 </bdi>Tooltip Widget</a></li><li class="tocline"><a class="tocxref" href="#TreeView"><bdi class="secno">3.27 </bdi>Tree View</a></li><li class="tocline"><a class="tocxref" href="#treegrid"><bdi class="secno">3.28 </bdi>Treegrid</a></li><li class="tocline"><a class="tocxref" href="#windowsplitter"><bdi class="secno">3.29 </bdi>Window Splitter</a></li></ol></li><li class="tocline"><a class="tocxref" href="#aria_landmark"><bdi class="secno">4. </bdi>Landmark Regions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#html-sectioning-elements"><bdi class="secno">4.1 </bdi>HTML Sectioning Elements</a></li><li class="tocline"><a class="tocxref" href="#general-principles-of-landmark-design"><bdi class="secno">4.2 </bdi>General Principles of Landmark Design</a></li><li class="tocline"><a class="tocxref" href="#landmark-roles"><bdi class="secno">4.3 </bdi>Landmark Roles</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#aria_lh_banner"><bdi class="secno">4.3.1 </bdi>Banner</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_complementary"><bdi class="secno">4.3.2 </bdi>Complementary</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_contentinfo"><bdi class="secno">4.3.3 </bdi>Contentinfo</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_form"><bdi class="secno">4.3.4 </bdi>Form</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_main"><bdi class="secno">4.3.5 </bdi>Main</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_navigation"><bdi class="secno">4.3.6 </bdi>Navigation</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_region"><bdi class="secno">4.3.7 </bdi>Region</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_search"><bdi class="secno">4.3.8 </bdi>Search</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#names_and_descriptions"><bdi class="secno">5. </bdi>Providing Accessible Names and Descriptions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#names_and_descriptions_definition"><bdi class="secno">5.1 </bdi>What ARE Accessible Names and Descriptions?</a></li><li class="tocline"><a class="tocxref" href="#names_and_descriptions_derivation"><bdi class="secno">5.2 </bdi>How Are Name and Description Strings Derived?</a></li><li class="tocline"><a class="tocxref" href="#accessible_names"><bdi class="secno">5.3 </bdi>Accessible Names</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#naming_cardinal_rules"><bdi class="secno">5.3.1 </bdi>Cardinal Rules of Naming</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#naming_rule_heed_warnings"><bdi class="secno">5.3.1.1 </bdi>Rule 1: Heed Warnings and Test Thoroughly</a></li><li class="tocline"><a class="tocxref" href="#naming_rule_visible_text"><bdi class="secno">5.3.1.2 </bdi>Rule 2: Prefer Visible Text</a></li><li class="tocline"><a class="tocxref" href="#naming_rule_native_techniques"><bdi class="secno">5.3.1.3 </bdi>Rule 3: Prefer Native Techniques</a></li><li class="tocline"><a class="tocxref" href="#naming_rule_avoid_fallback"><bdi class="secno">5.3.1.4 </bdi>Rule 4: Avoid Browser Fallback</a></li><li class="tocline"><a class="tocxref" href="#naming_rule_brief_names"><bdi class="secno">5.3.1.5 </bdi>Rule 5: Compose Brief, Useful Names</a></li></ol></li><li class="tocline"><a class="tocxref" href="#naming_techniques"><bdi class="secno">5.3.2 </bdi>Naming Techniques</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#naming_with_child_content"><bdi class="secno">5.3.2.1 </bdi>Naming with Child Content</a></li><li class="tocline"><a class="tocxref" href="#naming_with_aria-label"><bdi class="secno">5.3.2.2 </bdi>Naming with a String Attribute Via <code>aria-label</code></a></li><li class="tocline"><a class="tocxref" href="#naming_with_aria-labelledby"><bdi class="secno">5.3.2.3 </bdi>Naming with Referenced Content Via <code>aria-labelledby</code></a></li><li class="tocline"><a class="tocxref" href="#naming_with_labels"><bdi class="secno">5.3.2.4 </bdi>Naming Form Controls with the Label Element</a></li><li class="tocline"><a class="tocxref" href="#naming_with_legends"><bdi class="secno">5.3.2.5 </bdi>Naming Fieldsets with the Legend Element</a></li><li class="tocline"><a class="tocxref" href="#naming_with_captions"><bdi class="secno">5.3.2.6 </bdi>Naming Tables and Figures with Captions</a></li><li class="tocline"><a class="tocxref" href="#naming_with_fallback"><bdi class="secno">5.3.2.7 </bdi>Fallback Names Derived from Titles and Placeholders</a></li></ol></li><li class="tocline"><a class="tocxref" href="#naming_effectively"><bdi class="secno">5.3.3 </bdi>Composing Effective and User-friendly Accessible Names</a></li><li class="tocline"><a class="tocxref" href="#naming_role_guidance"><bdi class="secno">5.3.4 </bdi><span id="naming_role_guidance_heading">Accessible Name Guidance by Role</span></a></li><li class="tocline"><a class="tocxref" href="#name_calculation"><bdi class="secno">5.3.5 </bdi>Accessible name calculation</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#name_calculation_non-recursive_ex"><bdi class="secno">5.3.5.1 </bdi>Examples of non-recursive accessible name calculation</a></li><li class="tocline"><a class="tocxref" href="#name_calculation_recursive_ex"><bdi class="secno">5.3.5.2 </bdi>Examples of recursive accessible name calculation</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#accessible_descriptions"><bdi class="secno">5.4 </bdi>Accessible Descriptions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#describing_techniques"><bdi class="secno">5.4.1 </bdi>Describing Techniques</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#describing_with_aria-describedby"><bdi class="secno">5.4.1.1 </bdi>Describing by referencing content with <code>aria-describedby</code></a></li><li class="tocline"><a class="tocxref" href="#describing_with_captions"><bdi class="secno">5.4.1.2 </bdi>Describing Tables and Figures with Captions</a></li><li class="tocline"><a class="tocxref" href="#describing_with_title"><bdi class="secno">5.4.1.3 </bdi>Descriptions Derived from Titles</a></li></ol></li><li class="tocline"><a class="tocxref" href="#description_calculation"><bdi class="secno">5.4.2 </bdi>Accessible description calculation</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#keyboard"><bdi class="secno">6. </bdi>Developing a Keyboard Interface</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_generalnav"><bdi class="secno">6.1 </bdi>Fundamental Keyboard Navigation Conventions</a></li><li class="tocline"><a class="tocxref" href="#kbd_focus_discernable_predictable"><bdi class="secno">6.2 </bdi>Discernible and Predictable Keyboard Focus</a></li><li class="tocline"><a class="tocxref" href="#kbd_focus_vs_selection"><bdi class="secno">6.3 </bdi>Focus VS Selection and the Perception of Dual Focus</a></li><li class="tocline"><a class="tocxref" href="#kbd_selection_follows_focus"><bdi class="secno">6.4 </bdi>Deciding When to Make Selection Automatically Follow Focus</a></li><li class="tocline"><a class="tocxref" href="#kbd_general_between"><bdi class="secno">6.5 </bdi>Keyboard Navigation Between Components (The Tab Sequence)</a></li><li class="tocline"><a class="tocxref" href="#kbd_general_within"><bdi class="secno">6.6 </bdi> Keyboard Navigation Inside Components</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_roving_tabindex"><bdi class="secno">6.6.1 </bdi>Managing Focus Within Components Using a Roving tabindex</a></li><li class="tocline"><a class="tocxref" href="#kbd_focus_activedescendant"><bdi class="secno">6.6.2 </bdi>Managing Focus in Composites Using aria-activedescendant</a></li></ol></li><li class="tocline"><a class="tocxref" href="#kbd_disabled_controls"><bdi class="secno">6.7 </bdi>Focusability of disabled controls</a></li><li class="tocline"><a class="tocxref" href="#kbd_common_conventions"><bdi class="secno">6.8 </bdi>Key Assignment Conventions for Common Functions</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts"><bdi class="secno">6.9 </bdi>Keyboard Shortcuts</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_behavior_design"><bdi class="secno">6.9.1 </bdi>Designing the Scope and Behavior of Keyboard Shortcuts</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_design_basic"><bdi class="secno">6.9.1.1 </bdi>Ensure Basic Access Via Navigation </a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_design_choose_behavior"><bdi class="secno">6.9.1.2 </bdi>Choose Appropriate Shortcut Behavior</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_design_where"><bdi class="secno">6.9.1.3 </bdi>Choose Where to Add Shortcuts </a></li></ol></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assigning"><bdi class="secno">6.9.2 </bdi>Assigning Keyboard Shortcuts</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_opsys_conflicts"><bdi class="secno">6.9.2.1 </bdi>Operating System Key Conflicts</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_assistivetech_conflicts"><bdi class="secno">6.9.2.2 </bdi>Assistive Technology Key Conflicts</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_browser_conflicts"><bdi class="secno">6.9.2.3 </bdi>Browser Key Conflicts</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_intentional_conflicts"><bdi class="secno">6.9.2.4 </bdi>Intentional Key Conflicts</a></li></ol></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties"><bdi class="secno">7. </bdi>Grid and Table Properties</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_rows"><bdi class="secno">7.1 </bdi>Using <code>aria-rowcount</code> and <code>aria-rowindex</code></a></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_cols"><bdi class="secno">7.2 </bdi>Using <code>aria-colcount</code> and <code>aria-colindex</code></a><ol class="toc"><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_cols_contiguous"><bdi class="secno">7.2.1 </bdi>Using <code>aria-colindex</code> When Column Indices Are Contiguous</a></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_cols_noncontiguous"><bdi class="secno">7.2.2 </bdi>Using <code>aria-colindex</code> When Column Indices Are Not Contiguous</a></li></ol></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_spans"><bdi class="secno">7.3 </bdi>Defining cell spans using <code>aria-colspan</code> and <code>aria-rowspan</code></a></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_sort"><bdi class="secno">7.4 </bdi>Indicating sort order with <code>aria-sort</code></a></li></ol></li><li class="tocline"><a class="tocxref" href="#range_related_properties"><bdi class="secno">8. </bdi>Communicating Value and Limits for Range Widgets</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#range_related_properties_using_aria-valuemin_aria-valuemax_and_aria-valuenow"><bdi class="secno">8.1 </bdi>Using <code>aria-valuemin</code>, <code>aria-valuemax</code> and <code>aria-valuenow</code></a></li><li class="tocline"><a class="tocxref" href="#range_related_properties_using_aria-valuetext"><bdi class="secno">8.2 </bdi>Using <code>aria-valuetext</code></a></li><li class="tocline"><a class="tocxref" href="#range_related_properties_meter_role"><bdi class="secno">8.3 </bdi>Range properties with meter</a></li><li class="tocline"><a class="tocxref" href="#range_related_properties_progressbar_role"><bdi class="secno">8.4 </bdi>Range properties with progress bars</a></li><li class="tocline"><a class="tocxref" href="#range_related_properties_scrollbar_role"><bdi class="secno">8.5 </bdi>Range properties with scrollbars</a></li><li class="tocline"><a class="tocxref" href="#range_related_properties_slider_role"><bdi class="secno">8.6 </bdi>Range properties with sliders</a></li><li class="tocline"><a class="tocxref" href="#range_related_properties_spinbutton_role"><bdi class="secno">8.7 </bdi>Range properties with spin buttons</a></li></ol></li><li class="tocline"><a class="tocxref" href="#presentation_role"><bdi class="secno">9. </bdi>Intentionally Hiding Semantics with the <code>presentation</code> Role</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#presentation_role_effects"><bdi class="secno">9.1 </bdi>
         Effects of Role <code>presentation</code>
       </a></li><li class="tocline"><a class="tocxref" href="#presentation_role_ignored"><bdi class="secno">9.2 </bdi>
         Conditions That Cause Role <code>presentation</code> to be Ignored
@@ -2803,8 +2803,71 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       </section>
     </section>
 
+    <section class="widget" id="switch">
+      <h3 id="x3-22-switch"><bdi class="secno">3.22 </bdi>Switch<a class="self-link" aria-label="§" href="#switch"></a></h3>
+      <p>
+        A <a href="https://w3c.github.io/aria/#switch" class="role-reference">switch</a> is an input widget that allows users to choose one of two values: <q>on</q> or <q>off</q>.
+        Switches are similar to <a href="#checkbox">checkboxes</a> and <a href="#button">toggle buttons</a>, which can also serve as binary inputs.
+        One difference, however, is that switches can only be used for binary input while checkboxes and toggle buttons allow implementations the option of supporting a third middle state.
+        Checkboxes can be <q>checked</q> or <q>not checked</q> and can optionally also allow for a <q>partially checked</q> state.
+        Toggle buttons can be <q>pressed</q> or <q>not pressed</q> and can optionally allow for a <q>partially pressed</q> state.
+      </p>
+      <p>
+        Since switch, checkbox, and toggle button all offer binary input, they are often functionally interchangeable.
+        Choose the role that best matches both the visual design and semantics of the user interface.
+        For instance, there are some circumstances where the semantics of <q>on or off</q> would be easier for assistive technology users to understand than the semantics of <q>checked or unchecked</q>, and vice versa.
+        Consider a widget for turning lights on or off.
+        In this case, screen reader output of <q>Lights switch on</q> is more user friendly than <q>Lights checkbox checked</q>. 
+        However, if the same input were in a group of inputs labeled <q>Which of the following must be included in your pre-takeoff procedures?</q>, <q>Lights checkbox checked</q> would make more sense.
+      </p>
+      <p>
+        <strong>Important:</strong> it is critical the label on a switch does not change when its state changes.
+      </p>
+
+      <section class="notoc">
+        <h4 id="examples-12">Examples<a class="self-link" aria-label="§" href="#examples-12"></a></h4>
+        <ul>
+          <li>To be added.</li>
+          
+        </ul>
+      </section>
+
+      <section class="notoc">
+        <h4 id="keyboard-interaction-19">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-19"></a></h4>
+        <ul>
+          <li><kbd>Space</kbd>: When focus is on the switch, changes the state of the switch.</li>
+          <li><kbd>Enter</kbd> (Optional): When focus is on the switch, changes the state of the switch.</li>
+        </ul>
+      </section>
+
+      <section class="notoc">
+        <h4 id="wai-aria-roles-states-and-properties-20"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-20"></a></h4>
+        <ul>
+          <li>The switch has role <a href="https://w3c.github.io/aria/#switch" class="role-reference">switch</a>.</li>
+          <li>
+            The switch has an accessible label provided by one of the following:
+            <ul>
+              <li>Visible text content contained within the element with role <code>switch</code>.</li>
+              <li>A visible label referenced by the value of <a href="https://w3c.github.io/aria/#aria-labelledby" class="property-reference">aria-labelledby</a> set on the element with role <code>switch</code>.</li>
+              <li><a href="https://w3c.github.io/aria/#aria-label" class="property-reference">aria-label</a> set on the element with role <code>switch</code>.</li>
+            </ul>
+          </li>
+          <li>When <code>on</code>, the switch element has state <a href="https://w3c.github.io/aria/#aria-checked" class="state-reference">aria-checked</a> set to <code>true</code>.</li>
+          <li>When <code>off</code>, the switch element has state <a href="https://w3c.github.io/aria/#aria-checked" class="state-reference">aria-checked</a> set to <code>false</code>.</li>
+          <li>If the switch element is an HTML <code>input[type="checkbox"]</code>, it uses the HTML <code>checked</code> attribute instead of the <code>aria-checked</code> property.</li>
+          <li>If a set of switches is presented as a logical group with a visible label, either:
+            <ul>
+              <li>The switches are included in an element with role <a href="https://w3c.github.io/aria/#group" class="role-reference">group</a> that has the property <a href="https://w3c.github.io/aria/#aria-labelledby" class="property-reference">aria-labelledby</a> set to the ID of the element containing the group label.</li>
+              <li>The set is contained in an HTML <code>fieldset</code> and the label for the set is contained in an HTML <code>legend</code> element.</li>
+            </ul>
+          </li>
+          <li>If the presentation includes additional descriptive static text relevant to a switch or switch group, the switch or switch group has the property <a href="https://w3c.github.io/aria/#aria-describedby" class="property-reference">aria-describedby</a> set to the ID of the element containing the description.</li>
+        </ul>
+      </section>
+    </section>
+
     <section class="widget" id="table">
-      <h3 id="x3-22-table"><bdi class="secno">3.22 </bdi>Table<a class="self-link" aria-label="§" href="#table"></a></h3>
+      <h3 id="x3-23-table"><bdi class="secno">3.23 </bdi>Table<a class="self-link" aria-label="§" href="#table"></a></h3>
       <p>
         Like an HTML <code>table</code> element, a <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> <a href="https://w3c.github.io/aria/#table" class="role-reference">table</a> is a static tabular structure containing one or more rows that each contain one or more cells; it is not an interactive widget.
         Thus, its cells are not focusable or selectable.
@@ -2822,15 +2885,15 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         It is thus advisable to test implementations thoroughly with each browser and assistive technology combination that could be used by the target audience.
       </p></div>
       <section class="notoc">
-        <h4 id="examples-12">Examples<a class="self-link" aria-label="§" href="#examples-12"></a></h4>
+        <h4 id="examples-13">Examples<a class="self-link" aria-label="§" href="#examples-13"></a></h4>
         <p><a href="examples/table/table.html">Table Example</a>: ARIA table made using HTML <code>div</code> and <code>span</code> elements.</p>
       </section>
       <section class="notoc">
-        <h4 id="keyboard-interaction-19">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-19"></a></h4>
+        <h4 id="keyboard-interaction-20">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-20"></a></h4>
         <p>Not applicable.</p>
       </section>
       <section id="table_roles_states_props" class="notoc">
-        <h4 id="wai-aria-roles-states-and-properties-20"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#table_roles_states_props"></a></h4>
+        <h4 id="wai-aria-roles-states-and-properties-21"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#table_roles_states_props"></a></h4>
         <ul>
           <li>The table container has role <a href="https://w3c.github.io/aria/#table" class="role-reference">table</a>. </li>
           <li>Each row container has role <a href="https://w3c.github.io/aria/#row" class="role-reference">row</a> and is either a DOM descendant of or owned by the <code>table</code> element or an element with role <a href="https://w3c.github.io/aria/#rowgroup" class="role-reference">rowgroup</a>. </li>
@@ -2864,7 +2927,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
     </section>
 
     <section class="widget" id="tabpanel">
-      <h3 id="x3-23-tabs"><bdi class="secno">3.23 </bdi>Tabs<a class="self-link" aria-label="§" href="#tabpanel"></a></h3>
+      <h3 id="x3-24-tabs"><bdi class="secno">3.24 </bdi>Tabs<a class="self-link" aria-label="§" href="#tabpanel"></a></h3>
       <p>
         Tabs are a set of layered sections of content, known as tab panels, that display one panel of content at a time.
         Each tab panel has an associated tab element, that when activated, displays the panel.
@@ -2887,7 +2950,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       </p>
 
       <section class="notoc">
-        <h4 id="examples-13">Examples<a class="self-link" aria-label="§" href="#examples-13"></a></h4>
+        <h4 id="examples-14">Examples<a class="self-link" aria-label="§" href="#examples-14"></a></h4>
         <ul>
           <li><a href="examples/tabs/tabs-1/tabs.html">Tabs With Automatic Activation</a>: A tabs widget where tabs are automatically activated and their panel is displayed when they receive focus.</li>
           <li><a href="examples/tabs/tabs-2/tabs.html">Tabs With Manual Activation</a>: A tabs widget where users activate a tab and display its panel by pressing <kbd>Space</kbd> or <kbd>Enter</kbd>.</li>
@@ -2895,7 +2958,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       </section>
 
       <section class="notoc">
-        <h4 id="keyboard-interaction-20">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-20"></a></h4>
+        <h4 id="keyboard-interaction-21">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-21"></a></h4>
         <p>For the tab list:</p>
         <ul>
           <li>
@@ -2955,7 +3018,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         </ol></div>
       </section>
       <section class="notoc">
-        <h4 id="wai-aria-roles-states-and-properties-21"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-21"></a></h4>
+        <h4 id="wai-aria-roles-states-and-properties-22"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-22"></a></h4>
         <ul>
         <li>The element that serves as the container for the set of tabs has role  <a class="role-reference" href="https://w3c.github.io/aria/#tablist">tablist</a>. </li>
         <li>Each element that serves as a tab has role <a class="role-reference" href="https://w3c.github.io/aria/#tab">tab</a> and is contained within the element with role <code>tablist</code>.</li>
@@ -2977,7 +3040,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
     </section>
 
     <section class="widget" id="toolbar">
-      <h3 id="x3-24-toolbar"><bdi class="secno">3.24 </bdi>Toolbar<a class="self-link" aria-label="§" href="#toolbar"></a></h3>
+      <h3 id="x3-25-toolbar"><bdi class="secno">3.25 </bdi>Toolbar<a class="self-link" aria-label="§" href="#toolbar"></a></h3>
       <p>A <a class="role-reference" href="https://w3c.github.io/aria/#toolbar">toolbar</a> is a container for grouping a set of controls, such as buttons, menubuttons, or checkboxes.</p>
       <p>
         When a set of controls is visually presented as a group, the <code>toolbar</code> role can be used to communicate the presence and purpose of the grouping to screen reader users.
@@ -3004,7 +3067,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         </p>
       </section>
       <section class="notoc">
-        <h4 id="keyboard-interaction-21">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-21"></a></h4>
+        <h4 id="keyboard-interaction-22">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-22"></a></h4>
         <ul>
           <li><kbd>Tab</kbd> and <kbd>Shift + Tab</kbd>: Move focus into and out of the toolbar. When focus moves into a toolbar:
             <ul>
@@ -3037,7 +3100,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         </ol></div>
       </section>
       <section class="notoc">
-        <h4 id="wai-aria-roles-states-and-properties-22"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-22"></a></h4>
+        <h4 id="wai-aria-roles-states-and-properties-23"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-23"></a></h4>
         <ul>
           <li>The element that serves as the toolbar container has role <a class="role-reference" href="https://w3c.github.io/aria/#toolbar">toolbar</a>.  </li>
           <li>
@@ -3052,7 +3115,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
     </section>
 
     <section class="widget" id="tooltip">
-      <h3 id="x3-25-tooltip-widget"><bdi class="secno">3.25 </bdi>Tooltip Widget<a class="self-link" aria-label="§" href="#tooltip"></a></h3>
+      <h3 id="x3-26-tooltip-widget"><bdi class="secno">3.26 </bdi>Tooltip Widget<a class="self-link" aria-label="§" href="#tooltip"></a></h3>
       <p>
         <strong>NOTE:</strong> This design pattern is work in progress; it does not yet have task force consensus.
         Progress and discussions are captured in
@@ -3074,7 +3137,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         </p>
       </section>
       <section class="notoc">
-        <h4 id="keyboard-interaction-22">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-22"></a></h4>
+        <h4 id="keyboard-interaction-23">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-23"></a></h4>
         <p><kbd>Escape</kbd>: Dismisses the Tooltip.</p>
         <div class="note" role="note" id="issue-container-generatedID-29"><div role="heading" class="note-title marker" id="h-note-27" aria-level="5"><span>Note</span></div><ol class="">
           <li>Focus stays on the triggering element while the tooltip is displayed.</li>
@@ -3085,7 +3148,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         </ol></div>
       </section>
       <section class="notoc">
-        <h4 id="wai-aria-roles-states-and-properties-23"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-23"></a></h4>
+        <h4 id="wai-aria-roles-states-and-properties-24"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-24"></a></h4>
         <ul>
           <li>The element that serves as the tooltip container has role <a href="https://w3c.github.io/aria/#tooltip" class="role-reference">tooltip</a>.</li>
           <li>The element that triggers the tooltip references the tooltip element with <a href="https://w3c.github.io/aria/#aria-describedby" class="property-reference">aria-describedby</a>.</li>
@@ -3094,7 +3157,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
     </section>
 
     <section class="widget" id="TreeView">
-      <h3 id="x3-26-tree-view"><bdi class="secno">3.26 </bdi>Tree View<a class="self-link" aria-label="§" href="#TreeView"></a></h3>
+      <h3 id="x3-27-tree-view"><bdi class="secno">3.27 </bdi>Tree View<a class="self-link" aria-label="§" href="#TreeView"></a></h3>
       <p>
         A tree view widget presents a hierarchical list.
         Any item in the hierarchy may have child items, and items that have children may be expanded or collapsed to show or hide the children.
@@ -3130,7 +3193,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       </p>
 
       <section class="notoc">
-        <h4 id="examples-14">Examples<a class="self-link" aria-label="§" href="#examples-14"></a></h4>
+        <h4 id="examples-15">Examples<a class="self-link" aria-label="§" href="#examples-15"></a></h4>
         <ul>
           <li>
             <a href="examples/treeview/treeview-1/treeview-1a.html">File Directory Treeview Example Using Computed Properties</a>:
@@ -3148,7 +3211,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       </section>
 
       <section class="notoc">
-        <h4 id="keyboard-interaction-23">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-23"></a></h4>
+        <h4 id="keyboard-interaction-24">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-24"></a></h4>
         <p>For a vertically oriented tree:</p>
         <ul>
           <li> When a single-select tree receives focus:
@@ -3245,7 +3308,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       </section>
 
       <section id="tree_roles_states_props" class="notoc">
-        <h4 id="wai-aria-roles-states-and-properties-24"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#tree_roles_states_props"></a></h4>
+        <h4 id="wai-aria-roles-states-and-properties-25"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#tree_roles_states_props"></a></h4>
         <ul>
           <li>All tree nodes are contained in or owned by an element with role <a class="role-reference" href="https://w3c.github.io/aria/#tree">tree</a>.</li>
           <li>Each element serving as a tree node has role <a class="role-reference" href="https://w3c.github.io/aria/#treeitem">treeitem</a>.</li>
@@ -3283,7 +3346,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
     </section>
 
     <section class="widget" id="treegrid">
-      <h3 id="x3-27-treegrid"><bdi class="secno">3.27 </bdi>Treegrid<a class="self-link" aria-label="§" href="#treegrid"></a></h3>
+      <h3 id="x3-28-treegrid"><bdi class="secno">3.28 </bdi>Treegrid<a class="self-link" aria-label="§" href="#treegrid"></a></h3>
         <p>
           A <a href="https://w3c.github.io/aria/#treegrid" class="role-reference">treegrid</a> widget presents a hierarchical data grid consisting of tabular information that is editable or interactive.
           Any row in the hierarchy may have child rows, and rows with children may be expanded or collapsed to show or hide the children.
@@ -3306,7 +3369,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       </p>
 
       <section class="notoc">
-        <h4 id="examples-15">Examples<a class="self-link" aria-label="§" href="#examples-15"></a></h4>
+        <h4 id="examples-16">Examples<a class="self-link" aria-label="§" href="#examples-16"></a></h4>
         <ul>
           <li>
             <a href="examples/treegrid/treegrid-1.html">E-mail Inbox <code>treegrid</code> Example</a>: A treegrid for navigating an e-mail inbox that demonstrates three keyboard navigation models -- rows first, cells first, and cells only.
@@ -3315,7 +3378,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       </section>
 
       <section class="notoc">
-        <h4 id="keyboard-interaction-24">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-24"></a></h4>
+        <h4 id="keyboard-interaction-25">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-25"></a></h4>
         <p>
           The following keys provide <code>treegrid</code> navigation by moving focus among rows and cells of the grid.
           Implementations of <code>treegrid</code> make these key commands available when an element in the grid has received focus, e.g., after a user has moved focus to the grid with <kbd>Tab</kbd>.
@@ -3461,7 +3524,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       </section>
 
       <section id="treegrid_roles_states_props" class="notoc">
-        <h4 id="wai-aria-roles-states-and-properties-25"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#treegrid_roles_states_props"></a></h4>
+        <h4 id="wai-aria-roles-states-and-properties-26"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#treegrid_roles_states_props"></a></h4>
         <ul>
           <li>The treegrid container has role <a href="https://w3c.github.io/aria/#treegrid" class="role-reference">treegrid</a>. </li>
           <li>Each row container has role <a href="https://w3c.github.io/aria/#row" class="role-reference">row</a> and is either a DOM descendant of or owned by the <code>treegrid</code> element or an element with role <a href="https://w3c.github.io/aria/#rowgroup" class="role-reference">rowgroup</a>. </li>
@@ -3519,7 +3582,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
    </section>
 
     <section class="widget" id="windowsplitter">
-      <h3 id="x3-28-window-splitter"><bdi class="secno">3.28 </bdi>Window Splitter<a class="self-link" aria-label="§" href="#windowsplitter"></a></h3>
+      <h3 id="x3-29-window-splitter"><bdi class="secno">3.29 </bdi>Window Splitter<a class="self-link" aria-label="§" href="#windowsplitter"></a></h3>
       <p>
         <strong>NOTE:</strong> ARIA 1.1 introduced changes to the separator role so it behaves as a widget when focusable.
         While this pattern has been revised to match the ARIA 1.1 specification, the task force will not complete its review until a functional example that matches the ARIA 1.1 specification is complete.
@@ -3553,7 +3616,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         </p>
       </section>
       <section class="notoc">
-        <h4 id="keyboard-interaction-25">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-25"></a></h4>
+        <h4 id="keyboard-interaction-26">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-26"></a></h4>
         <ul>
           <li><kbd>Left Arrow</kbd>: Moves a vertical splitter to the left.</li>
           <li><kbd>Right Arrow</kbd>: Moves a vertical splitter to the right.</li>
@@ -3567,7 +3630,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         <div class="note" role="note" id="issue-container-generatedID-35"><div role="heading" class="note-title marker" id="h-note-33" aria-level="5"><span>Note</span></div><p class="">A fixed size splitter omits implementation of the arrow keys.</p></div>
       </section>
       <section class="notoc">
-        <h4 id="wai-aria-roles-states-and-properties-26"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-26"></a></h4>
+        <h4 id="wai-aria-roles-states-and-properties-27"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-27"></a></h4>
         <ul>
           <li>The element that serves as the focusable splitter has role <a href="https://w3c.github.io/aria/#separator" class="role-reference">separator</a>.</li>
           <li>The separator element has the <a class="property-reference" href="https://w3c.github.io/aria/#aria-valuenow">aria-valuenow</a> property set to a decimal value representing the current position of the separator.</li>
@@ -3750,7 +3813,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         </section>
 
         <section class="notoc">
-          <h5 id="examples-16">Examples<a class="self-link" aria-label="§" href="#examples-16"></a></h5>
+          <h5 id="examples-17">Examples<a class="self-link" aria-label="§" href="#examples-17"></a></h5>
 
           <p><a href="examples/landmarks/banner.html">Banner Landmark Example</a></p>
         </section>
@@ -3782,7 +3845,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         </section>
 
         <section class="notoc">
-          <h5 id="examples-17">Examples<a class="self-link" aria-label="§" href="#examples-17"></a></h5>
+          <h5 id="examples-18">Examples<a class="self-link" aria-label="§" href="#examples-18"></a></h5>
 
           <p><a href="examples/landmarks/complementary.html">Complementary Landmark Example</a></p>
         </section>
@@ -3830,7 +3893,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         </section>
 
         <section class="notoc">
-          <h5 id="examples-18">Examples<a class="self-link" aria-label="§" href="#examples-18"></a></h5>
+          <h5 id="examples-19">Examples<a class="self-link" aria-label="§" href="#examples-19"></a></h5>
           <p><a href="examples/landmarks/contentinfo.html">Contentinfo Landmark Example</a></p>
         </section>
       </section>
@@ -3875,7 +3938,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         </section>
 
         <section class="notoc">
-          <h5 id="examples-19">Examples<a class="self-link" aria-label="§" href="#examples-19"></a></h5>
+          <h5 id="examples-20">Examples<a class="self-link" aria-label="§" href="#examples-20"></a></h5>
 
           <p><a href="examples/landmarks/form.html">Form Landmark Example</a></p>
         </section>
@@ -3908,7 +3971,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         </section>
 
         <section class="notoc">
-          <h5 id="examples-20">Examples<a class="self-link" aria-label="§" href="#examples-20"></a></h5>
+          <h5 id="examples-21">Examples<a class="self-link" aria-label="§" href="#examples-21"></a></h5>
 
           <p><a href="examples/landmarks/main.html">Main Landmark Example</a></p>
         </section>
@@ -3937,7 +4000,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         </section>
 
         <section class="notoc">
-          <h5 id="examples-21">Examples<a class="self-link" aria-label="§" href="#examples-21"></a></h5>
+          <h5 id="examples-22">Examples<a class="self-link" aria-label="§" href="#examples-22"></a></h5>
 
           <p><a href="examples/landmarks/navigation.html">Navigation Landmark Example</a></p>
         </section>
@@ -3967,7 +4030,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         </section>
 
         <section class="notoc">
-          <h5 id="examples-22">Examples<a class="self-link" aria-label="§" href="#examples-22"></a></h5>
+          <h5 id="examples-23">Examples<a class="self-link" aria-label="§" href="#examples-23"></a></h5>
 
           <p><a href="examples/landmarks/region.html">Region Landmark Example</a></p>
         </section>
@@ -3994,7 +4057,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         </section>
 
         <section class="notoc">
-          <h5 id="examples-23">Examples<a class="self-link" aria-label="§" href="#examples-23"></a></h5>
+          <h5 id="examples-24">Examples<a class="self-link" aria-label="§" href="#examples-24"></a></h5>
 
           <p><a href="examples/landmarks/search.html">Search Landmark Example</a></p>
         </section>
@@ -7307,7 +7370,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
         Informative references
       <a class="self-link" aria-label="§" href="#informative-references"></a></h3>
     <dl class="bibliography">
-      <dt id="bib-html">[HTML]</dt><dd><a href="https://html.spec.whatwg.org/multipage/"><cite>HTML Standard</cite></a>. Anne van Kesteren; Domenic Denicola; Ian Hickson; Philip Jägenstedt; Simon Pieters.  WHATWG. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a></dd><dt id="bib-html-aam">[HTML-AAM]</dt><dd><a href="https://www.w3.org/TR/html-aam-1.0/"><cite>HTML Accessibility API Mappings 1.0</cite></a>. Steve Faulkner; Scott O'Hara; Alexander Surkov; Bogdan Brinza; Jason Kiss; Cynthia Shelly.  W3C. 13 August 2021. W3C Working Draft. URL: <a href="https://www.w3.org/TR/html-aam-1.0/">https://www.w3.org/TR/html-aam-1.0/</a></dd><dt id="bib-html-aria">[HTML-ARIA]</dt><dd><a href="https://www.w3.org/TR/html-aria/"><cite>ARIA in HTML</cite></a>. Steve Faulkner; Scott O'Hara; Patrick Lauke.  W3C. 24 September 2021. W3C Candidate Recommendation. URL: <a href="https://www.w3.org/TR/html-aria/">https://www.w3.org/TR/html-aria/</a></dd><dt id="bib-svg2">[SVG2]</dt><dd><a href="https://www.w3.org/TR/SVG2/"><cite>Scalable Vector Graphics (SVG) 2</cite></a>. Amelia Bellamy-Royds; Bogdan Brinza; Chris Lilley; Dirk Schulze; David Storey; Eric Willigers.  W3C. 4 October 2018. W3C Candidate Recommendation. URL: <a href="https://www.w3.org/TR/SVG2/">https://www.w3.org/TR/SVG2/</a></dd><dt id="bib-wai-aria">[WAI-ARIA]</dt><dd><a href="https://www.w3.org/TR/wai-aria-1.1/"><cite>Accessible Rich Internet Applications (WAI-ARIA) 1.1</cite></a>. Joanmarie Diggs; Shane McCarron; Michael Cooper; Richard Schwerdtfeger; James Craig.  W3C. 14 December 2017. W3C Recommendation. URL: <a href="https://www.w3.org/TR/wai-aria-1.1/">https://www.w3.org/TR/wai-aria-1.1/</a></dd><dt id="bib-wai-aria-1.2">[WAI-ARIA-1.2]</dt><dd><a href="https://www.w3.org/TR/wai-aria-1.2/"><cite>Accessible Rich Internet Applications (WAI-ARIA) 1.2</cite></a>. Joanmarie Diggs; James Nurthen; Michael Cooper.  W3C. 2 March 2021. W3C Candidate Recommendation. URL: <a href="https://www.w3.org/TR/wai-aria-1.2/">https://www.w3.org/TR/wai-aria-1.2/</a></dd>
+      <dt id="bib-html">[HTML]</dt><dd><a href="https://html.spec.whatwg.org/multipage/"><cite>HTML Standard</cite></a>. Anne van Kesteren; Domenic Denicola; Ian Hickson; Philip Jägenstedt; Simon Pieters.  WHATWG. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a></dd><dt id="bib-html-aam">[HTML-AAM]</dt><dd><a href="https://www.w3.org/TR/html-aam-1.0/"><cite>HTML Accessibility API Mappings 1.0</cite></a>. Steve Faulkner; Scott O'Hara; Alexander Surkov; Bogdan Brinza; Jason Kiss; Cynthia Shelly.  W3C. 13 August 2021. W3C Working Draft. URL: <a href="https://www.w3.org/TR/html-aam-1.0/">https://www.w3.org/TR/html-aam-1.0/</a></dd><dt id="bib-html-aria">[HTML-ARIA]</dt><dd><a href="https://www.w3.org/TR/html-aria/"><cite>ARIA in HTML</cite></a>. Steve Faulkner; Scott O'Hara; Patrick Lauke.  W3C. 30 September 2021. W3C Proposed Recommendation. URL: <a href="https://www.w3.org/TR/html-aria/">https://www.w3.org/TR/html-aria/</a></dd><dt id="bib-svg2">[SVG2]</dt><dd><a href="https://www.w3.org/TR/SVG2/"><cite>Scalable Vector Graphics (SVG) 2</cite></a>. Amelia Bellamy-Royds; Bogdan Brinza; Chris Lilley; Dirk Schulze; David Storey; Eric Willigers.  W3C. 4 October 2018. W3C Candidate Recommendation. URL: <a href="https://www.w3.org/TR/SVG2/">https://www.w3.org/TR/SVG2/</a></dd><dt id="bib-wai-aria">[WAI-ARIA]</dt><dd><a href="https://www.w3.org/TR/wai-aria-1.1/"><cite>Accessible Rich Internet Applications (WAI-ARIA) 1.1</cite></a>. Joanmarie Diggs; Shane McCarron; Michael Cooper; Richard Schwerdtfeger; James Craig.  W3C. 14 December 2017. W3C Recommendation. URL: <a href="https://www.w3.org/TR/wai-aria-1.1/">https://www.w3.org/TR/wai-aria-1.1/</a></dd><dt id="bib-wai-aria-1.2">[WAI-ARIA-1.2]</dt><dd><a href="https://www.w3.org/TR/wai-aria-1.2/"><cite>Accessible Rich Internet Applications (WAI-ARIA) 1.2</cite></a>. Joanmarie Diggs; James Nurthen; Michael Cooper.  W3C. 2 March 2021. W3C Candidate Recommendation. URL: <a href="https://www.w3.org/TR/wai-aria-1.2/">https://www.w3.org/TR/wai-aria-1.2/</a></dd>
     </dl></section></section><p role="navigation" id="back-to-top">
     <a href="#title"><abbr title="Back to Top">↑</abbr></a>
   </p><script src="https://www.w3.org/scripts/TR/2016/fixup.js"></script></body></html>
