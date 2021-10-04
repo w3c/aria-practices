@@ -9,11 +9,9 @@ var aria = aria || {};
 
 /**
  * @class
- *
  * @description
  *  Combobox object representing the state and interactions for a combobox
  *  widget
- *
  * @param input
  *  The input node
  * @param grid
