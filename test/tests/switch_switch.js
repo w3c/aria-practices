@@ -1,19 +1,12 @@
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
-const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaRoles = require('../util/assertAriaRoles');
-const assertTabOrder = require('../util/assertTabOrder');
 
 const exampleFile = 'switch/switch.html';
 
 const ex = {
-  groupSelector: '#ex1 [role="group"]',
   switchSelector: '#ex1 [role="switch"]',
-  switches: [
-    '#ex1 [role="group"] [role="switch"]:nth-of-type(1)',
-    '#ex1 [role="group"] [role="switch"]:nth-of-type(2)',
-  ],
   spanOnSelector: '#ex1 span.on',
   spanOffSelector: '#ex1 span.off',
 };
@@ -35,45 +28,12 @@ const waitAndCheckAriaChecked = async function (t, selector, value) {
 
 // Attributes
 
-ariaTest('element h3 exists', exampleFile, 'h3', async (t) => {
-  let header = await t.context.queryElements(t, '#ex1 h3');
-
-  t.is(
-    header.length,
-    1,
-    'One h3 element exist within the example to label the switches'
-  );
-
-  t.truthy(
-    await header[0].getText(),
-    'One h3 element exist with readable content within the example to label the switches'
-  );
-});
-
-ariaTest(
-  'role="group" element exists',
-  exampleFile,
-  'group-role',
-  async (t) => {
-    await assertAriaRoles(t, 'ex1', 'group', '1', 'div');
-  }
-);
-
-ariaTest(
-  '"aria-labelledby" on group element',
-  exampleFile,
-  'group-aria-labelledby',
-  async (t) => {
-    await assertAriaLabelledby(t, ex.groupSelector);
-  }
-);
-
 ariaTest(
   'role="switch" elements exist',
   exampleFile,
   'switch-role',
   async (t) => {
-    await assertAriaRoles(t, 'ex1', 'switch', '2', 'div');
+    await assertAriaRoles(t, 'ex1', 'switch', '1', 'div');
 
     // Test that each switch has an accessible name
     // In this case, the accessible name is the text within the div
@@ -130,38 +90,31 @@ ariaTest(
 );
 
 ariaTest(
-  'key TAB moves focus between switches',
-  exampleFile,
-  'key-tab',
-  async (t) => {
-    await assertTabOrder(t, ex.switches);
-  }
-);
-
-ariaTest(
   'key SPACE turns switch on and off',
   exampleFile,
   'key-space',
   async (t) => {
-    for (let switchSelector of ex.switches) {
-      // Send SPACE key to check box to select
-      await t.context.session.findElement(By.css(switchSelector)).sendKeys(' ');
+    // Send SPACE key to check box to select
+    await t.context.session
+      .findElement(By.css(ex.switchSelector))
+      .sendKeys(' ');
 
-      t.true(
-        await waitAndCheckAriaChecked(t, switchSelector, 'true'),
-        'aria-selected should be set after sending SPACE key to switch: ' +
-          switchSelector
-      );
+    t.true(
+      await waitAndCheckAriaChecked(t, ex.switchSelector, 'true'),
+      'aria-selected should be set after sending SPACE key to switch: ' +
+        ex.switchSelector
+    );
 
-      // Send SPACE key to check box to unselect
-      await t.context.session.findElement(By.css(switchSelector)).sendKeys(' ');
+    // Send SPACE key to check box to unselect
+    await t.context.session
+      .findElement(By.css(ex.switchSelector))
+      .sendKeys(' ');
 
-      t.true(
-        await waitAndCheckAriaChecked(t, switchSelector, 'false'),
-        'aria-selected should be set after sending SPACE key to switch: ' +
-          switchSelector
-      );
-    }
+    t.true(
+      await waitAndCheckAriaChecked(t, ex.switchSelector, 'false'),
+      'aria-selected should be set after sending SPACE key to switch: ' +
+        ex.switchSelector
+    );
   }
 );
 
@@ -170,28 +123,26 @@ ariaTest(
   exampleFile,
   'key-space',
   async (t) => {
-    for (let switchSelector of ex.switches) {
-      // Send Enter key to check box to select
-      await t.context.session
-        .findElement(By.css(switchSelector))
-        .sendKeys(Key.ENTER);
+    // Send Enter key to check box to select
+    await t.context.session
+      .findElement(By.css(ex.switchSelector))
+      .sendKeys(Key.ENTER);
 
-      t.true(
-        await waitAndCheckAriaChecked(t, switchSelector, 'true'),
-        'aria-selected should be set after sending SPACE key to switch: ' +
-          switchSelector
-      );
+    t.true(
+      await waitAndCheckAriaChecked(t, ex.switchSelector, 'true'),
+      'aria-selected should be set after sending SPACE key to switch: ' +
+        ex.switchSelector
+    );
 
-      // Send Enter key to check box to unselect
-      await t.context.session
-        .findElement(By.css(switchSelector))
-        .sendKeys(Key.ENTER);
+    // Send Enter key to check box to unselect
+    await t.context.session
+      .findElement(By.css(ex.switchSelector))
+      .sendKeys(Key.ENTER);
 
-      t.true(
-        await waitAndCheckAriaChecked(t, switchSelector, 'false'),
-        'aria-selected should be set after sending SPACE key to switch: ' +
-          switchSelector
-      );
-    }
+    t.true(
+      await waitAndCheckAriaChecked(t, ex.switchSelector, 'false'),
+      'aria-selected should be set after sending SPACE key to switch: ' +
+        ex.switchSelector
+    );
   }
 );
