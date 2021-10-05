@@ -103,9 +103,20 @@ class ComboboxAutocomplete {
     return node.textContent.toLowerCase();
   }
 
+  isOptionInView(option) {
+    return true;
+  }
+
+  scrollOptionIntoView(option) {
+
+  }
+
   setActiveDescendant(option) {
     if (option && this.listboxHasVisualFocus) {
       this.comboboxNode.setAttribute('aria-activedescendant', option.id);
+      if (!this.isOptionInView(option)) {
+        this.scrollOptionIntoView(option);
+      }
     } else {
       this.comboboxNode.setAttribute('aria-activedescendant', '');
     }
