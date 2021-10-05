@@ -104,18 +104,22 @@ class ComboboxAutocomplete {
   }
 
   isOptionInView(option) {
-    return true;
-  }
-
-  scrollOptionIntoView(option) {
-
+    var bounding = option.getBoundingClientRect();
+    return (
+      bounding.top >= 0 &&
+      bounding.left >= 0 &&
+      bounding.bottom <=
+        (window.innerHeight || document.documentElement.clientHeight) &&
+      bounding.right <=
+        (window.innerWidth || document.documentElement.clientWidth)
+    );
   }
 
   setActiveDescendant(option) {
     if (option && this.listboxHasVisualFocus) {
       this.comboboxNode.setAttribute('aria-activedescendant', option.id);
       if (!this.isOptionInView(option)) {
-        this.scrollOptionIntoView(option);
+        option.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
     } else {
       this.comboboxNode.setAttribute('aria-activedescendant', '');
