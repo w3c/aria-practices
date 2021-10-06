@@ -57,6 +57,7 @@ class ComboboxAutocomplete {
       'focus',
       this.onComboboxFocus.bind(this)
     );
+    this.comboboxNode.addEventListener('blur', this.onComboboxBlur.bind(this));
 
     document.body.addEventListener(
       'mouseup',
@@ -307,6 +308,7 @@ class ComboboxAutocomplete {
       this.comboboxNode.setAttribute('aria-expanded', 'false');
       this.buttonNode.setAttribute('aria-expanded', 'false');
       this.setActiveDescendant(false);
+      this.comboboxNode.parentNode.classList.add('focus');
     }
   }
 
@@ -525,6 +527,10 @@ class ComboboxAutocomplete {
     this.setVisualFocusCombobox();
     this.option = null;
     this.setCurrentOptionStyle(null);
+  }
+
+  onComboboxBlur() {
+    this.removeVisualFocusAll();
   }
 
   onBackgroundMouseUp(event) {
