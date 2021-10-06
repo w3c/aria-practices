@@ -61,6 +61,18 @@ class MenuButtonActionsActiveDescendant {
     );
   }
 
+  isMenuitemInView(menuitem) {
+    var bounding = menuitem.getBoundingClientRect();
+    return (
+      bounding.top >= 0 &&
+      bounding.left >= 0 &&
+      bounding.bottom <=
+        (window.innerHeight || document.documentElement.clientHeight) &&
+      bounding.right <=
+        (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+
   setFocusToMenuitem(newMenuitem) {
     for (var i = 0; i < this.menuitemNodes.length; i++) {
       var menuitem = this.menuitemNodes[i];
@@ -68,6 +80,9 @@ class MenuButtonActionsActiveDescendant {
         this.currentMenuitem = newMenuitem;
         menuitem.classList.add('focus');
         this.menuNode.setAttribute('aria-activedescendant', newMenuitem.id);
+        if (!this.isMenuitemInView(newMenuitem)) {
+          newMenuitem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
       } else {
         menuitem.classList.remove('focus');
       }
