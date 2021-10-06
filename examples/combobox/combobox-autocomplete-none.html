@@ -58,12 +58,9 @@
                    aria-expanded="false"
                    aria-controls="cb1-listbox">
             <button type="button" id="cb1-button" tabindex="-1" aria-label="Previous Searches" aria-expanded="false" aria-controls="cb1-listbox" >
-              <span class="arrow">
-                <svg width="18" height="16" aria-hidden="true" focusable="false">
-                  <polygon class="outline" points="1,4 17,4 9,15"></polygon>
-                  <polygon class="arrow" points="3,5 15,5 9,13"></polygon>
-                </svg>
-              </span>
+              <svg width="18" height="16" aria-hidden="true" focusable="false" style="forced-color-adjust: auto">
+                <polygon class="arrow" stroke-width="0" fill-opacity="0.75" fill="currentColor" points="3,6 15,6 9,14"></polygon>
+              </svg>
             </button>
           </div>
           <ul id="cb1-listbox" role="listbox" aria-label="Previous Searches">
@@ -82,6 +79,44 @@
         </div>
       </div>
       <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
+    </section>
+
+
+    <section>
+      <h2>Accessibility Features</h2>
+      <ul>
+        <li>
+          The <code>listbox</code> option referenced by <code>aria-activedescendant</code> is scrolled into view when it is not visible in the graphical rendering.  This can occur under many conditions, but is most common when people with visual impairments use a browser's zoom feature to increase the size of content.
+        </li>
+        <li>
+          To enhance perceivability  when operating the combobox, visual keyboard focus and hover are styled using the CSS <code>:hover</code> pseudo-class, and <code>focus</code> and <code>blur</code> event handlers:
+          <ul>
+            <li>
+              To make it easier to perceive focus of the textbox/button a 2px focus ring is placed around the <code>input</code> and <code>button</code> elements with 2 pixels of space between the focus ring and the combobox.
+            </li>
+            <li>
+              To make it easier to perceive the selected listbox option a 2px border is placed above and below option.
+            </li>
+            <li>
+              To make it easier to perceive that clicking either the input or button will open the listbox, the hover indicator is the same as the focus indicator.
+            </li>
+            <li>
+              To help people with visual impairments identify the combobox as an interactive element, the cursor is changed to a pointer when hovering over the combobox or list.</li>
+            <li>
+              Note: Because transparent borders are visible on some systems with operating system high contrast settings enabled, transparency cannot be used to create a visual difference between the element that is focused an other elements.
+              Instead of using transparency, the focused element has a thicker border and less padding.
+              When an element receives focus, its border changes from zero to two pixels and padding is reduced by two pixels.
+              When an element loses focus, its border changes from two pixels to two and padding is increased by two pixels.
+            </li>
+          </ul>
+          <li>
+            To ensure the inline SVG graphic used for the arrow in the open button has sufficient contrast with the background when high contrast settings change the color of text content,
+            CSS <code>forced-color-adjust</code> is set to <code>auto</code> on the <code>svg</code> element and and the <code>fill</code> attribute of the <code>polygon</code> element is set to <code>currentColor</code>.
+            This causes the colors of the <code>fill</code> of the polygon elements to be overridden by the high contrast color setting.
+            If <code>forced-color-adjust</code> were not used to override the colors specified for the <code>fill</code> property, the color would remain the same in high contrast mode, which could lead to insufficient contrast between the arrow and the background or even make it invisible if the color matched the high contrast mode background.<br>
+            Note: The explicit setting of <code>forced-color-adjust</code> is necessary because some browsers do not use <code>auto</code> as the default value for SVG graphics.
+          </li>        </li>
+      </ul>
     </section>
 
     <section>
