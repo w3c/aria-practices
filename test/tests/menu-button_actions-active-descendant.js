@@ -485,7 +485,9 @@ ariaTest('"end" on role="menu"', exampleFile, 'menu-end', async (t) => {
 
   // Send END to the menu while aria-activedescendant is the third item
 
-  await menu.sendKeys(Key.ARROW_DOWN, Key.ARROW_DOWN, Key.END);
+  await menu.sendKeys(Key.ARROW_DOWN);
+  await menu.sendKeys(Key.ARROW_DOWN);
+  await menu.sendKeys(Key.END);
   await assertAriaActivedescendant(
     t,
     ex.menuSelector,
