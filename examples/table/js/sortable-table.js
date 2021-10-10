@@ -21,7 +21,11 @@ class SortableTable {
       var ch = this.columnHeaders[i];
       var buttonNode = ch.querySelector('button');
       if (buttonNode) {
-        buttonNode.setAttribute('aria-describedby', 'id-sort-descending');
+        if (ch.hasAttribute('aria-sort')) {
+          buttonNode.setAttribute('aria-describedby', 'id-change-sort');
+        } else {
+          buttonNode.setAttribute('aria-describedby', 'id-sort-column');
+        }
         this.sortColumns.push(i);
         buttonNode.setAttribute('data-column-index', i);
         buttonNode.addEventListener('click', this.handleClick.bind(this));
@@ -46,7 +50,7 @@ class SortableTable {
             'ascending',
             ch.classList.contains('num')
           );
-          buttonNode.setAttribute('aria-describedby', 'id-sort-descending');
+          buttonNode.setAttribute('aria-describedby', 'id-change-sort');
         } else {
           ch.setAttribute('aria-sort', 'descending');
           this.sortColumn(
@@ -54,12 +58,12 @@ class SortableTable {
             'descending',
             ch.classList.contains('num')
           );
-          buttonNode.setAttribute('aria-describedby', 'id-sort-ascending');
+          buttonNode.setAttribute('aria-describedby', 'id-change-sort');
         }
       } else {
         if (ch.hasAttribute('aria-sort') && buttonNode) {
           ch.removeAttribute('aria-sort');
-          buttonNode.setAttribute('aria-describedby', 'id-sort-descending');
+          buttonNode.setAttribute('aria-describedby', 'id-sort-column');
         }
       }
     }
