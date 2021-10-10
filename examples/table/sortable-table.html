@@ -28,20 +28,18 @@
     </ul>
   </nav>
   <main>
-  <h1>Sortable Table Example</h1>
-  <p>
-    The example below illustrates an implementation of the WAI-ARIA
-    <a href="../../#table">table design pattern</a> for a table with sortable rows.  The example uses HTML table markup to represent the rows, caption, and header and data cells of the table.  The <code>aria-sort</code> attribute is added to the column header of the data used to sort the table.  A <code>button</code> element in the each sortable column header is used to change the sorting column and order.  The data values in the columns are either all text or all numbers and a class name is used to indicate (e.g &quot;num&quot;) which columns should be sorted as a number value.  One column (e.g. &quot;address&quot;) in the example table is not used to sort the table.
-  </p>
-  <p>Similar examples include: </p>
-  <ul>
-    <li>
-      <a href="table.html">Table Example</a>: Example implementation of using .
-    </li>
-    <li><a href="../grid/LayoutGrids.html">Layout Grid Examples</a>: Three example implementations of grids that are used to lay out widgets, including a collection of navigation links, a message recipients list, and a set of search results.</li>
-    <li><a href="../grid/dataGrids.html">Data Grid Examples</a>: Three example implementations of grid that include features relevant to presenting tabular information, such as content editing, sort, and column hiding.</li>
-    <li><a href="../grid/advancedDataGrid.html">Advanced Data Grid Example</a>: Example of a grid with behaviors and features similar to a typical spreadsheet, including cell and row selection.</li>
-  </ul>
+    <h1>Sortable Table Example</h1>
+    <p>
+      The example below illustrates an implementation of the <a href="../../#table">table design pattern</a> for a table with sortable rows.
+      The example uses HTML table markup for all elements of the table structure, e.g., cells, rows, column headers, and caption.
+      The <code>aria-sort</code> attribute is set on the column header of the currently sorted column, and the header text of sortable columns is wrapped in a <code>button</code> element.
+      One column, the <q>Address</q> column is not sortable.
+    </p>
+    <p>Similar examples include: </p>
+    <ul>
+      <li><a href="table.html">Table Example</a>: A table constructed using ARIA roles to convey  table semantics.</li>
+      <li><a href="../grid/dataGrids.html">Data Grid Examples</a>: Three example implementations of grid that include features relevant to presenting tabular information, such as content editing, sort, and column hiding.</li>
+    </ul>
 
   <section>
     <div class="example-header">
