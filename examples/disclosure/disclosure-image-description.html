@@ -68,7 +68,10 @@
             In order to facilitate the judgement of the eye regarding the diminution of the army, I supposed that the troops under Prince Jèrôme and under Marshal Davoust, who were sent to Minsk and Mobilow and who rejoined near Orscha and Witebsk, had always marched with the army.
           </p>
   <p><strong>Note: A French translation from Wikipedia.</strong></p>
-        <button type="button" aria-expanded="true" aria-controls="id_long_desc">Data Table for Minard's Chart</button>
+        <button type="button" aria-expanded="true" aria-controls="id_long_desc">
+          <img src="images/arrow.svg" alt=""/>
+          Data Table for Minard's Chart
+        </button>
         <div class="long_desc" id="id_long_desc">
           <h3 id="id_data_label">Data for Charles Minard's Chart of Napoleon's Invasion of Russia</h3>
           <table aria-labelledby="id_data_label" class="data">
@@ -257,9 +260,9 @@
         The visual indication of expanded and collapsed states is synchronized with the value of <code>aria-expanded</code> using a CSS attribute selector and <code>:before</code> pseudo element that defines an SVG graphic to visually identify the state of a disclosure button using the <code>content</code> property.
       </li>
         <li>
-          To ensure the borders of the inline SVG checkbox graphics in the CSS have sufficient contrast with the background when high contrast settings invert colors, the color of the borders are synchronized with the color of the text content.
-          For example, the color of the checkbox borders is set to match the foreground color of high contrast mode text by specifying the CSS <code>currentColor</code> value for the <code>stroke</code> and <code>fill</code> properties of the <code>polygon</code> elements used to draw the arrows.
-          If specific colors were instead used to specify the <code>stroke</code> and <code>fill</code> properties, those colors would remain the same in high contrast mode, which could lead to insufficient contrast between the rail and the thumb or even make them invisible if their color matched the high contrast mode background.<br>
+          To ensure the borders of the SVG arrow graphic has sufficient contrast with the background when high contrast settings invert colors, the color of the borders are synchronized with the color of the text content.
+          For example, the color of the arrow is set to match the foreground color of high contrast mode text by specifying the CSS <code>currentColor</code> value for the <code>poloygon</code> properties of the <code>polygon</code> elements used to draw the arrows.
+          If specific colors were instead used to specify the <code>polygon</code> properties, those colors would remain the same in high contrast mode, which could lead to insufficient contrast between the rail and the thumb or even make them invisible if their color matched the high contrast mode background.<br>
           Note: The SVG element needs to have the CSS <code>forced-color-adjust</code> property set to <code>auto</code> for the <code>currentColor</code> value to be updated in high contrast mode.
           Some browsers do not use <code>auto</code> for the default value.
         </li>
