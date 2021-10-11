@@ -69,7 +69,6 @@
           </p>
   <p><strong>Note: A French translation from Wikipedia.</strong></p>
         <button type="button" aria-expanded="true" aria-controls="id_long_desc">
-          <img src="images/arrow.svg" alt=""/>
           Data Table for Minard's Chart
         </button>
         <div class="long_desc" id="id_long_desc">
@@ -257,7 +256,7 @@
         Because transparent borders are visible on some systems with operating system high contrast settings enabled, transparency cannot be used to create a visual difference between the element that is focused an other elements. Instead of using transparency, the focused element has a thicker border and less padding. When an element receives focus, its border changes from 0 to 2 pixels and padding is reduced by 2 pixels. When an element loses focus, its border changes from 2 pixels to 0 and padding is increased by 2 pixels.
       </li>
       <li>
-        The visual indication of expanded and collapsed states is synchronized with the value of <code>aria-expanded</code> using a CSS attribute selector to rotate the SVG graphic 90 degrees and adjust its position.
+        The visual indication of expanded and collapsed states is synchronized with the value of <code>aria-expanded</code> using a CSS attribute selector and <code>:before</code> pseudo element that defines an SVG graphic to visually identify the state of a disclosure button using the <code>content</code> property.
       </li>
         <li>
           To ensure the SVG arrow graphic has sufficient contrast with the background when high contrast settings invert colors, the color of the arrow is synchronized with the color of the text content.
