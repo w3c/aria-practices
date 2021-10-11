@@ -257,7 +257,7 @@
         Because transparent borders are visible on some systems with operating system high contrast settings enabled, transparency cannot be used to create a visual difference between the element that is focused an other elements. Instead of using transparency, the focused element has a thicker border and less padding. When an element receives focus, its border changes from 0 to 2 pixels and padding is reduced by 2 pixels. When an element loses focus, its border changes from 2 pixels to 0 and padding is increased by 2 pixels.
       </li>
       <li>
-        The visual indication of expanded and collapsed states is synchronized with the value of <code>aria-expanded</code> using a CSS attribute selector and <code>:before</code> pseudo element that defines an SVG graphic to visually identify the state of a disclosure button using the <code>content</code> property.
+        The visual indication of expanded and collapsed states is synchronized with the value of <code>aria-expanded</code> using a CSS attribute selector to rotate the SVG graphic 90 degrees and adjust its position.
       </li>
         <li>
           To ensure the SVG arrow graphic has sufficient contrast with the background when high contrast settings invert colors, the color of the arrow is synchronized with the color of the text content.
