@@ -63,7 +63,6 @@ aria.widget.SourceCode = function () {
  * @param {string} codeId          - ID of element containing only and all of the html used to render the example widget
  * @param {string} exampleHeaderId - ID of header element under which the "Open in Codepen" button belongs
  * @param {string} cssJsFilesId    - ID of element containing links to all the relevant js and css files used for the example widget
- *
  * @function add
  * @memberof aria.widget.SourceCode
  */
@@ -117,7 +116,6 @@ aria.widget.SourceCode.prototype.make = function () {
  * @param {object} node DOM Element node to use to generate the source code
  * @param {number} indentLevel Level of indentation
  * @param {boolean} skipFirst Whether to skip the first node
- *
  * @function createCode
  * @memberof aria.widget.SourceCode
  */
@@ -293,11 +291,11 @@ function stripIndentation(textContent) {
  *
  * Algorithm:
  *
- * **Case 1: `textContent` is on the same line as opening and closing tag**:
+ * Case 1: `textContent` is on the same line as opening and closing tag**:
  *
  * In other words, the text doesn’t contain any newline. Return 0.
  *
- * **Case 2: `textContent` is on the same line as opening tag**:
+ * Case 2: `textContent` is on the same line as opening tag**:
  *
  * We already know there is at least one newline, because case 1 didn’t return.
  * We can now find the first indented line that contains any non-whitespace

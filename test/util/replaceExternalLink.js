@@ -5,7 +5,6 @@
  * @param {string} newUrl - the url to replace the external url
  * @param {string} linkSelector - CSS selector string
  * @param {number} index - if the link selector returns a list, the index of the item to test
- *
  * @returns {Promise} Resolves to array of elements
  */
 module.exports = async function replaceExternalLinks(
