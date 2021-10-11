@@ -119,7 +119,6 @@ aria.Utils = aria.Utils || {};
    *
    * Assumptions: The element serving as the dialog container is present in the
    * DOM and hidden. The dialog container has role='dialog'.
-   *
    * @param dialogId
    *          The ID of the element serving as the dialog container.
    * @param focusAfterClosed
@@ -261,7 +260,6 @@ aria.Utils = aria.Utils || {};
   /**
    * @description
    *  Hides the current dialog and replaces it with another.
-   *
    * @param newDialogId
    *  ID of the dialog that will replace the currently open top dialog.
    * @param newFocusAfterClosed

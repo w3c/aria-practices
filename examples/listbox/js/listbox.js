@@ -12,10 +12,8 @@ var aria = aria || {};
 
 /**
  * @class
- *
  * @description
  *  Listbox object representing the state and interactions for a listbox widget
- *
  * @param listboxNode
  *  The DOM node pointing to the listbox
  */
@@ -92,7 +90,6 @@ aria.Listbox.prototype.focusLastItem = function () {
  * @description
  *  Handle various keyboard controls; UP/DOWN will shift focus; SPACE selects
  *  an item.
- *
  * @param evt
  *  The keydown event object
  */
@@ -340,7 +337,6 @@ aria.Listbox.prototype.findMatchInRange = function (
 /**
  * @description
  *  Check if an item is clicked on. If so, focus on it and select it.
- *
  * @param evt
  *  The click event object
  */
@@ -376,7 +372,6 @@ aria.Listbox.prototype.checkMouseDown = function (evt) {
 /**
  * @description
  *  Toggle the aria-selected value
- *
  * @param element
  *  The element to select
  */
@@ -394,7 +389,6 @@ aria.Listbox.prototype.toggleSelectItem = function (element) {
 /**
  * @description
  *  Defocus the specified item
- *
  * @param element
  *  The element to defocus
  */
@@ -411,7 +405,6 @@ aria.Listbox.prototype.defocusItem = function (element) {
 /**
  * @description
  *  Focus on the specified item
- *
  * @param element
  *  The element to focus
  */
@@ -542,7 +535,6 @@ aria.Listbox.prototype.checkUpDownButtons = function () {
 /**
  * @description
  *  Add the specified items to the listbox. Assumes items are valid options.
- *
  * @param items
  *  An array of items to add to the listbox
  */
@@ -571,7 +563,6 @@ aria.Listbox.prototype.addItems = function (items) {
  *  Remove all of the selected items from the listbox; Removes the focused items
  *  in a single select listbox and the items with aria-selected in a multi
  *  select listbox.
- *
  * @returns {Array}
  *  An array of items that were removed from the listbox
  */
@@ -669,10 +660,8 @@ aria.Listbox.prototype.moveItems = function () {
 /**
  * @description
  *  Enable Up/Down controls to shift items up and down.
- *
  * @param upButton
  *   Up button to trigger up shift
- *
  * @param downButton
  *   Down button to trigger down shift
  */
@@ -688,10 +677,8 @@ aria.Listbox.prototype.enableMoveUpDown = function (upButton, downButton) {
  * @description
  *  Enable Move controls. Moving removes selected items from the current
  *  list and adds them to the sibling list.
- *
  * @param button
  *   Move button to trigger delete
- *
  * @param siblingList
  *   Listbox to move items to
  */
