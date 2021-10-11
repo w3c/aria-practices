@@ -11,11 +11,9 @@
 
 /**
  * @class
- *
  * @description
  *  Format Toolbar object representing the state and interactions for a toolbar widget
  *  to format the text in a textarea element
- *
  * @param domNode
  *  The DOM node pointing to the element with the toolbar tole
  */
@@ -303,7 +301,6 @@ FormatToolbar.prototype.activateItem = function (toolbarItem) {
 /**
  * @description
  *  Focus on the specified item
- *
  * @param item
  *  The item to focus on
  */
