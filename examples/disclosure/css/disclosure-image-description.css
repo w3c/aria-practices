@@ -1,32 +1,20 @@
 figure button {
   margin: 0;
-  padding: 0;
   margin-top: 1em;
-  display: block;
+  padding: 4px 8px;
+  font-weight: bold;
   font-size: 110%;
-  border: thin solid transparent;
+  border: none;
   background-color: transparent;
-  padding-left: 0.125em;
-  position: relative;
-  left: -0.35em;
+  border-radius: 5px;
 }
 
 figure button:hover,
 figure button:focus {
-  background-color: #eee;
-}
-
-figure button:focus {
-  border-color: #630;
-}
-
-figure button:hover {
-  text-decoration: underline;
+  padding: 2px 6px;
+  background-color: #def;
+  border: 2px solid #005a9c;
   cursor: pointer;
-}
-
-figure button:active {
-  background-color: #bbb;
 }
 
 figure button[aria-expanded="false"]::before {
@@ -41,4 +29,14 @@ figure button[aria-expanded="true"]::before {
 
 figure figcaption {
   text-align: left;
+}
+
+figure h3 {
+  margin: 0;
+  padding: 0;
+  margin-top: 1em;
+}
+
+figure .long_desc table tr:nth-child(even) {
+  background-color: #fed;
 }
