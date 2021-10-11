@@ -45,7 +45,7 @@
 }
 
 .checkbox-mixed [role="checkbox"]:focus,
-.checkbox-mixed [role="checkbox"].hover {
+.checkbox-mixed [role="checkbox"]:hover {
   padding: 2px;
   border: 2px solid #005a9c;
   border-radius: 5px;
