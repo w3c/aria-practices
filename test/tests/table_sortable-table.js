@@ -12,7 +12,25 @@ const ex = {
 
 // Attributes
 
-ariaTest('key ENTER activates button', exampleFile, 'table-aria-sort', async (t) => {
-  await assertAttributeValues(t, ex.spanSelector, 'aria-hidden', 'true');
-});
+ariaTest(
+  'Visual character entity for the sort order is hidden from AT',
+  exampleFile,
+  'span-aria-hidden',
+  async (t) => {
+    await assertAttributeValues(t, ex.spanSelector, 'aria-hidden', 'true');
+  }
+);
 
+ariaTest(
+  'Initial value of aria-sort is acending',
+  exampleFile,
+  'th-aria-sort',
+  async (t) => {
+    await assertAttributeValues(
+      t,
+      ex.ariaSortSelector,
+      'aria-sort',
+      'ascending'
+    );
+  }
+);
