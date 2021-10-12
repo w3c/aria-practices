@@ -6,7 +6,12 @@ const exampleFile = 'table/sortable-table.html';
 
 const ex = {
   ariaSortSelector: '#ex1 table th[aria-sort]',
-  buttonSelector: '#ex1 table th button',
+  sortableColumnHeaderSelectors: [
+    '#ex1 table th:nth-of-type(1)',
+    '#ex1 table th:nth-of-type(2)',
+    '#ex1 table th:nth-of-type(3)',
+    '#ex1 table th:nth-of-type(5)',
+  ],
   spanSelector: '#ex1 table th[aria-sort] button span',
 };
 
@@ -22,15 +27,22 @@ ariaTest(
 );
 
 ariaTest(
-  'Initial value of aria-sort is ascending',
+  'aria-sort  value is updated when button is activated',
   exampleFile,
   'th-aria-sort',
   async (t) => {
-    await assertAttributeValues(
-      t,
-      ex.ariaSortSelector,
-      'aria-sort',
-      'ascending'
-    );
+    for (let index = 0; index < 2; index++) {
+      const headerSelector = ex.sortableColumnHeaderSelectors[index];
+      const buttonSelector = headerSelector + ' button';
+
+      const button = await t.context.queryElement(t, buttonSelector);
+      await button.click();
+
+      await assertAttributeValues(t, headerSelector, 'aria-sort', 'descending');
+
+      await button.click();
+
+      await assertAttributeValues(t, headerSelector, 'aria-sort', 'ascending');
+    }
   }
 );
