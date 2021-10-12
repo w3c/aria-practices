@@ -22,7 +22,7 @@ ariaTest(
 );
 
 ariaTest(
-  'Initial value of aria-sort is acending',
+  'Initial value of aria-sort is ascending',
   exampleFile,
   'th-aria-sort',
   async (t) => {
