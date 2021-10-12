@@ -1,3 +1,8 @@
+.sr-only {
+  position: absolute;
+  top: -30em;
+}
+
 table.sortable td,
 table.sortable th {
   padding: 0.125em 0.25em;
@@ -38,13 +43,6 @@ table.sortable th button span {
   right: 4px;
 }
 
-table.sortable th span::after {
-  content: "♢";
-  color: #888;
-  position: relative;
-  top: -2px;
-}
-
 table.sortable th[aria-sort="descending"] span::after {
   content: "▼";
   color: currentColor;
@@ -79,4 +77,12 @@ table.sortable th button:hover {
 table.sortable th button:focus span,
 table.sortable th button:hover span {
   right: 2px;
+}
+
+table.sortable th:not([aria-sort]) button:focus span::after,
+table.sortable th:not([aria-sort]) button:hover span::after {
+  content: "▼";
+  color: currentColor;
+  font-size: 100%;
+  top: 0;
 }

@@ -47,31 +47,34 @@
     </div>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="ex1">
-      <table class="sortable">
-        <caption>Students currently enrolled in WAI-ARIA 101</caption>
+      <table class="sortable" aria-description="Column headers with buttons are sortable">
+        <caption>
+          Students currently enrolled in WAI-ARIA 101
+          <span class="sr-only">, column headers with buttons are sortable.</span>
+        </caption>
         <thead>
           <tr>
             <th>
-              <button aria-describedby="id-change-sort">
+              <button>
                 First Name
                 <span aria-hidden="true"></span>
               </button>
             </th>
             <th aria-sort="ascending">
-              <button aria-describedby="id-change-sort">
+              <button>
                 Last Name
                 <span aria-hidden="true"></span>
               </button>
             </th>
             <th>
-              <button  aria-describedby="id-change-sort">
+              <button>
                 Company
                 <span aria-hidden="true"></span>
               </button>
             </th>
             <th>Address</th>
             <th class="num">
-              <button aria-describedby="id-change-sort">
+              <button>
                 Favorite Number
                 <span aria-hidden="true"></span>
               </button>
@@ -109,8 +112,6 @@
           </tr>
         </tbody>
       </table>
-      <div id="id-change-sort" hidden>change sort order</div>
-      <div id="id-sort-column" hidden>sort by this column</div>
     </div>
     <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
   </section>
@@ -123,7 +124,7 @@
         NOTE: The use of the <code>thead</code> and <code>tbody</code> elements to separate the header rows from the sortable data rows helps reduce the complexity of the sorting script.
       </li>
       <li>
-        Since the each column header cell and it's associated sorting button share the same accessible name, <code>aria-describedby</code> reference on the <code>button</code> element is used to provide additional information on the action of the button. This supports table navigation commands of screen readers to just provide the column header name when moving between columns and not include additional information about the button action.
+        Information on the actions of the buttons in the column headers are described in the <code>caption</code> element that provides an accessible name for the table.   The information is placed in a <code>span</code> element and hidden from the visual rendering using the <code>.sr-only</code> class name to position the text outside the graphical rendering.  For most sortble tables this is a sufficient description of the purpose of the buttons.
       </li>
       <li>
         Uses CSS <code>:hover</code> and <code>:focus</code> pseudo-class for styling visual keyboard focus and hover for the sorting button.
@@ -132,7 +133,7 @@
             The focus indicator encompasses both the column label and sort direction icon to make it easier to perceive when the switch has focus.
           </li>
           <li>
-            The hover indicator is the same as focus indicator to make it easier to perceive that clicking either the column label or the sort direction icon will activate the sorting the table.  Including both the column label and the sort direction icon maximizes the target size of the sorting button to make it easier to activate with pointing devices for people with visual and movement impairments.  CSS positioning and sizing is used to make the button fill most of the header cell area to maximize the target size to activate the button with a pointing device.
+            The hover indicator is the same as focus indicator to make it easier to perceive that clicking either the column label or the sort direction icon will activate the sorting the table.  Including both the column label and the sort direction icon maximizes the target size of the sorting button to make it easier to activate with pointing devices for people with visual and movement impairments.  CSS positioning and sizing is used to make the button fill the entire header cell area to maximize the target size to activate the button with a pointing device.
           </li>
           <li>
             The cursor is changed to a pointer when hovering over the button to help people with visual impairments identify it as an interactive element.
@@ -140,12 +141,10 @@
         </ul>
       </li>
       <li>
-        To ensure the sorting direction icon is synchronized with the value of the <code>aria-sort</code> attribute, CSS selectors based on the <code>aria-sort</code> value are used to render the sort direction icon.</li>
-      <li>
-        When a sortable column is un-sorted a diamond shaped icon (e.g. &quot;♢&quot; ) is used in the column to provide a visual affordance that the column is sortable. The use of a different shaped icon supports users with visual impairments in identifying the difference with the sorted column icon in high contrast modes.
+        To ensure the sorting direction icon is synchronized with the value of the <code>aria-sort</code> attribute, CSS selectors based on the <code>aria-sort</code> value are used to render the sort direction icon.
       </li>
       <li>
-        To ensure the sorting direction icons have sufficient contrast with the background when high contrast settings invert colors a character entities are used to indicate the sorting direction.
+        To ensure the sorting direction icons have sufficient contrast with the background when high contrast settings invert colors character entities (e.g. '▼' and '▲')are used to indicate the sorting direction.
        </li>
     </ul>
   </section>
@@ -183,33 +182,6 @@
                 A value of &quot;<code>descending</code>&quot; identifies the data cells in the column are sorted in descending order.
               </li>
             </ul>
-          </td>
-        </tr>
-        <tr data-test-id="button-aria-describedby">
-          <td></td>
-          <th scope="row">
-            <code>aria-describedby=&quot;<em>IDREF</em>&quot;</code>
-          </th>
-          <td><code>button</code></td>
-          <td>
-            <ul>
-              <li>
-                Provides an accessible description for each button used for sorting (e.g. &quot;Sort in descending order&quot;).
-              </li>
-              <li>
-                The descriptions for all the <code>button</code> elements are updated each time any button is activated to indicate any changes in action of each button.
-              </li>
-            </ul>
-          </td>
-        </tr>
-        <tr data-test-id="span-aria-hidden">
-          <td></td>
-          <th scope="row">
-            <code>aria-hidden=&quot;true&quot;</code>
-          </th>
-          <td><code>span</code></td>
-          <td>
-            Removes the icon character from being part of the accessible name of the button.  The direction of the sort is defined using <code>aria-sort</code> attribute on the <code>th</code> element.
           </td>
         </tr>
       </tbody>
