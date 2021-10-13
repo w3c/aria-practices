@@ -61,7 +61,8 @@ table.show-unsorted-icon th:not([aria-sort]) button span::after {
   content: "♢";
   color: currentColor;
   font-size: 100%;
-  top: 0;
+  position: relative;
+  top: -3px;
 }
 
 table.sortable td.num {
