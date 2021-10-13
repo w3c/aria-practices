@@ -15,6 +15,10 @@ table.sortable th {
   position: relative;
 }
 
+table.sortable th.nosort {
+  padding-top: 0.35em;
+}
+
 table.sortable th:nth-child(5) {
   width: 10em;
 }
@@ -63,6 +67,7 @@ table.show-unsorted-icon th:not([aria-sort]) button span::after {
   font-size: 100%;
   position: relative;
   top: -3px;
+  left: -4px;
 }
 
 table.sortable td.num {
