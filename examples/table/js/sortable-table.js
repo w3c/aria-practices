@@ -26,6 +26,20 @@ class SortableTable {
         buttonNode.addEventListener('click', this.handleClick.bind(this));
       }
     }
+
+    this.optionCheckbox = document.querySelector(
+      'input[type="checkbox"][value="show-unsorted-icon"]'
+    );
+
+    if (this.optionCheckbox) {
+      this.optionCheckbox.addEventListener(
+        'change',
+        this.handleOptionChange.bind(this)
+      );
+      if (this.optionCheckbox.checked) {
+        this.tableNode.classList.add('show-unsorted-icon');
+      }
+    }
   }
 
   setColumnHeaderSort(columnIndex) {
@@ -131,6 +145,16 @@ class SortableTable {
   handleClick(event) {
     var tgt = event.currentTarget;
     this.setColumnHeaderSort(tgt.getAttribute('data-column-index'));
+  }
+
+  handleOptionChange(event) {
+    var tgt = event.currentTarget;
+
+    if (tgt.checked) {
+      this.tableNode.classList.add('show-unsorted-icon');
+    } else {
+      this.tableNode.classList.remove('show-unsorted-icon');
+    }
   }
 }
 

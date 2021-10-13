@@ -57,6 +57,13 @@ table.sortable th[aria-sort="ascending"] span::after {
   top: 0;
 }
 
+table.show-unsorted-icon th:not([aria-sort]) button span::after {
+  content: "♢";
+  color: currentColor;
+  font-size: 100%;
+  top: 0;
+}
+
 table.sortable td.num {
   text-align: right;
 }
