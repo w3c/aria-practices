@@ -15,7 +15,7 @@ table.sortable th {
   position: relative;
 }
 
-table.sortable th.nosort {
+table.sortable th.no-sort {
   padding-top: 0.35em;
 }
 
