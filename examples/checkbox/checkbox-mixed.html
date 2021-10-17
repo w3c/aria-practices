@@ -6,14 +6,13 @@
 
     <!--  Core js and css shared by all examples; do not modify when using this template. -->
     <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
-    <link rel="stylesheet" href="../../css/core.css">
-    <script src="../../js/examples.js"></script>
-    <script src="../../js/highlight.pack.js"></script>
-    <script src="../../js/app.js"></script>
+    <link rel="stylesheet" href="../css/core.css">
+    <script src="../js/examples.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    <script src="../js/app.js"></script>
 
-    <link href="../css/checkbox.css" rel="stylesheet">
-    <script src="js/controlledCheckbox.js" type="text/javascript"></script>
-    <script src="js/checkboxMixed.js" type="text/javascript"></script>
+    <link href="css/checkbox-mixed.css" rel="stylesheet">
+    <script src="js/checkbox-mixed.js" type="text/javascript"></script>
   </head>
   <body>
     <nav aria-label="Related Links" class="feedback">
@@ -33,9 +32,6 @@
         If the set contains both some checked and unchecked checkboxes, the mixed state checkbox is partially checked.
         Activating the tri-state checkbox changes the states of the checkboxes in the set.
       </p>
-      <p>
-        This example also demonstrates use of <code>fieldset</code> and <code>Legend</code> elements for labeling the checkbox group.
-      </p>
       <p>Similar examples include: </p>
       <ul>
         <li><a href="../checkbox-1/checkbox-1.html">Checkbox (Two State)</a>: Simple two state checkbox.</li>
@@ -46,7 +42,7 @@
         </div>
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div  id="ex1">
-           <fieldset>
+           <fieldset class="checkbox-mixed">
               <legend>Sandwich Condiments</legend>
                   <div
                       role="checkbox"
@@ -64,31 +60,32 @@
                   <li><label><input type="checkbox" id="cond4">Sprouts</label></li>
                 </ul>
           </fieldset>
-          <script type="text/javascript">
-            function checkboxFocus (event) {
-              event.currentTarget.parentNode.classList.add('focus');
-            };
-            function checkboxBlur (event) {
-              event.currentTarget.parentNode.classList.remove('focus');
-            };
-            window.onload = function () {
-              var i;
-              var mixed = document.querySelectorAll('[role="checkbox"]');
-              for (i = 0; i < mixed.length; i++) {
-                var m = new CheckboxMixed(mixed[i]);
-                m.init();
-              }
-              var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-              for (i = 0; i < checkboxes.length; i++) {
-                var cb = checkboxes[i];
-                cb.addEventListener('focus', checkboxFocus);
-                cb.addEventListener('blur', checkboxBlur);
-              }
-            };
-          </script>
         </div>
         <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
       </section>
+
+
+    <section>
+      <h2>Accessibility Features</h2>
+      <ul>
+        <li>To help assistive technology users understand that the checkboxes are all part of a group of related checkboxes named <q>Sandwich Condiments</q>, the checkboxes are wrapped in a <code>fieldset</code> element which is labeled by a <code>legend</code> element.</li>
+        <li>To make it easier to perceive that clicking either the label or checkbox will activate the checkbox, when a pointer hovers over either the checkbox or label, the background color changes, a border appears, and the cursor changes to a pointer.</li>
+        <li>
+          Because transparent borders are visible on some systems when operating system high contrast settings are enabled, transparency cannot be used to create a visual difference between the element that is focused and other elements.
+          Instead of using transparency, the focused element has a thicker border and less padding.
+          When an element receives focus, its border changes from 0 to 2 pixels and padding is reduced by 2 pixels.
+          When an element loses focus, its border changes from 2 pixels to 0 and padding is increased by 2 pixels.
+        </li>
+        <li>
+          To ensure the borders of the inline SVG checkbox graphics in the CSS have sufficient contrast with the background when high contrast settings invert colors, the color of the borders are synchronized with the color of the text content.
+          For example, the color of the checkbox borders is set to match the foreground color of high contrast mode text by specifying the CSS <code>currentColor</code> value for the <code>stroke</code> property of the <code>rect</code> and <code>polyline</code> elements used to draw the checkbox.
+           To make the background of the checkbox graphics match the high contrast background color, the <code>fill-opacity</code> attribute of the <code>rect</code> element is set to zero.
+          If specific colors were instead used to specify the <code>stroke</code> and <code>fill</code> properties, those colors would remain the same in high contrast mode, which could lead to insufficient contrast between the checkbox and the background or even make the checkbox invisible if the color matched the high contrast mode background.<br>
+          Note: The SVG element needs to have the CSS <code>forced-color-adjust</code> property set to <code>auto</code> for the <code>currentColor</code> value to be updated in high contrast mode.
+          Some browsers do not use <code>auto</code> for the default value.
+        </li>
+      </ul>
+    </section>
 
       <section>
         <h2 id="kbd_label">Keyboard Support</h2>
@@ -200,9 +197,8 @@
        <section>
         <h2>Javascript and CSS Source Code</h2>
         <ul id="css_js_files">
-          <li>CSS: <a href="../css/checkbox.css" type="text/css">checkbox.css</a></li>
-          <li>Javascript: <a href="js/checkboxMixed.js" type="text/javascript">checkboxMixed.js</a></li>
-          <li>Javascript: <a href="js/controlledCheckbox.js" type="text/javascript">controlledCheckbox.js</a></li>
+          <li>CSS: <a href="css/checkbox-mixed.css" type="text/css">checkbox-mixed.css</a></li>
+          <li>Javascript: <a href="js/checkbox-mixed.js" type="text/javascript">checkbox-mixed.js</a></li>
         </ul>
       </section>
 
