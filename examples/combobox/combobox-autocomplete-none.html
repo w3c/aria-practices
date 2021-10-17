@@ -81,27 +81,21 @@
       <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
     </section>
 
-
     <section>
       <h2>Accessibility Features</h2>
       <ul>
         <li>
-          Browsers do not manage visibility of elements referenced by aria-activedescendant like they do for elements with focus. When a keyboard event changes the active option in the listbox, the JavaScript scrolls the option referenced by aria-activedescendant into view. Managing aria-activedescendant visibility is essential to accessibility for people who use a browser's zoom feature to increase the size of content.
+          Browsers do not manage visibility of elements referenced by aria-activedescendant like they do for elements with focus.
+          When a keyboard event changes the active option in the listbox, the JavaScript scrolls the option referenced by aria-activedescendant into view.
+          Managing aria-activedescendant visibility is essential to accessibility for people who use a browser's zoom feature to increase the size of content.
         </li>
         <li>
           To enhance perceivability  when operating the combobox, visual keyboard focus and hover are styled using the CSS <code>:hover</code> pseudo-class, and <code>focus</code> and <code>blur</code> event handlers:
           <ul>
-            <li>
-              To make it easier to perceive focus of the textbox and button, focus creates a 2 pixel focus ring around the <code>input</code> and <code>button</code> elements with 2 pixels of space between the focus ring and the combobox.
-            </li>
-            <li>
-              To make it easier to perceive the selected listbox option, selection creates a 2 pixel border above and below the option.
-            </li>
-            <li>
-              To make it easier to perceive that clicking either the input or button will open the listbox, the hover indicator is the same as the focus indicator.
-            </li>
-            <li>
-              To help people with visual impairments identify the combobox as an interactive element, the cursor is changed to a pointer when hovering over the combobox or list.</li>
+            <li>To make it easier to perceive when the combobox receives focus, focus creates a 2 pixel focus ring around both the <code>input</code> and <code>button</code> elements with 2 pixels of space between the focus ring and the combobox.</li>
+            <li>To make it easier to perceive that either the input or button can be clicked to open the listbox, hover causes the same styling as focus.</li>
+            <li>To help people with visual impairments identify the combobox as an interactive element, the cursor is changed to a pointer when hovering over the combobox or list.</li>
+            <li>To make it easier to distinguish the selected listbox option from other options, selection creates a 2 pixel border above and below the option.</li>
             <li>
               Note: Because transparent borders are visible on some systems with operating system high contrast settings enabled, transparency cannot be used to create a visual difference between the element that is focused an other elements.
               Instead of using transparency, the focused element has a thicker border and less padding.
