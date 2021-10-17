@@ -12,8 +12,8 @@
   <body>
     <div class="container">
       <header class="row">
-        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
-          <img src="images/w3c.png" alt="W3C Logo" />
+        <div id="skip-to-attach" class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+          <img src="images/w3c.png" alt="W3C Logo" style="margin-top: 2em" />
         </div>
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
           <h1>ARIA Landmarks Example</h1>
@@ -47,7 +47,7 @@
             <h2>Definition</h2>
             <ul>
               <li> A <code>search</code> landmark contains a collection of items and objects that, as a whole, combine to create search functionality to content on the website.</li>
-              <li> ARIA 1.1 Specification: <a href="https://www.w3.org/TR/wai-aria-1.1/#search"><code>search</code> landmark</a></li>
+              <li> ARIA 1.2 Specification: <a href="https://www.w3.org/TR/wai-aria-1.2/#search"><code>search</code> landmark</a></li>
             </ul>
             <h2>Design Patterns</h2>
             <ul>
@@ -108,12 +108,12 @@
           <aside aria-labelledby="id3">
             <h2 id="id3">Related Documents</h2>
             <ul>
-              <li><a href="https://www.w3.org/TR/wai-aria-practices-1.1/">WAI-ARIA Authoring Practices 1.1</a></li>
-              <li><a href="http://www.w3.org/TR/2014/REC-wai-aria-20140320/">WAI-ARIA 1.0 Specification</a></li>
-              <li><a href="https://www.w3.org/TR/wai-aria-1.1/">WAI-ARIA 1.1 Specification</a></li>
-              <li><a href="https://www.w3.org/TR/accname-aam-1.1/">Accessible Name and Description: Computation and API Mappings 1.1</a></li>
-              <li><a href="http://www.w3.org/TR/core-aam-1.1/">Core Accessibility API Mappings 1.1</a></li>
-              <li><a href="https://www.w3.org/TR/html-aam-1.0/">HTML Accessibility API Mappings 1.0</a></li>
+              <li><a href="https://w3c.github.io/aria-practices">WAI-ARIA Authoring Practices 1.2</a></li>
+              <li><a href="https://www.w3.org/TR/wai-aria-1.2/">WAI-ARIA 1.2 Specification</a></li>
+
+              <li><a href="https://www.w3.org/TR/accname-1.2/">Accessible Name and Description Computation 1.2</a></li>
+              <li><a href="http://www.w3.org/TR/core-aam-1.2/">Core Accessibility API Mappings 1.2</a></li>
+              <li><a href="https://w3c.github.io/html-aam/">HTML Accessibility API Mappings (latest editors draft)</a></li>
               <li><a href="https://html.spec.whatwg.org/">HTML Specification</a></li>
               <li><a href="https://www.w3.org/TR/html-aria/">ARIA in HTML</a></li>
               <li><a href="https://www.w3.org/TR/using-aria/">Using ARIA in HTML</a></li>
@@ -128,7 +128,7 @@
             W3C ARIA Authoring Practices Task Force
           </div>
           <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
-            Copyright 2020
+            Copyright 2021
           </div>
         </footer>
       </div>
@@ -146,11 +146,12 @@
         "settings": {
           "skipTo": {
             "headings": "h1, h2",
-            "attachElement": "header"
+            "attachElement": "#skip-to-attach",
+            "colorTheme": "aria"
           }
         }
       };
     </script>
-    <script type="text/javascript" src="js/SkipTo.min.js"></script>
+    <script type="text/javascript" src="js/skipto.min.js"></script>
   </body>
 </html>
