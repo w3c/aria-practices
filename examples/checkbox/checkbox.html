@@ -58,17 +58,14 @@
     <section>
       <h2>Accessibility Features</h2>
       <ul>
+        <li>To help assistive technology users understand that each checkbox is part of a set of related checkboxes named <q>Sandwich Condiments</q>, the checkboxes are wrapped in a <code>group</code> labeled by the <code>h3</code> heading element.</li>
+        <li>To enable assistive technology users to perceive the set of checkboxes as a list of four items, each  <code>div</code> element that serves as a checkbox is contained within  a <code>li</code> element contained by  a <code>ul</code> element.</li>
+        <li>To make it easier to perceive that clicking either the label or checkbox will activate the checkbox, when a pointer hovers over either the checkbox or label, the background color changes, a border appears, and the cursor changes to a pointer.</li>
         <li>
-          To help assistive technology users understand that the Sandwich Condiment options is made of a group of four checkboxes, the checkboxes are wrapped in a <code>group</code> labeled using the <code>h3</code> heading element.
-        </li>
-        <li>
-          The list structure of the checkboxes is conveyed with native <code>ul</code> and <code>li</code> elements. So that the list structure is communicated to assistive technologies, instead of applying a checkbox role to the <code>li</code> element, the checkbox role is defined on a <code>div</code> element contained within the <code>li</code> element.
-        </li>
-        <li>
-          To provide a visual indication the labels can also be used to change the state of a checkbox, the background color changes, a border appears and the cursor changes to a pointer when a pointer hovers over the checkbox or label.  The border and pointer changes help people with visual impairments identify the element as interactive.
-        </li>
-        <li>
-          Because transparent borders are visible on some systems with operating system high contrast settings enabled, transparency cannot be used to create a visual difference between the element that is focused an other elements. Instead of using transparency, the focused element has a thicker border and less padding. When an element receives focus, its border changes from 0 to 2 pixels and padding is reduced by 2 pixels. When an element loses focus, its border changes from 2 pixels to 0 and padding is increased by 2 pixels.
+          Because transparent borders are visible on some systems when operating system high contrast settings are enabled, transparency cannot be used to create a visual difference between the element that is focused and other elements.
+          Instead of using transparency, the focused element has a thicker border and less padding.
+          When an element receives focus, its border changes from 0 to 2 pixels and padding is reduced by 2 pixels.
+          When an element loses focus, its border changes from 2 pixels to 0 and padding is increased by 2 pixels.
         </li>
         <li>
           To ensure the borders of the inline SVG checkbox graphics in the CSS have sufficient contrast with the background when high contrast settings invert colors, the color of the borders are synchronized with the color of the text content.
@@ -81,7 +78,7 @@
       </ul>
     </section>
 
-     <section>
+    <section>
         <h2 id="kbd_label">Keyboard Support</h2>
         <table aria-labelledby="kbd_label" class="def">
           <thead>
