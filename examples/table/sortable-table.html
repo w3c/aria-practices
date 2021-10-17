@@ -43,15 +43,16 @@
 
     <section>
       <h2>Example Option</h2>
-
       <label>
         <input type="checkbox"
           value="show-unsorted-icon"
           aria-describedby="show-unsorted-icon-desc">
-        Display icons in un-sorted column headers
+        Display sort icon in headers of columns that are not sorted
       </label>
       <p id="show-unsorted-icon-desc">
-        Some sortable table designs include an icon in the column header indicating the column can be used for sorting. When a sortable column is not being used for sorting a diamond shaped icon (e.g. &quot;♢&quot; ) can be used to provide a visual affordance that the column is sortable. It is important that a different shaped icon is used for users with visual impairments to perceive the difference with the sorted column icon in high contrast modes.
+        Adds an <q>♢</q> icon to the header of each column that is sortable but is not currently sorted.
+        Some implementations do this to help users distinguish sortable columns from columns that cannot be sorted.
+        It is important that a different shaped icon is used for users with visual impairments to perceive the difference with the sorted column icon in high contrast modes.
       </p>
     </section>
 
