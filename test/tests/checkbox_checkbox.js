@@ -1,11 +1,11 @@
 const { ariaTest } = require('..');
-const { By, Key } = require('selenium-webdriver');
+const { By } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertTabOrder = require('../util/assertTabOrder');
 
-const exampleFile = 'checkbox/checkbox-1/checkbox-1.html';
+const exampleFile = 'checkbox/checkbox.html';
 
 const ex = {
   groupSelector: '#ex1 [role="group"]',
@@ -32,21 +32,6 @@ const waitAndCheckAriaChecked = async function (t, selector, value) {
     .catch((err) => {
       return err;
     });
-};
-
-const checkVisuallyChecked = async function (t, selector, checked) {
-  let expectedBackgroundColor = checked
-    ? 'rgb(96, 155, 251)'
-    : 'rgba(0, 0, 0, 0)';
-
-  let background = await t.context.session.executeScript(function () {
-    const [selector] = arguments;
-    return window
-      .getComputedStyle(document.querySelector(selector), ':before')
-      .getPropertyValue('background-color');
-  }, selector);
-
-  return background === expectedBackgroundColor;
 };
 
 const uncheckAllSelectedByDefault = async function (t) {
@@ -137,14 +122,6 @@ ariaTest(
       'false'
     );
 
-    // check that the visual indicator matches the checked state (unchecked)
-    for (let checkboxSelector of ex.checkboxes) {
-      t.true(
-        await checkVisuallyChecked(t, checkboxSelector, false),
-        'All checkboxes should be visually checked'
-      );
-    }
-
     // Click all checkboxes to select them
     let checkboxes = await t.context.queryElements(t, ex.checkboxSelector);
     for (let checkbox of checkboxes) {
@@ -153,14 +130,6 @@ ariaTest(
 
     // check the aria-checked attribute has been updated to true
     await assertAttributeValues(t, ex.checkboxSelector, 'aria-checked', 'true');
-
-    // check that the visual indicator matches the checked state (checked)
-    for (let checkboxSelector of ex.checkboxes) {
-      t.true(
-        await checkVisuallyChecked(t, checkboxSelector, true),
-        'All checkboxes should be visually checked'
-      );
-    }
   }
 );
 
@@ -184,7 +153,7 @@ ariaTest(
       // Send SPACE key to check box to select
       await t.context.session
         .findElement(By.css(checkboxSelector))
-        .sendKeys(Key.SPACE);
+        .sendKeys(' ');
 
       t.true(
         await waitAndCheckAriaChecked(t, checkboxSelector, 'true'),
@@ -192,26 +161,14 @@ ariaTest(
           checkboxSelector
       );
 
-      t.true(
-        await checkVisuallyChecked(t, checkboxSelector, true),
-        'checkbox should be visual checked after sending SPACE key to checkbox: ' +
-          checkboxSelector
-      );
-
       // Send SPACE key to check box to unselect
       await t.context.session
         .findElement(By.css(checkboxSelector))
-        .sendKeys(Key.SPACE);
+        .sendKeys(' ');
 
       t.true(
         await waitAndCheckAriaChecked(t, checkboxSelector, 'false'),
         'aria-selected should be set after sending SPACE key to checkbox: ' +
-          checkboxSelector
-      );
-
-      t.true(
-        await checkVisuallyChecked(t, checkboxSelector, false),
-        'checkbox should be visual checked after sending SPACE key to checkbox: ' +
           checkboxSelector
       );
     }
