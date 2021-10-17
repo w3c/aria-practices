@@ -140,28 +140,19 @@
         NOTE: The use of the <code>thead</code> and <code>tbody</code> elements to separate the header rows from the sortable data rows helps reduce the complexity of the sorting script.
       </li>
       <li>
-        Information on the actions of the buttons in the column headers are described in the <code>caption</code> element that provides an accessible name for the table.   The information is placed in a <code>span</code> element and hidden from the visual rendering using the <code>.sr-only</code> class name to position the text outside the graphical rendering.  For most sortable tables this is a sufficient description of the purpose of the buttons.
+        To help screen reader users understand the purpose of the buttons in the column headers, an off-screen description of the sort functionality of the buttons is appended to the caption text.
+        The description is added to the caption instead of to each button to prevent repetitious verbosity that could interfere with understanding of the column titles.
       </li>
-      <li>
-        Uses CSS <code>:hover</code> and <code>:focus</code> pseudo-class for styling visual keyboard focus and hover for the sorting button.
+      <li>To enhance perceivability when operating the sort buttons, visual keyboard focus and hover are styled using CSS <code>:hover</code> and <code>:focus</code> pseudo-classes:
         <ul>
-          <li>
-            The focus indicator encompasses both the column label and sort direction icon to make it easier to perceive when the switch has focus.
-          </li>
-          <li>
-            The hover indicator is the same as focus indicator to make it easier to perceive that clicking either the column label or the sort direction icon will activate the sorting the table.  Including both the column label and the sort direction icon maximizes the target size of the sorting button to make it easier to activate with pointing devices for people with visual and movement impairments.  CSS positioning and sizing is used to make the button fill the entire header cell area to maximize the target size to activate the button with a pointing device.
-          </li>
-          <li>
-            The cursor is changed to a pointer when hovering over the button to help people with visual impairments identify it as an interactive element.
-          </li>
+          <li>To make it easier to perceive when a button has focus, the focus indicator encompasses both the column label and sort direction icon.</li>
+          <li>The cursor is changed to a pointer when hovering over the button to help people identify it as an interactive element.</li>
+          <li>To make it easier to perceive that clicking either the column label or the sort direction icon will sort the table, hover styles the button and icon in the same way that focus does.</li>
+          <li>To make activating sort easier for people with visual and movement impairments who are using a pointing device, the click target is maximized not only by making both the column label and sort icon clickable but also by using CSS positioning and sizing to make the button fill the entire header cell area.</li>
         </ul>
       </li>
-      <li>
-        To ensure the sorting direction icon is synchronized with the value of the <code>aria-sort</code> attribute, CSS selectors based on the <code>aria-sort</code> value are used to render the sort direction icon.
-      </li>
-      <li>
-        To ensure the sorting direction icons have sufficient contrast with the background when high contrast settings invert colors character entities (e.g. '▼' and '▲')are used to indicate the sorting direction.
-       </li>
+      <li>To ensure the sorting direction icon is synchronized with the value of the <code>aria-sort</code> attribute, CSS selectors based on the <code>aria-sort</code> value are used to render the sort direction icon.</li>
+      <li>To ensure the sorting direction icons have sufficient contrast with the background when high contrast settings invert colors, character entities (e.g. '▼' and '▲')are used to indicate the sorting direction.</li>
     </ul>
   </section>
 
