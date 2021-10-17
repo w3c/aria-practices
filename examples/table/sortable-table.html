@@ -175,19 +175,13 @@
         <tbody>
           <tr data-test-id="th-aria-sort">
             <td></td>
-            <th scope="row"><code>aria-sort=&quot;<em>value</em>&quot;</code></th>
+            <th scope="row"><code>aria-sort="<em>value</em>"</code></th>
             <td><code>th</code></td>
             <td>
               <ul>
-                <li>
-                  The <code>aria-sort</code> attribute is only defined on the column that is sorted.  As the sorted columns are changed the <code>aria-sort</code> attribute is removed from un-sorted columns.
-                </li>
-                <li>
-                  A value of &quot;<code>ascending</code>&quot; identifies the data cells in the column are sorted in ascending order.
-                </li>
-                <li>
-                  A value of &quot;<code>descending</code>&quot; identifies the data cells in the column are sorted in descending order.
-                </li>
+                <li>Set on the currently sorted column.  When the sorted column is changed, the <code>aria-sort</code> attribute is removed and set on the newly sorted column.</li>
+                <li>A value of &quot;<code>ascending</code>&quot; indicates the data cells in the column are sorted in ascending order.</li>
+                <li>A value of &quot;<code>descending</code>&quot; indicates the data cells in the column are sorted in descending order.</li>
               </ul>
             </td>
           </tr>
@@ -195,7 +189,7 @@
             <td></td>
             <th scope="row"><code>aria-hidden="true"</code></th>
             <td><code>svg</code></td>
-            <td>Removes the character entity used to visually indicate the sorting order from the accessibility tree to prevent assistive technologies including the character as part of the accessible name for the button.</td>
+            <td>Removes the character entity that visually indicates the sort order from the accessibility tree to prevent it from being included in the accessible name of the button.</td>
           </tr>
         </tbody>
       </table>
