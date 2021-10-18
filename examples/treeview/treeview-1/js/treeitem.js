@@ -143,7 +143,6 @@ Treeitem.prototype.handleKeydown = function (event) {
           });
         } catch (err) {
           if (document.createEvent) {
-            // DOM Level 3 for IE 9+
             clickEvent = document.createEvent('MouseEvents');
             clickEvent.initEvent('click', true, true);
           }

@@ -7,7 +7,6 @@ function TreeGrid(treegridElem, doAllowRowFocus, doStartRowFocus) {
 
     // Add tabindex="0" to first row, "-1" to other rows
     // We will use the roving tabindex method since aria-activedescendant
-    // does not work in IE
     var rows = getAllRows();
     var index = rows.length;
     var startRowIndex = doStartRowFocus ? 0 : -1;
