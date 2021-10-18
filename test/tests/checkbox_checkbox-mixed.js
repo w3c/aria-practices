@@ -1,11 +1,11 @@
 const { ariaTest } = require('..');
-const { By, Key } = require('selenium-webdriver');
+const { By } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertTabOrder = require('../util/assertTabOrder');
 const assertNoElements = require('../util/assertNoElements');
 
-const exampleFile = 'checkbox/checkbox-2/checkbox-2.html';
+const exampleFile = 'checkbox/checkbox-mixed.html';
 
 const ex = {
   checkboxSelector: '#ex1 [role="checkbox"]',
@@ -212,7 +212,7 @@ ariaTest(
 
     // Send SPACE key to checkbox to change state
     let checkbox = t.context.session.findElement(By.css(ex.checkboxSelector));
-    await checkbox.sendKeys(Key.SPACE);
+    await checkbox.sendKeys(' ');
 
     // Check that the state
     t.is(
@@ -231,7 +231,7 @@ ariaTest(
     );
 
     // Send SPACE key to checkbox to change state
-    await checkbox.sendKeys(Key.SPACE);
+    await checkbox.sendKeys(' ');
 
     // Check that the state
     t.is(
@@ -248,7 +248,7 @@ ariaTest(
     );
 
     // Send SPACE key to checkbox to change state
-    await checkbox.sendKeys(Key.SPACE);
+    await checkbox.sendKeys(' ');
 
     // Check that the state
     t.is(
