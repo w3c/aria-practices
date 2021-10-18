@@ -22,9 +22,9 @@
     <h1>ARIA Roles, Properties and States Referenced in Guidance and Examples</h1>
 
     <p>
-      This page includes information on number of guidance and example references in the <a href="../">WAI-ARIA Authoring Practices</a> for each ARIA role, property and state.</a>  The guidance column is determined
+      This page includes information on number of guidance and example references in the <a href="../">WAI-ARIA Authoring Practices</a> for each ARIA role, property and state. The guidance column is determined
       by either the role, property or state being in the text content of a heading (e.g. <code>h2</code>-<code>h6</code>) or through the use of <code>
-      data-aria-roles</code> or <code>data-aria-props</code> attributes on any heading within the practices.  The <code>data-aria-roles</code> or <code>data-aria-props</code> attributes should contain a space separated list of values.  The use of the data attribute overrides the identification of roles, properties or states from the text content of a heading.  The suffix <strong>"(D)"</strong> indicates a reference came from a data attribute, otherwise the reference came from the text content of a heading.</p>
+      data-aria-roles</code> or <code>data-aria-props</code> attributes on any heading within the practices.  The <code>data-aria-roles</code> or <code>data-aria-props</code> attributes should contain a space separated list of values.  The use of the data attribute overrides the identification of roles, properties or states from the text content of a heading.  The suffix <strong>"(D)"</strong> indicates a reference came from a data attribute, otherwise the reference came from the text content of a heading.
     </p>
     <ul>
       <li><a href="#csv_files">CSV Files of Role, Properties and States Coverage</a></li>
@@ -228,5 +228,6 @@
   <nav aria-label="ARIA Practices">
     <a href="../">WAI-ARIA Authoring Practices</a>
   </nav>
+  </main>
 </body>
 </html>
