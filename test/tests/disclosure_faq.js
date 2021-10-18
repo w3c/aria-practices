@@ -1,6 +1,8 @@
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAriaControls = require('../util/assertAriaControls');
+const assertAriaLabelledby = require('../util/assertAriaLabelledby');
+const assertAriaRoles = require('../util/assertAriaRoles');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertTabOrder = require('../util/assertTabOrder');
 
@@ -8,7 +10,8 @@ const exampleFile = 'disclosure/disclosure-faq.html';
 
 const ex = {
   buttonSelector: '#ex1 button',
-  answerSelector: '#ex1 p.desc',
+  regionSelector: '#ex1 [role="region"]',
+  answerSelector: '#ex1 div.desc',
   buttonSelectors: [
     '#ex1 dt:nth-of-type(1) button',
     '#ex1 dt:nth-of-type(2) button',
@@ -79,6 +82,24 @@ ariaTest(
     }
 
     await assertAttributeValues(t, ex.buttonSelector, 'aria-expanded', 'true');
+  }
+);
+
+ariaTest(
+  'role="region" element exists',
+  exampleFile,
+  'region-role',
+  async (t) => {
+    await assertAriaRoles(t, 'ex1', 'region', '4', 'div');
+  }
+);
+
+ariaTest(
+  '"aria-labelledby" attribute on landmark regions',
+  exampleFile,
+  'region-aria-labelledby',
+  async (t) => {
+    await assertAriaLabelledby(t, ex.regionSelector);
   }
 );
 

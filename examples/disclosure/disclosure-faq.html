@@ -48,46 +48,46 @@
     </div>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of" ></div>
     <div id="ex1">
+      <h3>Parking <abbr title="Frequently Asked Questions">FAQ</abbr>s</h3>
       <dl class="faq">
         <dt>
-          <button type="button" aria-expanded="false" aria-controls="faq1_desc">What do I do if I have a permit for an assigned lot, but can't find a space there?</button>
+          <button type="button" aria-expanded="false" aria-controls="faq1_desc" id="faq1_button">What do I do if I have a permit for an assigned lot, but can't find a space there?</button>
         </dt>
         <dd>
-          <p id="faq1_desc" class="desc">
+          <div role="region" aria-labelledby="faq1_button" id="faq1_desc" class="desc">
             Park at the nearest available parking meter without paying the meter
             and call 999-999-9999 to report the problem. We will note and approve your alternate
             location and will investigate the cause of the shortage in your assigned facility.
-          </p>
+          </div>
         </dd>
         <dt>
-          <button type="button" aria-expanded="false" aria-controls="faq2_desc">What do I do if I lose my permit or if my permit is stolen?</button>
+          <button type="button" aria-expanded="false" aria-controls="faq2_desc" id="faq2_button">What do I do if I lose my permit or if my permit is stolen?</button>
         </dt>
         <dd>
-          <p id="faq2_desc" class="desc">You should come to the Parking office and report the
+          <div role="region" aria-labelledby="faq2_button" id="faq2_desc" class="desc">You should come to the Parking office and report the
             loss. There is a fee to replace your lost permit. However, if your permit was stolen, a
-            copy of a police report needs to be submitted along with a stolen parking permit form for
-            a fee replacement exemption.
-          </p>
+            copy of a police report needs to be submitted along with a stolen parking permit form for a fee replacement exemption.
+          </div>
         </dd>
         <dt>
-          <button type="button" aria-expanded="false" aria-controls="faq3_desc">Is there free parking on holidays?</button>
+          <button type="button" aria-expanded="false" aria-controls="faq3_desc" id="faq3_button">Is there free parking on holidays?</button>
         </dt>
         <dd>
-          <p id="faq3_desc" class="desc">
+          <div role="region" aria-labelledby="faq3_button" id="faq3_desc" class="desc">
             All facilities are restricted from 2:00 am - 6:00 am on all days. No
             exceptions are made for any holiday or recess except those officially listed as a
             <q>Holidays</q> in the calendar. Please note: 24-hour rental spaces, 24-hour rental lots, and
             disabled parking is enforced at all times.
-          </p>
+          </div>
         </dd>
         <dt>
-          <button type="button" aria-expanded="false" aria-controls="faq4_desc">Do all parking facilities have the same enforcement rules?</button>
+          <button type="button" aria-expanded="false" aria-controls="faq4_desc" id="faq4_button">Do all parking facilities have the same enforcement rules?</button>
         </dt>
         <dd>
-          <p id="faq4_desc" class="desc">
+          <div role="region" aria-labelledby="faq4_button" id="faq4_desc" class="desc">
             Some parking facility restrictions differ from others. Be sure to
             take note of the signs at each lot entrance.
-          </p>
+          </div>
         </dd>
       </dl>
     </div>
@@ -223,6 +223,44 @@
               <li>
                 The visual indicator of the show/hide state is created using CSS <code>:before</code> pseudo element and <code>content</code> property
                 so the image is reliably rendered in high contrast mode of operating systems and browsers.
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr data-test-id="region-role">
+          <th scope="row">
+            <code>region</code>
+          </th>
+          <td></td>
+          <td>
+            <code>div</code>
+          </td>
+          <td>
+            <ul>
+              <li>
+                The landmark <code>region</code> identifies the boundaries of each faq description, so users of assistive technologies can easily identify the beginning and ending of each description.
+              </li>
+              <li>
+                The use of landmark regions increases in importance when the faq structure includes the nesting of faq buttons and descriptions.
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr data-test-id="region-aria-labelledby">
+          <td></td>
+          <th scope="row">
+            <code>aria-labelledby=&quot;ID_REF&quot;</code>
+          </th>
+          <td>
+            <code>div</code>
+          </td>
+          <td>
+            <ul>
+              <li>
+                References the <code>id</code> of the controlling <code>button</code> element to provide the accessible name for the landmark region.
+              </li>
+              <li>
+                Elements with the <code>region</code> role are required to have an accessible name to be identified as a landmark region.
               </li>
             </ul>
           </td>
