@@ -537,7 +537,7 @@ class MenubarNavigation {
     return this.domNode.classList.contains('focus');
   }
 
-  // Menu event onrs
+  // Menu event handlers
 
   onMenubarFocusin() {
     // if the menubar or any of its menus has focus, add styling hook for hover

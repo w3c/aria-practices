@@ -482,7 +482,7 @@ class MenubarEditor {
     return menuitem.getAttribute('aria-expanded') === 'true';
   }
 
-  // Menu event onrs
+  // Menu event handlers
 
   onFocusin() {
     this.domNode.classList.add('focus');
