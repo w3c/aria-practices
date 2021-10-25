@@ -218,7 +218,7 @@ aria.FeedDisplay.prototype.renderItemData = function (itemData) {
       ' stars" ' +
       'src="imgs/rating-' +
       itemData.rating +
-      '.png" />' +
+      '.png">' +
       '</div>';
     describedbyIDs.push(ratingID);
   }
