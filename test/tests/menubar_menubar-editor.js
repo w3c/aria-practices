@@ -76,7 +76,10 @@ const checkmarkVisible = async function (t, selector, index) {
     function () {
       const [selector, index] = arguments;
       const checkmarkContent = window
-        .getComputedStyle(document.querySelectorAll(selector)[index], ':before')
+        .getComputedStyle(
+          document.querySelectorAll(`${selector} > [aria-hidden]`)[index],
+          ':before'
+        )
         .getPropertyValue('content');
       if (checkmarkContent == 'none') {
         return false;
