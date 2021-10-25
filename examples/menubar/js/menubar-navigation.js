@@ -58,8 +58,8 @@ class MenubarNavigation {
     domNode.addEventListener('focusout', this.onMenubarFocusout.bind(this));
 
     window.addEventListener(
-      'mousedown',
-      this.onBackgroundMousedown.bind(this),
+      'pointerdown',
+      this.onBackgroundPointerdown.bind(this),
       true
     );
 
@@ -239,8 +239,8 @@ class MenubarNavigation {
       });
 
       menuitem.addEventListener(
-        'mouseover',
-        this.onMenuitemMouseover.bind(this)
+        'pointerover',
+        this.onMenuitemPointerover.bind(this)
       );
 
       if (!this.firstMenuitem[menuId]) {
@@ -706,7 +706,7 @@ class MenubarNavigation {
     event.preventDefault();
   }
 
-  onMenuitemMouseover(event) {
+  onMenuitemPointerover(event) {
     var tgt = event.currentTarget;
     var menuId = this.getMenuId(tgt);
 
@@ -722,7 +722,7 @@ class MenubarNavigation {
     }
   }
 
-  onBackgroundMousedown(event) {
+  onBackgroundPointerdown(event) {
     if (!this.domNode.contains(event.target)) {
       this.closePopupAll();
     }

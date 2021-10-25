@@ -32,8 +32,8 @@ class MenubarEditor {
     this.domNode.addEventListener('focusout', this.onFocusout.bind(this));
 
     window.addEventListener(
-      'mousedown',
-      this.onBackgroundMousedown.bind(this),
+      'pointerdown',
+      this.onBackgroundPointerdown.bind(this),
       true
     );
   }
@@ -124,8 +124,8 @@ class MenubarEditor {
       menuitem.addEventListener('click', this.onMenuitemClick.bind(this));
 
       menuitem.addEventListener(
-        'mouseover',
-        this.onMenuitemMouseover.bind(this)
+        'pointerover',
+        this.onMenuitemPointerover.bind(this)
       );
 
       if (!this.firstMenuitem[menuId]) {
@@ -492,7 +492,7 @@ class MenubarEditor {
     this.domNode.classList.remove('focus');
   }
 
-  onBackgroundMousedown(event) {
+  onBackgroundPointerdown(event) {
     if (!this.menubarNode.contains(event.target)) {
       this.closePopupAll();
     }
@@ -679,7 +679,7 @@ class MenubarEditor {
     event.preventDefault();
   }
 
-  onMenuitemMouseover(event) {
+  onMenuitemPointerover(event) {
     var tgt = event.currentTarget;
 
     if (this.isAnyPopupOpen() && this.getMenu(tgt)) {
