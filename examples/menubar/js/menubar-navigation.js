@@ -54,12 +54,12 @@ class MenubarNavigation {
 
     this.initMenu(domNode, 0);
 
-    domNode.addEventListener('focusin', this.handleMenubarFocusin.bind(this));
-    domNode.addEventListener('focusout', this.handleMenubarFocusout.bind(this));
+    domNode.addEventListener('focusin', this.onMenubarFocusin.bind(this));
+    domNode.addEventListener('focusout', this.onMenubarFocusout.bind(this));
 
     window.addEventListener(
       'mousedown',
-      this.handleBackgroundMousedown.bind(this),
+      this.onBackgroundMousedown.bind(this),
       true
     );
 
@@ -233,14 +233,14 @@ class MenubarNavigation {
         menuitem.textContent.trim().toLowerCase()[0]
       );
 
-      menuitem.addEventListener('keydown', this.handleKeydown.bind(this));
-      menuitem.addEventListener('click', this.handleMenuitemClick.bind(this), {
+      menuitem.addEventListener('keydown', this.onKeydown.bind(this));
+      menuitem.addEventListener('click', this.onMenuitemClick.bind(this), {
         capture: true,
       });
 
       menuitem.addEventListener(
         'mouseover',
-        this.handleMenuitemMouseover.bind(this)
+        this.onMenuitemMouseover.bind(this)
       );
 
       if (!this.firstMenuitem[menuId]) {
@@ -537,19 +537,19 @@ class MenubarNavigation {
     return this.domNode.classList.contains('focus');
   }
 
-  // Menu event handlers
+  // Menu event onrs
 
-  handleMenubarFocusin() {
+  onMenubarFocusin() {
     // if the menubar or any of its menus has focus, add styling hook for hover
     this.domNode.classList.add('focus');
   }
 
-  handleMenubarFocusout() {
+  onMenubarFocusout() {
     // remove styling hook for hover on menubar item
     this.domNode.classList.remove('focus');
   }
 
-  handleKeydown(event) {
+  onKeydown(event) {
     var tgt = event.currentTarget,
       key = event.key,
       flag = false,
@@ -687,7 +687,7 @@ class MenubarNavigation {
     }
   }
 
-  handleMenuitemClick(event) {
+  onMenuitemClick(event) {
     var tgt = event.currentTarget;
     var menuId = this.getMenuId(tgt);
 
@@ -706,7 +706,7 @@ class MenubarNavigation {
     event.preventDefault();
   }
 
-  handleMenuitemMouseover(event) {
+  onMenuitemMouseover(event) {
     var tgt = event.currentTarget;
     var menuId = this.getMenuId(tgt);
 
@@ -722,7 +722,7 @@ class MenubarNavigation {
     }
   }
 
-  handleBackgroundMousedown(event) {
+  onBackgroundMousedown(event) {
     if (!this.domNode.contains(event.target)) {
       this.closePopupAll();
     }

@@ -28,12 +28,12 @@ class MenubarEditor {
     this.lastMenuitem = {}; // see Menubar init method
 
     this.initMenu(this.menubarNode);
-    this.domNode.addEventListener('focusin', this.handleFocusin.bind(this));
-    this.domNode.addEventListener('focusout', this.handleFocusout.bind(this));
+    this.domNode.addEventListener('focusin', this.onFocusin.bind(this));
+    this.domNode.addEventListener('focusout', this.onFocusout.bind(this));
 
     window.addEventListener(
       'mousedown',
-      this.handleBackgroundMousedown.bind(this),
+      this.onBackgroundMousedown.bind(this),
       true
     );
   }
@@ -120,12 +120,12 @@ class MenubarEditor {
       this.menuitemGroups[menuId].push(menuitem);
       this.firstChars[menuId].push(menuitem.textContent[0].toLowerCase());
 
-      menuitem.addEventListener('keydown', this.handleKeydown.bind(this));
-      menuitem.addEventListener('click', this.handleMenuitemClick.bind(this));
+      menuitem.addEventListener('keydown', this.onKeydown.bind(this));
+      menuitem.addEventListener('click', this.onMenuitemClick.bind(this));
 
       menuitem.addEventListener(
         'mouseover',
-        this.handleMenuitemMouseover.bind(this)
+        this.onMenuitemMouseover.bind(this)
       );
 
       if (!this.firstMenuitem[menuId]) {
@@ -482,23 +482,23 @@ class MenubarEditor {
     return menuitem.getAttribute('aria-expanded') === 'true';
   }
 
-  // Menu event handlers
+  // Menu event onrs
 
-  handleFocusin() {
+  onFocusin() {
     this.domNode.classList.add('focus');
   }
 
-  handleFocusout() {
+  onFocusout() {
     this.domNode.classList.remove('focus');
   }
 
-  handleBackgroundMousedown(event) {
+  onBackgroundMousedown(event) {
     if (!this.menubarNode.contains(event.target)) {
       this.closePopupAll();
     }
   }
 
-  handleKeydown(event) {
+  onKeydown(event) {
     var tgt = event.currentTarget,
       key = event.key,
       flag = false,
@@ -636,7 +636,7 @@ class MenubarEditor {
     }
   }
 
-  handleMenuitemClick(event) {
+  onMenuitemClick(event) {
     var tgt = event.currentTarget;
     var value;
 
@@ -679,7 +679,7 @@ class MenubarEditor {
     event.preventDefault();
   }
 
-  handleMenuitemMouseover(event) {
+  onMenuitemMouseover(event) {
     var tgt = event.currentTarget;
 
     if (this.isAnyPopupOpen() && this.getMenu(tgt)) {
