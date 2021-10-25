@@ -142,7 +142,7 @@
       <li>Disabled menu items are demonstrated in the font size menu, which  includes two disabled menuitems.</li>
       <li>To help communicate that the arrow keys are available for directional navigation within the menubar and its submenus, a border is added to the menubar container when focus is within the menubar.</li>
       <li>To support operating system high contrast settings, focus is highlighted by adding and removing a border around the menu item with focus.</li>
-      <li>The down arrow and checked icons are made compatible with operating system high contrast settings and hidden from screen readers by using the CSS <code>content</code> property to render images.</li>
+      <li>The down arrow and checked icons are made compatible with operating system high contrast settings and hidden from screen readers by using <code>aria-hidden</code> attribute.</li>
       <li>
         Like desktop menubars, submenus open on mouse hover over a parent item in the menubar only if another submenu is already open.
         That is, if all submenus are closed, a click on a parent menu item is required to display a submenu.
@@ -464,7 +464,14 @@
             <td>
               <code>span</code>
             </td>
-            <td>Indicates the menu is open.</td>
+            <td>
+              <ul>
+                <li>Indicates the submenu is open.</li>
+                <li>
+                  The visual appearance of the expanded state is synchronized with the <code>aria-expanded</code> value using CSS attribute selectors and hidden from screen readers with <code>aria-hidden="true"</code>.
+                </li>
+              </ul>
+            </td>
           </tr>
           <tr data-test-id="menubar-menuitem-aria-expanded">
             <td></td>
@@ -474,7 +481,14 @@
             <td>
               <code>span</code>
             </td>
-            <td>Indicates the submenu is closed.</td>
+            <td>
+              <ul>
+                <li>Indicates the submenu is closed.</li>
+                <li>
+                  The visual appearance of the expanded state is synchronized with the <code>aria-expanded</code> value using CSS attribute selectors and hidden from screen readers with <code>aria-hidden="true"</code>.
+                </li>
+              </ul>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -608,7 +622,7 @@
                 Indicates that the <code>menuitemcheckbox</code> is checked.
               </li>
               <li>
-                The visual appearance of the selected state is synchronized with the <code>aria-checked</code> value using CSS attribute selectors.
+                The visual appearance of the selected state is synchronized with the <code>aria-checked</code> value using CSS attribute selectors and hidden from screen readers with <code>aria-hidden="true"</code>.
               </li>
             </ul>
           </td>
@@ -627,7 +641,7 @@
                 Indicates that the <code>menuitemcheckbox</code> is <strong>NOT</strong> checked.
               </li>
               <li>
-                The visual appearance of the selected state is synchronized with the <code>aria-checked</code> value using CSS attribute selectors.
+                The visual appearance of the selected state is synchronized with the <code>aria-checked</code> value using CSS attribute selectors and hidden from screen readers with <code>aria-hidden="true"</code>.
               </li>
             </ul>
           </td>
@@ -727,7 +741,7 @@
                 Indicates the  <code>menuitemradio</code> is checked.
               </li>
               <li>
-                The visual appearance of the selected state is synchronized with the <code>aria-checked</code> value using CSS attribute selectors.
+                The visual appearance of the selected state is synchronized with the <code>aria-checked</code> value using CSS attribute selectors and hidden from screen readers with <code>aria-hidden="true"</code>.
               </li>
             </ul>
           </td>
@@ -746,7 +760,7 @@
                 Indicates that  the <code>menuitemradio</code> is <strong>NOT</strong> checked.
               </li>
               <li>
-                The visual appearance of the selected state is synchronized with the <code>aria-checked</code> value using CSS attribute selectors.
+                The visual appearance of the selected state is synchronized with the <code>aria-checked</code> value using CSS attribute selectors and hidden from screen readers with <code>aria-hidden="true"</code>.
               </li>
             </ul>
           </td>
