@@ -45,7 +45,7 @@
   left: 1px;
 }
 
-.menubar-editor [role="menubar"] > li > [role="menuitem"]::after {
+.menubar-editor [role="menubar"] [role="menuitem"] > [aria-hidden]::before {
   content: "▼";
   padding-left: 0.25rem;
   font-size: 11px;
@@ -54,8 +54,8 @@
 
 .menubar-editor
   [role="menubar"]
-  > li
-  > [role="menuitem"][aria-expanded="true"]::after {
+  [role="menuitem"][aria-expanded="true"]
+  > [aria-hidden]::before {
   content: "▲";
 }
 
@@ -127,15 +127,17 @@
 
 .menubar-editor
   [role="menubar"]
-  [role="menuitemradio"][aria-checked="true"]::before {
-  content: "⦿";
+  [role="menuitemradio"][aria-checked="true"]
+  > [aria-hidden]::before {
+  content: "●";
   display: inline-block;
   width: 18px;
 }
 
 .menubar-editor
   [role="menubar"]
-  [role="menuitemcheckbox"][aria-checked="true"]::before {
+  [role="menuitemcheckbox"][aria-checked="true"]
+  > [aria-hidden]::before {
   content: "✓";
   display: inline-block;
   width: 18px;
@@ -155,10 +157,12 @@
 
 .menubar-editor
   [role="menubar"]
-  [role="menuitemradio"][aria-checked="true"]:focus::before,
+  [role="menuitemradio"][aria-checked="true"]:focus
+  > [aria-hidden]::before,
 .menubar-editor
   [role="menubar"]
-  [role="menuitemcheckbox"][aria-checked="true"]:focus::before {
+  [role="menuitemcheckbox"][aria-checked="true"]:focus
+  > [aria-hidden]::before {
   margin-left: -2px;
 }
 
