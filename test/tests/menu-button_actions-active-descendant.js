@@ -34,7 +34,6 @@ const scrollToAndOpenMenu = async function (t) {
   // This prevents a bug where when you click the menu button, the menu is opened and the page scrolls down
   // to reveal the menu, which places the cursor over the last menu item, which sets aria-activedescendant to
   // the last item in the list.
-  //  await t.context.session.findElement(By.css(ex.lastActionSelector)).click();
 
   await t.context.session.findElement(By.css(ex.menubuttonSelector)).click();
 
