@@ -169,7 +169,7 @@ ariaTest(
 
       t.true(
         await waitAndCheckAriaChecked(t, switchSelector, 'true'),
-        'aria-selected should be set after sending SPACE key to switch: ' +
+        'aria-selected should be set after sending ENTER key to switch: ' +
           switchSelector
       );
 
@@ -180,7 +180,7 @@ ariaTest(
 
       t.true(
         await waitAndCheckAriaChecked(t, switchSelector, 'false'),
-        'aria-selected should be set after sending SPACE key to switch: ' +
+        'aria-selected should be set after sending ENTER key to switch: ' +
           switchSelector
       );
     }
