@@ -32,9 +32,9 @@ const checkFocus = function (t, selector, index) {
 const scrollToAndOpenMenu = async function (t) {
   // Click the "last action" box to scroll the menu into view before opening the menu and sending enter
   // This prevents a bug where when you click the menu button, the menu is opened and the page scrolls down
-  // to reveal the menu, which places the curser over the last menu item, which sets aria-activedescendant to
+  // to reveal the menu, which places the cursor over the last menu item, which sets aria-activedescendant to
   // the last item in the list.
-  await t.context.session.findElement(By.css(ex.lastActionSelector)).click();
+  //  await t.context.session.findElement(By.css(ex.lastActionSelector)).click();
 
   await t.context.session.findElement(By.css(ex.menubuttonSelector)).click();
 
@@ -485,9 +485,7 @@ ariaTest('"end" on role="menu"', exampleFile, 'menu-end', async (t) => {
 
   // Send END to the menu while aria-activedescendant is the third item
 
-  await menu.sendKeys(Key.ARROW_DOWN);
-  await menu.sendKeys(Key.ARROW_DOWN);
-  await menu.sendKeys(Key.END);
+  await menu.sendKeys(Key.ARROW_DOWN, Key.ARROW_DOWN, Key.END);
   await assertAriaActivedescendant(
     t,
     ex.menuSelector,
