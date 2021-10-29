@@ -715,7 +715,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       <p>
         A <a href="#combobox" class="role-reference">combobox</a> is an input widget with an associated popup that enables users to select a value for the combobox from a collection of possible values.
         In some implementations, the popup presents allowed values, while in other implementations, the popup presents suggested values, and users may either select one of the suggestions or type a value.
-        The popup may be a <a href="#Listbox">listbox</a>,
+        The popup may be a <a href="#listbox">listbox</a>,
         <a href="#grid">grid</a>,
         <a href="#TreeView">tree</a>, or
         <a href="#dialog_modal">dialog.</a>
@@ -778,7 +778,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         the popup may close and, if present, the inline completion string disappears.
       </p>
       <p>
-        Two other widgets that are also visually compact and enable users to make a single choice from a set of discrete choices are <a href="#Listbox">listbox</a> and <a href="#menubutton">menu button</a>.
+        Two other widgets that are also visually compact and enable users to make a single choice from a set of discrete choices are <a href="#listbox">listbox</a> and <a href="#menubutton">menu button</a>.
         One feature that distinguishes combobox from both listbox and menu button is that the user's choice can be presented as a value in an editable field, which gives users the ability to select some or all of the value for copying to the clipboard.
         Comboboxes and menu buttons can be implemented so users can explore the set of allowed choices without losing a previously made choice.
         That is, users can navigate the set of available choices in a combobox popup or menu and then press <kbd>escape</kbd>, which closes the popup or menu without changing previous input.
@@ -1519,7 +1519,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
           While This type of focus movement wrapping can be very helpful in a layout grid, it would be disorienting if used in a data grid, especially for users of assistive technologies.
         </p>
 
-        <p> Because arrow keys are used to move focus inside of a <code>grid</code>, a <code>grid</code> is both easier to build and use if the components it contains do not require the arrow keys to operate. If a cell contains an element like a <a href="#Listbox">listbox</a>, then an extra key command to focus and activate the listbox is needed as well as a command for restoring the grid navigation functionality. Approaches to supporting this need are described in the section on <a href="#gridNav_inside">Editing and Navigating Inside a Cell</a>. </p>
+        <p> Because arrow keys are used to move focus inside of a <code>grid</code>, a <code>grid</code> is both easier to build and use if the components it contains do not require the arrow keys to operate. If a cell contains an element like a <a href="#listbox">listbox</a>, then an extra key command to focus and activate the listbox is needed as well as a command for restoring the grid navigation functionality. Approaches to supporting this need are described in the section on <a href="#gridNav_inside">Editing and Navigating Inside a Cell</a>. </p>
 
         <section class="notoc">
           <h5>Keyboard Interaction For Layout Grids</h5>
@@ -1778,7 +1778,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       </section>
     </section>
 
-    <section class="widget" id="Listbox">
+    <section class="widget" id="listbox">
       <h3>Listbox</h3>
       <p>
         A <a href="#listbox" class="role-reference">listbox</a> widget presents a list of options and allows a user to select one or more of them.
@@ -4628,7 +4628,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
                   <li>If the <code>listbox</code> role is applied to an HTML <code>select</code> element (with the <code>multiple</code> attribute or a <code>size</code> attribute having a value greater than 1), can be named with an HTML <code>label</code> element.</li>
                   <li>Otherwise use <code>aria-labelledby</code> if a visible label is present.</li>
                   <li>Use <code>aria-label</code> if a visible label is not present.</li>
-                  <li>See the <a href="#Listbox">Listbox Design Pattern</a>.</li>
+                  <li>See the <a href="#listbox">Listbox Design Pattern</a>.</li>
                 </ul>
               </td>
             </tr>
@@ -5444,7 +5444,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       <ul>
         <li><a href="#combobox">Combobox</a></li>
         <li><a href="#grid">Grid</a></li>
-        <li><a href="#Listbox">Listbox</a></li>
+        <li><a href="#listbox">Listbox</a></li>
         <li><a href="#menu">Menu or menu bar</a></li>
         <li><a href="#radiobutton">Radiogroup</a></li>
         <li><a href="#tabpanel">Tabs</a></li>
@@ -5746,7 +5746,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
           For the following composite widget elements, keep them focusable when disabled:
 
           <ul>
-            <li>Options in a <a href="#Listbox">Listbox</a></li>
+            <li>Options in a <a href="#listbox">Listbox</a></li>
             <li>Menu items in a <a href="#menu">Menu or menu bar</a></li>
             <li>Tab elements in a set of <a href="#tabpanel">Tabs</a></li>
             <li>Tree items in a <a href="#TreeView">Tree View</a></li>
@@ -6242,7 +6242,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
         </p>
 
         <p>
-          See the <a href="#combobox">Combobox</a> and the <a href="#Listbox">Listbox</a> design patterns for examples.
+          See the <a href="#combobox">Combobox</a> and the <a href="#listbox">Listbox</a> design patterns for examples.
         </p>
 
         <p>
