@@ -93,11 +93,11 @@ Tree.prototype.setFocusToItem = function (treeitem) {
 
     if (ti === treeitem) {
       ti.domNode.tabIndex = 0;
-      ti.domNode.ariaSelected = true;
+      ti.domNode.setAttribute('aria-selected', 'true');
       ti.domNode.focus();
     } else {
       ti.domNode.tabIndex = -1;
-      ti.domNode.ariaSelected = false;
+      ti.domNode.setAttribute('aria-selected', 'false');
     }
   }
 };
