@@ -21,7 +21,7 @@
     "test": "npm run lint && npm run regression",
     "vnu-jar": "java -jar node_modules/vnu-jar/build/dist/vnu.jar --filterfile .vnurc --no-langdetect --skip-non-html aria-practices.html examples/",
     "create-gh-project": "node ./scripts/create-gh-project.js",
-    "postinstall": "husky install",
+    "prepare": "husky install",
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable"
   },
