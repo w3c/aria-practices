@@ -6250,14 +6250,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
           In most cases, using only <code>aria-selected</code> is the right choice.
           Do not add both <code>aria-selected</code> and <code>aria-checked</code> "just in case",
           since that would increase verbosity for assistive technology users and could cause unnecessary confusion.
-        </p>
-
-        <p>
-          In rare cases, a widget could support both selection and checkedness to represent orthogonal states,
-          although that could be complex and might be confusing for users.
-          For example, a <code>tree</code> widget to represent a changeable sequence of steps
-          could allow selection in order to rearrange the steps,
-          and also allow checking and unchecking them to indicate which steps are active.
+          A valid use of <code>aria-checked</code> over <code>aria-selected</code> is when you need to support a <code>mixed</code> selection state.
         </p>
 
         <p>
