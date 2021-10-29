@@ -843,43 +843,6 @@ ariaTest(
 );
 
 ariaTest(
-  'End scrolls last option into view',
-  exampleFile,
-  'test-additional-behavior',
-  async (t) => {
-    const combobox = await t.context.session.findElement(
-      By.css(ex.comboSelector)
-    );
-    const listbox = await t.context.session.findElement(
-      By.css(ex.listboxSelector)
-    );
-    const options = await t.context.queryElements(
-      t,
-      `${ex.listboxSelector} [role=option]`
-    );
-
-    await combobox.click();
-
-    let listboxBounds = await listbox.getRect();
-    let optionBounds = await options[options.length - 1].getRect();
-
-    t.true(
-      listboxBounds.y + listboxBounds.height - optionBounds.y < 0,
-      'last option is not initially displayed'
-    );
-
-    await combobox.sendKeys(Key.END);
-    listboxBounds = await listbox.getRect();
-    optionBounds = await options[options.length - 1].getRect();
-
-    t.true(
-      listboxBounds.y + listboxBounds.height - optionBounds.y >= 0,
-      'last option is in view after end key'
-    );
-  }
-);
-
-ariaTest(
   'Home moves to first option',
   exampleFile,
   'listbox-key-home',

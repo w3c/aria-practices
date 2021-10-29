@@ -129,24 +129,17 @@ function getUpdatedIndex(currentIndex, maxIndex, action) {
 }
 
 // check if an element is currently scrollable
-function isScrollable(element) {
-  return element && element.clientHeight < element.scrollHeight;
-}
+function isElementInView(element) {
+  var bounding = element.getBoundingClientRect();
 
-// ensure a given child element is within the parent's visible scroll area
-// if the child is not visible, scroll the parent
-function maintainScrollVisibility(activeElement, scrollParent) {
-  const { offsetHeight, offsetTop } = activeElement;
-  const { offsetHeight: parentOffsetHeight, scrollTop } = scrollParent;
-
-  const isAbove = offsetTop < scrollTop;
-  const isBelow = offsetTop + offsetHeight > scrollTop + parentOffsetHeight;
-
-  if (isAbove) {
-    scrollParent.scrollTo(0, offsetTop);
-  } else if (isBelow) {
-    scrollParent.scrollTo(0, offsetTop - parentOffsetHeight + offsetHeight);
-  }
+  return (
+    bounding.top >= 0 &&
+    bounding.left >= 0 &&
+    bounding.bottom <=
+      (window.innerHeight || document.documentElement.clientHeight) &&
+    bounding.right <=
+      (window.innerWidth || document.documentElement.clientWidth)
+  );
 }
 
 /*
@@ -315,8 +308,8 @@ Select.prototype.onOptionChange = function (index) {
   options[index].classList.add('option-current');
 
   // ensure the new option is in view
-  if (isScrollable(this.listboxEl)) {
-    maintainScrollVisibility(options[index], this.listboxEl);
+  if (!isElementInView(options[index])) {
+    options[index].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 };
 
@@ -363,6 +356,10 @@ Select.prototype.updateMenuState = function (open, callFocus = true) {
   // update activedescendant
   const activeID = open ? `${this.idBase}-${this.activeIndex}` : '';
   this.comboEl.setAttribute('aria-activedescendant', activeID);
+
+  if (activeID === '' && !isElementInView(this.comboEl)) {
+    this.comboEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
 
   // move focus back to the combobox, if needed
   callFocus && this.comboEl.focus();
