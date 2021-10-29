@@ -739,7 +739,7 @@
             <ul>
               <li>Posts the Popup Help widget. </li>
               <li>Input focus is placed on the first interactive element in the Popup Help. </li>
-              <li class="note">Control F1 is used by IE to "Display a help dialog box". In IE7 and IE8 <code>event.cancelBubble=true;</code> and <code>event.returnValue=false;</code> will allow the re-purposing of keys used by the browser. In the case of IE6, you can not stop the bubble up of keys used by the browser, but can stop the bubble up to the OS. In the case of Firefox and other standard compliant browsers, <code>event.stopPropagation();</code> and <code>event.preventDefault();</code> will re-purpose the keys. </li>
+              <li class="note"><code>event.stopPropagation();</code> and <code>event.preventDefault();</code> will re-purpose the keys. </li>
               <li class="note">With the exception of Control F1 to bring up Popup Help this widget is very similar to <a href="#dialog_modal">Dialog (Modal)</a> and/or <a href="#dialog_nonmodal">Dialog (Non-Modal)</a> and/or <a href="#dialog_tooltip">Dialog (tooltip)</a> described elsewhere in this document. </li>
             </ul>
           </li>
