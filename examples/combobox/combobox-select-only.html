@@ -83,6 +83,7 @@
           The value is set when users press <kbd>Space</kbd>, <kbd>Enter</kbd>, or <kbd>Tab</kbd>, or when focus moves out of the combobox.
           The current value is retained if the listbox is closed with <kbd>Escape</kbd> or if the user collapses the list by clicking the input.
         </li>
+        <li>Browsers do not manage visibility of elements referenced by aria-activedescendant like they do for elements with focus. When a keyboard event changes the active option in the listbox, the JavaScript scrolls the option referenced by aria-activedescendant into view. Managing aria-activedescendant visibility is essential to accessibility for people who use a browser's zoom feature to increase the size of content.</li>
       </ol>
     </section>
 
