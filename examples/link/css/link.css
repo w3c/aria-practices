@@ -10,7 +10,7 @@
 [role="link"]:focus::before {
   color: #000;
   cursor: pointer;
-  outline: 0.2em solid hsl(219, 63%, 44%);
+  outline: 0.2em solid hsl(219deg 63% 44%);
   outline-offset: 0.2em;
 }
 
