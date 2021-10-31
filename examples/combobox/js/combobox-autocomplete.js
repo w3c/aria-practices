@@ -57,6 +57,7 @@ class ComboboxAutocomplete {
       'focus',
       this.onComboboxFocus.bind(this)
     );
+    this.comboboxNode.addEventListener('blur', this.onComboboxBlur.bind(this));
 
     document.body.addEventListener(
       'mouseup',
@@ -103,9 +104,24 @@ class ComboboxAutocomplete {
     return node.textContent.toLowerCase();
   }
 
+  isOptionInView(option) {
+    var bounding = option.getBoundingClientRect();
+    return (
+      bounding.top >= 0 &&
+      bounding.left >= 0 &&
+      bounding.bottom <=
+        (window.innerHeight || document.documentElement.clientHeight) &&
+      bounding.right <=
+        (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+
   setActiveDescendant(option) {
     if (option && this.listboxHasVisualFocus) {
       this.comboboxNode.setAttribute('aria-activedescendant', option.id);
+      if (!this.isOptionInView(option)) {
+        option.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
     } else {
       this.comboboxNode.setAttribute('aria-activedescendant', '');
     }
@@ -292,6 +308,7 @@ class ComboboxAutocomplete {
       this.comboboxNode.setAttribute('aria-expanded', 'false');
       this.buttonNode.setAttribute('aria-expanded', 'false');
       this.setActiveDescendant(false);
+      this.comboboxNode.parentNode.classList.add('focus');
     }
   }
 
@@ -510,6 +527,10 @@ class ComboboxAutocomplete {
     this.setVisualFocusCombobox();
     this.option = null;
     this.setCurrentOptionStyle(null);
+  }
+
+  onComboboxBlur() {
+    this.removeVisualFocusAll();
   }
 
   onBackgroundMouseUp(event) {
