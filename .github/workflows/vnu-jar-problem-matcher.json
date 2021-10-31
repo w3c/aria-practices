@@ -4,12 +4,12 @@
       "owner": "vnu-jar",
       "pattern": [
         {
-          "regexp": "^\"file:(.*)\":(\\d+).(\\d+)-\\d+\\.\\d+:\\s(error|warning):\\s(.*)$",
+          "regexp": "^\"file:(.*)\":(\\d+).(\\d+)-\\d+\\.\\d+:\\s(info )?(error|warning):\\s(.*)$",
           "file": 1,
           "line": 2,
           "column": 3,
-          "severity": 4,
-          "message": 5
+          "severity": 5,
+          "message": 6
         }
       ]
     }
