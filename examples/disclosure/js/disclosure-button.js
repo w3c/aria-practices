@@ -28,7 +28,6 @@ class DisclosureButton {
     this.buttonNode.setAttribute('aria-expanded', 'false');
     this.hideContent();
 
-    this.buttonNode.addEventListener('keydown', this.onKeydown.bind(this));
     this.buttonNode.addEventListener('click', this.onClick.bind(this));
     this.buttonNode.addEventListener('focus', this.onFocus.bind(this));
     this.buttonNode.addEventListener('blur', this.onBlur.bind(this));
@@ -57,20 +56,6 @@ class DisclosureButton {
   }
 
   /* EVENT HANDLERS */
-
-  onKeydown(event) {
-    switch (event.keyCode) {
-      case this.keyCode.RETURN:
-        this.toggleExpand();
-
-        event.stopPropagation();
-        event.preventDefault();
-        break;
-
-      default:
-        break;
-    }
-  }
 
   onClick() {
     this.toggleExpand();
