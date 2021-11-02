@@ -127,9 +127,9 @@ ariaTest(
   'textbox-aria-expanded-true',
   async (t) => {
     // Open dialog box
-    await (await t.context.queryElement(t, ex.comboboxSelector)).sendKeys(
-      Key.ARROW_DOWN
-    );
+    await (
+      await t.context.queryElement(t, ex.comboboxSelector)
+    ).sendKeys(Key.ARROW_DOWN);
     await assertAttributeValues(
       t,
       ex.comboboxSelector,
@@ -404,9 +404,9 @@ ariaTest(
       await el.sendKeys(Key.ESCAPE);
 
       t.is(
-        await (await t.context.queryElement(t, ex.dialogSelector)).getCssValue(
-          'display'
-        ),
+        await (
+          await t.context.queryElement(t, ex.dialogSelector)
+        ).getCssValue('display'),
         'none',
         'After sending ESC to element "' +
           ex.allFocusableElementsInDialog[i] +
@@ -431,9 +431,9 @@ ariaTest(
   exampleFile,
   'month-year-button-space-return',
   async (t) => {
-    await (await t.context.queryElement(t, ex.buttonSelector)).sendKeys(
-      Key.ENTER
-    );
+    await (
+      await t.context.queryElement(t, ex.buttonSelector)
+    ).sendKeys(Key.ENTER);
 
     let monthYear = await t.context.queryElement(t, ex.monthYear);
     let originalMonthYear = await monthYear.getText();
@@ -471,9 +471,9 @@ ariaTest(
   exampleFile,
   'dialog-tab',
   async (t) => {
-    await (await t.context.queryElement(t, ex.buttonSelector)).sendKeys(
-      Key.ENTER
-    );
+    await (
+      await t.context.queryElement(t, ex.buttonSelector)
+    ).sendKeys(Key.ENTER);
 
     for (let itemSelector of ex.allFocusableElementsInDialog) {
       t.true(
@@ -499,9 +499,9 @@ ariaTest(
   async (t) => {
     t.plan(7);
 
-    await (await t.context.queryElement(t, ex.buttonSelector)).sendKeys(
-      Key.ENTER
-    );
+    await (
+      await t.context.queryElement(t, ex.buttonSelector)
+    ).sendKeys(Key.ENTER);
 
     await (
       await t.context.queryElement(t, ex.allFocusableElementsInDialog[0])
