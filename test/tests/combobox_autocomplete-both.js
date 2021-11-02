@@ -639,7 +639,9 @@ ariaTest(
 
     // Confirm that there are 56 options visible
     t.is(
-      await (await t.context.queryElements(t, ex.optionsSelector)).length,
+      await (
+        await t.context.queryElements(t, ex.optionsSelector)
+      ).length,
       56,
       'key press "ARROW_DOWN" should result in all options being visible'
     );
@@ -730,7 +732,9 @@ ariaTest(
 
     // Confirm that there are 9 options visible
     t.is(
-      await (await t.context.queryElements(t, ex.optionsSelector)).length,
+      await (
+        await t.context.queryElements(t, ex.optionsSelector)
+      ).length,
       9,
       'key press "ARROW_DOWN" should result in 9 options being visible'
     );
