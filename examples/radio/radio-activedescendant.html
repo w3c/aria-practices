@@ -96,7 +96,10 @@
       <section>
         <h2>Accessibility Features</h2>
         <ul>
-          <li>Uses CSS attribute selectors for synchronizing <code>aria-checked</code> state with the visual state indicator.</li>
+        <li>
+          The radio button referenced by <code>aria-activedescendant</code> is scrolled into view when it is not visible in the graphical rendering.  This can occur under many conditions, but is most common when people with visual impairments use a browser's zoom feature to increase the size of content.
+        </li>
+        <li>Uses CSS attribute selectors for synchronizing <code>aria-checked</code> state with the visual state indicator.</li>
           <li>Uses CSS <code>:hover</code> and <code>:focus</code> pseudo-classes for styling visual keyboard focus and hover.
             <ul>
               <li>The focus indicator encompasses both the radio button and label, making it easier to perceive which option is being chosen.</li>
