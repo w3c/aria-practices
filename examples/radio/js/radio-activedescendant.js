@@ -41,6 +41,18 @@ class RadioGroupActiveDescendant {
     this.groupNode.tabIndex = 0;
   }
 
+  isRadioInView(radio) {
+    var bounding = radio.getBoundingClientRect();
+    return (
+      bounding.top >= 0 &&
+      bounding.left >= 0 &&
+      bounding.bottom <=
+        (window.innerHeight || document.documentElement.clientHeight) &&
+      bounding.right <=
+        (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+
   setChecked(currentItem) {
     for (var i = 0; i < this.radioButtons.length; i++) {
       var rb = this.radioButtons[i];
@@ -50,6 +62,9 @@ class RadioGroupActiveDescendant {
     currentItem.setAttribute('aria-checked', 'true');
     currentItem.classList.add('focus');
     this.groupNode.setAttribute('aria-activedescendant', currentItem.id);
+    if (!this.isRadioInView(currentItem)) {
+      currentItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
     this.groupNode.focus();
   }
 
@@ -142,6 +157,9 @@ class RadioGroupActiveDescendant {
 
   handleFocus() {
     var currentItem = this.getCurrentRadioButton();
+    if (!this.isRadioInView(currentItem)) {
+      currentItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
     currentItem.classList.add('focus');
   }
 
