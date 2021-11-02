@@ -6904,15 +6904,17 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
         Browsers automatically compute an <code>aria-level</code> value for elements with role <code>treeitem</code>.
         The computed level for a <code>treeitem</code> element is based on the number of <code>group</code> elements in the ancestor chain between that <code>treeitem</code> and the element with role <code>tree</code>.
         The top-level <code>treeitem</code> elements, which are immediate descendants of the <code>tree</code> with no intervening <code>group</code>, have <code>aria-level</code> of <code>1</code>.
-        However, in some implementations of the <a href="#TreeView">Tree View Design Pattern</a>, it is necessary to explicitly declare the <code>aria-level</code>.
+        However, in some implementations of the <a href="#TreeView">Tree View Design Pattern</a>
+        when the DOM structure does not represent the actual level and the level is important for understanding the content or actions of the treeitem,
+        it is necessary to explicitly declare the <code>aria-level</code>.
       </p>
       <p>
         The following example shows a File Directory where a nested folder "report-1" is being viewed.
         The parent folder "Reports" is at the top-level in the directory structure, and the "report-1" folder is level 2.
         The files within the "report-1" folder are thus level 3, even though only these files are currently being viewed.
       </p>
-      <pre><code>&lt;h3 id="tree_label">Viewing: report-1&lt;/h3>
-&lt;ul role='tree' aria-labelledby='tree_label'&gt;
+      <pre><code>&lt;h2 id="tree_label">Viewing: report-1&lt;/h2>
+&lt;ul role="tree" aria-labelledby="tree_label"&gt;
   &lt;li role="treeitem" class="doc" aria-level="3">report-1A.docx&lt;/li>
   &lt;li role="treeitem" class="doc" aria-level="3">report-1B.docx&lt;/li>
   &lt;li role="treeitem" class="doc" aria-level="3">report-1C.docx&lt;/li>
@@ -6923,17 +6925,20 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
     <section id="aria-level_row_role">
       <h3>Using <code>aria-level</code> with the <code>row</code> Role</h3>
-      <p>The <code>aria-level</code> attribute can be used on an element with <code>row</code> role to describe nesting of rows in a <code>treegrid</code>, as explained in the <a href="#treegrid">treegrid pattern</a>. In this example, the DOM tree does not represent the hierarchical relationship between rows. Each email is in a <code>tr</code> element, which are siblings in the DOM tree, therefore <code>aria-level</code> is necessary to communicate that the emails form a tree structure.</p>
-      <pre><code>&lt;table role='treegrid'&gt;
+      <p>The <code>aria-level</code> attribute can be used on an element with <code>row</code> role to describe nesting of rows in a <code>treegrid</code>, as explained in the <a href="#treegrid">treegrid pattern</a>.
+      In this example, the DOM tree does not represent the hierarchical relationship between rows.
+      Each email is in a <code>tr</code> element, which are siblings in the DOM tree, therefore <code>aria-level</code> is necessary to communicate that the emails form a tree structure.
+      The rows with <code>aria-level="2"</code> represent responses to the last previous row with <code>aria-level="1"</code> and visually this relationship is typically displayed the rows with <code>aria-level="2"</code> indented. <code>aria-level</code> in this example is providing the information of the response relationship that is represented visually by indenting.</p>
+      <pre><code>&lt;table role="treegrid"&gt;
   &lt;tr&gt;
   &lt;th&gt;From:&lt;/th&gt;
   &lt;th&gt;Subject:&lt;/th&gt;
   &lt;/tr&gt;
-  &lt;tr aria-level='1'&gt;
+  &lt;tr aria-level="1"&gt;
   &lt;td&gt;Laura&lt;/td&gt;
   &lt;td&gt;We should definitely cover the bike shed in rainbows.&lt;/td&gt;
   &lt;/tr&gt;
-  &lt;tr aria-level='2'&gt;
+  &lt;tr aria-level="2"&gt;
   &lt;td&gt;Fred&lt;/td&gt;
   &lt;td&gt;Re: We should definitely cover the bike shed in rainbows.&lt;/td&gt;
   &lt;/tr&gt;
