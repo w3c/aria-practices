@@ -102,30 +102,32 @@ ariaTest(
   exampleFile,
   'treeitem-aria-selected',
   async (t) => {
-    // Open all folders
-    await openAllFolders(t);
+    const items = await t.context.queryElements(t, ex.treeitemSelector);
 
-    const treeitems = await t.context.queryElements(t, ex.treeitemSelector);
-
-    for (let [index, treeitem] of treeitems.entries()) {
-      // Skip the last item, since we can't move focus beyond it
-      if (index === treeitems.length - 1) {
-        break;
-      }
-      await treeitem.sendKeys(Key.ARROW_DOWN);
-      t.is(
-        await treeitem.getAttribute('aria-selected'),
-        'false',
-        'treeitem should have aria-selected="false" after focus by sending key ARROW_DOWN'
+    for (let i = 0; i < items.length - 1; i++) {
+      await items[i].sendKeys(Key.ARROW_DOWN);
+      const nextItem = await t.context.queryElement(
+        t,
+        ex.treeitemSelector + '[tabindex="0"]'
       );
-      // move focus back to the previous item
-      await treeitems[index + 1].sendKeys(Key.ARROW_UP);
-      await treeitem.sendKeys(Key.ENTER);
+      const focusMoved = items[i] !== nextItem;
+      if (focusMoved) {
+        t.is(
+          await nextItem.getAttribute('aria-selected'),
+          'false',
+          'treeitem should have aria-selected="false" after focus by sending key ARROW_DOWN'
+        );
+        // move focus back to the previous item
+        await nextItem.sendKeys(Key.ARROW_UP);
+      }
+      await items[i].sendKeys(Key.ENTER);
       t.is(
-        await treeitem.getAttribute('aria-selected'),
+        await items[i].getAttribute('aria-selected'),
         'true',
         'treeitem should have aria-selected="true" after selecting by sending key ENTER'
       );
+      // move focus to the next item
+      await items[i].sendKeys(Key.ARROW_DOWN);
     }
     // Cleanup: reload page
     await t.context.session.get(await t.context.session.getCurrentUrl());

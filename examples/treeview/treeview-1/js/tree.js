@@ -52,6 +52,7 @@ var Tree = function (node) {
 
   this.firstTreeitem = null;
   this.lastTreeitem = null;
+  this.selectedItem = null;
 };
 
 Tree.prototype.init = function () {
@@ -87,17 +88,23 @@ Tree.prototype.init = function () {
   this.firstTreeitem.domNode.tabIndex = 0;
 };
 
+Tree.prototype.setSelectedToItem = function (treeitem) {
+  if (this.selectedItem) {
+    this.selectedItem.domNode.setAttribute('aria-selected', 'false');
+  }
+  treeitem.domNode.setAttribute('aria-selected', 'true');
+  this.selectedItem = treeitem;
+};
+
 Tree.prototype.setFocusToItem = function (treeitem) {
   for (var i = 0; i < this.treeitems.length; i++) {
     var ti = this.treeitems[i];
 
     if (ti === treeitem) {
       ti.domNode.tabIndex = 0;
-      ti.domNode.setAttribute('aria-selected', 'true');
       ti.domNode.focus();
     } else {
       ti.domNode.tabIndex = -1;
-      ti.domNode.setAttribute('aria-selected', 'false');
     }
   }
 };

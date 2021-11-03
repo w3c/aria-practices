@@ -220,6 +220,7 @@ Treeitem.prototype.handleClick = function (event) {
   } else {
     this.tree.setFocusToItem(this);
   }
+  this.tree.setSelectedToItem(this);
 };
 
 Treeitem.prototype.handleFocus = function () {
