@@ -80,6 +80,58 @@ const isClosedFolderTreeitem = async function (el) {
   return (await el.getAttribute('aria-expanded')) === 'false';
 };
 
+ariaTest(
+  'aria-selected attribute on treeitem initial value',
+  exampleFile,
+  'treeitem-aria-selected',
+  async (t) => {
+    const treeitems = await t.context.queryElements(t, ex.treeitemSelector);
+
+    for (let treeitem of treeitems) {
+      t.is(
+        await treeitem.getAttribute('aria-selected'),
+        'false',
+        'treeitem should initially have aria-selected="false"'
+      );
+    }
+  }
+);
+
+ariaTest(
+  'aria-selected attribute on treeitem on down arrow and enter',
+  exampleFile,
+  'treeitem-aria-selected',
+  async (t) => {
+    // Open all folders
+    await openAllFolders(t);
+
+    const treeitems = await t.context.queryElements(t, ex.treeitemSelector);
+
+    for (let [index, treeitem] of treeitems.entries()) {
+      // Skip the last item, since we can't move focus beyond it
+      if (index === treeitems.length - 1) {
+        break;
+      }
+      await treeitem.sendKeys(Key.ARROW_DOWN);
+      t.is(
+        await treeitem.getAttribute('aria-selected'),
+        'false',
+        'treeitem should have aria-selected="false" after focus by sending key ARROW_DOWN'
+      );
+      // move focus back to the previous item
+      await treeitems[index + 1].sendKeys(Key.ARROW_UP);
+      await treeitem.sendKeys(Key.ENTER);
+      t.is(
+        await treeitem.getAttribute('aria-selected'),
+        'true',
+        'treeitem should have aria-selected="true" after selecting by sending key ENTER'
+      );
+    }
+    // Cleanup: reload page
+    await t.context.session.get(await t.context.session.getCurrentUrl());
+  }
+);
+
 ariaTest('role="tree" on ul element', exampleFile, 'tree-role', async (t) => {
   const trees = await t.context.queryElements(t, ex.treeSelector);
 
