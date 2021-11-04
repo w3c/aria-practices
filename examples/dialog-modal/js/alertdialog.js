@@ -14,33 +14,6 @@ aria.Utils.enableCtrl = function (ctrl) {
   ctrl.removeAttribute('disabled');
 };
 
-aria.Utils.triggerAlert = function (alertEl, content) {
-  return new Promise(function (resolve, reject) {
-    try {
-      alertEl.textContent = content || null;
-      alertEl.classList.remove('hidden');
-      alertEl.addEventListener(
-        'transitionend',
-        function () {
-          if (!this.classList.contains('active')) {
-            this.classList.add('hidden');
-          }
-        },
-        true
-      );
-      setTimeout(function () {
-        alertEl.classList.add('active');
-      }, 1);
-      setTimeout(function () {
-        alertEl.classList.remove('active');
-        resolve();
-      }, 3000);
-    } catch (err) {
-      reject(err);
-    }
-  });
-};
-
 aria.Utils.setLoading = function (saveBtn, saveStatusView, loadingTimeout) {
   saveBtn.classList.add('loading');
   saveBtn.setAttribute('aria-disabled', 'true');
@@ -123,9 +96,6 @@ aria.Notes = function Notes(
 };
 
 aria.Notes.prototype.save = function (val) {
-  if (this.alert && !this.isCurrent) {
-    aria.Utils.triggerAlert(this.alert, 'Saved');
-  }
   localStorage.setItem(
     this.localStorageKey,
     JSON.stringify(val || this.notesInput.value)
@@ -210,7 +180,6 @@ document.addEventListener('DOMContentLoaded', function initAlertDialog() {
     'notes_save_status',
     'notes_confirm'
   );
-  notes.alert = document.getElementById('alert_toast');
 
   window.discardInput = function (closeBtn) {
     notes.discard.call(notes);
