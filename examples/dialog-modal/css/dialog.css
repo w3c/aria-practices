@@ -146,6 +146,51 @@
   width: 33%;
 }
 
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: auto;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}
+
+#notes_save {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#notes_save svg {
+  display: block;
+  width: 0.75rem;
+}
+
+#notes_save .icon {
+  display: none;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#notes_save.loading .spinner {
+  display: block;
+  animation: rotate 2s linear infinite;
+}
+
+#notes_save.saved .check {
+  display: block;
+}
+
 .toast {
   background-color: rgba(0, 0, 0, 0.9);
   color: #fff;
