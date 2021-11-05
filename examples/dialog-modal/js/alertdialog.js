@@ -14,29 +14,27 @@ aria.Utils.enableCtrl = function (ctrl) {
   ctrl.removeAttribute('disabled');
 };
 
-aria.Utils.setLoading = function (saveBtn, saveStatusView, loadingTimeout) {
+aria.Utils.setLoading = function (saveBtn, saveStatusView) {
   saveBtn.classList.add('loading');
-  saveBtn.setAttribute('aria-disabled', 'true');
   saveBtn.tabIndex = -1;
 
   // use a timeout for the loading message
   // if the saved state happens very quickly,
   // we don't need to explicitly announce the intermediate loading state
-  loadingTimeout = window.setTimeout(() => {
+  const loadingTimeout = window.setTimeout(() => {
     saveStatusView.textContent = 'Loading';
   }, 200);
 
   // set timeout for saved state, to mimic loading
-  const fakeTimeout = Math.random() * 2000;
+  const fakeLoadingTimeout = Math.random() * 2000;
   window.setTimeout(() => {
     saveBtn.classList.remove('loading');
     saveBtn.classList.add('saved');
-    saveBtn.setAttribute('aria-disabled', 'true');
     saveBtn.tabIndex = -1;
 
     window.clearTimeout(loadingTimeout);
     saveStatusView.textContent = 'Saved successfully';
-  }, fakeTimeout);
+  }, fakeLoadingTimeout);
 };
 
 aria.Notes = function Notes(
@@ -101,7 +99,7 @@ aria.Notes.prototype.save = function (val) {
     JSON.stringify(val || this.notesInput.value)
   );
   aria.Utils.disableCtrl(this.saveBtn);
-  aria.Utils.setLoading(this.saveBtn, this.saveStatusView, this.loadingTimeout);
+  aria.Utils.setLoading(this.saveBtn, this.saveStatusView);
 };
 
 aria.Notes.prototype.loadSaved = function () {
@@ -110,13 +108,17 @@ aria.Notes.prototype.loadSaved = function () {
   }
 };
 
+aria.Notes.prototype.restoreSaveBtn = function () {
+  this.saveBtn.removeAttribute('tabindex');
+  this.saveBtn.classList.remove('saved');
+};
+
 aria.Notes.prototype.discard = function () {
   localStorage.clear();
   this.notesInput.value = '';
   this.toggleControls();
-  this.loadingTimeout = null;
-  this.saveBtn.classList.remove('saved');
-  this.saveBtn.setAttribute('aria-disabled', 'false');
+  this.saveStatusView.textContent = '';
+  this.restoreSaveBtn();
 };
 
 aria.Notes.prototype.disableControls = function () {
@@ -139,11 +141,8 @@ aria.Notes.prototype.toggleCurrent = function () {
   if (!this.isCurrent) {
     this.notesInput.classList.remove('can-save');
     aria.Utils.enableCtrl(this.saveBtn);
-
-    // TODO: DRY into function
-    this.loadingTimeout = null;
-    this.saveBtn.classList.remove('saved');
-    this.saveBtn.setAttribute('aria-disabled', 'false');
+    this.saveStatusView.textContent = '';
+    this.restoreSaveBtn();
   } else {
     this.notesInput.classList.add('can-save');
     aria.Utils.disableCtrl(this.saveBtn);
@@ -168,7 +167,6 @@ aria.Notes.prototype.init = function () {
     this.notesInput.addEventListener('input', this.toggleCurrent.bind(this));
     this.notesInput.addEventListener('keydown', this.keydownHandler.bind(this));
     this.initialized = true;
-    this.loadingTimeout = null;
   }
 };
 
