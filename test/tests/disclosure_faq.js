@@ -3,12 +3,10 @@ const { By, Key } = require('selenium-webdriver');
 const assertAriaControls = require('../util/assertAriaControls');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertTabOrder = require('../util/assertTabOrder');
-
 const exampleFile = 'disclosure/disclosure-faq.html';
 
 const ex = {
   buttonSelector: '#ex1 button',
-  answerSelector: '#ex1 p.desc',
   buttonSelectors: [
     '#ex1 dt:nth-of-type(1) button',
     '#ex1 dt:nth-of-type(2) button',
