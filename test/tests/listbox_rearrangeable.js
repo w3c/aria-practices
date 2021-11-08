@@ -220,9 +220,9 @@ ariaTest(
         index
       );
       t.is(
-        await (await t.context.queryElements(t, ex[2].optionSelector))[
-          index
-        ].getAttribute('aria-selected'),
+        await (
+          await t.context.queryElements(t, ex[2].optionSelector)
+        )[index].getAttribute('aria-selected'),
         'false',
         'aria-selected is false when moving between options with down arrow in example 2'
       );
@@ -239,9 +239,9 @@ ariaTest(
       lastOption
     );
     t.is(
-      await (await t.context.queryElements(t, ex[2].optionSelector))[
-        lastOption
-      ].getAttribute('aria-selected'),
+      await (
+        await t.context.queryElements(t, ex[2].optionSelector)
+      )[lastOption].getAttribute('aria-selected'),
       'false',
       'aria-selected is false when moving between options with down arrow in example 2'
     );
@@ -300,9 +300,9 @@ ariaTest(
         index
       );
       t.is(
-        await (await t.context.queryElements(t, ex[2].optionSelector))[
-          index
-        ].getAttribute('aria-selected'),
+        await (
+          await t.context.queryElements(t, ex[2].optionSelector)
+        )[index].getAttribute('aria-selected'),
         'false',
         'aria-selected is false when moving between options with down arrow in example 2'
       );
@@ -435,9 +435,9 @@ ariaTest('end moves focus and selects', exampleFile, 'key-end', async (t) => {
     lastOption
   );
   t.is(
-    await (await t.context.queryElements(t, ex[2].optionSelector))[
-      lastOption
-    ].getAttribute('aria-selected'),
+    await (
+      await t.context.queryElements(t, ex[2].optionSelector)
+    )[lastOption].getAttribute('aria-selected'),
     'false',
     'aria-selected is false when moving between options with END in example 2'
   );
@@ -452,9 +452,9 @@ ariaTest('end moves focus and selects', exampleFile, 'key-end', async (t) => {
     lastOption
   );
   t.is(
-    await (await t.context.queryElements(t, ex[2].optionSelector))[
-      lastOption
-    ].getAttribute('aria-selected'),
+    await (
+      await t.context.queryElements(t, ex[2].optionSelector)
+    )[lastOption].getAttribute('aria-selected'),
     'false',
     'aria-selected is false when moving between options with END in example 2'
   );
@@ -472,9 +472,9 @@ ariaTest('key space selects', exampleFile, 'key-space', async (t) => {
   for (let index = 0; index < options.length - 1; index++) {
     await listbox.sendKeys(Key.ARROW_DOWN, Key.SPACE);
     t.is(
-      await (await t.context.queryElements(t, ex[2].optionSelector))[
-        index + 1
-      ].getAttribute('aria-selected'),
+      await (
+        await t.context.queryElements(t, ex[2].optionSelector)
+      )[index + 1].getAttribute('aria-selected'),
       'true',
       'aria-selected is true when sending space key to item at index: ' +
         (index + 1)
@@ -484,9 +484,9 @@ ariaTest('key space selects', exampleFile, 'key-space', async (t) => {
   for (let index = options.length - 1; index >= 0; index--) {
     await listbox.sendKeys(Key.SPACE);
     t.is(
-      await (await t.context.queryElements(t, ex[2].optionSelector))[
-        index
-      ].getAttribute('aria-selected'),
+      await (
+        await t.context.queryElements(t, ex[2].optionSelector)
+      )[index].getAttribute('aria-selected'),
       'false',
       'aria-selected is true when sending space key to item at index: ' + index
     );

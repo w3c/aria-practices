@@ -60,20 +60,20 @@ class ComboboxAutocomplete {
     this.comboboxNode.addEventListener('blur', this.onComboboxBlur.bind(this));
 
     document.body.addEventListener(
-      'mouseup',
-      this.onBackgroundMouseUp.bind(this),
+      'pointerup',
+      this.onBackgroundPointerUp.bind(this),
       true
     );
 
     // initialize pop up menu
 
     this.listboxNode.addEventListener(
-      'mouseover',
-      this.onListboxMouseover.bind(this)
+      'pointerover',
+      this.onListboxPointerover.bind(this)
     );
     this.listboxNode.addEventListener(
-      'mouseout',
-      this.onListboxMouseout.bind(this)
+      'pointerout',
+      this.onListboxPointerout.bind(this)
     );
 
     // Traverse the element children of domNode: configure each with
@@ -85,8 +85,8 @@ class ComboboxAutocomplete {
       this.allOptions.push(node);
 
       node.addEventListener('click', this.onOptionClick.bind(this));
-      node.addEventListener('mouseover', this.onOptionMouseover.bind(this));
-      node.addEventListener('mouseout', this.onOptionMouseout.bind(this));
+      node.addEventListener('pointerover', this.onOptionPointerover.bind(this));
+      node.addEventListener('pointerout', this.onOptionPointerout.bind(this));
     }
 
     this.filterOptions();
@@ -533,7 +533,7 @@ class ComboboxAutocomplete {
     this.removeVisualFocusAll();
   }
 
-  onBackgroundMouseUp(event) {
+  onBackgroundPointerUp(event) {
     if (
       !this.comboboxNode.contains(event.target) &&
       !this.listboxNode.contains(event.target) &&
@@ -558,11 +558,11 @@ class ComboboxAutocomplete {
 
   /* Listbox Events */
 
-  onListboxMouseover() {
+  onListboxPointerover() {
     this.hasHover = true;
   }
 
-  onListboxMouseout() {
+  onListboxPointerout() {
     this.hasHover = false;
     setTimeout(this.close.bind(this, false), 300);
   }
@@ -574,12 +574,12 @@ class ComboboxAutocomplete {
     this.close(true);
   }
 
-  onOptionMouseover() {
+  onOptionPointerover() {
     this.hasHover = true;
     this.open();
   }
 
-  onOptionMouseout() {
+  onOptionPointerout() {
     this.hasHover = false;
     setTimeout(this.close.bind(this, false), 300);
   }
