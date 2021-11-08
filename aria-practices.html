@@ -3079,14 +3079,28 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
             set to <code>false</code> when the node is in a closed state and set to <code>true</code> when the node is in an open state.
             End nodes do not have the <code>aria-expanded</code> attribute because, if they were to have it, they would be incorrectly described to assistive technologies as parent nodes.
           </li>
-          <li>If the tree supports selection of more than one node, the element with role <code>tree</code> has <a class="property-reference" href="#aria-multiselectable">aria-multiselectable</a> set to <code>true</code>. Otherwise, <code>aria-multiselectable</code> is either set to <code>false</code> or the default value of <code>false</code> is implied.</li>
-          <li>If the tree does not support multiple selection, <a href="#aria-selected" class="property-reference">aria-selected</a> is set to <code>true</code> for the selected node and it is not present on any other node in the tree.</li>
-          <li>if the tree supports multiple selection:
-          <ul>
-          <li>All selected nodes have <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code>.</li>
-          <li>All nodes that are selectable but not selected have <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>false</code>.</li>
-          <li>If the tree contains nodes that are not selectable, those nodes do not have the <code>aria-selected</code> state.</li>
-          </ul>
+          <li>
+            If the tree supports selection of more than one node, the element with role <code>tree</code> has <a class="property-reference" href="#aria-multiselectable">aria-multiselectable</a> set to <code>true</code>.
+            Otherwise, <code>aria-multiselectable</code> is either set to <code>false</code> or the default value of <code>false</code> is implied.
+          </li>
+          <li>
+            The selection state of each selectable node is indicated with either <a href="#aria-selected" class="state-reference">aria-selected</a> or <a href="#aria-checked" class="state-reference">aria-checked</a>:
+            <ul>
+              <li>
+                If any nodes are selected, each selected node has either <a href="#aria-selected" class="state-reference">aria-selected</a> or <a href="#aria-checked" class="state-reference">aria-checked</a> set to <code>true</code>.
+                No more than one node is selected at a time if the element with role <code>tree</code> does <em>not</em> have <a class="property-reference" href="#aria-multiselectable">aria-multiselectable</a> set to <code>true</code>.
+              </li>
+              <li>
+                All nodes that are selectable but not selected have either <a href="#aria-selected" class="state-reference">aria-selected</a> or <a href="#aria-checked" class="state-reference">aria-checked</a> set to <code>false</code>.
+              </li>
+              <li>
+                If the tree contains nodes that are not selectable, neither <a href="#aria-selected" class="state-reference">aria-selected</a> nor <a href="#aria-checked" class="state-reference">aria-checked</a> is present on those nodes.
+              </li>
+              <li>
+                Note that except in trees where selection follows focus, the selected state is distinct from focus.
+                For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection</a> and <a href="#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
+              </li>
+            </ul>
           </li>
           <li>The element with role <code>tree</code> has either a visible label referenced by <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> or a value specified for <a href="#aria-label" class="property-reference">aria-label</a>.</li>
           <li>If the complete set of available nodes is not present in the DOM due to dynamic loading as the user moves focus in or scrolls the tree, each node has <a href="#aria-level" class="property-reference">aria-level</a>, <a href="#aria-setsize" class="property-reference">aria-setsize</a>, and <a href="#aria-posinset" class="property-reference">aria-posinset</a> specified.</li>
