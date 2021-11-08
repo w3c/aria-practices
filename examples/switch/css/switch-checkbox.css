@@ -19,8 +19,6 @@ label .label {
   display: inline-block;
   width: 9em;
   -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 
