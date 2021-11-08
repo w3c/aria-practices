@@ -895,8 +895,7 @@ ariaTest(
     const lastElementInFirstRowText = {
       ex1: 'SVG 2 Specification',
       ex2: 'X',
-      ex3:
-        'WAI-ARIA, the Accessible Rich Internet Applications Suite, defines a way to make Web content and Web applications more accessible to people with disabilities.',
+      ex3: 'WAI-ARIA, the Accessible Rich Internet Applications Suite, defines a way to make Web content and Web applications more accessible to people with disabilities.',
     };
 
     for (let [exId, ex] of Object.entries(pageExamples)) {
@@ -994,8 +993,7 @@ ariaTest(
     const lastElementInFirstRowText = {
       ex1: 'SVG 2 Specification',
       ex2: 'X',
-      ex3:
-        'Jan 3, 2014 - NVDA 2 supports all landmarks except it will not support navigation to “application”; Window Eyes as of V.7 does not support ARIA landmarks.',
+      ex3: 'Jan 3, 2014 - NVDA 2 supports all landmarks except it will not support navigation to “application”; Window Eyes as of V.7 does not support ARIA landmarks.',
     };
 
     for (let [exId, ex] of Object.entries(pageExamples)) {

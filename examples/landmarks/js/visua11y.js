@@ -1,6 +1,6 @@
 /*
  * Copyright 2011-2014 University of Illinois
- * Authors: Thomas Foltz and Jon Gunderson
+ * Authors: Nicholas Hoyt
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -606,7 +606,7 @@ function getEmbeddedControlValue(element) {
 *   getaccname.js
 *
 *   Note: Information in this module is based on the following documents:
-*   1. HTML Accessibility API Mappings 1.0 (http://rawgit.com/w3c/aria/master/html-aam/html-aam.html)
+*   1. HTML Accessibility API Mappings (latest editors draft) (http://rawgit.com/w3c/aria/master/html-aam/html-aam.html)
 *   2. SVG Accessibility API Mappings (http://rawgit.com/w3c/aria/master/svg-aam/svg-aam.html)
 */
 

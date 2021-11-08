@@ -57,22 +57,23 @@ class ComboboxAutocomplete {
       'focus',
       this.onComboboxFocus.bind(this)
     );
+    this.comboboxNode.addEventListener('blur', this.onComboboxBlur.bind(this));
 
     document.body.addEventListener(
-      'mouseup',
-      this.onBackgroundMouseUp.bind(this),
+      'pointerup',
+      this.onBackgroundPointerUp.bind(this),
       true
     );
 
     // initialize pop up menu
 
     this.listboxNode.addEventListener(
-      'mouseover',
-      this.onListboxMouseover.bind(this)
+      'pointerover',
+      this.onListboxPointerover.bind(this)
     );
     this.listboxNode.addEventListener(
-      'mouseout',
-      this.onListboxMouseout.bind(this)
+      'pointerout',
+      this.onListboxPointerout.bind(this)
     );
 
     // Traverse the element children of domNode: configure each with
@@ -84,8 +85,8 @@ class ComboboxAutocomplete {
       this.allOptions.push(node);
 
       node.addEventListener('click', this.onOptionClick.bind(this));
-      node.addEventListener('mouseover', this.onOptionMouseover.bind(this));
-      node.addEventListener('mouseout', this.onOptionMouseout.bind(this));
+      node.addEventListener('pointerover', this.onOptionPointerover.bind(this));
+      node.addEventListener('pointerout', this.onOptionPointerout.bind(this));
     }
 
     this.filterOptions();
@@ -103,9 +104,24 @@ class ComboboxAutocomplete {
     return node.textContent.toLowerCase();
   }
 
+  isOptionInView(option) {
+    var bounding = option.getBoundingClientRect();
+    return (
+      bounding.top >= 0 &&
+      bounding.left >= 0 &&
+      bounding.bottom <=
+        (window.innerHeight || document.documentElement.clientHeight) &&
+      bounding.right <=
+        (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+
   setActiveDescendant(option) {
     if (option && this.listboxHasVisualFocus) {
       this.comboboxNode.setAttribute('aria-activedescendant', option.id);
+      if (!this.isOptionInView(option)) {
+        option.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
     } else {
       this.comboboxNode.setAttribute('aria-activedescendant', '');
     }
@@ -292,6 +308,7 @@ class ComboboxAutocomplete {
       this.comboboxNode.setAttribute('aria-expanded', 'false');
       this.buttonNode.setAttribute('aria-expanded', 'false');
       this.setActiveDescendant(false);
+      this.comboboxNode.parentNode.classList.add('focus');
     }
   }
 
@@ -399,7 +416,7 @@ class ComboboxAutocomplete {
   }
 
   isPrintableCharacter(str) {
-    return str.length === 1 && str.match(/\S/);
+    return str.length === 1 && str.match(/\S| /);
   }
 
   onComboboxKeyUp(event) {
@@ -512,7 +529,11 @@ class ComboboxAutocomplete {
     this.setCurrentOptionStyle(null);
   }
 
-  onBackgroundMouseUp(event) {
+  onComboboxBlur() {
+    this.removeVisualFocusAll();
+  }
+
+  onBackgroundPointerUp(event) {
     if (
       !this.comboboxNode.contains(event.target) &&
       !this.listboxNode.contains(event.target) &&
@@ -537,11 +558,11 @@ class ComboboxAutocomplete {
 
   /* Listbox Events */
 
-  onListboxMouseover() {
+  onListboxPointerover() {
     this.hasHover = true;
   }
 
-  onListboxMouseout() {
+  onListboxPointerout() {
     this.hasHover = false;
     setTimeout(this.close.bind(this, false), 300);
   }
@@ -553,12 +574,12 @@ class ComboboxAutocomplete {
     this.close(true);
   }
 
-  onOptionMouseover() {
+  onOptionPointerover() {
     this.hasHover = true;
     this.open();
   }
 
-  onOptionMouseout() {
+  onOptionPointerout() {
     this.hasHover = false;
     setTimeout(this.close.bind(this, false), 300);
   }

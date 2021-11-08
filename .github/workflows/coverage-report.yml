@@ -7,6 +7,10 @@ on:
     - "test/**"
     - "!examples/landmarks/**"
 
+permissions:
+  contents: read
+  issues: write
+
 jobs:
   report:
     runs-on: ubuntu-latest
@@ -16,6 +20,11 @@ jobs:
         with:
           ref: refs/pull/${{ github.event.pull_request.number }}/head
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          cache: npm
+
       - name: Install dependencies
         run: npm ci
 
@@ -24,7 +33,7 @@ jobs:
           node test/util/report.js >> coverage.log || true
 
       - name: Comment on PR
-        uses: actions/github-script@v3
+        uses: actions/github-script@v5
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
@@ -35,7 +44,7 @@ jobs:
               return
             }
             // Get the existing comments.
-            const {data: comments} = await github.issues.listComments({
+            const {data: comments} = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.payload.number,
@@ -44,14 +53,14 @@ jobs:
             const botComment = comments.find(comment => comment.user.id === 41898282)
 
             if (botComment) {
-              await github.issues.updateComment({
+              await github.rest.issues.updateComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 comment_id: botComment.id,
                 body: commentBody
               })
             } else {
-              await github.issues.createComment({
+              await github.rest.issues.createComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: context.payload.number,
