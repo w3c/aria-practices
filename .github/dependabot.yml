@@ -3,9 +3,9 @@ updates:
 - package-ecosystem: npm
   directory: "/"
   schedule:
-    interval: daily
+    interval: weekly
     time: "10:00"
-  open-pull-requests-limit: 10
+  open-pull-requests-limit: 99
   commit-message:
     prefix: "Infrastructure"
 - package-ecosystem: github-actions
@@ -13,6 +13,6 @@ updates:
   schedule:
     interval: daily
     time: "10:00"
-  open-pull-requests-limit: 10
+  open-pull-requests-limit: 99
   commit-message:
     prefix: "Infrastructure"
