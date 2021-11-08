@@ -90,13 +90,13 @@
       <h2>Accessibility Features</h2>
       <ul>
         <li>
-          To highlight the interactive nature of the rating stars a focus ring appears around the star icon that has focus.  When a pointer hovers over a star the cursor changes to a pointer and the number of filled stars is updated to include the hovered star.  When a pointer leaves a star, the filled stars are restored to indicate the currently checked star.
+          Changing the pointer to hover over a star or moving keyboard focus to one of the stars updates the number of filled stars as if the star was the checked option.  When pointing, clicking or tapping on the star will set the star as the checked option.  If the pointer is moved away from the rating stars the number of stars filled returns to the stars associated with the currently checked option.  Changes in keyboard focus automatically changes the star to the checked option.
         </li>
         <li>
           To ensure the borders of the stars and the focus ring have sufficient contrast with the background when high contrast settings invert colors, the color of the borders are synchronized with the color of the text content.
           For example, the color of the focus ring border is set to match the foreground color of  high contrast mode text by specifying the CSS <code>currentColor</code> value for the <code>stroke</code> property of the inline SVG <code>polygon</code> to draw the star borders and <code>rect</code> element used to draw the focus ring border.
           To make the background of the <code>polygon</code> and <code>rect</code> elements match the high contrast background color, the <code>fill-opacity</code> attribute of the <code>rect</code> is set to zero.
-          If specific colors were instead used to specify the <code>stroke</code> and <code>fill</code> properties, those colors would remain the same in high contrast mode, which could lead to insufficient contrast between the rail and the thumb or even make them invisible if their color matched the high contrast mode background.<br>
+          If specific colors were instead used to specify the <code>stroke</code> and <code>fill</code> properties, those colors would remain the same in high contrast mode, which could lead to insufficient contrast between the star and the background or even make them invisible if their color matched the high contrast mode background.<br>
           Note: The SVG element needs to have the CSS <code>forced-color-adjust</code> property set to <code>auto</code> for the <code>currentColor</code> value to be updated in high contrast mode.
           Some browsers do not use <code>auto</code> for the default value.
         </li>
@@ -200,12 +200,20 @@
             <tr data-test-id="radio-role">
               <th scope="row"><code>radio</code></th>
               <td></td>
-              <td><code>div</code></td>
+              <td><code>g</code></td>
               <td>
                 <ul>
-                  <li>Identifies the <code>div</code> element as an ARIA <code>radio</code> button.</li>
+                  <li>Identifies the <code>g</code> element as an ARIA <code>radio</code> button.</li>
                   <li>The accessible name is computed from the child text content of the <code>div</code> element.</li>
                 </ul>
+              </td>
+            </tr>
+            <tr data-test-id="radio-aria-label">
+              <td></td>
+              <th scope="row"><code>aria-label="<em>name</em>"</code></th>
+              <td><code>g</code></td>
+              <td>
+                Defines an accessible name that identifies the number of stars associated with the radio button (e.g. "one star", two stars", ..).
               </td>
             </tr>
             <tr data-test-id="radio-tabindex">

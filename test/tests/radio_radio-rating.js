@@ -1,6 +1,7 @@
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
+const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertRovingTabindex = require('../util/assertRovingTabindex');
@@ -51,12 +52,16 @@ ariaTest(
   }
 );
 
+ariaTest('role="radio" on g elements', exampleFile, 'radio-role', async (t) => {
+  await assertAriaRoles(t, 'ex1', 'radio', '5', 'g');
+});
+
 ariaTest(
-  'role="radio" on div elements',
+  'aria-label on g[role=radio] element',
   exampleFile,
-  'radio-role',
+  'radio-aria-label',
   async (t) => {
-    await assertAriaRoles(t, 'ex1', 'radio', '5', 'g');
+    await assertAriaLabelExists(t, ex.radioSelector);
   }
 );
 
