@@ -90,15 +90,26 @@
       <h2>Accessibility Features</h2>
       <ul>
         <li>
-          Changing the pointer to hover over a star or moving keyboard focus to one of the stars updates the number of filled stars as if the star was the checked option.  When pointing, clicking or tapping on the star will set the star as the checked option.  If the pointer is moved away from the rating stars the number of stars filled returns to the stars associated with the currently checked option.  Changes in keyboard focus automatically changes the star to the checked option.
+          To make the difference between keyboard focus and hover styling the stars perceivable to people with visual impairments, the number of stars filled is based on <em>changes</em> in keyboard focus and hover.  Keyboard focus changes will fill the stars based on the current star with focus.  Changing pointer position will fill the stars based on which star is hovered and ignore the currently checked radio button.  If focus changes while the pointer is over one of the stars, the pointer styling is ignored.  Clicking or tapping on a star checks the radio button and moves keyboard focus to the star.
         </li>
         <li>
-          To ensure the borders of the stars and the focus ring have sufficient contrast with the background when high contrast settings invert colors, the color of the borders are synchronized with the color of the text content.
-          For example, the color of the focus ring border is set to match the foreground color of  high contrast mode text by specifying the CSS <code>currentColor</code> value for the <code>stroke</code> property of the inline SVG <code>polygon</code> to draw the star borders and <code>rect</code> element used to draw the focus ring border.
-          To make the background of the <code>polygon</code> and <code>rect</code> elements match the high contrast background color, the <code>fill-opacity</code> attribute of the <code>rect</code> is set to zero.
-          If specific colors were instead used to specify the <code>stroke</code> and <code>fill</code> properties, those colors would remain the same in high contrast mode, which could lead to insufficient contrast between the star and the background or even make them invisible if their color matched the high contrast mode background.<br>
-          Note: The SVG element needs to have the CSS <code>forced-color-adjust</code> property set to <code>auto</code> for the <code>currentColor</code> value to be updated in high contrast mode.
-          Some browsers do not use <code>auto</code> for the default value.
+          To enhance perceivability when selecting a rating star, visual keyboard focus and hover are styled using CSS:
+          <ul>
+            <li>
+              To help people with visual impairments identify the stars interactive, the cursor is changed to a pointer when hovering over the stars.
+            </li>
+            <li>
+              To help people with visual impairments identify the focus ring, the focus ring has a width of 2 pixels and at least 2 pixels of spacing from the star border.
+            </li>
+            <li>
+              To ensure the borders of the stars and the focus ring have sufficient contrast with the background when high contrast settings invert colors, the color of the borders are synchronized with the color of the text content.
+              For example, the color of the focus ring border is set to match the foreground color of  high contrast mode text by specifying the CSS <code>currentColor</code> value for the <code>stroke</code> property of the inline SVG <code>polygon</code> to draw the star borders and <code>rect</code> element used to draw the focus ring border.
+              To make the background of the <code>polygon</code> and <code>rect</code> elements match the high contrast background color, the <code>fill-opacity</code> attribute of the <code>rect</code> is set to zero.
+              If specific colors were instead used to specify the <code>stroke</code> and <code>fill</code> properties, those colors would remain the same in high contrast mode, which could lead to insufficient contrast between the star and the background or even make them invisible if their color matched the high contrast mode background.<br>
+              Note: The SVG element needs to have the CSS <code>forced-color-adjust</code> property set to <code>auto</code> for the <code>currentColor</code> value to be updated in high contrast mode.
+              Some browsers do not use <code>auto</code> for the default value.
+            </li>
+          </ul>
         </li>
       </ul>
     </section>

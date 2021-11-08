@@ -4,10 +4,6 @@
   display: block;
 }
 
-.rating-radio:hover {
-  cursor: pointer;
-}
-
 .rating-radio svg g[role="radio"] {
   color: #005a9c;
 }
@@ -73,4 +69,8 @@
 .rating-radio svg g:focus .focus-ring {
   stroke-width: 2px;
   stroke: currentColor;
+}
+
+.rating-radio:hover {
+  cursor: pointer;
 }
