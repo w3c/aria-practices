@@ -214,54 +214,41 @@ getExampleFiles(examplePath, exampleFiles);
 processDocumentationInExampleFiles(exampleFiles, exampleCoverage);
 getRegressionTestCoverage(exampleCoverage);
 
-let examplesWithNoTests = 0;
-let examplesWithNoTestsReport = '';
-let examplesMissingSomeTests = 0;
-let examplesMissingSomeTestsReport = '';
-let missingTestIds = 0;
-let missingTestIdsReport = '';
-let totalTestIds = 0;
-
 for (let example in exampleCoverage) {
   const existingTestIds = exampleCoverage[example].existingTestIds.size;
   const missingTests = exampleCoverage[example].missingTests.size;
   const missingKeys = exampleCoverage[example].missingKeys.size;
   const missingAttrs = exampleCoverage[example].missingAttrs.size;
 
-  if (existingTestIds !== missingTests) {
-    totalTestIds += existingTestIds;
-  }
-
   if (missingTests || missingKeys || missingAttrs) {
-    let exampleName = example;
+    let exampleName = path.resolve('examples', example);
 
     if (existingTestIds === missingTests) {
-      examplesWithNoTestsReport += '- ' + exampleName + '\n';
-      examplesWithNoTests++;
+      console.warn(
+        `${exampleName}:1:1: warning: Example does not have any regression tests`
+      );
     } else if (missingTests) {
-      examplesMissingSomeTestsReport += '- ' + exampleName + ':\n';
-
       for (let testId of exampleCoverage[example].missingTests) {
-        examplesMissingSomeTestsReport += '   - ' + testId + '\n';
+        console.warn(
+          `${exampleName}:1:1: warning: Example is missing some regression test '${testId}'`
+        );
       }
-
-      examplesMissingSomeTests += 1;
-      missingTestIds += missingTests;
     }
 
     if (missingKeys || missingAttrs) {
-      missingTestIdsReport += '- ' + exampleName + '\n';
       if (missingKeys) {
-        missingTestIdsReport += '   - "Keyboard Support" table(s):\n';
         for (let row of exampleCoverage[example].missingKeys) {
-          missingTestIdsReport += '      - ' + row + '\n';
+          console.warn(
+            `${exampleName}:1:1: warning: Keyboard support table rows missing data-test-id '${row}'`
+          );
         }
       }
 
       if (missingAttrs) {
-        missingTestIdsReport += '   - "Attributes" table(s):\n';
         for (let row of exampleCoverage[example].missingAttrs) {
-          missingTestIdsReport += '      - ' + row + '\n';
+          console.warn(
+            `${exampleName}:1:1: warning: Attribute support table rows missing data-test-id '${row}'`
+          );
         }
       }
     }
@@ -275,49 +262,8 @@ fs.readdirSync(testsPath).forEach(function (testFile) {
 
   if (!fs.existsSync(dir) || !fs.statSync(dir).isDirectory()) {
     badFileNames.push([testFile, dir]);
+    console.error(
+      `${testFile}:1:1: error: Test file names should begin with the root parent directory of example being tested followed by an underscore ('_').`
+    );
   }
 });
-
-console.log('\n#### Regression test coverage:\n');
-console.log('\n#### Examples without any regression tests:\n');
-console.log(examplesWithNoTestsReport || 'None found.\n');
-console.log('\n#### Examples missing some regression tests:\n');
-console.log(examplesMissingSomeTestsReport || 'None found.\n');
-console.log(
-  '\n#### Example pages with Keyboard or Attribute table rows that do not have data-test-ids:\n'
-);
-console.log(missingTestIdsReport || 'None found.\n');
-
-console.log('#### SUMMARY:\n');
-console.log('  ' + exampleFiles.length + ' example pages found.');
-console.log(
-  '  ' + examplesWithNoTests + ' example pages have no regression tests.'
-);
-console.log(
-  '  ' +
-    examplesMissingSomeTests +
-    ' example pages are missing approximately ' +
-    missingTestIds +
-    ' out of approximately ' +
-    totalTestIds +
-    ' tests.\n'
-);
-
-if (examplesMissingSomeTests) {
-  console.log(
-    'ERROR - missing tests:\n\n  Please write missing tests for this report to pass.\n'
-  );
-  process.exitCode = 1;
-}
-
-if (badFileNames.length) {
-  console.log(
-    "ERROR - bad file names:\n\n  Some test files do not follow the correct naming convention. Test file names should begin with the root parent directory of example being tested followed by an underscore ('_'). Please correct the following bad test file(s):\n"
-  );
-
-  for (let file of badFileNames) {
-    console.log('  ' + file[0]);
-  }
-  console.log('\n');
-  process.exitCode = 1;
-}
