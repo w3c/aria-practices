@@ -53,7 +53,7 @@ aria.Notes = function Notes(
   Object.defineProperty(this, 'controls', {
     get: function () {
       return document.querySelectorAll(
-        '[aria-controls=' + this.notesInput.id + ']'
+        '[data-textbox=' + this.notesInput.id + ']'
       );
     },
   });
@@ -189,8 +189,13 @@ document.addEventListener('DOMContentLoaded', function initAlertDialog() {
   };
 
   window.openAlertDialog = function (dialogId, triggerBtn, focusFirst) {
+    // do not proceed if the trigger button is disabled
+    if (triggerBtn.getAttribute('aria-disabled') === 'true') {
+      return;
+    }
+
     var target = document.getElementById(
-      triggerBtn.getAttribute('aria-controls')
+      triggerBtn.getAttribute('data-textbox')
     );
     var dialog = document.getElementById(dialogId);
     var desc = document.getElementById(dialog.getAttribute('aria-describedby'));
