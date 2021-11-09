@@ -28,8 +28,6 @@ class RatingRadioGroup {
 
       rb.addEventListener('keydown', this.handleKeydown.bind(this));
       rb.addEventListener('click', this.handleClick.bind(this));
-      rb.addEventListener('pointerover', this.handlePointerover.bind(this));
-      rb.addEventListener('pointerleave', this.handlePointerleave.bind(this));
 
       this.radioButtons.push(rb);
 
@@ -129,15 +127,6 @@ class RatingRadioGroup {
 
   handleClick(event) {
     this.setChecked(event.currentTarget);
-  }
-
-  handlePointerover(event) {
-    var value = event.currentTarget.getAttribute('data-rating');
-    this.groupNode.setAttribute('data-rating-value', value);
-  }
-
-  handlePointerleave() {
-    this.groupNode.setAttribute('data-rating-value', this.currentValue);
   }
 }
 
