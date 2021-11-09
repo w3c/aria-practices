@@ -7,16 +7,16 @@ var aria = aria || {};
 aria.Utils = aria.Utils || {};
 
 aria.Utils.disableCtrl = function (ctrl) {
-  ctrl.setAttribute('disabled', true);
+  ctrl.setAttribute('aria-disabled', 'true');
 };
 
 aria.Utils.enableCtrl = function (ctrl) {
-  ctrl.removeAttribute('disabled');
+  ctrl.removeAttribute('aria-disabled');
 };
 
 aria.Utils.setLoading = function (saveBtn, saveStatusView) {
   saveBtn.classList.add('loading');
-  saveBtn.tabIndex = -1;
+  this.disableCtrl(saveBtn);
 
   // use a timeout for the loading message
   // if the saved state happens very quickly,
@@ -30,7 +30,6 @@ aria.Utils.setLoading = function (saveBtn, saveStatusView) {
   window.setTimeout(() => {
     saveBtn.classList.remove('loading');
     saveBtn.classList.add('saved');
-    saveBtn.tabIndex = -1;
 
     window.clearTimeout(loadingTimeout);
     saveStatusView.textContent = 'Saved successfully';
@@ -94,6 +93,10 @@ aria.Notes = function Notes(
 };
 
 aria.Notes.prototype.save = function (val) {
+  const isDisabled = this.saveBtn.getAttribute('aria-disabled') === 'true';
+  if (isDisabled) {
+    return;
+  }
   localStorage.setItem(
     this.localStorageKey,
     JSON.stringify(val || this.notesInput.value)
@@ -109,15 +112,17 @@ aria.Notes.prototype.loadSaved = function () {
 };
 
 aria.Notes.prototype.restoreSaveBtn = function () {
-  this.saveBtn.removeAttribute('tabindex');
+  this.saveBtn.classList.remove('loading');
   this.saveBtn.classList.remove('saved');
+  this.saveBtn.removeAttribute('aria-disabled');
+
+  this.saveStatusView.textContent = '';
 };
 
 aria.Notes.prototype.discard = function () {
   localStorage.clear();
   this.notesInput.value = '';
   this.toggleControls();
-  this.saveStatusView.textContent = '';
   this.restoreSaveBtn();
 };
 
@@ -141,7 +146,6 @@ aria.Notes.prototype.toggleCurrent = function () {
   if (!this.isCurrent) {
     this.notesInput.classList.remove('can-save');
     aria.Utils.enableCtrl(this.saveBtn);
-    this.saveStatusView.textContent = '';
     this.restoreSaveBtn();
   } else {
     this.notesInput.classList.add('can-save');
