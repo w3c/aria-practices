@@ -17,6 +17,7 @@
     "lint:html": "npm run htmlhint && npm run vnu-jar",
     "lint:spelling": "cspell \"**/*.*\"",
     "link-checker": "node ./scripts/link-checker.js",
+    "coverage-report": "node scripts/coverage-report.js",
     "reference-tables": "node scripts/reference-tables.js",
     "regression": "ava --timeout=1m",
     "regression-report": "node test/util/report",
@@ -68,7 +69,9 @@
     ],
     "content/patterns/**/examples/*.html": [
       "npm run reference-tables",
-      "git add content/index/index.html"
+      "git add content/index/index.html",
+      "npm run coverage-report",
+      "git add coverage/"
     ]
   },
   "ava": {
