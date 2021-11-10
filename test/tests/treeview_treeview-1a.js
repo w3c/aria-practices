@@ -98,7 +98,7 @@ ariaTest(
 );
 
 ariaTest(
-  'aria-selected attribute on treeitem on down arrow and enter',
+  'aria-selected attribute on treeitem on down arrow and space',
   exampleFile,
   'treeitem-aria-selected',
   async (t) => {
@@ -120,7 +120,7 @@ ariaTest(
         // move focus back to the previous item
         await nextItem.sendKeys(Key.ARROW_UP);
       }
-      await items[i].sendKeys(Key.ENTER);
+      await items[i].sendKeys(Key.SPACE);
       t.is(
         await items[i].getAttribute('aria-selected'),
         'true',
