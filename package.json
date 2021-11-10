@@ -52,7 +52,7 @@
     "htmlhint": "^0.14.2",
     "htmlparser2": "^7.0.0",
     "husky": "^7.0.4",
-    "lint-staged": "^10.5.4",
+    "lint-staged": "^11.2.6",
     "npm-merge-driver": "^2.3.6",
     "pinst": "^2.1.4",
     "prettier": "^2.4.1",
