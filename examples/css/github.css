@@ -32,7 +32,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .hljs-template-variable,
 .hljs-tag .hljs-attr {
   /* Original value hsl(180, 100%, 25%) didn’t pass WCAG AA */
-  color: hsl(180, 100%, 23%);
+  color: hsl(180deg 100% 23%);
 }
 
 .hljs-string,

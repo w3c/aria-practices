@@ -4,9 +4,6 @@
   border: 0 solid #005a9c;
   border-radius: 5px;
   width: 15em;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 

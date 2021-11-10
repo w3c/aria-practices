@@ -16,10 +16,7 @@
 }
 
 .page .main {
-  padding-top: 1em;
-  padding-left: 5%;
-  padding-right: 5%;
-  padding-bottom: 5em;
+  padding: 1em 5% 5em;
   border-left: 2px solid #eee;
   border-right: 2px solid #eee;
 }

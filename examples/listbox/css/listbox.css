@@ -117,7 +117,7 @@ button {
 }
 
 button[aria-disabled="true"] {
-  opacity: 0.5;
+  opacity: 50%;
 }
 
 .move-right-btn::after {
