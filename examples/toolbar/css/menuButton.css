@@ -27,11 +27,7 @@
 }
 
 [role="toolbar"] .menu-popup [role="menu"] [role="menuitemradio"] {
-  padding: 0;
-  padding-top: 1px;
-  padding-bottom: 1px;
-  padding-left: 2px;
-  padding-right: 2px;
+  padding: 1px 2px;
   outline: 0;
   border: none;
   border-radius: 0;
@@ -50,7 +46,7 @@
 
 [role="toolbar"] .menu-popup [role="menu"] [role="menuitemradio"]:focus,
 [role="toolbar"] .menu-popup [role="menu"] [role="menuitemradio"]:hover {
-  background: rgb(226, 239, 255);
+  background: rgb(226 239 255);
   border-top: 1px solid #005a9c;
   border-bottom: 1px solid #005a9c;
   padding-top: 0;
