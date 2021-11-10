@@ -5,6 +5,20 @@ ul[role="tree"] {
   font-size: 120%;
 }
 
+ul[role="tree"] li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+[role="treeitem"][aria-expanded="false"] + [role="group"] {
+  display: none;
+}
+
+[role="treeitem"][aria-expanded="true"] + [role="group"] {
+  display: block;
+}
+
 [role="treeitem"].doc::before {
   content: url(../images/file.png);
 }
