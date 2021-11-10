@@ -131,8 +131,21 @@ Treeitem.prototype.handleKeydown = function (event) {
     }
   } else {
     switch (event.keyCode) {
-      case this.keyCode.SPACE:
       case this.keyCode.RETURN:
+        var treeitem = event.currentTarget;
+        var label = treeitem.getAttribute('aria-label');
+        if (!label) {
+          var child = treeitem.firstElementChild;
+          label = child ? child.innerText : treeitem.innerText;
+        }
+        document.getElementById('last_action').value = label.trim();
+
+        if (!this.isExpandable) this.tree.setFocusToItem(this);
+        this.tree.setSelectedToItem(this);
+        flag = true;
+        break;
+
+      case this.keyCode.SPACE:
         // Create simulated mouse event to mimic the behavior of ATs
         // and let the event handler handleClick do the housekeeping.
         try {
