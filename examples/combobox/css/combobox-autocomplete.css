@@ -34,7 +34,7 @@
   width: 19px;
   border-left: none;
   outline: none;
-  color: rgb(0, 90, 156);
+  color: rgb(0 90 156);
 }
 
 .combobox button[aria-expanded="true"] svg {
