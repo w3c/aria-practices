@@ -40,6 +40,11 @@ ul[role="tree"] {
   outline: 0;
 }
 
+[role="treeitem"][aria-selected="true"] {
+  padding-left: 4px;
+  border-left: 5px solid #005a9c;
+}
+
 [role="treeitem"].focus,
 [role="treeitem"] span.focus {
   border-color: black;
@@ -48,5 +53,7 @@ ul[role="tree"] {
 
 [role="treeitem"].hover,
 [role="treeitem"] span:hover {
+  padding-left: 4px;
   background-color: #ddd;
+  border-left: 5px solid #333;
 }
