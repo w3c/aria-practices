@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Collapsible Dropdown Listbox Example | WAI-ARIA Authoring Practices 1.2</title>
+<title>(Deprecated) Collapsible Dropdown Listbox Example | WAI-ARIA Authoring Practices 1.2</title>
 
 <!--  Core js and css shared by all examples; do not modify when using this template. -->
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -27,7 +27,10 @@
     </ul>
   </nav>
   <main>
-  <h1>Collapsible Dropdown Listbox Example</h1>
+  <h1>(Deprecated) Collapsible Dropdown Listbox Example</h1>
+  <div class="advisement">
+    <p><strong>DEPRECATION WARNING:</strong> This pattern has been deprecated, and will be removed in a future version of the ARIA Authoring Practices. The <a href="../combobox/combobox-select-only.html">select-only combobox</a> should be used as an alternative to this pattern.</p>
+  </div>
   <p>
     The following example implementation of the
     <a href="../../#Listbox">design pattern for listbox</a>
@@ -38,12 +41,15 @@
   </p>
   <p>Similar examples include:</p>
   <ul>
+    <li><a href="../combobox/combobox-select-only.html">Select-Only Combobox</a>: A single-select combobox with no text input that is functionally similar to an HTML <code>select</code> element.</li>
     <li><a href="listbox-scrollable.html">Scrollable Listbox Example</a>: Single-select listbox that scrolls to reveal more options, similar to HTML <code>select</code> with <code>size</code> attribute greater than one.</li>
     <li><a href="listbox-rearrangeable.html">Example Listboxes with Rearrangeable Options</a>: Examples of both single-select and multi-select listboxes with accompanying toolbars where options can be added, moved, and removed.</li>
     <li><a href="listbox-grouped.html">Listbox Example with Grouped Options</a>: Single-select listbox with grouped options, similar to an HTML <code>select</code> with <code>optgroup</code> children.</li>
   </ul>
   <section>
-    <h2 id="ex_label">Example</h2>
+    <div class="example-header">
+      <h2 id="ex_label">Example</h2>
+    </div>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="ex">
       <p>Choose your favorite transuranic element (actinide or transactinide).</p>
@@ -258,7 +264,7 @@
           </td>
         </tr>
         <tr data-test-id="option-role">
-          <th scope="row"><code>role=&quot;option&quot;</code></th>
+          <th scope="row"><code>option</code></th>
           <td></td>
           <td><code>li</code></td>
           <td>Identifies each selectable element containing the name of an option.</td>
@@ -281,7 +287,7 @@
 
   <section>
     <h2>Javascript and CSS Source Code</h2>
-    <ul>
+    <ul id="css_js_files">
       <li>
         CSS:
         <a href="css/listbox.css" type="tex/css">listbox.css</a>
@@ -298,8 +304,12 @@
     <div id="sc_start_sep" role="separator" aria-labelledby="sc_start_sep sc_label" aria-label="Start of "></div>
     <pre><code id="sc"></code></pre>
     <div id="sc_end_sep" role="separator" aria-labelledby="sc_end_sep sc_label" aria-label="End of"></div>
-    <script>sourceCode.add('sc', 'ex')</script>
-    <script> sourceCode.make() </script>
+    <script>
+      sourceCode.add('sc', 'ex', 'ex_label', 'css_js_files');
+    </script>
+    <script>
+      sourceCode.make();
+    </script>
   </section>
   </main>
   <nav>

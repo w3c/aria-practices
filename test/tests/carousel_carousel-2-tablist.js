@@ -320,7 +320,7 @@ ariaTest(
   async (t) => {
     t.plan(1);
 
-    // check the aria-roledescrption set to carousel
+    // check the aria-roledescription set to carousel
     await assertAttributeValues(
       t,
       ex.landmarkSelector,

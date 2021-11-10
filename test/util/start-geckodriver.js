@@ -62,11 +62,10 @@ const startOnAnyPort = (port, timeout) => {
  * Start a GeckoDriver server using a dynamically-determined available TCP/IP
  * port.
  *
- * @param {Number} port - the TCP/IP port from which to begin search
- * @param {Number} timeout - the number of milliseconds to attempt to create a
+ * @param {number} port - the TCP/IP port from which to begin search
+ * @param {number} timeout - the number of milliseconds to attempt to create a
  *                           server before reporting a failure
- *
- * @returns {Promise<Object>} - an eventual value for interfacing with the
+ * @returns {Promise<object>} - an eventual value for interfacing with the
  *                               server. The `port` property is the numeric
  *                               TCP/IP port to which the server is bound. The
  *                               `stop` property is a function for destroying

@@ -131,7 +131,7 @@ ariaTest('role="tree" on ul element', exampleFile, 'tree-role', async (t) => {
 ariaTest(
   'aria-labelledby on role="tree" element',
   exampleFile,
-  'tree-arialabelledby',
+  'tree-aria-labelledby',
   async (t) => {
     await assertAriaLabelledby(t, ex.treeSelector);
   }
@@ -172,11 +172,11 @@ ariaTest(
 );
 
 ariaTest(
-  '"aria-setsize" atrribute on treeitem',
+  '"aria-setsize" attribute on treeitem',
   exampleFile,
   'treeitem-aria-setsize',
   async (t) => {
-    for (const [level, levelSelectors] of Object.entries(
+    for (const [, levelSelectors] of Object.entries(
       ex.treeitemGroupSelectors
     )) {
       for (const selector of levelSelectors) {
@@ -204,7 +204,7 @@ ariaTest(
   exampleFile,
   'treeitem-aria-posinset',
   async (t) => {
-    for (const [level, levelSelectors] of Object.entries(
+    for (const [, levelSelectors] of Object.entries(
       ex.treeitemGroupSelectors
     )) {
       for (const selector of levelSelectors) {
@@ -263,8 +263,6 @@ ariaTest(
     for (let folder of folders) {
       // If the folder is displayed
       if (await folder.isDisplayed()) {
-        const folderText = await folder.getText();
-
         // By default, all folders will be closed
         t.is(await folder.getAttribute('aria-expanded'), 'false');
         t.is(
@@ -769,7 +767,7 @@ ariaTest('characters move focus', exampleFile, 'key-character', async (t) => {
         test.sendChar +
         ' to treeitem ' +
         test.sendIndex +
-        ' should move the foucs to treeitem ' +
+        ' should move the focus to treeitem ' +
         test.endIndex
     );
 
@@ -800,7 +798,7 @@ ariaTest('characters move focus', exampleFile, 'key-character', async (t) => {
         test.sendChar +
         ' to treeitem ' +
         test.sendIndex +
-        ' should move the foucs to treeitem ' +
+        ' should move the focus to treeitem ' +
         test.endIndex
     );
   }

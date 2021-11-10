@@ -6,8 +6,8 @@ const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const exampleFile = 'accordion/accordion.html';
 
 const ex = {
-  buttonSelector: '#coding-arena button',
-  panelSelector: '#coding-arena [role="region"]',
+  buttonSelector: '#ex1 button',
+  panelSelector: '#ex1 [role="region"]',
   buttonsInOrder: ['#accordion1id', '#accordion2id', '#accordion3id'],
   firstPanelInputSelectors: [
     '#cufc1',
@@ -81,24 +81,16 @@ ariaTest(
   async (t) => {
     const buttons = await t.context.queryElements(t, ex.buttonSelector);
 
-    for (let expandIndex = 0; expandIndex < buttons.length; expandIndex++) {
-      // Click a heading to expand the section
-      await buttons[expandIndex].click();
+    for (let index = 0; index < buttons.length; index++) {
+      // first accordion starts open
+      const value = await buttons[index].getAttribute('aria-expanded');
+      const expectedValue = index === 0 ? 'true' : 'false';
 
-      for (let index = 0; index < buttons.length; index++) {
-        const expandedValue = index === expandIndex ? 'true' : 'false';
-        t.is(
-          await buttons[index].getAttribute('aria-expanded'),
-          expandedValue,
-          'Accordion button at index ' +
-            expandIndex +
-            ' has been clicked, therefore ' +
-            '"aria-expanded" on button ' +
-            index +
-            ' should be "' +
-            expandedValue
-        );
-      }
+      t.is(
+        value,
+        expectedValue,
+        `Accordion button ${index} should have aria-expanded="${expectedValue}"`
+      );
     }
   }
 );
@@ -109,35 +101,6 @@ ariaTest(
   'button-aria-controls',
   async (t) => {
     await assertAriaControls(t, ex.buttonSelector);
-  }
-);
-
-ariaTest(
-  '"aria-disabled" set on expanded sections',
-  exampleFile,
-  'button-aria-disabled',
-  async (t) => {
-    const buttons = await t.context.queryElements(t, ex.buttonSelector);
-
-    for (let expandIndex = 0; expandIndex < buttons.length; expandIndex++) {
-      // Click a heading to expand the section
-      await buttons[expandIndex].click();
-
-      for (let index = 0; index < buttons.length; index++) {
-        const disabledValue = index === expandIndex ? 'true' : null;
-        t.is(
-          await buttons[index].getAttribute('aria-disabled'),
-          disabledValue,
-          'Accordion button at index ' +
-            expandIndex +
-            ' has been clicked, therefore ' +
-            '"aria-disabled" on button ' +
-            index +
-            ' should be "' +
-            disabledValue
-        );
-      }
-    }
   }
 );
 
@@ -176,48 +139,42 @@ ariaTest(
 // Keys
 
 ariaTest(
-  'ENTER key expands section',
+  'ENTER key toggles section',
   exampleFile,
   'key-enter-or-space',
   async (t) => {
     const buttons = await t.context.queryElements(t, ex.buttonSelector);
     const panels = await t.context.queryElements(t, ex.panelSelector);
 
-    for (let expandIndex of [1, 2, 0]) {
+    for (let expandIndex of [1, 2]) {
       await buttons[expandIndex].sendKeys(Key.ENTER);
+      const panelDisplay = await panels[expandIndex].isDisplayed();
+      const buttonAria = await buttons[expandIndex].getAttribute(
+        'aria-expanded'
+      );
 
       t.true(
-        await panels[expandIndex].isDisplayed(),
-        'Sending key ENTER to button at index ' +
-          expandIndex +
-          ' should expand the region.'
+        panelDisplay,
+        `Pressing enter on button ${expandIndex} should expand the region.`
       );
-
       t.is(
-        await buttons[expandIndex].getAttribute('aria-expanded'),
+        buttonAria,
         'true',
-        'Sending key ENTER to button at index ' +
-          expandIndex +
-          ' set aria-expanded to "true".'
-      );
-
-      t.is(
-        await buttons[expandIndex].getAttribute('aria-disabled'),
-        'true',
-        'Sending key ENTER to button at index ' +
-          expandIndex +
-          ' set aria-disable to "true".'
-      );
-
-      await buttons[expandIndex].sendKeys(Key.ENTER);
-
-      t.true(
-        await panels[expandIndex].isDisplayed(),
-        'Sending key ENTER twice to button at index ' +
-          expandIndex +
-          ' do nothing.'
+        `Pressing enter on button ${expandIndex} sets aria-expanded to "true".`
       );
     }
+
+    // first panel starts open; enter should close
+    await buttons[0].sendKeys(Key.ENTER);
+    t.false(
+      await panels[0].isDisplayed(),
+      'Pressing enter on first button collapses the region'
+    );
+    t.is(
+      await buttons[0].getAttribute('aria-expanded'),
+      'false',
+      `Pressing enter on first button sets aria-expanded to "false".`
+    );
   }
 );
 
@@ -229,41 +186,35 @@ ariaTest(
     const buttons = await t.context.queryElements(t, ex.buttonSelector);
     const panels = await t.context.queryElements(t, ex.panelSelector);
 
-    for (let expandIndex of [1, 2, 0]) {
+    for (let expandIndex of [1, 2]) {
       await buttons[expandIndex].sendKeys(Key.SPACE);
+      const panelDisplay = await panels[expandIndex].isDisplayed();
+      const buttonAria = await buttons[expandIndex].getAttribute(
+        'aria-expanded'
+      );
 
       t.true(
-        await panels[expandIndex].isDisplayed(),
-        'Sending key SPACE to button at index ' +
-          expandIndex +
-          ' should expand the region.'
+        panelDisplay,
+        `Pressing space on button ${expandIndex} should expand the region.`
       );
-
       t.is(
-        await buttons[expandIndex].getAttribute('aria-expanded'),
+        buttonAria,
         'true',
-        'Sending key SPACE to button at index ' +
-          expandIndex +
-          ' set aria-expanded to "true".'
-      );
-
-      t.is(
-        await buttons[expandIndex].getAttribute('aria-disabled'),
-        'true',
-        'Sending key SPACE to button at index ' +
-          expandIndex +
-          ' set aria-disable to "true".'
-      );
-
-      await buttons[expandIndex].sendKeys(Key.SPACE);
-
-      t.true(
-        await panels[expandIndex].isDisplayed(),
-        'Sending key SPACE twice to button at index ' +
-          expandIndex +
-          ' do nothing.'
+        `Pressing space on button ${expandIndex} sets aria-expanded to "true".`
       );
     }
+
+    // first panel starts open; space should close
+    await buttons[0].sendKeys(Key.SPACE);
+    t.false(
+      await panels[0].isDisplayed(),
+      'Pressing space on first button collapses the region'
+    );
+    t.is(
+      await buttons[0].getAttribute('aria-expanded'),
+      'false',
+      `Pressing space on first button sets aria-expanded to "false".`
+    );
   }
 );
 
@@ -274,9 +225,7 @@ ariaTest(
   async (t) => {
     const buttons = await t.context.queryElements(t, ex.buttonSelector);
 
-    // Open a panel
-    await buttons[0].click();
-
+    // verify that open panel is in the tab order
     let elementsInOrder = [
       ex.buttonsInOrder[0],
       ...ex.firstPanelInputSelectors,
@@ -299,39 +248,13 @@ ariaTest(
         .sendKeys(Key.TAB);
     }
 
-    // Open the next panel
-    await buttons[1].click();
-
-    elementsInOrder = [
-      ex.buttonsInOrder[0],
-      ex.buttonsInOrder[1],
-      ...ex.secondPanelInputSelectors,
-      ex.buttonsInOrder[2],
-    ];
-
-    // Send TAB to the first panel button
-    firstElement = elementsInOrder.shift();
-    await t.context.session.findElement(By.css(firstElement)).sendKeys(Key.TAB);
-
-    // Confirm focus moves through remaining items
-    for (let itemSelector of elementsInOrder) {
-      t.true(
-        await focusMatchesElement(t, itemSelector),
-        'Focus should reach element: ' + itemSelector
-      );
-      await t.context.session
-        .findElement(By.css(itemSelector))
-        .sendKeys(Key.TAB);
-    }
-
-    // Open the next panel
-    await buttons[2].click();
+    // Close the first panel, and verify that tab does not go through the closed panel
+    await buttons[0].click();
 
     elementsInOrder = [
       ex.buttonsInOrder[0],
       ex.buttonsInOrder[1],
       ex.buttonsInOrder[2],
-      ...ex.thirdPanelInputSelectors,
     ];
 
     // Send TAB to the first panel button
@@ -358,12 +281,11 @@ ariaTest(
   async (t) => {
     const buttons = await t.context.queryElements(t, ex.buttonSelector);
 
-    // Open a panel
+    // Close first panel
     await buttons[0].click();
 
     let elementsInOrder = [
       ex.buttonsInOrder[0],
-      ...ex.firstPanelInputSelectors,
       ex.buttonsInOrder[1],
       ex.buttonsInOrder[2],
     ];
@@ -386,7 +308,7 @@ ariaTest(
         .sendKeys(Key.chord(Key.SHIFT, Key.TAB));
     }
 
-    // Open the next panel
+    // Open one panel
     await buttons[1].click();
 
     elementsInOrder = [
@@ -412,150 +334,6 @@ ariaTest(
       await t.context.session
         .findElement(By.css(itemSelector))
         .sendKeys(Key.chord(Key.SHIFT, Key.TAB));
-    }
-
-    // Open the next panel
-    await buttons[2].click();
-
-    elementsInOrder = [
-      ex.buttonsInOrder[0],
-      ex.buttonsInOrder[1],
-      ex.buttonsInOrder[2],
-      ...ex.thirdPanelInputSelectors,
-    ];
-
-    // Send TAB to the last focusable item
-    lastElement = elementsInOrder.pop();
-    await t.context.session
-      .findElement(By.css(lastElement))
-      .sendKeys(Key.chord(Key.SHIFT, Key.TAB));
-
-    // Confirm focus moves through remaining items
-    for (let index = elementsInOrder.length - 1; index >= 0; index--) {
-      let itemSelector = elementsInOrder[index];
-      t.true(
-        await focusMatchesElement(t, itemSelector),
-        'Focus should reach element: ' + itemSelector
-      );
-      await t.context.session
-        .findElement(By.css(itemSelector))
-        .sendKeys(Key.chord(Key.SHIFT, Key.TAB));
-    }
-  }
-);
-
-ariaTest(
-  'DOWN ARROW moves focus between headers',
-  exampleFile,
-  'key-down-arrow',
-  async (t) => {
-    const buttons = await t.context.queryElements(t, ex.buttonSelector);
-
-    // Confirm focus moves through remaining items
-    for (let index = 0; index < ex.buttonsInOrder.length - 1; index++) {
-      let itemSelector = ex.buttonsInOrder[index];
-      await t.context.session
-        .findElement(By.css(itemSelector))
-        .sendKeys(Key.ARROW_DOWN);
-
-      t.true(
-        await focusMatchesElement(t, ex.buttonsInOrder[index + 1]),
-        'Focus should reach element: ' + ex.buttonsInOrder[index + 1]
-      );
-    }
-
-    // Focus should wrap to first item
-    let itemSelector = ex.buttonsInOrder[ex.buttonsInOrder.length - 1];
-    await t.context.session
-      .findElement(By.css(itemSelector))
-      .sendKeys(Key.ARROW_DOWN);
-
-    t.true(
-      await focusMatchesElement(t, ex.buttonsInOrder[0]),
-      'Focus should reach element: ' + ex.buttonsInOrder[0]
-    );
-  }
-);
-
-ariaTest(
-  'UP ARROW moves focus between headers',
-  exampleFile,
-  'key-up-arrow',
-  async (t) => {
-    const buttons = await t.context.queryElements(t, ex.buttonSelector);
-
-    // Confirm focus moves through remaining items
-    for (let index = ex.buttonsInOrder.length - 1; index > 0; index--) {
-      let itemSelector = ex.buttonsInOrder[index];
-      await t.context.session
-        .findElement(By.css(itemSelector))
-        .sendKeys(Key.ARROW_UP);
-
-      t.true(
-        await focusMatchesElement(t, ex.buttonsInOrder[index - 1]),
-        'Focus should reach element: ' + ex.buttonsInOrder[index - 1]
-      );
-    }
-
-    // Focus should wrap to last item
-    let itemSelector = ex.buttonsInOrder[0];
-    await t.context.session
-      .findElement(By.css(itemSelector))
-      .sendKeys(Key.ARROW_UP);
-
-    t.true(
-      await focusMatchesElement(
-        t,
-        ex.buttonsInOrder[ex.buttonsInOrder.length - 1]
-      ),
-      'Focus should reach element: ' +
-        ex.buttonsInOrder[ex.buttonsInOrder.length - 1]
-    );
-  }
-);
-
-ariaTest(
-  'HOME key will always move focus to first button',
-  exampleFile,
-  'key-home',
-  async (t) => {
-    const buttons = await t.context.queryElements(t, ex.buttonSelector);
-    const lastIndex = ex.buttonsInOrder.length - 1;
-
-    // Confirm focus moves through remaining items
-    for (let index = 0; index <= lastIndex; index++) {
-      let itemSelector = ex.buttonsInOrder[index];
-      await t.context.session
-        .findElement(By.css(itemSelector))
-        .sendKeys(Key.HOME);
-
-      t.true(
-        await focusMatchesElement(t, ex.buttonsInOrder[0]),
-        'Focus should reach element: ' + ex.buttonsInOrder[0]
-      );
-    }
-  }
-);
-
-ariaTest(
-  'END key will always move focus to last button',
-  exampleFile,
-  'key-end',
-  async (t) => {
-    const buttons = await t.context.queryElements(t, ex.buttonSelector);
-    const lastIndex = ex.buttonsInOrder.length - 1;
-
-    // Confirm focus moves through remaining items
-    for (let index = lastIndex; index >= 0; index--) {
-      let itemSelector = ex.buttonsInOrder[index];
-      await t.context.session
-        .findElement(By.css(itemSelector))
-        .sendKeys(Key.END);
-
-      t.true(
-        await focusMatchesElement(t, ex.buttonsInOrder[lastIndex]),
-        'Focus should reach element: ' + ex.buttonsInOrder[lastIndex]
-      );
     }
   }
 );

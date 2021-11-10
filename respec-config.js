@@ -1,4 +1,5 @@
 'use strict';
+// eslint-disable-next-line no-unused-vars
 var respecConfig = {
   // Specification status (e.g., WD, LC, NOTE, etc.). If in doubt use ED.
   specStatus: 'ED',
@@ -164,5 +165,6 @@ var respecConfig = {
   // If in doubt ask your friendly neighbourhood Team Contact.
   wgPatentURI: 'https://www.w3.org/2004/01/pp-impl/83726/status',
   maxTocLevel: 4,
+  // eslint-disable-next-line no-undef
   preProcess: [linkCrossReferences],
 };

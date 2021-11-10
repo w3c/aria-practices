@@ -20,10 +20,10 @@ const ex = {
 const waitForFocusChange = async (t, comboboxSelector, originalFocus) => {
   await t.context.session.wait(
     async function () {
-      let newfocus = await t.context.session
+      let newFocus = await t.context.session
         .findElement(By.css(comboboxSelector))
         .getAttribute('aria-activedescendant');
-      return newfocus != originalFocus;
+      return newFocus != originalFocus;
     },
     t.context.waitTime,
     'Timeout waiting for "aria-activedescendant" value to change from "' +
@@ -299,7 +299,7 @@ ariaTest(
 ariaTest(
   'Test down key press with focus on combobox',
   exampleFile,
-  'popup-key-down-arrow',
+  'textbox-key-down-arrow',
   async (t) => {
     // Send ARROW_DOWN to the combobox
     await t.context.session
@@ -365,7 +365,7 @@ ariaTest(
 
     // Test that ARROW_DOWN moves active descendant focus on item in grid
     for (let i = 1; i < ex.numAOptions; i++) {
-      let oldfocus = await t.context.session
+      let oldFocus = await t.context.session
         .findElement(By.css(ex.comboboxSelector))
         .getAttribute('aria-activedescendant');
 
@@ -374,7 +374,7 @@ ariaTest(
         .sendKeys(Key.ARROW_DOWN);
 
       // Account for race condition
-      await waitForFocusChange(t, ex.comboboxSelector, oldfocus);
+      await waitForFocusChange(t, ex.comboboxSelector, oldFocus);
 
       // Check that the active descendent focus is correct
 
@@ -398,7 +398,7 @@ ariaTest(
     }
 
     // Sending ARROW_DOWN to the last item should put focus on the first
-    let oldfocus = await t.context.session
+    let oldFocus = await t.context.session
       .findElement(By.css(ex.comboboxSelector))
       .getAttribute('aria-activedescendant');
     await t.context.session
@@ -406,7 +406,7 @@ ariaTest(
       .sendKeys(Key.ARROW_DOWN);
 
     // Account for race condition
-    await waitForFocusChange(t, ex.comboboxSelector, oldfocus);
+    await waitForFocusChange(t, ex.comboboxSelector, oldFocus);
 
     // Focus should be on the first item
 
@@ -433,7 +433,7 @@ ariaTest(
 ariaTest(
   'Test up key press with focus on combobox',
   exampleFile,
-  'popup-key-up-arrow',
+  'textbox-key-up-arrow',
   async (t) => {
     // Send ARROW_UP to the combobox
     await t.context.session
@@ -502,7 +502,7 @@ ariaTest(
 
     // Test that ARROW_UP moves active descendant focus up one item in the grid
     for (let index = ex.numAOptions - 2; index >= 0; index--) {
-      let oldfocus = await t.context.session
+      let oldFocus = await t.context.session
         .findElement(By.css(ex.comboboxSelector))
         .getAttribute('aria-activedescendant');
 
@@ -511,7 +511,7 @@ ariaTest(
         .findElement(By.css(ex.comboboxSelector))
         .sendKeys(Key.ARROW_UP);
 
-      await waitForFocusChange(t, ex.comboboxSelector, oldfocus);
+      await waitForFocusChange(t, ex.comboboxSelector, oldFocus);
 
       // Check that the active descendent focus is correct
 
@@ -537,7 +537,7 @@ ariaTest(
     }
 
     // Test that ARROW_UP, when on the first item, returns focus to the last item in the list
-    let oldfocus = await t.context.session
+    let oldFocus = await t.context.session
       .findElement(By.css(ex.comboboxSelector))
       .getAttribute('aria-activedescendant');
 
@@ -546,7 +546,7 @@ ariaTest(
       .findElement(By.css(ex.comboboxSelector))
       .sendKeys(Key.ARROW_UP);
 
-    await waitForFocusChange(t, ex.comboboxSelector, oldfocus);
+    await waitForFocusChange(t, ex.comboboxSelector, oldFocus);
 
     // Check that the active descendent focus is correct
 
@@ -701,7 +701,7 @@ ariaTest(
           .isDisplayed());
       },
       t.context.waitTime,
-      'Timeout waiting for gridbox to close afer escape'
+      'Timeout waiting for gridbox to close after escape'
     );
 
     // Confirm the grid is closed and the textbox is cleared
@@ -735,25 +735,25 @@ ariaTest(
     await combobox.sendKeys(Key.ARROW_LEFT);
 
     // Check that the active descendent focus is correct
-    let lastrow = ex.numAOptions - 1;
+    let lastRow = ex.numAOptions - 1;
 
     var focusedId = await t.context.session
       .findElement(By.css(ex.comboboxSelector))
       .getAttribute('aria-activedescendant');
     t.is(
       focusedId,
-      gridcellId(lastrow, 1),
-      'After left arrow sent to popup, aria-activedescendant should be set to the last row, last gricell: ' +
-        gridcellId(lastrow, 1)
+      gridcellId(lastRow, 1),
+      'After left arrow sent to popup, aria-activedescendant should be set to the last row, last gridcell: ' +
+        gridcellId(lastRow, 1)
     );
 
     var focusedElementClasses = await t.context.session
-      .findElement(By.id(gridcellId(lastrow, 1)))
+      .findElement(By.id(gridcellId(lastRow, 1)))
       .getAttribute('class');
     t.true(
       focusedElementClasses.includes(ex.gridcellFocusedClass),
       'Gridcell with id "' +
-        gridcellId(lastrow, 1) +
+        gridcellId(lastRow, 1) +
         '" should have visual focus'
     );
 
@@ -766,18 +766,18 @@ ariaTest(
       .getAttribute('aria-activedescendant');
     t.is(
       focusedId,
-      gridcellId(lastrow, 0),
+      gridcellId(lastRow, 0),
       'After left arrow sent twice to popup, aria-activedescendant should be set to the last row first gridcell: ' +
-        gridcellId(lastrow, 0)
+        gridcellId(lastRow, 0)
     );
 
     focusedElementClasses = await t.context.session
-      .findElement(By.id(gridcellId(lastrow, 0)))
+      .findElement(By.id(gridcellId(lastRow, 0)))
       .getAttribute('class');
     t.true(
       focusedElementClasses.includes(ex.gridcellFocusedClass),
       'Gridcell with id "' +
-        gridcellId(lastrow, 0) +
+        gridcellId(lastRow, 0) +
         '" should have visual focus'
     );
   }

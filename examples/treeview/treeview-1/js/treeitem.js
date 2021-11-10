@@ -135,19 +135,11 @@ Treeitem.prototype.handleKeydown = function (event) {
       case this.keyCode.RETURN:
         // Create simulated mouse event to mimic the behavior of ATs
         // and let the event handler handleClick do the housekeeping.
-        try {
-          clickEvent = new MouseEvent('click', {
-            view: window,
-            bubbles: true,
-            cancelable: true,
-          });
-        } catch (err) {
-          if (document.createEvent) {
-            // DOM Level 3 for IE 9+
-            clickEvent = document.createEvent('MouseEvents');
-            clickEvent.initEvent('click', true, true);
-          }
-        }
+        clickEvent = new MouseEvent('click', {
+          view: window,
+          bubbles: true,
+          cancelable: true,
+        });
         tgt.dispatchEvent(clickEvent);
         flag = true;
         break;
@@ -222,7 +214,7 @@ Treeitem.prototype.handleClick = function (event) {
   }
 };
 
-Treeitem.prototype.handleFocus = function (event) {
+Treeitem.prototype.handleFocus = function () {
   var node = this.domNode;
   if (this.isExpandable) {
     node = node.firstElementChild;
@@ -230,7 +222,7 @@ Treeitem.prototype.handleFocus = function (event) {
   node.classList.add('focus');
 };
 
-Treeitem.prototype.handleBlur = function (event) {
+Treeitem.prototype.handleBlur = function () {
   var node = this.domNode;
   if (this.isExpandable) {
     node = node.firstElementChild;

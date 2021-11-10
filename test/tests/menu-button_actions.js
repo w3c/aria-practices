@@ -12,7 +12,7 @@ const ex = {
   menuSelector: '#ex1 [role="menu"]',
   menuitemSelector: '#ex1 [role="menuitem"]',
   numMenuitems: 4,
-  lastactionSelector: '#action_output',
+  lastActionSelector: '#action_output',
 };
 
 const checkFocus = function (t, selector, index) {
@@ -28,7 +28,9 @@ const checkFocus = function (t, selector, index) {
 };
 
 const openMenu = async function (t) {
-  return t.context.session.findElement(By.css(ex.menubuttonSelector)).click();
+  return await t.context.session
+    .findElement(By.css(ex.menubuttonSelector))
+    .sendKeys(Key.ARROW_DOWN);
 };
 
 // Attributes
@@ -62,7 +64,7 @@ ariaTest(
   'menu-button-aria-expanded',
   async (t) => {
     const hasAttribute = await t.context.session.executeScript(function () {
-      selector = arguments[0];
+      const selector = arguments[0];
       return document.querySelector(selector).hasAttribute('aria-expanded');
     }, ex.menubuttonSelector);
 
@@ -234,7 +236,7 @@ ariaTest(
       t.is(
         itemText,
         await t.context.session
-          .findElement(By.css(ex.lastactionSelector))
+          .findElement(By.css(ex.lastActionSelector))
           .getAttribute('value'),
         'Key enter should select action: ' + itemText
       );
@@ -268,7 +270,7 @@ ariaTest(
       t.not(
         itemText,
         await t.context.session
-          .findElement(By.css(ex.lastactionSelector))
+          .findElement(By.css(ex.lastActionSelector))
           .getAttribute('value'),
         'Key escape should not select action: ' + itemText
       );
@@ -304,7 +306,9 @@ ariaTest(
         await checkFocus(t, ex.menuitemSelector, index + 1),
         'down arrow on item "' +
           itemText +
-          '" should put focus on the next item.'
+          ' (' +
+          index +
+          ') " should put focus on the next item.'
       );
     }
 
@@ -313,7 +317,9 @@ ariaTest(
     const itemText = await items[items.length - 1].getText();
     t.true(
       await checkFocus(t, ex.menuitemSelector, 0),
-      'down arrow on item "' + itemText + '" should put focus to first item.'
+      'down arrow on item "' +
+        itemText +
+        ' (0) " should put focus to first item.'
     );
   }
 );
@@ -332,7 +338,11 @@ ariaTest(
     const itemText = await items[0].getText();
     t.true(
       await checkFocus(t, ex.menuitemSelector, items.length - 1),
-      'up arrow on item "' + itemText + '" should put focus to last item.'
+      'up arrow on item "' +
+        itemText +
+        ' (0 of ' +
+        items.length +
+        ') " should put focus to last item.'
     );
 
     for (let index = items.length - 1; index > 0; index--) {
@@ -341,9 +351,11 @@ ariaTest(
       const itemText = await items[index].getText();
       t.true(
         await checkFocus(t, ex.menuitemSelector, index - 1),
-        'down arrow on item "' +
+        'up arrow on item "' +
           itemText +
-          '" should put focus on the previous item.'
+          ' (' +
+          index +
+          ') " should put focus on the previous item.'
       );
     }
   }

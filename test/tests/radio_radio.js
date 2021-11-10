@@ -163,21 +163,21 @@ ariaTest(
     // Right arrow moves focus to right
     for (let index = 0; index < radios.length - 1; index++) {
       await radios[index].sendKeys(Key.ARROW_RIGHT);
-      const newindex = index + 1;
+      const newIndex = index + 1;
 
       t.true(
-        await checkFocus(t, ex.crustRadioSelector, newindex),
+        await checkFocus(t, ex.crustRadioSelector, newIndex),
         'Focus should be on radio at index ' +
-          newindex +
+          newIndex +
           ' after ARROW_RIGHT to radio' +
           ' at index ' +
           index
       );
       t.is(
-        await radios[newindex].getAttribute('aria-checked'),
+        await radios[newIndex].getAttribute('aria-checked'),
         'true',
         'Radio at index ' +
-          newindex +
+          newIndex +
           ' should be checked after ARROW_RIGHT to radio' +
           ' at index ' +
           index
@@ -210,21 +210,21 @@ ariaTest(
     // Down arrow moves focus to down
     for (let index = 0; index < radios.length - 1; index++) {
       await radios[index].sendKeys(Key.ARROW_DOWN);
-      const newindex = index + 1;
+      const newIndex = index + 1;
 
       t.true(
-        await checkFocus(t, ex.crustRadioSelector, newindex),
+        await checkFocus(t, ex.crustRadioSelector, newIndex),
         'Focus should be on radio at index ' +
-          newindex +
+          newIndex +
           ' after ARROW_DOWN to radio' +
           ' at index ' +
           index
       );
       t.is(
-        await radios[newindex].getAttribute('aria-checked'),
+        await radios[newIndex].getAttribute('aria-checked'),
         'true',
         'Radio at index ' +
-          newindex +
+          newIndex +
           ' should be checked after ARROW_DOWN to radio' +
           ' at index ' +
           index
@@ -273,21 +273,21 @@ ariaTest(
 
     for (let index = radios.length - 1; index > 0; index--) {
       await radios[index].sendKeys(Key.ARROW_LEFT);
-      const newindex = index - 1;
+      const newIndex = index - 1;
 
       t.true(
-        await checkFocus(t, ex.crustRadioSelector, newindex),
+        await checkFocus(t, ex.crustRadioSelector, newIndex),
         'Focus should be on radio at index ' +
-          newindex +
+          newIndex +
           ' after ARROW_LEFT to radio' +
           ' at index ' +
           index
       );
       t.is(
-        await radios[newindex].getAttribute('aria-checked'),
+        await radios[newIndex].getAttribute('aria-checked'),
         'true',
         'Radio at index ' +
-          newindex +
+          newIndex +
           ' should be checked after ARROW_LEFT to radio' +
           ' at index ' +
           index
@@ -322,21 +322,21 @@ ariaTest(
 
     for (let index = radios.length - 1; index > 0; index--) {
       await radios[index].sendKeys(Key.ARROW_UP);
-      const newindex = index - 1;
+      const newIndex = index - 1;
 
       t.true(
-        await checkFocus(t, ex.crustRadioSelector, newindex),
+        await checkFocus(t, ex.crustRadioSelector, newIndex),
         'Focus should be on radio at index ' +
-          newindex +
+          newIndex +
           ' after ARROW_UP to radio' +
           ' at index ' +
           index
       );
       t.is(
-        await radios[newindex].getAttribute('aria-checked'),
+        await radios[newIndex].getAttribute('aria-checked'),
         'true',
         'Radio at index ' +
-          newindex +
+          newIndex +
           ' should be checked after ARROW_UP to radio' +
           ' at index ' +
           index

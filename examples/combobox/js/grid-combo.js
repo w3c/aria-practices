@@ -5,15 +5,13 @@
 
 'use strict';
 
+var aria = aria || {};
+
 /**
- * @constructor
- *
- * @desc
+ * @class
+ * @description
  *  Combobox object representing the state and interactions for a combobox
  *  widget
- *
- * @param comboboxNode
- *  The DOM node pointing to the combobox
  * @param input
  *  The input node
  * @param grid
@@ -178,7 +176,7 @@ aria.GridCombobox.prototype.handleInputKeyDown = function (evt) {
   }
 };
 
-aria.GridCombobox.prototype.handleInputFocus = function (evt) {
+aria.GridCombobox.prototype.handleInputFocus = function () {
   this.updateResults();
 };
 
@@ -198,6 +196,19 @@ aria.GridCombobox.prototype.handleGridClick = function (evt) {
 
   var selectItem = row.querySelector('.result-cell');
   this.selectItem(selectItem);
+};
+
+aria.GridCombobox.prototype.isElementInView = function (element) {
+  var bounding = element.getBoundingClientRect();
+
+  return (
+    bounding.top >= 0 &&
+    bounding.left >= 0 &&
+    bounding.bottom <=
+      (window.innerHeight || document.documentElement.clientHeight) &&
+    bounding.right <=
+      (window.innerWidth || document.documentElement.clientWidth)
+  );
 };
 
 aria.GridCombobox.prototype.updateResults = function () {
@@ -280,6 +291,11 @@ aria.GridCombobox.prototype.hideResults = function () {
   this.rowsCount = 0;
   this.colsCount = 0;
   this.input.setAttribute('aria-activedescendant', '');
+
+  // ensure the input is in view
+  if (!this.isElementInView(this.input)) {
+    this.input.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
 };
 
 aria.GridCombobox.prototype.removeFocusCell = function (rowIndex, colIndex) {
@@ -294,4 +310,9 @@ aria.GridCombobox.prototype.focusCell = function (rowIndex, colIndex) {
   aria.Utils.addClass(row, 'focused');
   var cell = this.getItemAt(rowIndex, colIndex);
   aria.Utils.addClass(cell, 'focused-cell');
+
+  // ensure the cell is in view
+  if (!this.isElementInView(cell)) {
+    cell.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
 };

@@ -6,7 +6,12 @@ ul[role="tree"] {
 }
 
 [role="treeitem"].doc::before {
-  content: url(../images/file.png);
+  font-family: "Font Awesome 5 Free";
+  content: "\f15c";
+  display: inline-block;
+  padding-right: 2px;
+  padding-left: 5px;
+  vertical-align: middle;
 }
 
 [role="treeitem"][aria-expanded="false"] > ul {
@@ -18,11 +23,21 @@ ul[role="tree"] {
 }
 
 [role="treeitem"][aria-expanded="false"] > span::before {
-  content: url(../images/closed.png);
+  font-family: "Font Awesome 5 Free";
+  content: "\f07b";
+  display: inline-block;
+  padding-right: 3px;
+  vertical-align: middle;
+  font-weight: 900;
 }
 
 [role="treeitem"][aria-expanded="true"] > span::before {
-  content: url(../images/open.png);
+  font-family: "Font Awesome 5 Free";
+  content: "\f07c";
+  display: inline-block;
+  padding-right: 3px;
+  vertical-align: middle;
+  font-weight: 900;
 }
 
 [role="treeitem"],

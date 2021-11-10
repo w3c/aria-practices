@@ -1,10 +1,8 @@
-[![Build Status](https://travis-ci.com/w3c/aria-practices.svg?branch=master)](https://travis-ci.com/w3c/aria-practices) [![Greenkeeper badge](https://badges.greenkeeper.io/w3c/aria-practices.svg)](https://greenkeeper.io/)
-
 # WAI-ARIA: Authoring Practices Guide
 
 This repository maintains the WAI-ARIA Authoring Practices Guide.
 
-* [Latest editor's draft built from master branch](http://w3c.github.io/aria-practices/)
+* [Latest editor's draft built from main branch](http://w3c.github.io/aria-practices/)
 * [Most recent version published on w3.org](https://www.w3.org/TR/wai-aria-practices-1.1/)
 * Developed by the [Authoring Practices Task Force](https://www.w3.org/WAI/ARIA/task-forces/practices/) of the [ARIA Working Group](http://www.w3.org/WAI/ARIA/).
 * Staff contact: [Michael Cooper](http://www.w3.org/People/cooper/).
@@ -44,7 +42,7 @@ It is also highly recommended that you use a code editor that supports these too
 #### HTML
 
 HTML is validated against the [NU HTML Validator](https://github.com/validator/validator).
-Should a warning or error occur because a future ARIA feature is not yet implemented, it will be added to the [the .vnurc file](.vnurc), allowing the error to pass through.
+Should a warning or error occur because a future ARIA feature is not yet implemented, it will be added to the [.vnurc file](.vnurc), allowing the error to pass through.
 
 Run locally:
 
@@ -101,7 +99,7 @@ offending character is indicated by the number `8` after the colon. Change the
 variable `value_nodes` to `valueNodes` in your source file to eliminate this
 error.
 
-To see the complete list of style rules that are applied by ESLint, review the [.eslint.json](https://github.com/w3c/aria-practices/blob/master/.eslint.json) file in the root of the project.
+To see the complete list of style rules that are applied by ESLint, review the [.eslintrc.json](.eslintrc.json) file in the root of the project.
 
 ### Editorial documentation
 
@@ -114,7 +112,7 @@ for this specification.
 
 Note: These instructions are for editors of the APG who have repository commit access.
 
-1. Go to the [editors draft on rawgit](https://cdn.rawgit.com/w3c/aria-practices/master/aria-practices.html)
+1. Go to the [editors draft on rawgit](https://cdn.rawgit.com/w3c/aria-practices/main/aria-practices.html)
 2. Press the ReSpec button (top right hand corner)
 3. Select 'Save snapshot'
 4. Select 'Save as HTML'

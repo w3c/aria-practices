@@ -19,10 +19,10 @@ const ex = {
 const waitForFocusChange = async (t, textboxSelector, originalFocus) => {
   await t.context.session.wait(
     async function () {
-      let newfocus = await t.context.session
+      let newFocus = await t.context.session
         .findElement(By.css(textboxSelector))
         .getAttribute('aria-activedescendant');
-      return newfocus != originalFocus;
+      return newFocus != originalFocus;
     },
     t.context.waitTime,
     'Timeout waiting for "aria-activedescendant" value to change from "' +
@@ -54,7 +54,7 @@ ariaTest(
 );
 
 ariaTest(
-  '"aria-autocomplete" on comboxbox element',
+  '"aria-autocomplete" on combobox element',
   exampleFile,
   'combobox-aria-autocomplete',
   async (t) => {
@@ -164,6 +164,27 @@ ariaTest(
   'listbox-role',
   async (t) => {
     await assertAriaRoles(t, 'ex1', 'listbox', '1', 'ul');
+  }
+);
+
+ariaTest(
+  '"id" attribute on combobox element',
+  exampleFile,
+  'combobox-id',
+  async (t) => {
+    const combobox = await t.context.session.findElement(
+      By.css(ex.textboxSelector)
+    );
+    const id = await combobox.getAttribute('id');
+
+    t.truthy(id, '"id" attribute should exist on combobox');
+
+    const label = await t.context.queryElements(t, `[for="${id}"]`);
+    t.is(
+      label.length,
+      1,
+      `There should be one element that labels the combobox with: [for="${id}"]`
+    );
   }
 );
 
@@ -387,7 +408,7 @@ ariaTest(
 
     // Test that ARROW_DOWN moves active descendant focus on item in listbox
     for (let i = 1; i < ex.numOptions; i++) {
-      let oldfocus = await t.context.session
+      let oldFocus = await t.context.session
         .findElement(By.css(ex.textboxSelector))
         .getAttribute('aria-activedescendant');
 
@@ -396,7 +417,7 @@ ariaTest(
         .sendKeys(Key.ARROW_DOWN);
 
       // Account for race condition
-      await waitForFocusChange(t, ex.textboxSelector, oldfocus);
+      await waitForFocusChange(t, ex.textboxSelector, oldFocus);
 
       await assertAriaSelectedAndActivedescendant(
         t,
@@ -407,7 +428,7 @@ ariaTest(
     }
 
     // Sending ARROW_DOWN to the last item should put focus on the first
-    let oldfocus = await t.context.session
+    let oldFocus = await t.context.session
       .findElement(By.css(ex.textboxSelector))
       .getAttribute('aria-activedescendant');
     await t.context.session
@@ -415,7 +436,7 @@ ariaTest(
       .sendKeys(Key.ARROW_DOWN);
 
     // Account for race condition
-    await waitForFocusChange(t, ex.textboxSelector, oldfocus);
+    await waitForFocusChange(t, ex.textboxSelector, oldFocus);
 
     // Focus should be on the first item
     await assertAriaSelectedAndActivedescendant(
@@ -472,7 +493,7 @@ ariaTest(
 
     // Test that ARROW_UP moves active descendant focus up one item in the listbox
     for (let index = ex.numOptions - 2; index > 0; index--) {
-      let oldfocus = await t.context.session
+      let oldFocus = await t.context.session
         .findElement(By.css(ex.textboxSelector))
         .getAttribute('aria-activedescendant');
 
@@ -481,7 +502,7 @@ ariaTest(
         .findElement(By.css(ex.textboxSelector))
         .sendKeys(Key.ARROW_UP);
 
-      await waitForFocusChange(t, ex.textboxSelector, oldfocus);
+      await waitForFocusChange(t, ex.textboxSelector, oldFocus);
 
       await assertAriaSelectedAndActivedescendant(
         t,

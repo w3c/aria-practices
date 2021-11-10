@@ -46,12 +46,19 @@ table.data.attributes tbody td {
   display: flex;
   align-items: center;
   margin-top: 3rem;
+  margin-bottom: 1rem;
   page-break-after: avoid;
   page-break-inside: avoid;
   font: 100% sans-serif;
   font-family: inherit;
   line-height: 1.2;
   hyphens: manual;
+}
+
+/* We need to override the top margin for the link example */
+
+th .example-header {
+  margin-top: 1em;
 }
 
 .example-header > :first-child {

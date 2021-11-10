@@ -1,3 +1,5 @@
+/* global goToLink */
+
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
@@ -103,18 +105,24 @@ ariaTest(
       let linkLocator = By.css(ex.linkSelector);
       let linkElement = await t.context.session.findElement(linkLocator);
 
-      await linkElement.sendKeys(Key.ENTER);
-      await t.context.session
-        .wait(() => {
-          return t.context.session.getCurrentUrl().then((url) => {
-            return url != t.context.url;
-          });
-        }, t.context.waitTime)
-        .catch(() => {});
+      // Update url to remove external reference for dependable testing
+      const newUrl = t.context.url + '#test-url-change';
+      await t.context.session.executeScript(
+        function () {
+          let [selector, newUrl] = arguments;
+          document.querySelector(selector).onkeydown = function (event) {
+            goToLink(event, newUrl);
+          };
+        },
+        ex.linkSelector,
+        newUrl
+      );
 
-      t.not(
+      await linkElement.sendKeys(Key.ENTER);
+
+      t.is(
         await t.context.session.getCurrentUrl(),
-        t.context.url,
+        newUrl,
         'ENTER key on element with selector "' +
           ex.linkSelector +
           '" should activate link.'

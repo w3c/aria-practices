@@ -2,6 +2,8 @@
  * @namespace aria
  */
 
+/* exported sourceCode */
+
 'use strict';
 
 var aria = aria || {};
@@ -44,7 +46,7 @@ var VOID_ELEMENTS = [
  *
  * @property {Array} location Object containing the keyCodes used by the slider widget
  * @property {Array} code JQuery node object
- * @constructor SourceCode
+ * @class SourceCode
  * @memberof aria.widget
  */
 aria.widget.SourceCode = function () {
@@ -58,11 +60,10 @@ aria.widget.SourceCode = function () {
  * Adds source code
  *
  * @param {string} locationId      - ID of `code` element that will display the example html
- * @param {string} codeID          - ID of element containing only and all of the html used to render the example widget
+ * @param {string} codeId          - ID of element containing only and all of the html used to render the example widget
  * @param {string} exampleHeaderId - ID of header element under which the "Open in Codepen" button belongs
- * @param {string} cssJsFilesId    - ID of element containing links to all the relevent js and css files used for the example widget
- *
- * @method add
+ * @param {string} cssJsFilesId    - ID of element containing links to all the relevant js and css files used for the example widget
+ * @function add
  * @memberof aria.widget.SourceCode
  */
 aria.widget.SourceCode.prototype.add = function (
@@ -80,7 +81,7 @@ aria.widget.SourceCode.prototype.add = function (
 /**
  * Generates HTML content for source code
  *
- * @method make
+ * @function make
  * @memberof aria.widget.SourceCode
  */
 aria.widget.SourceCode.prototype.make = function () {
@@ -112,11 +113,10 @@ aria.widget.SourceCode.prototype.make = function () {
  * Creates the HTML for one node
  *
  * @param {HTMLElement} sourceCodeNode element to put the source code in
- * @param {Object} node DOM Element node to use to generate the source code
- * @param {Number} indentLevel Level of indentation
- * @param {Boolean} skipFirst Whether to skip the first node
- *
- * @method createCode
+ * @param {object} node DOM Element node to use to generate the source code
+ * @param {number} indentLevel Level of indentation
+ * @param {boolean} skipFirst Whether to skip the first node
+ * @function createCode
  * @memberof aria.widget.SourceCode
  */
 aria.widget.SourceCode.prototype.createCode = function (
@@ -159,7 +159,10 @@ aria.widget.SourceCode.prototype.createCode = function (
 
     switch (childNode.nodeType) {
       case Node.ELEMENT_NODE:
-        this.createCode(sourceCodeNode, childNode, indentLevel, false);
+        // To remove the SVG definitions from the example's source code, add the id `svg_definitions`
+        if (childNode.id !== 'svg_definitions') {
+          this.createCode(sourceCodeNode, childNode, indentLevel, false);
+        }
         break;
 
       case Node.TEXT_NODE:
@@ -205,8 +208,8 @@ aria.widget.SourceCode.prototype.createCode = function (
 /**
  * Returns the indentation string based on a given indent level.
  *
- * @param {Number} indentLevel
- * @returns {String}
+ * @param {number} indentLevel
+ * @returns {string}
  */
 function indentation(indentLevel) {
   return DEFAULT_INDENT.repeat(indentLevel);
@@ -227,8 +230,8 @@ function indentation(indentLevel) {
  * //> true
  * ```
  *
- * @param {String} nodeContent content of a node to test for whitespace characters
- * @returns {Boolean}
+ * @param {string} nodeContent content of a node to test for whitespace characters
+ * @returns {boolean}
  */
 function hasText(nodeContent) {
   if (typeof nodeContent !== 'string') {
@@ -241,8 +244,8 @@ function hasText(nodeContent) {
 /**
  * Replaces the characters `<` and `>` with their respective HTML entities.
  *
- * @param {String} textContent
- * @returns {String}
+ * @param {string} textContent
+ * @returns {string}
  */
 function sanitizeNodeValue(textContent) {
   if (typeof textContent !== 'string') {
@@ -259,8 +262,8 @@ function sanitizeNodeValue(textContent) {
 /**
  * Strips any leading indentation from the text content of a node.
  *
- * @param {String} textContent
- * @returns {String}
+ * @param {string} textContent
+ * @returns {string}
  */
 function stripIndentation(textContent) {
   var textIndentation = detectIndentation(textContent);
@@ -288,13 +291,13 @@ function stripIndentation(textContent) {
  *
  * Algorithm:
  *
- * **Case 1: `textContent` is on the same line as opening and closing tag**:
+ * Case 1: `textContent` is on the same line as opening and closing tag**:
  *
  * In other words, the text doesn’t contain any newline. Return 0.
  *
- * **Case 2: `textContent` is on the same line as opening tag**:
+ * Case 2: `textContent` is on the same line as opening tag**:
  *
- * We already know there is atleast one newline, because case 1 didn’t return.
+ * We already know there is at least one newline, because case 1 didn’t return.
  * We can now find the first indented line that contains any non-whitespace
  * character in order to determine present indentation.
  *
@@ -307,8 +310,8 @@ function stripIndentation(textContent) {
  *
  * Return the indentation level.
  *
- * @param {String} textContent
- * @returns {Number} The level of indentation
+ * @param {string} textContent
+ * @returns {number} The level of indentation
  */
 function detectIndentation(textContent) {
   // Case 1
@@ -337,9 +340,9 @@ function detectIndentation(textContent) {
 /**
  * Prepends each line of a string with the provided indentation string.
  *
- * @param {String} input
- * @param {String} indentation
- * @returns {String}
+ * @param {string} input
+ * @param {string} indentation
+ * @returns {string}
  */
 function indentLines(input, indentation) {
   var lines = input.split('\n');
@@ -354,10 +357,10 @@ function indentLines(input, indentation) {
 /**
  * Creates and adds an "Open in CodePen" button
  *
- * @param {String} exampleIndex - the example number, if there are multiple examples
- * @param {String} exampleHeaderId - the example header to place the button next to
- * @param {String} exampleCodeId - the example html code
- * @param {String} exampleFilesId - the element containing all relevent CSS and JS file
+ * @param {string} exampleIndex - the example number, if there are multiple examples
+ * @param {string} exampleHeaderId - the example header to place the button next to
+ * @param {string} exampleCodeId - the example html code
+ * @param {string} exampleFilesId - the element containing all relevant CSS and JS file
  */
 function addOpenInCodePenForm(
   exampleIndex,
@@ -380,6 +383,8 @@ function addOpenInCodePenForm(
 
   var button = document.createElement('button');
   button.innerText = 'Open In CodePen';
+  button.id = buttonId;
+  button.style.display = 'none';
 
   form.appendChild(input);
   form.appendChild(button);
@@ -396,11 +401,21 @@ function addOpenInCodePenForm(
     ''
   );
 
+  var path = location.pathname.split('/');
+  var filename =
+    path.length > 0 ? path[path.length - 1].replace('.html', '') : '';
   var postJson = {
+    title: filename,
     html: exampleHtml,
     css: '',
     js: '',
     head: '<base href="' + location.href + '">',
+    css_external:
+      location.origin +
+      '/examples/css/core.css;' +
+      'https://www.w3.org/StyleSheets/TR/2016/base.css;' +
+      'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
+    js_external: location.origin + 'examples/js/utils.js',
   };
 
   var totalFetchedFiles = 0;
@@ -421,32 +436,39 @@ function addOpenInCodePenForm(
         }
         totalFetchedFiles++;
       } else {
-        hideButton(buttonId, 'Could not load resource: ' + href);
+        // eslint-disable-next-line no-console
+        console.warn(
+          "Not showing 'Open in Codepen' button. Could not load resource: " +
+            href
+        );
       }
     };
     request.onerror = function () {
-      hideButton(buttonId, 'Could not load resource: ' + fileLink.href);
+      // eslint-disable-next-line no-console
+      console.warn(
+        "Not showing 'Open in Codepen' button. Could not load resource: " +
+          fileLink.href
+      );
     };
     request.send();
   }
 
   var timerId = setInterval(() => {
-    console.log(totalFetchedFiles);
     if (totalFetchedFiles === fileLinks.length) {
-      document.getElementById(jsonInputId).value = JSON.stringify(postJson);
       clearInterval(timerId);
+      document.getElementById(jsonInputId).value = JSON.stringify(postJson);
+      var button = document.getElementById(buttonId);
+      button.style.display = '';
     }
   }, 500);
 
   setTimeout(() => {
     clearInterval(timerId);
+    // eslint-disable-next-line no-console
+    console.warn(
+      "Not showing 'Open in Codepen' button. Timeout when loading resource."
+    );
   }, 10000);
-}
-
-function hideButton(buttonId, errorMsg) {
-  let button = document.querySelector(buttonId);
-  button.style.display = 'none';
-  console.log("Removing 'Open in Codepen button'. " + errorMsg);
 }
 
 var sourceCode = new aria.widget.SourceCode();

@@ -5,21 +5,25 @@ on:
     branches-ignore:
       - "dependabot/**"
     paths:
-      - "package*.json"
-      - "cspell.json"
-      - "aria-practices.html"
-      - "examples/**/*.html"
-      - ".github/workflows/cspell-problem-matcher.json"
-      - ".github/workflows/spelling.yml"
+      - "**/*.*"
+      - "!**/*.min.js"
+      - "!**/*.pack.js"
+      - "!**/*.paint"
+      - "!aria-practices-DeletedSectionsArchive.html"
+      - "!examples/landmarks/css/bootstrap.css"
+      - "!common/**"
+      - "!respec-config.js"
 
   pull_request:
     paths:
-      - "package*.json"
-      - "cspell.json"
-      - "aria-practices.html"
-      - "examples/**/*.html"
-      - ".github/workflows/cspell-problem-matcher.json"
-      - ".github/workflows/spelling.yml"
+      - "**/*.*"
+      - "!**/*.min.js"
+      - "!**/*.pack.js"
+      - "!**/*.paint"
+      - "!aria-practices-DeletedSectionsArchive.html"
+      - "!examples/landmarks/css/bootstrap.css"
+      - "!common/**"
+      - "!respec-config.js"
 
 jobs:
   spelling:
@@ -30,7 +34,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v2
+        with:
+          cache: npm
 
       - name: Install npm dependencies
         run: npm ci

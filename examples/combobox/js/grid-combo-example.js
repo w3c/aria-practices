@@ -7,6 +7,8 @@
 
 'use strict';
 
+var aria = aria || {};
+
 var FRUITS_AND_VEGGIES = [
   ['Apple', 'Fruit'],
   ['Artichoke', 'Vegetable'],
@@ -49,7 +51,7 @@ var FRUITS_AND_VEGGIES = [
   ['Olive', 'Vegetable'],
   ['Onion', 'Vegetable'],
   ['Orange', 'Fruit'],
-  ['Parship', 'Vegetable'],
+  ['Parsnip', 'Vegetable'],
   ['Pea', 'Vegetable'],
   ['Pear', 'Fruit'],
   ['Pineapple', 'Fruit'],
@@ -88,10 +90,10 @@ function searchVeggies(searchString) {
 
 /**
  * @function onload
- * @desc Initialize the combobox examples once the page has loaded
+ * @description Initialize the combobox examples once the page has loaded
  */
 window.addEventListener('load', function () {
-  var ex1Combobox = new aria.GridCombobox(
+  new aria.GridCombobox(
     document.getElementById('ex1-input'),
     document.getElementById('ex1-grid'),
     searchVeggies

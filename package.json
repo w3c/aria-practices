@@ -8,16 +8,22 @@
   },
   "scripts": {
     "fix": "npm run lint:es -- --fix && npm run lint:css -- --fix",
-    "lint": "npm run lint:es && npm run lint:css && npm run vnu-jar && npm run lint:spelling",
+    "htmlhint": "htmlhint \"**/*.html\" \"**/*.template\" -i \"common/**/*.html\" -f unix",
+    "lint": "npm run lint:es && npm run lint:css && npm run lint:html && npm run lint:spelling",
     "lint:css": "stylelint **/*.css",
-    "lint:es": "eslint .",
+    "lint:es": "eslint . --report-unused-disable-directives",
     "lint:js": "npm run lint:es",
-    "lint:html": "npm run vnu-jar",
-    "lint:spelling": "cspell \"examples/**/*.html\" \"aria-practices.html\"",
+    "lint:html": "npm run htmlhint && npm run vnu-jar",
+    "lint:spelling": "cspell \"**/*.*\"",
+    "reference-tables": "node scripts/reference-tables.js",
     "regression": "ava --timeout=1m",
     "regression-report": "node test/util/report",
     "test": "npm run lint && npm run regression",
-    "vnu-jar": "java -jar node_modules/vnu-jar/build/dist/vnu.jar --errors-only --filterfile .vnurc --no-langdetect --skip-non-html aria-practices.html examples/"
+    "vnu-jar": "java -jar node_modules/vnu-jar/build/dist/vnu.jar --filterfile .vnurc --no-langdetect --skip-non-html aria-practices.html examples/",
+    "create-gh-project": "node ./scripts/create-gh-project.js",
+    "prepare": "husky install",
+    "prepublishOnly": "pinst --disable",
+    "postpublish": "pinst --enable"
   },
   "repository": {
     "type": "git",
@@ -30,31 +36,32 @@
   },
   "homepage": "https://github.com/w3c/aria-practices#readme",
   "devDependencies": {
-    "ava": "^3.13.0",
-    "cheerio": "^1.0.0-rc.2",
-    "cspell": "^4.1.2",
-    "eslint": "^7.11.0",
-    "eslint-config-prettier": "^6.14.0",
-    "eslint-plugin-ava": "^11.0.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "geckodriver": "^1.20.0",
+    "@babel/core": "^7.16.0",
+    "@babel/eslint-parser": "^7.16.0",
+    "ava": "^3.15.0",
+    "cheerio": "^1.0.0-rc.5",
+    "cspell": "^5.8.0",
+    "eslint": "^8.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-ava": "^13.1.0",
+    "eslint-plugin-html": "^6.2.0",
+    "eslint-plugin-jsdoc": "^37.0.3",
+    "eslint-plugin-prettier": "^4.0.0",
+    "geckodriver": "^1.22.1",
     "glob": "^7.1.6",
-    "husky": "^4.3.0",
-    "lint-staged": "^10.4.2",
+    "htmlhint": "^0.14.2",
+    "htmlparser2": "^7.0.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^10.5.4",
     "npm-merge-driver": "^2.3.6",
-    "prettier": "^2.1.2",
-    "run-node": "^2.0.0",
-    "selenium-webdriver": "^4.0.0-alpha.7",
-    "stylelint": "^13.7.2",
+    "pinst": "^2.1.4",
+    "prettier": "^2.4.1",
+    "selenium-webdriver": "^4.0.0-beta.1",
+    "stylelint": "^13.11.0",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^20.0.0",
     "stylelint-prettier": "^1.1.2",
-    "vnu-jar": "^20.6.30"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "vnu-jar": "^21.2.5"
   },
   "lint-staged": {
     "*.css": [
@@ -64,6 +71,10 @@
     "*.js": [
       "eslint --fix",
       "git add"
+    ],
+    "examples/**/*.html": [
+      "npm run reference-tables",
+      "git add examples/index.html"
     ]
   },
   "ava": {
@@ -71,5 +82,9 @@
       "test/tests/*"
     ]
   },
-  "dependencies": {}
+  "dependencies": {
+    "@octokit/rest": "^18.9.1",
+    "dotenv": "^8.2.0",
+    "node-html-parser": "^3.1.4"
+  }
 }
