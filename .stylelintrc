@@ -17,6 +17,14 @@
         ]
       },
     ],
-    "prettier/prettier": [true, {"singleQuote": false}]
+    "prettier/prettier": [true, {"singleQuote": false}],
+    "property-no-vendor-prefix": [
+      true,
+      {
+        "ignoreProperties": [
+          "/^-webkit-/"
+        ]
+      },
+    ]
   }
 }
