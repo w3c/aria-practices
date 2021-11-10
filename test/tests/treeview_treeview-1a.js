@@ -213,7 +213,7 @@ ariaTest(
         );
 
         // Send enter to the folder
-        await folder.sendKeys(Key.ENTER);
+        await folder.sendKeys(Key.SPACE);
 
         // After click, it should be open
         t.is(await folder.getAttribute('aria-expanded'), 'true');
@@ -232,7 +232,7 @@ ariaTest(
         const folderText = await folders[i].getText();
 
         // Send enter to the folder
-        await folders[i].sendKeys(Key.ENTER);
+        await folders[i].sendKeys(Key.SPACE);
 
         // After sending enter, it should be closed
         t.is(
@@ -277,9 +277,9 @@ ariaTest(
 // Keys
 
 ariaTest(
-  'Key enter opens folder',
+  'Key enter selects file or folder',
   exampleFile,
-  'key-enter-or-space',
+  'key-enter',
   async (t) => {
     await openAllFolders(t);
 
@@ -305,34 +305,29 @@ ariaTest(
   }
 );
 
-ariaTest(
-  'Key space opens folder',
-  exampleFile,
-  'key-enter-or-space',
-  async (t) => {
-    await openAllFolders(t);
+ariaTest('Key space opens folder', exampleFile, 'key-space', async (t) => {
+  await openAllFolders(t);
 
-    const items = await t.context.queryElements(t, ex.docSelector);
+  const items = await t.context.queryElements(t, ex.docSelector);
 
-    for (let item of items) {
-      const itemText = await item.getText();
+  for (let item of items) {
+    const itemText = await item.getText();
 
-      // Send enter to the folder
-      await item.sendKeys(Key.SPACE);
+    // Send enter to the folder
+    await item.sendKeys(Key.SPACE);
 
-      const boxText = await t.context.session
-        .findElement(By.css(ex.textboxSelector))
-        .getAttribute('value');
-      t.is(
-        boxText,
-        itemText,
-        'Sending space to doc "' +
-          itemText +
-          '" should update the value in the textbox'
-      );
-    }
+    const boxText = await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .getAttribute('value');
+    t.is(
+      boxText,
+      itemText,
+      'Sending space to doc "' +
+        itemText +
+        '" should update the value in the textbox'
+    );
   }
-);
+});
 
 ariaTest(
   'key down arrow moves focus',
