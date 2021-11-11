@@ -40,12 +40,12 @@
 
 .listbox .result:hover,
 .grid .result-row:hover {
-  background: rgb(139, 189, 225);
+  background: rgb(139 189 225);
 }
 
 .listbox .focused,
 .grid .focused {
-  background: rgb(139, 189, 225);
+  background: rgb(139 189 225);
 }
 
 .grid .focused-cell {

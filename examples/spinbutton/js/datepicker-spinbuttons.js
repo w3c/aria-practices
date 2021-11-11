@@ -40,10 +40,10 @@ var DatePickerSpinButtons = function (domNode) {
     'eleventh',
     'twelfth',
     'thirteenth',
-    'fourteen',
+    'fourteenth',
     'fifteenth',
     'sixteenth',
-    'seveneenth',
+    'seventeenth',
     'eighteenth',
     'nineteenth',
     'twentieth',
@@ -196,10 +196,10 @@ DatePickerSpinButtons.prototype.updateSpinButtons = function () {
 // Initialize menu button date picker
 
 window.addEventListener('load', function () {
-  var dpsbs = document.querySelectorAll('.datepicker-spinbuttons');
+  var spinButtons = document.querySelectorAll('.datepicker-spinbuttons');
 
-  dpsbs.forEach(function (dpsb) {
-    var datepicker = new DatePickerSpinButtons(dpsb);
+  spinButtons.forEach(function (spinButton) {
+    var datepicker = new DatePickerSpinButtons(spinButton);
     datepicker.init();
   });
 });

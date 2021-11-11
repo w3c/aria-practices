@@ -42,7 +42,9 @@
     </ul>
 
     <section>
-      <h2 id="ex_label">Example</h2>
+      <div class="example-header">
+        <h2 id="ex_label">Example</h2>
+      </div>
       <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
       <div id="ex1">
         <label id="combo1-label" class="combo-label">Favorite Fruit</label>
@@ -81,6 +83,7 @@
           The value is set when users press <kbd>Space</kbd>, <kbd>Enter</kbd>, or <kbd>Tab</kbd>, or when focus moves out of the combobox.
           The current value is retained if the listbox is closed with <kbd>Escape</kbd> or if the user collapses the list by clicking the input.
         </li>
+        <li>Browsers do not manage visibility of elements referenced by <code>aria-activedescendant</code> like they do for elements with focus. When a keyboard event changes the active option in the listbox, the JavaScript scrolls the option referenced by <code>aria-activedescendant</code> into view. Managing <code>aria-activedescendant</code> visibility is essential to accessibility for people who use a browser's zoom feature to increase the size of content.</li>
       </ol>
     </section>
 
@@ -405,7 +408,7 @@
 
     <section>
       <h2>Javascript and CSS Source Code</h2>
-      <ul>
+      <ul id="css_js_files">
         <li>
           CSS:
           <a href="css/select-only.css" type="text/css">select-only.css</a>
@@ -423,7 +426,7 @@
       <pre><code id="sc1"></code></pre>
       <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
       <script>
-        sourceCode.add('sc1', 'ex1');
+        sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
         sourceCode.make();
       </script>
     </section>

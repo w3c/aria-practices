@@ -8,8 +8,9 @@
 
 /**
  * ARIA Menu Button example
+ *
  * @function onload
- * @desc  after page has loaded initialize all menu buttons based on the selector "[aria-haspopup][aria-controls]"
+ * @description  after page has loaded initialize all menu buttons based on the selector "[aria-haspopup][aria-controls]"
  */
 
 window.addEventListener('load', function () {
@@ -37,11 +38,9 @@ var aria = aria || {};
 /* ---------------------------------------------------------------- */
 
 /**
- * @constructor Menu
- *
- * @memberOf aria.Utils
- *
- * @desc  Computes absolute position of an element
+ * @class Menu
+ * @memberof aria.Utils
+ * @description  Computes absolute position of an element
  */
 
 aria.Utils = aria.Utils || {};
@@ -69,11 +68,9 @@ aria.widget = aria.widget || {};
 /* ---------------------------------------------------------------- */
 
 /**
- * @constructor Menu
- *
- * @memberOf aria.Widget
- *
- * @desc  Creates a Menu Button widget using ARIA
+ * @class Menu
+ * @memberof aria.Widget
+ * @description  Creates a Menu Button widget using ARIA
  */
 
 aria.widget.Menu = function (node, menuButton) {
@@ -107,11 +104,9 @@ aria.widget.Menu = function (node, menuButton) {
 };
 
 /**
- * @method initMenuButton
- *
- * @memberOf aria.widget.Menu
- *
- * @desc  Adds event handlers to button elements
+ * @function initMenuButton
+ * @memberof aria.widget.Menu
+ * @description  Adds event handlers to button elements
  */
 
 aria.widget.Menu.prototype.initMenu = function () {
@@ -154,11 +149,9 @@ aria.widget.Menu.prototype.initMenu = function () {
 };
 
 /**
- * @method nextMenuItem
- *
- * @memberOf aria.widget.Menu
- *
- * @desc  Moves focus to next menuItem
+ * @function nextMenuItem
+ * @memberof aria.widget.Menu
+ * @description  Moves focus to next menuItem
  */
 
 aria.widget.Menu.prototype.nextMenuItem = function (currentMenuItem) {
@@ -181,11 +174,9 @@ aria.widget.Menu.prototype.nextMenuItem = function (currentMenuItem) {
 };
 
 /**
- * @method previousMenuItem
- *
- * @memberOf aria.widget.Menu
- *
- * @desc  Moves focus to previous menuItem
+ * @function previousMenuItem
+ * @memberof aria.widget.Menu
+ * @description  Moves focus to previous menuItem
  */
 
 aria.widget.Menu.prototype.previousMenuItem = function (currentMenuItem) {
@@ -208,11 +199,9 @@ aria.widget.Menu.prototype.previousMenuItem = function (currentMenuItem) {
 };
 
 /**
- * @method eventKeyDown
- *
- * @memberOf aria.widget.Menu
- *
- * @desc  Keydown event handler for Menu Object
+ * @function eventKeyDown
+ * @memberof aria.widget.Menu
+ * @description  Keydown event handler for Menu Object
  *        NOTE: The menu parameter is needed to provide a reference to the specific
  *               menu
  */
@@ -262,11 +251,9 @@ aria.widget.Menu.prototype.eventKeyDown = function (event, menu) {
 };
 
 /**
- * @method eventMouseClick
- *
- * @memberOf aria.widget.Menu
- *
- * @desc  onclick event handler for Menu Object
+ * @function eventMouseClick
+ * @memberof aria.widget.Menu
+ * @description  onclick event handler for Menu Object
  *        NOTE: The menu parameter is needed to provide a reference to the specific
  *               menu
  */
@@ -278,13 +265,13 @@ aria.widget.Menu.prototype.eventMouseClick = function (event, menu) {
 };
 
 /**
- * @method eventBlur
- *
- * @memberOf aria.widget.Menu
- *
- * @desc  eventBlur event handler for Menu Object
- *        NOTE: The menu parameter is needed to provide a reference to the specific
- *               menu
+ * @param event
+ * @param menu
+ * @function eventBlur
+ * @memberof aria.widget.Menu
+ * @description eventBlur event handler for Menu Object
+ * NOTE: The menu parameter is needed to provide a reference to the specific
+ * menu
  */
 aria.widget.Menu.prototype.eventBlur = function (event, menu) {
   menu.menuHasFocus = false;
@@ -296,13 +283,13 @@ aria.widget.Menu.prototype.eventBlur = function (event, menu) {
 };
 
 /**
- * @method eventFocus
- *
- * @memberOf aria.widget.Menu
- *
- * @desc  eventFoucs event handler for Menu Object
- *        NOTE: The menu parameter is needed to provide a reference to the specific
- *               menu
+ * @param event
+ * @param menu
+ * @function eventFocus
+ * @memberof aria.widget.Menu
+ * @description eventFocus event handler for Menu Object
+ * NOTE: The menu parameter is needed to provide a reference to the specific
+ * menu
  */
 aria.widget.Menu.prototype.eventFocus = function (event, menu) {
   menu.menuHasFocus = true;
@@ -313,11 +300,9 @@ aria.widget.Menu.prototype.eventFocus = function (event, menu) {
 /* ---------------------------------------------------------------- */
 
 /**
- * @constructor Menu Button
- *
- * @memberOf aria.Widget
- *
- * @desc  Creates a Menu Button widget using ARIA
+ * @class Menu Button
+ * @memberof aria.Widget
+ * @description  Creates a Menu Button widget using ARIA
  */
 
 aria.widget.MenuButton = function (node) {
@@ -350,11 +335,9 @@ aria.widget.MenuButton = function (node) {
 };
 
 /**
- * @method initMenuButton
- *
- * @memberOf aria.widget.MenuButton
- *
- * @desc  Adds event handlers to button elements
+ * @function initMenuButton
+ * @memberof aria.widget.MenuButton
+ * @description  Adds event handlers to button elements
  */
 
 aria.widget.MenuButton.prototype.initMenuButton = function () {
@@ -386,11 +369,9 @@ aria.widget.MenuButton.prototype.initMenuButton = function () {
 };
 
 /**
- * @method openMenu
- *
- * @memberOf aria.widget.MenuButton
- *
- * @desc  Opens the menu
+ * @function openMenu
+ * @memberof aria.widget.MenuButton
+ * @description  Opens the menu
  */
 
 aria.widget.MenuButton.prototype.openMenu = function () {
@@ -401,11 +382,9 @@ aria.widget.MenuButton.prototype.openMenu = function () {
 };
 
 /**
- * @method closeMenu
- *
- * @memberOf aria.widget.MenuButton
- *
- * @desc  Close the menu
+ * @function closeMenu
+ * @memberof aria.widget.MenuButton
+ * @description  Close the menu
  */
 
 aria.widget.MenuButton.prototype.closeMenu = function (force, focusMenuButton) {
@@ -432,11 +411,9 @@ aria.widget.MenuButton.prototype.closeMenu = function (force, focusMenuButton) {
 };
 
 /**
- * @method toggleMenu
- *
- * @memberOf aria.widget.MenuButton
- *
- * @desc  Close or open the menu depending on current state
+ * @function toggleMenu
+ * @memberof aria.widget.MenuButton
+ * @description  Close or open the menu depending on current state
  */
 
 aria.widget.MenuButton.prototype.toggleMenu = function () {
@@ -450,11 +427,9 @@ aria.widget.MenuButton.prototype.toggleMenu = function () {
 };
 
 /**
- * @method moveFocusToFirstMenuItem
- *
- * @memberOf aria.widget.MenuButton
- *
- * @desc  Move keyboard focus to first menu item
+ * @function moveFocusToFirstMenuItem
+ * @memberof aria.widget.MenuButton
+ * @description  Move keyboard focus to first menu item
  */
 
 aria.widget.MenuButton.prototype.moveFocusToFirstMenuItem = function () {
@@ -465,11 +440,9 @@ aria.widget.MenuButton.prototype.moveFocusToFirstMenuItem = function () {
 };
 
 /**
- * @method moveFocusToLastMenuItem
- *
- * @memberOf aria.widget.MenuButton
- *
- * @desc  Move keyboard focus to last menu item
+ * @function moveFocusToLastMenuItem
+ * @memberof aria.widget.MenuButton
+ * @description  Move keyboard focus to last menu item
  */
 
 aria.widget.MenuButton.prototype.moveFocusToLastMenuItem = function () {
@@ -480,11 +453,9 @@ aria.widget.MenuButton.prototype.moveFocusToLastMenuItem = function () {
 };
 
 /**
- * @method eventKeyDown
- *
- * @memberOf aria.widget.MenuButton
- *
- * @desc  Keydown event handler for MenuButton Object
+ * @function eventKeyDown
+ * @memberof aria.widget.MenuButton
+ * @description  Keydown event handler for MenuButton Object
  *        NOTE: The menuButton parameter is needed to provide a reference to the specific
  *               menuButton
  */
@@ -532,13 +503,13 @@ aria.widget.MenuButton.prototype.eventKeyDown = function (event, menuButton) {
 };
 
 /**
- * @method eventMouseClick
- *
- * @memberOf aria.widget.MenuButton
- *
- * @desc  Click event handler for MenuButton Object
- *        NOTE: The menuButton parameter is needed to provide a reference to the specific
- *               menuButton
+ * @param event
+ * @param menuButton
+ * @function eventMouseClick
+ * @memberof aria.widget.MenuButton
+ * @description Click event handler for MenuButton Object
+ * NOTE: The menuButton parameter is needed to provide a reference to the specific
+ * menuButton
  */
 aria.widget.MenuButton.prototype.eventMouseClick = function (
   event,

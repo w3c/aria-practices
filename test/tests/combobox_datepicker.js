@@ -1,14 +1,10 @@
 const { ariaTest } = require('..');
-const { By, Key } = require('selenium-webdriver');
+const { Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAttributeDNE = require('../util/assertAttributeDNE');
-const assertAriaControls = require('../util/assertAriaControls');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
-const assertAriaDescribedby = require('../util/assertAriaDescribedby');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
-const assertRovingTabindex = require('../util/assertRovingTabindex');
-const assertTabOrder = require('../util/assertTabOrder');
 
 const exampleFile = 'combobox/combobox-datepicker.html';
 
@@ -45,28 +41,6 @@ ex.allFocusableElementsInDialog = [
   ex.nextMonth,
   ex.nextYear,
 ];
-
-const clickFirstOfMonth = async function (t) {
-  let today = new Date();
-  today.setUTCHours(0, 0, 0, 0);
-
-  let firstOfMonth = new Date(today);
-  firstOfMonth.setDate(1);
-  let firstOfMonthString = today.toISOString().split('T')[0];
-
-  return (
-    await t.context.queryElement(t, `[data-date=${firstOfMonthString}]`)
-  ).click();
-};
-
-const clickToday = async function (t) {
-  let today = new Date();
-  today.setUTCHours(0, 0, 0, 0);
-  let todayString = today.toISOString().split('T')[0];
-  return (
-    await t.context.queryElement(t, `[data-date=${todayString}]`)
-  ).click();
-};
 
 const setDateToJanFirst2019 = async function (t) {
   await (await t.context.queryElement(t, ex.comboboxSelector)).click();
@@ -106,7 +80,7 @@ ariaTest(
 );
 
 ariaTest(
-  'Combobox: has aria-contorls set to "id-dialog-1"',
+  'Combobox: has aria-controls set to "id-dialog-1"',
   exampleFile,
   'textbox-aria-controls',
   async (t) => {
@@ -120,7 +94,7 @@ ariaTest(
 );
 
 ariaTest(
-  'Combobox: has aria-contorls set to "id-descrption-1"',
+  'Combobox: has aria-controls set to "id-description-1"',
   exampleFile,
   'textbox-aria-describedby',
   async (t) => {
@@ -153,9 +127,9 @@ ariaTest(
   'textbox-aria-expanded-true',
   async (t) => {
     // Open dialog box
-    await (await t.context.queryElement(t, ex.comboboxSelector)).sendKeys(
-      Key.ARROW_DOWN
-    );
+    await (
+      await t.context.queryElement(t, ex.comboboxSelector)
+    ).sendKeys(Key.ARROW_DOWN);
     await assertAttributeValues(
       t,
       ex.comboboxSelector,
@@ -281,8 +255,12 @@ ariaTest(
     let allButtons = await t.context.queryElements(t, ex.allDates);
 
     // test only one element has tabindex="0"
-    for (let tabableEl = 0; tabableEl < focusableButtons.length; tabableEl++) {
-      let dateSelected = await focusableButtons[tabableEl].getText();
+    for (
+      let tabbableEl = 0;
+      tabbableEl < focusableButtons.length;
+      tabbableEl++
+    ) {
+      let dateSelected = await focusableButtons[tabbableEl].getText();
 
       for (let el = 0; el < allButtons.length; el++) {
         let date = await allButtons[el].getText();
@@ -305,7 +283,7 @@ ariaTest(
           await allButtons[el].getAttribute('tabindex'),
           tabindex,
           'focus is on day ' +
-            (tabableEl + 1) +
+            (tabbableEl + 1) +
             ' therefore the button number ' +
             el +
             ' should have tab index set to: ' +
@@ -314,7 +292,7 @@ ariaTest(
       }
 
       // Send the tabindex="0" element the appropriate key to switch focus to the next element
-      await focusableButtons[tabableEl].sendKeys(Key.ARROW_RIGHT);
+      await focusableButtons[tabbableEl].sendKeys(Key.ARROW_RIGHT);
     }
   }
 );
@@ -426,9 +404,9 @@ ariaTest(
       await el.sendKeys(Key.ESCAPE);
 
       t.is(
-        await (await t.context.queryElement(t, ex.dialogSelector)).getCssValue(
-          'display'
-        ),
+        await (
+          await t.context.queryElement(t, ex.dialogSelector)
+        ).getCssValue('display'),
         'none',
         'After sending ESC to element "' +
           ex.allFocusableElementsInDialog[i] +
@@ -453,9 +431,9 @@ ariaTest(
   exampleFile,
   'month-year-button-space-return',
   async (t) => {
-    await (await t.context.queryElement(t, ex.buttonSelector)).sendKeys(
-      Key.ENTER
-    );
+    await (
+      await t.context.queryElement(t, ex.buttonSelector)
+    ).sendKeys(Key.ENTER);
 
     let monthYear = await t.context.queryElement(t, ex.monthYear);
     let originalMonthYear = await monthYear.getText();
@@ -489,13 +467,13 @@ ariaTest(
 );
 
 ariaTest(
-  'Tab should go through all tabbable items, then repear',
+  'Tab should go through all tabbable items, then repeat',
   exampleFile,
   'dialog-tab',
   async (t) => {
-    await (await t.context.queryElement(t, ex.buttonSelector)).sendKeys(
-      Key.ENTER
-    );
+    await (
+      await t.context.queryElement(t, ex.buttonSelector)
+    ).sendKeys(Key.ENTER);
 
     for (let itemSelector of ex.allFocusableElementsInDialog) {
       t.true(
@@ -521,9 +499,9 @@ ariaTest(
   async (t) => {
     t.plan(7);
 
-    await (await t.context.queryElement(t, ex.buttonSelector)).sendKeys(
-      Key.ENTER
-    );
+    await (
+      await t.context.queryElement(t, ex.buttonSelector)
+    ).sendKeys(Key.ENTER);
 
     await (
       await t.context.queryElement(t, ex.allFocusableElementsInDialog[0])
@@ -543,7 +521,7 @@ ariaTest(
   }
 );
 
-// TODO(zcorpan): Missing tests. Either mark as "test-not-required" or write the test.
+// TODO: Missing tests. Either mark as "test-not-required" or write the test.
 ariaTest.failing(
   `Test not implemented: grid-space`,
   exampleFile,

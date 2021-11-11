@@ -56,14 +56,6 @@ const focusOnOrInCell = async function (t, cellElement, focusable) {
   );
 };
 
-const findColIndex = function () {
-  let el = document.activeElement;
-  while (!el.hasAttribute('aria-colindex')) {
-    el = el.parent;
-  }
-  return el.attribute('aria-colindex');
-};
-
 const pageExamples = {
   ex1: {
     gridSelector: '#ex1 [role="grid"]',
@@ -226,7 +218,7 @@ ariaTest(
     t.is(
       rowElements.length,
       Number(rowCount),
-      '"aria-rowcount" attribute should match the number of [role="row"] divs in example: ' +
+      '"aria-rowcount" attribute should match the number of [role="row"] div elements in example: ' +
         gridSelector
     );
   }
@@ -604,8 +596,6 @@ ariaTest(
     ];
 
     for (let [exId, selector, focusableElement] of cellSelectors) {
-      const ex = pageExamples[exId];
-
       if (exId == 'ex3') {
         // This test depends on the "page down" button which is not specified by
         // the widget's description. It does this to avoid relying on behaviors
@@ -673,7 +663,6 @@ ariaTest(
   'grid/LayoutGrids.html',
   'key-page-down',
   async (t) => {
-    const ex = pageExamples.ex3;
     const cellSelectors = [
       ['first', '#ex3 [role="row"] [role="gridcell"]:nth-child(1)', 'a'],
       [
@@ -759,7 +748,6 @@ ariaTest(
   'grid/LayoutGrids.html',
   'key-page-up',
   async (t) => {
-    const ex = pageExamples.ex3;
     const cellSelectors = [
       ['first', '#ex3 [role="row"] [role="gridcell"]:nth-child(1)', 'a'],
       [
@@ -907,8 +895,7 @@ ariaTest(
     const lastElementInFirstRowText = {
       ex1: 'SVG 2 Specification',
       ex2: 'X',
-      ex3:
-        'WAI-ARIA, the Accessible Rich Internet Applications Suite, defines a way to make Web content and Web applications more accessible to people with disabilities.',
+      ex3: 'WAI-ARIA, the Accessible Rich Internet Applications Suite, defines a way to make Web content and Web applications more accessible to people with disabilities.',
     };
 
     for (let [exId, ex] of Object.entries(pageExamples)) {
@@ -1006,8 +993,7 @@ ariaTest(
     const lastElementInFirstRowText = {
       ex1: 'SVG 2 Specification',
       ex2: 'X',
-      ex3:
-        'Jan 3, 2014 - NVDA 2 supports all landmarks except it will not support navigation to “application”; Window Eyes as of V.7 does not support ARIA landmarks.',
+      ex3: 'Jan 3, 2014 - NVDA 2 supports all landmarks except it will not support navigation to “application”; Window Eyes as of V.7 does not support ARIA landmarks.',
     };
 
     for (let [exId, ex] of Object.entries(pageExamples)) {

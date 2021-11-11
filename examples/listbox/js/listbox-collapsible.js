@@ -1,14 +1,15 @@
 'use strict';
 /**
  * ARIA Collapsible Dropdown Listbox Example
+ *
  * @function onload
- * @desc Initialize the listbox example once the page has loaded
+ * @description Initialize the listbox example once the page has loaded
  */
 
 window.addEventListener('load', function () {
   var button = document.getElementById('exp_button');
   var exListbox = new aria.Listbox(document.getElementById('exp_elem_list'));
-  var listboxButton = new aria.ListboxButton(button, exListbox);
+  new aria.ListboxButton(button, exListbox);
 });
 
 var aria = aria || {};

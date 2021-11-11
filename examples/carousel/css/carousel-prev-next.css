@@ -10,6 +10,7 @@ img.reload {
 
 .carousel {
   background-color: #eee;
+  max-width: 900px;
 }
 
 .carousel .carousel-inner {
@@ -57,20 +58,43 @@ img.reload {
   display: inline-block;
   margin: 0;
   padding: 6px;
-  background-color: rgba(0, 0, 0, 0.65);
+  background-color: rgb(0 0 0 / 65%);
   border-radius: 5px;
   border: 0 solid transparent;
 }
 
+.carousel-moreaccessible .carousel-items .carousel-image a {
+  display: block;
+  margin: 0;
+  padding: 5px;
+  text-decoration: none;
+  border: none;
+}
+
+.carousel-moreaccessible .carousel-item .carousel-caption a {
+  display: inline-block;
+  margin: 0;
+  padding: 6px;
+  color: black;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+}
+
+.carousel-moreaccessible .carousel-item .carousel-caption span.contrast,
+.carousel-moreaccessible .carousel-item .carousel-caption span.contrast:hover {
+  background-color: transparent;
+}
+
 .carousel .carousel-item .carousel-caption a:hover,
 .carousel .carousel-item .carousel-caption span.contrast:hover {
-  background-color: rgba(0, 0, 0, 1);
+  background-color: rgb(0 0 0 / 100%);
 }
 
 .carousel .carousel-item .carousel-caption a:focus {
   padding: 4px;
   border: 2px solid #fff;
-  background-color: rgba(0, 0, 0, 1);
+  background-color: rgb(0 0 0 / 100%);
   outline: none;
   border-width: 2px solid #fff;
   color: #fff;
@@ -130,7 +154,7 @@ img.reload {
   stroke: black;
   fill: black;
   stroke-width: 1px;
-  opacity: 0.6;
+  opacity: 60%;
 }
 
 .carousel .controls svg .border {
@@ -171,7 +195,7 @@ img.reload {
 .carousel .controls button:hover svg .border {
   fill: #005a9c;
   stroke: #005a9c;
-  opacity: 1;
+  opacity: 100%;
 }
 
 .carousel .controls button:focus svg .border {
@@ -186,6 +210,15 @@ img.reload {
   position: relative;
   border: #eee solid 4px;
   border-radius: 5px;
+}
+
+/* Shared CSS for Pause and Tab Controls */
+
+.carousel-moreaccessible .controls {
+  position: relative;
+  top: 0;
+  left: 0;
+  padding: 0.25em 0.25em 0;
 }
 
 .carousel.carousel-moreaccessible .controls {
@@ -204,14 +237,6 @@ img.reload {
 .carousel-moreaccessible .carousel-items,
 .carousel-moreaccessible .carousel-items.focus {
   padding: 0;
-  border: none;
-}
-
-.carousel-moreaccessible .carousel-items .carousel-image a {
-  display: block;
-  margin: 0;
-  padding: 5px;
-  text-decoration: none;
   border: none;
 }
 
@@ -236,21 +261,6 @@ img.reload {
   color: black;
 }
 
-.carousel-moreaccessible .carousel-item .carousel-caption a {
-  display: inline-block;
-  margin: 0;
-  padding: 6px;
-  color: black;
-  background-color: transparent;
-  border: none;
-  border-radius: 5px;
-}
-
-.carousel-moreaccessible .carousel-item .carousel-caption span.contrast,
-.carousel-moreaccessible .carousel-item .carousel-caption span.contrast:hover {
-  background-color: transparent;
-}
-
 .carousel-moreaccessible .carousel-item .carousel-caption p {
   padding: 0;
   margin: 0;
@@ -263,7 +273,7 @@ img.reload {
 }
 
 .carousel-moreaccessible .carousel-item .carousel-caption a:hover {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgb(0 0 0 / 20%);
 }
 
 .carousel-moreaccessible .carousel-item .carousel-caption a:focus {
@@ -272,13 +282,4 @@ img.reload {
   background-color: transparent;
   color: black;
   outline: none;
-}
-
-/* Shared CSS for Pause and Tab Controls */
-
-.carousel-moreaccessible .controls {
-  position: relative;
-  top: 0;
-  left: 0;
-  padding: 0.25em 0.25em 0;
 }

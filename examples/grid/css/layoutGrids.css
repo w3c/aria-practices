@@ -42,7 +42,7 @@
   display: inline-block;
   font-size: 14px;
   height: 40px;
-  margin: 5px 0 0 0;
+  margin: 5px 0 0;
   padding: 5px;
   position: relative;
   vertical-align: middle;
@@ -69,7 +69,7 @@
   border: 1px solid #bbb;
   padding: 0 15px 20px;
   margin-top: 20px;
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 2px 3px rgb(0 0 0 / 30%);
 }
 
 .grid-nux::after,
@@ -85,14 +85,14 @@
 }
 
 .grid-nux::after {
-  border-color: rgba(136, 183, 213, 0);
+  border-color: rgb(136 183 213 / 0%);
   border-bottom-color: #eaf9ef;
   border-width: 10px;
   margin-left: -10px;
 }
 
 .grid-nux::before {
-  border-color: rgba(194, 225, 245, 0);
+  border-color: rgb(194 225 245 / 0%);
   border-bottom-color: #bbb;
   border-width: 11px;
   margin-left: -11px;
@@ -143,9 +143,9 @@
 
 .pill-item {
   background: #eee;
-  border: 1px solid #acc1e4;
+  border: 1px solid #3a69b6;
   border-radius: 2px;
-  color: #acc1e4;
+  color: #3a69b6;
   display: inline-block;
   font-size: 14px;
   margin: 5px 5px 0 0;

@@ -44,28 +44,6 @@ const ex = {
   okButton: '#example [role="dialog"] button[value="ok"]',
 };
 
-const clickFirstOfMonth = async function (t) {
-  let today = new Date();
-  today.setUTCHours(0, 0, 0, 0);
-
-  let firstOfMonth = new Date(today);
-  firstOfMonth.setDate(1);
-  let firstOfMonthString = today.toISOString().split('T')[0];
-
-  return t.context.session
-    .findElement(By.css(`[data-date=${firstOfMonthString}]`))
-    .click();
-};
-
-const clickToday = async function (t) {
-  let today = new Date();
-  today.setUTCHours(0, 0, 0, 0);
-  let todayString = today.toISOString().split('T')[0];
-  return t.context.session
-    .findElement(By.css(`[data-date=${todayString}]`))
-    .click();
-};
-
 const setDateToJanFirst2019 = async function (t) {
   await t.context.session.findElement(By.css(ex.inputSelector)).click();
   return t.context.session.executeScript(function () {

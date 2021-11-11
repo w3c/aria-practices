@@ -9,7 +9,7 @@ const ex = {
   tableSelector: '#ex1 [role="table"]',
   numRowgroups: 2,
   numRows: 5,
-  numColumnheaders: 4,
+  numColumnHeaders: 4,
   numCells: 16,
 };
 
@@ -75,15 +75,15 @@ ariaTest(
   exampleFile,
   'columnheader-role',
   async (t) => {
-    const columnheaders = await t.context.queryElements(
+    const columnHeaders = await t.context.queryElements(
       t,
       ex.tableSelector + ' [role="rowgroup"] [role="row"] [role="columnheader"]'
     );
 
     t.is(
-      columnheaders.length,
-      ex.numColumnheaders,
-      ex.numColumnheaders +
+      columnHeaders.length,
+      ex.numColumnHeaders,
+      ex.numColumnHeaders +
         ' role="columnheader" elements should be found nested within the table element, rowgroup element and row element.'
     );
   }

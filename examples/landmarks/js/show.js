@@ -15,6 +15,9 @@
  * limitations under the License.
  */
 
+/* exported showLandmarks, showHeadings */
+/* globals initLandmarks, initHeadings */
+
 'use strict';
 
 function showLandmarks(event) {

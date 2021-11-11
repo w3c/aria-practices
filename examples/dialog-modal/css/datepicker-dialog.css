@@ -45,7 +45,7 @@
 }
 
 .datepicker .fa-calendar-alt {
-  color: hsl(216, 89%, 51%);
+  color: hsl(216deg 89% 51%);
 }
 
 .datepicker button.icon:focus {
@@ -65,8 +65,8 @@
   position: absolute;
   width: 320px;
   clear: both;
-  border: 3px solid hsl(216, 80%, 51%);
-  margin-top: 1em;
+  border: 3px solid hsl(216deg 80% 51%);
+  margin-top: 0.15em;
   border-radius: 5px;
   padding: 0;
   background-color: #fff;
@@ -74,7 +74,7 @@
 
 .datepicker-dialog .header {
   cursor: default;
-  background-color: hsl(216, 80%, 51%);
+  background-color: hsl(216deg 80% 51%);
   padding: 7px;
   font-weight: bold;
   text-transform: uppercase;
@@ -146,7 +146,7 @@
   padding: 6px;
   margin-left: 1em;
   width: 5em;
-  background-color: hsl(216, 80%, 92%);
+  background-color: hsl(216deg 80% 92%);
   font-size: 0.85em;
   color: black;
   outline: none;
@@ -164,7 +164,7 @@
 }
 
 .datepicker-dialog .fa-calendar-alt {
-  color: hsl(216, 89%, 51%);
+  color: hsl(216deg 89% 51%);
 }
 
 .datepicker-dialog .month-year {
@@ -209,32 +209,32 @@
 .datepicker-dialog table.dates td:focus,
 .datepicker-dialog table.dates td:hover {
   padding: 0;
-  background-color: hsl(216, 80%, 92%);
+  background-color: hsl(216deg 80% 92%);
 }
 
 .datepicker-dialog table.dates td:focus {
   padding: 1px;
-  border: 2px solid rgb(100, 100, 100);
+  border: 2px solid rgb(100 100 100);
   outline: 0;
 }
 
 .datepicker-dialog table.dates td:not(.disabled):hover {
   padding: 2px;
-  border: 1px solid rgb(100, 100, 100);
+  border: 1px solid rgb(100 100 100);
 }
 
 .datepicker-dialog table.dates td[aria-selected] {
   padding: 1px;
-  border: 2px dotted rgb(100, 100, 100);
+  border: 2px dotted rgb(100 100 100);
 }
 
 .datepicker-dialog table.dates td[aria-selected]:focus {
   padding: 1px;
-  border: 2px solid rgb(100, 100, 100);
+  border: 2px solid rgb(100 100 100);
 }
 
 .datepicker-dialog table.dates td[tabindex="0"] {
-  background-color: hsl(216, 80%, 51%);
+  background-color: hsl(216deg 80% 51%);
   color: white;
 }
 
@@ -242,6 +242,6 @@
   padding-top: 0.25em;
   padding-left: 1em;
   height: 1.75em;
-  background: hsl(216, 80%, 51%);
+  background: hsl(216deg 80% 51%);
   color: white;
 }

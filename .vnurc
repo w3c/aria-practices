@@ -12,3 +12,16 @@ Attribute “aria-posinset” not allowed on element “tr” at this point.
 Attribute “aria-setsize” not allowed on element “tr” at this point.
 # Ignoring role meter
 Bad value “meter” for attribute “role” on element “div”.
+# https://github.com/w3c/aria-practices/issues/1675
+The “type” attribute is unnecessary for JavaScript resources.
+# https://github.com/w3c/aria-practices/issues/1676
+The “row” role is unnecessary for element “tr”.
+# https://github.com/w3c/aria-practices/issues/1677
+Attribute “aria-activedescendant” value should either refer to a descendant element, or should be accompanied by attribute “aria-owns”.
+# https://github.com/w3c/aria-practices/issues/1678
+Section lacks heading. Consider using “h2”-“h6” elements to add identifying headings to all sections.
+# https://github.com/validator/validator/issues/1096
+Bad value “none” for attribute “role” on element “svg”.
+Bad value “presentation” for attribute “role” on element “svg”.
+# https://github.com/validator/validator/issues/1122
+Element “input” is missing required attribute “aria-checked”.

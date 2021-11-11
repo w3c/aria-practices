@@ -128,6 +128,20 @@ function getUpdatedIndex(currentIndex, maxIndex, action) {
   }
 }
 
+// check if element is visible in browser view port
+function isElementInView(element) {
+  var bounding = element.getBoundingClientRect();
+
+  return (
+    bounding.top >= 0 &&
+    bounding.left >= 0 &&
+    bounding.bottom <=
+      (window.innerHeight || document.documentElement.clientHeight) &&
+    bounding.right <=
+      (window.innerWidth || document.documentElement.clientWidth)
+  );
+}
+
 // check if an element is currently scrollable
 function isScrollable(element) {
   return element && element.clientHeight < element.scrollHeight;
@@ -318,6 +332,12 @@ Select.prototype.onOptionChange = function (index) {
   if (isScrollable(this.listboxEl)) {
     maintainScrollVisibility(options[index], this.listboxEl);
   }
+
+  // ensure the new option is visible on screen
+  // ensure the new option is in view
+  if (!isElementInView(options[index])) {
+    options[index].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
 };
 
 Select.prototype.onOptionClick = function (index) {
@@ -363,6 +383,10 @@ Select.prototype.updateMenuState = function (open, callFocus = true) {
   // update activedescendant
   const activeID = open ? `${this.idBase}-${this.activeIndex}` : '';
   this.comboEl.setAttribute('aria-activedescendant', activeID);
+
+  if (activeID === '' && !isElementInView(this.comboEl)) {
+    this.comboEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
 
   // move focus back to the combobox, if needed
   callFocus && this.comboEl.focus();

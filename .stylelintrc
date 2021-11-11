@@ -7,9 +7,18 @@
         "ignoreMediaFeatureNames": [
           "forced-colors"
         ]
-      }
+      },
     ],
-    "no-descending-specificity": null,
+    "font-family-no-missing-generic-family-keyword": [
+      true,
+      {
+        "ignoreFontFamilies": [
+          "Font Awesome 5 Free"
+        ]
+      },
+    ],
+    "selector-class-pattern": null,
+    "selector-id-pattern": null,
     "prettier/prettier": [true, {"singleQuote": false}]
   }
 }

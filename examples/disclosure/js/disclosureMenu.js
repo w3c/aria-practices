@@ -7,196 +7,222 @@
 
 'use strict';
 
-var DisclosureNav = function (domNode) {
-  this.rootNode = domNode;
-  this.triggerNodes = [];
-  this.controlledNodes = [];
-  this.openIndex = null;
-  this.useArrowKeys = true;
-};
+class DisclosureNav {
+  constructor(domNode) {
+    this.rootNode = domNode;
+    this.controlledNodes = [];
+    this.openIndex = null;
+    this.useArrowKeys = true;
+    this.topLevelNodes = [
+      ...this.rootNode.querySelectorAll(
+        '.main-link, button[aria-expanded][aria-controls]'
+      ),
+    ];
 
-DisclosureNav.prototype.init = function () {
-  var buttons = this.rootNode.querySelectorAll(
-    'button[aria-expanded][aria-controls]'
-  );
-  for (var i = 0; i < buttons.length; i++) {
-    var button = buttons[i];
-    var menu = button.parentNode.querySelector('ul');
-    if (menu) {
-      // save ref to button and controlled menu
-      this.triggerNodes.push(button);
-      this.controlledNodes.push(menu);
+    this.topLevelNodes.forEach((node) => {
+      // handle button + menu
+      if (
+        node.tagName.toLowerCase() === 'button' &&
+        node.hasAttribute('aria-controls')
+      ) {
+        const menu = node.parentNode.querySelector('ul');
+        if (menu) {
+          // save ref controlled menu
+          this.controlledNodes.push(menu);
 
-      // collapse menus
-      button.setAttribute('aria-expanded', 'false');
-      this.toggleMenu(menu, false);
+          // collapse menus
+          node.setAttribute('aria-expanded', 'false');
+          this.toggleMenu(menu, false);
 
-      // attach event listeners
-      menu.addEventListener('keydown', this.handleMenuKeyDown.bind(this));
-      button.addEventListener('click', this.handleButtonClick.bind(this));
-      button.addEventListener('keydown', this.handleButtonKeyDown.bind(this));
+          // attach event listeners
+          menu.addEventListener('keydown', this.onMenuKeyDown.bind(this));
+          node.addEventListener('click', this.onButtonClick.bind(this));
+          node.addEventListener('keydown', this.onButtonKeyDown.bind(this));
+        }
+      }
+      // handle links
+      else {
+        this.controlledNodes.push(null);
+        node.addEventListener('keydown', this.onLinkKeyDown.bind(this));
+      }
+    });
+
+    this.rootNode.addEventListener('focusout', this.onBlur.bind(this));
+  }
+
+  controlFocusByKey(keyboardEvent, nodeList, currentIndex) {
+    switch (keyboardEvent.key) {
+      case 'ArrowUp':
+      case 'ArrowLeft':
+        keyboardEvent.preventDefault();
+        if (currentIndex > -1) {
+          var prevIndex = Math.max(0, currentIndex - 1);
+          nodeList[prevIndex].focus();
+        }
+        break;
+      case 'ArrowDown':
+      case 'ArrowRight':
+        keyboardEvent.preventDefault();
+        if (currentIndex > -1) {
+          var nextIndex = Math.min(nodeList.length - 1, currentIndex + 1);
+          nodeList[nextIndex].focus();
+        }
+        break;
+      case 'Home':
+        keyboardEvent.preventDefault();
+        nodeList[0].focus();
+        break;
+      case 'End':
+        keyboardEvent.preventDefault();
+        nodeList[nodeList.length - 1].focus();
+        break;
     }
   }
 
-  this.rootNode.addEventListener('focusout', this.handleBlur.bind(this));
-};
-
-DisclosureNav.prototype.toggleMenu = function (domNode, show) {
-  if (domNode) {
-    domNode.style.display = show ? 'block' : 'none';
-  }
-};
-
-DisclosureNav.prototype.toggleExpand = function (index, expanded) {
-  // close open menu, if applicable
-  if (this.openIndex !== index) {
+  // public function to close open menu
+  close() {
     this.toggleExpand(this.openIndex, false);
   }
 
-  // handle menu at called index
-  if (this.triggerNodes[index]) {
-    this.openIndex = expanded ? index : null;
-    this.triggerNodes[index].setAttribute('aria-expanded', expanded);
-    this.toggleMenu(this.controlledNodes[index], expanded);
-  }
-};
-
-DisclosureNav.prototype.controlFocusByKey = function (
-  keyboardEvent,
-  nodeList,
-  currentIndex
-) {
-  switch (keyboardEvent.key) {
-    case 'ArrowUp':
-    case 'ArrowLeft':
-      keyboardEvent.preventDefault();
-      if (currentIndex > -1) {
-        var prevIndex = Math.max(0, currentIndex - 1);
-        nodeList[prevIndex].focus();
-      }
-      break;
-    case 'ArrowDown':
-    case 'ArrowRight':
-      keyboardEvent.preventDefault();
-      if (currentIndex > -1) {
-        var nextIndex = Math.min(nodeList.length - 1, currentIndex + 1);
-        nodeList[nextIndex].focus();
-      }
-      break;
-    case 'Home':
-      keyboardEvent.preventDefault();
-      nodeList[0].focus();
-      break;
-    case 'End':
-      keyboardEvent.preventDefault();
-      nodeList[nodeList.length - 1].focus();
-      break;
-  }
-};
-
-/* Event Handlers */
-DisclosureNav.prototype.handleBlur = function (event) {
-  var menuContainsFocus = this.rootNode.contains(event.relatedTarget);
-  if (!menuContainsFocus && this.openIndex !== null) {
-    this.toggleExpand(this.openIndex, false);
-  }
-};
-
-DisclosureNav.prototype.handleButtonKeyDown = function (event) {
-  var targetButtonIndex = this.triggerNodes.indexOf(document.activeElement);
-
-  // close on escape
-  if (event.key === 'Escape') {
-    this.toggleExpand(this.openIndex, false);
+  onBlur(event) {
+    var menuContainsFocus = this.rootNode.contains(event.relatedTarget);
+    if (!menuContainsFocus && this.openIndex !== null) {
+      this.toggleExpand(this.openIndex, false);
+    }
   }
 
-  // move focus into the open menu if the current menu is open
-  else if (
-    this.useArrowKeys &&
-    this.openIndex === targetButtonIndex &&
-    event.key === 'ArrowDown'
-  ) {
-    event.preventDefault();
-    this.controlledNodes[this.openIndex].querySelector('a').focus();
+  onButtonClick(event) {
+    var button = event.target;
+    var buttonIndex = this.topLevelNodes.indexOf(button);
+    var buttonExpanded = button.getAttribute('aria-expanded') === 'true';
+    this.toggleExpand(buttonIndex, !buttonExpanded);
   }
 
-  // handle arrow key navigation between top-level buttons, if set
-  else if (this.useArrowKeys) {
-    this.controlFocusByKey(event, this.triggerNodes, targetButtonIndex);
-  }
-};
+  onButtonKeyDown(event) {
+    var targetButtonIndex = this.topLevelNodes.indexOf(document.activeElement);
 
-DisclosureNav.prototype.handleButtonClick = function (event) {
-  var button = event.target;
-  var buttonIndex = this.triggerNodes.indexOf(button);
-  var buttonExpanded = button.getAttribute('aria-expanded') === 'true';
-  this.toggleExpand(buttonIndex, !buttonExpanded);
-};
+    // close on escape
+    if (event.key === 'Escape') {
+      this.toggleExpand(this.openIndex, false);
+    }
 
-DisclosureNav.prototype.handleMenuKeyDown = function (event) {
-  if (this.openIndex === null) {
-    return;
-  }
+    // move focus into the open menu if the current menu is open
+    else if (
+      this.useArrowKeys &&
+      this.openIndex === targetButtonIndex &&
+      event.key === 'ArrowDown'
+    ) {
+      event.preventDefault();
+      this.controlledNodes[this.openIndex].querySelector('a').focus();
+    }
 
-  var menuLinks = Array.prototype.slice.call(
-    this.controlledNodes[this.openIndex].querySelectorAll('a')
-  );
-  var currentIndex = menuLinks.indexOf(document.activeElement);
-
-  // close on escape
-  if (event.key === 'Escape') {
-    this.triggerNodes[this.openIndex].focus();
-    this.toggleExpand(this.openIndex, false);
+    // handle arrow key navigation between top-level buttons, if set
+    else if (this.useArrowKeys) {
+      this.controlFocusByKey(event, this.topLevelNodes, targetButtonIndex);
+    }
   }
 
-  // handle arrow key navigation within menu links, if set
-  else if (this.useArrowKeys) {
-    this.controlFocusByKey(event, menuLinks, currentIndex);
-  }
-};
+  onLinkKeyDown(event) {
+    var targetLinkIndex = this.topLevelNodes.indexOf(document.activeElement);
 
-// switch on/off arrow key navigation
-DisclosureNav.prototype.updateKeyControls = function (useArrowKeys) {
-  this.useArrowKeys = useArrowKeys;
-};
+    // handle arrow key navigation between top-level buttons, if set
+    if (this.useArrowKeys) {
+      this.controlFocusByKey(event, this.topLevelNodes, targetLinkIndex);
+    }
+  }
+
+  onMenuKeyDown(event) {
+    if (this.openIndex === null) {
+      return;
+    }
+
+    var menuLinks = Array.prototype.slice.call(
+      this.controlledNodes[this.openIndex].querySelectorAll('a')
+    );
+    var currentIndex = menuLinks.indexOf(document.activeElement);
+
+    // close on escape
+    if (event.key === 'Escape') {
+      this.topLevelNodes[this.openIndex].focus();
+      this.toggleExpand(this.openIndex, false);
+    }
+
+    // handle arrow key navigation within menu links, if set
+    else if (this.useArrowKeys) {
+      this.controlFocusByKey(event, menuLinks, currentIndex);
+    }
+  }
+
+  toggleExpand(index, expanded) {
+    // close open menu, if applicable
+    if (this.openIndex !== index) {
+      this.toggleExpand(this.openIndex, false);
+    }
+
+    // handle menu at called index
+    if (this.topLevelNodes[index]) {
+      this.openIndex = expanded ? index : null;
+      this.topLevelNodes[index].setAttribute('aria-expanded', expanded);
+      this.toggleMenu(this.controlledNodes[index], expanded);
+    }
+  }
+
+  toggleMenu(domNode, show) {
+    if (domNode) {
+      domNode.style.display = show ? 'block' : 'none';
+    }
+  }
+
+  updateKeyControls(useArrowKeys) {
+    this.useArrowKeys = useArrowKeys;
+  }
+}
 
 /* Initialize Disclosure Menus */
 
 window.addEventListener(
   'load',
-  function (event) {
+  function () {
     var menus = document.querySelectorAll('.disclosure-nav');
     var disclosureMenus = [];
 
     for (var i = 0; i < menus.length; i++) {
       disclosureMenus[i] = new DisclosureNav(menus[i]);
-      disclosureMenus[i].init();
     }
 
     // listen to arrow key checkbox
     var arrowKeySwitch = document.getElementById('arrow-behavior-switch');
-    arrowKeySwitch.addEventListener('change', function (event) {
-      var checked = arrowKeySwitch.checked;
-      for (var i = 0; i < disclosureMenus.length; i++) {
-        disclosureMenus[i].updateKeyControls(checked);
-      }
-    });
-
-    // fake link behavior
-    var links = document.querySelectorAll('[href="#mythical-page-content"]');
-    var examplePageHeading = document.getElementById('mythical-page-heading');
-    for (var k = 0; k < links.length; k++) {
-      links[k].addEventListener('click', function (event) {
-        var pageTitle = event.target.innerText;
-        examplePageHeading.innerText = pageTitle;
-
-        // handle aria-current
-        for (var n = 0; n < links.length; n++) {
-          links[n].removeAttribute('aria-current');
+    if (arrowKeySwitch) {
+      arrowKeySwitch.addEventListener('change', function () {
+        var checked = arrowKeySwitch.checked;
+        for (var i = 0; i < disclosureMenus.length; i++) {
+          disclosureMenus[i].updateKeyControls(checked);
         }
-        this.setAttribute('aria-current', 'page');
       });
     }
+
+    // fake link behavior
+    disclosureMenus.forEach((disclosureNav, i) => {
+      var links = menus[i].querySelectorAll('[href="#mythical-page-content"]');
+      var examplePageHeading = document.getElementById('mythical-page-heading');
+      for (var k = 0; k < links.length; k++) {
+        // The codepen export script updates the internal link href with a full URL
+        // we're just manually fixing that behavior here
+        links[k].href = '#mythical-page-content';
+
+        links[k].addEventListener('click', (event) => {
+          // change the heading text to fake a page change
+          var pageTitle = event.target.innerText;
+          examplePageHeading.innerText = pageTitle;
+
+          // handle aria-current
+          for (var n = 0; n < links.length; n++) {
+            links[n].removeAttribute('aria-current');
+          }
+          event.target.setAttribute('aria-current', 'page');
+        });
+      }
+    });
   },
   false
 );
