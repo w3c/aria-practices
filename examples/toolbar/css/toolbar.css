@@ -29,13 +29,13 @@
 [role="toolbar"] .spinbutton,
 [role="toolbar"] a,
 [role="toolbar"] .input {
-  border: 1px solid rgb(255, 255, 255);
+  border: 1px solid rgb(255 255 255);
   outline: none;
   display: inline-block;
   padding: 6px 12px;
   border-radius: 5px;
   text-align: center;
-  background: rgb(255, 255, 255);
+  background: rgb(255 255 255);
   color: #222428;
   font-size: 14px;
   line-height: 1.5em;
@@ -77,14 +77,14 @@
 }
 
 [role="toolbar"] button .popup-label::after {
-  border-color: rgba(0, 0, 0, 0);
+  border-color: rgb(0 0 0 / 0%);
   border-top-color: #000;
   border-width: 10px;
   margin-left: -10px;
 }
 
 [role="toolbar"] button .popup-label::before {
-  border-color: rgba(255, 255, 255, 0);
+  border-color: rgb(255 255 255 / 0%);
   border-top-color: #fff;
   border-width: 12px;
   margin-left: -12px;
@@ -117,7 +117,7 @@
 [role="toolbar"] a:focus {
   border-width: 2px;
   border-color: #005a9c;
-  background: rgb(226, 239, 255);
+  background: rgb(226 239 255);
   padding: 5px 11px;
 }
 
@@ -127,7 +127,7 @@
 [role="toolbar"] label.input:hover,
 [role="toolbar"] a:hover {
   border-color: #005a9c;
-  background: rgb(226, 239, 255);
+  background: rgb(226 239 255);
 }
 
 [role="toolbar"] [role="spinbutton"] .value,
@@ -144,11 +144,11 @@
 }
 
 [role="toolbar"] button[aria-haspopup] span::after {
-  content: url(../images/pulldown-icon.svg);
+  content: url("../images/pulldown-icon.svg");
 }
 
 [role="toolbar"] button[aria-haspopup]:focus span::after {
-  content: url(../images/pulldown-icon-focus.svg);
+  content: url("../images/pulldown-icon-focus.svg");
 }
 
 [role="toolbar"] [role="spinbutton"] .increase,

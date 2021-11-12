@@ -1218,15 +1218,16 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
     <section class="widget" id="disclosure">
       <h3>Disclosure (Show/Hide)</h3>
       <p>
-        A disclosure is a <a href="#button">button</a> that controls visibility of a section of content.
-        When the controlled content is hidden, it is often styled as a typical push button with a right-pointing arrow or triangle to hint that activating the button will display additional content.
+        A disclosure is a widget that enables content to be either collapsed (hidden) or expanded (visible).
+        It has two elements: a disclosure <a href="#button">button</a> and a section of content whose visibility is controlled by the button.
+        When the controlled content is hidden, the button is often styled as a typical push button with a right-pointing arrow or triangle to hint that activating the button will display additional content.
         When the content is visible, the arrow or triangle typically points down.
       </p>
 
       <section class="notoc">
         <h4>Examples</h4>
         <ul>
-          <li><a href="examples/disclosure/disclosure-img-long-description.html">Disclosure (Show/Hide) of Image Description</a></li>
+          <li><a href="examples/disclosure/disclosure-image-description.html">Disclosure (Show/Hide) of Image Description</a></li>
           <li><a href="examples/disclosure/disclosure-faq.html">Disclosure (Show/Hide) of Answers to Frequently Asked Questions</a></li>
           <li><a href="examples/disclosure/disclosure-navigation.html">Disclosure (Show/Hide) Navigation Menu</a></li>
           <li><a href="examples/disclosure/disclosure-navigation-hybrid.html">Disclosure (Show/Hide) Navigation Menu with Top-Level Links</a></li>
@@ -1810,7 +1811,6 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         <h4>Examples</h4>
         <ul>
           <li><a href="examples/listbox/listbox-scrollable.html">Scrollable Listbox Example</a>: Single-select listbox that scrolls to reveal more options, similar to HTML <code>select</code> with <code>size</code> attribute greater than one.</li>
-          <li><a href="examples/listbox/listbox-collapsible.html">Collapsible Dropdown Listbox Example</a>: Single-select collapsible listbox that expands when activated, similar to HTML <code>select</code> with the attribute <code>size=&quot;1&quot;</code>.</li>
           <li><a href="examples/listbox/listbox-rearrangeable.html">Example Listboxes with Rearrangeable Options</a>: Examples of both single-select and multi-select listboxes with accompanying toolbars where options can be added, moved, and removed.</li>
           <li><a href="examples/listbox/listbox-grouped.html">Listbox Example with Grouped Options</a>: Single-select listbox with grouped options, similar to an HTML <code>select</code> with <code>optgroup</code> children.</li>
         </ul>
@@ -2222,6 +2222,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         <ul>
           <li><a href="examples/radio/radio.html">Radio Group Example Using Roving tabindex</a></li>
           <li><a href="examples/radio/radio-activedescendant.html">Radio Group Example Using aria-activedescendant</a></li>
+          <li><a href="examples/radio/radio-rating.html">Rating Radio Group Example</a>: Radio group that provides input for a five-star rating scale.</li>
         </ul>
       </section>
 
@@ -2354,15 +2355,17 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       </p>
       <p class="warning">
         Some users of touch-based assistive technologies may experience difficulty utilizing widgets that implement this slider pattern because the gestures their assistive technology provides for operating sliders may not yet generate the necessary output.
-        To change the slider value, touch-based assistive technologies need to respond to user gestures for incrementing and decrementing the value by synthesizing key events.
+        To change the slider value, touch-based assistive technologies need to respond to user gestures for increasing and decreasing the value by synthesizing key events.
         This is a new convention that may not be fully implemented by some assistive technologies.
         Authors should fully test slider widgets using assistive technologies on devices where touch is a primary input mechanism before considering incorporation into production systems.
       </p>
       <section class="notoc">
         <h4>Examples</h4>
         <ul>
-          <li><a href="examples/slider/slider-color-viewer.html">Color Viewer Slider Examples</a>: Demonstrates using three horizontally aligned sliders to make a color viewer.</li>
-          <li><a href="examples/slider/slider-2.html">Slider Examples with aria-orientation and aria-valuetext</a>: Three thermostat control sliders that demonstrate using aria-orientation and aria-valuetext.</li>
+          <li><a href="examples/slider/slider-color-viewer.html">Color Viewer Slider Example</a>: Basic  horizontal sliders that illustrate setting numeric values for a color picker.</li>
+          <li><a href="examples/slider/slider-temperature.html">Vertical Temperature Slider Example</a>: Demonstrates using <code>aria-orientation</code> to specify vertical orientation and <code>aria-valuetext</code> to communicate unit of measure for a temperature input.</li>
+          <li><a href="examples/slider/slider-rating.html">Rating Slider Example</a>: Horizontal slider that demonstrates using <code>aria-valuetext</code> to communicate current and maximum value of a rating input for a five star rating scale.</li>
+          <li><a href="examples/slider/slider-seek.html">Media Seek Slider Example</a>: Horizontal slider that demonstrates using <code>aria-valuetext</code> to communicate current and maximum values of time in media to make the values easy to understand for assistive technology users by converting the total number of seconds to minutes and seconds.</li>
         </ul>
       </section>
 
@@ -2375,8 +2378,8 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
           <li><kbd>Down Arrow</kbd>: Decrease the value of the slider by one step.</li>
           <li><kbd>Home</kbd>: Set the slider to the first allowed value in its range.</li>
           <li><kbd>End</kbd>: Set the slider to the last allowed value in its range.</li>
-          <li><kbd>Page Up</kbd> (Optional): Increment the slider by an amount larger than the step change made by <kbd>Up Arrow</kbd>.</li>
-          <li><kbd>Page Down</kbd> (Optional): Decrement the slider by an amount larger than the step change made by <kbd>Down Arrow</kbd>.</li>
+          <li><kbd>Page Up</kbd> (Optional): Increase the slider value by an amount larger than the step change made by <kbd>Up Arrow</kbd>.</li>
+          <li><kbd>Page Down</kbd> (Optional): Decrease the slider value by an amount larger than the step change made by <kbd>Down Arrow</kbd>.</li>
         </ul>
         <ol class="note">
           <li>Focus is placed on the slider (the visual object that the mouse user would move, also known as the thumb.</li>
@@ -2422,14 +2425,14 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       </p>
       <p class="warning">
         Some users of touch-based assistive technologies may experience difficulty utilizing widgets that implement this slider pattern because the gestures their assistive technology provides for operating sliders may not yet generate the necessary output.
-        To change the slider value, touch-based assistive technologies need to respond to user gestures for incrementing and decrementing the value by synthesizing key events.
+        To change the slider value, touch-based assistive technologies need to respond to user gestures for increasing and decreasing the value by synthesizing key events.
         This is a new convention that may not be fully implemented by some assistive technologies.
         Authors should fully test slider widgets using assistive technologies on devices where touch is a primary input mechanism before considering incorporation into production systems.
       </p>
 
       <section class="notoc">
         <h4>Example</h4>
-        <p><a href="examples/slider/multithumb-slider.html">Multi-Thumb Slider Examples</a>: Demonstrates two-thumb sliders for picking price ranges for an airline flight and hotel reservation.</p>
+        <p><a href="examples/slider/slider-multithumb.html">Multi-Thumb Slider Examples</a>: Demonstrates a two-thumb slider for picking a price range for a hotel reservation.</p>
       </section>
 
       <section id="slidertwothumb_kbd_interaction" class="notoc">
@@ -2477,8 +2480,8 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         For example, in a widget that enables users to set an alarm, a spinbutton could allow users to select a number from 0 to 59 for the minute of an hour.
       </p>
       <p>
-        Spinbuttons often have three components, including a text field that displays the current value, an increment button, and a decrement button.
-        The text field is usually the only focusable component because the increment and decrement functions are keyboard accessible via arrow keys.
+        Spinbuttons often have three components, including a text field that displays the current value, an increase button, and a decrease button.
+        The text field is usually the only focusable component because the increase and decrease functions are keyboard accessible via arrow keys.
         Typically, the text field also allows users to directly edit the value.
       </p>
       <p>
@@ -2555,6 +2558,70 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       </section>
     </section>
 
+    <section class="widget" id="switch">
+      <h3>Switch</h3>
+      <p>
+        A <a href="#switch" class="role-reference">switch</a> is an input widget that allows users to choose one of two values: <q>on</q> or <q>off</q>.
+        Switches are similar to <a href="#checkbox">checkboxes</a> and <a href="#button">toggle buttons</a>, which can also serve as binary inputs.
+        One difference, however, is that switches can only be used for binary input while checkboxes and toggle buttons allow implementations the option of supporting a third middle state.
+        Checkboxes can be <q>checked</q> or <q>not checked</q> and can optionally also allow for a <q>partially checked</q> state.
+        Toggle buttons can be <q>pressed</q> or <q>not pressed</q> and can optionally allow for a <q>partially pressed</q> state.
+      </p>
+      <p>
+        Since switch, checkbox, and toggle button all offer binary input, they are often functionally interchangeable.
+        Choose the role that best matches both the visual design and semantics of the user interface.
+        For instance, there are some circumstances where the semantics of <q>on or off</q> would be easier for assistive technology users to understand than the semantics of <q>checked or unchecked</q>, and vice versa.
+        Consider a widget for turning lights on or off.
+        In this case, screen reader output of <q>Lights switch on</q> is more user friendly than <q>Lights checkbox checked</q>. 
+        However, if the same input were in a group of inputs labeled <q>Which of the following must be included in your pre-takeoff procedures?</q>, <q>Lights checkbox checked</q> would make more sense.
+      </p>
+      <p>
+        <strong>Important:</strong> it is critical the label on a switch does not change when its state changes.
+      </p>
+
+      <section class="notoc">
+        <h4>Examples</h4>
+        <ul>
+          <li><a href="examples/switch/switch.html">Switch Example</a>: A switch based on a <code>div</code> element that turns a notification preference on and off.</li>
+          <li><a href="examples/switch/switch-button.html">Switch Example Using HTML Button</a>: A group of 2 switches based on HTML <code>button</code> elements that turn lights on and off.</li>
+          <li><a href="examples/switch/switch-checkbox.html">Switch Example Using HTML Checkbox Input</a>: A group of 2 switches based on HTML <code>input[type="checkbox"]</code> elements that turn accessibility preferences on and off.</li>
+        </ul>
+      </section>
+
+      <section class="notoc">
+        <h4>Keyboard Interaction</h4>
+        <ul>
+          <li><kbd>Space</kbd>: When focus is on the switch, changes the state of the switch.</li>
+          <li><kbd>Enter</kbd> (Optional): When focus is on the switch, changes the state of the switch.</li>
+        </ul>
+      </section>
+
+      <section class="notoc">
+        <h4>WAI-ARIA Roles, States, and Properties</h4>
+        <ul>
+          <li>The switch has role <a href="#switch" class="role-reference">switch</a>.</li>
+          <li>
+            The switch has an accessible label provided by one of the following:
+            <ul>
+              <li>Visible text content contained within the element with role <code>switch</code>.</li>
+              <li>A visible label referenced by the value of <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a> set on the element with role <code>switch</code>.</li>
+              <li><a href="#aria-label" class="property-reference">aria-label</a> set on the element with role <code>switch</code>.</li>
+            </ul>
+          </li>
+          <li>When <code>on</code>, the switch element has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>true</code>.</li>
+          <li>When <code>off</code>, the switch element has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>false</code>.</li>
+          <li>If the switch element is an HTML <code>input[type="checkbox"]</code>, it uses the HTML <code>checked</code> attribute instead of the <code>aria-checked</code> property.</li>
+          <li>If a set of switches is presented as a logical group with a visible label, either:
+            <ul>
+              <li>The switches are included in an element with role <a href="#group" class="role-reference" >group</a> that has the property <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a> set to the ID of the element containing the group label.</li>
+              <li>The set is contained in an HTML <code>fieldset</code> and the label for the set is contained in an HTML <code>legend</code> element.</li>
+            </ul>
+          </li>
+          <li>If the presentation includes additional descriptive static text relevant to a switch or switch group, the switch or switch group has the property <a href="#aria-describedby" class="property-reference">aria-describedby</a> set to the ID of the element containing the description.</li>
+        </ul>
+      </section>
+    </section>
+
     <section class="widget" id="table">
       <h3>Table</h3>
       <p>
@@ -2575,7 +2642,10 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       </p>
       <section class="notoc">
         <h4>Examples</h4>
-        <p><a href="examples/table/table.html">Table Example</a>: ARIA table made using HTML <code>div</code> and <code>span</code> elements.</p>
+        <ul>
+          <li><a href="examples/table/table.html">Table Example</a>: ARIA table made using HTML <code>div</code> and <code>span</code> elements.</li>
+          <li><a href="examples/table/sortable-table.html">Sortable Table Example</a>: Basic HTML table that illustrates implementation of <code>aria-sort</code> in the headers of sortable columns.</li>
+        </ul>
       </section>
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
@@ -5825,7 +5895,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
             </li>
 
             <li> Activate an element without moving focus when the target context of the function is the context that contains the focus. This behavior is most common for command buttons and for functions associated with elements that are not visible, such as a "Save" option that is accessible via a menu. For example, if the focus is on an option in a listbox and a toolbar contains buttons for moving and removing options, it is most beneficial to keep focus in the listbox when the user presses a key shortcut for one of the buttons in the toolbar. This behavior can be particularly important for screen reader users because it provides confirmation of the action performed and makes performing multiple commands more efficient. For instance, when a screen reader user presses the shortcut for the "Up" button, the user will be able to hear the new position of the option in the list since it still has the focus. Similarly, when the user presses the shortcut for deleting an option, the user can
-								hear the next option in the list and immediately decide whether to press the delete shortcut again. </li>
+                hear the next option in the list and immediately decide whether to press the delete shortcut again. </li>
 
             <li>
               Move focus and activate when the target of the shortcut has a single function and the context of that function is the same as the target.
@@ -7008,66 +7078,66 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
         <li>Simon Pieters of Bocoup and his sponsor, Facebook, for authoring of significant guidance sections, including comprehensive treatment of the topic of accessible names and descriptions.</li>
       </ul>
     </section>
-  	<section>
-  		<h3>Participants active in the ARIA Authoring Practices Task Force</h3>
-  		<ul>
-  			<li>Ann Abbott (Invited Expert)</li>
-  			<li>Shirisha Balusani (Microsoft Corporation)</li>
+    <section>
+      <h3>Participants active in the ARIA Authoring Practices Task Force</h3>
+      <ul>
+        <li>Ann Abbott (Invited Expert)</li>
+        <li>Shirisha Balusani (Microsoft Corporation)</li>
         <li>Dorothy Bass (Wells Fargo Bank N.A.)</li>
-  			<li>Curt Bellew (Oracle)</li>
-  			<li>Zoë Bijl (Invited Expert)</li>
-  			<li>Michael Cooper (W3C)</li>
-  			<li>Bryan Garaventa (Level Access)</li>
-  			<li>Jon Gunderson (University of Illinois at Urbana-Champaign)</li>
+        <li>Curt Bellew (Oracle)</li>
+        <li>Zoë Bijl (Invited Expert)</li>
+        <li>Michael Cooper (W3C)</li>
+        <li>Bryan Garaventa (Level Access)</li>
+        <li>Jon Gunderson (University of Illinois at Urbana-Champaign)</li>
         <li>Jesse Hausler(Salesforce)</li>
         <li>Sarah Higley (Microsoft Corporation)</li>
-  			<li>Hans Hillen (The Paciello Group, LLC)</li>
-  			<li>Matt King (Facebook)</li>
-  			<li>Jaeun Ku (University of Illinois at Urbana-Champaign)</li>
-  			<li>Aaron Leventhal (Google)</li>
+        <li>Hans Hillen (The Paciello Group, LLC)</li>
+        <li>Matt King (Facebook)</li>
+        <li>Jaeun Ku (University of Illinois at Urbana-Champaign)</li>
+        <li>Aaron Leventhal (Google)</li>
         <li>Carolyn MacLeod (IBM Corporation)</li>
-  			<li>Mark McCarthy (University of Illinois at Urbana-Champaign)</li>
-  			<li>James Nurthen (Adobe)</li>
+        <li>Mark McCarthy (University of Illinois at Urbana-Champaign)</li>
+        <li>James Nurthen (Adobe)</li>
         <li>Scott O'Hara (The Paciello Group, LLC)</li>
         <li>Simon Pieters (Bocoup)</li>
         <li>Scott Vinkle (Shopify)</li>
-  			<li>Evan Yamanishi (W. W. Norton)</li>
-  			<li>Valerie Young (Bocoup)</li>
-  		</ul>
-  	</section>
-  	<section>
-  		<h3>Other commenters and contributors to Version 1.1</h3>
-  		<ul>
-  			<li>Vyacheslav Aristov</li>
-  			<li>J. Renée Beach</li>
-  			<li>Kasper Christensen</li>
-  			<li>Gerard K. Cohen</li>
-  			<li>Anne-Gaelle Colom</li>
-  			<li>Kevin Coughlin</li>
-  			<li>Cameron Cundiff</li>
-  			<li>Manish Dahamiwal</li>
-  			<li>Gilmore Davidson</li>
-  			<li>Boris Dušek</li>
-  			<li>Michael Fairchild</li>
-  			<li>Jeremy Felt</li>
-  			<li>Rob Fentress</li>
-  			<li>Geppy</li>
-  			<li>Tatiana Iskandar</li>
-  			<li>Patrick Lauke</li>
-  			<li>Marek Lewandowski</li>
-  			<li>Dan Matthew</li>
-  			<li>Shane McCarron</li>
-  			<li>Victor Meyer</li>
-  			<li>Jonathan Neal</li>
-  			<li>Philipp Rudloff</li>
-  			<li>Joseph Scheuhammer</li>
-  			<li>Nick Schonning</li>
-  			<li>thomascorthals</li>
-  			<li>Christopher Tryens</li>
-  		</ul>
-  	</section>
+        <li>Evan Yamanishi (W. W. Norton)</li>
+        <li>Valerie Young (Bocoup)</li>
+      </ul>
+    </section>
+    <section>
+      <h3>Other commenters and contributors to Version 1.1</h3>
+      <ul>
+        <li>Vyacheslav Aristov</li>
+        <li>J. Renée Beach</li>
+        <li>Kasper Christensen</li>
+        <li>Gerard K. Cohen</li>
+        <li>Anne-Gaelle Colom</li>
+        <li>Kevin Coughlin</li>
+        <li>Cameron Cundiff</li>
+        <li>Manish Dahamiwal</li>
+        <li>Gilmore Davidson</li>
+        <li>Boris Dušek</li>
+        <li>Michael Fairchild</li>
+        <li>Jeremy Felt</li>
+        <li>Rob Fentress</li>
+        <li>Geppy</li>
+        <li>Tatiana Iskandar</li>
+        <li>Patrick Lauke</li>
+        <li>Marek Lewandowski</li>
+        <li>Dan Matthew</li>
+        <li>Shane McCarron</li>
+        <li>Victor Meyer</li>
+        <li>Jonathan Neal</li>
+        <li>Philipp Rudloff</li>
+        <li>Joseph Scheuhammer</li>
+        <li>Nick Schonning</li>
+        <li>thomascorthals</li>
+        <li>Christopher Tryens</li>
+      </ul>
+    </section>
 
-  	<div data-include="common/acknowledgements/funders.html" data-include-replace="true"></div>
+    <div data-include="common/acknowledgements/funders.html" data-include-replace="true"></div>
 
   </section>
 </body>

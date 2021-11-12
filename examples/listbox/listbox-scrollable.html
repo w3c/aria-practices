@@ -36,7 +36,6 @@
   <p>Similar examples include:</p>
   <ul>
     <li><a href="listbox-rearrangeable.html">Example Listboxes with Rearrangeable Options</a>: Examples of both single-select and multi-select listboxes with accompanying toolbars where options can be added, moved, and removed.</li>
-    <li><a href="listbox-collapsible.html">Collapsible Dropdown Listbox Example</a>: Single-select collapsible listbox that expands when activated, similar to HTML <code>select</code> with the attribute <code>size=&quot;1&quot;</code>.</li>
     <li><a href="listbox-grouped.html">Listbox Example with Grouped Options</a>: Single-select listbox with grouped options, similar to an HTML <code>select</code> with <code>optgroup</code> children.</li>
   </ul>
   <section>
@@ -185,7 +184,7 @@
           </td>
         </tr>
         <tr data-test-id="option-role">
-          <th scope="row"><code>role=&quot;option&quot;</code></th>
+          <th scope="row"><code>option</code></th>
           <td></td>
           <td><code>li</code></td>
           <td>Identifies each selectable element containing the name of an option.</td>
@@ -225,8 +224,12 @@
     <div id="sc_start_sep" role="separator" aria-labelledby="sc_start_sep sc_label" aria-label="Start of "></div>
     <pre><code id="sc"></code></pre>
     <div id="sc_end_sep" role="separator" aria-labelledby="sc_end_sep sc_label" aria-label="End of"></div>
-    <script>sourceCode.add('sc', 'ex', 'ex_label', 'css_js_files')</script>
-    <script> sourceCode.make() </script>
+    <script>
+      sourceCode.add('sc', 'ex', 'ex_label', 'css_js_files');
+    </script>
+    <script>
+      sourceCode.make();
+    </script>
   </section>
   </main>
   <nav>

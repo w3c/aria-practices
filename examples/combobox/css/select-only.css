@@ -12,8 +12,8 @@
 }
 
 .combo::after {
-  border-bottom: 2px solid rgba(0, 0, 0, 0.75);
-  border-right: 2px solid rgba(0, 0, 0, 0.75);
+  border-bottom: 2px solid rgb(0 0 0 / 75%);
+  border-right: 2px solid rgb(0 0 0 / 75%);
   content: "";
   display: block;
   height: 12px;
@@ -27,7 +27,7 @@
 
 .combo-input {
   background-color: #f5f5f5;
-  border: 2px solid rgba(0, 0, 0, 0.75);
+  border: 2px solid rgb(0 0 0 / 75%);
   border-radius: 4px;
   display: block;
   font-size: 1em;
@@ -56,7 +56,7 @@
 
 .combo-menu {
   background-color: #f5f5f5;
-  border: 1px solid rgba(0, 0, 0, 0.75);
+  border: 1px solid rgb(0 0 0 / 75%);
   border-radius: 0 0 4px 4px;
   display: none;
   max-height: 300px;
@@ -77,7 +77,7 @@
 }
 
 .combo-option:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgb(0 0 0 / 10%);
 }
 
 .combo-option.option-current {

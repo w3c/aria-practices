@@ -42,14 +42,12 @@ aria.CSSClass = {
 
 /**
  * @class
- *
  * @description
  *  Grid object representing the state and interactions for a grid widget
  *
  *  Assumptions:
  *  All focusable cells initially have tabindex="-1"
  *  Produces a fully filled in mxn grid (with no holes)
- *
  * @param gridNode
  *  The DOM node pointing to the grid
  */
@@ -130,13 +128,10 @@ aria.Grid.prototype.setupFocusGrid = function () {
 /**
  * @description
  *  If possible, set focus pointer to the cell with the specified coordinates
- *
  * @param row
  *  The index of the cell's row
- *
  * @param col
  *  The index of the cell's column
- *
  * @returns {boolean}
  *  Returns whether or not the focus could be set on the cell.
  */
@@ -172,10 +167,8 @@ aria.Grid.prototype.setFocusPointer = function (row, col) {
 /**
  * @param row
  *  The index of the cell's row
- *
  * @param col
  *  The index of the cell's column
- *
  * @returns {boolean}
  *  Returns whether or not the coordinates are within the grid's boundaries.
  */
@@ -195,10 +188,8 @@ aria.Grid.prototype.isValidCell = function (row, col) {
 /**
  * @param row
  *  The index of the cell's row
- *
  * @param col
  *  The index of the cell's column
- *
  * @returns {boolean}
  *  Returns whether or not the cell has been hidden.
  */
@@ -261,10 +252,8 @@ aria.Grid.prototype.registerEvents = function () {
 /**
  * @description
  *  Focus on the cell in the specified row and column
- *
  * @param row
  *  The index of the cell's row
- *
  * @param col
  *  The index of the cell's column
  */
@@ -293,7 +282,6 @@ aria.Grid.prototype.hideKeysIndicator = function () {
  * @description
  *  Triggered on keydown. Checks if an arrow key was pressed, and (if possible)
  *  moves focus to the next valid cell in the direction of the arrow key.
- *
  * @param event
  *  Keydown event
  */
@@ -363,7 +351,6 @@ aria.Grid.prototype.checkFocusChange = function (event) {
 /**
  * @description
  *  Reset focused row and col if it doesn't match focusedRow and focusedCol
- *
  * @param focusedTarget
  *  Element that is currently focused by browser
  */
@@ -390,7 +377,6 @@ aria.Grid.prototype.findFocusedItem = function (focusedTarget) {
 /**
  * @description
  *  Triggered on click. Finds the cell that was clicked on and focuses on it.
- *
  * @param event
  *  Keydown event
  */
@@ -417,7 +403,6 @@ aria.Grid.prototype.focusClickedCell = function (event) {
  * @description
  *  Triggered on click. Checks if user clicked on a header with aria-sort.
  *  If so, it sorts the column based on the aria-sort attribute.
- *
  * @param event
  *  Keydown event
  */
@@ -464,13 +449,10 @@ aria.Grid.prototype.delegateButtonHandler = function (event) {
  * @description
  *  Toggles the mode of an editable cell between displaying the edit button
  *  and displaying the editable input.
- *
  * @param editCell
  *  Cell to toggle
- *
  * @param toggleOn
  *  Whether to show or hide edit input
- *
  * @param updateText
  *  Whether or not to update the button text with the input text
  */
@@ -503,7 +485,6 @@ aria.Grid.prototype.toggleEditMode = function (editCell, toggleOn, updateText) {
  *  All other headers with aria-sort are reset to "none"
  *
  *  Note: This implementation assumes that there is no pagination on the grid.
- *
  * @param headerNode
  *  Header DOM node
  */
@@ -546,7 +527,6 @@ aria.Grid.prototype.handleSort = function (headerNode) {
 /**
  * @description
  *  Sorts the grid's rows according to the specified compareFn
- *
  * @param compareFn
  *  Comparison function to sort the rows
  */
@@ -599,7 +579,6 @@ aria.Grid.prototype.setPaginationChangeHandler = function (onPaginationChange) {
 /**
  * @description
  *  Check if page up or page down was pressed, and show the next page if so.
- *
  * @param event
  *  Keydown event
  */
@@ -634,10 +613,8 @@ aria.Grid.prototype.movePageDown = function () {
 /**
  * @description
  *  Scroll the specified row into view in the specified direction
- *
  * @param startIndex
  *  Row index to use as the start index
- *
  * @param scrollDown
  *  Whether to scroll the new page above or below the row index
  */
@@ -848,10 +825,8 @@ aria.Grid.prototype.getNextVisibleCell = function (directionX, directionY) {
 /**
  * @description
  *  Show or hide the cells in the specified column
- *
  * @param columnIndex
  *  Index of the column to toggle
- *
  * @param isShown
  *  Whether or not to show the column
  */
@@ -880,13 +855,10 @@ aria.Grid.prototype.toggleColumn = function (columnIndex, isShown) {
  * @description
  *  Find the closest element matching the selector. Only checks parent and
  *  direct children.
- *
  * @param element
  *  Element to start searching from
- *
  * @param selector
  *  Index of the column to toggle
- *
  * @returns {object} matching element
  */
 aria.Grid.prototype.findClosest = function (element, selector) {

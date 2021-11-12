@@ -26,7 +26,6 @@ function bindPort(port) {
  *
  * @param {number} port - TCP/IP port to use as a resource lock
  * @param {Function} safe - function that will be executed in isolation
- *
  * @returns {Promise} eventual value which shares the resolution of the
  *                    provided operation
  */
