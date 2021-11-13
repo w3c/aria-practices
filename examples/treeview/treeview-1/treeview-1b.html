@@ -28,15 +28,16 @@
     <main>
       <h1>File Directory Treeview Example Using Declared Properties</h1>
       <p>
-        The below example implements the
-        <a href="../../../#TreeView">Treeview Design Pattern</a>
-        to simulate a file selector.
-        When users activate an item that represents a file name in the below tree, the name of the selected file appears in the read-only edit field next to the tree.
+        The following example implementation of the
+        <a href="../../../#TreeView">Tree View Design Pattern</a>
+        ssimulates a widget for selecting a file or folder from within a hierarchical file system for viewing in a file viewer.
+        In the <q>My Documents</q> tree, each parent node represents a folder and each end node represents a file.
+        Activating a node selects the node and puts the name of the folder or file in the read-only edit field that represents the file viewer.
       </p>
       <p>
         The code in this example explicitly declares values for <code>aria-setsize</code>, <code>aria-posinset</code> and <code>aria-level</code>, which overrides browser computation of values for these properties.
-        The ARIA 1.0 specification for these properties states that browsers can, but are not required to, compute these values.
-       </p>
+        The ARIA specification for these properties states that browsers can, but are not required to, compute these values.
+      </p>
       <p>Similar examples include: </p>
       <ul>
         <li><a href="../treeview-1/treeview-1a.html">File Directory Treeview using <em>computed</em> properties</a></li>
