@@ -40,8 +40,8 @@
 #treegrid tr:focus,
 #treegrid td:focus,
 #treegrid a:focus {
-  outline: 2px solid hsl(216, 94%, 70%);
-  background-color: hsl(216, 80%, 97%);
+  outline: 2px solid hsl(216deg 94% 70%);
+  background-color: hsl(216deg 80% 97%);
 }
 
 #treegrid tr > td:not(:first-child),
