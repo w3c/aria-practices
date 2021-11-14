@@ -35,15 +35,14 @@
       <p>To use this example:</p>
       <ul>
         <li>
-          Activate the "discard" button to trigger a confirmation dialog.
+          Activate the "discard" button to trigger a confirmation dialog that has the <code>alertdialog</code> role.
           <ul>
-            <li>Activating the "yes" button removes the contents of both the "Notes" text area and local storage of the notes.</li>
+            <li>Activating the "yes" button in the confirmation dialog removes the contents of both the "Notes" text area and local storage of the notes.</li>
             <li>Activating the "no" button or pressing <kbd>escape</kbd> closes the dialog.</li>
             <li>The "discard" button is disabled if the notes text area does not contain any text.</li>
           </ul>
         </li>
-        <li>
-          Activate the "save" button to trigger an alert when it saves the contents of the "Notes" text area to <a href="https://www.w3.org/TR/webstorage/#the-localstorage-attribute">local storage</a>.
+        <li>Activate the "save" button to trigger an alert when the contents of the "Notes" text area is saved to <a href="https://www.w3.org/TR/webstorage/#the-localstorage-attribute">local storage</a>.
           <ul>
             <li>A successful save triggers a short alert to notify the user that the notes have been saved.</li>
             <li>The "save" button is disabled if the user's local storage value is the same as the "Notes" field.</li>
@@ -96,14 +95,14 @@
       </section>
       <section>
         <h2>Accessibility Features</h2>
-        <ol>
-          <li>The accessible label for the alert dialog is set to its heading ("Confirmation").</li>
+        <ul>
+          <li>The accessible name of the alert dialog is set to its heading ("Confirmation").</li>
           <li>The dialog's prompt ("Are you sure...?") is referenced via <code>aria-describedby</code> to ensure that the user is immediately aware of the prompt.</li>
           <li>
             Focus is automatically set to the first focusable element inside the dialog, which is the "No" <code>button</code>.
             This is the least destructive action, so focusing "No" helps prevent users from accidentally confirming the destructive "Discard" action, which cannot be undone.
           </li>
-        </ol>
+        </ul>
       </section>
       <section>
         <h2 id="kbd_label">Keyboard Support</h2>
