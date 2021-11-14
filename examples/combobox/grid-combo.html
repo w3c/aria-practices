@@ -52,7 +52,9 @@
     </ul>
 
     <section>
-      <h2 id="ex_label">Example</h2>
+      <div class="example-header">
+        <h2 id="ex_label">Example</h2>
+      </div>
       <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
       <div id="ex1">
         <label for="ex1-input" id="ex1-label" class="combobox-label">
@@ -77,6 +79,12 @@
         </div>
       </div>
       <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
+    </section>
+
+    <section>
+      <h2>Accessibility Features</h2>
+      <p>Browsers do not manage visibility of elements referenced by <code>aria-activedescendant</code> like they do for elements with focus. When a keyboard event changes the active option in the listbox, the JavaScript scrolls the option referenced by <code>aria-activedescendant</code> into view. Managing <code>aria-activedescendant</code> visibility is essential to accessibility for people who use a browser's zoom feature to increase the size of content.
+      </p>
     </section>
 
     <section>
@@ -379,8 +387,8 @@
 
     <section>
       <h2>Javascript and CSS Source Code</h2>
-      <ul>
-        <li> CSS: <a href="css/combobox.css" type="tex/css">combobox.css</a></li>
+      <ul id="css_js_files">
+        <li> CSS: <a href="css/grid-combo.css" type="tex/css">grid-combo.css</a></li>
         <li>Javascript: <a href="js/grid-combo.js">grid-combo.js</a>, <a href="js/grid-combo-example.js">grid-combo-example.js</a>, <a href="../js/utils.js">utils.js</a></li>
       </ul>
     </section>
@@ -391,7 +399,7 @@
       <pre><code id="sc1"></code></pre>
       <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
       <script>
-        sourceCode.add('sc1', 'ex1');
+        sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
         sourceCode.make();
       </script>
     </section>

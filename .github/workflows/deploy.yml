@@ -3,7 +3,7 @@ name: Deploy gh-pages
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - .github/workflows/deploy.yml
       - common/**

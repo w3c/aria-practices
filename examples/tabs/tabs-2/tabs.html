@@ -37,14 +37,16 @@
       </ul>
 
       <section>
-        <h2 id="ex_label">Example</h2>
+        <div class="example-header">
+          <h2 id="ex_label">Example</h2>
+        </div>
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div id="ex1">
           <div class="tabs">
             <div role="tablist" aria-label="Entertainment">
               <button type="button" role="tab" aria-selected="true" aria-controls="nils-tab" id="nils">Nils Frahm</button>
               <button type="button" role="tab" aria-selected="false" aria-controls="agnes-tab" id="agnes" tabindex="-1">Agnes Obel</button>
-              <button type="button" role="tab" aria-selected="false" aria-controls="complexcomplex" id="complex" tabindex="-1" data-deletable>Joke</button>
+              <button type="button" role="tab" aria-selected="false" aria-controls="complex-complex" id="complex" tabindex="-1" data-deletable>Joke</button>
             </div>
 
             <div tabindex="0" role="tabpanel" id="nils-tab" aria-labelledby="nils">
@@ -55,7 +57,7 @@
               <p>Agnes Caroline Thaarup Obel is a Danish singer/songwriter. Her first album, Philharmonics, was released by PIAS Recordings on 4 October 2010 in Europe. Philharmonics was certified gold in June 2011 by the Belgian Entertainment Association (BEA) for sales of 10,000 Copies.</p>
             </div>
 
-            <div tabindex="0" role="tabpanel" id="complexcomplex" aria-labelledby="complex" class="is-hidden">
+            <div tabindex="0" role="tabpanel" id="complex-complex" aria-labelledby="complex" class="is-hidden">
               <p>Fear of complicated buildings:</p>
               <p>A complex complex complex.</p>
             </div>
@@ -301,7 +303,7 @@
 
       <section>
         <h2>Javascript and CSS Source Code</h2>
-        <ul>
+        <ul id="css_js_files">
           <li>CSS: <a href="../css/tabs.css" type="tex/css">tabs.css</a></li>
           <li>Javascript: <a href="js/tabs.js" type="text/javascript">tabs.js</a></li>
         </ul>
@@ -313,7 +315,7 @@
         <pre><code id="sc1"></code></pre>
         <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
         <script>
-          sourceCode.add('sc1', 'ex1');
+          sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
           sourceCode.make();
         </script>
       </section>

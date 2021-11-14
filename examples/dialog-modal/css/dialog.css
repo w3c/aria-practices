@@ -16,11 +16,14 @@
   [role="dialog"] {
     position: absolute;
     top: 2rem;
-    left: 50vw;  /* move to the middle of the screen (assumes relative parent is the body/viewport) */
-    transform: translateX(-50%);  /* move backwards 50% of this element's width */
-    min-width: calc(640px - (15px * 2));  /* == breakpoint - left+right margin */
+    left: 50vw; /* move to the middle of the screen (assumes relative parent is the body/viewport) */
+    transform: translateX(
+      -50%
+    ); /* move backwards 50% of this element's width */
+
+    min-width: calc(640px - (15px * 2)); /* == breakpoint - left+right margin */
     min-height: auto;
-    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.12), 0 15px 12px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 19px 38px rgb(0 0 0 / 12%), 0 15px 12px rgb(0 0 0 / 22%);
   }
 }
 
@@ -116,7 +119,7 @@
 
 @media screen and (min-width: 640px) {
   .dialog-backdrop {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgb(0 0 0 / 30%);
   }
 }
 
@@ -144,12 +147,12 @@
 }
 
 .toast {
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgb(0 0 0 / 90%);
   color: #fff;
   padding: 1rem;
   border: none;
   border-radius: 0.25rem;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
   position: fixed;
   top: 1rem;
   right: 1rem;

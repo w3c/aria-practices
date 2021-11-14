@@ -1,16 +1,11 @@
-'use strict';
-
-const { By, Key } = require('selenium-webdriver');
-const assert = require('assert');
-
 /**
  * Confirm the continuous subset of elements are in tab order for a test page
  *
- * @param {obj} t                   - ava execution object
- * @param {string} elementSelector  - element selector string
+ * @param {object} t                   - ava execution object
+ * @param {string} selector  - element selector string
  * @param {string} message          - optional assertion message
  */
-module.exports = async function assertHasFocus (t, selector, message) {
+module.exports = async function assertHasFocus(t, selector, message) {
   const hasFocus = t.context.session.wait(
     async function () {
       return t.context.session.executeScript(function () {

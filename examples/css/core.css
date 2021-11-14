@@ -11,7 +11,7 @@ pre,
 code,
 samp,
 .sourcecode {
-  color: hsl(11, 81%, 43%);
+  color: hsl(11deg 81% 43%);
 }
 
 pre code:not(.hljs),
@@ -20,7 +20,7 @@ pre code:not(.hljs),
   padding: 1em;
   border-radius: 0.2em;
   overflow: auto;
-  background: hsl(24, 20%, 95%);
+  background: hsl(24deg 20% 95%);
 }
 
 /* Style all kbd elements that are not in table headers */
@@ -46,12 +46,19 @@ table.data.attributes tbody td {
   display: flex;
   align-items: center;
   margin-top: 3rem;
+  margin-bottom: 1rem;
   page-break-after: avoid;
   page-break-inside: avoid;
   font: 100% sans-serif;
   font-family: inherit;
   line-height: 1.2;
   hyphens: manual;
+}
+
+/* We need to override the top margin for the link example */
+
+th .example-header {
+  margin-top: 1em;
 }
 
 .example-header > :first-child {
@@ -66,20 +73,28 @@ table.data.attributes tbody td {
   display: inline-block;
   position: relative;
   padding: 0.4em 0.7em;
-  border: 1px solid hsl(213, 71%, 49%);
+  border: 1px solid hsl(213deg 71% 49%);
   border-radius: 5px;
-  box-shadow: 0 1px 2px hsl(216, 27%, 55%);
+  box-shadow: 0 1px 2px hsl(216deg 27% 55%);
   color: #fff;
   font-size: inherit;
-  text-shadow: 0 -1px 1px hsl(216, 27%, 25%);
-  background-color: hsl(216, 82%, 51%);
-  background-image: linear-gradient(to bottom, hsl(216, 82%, 53%), hsl(216, 82%, 47%));
+  text-shadow: 0 -1px 1px hsl(216deg 27% 25%);
+  background-color: hsl(216deg 82% 51%);
+  background-image: linear-gradient(
+    to bottom,
+    hsl(216deg 82% 53%),
+    hsl(216deg 82% 47%)
+  );
 }
 
 .example-header button:hover {
-  border-color: hsl(213, 71%, 29%);
-  background-color: hsl(216, 82%, 31%);
-  background-image: linear-gradient(to bottom, hsl(216, 82%, 33%), hsl(216, 82%, 27%));
+  border-color: hsl(213deg 71% 29%);
+  background-color: hsl(216deg 82% 31%);
+  background-image: linear-gradient(
+    to bottom,
+    hsl(216deg 82% 33%),
+    hsl(216deg 82% 27%)
+  );
   cursor: default;
 }
 
@@ -96,16 +111,20 @@ table.data.attributes tbody td {
   right: calc(-1px - 3px - 3px);
   bottom: calc(-1px - 3px - 3px);
   left: calc(-1px - 3px - 3px);
-  border: 3px solid hsl(213, 71%, 49%);
+  border: 3px solid hsl(213deg 71% 49%);
 
   /* button border radius + outline width + offset */
   border-radius: calc(5px + 3px + 3px);
-  content: '';
+  content: "";
 }
 
 .example-header button:active {
-  border-color: hsl(213, 71%, 49%);
-  background-color: hsl(216, 82%, 31%);
-  background-image: linear-gradient(to bottom, hsl(216, 82%, 53%), hsl(216, 82%, 47%));
-  box-shadow: inset 0 3px 5px 1px hsl(216, 82%, 30%);
+  border-color: hsl(213deg 71% 49%);
+  background-color: hsl(216deg 82% 31%);
+  background-image: linear-gradient(
+    to bottom,
+    hsl(216deg 82% 53%),
+    hsl(216deg 82% 47%)
+  );
+  box-shadow: inset 0 3px 5px 1px hsl(216deg 82% 30%);
 }

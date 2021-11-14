@@ -14,11 +14,15 @@ var Meter = function (element) {
 
 // returns a number representing a percentage between 0 - 100
 Meter.prototype._calculatePercentFill = function (min, max, value) {
-  if (typeof min !== 'number' || typeof max !== 'number' || typeof value !== 'number') {
+  if (
+    typeof min !== 'number' ||
+    typeof max !== 'number' ||
+    typeof value !== 'number'
+  ) {
     return 0;
   }
 
-  return 100 * (value - min) / (max - min);
+  return (100 * (value - min)) / (max - min);
 };
 
 // returns an hsl color string between red and green
@@ -72,12 +76,6 @@ Meter.prototype.setValue = function (value) {
 /* Code for example page */
 
 window.addEventListener('load', function () {
-  // helper function to randomize example meter value
-  function getRandomValue (min, max) {
-    var range = max - min;
-    return Math.floor((Math.random() * range) + min);
-  }
-
   // init meters
   var meterEls = document.querySelectorAll('[role=meter]');
   var meters = [];
@@ -88,7 +86,7 @@ window.addEventListener('load', function () {
   // randomly update meter values
 
   // returns an id for setInterval
-  function playMeters () {
+  function playMeters() {
     return window.setInterval(function () {
       meters.forEach(function (meter) {
         meter.setValue(Math.random() * 100);
@@ -108,8 +106,7 @@ window.addEventListener('load', function () {
       updateInterval = playMeters();
       playButton.classList.remove('paused');
       playButton.innerHTML = 'Pause Updates';
-    }
-    else {
+    } else {
       clearInterval(updateInterval);
       playButton.classList.add('paused');
       playButton.innerHTML = 'Start Updates';

@@ -46,13 +46,13 @@
 }
 
 .edit-text-button::after {
-  background-image: url('../imgs/pencil-icon.png');
+  background-image: url("../imgs/pencil-icon.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 44px;
-  content: ' ';
+  content: " ";
   height: 17px;
-  opacity: 0.6;
+  opacity: 60%;
   position: absolute;
   right: -24px;
   top: 0;
@@ -66,7 +66,7 @@
 
 .edit-text-button:hover::after,
 .edit-text-button:focus::after {
-  opacity: 1;
+  opacity: 100%;
 }
 
 [role="gridcell"]:focus,
@@ -83,7 +83,7 @@
   position: fixed;
   height: 65px;
   width: 85px;
-  background: url('../imgs/black_keys.png') no-repeat;
+  background: url("../imgs/black_keys.png") no-repeat;
   background-size: contain;
 }
 

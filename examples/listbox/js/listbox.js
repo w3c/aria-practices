@@ -1,7 +1,7 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ */
 
 'use strict';
 
@@ -11,17 +11,17 @@
 var aria = aria || {};
 
 /**
- * @constructor
- *
- * @desc
+ * @class
+ * @description
  *  Listbox object representing the state and interactions for a listbox widget
- *
  * @param listboxNode
  *  The DOM node pointing to the listbox
  */
 aria.Listbox = function (listboxNode) {
   this.listboxNode = listboxNode;
-  this.activeDescendant = this.listboxNode.getAttribute('aria-activedescendant');
+  this.activeDescendant = this.listboxNode.getAttribute(
+    'aria-activedescendant'
+  );
   this.multiselectable = this.listboxNode.hasAttribute('aria-multiselectable');
   this.moveUpDownEnabled = false;
   this.siblingList = null;
@@ -31,12 +31,12 @@ aria.Listbox = function (listboxNode) {
   this.moveButton = null;
   this.keysSoFar = '';
   this.handleFocusChange = function () {};
-  this.handleItemChange = function (event, items) {};
+  this.handleItemChange = function () {};
   this.registerEvents();
 };
 
 /**
- * @desc
+ * @description
  *  Register events for the listbox interactions
  */
 aria.Listbox.prototype.registerEvents = function () {
@@ -45,12 +45,15 @@ aria.Listbox.prototype.registerEvents = function () {
   this.listboxNode.addEventListener('click', this.checkClickItem.bind(this));
 
   if (this.multiselectable) {
-    this.listboxNode.addEventListener('mousedown', this.checkMouseDown.bind(this));
+    this.listboxNode.addEventListener(
+      'mousedown',
+      this.checkMouseDown.bind(this)
+    );
   }
 };
 
 /**
- * @desc
+ * @description
  *  If there is no activeDescendant, focus on the first option
  */
 aria.Listbox.prototype.setupFocus = function () {
@@ -60,7 +63,7 @@ aria.Listbox.prototype.setupFocus = function () {
 };
 
 /**
- * @desc
+ * @description
  *  Focus on the first option
  */
 aria.Listbox.prototype.focusFirstItem = function () {
@@ -72,7 +75,7 @@ aria.Listbox.prototype.focusFirstItem = function () {
 };
 
 /**
- * @desc
+ * @description
  *  Focus on the last option
  */
 aria.Listbox.prototype.focusLastItem = function () {
@@ -84,10 +87,9 @@ aria.Listbox.prototype.focusLastItem = function () {
 };
 
 /**
- * @desc
+ * @description
  *  Handle various keyboard controls; UP/DOWN will shift focus; SPACE selects
  *  an item.
- *
  * @param evt
  *  The keydown event object
  */
@@ -95,7 +97,8 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
   var key = evt.which || evt.keyCode;
   var lastActiveId = this.activeDescendant;
   var allOptions = this.listboxNode.querySelectorAll('[role="option"]');
-  var currentItem = document.getElementById(this.activeDescendant) || allOptions[0];
+  var currentItem =
+    document.getElementById(this.activeDescendant) || allOptions[0];
   var nextItem = currentItem;
 
   if (!currentItem) {
@@ -110,8 +113,7 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
 
         if (key === aria.KeyCode.PAGE_UP) {
           this.moveUpItems();
-        }
-        else {
+        } else {
           this.moveDownItems();
         }
       }
@@ -119,7 +121,6 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
       break;
     case aria.KeyCode.UP:
     case aria.KeyCode.DOWN:
-
       if (!this.activeDescendant) {
         // focus first option if no option was previously focused, and perform no other actions
         this.focusItem(currentItem);
@@ -130,8 +131,7 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
         evt.preventDefault();
         if (key === aria.KeyCode.UP) {
           this.moveUpItems();
-        }
-        else {
+        } else {
           this.moveDownItems();
         }
         return;
@@ -139,8 +139,7 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
 
       if (key === aria.KeyCode.UP) {
         nextItem = this.findPreviousOption(currentItem);
-      }
-      else {
+      } else {
         nextItem = this.findNextOption(currentItem);
       }
 
@@ -167,11 +166,10 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
       this.focusLastItem();
 
       if (this.multiselectable && evt.shiftKey && evt.ctrlKey) {
-        var startItem = allOptions[this.startRangeIndex];
         this.selectRange(this.startRangeIndex, allOptions.length - 1);
       }
       break;
-    case aria.KeyCode.SHIFT: 
+    case aria.KeyCode.SHIFT:
       this.startRangeIndex = this.getElementIndex(currentItem, allOptions);
       break;
     case aria.KeyCode.SPACE:
@@ -228,7 +226,7 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
         this.selectRange(0, allOptions.length - 1);
         break;
       }
-      // fall through
+    // fall through
     default:
       var itemToFocus = this.findItemToFocus(key);
       if (itemToFocus) {
@@ -263,11 +261,7 @@ aria.Listbox.prototype.findItemToFocus = function (key) {
     itemList.length
   );
   if (!nextMatch) {
-    nextMatch = this.findMatchInRange(
-      itemList,
-      0,
-      searchIndex
-    );
+    nextMatch = this.findMatchInRange(itemList, 0, searchIndex);
   }
   return nextMatch;
 };
@@ -282,7 +276,9 @@ aria.Listbox.prototype.getElementIndex = function (option, options) {
 
 /* Return the next listbox option, if it exists; otherwise, returns null */
 aria.Listbox.prototype.findNextOption = function (currentOption) {
-  var allOptions = Array.prototype.slice.call(this.listboxNode.querySelectorAll('[role="option"]')); // get options array
+  var allOptions = Array.prototype.slice.call(
+    this.listboxNode.querySelectorAll('[role="option"]')
+  ); // get options array
   var currentOptionIndex = allOptions.indexOf(currentOption);
   var nextOption = null;
 
@@ -295,7 +291,9 @@ aria.Listbox.prototype.findNextOption = function (currentOption) {
 
 /* Return the previous listbox option, if it exists; otherwise, returns null */
 aria.Listbox.prototype.findPreviousOption = function (currentOption) {
-  var allOptions = Array.prototype.slice.call(this.listboxNode.querySelectorAll('[role="option"]')); // get options array
+  var allOptions = Array.prototype.slice.call(
+    this.listboxNode.querySelectorAll('[role="option"]')
+  ); // get options array
   var currentOptionIndex = allOptions.indexOf(currentOption);
   var previousOption = null;
 
@@ -311,13 +309,20 @@ aria.Listbox.prototype.clearKeysSoFarAfterDelay = function () {
     clearTimeout(this.keyClear);
     this.keyClear = null;
   }
-  this.keyClear = setTimeout((function () {
-    this.keysSoFar = '';
-    this.keyClear = null;
-  }).bind(this), 500);
+  this.keyClear = setTimeout(
+    function () {
+      this.keysSoFar = '';
+      this.keyClear = null;
+    }.bind(this),
+    500
+  );
 };
 
-aria.Listbox.prototype.findMatchInRange = function (list, startIndex, endIndex) {
+aria.Listbox.prototype.findMatchInRange = function (
+  list,
+  startIndex,
+  endIndex
+) {
   // Find the first item starting with the keysSoFar substring, searching in
   // the specified range of items
   for (var n = startIndex; n < endIndex; n++) {
@@ -330,9 +335,8 @@ aria.Listbox.prototype.findMatchInRange = function (list, startIndex, endIndex) 
 };
 
 /**
- * @desc
+ * @description
  *  Check if an item is clicked on. If so, focus on it and select it.
- *
  * @param evt
  *  The click event object
  */
@@ -351,18 +355,23 @@ aria.Listbox.prototype.checkClickItem = function (evt) {
 };
 
 /**
- * Prevent text selection on shift + click for multiselect listboxes
+ * Prevent text selection on shift + click for multi-select listboxes
+ *
+ * @param evt
  */
 aria.Listbox.prototype.checkMouseDown = function (evt) {
-  if (this.multiselectable && evt.shiftKey && evt.target.getAttribute('role') === 'option') {
+  if (
+    this.multiselectable &&
+    evt.shiftKey &&
+    evt.target.getAttribute('role') === 'option'
+  ) {
     evt.preventDefault();
   }
 };
 
 /**
- * @desc
+ * @description
  *  Toggle the aria-selected value
- *
  * @param element
  *  The element to select
  */
@@ -378,9 +387,8 @@ aria.Listbox.prototype.toggleSelectItem = function (element) {
 };
 
 /**
- * @desc
+ * @description
  *  Defocus the specified item
- *
  * @param element
  *  The element to defocus
  */
@@ -395,9 +403,8 @@ aria.Listbox.prototype.defocusItem = function (element) {
 };
 
 /**
- * @desc
+ * @description
  *  Focus on the specified item
- *
  * @param element
  *  The element to focus
  */
@@ -420,22 +427,32 @@ aria.Listbox.prototype.focusItem = function (element) {
 
 /**
  * Helper function to check if a number is within a range; no side effects.
+ *
+ * @param index
+ * @param start
+ * @param end
+ * @returns {boolean}
  */
-aria.Listbox.prototype.checkInRange = function(index, start, end) {
+aria.Listbox.prototype.checkInRange = function (index, start, end) {
   var rangeStart = start < end ? start : end;
   var rangeEnd = start < end ? end : start;
 
   return index >= rangeStart && index <= rangeEnd;
-}
+};
 
 /**
  * Select a range of options
+ *
+ * @param start
+ * @param end
  */
 aria.Listbox.prototype.selectRange = function (start, end) {
   // get start/end indices
   var allOptions = this.listboxNode.querySelectorAll('[role="option"]');
-  var startIndex = typeof start === 'number' ? start : this.getElementIndex(start, allOptions);
-  var endIndex = typeof end === 'number' ? end : this.getElementIndex(end, allOptions);
+  var startIndex =
+    typeof start === 'number' ? start : this.getElementIndex(start, allOptions);
+  var endIndex =
+    typeof end === 'number' ? end : this.getElementIndex(end, allOptions);
 
   for (var index = 0; index < allOptions.length; index++) {
     var selected = this.checkInRange(index, startIndex, endIndex);
@@ -448,45 +465,48 @@ aria.Listbox.prototype.selectRange = function (start, end) {
 /**
  * Check for selected options and update moveButton, if applicable
  */
-aria.Listbox.prototype.updateMoveButton = function() {
+aria.Listbox.prototype.updateMoveButton = function () {
   if (!this.moveButton) {
     return;
   }
 
   if (this.listboxNode.querySelector('[aria-selected="true"]')) {
     this.moveButton.setAttribute('aria-disabled', 'false');
-  }
-  else {
+  } else {
     this.moveButton.setAttribute('aria-disabled', 'true');
   }
-}
+};
 
 /**
  * Check if the selected option is in view, and scroll if not
  */
 aria.Listbox.prototype.updateScroll = function () {
   var selectedOption = document.getElementById(this.activeDescendant);
-  if (selectedOption && this.listboxNode.scrollHeight > this.listboxNode.clientHeight) {
-    var scrollBottom = this.listboxNode.clientHeight + this.listboxNode.scrollTop;
+  if (
+    selectedOption &&
+    this.listboxNode.scrollHeight > this.listboxNode.clientHeight
+  ) {
+    var scrollBottom =
+      this.listboxNode.clientHeight + this.listboxNode.scrollTop;
     var elementBottom = selectedOption.offsetTop + selectedOption.offsetHeight;
     if (elementBottom > scrollBottom) {
-      this.listboxNode.scrollTop = elementBottom - this.listboxNode.clientHeight;
-    }
-    else if (selectedOption.offsetTop < this.listboxNode.scrollTop) {
+      this.listboxNode.scrollTop =
+        elementBottom - this.listboxNode.clientHeight;
+    } else if (selectedOption.offsetTop < this.listboxNode.scrollTop) {
       this.listboxNode.scrollTop = selectedOption.offsetTop;
     }
   }
 };
 
 /**
- * @desc
+ * @description
  *  Enable/disable the up/down arrows based on the activeDescendant.
  */
 aria.Listbox.prototype.checkUpDownButtons = function () {
   var activeElement = document.getElementById(this.activeDescendant);
 
   if (!this.moveUpDownEnabled) {
-    return false;
+    return;
   }
 
   if (!activeElement) {
@@ -498,8 +518,7 @@ aria.Listbox.prototype.checkUpDownButtons = function () {
   if (this.upButton) {
     if (activeElement.previousElementSibling) {
       this.upButton.setAttribute('aria-disabled', false);
-    }
-    else {
+    } else {
       this.upButton.setAttribute('aria-disabled', 'true');
     }
   }
@@ -507,30 +526,30 @@ aria.Listbox.prototype.checkUpDownButtons = function () {
   if (this.downButton) {
     if (activeElement.nextElementSibling) {
       this.downButton.setAttribute('aria-disabled', false);
-    }
-    else {
+    } else {
       this.downButton.setAttribute('aria-disabled', 'true');
     }
   }
 };
 
 /**
- * @desc
+ * @description
  *  Add the specified items to the listbox. Assumes items are valid options.
- *
  * @param items
  *  An array of items to add to the listbox
  */
 aria.Listbox.prototype.addItems = function (items) {
   if (!items || !items.length) {
-    return false;
+    return;
   }
 
-  items.forEach((function (item) {
-    this.defocusItem(item);
-    this.toggleSelectItem(item);
-    this.listboxNode.append(item);
-  }).bind(this));
+  items.forEach(
+    function (item) {
+      this.defocusItem(item);
+      this.toggleSelectItem(item);
+      this.listboxNode.append(item);
+    }.bind(this)
+  );
 
   if (!this.activeDescendant) {
     this.focusItem(items[0]);
@@ -540,12 +559,11 @@ aria.Listbox.prototype.addItems = function (items) {
 };
 
 /**
- * @desc
+ * @description
  *  Remove all of the selected items from the listbox; Removes the focused items
  *  in a single select listbox and the items with aria-selected in a multi
  *  select listbox.
- *
- * @returns items
+ * @returns {Array}
  *  An array of items that were removed from the listbox
  */
 aria.Listbox.prototype.deleteItems = function () {
@@ -553,22 +571,23 @@ aria.Listbox.prototype.deleteItems = function () {
 
   if (this.multiselectable) {
     itemsToDelete = this.listboxNode.querySelectorAll('[aria-selected="true"]');
-  }
-  else if (this.activeDescendant) {
-    itemsToDelete = [ document.getElementById(this.activeDescendant) ];
+  } else if (this.activeDescendant) {
+    itemsToDelete = [document.getElementById(this.activeDescendant)];
   }
 
   if (!itemsToDelete || !itemsToDelete.length) {
     return [];
   }
 
-  itemsToDelete.forEach((function (item) {
-    item.remove();
+  itemsToDelete.forEach(
+    function (item) {
+      item.remove();
 
-    if (item.id === this.activeDescendant) {
-      this.clearActiveDescendant();
-    }
-  }).bind(this));
+      if (item.id === this.activeDescendant) {
+        this.clearActiveDescendant();
+      }
+    }.bind(this)
+  );
 
   this.handleItemChange('removed', itemsToDelete);
 
@@ -584,7 +603,7 @@ aria.Listbox.prototype.clearActiveDescendant = function () {
 };
 
 /**
- * @desc
+ * @description
  *  Shifts the currently focused item up on the list. No shifting occurs if the
  *  item is already at the top of the list.
  */
@@ -598,14 +617,14 @@ aria.Listbox.prototype.moveUpItems = function () {
 
   if (previousItem) {
     this.listboxNode.insertBefore(currentItem, previousItem);
-    this.handleItemChange('moved_up', [ currentItem ]);
+    this.handleItemChange('moved_up', [currentItem]);
   }
 
   this.checkUpDownButtons();
 };
 
 /**
- * @desc
+ * @description
  *  Shifts the currently focused item down on the list. No shifting occurs if
  *  the item is already at the end of the list.
  */
@@ -619,14 +638,14 @@ aria.Listbox.prototype.moveDownItems = function () {
 
   if (nextItem) {
     this.listboxNode.insertBefore(nextItem, currentItem);
-    this.handleItemChange('moved_down', [ currentItem ]);
+    this.handleItemChange('moved_down', [currentItem]);
   }
 
   this.checkUpDownButtons();
 };
 
 /**
- * @desc
+ * @description
  *  Delete the currently selected items and add them to the sibling list.
  */
 aria.Listbox.prototype.moveItems = function () {
@@ -639,12 +658,10 @@ aria.Listbox.prototype.moveItems = function () {
 };
 
 /**
- * @desc
+ * @description
  *  Enable Up/Down controls to shift items up and down.
- *
  * @param upButton
  *   Up button to trigger up shift
- *
  * @param downButton
  *   Down button to trigger down shift
  */
@@ -657,13 +674,11 @@ aria.Listbox.prototype.enableMoveUpDown = function (upButton, downButton) {
 };
 
 /**
- * @desc
+ * @description
  *  Enable Move controls. Moving removes selected items from the current
  *  list and adds them to the sibling list.
- *
  * @param button
  *   Move button to trigger delete
- *
  * @param siblingList
  *   Listbox to move items to
  */

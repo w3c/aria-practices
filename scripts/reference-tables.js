@@ -6,12 +6,11 @@
  *   File:   reference-tables.js
  */
 
-'use strict';
-
 const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
 const cheerio = require('cheerio');
+const HTMLParser = require('node-html-parser');
 
 const exampleFilePath = path.join(__dirname, '..', 'examples', 'index.html');
 const exampleTemplatePath = path.join(__dirname, 'reference-tables.template');
@@ -29,24 +28,31 @@ const ariaRoles = [
   'article',
   'banner',
   'button',
+  'caption',
   'cell',
   'checkbox',
+  'code',
   'columnheader',
   'combobox',
   'complementary',
   'contentinfo',
   'definition',
+  'deletion',
   'dialog',
   'directory',
   'document',
+  'emphasis',
   'feed',
   'figure',
   'form',
+  'generic',
   'grid',
   'gridcell',
   'group',
   'heading',
   'img',
+  'input',
+  'insertion',
   'link',
   'list',
   'listbox',
@@ -60,15 +66,17 @@ const ariaRoles = [
   'menuitem',
   'menuitemcheckbox',
   'menuitemradio',
+  'meter',
   'navigation',
   'none',
   'note',
   'option',
+  'paragraph',
   'presentation',
   'progressbar',
   'radio',
   'radiogroup',
-  // 'region', Region is generated differently from other roles
+  'region',
   'row',
   'rowgroup',
   'rowheader',
@@ -91,7 +99,7 @@ const ariaRoles = [
   'tooltip',
   'tree',
   'treegrid',
-  'treeitem'
+  'treeitem',
 ];
 
 const ariaPropertiesAndStates = [
@@ -142,7 +150,7 @@ const ariaPropertiesAndStates = [
   'aria-valuemax',
   'aria-valuemin',
   'aria-valuenow',
-  'aria-valuetext'
+  'aria-valuetext',
 ];
 
 let indexOfRoles = {};
@@ -150,81 +158,52 @@ let indexOfPropertiesAndStates = {};
 
 console.log('Generating index...');
 
-function getColumn (data, indexStart) {
-  let count = 0;
-  let index = data.lastIndexOf('<tr', indexStart);
-
-  while (index > 0 && index <= indexStart) {
-    let indexTd = data.indexOf('<td', index);
-    let indexTh = data.indexOf('<th', index);
-
-    index = Math.min(indexTh, indexTd);
-
-    if (index <= indexStart) {
-      count += 1;
-    }
-
-    index += 1;
-  }
-
-  return count;
-}
-
-function getRoles (data) {
+function getRoles(html) {
   let roles = [];
 
-  let indexStart = data.indexOf('<code>', 0);
-  let indexEnd = data.indexOf('</code>', indexStart);
+  let exampleRoles = html.querySelectorAll(
+    'table.data.attributes tbody tr > th:first-child code'
+  );
 
-  while (indexStart > 1 && indexEnd > 1) {
-    let code = data.substring(indexStart + 6, indexEnd).trim();
-
-    for (let i = 0; i < ariaRoles.length; i++) {
-      if ((getColumn(data, indexStart) === 1) &&
-        (code == ariaRoles[i]) &&
-        (roles.indexOf(ariaRoles[i]) < 0)) {
-        roles.push(ariaRoles[i]);
+  for (let i = 0; i < exampleRoles.length; i++) {
+    let code = exampleRoles[i].textContent.toLowerCase().trim();
+    for (let j = 0; j < ariaRoles.length; j++) {
+      const hasRole = RegExp('\\b' + ariaRoles[j] + '\\b');
+      if (hasRole.test(code) && roles.indexOf(ariaRoles[j]) < 0) {
+        console.log('  [role]: ' + code);
+        roles.push(ariaRoles[j]);
       }
-    }
-
-    indexStart = data.indexOf('<code>', indexEnd);
-
-    if (indexStart > 0) {
-      indexEnd = data.indexOf('</code>', indexStart);
     }
   }
 
   return roles;
 }
 
-function getPropertiesAndStates (data) {
+function getPropertiesAndStates(html) {
   let propertiesAndStates = [];
 
-  let indexStart = data.indexOf('<code>', 0);
-  let indexEnd = data.indexOf('</code>', indexStart);
+  let exampleProps = html.querySelectorAll(
+    'table.data.attributes tbody tr > th:nth-child(2) code'
+  );
 
-  while (indexStart > 1 && indexEnd > 1) {
-    let code = data.substring(indexStart + 6, indexEnd);
-
-    for (let i = 0; i < ariaPropertiesAndStates.length; i++) {
-      if ((getColumn(data, indexStart) === 2) &&
-        (code.indexOf(ariaPropertiesAndStates[i]) >= 0) &&
-        (propertiesAndStates.indexOf(ariaPropertiesAndStates[i]) < 0)) {
-        propertiesAndStates.push(ariaPropertiesAndStates[i]);
+  for (let i = 0; i < exampleProps.length; i++) {
+    let code = exampleProps[i].textContent.toLowerCase().trim().split('=')[0];
+    for (let j = 0; j < ariaPropertiesAndStates.length; j++) {
+      const hasPropOrState = RegExp('\\b' + ariaPropertiesAndStates[j] + '\\b');
+      if (
+        hasPropOrState.test(code) &&
+        propertiesAndStates.indexOf(ariaPropertiesAndStates[j]) < 0
+      ) {
+        console.log('  [propertyOrState]: ' + code);
+        propertiesAndStates.push(ariaPropertiesAndStates[j]);
       }
-    }
-
-    indexStart = data.indexOf('<code>', indexEnd);
-
-    if (indexStart > 0) {
-      indexEnd = data.indexOf('</code>', indexStart);
     }
   }
 
   return propertiesAndStates;
 }
 
-function addExampleToRoles (roles, example) {
+function addExampleToRoles(roles, example) {
   for (let i = 0; i < roles.length; i++) {
     let role = roles[i];
 
@@ -239,7 +218,7 @@ function addExampleToRoles (roles, example) {
   }
 }
 
-function addExampleToPropertiesAndStates (props, example) {
+function addExampleToPropertiesAndStates(props, example) {
   for (let i = 0; i < props.length; i++) {
     let prop = props[i];
 
@@ -254,50 +233,86 @@ function addExampleToPropertiesAndStates (props, example) {
   }
 }
 
-function addLandmarkRole (landmark, hasLabel, title, ref) {
+function addLandmarkRole(landmark, hasLabel, title, ref) {
   let example = {
     title: title,
-    ref: ref
+    ref: ref,
   };
 
   addExampleToRoles(landmark, example);
   if (hasLabel) {
-    addExampleToPropertiesAndStates([ 'aria-labelledby' ], example);
+    addExampleToPropertiesAndStates(['aria-labelledby'], example);
   }
 }
 
-glob.sync('examples/!(landmarks)/**/!(index).html', {cwd: path.join(__dirname, '..'), nodir: true}).forEach(function (file) {
-  let data = fs.readFileSync(file, 'utf8');
-  let ref = file.replace('examples/', '');
-  let title = data.substring(data.indexOf('<title>') + 7, data.indexOf('</title>'))
-    .split('|')[0]
-    .replace('Examples', '')
-    .replace('Example of', '')
-    .replace('Example', '')
-    .trim();
+glob
+  .sync('examples/!(landmarks)/**/!(index).html', {
+    cwd: path.join(__dirname, '..'),
+    nodir: true,
+  })
+  .forEach(function (file) {
+    console.log('[file]: ' + file);
 
-  let example = {
-    title: title,
-    ref: ref
-  };
+    if (file.toLowerCase().indexOf('deprecated') >= 0) {
+      console.log('  [ignored]');
+      return;
+    }
 
-  addExampleToRoles(getRoles(data), example);
-  addExampleToPropertiesAndStates(getPropertiesAndStates(data), example);
-});
+    let data = fs.readFileSync(file, 'utf8');
+
+    let html = HTMLParser.parse(data);
+
+    let ref = file.replace('examples/', '');
+    let title = html
+      .querySelector('title')
+      .textContent.split('|')[0]
+      .replace('Examples', '')
+      .replace('Example of', '')
+      .replace('Example', '')
+      .trim();
+
+    let example = {
+      title: title,
+      ref: ref,
+      highContrast: data.toLowerCase().indexOf('high contrast') > 0,
+    };
+
+    addExampleToRoles(getRoles(html), example);
+    addExampleToPropertiesAndStates(getPropertiesAndStates(html), example);
+  });
 
 // Add landmark examples, since they are a different format
-addLandmarkRole([ 'banner' ], false, 'Banner Landmark', 'landmarks/banner.html');
-addLandmarkRole([ 'complementary' ], true, 'Complementary Landmark', 'landmarks/complementary.html');
-addLandmarkRole([ 'contentinfo' ], false, 'Contentinfo Landmark', 'landmarks/contentinfo.html');
-addLandmarkRole([ 'form' ], true, 'Form Landmark', 'landmarks/form.html');
-addLandmarkRole([ 'main' ], true, 'Main Landmark', 'landmarks/main.html');
-addLandmarkRole([ 'navigation' ], true, 'Navigation Landmark', 'landmarks/navigation.html');
-addLandmarkRole([ 'region' ], true, 'Region Landmark', 'landmarks/region.html');
-addLandmarkRole([ 'search' ], true, 'Search Landmark', 'landmarks/search.html');
+addLandmarkRole(['banner'], false, 'Banner Landmark', 'landmarks/banner.html');
+addLandmarkRole(
+  ['complementary'],
+  true,
+  'Complementary Landmark',
+  'landmarks/complementary.html'
+);
+addLandmarkRole(
+  ['contentinfo'],
+  false,
+  'Contentinfo Landmark',
+  'landmarks/contentinfo.html'
+);
+addLandmarkRole(['form'], true, 'Form Landmark', 'landmarks/form.html');
+addLandmarkRole(['main'], true, 'Main Landmark', 'landmarks/main.html');
+addLandmarkRole(
+  ['navigation'],
+  true,
+  'Navigation Landmark',
+  'landmarks/navigation.html'
+);
+addLandmarkRole(['region'], true, 'Region Landmark', 'landmarks/region.html');
+addLandmarkRole(['search'], true, 'Search Landmark', 'landmarks/search.html');
 
-function exampleListItem (item) {
+function exampleListItem(item) {
+  let highContrast = '';
+  if (item.highContrast) {
+    highContrast = ' (<abbr title="High Contrast Support">HC</abbr>)';
+  }
   return `
-                <li><a href="${item.ref}">${item.title}</a></li>`;
+                <li><a href="${item.ref}">${item.title}</a>${highContrast}</li>`;
 }
 
 let sortedRoles = Object.getOwnPropertyNames(indexOfRoles).sort();
@@ -308,8 +323,7 @@ let examplesByRole = sortedRoles.reduce(function (set, role) {
   let examplesHTML = '';
   if (examples.length === 1) {
     examplesHTML = `<a href="${examples[0].ref}">${examples[0].title}</a>`;
-  }
-  else {
+  } else {
     examplesHTML = `
               <ul>${examples.map(exampleListItem).join('')}
               </ul>\n            `;
@@ -323,8 +337,9 @@ let examplesByRole = sortedRoles.reduce(function (set, role) {
 
 $('#examples_by_role_tbody').html(examplesByRole);
 
-let sortedPropertiesAndStates = Object.getOwnPropertyNames(indexOfPropertiesAndStates)
-  .sort();
+let sortedPropertiesAndStates = Object.getOwnPropertyNames(
+  indexOfPropertiesAndStates
+).sort();
 
 let examplesByProps = sortedPropertiesAndStates.reduce(function (set, prop) {
   let examples = indexOfPropertiesAndStates[prop];
@@ -332,8 +347,7 @@ let examplesByProps = sortedPropertiesAndStates.reduce(function (set, prop) {
   let examplesHTML = '';
   if (examples.length === 1) {
     examplesHTML = `<a href="${examples[0].ref}">${examples[0].title}</a>`;
-  }
-  else {
+  } else {
     examplesHTML = `
               <ul>${examples.map(exampleListItem).join('')}
               </ul>\n            `;
@@ -347,10 +361,14 @@ let examplesByProps = sortedPropertiesAndStates.reduce(function (set, prop) {
 
 $('#examples_by_props_tbody').html(examplesByProps);
 
-// cheeio seems to fold the doctype lines despite the template
+// cheerio seems to fold the doctype lines despite the template
 const result = $.html()
   .replace('<!DOCTYPE html>', '<!DOCTYPE html>\n')
-  .replace('<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">', '<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">\n');
+  .replace('</body></html>', '</body></html>\n')
+  .replace(
+    '<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">',
+    '<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">\n'
+  );
 
 fs.writeFile(exampleFilePath, result, function (err) {
   if (err) {
