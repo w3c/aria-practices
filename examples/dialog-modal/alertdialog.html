@@ -102,6 +102,10 @@
             Focus is automatically set to the first focusable element inside the dialog, which is the "No" <code>button</code>.
             This is the least destructive action, so focusing "No" helps prevent users from accidentally confirming the destructive "Discard" action, which cannot be undone.
           </li>
+          <li>
+          When the buttons are disabled, <code>aria-disabled</code> is used instead of the HTML <code>disabled</code> attribute so the buttons will remain in the page <kbd>Tab</kbd> sequence.
+          This makes it easier for screen reader users to discover the buttons and discern how the interface works.
+          </li>
         </ul>
       </section>
       <section>
@@ -199,26 +203,31 @@
                   Identifies the element that serves as the alert notification.
                 </td>
               </tr>
+              <tr>
+              <td></td>
+              <th scope="row"><code>aria-disabled="true"</code></th>
+              <td><code>button</code></td>
+              <td>Tells assistive technology users the button cannot be activated.</td>
+            </tr>
           </tbody>
         </table>
         <h3>Notes on <code>aria-modal</code> and <code>aria-hidden</code></h3>
-        <ol>
+        <ul>
           <li>
             The <code>aria-modal</code> property was introduced in ARIA 1.1.
-            As a new property, screen reader users may experience varying degrees of support for it.
+            As a relatively new property, screen reader users may experience varying degrees of support for it.
           </li>
           <li>
-            Applying the <code>aria-modal</code> property to the <code>dialog</code> element
-            replaces the technique of using <code>aria-hidden</code> on the background for informing assistive technologies that content outside a dialog is inert.
+            Applying the <code>aria-modal</code> property to the <code>dialog</code> element replaces the technique of using <code>aria-hidden</code> on the background for informing assistive technologies that content outside a dialog is inert.
           </li>
           <li>
             In legacy dialog implementations where <code>aria-hidden</code> is used to make content outside a dialog inert for assistive technology users, it is important that:
-            <ol>
+            <ul>
               <li><code>aria-hidden</code> is set to <code>true</code> on each element containing a portion of the inert layer.</li>
               <li>The dialog element is not a descendant of any element that has <code>aria-hidden</code> set to <code>true</code>.</li>
-            </ol>
+            </ul>
           </li>
-        </ol>
+        </ul>
       </section>
       <section>
         <h2 id="src_label">Javascript and CSS Source Code</h2>
