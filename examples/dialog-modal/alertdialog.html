@@ -35,15 +35,14 @@
       <p>To use this example:</p>
       <ul>
         <li>
-          Activate the "discard" button to trigger a confirmation dialog.
+          Activate the "discard" button to trigger a confirmation dialog that has the <code>alertdialog</code> role.
           <ul>
-            <li>Activating the "yes" button removes the contents of both the "Notes" text area and local storage of the notes.</li>
+            <li>Activating the "yes" button in the confirmation dialog removes the contents of both the "Notes" text area and local storage of the notes.</li>
             <li>Activating the "no" button or pressing <kbd>escape</kbd> closes the dialog.</li>
             <li>The "discard" button is disabled if the notes text area does not contain any text.</li>
           </ul>
         </li>
-        <li>
-          Activate the "save" button to trigger an alert when it saves the contents of the "Notes" text area to <a href="https://www.w3.org/TR/webstorage/#the-localstorage-attribute">local storage</a>.
+        <li>Activate the "save" button to trigger an alert when the contents of the "Notes" text area is saved to <a href="https://www.w3.org/TR/webstorage/#the-localstorage-attribute">local storage</a>.
           <ul>
             <li>A successful save triggers a short alert to notify the user that the notes have been saved.</li>
             <li>The "save" button is disabled if the user's local storage value is the same as the "Notes" field.</li>
@@ -68,9 +67,17 @@
         <div id="ex_alertdialog">
           <label for="notes">Notes</label>
           <textarea class="notes" name="notes" id="notes" rows="7">This is an example text box, which unsurprisingly contains text. The user is given the option to save this text - which triggers a basic alert - or to discard the text - which triggers an alert dialog that prompts the user for confirmation.</textarea>
-          <button type="button" aria-controls="notes" id="notes_save">Save</button>
-          <button type="button" aria-controls="notes" id="notes_discard" onclick="openAlertDialog('alert_dialog', this)">Discard</button>
-          <div role="alert" id="alert_toast" class="toast hidden">Nothing to discard.</div>
+          <div class="visually-hidden" id="notes_save_status" role="alert"></div>
+          <button type="button" id="notes_save">
+            Save
+            <svg class="icon spinner" viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M16 32c-4.274 0-8.292-1.664-11.314-4.686s-4.686-7.040-4.686-11.314c0-3.026 0.849-5.973 2.456-8.522 1.563-2.478 3.771-4.48 6.386-5.791l1.344 2.682c-2.126 1.065-3.922 2.693-5.192 4.708-1.305 2.069-1.994 4.462-1.994 6.922 0 7.168 5.832 13 13 13s13-5.832 13-13c0-2.459-0.69-4.853-1.994-6.922-1.271-2.015-3.066-3.643-5.192-4.708l1.344-2.682c2.615 1.31 4.824 3.313 6.386 5.791 1.607 2.549 2.456 5.495 2.456 8.522 0 4.274-1.664 8.292-4.686 11.314s-7.040 4.686-11.314 4.686z"></path>
+            </svg>
+            <svg class="icon check" viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M27 4l-15 15-7-7-5 5 12 12 20-20z"></path>
+            </svg>
+          </button>
+          <button type="button" data-textbox="notes" id="notes_discard" onclick="openAlertDialog('alert_dialog', this)">Discard</button>
           <div class="dialog-backdrop no-scroll">
             <div id="alert_dialog" role="alertdialog" aria-modal="true" aria-labelledby="dialog_label" aria-describedby="dialog_desc" class="hidden">
               <h2 id="dialog_label" class="dialog_label">Confirmation</h2>
@@ -79,7 +86,7 @@
               </div>
               <div class="dialog_form_actions">
                 <button type="button" onclick="closeDialog(this)">No</button>
-                <button type="button" aria-controls="notes" id="notes_confirm" onclick="discardInput(this)">Yes</button>
+                <button type="button" id="notes_confirm" onclick="discardInput(this)">Yes</button>
               </div>
             </div>
           </div>
@@ -88,14 +95,18 @@
       </section>
       <section>
         <h2>Accessibility Features</h2>
-        <ol>
-          <li>The accessible label for the alert dialog is set to its heading ("Confirmation").</li>
+        <ul>
+          <li>The accessible name of the alert dialog is set to its heading ("Confirmation").</li>
           <li>The dialog's prompt ("Are you sure...?") is referenced via <code>aria-describedby</code> to ensure that the user is immediately aware of the prompt.</li>
           <li>
             Focus is automatically set to the first focusable element inside the dialog, which is the "No" <code>button</code>.
             This is the least destructive action, so focusing "No" helps prevent users from accidentally confirming the destructive "Discard" action, which cannot be undone.
           </li>
-        </ol>
+          <li>
+          When the buttons are disabled, <code>aria-disabled</code> is used instead of the HTML <code>disabled</code> attribute so the buttons will remain in the page <kbd>Tab</kbd> sequence.
+          This makes it easier for screen reader users to discover the buttons and discern how the interface works.
+          </li>
+        </ul>
       </section>
       <section>
         <h2 id="kbd_label">Keyboard Support</h2>
@@ -162,7 +173,7 @@
             </tr>
             <tr>
               <td></td>
-              <th scope="row"><code>aria-labelledby=<q>IDREF</q></code></th>
+              <th scope="row"><code>aria-labelledby="ID_REFERENCE"</code></th>
               <td><code>div</code></td>
               <td>
                 Gives the alert dialog an accessible name by referring to the element that provides the alert dialog title.
@@ -170,7 +181,7 @@
             </tr>
             <tr>
               <td></td>
-              <th scope="row"><code>aria-describedby=<q>IDREF</q></code></th>
+              <th scope="row"><code>aria-describedby="ID_REFERENCE"</code></th>
               <td><code>div</code></td>
               <td>
                 Gives the alert dialog an accessible description by referring to the alert dialog content that describes the primary message or purpose of the alert dialog.
@@ -178,7 +189,7 @@
             </tr>
             <tr>
               <td></td>
-              <th scope="row"><code>aria-modal=<q>true</q></code></th>
+              <th scope="row"><code>aria-modal="true"</code></th>
               <td><code>div</code></td>
               <td>
                 Tells assistive technologies that the windows underneath the current alert dialog are not available for interaction (inert).
@@ -192,26 +203,31 @@
                   Identifies the element that serves as the alert notification.
                 </td>
               </tr>
+              <tr>
+              <td></td>
+              <th scope="row"><code>aria-disabled="true"</code></th>
+              <td><code>button</code></td>
+              <td>Tells assistive technology users the button cannot be activated.</td>
+            </tr>
           </tbody>
         </table>
         <h3>Notes on <code>aria-modal</code> and <code>aria-hidden</code></h3>
-        <ol>
+        <ul>
           <li>
             The <code>aria-modal</code> property was introduced in ARIA 1.1.
-            As a new property, screen reader users may experience varying degrees of support for it.
+            As a relatively new property, screen reader users may experience varying degrees of support for it.
           </li>
           <li>
-            Applying the <code>aria-modal</code> property to the <code>dialog</code> element
-            replaces the technique of using <code>aria-hidden</code> on the background for informing assistive technologies that content outside a dialog is inert.
+            Applying the <code>aria-modal</code> property to the <code>dialog</code> element replaces the technique of using <code>aria-hidden</code> on the background for informing assistive technologies that content outside a dialog is inert.
           </li>
           <li>
             In legacy dialog implementations where <code>aria-hidden</code> is used to make content outside a dialog inert for assistive technology users, it is important that:
-            <ol>
+            <ul>
               <li><code>aria-hidden</code> is set to <code>true</code> on each element containing a portion of the inert layer.</li>
               <li>The dialog element is not a descendant of any element that has <code>aria-hidden</code> set to <code>true</code>.</li>
-            </ol>
+            </ul>
           </li>
-        </ol>
+        </ul>
       </section>
       <section>
         <h2 id="src_label">Javascript and CSS Source Code</h2>

@@ -146,20 +146,48 @@
   width: 33%;
 }
 
-.toast {
-  background-color: rgb(0 0 0 / 90%);
-  color: #fff;
-  padding: 1rem;
-  border: none;
-  border-radius: 0.25rem;
-  box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  transform: translateY(-150%);
-  transition: transform 225ms cubic-bezier(0.4, 0, 0.2, 1);
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: auto;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
 }
 
-.toast.active {
-  transform: translateY(0);
+#notes_save {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#notes_save svg {
+  display: block;
+  width: 0.75rem;
+}
+
+#notes_save .icon {
+  display: none;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#notes_save.loading .spinner {
+  display: block;
+  animation: rotate 2s linear infinite;
+}
+
+#notes_save.saved .check {
+  display: block;
 }
