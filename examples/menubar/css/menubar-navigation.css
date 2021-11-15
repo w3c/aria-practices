@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 .page header {
   border: #005a9c solid 2px;
   background: #005a9c;
@@ -74,6 +76,7 @@
 .menubar-navigation [role="separator"] {
   padding-top: 3px;
   background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cline x1='0' y1='6' x2='12' y2='6' style='stroke:black;stroke-width:1' /%3E%3C/svg%3E%0A");
+  background-size: 10px 10px;
   background-position: center;
   background-repeat: repeat-x;
 }

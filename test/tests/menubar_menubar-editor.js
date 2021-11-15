@@ -16,6 +16,7 @@ const ex = {
   menuitemcheckboxSelector: '#ex1 [role="menuitemcheckbox"]',
   groupSelector: '#ex1 [role="group"]',
   menuitemradioSelector: '#ex1 [role="menuitemradio"]',
+  ariaHiddenSpanSelector: '#ex1 [aria-hidden]',
   numMenus: 4,
   numSubmenuItems: [4, 10, 4, 7],
   allSubmenuItems: [
@@ -76,7 +77,10 @@ const checkmarkVisible = async function (t, selector, index) {
     function () {
       const [selector, index] = arguments;
       const checkmarkContent = window
-        .getComputedStyle(document.querySelectorAll(selector)[index], ':before')
+        .getComputedStyle(
+          document.querySelectorAll(`${selector} > [aria-hidden]`)[index],
+          ':before'
+        )
         .getPropertyValue('content');
       if (checkmarkContent == 'none') {
         return false;
@@ -263,6 +267,20 @@ ariaTest(
       // Send the ESCAPE to close submenu
       await menuitems[menuIndex].sendKeys(Key.ESCAPE);
     }
+  }
+);
+
+ariaTest(
+  'Visual character entities to show expanded state on role="menuitem" is hidden from assistive technology',
+  exampleFile,
+  'menubar-menuitem-aria-hidden',
+  async (t) => {
+    await assertAttributeValues(
+      t,
+      ex.ariaHiddenSpanSelector,
+      'aria-hidden',
+      'true'
+    );
   }
 );
 
@@ -522,6 +540,20 @@ ariaTest(
 );
 
 ariaTest(
+  'Visual character entities to show checked state on role="menuitemcheckbox" is hidden from assistive technology',
+  exampleFile,
+  'menuitemcheckbox-aria-hidden',
+  async (t) => {
+    await assertAttributeValues(
+      t,
+      ex.ariaHiddenSpanSelector,
+      'aria-hidden',
+      'true'
+    );
+  }
+);
+
+ariaTest(
   'Test role="separator" exists',
   exampleFile,
   'separator-role',
@@ -627,6 +659,20 @@ ariaTest(
         );
       }
     }
+  }
+);
+
+ariaTest(
+  'Visual character entities to show checked state on role="menuitemradio" is hidden from assistive technology',
+  exampleFile,
+  'menuitemradio-aria-hidden',
+  async (t) => {
+    await assertAttributeValues(
+      t,
+      ex.ariaHiddenSpanSelector,
+      'aria-hidden',
+      'true'
+    );
   }
 );
 
