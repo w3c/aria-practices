@@ -52,6 +52,7 @@ var Tree = function (node) {
 
   this.firstTreeitem = null;
   this.lastTreeitem = null;
+  this.selectedItem = null;
 };
 
 Tree.prototype.init = function () {
@@ -85,6 +86,14 @@ Tree.prototype.init = function () {
   this.updateVisibleTreeitems();
 
   this.firstTreeitem.domNode.tabIndex = 0;
+};
+
+Tree.prototype.setSelectedToItem = function (treeitem) {
+  if (this.selectedItem) {
+    this.selectedItem.domNode.setAttribute('aria-selected', 'false');
+  }
+  treeitem.domNode.setAttribute('aria-selected', 'true');
+  this.selectedItem = treeitem;
 };
 
 Tree.prototype.setFocusToItem = function (treeitem) {
