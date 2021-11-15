@@ -2233,7 +2233,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
                   <li><kbd>Control + A</kbd> (Optional): Selects all options in the list. Optionally, if all options are selected, it may also unselect all options.</li>
                 </ul>
               </li>
-              <li>Alternative selection model -- moving focus without holding a <kbd>Shift</kbd> or <kbd>Control</kbd> modifier unselects all selected nodes except the focused node:
+              <li>Alternative selection model -- moving focus without holding a <kbd>Shift</kbd> or <kbd>Control</kbd> modifier unselects all selected options except the focused option:
               <ul>
                   <li><kbd>Shift + Down Arrow</kbd>: Moves focus to and toggles the selection state of the next option.</li>
                   <li><kbd>Shift + Up Arrow</kbd>: Moves focus to and toggles the selection state of the previous option.</li>
@@ -2277,14 +2277,45 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         <h4 id="wai-aria-roles-states-and-properties-12"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#listbox_roles_states_props"></a></h4>
         <ul>
           <li>An element that contains or owns all the listbox options has role <a href="https://w3c.github.io/aria/#listbox" class="role-reference">listbox</a>.</li>
-          <li>Each option in the listbox has role <a href="https://w3c.github.io/aria/#option" class="role-reference">option</a> and is a DOM  descendant of the element with role <code>listbox</code> or is referenced by an <a href="https://w3c.github.io/aria/#aria-owns" class="property-reference">aria-owns</a> property on the listbox element.</li>
-          <li>If the listbox is not part of another widget, then it has a visible label referenced by <a href="https://w3c.github.io/aria/#aria-labelledby" class="property-reference">aria-labelledby</a> on the element with role <code>listbox</code>.</li>
-          <li>In a single-select listbox, the selected option has <a href="https://w3c.github.io/aria/#aria-selected" class="property-reference">aria-selected</a> set to <code>true</code>. </li>
-          <li>if the listbox supports multiple selection:
+          <li>
+            Each option in the listbox has role <a href="https://w3c.github.io/aria/#option" class="role-reference">option</a> and is contained in or owned by either:
             <ul>
-              <li> The element with role <code>listbox</code> has <a href="https://w3c.github.io/aria/#aria-multiselectable" class="property-reference">aria-multiselectable</a> set to <code>true</code>. </li>
-              <li>All selected options have <a href="https://w3c.github.io/aria/#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code>. </li>
-              <li>All options that are not selected have <a href="https://w3c.github.io/aria/#aria-selected" class="state-reference">aria-selected</a> set to <code>false</code>. </li>
+              <li>The element with role <code>listbox</code>.</li>
+              <li>An element with role <a href="https://w3c.github.io/aria/#group" class="role-reference">group</a> that is contained in or owned by the element with role <code>listbox</code>.</li>
+            </ul>
+          </li>
+          <li>
+            Options contained in a <code>group</code> are referred to as <q>grouped options</q> and form what is called an <q>option group.</q>
+            If a listbox contains grouped options, then:
+            <ul>
+                            <li>All option groups contain at least one option.</li>
+              <li>Each option group has an accessible name provided via <a href="https://w3c.github.io/aria/#aria-label" class="property-reference">aria-label</a> or <a href="https://w3c.github.io/aria/#aria-labelledby" class="property-reference">aria-labelledby</a>.</li>
+            </ul>
+          </li>
+          <li>If the element with role <code>listbox</code> is not part of another widget, such as a combobox, then it has either a visible label referenced by <a href="https://w3c.github.io/aria/#aria-labelledby" class="property-reference">aria-labelledby</a> or a value specified for <a href="https://w3c.github.io/aria/#aria-label" class="property-reference">aria-label</a>.</li>
+          <li>
+            If the listbox supports selection of more than one option, the element with role <code>listbox</code> has <a class="property-reference" href="https://w3c.github.io/aria/#aria-multiselectable">aria-multiselectable</a> set to <code>true</code>.
+            Otherwise, <code>aria-multiselectable</code> is either set to <code>false</code> or the default value of <code>false</code> is implied.
+          </li>
+          <li>
+            The selection state of each selectable option is indicated with either <a href="https://w3c.github.io/aria/#aria-selected" class="state-reference">aria-selected</a> or <a href="https://w3c.github.io/aria/#aria-checked" class="state-reference">aria-checked</a>:
+            <ul>
+              <li>
+                If the selection state is indicated with <code>aria-selected</code>, then <code>aria-checked</code> is not specified for any options.
+                Alternatively, if the selection state is indicated with <code>aria-checked</code>, then <code>aria-selected</code> is not specified for any options.
+                See notes below regarding considerations for which property to use and for details of the unusual conditions that might allow for both properties in the same listbox.
+              </li>
+              <li>
+                If any options are selected, each selected option has either <a href="https://w3c.github.io/aria/#aria-selected" class="state-reference">aria-selected</a> or <a href="https://w3c.github.io/aria/#aria-checked" class="state-reference">aria-checked</a> set to <code>true</code>.
+                No more than one option is selected at a time if the element with role <code>listbox</code> does <em>not</em> have <a class="property-reference" href="https://w3c.github.io/aria/#aria-multiselectable">aria-multiselectable</a> set to <code>true</code>.
+              </li>
+              <li>
+                All options that are selectable but not selected have either <a href="https://w3c.github.io/aria/#aria-selected" class="state-reference">aria-selected</a> or <a href="https://w3c.github.io/aria/#aria-checked" class="state-reference">aria-checked</a> set to <code>false</code>.
+              </li>
+              <li>
+                Note that except in listboxes where selection follows focus, the selected state is distinct from focus.
+                For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection</a> and <a href="#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
+              </li>
             </ul>
           </li>
           <li>If the complete set of available options is not present in the DOM due to dynamic loading as the user scrolls, their <a href="https://w3c.github.io/aria/#aria-setsize" class="property-reference">aria-setsize</a> and <a href="https://w3c.github.io/aria/#aria-posinset" class="property-reference">aria-posinset</a> attributes are set appropriately. </li>
@@ -2293,6 +2324,36 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
             The default value of <code>aria-orientation</code> for <code>listbox</code> is <code>vertical</code>.
           </li>
         </ul>
+        <div class="note" role="note" id="issue-container-generatedID-16"><div role="heading" class="note-title marker" id="h-note-16" aria-level="5"><span>Note</span></div><ol class="">
+          <li>Some factors to consider when choosing whether to indicate selection with <code>aria-selected</code> or <code>aria-checked</code> are:
+            <ul>
+              <li>
+                Some design systems use <code>aria-selected</code> for single-select widgets and <code>aria-checked</code> for multi-select widgets.
+                In the absence of factors that would make an alternative convention more appropriate, this is a recommended convention.
+              </li>
+              <li>
+                The language of instructions and the appearance of the interface might suggest one attribute is more appropriate than the other.
+                For instance, do instructions say to <q>select</q> items? Or, is the visual indicator of selection a check mark?
+              </li>
+              <li>It is important to adopt a consistent convention for selection models across a site or app.</li>
+            </ul>
+          </li>
+          <li>
+            Conditions that would permit a listbox to include both <code>aria-selected</code> and <code>aria-checked</code> are extremely rare.
+            It is strongly recommended to avoid designing a listbox widget that would have the need for more than one type of state.
+            If both states were to be used within a listbox, all the following conditions need to be satisfied:
+            <ul>
+              <li>The meaning and purpose of <code>aria-selected</code> is different from the meaning and purpose of <code>aria-checked</code> in the user interface.</li>
+              <li>The user interface makes the meaning and purpose of each state apparent.</li>
+              <li>The user interface provides a separate method for controlling each state.</li>
+            </ul>
+          </li>
+          <li>
+            If <a href="https://w3c.github.io/aria/#aria-owns" class="property-reference">aria-owns</a> is set on the listbox element to include elements that are not DOM children of the container,
+            those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children.
+            Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order.
+          </li>
+        </ol></div>
       </section>
     </section>
 
@@ -2408,7 +2469,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
           <li><kbd>Tab</kbd>: Moves focus to the next element in the tab sequence, and if the item that had focus is not in a <code>menubar</code>, closes its <code>menu</code> and all open parent <code>menu</code> containers.</li>
           <li><kbd>Shift + Tab</kbd>: Moves focus to the previous element in the tab sequence, and if the item that had focus is not in a <code>menubar</code>, closes its <code>menu</code> and all open parent <code>menu</code> containers.</li>
         </ul>
-        <div class="note" role="note" id="issue-container-generatedID-16"><div role="heading" class="note-title marker" id="h-note-16" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note" role="note" id="issue-container-generatedID-17"><div role="heading" class="note-title marker" id="h-note-17" aria-level="5"><span>Note</span></div><ol class="">
           <li>Disabled menu items are focusable but cannot be activated. </li>
           <li>A <a href="https://w3c.github.io/aria/#separator" class="role-reference">separator</a> in a menu is not focusable or interactive.</li>
           <li>
@@ -2482,7 +2543,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
             The default value of <code>aria-orientation</code> for a menu is <code>vertical</code>.
           </li>
         </ul>
-        <div class="note" role="note" id="issue-container-generatedID-17"><div role="heading" class="note-title marker" id="h-note-17" aria-level="5"><span>Note</span></div><p class="">
+        <div class="note" role="note" id="issue-container-generatedID-18"><div role="heading" class="note-title marker" id="h-note-18" aria-level="5"><span>Note</span></div><p class="">
           If <a href="https://w3c.github.io/aria/#aria-owns" class="property-reference">aria-owns</a> is set on the menu container to include elements that are not DOM children of the container, those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children.
           Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order.
         </p></div>
@@ -2548,7 +2609,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         A <a class="role-reference" href="https://w3c.github.io/aria/#meter">meter</a> is a graphical display of a numeric value that varies within a defined range.
         For example, a meter could be used to depict a device's current battery percentage or a car's fuel level.
       </p>
-      <div class="note" role="note" id="issue-container-generatedID-18"><div role="heading" class="note-title marker" id="h-note-18" aria-level="4"><span>Note</span></div><ul class="">
+      <div class="note" role="note" id="issue-container-generatedID-19"><div role="heading" class="note-title marker" id="h-note-19" aria-level="4"><span>Note</span></div><ul class="">
         <li>A <code>meter</code> should not be used to represent a value like the current world population since it does not have a meaningful maximum limit.</li>
         <li>
           The <code>meter</code> should not be used to indicate progress, such as loading or percent completion of a task.
@@ -2632,7 +2693,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
               If focus is on the first button, focus moves to the last button.
             </li>
           </ul>
-          <div class="note" role="note" id="issue-container-generatedID-19"><div role="heading" class="note-title marker" id="h-note-19" aria-level="6"><span>Note</span></div><p class="">
+          <div class="note" role="note" id="issue-container-generatedID-20"><div role="heading" class="note-title marker" id="h-note-20" aria-level="6"><span>Note</span></div><p class="">
             The initial focus behavior described above differs slightly from the behavior
             provided by some browsers for native HTML radio groups. In some browsers, if none of the
             radio buttons are selected, moving focus into the radio group with <kbd>Shift+Tab</kbd> will place focus on the last radio button
@@ -2673,7 +2734,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
               If focus is on the first radio button in the radio group, moves focus to the last radio button in the group.
             </li>
           </ul>
-          <div class="note" role="note" id="issue-container-generatedID-20"><div role="heading" class="note-title marker" id="h-note-20" aria-level="6"><span>Note</span></div><p class="">
+          <div class="note" role="note" id="issue-container-generatedID-21"><div role="heading" class="note-title marker" id="h-note-21" aria-level="6"><span>Note</span></div><p class="">
             Radio buttons in a toolbar are frequently styled in a manner that appears more like toggle buttons.
             For an example, See the <a href="examples/toolbar/toolbar.html">Simple Editor Toolbar Example</a>
           </p></div>
@@ -2728,7 +2789,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         A slider is an input where the user selects a value from within a given range.
         Sliders typically have a slider thumb that can be moved along a bar or track to change the value of the slider.
       </p>
-      <div class="warning" id="issue-container-generatedID-21"><div role="heading" class="warning-title marker" id="h-warning" aria-level="4"><span>Warning</span></div><p class="">
+      <div class="warning" id="issue-container-generatedID-22"><div role="heading" class="warning-title marker" id="h-warning" aria-level="4"><span>Warning</span></div><p class="">
         Some users of touch-based assistive technologies may experience difficulty utilizing widgets that implement this slider pattern because the gestures their assistive technology provides for operating sliders may not yet generate the necessary output.
         To change the slider value, touch-based assistive technologies need to respond to user gestures for increasing and decreasing the value by synthesizing key events.
         This is a new convention that may not be fully implemented by some assistive technologies.
@@ -2756,7 +2817,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
           <li><kbd>Page Up</kbd> (Optional): Increase the slider value by an amount larger than the step change made by <kbd>Up Arrow</kbd>.</li>
           <li><kbd>Page Down</kbd> (Optional): Decrease the slider value by an amount larger than the step change made by <kbd>Down Arrow</kbd>.</li>
         </ul>
-        <div class="note" role="note" id="issue-container-generatedID-22"><div role="heading" class="note-title marker" id="h-note-21" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note" role="note" id="issue-container-generatedID-23"><div role="heading" class="note-title marker" id="h-note-22" aria-level="5"><span>Note</span></div><ol class="">
           <li>Focus is placed on the slider (the visual object that the mouse user would move, also known as the thumb.</li>
           <li>In some circumstances, reversing the direction of the value change for the keys specified above, e.g., having <kbd>Up Arrow</kbd> decrease the value, could create a more intuitive experience.</li>
         </ol></div>
@@ -2798,7 +2859,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         Conversely, the minimum value of the upper end thumb is limited by the current value of the lower end thumb.
         However, in some multi-thumb sliders, each thumb sets a value that does not depend on the other thumb values.
       </p>
-      <div class="warning" id="issue-container-generatedID-23"><div role="heading" class="warning-title marker" id="h-warning-0" aria-level="4"><span>Warning</span></div><p class="">
+      <div class="warning" id="issue-container-generatedID-24"><div role="heading" class="warning-title marker" id="h-warning-0" aria-level="4"><span>Warning</span></div><p class="">
         Some users of touch-based assistive technologies may experience difficulty utilizing widgets that implement this slider pattern because the gestures their assistive technology provides for operating sliders may not yet generate the necessary output.
         To change the slider value, touch-based assistive technologies need to respond to user gestures for increasing and decreasing the value by synthesizing key events.
         This is a new convention that may not be fully implemented by some assistive technologies.
@@ -2889,7 +2950,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
             </ul>
           </li>
         </ul>
-        <div class="note" role="note" id="issue-container-generatedID-24"><div role="heading" class="note-title marker" id="h-note-22" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note" role="note" id="issue-container-generatedID-25"><div role="heading" class="note-title marker" id="h-note-23" aria-level="5"><span>Note</span></div><ol class="">
           <li>Focus remains on the text field during operation.</li>
           <li>Standard single line text editing keys appropriate for the device platform:
             <ol>
@@ -3009,7 +3070,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         Since a table is not a widget, each widget contained in a table is a separate stop in the page tab sequence.
         If the number of widgets is large, replacing the table with a grid can dramatically reduce the length of the page tab sequence because a grid is a composite widget that can contain other widgets.
       </p>
-      <div class="note" role="note" id="issue-container-generatedID-25"><div role="heading" class="note-title marker" id="h-note-23" aria-level="4"><span>Note</span></div><p class="">
+      <div class="note" role="note" id="issue-container-generatedID-26"><div role="heading" class="note-title marker" id="h-note-24" aria-level="4"><span>Note</span></div><p class="">
         As with other <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> roles that have a native host language equivalent,
         authors are strongly encouraged to use a native HTML <code>table</code> element whenever possible.
         This is especially important with role <code>table</code> because it is a new feature of <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.1.
@@ -3053,7 +3114,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
           </li>
           <li>If the table includes cells that span multiple rows or multiple columns, then <a href="https://w3c.github.io/aria/#aria-rowspan" class="property-reference">aria-rowspan</a> or <a href="https://w3c.github.io/aria/#aria-colspan" class="property-reference">aria-colspan</a> is applied as described in <a href="#gridAndTableProperties">grid and table properties</a>.</li>
         </ul>
-        <div class="note" role="note" id="issue-container-generatedID-26"><div role="heading" class="note-title marker" id="h-note-24" aria-level="5"><span>Note</span></div><p class="">
+        <div class="note" role="note" id="issue-container-generatedID-27"><div role="heading" class="note-title marker" id="h-note-25" aria-level="5"><span>Note</span></div><p class="">
           If rows or cells are included in a table via <a href="https://w3c.github.io/aria/#aria-owns" class="property-reference">aria-owns</a>,
           they will be presented to assistive technologies after the DOM descendants of the <code>table</code> element unless the DOM descendants are also included in the <code>aria-owns</code> attribute.
         </p></div>
@@ -3134,7 +3195,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
             </ul>
           </li>
         </ul>
-        <div class="note" role="note" id="issue-container-generatedID-27"><div role="heading" class="note-title marker" id="h-note-25" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note" role="note" id="issue-container-generatedID-28"><div role="heading" class="note-title marker" id="h-note-26" aria-level="5"><span>Note</span></div><ol class="">
           <li>
             It is recommended that tabs activate automatically when they receive focus as long as their associated tab panels are displayed without noticeable latency.
             This typically requires tab panel content to be preloaded.
@@ -3218,7 +3279,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
           <li><kbd>Home</kbd> (Optional): Moves focus to first element.</li>
           <li><kbd>End</kbd> (Optional): Moves focus to last element.</li>
         </ul>
-        <div class="note" role="note" id="issue-container-generatedID-28"><div role="heading" class="note-title marker" id="h-note-26" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note" role="note" id="issue-container-generatedID-29"><div role="heading" class="note-title marker" id="h-note-27" aria-level="5"><span>Note</span></div><ol class="">
           <li>If the items in a toolbar are arranged vertically:
             <ol>
               <li><kbd>Down Arrow</kbd> performs as <kbd>Right Arrow</kbd> is described above. </li>
@@ -3273,7 +3334,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       <section class="notoc">
         <h4 id="keyboard-interaction-23">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-23"></a></h4>
         <p><kbd>Escape</kbd>: Dismisses the Tooltip.</p>
-        <div class="note" role="note" id="issue-container-generatedID-29"><div role="heading" class="note-title marker" id="h-note-27" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note" role="note" id="issue-container-generatedID-30"><div role="heading" class="note-title marker" id="h-note-28" aria-level="5"><span>Note</span></div><ol class="">
           <li>Focus stays on the triggering element while the tooltip is displayed.</li>
           <li>
             If the tooltip is invoked when the trigger element   receives focus, then it is dismissed when it no longer has focus (onBlur).
@@ -3417,7 +3478,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
             </ul>
           </li>
         </ul>
-        <div class="note" role="note" id="issue-container-generatedID-30"><div role="heading" class="note-title marker" id="h-note-28" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note" role="note" id="issue-container-generatedID-31"><div role="heading" class="note-title marker" id="h-note-29" aria-level="5"><span>Note</span></div><ol class="">
           <li>DOM focus (the active element) is functionally distinct from the selected state. For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a></li>
           <li>
             The <code>tree</code> role supports the <a class="property-reference" href="https://w3c.github.io/aria/#aria-activedescendant">aria-activedescendant</a> property,
@@ -3490,7 +3551,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
             The default value of <code>aria-orientation</code> for a tree is <code>vertical</code>.
           </li>
         </ul>
-        <div class="note" role="note" id="issue-container-generatedID-31"><div role="heading" class="note-title marker" id="h-note-29" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note" role="note" id="issue-container-generatedID-32"><div role="heading" class="note-title marker" id="h-note-30" aria-level="5"><span>Note</span></div><ol class="">
           <li>Some factors to consider when choosing whether to indicate selection with <code>aria-selected</code> or <code>aria-checked</code> are:
             <ul>
               <li>
@@ -3641,7 +3702,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
               </ul>
           </li>
         </ul>
-        <div class="note" role="note" id="issue-container-generatedID-32"><div role="heading" class="note-title marker" id="h-note-30" aria-level="5"><span>Note</span></div><ul class="">
+        <div class="note" role="note" id="issue-container-generatedID-33"><div role="heading" class="note-title marker" id="h-note-31" aria-level="5"><span>Note</span></div><ul class="">
           <li>
             When the above <code>treegrid</code> navigation keys move focus, whether the focus is set on an element inside the cell or on the cell depends on cell content.
             See <a href="#gridNav_focus">Whether to Focus on a Cell or an Element Inside It</a>.
@@ -3698,7 +3759,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
             </ul>
           </li>
         </ul>
-        <div class="note" role="note" id="issue-container-generatedID-33"><div role="heading" class="note-title marker" id="h-note-31" aria-level="5"><span>Note</span></div><p class="">See <a href="#kbd_common_conventions" class="sec-ref">§&nbsp;<bdi class="secno">6.8 </bdi>Key Assignment Conventions for Common Functions</a> for cut, copy, and paste key assignments.</p></div>
+        <div class="note" role="note" id="issue-container-generatedID-34"><div role="heading" class="note-title marker" id="h-note-32" aria-level="5"><span>Note</span></div><p class="">See <a href="#kbd_common_conventions" class="sec-ref">§&nbsp;<bdi class="secno">6.8 </bdi>Key Assignment Conventions for Common Functions</a> for cut, copy, and paste key assignments.</p></div>
       </section>
 
       <section id="treegrid_roles_states_props" class="notoc">
@@ -3747,7 +3808,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
           </li>
           <li>If the treegrid includes cells that span multiple rows or multiple columns, and if the <code>treegrid</code> role is NOT applied to an HTML <code>table</code> element, then <a href="https://w3c.github.io/aria/#aria-rowspan" class="property-reference">aria-rowspan</a> or <a href="https://w3c.github.io/aria/#aria-colspan" class="property-reference">aria-colspan</a> is applied as described in <a href="#gridAndTableProperties">grid and table properties</a>.</li>
         </ul>
-        <div class="note" role="note" id="issue-container-generatedID-34"><div role="heading" class="note-title marker" id="h-note-32" aria-level="5"><span>Note</span></div><ul class="">
+        <div class="note" role="note" id="issue-container-generatedID-35"><div role="heading" class="note-title marker" id="h-note-33" aria-level="5"><span>Note</span></div><ul class="">
           <li>
             A <code>treegrid</code> built from an HTML <code>table</code> that includes cells that span multiple rows or columns must use HTML <code>rowspan</code> and <code>colspan</code> and must not use <code>aria-rowspan</code> or <code>aria-colspan</code>.
           </li>
@@ -3805,7 +3866,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
           <li><kbd>End</kbd> (Optional): Moves splitter to the position that gives the primary pane its largest allowed size. This may completely collapse the secondary pane.</li>
           <li><kbd>F6</kbd> (Optional): Cycle through window   panes.</li>
         </ul>
-        <div class="note" role="note" id="issue-container-generatedID-35"><div role="heading" class="note-title marker" id="h-note-33" aria-level="5"><span>Note</span></div><p class="">A fixed size splitter omits implementation of the arrow keys.</p></div>
+        <div class="note" role="note" id="issue-container-generatedID-36"><div role="heading" class="note-title marker" id="h-note-34" aria-level="5"><span>Note</span></div><p class="">A fixed size splitter omits implementation of the arrow keys.</p></div>
       </section>
       <section class="notoc">
         <h4 id="wai-aria-roles-states-and-properties-27"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-27"></a></h4>
@@ -4424,7 +4485,7 @@ However, most authors do not need such detailed understanding of the algorithms 
     <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></code></pre>
-          <div class="warning" id="issue-container-generatedID-36"><div role="heading" class="warning-title marker" id="h-warning-1" aria-level="6"><span>Warning</span></div><p class="">
+          <div class="warning" id="issue-container-generatedID-37"><div role="heading" class="warning-title marker" id="h-warning-1" aria-level="6"><span>Warning</span></div><p class="">
             If an element with one of the above roles that supports naming from child content is named by using <code>aria-label</code> or <code>aria-labelledby</code>, content contained in the element and its descendants is hidden from assistive technology users unless the descendant content is referenced by <code>aria-labelledby</code>.
             It is strongly recommended to avoid using either of these attributes to override content of one of the above elements except in rare circumstances where hiding content from assistive technology users is beneficial.
             In addition, in situations where visible content is hidden from assistive technology users by use of one of these attributes, thorough testing with assistive technologies is particularly important.
@@ -4453,7 +4514,7 @@ However, most authors do not need such detailed understanding of the algorithms 
           <p>
             When encountering this navigation region, a screen reader user will hear the name and role of the element, e.g., "Product navigation region", and then be able to read through the links contained in the region.
           </p>
-          <div class="warning" id="issue-container-generatedID-37"><div role="heading" class="warning-title marker" id="h-warning-2" aria-level="6"><span>Warning</span></div><ol class="">
+          <div class="warning" id="issue-container-generatedID-38"><div role="heading" class="warning-title marker" id="h-warning-2" aria-level="6"><span>Warning</span></div><ol class="">
             <li>
           If <code>aria-label</code> is applied to an element with one of the roles that supports <a href="#naming_with_child_content">naming from child content</a>, content contained in the element and its descendants is hidden from assistive technology users.
           It is strongly recommended to avoid using <code>aria-label</code> to override content of one of these elements except in rare circumstances where hiding content from assistive technology users is beneficial.
@@ -4508,7 +4569,7 @@ However, most authors do not need such detailed understanding of the algorithms 
           <pre><code aria-busy="false" class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"download-button"</span> <span class="hljs-attr">aria-labelledby</span>=<span class="hljs-string">"download-button download-details"</span>&gt;</span>Download<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"download-details"</span>&gt;</span>PDF, 2.4 MB<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></code></pre>
           <p>In the above example, the accessible name of the button will be "Download PDF, 2.4 MB", with a space between "Download" and "PDF", and not "DownloadPDF, 2.4 MB".</p>
-          <div class="warning" id="issue-container-generatedID-38"><div role="heading" class="warning-title marker" id="h-warning-3" aria-level="6"><span>Warning</span></div><ol class="">
+          <div class="warning" id="issue-container-generatedID-39"><div role="heading" class="warning-title marker" id="h-warning-3" aria-level="6"><span>Warning</span></div><ol class="">
             <li>The <code>aria-labelledby</code> property cannot be chained, i.e., if an element with <code>aria-labelledby</code> references another element that also has <code>aria-labelledby</code>, the <code>aria-labelledby</code> attribute on the referenced element will be ignored.</li>
             <li>If an element is referenced by <code>aria-labelledby</code> more than one time during a name calculation, the second and any subsequent references will be ignored.</li>
             <li>There are certain types of elements, such as paragraphs and list items,  that should not be named with <code>aria-labelledby</code>. They are identified in the table in the <a href="#naming_role_guidance">Accessible Name Guidance by Role</a> section.</li>
@@ -6355,7 +6416,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
           And, given the vast array of operating system, browser, and assistive technology keys, it is almost impossible to be certain conflicts do not exist.
           So it is also important to employ strategies that mitigate the impact of conflicts whether they are intentional or unknown.
         </p>
-        <div class="note" role="note" id="issue-container-generatedID-39"><div role="heading" class="note-title marker" id="h-note-34" aria-level="5"><span>Note</span></div><p class="">
+        <div class="note" role="note" id="issue-container-generatedID-40"><div role="heading" class="note-title marker" id="h-note-35" aria-level="5"><span>Note</span></div><p class="">
           In the following sections, <kbd>meta</kbd> key refers to the <kbd>Windows</kbd> key on Windows-compatible keyboards and the <kbd>Command</kbd> key on MacOS-compatible keyboards.
         </p></div>
         <section id="kbd_shortcuts_assignments_opsys_conflicts">
