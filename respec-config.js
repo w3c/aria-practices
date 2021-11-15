@@ -2,7 +2,7 @@
 // eslint-disable-next-line no-unused-vars
 var respecConfig = {
   // Specification status (e.g., WD, LC, NOTE, etc.). If in doubt use ED.
-  specStatus: 'ED',
+  specStatus: 'NOTE',
   // crEnd: "2012-04-30",
   // perEnd: "2013-07-23",
   // publishDate: "2013-08-22",
@@ -13,14 +13,14 @@ var respecConfig = {
 
   // If you wish the publication date to be other than today,
   // set publishDate.
-  // publishDate: "2009-08-06",
+  publishDate: "2021-11-16",
   copyrightStart: '2018',
 
   // If there is a previously published draft, uncomment this
   // and set its YYYY-MM-DD date and its maturity status.
   //
-  // previousPublishDate:  "",
-  // previousMaturity:  "",
+  previousPublishDate:  "2019-12-18",
+  previousMaturity:  "WD",
   // prevRecURI: "",
   // previousDiffURI: "",
 
@@ -109,24 +109,28 @@ var respecConfig = {
     ED: 'https://w3c.github.io/aria/',
     FPWD: 'https://www.w3.org/TR/wai-aria-1.2/',
     WD: 'https://www.w3.org/TR/wai-aria-1.2/',
+    NOTE: 'https://www.w3.org/TR/wai-aria-1.2/',
     REC: 'https://www.w3.org/TR/wai-aria/',
   },
   accNameURLs: {
     ED: 'https://w3c.github.io/accname/',
     WD: 'https://www.w3.org/TR/accname-1.2/',
     FPWD: 'https://www.w3.org/TR/accname-1.2/',
+    NOTE: 'https://www.w3.org/TR/accname-1.2/',
     REC: 'https://www.w3.org/TR/accname/',
   },
   coreMappingURLs: {
     ED: 'https://w3c.github.io/core-aam/',
     WD: 'https://www.w3.org/TR/core-aam-1.2/',
     FPWD: 'https://www.w3.org/TR/core-aam-1.2/',
+    NOTE: 'https://www.w3.org/TR/core-aam-1.2/',
     REC: 'https://www.w3.org/TR/core-aam/',
   },
   htmlMappingURLs: {
     ED: 'https://w3c.github.io/html-aam/',
     WD: 'https://www.w3.org/TR/html-aam-1.0/',
     FPWD: 'https://www.w3.org/TR/html-aam-1.0/',
+    NOTE: 'https://www.w3.org/TR/html-aam-1.0/',
     REC: 'https://www.w3.org/TR/html-aam-1.0/',
   },
 
