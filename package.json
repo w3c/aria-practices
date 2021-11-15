@@ -58,7 +58,7 @@
     "selenium-webdriver": "^4.0.0-beta.1",
     "stylelint": "^14.0.1",
     "stylelint-config-prettier": "^9.0.3",
-    "stylelint-config-standard": "^23.0.0",
+    "stylelint-config-standard": "^24.0.0",
     "stylelint-prettier": "^1.2.0",
     "vnu-jar": "^21.2.5"
   },
