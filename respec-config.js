@@ -62,7 +62,6 @@ var respecConfig = {
     {
       name: 'Michael Cooper',
       url: 'https://www.w3.org/People/cooper/',
-      mailto: 'cooper@w3.org',
       company: 'W3C',
       companyURI: 'https://www.w3.org/',
       w3cid: 34017,
@@ -147,23 +146,12 @@ var respecConfig = {
   // ],
 
   // errata: 'https://www.w3.org/2010/02/rdfa/errata.html',
-
-  // name of the WG
-  wg: 'Accessible Rich Internet Applications Working Group',
-
-  // URI of the public WG page
-  wgURI: 'https://www.w3.org/WAI/ARIA/',
+  group: 'aria',
 
   // Name (without the @w3c.org) of the public mailing
   // to which comments are due.
-  wgPublicList: 'public-aria',
+  wgPublicList: 'public-aria-practices',
 
-  // URI of the patent status for this WG, for Rec-track documents
-  // !!!! IMPORTANT !!!!
-  // This is important for Rec-track documents, do not copy a patent URI
-  // from a random document unless you know what you're doing.
-  // If in doubt ask your friendly neighbourhood Team Contact.
-  wgPatentURI: 'https://www.w3.org/2004/01/pp-impl/83726/status',
   maxTocLevel: 4,
   // eslint-disable-next-line no-undef
   preProcess: [linkCrossReferences],

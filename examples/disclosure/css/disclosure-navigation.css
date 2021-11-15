@@ -46,7 +46,7 @@
 }
 
 .disclosure-nav ul a:focus {
-  outline: 5px solid rgba(0, 90, 156, 0.75);
+  outline: 5px solid rgb(0 90 156 / 75%);
   position: relative;
 }
 
@@ -81,7 +81,7 @@
 .disclosure-nav button:focus,
 .disclosure-nav .main-link:focus {
   border-color: #005a9c;
-  outline: 5px solid rgba(0, 90, 156, 0.75);
+  outline: 5px solid rgb(0 90 156 / 75%);
   position: relative;
 }
 
