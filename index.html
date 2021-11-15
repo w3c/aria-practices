@@ -3454,14 +3454,33 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
             set to <code>false</code> when the node is in a closed state and set to <code>true</code> when the node is in an open state.
             End nodes do not have the <code>aria-expanded</code> attribute because, if they were to have it, they would be incorrectly described to assistive technologies as parent nodes.
           </li>
-          <li>If the tree supports selection of more than one node, the element with role <code>tree</code> has <a class="property-reference" href="https://w3c.github.io/aria/#aria-multiselectable">aria-multiselectable</a> set to <code>true</code>. Otherwise, <code>aria-multiselectable</code> is either set to <code>false</code> or the default value of <code>false</code> is implied.</li>
-          <li>If the tree does not support multiple selection, <a href="https://w3c.github.io/aria/#aria-selected" class="property-reference">aria-selected</a> is set to <code>true</code> for the selected node and it is not present on any other node in the tree.</li>
-          <li>if the tree supports multiple selection:
-          <ul>
-          <li>All selected nodes have <a href="https://w3c.github.io/aria/#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code>.</li>
-          <li>All nodes that are selectable but not selected have <a href="https://w3c.github.io/aria/#aria-selected" class="state-reference">aria-selected</a> set to <code>false</code>.</li>
-          <li>If the tree contains nodes that are not selectable, those nodes do not have the <code>aria-selected</code> state.</li>
-          </ul>
+          <li>
+            If the tree supports selection of more than one node, the element with role <code>tree</code> has <a class="property-reference" href="https://w3c.github.io/aria/#aria-multiselectable">aria-multiselectable</a> set to <code>true</code>.
+            Otherwise, <code>aria-multiselectable</code> is either set to <code>false</code> or the default value of <code>false</code> is implied.
+          </li>
+          <li>
+            The selection state of each selectable node is indicated with either <a href="https://w3c.github.io/aria/#aria-selected" class="state-reference">aria-selected</a> or <a href="https://w3c.github.io/aria/#aria-checked" class="state-reference">aria-checked</a>:
+            <ul>
+              <li>
+                If the selection state is indicated with <code>aria-selected</code>, then <code>aria-checked</code> is not specified for any nodes.
+                Alternatively, if the selection state is indicated with <code>aria-checked</code>, then <code>aria-selected</code> is not specified for any nodes.
+                See notes below regarding considerations for which property to use and for details of the unusual conditions that might allow for both properties in the same tree.
+              </li>
+              <li>
+                If any nodes are selected, each selected node has either <a href="https://w3c.github.io/aria/#aria-selected" class="state-reference">aria-selected</a> or <a href="https://w3c.github.io/aria/#aria-checked" class="state-reference">aria-checked</a> set to <code>true</code>.
+                No more than one node is selected at a time if the element with role <code>tree</code> does <em>not</em> have <a class="property-reference" href="https://w3c.github.io/aria/#aria-multiselectable">aria-multiselectable</a> set to <code>true</code>.
+              </li>
+              <li>
+                All nodes that are selectable but not selected have either <a href="https://w3c.github.io/aria/#aria-selected" class="state-reference">aria-selected</a> or <a href="https://w3c.github.io/aria/#aria-checked" class="state-reference">aria-checked</a> set to <code>false</code>.
+              </li>
+              <li>
+                If the tree contains nodes that are not selectable, neither <a href="https://w3c.github.io/aria/#aria-selected" class="state-reference">aria-selected</a> nor <a href="https://w3c.github.io/aria/#aria-checked" class="state-reference">aria-checked</a> is present on those nodes.
+              </li>
+              <li>
+                Note that except in trees where selection follows focus, the selected state is distinct from focus.
+                For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection</a> and <a href="#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
+              </li>
+            </ul>
           </li>
           <li>The element with role <code>tree</code> has either a visible label referenced by <a href="https://w3c.github.io/aria/#aria-labelledby" class="property-reference">aria-labelledby</a> or a value specified for <a href="https://w3c.github.io/aria/#aria-label" class="property-reference">aria-label</a>.</li>
           <li>If the complete set of available nodes is not present in the DOM due to dynamic loading as the user moves focus in or scrolls the tree, each node has <a href="https://w3c.github.io/aria/#aria-level" class="property-reference">aria-level</a>, <a href="https://w3c.github.io/aria/#aria-setsize" class="property-reference">aria-setsize</a>, and <a href="https://w3c.github.io/aria/#aria-posinset" class="property-reference">aria-posinset</a> specified.</li>
@@ -3471,11 +3490,36 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
             The default value of <code>aria-orientation</code> for a tree is <code>vertical</code>.
           </li>
         </ul>
-        <div class="note" role="note" id="issue-container-generatedID-31"><div role="heading" class="note-title marker" id="h-note-29" aria-level="5"><span>Note</span></div><p class="">
-          If <a href="https://w3c.github.io/aria/#aria-owns" class="property-reference">aria-owns</a> is set on the tree container to include elements that are not DOM children of the container,
-          those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children.
-          Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order.
-        </p></div>
+        <div class="note" role="note" id="issue-container-generatedID-31"><div role="heading" class="note-title marker" id="h-note-29" aria-level="5"><span>Note</span></div><ol class="">
+          <li>Some factors to consider when choosing whether to indicate selection with <code>aria-selected</code> or <code>aria-checked</code> are:
+            <ul>
+              <li>
+                Some design systems use <code>aria-selected</code> for single-select widgets and <code>aria-checked</code> for multi-select widgets.
+                In the absence of factors that would make an alternative convention more appropriate, this is a recommended convention.
+              </li>
+              <li>
+                The language of instructions and the appearance of the interface might suggest one attribute is more appropriate than the other.
+                For instance, do instructions say to <q>select</q> items? Or, is the visual indicator of selection a check mark?
+              </li>
+              <li>It is important to adopt a consistent convention for selection models across a site or app.</li>
+            </ul>
+          </li>
+          <li>
+            Conditions that would permit a tree to include both <code>aria-selected</code> and <code>aria-checked</code> are extremely rare.
+            It is strongly recommended to avoid designing a tree widget that would have the need for more than one type of state.
+            If both states were to be used within a tree, all the following conditions need to be satisfied:
+            <ul>
+              <li>The meaning and purpose of <code>aria-selected</code> is different from the meaning and purpose of <code>aria-checked</code> in the user interface.</li>
+              <li>The user interface makes the meaning and purpose of each state apparent.</li>
+              <li>The user interface provides a separate method for controlling each state.</li>
+            </ul>
+          </li>
+          <li>
+            If <a href="https://w3c.github.io/aria/#aria-owns" class="property-reference">aria-owns</a> is set on the tree container to include elements that are not DOM children of the container,
+            those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children.
+            Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order.
+          </li>
+        </ol></div>
       </section>
     </section>
 
