@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 .menubar-editor {
   margin: 0;
   padding: 2px;
@@ -43,20 +45,18 @@
   left: 1px;
 }
 
-.menubar-editor [role="menubar"] > li > [role="menuitem"]::after {
-  content: url("../images/down-arrow.svg");
-  padding-left: 0.25em;
-}
-
-.menubar-editor [role="menubar"] > li > [role="menuitem"]:focus::after {
-  content: url("../images/down-arrow-focus.svg");
+.menubar-editor [role="menubar"] [role="menuitem"] > [aria-hidden]::before {
+  content: "▼";
+  padding-left: 0.25rem;
+  font-size: 11px;
+  vertical-align: middle;
 }
 
 .menubar-editor
   [role="menubar"]
-  > li
-  > [role="menuitem"][aria-expanded="true"]::after {
-  content: url("../images/up-arrow-focus.svg");
+  [role="menuitem"][aria-expanded="true"]
+  > [aria-hidden]::before {
+  content: "▲";
 }
 
 .menubar-editor [role="menubar"] [role="menu"] {
@@ -80,7 +80,8 @@
 
 .menubar-editor [role="menubar"] [role="separator"] {
   padding-top: 3px;
-  background-image: url("../images/separator.svg");
+  background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cline x1='0' y1='6' x2='12' y2='6' style='stroke:black;stroke-width:1' /%3E%3C/svg%3E%0A");
+  background-size: 10px 10px;
   background-position: center;
   background-repeat: repeat-x;
 }
@@ -119,16 +120,20 @@
 
 .menubar-editor
   [role="menubar"]
-  [role="menuitemradio"][aria-checked="true"]::before {
-  content: url("../images/radio-checked.svg");
-  padding-right: 3px;
+  [role="menuitemradio"][aria-checked="true"]
+  > [aria-hidden]::before {
+  content: "●";
+  display: inline-block;
+  width: 18px;
 }
 
 .menubar-editor
   [role="menubar"]
-  [role="menuitemcheckbox"][aria-checked="true"]::before {
-  content: url("../images/checkbox-checked.svg");
-  padding-right: 3px;
+  [role="menuitemcheckbox"][aria-checked="true"]
+  > [aria-hidden]::before {
+  content: "✓";
+  display: inline-block;
+  width: 18px;
 }
 
 /* focus and hover styling */
@@ -145,16 +150,13 @@
 
 .menubar-editor
   [role="menubar"]
-  [role="menuitemradio"][aria-checked="true"]:focus::before {
-  content: url("../images/radio-checked-focus.svg");
-  padding-right: 3px;
-}
-
+  [role="menuitemradio"][aria-checked="true"]:focus
+  > [aria-hidden]::before,
 .menubar-editor
   [role="menubar"]
-  [role="menuitemcheckbox"][aria-checked="true"]:focus::before {
-  content: url("../images/checkbox-checked-focus.svg");
-  padding-right: 3px;
+  [role="menuitemcheckbox"][aria-checked="true"]:focus
+  > [aria-hidden]::before {
+  margin-left: -2px;
 }
 
 .menubar-editor [role="menubar"] [role="menuitem"]:hover {
