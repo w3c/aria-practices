@@ -100,10 +100,8 @@ Treeitem.prototype.isExpanded = function () {
 /* EVENT HANDLERS */
 
 Treeitem.prototype.handleKeydown = function (event) {
-  var tgt = event.currentTarget,
-    flag = false,
-    char = event.key,
-    clickEvent;
+  var flag = false,
+    char = event.key;
 
   function isPrintableCharacter(str) {
     return str.length === 1 && str.match(/\S/);
@@ -131,16 +129,18 @@ Treeitem.prototype.handleKeydown = function (event) {
     }
   } else {
     switch (event.keyCode) {
-      case this.keyCode.SPACE:
       case this.keyCode.RETURN:
-        // Create simulated mouse event to mimic the behavior of ATs
-        // and let the event handler handleClick do the housekeeping.
-        clickEvent = new MouseEvent('click', {
-          view: window,
-          bubbles: true,
-          cancelable: true,
-        });
-        tgt.dispatchEvent(clickEvent);
+      case this.keyCode.SPACE:
+        var treeitem = event.currentTarget;
+        var label = treeitem.getAttribute('aria-label');
+        if (!label) {
+          var child = treeitem.firstElementChild;
+          label = child ? child.innerText : treeitem.innerText;
+        }
+        document.getElementById('last_action').value = label.trim();
+
+        if (!this.isExpandable) this.tree.setFocusToItem(this);
+        this.tree.setSelectedToItem(this);
         flag = true;
         break;
 
@@ -212,6 +212,7 @@ Treeitem.prototype.handleClick = function (event) {
   } else {
     this.tree.setFocusToItem(this);
   }
+  this.tree.setSelectedToItem(this);
 };
 
 Treeitem.prototype.handleFocus = function () {
