@@ -2,8 +2,8 @@
 <dl class="termlist">
     <dt><dfn data-lt="accessibility api|accessibility apis">Accessibility <abbr title="Application Programming Interface">API</abbr></dfn></dt>
     <dd>
-      <p>Operating systems and other platforms provide a set of interfaces that expose information about <a class="termref" data-lt="object">objects</a> and <a class="termref" data-lt="event">events</a> to <a>assistive technologies</a>. Assistive technologies use these interfaces to get information about and interact with those <a class="termref" data-lt="widget">widgets</a>. Examples of accessibility APIs are <a href="https://msdn.microsoft.com/en-us/library/ms697270(VS.85).aspx">Microsoft Active Accessibility</a> [[MSAA]], <a href="https://msdn.microsoft.com/en-us/library/ee684013%28VS.85%29.aspx">Microsoft User Interface Automation</a> [[UI-AUTOMATION]], <abbr title="Microsoft Active Accessibility">MSAA</abbr> with <cite><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/dd561898(v=vs.85).aspx"><abbr title="User Interface Automation">UIA</abbr> Express</a></cite> [[UIA-EXPRESS]], the
-      	<a href="https://developer.apple.com/documentation/appkit/accessibility/nsaccessibility">Mac <abbr title="OS Ten">OS X</abbr> Accessibility Protocol</a> [[AXAPI]], the <cite><a href="https://developer.gnome.org/atk/unstable/">Linux/Unix Accessibility Toolkit</a></cite> [[ATK]] and <cite><a href="https://developer.gnome.org/libatspi/stable/">Assistive Technology Service Provider Interface</a></cite> [[AT-SPI]], and <a href="https://wiki.linuxfoundation.org/accessibility/iaccessible2/start">IAccessible2</a> [[IAccessible2]].</p>
+      <p>Operating systems and other platforms provide a set of interfaces that expose information about <a class="termref" data-lt="object">objects</a> and <a class="termref" data-lt="event">events</a> to <a>assistive technologies</a>. Assistive technologies use these interfaces to get information about and interact with those <a class="termref" data-lt="widget">widgets</a>. Examples of accessibility APIs are <a href="https://docs.microsoft.com/en-us/windows/win32/winauto/microsoft-active-accessibility">Microsoft Active Accessibility</a> [[MSAA]], <a href="https://docs.microsoft.com/en-us/windows/win32/winauto/entry-uiauto-win32">Microsoft User Interface Automation</a> [[UI-AUTOMATION]], <abbr title="Microsoft Active Accessibility">MSAA</abbr> with <cite><a href="https://docs.microsoft.com/en-us/windows/win32/winauto/iaccessibleex"><abbr title="User Interface Automation">UIA</abbr> Express</a></cite> [[UIA-EXPRESS]], the
+      	<a href="https://developer.apple.com/documentation/appkit/nsaccessibility">Mac <abbr title="OS Ten">OS X</abbr> Accessibility Protocol</a> [[AXAPI]], the <cite><a href="https://developer.gnome.org/atk/unstable/">Linux/Unix Accessibility Toolkit</a></cite> [[ATK]] and <cite><a href="https://developer.gnome.org/libatspi/stable/">Assistive Technology Service Provider Interface</a></cite> [[AT-SPI]], and <a href="https://wiki.linuxfoundation.org/accessibility/iaccessible2/start">IAccessible2</a> [[IAccessible2]].</p>
     </dd>
     <dt><dfn>Accessibility Subtree</dfn></dt>
     <dd>
@@ -59,12 +59,14 @@
     </dd>
     <dt><dfn data-lt="deprecated|deprecate|deprecation">Deprecated</dfn></dt>
     <dd>
-      <p>A deprecated <a class="termref" href="#dfn-role">role</a>, <a class="termref" href="#dfn-state">state</a>, or <a class="termref" href="#dfn-property">property</a> is one which has been outdated by newer constructs or changed circumstances, and which may be removed in future versions of the <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> specification. <a class="termref" data-lt="user agent">User agents</a> are encouraged to continue to support items identified as deprecated for backward compatibility. For more information, see <a href="#deprecated">Deprecated Requirements</a> in the Conformance section.</p>
+      <p>A deprecated <a class="termref" href="#dfn-role">role</a>, <a class="termref" href="#dfn-state">state</a>, or <a class="termref" href="#dfn-property">property</a> is one which has been outdated by newer constructs or changed circumstances, and which may be removed in future versions of the <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> specification. <a class="termref" data-lt="user agent">User agents</a> are encouraged to continue to support items identified as deprecated for backward compatibility. For more information, see <a href="#deprecated" class="specref">Deprecated Requirements</a> in the Conformance section.</p>
     </dd>
     <dt><dfn data-lt="desktop focus|desktop focus events">Desktop focus event</dfn></dt>
     <dd>
       <p>Event from/to the host operating system via the accessibility <abbr title="application programming interface">API</abbr>, notifying of a change of input focus.</p>
     </dd>
+	<dt><dfn>DOMString</dfn>
+	<dd>Sequence of 16-bit unsigned integers, typically interpreted as UTF-16 code units. This corresponds to the JavaScript primitive String type.</dd>
     <dt><dfn data-lt="element|elements|element's">Element</dfn></dt>
     <dd>
       <p>In this specification, element is used as it is in markup languages. Elements are the structural elements in markup language that contains the data profile for <a class="termref" data-lt="object">objects</a>.</p>
@@ -75,7 +77,7 @@
     </dd>
     <dt><dfn>Expose</dfn></dt>
     <dd>
-      <p>Translated to platform-specific <a class="termref" data-lt="accessibility api">accessibility APIs</a> as defined in the <a href="" class="core-mapping">Core Accessibility API Mappings</a>. [[CORE-AAM-1.1]]</p>
+      <p>Translated to platform-specific <a class="termref" data-lt="accessibility api">accessibility APIs</a> as defined in the <a href="" class="core-mapping">Core Accessibility API Mappings</a>.</p>
     </dd>
 	<dt><dfn data-lt="graphical document|graphical documents">Graphical Document</dfn></dt>
     <dd>
@@ -99,7 +101,7 @@
     </dd>
     <dt><dfn data-lt="live region|live regions">Live Region</dfn></dt>
     <dd>
-      <p>Live regions are perceivable regions of a web page that are typically updated as a result of an external event when user focus may be elsewhere. These regions are not always updated as a result of a user interaction. This practice has become commonplace with the growing use of Ajax. Examples of live regions include a chat log, stock ticker, or a sport scoring section that updates periodically to reflect game statistics. Since these asynchronous areas are expected to update outside the user's area of focus, assistive technologies such as screen readers have either been unaware of their existence or unable to process them for the user. WAI-ARIA has provided a collection of properties that allow the author to identify these live regions and process them: aria-live, aria-relevant, aria-atomic, and aria-busy.</p>
+      <p>Live regions are perceivable regions of a web page that are typically updated as a result of an external event when user focus may be elsewhere. These regions are not always updated as a result of a user interaction. Examples of live regions include a chat log, stock ticker, or a sport scoring section that updates periodically to reflect game statistics. Since these asynchronous areas are expected to update outside the user's area of focus, assistive technologies such as screen readers have either been unaware of their existence or unable to process them for the user. WAI-ARIA has provided a collection of properties that allow the author to identify these live regions and process them: aria-live, aria-relevant, aria-atomic, and aria-busy.</p>
     </dd>
     <dt><dfn>Primary Content Element</dfn></dt>
     <dd>
@@ -148,7 +150,7 @@
     </dd>
     <dt><dfn data-lt="property|properties">Property</dfn></dt>
     <dd>
-      <p><a class="termref" data-lt="attribute">Attributes</a> that are essential to the nature of a given <a>object</a>, or that represent a data value associated with the object. A change of a property may significantly impact the meaning or presentation of an object. Certain properties (for example, <pref>aria-multiline</pref>) are less likely to change than <a class="termref" href="#dfn-state">states</a>, but note that the frequency of change difference is not a rule. A few properties, such as <pref>aria-activedescendant</pref>, <pref>aria-valuenow</pref>, and <pref>aria-valuetext</pref> are expected to change often. See <a href="https://www.w3.org/TR/wai-aria-1.1/#statevsprop">clarification of states versus properties</a>.</p>
+      <p><a class="termref" data-lt="attribute">Attributes</a> that are essential to the nature of a given <a>object</a>, or that represent a data value associated with the object. A change of a property may significantly impact the meaning or presentation of an object. Certain properties (for example, <pref>aria-multiline</pref>) are less likely to change than <a class="termref" href="#dfn-state">states</a>, but note that the frequency of change difference is not a rule. A few properties, such as <pref>aria-activedescendant</pref>, <pref>aria-valuenow</pref>, and <pref>aria-valuetext</pref> are expected to change often. See <a class="specref" href="#statevsprop">clarification of states versus properties</a>.</p>
     </dd>
     <dt><dfn data-lt="relationship|relationships">Relationship</dfn></dt>
     <dd>
@@ -168,7 +170,7 @@
     </dd>
     <dt><dfn data-lt="state|states">State</dfn></dt>
     <dd>
-      <p>A state is a dynamic <a class="termref" href="#dfn-property">property</a> expressing characteristics of an <a>object</a> that may change in response to user action or automated processes. States do not affect the essential nature of the object, but represent data associated with the object or user interaction possibilities. See <a href="https://www.w3.org/TR/wai-aria-1.1/#statevsprop">clarification of states versus properties</a>.</p>
+      <p>A state is a dynamic <a class="termref" href="#dfn-property">property</a> expressing characteristics of an <a>object</a> that may change in response to user action or automated processes. States do not affect the essential nature of the object, but represent data associated with the object or user interaction possibilities. See <a class="specref" href="#statevsprop">clarification of states versus properties</a>.</p>
     </dd>
     <dt><dfn>Sub-document</dfn></dt>
     <dd>
@@ -194,7 +196,11 @@
     <dd>
       <p>Presentable to users in ways they can construct an appropriate meaning. References in this document relate to <cite><a href="https://www.w3.org/TR/WCAG21/#understandable"><abbr title="Web Content Accessibility Guidelines">WCAG</abbr> 2.1 Principle 3: Information and the operation of user interface must be understandable</a></cite> [[WCAG21]].</p>
     </dd>
-    <dt><dfn data-lt="user agent|user agents">User Agent</dfn></dt>
+	<dt><dfn data-lt="unicode braille">Unicode Braille Patterns</dfn></dt>
+	<dd>
+		<p>In Unicode, braille is represented in a block called Braille Patterns (U+2800..U+28FF). The block contains all 256 possible patterns of an 8-dot braille cell; this includes the complete 6-dot cell range which is represented by U+2800..U+283F. In all braille systems, the braille pattern dots-0 (U+2800) is used to represent a space or the lack of content; it is also called a blank Braille pattern. See <cite><a href="https://en.wikipedia.org/wiki/Braille_Patterns">Braille Patterns on Wikipedia</a>.</cite></p>
+	</dd>
+	<dt><dfn data-lt="user agent|user agents">User Agent</dfn></dt>
     <dd>
       <p>Any software that retrieves, renders and facilitates end user interaction with Web content. This definition may differ from that used in other documents.</p>
     </dd>

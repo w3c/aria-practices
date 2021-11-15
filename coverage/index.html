@@ -1,0 +1,2467 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>ARIA Roles, Properties and States Referenced in Guidance and Examples | WAI-ARIA Authoring Practices</title>
+  <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
+  <link rel="stylesheet" href="css/core.css">
+  <script src="js/examples.js"></script>
+  <script src="js/highlight.pack.js"></script>
+  <script src="js/app.js"></script>
+  <style>
+    .sr-only {position: absolute; top: -30em;}
+    table.summary th { width: 12em; }
+  </style>
+</head>
+<body>
+  <nav aria-label="ARIA Practices">
+    <a href="../">WAI-ARIA Authoring Practices</a>
+  </nav>
+  <main>
+    <h1>ARIA Roles, Properties and States Referenced in Guidance and Examples</h1>
+
+    <p>
+      This page includes information on number of guidance and example references in the <a href="../">WAI-ARIA Authoring Practices</a> for each ARIA role, property and state.  The guidance column is determined
+      by either the role, property or state being in the text content of a heading (e.g. <code>h2</code>-<code>h6</code>) or through the use of <code>
+      data-aria-roles</code> or <code>data-aria-props</code> attributes on any heading within the practices.  The <code>data-aria-roles</code> or <code>data-aria-props</code> attributes should contain a space separated list of values.  The use of the data attribute overrides the identification of roles, properties or states from the text content of a heading.  The suffix <strong>"(D)"</strong> indicates a reference came from a data attribute, otherwise the reference came from the text content of a heading.</p>
+    <p></p>
+    <ul>
+      <li><a href="#csv_files">CSV Files of Role, Properties and States Coverage</a></li>
+      <li><a href="#roles_with_no_examples">Roles with no Guidance or Examples (<span class="roles_with_no_examples_count">30</span>)</a></li>
+      <li><a href="#roles_with_one_example">Roles with at Least One Guidance or Example (<span class="roles_with_one_example_count">13</span>)</a></li>
+      <li><a href="#roles_with_more_than_one_example">Roles with More than One Guidance or Example  (<span class="roles_with_more_than_one_examples_count">35</span>)</a></li>
+      <li><a href="#props_with_no_examples">Properties and States with no Examples (<span class="props_with_no_examples_count">12</span>)</a></li>
+      <li><a href="#props_with_one_example">Properties and States with One Examples (<span class="props_with_one_example_count">9</span>)</a></li>
+      <li><a href="#props_with_more_than_one_example">Properties and States with More than One Example  (<span class="props_with_more_than_one_examples_count">27</span>)</a></li>
+      <li><a href="#example_coding">Example Coding Practices</a></li>
+    </ul>
+
+    <section id="csv_files">
+      <h2>CSV Files of Role, Properties and States Coverage</h2>
+      <ul>
+        <li><a href="role-coverage.csv">CSV file of role coverage</a></li>
+        <li><a href="prop-coverage.csv">CSV file of properties and states coverage</a></li>
+      </ul>
+    </section>
+
+    <section id="roles_with_no_examples">
+      <h2 id="roles_with_no_examples_label">Roles with No Guidance or Examples (<span class="roles_with_no_examples_count">30</span>)</h2>
+      <ul id="roles_with_no_examples_ul">
+            <li><code>application</code></li>
+            <li><code>caption</code></li>
+            <li><code>code</code></li>
+            <li><code>definition</code></li>
+            <li><code>deletion</code></li>
+            <li><code>directory</code></li>
+            <li><code>document</code></li>
+            <li><code>emphasis</code></li>
+            <li><code>figure</code></li>
+            <li><code>generic</code></li>
+            <li><code>heading</code></li>
+            <li><code>img</code></li>
+            <li><code>input</code></li>
+            <li><code>insertion</code></li>
+            <li><code>list</code></li>
+            <li><code>listitem</code></li>
+            <li><code>log</code></li>
+            <li><code>marquee</code></li>
+            <li><code>math</code></li>
+            <li><code>note</code></li>
+            <li><code>paragraph</code></li>
+            <li><code>progressbar</code></li>
+            <li><code>rowheader</code></li>
+            <li><code>scrollbar</code></li>
+            <li><code>searchbox</code></li>
+            <li><code>status</code></li>
+            <li><code>switch</code></li>
+            <li><code>term</code></li>
+            <li><code>textbox</code></li>
+            <li><code>timer</code></li></ul>
+    </section>
+
+    <section id="roles_with_one_example">
+      <h2 id="roles_with_one_example_label">Roles with at Least One Guidance or Example (<span class="roles_with_one_example_count">13</span>)</h2>
+      <div><strong>NOTE:</strong> The HC abbreviation means example has High Contrast support.</div>
+      <table aria-labelledby="roles_with_one_example_label" class="data attributes">
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Guidance</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody id="roles_with_one_example_tbody">
+          <tr>
+            <td><code>alertdialog</code></td>
+            <td></td>
+            <td><a href="..\examples\dialog-modal\alertdialog.html">Alert Dialog</a>
+</td>
+          </tr>
+          <tr>
+            <td><code>article</code></td>
+            <td></td>
+            <td><a href="..\examples\feed\feed.html">Feed</a>
+</td>
+          </tr>
+          <tr>
+            <td><code>columnheader</code></td>
+            <td></td>
+            <td><a href="..\examples\table\table.html">Table</a>
+</td>
+          </tr>
+          <tr>
+            <td><code>complementary</code></td>
+            <td><a href="../aria-practices.html#aria_lh_complementary">Complementary</a>
+</td>
+            <td><a href="../examples/landmarks/complementary.html">Complementary Landmark</a>
+</td>
+          </tr>
+          <tr>
+            <td><code>feed</code></td>
+            <td><a href="../aria-practices.html#feed">Feed</a>
+</td>
+            <td><a href="..\examples\feed\feed.html">Feed</a>
+</td>
+          </tr>
+          <tr>
+            <td><code>link</code></td>
+            <td><a href="../aria-practices.html#link">Link</a>
+</td>
+            <td><a href="..\examples\link\link.html">Link</a>
+</td>
+          </tr>
+          <tr>
+            <td><code>main</code></td>
+            <td><a href="../aria-practices.html#aria_lh_main">Main</a>
+</td>
+            <td><a href="../examples/landmarks/main.html">Main Landmark</a>
+</td>
+          </tr>
+          <tr>
+            <td><code>menuitemcheckbox</code></td>
+            <td></td>
+            <td><a href="..\examples\menubar\menubar-editor.html">Editor Menubar</a>
+</td>
+          </tr>
+          <tr>
+            <td><code>rowgroup</code></td>
+            <td></td>
+            <td><a href="..\examples\table\table.html">Table</a>
+</td>
+          </tr>
+          <tr>
+            <td><code>search</code></td>
+            <td><a href="../aria-practices.html#aria_lh_search">Search</a>
+</td>
+            <td><a href="../examples/landmarks/search.html">Search Landmark</a>
+</td>
+          </tr>
+          <tr>
+            <td><code>separator</code></td>
+            <td></td>
+            <td><a href="..\examples\menubar\menubar-editor.html">Editor Menubar</a>
+</td>
+          </tr>
+          <tr>
+            <td><code>tooltip</code></td>
+            <td><a href="../aria-practices.html#tooltip">Tooltip Widget</a>
+</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><code>treegrid</code></td>
+            <td><a href="../aria-practices.html#treegrid">Treegrid</a>
+</td>
+            <td><a href="..\examples\treegrid\treegrid-1.html">Treegrid Email Inbox</a>
+</td>
+          </tr></tbody>
+      </table>
+    </section>
+
+    <section id="roles_with_more_than_one_example">
+      <h2 id="roles_with_more_than_one_label">Roles with More than One Guidance or Example (<span class="roles_with_more_than_one_examples_count">35</span>)</h2>
+      <div><strong>NOTE:</strong> The HC abbreviation means example has High Contrast support.</div>
+      <table aria-labelledby="roles_with_more_than_one_label" class="data attributes">
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Guidance</th>
+            <th>Examples</th>
+          </tr>
+        </thead>
+        <tbody id="roles_with_more_than_one_tbody">
+          <tr>
+            <td><code>alert</code></td>
+            <td><ul>
+                <li><a href="../aria-practices.html#alert">Alert</a></li>
+                <li><a href="../aria-practices.html#alertdialog">Alert and Message Dialogs</a></li>
+            </ul>
+</td>
+            <td><ul>
+                <li><a href="..\examples\alert\alert.html">Alert</a></li>
+                <li><a href="..\examples\dialog-modal\alertdialog.html">Alert Dialog</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>banner</code></td>
+            <td><a href="../aria-practices.html#aria_lh_banner">Banner</a>
+</td>
+            <td><ul>
+                <li><a href="..\examples\menubar\menubar-navigation.html">Navigation Menubar</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\treeview\treeview-navigation.html">Navigation Treeview</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="../examples/landmarks/banner.html">Banner Landmark</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>button</code></td>
+            <td><ul>
+                <li><a href="../aria-practices.html#button">Button</a></li>
+                <li><a href="../aria-practices.html#menubutton">Menu Button</a></li>
+            </ul>
+</td>
+            <td><ul>
+                <li><a href="..\examples\button\button_idl.html">Button  (IDL Version)</a></li>
+                <li><a href="..\examples\button\button.html">Button</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>cell</code></td>
+            <td><ul>
+                <li><a href="../aria-practices.html#gridNav_focus">Whether to Focus on a Cell Or an Element Inside It</a></li>
+                <li><a href="../aria-practices.html#gridNav_inside">Editing and Navigating Inside a Cell</a></li>
+                <li><a href="../aria-practices.html#gridAndTableProperties_spans">Defining cell spans using aria-colspan and aria-rowspan</a></li>
+            </ul>
+</td>
+            <td><a href="..\examples\table\table.html">Table</a>
+</td>
+          </tr>
+          <tr>
+            <td><code>checkbox</code></td>
+            <td><a href="../aria-practices.html#checkbox">Checkbox</a>
+</td>
+            <td><ul>
+                <li><a href="..\examples\checkbox\checkbox-1\checkbox-1.html">Checkbox  (Two State)</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\checkbox\checkbox-2\checkbox-2.html">Checkbox  (Mixed-State)</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>combobox</code></td>
+            <td><ul>
+                <li><a href="../aria-practices.html#combobox">Combobox</a></li>
+                <li><a href="../aria-practices.html#combobox">Combobox Keyboard Interaction</a></li>
+            </ul>
+</td>
+            <td><ul>
+                <li><a href="..\examples\combobox\combobox-autocomplete-both.html">Editable Combobox With Both List and Inline Autocomplete</a></li>
+                <li><a href="..\examples\combobox\combobox-autocomplete-list.html">Editable Combobox With List Autocomplete</a></li>
+                <li><a href="..\examples\combobox\combobox-autocomplete-none.html">Editable Combobox without Autocomplete</a></li>
+                <li><a href="..\examples\combobox\combobox-datepicker.html">Date Picker Combobox</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\combobox\combobox-select-only.html">Select-Only Combobox</a></li>
+                <li><a href="..\examples\combobox\grid-combo.html">Editable Combobox with Grid Popup</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>contentinfo</code></td>
+            <td><a href="../aria-practices.html#aria_lh_contentinfo">Contentinfo</a>
+</td>
+            <td><ul>
+                <li><a href="..\examples\menubar\menubar-navigation.html">Navigation Menubar</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\treeview\treeview-navigation.html">Navigation Treeview</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="../examples/landmarks/contentinfo.html">Contentinfo Landmark</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>dialog</code></td>
+            <td><ul>
+                <li><a href="../aria-practices.html#combobox">Dialog Popup Keyboard Interaction</a></li>
+                <li><a href="../aria-practices.html#dialog_modal">Dialog (Modal)</a></li>
+            </ul>
+</td>
+            <td><ul>
+                <li><a href="..\examples\combobox\combobox-datepicker.html">Date Picker Combobox</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\dialog-modal\datepicker-dialog.html">Date Picker Dialog</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\dialog-modal\dialog.html">Modal Dialog</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>form</code></td>
+            <td><ul>
+                <li><a href="../aria-practices.html#aria_lh_form">Form</a></li>
+                <li><a href="../aria-practices.html#naming_with_labels">Naming Form Controls with the Label Element</a></li>
+            </ul>
+</td>
+            <td><a href="../examples/landmarks/form.html">Form Landmark</a>
+</td>
+          </tr>
+          <tr>
+            <td><code>grid</code></td>
+            <td><ul>
+                <li><a href="../aria-practices.html#combobox">Grid Popup Keyboard Interaction</a></li>
+                <li><a href="../aria-practices.html#gridAndTableProperties">Grid and Table Properties</a></li>
+            </ul>
+</td>
+            <td><ul>
+                <li><a href="..\examples\combobox\combobox-datepicker.html">Date Picker Combobox</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\combobox\grid-combo.html">Editable Combobox with Grid Popup</a></li>
+                <li><a href="..\examples\dialog-modal\datepicker-dialog.html">Date Picker Dialog</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\grid\dataGrids.html">Data Grid</a></li>
+                <li><a href="..\examples\grid\LayoutGrids.html">Layout Grid</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>gridcell</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\combobox\grid-combo.html">Editable Combobox with Grid Popup</a></li>
+                <li><a href="..\examples\grid\LayoutGrids.html">Layout Grid</a></li>
+                <li><a href="..\examples\treegrid\treegrid-1.html">Treegrid Email Inbox</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>group</code></td>
+            <td><ul>
+                <li><a href="../aria-practices.html#radiobutton">Radio Group</a></li>
+                <li><a href="../aria-practices.html#radiobutton">For Radio Group Contained in a Toolbar</a></li>
+            </ul>
+</td>
+            <td><ul>
+                <li><a href="..\examples\carousel\carousel-1-prev-next.html">Auto-Rotating Image Carousel  with Buttons for Slide Control</a></li>
+                <li><a href="..\examples\checkbox\checkbox-1\checkbox-1.html">Checkbox  (Two State)</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\listbox\listbox-grouped.html">Listbox  with Grouped Options</a></li>
+                <li><a href="..\examples\menubar\menubar-editor.html">Editor Menubar</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\slider\slider-color-viewer.html">Color Viewer Slider</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\spinbutton\datepicker-spinbuttons.html">Date Picker Spin Button</a></li>
+                <li><a href="..\examples\treeview\treeview-1\treeview-1a.html">File Directory Treeview  Using Computed Properties</a></li>
+                <li><a href="..\examples\treeview\treeview-1\treeview-1b.html">File Directory Treeview  Using Declared Properties</a></li>
+                <li><a href="..\examples\treeview\treeview-navigation.html">Navigation Treeview</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>listbox</code></td>
+            <td><ul>
+                <li><a href="../aria-practices.html#combobox">Listbox Popup Keyboard Interaction</a></li>
+                <li><a href="../aria-practices.html#Listbox">Listbox</a></li>
+            </ul>
+</td>
+            <td><ul>
+                <li><a href="..\examples\combobox\combobox-autocomplete-both.html">Editable Combobox With Both List and Inline Autocomplete</a></li>
+                <li><a href="..\examples\combobox\combobox-autocomplete-list.html">Editable Combobox With List Autocomplete</a></li>
+                <li><a href="..\examples\combobox\combobox-autocomplete-none.html">Editable Combobox without Autocomplete</a></li>
+                <li><a href="..\examples\combobox\combobox-select-only.html">Select-Only Combobox</a></li>
+                <li><a href="..\examples\listbox\listbox-collapsible.html">Collapsible Dropdown Listbox</a></li>
+                <li><a href="..\examples\listbox\listbox-grouped.html">Listbox  with Grouped Options</a></li>
+                <li><a href="..\examples\listbox\listbox-rearrangeable.html">Listboxes with Rearrangeable Options</a></li>
+                <li><a href="..\examples\listbox\listbox-scrollable.html">Scrollable Listbox</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>menu</code></td>
+            <td><ul>
+                <li><a href="../aria-practices.html#menu">Menu or Menu bar</a></li>
+                <li><a href="../aria-practices.html#menubutton">Menu Button</a></li>
+            </ul>
+</td>
+            <td><ul>
+                <li><a href="..\examples\menu-button\menu-button-actions-active-descendant.html">Actions Menu Button  Using aria-activedescendant</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menu-button\menu-button-actions.html">Actions Menu Button  Using element.focus()</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menu-button\menu-button-links.html">Navigation Menu Button</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menubar\menubar-editor.html">Editor Menubar</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menubar\menubar-navigation.html">Navigation Menubar</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\toolbar\toolbar.html">Toolbar</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>menubar</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\menubar\menubar-editor.html">Editor Menubar</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menubar\menubar-navigation.html">Navigation Menubar</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>menuitem</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\menu-button\menu-button-actions-active-descendant.html">Actions Menu Button  Using aria-activedescendant</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menu-button\menu-button-actions.html">Actions Menu Button  Using element.focus()</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menu-button\menu-button-links.html">Navigation Menu Button</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menubar\menubar-editor.html">Editor Menubar</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menubar\menubar-navigation.html">Navigation Menubar</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>menuitemradio</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\menubar\menubar-editor.html">Editor Menubar</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\toolbar\toolbar.html">Toolbar</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>meter</code></td>
+            <td><ul>
+                <li><a href="../aria-practices.html#meter">Meter</a></li>
+                <li><a href="../aria-practices.html#range_related_properties_meter_role">Range properties with meter</a></li>
+            </ul>
+</td>
+            <td><a href="..\examples\meter\meter.html">Meter</a>
+</td>
+          </tr>
+          <tr>
+            <td><code>navigation</code></td>
+            <td><ul>
+                <li><a href="../aria-practices.html#aria_lh_navigation">Navigation</a></li>
+                <li><a href="../aria-practices.html#kbd_generalnav">Fundamental Keyboard Navigation Conventions</a></li>
+                <li><a href="../aria-practices.html#kbd_general_between">Keyboard Navigation Between Components (The Tab Sequence)</a></li>
+                <li><a href="../aria-practices.html#kbd_general_within"> Keyboard Navigation Inside Components</a></li>
+                <li><a href="../aria-practices.html#kbd_shortcuts_design_basic">Ensure Basic Access Via Navigation </a></li>
+            </ul>
+</td>
+            <td><ul>
+                <li><a href="..\examples\menubar\menubar-navigation.html">Navigation Menubar</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\treeview\treeview-navigation.html">Navigation Treeview</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="../examples/landmarks/navigation.html">Navigation Landmark</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>none</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\menu-button\menu-button-links.html">Navigation Menu Button</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menubar\menubar-navigation.html">Navigation Menubar</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\treeview\treeview-navigation.html">Navigation Treeview</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>option</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\combobox\combobox-autocomplete-both.html">Editable Combobox With Both List and Inline Autocomplete</a></li>
+                <li><a href="..\examples\combobox\combobox-autocomplete-list.html">Editable Combobox With List Autocomplete</a></li>
+                <li><a href="..\examples\combobox\combobox-autocomplete-none.html">Editable Combobox without Autocomplete</a></li>
+                <li><a href="..\examples\combobox\combobox-select-only.html">Select-Only Combobox</a></li>
+                <li><a href="..\examples\listbox\listbox-collapsible.html">Collapsible Dropdown Listbox</a></li>
+                <li><a href="..\examples\listbox\listbox-grouped.html">Listbox  with Grouped Options</a></li>
+                <li><a href="..\examples\listbox\listbox-rearrangeable.html">Listboxes with Rearrangeable Options</a></li>
+                <li><a href="..\examples\listbox\listbox-scrollable.html">Scrollable Listbox</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>presentation</code></td>
+            <td><ul>
+                <li><a href="../aria-practices.html#presentation_role">Intentionally Hiding Semantics with the presentation Role</a></li>
+                <li><a href="../aria-practices.html#presentation_role_ignored">
+        Conditions That Cause Role presentation to be Ignored
+      </a></li>
+                <li><a href="../aria-practices.html#presentation_role_examples">
+        Example Demonstrating Effects of the presentation Role
+      </a></li>
+            </ul>
+</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><code>radio</code></td>
+            <td><ul>
+                <li><a href="../aria-practices.html#radiobutton">Radio Group</a></li>
+                <li><a href="../aria-practices.html#radiobutton">For Radio Groups Not Contained in a Toolbar</a></li>
+                <li><a href="../aria-practices.html#radiobutton">For Radio Group Contained in a Toolbar</a></li>
+            </ul>
+</td>
+            <td><ul>
+                <li><a href="..\examples\radio\radio-activedescendant.html">Radio Group  Using aria-activedescendant</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\radio\radio.html">Radio Group  Using Roving tabindex</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\toolbar\toolbar.html">Toolbar</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>radiogroup</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\radio\radio-activedescendant.html">Radio Group  Using aria-activedescendant</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\radio\radio.html">Radio Group  Using Roving tabindex</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\toolbar\toolbar.html">Toolbar</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>region</code></td>
+            <td><a href="../aria-practices.html#aria_lh_region">Region</a>
+</td>
+            <td><ul>
+                <li><a href="..\examples\accordion\accordion.html">Accordion</a></li>
+                <li><a href="..\examples\carousel\carousel-1-prev-next.html">Auto-Rotating Image Carousel  with Buttons for Slide Control</a></li>
+                <li><a href="..\examples\carousel\carousel-2-tablist.html">Auto-Rotating Image Carousel with Tabs for Slide Control</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menubar\menubar-navigation.html">Navigation Menubar</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\treeview\treeview-navigation.html">Navigation Treeview</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="../examples/landmarks/region.html">Region Landmark</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>row</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\combobox\grid-combo.html">Editable Combobox with Grid Popup</a></li>
+                <li><a href="..\examples\grid\LayoutGrids.html">Layout Grid</a></li>
+                <li><a href="..\examples\table\table.html">Table</a></li>
+                <li><a href="..\examples\treegrid\treegrid-1.html">Treegrid Email Inbox</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>slider</code></td>
+            <td><ul>
+                <li><a href="../aria-practices.html#slider">Slider</a></li>
+                <li><a href="../aria-practices.html#slidertwothumb">Slider (Multi-Thumb)</a></li>
+            </ul>
+</td>
+            <td><ul>
+                <li><a href="..\examples\slider\multithumb-slider.html">Horizontal Multi-Thumb Slider</a></li>
+                <li><a href="..\examples\slider\slider-2.html">Slider  with aria-orientation and aria-valuetext</a></li>
+                <li><a href="..\examples\slider\slider-color-viewer.html">Color Viewer Slider</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>spinbutton</code></td>
+            <td><a href="../aria-practices.html#spinbutton">Spinbutton</a>
+</td>
+            <td><ul>
+                <li><a href="..\examples\spinbutton\datepicker-spinbuttons.html">Date Picker Spin Button</a></li>
+                <li><a href="..\examples\toolbar\toolbar.html">Toolbar</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>tab</code></td>
+            <td><a href="../aria-practices.html#kbd_general_between">Keyboard Navigation Between Components (The Tab Sequence)</a>
+</td>
+            <td><ul>
+                <li><a href="..\examples\carousel\carousel-2-tablist.html">Auto-Rotating Image Carousel with Tabs for Slide Control</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\tabs\tabs-1\tabs.html">Tabs with Automatic Activation</a></li>
+                <li><a href="..\examples\tabs\tabs-2\tabs.html">Tabs with Manual Activation</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>table</code></td>
+            <td><ul>
+                <li><a href="../aria-practices.html#table">Table</a></li>
+                <li><a href="../aria-practices.html#gridAndTableProperties">Grid and Table Properties</a></li>
+            </ul>
+</td>
+            <td><a href="..\examples\table\table.html">Table</a>
+</td>
+          </tr>
+          <tr>
+            <td><code>tablist</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\carousel\carousel-2-tablist.html">Auto-Rotating Image Carousel with Tabs for Slide Control</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\tabs\tabs-1\tabs.html">Tabs with Automatic Activation</a></li>
+                <li><a href="..\examples\tabs\tabs-2\tabs.html">Tabs with Manual Activation</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>tabpanel</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\carousel\carousel-2-tablist.html">Auto-Rotating Image Carousel with Tabs for Slide Control</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\tabs\tabs-1\tabs.html">Tabs with Automatic Activation</a></li>
+                <li><a href="..\examples\tabs\tabs-2\tabs.html">Tabs with Manual Activation</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>toolbar</code></td>
+            <td><ul>
+                <li><a href="../aria-practices.html#radiobutton">For Radio Groups Not Contained in a Toolbar</a></li>
+                <li><a href="../aria-practices.html#radiobutton">For Radio Group Contained in a Toolbar</a></li>
+                <li><a href="../aria-practices.html#toolbar">Toolbar</a></li>
+            </ul>
+</td>
+            <td><a href="..\examples\toolbar\toolbar.html">Toolbar</a>
+</td>
+          </tr>
+          <tr>
+            <td><code>tree</code></td>
+            <td><ul>
+                <li><a href="../aria-practices.html#combobox">Tree Popup Keyboard Interaction</a></li>
+                <li><a href="../aria-practices.html#TreeView">Tree View</a></li>
+            </ul>
+</td>
+            <td><ul>
+                <li><a href="..\examples\treeview\treeview-1\treeview-1a.html">File Directory Treeview  Using Computed Properties</a></li>
+                <li><a href="..\examples\treeview\treeview-1\treeview-1b.html">File Directory Treeview  Using Declared Properties</a></li>
+                <li><a href="..\examples\treeview\treeview-navigation.html">Navigation Treeview</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>treeitem</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\treeview\treeview-1\treeview-1a.html">File Directory Treeview  Using Computed Properties</a></li>
+                <li><a href="..\examples\treeview\treeview-1\treeview-1b.html">File Directory Treeview  Using Declared Properties</a></li>
+                <li><a href="..\examples\treeview\treeview-navigation.html">Navigation Treeview</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+            </ul>
+</td>
+          </tr></tbody>
+      </table>
+    </section>
+
+    <section id="props_with_no_examples">
+      <h2 id="props_with_no_examples_label">Properties and States with No Guidance or Examples (<span class="props_with_no_examples_count">12</span>)</h2>
+      <div><strong>NOTE:</strong> The HC abbreviation means example has High Contrast support.</div>
+      <ul id="props_with_no_examples_ul">
+            <li><code>aria-details</code></li>
+            <li><code>aria-dropeffect</code></li>
+            <li><code>aria-errormessage</code></li>
+            <li><code>aria-flowto</code></li>
+            <li><code>aria-grabbed</code></li>
+            <li><code>aria-invalid</code></li>
+            <li><code>aria-keyshortcuts</code></li>
+            <li><code>aria-multiline</code></li>
+            <li><code>aria-placeholder</code></li>
+            <li><code>aria-readonly</code></li>
+            <li><code>aria-relevant</code></li>
+            <li><code>aria-required</code></li></ul>
+    </section>
+
+    <section id="props_with_one_example">
+      <h2 id="props_with_one_example_label">Properties and States with at Least One Guidance or Example (<span class="props_with_one_example_count">9</span>)</h2>
+      <div><strong>NOTE:</strong> The HC abbreviation means example has High Contrast support.</div>
+      <table aria-labelledby="props_with_one_example_label" class="data attributes">
+        <thead>
+          <tr>
+            <th>Property or State</th>
+            <th>Guidance</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody id="props_with_one_example_tbody">
+          <tr>
+            <td><code>aria-atomic</code></td>
+            <td></td>
+            <td><a href="..\examples\alert\alert.html">Alert</a>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-busy</code></td>
+            <td></td>
+            <td><a href="..\examples\feed\feed.html">Feed</a>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-colcount</code></td>
+            <td><a href="../aria-practices.html#gridAndTableProperties_cols">Using aria-colcount and aria-colindex</a>
+</td>
+            <td><a href="..\examples\grid\dataGrids.html">Data Grid</a>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-colspan</code></td>
+            <td><a href="../aria-practices.html#gridAndTableProperties_spans">Defining cell spans using aria-colspan and aria-rowspan</a>
+</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><code>aria-multiselectable</code></td>
+            <td></td>
+            <td><a href="..\examples\listbox\listbox-rearrangeable.html">Listboxes with Rearrangeable Options</a>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-orientation</code></td>
+            <td></td>
+            <td><a href="..\examples\slider\slider-2.html">Slider  with aria-orientation and aria-valuetext</a>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-owns</code></td>
+            <td></td>
+            <td><a href="..\examples\treeview\treeview-navigation.html">Navigation Treeview</a>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-rowspan</code></td>
+            <td><a href="../aria-practices.html#gridAndTableProperties_spans">Defining cell spans using aria-colspan and aria-rowspan</a>
+</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><code>aria-sort</code></td>
+            <td><a href="../aria-practices.html#gridAndTableProperties_sort">Indicating sort order with aria-sort</a>
+</td>
+            <td><a href="..\examples\grid\dataGrids.html">Data Grid</a>
+</td>
+          </tr></tbody>
+      </table>
+    </section>
+
+    <section id="props_with_more_than_one_example">
+      <h2 id="props_with_more_than_one_label">Properties and States with More than One Guidance or Example (<span class="props_with_more_than_one_examples_count">27</span>)</h2>
+      <div><strong>NOTE:</strong> The HC abbreviation means example has High Contrast support.</div>
+      <table aria-labelledby="props_with_more_than_one_label" class="data attributes">
+        <thead>
+          <tr>
+            <th>Property or State</th>
+            <th>Guidance</th>
+            <th>Examples</th>
+          </tr>
+        </thead>
+        <tbody id="props_with_more_than_one_tbody">
+          <tr>
+            <td><code>aria-activedescendant</code></td>
+            <td><a href="../aria-practices.html#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>
+</td>
+            <td><ul>
+                <li><a href="..\examples\combobox\combobox-autocomplete-both.html">Editable Combobox With Both List and Inline Autocomplete</a></li>
+                <li><a href="..\examples\combobox\combobox-autocomplete-list.html">Editable Combobox With List Autocomplete</a></li>
+                <li><a href="..\examples\combobox\combobox-autocomplete-none.html">Editable Combobox without Autocomplete</a></li>
+                <li><a href="..\examples\combobox\combobox-select-only.html">Select-Only Combobox</a></li>
+                <li><a href="..\examples\combobox\grid-combo.html">Editable Combobox with Grid Popup</a></li>
+                <li><a href="..\examples\listbox\listbox-collapsible.html">Collapsible Dropdown Listbox</a></li>
+                <li><a href="..\examples\listbox\listbox-grouped.html">Listbox  with Grouped Options</a></li>
+                <li><a href="..\examples\listbox\listbox-rearrangeable.html">Listboxes with Rearrangeable Options</a></li>
+                <li><a href="..\examples\listbox\listbox-scrollable.html">Scrollable Listbox</a></li>
+                <li><a href="..\examples\menu-button\menu-button-actions-active-descendant.html">Actions Menu Button  Using aria-activedescendant</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\radio\radio-activedescendant.html">Radio Group  Using aria-activedescendant</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-autocomplete</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\combobox\combobox-autocomplete-both.html">Editable Combobox With Both List and Inline Autocomplete</a></li>
+                <li><a href="..\examples\combobox\combobox-autocomplete-list.html">Editable Combobox With List Autocomplete</a></li>
+                <li><a href="..\examples\combobox\combobox-autocomplete-none.html">Editable Combobox without Autocomplete</a></li>
+                <li><a href="..\examples\combobox\combobox-datepicker.html">Date Picker Combobox</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\combobox\grid-combo.html">Editable Combobox with Grid Popup</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-checked</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\checkbox\checkbox-1\checkbox-1.html">Checkbox  (Two State)</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\checkbox\checkbox-2\checkbox-2.html">Checkbox  (Mixed-State)</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menubar\menubar-editor.html">Editor Menubar</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\radio\radio-activedescendant.html">Radio Group  Using aria-activedescendant</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\radio\radio.html">Radio Group  Using Roving tabindex</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\toolbar\toolbar.html">Toolbar</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-colindex</code></td>
+            <td><ul>
+                <li><a href="../aria-practices.html#gridAndTableProperties_cols">Using aria-colcount and aria-colindex</a></li>
+                <li><a href="../aria-practices.html#gridAndTableProperties_cols_contiguous">Using aria-colindex When Column Indices Are Contiguous</a></li>
+                <li><a href="../aria-practices.html#gridAndTableProperties_cols_noncontiguous">Using aria-colindex When Column Indices Are Not Contiguous</a></li>
+            </ul>
+</td>
+            <td><a href="..\examples\grid\dataGrids.html">Data Grid</a>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-controls</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\accordion\accordion.html">Accordion</a></li>
+                <li><a href="..\examples\carousel\carousel-1-prev-next.html">Auto-Rotating Image Carousel  with Buttons for Slide Control</a></li>
+                <li><a href="..\examples\carousel\carousel-2-tablist.html">Auto-Rotating Image Carousel with Tabs for Slide Control</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\checkbox\checkbox-2\checkbox-2.html">Checkbox  (Mixed-State)</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\combobox\combobox-autocomplete-both.html">Editable Combobox With Both List and Inline Autocomplete</a></li>
+                <li><a href="..\examples\combobox\combobox-autocomplete-list.html">Editable Combobox With List Autocomplete</a></li>
+                <li><a href="..\examples\combobox\combobox-autocomplete-none.html">Editable Combobox without Autocomplete</a></li>
+                <li><a href="..\examples\combobox\combobox-datepicker.html">Date Picker Combobox</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\combobox\combobox-select-only.html">Select-Only Combobox</a></li>
+                <li><a href="..\examples\combobox\grid-combo.html">Editable Combobox with Grid Popup</a></li>
+                <li><a href="..\examples\disclosure\disclosure-faq.html">Disclosure (Show/Hide) for Answers to Frequently Asked Questions</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\disclosure\disclosure-img-long-description.html">Disclosure (Show/Hide) for Image Description</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\disclosure\disclosure-navigation-hybrid.html">Disclosure Navigation Menu with Top-Level Links</a></li>
+                <li><a href="..\examples\disclosure\disclosure-navigation.html">Disclosure Navigation Menu</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menu-button\menu-button-actions-active-descendant.html">Actions Menu Button  Using aria-activedescendant</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menu-button\menu-button-actions.html">Actions Menu Button  Using element.focus()</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menu-button\menu-button-links.html">Navigation Menu Button</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\tabs\tabs-1\tabs.html">Tabs with Automatic Activation</a></li>
+                <li><a href="..\examples\tabs\tabs-2\tabs.html">Tabs with Manual Activation</a></li>
+                <li><a href="..\examples\toolbar\toolbar.html">Toolbar</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-current</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\disclosure\disclosure-navigation-hybrid.html">Disclosure Navigation Menu with Top-Level Links</a></li>
+                <li><a href="..\examples\disclosure\disclosure-navigation.html">Disclosure Navigation Menu</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menubar\menubar-navigation.html">Navigation Menubar</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\treeview\treeview-navigation.html">Navigation Treeview</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-describedby</code></td>
+            <td><a href="../aria-practices.html#describing_with_aria-describedby">Describing by referencing content with aria-describedby</a>
+</td>
+            <td><ul>
+                <li><a href="..\examples\combobox\combobox-datepicker.html">Date Picker Combobox</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\dialog-modal\alertdialog.html">Alert Dialog</a></li>
+                <li><a href="..\examples\dialog-modal\datepicker-dialog.html">Date Picker Dialog</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\dialog-modal\dialog.html">Modal Dialog</a></li>
+                <li><a href="..\examples\feed\feed.html">Feed</a></li>
+                <li><a href="..\examples\table\table.html">Table</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-disabled</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\accordion\accordion.html">Accordion</a></li>
+                <li><a href="..\examples\menubar\menubar-editor.html">Editor Menubar</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\toolbar\toolbar.html">Toolbar</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-expanded</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\accordion\accordion.html">Accordion</a></li>
+                <li><a href="..\examples\combobox\combobox-autocomplete-both.html">Editable Combobox With Both List and Inline Autocomplete</a></li>
+                <li><a href="..\examples\combobox\combobox-autocomplete-list.html">Editable Combobox With List Autocomplete</a></li>
+                <li><a href="..\examples\combobox\combobox-autocomplete-none.html">Editable Combobox without Autocomplete</a></li>
+                <li><a href="..\examples\combobox\combobox-datepicker.html">Date Picker Combobox</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\combobox\combobox-select-only.html">Select-Only Combobox</a></li>
+                <li><a href="..\examples\combobox\grid-combo.html">Editable Combobox with Grid Popup</a></li>
+                <li><a href="..\examples\disclosure\disclosure-faq.html">Disclosure (Show/Hide) for Answers to Frequently Asked Questions</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\disclosure\disclosure-img-long-description.html">Disclosure (Show/Hide) for Image Description</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\disclosure\disclosure-navigation-hybrid.html">Disclosure Navigation Menu with Top-Level Links</a></li>
+                <li><a href="..\examples\disclosure\disclosure-navigation.html">Disclosure Navigation Menu</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\listbox\listbox-collapsible.html">Collapsible Dropdown Listbox</a></li>
+                <li><a href="..\examples\menu-button\menu-button-actions-active-descendant.html">Actions Menu Button  Using aria-activedescendant</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menu-button\menu-button-actions.html">Actions Menu Button  Using element.focus()</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menu-button\menu-button-links.html">Navigation Menu Button</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menubar\menubar-editor.html">Editor Menubar</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menubar\menubar-navigation.html">Navigation Menubar</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\toolbar\toolbar.html">Toolbar</a></li>
+                <li><a href="..\examples\treegrid\treegrid-1.html">Treegrid Email Inbox</a></li>
+                <li><a href="..\examples\treeview\treeview-1\treeview-1a.html">File Directory Treeview  Using Computed Properties</a></li>
+                <li><a href="..\examples\treeview\treeview-1\treeview-1b.html">File Directory Treeview  Using Declared Properties</a></li>
+                <li><a href="..\examples\treeview\treeview-navigation.html">Navigation Treeview</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-haspopup</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\combobox\combobox-datepicker.html">Date Picker Combobox</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\combobox\grid-combo.html">Editable Combobox with Grid Popup</a></li>
+                <li><a href="..\examples\listbox\listbox-collapsible.html">Collapsible Dropdown Listbox</a></li>
+                <li><a href="..\examples\menu-button\menu-button-actions-active-descendant.html">Actions Menu Button  Using aria-activedescendant</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menu-button\menu-button-actions.html">Actions Menu Button  Using element.focus()</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menu-button\menu-button-links.html">Navigation Menu Button</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menubar\menubar-editor.html">Editor Menubar</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menubar\menubar-navigation.html">Navigation Menubar</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\toolbar\toolbar.html">Toolbar</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-hidden</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\button\button_idl.html">Button  (IDL Version)</a></li>
+                <li><a href="..\examples\slider\slider-color-viewer.html">Color Viewer Slider</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\spinbutton\datepicker-spinbuttons.html">Date Picker Spin Button</a></li>
+                <li><a href="..\examples\toolbar\toolbar.html">Toolbar</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-label</code></td>
+            <td><a href="../aria-practices.html#naming_with_aria-label">Naming with a String Attribute Via aria-label</a>
+</td>
+            <td><ul>
+                <li><a href="..\examples\carousel\carousel-1-prev-next.html">Auto-Rotating Image Carousel  with Buttons for Slide Control</a></li>
+                <li><a href="..\examples\carousel\carousel-2-tablist.html">Auto-Rotating Image Carousel with Tabs for Slide Control</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\combobox\combobox-autocomplete-both.html">Editable Combobox With Both List and Inline Autocomplete</a></li>
+                <li><a href="..\examples\combobox\combobox-autocomplete-list.html">Editable Combobox With List Autocomplete</a></li>
+                <li><a href="..\examples\combobox\combobox-autocomplete-none.html">Editable Combobox without Autocomplete</a></li>
+                <li><a href="..\examples\combobox\combobox-datepicker.html">Date Picker Combobox</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\dialog-modal\datepicker-dialog.html">Date Picker Dialog</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\link\link.html">Link</a></li>
+                <li><a href="..\examples\menubar\menubar-editor.html">Editor Menubar</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menubar\menubar-navigation.html">Navigation Menubar</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\slider\multithumb-slider.html">Horizontal Multi-Thumb Slider</a></li>
+                <li><a href="..\examples\spinbutton\datepicker-spinbuttons.html">Date Picker Spin Button</a></li>
+                <li><a href="..\examples\table\table.html">Table</a></li>
+                <li><a href="..\examples\tabs\tabs-1\tabs.html">Tabs with Automatic Activation</a></li>
+                <li><a href="..\examples\tabs\tabs-2\tabs.html">Tabs with Manual Activation</a></li>
+                <li><a href="..\examples\toolbar\toolbar.html">Toolbar</a></li>
+                <li><a href="..\examples\treegrid\treegrid-1.html">Treegrid Email Inbox</a></li>
+                <li><a href="..\examples\treeview\treeview-navigation.html">Navigation Treeview</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-labelledby</code></td>
+            <td><a href="../aria-practices.html#naming_with_aria-labelledby">Naming with Referenced Content Via aria-labelledby</a>
+</td>
+            <td><ul>
+                <li><a href="..\examples\accordion\accordion.html">Accordion</a></li>
+                <li><a href="..\examples\combobox\combobox-datepicker.html">Date Picker Combobox</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\combobox\combobox-select-only.html">Select-Only Combobox</a></li>
+                <li><a href="..\examples\combobox\grid-combo.html">Editable Combobox with Grid Popup</a></li>
+                <li><a href="..\examples\dialog-modal\alertdialog.html">Alert Dialog</a></li>
+                <li><a href="..\examples\dialog-modal\datepicker-dialog.html">Date Picker Dialog</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\dialog-modal\dialog.html">Modal Dialog</a></li>
+                <li><a href="..\examples\feed\feed.html">Feed</a></li>
+                <li><a href="..\examples\grid\dataGrids.html">Data Grid</a></li>
+                <li><a href="..\examples\grid\LayoutGrids.html">Layout Grid</a></li>
+                <li><a href="..\examples\listbox\listbox-collapsible.html">Collapsible Dropdown Listbox</a></li>
+                <li><a href="..\examples\listbox\listbox-grouped.html">Listbox  with Grouped Options</a></li>
+                <li><a href="..\examples\listbox\listbox-rearrangeable.html">Listboxes with Rearrangeable Options</a></li>
+                <li><a href="..\examples\listbox\listbox-scrollable.html">Scrollable Listbox</a></li>
+                <li><a href="..\examples\menu-button\menu-button-actions-active-descendant.html">Actions Menu Button  Using aria-activedescendant</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menu-button\menu-button-actions.html">Actions Menu Button  Using element.focus()</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menu-button\menu-button-links.html">Navigation Menu Button</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\menubar\menubar-navigation.html">Navigation Menubar</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\meter\meter.html">Meter</a></li>
+                <li><a href="..\examples\radio\radio-activedescendant.html">Radio Group  Using aria-activedescendant</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\radio\radio.html">Radio Group  Using Roving tabindex</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\slider\slider-2.html">Slider  with aria-orientation and aria-valuetext</a></li>
+                <li><a href="..\examples\slider\slider-color-viewer.html">Color Viewer Slider</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\spinbutton\datepicker-spinbuttons.html">Date Picker Spin Button</a></li>
+                <li><a href="..\examples\tabs\tabs-1\tabs.html">Tabs with Automatic Activation</a></li>
+                <li><a href="..\examples\tabs\tabs-2\tabs.html">Tabs with Manual Activation</a></li>
+                <li><a href="..\examples\treeview\treeview-1\treeview-1a.html">File Directory Treeview  Using Computed Properties</a></li>
+                <li><a href="..\examples\treeview\treeview-1\treeview-1b.html">File Directory Treeview  Using Declared Properties</a></li>
+                <li><a href="..\examples\treeview\treeview-navigation.html">Navigation Treeview</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="../examples/landmarks/complementary.html">Complementary Landmark</a></li>
+                <li><a href="../examples/landmarks/form.html">Form Landmark</a></li>
+                <li><a href="../examples/landmarks/main.html">Main Landmark</a></li>
+                <li><a href="../examples/landmarks/navigation.html">Navigation Landmark</a></li>
+                <li><a href="../examples/landmarks/region.html">Region Landmark</a></li>
+                <li><a href="../examples/landmarks/search.html">Search Landmark</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-level</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\treegrid\treegrid-1.html">Treegrid Email Inbox</a></li>
+                <li><a href="..\examples\treeview\treeview-1\treeview-1b.html">File Directory Treeview  Using Declared Properties</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-live</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\alert\alert.html">Alert</a></li>
+                <li><a href="..\examples\carousel\carousel-1-prev-next.html">Auto-Rotating Image Carousel  with Buttons for Slide Control</a></li>
+                <li><a href="..\examples\carousel\carousel-2-tablist.html">Auto-Rotating Image Carousel with Tabs for Slide Control</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\combobox\combobox-datepicker.html">Date Picker Combobox</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\dialog-modal\datepicker-dialog.html">Date Picker Dialog</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-modal</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\combobox\combobox-datepicker.html">Date Picker Combobox</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\dialog-modal\alertdialog.html">Alert Dialog</a></li>
+                <li><a href="..\examples\dialog-modal\datepicker-dialog.html">Date Picker Dialog</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\dialog-modal\dialog.html">Modal Dialog</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-posinset</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\feed\feed.html">Feed</a></li>
+                <li><a href="..\examples\treegrid\treegrid-1.html">Treegrid Email Inbox</a></li>
+                <li><a href="..\examples\treeview\treeview-1\treeview-1b.html">File Directory Treeview  Using Declared Properties</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-pressed</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\button\button_idl.html">Button  (IDL Version)</a></li>
+                <li><a href="..\examples\button\button.html">Button</a></li>
+                <li><a href="..\examples\toolbar\toolbar.html">Toolbar</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-roledescription</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\carousel\carousel-1-prev-next.html">Auto-Rotating Image Carousel  with Buttons for Slide Control</a></li>
+                <li><a href="..\examples\carousel\carousel-2-tablist.html">Auto-Rotating Image Carousel with Tabs for Slide Control</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-rowcount</code></td>
+            <td><a href="../aria-practices.html#gridAndTableProperties_rows">Using aria-rowcount and aria-rowindex</a>
+</td>
+            <td><ul>
+                <li><a href="..\examples\grid\dataGrids.html">Data Grid</a></li>
+                <li><a href="..\examples\grid\LayoutGrids.html">Layout Grid</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-rowindex</code></td>
+            <td><a href="../aria-practices.html#gridAndTableProperties_rows">Using aria-rowcount and aria-rowindex</a>
+</td>
+            <td><ul>
+                <li><a href="..\examples\grid\dataGrids.html">Data Grid</a></li>
+                <li><a href="..\examples\grid\LayoutGrids.html">Layout Grid</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-selected</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\carousel\carousel-2-tablist.html">Auto-Rotating Image Carousel with Tabs for Slide Control</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\combobox\combobox-autocomplete-both.html">Editable Combobox With Both List and Inline Autocomplete</a></li>
+                <li><a href="..\examples\combobox\combobox-autocomplete-list.html">Editable Combobox With List Autocomplete</a></li>
+                <li><a href="..\examples\combobox\combobox-autocomplete-none.html">Editable Combobox without Autocomplete</a></li>
+                <li><a href="..\examples\combobox\combobox-datepicker.html">Date Picker Combobox</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\combobox\combobox-select-only.html">Select-Only Combobox</a></li>
+                <li><a href="..\examples\combobox\grid-combo.html">Editable Combobox with Grid Popup</a></li>
+                <li><a href="..\examples\dialog-modal\datepicker-dialog.html">Date Picker Dialog</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\listbox\listbox-collapsible.html">Collapsible Dropdown Listbox</a></li>
+                <li><a href="..\examples\listbox\listbox-grouped.html">Listbox  with Grouped Options</a></li>
+                <li><a href="..\examples\listbox\listbox-rearrangeable.html">Listboxes with Rearrangeable Options</a></li>
+                <li><a href="..\examples\listbox\listbox-scrollable.html">Scrollable Listbox</a></li>
+                <li><a href="..\examples\tabs\tabs-1\tabs.html">Tabs with Automatic Activation</a></li>
+                <li><a href="..\examples\tabs\tabs-2\tabs.html">Tabs with Manual Activation</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-setsize</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\feed\feed.html">Feed</a></li>
+                <li><a href="..\examples\treegrid\treegrid-1.html">Treegrid Email Inbox</a></li>
+                <li><a href="..\examples\treeview\treeview-1\treeview-1b.html">File Directory Treeview  Using Declared Properties</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-valuemax</code></td>
+            <td><a href="../aria-practices.html#range_related_properties_using_aria-valuemin_aria-valuemax_and_aria-valuenow">Using aria-valuemin, aria-valuemax and aria-valuenow</a>
+</td>
+            <td><ul>
+                <li><a href="..\examples\meter\meter.html">Meter</a></li>
+                <li><a href="..\examples\slider\multithumb-slider.html">Horizontal Multi-Thumb Slider</a></li>
+                <li><a href="..\examples\slider\slider-2.html">Slider  with aria-orientation and aria-valuetext</a></li>
+                <li><a href="..\examples\slider\slider-color-viewer.html">Color Viewer Slider</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\spinbutton\datepicker-spinbuttons.html">Date Picker Spin Button</a></li>
+                <li><a href="..\examples\toolbar\toolbar.html">Toolbar</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-valuemin</code></td>
+            <td></td>
+            <td><ul>
+                <li><a href="..\examples\meter\meter.html">Meter</a></li>
+                <li><a href="..\examples\slider\multithumb-slider.html">Horizontal Multi-Thumb Slider</a></li>
+                <li><a href="..\examples\slider\slider-2.html">Slider  with aria-orientation and aria-valuetext</a></li>
+                <li><a href="..\examples\slider\slider-color-viewer.html">Color Viewer Slider</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\spinbutton\datepicker-spinbuttons.html">Date Picker Spin Button</a></li>
+                <li><a href="..\examples\toolbar\toolbar.html">Toolbar</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-valuenow</code></td>
+            <td><a href="../aria-practices.html#range_related_properties_using_aria-valuemin_aria-valuemax_and_aria-valuenow">Using aria-valuemin, aria-valuemax and aria-valuenow</a>
+</td>
+            <td><ul>
+                <li><a href="..\examples\meter\meter.html">Meter</a></li>
+                <li><a href="..\examples\slider\multithumb-slider.html">Horizontal Multi-Thumb Slider</a></li>
+                <li><a href="..\examples\slider\slider-2.html">Slider  with aria-orientation and aria-valuetext</a></li>
+                <li><a href="..\examples\slider\slider-color-viewer.html">Color Viewer Slider</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="..\examples\spinbutton\datepicker-spinbuttons.html">Date Picker Spin Button</a></li>
+                <li><a href="..\examples\toolbar\toolbar.html">Toolbar</a></li>
+            </ul>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-valuetext</code></td>
+            <td><a href="../aria-practices.html#range_related_properties_using_aria-valuetext">Using aria-valuetext</a>
+</td>
+            <td><ul>
+                <li><a href="..\examples\slider\multithumb-slider.html">Horizontal Multi-Thumb Slider</a></li>
+                <li><a href="..\examples\slider\slider-2.html">Slider  with aria-orientation and aria-valuetext</a></li>
+                <li><a href="..\examples\spinbutton\datepicker-spinbuttons.html">Date Picker Spin Button</a></li>
+                <li><a href="..\examples\toolbar\toolbar.html">Toolbar</a></li>
+            </ul>
+</td>
+          </tr></tbody>
+      </table>
+    </section>
+
+    <section id="example_coding">
+      <h2>Example Coding Practices</h2>
+
+      <h3 id="example_summary">Coding Summary</h3>
+      <table aria-labelledby="example_summary" class="data attributes summary">
+        <tbody>
+          <tr>
+            <th scope="row">Total Examples</th>
+            <td id="example_summary_total">52</td>
+          </tr>
+          <tr>
+            <th scope="row">High Contrast Documentation</th>
+            <td id="example_summary_hc">17</td>
+          </tr>
+          <tr>
+            <th scope="row">Uses SVG</th>
+            <td id="example_summary_svg">22</td>
+          </tr>
+          <tr>
+            <th scope="row">Uses <code>forced-color-adjust</code> on SVG</th>
+            <td id="example_summary_force_color">1</td>
+          </tr>
+          <tr>
+            <th scope="row">Uses <code>event.KeyCode</code></th>
+            <td id="example_summary_keycode">28</td>
+          </tr>
+          <tr>
+            <th scope="row">Uses <code>event.which</code></th>
+            <td id="example_summary_which">12</td>
+          </tr>
+          <tr>
+            <th scope="row">Use Class</th>
+            <td id="example_summary_class">12</td>
+          </tr>
+          <tr>
+            <th scope="row">Use Prototype</th>
+            <td id="example_summary_prototype">33</td>
+          </tr>
+          <tr>
+            <th scope="row">Mouse Events</th>
+            <td id="example_summary_mouse">23</td>
+          </tr>
+          <tr>
+            <th scope="row">Pointer Events</th>
+            <td id="example_summary_pointer">1</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 id="example_coding_practices">Coding Practices</h3>
+      <table aria-labelledby="example_coding_practices" class="data attributes">
+        <thead>
+          <tr>
+            <th>Example</th>
+            <th>Created Using</th>
+            <th>Uses <code>event.keyCode</code></th>
+            <th>Uses <code>event.which</code></th>
+            <th>High Contrast Documentation</th>
+            <th>Example Code ID</th>
+            <th>Roles in Javascript and HTML</th>
+            <th>Roles in Documentation</th>
+            <th>aria-* Attributes in Javascript and HTML</th>
+            <th>aria-* Attributes in Documentation</th>
+            <th>Differences between the documentation and the source code.</th>
+          </tr>
+        </thead>
+        <tbody id="example_coding_practices_tbody">
+          <tr>
+            <td><a href="..\examples\accordion\accordion.html">Accordion</a></td>
+            <td>prototype</td>
+            <td></td>
+            <td>Yes</td>
+            <td></td>
+            <td>coding-arena</td>
+            <td>1</td>
+            <td>1</td>
+            <td>6</td>
+            <td>4</td>
+            <td>aria-hidden,aria-required</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\alert\alert.html">Alert</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>ex1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>0</td>
+            <td>2</td>
+            <td>aria-live,aria-atomic</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\button\button_idl.html">Button  (IDL Version)</a></td>
+            <td></td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td>example</td>
+            <td>1</td>
+            <td>1</td>
+            <td>2</td>
+            <td>2</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\button\button.html">Button</a></td>
+            <td></td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td>example</td>
+            <td>1</td>
+            <td>1</td>
+            <td>2</td>
+            <td>1</td>
+            <td>aria-hidden</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\carousel\carousel-1-prev-next.html">Auto-Rotating Image Carousel  with Buttons for Slide Control</a></td>
+            <td>prototype</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>ex1</td>
+            <td>2</td>
+            <td>2</td>
+            <td>4</td>
+            <td>4</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\carousel\carousel-2-tablist.html">Auto-Rotating Image Carousel with Tabs for Slide Control</a></td>
+            <td>prototype</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>ex1</td>
+            <td>4</td>
+            <td>4</td>
+            <td>5</td>
+            <td>5</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\checkbox\checkbox-1\checkbox-1.html">Checkbox  (Two State)</a></td>
+            <td>prototype</td>
+            <td>Yes</td>
+            <td></td>
+            <td>Yes</td>
+            <td>ex1</td>
+            <td>2</td>
+            <td>2</td>
+            <td>2</td>
+            <td>1</td>
+            <td>aria-labelledby</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\checkbox\checkbox-2\checkbox-2.html">Checkbox  (Mixed-State)</a></td>
+            <td>prototype</td>
+            <td>Yes</td>
+            <td></td>
+            <td>Yes</td>
+            <td>ex1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>2</td>
+            <td>2</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\combobox\combobox-autocomplete-both.html">Editable Combobox With Both List and Inline Autocomplete</a></td>
+            <td>class</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>ex1</td>
+            <td>3</td>
+            <td>3</td>
+            <td>7</td>
+            <td>6</td>
+            <td>aria-hidden</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\combobox\combobox-autocomplete-list.html">Editable Combobox With List Autocomplete</a></td>
+            <td>class</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>ex1</td>
+            <td>3</td>
+            <td>3</td>
+            <td>7</td>
+            <td>6</td>
+            <td>aria-hidden</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\combobox\combobox-autocomplete-none.html">Editable Combobox without Autocomplete</a></td>
+            <td>class</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>ex1</td>
+            <td>3</td>
+            <td>3</td>
+            <td>7</td>
+            <td>6</td>
+            <td>aria-hidden</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\combobox\combobox-datepicker.html">Date Picker Combobox</a></td>
+            <td>class</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>ex1</td>
+            <td>4</td>
+            <td>3</td>
+            <td>11</td>
+            <td>10</td>
+            <td>gridcell,aria-hidden</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\combobox\combobox-select-only.html">Select-Only Combobox</a></td>
+            <td>prototype</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>ex1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>6</td>
+            <td>5</td>
+            <td>option,aria-haspopup</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\combobox\grid-combo.html">Editable Combobox with Grid Popup</a></td>
+            <td>prototype</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td>ex1</td>
+            <td>2</td>
+            <td>4</td>
+            <td>7</td>
+            <td>7</td>
+            <td>row,gridcell</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\dialog-modal\alertdialog.html">Alert Dialog</a></td>
+            <td>prototype</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td>ex_alertdialog</td>
+            <td>2</td>
+            <td>2</td>
+            <td>4</td>
+            <td>3</td>
+            <td>aria-controls</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\dialog-modal\datepicker-dialog.html">Date Picker Dialog</a></td>
+            <td>prototype</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>example</td>
+            <td>3</td>
+            <td>2</td>
+            <td>6</td>
+            <td>6</td>
+            <td>gridcell</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\dialog-modal\dialog.html">Modal Dialog</a></td>
+            <td>prototype</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td>ex1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>3</td>
+            <td>3</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\disclosure\disclosure-faq.html">Disclosure (Show/Hide) for Answers to Frequently Asked Questions</a></td>
+            <td>prototype</td>
+            <td>Yes</td>
+            <td></td>
+            <td>Yes</td>
+            <td>ex1</td>
+            <td>0</td>
+            <td>0</td>
+            <td>2</td>
+            <td>2</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\disclosure\disclosure-img-long-description.html">Disclosure (Show/Hide) for Image Description</a></td>
+            <td>prototype</td>
+            <td>Yes</td>
+            <td></td>
+            <td>Yes</td>
+            <td>ex1</td>
+            <td>0</td>
+            <td>0</td>
+            <td>3</td>
+            <td>2</td>
+            <td>aria-labelledby</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\disclosure\disclosure-navigation-hybrid.html">Disclosure Navigation Menu with Top-Level Links</a></td>
+            <td>class, prototype</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>ex1</td>
+            <td>4</td>
+            <td>0</td>
+            <td>5</td>
+            <td>3</td>
+            <td>banner,contentinfo,navigation,region,aria-label,aria-labelledby</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\disclosure\disclosure-navigation.html">Disclosure Navigation Menu</a></td>
+            <td>class, prototype</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>ex1</td>
+            <td>2</td>
+            <td>0</td>
+            <td>4</td>
+            <td>3</td>
+            <td>navigation,region,aria-label</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\feed\feed.html">Feed</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>ex1</td>
+            <td>0</td>
+            <td>2</td>
+            <td>0</td>
+            <td>5</td>
+            <td>feed,article,aria-labelledby,aria-busy,aria-describedby,aria-posinset,aria-setsize</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\feed\feedDisplay.html">Feed Display</a></td>
+            <td>prototype</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td>not found</td>
+            <td>0</td>
+            <td>0</td>
+            <td>6</td>
+            <td>0</td>
+            <td>aria-busy,aria-describedby,aria-label,aria-labelledby,aria-posinset,aria-setsize</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\grid\advancedDataGrid.html">Advanced Data Grid</a></td>
+            <td>prototype</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td>ex1</td>
+            <td>0</td>
+            <td>0</td>
+            <td>5</td>
+            <td>0</td>
+            <td>aria-colindex,aria-controls,aria-haspopup,aria-rowindex,aria-sort</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\grid\dataGrids.html">Data Grid</a></td>
+            <td>prototype</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td>ex1</td>
+            <td>4</td>
+            <td>1</td>
+            <td>8</td>
+            <td>6</td>
+            <td>button,menu,menuitem,aria-controls,aria-haspopup</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\grid\LayoutGrids.html">Layout Grid</a></td>
+            <td>prototype</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td>ex1</td>
+            <td>5</td>
+            <td>3</td>
+            <td>9</td>
+            <td>3</td>
+            <td>button,region,aria-colindex,aria-haspopup,aria-label,aria-live,aria-relevant,aria-sort</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\link\link.html">Link</a></td>
+            <td></td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td>not found</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\listbox\listbox-collapsible.html">Collapsible Dropdown Listbox</a></td>
+            <td>prototype</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td>ex</td>
+            <td>2</td>
+            <td>2</td>
+            <td>8</td>
+            <td>5</td>
+            <td>aria-disabled,aria-keyshortcuts,aria-multiselectable</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\listbox\listbox-grouped.html">Listbox  with Grouped Options</a></td>
+            <td>prototype</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td>ex</td>
+            <td>4</td>
+            <td>3</td>
+            <td>6</td>
+            <td>3</td>
+            <td>presentation,aria-disabled,aria-keyshortcuts,aria-multiselectable</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\listbox\listbox-rearrangeable.html">Listboxes with Rearrangeable Options</a></td>
+            <td>prototype</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td>ex1</td>
+            <td>3</td>
+            <td>2</td>
+            <td>8</td>
+            <td>4</td>
+            <td>toolbar,aria-disabled,aria-keyshortcuts,aria-label,aria-live</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\listbox\listbox-scrollable.html">Scrollable Listbox</a></td>
+            <td>prototype</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td>ex</td>
+            <td>2</td>
+            <td>2</td>
+            <td>6</td>
+            <td>3</td>
+            <td>aria-disabled,aria-keyshortcuts,aria-multiselectable</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\menu-button\menu-button-actions-active-descendant.html">Actions Menu Button  Using aria-activedescendant</a></td>
+            <td>class</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>ex1</td>
+            <td>2</td>
+            <td>2</td>
+            <td>5</td>
+            <td>5</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\menu-button\menu-button-actions.html">Actions Menu Button  Using element.focus()</a></td>
+            <td>class</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>ex1</td>
+            <td>2</td>
+            <td>2</td>
+            <td>4</td>
+            <td>4</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\menu-button\menu-button-links.html">Navigation Menu Button</a></td>
+            <td>class</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>ex1</td>
+            <td>3</td>
+            <td>3</td>
+            <td>4</td>
+            <td>4</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\menubar\menubar-editor.html">Editor Menubar</a></td>
+            <td>prototype</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>ex1</td>
+            <td>8</td>
+            <td>7</td>
+            <td>6</td>
+            <td>5</td>
+            <td>none,aria-orientation</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\menubar\menubar-navigation.html">Navigation Menubar</a></td>
+            <td>class</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>ex1</td>
+            <td>9</td>
+            <td>8</td>
+            <td>6</td>
+            <td>5</td>
+            <td>separator,aria-orientation</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\meter\meter.html">Meter</a></td>
+            <td>prototype</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>example</td>
+            <td>1</td>
+            <td>1</td>
+            <td>5</td>
+            <td>4</td>
+            <td>aria-hidden</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\radio\radio-activedescendant.html">Radio Group  Using aria-activedescendant</a></td>
+            <td>prototype</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>ex1</td>
+            <td>2</td>
+            <td>2</td>
+            <td>3</td>
+            <td>3</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\radio\radio.html">Radio Group  Using Roving tabindex</a></td>
+            <td>prototype</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>ex1</td>
+            <td>2</td>
+            <td>2</td>
+            <td>2</td>
+            <td>2</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\slider\multithumb-slider.html">Horizontal Multi-Thumb Slider</a></td>
+            <td>prototype</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td>ex1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>5</td>
+            <td>5</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\slider\slider-2.html">Slider  with aria-orientation and aria-valuetext</a></td>
+            <td>prototype</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td>ex1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>6</td>
+            <td>6</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\slider\slider-color-viewer.html">Color Viewer Slider</a></td>
+            <td>class</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>ex1</td>
+            <td>2</td>
+            <td>2</td>
+            <td>5</td>
+            <td>5</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\spinbutton\datepicker-spinbuttons.html">Date Picker Spin Button</a></td>
+            <td>prototype</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td>example</td>
+            <td>2</td>
+            <td>2</td>
+            <td>7</td>
+            <td>7</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\table\table.html">Table</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>ex1</td>
+            <td>5</td>
+            <td>5</td>
+            <td>2</td>
+            <td>2</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\tabs\tabs-1\tabs.html">Tabs with Automatic Activation</a></td>
+            <td></td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td>ex1</td>
+            <td>3</td>
+            <td>3</td>
+            <td>5</td>
+            <td>4</td>
+            <td>aria-orientation</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\tabs\tabs-2\tabs.html">Tabs with Manual Activation</a></td>
+            <td></td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td>ex1</td>
+            <td>3</td>
+            <td>3</td>
+            <td>5</td>
+            <td>4</td>
+            <td>aria-orientation</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\toolbar\help.html">Toolbar</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>not found</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\toolbar\toolbar.html">Toolbar</a></td>
+            <td>prototype</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td>ex1</td>
+            <td>6</td>
+            <td>6</td>
+            <td>12</td>
+            <td>12</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\treegrid\treegrid-1.html">Treegrid Email Inbox</a></td>
+            <td>prototype</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td>ex1</td>
+            <td>3</td>
+            <td>3</td>
+            <td>7</td>
+            <td>5</td>
+            <td>aria-activedescendant,aria-current</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\treeview\treeview-1\treeview-1a.html">File Directory Treeview  Using Computed Properties</a></td>
+            <td>prototype</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td>ex1</td>
+            <td>3</td>
+            <td>3</td>
+            <td>3</td>
+            <td>2</td>
+            <td>aria-label</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\treeview\treeview-1\treeview-1b.html">File Directory Treeview  Using Declared Properties</a></td>
+            <td>prototype</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td>ex1</td>
+            <td>3</td>
+            <td>3</td>
+            <td>6</td>
+            <td>5</td>
+            <td>aria-label</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\treeview\treeview-navigation.html">Navigation Treeview</a></td>
+            <td>class</td>
+            <td>Yes</td>
+            <td></td>
+            <td>Yes</td>
+            <td>ex1</td>
+            <td>8</td>
+            <td>8</td>
+            <td>5</td>
+            <td>5</td>
+            <td></td>
+          </tr></tbody>
+      </table>
+
+      <h3 id="example_graphics_techniques">Graphics Techniques</h3>
+      <table aria-labelledby="example_graphics_techniques" class="data attributes">
+        <thead>
+          <tr>
+            <th>Example</th>
+            <th>SVG in HTML</th>
+            <th>SVG in CSS</th>
+            <th>SVG in JS</th>
+            <th><code>forced-color-adjust</code></th>
+            <th>CSS ::before</th>
+            <th>CSS ::after</th>
+            <th>CSS content</th>
+          </tr>
+        </thead>
+        <tbody id="example_graphics_techniques_tbody">
+          <tr>
+            <td><a href="..\examples\button\button_idl.html">Button  (IDL Version)</a></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td></td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\button\button.html">Button</a></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td></td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\carousel\carousel-1-prev-next.html">Auto-Rotating Image Carousel  with Buttons for Slide Control</a></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\carousel\carousel-2-tablist.html">Auto-Rotating Image Carousel with Tabs for Slide Control</a></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\checkbox\checkbox-1\checkbox-1.html">Checkbox  (Two State)</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\checkbox\checkbox-2\checkbox-2.html">Checkbox  (Mixed-State)</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\combobox\combobox-autocomplete-both.html">Editable Combobox With Both List and Inline Autocomplete</a></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\combobox\combobox-autocomplete-list.html">Editable Combobox With List Autocomplete</a></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\combobox\combobox-autocomplete-none.html">Editable Combobox without Autocomplete</a></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\combobox\combobox-datepicker.html">Date Picker Combobox</a></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\combobox\combobox-select-only.html">Select-Only Combobox</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\dialog-modal\datepicker-dialog.html">Date Picker Dialog</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\disclosure\disclosure-faq.html">Disclosure (Show/Hide) for Answers to Frequently Asked Questions</a></td>
+            <td></td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\disclosure\disclosure-img-long-description.html">Disclosure (Show/Hide) for Image Description</a></td>
+            <td></td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\disclosure\disclosure-navigation-hybrid.html">Disclosure Navigation Menu with Top-Level Links</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\disclosure\disclosure-navigation.html">Disclosure Navigation Menu</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\feed\feedDisplay.html">Feed Display</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\grid\advancedDataGrid.html">Advanced Data Grid</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\grid\dataGrids.html">Data Grid</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\grid\LayoutGrids.html">Layout Grid</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\link\link.html">Link</a></td>
+            <td></td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td></td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\listbox\listbox-collapsible.html">Collapsible Dropdown Listbox</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\listbox\listbox-grouped.html">Listbox  with Grouped Options</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\listbox\listbox-rearrangeable.html">Listboxes with Rearrangeable Options</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\listbox\listbox-scrollable.html">Scrollable Listbox</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\menu-button\menu-button-actions-active-descendant.html">Actions Menu Button  Using aria-activedescendant</a></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\menu-button\menu-button-actions.html">Actions Menu Button  Using element.focus()</a></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\menu-button\menu-button-links.html">Navigation Menu Button</a></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\menubar\menubar-editor.html">Editor Menubar</a></td>
+            <td></td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\menubar\menubar-navigation.html">Navigation Menubar</a></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\meter\meter.html">Meter</a></td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\radio\radio-activedescendant.html">Radio Group  Using aria-activedescendant</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\radio\radio.html">Radio Group  Using Roving tabindex</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\slider\slider-color-viewer.html">Color Viewer Slider</a></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\spinbutton\datepicker-spinbuttons.html">Date Picker Spin Button</a></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\tabs\tabs-1\tabs.html">Tabs with Automatic Activation</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\tabs\tabs-2\tabs.html">Tabs with Manual Activation</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\toolbar\toolbar.html">Toolbar</a></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\treegrid\treegrid-1.html">Treegrid Email Inbox</a></td>
+            <td></td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td></td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\treeview\treeview-1\treeview-1a.html">File Directory Treeview  Using Computed Properties</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td></td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\treeview\treeview-1\treeview-1b.html">File Directory Treeview  Using Declared Properties</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td></td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\treeview\treeview-navigation.html">Navigation Treeview</a></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr></tbody>
+      </table>
+
+      <h3 id="example_mouse_pointer">Mouse and Pointer Events</h3>
+      <table aria-labelledby="example_mouse_pointer" class="data attributes">
+        <thead>
+          <tr>
+            <th>Example</th>
+            <th>Mouse Events</th>
+            <th>Pointer Events</th>
+          </tr>
+        </thead>
+        <tbody id="example_mouse_pointer_tbody">
+          <tr>
+            <td><a href="..\examples\carousel\carousel-1-prev-next.html">Auto-Rotating Image Carousel  with Buttons for Slide Control</a></td>
+            <td>Yes</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\carousel\carousel-2-tablist.html">Auto-Rotating Image Carousel with Tabs for Slide Control</a></td>
+            <td>Yes</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\combobox\combobox-autocomplete-both.html">Editable Combobox With Both List and Inline Autocomplete</a></td>
+            <td>Yes</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\combobox\combobox-autocomplete-list.html">Editable Combobox With List Autocomplete</a></td>
+            <td>Yes</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\combobox\combobox-autocomplete-none.html">Editable Combobox without Autocomplete</a></td>
+            <td>Yes</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\combobox\combobox-datepicker.html">Date Picker Combobox</a></td>
+            <td>Yes</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\combobox\combobox-select-only.html">Select-Only Combobox</a></td>
+            <td>Yes</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\dialog-modal\datepicker-dialog.html">Date Picker Dialog</a></td>
+            <td>Yes</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\listbox\listbox-collapsible.html">Collapsible Dropdown Listbox</a></td>
+            <td>Yes</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\listbox\listbox-grouped.html">Listbox  with Grouped Options</a></td>
+            <td>Yes</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\listbox\listbox-rearrangeable.html">Listboxes with Rearrangeable Options</a></td>
+            <td>Yes</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\listbox\listbox-scrollable.html">Scrollable Listbox</a></td>
+            <td>Yes</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\menu-button\menu-button-actions-active-descendant.html">Actions Menu Button  Using aria-activedescendant</a></td>
+            <td>Yes</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\menu-button\menu-button-actions.html">Actions Menu Button  Using element.focus()</a></td>
+            <td>Yes</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\menu-button\menu-button-links.html">Navigation Menu Button</a></td>
+            <td>Yes</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\menubar\menubar-editor.html">Editor Menubar</a></td>
+            <td>Yes</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\menubar\menubar-navigation.html">Navigation Menubar</a></td>
+            <td>Yes</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\slider\multithumb-slider.html">Horizontal Multi-Thumb Slider</a></td>
+            <td>Yes</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\slider\slider-2.html">Slider  with aria-orientation and aria-valuetext</a></td>
+            <td>Yes</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\slider\slider-color-viewer.html">Color Viewer Slider</a></td>
+            <td></td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\toolbar\toolbar.html">Toolbar</a></td>
+            <td>Yes</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\treeview\treeview-1\treeview-1a.html">File Directory Treeview  Using Computed Properties</a></td>
+            <td>Yes</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\treeview\treeview-1\treeview-1b.html">File Directory Treeview  Using Declared Properties</a></td>
+            <td>Yes</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="..\examples\treeview\treeview-navigation.html">Navigation Treeview</a></td>
+            <td>Yes</td>
+            <td></td>
+          </tr></tbody>
+      </table>
+
+    </section>
+
+  <nav aria-label="ARIA Practices">
+    <a href="../">WAI-ARIA Authoring Practices</a>
+  </nav>
+
+
+</main></body></html>

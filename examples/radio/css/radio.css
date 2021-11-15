@@ -9,69 +9,36 @@
 }
 
 [role="radio"] {
-  border: 2px solid transparent;
+  padding: 4px 8px;
+  border: 0 solid transparent;
   border-radius: 5px;
   display: inline-block;
   position: relative;
-  padding: 0.125em;
-  padding-left: 1.5em;
-  padding-right: 0.5em;
   cursor: default;
   outline: none;
+  color: black;
 }
 
 [role="radio"] + [role="radio"] {
   margin-left: 1em;
 }
 
-[role="radio"]::before,
-[role="radio"]::after {
-  position: absolute;
-  top: 50%;
-  left: 7px;
-  transform: translate(-20%, -50%);
-  content: '';
-}
-
 [role="radio"]::before {
-  width: 14px;
-  height: 14px;
-  border: 1px solid hsl(0, 0%, 66%);
-  border-radius: 100%;
-  background-image: linear-gradient(to bottom, hsl(300, 3%, 93%), #fff 60%);
-}
-
-[role="radio"]:active::before {
-  background-image: linear-gradient(to bottom, hsl(300, 3%, 73%), hsl(300, 3%, 93%));
+  position: relative;
+  top: 1px;
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='14' width='14' style='forced-color-adjust: auto;'%3E%3Ccircle cx='7' cy='7' r='6' stroke='rgb(0, 90, 156)' stroke-width='2' fill-opacity='0' /%3E%3C/svg%3E");
 }
 
 [role="radio"][aria-checked="true"]::before {
-  border-color: hsl(216, 80%, 50%);
-  background: hsl(217, 95%, 68%);
-  background-image: linear-gradient(to bottom, hsl(217, 95%, 68%), hsl(216, 80%, 57%));
+  position: relative;
+  top: 1px;
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='14' width='14' style='forced-color-adjust: auto;'%3E%3Ccircle cx='7' cy='7' r='6' stroke='rgb(0, 90, 156)' stroke-width='2' fill-opacity='0' /%3E%3Ccircle cx='7' cy='7' r='3' fill='rgb(0, 90, 156)' stroke-opacity='0' /%3E%3C/svg%3E");
 }
 
-[role="radio"][aria-checked="true"]::after {
-  display: block;
-  border: 0.1875em solid #fff;
-  border-radius: 100%;
-  transform: translate(25%, -50%);
-}
-
-[role="radio"][aria-checked="mixed"]:active::before,
-[role="radio"][aria-checked="true"]:active::before {
-  background-image: linear-gradient(to bottom, hsl(216, 80%, 57%), hsl(217, 95%, 68%) 60%);
-}
-
-[role="radio"]:hover::before {
-  border-color: hsl(216, 94%, 65%);
-}
-
-[role="radio"].focus {
-  border-color: hsl(216, 94%, 73%);
-  background-color: hsl(216, 80%, 97%);
-}
-
+[role="radio"].focus,
 [role="radio"]:hover {
-  background-color: hsl(216, 80%, 92%);
+  padding: 2px 6px;
+  border: 2px solid #005a9c;
+  background-color: #def;
+  cursor: pointer;
 }

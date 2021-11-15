@@ -1,7 +1,9 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ */
+
+'use strict';
 
 /**
  * @namespace aria
@@ -38,10 +40,9 @@ aria.Feed.prototype.focusItem = function (item) {
 
 aria.Feed.prototype.mapKeyShortcut = function (event) {
   var key = event.which || event.keyCode;
-  var focusedArticle =
-    aria.Utils.matches(event.target, '[role="article"]') ?
-      event.target :
-      aria.Utils.getAncestorBySelector(event.target, '[role="article"]');
+  var focusedArticle = aria.Utils.matches(event.target, '[role="article"]')
+    ? event.target
+    : aria.Utils.getAncestorBySelector(event.target, '[role="article"]');
 
   if (!focusedArticle) {
     return;
@@ -80,5 +81,4 @@ aria.Feed.prototype.mapKeyShortcut = function (event) {
       }
       break;
   }
-
 };

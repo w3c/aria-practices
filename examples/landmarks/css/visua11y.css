@@ -24,8 +24,6 @@ div.oaa-message-dialog > div {
 
 div.oaa-element-overlay > div:hover {
   cursor: grab;
-  cursor: -moz-grab;
-  cursor: -webkit-grab;
 }
 
 div.oaa-message-dialog {

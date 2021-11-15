@@ -1,4 +1,4 @@
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Assistive Technology: ARIA Landmarks Example</title>
@@ -12,8 +12,8 @@
   <body>
     <div class="container">
       <header class="row">
-        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
-          <img src="images/w3c.png" alt="W3C Logo" />
+        <div id="skip-to-attach" class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+          <img src="images/w3c.png" alt="W3C Logo" style="margin-top: 2em" />
         </div>
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
           <h1>ARIA Landmarks Example</h1>
@@ -45,18 +45,18 @@
           <main>
             <h1>Assistive Technology</h1>
 
-            <p>The following sections demonstrate how various popular 
+            <p>The following sections demonstrate how various popular
             assistive technologies support landmark navigation</p>
 
             <ul>
               <li><a href="#jaws">JAWS Screen Reader for Windows</a></li>
               <li><a href="#nvda">NVDA Screen Reader for Windows</a></li>
-              <li><a href="#we">Window-Eyes Screen Reader for Windows</a></li>
-              <li><a href="#vo">Voice Over Screen Reader for OSX</a></li>
+              <li><a href="#vo">VoiceOver Screen Reader for macOS</a></li>
               <li><a href="#orca">ORCA Screen Reader for Linux/Gnome</a></li>
+              <li><a href="#skipto">SkipTo Landmarks &amp; Headings browser extension</a></li>
             </ul>
 
-            <section aria-labelledby="jaws">
+            <section>
               <h2 id="jaws">JAWS Screen Reader for Windows</h2>
               <p>The following commands are available in the JAWS screen reader (since version 15) for navigating landmarks:</p>
 
@@ -86,15 +86,15 @@
                     <td>List of landmarks</td>
                   </tr>
                 </tbody>
-                
+
               </table>
 
               <p>Screen shot of list of landmarks in JAWS</p>
-              <p><img src="images/landmarks-jaws.png" alt="Screen shot of list of landmarks in voice over"></p>
-            
+              <p><img src="images/landmarks-jaws.png" alt="Screen shot of list of landmarks in JAWS"></p>
+
             </section>
 
-            <section aria-labelledby="nvda">
+            <section>
             <h2 id="nvda">NVDA Screen Reader for Windows</h2>
                <p>The following commands are available in NVDA screen reader (since version 2014.2) for navigating landmarks:</p>
 
@@ -120,45 +120,15 @@
                     <td>List of landmarks</td>
                   </tr>
                 </tbody>
-                
-              </table>         
+
+              </table>
               <p>Screen shot of list of landmarks in NVDA</p>
-                <p><img src="images/landmarks-nvda.png" alt="Screen shot of list of landmarks in voice over"></p>
+                <p><img src="images/landmarks-nvda.png" alt="Screen shot of list of landmarks in N V D A"></p>
             </section>
 
-            <section aria-labelledby="we">
-            <h2 id="we">Window-Eyes Screen Reader for Windows</h2>
-               <p>The following commands are available in Window-Eyes screen reader (since version 8.4) for navigating landmarks:</p>
-
-              <table class="table table-striped table-hover" aria-labelledby="we">
-
-                <thead>
-                  <tr>
-                    <th>Command</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>;</td>
-                    <td>Go to next landmark</td>
-                  </tr>
-                  <tr>
-                    <td>Shift+;</td>
-                    <td>Go to previous landmark</td>
-                  </tr>
-                  <tr>
-                    <td>Insert+Tab, Alt+K</td>
-                    <td>List of landmarks</td>
-                  </tr>
-                </tbody>
-                
-              </table>         
-            </section>
-
-            <section aria-labelledby="vo">
-            <h2 id="vo">Voice Over Screen Reader for OS X (Mac OS)</h2>
-               <p>The following commands are available in Voice Over screen reader for OS X El Capitan (10.11) for navigating landmarks:</p>
+            <section>
+            <h2 id="vo">VoiceOver Screen Reader for macOS</h2>
+               <p>The following commands are available in VoiceOver screen reader for navigating landmarks:</p>
               <table class="table table-striped table-hover" aria-labelledby="vo">
 
                 <thead>
@@ -181,13 +151,13 @@
                     <td>List of landmarks</td>
                   </tr>
                 </tbody>
-                
-              </table>         
-             <p>Screen shot of list of landmarks in Voice Over</p>
+
+              </table>
+             <p>Screen shot of list of landmarks in VoiceOver</p>
             <p><img src="images/landmarks-vo.png" alt="Screen shot of list of landmarks in voice over"></p>
             </section>
 
-            <section aria-labelledby="orca">
+            <section>
             <h2 id="orca">ORCA Screen Reader for Linux/GNOME</h2>
               <p>The following commands are available in ORCA Screen reader for navigating landmarks:</p>
 
@@ -215,8 +185,24 @@
                 </tbody>
 
               </table>
+             <p>Screen shot of list of landmarks in Orca</p>
+            <p><img src="images/landmarks-orca.png" alt="Screen shot of list of landmarks in orca"></p>
             </section>
 
+            <section>
+              <h2 id="skipto">SkipTo Landmarks &amp; Headings Browser Extension</h2>
+
+              <p>The SkipTo Landmarks &amp; Headings browser extension implements the <a href="https://www.w3.org/TR/UAAG/">User Agent Accessibility Guidelines 1.0</a> requirement <q><a href="https://www.w3.org/TR/UAAG/guidelines.html#tech-nav-structure">9.9 Allow Structured Navigation</a></q>. It does this by providing keyboard navigation to landmarks and headings on any web page.  The keyboard shortcut to open the SkipTo menu is <kbd>alt+2</kbd> on Windows/Linux and <kbd>option+2</kbd> on Mac keyboards.</p>
+
+              <ul style="margin-top: 1em">
+                <li><a href="https://chrome.google.com/webstore/detail/skipto-landmarks-headings/fjkpbfcodhflpdildjbmdhhmcoplghgf">Chrome Extension: Skip to Landmarks &amp; Headings</a></li>
+                <li><a href="https://addons.mozilla.org/en-US/firefox/addon/skipto/">Firefox Extension: Skip to Landmarks &amp; Headings</a></li>
+              </ul>
+
+             <p>Screen shot of list of landmarks and Headings</p>
+              <p><img src="images/landmarks-skipto.png" alt="Screen shot of list of landmarks and headings using SkipTo Landmarks &amp; Headings Browser Extension"></p>
+
+            </section>
 
           </main>
         </div>
@@ -235,14 +221,14 @@
           <aside aria-labelledby="id3">
             <h2 id="id3">Related Documents</h2>
             <ul>
-              <li><a href="https://www.w3.org/TR/wai-aria-practices-1.1/">WAI-ARIA Authoring Practices 1.1</a></li>
-              <li><a href="http://www.w3.org/TR/2014/REC-wai-aria-20140320/">WAI-ARIA 1.0 Specification</a></li>
-              <li><a href="https://www.w3.org/TR/wai-aria-1.1/">WAI-ARIA 1.1 Specification</a></li>
-              <li><a href="https://www.w3.org/TR/accname-aam-1.1/">Accessible Name and Description: Computation and API Mappings 1.1</a></li>
-              <li><a href="http://www.w3.org/TR/core-aam-1.1/">Core Accessibility API Mappings 1.1</a></li>
-              <li><a href="https://www.w3.org/TR/html-aam-1.0/">HTML Accessibility API Mappings 1.0</a></li>
+              <li><a href="https://w3c.github.io/aria-practices">WAI-ARIA Authoring Practices 1.2</a></li>
+              <li><a href="https://www.w3.org/TR/wai-aria-1.2/">WAI-ARIA 1.2 Specification</a></li>
+
+              <li><a href="https://www.w3.org/TR/accname-1.2/">Accessible Name and Description Computation 1.2</a></li>
+              <li><a href="http://www.w3.org/TR/core-aam-1.2/">Core Accessibility API Mappings 1.2</a></li>
+              <li><a href="https://w3c.github.io/html-aam/">HTML Accessibility API Mappings (latest editors draft)</a></li>
               <li><a href="https://html.spec.whatwg.org/">HTML Specification</a></li>
-              <li><a href="https://www.w3.org/TR/html-aria/">ARIA in HTML</a>
+              <li><a href="https://www.w3.org/TR/html-aria/">ARIA in HTML</a></li>
               <li><a href="https://www.w3.org/TR/using-aria/">Using ARIA in HTML</a></li>
               <li><a href="http://www.w3.org/TR/WCAG/">WCAG Specification</a></li>
             </ul>
@@ -255,30 +241,31 @@
             W3C ARIA Authoring Practices Task Force
           </div>
           <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
-            Copyright 2016
+            Copyright 2021
           </div>
         </footer>
       </div>
     </div>
-    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>        
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>        
-    <script type="text/javascript" src="js/tabs.js"></script>        
-    <script type="text/javascript" src="js/bootstrap-accessibility.min.js"></script>        
-    <script type="text/javascript" src="js/bootstrap-accessibility-2.js"></script>        
-    <script type="text/javascript" src="js/visua11y.js"></script>        
-    <script type="text/javascript" src="js/show.js"></script>        
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/tabs.js"></script>
+    <script type="text/javascript" src="js/bootstrap-accessibility.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-accessibility-2.js"></script>
+    <script type="text/javascript" src="js/visua11y.js"></script>
+    <script type="text/javascript" src="js/show.js"></script>
     <script type="text/javascript" >
       // Use the SkipTo defaults, but just showing custom configuration
-      var SkipToConfig =
-      {
-        "settings": {
-          "skipTo": {
-            "headings": "h1, h2",
-            "attachElement": "header"
-          }
-        }
+      var SkipToConfig = {
+        settings: {
+          skipTo: {
+            headings: 'h1, h2',
+            attachElement: '#skip-to-attach',
+
+            colorTheme: 'aria',
+          },
+        },
       };
     </script>
-    <script type="text/javascript" src="js/SkipTo.min.js"></script>      
+    <script type="text/javascript" src="js/skipto.min.js"></script>
   </body>
 </html>

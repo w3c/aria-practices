@@ -38,7 +38,9 @@
       <li><a href="../dialog-modal/datepicker-dialog.html">Date Picker Dialog Example</a>: Demonstrates a dialog containing a calendar grid for choosing a date.</li>
     </ul>
     <section>
-      <h2 id="ex_label">Example</h2>
+      <div class="example-header">
+        <h2 id="ex_label">Example</h2>
+      </div>
       <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
       <div id="example">
 
@@ -183,11 +185,23 @@
           </tr>
           <tr data-test-id="spinbutton-page-down">
             <th><kbd>Page Down</kbd></th>
-            <td>Decreases the value 5 steps.</td>
+            <td>
+              <ul>
+                <li>Decreases the value 5 steps.</li>
+                <li>When focus is on the <q>Day</q> spin button and the value is the fifth day of the month or less, changes value to the last day of the month.</li>
+                <li>When focus is on the <q>Month</q> spin button and the value is the fifth month of the year or less, changes value to <q>December</q>.</li>
+              </ul>
+            </td>
           </tr>
           <tr data-test-id="spinbutton-page-up">
             <th><kbd>Page Up</kbd></th>
-            <td>Increases the value 5 steps.</td>
+            <td>
+              <ul>
+                <li>Increases the value 5 steps.</li>
+                <li>When focus is on the <q>Day</q> spin button and the value is any of the last five days of the month, changes value to the first day of the month.</li>
+                <li>When focus is on the <q>Month</q> spin button and the value is any of the last five months of the year, changes value to <q>January</q>.</li>
+              </ul>
+            </td>
           </tr>
           <tr data-test-id="spinbutton-home">
             <th><kbd>Home</kbd></th>
@@ -311,7 +325,7 @@
             <td></td>
             <th scope="row"><code>tabindex="-1"</code></th>
             <td><code>button</code></td>
-            <td>Removes the decrement and increment buttons from the page <kbd>Tab</kbd> sequence while keeping them focusable so they can be accessed with touch-based assistive technologies.</td>
+            <td>Removes the decrease and increase buttons from the page <kbd>Tab</kbd> sequence while keeping them focusable so they can be accessed with touch-based assistive technologies.</td>
           </tr>
         </tbody>
       </table>
@@ -319,7 +333,7 @@
 
     <section>
       <h2>Javascript and CSS Source Code</h2>
-      <ul>
+      <ul id="css_js_files">
         <li>
           CSS:
           <a href="css/datepicker-spinbuttons.css" type="text/css">datepicker-spinbuttons.css</a>
@@ -340,7 +354,7 @@
       <pre><code id="source1"></code></pre>
       <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
       <script>
-        sourceCode.add('source1', 'example');
+        sourceCode.add('source1', 'example', 'ex_label', 'css_js_files');
         sourceCode.make();
       </script>
     </section>

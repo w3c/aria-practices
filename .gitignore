@@ -1,2 +1,5 @@
 .DS_*
 node_modules
+.vscode/*
+!.vscode/extensions.json
+.env

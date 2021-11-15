@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <!--
-  This template is depricated.
+  This template is deprecated.
   As of November 21, 2016, the task force agrees that:
   * We will put one example per page.
   * Multiple examples on a page add complexity, create greater potential for confusion.
@@ -268,7 +268,9 @@
       It renders the HTML in the preceding pre element with ID 'sc1'.
       If you change the ID of either the 'ex1' div or the 'sc1' pre, be sure to update the sourceCode.add function parameters.
     -->
-    <script>sourceCode.add('sc1', 'ex1')</script>
+    <script>
+      sourceCode.add('sc1', 'ex1');
+    </script>
 
     <h3 id="sc2_label">Example 2: title of this variation of the implementation</h3>
     <div id="sc2_start_sep" role="separator" aria-labelledby="sc2_start_sep sc2_label" aria-label="Start of HTML for" ></div>
@@ -279,7 +281,9 @@
       It renders the HTML in the preceding pre element with ID 'sc2'.
       If you change the ID of either the 'ex2' div or the 'sc2' pre, be sure to update the sourceCode.add function parameters.
       -->
-    <script>sourceCode.add('sc2', 'ex2')</script>
+    <script>
+      sourceCode.add('sc2', 'ex2');
+    </script>
 
     <h3 id="sc3_label">Example 3: title of this variation of the implementation</h3>
     <div id="sc3_start_sep" role="separator" aria-labelledby="sc3_start_sep sc3_label" aria-label="Start of HTML for" ></div>
@@ -290,9 +294,13 @@
       It renders the HTML in the preceding pre element with ID 'sc3'.
       If you change the ID of either the 'ex3' div or the 'sc3' pre, be sure to update the sourceCode.add function parameters.
     -->
-    <script>sourceCode.add('sc3', 'ex3') </script>
+    <script>
+      sourceCode.add('sc3', 'ex3');
+    </script>
     <!--  After all source has been added, run make to do the insert.  -->
-    <script> sourceCode.make() </script>
+    <script>
+      sourceCode.make();
+    </script>
   </section>
   </main>
   <nav>

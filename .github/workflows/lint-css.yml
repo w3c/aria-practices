@@ -1,0 +1,42 @@
+name: CSS Linting
+on:
+  push:
+    branches-ignore:
+      - "dependabot/**"
+    paths:
+      - "package*.json"
+      - ".prettier*"
+      - ".stylelint*"
+      - "**/*.css"
+      - ".github/workflows/lint-css.yml"
+      - "!common/**"
+
+  pull_request:
+    paths:
+      - "package*.json"
+      - ".prettier*"
+      - ".stylelint*"
+      - "**/*.css"
+      - ".github/workflows/lint-css.yml"
+      - "!common/**"
+
+jobs:
+  lint-css:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          cache: npm
+
+      - uses: xt0rted/stylelint-problem-matcher@v1
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Stylelint
+        run: npm run lint:css

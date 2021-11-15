@@ -1,8 +1,8 @@
 nav.breadcrumb {
   padding: 0.8em 1em;
-  border: 1px solid hsl(0, 0%, 90%);
+  border: 1px solid hsl(0deg 0% 90%);
   border-radius: 4px;
-  background: hsl(300, 14%, 97%);
+  background: hsl(300deg 14% 97%);
 }
 
 nav.breadcrumb ol {
@@ -21,7 +21,7 @@ nav.breadcrumb li + li::before {
   transform: rotate(15deg);
   border-right: 0.1em solid currentColor;
   height: 0.8em;
-  content: '';
+  content: "";
 }
 
 nav.breadcrumb [aria-current="page"] {
