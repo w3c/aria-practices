@@ -1858,7 +1858,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
                   <li><kbd>Control + A</kbd> (Optional): Selects all options in the list. Optionally, if all options are selected, it may also unselect all options.</li>
                 </ul>
               </li>
-              <li>Alternative selection model -- moving focus without holding a <kbd>Shift</kbd> or <kbd>Control</kbd> modifier unselects all selected nodes except the focused node:
+              <li>Alternative selection model -- moving focus without holding a <kbd>Shift</kbd> or <kbd>Control</kbd> modifier unselects all selected options except the focused option:
               <ul>
                   <li><kbd>Shift + Down Arrow</kbd>: Moves focus to and toggles the selection state of the next option.</li>
                   <li><kbd>Shift + Up Arrow</kbd>: Moves focus to and toggles the selection state of the previous option.</li>
@@ -1932,7 +1932,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
                 See notes below regarding considerations for which property to use and for details of the unusual conditions that might allow for both properties in the same listbox.
               </li>
               <li>
-                If any options are selected, each selected node has either <a href="#aria-selected" class="state-reference">aria-selected</a> or <a href="#aria-checked" class="state-reference">aria-checked</a> set to <code>true</code>.
+                If any options are selected, each selected option has either <a href="#aria-selected" class="state-reference">aria-selected</a> or <a href="#aria-checked" class="state-reference">aria-checked</a> set to <code>true</code>.
                 No more than one option is selected at a time if the element with role <code>listbox</code> does <em>not</em> have <a class="property-reference" href="#aria-multiselectable">aria-multiselectable</a> set to <code>true</code>.
               </li>
               <li>
