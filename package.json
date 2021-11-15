@@ -52,7 +52,7 @@
     "htmlhint": "^0.14.2",
     "htmlparser2": "^7.0.0",
     "husky": "^7.0.4",
-    "lint-staged": "^10.5.4",
+    "lint-staged": "^12.0.2",
     "pinst": "^2.1.4",
     "prettier": "^2.4.1",
     "selenium-webdriver": "^4.0.0-beta.1",
