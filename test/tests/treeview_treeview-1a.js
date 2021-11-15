@@ -98,7 +98,7 @@ ariaTest(
 );
 
 ariaTest(
-  'aria-selected attribute on treeitem on down arrow and space',
+  'aria-selected attribute on treeitem on down arrow, right arrow and enter',
   exampleFile,
   'treeitem-aria-selected',
   async (t) => {
@@ -120,7 +120,13 @@ ariaTest(
         // move focus back to the previous item
         await nextItem.sendKeys(Key.ARROW_UP);
       }
-      await items[i].sendKeys(Key.SPACE);
+      await items[i].sendKeys(Key.ARROW_RIGHT);
+      t.is(
+        await items[i].getAttribute('aria-selected'),
+        'false',
+        'treeitem should have aria-selected="false" after expanding by sending key ARROW_RIGHT'
+      );
+      await items[i].sendKeys(Key.ENTER);
       t.is(
         await items[i].getAttribute('aria-selected'),
         'true',
@@ -212,8 +218,8 @@ ariaTest(
           false
         );
 
-        // Send enter to the folder
-        await folder.sendKeys(Key.SPACE);
+        // Send arrow right to the folder
+        await folder.sendKeys(Key.ARROW_RIGHT);
 
         // After click, it should be open
         t.is(await folder.getAttribute('aria-expanded'), 'true');
@@ -231,8 +237,8 @@ ariaTest(
       if (await folders[i].isDisplayed()) {
         const folderText = await folders[i].getText();
 
-        // Send enter to the folder
-        await folders[i].sendKeys(Key.SPACE);
+        // Send arrow left to the folder
+        await folders[i].sendKeys(Key.ARROW_LEFT);
 
         // After sending enter, it should be closed
         t.is(
@@ -276,36 +282,7 @@ ariaTest(
 
 // Keys
 
-ariaTest(
-  'Key enter selects file or folder',
-  exampleFile,
-  'key-enter',
-  async (t) => {
-    await openAllFolders(t);
-
-    const items = await t.context.queryElements(t, ex.docSelector);
-
-    for (let item of items) {
-      const itemText = await item.getText();
-
-      // Send enter to the folder
-      await item.sendKeys(Key.ENTER);
-
-      const boxText = await t.context.session
-        .findElement(By.css(ex.textboxSelector))
-        .getAttribute('value');
-      t.is(
-        boxText,
-        itemText,
-        'Sending enter to doc "' +
-          itemText +
-          '" should update the value in the textbox'
-      );
-    }
-  }
-);
-
-ariaTest('Key space opens folder', exampleFile, 'key-space', async (t) => {
+ariaTest('Key enter selects file', exampleFile, 'key-enter', async (t) => {
   await openAllFolders(t);
 
   const items = await t.context.queryElements(t, ex.docSelector);
@@ -314,6 +291,30 @@ ariaTest('Key space opens folder', exampleFile, 'key-space', async (t) => {
     const itemText = await item.getText();
 
     // Send enter to the folder
+    await item.sendKeys(Key.ENTER);
+
+    const boxText = await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .getAttribute('value');
+    t.is(
+      boxText,
+      itemText,
+      'Sending enter to doc "' +
+        itemText +
+        '" should update the value in the textbox'
+    );
+  }
+});
+
+ariaTest('Key space selects file', exampleFile, 'key-space', async (t) => {
+  await openAllFolders(t);
+
+  const items = await t.context.queryElements(t, ex.docSelector);
+
+  for (let item of items) {
+    const itemText = await item.getText();
+
+    // Send space to the folder
     await item.sendKeys(Key.SPACE);
 
     const boxText = await t.context.session
