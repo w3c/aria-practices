@@ -758,7 +758,7 @@ require(['core/pubsubhub'], function (respecEvents) {
 
   function showAriaSave() {
     const json = JSON.stringify(roleInfo, null, '  ');
-    const href = 'data:text/html;charset=utf-8,' + encodeURIComponent(json);
+    const href = "data:text/html;charset=utf-8," + "/* This file is generated - do not modify */\nvar roleInfo = " + encodeURIComponent(json);
     const ariaUI = document.createElement('div');
     ariaUI.classList.add('respec-save-buttons');
     ariaUI.innerHTML = `
