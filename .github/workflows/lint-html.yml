@@ -47,3 +47,6 @@ jobs:
           echo "::add-matcher::.github/workflows/vnu-jar-problem-matcher.json"
           echo "::add-matcher::.github/workflows/htmlhint-problem-matcher.json"
           npm run lint:html
+
+      - name: Check links
+        run: npm run lint:links
