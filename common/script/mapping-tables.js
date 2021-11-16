@@ -30,9 +30,9 @@ function queryAll(selector, context) {
 
 function getElementIndex(el) {
   var i = 0;
-  do {
+  while ((el = el.previousElementSibling)) {
     i++;
-  } while ((el = el.previousElementSibling));
+  }
   return i;
 }
 
@@ -229,28 +229,7 @@ function mappingTables() {
 
     var expandCollapseDetails = function (detCont, action) {
       queryAll('details', detCont).forEach(function (details) {
-        var detailsSummary = details.querySelector('summary');
-        var detailsNotSummary = Array.prototype.slice
-          .call(details.children)
-          .filter(function (child) {
-            return child !== detailsSummary;
-          });
-
-        if (action == 'collapse') {
-          details.classList.remove('open');
-          details.open = false;
-          detailsSummary.setAttribute('aria-expanded', false);
-          detailsNotSummary.forEach(function (element) {
-            hideElement(element);
-          });
-        } else {
-          details.classList.add('open');
-          details.open = true;
-          detailsSummary.setAttribute('aria-expanded', true);
-          detailsNotSummary.forEach(function (element) {
-            showElement(element);
-          });
-        }
+        details.open = action !== 'collapse'
       });
     };
 
@@ -277,58 +256,60 @@ function mappingTables() {
       '<span>' + mappingTableLabels.showHideCols + '</span>';
 
     for (var i = 0, len = colHeaders.length; i < len; i++) {
-      var toggleLabel = colHeaders[i]
-        .replace(/<a [^<]+>|<\/a>/g, '')
-        .replace(/<sup>\[Note [0-9]+\]<\/sup>/g, '');
+      (function (i) {
+        var toggleLabel = colHeaders[i]
+          .replace(/<a [^<]+>|<\/a>/g, '')
+          .replace(/<sup>\[Note [0-9]+\]<\/sup>/g, '');
 
-      var showHideColButton = document.createElement('button');
-      showHideColButton.className = 'hide-col';
-      showHideColButton.setAttribute('aria-pressed', false);
-      showHideColButton.setAttribute(
-        'title',
-        mappingTableLabels.hideToolTipText
-      );
-      showHideColButton.innerHTML =
-        '<span class="action">' +
-        mappingTableLabels.hideActionText +
-        '</span>' +
-        toggleLabel;
-
-      showHideColButton.addEventListener('click', function () {
-        var index = getElementIndex(showHideColButton) + 1;
-        var wasHidden = showHideColButton.className === 'hide-col';
-
-        queryAll(
-          'tr>th:nth-child(' + index + '), tr>td:nth-child(' + index + ')',
-          tableInfo.table
-        ).forEach(function (element) {
-          if (wasHidden) {
-            hideElement(element);
-          } else {
-            showElement(element);
-          }
-        });
-
-        showHideColButton.className = wasHidden ? 'show-col' : 'hide-col';
-        showHideColButton.setAttribute('aria-pressed', wasHidden);
+        var showHideColButton = document.createElement('button');
+        showHideColButton.className = 'hide-col';
+        showHideColButton.setAttribute('aria-pressed', false);
         showHideColButton.setAttribute(
           'title',
-          wasHidden
-            ? mappingTableLabels.showToolTipText
-            : mappingTableLabels.hideToolTipText
+          mappingTableLabels.hideToolTipText
         );
-        showHideColButton.querySelector('span').innerText = wasHidden
-          ? mappingTableLabels.showActionText
-          : mappingTableLabels.hideActionText;
-      });
-      queryAll('span', showHideColButton)
-        .filter(function (span) {
-          return !span.classList.contains('action');
-        })
-        .forEach(function (span) {
-          span.parentNode.removeChild(span);
+        showHideColButton.innerHTML =
+          '<span class="action">' +
+          mappingTableLabels.hideActionText +
+          '</span>' +
+          toggleLabel;
+
+        showHideColButton.addEventListener('click', function () {
+          var index = getElementIndex(showHideColButton);
+          var wasHidden = showHideColButton.className === 'hide-col';
+
+          queryAll(
+            'tr>th:nth-child(' + index + '), tr>td:nth-child(' + index + ')',
+            tableInfo.table
+          ).forEach(function (element) {
+            if (wasHidden) {
+              hideElement(element);
+            } else {
+              showElement(element);
+            }
+          });
+
+          showHideColButton.className = wasHidden ? 'show-col' : 'hide-col';
+          showHideColButton.setAttribute('aria-pressed', wasHidden);
+          showHideColButton.setAttribute(
+            'title',
+            wasHidden
+              ? mappingTableLabels.showToolTipText
+              : mappingTableLabels.hideToolTipText
+          );
+          showHideColButton.querySelector('span').innerText = wasHidden
+            ? mappingTableLabels.showActionText
+            : mappingTableLabels.hideActionText;
         });
-      showHideCols.appendChild(showHideColButton);
+        queryAll('span', showHideColButton)
+          .filter(function (span) {
+            return !span.classList.contains('action');
+          })
+          .forEach(function (span) {
+            span.parentNode.removeChild(span);
+          });
+        showHideCols.appendChild(showHideColButton);
+      })(i)
     }
 
     tableInfo.tableContainer.insertBefore(
@@ -403,14 +384,6 @@ function mapTables(respecEvents) {
           getElementIndex(details) - getElementIndex(summary.parentNode)
         ];
     });
-  }
-
-  
-  function expandReferredDetails(summaryFragId) {
-    // if details element is not open, activate click on summary
-    if (!summaryFragId.parentNode.open) {
-      summaryFragId.click();
-    }
   }
 
   if (respecEvents) {
