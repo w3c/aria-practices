@@ -3,7 +3,7 @@ updates:
 - package-ecosystem: npm
   directory: "/"
   schedule:
-    interval: weekly
+    interval: monthly
     time: "10:00"
   open-pull-requests-limit: 99
   commit-message:
@@ -11,7 +11,7 @@ updates:
 - package-ecosystem: github-actions
   directory: "/"
   schedule:
-    interval: daily
+    interval: monthly
     time: "10:00"
   open-pull-requests-limit: 99
   commit-message:
