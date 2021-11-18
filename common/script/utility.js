@@ -9,12 +9,3 @@ function addPlatformMaintainers() {
 		if (node.textContent.trim() == "Authors:") node.textContent = "Platform Mapping Maintainers:";
 	})
 }
-
-require(["core/pubsubhub"], function(respecEvents) {
-    "use strict";
-    respecEvents.sub('end', function(message) {
-    	if (message === 'core/link-to-dfn') {
-			addPlatformMaintainers();
-    	}
-	})
-})
