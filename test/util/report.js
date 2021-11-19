@@ -108,8 +108,8 @@ const processDocumentationInExampleFiles = function (
   exampleCoverage
 ) {
   for (let exampleFile of exampleFiles) {
-    var data = fs.readFileSync(exampleFile);
-    const dom = htmlparser2.parseDOM(data);
+    var data = fs.readFileSync(exampleFile).toString('utf-8');
+    const dom = htmlparser2.parseDocument(data);
     const $ = cheerio.load(dom);
 
     let dataTestIds = new Set();
