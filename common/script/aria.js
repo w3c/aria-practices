@@ -13,7 +13,6 @@
 var roleInfo = {};
 
 function ariaAttributeReferences() {
-  {
       var propList = {};
       var globalSP = [];
 
@@ -46,7 +45,7 @@ function ariaAttributeReferences() {
             '</span>';
           sp.setAttribute('aria-describedby', 'desc-' + title);
           var dRef = item.nextElementSibling;
-          var desc = dRef.firstElementChild.innerHTML;
+          var desc = cloneWithoutIds(dRef.firstElementChild).innerHTML;
           dRef.id = 'desc-' + title;
           dRef.setAttribute('role', 'definition');
           var heading = document.createElement('h4');
@@ -255,7 +254,7 @@ function ariaAttributeReferences() {
           // sp.id = title;
           sp.setAttribute('aria-describedby', 'desc-' + title);
           var dRef = item.nextElementSibling;
-          var desc = dRef.firstElementChild.innerHTML;
+          var desc = cloneWithoutIds(dRef.firstElementChild).innerHTML;
           dRef.id = 'desc-' + title;
           dRef.setAttribute('role', 'definition');
           container.replaceChild(sp, item);
@@ -745,7 +744,14 @@ function ariaAttributeReferences() {
         });
 
       updateReferences(document);
-    }
+
+      function cloneWithoutIds(node) {
+        const clone = node.cloneNode(true);
+        for (const elementWithId of clone.querySelectorAll("[id]")) {
+          elementWithId.removeAttribute("id");
+        }
+        return clone;
+      }
   }
 
 require(['core/pubsubhub'], function (respecEvents) {
