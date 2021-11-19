@@ -57,12 +57,12 @@
   fill: #bbb;
   stroke: currentColor;
   stroke-width: 2px;
-  opacity: 80%;
+  opacity: 0.8;
 }
 
 .color-slider .fill {
   stroke-width: 0;
-  opacity: 50%;
+  opacity: 0.5;
   pointer-events: none;
 }
 
@@ -97,21 +97,21 @@
 
 .color-slider:focus .fill,
 .color-slider:hover .fill {
-  opacity: 100%;
+  opacity: 1;
 }
 
 .color-slider:focus .rail,
 .color-slider:hover .rail {
   fill: transparent;
   stroke: currentColor;
-  opacity: 100%;
+  opacity: 1;
 }
 
 .color-slider:focus .thumb,
 .color-slider:hover .thumb {
   fill: #ddd;
   stroke: currentColor;
-  opacity: 100%;
+  opacity: 1;
 }
 
 .color-slider:focus .focus,

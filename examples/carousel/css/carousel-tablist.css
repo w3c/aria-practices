@@ -154,7 +154,7 @@ img.reload {
   stroke: black;
   fill: black;
   stroke-width: 1px;
-  opacity: 60%;
+  opacity: 0.6;
 }
 
 .carousel-tablist .svg-play .border {
@@ -186,7 +186,7 @@ img.reload {
 .carousel-tablist .rotation:hover .svg-play .border {
   fill: #005a9c;
   stroke: #005a9c;
-  opacity: 100%;
+  opacity: 1;
 }
 
 .carousel-tablist .rotation:focus .svg-play .border {
@@ -236,7 +236,7 @@ img.reload {
   stroke: black;
   fill: black;
   stroke-width: 2px;
-  opacity: 60%;
+  opacity: 0.6;
   z-index: 14;
 }
 
@@ -277,14 +277,14 @@ img.reload {
 .carousel-tablist [role="tab"]:hover circle.tab-background {
   fill: white;
   stroke: white;
-  opacity: 100%;
+  opacity: 1;
 }
 
 .carousel-tablist [role="tab"]:hover circle.border,
 .carousel-tablist [role="tab"]:hover circle.tab {
   fill: #005a9c;
   stroke: #005a9c;
-  opacity: 100%;
+  opacity: 1;
 }
 
 .carousel-tablist [role="tab"][aria-selected="true"]:hover circle.tab {
