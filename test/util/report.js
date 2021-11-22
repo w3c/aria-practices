@@ -175,7 +175,11 @@ const getRegressionTestCoverage = function (exampleCoverage) {
     allTestFiles.push(path.join(testsPath, testFile));
   });
 
-  const cmd = path.resolve(
+  const isWin = process.platform === 'win32';
+
+  // fix for running regression-report on windows
+  const cmd = isWin ? 'node.exe' : 'node';
+  const avaCmdPath = path.resolve(
     __dirname,
     '..',
     '..',
@@ -183,7 +187,7 @@ const getRegressionTestCoverage = function (exampleCoverage) {
     'ava',
     'cli.js'
   );
-  const cmdArgs = [...allTestFiles, '--tap', '-c', '1'];
+  const cmdArgs = [avaCmdPath, ...allTestFiles, '--tap', '-c', '1'];
 
   const output = spawnSync(cmd, cmdArgs);
   const avaResults = output.stdout.toString();
