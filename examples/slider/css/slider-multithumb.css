@@ -28,7 +28,7 @@
 
 .slider-multithumb .slider-group .range {
   fill: currentColor;
-  opacity: 40%;
+  opacity: 0.4;
 }
 
 .slider-multithumb .slider-group .thumb {
@@ -52,7 +52,7 @@
 }
 
 .slider-multithumb .slider-group.active g.rail {
-  opacity: 80%;
+  opacity: 0.8;
 }
 
 .slider-multithumb .slider-group.active g.range {

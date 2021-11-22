@@ -22,7 +22,7 @@ label .label {
 }
 
 label input[role="switch"] {
-  opacity: 0%;
+  opacity: 0;
 }
 
 label input[role="switch"] ~ .state {
@@ -50,7 +50,7 @@ label input[role="switch"] ~ .state > .container > .position {
   width: 14px;
   height: 14px;
   background: black;
-  opacity: 60%;
+  opacity: 0.6;
 }
 
 label input[role="switch"]:not(:checked) ~ .state span.on {
@@ -65,7 +65,7 @@ label input[role="switch"]:checked ~ .state > .container > .position {
   left: 20px;
   border-color: green;
   background: green;
-  opacity: 100%;
+  opacity: 1;
 }
 
 label.focus,
