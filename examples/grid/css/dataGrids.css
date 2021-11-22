@@ -52,7 +52,7 @@
   background-size: 44px;
   content: " ";
   height: 17px;
-  opacity: 60%;
+  opacity: 0.6;
   position: absolute;
   right: -24px;
   top: 0;
@@ -66,7 +66,7 @@
 
 .edit-text-button:hover::after,
 .edit-text-button:focus::after {
-  opacity: 100%;
+  opacity: 1;
 }
 
 [role="gridcell"]:focus,
