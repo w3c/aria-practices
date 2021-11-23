@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
   <title>Editor Menubar Example | WAI-ARIA Authoring Practices 1.2</title>
 
   <!--  Core js and css shared by all examples; do not modify when using this template. -->
@@ -51,7 +51,7 @@
         <ul role="menubar" aria-label="Text Formatting">
           <li role="none">
             <span role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0">Font<span aria-hidden="true"></span></span>
-            <ul role="menu" data-option="font-family" aria-label="Font" >
+            <ul role="menu" data-option="font-family" aria-label="Font">
               <li role="menuitemradio" aria-checked="true"><span aria-hidden="true"></span>Sans-serif</li>
               <li role="menuitemradio" aria-checked="false"><span aria-hidden="true"></span>Serif</li>
               <li role="menuitemradio" aria-checked="false"><span aria-hidden="true"></span>Monospace</li>
@@ -100,7 +100,7 @@
 
           <li role="none">
             <span role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="-1">Size<span aria-hidden="true"></span></span>
-            <ul role="menu" aria-label="Size" >
+            <ul role="menu" aria-label="Size">
               <li role="menuitem" data-option="font-smaller" aria-disabled="false">Smaller</li>
               <li role="menuitem" data-option="font-larger"  aria-disabled="false">Larger</li>
               <li role="separator"></li>
@@ -133,7 +133,7 @@
 
 
     </div>
-    <div role="separator" id="ex1_end_sep" aria-labelledby="ex1_end_sep ex1_label" aria-label="End of" ></div>
+    <div role="separator" id="ex1_end_sep" aria-labelledby="ex1_end_sep ex1_label" aria-label="End of"></div>
   </section>
 
   <section>
@@ -853,9 +853,9 @@
 
   <section>
     <h2 id="sc1_label">HTML Source Code</h2>
-    <div id="sc1_start_sep" role="separator" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of" ></div>
+    <div id="sc1_start_sep" role="separator" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
     <pre><code id="sc1"></code></pre>
-    <div id="sc1_end_sep" role="separator" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of" ></div>
+    <div id="sc1_end_sep" role="separator" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
     <script>
       sourceCode.add('sc1', 'ex1', 'ex1_label', 'css_js_files');
       sourceCode.make();
