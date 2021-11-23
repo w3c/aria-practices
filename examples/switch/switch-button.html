@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   <title>Switch Example Using HTML Button | WAI-ARIA Authoring Practices 1.2</title>
 
   <!--  Core js and css shared by all examples; do not modify when using this template. -->
@@ -82,7 +82,7 @@
         <li>To help assistive technology users understand that the <q>Environmental Controls</q> are a group of two switches, the switches are wrapped in a <code>group</code> labeled by the heading that labels the set of switches.</li>
         <li>
           To make understanding the state of the switch easier for users with visual or cognitive disabilities, a text equivalent of the state (<q>on</q> or <q>off</q>) is displayed adjacent to the graphical state indicator.
-          CSS attribute selectors ensure the label displayed is synchronized with the value of the <code>aria-checked</code> attribute.<br/>
+          CSS attribute selectors ensure the label displayed is synchronized with the value of the <code>aria-checked</code> attribute.<br>
           <strong>NOTE:</strong> To prevent redundant announcement of the state by screen readers, the text indicators of state are hidden from assistive technologies with <code>aria-hidden</code>.
         </li>
         <li>Spacing, stroke widths, and fill are important to ensure the graphical states will be visible and discernible to people with visual impairments, including when browser or operating system high contrast settings are enabled:
@@ -102,7 +102,7 @@
           To ensure the SVG graphics have sufficient contrast with the background when high contrast settings invert colors, the CSS <code>currentColor</code> value for the <code>stroke</code> and <code>fill</code> properties is used to synchronize the colors with text content.
           If specific colors were used to specify the <code>stroke</code> and <code>fill</code> properties, the color of these elements would remain the same in high contrast mode, which could lead to insufficient contrast between them and their background or even make them invisible if their color were to match the high contrast mode background.
           The <code>fill-opacity</code> of the container <code>rect</code> is set to zero for the background color of the page to provide the contrasting color to the <code>stroke</code> and <code>fill</code> colors.
-          <br/>NOTE: The SVG elements need to set the CSS <code>forced-color-adjust</code> property to <code>auto</code> for some browsers to support the <code>currentColor</code> value.
+          <br>NOTE: The SVG elements need to set the CSS <code>forced-color-adjust</code> property to <code>auto</code> for some browsers to support the <code>currentColor</code> value.
         </li>
       </ul>
     </section>
