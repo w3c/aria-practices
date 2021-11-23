@@ -64,12 +64,10 @@
   },
   "lint-staged": {
     "*.css": [
-      "stylelint --fix",
-      "git add"
+      "stylelint --fix"
     ],
     "*.js": [
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
     ],
     "examples/**/*.html": [
       "npm run reference-tables",
