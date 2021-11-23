@@ -49,7 +49,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "geckodriver": "^1.22.1",
     "glob": "^7.2.0",
-    "htmlhint": "^0.14.2",
+    "htmlhint": "^0.16.1",
     "htmlparser2": "^7.2.0",
     "husky": "^7.0.4",
     "lint-staged": "^10.5.4",
