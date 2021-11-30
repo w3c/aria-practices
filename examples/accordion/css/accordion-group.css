@@ -1,7 +1,7 @@
 .accordion-group {
   margin: 0;
   padding: 0;
-  border: 2px solid hsl(0, 0%, 52%);
+  border: 2px solid hsl(0deg 0% 52%);
   border-radius: 7px;
 }
 
@@ -11,20 +11,20 @@
 }
 
 .accordion-group:focus-within {
-  border-color: hsl(216, 94%, 43%);
+  border-color: hsl(216deg 94% 43%);
 }
 
 .accordion-group:focus-within h3 {
-  background-color: hsl(0, 0%, 97%);
+  background-color: hsl(0deg 0% 97%);
 }
 
 .accordion-group > * + * {
-  border-top: 1px solid hsl(0, 0%, 52%);
+  border-top: 1px solid hsl(0deg 0% 52%);
 }
 
 .accordion-trigger {
   background: none;
-  color: hsl(0, 0%, 13%);
+  color: hsl(0deg 0% 13%);
   display: block;
   font-size: 1rem;
   font-weight: normal;
@@ -38,7 +38,7 @@
 
 .accordion-trigger:focus,
 .accordion-trigger:hover {
-  background: hsl(216, 94%, 94%);
+  background: hsl(216deg 94% 94%);
 }
 
 .accordion-trigger:focus {
@@ -73,7 +73,7 @@ button {
 }
 
 .accordion-trigger:focus .accordion-title {
-  border-color: hsl(216, 94%, 43%);
+  border-color: hsl(216deg 94% 43%);
 }
 
 .accordion-icon {
@@ -90,7 +90,7 @@ button {
 
 .accordion-trigger:focus .accordion-icon,
 .accordion-trigger:hover .accordion-icon {
-  border-color: hsl(216, 94%, 43%);
+  border-color: hsl(216deg 94% 43%);
 }
 
 .accordion-trigger[aria-expanded="true"] .accordion-icon {
@@ -109,7 +109,7 @@ fieldset {
 }
 
 input {
-  border: 1px solid hsl(0, 0%, 42%);
+  border: 1px solid hsl(0deg 0% 42%);
   border-radius: 0.3em;
   display: block;
   font-size: inherit;

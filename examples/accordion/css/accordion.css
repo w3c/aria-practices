@@ -9,9 +9,9 @@
 
 .accordion-trigger {
   background: none;
-  border: 2px solid hsl(0, 0%, 52%);
+  border: 2px solid hsl(0deg 0% 52%);
   border-radius: 7px;
-  color: hsl(0, 0%, 13%);
+  color: hsl(0deg 0% 13%);
   display: block;
   font-size: 1rem;
   font-weight: normal;
@@ -27,8 +27,8 @@
 }
 
 .accordion-trigger:focus {
-  background-color: hsl(215, 91%, 35%);
-  border-color: hsl(215, 91%, 35%);
+  background-color: hsl(215deg 91% 35%);
+  border-color: hsl(215deg 91% 35%);
   color: #fff;
   outline: 4px solid transparent;
 }
@@ -65,8 +65,8 @@
 }
 
 .accordion-panel {
-  background-color: hsl(0, 0%, 92%);
-  border: 2px solid hsl(0, 0%, 52%);
+  background-color: hsl(0deg 0% 92%);
+  border: 2px solid hsl(0deg 0% 52%);
   border-top: none;
   border-radius: 0 0 7px 7px;
   margin: 0;
