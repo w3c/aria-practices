@@ -27,7 +27,7 @@
   <main>
   <h1>Accordion Group Example</h1>
   <p>
-    The below example section contains a form divided into three steps, each in an accordion. The form can only have one step open at a time, and demonstrates a behavioral variation of the
+    The below example section contains a form divided into three steps, each in an accordion. The form has one step open at a time, and demonstrates a behavioral variation of the
     <a href="../../#accordion">design pattern for accordions</a>.
   </p>
 
@@ -39,7 +39,7 @@
     <div id="ex1">
       <div class="accordion-group">
         <h3>
-          <button type="button" aria-expanded="true" class="accordion-trigger"
+          <button type="button" aria-expanded="true" aria-disabled="true" class="accordion-trigger"
             aria-controls="sect1" id="accordion1id">
             <span class="accordion-title">
               1. Personal Information
@@ -228,6 +228,14 @@
           <td><code>button</code></td>
           <td>
             Points to the ID of the panel which the header controls.
+          </td>
+        </tr>
+        <tr data-test-id="button-aria-disabled">
+          <td> </td>
+          <th scope="row"><code>aria-disabled="true"</code></th>
+          <td><code>button</code></td>
+          <td>
+            If the open panel cannot be closed, set <code>aria-disabled</code> to <code>true</code> when the Accordion panel is expanded.
           </td>
         </tr>
         <tr data-test-id="region-role">

@@ -3,13 +3,35 @@ const { By, Key } = require('selenium-webdriver');
 const assertAriaControls = require('../util/assertAriaControls');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 
-const exampleFile = 'accordion/accordion.html';
+const exampleFile = 'accordion/accordion-group.html';
 
 const ex = {
-  buttonSelector: '#ex1 button',
-  panelSelector: '#ex1 [role="region"]',
+  buttonSelector: '#ex1 .accordion-trigger',
+  panelSelector: '#ex1 .accordion-panel',
   buttonsInOrder: ['#accordion1id', '#accordion2id', '#accordion3id'],
   panelsInOrder: ['#sect1', '#sect2', '#sect3'],
+  firstPanelInputSelectors: [
+    '#cufc1',
+    '#cufc2',
+    '#cufc3',
+    '#cufc4',
+    '#cufc5',
+    '#cufc6',
+  ],
+  secondPanelInputSelectors: [
+    '#b-add1',
+    '#b-add2',
+    '#b-city',
+    '#b-state',
+    '#b-zip',
+  ],
+  thirdPanelInputSelectors: [
+    '#m-add1',
+    '#m-add2',
+    '#m-city',
+    '#m-state',
+    '#m-zip',
+  ],
 };
 
 const parentTagName = function (t, element) {
@@ -84,6 +106,48 @@ ariaTest(
 );
 
 ariaTest(
+  '"aria-disabled" on button element',
+  exampleFile,
+  'button-aria-disabled',
+  async (t) => {
+    const openButton = await t.context.queryElement(t, ex.buttonsInOrder[0]);
+    const closedButton = await t.context.queryElement(t, ex.buttonsInOrder[1]);
+
+    // open button has aria-disabled="true"
+    let disabledValue = await openButton.getAttribute('aria-disabled');
+    t.is(
+      disabledValue,
+      'true',
+      'Open accordion button should have aria-disabled="true"'
+    );
+
+    // closed button does not have aria-disabled
+    disabledValue = await closedButton.getAttribute('aria-disabled');
+    t.is(
+      disabledValue,
+      null,
+      'Closed accordion button should not have aria-disabled defined'
+    );
+  }
+);
+
+ariaTest(
+  'role "region" exists on accordion panels',
+  exampleFile,
+  'region-role',
+  async (t) => {
+    for (let panelId of ex.panelsInOrder) {
+      const panelElement = await t.context.queryElement(t, panelId);
+      t.is(
+        await panelElement.getAttribute('role'),
+        'region',
+        'Panel with id "' + panelId + '" should have role="region"'
+      );
+    }
+  }
+);
+
+ariaTest(
   '"aria-labelledby" on region',
   exampleFile,
   'region-aria-labelledby',
@@ -95,7 +159,7 @@ ariaTest(
 // Keys
 
 ariaTest(
-  'ENTER key toggles section',
+  'ENTER key opens closed sections',
   exampleFile,
   'key-enter-or-space',
   async (t) => {
@@ -119,23 +183,41 @@ ariaTest(
         `Pressing enter on button ${expandIndex} sets aria-expanded to "true".`
       );
     }
+  }
+);
 
-    // first panel starts open; enter should close
-    await buttons[0].sendKeys(Key.ENTER);
-    t.false(
-      await panels[0].isDisplayed(),
-      'Pressing enter on first button collapses the region'
+ariaTest(
+  'ENTER key should not close open section',
+  exampleFile,
+  'key-enter-or-space',
+  async (t) => {
+    const openButton = await t.context.queryElement(t, ex.buttonsInOrder[0]);
+    const openPanel = await t.context.queryElement(t, ex.panelsInOrder[0]);
+
+    // first panel starts open
+    t.true(await openPanel.isDisplayed(), 'first panel starts open');
+    t.is(
+      await openButton.getAttribute('aria-expanded'),
+      'true',
+      'first button has aria-expanded="true"'
+    );
+
+    // enter should do nothing
+    await openButton.sendKeys(Key.ENTER);
+    t.true(
+      await openPanel.isDisplayed(),
+      'Pressing enter on first button does not toggle region'
     );
     t.is(
-      await buttons[0].getAttribute('aria-expanded'),
-      'false',
-      `Pressing enter on first button sets aria-expanded to "false".`
+      await openButton.getAttribute('aria-expanded'),
+      'true',
+      'Pressing enter on first button does not change aria-expanded'
     );
   }
 );
 
 ariaTest(
-  'SPACE key expands section',
+  'SPACE key expands closed sections',
   exampleFile,
   'key-enter-or-space',
   async (t) => {
@@ -159,31 +241,54 @@ ariaTest(
         `Pressing space on button ${expandIndex} sets aria-expanded to "true".`
       );
     }
+  }
+);
 
-    // first panel starts open; space should close
-    await buttons[0].sendKeys(Key.SPACE);
-    t.false(
-      await panels[0].isDisplayed(),
-      'Pressing space on first button collapses the region'
+ariaTest(
+  'SPACE key should not close open section',
+  exampleFile,
+  'key-enter-or-space',
+  async (t) => {
+    const openButton = await t.context.queryElement(t, ex.buttonsInOrder[0]);
+    const openPanel = await t.context.queryElement(t, ex.panelsInOrder[0]);
+
+    // first panel starts open
+    t.true(await openPanel.isDisplayed(), 'first panel starts open');
+    t.is(
+      await openButton.getAttribute('aria-expanded'),
+      'true',
+      'first button has aria-expanded="true"'
+    );
+
+    // SPACE should do nothing
+    await openButton.sendKeys(Key.SPACE);
+    t.true(
+      await openPanel.isDisplayed(),
+      'Pressing SPACE on first button does not toggle region'
     );
     t.is(
-      await buttons[0].getAttribute('aria-expanded'),
-      'false',
-      `Pressing space on first button sets aria-expanded to "false".`
+      await openButton.getAttribute('aria-expanded'),
+      'true',
+      'Pressing SPACE on first button does not change aria-expanded'
     );
   }
 );
 
 ariaTest(
-  'TAB moves focus between buttons',
+  'TAB moves focus through open panel and buttons',
   exampleFile,
   'key-tab',
   async (t) => {
-    // verify that all buttons are in the tab order
-    let elementsInOrder = ex.buttonsInOrder;
+    // verify that all buttons and open panel inputs are in the tab order
+    const elementsInOrder = [
+      ex.buttonsInOrder[0],
+      ...ex.firstPanelInputSelectors,
+      ex.buttonsInOrder[1],
+      ex.buttonsInOrder[2],
+    ];
 
     // Send TAB to the first panel button
-    let firstElement = elementsInOrder.shift();
+    const firstElement = elementsInOrder.shift();
     await t.context.session.findElement(By.css(firstElement)).sendKeys(Key.TAB);
 
     // Confirm focus moves through remaining items
@@ -200,24 +305,38 @@ ariaTest(
 );
 
 ariaTest(
-  'SHIFT + TAB moves focus between buttons',
+  'SHIFT + TAB moves focus through open panel and buttons',
   exampleFile,
   'key-shift-tab',
   async (t) => {
+    // open the second panel to test shift + tab
+    const secondButton = await t.context.queryElement(t, ex.buttonsInOrder[1]);
+    await secondButton.sendKeys(Key.SPACE);
+
     // verify that all buttons are in the tab order
-    const elementsInOrder = ex.buttonsInOrder;
+    const elementsInOrder = [
+      ex.buttonsInOrder[0],
+      ex.buttonsInOrder[1],
+      ...ex.secondPanelInputSelectors,
+      ex.buttonsInOrder[2],
+    ];
 
     // Send shift + tab to the last panel button
-    const lastElement = elementsInOrder[elementsInOrder.length - 1];
+    let lastElement = elementsInOrder.pop();
     await t.context.session
       .findElement(By.css(lastElement))
       .sendKeys(Key.chord(Key.SHIFT, Key.TAB));
 
-    // Confirm focus moves to second-to-last item
-    let targetElement = elementsInOrder[elementsInOrder.length - 2];
-    t.true(
-      await focusMatchesElement(t, targetElement),
-      'Focus should reach element: ' + targetElement
-    );
+    // Confirm focus moves through remaining items
+    for (let index = elementsInOrder.length - 1; index >= 0; index--) {
+      let itemSelector = elementsInOrder[index];
+      t.true(
+        await focusMatchesElement(t, itemSelector),
+        'Focus should reach element: ' + itemSelector
+      );
+      await t.context.session
+        .findElement(By.css(itemSelector))
+        .sendKeys(Key.chord(Key.SHIFT, Key.TAB));
+    }
   }
 );
