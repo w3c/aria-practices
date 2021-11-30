@@ -30,6 +30,10 @@
     The below example section contains a form divided into three steps, each in an accordion. The form has one step open at a time, and demonstrates a behavioral variation of the
     <a href="../../#accordion">design pattern for accordions</a>.
   </p>
+  <p>Similar examples include:</p>
+  <ul>
+    <li><a href="accordion.html">Accordion</a>: A series of simple accordions containing basic text, with no limitations on the number of accordions open at once.</li>
+  </ul>
 
   <section>
     <div class="example-header">
@@ -47,36 +51,32 @@
             </span>
           </button>
         </h3>
-        <div id="sect1" role="region" aria-labelledby="accordion1id" class="accordion-panel">
-          <div>
-            <!-- Variable content within section, may include any type of markup or interactive widgets. -->
-            <fieldset>
-              <p>
-                <label for="cufc1">Name:</label>
-                <input type="text" value="" name="Name" id="cufc1">
-              </p>
-              <p>
-                <label for="cufc2">Email:</label>
-                <input type="text" value="" name="Email" id="cufc2">
-              </p>
-              <p>
-                <label for="cufc3">Phone:</label>
-                <input type="text" value="" name="Phone" id="cufc3">
-              </p>
-              <p>
-                <label for="cufc4">Extension:</label>
-                <input type="text" value="" name="Ext" id="cufc4">
-              </p>
-              <p>
-                <label for="cufc5">Country:</label>
-                <input type="text" value="" name="Country" id="cufc5">
-              </p>
-              <p>
-                <label for="cufc6">City/Province:</label>
-                <input type="text" value="" name="City_Province" id="cufc6">
-              </p>
-            </fieldset>
-          </div>
+        <div id="sect1" role="group" aria-labelledby="accordion1id" class="accordion-panel">
+        <!-- Variable content within section, may include any type of markup or interactive widgets. -->
+          <p>
+            <label for="cufc1">Name:</label>
+            <input type="text" value="" name="Name" id="cufc1">
+          </p>
+          <p>
+            <label for="cufc2">Email:</label>
+            <input type="text" value="" name="Email" id="cufc2">
+          </p>
+          <p>
+            <label for="cufc3">Phone:</label>
+            <input type="text" value="" name="Phone" id="cufc3">
+          </p>
+          <p>
+            <label for="cufc4">Extension:</label>
+            <input type="text" value="" name="Ext" id="cufc4">
+          </p>
+          <p>
+            <label for="cufc5">Country:</label>
+            <input type="text" value="" name="Country" id="cufc5">
+          </p>
+          <p>
+            <label for="cufc6">City/Province:</label>
+            <input type="text" value="" name="City_Province" id="cufc6">
+          </p>
         </div>
         <h3>
           <button type="button" aria-expanded="false" class="accordion-trigger"
@@ -87,31 +87,27 @@
             </span>
           </button>
         </h3>
-        <div id="sect2" role="region" aria-labelledby="accordion2id" class="accordion-panel" hidden>
-          <div>
-            <fieldset>
-              <p>
-                <label for="b-add1">Address 1:</label>
-                <input type="text" name="b-add1" id="b-add1" />
-              </p>
-              <p>
-                <label for="b-add2">Address 2:</label>
-                <input type="text" name="b-add2" id="b-add2" />
-              </p>
-              <p>
-                <label for="b-city">City:</label>
-                <input type="text" name="b-city" id="b-city" />
-              </p>
-              <p>
-                <label for="b-state">State:</label>
-                <input type="text" name="b-state" id="b-state" />
-              </p>
-              <p>
-                <label for="b-zip">Zip Code:</label>
-                <input type="text" name="b-zip" id="b-zip" />
-              </p>
-            </fieldset>
-          </div>
+        <div id="sect2" role="group" aria-labelledby="accordion2id" class="accordion-panel" hidden>
+          <p>
+            <label for="b-add1">Address 1:</label>
+            <input type="text" name="b-add1" id="b-add1" />
+          </p>
+          <p>
+            <label for="b-add2">Address 2:</label>
+            <input type="text" name="b-add2" id="b-add2" />
+          </p>
+          <p>
+            <label for="b-city">City:</label>
+            <input type="text" name="b-city" id="b-city" />
+          </p>
+          <p>
+            <label for="b-state">State:</label>
+            <input type="text" name="b-state" id="b-state" />
+          </p>
+          <p>
+            <label for="b-zip">Zip Code:</label>
+            <input type="text" name="b-zip" id="b-zip" />
+          </p>
         </div>
         <h3>
           <button type="button" aria-expanded="false" class="accordion-trigger"
@@ -122,31 +118,27 @@
             </span>
           </button>
         </h3>
-        <div id="sect3" role="region" aria-labelledby="accordion3id" class="accordion-panel" hidden>
-          <div>
-            <fieldset>
-              <p>
-                <label for="m-add1">Address 1:</label>
-                <input type="text" name="m-add1" id="m-add1" />
-              </p>
-              <p>
-                <label for="m-add2">Address 2:</label>
-                <input type="text" name="m-add2" id="m-add2" />
-              </p>
-              <p>
-                <label for="m-city">City:</label>
-                <input type="text" name="m-city" id="m-city" />
-              </p>
-              <p>
-                <label for="m-state">State:</label>
-                <input type="text" name="m-state" id="m-state" />
-              </p>
-              <p>
-                <label for="m-zip">Zip Code:</label>
-                <input type="text" name="m-zip" id="m-zip" />
-              </p>
-            </fieldset>
-          </div>
+        <div id="sect3" role="group" aria-labelledby="accordion3id" class="accordion-panel" hidden>
+          <p>
+            <label for="m-add1">Address 1:</label>
+            <input type="text" name="m-add1" id="m-add1" />
+          </p>
+          <p>
+            <label for="m-add2">Address 2:</label>
+            <input type="text" name="m-add2" id="m-add2" />
+          </p>
+          <p>
+            <label for="m-city">City:</label>
+            <input type="text" name="m-city" id="m-city" />
+          </p>
+          <p>
+            <label for="m-state">State:</label>
+            <input type="text" name="m-state" id="m-state" />
+          </p>
+          <p>
+            <label for="m-zip">Zip Code:</label>
+            <input type="text" name="m-zip" id="m-zip" />
+          </p>
         </div>
       </div>
     </div>
@@ -238,11 +230,11 @@
             If the open panel cannot be closed, set <code>aria-disabled</code> to <code>true</code> when the Accordion panel is expanded.
           </td>
         </tr>
-        <tr data-test-id="region-role">
-          <th scope="row"><code>region</code></th>
+        <tr data-test-id="group-role">
+          <th scope="row"><code>group</code>  (Optional)</th>
           <td></td>
           <td><code>div</code></td>
-          <td>Creates a landmark region that contains the currently expanded accordion panel.</td>
+          <td>Creates a form group that contains the fields in the open panel.</td>
         </tr>
         <tr data-test-id="region-aria-labelledby">
           <td></td>

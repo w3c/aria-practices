@@ -132,16 +132,16 @@ ariaTest(
 );
 
 ariaTest(
-  'role "region" exists on accordion panels',
+  'role "group" exists on accordion panels',
   exampleFile,
-  'region-role',
+  'group-role',
   async (t) => {
     for (let panelId of ex.panelsInOrder) {
       const panelElement = await t.context.queryElement(t, panelId);
       t.is(
         await panelElement.getAttribute('role'),
-        'region',
-        'Panel with id "' + panelId + '" should have role="region"'
+        'group',
+        'Panel with id "' + panelId + '" should have role="group"'
       );
     }
   }
