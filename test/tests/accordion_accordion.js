@@ -1,13 +1,12 @@
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAriaControls = require('../util/assertAriaControls');
-const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 
 const exampleFile = 'accordion/accordion.html';
 
 const ex = {
-  buttonSelector: '#ex1 button',
-  panelSelector: '#ex1 [role="region"]',
+  buttonSelector: '#ex1 .accordion-trigger',
+  panelSelector: '#ex1 .accordion-panel',
   buttonsInOrder: ['#accordion1id', '#accordion2id', '#accordion3id'],
   panelsInOrder: ['#sect1', '#sect2', '#sect3'],
 };
@@ -80,15 +79,6 @@ ariaTest(
   'button-aria-controls',
   async (t) => {
     await assertAriaControls(t, ex.buttonSelector);
-  }
-);
-
-ariaTest(
-  '"aria-labelledby" on region',
-  exampleFile,
-  'region-aria-labelledby',
-  async (t) => {
-    await assertAriaLabelledby(t, ex.panelSelector);
   }
 );
 
