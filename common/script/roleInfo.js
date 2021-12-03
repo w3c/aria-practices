@@ -3288,6 +3288,12 @@ var roleInfo = {
       }
     ]
   },
+  "image": {
+    "name": "image",
+    "fragID": "image",
+    "parentRoles": [],
+    "localprops": []
+  },
   "img": {
     "name": "img",
     "fragID": "img",
@@ -3512,14 +3518,6 @@ var roleInfo = {
       }
     ]
   },
-  "label": {
-    "name": "label",
-    "fragID": "label",
-    "parentRoles": [
-      "section"
-    ],
-    "localprops": []
-  },
   "landmark": {
     "name": "landmark",
     "fragID": "landmark",
@@ -3697,14 +3695,6 @@ var roleInfo = {
         "deprecated": false
       }
     ]
-  },
-  "legend": {
-    "name": "legend",
-    "fragID": "legend",
-    "parentRoles": [
-      "section"
-    ],
-    "localprops": []
   },
   "link": {
     "name": "link",
@@ -3974,13 +3964,6 @@ var roleInfo = {
     "localprops": [
       {
         "is": "property",
-        "name": "aria-level",
-        "required": false,
-        "disallowed": false,
-        "deprecated": false
-      },
-      {
-        "is": "property",
         "name": "aria-posinset",
         "required": false,
         "disallowed": false,
@@ -3995,13 +3978,6 @@ var roleInfo = {
       }
     ],
     "allprops": [
-      {
-        "is": "property",
-        "name": "aria-level",
-        "required": false,
-        "disallowed": false,
-        "deprecated": false
-      },
       {
         "is": "property",
         "name": "aria-posinset",
@@ -4240,22 +4216,6 @@ var roleInfo = {
       "section"
     ],
     "localprops": []
-  },
-  "meter": {
-    "name": "meter",
-    "fragID": "meter",
-    "parentRoles": [
-      "range"
-    ],
-    "localprops": [
-      {
-        "is": "property",
-        "name": "aria-valuenow",
-        "required": true,
-        "disallowed": false,
-        "deprecated": false
-      }
-    ]
   },
   "menu": {
     "name": "menu",
@@ -4921,6 +4881,22 @@ var roleInfo = {
       {
         "is": "state",
         "name": "aria-checked",
+        "required": true,
+        "disallowed": false,
+        "deprecated": false
+      }
+    ]
+  },
+  "meter": {
+    "name": "meter",
+    "fragID": "meter",
+    "parentRoles": [
+      "range"
+    ],
+    "localprops": [
+      {
+        "is": "property",
+        "name": "aria-valuenow",
         "required": true,
         "disallowed": false,
         "deprecated": false
@@ -8094,7 +8070,22 @@ var roleInfo = {
     "parentRoles": [
       "section"
     ],
-    "localprops": []
+    "localprops": [
+      {
+        "is": "property",
+        "name": "aria-label",
+        "required": false,
+        "disallowed": true,
+        "deprecated": false
+      },
+      {
+        "is": "property",
+        "name": "aria-labelledby",
+        "required": false,
+        "disallowed": true,
+        "deprecated": false
+      }
+    ]
   },
   "timer": {
     "name": "timer",
