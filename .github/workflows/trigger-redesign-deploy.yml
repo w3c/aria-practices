@@ -19,12 +19,12 @@ jobs:
     env:
       GH_TOKEN: ${{ secrets.GH_TOKEN || github.token }}
     steps:
-      uses: actions/github-script@v5
-      with:
-        script: |
-          await github.rest.actions.createWorkflowDispatch({
-            'howard-e',
-            'wai-aria-practices',
-            'workflows/deploy.yml',
-            'master',
-          });
+      - uses: actions/github-script@v5
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              'howard-e',
+              'wai-aria-practices',
+              'workflows/deploy.yml',
+              'master',
+            });
