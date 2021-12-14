@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - .github/workflows/deploy.yml
+      - .github/workflows/trigger-redesign-deploy.yml
       - common/**
       - examples/**
       - img/**
@@ -23,8 +24,8 @@ jobs:
         with:
           script: |
             await github.rest.actions.createWorkflowDispatch({
-              'howard-e',
-              'wai-aria-practices',
-              'workflows/deploy.yml',
-              'master',
+              owner: 'howard-e',
+              repo: 'wai-aria-practices',
+              workflow_id: 'workflows/deploy.yml',
+              ref: 'master',
             });
