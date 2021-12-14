@@ -27,5 +27,5 @@ jobs:
               owner: 'howard-e',
               repo: 'wai-aria-practices',
               workflow_id: 'workflows/deploy.yml',
-              ref: 'master',
+              ref: 'master'
             });
