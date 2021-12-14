@@ -1,0 +1,30 @@
+name: Trigger redesign deploy
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/deploy.yml
+      - common/**
+      - examples/**
+      - img/**
+      - aria-practices.html
+      - README.md
+
+jobs:
+  # trigger build step on wai-aria-practices and be able to return response here
+  redesign:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN || github.token }}
+    steps:
+      uses: actions/github-script@v5
+      with:
+        script: |
+          await github.rest.actions.createWorkflowDispatch({
+            'howard-e',
+            'wai-aria-practices',
+            'workflows/deploy.yml',
+            'master',
+          });
