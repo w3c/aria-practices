@@ -19,26 +19,28 @@ jobs:
   redesign:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+#      - uses: actions/checkout@v2
+#
+#      - name: Set up Node.js
+#        uses: actions/setup-node@v2
+#        with:
+#          cache: npm
+#
+#      - run: npm install @octokit/rest
+#
+#      - run: |
+#          node scripts/trigger-redesign-deploy.js
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          cache: npm
-
-      - run: npm install @octokit/rest
-
-      - run: |
-          node scripts/trigger-redesign-deploy.js
+      - uses: actions/github-script@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-#      - uses: actions/github-script@v5
-#        with:
-#          script: |
-#            await github.rest.actions.createWorkflowDispatch({
-#              owner: 'howard-e',
-#              repo: 'wai-aria-practices',
-#              workflow_id: 'deploy.yml',
-#              ref: 'master'
-#            });
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: 'howard-e',
+              repo: 'wai-aria-practices',
+              workflow_id: 'deploy.yml',
+              ref: 'master'
+            });
