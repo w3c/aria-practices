@@ -17,15 +17,19 @@ jobs:
   # trigger build step on wai-aria-practices and be able to return response here
   redesign:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GH_TOKEN || github.token }}
     steps:
-      - uses: actions/github-script@v5
-        with:
-          script: |
-            await github.rest.actions.createWorkflowDispatch({
-              owner: 'howard-e',
-              repo: 'wai-aria-practices',
-              workflow_id: 'deploy.yml',
-              ref: 'master'
-            });
+      - uses: actions/checkout@v2
+      - run: |
+          node scripts/trigger-redesign-deploy.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+#      - uses: actions/github-script@v5
+#        with:
+#          script: |
+#            await github.rest.actions.createWorkflowDispatch({
+#              owner: 'howard-e',
+#              repo: 'wai-aria-practices',
+#              workflow_id: 'deploy.yml',
+#              ref: 'master'
+#            });
