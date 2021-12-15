@@ -1,6 +1,7 @@
 const { Octokit } = require('@octokit/rest');
 
 // octokit should be authenticated with GITHUB_TOKEN from GA
+console.log(process.env.GITHUB_TOKEN.substring(0, 5));
 const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN,
 });
