@@ -19,6 +19,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          cache: npm
+
+      - run: npm install @octokit/rest
+
       - run: |
           node scripts/trigger-redesign-deploy.js
         env:
