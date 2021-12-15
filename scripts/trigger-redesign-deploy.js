@@ -1,7 +1,9 @@
 const { Octokit } = require('@octokit/rest');
 
 // octokit should be authenticated with GITHUB_TOKEN from GA
-const octokit = new Octokit();
+const octokit = new Octokit({
+  auth: process.env.GITHUB_TOKEN,
+});
 
 (async () => {
   let workflowDispatchResult =
