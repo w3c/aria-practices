@@ -26,6 +26,6 @@ jobs:
             await github.rest.actions.createWorkflowDispatch({
               owner: 'howard-e',
               repo: 'wai-aria-practices',
-              workflow_id: 'workflows/deploy.yml',
+              workflow_id: 'deploy.yml',
               ref: 'master'
             });
