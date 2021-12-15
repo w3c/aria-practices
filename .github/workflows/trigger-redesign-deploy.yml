@@ -18,6 +18,8 @@ jobs:
   # trigger build step on wai-aria-practices and be able to return response here
   redesign:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
 
@@ -30,8 +32,6 @@ jobs:
 
       - run: |
           node scripts/trigger-redesign-deploy.js
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 #      - uses: actions/github-script@v5
 #        with:
