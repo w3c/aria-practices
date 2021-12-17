@@ -1,0 +1,34 @@
+name: Trigger redesign pull request
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/trigger-redesign-pull-request.yml"
+      - "package*.json"
+      - "test/**"
+      - "examples/**"
+      - "!examples/landmarks/**"
+      - "!examples/coding-template/**"
+
+jobs:
+  create:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: refs/pull/${{ github.event.pull_request.number }}/head
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          cache: npm
+
+      - run: npm install @octokit/rest
+
+      - run: |
+          node scripts/trigger-redesign-pull-request.js
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          APG_BRANCH: ${{ github.ref }}
+          APG_SHA: ${{ github.sha }}
