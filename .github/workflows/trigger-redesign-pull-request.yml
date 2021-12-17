@@ -9,6 +9,7 @@ on:
       - "examples/**"
       - "!examples/landmarks/**"
       - "!examples/coding-template/**"
+      - "README.md"
 
 jobs:
   create:
