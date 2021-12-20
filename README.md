@@ -121,5 +121,3 @@ Note: These instructions are for editors of the APG who have repository commit a
 7. Overwrite contents of `index.html` with the snapshot copy you saved
 8. Commit and push changes
 9. Review changes at [GitHub pages APG snapshot](http://w3c.github.io/aria-practices/)
-
-pr-test-8
