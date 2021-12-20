@@ -7,9 +7,28 @@ on:
       - closed
 
 jobs:
-  cleanup:
+  cleanup-delete:
+    if: ${{ github.event_name == 'delete' }}
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          cache: npm
+
+      - run: npm install @octokit/rest
+
+      - run: |
+          node scripts/trigger-redesign-cleanup.js
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          APG_BRANCH: ${{ github.event.ref }}
+
+  cleanup-pull-request:
+    if: ${{ github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
