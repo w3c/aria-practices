@@ -1,6 +1,7 @@
 name: Close/merge pull request or delete branch
 
 on:
+  delete:
   pull_request:
     types:
       - closed
@@ -11,8 +12,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        with:
-          ref: refs/pull/${{ github.event.pull_request.number }}/head
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
