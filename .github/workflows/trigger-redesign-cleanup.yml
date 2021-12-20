@@ -1,0 +1,26 @@
+name: Close/merge pull request or delete branch
+
+on:
+  pull_request:
+    types:
+      - closed
+  delete:
+
+jobs:
+  cleanup:
+    if: github.event.ref_type == 'branch'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          cache: npm
+
+      - run: npm install @octokit/rest
+
+      - run: |
+          node scripts/trigger-redesign-cleanup.js
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          APG_BRANCH: ${{ github.head_ref }}
