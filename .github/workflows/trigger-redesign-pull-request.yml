@@ -33,3 +33,4 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           APG_BRANCH: ${{ github.head_ref }}
           APG_SHA: ${{ github.event.pull_request.head.sha }}
+          APG_PR_NUMBER: ${{ github.event.pull_request.number }}

@@ -15,6 +15,7 @@ const octokit = new Octokit({
       inputs: {
         apg_branch: process.env.APG_BRANCH,
         apg_sha: process.env.APG_SHA,
+        apg_pr_number: process.env.APG_PR_NUMBER,
       },
     });
     console.info('workflow.dispatch.success');
