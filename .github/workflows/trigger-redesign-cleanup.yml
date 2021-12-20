@@ -1,4 +1,4 @@
-name: Close/merge pull request or delete branch
+name: Trigger redesign cleanup branch on close/merge/delete branch on PR
 
 on:
   delete:
