@@ -4,13 +4,16 @@ on:
   pull_request:
     types:
       - closed
-  delete:
 
 jobs:
   cleanup:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: refs/pull/${{ github.event.pull_request.number }}/head
+
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
