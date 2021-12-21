@@ -10,10 +10,10 @@ const octokit = new Octokit({
     await octokit.rest.actions.createWorkflowDispatch({
       owner: 'howard-e',
       repo: 'wai-aria-practices',
-      workflow_id: 'pull-request-create.yml',
+      workflow_id: 'pr-create.yml',
       ref: 'master',
       inputs: {
-        apg_branch: process.env.APG_BRANCH,
+        apg_branch: 'apg/' + process.env.APG_BRANCH,
         apg_sha: process.env.APG_SHA,
         apg_pr_number: process.env.APG_PR_NUMBER,
       },

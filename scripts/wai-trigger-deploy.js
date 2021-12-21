@@ -15,6 +15,6 @@ const octokit = new Octokit({
     });
     console.info('workflow.dispatch.success');
   } catch (e) {
-    console.error('workflow.dispatch.fail');
+    console.error('workflow.dispatch.fail', e);
   }
 })();

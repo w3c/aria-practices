@@ -1,4 +1,4 @@
-name: Trigger redesign deploy
+name: Trigger deploy for wai repository
 
 on:
   push:
@@ -6,8 +6,8 @@ on:
       - main
     paths:
       - .github/workflows/deploy.yml
-      - .github/workflows/trigger-redesign-deploy.yml
-      - scripts/trigger-redesign-deploy.js
+      - .github/workflows/wai-trigger-deploy.yml
+      - scripts/wai-trigger-deploy.js
       - common/**
       - examples/**
       - img/**
@@ -26,9 +26,11 @@ jobs:
         with:
           cache: npm
 
-      - run: npm install @octokit/rest
+      - name: Install @octokit/rest
+        run: npm install @octokit/rest
 
-      - run: |
-          node scripts/trigger-redesign-deploy.js
+      - name: Run wai-trigger-deploy script
+        run: |
+          node scripts/wai-trigger-deploy.js
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}

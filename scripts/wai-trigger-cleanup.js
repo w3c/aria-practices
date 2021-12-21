@@ -13,7 +13,7 @@ const octokit = new Octokit({
       workflow_id: 'remove-branch.yml',
       ref: 'master',
       inputs: {
-        apg_branch: process.env.APG_BRANCH,
+        apg_branch: 'apg/' + process.env.APG_BRANCH,
       },
     });
     console.info('workflow.dispatch.success');

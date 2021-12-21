@@ -1,4 +1,4 @@
-name: Trigger redesign cleanup branch on close/merge/delete branch on PR
+name: Trigger branch cleanup workflow for wai repository
 
 on:
   delete:
@@ -7,8 +7,8 @@ on:
       - closed
 
 jobs:
-  cleanup-delete:
-    if: ${{ github.event_name == 'delete' }}
+  cleanup-branch:
+    if: ${{ github.event_name == 'delete' && github.event.ref_type == 'branch' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -18,15 +18,18 @@ jobs:
         with:
           cache: npm
 
-      - run: npm install @octokit/rest
+      - name: Install @octokit/rest
+        run: npm install @octokit/rest
 
-      - run: |
-          node scripts/trigger-redesign-cleanup.js
+      - name: Run wai-trigger-cleanup script
+        run: |
+          node scripts/wai-trigger-cleanup.js
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          # reference github.event.ref for branch deletion
           APG_BRANCH: ${{ github.event.ref }}
 
-  cleanup-pull-request:
+  cleanup-pr:
     if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
     steps:
@@ -37,10 +40,13 @@ jobs:
         with:
           cache: npm
 
-      - run: npm install @octokit/rest
+      - name: Install @octokit/rest
+        run: npm install @octokit/rest
 
-      - run: |
-          node scripts/trigger-redesign-cleanup.js
+      - name: Run wai-trigger-cleanup script
+        run: |
+          node scripts/wai-trigger-cleanup.js
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          # reference github.head_ref for pull request
           APG_BRANCH: ${{ github.head_ref }}

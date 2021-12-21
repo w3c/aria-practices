@@ -1,9 +1,9 @@
-name: Trigger redesign pull request
+name: Trigger pull request creation for wai repository
 
 on:
   pull_request:
     paths:
-      - ".github/workflows/trigger-redesign-pull-request.yml"
+      - ".github/workflows/wai-trigger-pr.yml"
       - "package*.json"
       - "test/**"
       - "examples/**"
@@ -25,10 +25,12 @@ jobs:
         with:
           cache: npm
 
-      - run: npm install @octokit/rest
+      - name: Install @octokit/rest
+        run: npm install @octokit/rest
 
-      - run: |
-          node scripts/trigger-redesign-pull-request.js
+      - name: Run wai-trigger-pr script
+        run: |
+          node scripts/wai-trigger-pr.js
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           APG_BRANCH: ${{ github.head_ref }}
