@@ -15,8 +15,7 @@ on:
       - README.md
 
 jobs:
-  # trigger build step on wai-aria-practices and be able to return response here
-  redesign:
+  deploy-wai:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

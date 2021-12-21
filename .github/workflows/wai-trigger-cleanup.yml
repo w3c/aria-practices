@@ -7,7 +7,7 @@ on:
       - closed
 
 jobs:
-  cleanup-branch:
+  cleanup-branch-wai:
     if: ${{ github.event_name == 'delete' && github.event.ref_type == 'branch' }}
     runs-on: ubuntu-latest
     steps:
@@ -29,7 +29,7 @@ jobs:
           # reference github.event.ref for branch deletion
           APG_BRANCH: ${{ github.event.ref }}
 
-  cleanup-pr:
+  cleanup-pr-wai:
     if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
     steps:

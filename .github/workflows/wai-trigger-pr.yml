@@ -12,7 +12,7 @@ on:
       - "README.md"
 
 jobs:
-  create:
+  create-pr-wai:
     runs-on: ubuntu-latest
 
     steps:
