@@ -13,8 +13,9 @@ const octokit = new Octokit({
       workflow_id: 'deploy.yml',
       ref: 'master',
     });
-    console.info('workflow.dispatch.success');
+    console.info('deploy.workflow.dispatch.success');
   } catch (e) {
     console.error('workflow.dispatch.fail', e);
+    process.exit(1);
   }
 })();

@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - ".github/workflows/wai-trigger-pr.yml"
+      - "scripts/wai-trigger-pr.js"
       - "package*.json"
       - "test/**"
       - "examples/**"

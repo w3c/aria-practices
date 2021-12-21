@@ -18,8 +18,9 @@ const octokit = new Octokit({
         apg_pr_number: process.env.APG_PR_NUMBER,
       },
     });
-    console.info('workflow.dispatch.success');
+    console.info('pr-create.workflow.dispatch.success');
   } catch (e) {
     console.error('workflow.dispatch.fail', e);
+    process.exit(1);
   }
 })();

@@ -16,8 +16,9 @@ const octokit = new Octokit({
         apg_branch: 'apg/' + process.env.APG_BRANCH,
       },
     });
-    console.info('workflow.dispatch.success');
+    console.info('remove-branch.workflow.dispatch.success');
   } catch (e) {
     console.error('workflow.dispatch.fail', e);
+    process.exit(1);
   }
 })();
