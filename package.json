@@ -56,7 +56,7 @@
     "pinst": "^2.1.6",
     "prettier": "^2.4.1",
     "selenium-webdriver": "^4.1.0",
-    "stylelint": "^14.1.0",
+    "stylelint": "^14.2.0",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-standard": "^24.0.0",
     "stylelint-prettier": "^2.0.0",
