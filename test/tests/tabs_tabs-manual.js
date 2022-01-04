@@ -1,26 +1,23 @@
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
-const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaControls = require('../util/assertAriaControls');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
-const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
-const assertNoElements = require('../util/assertNoElements');
 const assertTabOrder = require('../util/assertTabOrder');
 
-const exampleFile = 'tabs/tabs-2/tabs.html';
+const exampleFile = 'tabs/tabs-manual.html';
 
 const ex = {
   tablistSelector: '#ex1 [role="tablist"]',
   tabSelector: '#ex1 [role="tab"]',
   tabpanelSelector: '#ex1 [role="tabpanel"]',
-  tabCount: 3,
-  deletableId: 'complex',
+  tabCount: 4,
   tabTabOrder: [
-    // button id, tab id
-    ['#nils', '#nils-tab'],
-    ['#agnes', '#agnes-tab'],
-    ['#complex', '#complex-complex'],
+    // button id, tabpanel id
+    ['#tab-1', '#tabpanel-1'],
+    ['#tab-2', '#tabpanel-2'],
+    ['#tab-3', '#tabpanel-3'],
+    ['#tab-4', '#tabpanel-4'],
   ],
 };
 
@@ -74,11 +71,11 @@ ariaTest(
 );
 
 ariaTest(
-  '"ariaLabel" attribute on role="tablist"',
+  '"ariaLabelledby" attribute on role="tablist"',
   exampleFile,
-  'tablist-aria-label',
+  'tablist-aria-labelledby',
   async (t) => {
-    await assertAriaLabelExists(t, ex.tablistSelector);
+    await assertAriaLabelledby(t, ex.tablistSelector);
   }
 );
 
@@ -87,7 +84,7 @@ ariaTest(
   exampleFile,
   'tab-role',
   async (t) => {
-    await assertAriaRoles(t, 'ex1', 'tab', '3', 'button');
+    await assertAriaRoles(t, 'ex1', 'tab', ex.tabCount.toString(), 'button');
   }
 );
 
@@ -193,7 +190,7 @@ ariaTest(
   exampleFile,
   'tabpanel-role',
   async (t) => {
-    await assertAriaRoles(t, 'ex1', 'tabpanel', '3', 'div');
+    await assertAriaRoles(t, 'ex1', 'tabpanel', ex.tabCount.toString(), 'div');
   }
 );
 
@@ -203,15 +200,6 @@ ariaTest(
   'tabpanel-aria-labelledby',
   async (t) => {
     await assertAriaLabelledby(t, ex.tabpanelSelector);
-  }
-);
-
-ariaTest(
-  'tabindex="0" on role="tabpanel" elements',
-  exampleFile,
-  'tabpanel-tabindex',
-  async (t) => {
-    await assertAttributeValues(t, ex.tabpanelSelector, 'tabindex', '0');
   }
 );
 
@@ -396,54 +384,3 @@ ariaTest('END key moves focus', exampleFile, 'key-end', async (t) => {
     );
   }
 });
-
-ariaTest(
-  'DELETE key removes third tab',
-  exampleFile,
-  'key-delete',
-  async (t) => {
-    const tabs = await t.context.queryElements(t, ex.tabSelector);
-
-    // Put focus on the first tab
-    await openTabAtIndex(t, 0);
-
-    // Send the delete key to the tab
-    await tabs[0].sendKeys(Key.DELETE);
-
-    t.is(
-      (await t.context.queryElements(t, ex.tabSelector)).length,
-      3,
-      'Sending DELETE to first tab should not change number of tabs'
-    );
-
-    // Put focus on the second tab
-    await openTabAtIndex(t, 1);
-
-    // Send the delete key to the tab
-    await tabs[1].sendKeys(Key.DELETE);
-
-    t.is(
-      (await t.context.queryElements(t, ex.tabSelector)).length,
-      3,
-      'Sending DELETE to second tab should not change number of tabs'
-    );
-
-    // Put focus on the last tab
-    await openTabAtIndex(t, 2);
-
-    // Send the delete key to the tab
-    await tabs[2].sendKeys(Key.DELETE);
-
-    t.is(
-      (await t.context.queryElements(t, ex.tabSelector)).length,
-      2,
-      'Sending DELETE to third tab should change number of tabs'
-    );
-
-    assertNoElements(
-      t,
-      `#${ex.deletableId}`,
-      `Sending DELETE to third tab should have delete tab with id: ${ex.deletableId}`
-    );
-  }
-);
