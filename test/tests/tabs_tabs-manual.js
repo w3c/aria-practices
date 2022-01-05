@@ -14,10 +14,10 @@ const ex = {
   tabCount: 4,
   tabTabOrder: [
     // button id, tabpanel id
-    ['#tab-1', '#tabpanel-1'],
-    ['#tab-2', '#tabpanel-2'],
-    ['#tab-3', '#tabpanel-3'],
-    ['#tab-4', '#tabpanel-4'],
+    ['#tab-1', '#tabpanel-1 a'],
+    ['#tab-2', '#tabpanel-2 a'],
+    ['#tab-3', '#tabpanel-3 a'],
+    ['#tab-4', '#tabpanel-4 a'],
   ],
 };
 
@@ -206,7 +206,7 @@ ariaTest(
 // Keys
 
 ariaTest(
-  'TAB key moves focus to open tab and panel',
+  'TAB key moves focus to open tab and first link in the tabpanel',
   exampleFile,
   'key-tab',
   async (t) => {
