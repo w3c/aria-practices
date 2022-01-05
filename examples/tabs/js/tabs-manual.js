@@ -9,7 +9,7 @@
 
 'use strict';
 
-class TabsAutomatic {
+class TabsManual {
   constructor(groupNode) {
     this.tablistNode = groupNode;
 
@@ -133,6 +133,6 @@ class TabsAutomatic {
 window.addEventListener('load', function () {
   var tablists = document.querySelectorAll('[role=tablist].manual');
   for (var i = 0; i < tablists.length; i++) {
-    new TabsAutomatic(tablists[i]);
+    new TabsManual(tablists[i]);
   }
 });
