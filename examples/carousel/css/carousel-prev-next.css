@@ -154,7 +154,7 @@ img.reload {
   stroke: black;
   fill: black;
   stroke-width: 1px;
-  opacity: 60%;
+  opacity: 0.6;
 }
 
 .carousel .controls svg .border {
@@ -195,7 +195,7 @@ img.reload {
 .carousel .controls button:hover svg .border {
   fill: #005a9c;
   stroke: #005a9c;
-  opacity: 100%;
+  opacity: 1;
 }
 
 .carousel .controls button:focus svg .border {

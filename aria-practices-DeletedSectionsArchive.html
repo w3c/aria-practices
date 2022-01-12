@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<html lang="en-US">
 <head>
   <title>Content Deleted From WAI-ARIA Authoring Practices 1.1</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <script src="https://www.w3.org/Tools/respec/respec-w3c-common" class="remove"></script>
   <script src="common/script/resolveReferences.js" class="remove"></script>
   <script src="common/biblio.js" class="remove"></script>
@@ -166,7 +166,7 @@
       preProcess: [linkCrossReferences],
     };
   </script>
-  <link href="common/css/common.css" rel="stylesheet" type="text/css" />
+  <link href="common/css/common.css" rel="stylesheet">
 </head>
 <body>
     <section id="abstract">
@@ -2837,7 +2837,7 @@ field. </p>
         behavior of the element. The user agent's default behavior at the
         document element forms the controller. </p>
       <figure id="fig1">
-        <img alt="Accessibility information mapped to a DOM element in the Document Object Model" height="512" longdesc="#desc_fig1" src="img/accessibleelement.png" width="640"/>
+        <img alt="Accessibility information mapped to a DOM element in the Document Object Model" height="512" longdesc="#desc_fig1" src="img/accessibleelement.png" width="640">
         <figcaption>Accessibility Interoperability at a <abbr title="document object model">DOM</abbr> Node without JavaScript</figcaption>
       </figure>
       <p id="desc_fig1">The box between the DOM node
@@ -2850,7 +2850,7 @@ field. </p>
         information, and relations). For HTML and other W3C markup, the
         accessibility information provided solely depends upon what the element's tag name and any accessibility attributes that map to that tag provides. For  example, the accessible role of a table is <code>table</code>. The author provides  an accessible description by assigning a <code>title</code> attribute.</p>
       <p>In contrast, with JavaScript, user actions can trigger updates in the data and presentation, but the default accessibility information available in the element tags is no longer valid.</p>
-      <figure id="fig2"><img alt="DOM Element with JavaScript controller" height="502" longdesc="#desc_fig2" src="img/accessibleJSelement.png" width="476"/>
+      <figure id="fig2"><img alt="DOM Element with JavaScript controller" height="502" longdesc="#desc_fig2" src="img/accessibleJSelement.png" width="476">
         <figcaption>Accessibility
         Interoperability at a DOM Node with JavaScript</figcaption></figure>
       <p id="desc_fig2"> <a href="#fig2"></a> shows the same DOM node provided
@@ -3308,7 +3308,7 @@ field. </p>
       user to view a list of navigation landmarks.
       This tool, shown in <a href="#fig3"></a>, lists the  navigation sections on the page. Keyboard navigation of the list of navigation bars causes the
       corresponding document section to be highlighted. The title for each navigation region displays in the list.</p>
-      <figure id="fig3"><img alt="Table of Contents from Landmarks" height="813" longdesc="#desc_fig3" src="img/navlandmark.jpg" title="Table of Contents from Landmarks" width="877"/>
+      <figure id="fig3"><img alt="Table of Contents from Landmarks" height="813" longdesc="#desc_fig3" src="img/navlandmark.jpg" title="Table of Contents from Landmarks" width="877">
       <figcaption>Table of Contents generated from navigation landmarks in the header</figcaption>
       </figure>
     <p id="desc_fig3"> <a href="#fig3"></a> shows the <a href="http://firefox.cita.uiuc.edu/">accessibility
@@ -3332,7 +3332,7 @@ field. </p>
       W3C standards-based approach to represent this information.</p>
       <figure id="fig4">
       <!-- <embed src="resourcemap.svg" width="810" height="800"> -->
-      <img alt="Sample Semantic Map for Taxonomy" height="564" longdesc="#desc_fig4" src="img/taxonomy.png" title="Sample Semantic Map for Taxonomy" width="500"/>
+      <img alt="Sample Semantic Map for Taxonomy" height="564" longdesc="#desc_fig4" src="img/taxonomy.png" title="Sample Semantic Map for Taxonomy" width="500">
       <figcaption>Example, Partial RDF Map for a possible ButtonUndo role as an extended role to  WAI-ARIA</figcaption>
       </figure>
     <p id="desc_fig4"> <a href="#fig4"></a> shows a basic RDF mapping that
@@ -3372,7 +3372,7 @@ field. </p>
         The user uses arrow keys to navigates the data grid and among the page tabs.
         Using the Tab key, a user navigates between the notebook tab, the edit fields, buttons, and
         the data grid.</p>
-        <figure id="fig5"><img alt="DHTML example of GUI-like notebook tab with a data grid" height="633" longdesc="#desc_fig5" src="img/DHTMLexample.png" title="DHTML Example" width="844"/>
+        <figure id="fig5"><img alt="DHTML example of GUI-like notebook tab with a data grid" height="633" longdesc="#desc_fig5" src="img/DHTMLexample.png" title="DHTML Example" width="844">
         <figcaption>DHTML Example</figcaption>
         </figure>
       <p id="desc_fig5"> Accessible role and state
@@ -3383,7 +3383,7 @@ field. </p>
         the Microsoft Active Accessibility rendering of the new
         accessibility markup provided on the DataGrid page tab which has
         focus.</p>
-        <figure id="fig6"><img alt="MSAA Inspect Tool diagnostics for Notebook page tab" height="647" longdesc="#desc_fig6" src="img/inspectofpagetab.png" title="MSAA Inspect Tool diagnostics for Notebook page tab" width="490"/>
+        <figure id="fig6"><img alt="MSAA Inspect Tool diagnostics for Notebook page tab" height="647" longdesc="#desc_fig6" src="img/inspectofpagetab.png" title="MSAA Inspect Tool diagnostics for Notebook page tab" width="490">
         <figcaption>Microsoft Inspect Tool rendering of the page tab
         DataGrid</figcaption>
         </figure>
@@ -3502,7 +3502,7 @@ field. </p>
   </ol>
     <section id="exampletree">
     <h3>Example: Building a Tree Widget</h3>
-    <img alt="Graphic of an example tree view." class="role-screenshot" src="img/exampletree.png" width="188" height="327" />
+    <img alt="Graphic of an example tree view." class="role-screenshot" src="img/exampletree.png" width="188" height="327">
     <p>A basic tree view allows the user to select different list items and expand and collapse embedded lists. Arrow keys are used to navigate through a tree, including left/right to collapse/expand sub trees. Clicking the visible expander button with the mouse also toggles expansion. Further keyboard implementation details for tree widgets may found in the <a href="#aria_ex"></a>.</p>
     <p>To make this feature accessible we need to:</p>
     <ul>
@@ -3639,7 +3639,7 @@ field. </p>
     <p>WAI-ARIA and WCAG 2.0 coding techniques are useful for developing content and applications that can scale across a variety of user agents, including those on mobile devices. </p>
     <p>For all these reasons, adopting WAI-ARIA makes good technical as well as business sense. For a further illustration, compare how accessibility is achieved with WCAG techniques without and with WAI-ARIA, as shown in <a href="#fig7"></a>. </p>
       <figure id="fig7">
-        <!--<img alt="WAI-ARIA tree widget usability comparison" class="figure" src="img/style_aria.jpg" title="tree widget comparison"/>-->
+        <!--<img alt="WAI-ARIA tree widget usability comparison" class="figure" src="img/style_aria.jpg" title="tree widget comparison">-->
         <p class="ednote">Editor's Note: Figure 7, described as WAI-ARIA tree widget usability comparison, refers to a resource that has not yet been found.</p>
         <figcaption>Usability of Tree Widget Using WAI-ARIA Semantics to Implement WCAG 2.0 Guidelines Compared to WCAG 1.0 Without WAI-ARIA</figcaption>
       </figure>

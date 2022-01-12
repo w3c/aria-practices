@@ -7,6 +7,7 @@
   "attr-value-not-empty": false,
   "doctype-first": true,
   "doctype-html5": true,
+  "empty-tag-not-self-closed": true,
   "head-script-disabled": false,
   "href-abs-or-rel": false,
   "id-class-ad-disabled": false,
