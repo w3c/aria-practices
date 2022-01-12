@@ -121,3 +121,16 @@ Note: These instructions are for editors of the APG who have repository commit a
 7. Overwrite contents of `index.html` with the snapshot copy you saved
 8. Commit and push changes
 9. Review changes at [GitHub pages APG snapshot](http://w3c.github.io/aria-practices/)
+
+### ARIA Roles, Properties and States Referenced in Guidance and Examples(Also known as APG Coverage Report)
+
+This page includes information on number of guidance and example references in the WAI-ARIA Authoring Practices for each ARIA role, property and state. 
+
+1. CSV Files of Role, Properties and States Coverage
+2. Roles with no Guidance or Examples (29)
+3. Roles with at Least One Guidance or Example (13)
+4. Roles with More than One Guidance or Example (36)
+5. Properties and States with no Examples (12)
+6. Properties and States with One Examples (8)
+7. Properties and States with More than One Example (28)
+8. Example Coding Practices

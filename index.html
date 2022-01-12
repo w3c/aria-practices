@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en-US"><head>
 <meta charset="utf-8">
-<meta name="generator" content="ReSpec 28.0.6">
+<meta name="generator" content="ReSpec 28.2.0">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 .issue-label{text-transform:initial}
@@ -47,7 +47,6 @@ dfn{cursor:pointer}
 25%{transform:scale(1.25,1.25);opacity:.75}
 100%{transform:scale(1,1)}
 }
-.hljs{background:0 0!important}
 :is(h1,h2,h3,h4,h5,h6,a) abbr{border:none}
 dfn{font-weight:700}
 a.internalDFN{color:inherit;border-bottom:1px solid #99c;text-decoration:none}
@@ -106,7 +105,6 @@ dd{margin-left:0}
 <meta name="description" content="This document provides readers with an understanding of how to use WAI-ARIA 1.2 [WAI-ARIA] to create accessible rich internet applications.
       It describes considerations that might not be evident to most authors from the WAI-ARIA specification alone and recommends approaches to make widgets, navigation, and behaviors accessible using WAI-ARIA roles, states, and properties.
       This document is directed primarily to Web application developers, but the guidance is also useful for user agent and assistive technology developers.">
-<link rel="canonical" href="https://www.w3.org/TR/wai-aria-practices-1.2/">
 <style>
 .hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42;background:#fafafa}
 .hljs-comment,.hljs-quote{color:#717277;font-style:italic}
@@ -270,16 +268,16 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "aliasOf": "WAI-ARIA-1.1"
     }
   },
-  "publishDate": "2021-12-03",
-  "publishISODate": "2021-12-03T00:00:00.000Z",
-  "generatedSubtitle": "Editor's Draft 03 December 2021"
+  "publishDate": "2022-01-12",
+  "publishISODate": "2022-01-12T00:00:00.000Z",
+  "generatedSubtitle": "Editor's Draft 12 January 2022"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED"></head>
 <body class="h-entry informative"><div class="head">
     <a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
   </a> <h1 id="title" class="title">WAI-ARIA Authoring Practices 1.2</h1>
     
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2021-12-03">03 December 2021</time></p>
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2022-01-12">12 January 2022</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
@@ -336,7 +334,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     <p class="copyright">
     <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
     ©
-    2018-2021
+    2018-2022
     
     <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
     <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>,
@@ -7606,7 +7604,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
 <section id="references" class="appendix"><h2 id="d-references"><bdi class="secno">D. </bdi>References<a class="self-link" href="#references" aria-label="Permalink for Appendix D."></a></h2><section id="informative-references">
     <h3 id="d-1-informative-references"><bdi class="secno">D.1 </bdi>Informative references<a class="self-link" href="#informative-references" aria-label="Permalink for Appendix D.1"></a></h3>
-    <dl class="bibliography"><dt id="bib-html">[HTML]</dt><dd><a href="https://html.spec.whatwg.org/multipage/"><cite>HTML Standard</cite></a>. Anne van Kesteren; Domenic Denicola; Ian Hickson; Philip Jägenstedt; Simon Pieters.  WHATWG. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a></dd><dt id="bib-html-aam">[HTML-AAM]</dt><dd><a href="https://www.w3.org/TR/html-aam-1.0/"><cite>HTML Accessibility API Mappings 1.0</cite></a>. Steve Faulkner; Scott O'Hara; Alexander Surkov; Bogdan Brinza; Jason Kiss; Cynthia Shelly.  W3C. 13 August 2021. W3C Working Draft. URL: <a href="https://www.w3.org/TR/html-aam-1.0/">https://www.w3.org/TR/html-aam-1.0/</a></dd><dt id="bib-html-aria">[HTML-ARIA]</dt><dd><a href="https://www.w3.org/TR/html-aria/"><cite>ARIA in HTML</cite></a>. Steve Faulkner; Scott O'Hara; Patrick Lauke.  W3C. 30 September 2021. W3C Proposed Recommendation. URL: <a href="https://www.w3.org/TR/html-aria/">https://www.w3.org/TR/html-aria/</a></dd><dt id="bib-svg2">[SVG2]</dt><dd><a href="https://www.w3.org/TR/SVG2/"><cite>Scalable Vector Graphics (SVG) 2</cite></a>. Amelia Bellamy-Royds; Bogdan Brinza; Chris Lilley; Dirk Schulze; David Storey; Eric Willigers.  W3C. 4 October 2018. W3C Candidate Recommendation. URL: <a href="https://www.w3.org/TR/SVG2/">https://www.w3.org/TR/SVG2/</a></dd><dt id="bib-wai-aria">[WAI-ARIA]</dt><dd><a href="https://www.w3.org/TR/wai-aria-1.1/"><cite>Accessible Rich Internet Applications (WAI-ARIA) 1.1</cite></a>. Joanmarie Diggs; Shane McCarron; Michael Cooper; Richard Schwerdtfeger; James Craig.  W3C. 14 December 2017. W3C Recommendation. URL: <a href="https://www.w3.org/TR/wai-aria-1.1/">https://www.w3.org/TR/wai-aria-1.1/</a></dd><dt id="bib-wai-aria-1.2">[WAI-ARIA-1.2]</dt><dd><a href="https://www.w3.org/TR/wai-aria-1.2/"><cite>Accessible Rich Internet Applications (WAI-ARIA) 1.2</cite></a>. Joanmarie Diggs; James Nurthen; Michael Cooper.  W3C. 2 March 2021. W3C Candidate Recommendation. URL: <a href="https://www.w3.org/TR/wai-aria-1.2/">https://www.w3.org/TR/wai-aria-1.2/</a></dd></dl>
+    <dl class="bibliography"><dt id="bib-html">[HTML]</dt><dd><a href="https://html.spec.whatwg.org/multipage/"><cite>HTML Standard</cite></a>. Anne van Kesteren; Domenic Denicola; Ian Hickson; Philip Jägenstedt; Simon Pieters.  WHATWG. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a></dd><dt id="bib-html-aam">[HTML-AAM]</dt><dd><a href="https://www.w3.org/TR/html-aam-1.0/"><cite>HTML Accessibility API Mappings 1.0</cite></a>. Steve Faulkner; Scott O'Hara; Alexander Surkov; Bogdan Brinza; Jason Kiss; Cynthia Shelly.  W3C. 13 August 2021. W3C Working Draft. URL: <a href="https://www.w3.org/TR/html-aam-1.0/">https://www.w3.org/TR/html-aam-1.0/</a></dd><dt id="bib-html-aria">[HTML-ARIA]</dt><dd><a href="https://www.w3.org/TR/html-aria/"><cite>ARIA in HTML</cite></a>. Steve Faulkner; Scott O'Hara; Patrick Lauke.  W3C. 9 December 2021. W3C Recommendation. URL: <a href="https://www.w3.org/TR/html-aria/">https://www.w3.org/TR/html-aria/</a></dd><dt id="bib-svg2">[SVG2]</dt><dd><a href="https://www.w3.org/TR/SVG2/"><cite>Scalable Vector Graphics (SVG) 2</cite></a>. Amelia Bellamy-Royds; Bogdan Brinza; Chris Lilley; Dirk Schulze; David Storey; Eric Willigers.  W3C. 4 October 2018. W3C Candidate Recommendation. URL: <a href="https://www.w3.org/TR/SVG2/">https://www.w3.org/TR/SVG2/</a></dd><dt id="bib-wai-aria">[WAI-ARIA]</dt><dd><a href="https://www.w3.org/TR/wai-aria-1.1/"><cite>Accessible Rich Internet Applications (WAI-ARIA) 1.1</cite></a>. Joanmarie Diggs; Shane McCarron; Michael Cooper; Richard Schwerdtfeger; James Craig.  W3C. 14 December 2017. W3C Recommendation. URL: <a href="https://www.w3.org/TR/wai-aria-1.1/">https://www.w3.org/TR/wai-aria-1.1/</a></dd><dt id="bib-wai-aria-1.2">[WAI-ARIA-1.2]</dt><dd><a href="https://www.w3.org/TR/wai-aria-1.2/"><cite>Accessible Rich Internet Applications (WAI-ARIA) 1.2</cite></a>. Joanmarie Diggs; James Nurthen; Michael Cooper.  W3C. 8 December 2021. W3C Candidate Recommendation. URL: <a href="https://www.w3.org/TR/wai-aria-1.2/">https://www.w3.org/TR/wai-aria-1.2/</a></dd></dl>
   </section></section><p role="navigation" id="back-to-top">
     <a href="#title"><abbr title="Back to Top">↑</abbr></a>
   </p><script id="respec-dfn-panel">(() => {
