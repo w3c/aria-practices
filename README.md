@@ -124,7 +124,9 @@ Note: These instructions are for editors of the APG who have repository commit a
 
 ## ARIA Roles, Properties and States Referenced in Guidance and Examples(Also known as APG Coverage Report)
 
-This page includes information on number of guidance and example references in the WAI-ARIA Authoring Practices for each ARIA role, property and state. 
+[APG Coverage Report](https://raw.githack.com/w3c/aria-practices/coverage/coverage/index.html) includes information on number of guidance and example references in the WAI-ARIA Authoring Practices for each ARIA role, property and state. 
+
+As of January 11, 2022, APG has exmples of 
 
 1. CSV Files of Role, Properties and States Coverage
 2. Roles with no Guidance or Examples (29)
