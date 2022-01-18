@@ -91,13 +91,11 @@ class TabsAutomatic {
       flag = false;
 
     switch (event.key) {
-      case 'ArrowUp':
       case 'ArrowLeft':
         this.setSelectedToPreviousTab(tgt);
         flag = true;
         break;
 
-      case 'ArrowDown':
       case 'ArrowRight':
         this.setSelectedToNextTab(tgt);
         flag = true;
