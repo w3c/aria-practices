@@ -89,13 +89,11 @@ class TabsManual {
       flag = false;
 
     switch (event.key) {
-      case 'ArrowUp':
       case 'ArrowLeft':
         this.moveFocusToPreviousTab(tgt);
         flag = true;
         break;
 
-      case 'ArrowDown':
       case 'ArrowRight':
         this.moveFocusToNextTab(tgt);
         flag = true;

@@ -1,5 +1,6 @@
 const { ariaTest } = require('..');
 const { Key } = require('selenium-webdriver');
+const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaControls = require('../util/assertAriaControls');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaRoles = require('../util/assertAriaRoles');
@@ -14,10 +15,10 @@ const ex = {
   tabCount: 4,
   tabTabOrder: [
     // button id, tabpanel id
-    ['#tab-1', '#tabpanel-1 a'],
-    ['#tab-2', '#tabpanel-2 a'],
-    ['#tab-3', '#tabpanel-3 a'],
-    ['#tab-4', '#tabpanel-4 a'],
+    ['#tab-1', '#tabpanel-1'],
+    ['#tab-2', '#tabpanel-2'],
+    ['#tab-3', '#tabpanel-3'],
+    ['#tab-4', '#tabpanel-4'],
   ],
 };
 
@@ -199,6 +200,15 @@ ariaTest(
   'tabpanel-aria-labelledby',
   async (t) => {
     await assertAriaLabelledby(t, ex.tabpanelSelector);
+  }
+);
+
+ariaTest(
+  'tabindex="0" on tabpanel elements',
+  exampleFile,
+  'tabpanel-tabindex',
+  async (t) => {
+    await assertAttributeValues(t, ex.tabpanelSelector, 'tabindex', '0');
   }
 );
 
