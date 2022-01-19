@@ -29,7 +29,9 @@
   border-bottom-color: hsl(220deg 43% 99%);
   background: hsl(220deg 43% 99%);
 }
-
+[role="tab"][aria-selected="false"] {
+    border-bottom: 1px solid hsl(219deg 1% 72%);
+}
 [role="tab"] span.focus {
   display: inline-block;
   margin: 2px;
