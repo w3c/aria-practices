@@ -3,7 +3,7 @@
 This repository maintains the WAI-ARIA Authoring Practices Guide.
 
 * [Latest editor's draft built from main branch](http://w3c.github.io/aria-practices/)
-* [Most recent version published on w3.org](https://www.w3.org/TR/wai-aria-practices-1.1/)
+* [Most recent version published on w3.org](https://www.w3.org/TR/wai-aria-practices/)
 * Developed by the [Authoring Practices Task Force](https://www.w3.org/WAI/ARIA/task-forces/practices/) of the [ARIA Working Group](http://www.w3.org/WAI/ARIA/).
 * Staff contact: [Michael Cooper](http://www.w3.org/People/cooper/).
 
