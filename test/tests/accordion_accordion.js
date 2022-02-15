@@ -1,36 +1,14 @@
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAriaControls = require('../util/assertAriaControls');
-const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 
 const exampleFile = 'accordion/accordion.html';
 
 const ex = {
-  buttonSelector: '#ex1 button',
-  panelSelector: '#ex1 [role="region"]',
+  buttonSelector: '#ex1 .accordion-trigger',
+  panelSelector: '#ex1 .accordion-panel',
   buttonsInOrder: ['#accordion1id', '#accordion2id', '#accordion3id'],
-  firstPanelInputSelectors: [
-    '#cufc1',
-    '#cufc2',
-    '#cufc3',
-    '#cufc4',
-    '#cufc5',
-    '#cufc6',
-  ],
-  secondPanelInputSelectors: [
-    '#b-add1',
-    '#b-add2',
-    '#b-city',
-    '#b-state',
-    '#b-zip',
-  ],
-  thirdPanelInputSelectors: [
-    '#m-add1',
-    '#m-add2',
-    '#m-city',
-    '#m-state',
-    '#m-zip',
-  ],
+  panelsInOrder: ['#sect1', '#sect2', '#sect3'],
 };
 
 const parentTagName = function (t, element) {
@@ -101,38 +79,6 @@ ariaTest(
   'button-aria-controls',
   async (t) => {
     await assertAriaControls(t, ex.buttonSelector);
-  }
-);
-
-ariaTest(
-  'role "region" exists on accordion panels',
-  exampleFile,
-  'region-role',
-  async (t) => {
-    const buttons = await t.context.queryElements(t, ex.buttonSelector);
-    const panelIds = [];
-    for (let button of buttons) {
-      panelIds.push(await button.getAttribute('aria-controls'));
-    }
-
-    for (let panelId of panelIds) {
-      t.is(
-        await t.context.session
-          .findElement(By.id(panelId))
-          .getAttribute('role'),
-        'region',
-        'Panel with id "' + panelId + '" should have role="region"'
-      );
-    }
-  }
-);
-
-ariaTest(
-  '"aria-labelledby" on region',
-  exampleFile,
-  'region-aria-labelledby',
-  async (t) => {
-    await assertAriaLabelledby(t, ex.panelSelector);
   }
 );
 
@@ -219,46 +165,15 @@ ariaTest(
 );
 
 ariaTest(
-  'TAB moves focus between headers and displayed inputs',
+  'TAB moves focus between buttons',
   exampleFile,
   'key-tab',
   async (t) => {
-    const buttons = await t.context.queryElements(t, ex.buttonSelector);
-
-    // verify that open panel is in the tab order
-    let elementsInOrder = [
-      ex.buttonsInOrder[0],
-      ...ex.firstPanelInputSelectors,
-      ex.buttonsInOrder[1],
-      ex.buttonsInOrder[2],
-    ];
+    // verify that all buttons are in the tab order
+    let elementsInOrder = ex.buttonsInOrder;
 
     // Send TAB to the first panel button
     let firstElement = elementsInOrder.shift();
-    await t.context.session.findElement(By.css(firstElement)).sendKeys(Key.TAB);
-
-    // Confirm focus moves through remaining items
-    for (let itemSelector of elementsInOrder) {
-      t.true(
-        await focusMatchesElement(t, itemSelector),
-        'Focus should reach element: ' + itemSelector
-      );
-      await t.context.session
-        .findElement(By.css(itemSelector))
-        .sendKeys(Key.TAB);
-    }
-
-    // Close the first panel, and verify that tab does not go through the closed panel
-    await buttons[0].click();
-
-    elementsInOrder = [
-      ex.buttonsInOrder[0],
-      ex.buttonsInOrder[1],
-      ex.buttonsInOrder[2],
-    ];
-
-    // Send TAB to the first panel button
-    firstElement = elementsInOrder.shift();
     await t.context.session.findElement(By.css(firstElement)).sendKeys(Key.TAB);
 
     // Confirm focus moves through remaining items
@@ -275,65 +190,24 @@ ariaTest(
 );
 
 ariaTest(
-  'SHIFT+TAB moves focus between headers and displayed inputs',
+  'SHIFT + TAB moves focus between buttons',
   exampleFile,
   'key-shift-tab',
   async (t) => {
-    const buttons = await t.context.queryElements(t, ex.buttonSelector);
+    // verify that all buttons are in the tab order
+    const elementsInOrder = ex.buttonsInOrder;
 
-    // Close first panel
-    await buttons[0].click();
-
-    let elementsInOrder = [
-      ex.buttonsInOrder[0],
-      ex.buttonsInOrder[1],
-      ex.buttonsInOrder[2],
-    ];
-
-    // Send SHIFT-TAB to the last panel button
-    let lastElement = elementsInOrder.pop();
+    // Send shift + tab to the last panel button
+    const lastElement = elementsInOrder[elementsInOrder.length - 1];
     await t.context.session
       .findElement(By.css(lastElement))
       .sendKeys(Key.chord(Key.SHIFT, Key.TAB));
 
-    // Confirm focus moves through remaining items
-    for (let index = elementsInOrder.length - 1; index >= 0; index--) {
-      let itemSelector = elementsInOrder[index];
-      t.true(
-        await focusMatchesElement(t, itemSelector),
-        'Focus should reach element: ' + itemSelector
-      );
-      await t.context.session
-        .findElement(By.css(itemSelector))
-        .sendKeys(Key.chord(Key.SHIFT, Key.TAB));
-    }
-
-    // Open one panel
-    await buttons[1].click();
-
-    elementsInOrder = [
-      ex.buttonsInOrder[0],
-      ex.buttonsInOrder[1],
-      ...ex.secondPanelInputSelectors,
-      ex.buttonsInOrder[2],
-    ];
-
-    // Send TAB to the last panel button
-    lastElement = elementsInOrder.pop();
-    await t.context.session
-      .findElement(By.css(lastElement))
-      .sendKeys(Key.chord(Key.SHIFT, Key.TAB));
-
-    // Confirm focus moves through remaining items
-    for (let index = elementsInOrder.length - 1; index >= 0; index--) {
-      let itemSelector = elementsInOrder[index];
-      t.true(
-        await focusMatchesElement(t, itemSelector),
-        'Focus should reach element: ' + itemSelector
-      );
-      await t.context.session
-        .findElement(By.css(itemSelector))
-        .sendKeys(Key.chord(Key.SHIFT, Key.TAB));
-    }
+    // Confirm focus moves to second-to-last item
+    let targetElement = elementsInOrder[elementsInOrder.length - 2];
+    t.true(
+      await focusMatchesElement(t, targetElement),
+      'Focus should reach element: ' + targetElement
+    );
   }
 );
