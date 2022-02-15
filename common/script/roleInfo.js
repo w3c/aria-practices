@@ -1,4 +1,4 @@
-var roleInfo = {
+/* This file is generated - do not modify */var roleInfo = {
   "alert": {
     "name": "alert",
     "fragID": "alert",
@@ -8584,6 +8584,13 @@ var roleInfo = {
       {
         "is": "property",
         "name": "aria-haspopup",
+        "required": false,
+        "disallowed": false,
+        "deprecated": false
+      },
+      {
+        "is": "property",
+        "name": "aria-level",
         "required": false,
         "disallowed": false,
         "deprecated": false

@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en-US"><head>
 <meta charset="utf-8">
-<meta name="generator" content="ReSpec 30.0.4">
+<meta name="generator" content="ReSpec 31.0.1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 .issue-label{text-transform:initial}
@@ -270,37 +270,37 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "aliasOf": "WAI-ARIA-1.1"
     }
   },
-  "publishDate": "2022-02-10",
-  "publishISODate": "2022-02-10T00:00:00.000Z",
-  "generatedSubtitle": "W3C Editor's Draft 10 February 2022"
+  "publishDate": "2022-02-15",
+  "publishISODate": "2022-02-15T00:00:00.000Z",
+  "generatedSubtitle": "W3C Editor's Draft 15 February 2022"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED"></head>
 <body class="h-entry informative"><div class="head">
-    <a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
-  </a> <h1 id="title" class="title">WAI-ARIA Authoring Practices 1.2</h1>
-    
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2022-02-10">10 February 2022</time></p>
+    <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
+  </a></p>
+    <h1 id="title" class="title">WAI-ARIA Authoring Practices 1.2</h1> 
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2022-02-15">15 February 2022</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
         <dt>This version:</dt><dd>
                 <a class="u-url" href="https://w3c.github.io/aria-practices/">https://w3c.github.io/aria-practices/</a>
-              </dd><dt>Latest published version:</dt><dd>
+              </dd>
+        <dt>Latest published version:</dt><dd>
                 <a href="https://www.w3.org/TR/wai-aria-practices-1.2/">https://www.w3.org/TR/wai-aria-practices-1.2/</a>
               </dd>
         <dt>Latest editor's draft:</dt><dd><a href="https://w3c.github.io/aria-practices/">https://w3c.github.io/aria-practices/</a></dd>
         <dt>History:</dt><dd>
-      <a href="https://www.w3.org/standards/history/wai-aria-practices-1.2">https://www.w3.org/standards/history/wai-aria-practices-1.2</a>
-    </dd><dd>
-        <a href="https://github.com/w3c/aria-practices/commits/">Commit history</a>
-      </dd>
+                    <a href="https://www.w3.org/standards/history/wai-aria-practices-1.2">https://www.w3.org/standards/history/wai-aria-practices-1.2</a>
+                  </dd><dd>
+                    <a href="https://github.com/w3c/aria-practices/commits/">Commit history</a>
+                  </dd>
         
         
         
         
         
-        <dt>Editors:</dt>
-        <dd class="editor p-author h-card vcard" data-editor-id="44582">
+        <dt>Editors:</dt><dd class="editor p-author h-card vcard" data-editor-id="44582">
     <a class="ed_mailto u-email email p-name" href="mailto:mck@fb.com">Matt King</a> (<span class="p-org org h-org">Facebook</span>)
   </dd><dd class="editor p-author h-card vcard" data-editor-id="74097">
     <a class="ed_mailto u-email email p-name" href="mailto:jku@illinois.edu">JaEun Jemma Ku</a> (<span class="p-org org h-org">University of Illinois</span>)
@@ -403,7 +403,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     
         This document was produced by a group
         operating under the
-        <a href="https://www.w3.org/Consortium/Patent-Policy-20170801/">1 August 2017 <abbr title="World Wide Web Consortium">W3C</abbr> Patent
+        <a href="https://www.w3.org/Consortium/Patent-Policy/"><abbr title="World Wide Web Consortium">W3C</abbr> Patent
           Policy</a>.
       
     
@@ -413,9 +413,9 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
           the group; that page also includes
           instructions for disclosing a patent. An individual who has actual
           knowledge of a patent which the individual believes contains
-          <a href="https://www.w3.org/Consortium/Patent-Policy-20170801/#def-essential">Essential Claim(s)</a>
+          <a href="https://www.w3.org/Consortium/Patent-Policy/#def-essential">Essential Claim(s)</a>
           must disclose the information in accordance with
-          <a href="https://www.w3.org/Consortium/Patent-Policy-20170801/#sec-Disclosure">section 6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+          <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section 6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
         
   </p><p>
                   This document is governed by the
@@ -865,7 +865,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         While a slide may contain any type of content, image carousels where each slide contains nothing more than a single image are common.
       </p>
       <p>
-        Ensuring all users can easily control and are not adversely effected by slide rotation is an essential aspect of making carousels accessible.
+        Ensuring all users can easily control and are not adversely affected by slide rotation is an essential aspect of making carousels accessible.
         For instance, the screen reader experience can be confusing and disorienting if slides that are not visible on screen are incorrectly hidden, e.g., displayed off-screen.
         Similarly, if slides rotate automatically and a screen reader user is not aware of the rotation, the user may read an element on slide one, execute the screen reader command for next element, and, instead of hearing the next element on slide one,  hear an element from slide 2 without any knowledge that the element just announced is from an entirely new context.
       </p>
