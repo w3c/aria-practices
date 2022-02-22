@@ -124,8 +124,12 @@
         <h2>Accessibility Features</h2>
         <ul>
           <li>Since the first element in each <code>tabpanel</code> is a focusable element (e.g. link), the tabpanel does <strong>not</strong> need to set a <code>tabindex</code> value to include it in the tab sequence of the page.</li>
-          <li>The selected <code>tab</code> has a 2 pixel border to make it discernible from other tabs, for people with visual impairments using operating system high contrast modes.</li>
-          <li>A <code>span</code> element is used to create a focus outline around the text to make the focus discernible to people with visual impairments using operating system high contrast modes.</li>
+          <li>To make the selected tab and the tab with focus discernable to people with visual impairments using operating system high contrast modes:
+            <ul>
+              <li>The selected tab has a 2 pixel border to make it twice as wide as the 1 pixel left, right and top borders of the other tabs.</li>
+              <li>Each element with the tab role has a child <code>span</code> element used for creating a focus outline around the tab label has 2 pixels of spacing with the tab border.</li>
+            </ul>
+          </li>
         </ul>
       </section>
 
