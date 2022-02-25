@@ -42,7 +42,7 @@
     "cspell": "^5.13.0",
     "eslint": "^8.3.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-ava": "^13.1.0",
+    "eslint-plugin-ava": "^13.2.0",
     "eslint-plugin-html": "^6.2.0",
     "eslint-plugin-jsdoc": "^37.0.3",
     "eslint-plugin-prettier": "^4.0.0",
