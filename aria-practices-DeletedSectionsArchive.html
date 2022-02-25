@@ -1,162 +1,172 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<html lang="en-US">
 <head>
-	<title>Content Deleted From WAI-ARIA Authoring Practices 1.1</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<script src="https://www.w3.org/Tools/respec/respec-w3c-common" class="remove"></script>
-	<script src="common/script/resolveReferences.js" class="remove"></script>
-	<script src="common/biblio.js" class="remove"></script>
-	<script class="remove">
-		var respecConfig = {
-			// Embed RDFa data in the output.
-			doRDFa : '1.1',
-			includePermalinks : true,
-			permalinkEdge : true,
-			permalinkHide : false,
-			// Specification status (e.g., WD, LC, NOTE, etc.). If in doubt use ED.
-			specStatus : "ED",
-			// crEnd: "2012-04-30",
-			// perEnd: "2013-07-23",
-			// publishDate: "2013-08-22",
-			noRecTrack : true,
-			diffTool : "http://www.aptest.com/standards/htmldiff/htmldiff.pl",
+  <title>Content Deleted From WAI-ARIA Authoring Practices 1.1</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script src="https://www.w3.org/Tools/respec/respec-w3c-common" class="remove"></script>
+  <script src="common/script/resolveReferences.js" class="remove"></script>
+  <script src="common/biblio.js" class="remove"></script>
+  <script class="remove">
+    /* eslint-disable */
 
-			// The specifications short name, as in http://www.w3.org/TR/short-name/
-			shortName : "wai-aria-practices-1.1",
+    var respecConfig = {
+      // Embed RDFa data in the output.
+      doRDFa: '1.1',
+      includePermalinks: true,
+      permalinkEdge: true,
+      permalinkHide: false,
+      // Specification status (e.g., WD, LC, NOTE, etc.). If in doubt use ED.
+      specStatus: 'ED',
+      // crEnd: "2012-04-30",
+      // perEnd: "2013-07-23",
+      // publishDate: "2013-08-22",
+      noRecTrack: true,
+      diffTool: 'http://www.aptest.com/standards/htmldiff/htmldiff.pl',
 
-			// If you wish the publication date to be other than today,
-			// set publishDate.
-			// publishDate: "2009-08-06",
-			copyrightStart : "2015",
+      // The specifications short name, as in http://www.w3.org/TR/short-name/
+      shortName: 'wai-aria-practices-1.1',
 
-			// If there is a previously published draft, uncomment this
-			// and set its YYYY-MM-DD date and its maturity status.
-			//
-			// previousPublishDate:  "",
-			// previousMaturity:  "",
-			// prevRecURI: "",
-			// previousDiffURI: "",
+      // If you wish the publication date to be other than today,
+      // set publishDate.
+      // publishDate: "2009-08-06",
+      copyrightStart: '2015',
 
-			// If there a publicly available Editors Draft, this is the link
-			edDraftURI : "http://w3c.github.io/aria-practices/",
+      // If there is a previously published draft, uncomment this
+      // and set its YYYY-MM-DD date and its maturity status.
+      //
+      // previousPublishDate:  "",
+      // previousMaturity:  "",
+      // prevRecURI: "",
+      // previousDiffURI: "",
 
-			// If this is a LCWD, uncomment and set the end of its review period
-			// lcEnd: "2012-02-21",
+      // If there a publicly available Editors Draft, this is the link
+      edDraftURI: 'http://w3c.github.io/aria-practices/',
 
-			// Editors, add as many as you like.
-			// “name” is the only required field.
-			editors : [ {
-				name : "Matt King",
-				mailto : "mck@fb.com",
-				company : "Facebook",
-				companyURI : "http://www.facebook.com/"
-			}, {
-				name : "James Nurthen",
-				mailto : "james.nurthen@oracle.com",
-				company : "Oracle Corporation",
-				companyURI : "http://www.oracle.com/"
-			}, {
-				name : "Michael Cooper",
-				url : 'http://www.w3.org/People/cooper/',
-				mailto : "cooper@w3.org",
-				company : "W3C",
-				companyURI : "http://www.w3.org/"
-			}, {
-				name : "Michiel Bijl",
-				mailto : "mbijl@paciellogroup.com",
-				company : "The Paciello Group",
-				companyURI : "https://www.paciellogroup.com/"
-			}, {
-				name : "Joseph Scheuhammer",
-				company : "Inclusive Design Research Centre, OCAD University",
-				companyURI : "http://idrc.ocad.ca/",
-				note : "Previous Editor"
-			}, {
-				name : "Lisa Pappas",
-				company : "SAS",
-				companyURI : "http://www.sas.com/",
-				note : "Previous Editor"
-			}, {
-				name : "Rich Schwerdtfeger",
-				company : "IBM Corporation",
-				companyURI : "http://ibm.com/",
-				note : "Previous Editor"
-			}, ],
+      // If this is a LCWD, uncomment and set the end of its review period
+      // lcEnd: "2012-02-21",
 
-			// Authors, add as many as you like.
-			// This is optional, uncomment if you have authors as well as editors.
-			// Same format and requirements as editors.
+      // Editors, add as many as you like.
+      // “name” is the only required field.
+      editors: [
+        {
+          name: 'Matt King',
+          mailto: 'mck@fb.com',
+          company: 'Facebook',
+          companyURI: 'http://www.facebook.com/',
+        },
+        {
+          name: 'James Nurthen',
+          mailto: 'james.nurthen@oracle.com',
+          company: 'Oracle Corporation',
+          companyURI: 'http://www.oracle.com/',
+        },
+        {
+          name: 'Michael Cooper',
+          url: 'http://www.w3.org/People/cooper/',
+          mailto: 'cooper@w3.org',
+          company: 'W3C',
+          companyURI: 'http://www.w3.org/',
+        },
+        {
+          name: 'Michiel Bijl',
+          mailto: 'mbijl@paciellogroup.com',
+          company: 'The Paciello Group',
+          companyURI: 'https://www.paciellogroup.com/',
+        },
+        {
+          name: 'Joseph Scheuhammer',
+          company: 'Inclusive Design Research Centre, OCAD University',
+          companyURI: 'http://idrc.ocad.ca/',
+          note: 'Previous Editor',
+        },
+        {
+          name: 'Lisa Pappas',
+          company: 'SAS',
+          companyURI: 'http://www.sas.com/',
+          note: 'Previous Editor',
+        },
+        {
+          name: 'Rich Schwerdtfeger',
+          company: 'IBM Corporation',
+          companyURI: 'http://ibm.com/',
+          note: 'Previous Editor',
+        },
+  ],
 
-			// authors: [
-			//   {
-			//     name: "Your Name",
-			//     url: "http://example.org/",
-			//     company: "Your Company",
-			//     companyURI: "http://example.com/"
-			//   },
-			// ],
+      // Authors, add as many as you like.
+      // This is optional, uncomment if you have authors as well as editors.
+      // Same format and requirements as editors.
 
-			// Spec URLs
-			ariaSpecURLs : {
-				"ED" : "http://w3c.github.io/aria/aria/aria.html",
-				"FPWD" : "http://www.w3.org/TR/wai-aria-1.1/",
-				"WD" : "http://www.w3.org/TR/wai-aria-1.1/",
-				"REC" : "http://www.w3.org/TR/wai-aria/"
-			},
-			accNameURLs : {
-				"ED" : "http://w3c.github.io/aria/accname-aam/accname-aam.html",
-				"WD" : "http://www.w3.org/TR/accname-aam-1.1/",
-				"FPWD" : "http://www.w3.org/TR/accname-aam-1.1/",
-				"REC" : "http://www.w3.org/TR/accname-aam-1.1/"
-			},
-			coreMappingURLs : {
-				"ED" : "http://w3c.github.io/aria/core-aam/core-aam.html",
-				"WD" : "http://www.w3.org/TR/core-aam-1.1/",
-				"FPWD" : "http://www.w3.org/TR/core-aam-1.1/",
-				"REC" : "http://www.w3.org/TR/core-aam-1.1/"
-			},
+      // authors: [
+      //   {
+      //     name: "Your Name",
+      //     url: "http://example.org/",
+      //     company: "Your Company",
+      //     companyURI: "http://example.com/"
+      //   },
+      // ],
 
-			// alternateFormats: [
-			//   {
-			//     uri: 'aria-practices-diff.html',
-			//     label: "Diff from Previous Recommendation"
-			//   },
-			//   {
-			//     uri: 'aria-practices.ps',
-			//     label: "PostScript version"
-			//   },
-			//   {
-			//     uri: 'aria-practices.pdf',
-			//     label: "PDF version"
-			//   }
-			// ],
+      // Spec URLs
+      ariaSpecURLs: {
+        ED: 'http://w3c.github.io/aria/aria/aria.html',
+        FPWD: 'http://www.w3.org/TR/wai-aria-1.1/',
+        WD: 'http://www.w3.org/TR/wai-aria-1.1/',
+        REC: 'http://www.w3.org/TR/wai-aria/',
+      },
+      accNameURLs: {
+        ED: 'http://w3c.github.io/aria/accname-aam/accname-aam.html',
+        WD: 'http://www.w3.org/TR/accname-aam-1.1/',
+        FPWD: 'http://www.w3.org/TR/accname-aam-1.1/',
+        REC: 'http://www.w3.org/TR/accname-aam-1.1/',
+      },
+      coreMappingURLs: {
+        ED: 'http://w3c.github.io/aria/core-aam/core-aam.html',
+        WD: 'http://www.w3.org/TR/core-aam-1.1/',
+        FPWD: 'http://www.w3.org/TR/core-aam-1.1/',
+        REC: 'http://www.w3.org/TR/core-aam-1.1/',
+      },
 
-			// errata: 'http://www.w3.org/2010/02/rdfa/errata.html',
+      // alternateFormats: [
+      //   {
+      //     uri: 'aria-practices-diff.html',
+      //     label: "Diff from Previous Recommendation"
+      //   },
+      //   {
+      //     uri: 'aria-practices.ps',
+      //     label: "PostScript version"
+      //   },
+      //   {
+      //     uri: 'aria-practices.pdf',
+      //     label: "PDF version"
+      //   }
+      // ],
 
-			// name of the WG
-			wg : "Accessible Rich Internet Applications Working Group",
+      // errata: 'http://www.w3.org/2010/02/rdfa/errata.html',
 
-			// URI of the public WG page
-			wgURI : "http://www.w3.org/WAI/ARIA/",
+      // name of the WG
+      wg: 'Accessible Rich Internet Applications Working Group',
 
-			// Name (without the @w3c.org) of the public mailing
-			// to which comments are due.
-			wgPublicList : "public-aria",
+      // URI of the public WG page
+      wgURI: 'http://www.w3.org/WAI/ARIA/',
 
-			// URI of the patent status for this WG, for Rec-track documents
-			// !!!! IMPORTANT !!!!
-			// This is important for Rec-track documents, do not copy a patent URI
-			// from a random document unless you know what you're doing.
-			// If in doubt ask your friendly neighbourhood Team Contact.
-			wgPatentURI : "http://www.w3.org/2004/01/pp-impl/83726/status",
-			maxTocLevel : 4,
+      // Name (without the @w3c.org) of the public mailing
+      // to which comments are due.
+      wgPublicList: 'public-aria',
 
-			localBiblio : biblio,
+      // URI of the patent status for this WG, for Rec-track documents
+      // !!!! IMPORTANT !!!!
+      // This is important for Rec-track documents, do not copy a patent URI
+      // from a random document unless you know what you're doing.
+      // If in doubt ask your friendly neighbourhood Team Contact.
+      wgPatentURI: 'http://www.w3.org/2004/01/pp-impl/83726/status',
+      maxTocLevel: 4,
 
-			preProcess : [ linkCrossReferences ]
-		};
-	</script>
-	<link href="common/css/common.css" rel="stylesheet" type="text/css" />
+      localBiblio: biblio,
+
+      preProcess: [linkCrossReferences],
+    };
+  </script>
+  <link href="common/css/common.css" rel="stylesheet">
 </head>
 <body>
     <section id="abstract">
@@ -739,7 +749,7 @@
             <ul>
               <li>Posts the Popup Help widget. </li>
               <li>Input focus is placed on the first interactive element in the Popup Help. </li>
-              <li class="note">Control F1 is used by IE to "Display a help dialog box". In IE7 and IE8 <code>event.cancelBubble=true;</code> and <code>event.returnValue=false;</code> will allow the re-purposing of keys used by the browser. In the case of IE6, you can not stop the bubble up of keys used by the browser, but can stop the bubble up to the OS. In the case of Firefox and other standard compliant browsers, <code>event.stopPropagation();</code> and <code>event.preventDefault();</code> will re-purpose the keys. </li>
+              <li class="note"><code>event.stopPropagation();</code> and <code>event.preventDefault();</code> will re-purpose the keys. </li>
               <li class="note">With the exception of Control F1 to bring up Popup Help this widget is very similar to <a href="#dialog_modal">Dialog (Modal)</a> and/or <a href="#dialog_nonmodal">Dialog (Non-Modal)</a> and/or <a href="#dialog_tooltip">Dialog (tooltip)</a> described elsewhere in this document. </li>
             </ul>
           </li>
@@ -1864,7 +1874,7 @@ excommunication&lt;/dd&gt;
       <p>
         Search the contents of the dialog container to find the first and last tab focusable elements.
         This can be implemented by walking the DOM tree of the dialog container to find all visible and enabled anchor elements, input elements, and all elements that have a tabindex value greater than or equal to 0.
-        Remember that elements with a tabindex > 0 will appear in the tab order before all other focusable elements in ascending order by tabindex.
+        Remember that elements with a tabindex &gt; 0 will appear in the tab order before all other focusable elements in ascending order by tabindex.
         Store the first and last tab focusable items within variables in the scope of the dialog box code.
       </p>
 
@@ -1964,7 +1974,7 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
 </pre>
     </section>
     <section id="keyboard_js_tips">
-      <H3>Other Keyboard Interface Development Tips</H3>
+      <h3>Other Keyboard Interface Development Tips</h3>
 
       <p class="note">MCK: this section is a collection of keyboard related old content with a yet undecided fate.</p>
 
@@ -2185,12 +2195,12 @@ convey context and then <span class="property-reference">aria-owns</span>:</p>
 <p>First, consider the preferred method for using the W3C DOM to describe the relationship between
   <span class="role-reference">radiogroup</span> and <span class="role-reference">radio</span>  roles for HTML:</p>
 <pre>
-&lt;div id="radio_label">My radio label&lt;/div>
-&lt;ul role="radiogroup" aria-labelledby="radio_label">
-&lt;li role="radio">Item #1&lt;/li>
-&lt;li role="radio">Item #2&lt;/li>
-&lt;li role="radio">Item #3&lt;/li>
-&lt;/ul>
+&lt;div id="radio_label"&gt;My radio label&lt;/div&gt;
+&lt;ul role="radiogroup" aria-labelledby="radio_label"&gt;
+&lt;li role="radio"&gt;Item #1&lt;/li&gt;
+&lt;li role="radio"&gt;Item #2&lt;/li&gt;
+&lt;li role="radio"&gt;Item #3&lt;/li&gt;
+&lt;/ul&gt;
 </pre>
 <p>
 In this example, the elements with <code>role="radio"</code> are child nodes of the parent <code>role="radiogroup"</code> element node.
@@ -2827,7 +2837,7 @@ field. </p>
         behavior of the element. The user agent's default behavior at the
         document element forms the controller. </p>
       <figure id="fig1">
-        <img alt="Accessibility information mapped to a DOM element in the Document Object Model" height="512" longdesc="#desc_fig1" src="img/accessibleelement.png" width="640"/>
+        <img alt="Accessibility information mapped to a DOM element in the Document Object Model" height="512" longdesc="#desc_fig1" src="img/accessibleelement.png" width="640">
         <figcaption>Accessibility Interoperability at a <abbr title="document object model">DOM</abbr> Node without JavaScript</figcaption>
       </figure>
       <p id="desc_fig1">The box between the DOM node
@@ -2840,7 +2850,7 @@ field. </p>
         information, and relations). For HTML and other W3C markup, the
         accessibility information provided solely depends upon what the element's tag name and any accessibility attributes that map to that tag provides. For  example, the accessible role of a table is <code>table</code>. The author provides  an accessible description by assigning a <code>title</code> attribute.</p>
       <p>In contrast, with JavaScript, user actions can trigger updates in the data and presentation, but the default accessibility information available in the element tags is no longer valid.</p>
-      <figure id="fig2"><img alt="DOM Element with JavaScript controller" height="502" longdesc="#desc_fig2" src="img/accessibleJSelement.png" width="476"/>
+      <figure id="fig2"><img alt="DOM Element with JavaScript controller" height="502" longdesc="#desc_fig2" src="img/accessibleJSelement.png" width="476">
         <figcaption>Accessibility
         Interoperability at a DOM Node with JavaScript</figcaption></figure>
       <p id="desc_fig2"> <a href="#fig2"></a> shows the same DOM node provided
@@ -3298,7 +3308,7 @@ field. </p>
       user to view a list of navigation landmarks.
       This tool, shown in <a href="#fig3"></a>, lists the  navigation sections on the page. Keyboard navigation of the list of navigation bars causes the
       corresponding document section to be highlighted. The title for each navigation region displays in the list.</p>
-      <figure id="fig3"><img alt="Table of Contents from Landmarks" height="813" longdesc="#desc_fig3" src="img/navlandmark.jpg" title="Table of Contents from Landmarks" width="877"/>
+      <figure id="fig3"><img alt="Table of Contents from Landmarks" height="813" longdesc="#desc_fig3" src="img/navlandmark.jpg" title="Table of Contents from Landmarks" width="877">
       <figcaption>Table of Contents generated from navigation landmarks in the header</figcaption>
       </figure>
     <p id="desc_fig3"> <a href="#fig3"></a> shows the <a href="http://firefox.cita.uiuc.edu/">accessibility
@@ -3322,7 +3332,7 @@ field. </p>
       W3C standards-based approach to represent this information.</p>
       <figure id="fig4">
       <!-- <embed src="resourcemap.svg" width="810" height="800"> -->
-      <img alt="Sample Semantic Map for Taxonomy" height="564" longdesc="#desc_fig4" src="img/taxonomy.png" title="Sample Semantic Map for Taxonomy" width="500"/>
+      <img alt="Sample Semantic Map for Taxonomy" height="564" longdesc="#desc_fig4" src="img/taxonomy.png" title="Sample Semantic Map for Taxonomy" width="500">
       <figcaption>Example, Partial RDF Map for a possible ButtonUndo role as an extended role to  WAI-ARIA</figcaption>
       </figure>
     <p id="desc_fig4"> <a href="#fig4"></a> shows a basic RDF mapping that
@@ -3362,7 +3372,7 @@ field. </p>
         The user uses arrow keys to navigates the data grid and among the page tabs.
         Using the Tab key, a user navigates between the notebook tab, the edit fields, buttons, and
         the data grid.</p>
-        <figure id="fig5"><img alt="DHTML example of GUI-like notebook tab with a data grid" height="633" longdesc="#desc_fig5" src="img/DHTMLexample.png" title="DHTML Example" width="844"/>
+        <figure id="fig5"><img alt="DHTML example of GUI-like notebook tab with a data grid" height="633" longdesc="#desc_fig5" src="img/DHTMLexample.png" title="DHTML Example" width="844">
         <figcaption>DHTML Example</figcaption>
         </figure>
       <p id="desc_fig5"> Accessible role and state
@@ -3373,7 +3383,7 @@ field. </p>
         the Microsoft Active Accessibility rendering of the new
         accessibility markup provided on the DataGrid page tab which has
         focus.</p>
-        <figure id="fig6"><img alt="MSAA Inspect Tool diagnostics for Notebook page tab" height="647" longdesc="#desc_fig6" src="img/inspectofpagetab.png" title="MSAA Inspect Tool diagnostics for Notebook page tab" width="490"/>
+        <figure id="fig6"><img alt="MSAA Inspect Tool diagnostics for Notebook page tab" height="647" longdesc="#desc_fig6" src="img/inspectofpagetab.png" title="MSAA Inspect Tool diagnostics for Notebook page tab" width="490">
         <figcaption>Microsoft Inspect Tool rendering of the page tab
         DataGrid</figcaption>
         </figure>
@@ -3492,7 +3502,7 @@ field. </p>
   </ol>
     <section id="exampletree">
     <h3>Example: Building a Tree Widget</h3>
-    <img alt="Graphic of an example tree view." class="role-screenshot" src="img/exampletree.png" width="188" height="327" />
+    <img alt="Graphic of an example tree view." class="role-screenshot" src="img/exampletree.png" width="188" height="327">
     <p>A basic tree view allows the user to select different list items and expand and collapse embedded lists. Arrow keys are used to navigate through a tree, including left/right to collapse/expand sub trees. Clicking the visible expander button with the mouse also toggles expansion. Further keyboard implementation details for tree widgets may found in the <a href="#aria_ex"></a>.</p>
     <p>To make this feature accessible we need to:</p>
     <ul>
@@ -3629,7 +3639,7 @@ field. </p>
     <p>WAI-ARIA and WCAG 2.0 coding techniques are useful for developing content and applications that can scale across a variety of user agents, including those on mobile devices. </p>
     <p>For all these reasons, adopting WAI-ARIA makes good technical as well as business sense. For a further illustration, compare how accessibility is achieved with WCAG techniques without and with WAI-ARIA, as shown in <a href="#fig7"></a>. </p>
       <figure id="fig7">
-        <!--<img alt="WAI-ARIA tree widget usability comparison" class="figure" src="img/style_aria.jpg" title="tree widget comparison"/>-->
+        <!--<img alt="WAI-ARIA tree widget usability comparison" class="figure" src="img/style_aria.jpg" title="tree widget comparison">-->
         <p class="ednote">Editor's Note: Figure 7, described as WAI-ARIA tree widget usability comparison, refers to a resource that has not yet been found.</p>
         <figcaption>Usability of Tree Widget Using WAI-ARIA Semantics to Implement WCAG 2.0 Guidelines Compared to WCAG 1.0 Without WAI-ARIA</figcaption>
       </figure>

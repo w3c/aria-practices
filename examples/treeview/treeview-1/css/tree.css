@@ -5,8 +5,27 @@ ul[role="tree"] {
   font-size: 120%;
 }
 
+ul[role="tree"] li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+[role="treeitem"][aria-expanded="false"] + [role="group"] {
+  display: none;
+}
+
+[role="treeitem"][aria-expanded="true"] + [role="group"] {
+  display: block;
+}
+
 [role="treeitem"].doc::before {
-  content: url(../images/file.png);
+  font-family: "Font Awesome 5 Free";
+  content: "\f15c";
+  display: inline-block;
+  padding-right: 2px;
+  padding-left: 5px;
+  vertical-align: middle;
 }
 
 [role="treeitem"][aria-expanded="false"] > ul {
@@ -18,11 +37,21 @@ ul[role="tree"] {
 }
 
 [role="treeitem"][aria-expanded="false"] > span::before {
-  content: url(../images/closed.png);
+  font-family: "Font Awesome 5 Free";
+  content: "\f07b";
+  display: inline-block;
+  padding-right: 3px;
+  vertical-align: middle;
+  font-weight: 900;
 }
 
 [role="treeitem"][aria-expanded="true"] > span::before {
-  content: url(../images/open.png);
+  font-family: "Font Awesome 5 Free";
+  content: "\f07c";
+  display: inline-block;
+  padding-right: 3px;
+  vertical-align: middle;
+  font-weight: 900;
 }
 
 [role="treeitem"],
@@ -30,7 +59,6 @@ ul[role="tree"] {
   width: 9em;
   margin: 0;
   padding: 0.125em;
-  border: 2px transparent solid;
   display: block;
 }
 
@@ -38,6 +66,11 @@ ul[role="tree"] {
    Keyboard focus is styled with the following CSS */
 [role="treeitem"]:focus {
   outline: 0;
+}
+
+[role="treeitem"][aria-selected="true"] {
+  padding-left: 4px;
+  border-left: 5px solid #005a9c;
 }
 
 [role="treeitem"].focus,
@@ -48,5 +81,7 @@ ul[role="tree"] {
 
 [role="treeitem"].hover,
 [role="treeitem"] span:hover {
+  padding-left: 4px;
   background-color: #ddd;
+  border-left: 5px solid #333;
 }

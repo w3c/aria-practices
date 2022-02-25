@@ -1,109 +1,68 @@
 {
+  "extends": ["eslint:recommended", "plugin:jsdoc/recommended", "plugin:prettier/recommended"],
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
   "rules": {
-    "no-with": 2,
-    "no-mixed-spaces-and-tabs": 2,
-    "no-multiple-empty-lines": 2,
-    "no-multi-spaces": 0,
-    "operator-linebreak": [
-      2,
-      "after"
-    ],
-    "quote-props": 0,
-    "key-spacing": [
-      2,
-      {
-        "afterColon": true
+    "jsdoc/no-undefined-types": 0,
+    "jsdoc/require-jsdoc": 0,
+    "jsdoc/require-param-description": 0,
+    "jsdoc/require-param-type": 0,
+    "jsdoc/require-returns-description": 0,
+    "strict": [2, "global"],
+    "no-console": "error"
+  },
+  "overrides": [
+    {
+      "files": "test/**/*.js",
+      "parserOptions": {
+        "ecmaVersion": 8
+      },
+      "extends": ["plugin:ava/recommended"],
+      "env": {
+        "node": true
+      },
+      "rules": {
+        "no-restricted-properties": [
+          2,
+          {
+            "property": "findElements",
+            "message": "Please use t.context.queryElements()."
+          }
+        ]
       }
-    ],
-    "space-unary-ops": [
-      2,
-      {
-        "words": false,
-        "nonwords": false
+    },
+    {
+      "files": "scripts/*.js",
+      "env": {
+        "node": true
+      },
+      "parser": "@babel/eslint-parser",
+      "parserOptions": {
+        "requireConfigFile": false
+      },
+      "rules": {
+        "no-console": 0
       }
-    ],
-    "no-spaced-func": 2,
-    "array-bracket-spacing": [
-      2,
-      "never",
-      {
-        "singleValue": true
+    },
+    {
+      "files": [
+        "**/*.html"
+      ],
+      "plugins":[
+        "html"
+      ],
+      "globals": {
+        "sourceCode": true
+      },
+      "rules": {
+        "strict": 0,
+        "no-unused-vars":  ["error", { "varsIgnorePattern": "SkipToConfig" }]
       }
-    ],
-    "space-in-parens": [
-      2,
-      "never"
-    ],
-    "comma-dangle": [
-      2,
-      "never"
-    ],
-    "no-trailing-spaces": 2,
-    "yoda": [
-      2,
-      "never"
-    ],
-    "camelcase": [
-      2,
-      {
-        "properties": "always"
-      }
-    ],
-    "comma-style": [
-      2,
-      "last"
-    ],
-    "curly": [
-      2,
-      "all"
-    ],
-    "dot-notation": 2,
-    "brace-style": [
-      2,
-      "stroustrup",
-      {
-        "allowSingleLine": true
-      }
-    ],
-    "eol-last": 2,
-    "wrap-iife": 2,
-    "semi": [
-      2,
-      "always"
-    ],
-    "space-infix-ops": 2,
-    "keyword-spacing": [
-      2,
-      {}
-    ],
-    "spaced-comment": [
-      2,
-      "always"
-    ],
-    "space-before-blocks": [
-      2,
-      "always"
-    ],
-    "space-before-function-paren": [
-      2,
-      "always"
-    ],
-    "consistent-this": [
-      2,
-      "self"
-    ],
-    "indent": [
-      2,
-      2,
-      {
-        "SwitchCase": 1
-      }
-    ],
-    "quotes": [
-      2,
-      "single"
-    ],
-    "no-eval": "error",
-    "no-implied-eval": "error"
-  }
+    }
+  ]
 }

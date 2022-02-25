@@ -3,20 +3,26 @@
   "version": "0.0.0",
   "description": "This repository maintains the WAI-ARIA Authoring Practices Guide. This is developed by the [ARIA Working Group](http://www.w3.org/WAI/ARIA/). The staff contact is [Michael Cooper](http://www.w3.org/People/cooper/). Please do not provide commit access to this repository without coordination.",
   "main": "index.js",
+  "private": true,
   "directories": {
     "example": "examples"
   },
   "scripts": {
     "fix": "npm run lint:es -- --fix && npm run lint:css -- --fix",
-    "lint": "npm run lint:es && npm run lint:css && npm run vnu-jar",
+    "htmlhint": "htmlhint \"**/*.html\" \"**/*.template\" --ignore \"common/**/*.html\" --format unix",
+    "lint": "npm run lint:es && npm run lint:css && npm run lint:html && npm run lint:spelling",
     "lint:css": "stylelint **/*.css",
-    "lint:es": "eslint .",
+    "lint:es": "eslint . --report-unused-disable-directives",
     "lint:js": "npm run lint:es",
-    "lint:html": "npm run vnu-jar",
-    "regression": "ava test/tests",
+    "lint:html": "npm run htmlhint && npm run vnu-jar",
+    "lint:spelling": "cspell \"**/*.*\"",
+    "reference-tables": "node scripts/reference-tables.js",
+    "regression": "ava --timeout=1m",
     "regression-report": "node test/util/report",
     "test": "npm run lint && npm run regression",
-    "vnu-jar": "java -jar node_modules/vnu-jar/build/dist/vnu.jar --errors-only --filterfile .vnurc --no-langdetect --skip-non-html *.html examples/"
+    "vnu-jar": "java -jar node_modules/vnu-jar/build/dist/vnu.jar --filterfile .vnurc --no-langdetect --skip-non-html aria-practices.html examples/",
+    "create-gh-project": "node ./scripts/create-gh-project.js",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -29,22 +35,30 @@
   },
   "homepage": "https://github.com/w3c/aria-practices#readme",
   "devDependencies": {
-    "ava": "^0.25.0",
-    "cheerio": "^1.0.0-rc.2",
-    "eslint": "^4.19.1",
-    "geckodriver": "^1.16.2",
-    "glob": "^7.1.4",
-    "husky": "^1.2.0",
-    "lint-staged": "^8.1.6",
-    "selenium-webdriver": "^4.0.0-alpha.1",
-    "stylelint": "^9.8.0",
-    "stylelint-config-standard": "^18.2.0",
-    "vnu-jar": "^18.7.23"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "@babel/core": "^7.17.5",
+    "@babel/eslint-parser": "^7.17.0",
+    "ava": "^4.0.1",
+    "cheerio": "^1.0.0-rc.10",
+    "cspell": "^5.18.5",
+    "eslint": "^8.9.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-ava": "^13.2.0",
+    "eslint-plugin-html": "^6.2.0",
+    "eslint-plugin-jsdoc": "^37.9.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "geckodriver": "^3.0.1",
+    "glob": "^7.2.0",
+    "htmlhint": "^1.1.2",
+    "htmlparser2": "^7.2.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.4",
+    "prettier": "^2.5.1",
+    "selenium-webdriver": "^4.1.1",
+    "stylelint": "^14.1.0",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-standard": "^24.0.0",
+    "stylelint-prettier": "^2.0.0",
+    "vnu-jar": "^21.2.5"
   },
   "lint-staged": {
     "*.css": [
@@ -54,6 +68,20 @@
     "*.js": [
       "eslint --fix",
       "git add"
+    ],
+    "examples/**/*.html": [
+      "npm run reference-tables",
+      "git add examples/index.html"
     ]
+  },
+  "ava": {
+    "files": [
+      "test/tests/*"
+    ]
+  },
+  "dependencies": {
+    "@octokit/rest": "^18.12.0",
+    "dotenv": "^16.0.0",
+    "node-html-parser": "^5.2.0"
   }
 }

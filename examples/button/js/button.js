@@ -1,14 +1,16 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   JS code for the button design pattern
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   JS code for the button design pattern
+ */
 
-var ICON_MUTE_URL = 'images/mute.svg#icon-mute';
-var ICON_SOUND_URL = 'images/mute.svg#icon-sound';
+'use strict';
 
-function init () {
+var ICON_MUTE_URL = '#icon-mute';
+var ICON_SOUND_URL = '#icon-sound';
+
+function init() {
   var actionButton = document.getElementById('action');
   actionButton.addEventListener('click', activateActionButton);
   actionButton.addEventListener('keydown', actionButtonKeydownHandler);
@@ -25,7 +27,7 @@ function init () {
  *
  * @param {KeyboardEvent} event
  */
-function actionButtonKeydownHandler (event) {
+function actionButtonKeydownHandler(event) {
   // The action button is activated by space on the keyup event, but the
   // default action for space is already triggered on keydown. It needs to be
   // prevented to stop scrolling the page before activating the button.
@@ -44,14 +46,14 @@ function actionButtonKeydownHandler (event) {
  *
  * @param {KeyboardEvent} event
  */
-function actionButtonKeyupHandler (event) {
+function actionButtonKeyupHandler(event) {
   if (event.keyCode === 32) {
     event.preventDefault();
     activateActionButton();
   }
 }
 
-function activateActionButton () {
+function activateActionButton() {
   window.print();
 }
 
@@ -61,7 +63,7 @@ function activateActionButton () {
  *
  * @param {MouseEvent} event
  */
-function toggleButtonClickHandler (event) {
+function toggleButtonClickHandler(event) {
   if (
     event.currentTarget.tagName === 'button' ||
     event.currentTarget.getAttribute('role') === 'button'
@@ -75,11 +77,10 @@ function toggleButtonClickHandler (event) {
  *
  * @param {KeyboardEvent} event
  */
-function toggleButtonKeydownHandler (event) {
+function toggleButtonKeydownHandler(event) {
   if (event.keyCode === 32) {
     event.preventDefault();
-  }
-  else if (event.keyCode === 13) {
+  } else if (event.keyCode === 13) {
     event.preventDefault();
     toggleButtonState(event.currentTarget);
   }
@@ -90,7 +91,7 @@ function toggleButtonKeydownHandler (event) {
  *
  * @param {KeyboardEvent} event
  */
-function toggleButtonKeyupHandler (event) {
+function toggleButtonKeyupHandler(event) {
   if (event.keyCode === 32) {
     event.preventDefault();
     toggleButtonState(event.currentTarget);
@@ -102,13 +103,16 @@ function toggleButtonKeyupHandler (event) {
  *
  * @param {HTMLElement} button
  */
-function toggleButtonState (button) {
+function toggleButtonState(button) {
   var isAriaPressed = button.getAttribute('aria-pressed') === 'true';
 
   button.setAttribute('aria-pressed', isAriaPressed ? 'false' : 'true');
 
   var icon = button.querySelector('use');
-  icon.setAttribute('xlink:href', isAriaPressed ? ICON_SOUND_URL : ICON_MUTE_URL);
+  icon.setAttribute(
+    'xlink:href',
+    isAriaPressed ? ICON_SOUND_URL : ICON_MUTE_URL
+  );
 }
 
 window.onload = init;

@@ -1,26 +1,27 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   Treeitem.js
-*
-*   Desc:   Treeitem widget that implements ARIA Authoring Practices
-*           for a tree being used as a file viewer
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   Treeitem.js
+ *
+ *   Desc:   Treeitem widget that implements ARIA Authoring Practices
+ *           for a tree being used as a file viewer
+ */
+
+'use strict';
 
 /*
-*   @constructor
-*
-*   @desc
-*       Treeitem object for representing the state and user interactions for a
-*       treeItem widget
-*
-*   @param node
-*       An element with the role=tree attribute
-*/
+ *   @constructor
+ *
+ *   @desc
+ *       Treeitem object for representing the state and user interactions for a
+ *       treeItem widget
+ *
+ *   @param node
+ *       An element with the role=tree attribute
+ */
 
 var Treeitem = function (node, treeObj, group) {
-
   // Check whether node is a DOM element
   if (typeof node !== 'object') {
     return;
@@ -47,7 +48,6 @@ var Treeitem = function (node, treeObj, group) {
   var elem = node.firstElementChild;
 
   while (elem) {
-
     if (elem.tagName.toLowerCase() == 'ul') {
       elem.setAttribute('role', 'group');
       this.isExpandable = true;
@@ -67,7 +67,7 @@ var Treeitem = function (node, treeObj, group) {
     LEFT: 37,
     UP: 38,
     RIGHT: 39,
-    DOWN: 40
+    DOWN: 40,
   });
 };
 
@@ -90,34 +90,28 @@ Treeitem.prototype.init = function () {
 };
 
 Treeitem.prototype.isExpanded = function () {
-
   if (this.isExpandable) {
     return this.domNode.getAttribute('aria-expanded') === 'true';
   }
 
   return false;
-
 };
 
 /* EVENT HANDLERS */
 
 Treeitem.prototype.handleKeydown = function (event) {
+  var flag = false,
+    char = event.key;
 
-  var tgt = event.currentTarget,
-    flag = false,
-    char = event.key,
-    clickEvent;
-
-  function isPrintableCharacter (str) {
+  function isPrintableCharacter(str) {
     return str.length === 1 && str.match(/\S/);
   }
 
-  function printableCharacter (item) {
+  function printableCharacter(item) {
     if (char == '*') {
       item.tree.expandAllSiblingItems(item);
       flag = true;
-    }
-    else {
+    } else {
       if (isPrintableCharacter(char)) {
         item.tree.setFocusByFirstCharacter(item, char);
         flag = true;
@@ -133,28 +127,20 @@ Treeitem.prototype.handleKeydown = function (event) {
     if (isPrintableCharacter(char)) {
       printableCharacter(this);
     }
-  }
-  else {
+  } else {
     switch (event.keyCode) {
-      case this.keyCode.SPACE:
       case this.keyCode.RETURN:
-        // Create simulated mouse event to mimic the behavior of ATs
-        // and let the event handler handleClick do the housekeeping.
-        try {
-          clickEvent = new MouseEvent('click', {
-            'view': window,
-            'bubbles': true,
-            'cancelable': true
-          });
+      case this.keyCode.SPACE:
+        var treeitem = event.currentTarget;
+        var label = treeitem.getAttribute('aria-label');
+        if (!label) {
+          var child = treeitem.firstElementChild;
+          label = child ? child.innerText : treeitem.innerText;
         }
-        catch (err) {
-          if (document.createEvent) {
-            // DOM Level 3 for IE 9+
-            clickEvent = document.createEvent('MouseEvents');
-            clickEvent.initEvent('click', true, true);
-          }
-        }
-        tgt.dispatchEvent(clickEvent);
+        document.getElementById('last_action').value = label.trim();
+
+        if (!this.isExpandable) this.tree.setFocusToItem(this);
+        this.tree.setSelectedToItem(this);
         flag = true;
         break;
 
@@ -172,8 +158,7 @@ Treeitem.prototype.handleKeydown = function (event) {
         if (this.isExpandable) {
           if (this.isExpanded()) {
             this.tree.setFocusToNextItem(this);
-          }
-          else {
+          } else {
             this.tree.expandTreeitem(this);
           }
         }
@@ -184,8 +169,7 @@ Treeitem.prototype.handleKeydown = function (event) {
         if (this.isExpandable && this.isExpanded()) {
           this.tree.collapseTreeitem(this);
           flag = true;
-        }
-        else {
+        } else {
           if (this.inGroup) {
             this.tree.setFocusToParentItem(this);
             flag = true;
@@ -209,7 +193,6 @@ Treeitem.prototype.handleKeydown = function (event) {
         }
         break;
     }
-
   }
 
   if (flag) {
@@ -222,18 +205,17 @@ Treeitem.prototype.handleClick = function (event) {
   if (this.isExpandable) {
     if (this.isExpanded()) {
       this.tree.collapseTreeitem(this);
-    }
-    else {
+    } else {
       this.tree.expandTreeitem(this);
     }
     event.stopPropagation();
-  }
-  else {
+  } else {
     this.tree.setFocusToItem(this);
   }
+  this.tree.setSelectedToItem(this);
 };
 
-Treeitem.prototype.handleFocus = function (event) {
+Treeitem.prototype.handleFocus = function () {
   var node = this.domNode;
   if (this.isExpandable) {
     node = node.firstElementChild;
@@ -241,7 +223,7 @@ Treeitem.prototype.handleFocus = function (event) {
   node.classList.add('focus');
 };
 
-Treeitem.prototype.handleBlur = function (event) {
+Treeitem.prototype.handleBlur = function () {
   var node = this.domNode;
   if (this.isExpandable) {
     node = node.firstElementChild;

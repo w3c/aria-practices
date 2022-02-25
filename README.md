@@ -1,11 +1,9 @@
-[![Build Status](https://travis-ci.com/w3c/aria-practices.svg?branch=master)](https://travis-ci.com/w3c/aria-practices)
-
 # WAI-ARIA: Authoring Practices Guide
 
 This repository maintains the WAI-ARIA Authoring Practices Guide.
 
-* [Latest editor's draft built from master branch](http://w3c.github.io/aria-practices/)
-* [Most recent version published on w3.org](https://www.w3.org/TR/wai-aria-practices-1.1/)
+* [Latest editor's draft built from main branch](http://w3c.github.io/aria-practices/)
+* [Most recent version published on w3.org](https://www.w3.org/TR/wai-aria-practices/)
 * Developed by the [Authoring Practices Task Force](https://www.w3.org/WAI/ARIA/task-forces/practices/) of the [ARIA Working Group](http://www.w3.org/WAI/ARIA/).
 * Staff contact: [Michael Cooper](http://www.w3.org/People/cooper/).
 
@@ -37,12 +35,14 @@ Pull requests that contain linting errors will not be merged until the errors ar
 1. Open the directory that contains your `aria-practices` repository in a terminal
 1. Run `npm install`
 
+The HTML validator also requires the installation of a JDK in order to run. If you don't already have a JDK installed, [download the latest JDK from Oracle](https://www.oracle.com/technetwork/java/javase/downloads/index.html).
+
 It is also highly recommended that you use a code editor that supports these tools and [EditorConfig](http://editorconfig.org/).
 
 #### HTML
 
 HTML is validated against the [NU HTML Validator](https://github.com/validator/validator).
-Should a warning or error occur because a future ARIA feature is not yet implemented, it will be added to the [the .vnurc file](.vnurc), allowing the error to pass through.
+Should a warning or error occur because a future ARIA feature is not yet implemented, it will be added to the [.vnurc file](.vnurc), allowing the error to pass through.
 
 Run locally:
 
@@ -77,7 +77,7 @@ npm run lint:js
 ### Test and fix your code
 
 1. Open a terminal window to the directory that contains the `aria-practices` repository
-1. The repository has a script defined that will test all JavaScript in the examples directory. To run it, execute the command `npm test`.
+1. The repository has a script defined that will test all JavaScript in the examples directory. To run it, execute the command `npm test`. Note: this may take a few minutes to run and will open several browser windows during the test that will gain focus.
 1. Many errors can be fixed automatically with the command `npm run fix`.
 1. After running fix, test again to see what you need to fix manually.
 
@@ -99,7 +99,7 @@ offending character is indicated by the number `8` after the colon. Change the
 variable `value_nodes` to `valueNodes` in your source file to eliminate this
 error.
 
-To see the complete list of style rules that are applied by ESLint, review the [.eslint.json](https://github.com/w3c/aria-practices/blob/master/.eslint.json) file in the root of the project.
+To see the complete list of style rules that are applied by ESLint, review the [.eslintrc.json](.eslintrc.json) file in the root of the project.
 
 ### Editorial documentation
 
@@ -112,7 +112,7 @@ for this specification.
 
 Note: These instructions are for editors of the APG who have repository commit access.
 
-1. Go to the [editors draft on rawgit](https://cdn.rawgit.com/w3c/aria-practices/master/aria-practices.html)
+1. Go to the [editors draft on rawgit](https://cdn.rawgit.com/w3c/aria-practices/main/aria-practices.html)
 2. Press the ReSpec button (top right hand corner)
 3. Select 'Save snapshot'
 4. Select 'Save as HTML'
@@ -121,3 +121,18 @@ Note: These instructions are for editors of the APG who have repository commit a
 7. Overwrite contents of `index.html` with the snapshot copy you saved
 8. Commit and push changes
 9. Review changes at [GitHub pages APG snapshot](http://w3c.github.io/aria-practices/)
+
+## ARIA Roles, Properties and States Referenced in Guidance and Examples(Also known as APG Coverage Report)
+
+[APG Coverage Report](https://raw.githack.com/w3c/aria-practices/coverage/coverage/index.html) includes information on number of guidance and example references in the WAI-ARIA Authoring Practices for each ARIA role, property and state. 
+
+As of January 11, 2022, APG has examples of 
+
+1. CSV Files of Role, Properties and States Coverage
+2. Roles with no Guidance or Examples (29)
+3. Roles with at Least One Guidance or Example (13)
+4. Roles with More than One Guidance or Example (36)
+5. Properties and States with no Examples (12)
+6. Properties and States with One Examples (8)
+7. Properties and States with More than One Example (28)
+8. Example Coding Practices

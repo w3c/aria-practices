@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<title>Example Disclosure for Navigation Menus | WAI-ARIA Authoring
-  Practices 1.1</title>
+<meta charset="utf-8">
+<title>Example Disclosure Navigation Menu | WAI-ARIA Authoring Practices 1.2</title>
 
   <!--  Core js and css shared by all examples; do not modify when using this template. -->
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -14,7 +13,7 @@
 
   <!--  js and css for the disclosure example. -->
   <link href="css/disclosure-navigation.css" rel="stylesheet">
-  <script src="js/disclosureMenu.js" type="text/javascript"></script>
+  <script src="js/disclosureMenu.js"></script>
 
 </head>
 <body>
@@ -27,19 +26,25 @@
     </ul>
   </nav>
   <main>
-  <h1>Example Disclosure for Navigation Menus</h1>
-  <p>
-    The following example demonstrates using the
-    <a href="../../#disclosure">disclosure design pattern</a>
-    to show and hide dropdown lists of links in a navigation bar for a mythical university web site.
-    Each disclosure button represents a section of the web site, and expanding it shows a list of links to pages within that section.
-  </p>
-  <p><strong>Note:</strong> Although this example uses the word <q>menu</q> in the colloquial sense to refer to a set of navigation links, it does not use the WAI-ARIA <code>menu</code> role.</p>
-  <p>Similar examples include:</p>
+    <h1>Example Disclosure Navigation Menu</h1>
+    <div class="advisement">
+      <p>
+        Although this example uses the word "menu" in the colloquial sense to refer to a set of navigation links, it does not use the WAI-ARIA menu role.
+        That is because the menu and menubar roles require complex functionality, such as <a href="../../#kbd_general_within">composite widget focus management</a> and first-character navigation, that is unnecessary for typical site navigation.
+      </p>
+    </div>
+    <p>
+      The following example demonstrates using the
+      <a href="../../#disclosure">disclosure design pattern</a>
+      to show and hide dropdown lists of links in a navigation bar for a mythical university web site.
+      Each disclosure button represents a section of the web site, and expanding it shows a list of links to pages within that section.
+    </p>
+    <p>Similar examples include:</p>
   <ul>
     <li><a href="disclosure-faq.html">Example Disclosure (Show/Hide) for Answers to Frequently Asked Questions</a></li>
-    <li><a href="disclosure-img-long-description.html">Example Disclosure (Show/Hide) for an Image Description</a></li>
-    <li><a href="../menubar/menubar-1/menubar-1.html">Navigation Menubar Example</a></li> 
+    <li><a href="disclosure-image-description.html">Example Disclosure (Show/Hide) for an Image Description</a></li>
+    <li><a href="disclosure-navigation-hybrid.html">Example Disclosure Navigation Menu with Top-Level Links</a></li>
+    <li><a href="../menubar/menubar-navigation.html">Navigation Menubar Example</a></li>
   </ul>
   <h2>Example Usage Options</h2>
   <p>
@@ -48,17 +53,19 @@
   </p>
   <label for="arrow-behavior-switch">
     <input type="checkbox" id="arrow-behavior-switch" checked>
-    Include optional support for arrow keys, <kbd>Home</kbd>, and <kbd>End</kbd> 
+    Include optional support for arrow keys, <kbd>Home</kbd>, and <kbd>End</kbd>
   </label>
-  
+
   <section>
-    <h2 id="ex_label">Example</h2>
+    <div class="example-header">
+      <h2 id="ex_label">Example</h2>
+    </div>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of" ></div>
     <div id="ex1">
       <nav aria-label="Mythical University">
         <ul id="exTest" class="disclosure-nav">
           <li>
-            <button aria-expanded="true" aria-controls="id_about_menu">About</button>
+            <button type="button" aria-expanded="true" aria-controls="id_about_menu">About</button>
             <ul id="id_about_menu">
               <li>
                 <a href="#mythical-page-content">Overview</a>
@@ -75,7 +82,7 @@
             </ul>
           </li>
           <li>
-            <button aria-expanded="true" aria-controls="id_admissions_menu">Admissions</button>
+            <button type="button" aria-expanded="true" aria-controls="id_admissions_menu">Admissions</button>
             <ul id="id_admissions_menu">
               <li>
                 <a href="#mythical-page-content">Apply</a>
@@ -98,7 +105,7 @@
             </ul>
           </li>
           <li>
-            <button aria-expanded="true" aria-controls="id_academics_menu">Academics</button>
+            <button type="button" aria-expanded="true" aria-controls="id_academics_menu">Academics</button>
             <ul id="id_academics_menu">
               <li>
                 <a href="#mythical-page-content">Colleges &amp; Schools</a>
@@ -128,7 +135,7 @@
           </li>
         </ul>
       </nav>
-      <div id="mythical-page-content" class="disclosure-pagecontent" tabindex="-1" role="region" aria-label="Mythical University sample page content">
+      <div id="mythical-page-content" class="disclosure-page-content" tabindex="-1" role="region" aria-label="Mythical University sample page content">
         <h3 id="mythical-page-heading">Mythical University</h3>
         <p>Sample content section. Activating a link above will update and navigate to this region.</p>
       </div>
@@ -344,31 +351,31 @@
   <section>
     <h2>Javascript and CSS Source Code</h2>
     <!--  After the js and css files are named with the name of this example, change the href and text of the following 2 links to refer to the appropriate js and css files.  -->
-    <ul>
+    <ul id="css_js_files">
       <li>
         CSS:
-        <a href="css/disclosure-navigation.css" type="tex/css">disclosure-navigation.css</a>
+        <a href="css/disclosure-navigation.css">disclosure-navigation.css</a>
       </li>
       <li>
         Javascript:
-        <a href="js/disclosureMenu.js" type="text/javascript">disclosureMenu.js</a>
+        <a href="js/disclosureMenu.js">disclosureMenu.js</a>
       </li>
     </ul>
   </section>
 
   <section>
     <h2 id="sc1_label">HTML Source Code</h2>
-    <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of" ></div>
+    <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
     <pre><code id="sc1"></code></pre>
-    <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of" ></div>
+    <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
     <script>
-      sourceCode.add('sc1', 'ex1');
+      sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
       sourceCode.make();
     </script>
   </section>
   </main>
   <nav>
-    <a href="../../#disclosure">Disclosure (Show/Hide) Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../../#disclosure">Disclosure (Show/Hide) Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
   </nav>
 </body>
 </html>
