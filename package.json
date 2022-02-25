@@ -40,7 +40,7 @@
     "ava": "^3.15.0",
     "cheerio": "^1.0.0-rc.10",
     "cspell": "^5.18.0",
-    "eslint": "^8.3.0",
+    "eslint": "^8.9.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-ava": "^13.2.0",
     "eslint-plugin-html": "^6.2.0",
