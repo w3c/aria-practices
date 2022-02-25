@@ -21,38 +21,38 @@
 
 .rating-radio svg .star {
   stroke-width: 2px;
-  stroke: currentColor;
+  stroke: currentcolor;
   fill-opacity: 0;
 }
 
 .rating-radio svg .star-none {
   stroke-width: 3px;
-  stroke: currentColor;
+  stroke: currentcolor;
   fill-opacity: 0;
 }
 
 .rating-radio[data-rating-value="5"] svg .star {
-  fill: currentColor;
+  fill: currentcolor;
   fill-opacity: 1;
 }
 
 .rating-radio[data-rating-value="1"] svg .star-1 .star {
-  fill: currentColor;
+  fill: currentcolor;
   fill-opacity: 1;
 }
 
 .rating-radio[data-rating-value="2"] svg .star-2 .star {
-  fill: currentColor;
+  fill: currentcolor;
   fill-opacity: 1;
 }
 
 .rating-radio[data-rating-value="3"] svg .star-3 .star {
-  fill: currentColor;
+  fill: currentcolor;
   fill-opacity: 1;
 }
 
 .rating-radio[data-rating-value="4"] svg .star-4 .star {
-  fill: currentColor;
+  fill: currentcolor;
   fill-opacity: 1;
 }
 
@@ -68,7 +68,7 @@
 
 .rating-radio svg g:focus .focus-ring {
   stroke-width: 2px;
-  stroke: currentColor;
+  stroke: currentcolor;
 }
 
 .rating-radio:hover {

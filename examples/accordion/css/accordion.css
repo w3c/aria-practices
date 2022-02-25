@@ -78,7 +78,7 @@ button {
 }
 
 .accordion-icon {
-  border: solid currentColor;
+  border: solid currentcolor;
   border-width: 0 2px 2px 0;
   height: 0.5rem;
   pointer-events: none;
