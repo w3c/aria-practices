@@ -31,7 +31,7 @@ jobs:
           cache: npm
 
       - name: Run wai-trigger-pr script
-        uses: actions/github-script@v6
+        uses: actions/github-script@v5
         env:
           APG_BRANCH: ${{ github.head_ref }}
           APG_SHA: ${{ github.event.pull_request.head.sha }}

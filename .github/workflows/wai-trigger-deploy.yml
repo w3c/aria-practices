@@ -24,7 +24,7 @@ jobs:
           cache: npm
 
       - name: Run wai-trigger-deploy script
-        uses: actions/github-script@v6
+        uses: actions/github-script@v5
         with:
           github-token: ${{ secrets.GH_TOKEN }}
           script: |
