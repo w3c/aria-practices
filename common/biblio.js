@@ -4,7 +4,7 @@ respecConfig.localBiblio = {
 		"aliasOf": "ACCNAME-AAM-1.1",
 	},
 	"ARIA-PRACTICES": {
-		"aliasOf": "WAI-ARIA-PRACTICES-1.1",
+		"aliasOf": "WAI-ARIA-PRACTICES-1.2",
 	},
 	"CORE-AAM": {
 		"aliasOf": "CORE-AAM-1.1",
