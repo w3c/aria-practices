@@ -127,10 +127,11 @@
         <h2>Accessibility Features</h2>
         <ul>
           <li>Since the tabpanels do not contain any focusable elements, <code>tabindex="0"</code> is used to include the tabpanel in the tab sequence of the page.</li>
-          <li>To make the selected tab and the tab with focus discernable to people with visual impairments using operating system high contrast modes:
+          <li>To ensure people who rely on browser or operating system high contrast settings can both distinguish the active (selected) tab from other tabs and perceive keyboard focus:
             <ul>
-              <li>The selected tab has a 2 pixel border to make it twice as wide as the 1 pixel left, right and top borders of the other tabs.   The selected tab also does not have a visible bottom border.</li>
-              <li>Each element with the tab role has a child <code>span</code> element used for creating a focus outline around the tab label.  When a tab has focus there is 2 pixels of spacing between the focus outline and the tab border.</li>
+              <li>The active tab has a 2 pixel border on its left, top, and right sides while the names of inactive tabs have a 1 pixel border. NOTE: The active tab visually appears to have no bottom border and the inactive tabs visually appear to have a 2 pixel bottom border.</li>
+              <li>The focus ring is drawn with a CSS border on a child <code>span</code> element of the tab element. This focus span is separated from the tab border by 2 pixels of space to ensure focus and selection are separately perceivable. Note that when a tab element is focused, the outline of the tab element itself is set to 0 so that only one focus ring is displayed.</li>
+              <li>Because transparent borders are visible on some systems with high contrast enabled, only the focused <code>span</code> element has a visible border. When <code>span</code> elements are not indicating focus, they have a 0-width border and additional padding equal in width to the border that is used to indicate focus.</li>
             </ul>
           </li>
         </ul>
