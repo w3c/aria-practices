@@ -243,7 +243,7 @@ DatePickerDialog.prototype.moveFocusToDay = function (day) {
 
   if (
     d.getMonth() != this.focusDay.getMonth() ||
-    d.getYear() != this.focusDay.getYear()
+    d.getFullYear() != this.focusDay.getFullYear()
   ) {
     this.updateGrid();
   }

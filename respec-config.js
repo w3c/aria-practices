@@ -42,7 +42,7 @@ var respecConfig = {
     },
     {
       name: 'JaEun Jemma Ku',
-      mailto: 'jku@illinois.edu',
+      mailto: 'jku@uic.edu',
       company: 'University of Illinois',
       companyURI: 'https://illinois.edu/',
       w3cid: 74097,

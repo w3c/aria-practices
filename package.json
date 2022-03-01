@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "This repository maintains the WAI-ARIA Authoring Practices Guide. This is developed by the [ARIA Working Group](http://www.w3.org/WAI/ARIA/). The staff contact is [Michael Cooper](http://www.w3.org/People/cooper/). Please do not provide commit access to this repository without coordination.",
   "main": "index.js",
+  "private": true,
   "directories": {
     "example": "examples"
   },
@@ -21,9 +22,7 @@
     "test": "npm run lint && npm run regression",
     "vnu-jar": "java -jar node_modules/vnu-jar/build/dist/vnu.jar --filterfile .vnurc --no-langdetect --skip-non-html aria-practices.html examples/",
     "create-gh-project": "node ./scripts/create-gh-project.js",
-    "prepare": "husky install",
-    "prepublishOnly": "pinst --disable",
-    "postpublish": "pinst --enable"
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -36,26 +35,25 @@
   },
   "homepage": "https://github.com/w3c/aria-practices#readme",
   "devDependencies": {
-    "@babel/core": "^7.16.0",
-    "@babel/eslint-parser": "^7.16.3",
-    "ava": "^3.15.0",
+    "@babel/core": "^7.17.5",
+    "@babel/eslint-parser": "^7.17.0",
+    "ava": "^4.0.1",
     "cheerio": "^1.0.0-rc.10",
-    "cspell": "^5.13.0",
-    "eslint": "^8.3.0",
+    "cspell": "^5.18.5",
+    "eslint": "^8.9.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-ava": "^13.1.0",
+    "eslint-plugin-ava": "^13.2.0",
     "eslint-plugin-html": "^6.2.0",
-    "eslint-plugin-jsdoc": "^37.0.3",
+    "eslint-plugin-jsdoc": "^37.9.4",
     "eslint-plugin-prettier": "^4.0.0",
-    "geckodriver": "^2.0.4",
+    "geckodriver": "^3.0.1",
     "glob": "^7.2.0",
-    "htmlhint": "^0.16.1",
+    "htmlhint": "^1.1.2",
     "htmlparser2": "^7.2.0",
     "husky": "^7.0.4",
-    "lint-staged": "^12.1.2",
-    "pinst": "^2.1.6",
-    "prettier": "^2.4.1",
-    "selenium-webdriver": "^4.1.0",
+    "lint-staged": "^12.3.4",
+    "prettier": "^2.5.1",
+    "selenium-webdriver": "^4.1.1",
     "stylelint": "^14.1.0",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-standard": "^24.0.0",
@@ -83,7 +81,7 @@
   },
   "dependencies": {
     "@octokit/rest": "^18.12.0",
-    "dotenv": "^10.0.0",
-    "node-html-parser": "^5.1.0"
+    "dotenv": "^16.0.0",
+    "node-html-parser": "^5.2.0"
   }
 }

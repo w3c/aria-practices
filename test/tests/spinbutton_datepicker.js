@@ -357,6 +357,10 @@ ariaTest('up arrow on day', exampleFile, 'spinbutton-up-arrow', async (t) => {
   // Add 30 days to the control
   control = (control + 30) % daysInMonth;
 
+  if (control === 0) {
+    control = parseInt(ex.dayMax);
+  }
+
   t.is(
     parseInt(await daySpinner.getText()),
     control,
