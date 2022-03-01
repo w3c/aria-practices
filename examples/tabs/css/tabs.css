@@ -25,9 +25,10 @@
 }
 
 [role="tab"][aria-selected="true"] {
-  padding: 6px 2px 4px;
+  padding: 2px 2px 4px;
   margin-top: 0;
   border-width: 2px;
+  border-top-width: 6px;
   border-bottom-color: hsl(220deg 43% 99%);
   background: hsl(220deg 43% 99%);
 }

@@ -126,7 +126,7 @@
           <li>Since the first element in each <code>tabpanel</code> is a focusable element (e.g. link), the tabpanel does <strong>not</strong> need to set a <code>tabindex</code> value to include it in the tab sequence of the page.</li>
           <li>To ensure people who rely on browser or operating system high contrast settings can both distinguish the active (selected) tab from other tabs and perceive keyboard focus:
             <ul>
-              <li>The active tab has a 2 pixel border on its left, top, and right sides while the names of inactive tabs have a 1 pixel border.  The active tab is also 4 pixels higher than the inactive tabs.</li>
+              <li>The active tab has a 2 pixel border on its left and right sides and a 4 pixel border on top, while the names of inactive tabs have a 1 pixel borders.  The active tab is also 4 pixels higher than the inactive tabs.</li>
               <li>The focus ring is drawn with a CSS border on a child <code>span</code> element of the tab element. This focus span is separated from the tab border by 2 pixels of space to ensure focus and selection are separately perceivable. Note that when a tab element is focused, the outline of the tab element itself is set to 0 so that only one focus ring is displayed.</li>
               <li>Because transparent borders are visible on some systems with high contrast enabled, only the focused <code>span</code> element has a visible border. When <code>span</code> elements are not indicating focus, they have a 0-width border and additional padding equal in width to the border that is used to indicate focus.</li>
             </ul>
