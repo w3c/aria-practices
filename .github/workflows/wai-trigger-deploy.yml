@@ -18,12 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          cache: npm
-
-      - name: Run wai-trigger-deploy script
+      - name: Trigger wai-aria-practices update
         uses: actions/github-script@v5
         with:
           github-token: ${{ secrets.GH_TOKEN }}

@@ -25,12 +25,7 @@ jobs:
         with:
           ref: refs/pull/${{ github.event.pull_request.number }}/head
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          cache: npm
-
-      - name: Run wai-trigger-pr script
+      - name: Trigger wai-aria-practices PR update
         uses: actions/github-script@v5
         env:
           APG_BRANCH: ${{ github.head_ref }}
