@@ -3970,9 +3970,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav-pills > li + li {
   margin-left: 2px;
 }
-.nav-pills > li.active > a,
-.nav-pills > li.active > a:hover,
-.nav-pills > li.active > a:focus {
+nav a[aria-current="page"],
+nav a[aria-current="page"]:hover,
+nav a[aria-current="page"]:focus {
   color: #fff;
   background-color: #337ab7;
 }
