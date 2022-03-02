@@ -1,19 +1,4 @@
-// check for require() and respec context
-/* global require , mappingTables */
-
-if (typeof require !== 'undefined') {
-  require(['core/pubsubhub'], function (respecEvents) {
-    mapTables(respecEvents);
-  });
-} else {
-  if (document.readyState !== 'loading') {
-    mapTables(false);
-  } else {
-    document.addEventListener('DOMContentLoaded', function () {
-      mapTables(false);
-    });
-  }
-}
+/* global mappingTables */
 
 function hideElement(element) {
   element.style.display = 'none';
@@ -29,7 +14,7 @@ function queryAll(selector, context) {
 }
 
 function getElementIndex(el) {
-  var i = 0;
+  var i = 1;
   while ((el = el.previousElementSibling)) {
     i++;
   }
@@ -44,6 +29,7 @@ function viewAsSingleTable(mappingTableInfo) {
   queryAll('summary', mappingTableInfo.detailsContainer).forEach(function (
     summary
   ) {
+    summary.dataset['id'] = summary.id;
     summary.removeAttribute('id');
   });
   showElement(mappingTableInfo.tableContainer);
@@ -52,7 +38,8 @@ function viewAsSingleTable(mappingTableInfo) {
   queryAll('tbody tr', mappingTableInfo.tableContainer).forEach(function (
     tr
   ) {
-    tr.id = mappingTableInfo.ids[getElementIndex(tr)];
+    tr.id = tr.dataset['id'];
+    tr.removeAttribute('data-id');
   });
 }
 
@@ -62,6 +49,7 @@ function viewAsDetails(mappingTableInfo) {
   queryAll('tbody tr', mappingTableInfo.tableContainer).forEach(function (
     tr
   ) {
+    tr.dataset['id'] = tr.id;
     tr.removeAttribute('id');
   });
   showElement(mappingTableInfo.detailsContainer);
@@ -69,14 +57,8 @@ function viewAsDetails(mappingTableInfo) {
   queryAll('summary', mappingTableInfo.detailsContainer).forEach(function (
     summary
   ) {
-    const details = mappingTableInfo.detailsContainer.querySelector(
-      'details'
-    );
-    summary.id =
-      mappingTableInfo.ids[
-        // TODO: check that this works
-        getElementIndex(details) - getElementIndex(summary.parentNode)
-      ];
+    summary.id = summary.dataset['id'];
+    summary.removeAttribute('data-id');
   });
 }
 
@@ -103,22 +85,18 @@ function mappingTables() {
 
     // create a container div to hold all the details element and insert after table
     tableInfo.detailsContainer = document.createElement('div');
-    tableInfo.detailsContainer.className = 'details removeOnSave';
+    tableInfo.detailsContainer.className = 'details';
     tableInfo.id = tableInfo.table.id + '-details';
     tableInfo.tableContainer.insertAdjacentElement(
       'afterend',
       tableInfo.detailsContainer
     );
 
-    // array to store @id attributes for rows and summaries.
-    tableInfo.ids = [];
-
     // add switch to view as single table or details/summary
     var viewSwitch = document.createElement('button');
     viewSwitch.className = 'switch-view removeOnSave';
     viewSwitch.innerHTML = mappingTableLabels.viewByTable;
     viewSwitch.addEventListener('click', function () {
-      // array to store summary/tr @ids
       // if current view is details/summary
       if (tableInfo.detailsContainer.style.display !== 'none') {
         viewAsSingleTable(tableInfo);
@@ -144,13 +122,12 @@ function mappingTables() {
     // remove first column header from array
     colHeaders.shift();
     // for each row in the table, create details/summary..
+
     queryAll('tbody tr', tableInfo.table).forEach(function (row) {
       var caption = row.querySelector('th').innerHTML;
       var summary = caption.replace(/<a [^>]+>|<\/a>/g, '');
       // get the tr's @id
-      var id = row.id;
-      // store the row's @id
-      tableInfo.ids.push(id);
+      var id = row.dataset.id;
       // remove the tr's @id since same id will be used in the relevant summary element
       row.removeAttribute('id');
       // store the row's cells in array rowCells
@@ -175,7 +152,7 @@ function mappingTables() {
 
       // create content for each <details> element; add row header's content to summary
       var details = document.createElement('details');
-      details.className = 'map removeOnSave';
+      details.className = 'map';
 
       var detailsHTML = '<summary id="' + id + '">' + summary;
 
@@ -276,6 +253,7 @@ function mappingTables() {
 
         showHideColButton.addEventListener('click', function () {
           var index = getElementIndex(showHideColButton);
+          console.log("index?",index);
           var wasHidden = showHideColButton.className === 'hide-col';
 
           queryAll(
@@ -339,72 +317,4 @@ function mappingTables() {
       });
     }
   });
-}
-
-function mapTables(respecEvents) {
-  var mappingTableInfos = [];
-
-  function viewAsSingleTable(mappingTableInfo) {
-    hideElement(mappingTableInfo.detailsContainer);
-    // add <summary> @id to ids array and remove @id from summary
-    queryAll('summary', mappingTableInfo.detailsContainer).forEach(function (
-      summary
-    ) {
-      summary.removeAttribute('id');
-    });
-    showElement(mappingTableInfo.tableContainer);
-
-    // add relevant @id to tr
-    queryAll('tbody tr', mappingTableInfo.tableContainer).forEach(function (
-      tr
-    ) {
-      tr.id = mappingTableInfo.ids[getElementIndex(tr)];
-    });
-  }
-
-  function viewAsDetails(mappingTableInfo) {
-    hideElement(mappingTableInfo.tableContainer);
-    // add tr @id to ids array and remove @id from tr
-    queryAll('tbody tr', mappingTableInfo.tableContainer).forEach(function (
-      tr
-    ) {
-      tr.removeAttribute('id');
-    });
-    showElement(mappingTableInfo.detailsContainer);
-    // add relevant @id to summary
-    queryAll('summary', mappingTableInfo.detailsContainer).forEach(function (
-      summary
-    ) {
-      const details = mappingTableInfo.detailsContainer.querySelector(
-        'details'
-      );
-      summary.id =
-        mappingTableInfo.ids[
-          // TODO: check that this works
-          getElementIndex(details) - getElementIndex(summary.parentNode)
-        ];
-    });
-  }
-
-  if (respecEvents) {
-    // Fix the scroll-to-fragID:
-    // - if running with ReSpec, do not invoke the mapping tables script until
-    //   ReSpec executes its own scroll-to-fragID.
-    // - if running on a published document (no ReSpec), invoke the mapping tables
-    //   script on document ready.
-    respecEvents.sub('start', function (details) {
-      if (details === 'core/location-hash') {
-        mappingTables();
-      }
-    });
-    // Subscribe to ReSpec "save" message to set the mapping tables to
-    // view-as-single-table state.
-    respecEvents.sub('save', function (details) {
-      mappingTableInfos.forEach(function (item) {
-        viewAsSingleTable(item);
-      });
-    });
-  } else {
-    mappingTables();
-  }
 }
