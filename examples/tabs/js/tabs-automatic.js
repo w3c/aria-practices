@@ -29,8 +29,8 @@ class TabsAutomatic {
       tab.setAttribute('aria-selected', 'false');
       this.tabpanels.push(tabpanel);
 
-      tab.addEventListener('keydown', this.handleKeydown.bind(this));
-      tab.addEventListener('click', this.handleClick.bind(this));
+      tab.addEventListener('keydown', this.onKeydown.bind(this));
+      tab.addEventListener('click', this.onClick.bind(this));
 
       if (!this.firstTab) {
         this.firstTab = tab;
@@ -86,7 +86,7 @@ class TabsAutomatic {
 
   /* EVENT HANDLERS */
 
-  handleKeydown(event) {
+  onKeydown(event) {
     var tgt = event.currentTarget,
       flag = false;
 
@@ -121,7 +121,7 @@ class TabsAutomatic {
     }
   }
 
-  handleClick(event) {
+  onClick(event) {
     this.setSelectedTab(event.currentTarget);
   }
 }
