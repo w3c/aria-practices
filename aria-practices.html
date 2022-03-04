@@ -6135,6 +6135,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       <li>Whether any columns or rows are hidden, e.g., columns 1 through 3 and  5 through 8 are visible but column 4 is hidden.</li>
       <li>Whether a cell spans multiple rows or columns.</li>
       <li>Whether and how data is sorted.</li>
+      <li>How to communicate cell position, e.g., <q>row 2, column 2</q> or <q>row 2, column B</q> (like in most spread sheets).
     </ul>
     <p>
       Browsers automatically populate their accessibility tree with the number of rows and columns in a grid or table based on the rendered DOM.
@@ -6169,6 +6170,10 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
           </td>
         </tr>
         <tr>
+          <th><code>aria-colindextext</code></th>
+          <td>Defines a human readable text alternative of aria-colindex .</td>
+        </tr>
+        <tr>
           <th><code>aria-rowindex</code></th>
           <td>
             <ul>
@@ -6176,6 +6181,10 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
               <li><strong>Note:</strong> Numbering starts with 1, not 0.</li>
             </ul>
           </td>
+        </tr>
+        <tr>
+          <th><code>aria-rowindextext</code></th>
+          <td>Defines a human readable text alternative of aria-rowindex .</td>
         </tr>
         <tr>
           <th><code>aria-colspan</code></th>
@@ -6603,6 +6612,28 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       </pre>
 
 
+    </section>
+    
+    <section id="gridAndTableProperties_indextext">
+      <h3>Communicating cell position with <code>aria-colindextext</code> and <code>aria-rowindextext</code></h3>
+      <p>
+        When cell positions are visually communicated using strings or symbols other than the numeric values represented by the sequential one-based counting provided by <code>aria-colindex</code> and <code>aria-rowindex</code>,
+        the <a href="aria-colindextext" class="property-reference">aria-colindextext</a> and <a href="aria-rowindextext" class="property-reference">aria-rowindextext</a> properties can be used to convey an alternative position string.
+        For example, in a spreadsheet where the columns are assigned letter addresses, such as <q>A</q>, <q>B</q>, <q>C</q>, etc., <code>aria-colindextext</code> can be applied to cells to inform assistive technologies that the column position should be communicated using <q>A</q> instead of <q>1</q>, <q>B</q> instead of <q>2</q>, and so on.
+      </p>
+      <p>It is important to note that:</p>
+      <ul>
+        <li>These properties are not alternative means of communicating column and row headings; they are to be used only for communicating cell positions (coordinates).</li>
+        <li>
+          If <code>aria-colcount</code> is specified, it is necessary to specify <code>aria-colindex</code> even if <code>aria-colindextext</code> is specified.
+          Similarly, if <code>aria-rowcount</code> is specified, it is necessary to specify <code>aria-rowindex</code> even if <code>aria-rowindextext</code> is specified.
+          This is because some assistive technology functionality may rely on numerical position values. 
+        </li>
+        <li>
+          Unlike aria-colindex, aria-colindextext cannot be specified on a row.
+          This is because browsers cannot use a value specified on the row to calculate <code>aria-colindextext</code> values for the cells within the row.
+        </li>
+      </ul>
     </section>
 
   </section>
