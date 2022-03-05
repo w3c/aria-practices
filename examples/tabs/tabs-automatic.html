@@ -28,14 +28,14 @@
     <main>
       <h1>Example of Tabs with Automatic Activation</h1>
       <p>
-          This example section demonstrates a tabs widget that implements the  <a href="../../../#tabpanel">design pattern for tabs</a>.
+          This example section demonstrates a tabs widget that implements the  <a href="../../#tabpanel">design pattern for tabs</a>.
           In this example,  a tab is automatically activated and its associated panel is displayed when the tab receives focus.
-          Tabs should only be automatically activated in circumstances where panels can be displayed instantly, i.e., all panel content is present in the DOM.
-          For additional guidance, see <a href="../../../#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
+          It is recommended that authors consider implementing automatic activation of tabs <strong>only in</strong> circumstances where panels can be displayed instantly, i.e., all panel content is present in the DOM.
+          For additional guidance, see <a href="../../#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
       </p>
       <p>Similar examples include: </p>
       <ul>
-        <li><a href="./tabs-manual.html">Example of Tabs with Manual Activation</a>: A tabs widget where users activate a tab and display its panel by pressing <kbd>Space</kbd> or <kbd>Enter</kbd>.</li>
+        <li><a href="tabs-manual.html">Example of Tabs with Manual Activation</a>: A tabs widget where users activate a tab and display its panel by pressing <kbd>Space</kbd> or <kbd>Enter</kbd>.</li>
       </ul>
 
       <section>
@@ -45,7 +45,7 @@
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div id="ex1">
           <div class="tabs">
-            <h2 id="tablist-1">Danish Composers</h2>
+            <h3 id="tablist-1">Danish Composers</h3>
             <div
               role="tablist"
               aria-labelledby="tablist-1"
@@ -126,12 +126,25 @@
       <section>
         <h2>Accessibility Features</h2>
         <ul>
-          <li>Since the tabpanels do not contain any focusable elements, <code>tabindex="0"</code> is used to include the tabpanel in the tab sequence of the page.</li>
+          <li>
+            To make it easy for screen reader users to navigate from a tab to the beginning of content in the active <code>tabpanel</code>, the <code>tabpanel</code> element has <code>tabindex="0"</code> to include the panel in the page <kbd>Tab</kbd> sequence.
+            It is recommended that all <code>tabpanel</code>  elements in a tab set are focusable if there are any panels in the set that contain content where the first element in the panel is not focusable.
+          </li>
           <li>To ensure people who rely on browser or operating system high contrast settings can both distinguish the active (selected) tab from other tabs and perceive keyboard focus:
             <ul>
-              <li>The active tab has a 2 pixel border on its left and right sides and a 4 pixel border on top, while the names of inactive tabs have a 1 pixel borders.  The active tab is also 4 pixels higher than the inactive tabs.</li>
-              <li>The focus ring is drawn with a CSS border on a child <code>span</code> element of the tab element. This focus span is separated from the tab border by 2 pixels of space to ensure focus and selection are separately perceivable. Note that when a tab element is focused, the outline of the tab element itself is set to 0 so that only one focus ring is displayed.</li>
-              <li>Because transparent borders are visible on some systems with high contrast enabled, only the focused <code>span</code> element has a visible border. When <code>span</code> elements are not indicating focus, they have a 0-width border and additional padding equal in width to the border that is used to indicate focus.</li>
+              <li>
+                The active tab has a 2 pixel border on its left and right sides and a 4 pixel border on top, while the names of inactive tabs have 1 pixel borders.
+                The active tab is also 4 pixels higher than the inactive tabs.
+              </li>
+              <li>
+                The focus ring is drawn with a CSS border on a child <code>span</code> element of the tab element.
+                This focus span is separated from the tab border by 2 pixels of space to ensure focus and selection are separately perceivable.
+                Note that when a tab element is focused, the outline of the tab element itself is set to 0 so that only one focus ring is displayed.
+              </li>
+              <li>
+                Because transparent borders are visible on some systems when high contrast settings are enabled, only the focused <code>span</code> element has a visible border.
+                When <code>span</code> elements are not indicating focus, they have a 0-width border and additional padding equal in width to the border that is used to indicate focus.
+              </li>
             </ul>
           </li>
         </ul>
@@ -213,7 +226,7 @@
             <tr data-test-id="tablist-aria-labelledby">
               <td></td>
               <th scope="row">
-                <code>aria-labelledby=<q>IDREF</q></code>
+                <code>aria-labelledby="ID_REFERENCE"</code>
               </th>
               <td>
                 <code>div</code>
@@ -231,20 +244,15 @@
               <td>
                 <ul>
                   <li>Indicates the element serves as a tab control.</li>
-                  <li>
-                    When focused, is automatically activated, causing its associated <code>tabpanel</code>
-                    to be displayed.
-                  </li>
-                  <li>
-                    Provides a label for its associated <code>tabpanel</code>.
-                  </li>
+                  <li>When focused, it is automatically activated, causing its associated <code>tabpanel</code> to be displayed.</li>
+                  <li>Provides a label for its associated <code>tabpanel</code>.</li>
                 </ul>
               </td>
             </tr>
             <tr data-test-id="tab-aria-selected">
               <td></td>
               <th scope="row">
-                <code>aria-selected=<q>true</q></code>
+                <code>aria-selected="true"</code>
               </th>
               <td>
                 <code>button</code>
@@ -259,7 +267,7 @@
             <tr data-test-id="tab-aria-selected">
               <td></td>
               <th scope="row">
-                <code>aria-selected=<q>false</q></code>
+                <code>aria-selected="false"</code>
               </th>
               <td>
                 <code>button</code>
@@ -277,7 +285,7 @@
             <tr data-test-id="tab-tabindex">
               <td></td>
               <th scope="row">
-                <code>tabindex=<q>-1</q></code>
+                <code>tabindex="-1"</code>
               </th>
               <td>
                 <code>button</code>
@@ -286,15 +294,15 @@
                 <ul>
                   <li>Removes the element from the page <kbd>Tab</kbd> sequence.</li>
                   <li>Set when a tab is not selected so that only the selected tab is in the page <kbd>Tab</kbd> sequence.</li>
-                  <li>Since an HTML <code>button</code> element is used for the tab, it is not necessary to set <code>tabindex=<q>0</q></code> on the selected (active) tab element.</li>
-                  <li>This approach to managing focus is described in the section on <a href="../../../#kbd_roving_tabindex">roving tabindex</a>.</li>
+                  <li>Since an HTML <code>button</code> element is used for the tab, it is not necessary to set <code>tabindex="0"</code> on the selected (active) tab element.</li>
+                  <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
                 </ul>
               </td>
             </tr>
             <tr data-test-id="tab-aria-control">
               <td></td>
               <th scope="row">
-                <code>aria-controls=<q>IDREF</q></code>
+                <code>aria-controls="ID_REFERENCE"</code>
               </th>
               <td>
                 <code>button</code>
@@ -323,16 +331,14 @@
             <tr data-test-id="tabpanel-aria-labelledby">
               <td></td>
               <th scope="row">
-                <code>aria-labelledby=<q>IDREF</q></code>
+                <code>aria-labelledby="ID_REFERENCE"</code>
               </th>
               <td>
                 <code>div</code>
               </td>
               <td>
                 <ul>
-                  <li>
-                    Refers to the <code>tab</code> element that controls the panel.
-                  </li>
+                  <li>Refers to the <code>tab</code> element that controls the panel.</li>
                   <li>Provides an accessible name for the tab panel.</li>
                 </ul>
               </td>
@@ -340,7 +346,7 @@
             <tr data-test-id="tabpanel-tabindex">
               <td></td>
               <th scope="row">
-                <code>tabindex=<q>0</q></code>
+                <code>tabindex="0"</code>
               </th>
               <td>
                 <code>div</code>
@@ -348,9 +354,8 @@
               <td>
                 <ul>
                   <li>Puts the tabpanel in the page <kbd>Tab</kbd> sequence.</li>
-                  <li>Facilitates movement to panel content for assistive technology users.</li>
-                  <li>This is important for tabpanels that do not contain a focusable element or
-                  when the first element with content is not focusable.</li>
+                  <li>Facilitates navigation to panel content for assistive technology users.</li>
+                  <li>Focusable tabpanel elements are recommended if any panels in a set contain content where the first element in the panel is not focusable.</li>
                 </ul>
               </td>
             </tr>
@@ -381,7 +386,7 @@
 
     <nav>
       <!--  Update the pattern_ID parameter of this link to refer to the APG design pattern section related to this example.  -->
-      <a href="../../../#tabpanel">Tabs Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
+      <a href="../../#tabpanel">Tabs Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
     </nav>
   </body>
 </html>

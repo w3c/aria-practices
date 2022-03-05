@@ -29,8 +29,8 @@ class TabsManual {
       tab.setAttribute('aria-selected', 'false');
       this.tabpanels.push(tabpanel);
 
-      tab.addEventListener('keydown', this.handleKeydown.bind(this));
-      tab.addEventListener('click', this.handleClick.bind(this));
+      tab.addEventListener('keydown', this.onKeydown.bind(this));
+      tab.addEventListener('click', this.onClick.bind(this));
 
       if (!this.firstTab) {
         this.firstTab = tab;
@@ -84,7 +84,7 @@ class TabsManual {
 
   /* EVENT HANDLERS */
 
-  handleKeydown(event) {
+  onKeydown(event) {
     var tgt = event.currentTarget,
       flag = false;
 
@@ -119,9 +119,9 @@ class TabsManual {
     }
   }
 
-  // Since this example uses buttons for the tabs, the click handler also is activated
+  // Since this example uses buttons for the tabs, the click onr also is activated
   // with the space and enter keys
-  handleClick(event) {
+  onClick(event) {
     this.setSelectedTab(event.currentTarget);
   }
 }
