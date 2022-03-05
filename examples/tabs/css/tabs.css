@@ -29,6 +29,7 @@
   margin-top: 0;
   border-width: 2px;
   border-top-width: 6px;
+  border-top-color: rgb(36 116 214);
   border-bottom-color: hsl(220deg 43% 99%);
   background: hsl(220deg 43% 99%);
 }
