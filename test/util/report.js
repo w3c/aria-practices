@@ -5,7 +5,7 @@ const cheerio = require('cheerio');
 const path = require('path');
 const fs = require('fs');
 const htmlparser2 = require('htmlparser2');
-const { spawnSync } = require('child_process');
+const spawn = require('cross-spawn');
 
 const examplePath = path.resolve(__dirname, '..', '..', 'examples');
 const testsPath = path.resolve(__dirname, '..', 'tests');
@@ -175,21 +175,19 @@ const getRegressionTestCoverage = function (exampleCoverage) {
     allTestFiles.push(path.join(testsPath, testFile));
   });
 
-  const isWin = process.platform === 'win32';
-
-  // fix for running regression-report on windows
-  const cmd = isWin ? 'node.exe' : 'node';
+  const cmd = 'node';
   const avaCmdPath = path.resolve(
     __dirname,
     '..',
     '..',
     'node_modules',
     'ava',
+    'lib',
     'cli.js'
   );
   const cmdArgs = [avaCmdPath, ...allTestFiles, '--tap', '-c', '1'];
 
-  const output = spawnSync(cmd, cmdArgs);
+  const output = spawn.sync(cmd, cmdArgs);
   const avaResults = output.stdout.toString();
   const avaError = output.stderr.toString();
 
