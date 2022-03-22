@@ -2772,8 +2772,8 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       <section class="notoc">
         <h4>Examples</h4>
         <ul>
-          <li><a href="examples/tabs/tabs-1/tabs.html">Tabs With Automatic Activation</a>: A tabs widget where tabs are automatically activated and their panel is displayed when they receive focus.</li>
-          <li><a href="examples/tabs/tabs-2/tabs.html">Tabs With Manual Activation</a>: A tabs widget where users activate a tab and display its panel by pressing <kbd>Space</kbd> or <kbd>Enter</kbd>.</li>
+          <li><a href="examples/tabs/tabs-automatic.html">Tabs With Automatic Activation</a>: A tabs widget where tabs are automatically activated and their panel is displayed when they receive focus.</li>
+          <li><a href="examples/tabs/tabs-manual.html">Tabs With Manual Activation</a>: A tabs widget where users activate a tab and display its panel by pressing <kbd>Space</kbd> or <kbd>Enter</kbd>.</li>
         </ul>
       </section>
 
@@ -2835,6 +2835,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
             </ol>
           </li>
           <li>If the tab list is horizontal, it does not listen for <kbd>Down Arrow</kbd> or <kbd>Up Arrow</kbd> so those keys can provide their normal browser scrolling functions even when focus is inside the tab list.</li>
+          <li>When the tabpanel does not contain any focusable elements or the first element with content is not focusable, the tabpanel should set <code>tabindex="0"</code> to include it in the tab sequence of the page.</li>
         </ol>
       </section>
       <section class="notoc">
@@ -2849,7 +2850,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
           </li>
           <li>Each element with role <code>tab</code> has the property <a href="#aria-controls" class="property-reference">aria-controls</a> referring to its associated <code>tabpanel</code> element.</li>
           <li>The active <code>tab</code> element has the state <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code> and all other <code>tab</code> elements have it set to <code>false</code>.</li>
-          <li>Each element with role <code>tabpanel</code> has the property <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> referring to its associated <code>tab</code> element. </li>
+          <li>Each element with role <code>tabpanel</code> has the property <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> referring to its associated <code>tab</code> element.</li>
           <li>If a <code>tab</code> element has a popup menu, it has the property <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>. </li>
           <li>
             If the <code>tablist</code> element is vertically oriented, it has the property <a href="#aria-orientation" class="property-reference">aria-orientation</a> set to <code>vertical</code>.
