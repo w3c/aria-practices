@@ -1,0 +1,47 @@
+name: Trigger pull request creation for wai repository
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/wai-trigger-pr.yml"
+      - ".github/workflows/regression.yml"
+      - ".github/workflows/examples.yml"
+      - "scripts/reference-tables.*"
+      - "package*.json"
+      - "**/*.js"
+      - "test/**"
+      - "examples/**"
+      - "!examples/landmarks/**"
+      - "!examples/coding-template/**"
+      - "!common/**"
+      - "aria-practices.html"
+
+jobs:
+  create-pr-wai:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: refs/pull/${{ github.event.pull_request.number }}/head
+
+      - name: Trigger wai-aria-practices PR update
+        uses: actions/github-script@v5
+        env:
+          APG_BRANCH: ${{ github.head_ref }}
+          APG_SHA: ${{ github.event.pull_request.head.sha }}
+          APG_PR_NUMBER: ${{ github.event.pull_request.number }}
+        with:
+          github-token: ${{ secrets.GH_TOKEN }}
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: 'wai-aria-practices',
+              workflow_id: 'pr-create.yml',
+              ref: 'main',
+              inputs: {
+                apg_branch: process.env.APG_BRANCH,
+                apg_sha: process.env.APG_SHA,
+                apg_pr_number: process.env.APG_PR_NUMBER,
+              }
+            });
