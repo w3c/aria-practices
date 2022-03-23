@@ -1,7 +1,9 @@
-name: Trigger pull request creation for wai repository
+name: Trigger PR update for WAI-APG site
 
 on:
   pull_request:
+    branches-ignore:
+      - "dependabot/**"
     paths:
       - ".github/workflows/wai-trigger-pr.yml"
       - ".github/workflows/regression.yml"

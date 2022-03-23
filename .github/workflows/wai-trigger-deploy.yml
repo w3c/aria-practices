@@ -1,4 +1,4 @@
-name: Trigger deploy for wai repository
+name: Trigger deploy for WAI-APG site
 
 on:
   push:
