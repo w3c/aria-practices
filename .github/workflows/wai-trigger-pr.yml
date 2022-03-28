@@ -2,19 +2,21 @@ name: Trigger PR update for WAI-APG site
 
 on:
   pull_request_target:
+    branches-ignore:
+      - "dependabot/**"
     paths:
       - ".github/workflows/wai-trigger-pr.yml"
       - ".github/workflows/regression.yml"
       - ".github/workflows/examples.yml"
       - "scripts/reference-tables.*"
-      - "package*.json"
       - "**/*.js"
       - "test/**"
       - "examples/**"
+      - "aria-practices.html"
+      - "index.html"
       - "!examples/landmarks/**"
       - "!examples/coding-template/**"
       - "!common/**"
-      - "aria-practices.html"
 
 jobs:
   create-pr-wai:

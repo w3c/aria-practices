@@ -3,6 +3,8 @@ name: Trigger branch cleanup for WAI-APG site
 on:
   delete:
   pull_request_target:
+    branches-ignore:
+      - "dependabot/**"
     types:
       - closed
 

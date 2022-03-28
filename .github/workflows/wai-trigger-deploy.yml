@@ -10,6 +10,7 @@ on:
       - "examples/**"
       - "img/**"
       - "aria-practices.html"
+      - "index.html"
       - "README.md"
 
 jobs:
