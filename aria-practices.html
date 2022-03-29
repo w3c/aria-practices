@@ -2011,7 +2011,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         <p>
           The following description of keyboard behaviors assumes:</p>
           <ol>
-            <li>A horizontal <code>menubar</code> containing several <code>menuitem</code>, <code>menuitemradio</code>, or <code>menuitemcheckbox</code> elements.</li>
+          <li>A horizontal <code>menubar</code> containing several <code>menuitem</code>, <code>menuitemradio</code>, or <code>menuitemcheckbox</code> elements.</li>
             <li>Some <code>menuitem</code> elements in the <code>menubar</code> have child submenus that contain vertically arranged items.</li>
             <li>Some of the <code>menuitem</code> elements in the submenus have child submenus with items that are also vertically arranged.</li>
           </ol>
@@ -2027,6 +2027,17 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
             When a <code>menu</code> opens, or when a <code>menubar</code> receives focus,
             keyboard focus is placed on the first item.
             All items are focusable as described in <a href="#kbd_general_within"></a>.
+          </li>
+          <li><kbd>Tab</kbd> and <kbd>Shift + Tab</kbd>: Move focus into and out of a menubar.
+            <ul>
+              <li>When focus moves into a <code>menubar</code>:
+                <ul>
+                  <li>If focus is moving into the <code>menubar</code> for the first time, focus is set on the first <code>menuitem</code>.</li>
+                  <li>If the <code>menubar</code> has previously contained focus, focus is optionally set on the <code>menuitem</code> that last had focus. Otherwise, it is set on the first <code>menuitem</code> that is not disabled.</li>
+                </ul>
+              </li>
+              <li>When focus moves out of a <code>menubar</code> and all of its submenus, any open menus or submenus are closed.</li>
+            </ul>
           </li>
           <li><kbd>Enter</kbd>:
             <ul>
@@ -2091,8 +2102,6 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
           <li><kbd>End</kbd>: If arrow key wrapping is not supported, moves focus to the last item in the current <code>menu</code> or <code>menubar</code>.</li>
           <li>Any key that corresponds to a printable character (Optional): Move focus to the next item in the current menu whose label begins with that printable character.</li>
           <li><kbd>Escape</kbd>: Close the menu that contains focus and return focus to the element or context, e.g., menu button or parent <code>menuitem</code>, from which the menu was opened.</li>
-          <li><kbd>Tab</kbd>: Moves focus to the next element in the tab sequence, and if the item that had focus is not in a <code>menubar</code>, closes its <code>menu</code> and all open parent <code>menu</code> containers.</li>
-          <li><kbd>Shift + Tab</kbd>: Moves focus to the previous element in the tab sequence, and if the item that had focus is not in a <code>menubar</code>, closes its <code>menu</code> and all open parent <code>menu</code> containers.</li>
         </ul>
         <ol class="note">
           <li>Disabled menu items are focusable but cannot be activated. </li>
