@@ -25,13 +25,13 @@ const ignoreDirectories = fs
   .readFileSync(ignoreExampleDirs)
   .toString()
   .trim()
-  .split('\n')
+  .split(/\r\n|\r|\n/)
   .map((d) => path.resolve(examplePath, d));
 const ignoreFiles = fs
   .readFileSync(ignoreExampleFiles)
   .toString()
   .trim()
-  .split('\n')
+  .split(/\r\n|\r|\n/)
   .map((f) => path.resolve(examplePath, f));
 
 /**
