@@ -17,7 +17,7 @@ jobs:
   deploy-wai:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Trigger wai-aria-practices update
         uses: actions/github-script@v5
