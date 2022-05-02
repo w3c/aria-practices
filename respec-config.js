@@ -2,7 +2,7 @@
 // eslint-disable-next-line no-unused-vars
 var respecConfig = {
   // Specification status (e.g., WD, LC, NOTE, etc.). If in doubt use ED.
-  specStatus: 'ED',
+  specStatus: 'NOTE',
   // crEnd: "2012-04-30",
   // perEnd: "2013-07-23",
   // publishDate: "2013-08-22",
@@ -13,14 +13,14 @@ var respecConfig = {
 
   // If you wish the publication date to be other than today,
   // set publishDate.
-  // publishDate: "2009-08-06",
+  publishDate: "2022-05-18",
   copyrightStart: '2018',
 
   // If there is a previously published draft, uncomment this
   // and set its YYYY-MM-DD date and its maturity status.
   //
-  // previousPublishDate:  "",
-  // previousMaturity:  "",
+  previousPublishDate:  "2021-11-29",
+  previousMaturity:  "NOTE",
   // prevRecURI: "",
   // previousDiffURI: "",
 
