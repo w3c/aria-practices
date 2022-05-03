@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en-US"><head>
 <meta charset="utf-8">
-<meta name="generator" content="ReSpec 32.1.0">
+<meta name="generator" content="ReSpec 32.1.6">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 .issue-label{text-transform:initial}
@@ -16,7 +16,7 @@ input.task-list-item-checkbox{margin:0 .35em .25em -1.6em;vertical-align:middle}
 </style>
 <style>
 dfn{cursor:pointer}
-.dfn-panel{position:absolute;z-index:35;min-width:300px;max-width:500px;padding:.5em .75em;margin-top:.6em;font:small Helvetica Neue,sans-serif,Droid Sans Fallback;background:#fff;color:#000;box-shadow:0 1em 3em -.4em rgba(0,0,0,.3),0 0 1px 1px rgba(0,0,0,.05);border-radius:2px}
+.dfn-panel{position:absolute;z-index:35;min-width:300px;max-width:500px;padding:.5em .75em;margin-top:.6em;font-family:"Helvetica Neue",sans-serif;font-size:small;background:#fff;color:#000;box-shadow:0 1em 3em -.4em rgba(0,0,0,.3),0 0 1px 1px rgba(0,0,0,.05);border-radius:2px}
 .dfn-panel:not(.docked)>.caret{position:absolute;top:-9px}
 .dfn-panel:not(.docked)>.caret::after,.dfn-panel:not(.docked)>.caret::before{content:"";position:absolute;border:10px solid transparent;border-top:0;border-bottom:10px solid #fff;top:0}
 .dfn-panel:not(.docked)>.caret::before{border-bottom:9px solid #a2a9b1}
@@ -270,16 +270,16 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "aliasOf": "WAI-ARIA-1.1"
     }
   },
-  "publishDate": "2022-03-23",
-  "publishISODate": "2022-03-23T00:00:00.000Z",
-  "generatedSubtitle": "W3C Editor's Draft 23 March 2022"
+  "publishDate": "2022-05-03",
+  "publishISODate": "2022-05-03T00:00:00.000Z",
+  "generatedSubtitle": "W3C Editor's Draft 03 May 2022"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED"></head>
 <body class="h-entry informative"><div class="head">
     <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
   </a></p>
     <h1 id="title" class="title">WAI-ARIA Authoring Practices 1.2</h1> 
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2022-03-23">23 March 2022</time></p>
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2022-05-03">03 May 2022</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
@@ -7520,7 +7520,54 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
   <section id="change_log" class="appendix"><div class="header-wrapper"><h2 id="b-change-history"><bdi class="secno">B. </bdi>Change History</h2><a class="self-link" href="#change_log" aria-label="Permalink for Appendix B."></a></div>
     
-    <p>Change history is maintained in a separate version-specific branch.</p>
+    
+    <p>
+      APG 1.1 supported ARIA 1.1, and this version, APG 1.2, includes changes to support version 1.2 of the ARIA specification.
+      It also includes nearly 200 significant updates to improve the quality and breadth of content.
+      A <a href="https://github.com/w3c/aria-practices/wiki/Change-Log-for-November-2021-APG-1.2-Note-Release-1">detailed log of all changes</a> is available on the wiki of the w3c/aria-practices GitHub repository.
+      Highlights of major changes to support ARIA 1.2 as well as some of the improvements include the following.
+    </p>
+    <ul>
+      <li>Added section to provide guidance related to 38 document structure roles, 18 of which are new in ARIA 1.2.</li>
+      <li>Revised guidance for roles where naming requirements changed in ARIA 1.2. ARIA 1.2 prohibits names on some roles. ARIA 1.2 removed naming requirements from some other roles.</li>
+      <li>Added naming guidance for 18 roles that are new in ARIA 1.2.</li>
+      <li>Revised the combobox pattern and 4 combobox examples to reflect the ARIA 1.2 revisions to combobox.</li>
+      <li>Added example illustrating changes in ARIA 1.2 that enable creation of custom select-only comboboxes, which are similar to HTML select elements. This replaces the Collapsible Listbox example, which is now deprecated.</li>
+      <li>Revised the listbox pattern to specify how to utilize the new ARIA 1.2 support for named groups of options and Added a new listbox example to demonstrate the named option group feature.</li>
+      <li>Revised the editor menubar example to illustrate new ARIA 1.2 support for named groups of items in a menu.</li>
+      <li>Updated the listbox and tree patterns to reflect current browser processing of aria-selected and provided guidance regarding the use of aria-checked to communicate selection.</li>
+      <li>Added section providing guidance about properties used with range widgets, such as aria-valuemin and aria-valuemax.</li>
+      <li>Added a design pattern and example implementation of the meter role, which is new in ARIA 1.2</li>
+      <li>Added two examples that demonstrate how to create rating inputs, one based on slider and one based on radio group.</li>
+      <li>Added two other slider examples: a vertical temperature slider and a media seek slider.</li>
+      <li>Added a switch design pattern and three example implementations: one made from a div element, one based on HTML button, and one that uses HTML checkbox input.</li>
+      <li>Added a button example that illustrates use of the new ARIA 1.2 IDL interface.</li>
+      <li>Added a date picker example that illustrates choosing a date with a combobox.</li>
+      <li>Added another example of a disclosure navigation menu that demonstrates how to include top-level links.</li>
+      <li>Added example of a sortable table.</li>
+      <li>Changed all example pages to include a <q>Jump to</q> menu, a button to  open the example in CodePen, and added a prominently placed warning with guidance about testing before re-using example code.</li>
+      <li>Improved support for high contrast settings and added detailed documentation of high contrast support in many examples.</li>
+      <li>Improved support for touch-based screen readers in several examples, most notably in sliders.</li>
+      <li>Due to change in ARIA 1.2, removed Math role from list of roles that have presentational children.</li>
+      <li>Developed a <a href="https://github.com/w3c/aria-practices/wiki/Code-Guide#apg-coding-standards">comprehensive set of coding standards for HTML, CSS, and Javascript</a> for the APG and updated a significant portion of content to conform with the standards.</li>
+      <li>In response to feedback, fixed many documentation errors and functional bugs in examples.</li>
+    </ul>
+    <p>Comprehensive lists of closed issues included in APG 1.2 release 1 are tracked in the following GitHub milestones.</p>
+    <ul>
+      <li>
+        <a href="https://github.com/w3c/aria-practices/milestone/2?closed=1">APG 1.2 Release 1 Milestone</a>:
+        Github issues closed in the first publication of APG 1.2 as a <abbr title="World Wide Web Consortium">W3C</abbr> Note in November 2021.
+      </li>
+      <li>
+        <a href="https://github.com/w3c/aria-practices/milestone/10">APG 1.2 Working Draft 3 Milestone</a>:
+        Github issues closed in the third working draft of APG 1.2 published in November 2019.
+      </li>
+      <li>
+        <a href="https://github.com/w3c/aria-practices/milestone/7">APG 1.2 Working Draft 1 milestone</a>:
+        GitHub issues closed in the first working draft of APG 1.2 published on July 17, 2018.
+      </li>
+    </ul>
+    
   </section>
 
   <section id="acknowledgements" class="appendix"><div class="header-wrapper"><h2 id="c-acknowledgements"><bdi class="secno">C. </bdi>Acknowledgements</h2><a class="self-link" href="#acknowledgements" aria-label="Permalink for Appendix C."></a></div>
@@ -7610,7 +7657,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
     <dl class="bibliography"><dt id="bib-html">[HTML]</dt><dd>
       <a href="https://html.spec.whatwg.org/multipage/"><cite>HTML Standard</cite></a>. Anne van Kesteren; Domenic Denicola; Ian Hickson; Philip Jägenstedt; Simon Pieters.  WHATWG. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
     </dd><dt id="bib-html-aam">[HTML-AAM]</dt><dd>
-      <a href="https://www.w3.org/TR/html-aam-1.0/"><cite>HTML Accessibility API Mappings 1.0</cite></a>. Steve Faulkner; Scott O'Hara.  W3C. 7 March 2022. W3C Working Draft. URL: <a href="https://www.w3.org/TR/html-aam-1.0/">https://www.w3.org/TR/html-aam-1.0/</a>
+      <a href="https://www.w3.org/TR/html-aam-1.0/"><cite>HTML Accessibility API Mappings 1.0</cite></a>. Steve Faulkner; Scott O'Hara.  W3C. 4 April 2022. W3C Working Draft. URL: <a href="https://www.w3.org/TR/html-aam-1.0/">https://www.w3.org/TR/html-aam-1.0/</a>
     </dd><dt id="bib-html-aria">[HTML-ARIA]</dt><dd>
       <a href="https://www.w3.org/TR/html-aria/"><cite>ARIA in HTML</cite></a>. Steve Faulkner; Scott O'Hara; Patrick Lauke.  W3C. 9 December 2021. W3C Recommendation. URL: <a href="https://www.w3.org/TR/html-aria/">https://www.w3.org/TR/html-aria/</a>
     </dd><dt id="bib-svg2">[SVG2]</dt><dd>
