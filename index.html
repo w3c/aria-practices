@@ -6222,7 +6222,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
         <ol>
           <li>The element referenced as active is a DOM descendant of the focused referencing element.</li>
           <li>The focused referencing element has a value specified for the <a href="https://w3c.github.io/aria/#aria-owns" class="property-reference">aria-owns</a> property that includes the ID of the element referenced as active.</li>
-          <li>The focused referencing element has role of <a href="https://w3c.github.io/aria/#textbox" class="role-reference">textbox</a> and has <a href="https://w3c.github.io/aria/#aria-controls" class="property-reference">aria-controls</a> property referring to an element with a role that supports aria-activedescendant and either:
+          <li>The focused referencing element has role of <a href="https://w3c.github.io/aria/#combobox" class="role-reference">combobox</a>, <a href="https://w3c.github.io/aria/#textbox" class="role-reference">textbox</a>, or <a href="https://w3c.github.io/aria/#searchbox" class="role-reference">searchbox</a> and has <a href="https://w3c.github.io/aria/#aria-controls" class="property-reference">aria-controls</a> property referring to an element with a role that supports aria-activedescendant and either:
             <ol>
               <li>The element referenced as active is a descendant of the controlled element.</li>
               <li>The controlled element has a value specified for the <a href="https://w3c.github.io/aria/#aria-owns" class="property-reference">aria-owns</a> property that includes the ID of the element referenced as active.</li>
