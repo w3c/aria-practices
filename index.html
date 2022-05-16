@@ -270,16 +270,16 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "aliasOf": "WAI-ARIA-1.1"
     }
   },
-  "publishDate": "2022-05-11",
-  "publishISODate": "2022-05-11T00:00:00.000Z",
-  "generatedSubtitle": "W3C Editor's Draft 11 May 2022"
+  "publishDate": "2022-05-16",
+  "publishISODate": "2022-05-16T00:00:00.000Z",
+  "generatedSubtitle": "W3C Editor's Draft 16 May 2022"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED"></head>
 <body class="h-entry informative"><div class="head">
     <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
   </a></p>
     <h1 id="title" class="title">WAI-ARIA Authoring Practices 1.2</h1> 
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2022-05-11">11 May 2022</time></p>
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2022-05-16">16 May 2022</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
@@ -2399,25 +2399,40 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
 
       <section class="notoc"><div class="header-wrapper"><h4 id="keyboard-interaction-12">Keyboard Interaction</h4><a class="self-link" href="#keyboard-interaction-12" aria-label="Permalink for this Section"></a></div>
         
+        <p>The following description of keyboard behaviors assumes:</p>
+        <ol>
+          <li>A horizontal <code>menubar</code> containing several <code>menuitem</code>, <code>menuitemradio</code>, or <code>menuitemcheckbox</code> elements.</li>
+          <li>Some <code>menuitem</code> elements in the <code>menubar</code> have child submenus that contain vertically arranged items.</li>
+          <li>Some of the <code>menuitem</code> elements in the submenus have child submenus with items that are also vertically arranged.</li>
+        </ol>
+        <p>When reading the following descriptions, also keep in mind that:</p>
+        <ol>
+          <li>Focusable elements, which may have role <code>menuitem</code>, <code>menuitemradio</code>, or <code>menuitemcheckbox</code>, are referred to as items.</li>
+          <li>If a behavior applies to only certain types of items, e.g., <code>menuitem</code> elements, the specific role name is used.</li>
+          <li>Submenus, also known as popup menus,  are elements with role <code>menu</code>.</li>
+          <li>Except where noted, menus opened from a menubutton behave the same as menus opened from a menubar.</li>
+        </ol>
         <p>
-          The following description of keyboard behaviors assumes:</p>
-          <ol>
-            <li>A horizontal <code>menubar</code> containing several <code>menuitem</code>, <code>menuitemradio</code>, or <code>menuitemcheckbox</code> elements.</li>
-            <li>Some <code>menuitem</code> elements in the <code>menubar</code> have child submenus that contain vertically arranged items.</li>
-            <li>Some of the <code>menuitem</code> elements in the submenus have child submenus with items that are also vertically arranged.</li>
-          </ol>
-          <p>When reading the following descriptions, also keep in mind that:</p>
-          <ol>
-            <li>Focusable elements, which may have role <code>menuitem</code>, <code>menuitemradio</code>, or <code>menuitemcheckbox</code>, are referred to as items.</li>
-            <li>If a behavior applies to only certain types of items, e.g., <code>menuitem</code> elements, the specific role name is used.</li>
-            <li>Submenus, also known as popup menus,  are elements with role <code>menu</code>.</li>
-            <li>Except where noted, menus opened from a menubutton behave the same as menus opened from a menubar.</li>
-          </ol>
+          When a <code>menu</code> opens, or when a <code>menubar</code> receives focus, keyboard focus is placed on the first item.
+          Because <code>menubar</code> and <code>menu</code> elements are composite widgets as described in <a href="#kbd_general_within" class="sec-ref"><bdi class="secno">6.6 </bdi> Keyboard Navigation Inside Components</a>,
+          <kbd>Tab</kbd> and <kbd>Shift + Tab</kbd> do not move focus among the items in the menu.
+          Instead, the keyboard commands described in this section enable users to move focus among the elements in a <code>menubar</code> or <code>menu</code>.
+        </p>
         <ul>
-          <li>
-            When a <code>menu</code> opens, or when a <code>menubar</code> receives focus,
-            keyboard focus is placed on the first item.
-            All items are focusable as described in <a href="#kbd_general_within" class="sec-ref"><bdi class="secno">6.6 </bdi> Keyboard Navigation Inside Components</a>.
+          <li><kbd>Tab</kbd> and <kbd>Shift + Tab</kbd>: 
+            <ul>
+              <li>Move  focus into a <code>menubar</code>:
+                <ul>
+                  <li>If focus is moving into the <code>menubar</code> for the first time, focus is set on the first <code>menuitem</code>.</li>
+                  <li>If the <code>menubar</code> has previously contained focus, focus is optionally set on the <code>menuitem</code> that last had focus. Otherwise, it is set on the first <code>menuitem</code> that is not disabled.</li>
+                </ul>
+              </li>
+              <li>When focus is on a <code>menuitem</code> in a <code>menu</code> or <code>menubar</code>, move focus out of the <code>menu</code> or <code>menubar</code>, and close all menus and submenus.</li>
+              <li>
+                Note that <kbd>Tab</kbd> and <kbd>Shift + Tab</kbd> do not move focus into a <code>menu</code>.
+                Unlike a <code>menubar</code>, a <code>menu</code> is not visually persistent, and authors are responsible for ensuring focus moves to an item inside of a <code>menu</code> when the <code>menu</code> opens.
+              </li>
+            </ul>
           </li>
           <li><kbd>Enter</kbd>:
             <ul>
@@ -2482,8 +2497,6 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
           <li><kbd>End</kbd>: If arrow key wrapping is not supported, moves focus to the last item in the current <code>menu</code> or <code>menubar</code>.</li>
           <li>Any key that corresponds to a printable character (Optional): Move focus to the next item in the current menu whose label begins with that printable character.</li>
           <li><kbd>Escape</kbd>: Close the menu that contains focus and return focus to the element or context, e.g., menu button or parent <code>menuitem</code>, from which the menu was opened.</li>
-          <li><kbd>Tab</kbd>: Moves focus to the next element in the tab sequence, and if the item that had focus is not in a <code>menubar</code>, closes its <code>menu</code> and all open parent <code>menu</code> containers.</li>
-          <li><kbd>Shift + Tab</kbd>: Moves focus to the previous element in the tab sequence, and if the item that had focus is not in a <code>menubar</code>, closes its <code>menu</code> and all open parent <code>menu</code> containers.</li>
         </ul>
         <div class="note" role="note" id="issue-container-generatedID-17"><div role="heading" class="note-title marker" id="h-note-17" aria-level="5"><span>Note</span></div><ol class="">
           <li>Disabled menu items are focusable but cannot be activated. </li>
