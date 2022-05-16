@@ -44,8 +44,8 @@
 }
 
 .color-slider .value {
-  color: currentColor;
-  fill: currentColor;
+  color: currentcolor;
+  fill: currentcolor;
 }
 
 .color-slider .valueBackground {
@@ -55,7 +55,7 @@
 
 .color-slider .rail {
   fill: #bbb;
-  stroke: currentColor;
+  stroke: currentcolor;
   stroke-width: 2px;
   opacity: 0.8;
 }
@@ -80,7 +80,7 @@
 
 .color-slider .thumb {
   fill: #666;
-  stroke: currentColor;
+  stroke: currentcolor;
   stroke-width: 2px;
 }
 
@@ -103,18 +103,18 @@
 .color-slider:focus .rail,
 .color-slider:hover .rail {
   fill: transparent;
-  stroke: currentColor;
+  stroke: currentcolor;
   opacity: 1;
 }
 
 .color-slider:focus .thumb,
 .color-slider:hover .thumb {
   fill: #ddd;
-  stroke: currentColor;
+  stroke: currentcolor;
   opacity: 1;
 }
 
 .color-slider:focus .focus,
 .color-slider:hover .focus {
-  stroke: currentColor;
+  stroke: currentcolor;
 }

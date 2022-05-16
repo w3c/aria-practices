@@ -19,7 +19,7 @@ nav.breadcrumb li + li::before {
   display: inline-block;
   margin: 0 0.25em;
   transform: rotate(15deg);
-  border-right: 0.1em solid currentColor;
+  border-right: 0.1em solid currentcolor;
   height: 0.8em;
   content: "";
 }

@@ -45,8 +45,8 @@
 
 .menu-button-actions button svg.down {
   padding-left: 0.125em;
-  fill: currentColor;
-  stroke: currentColor;
+  fill: currentcolor;
+  stroke: currentcolor;
 }
 
 .menu-button-actions button[aria-expanded="true"] svg.down {

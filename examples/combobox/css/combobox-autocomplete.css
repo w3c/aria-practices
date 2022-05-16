@@ -51,7 +51,7 @@ ul[role="listbox"] {
   background-color: white;
   display: none;
   box-sizing: border-box;
-  border: 2px currentColor solid;
+  border: 2px currentcolor solid;
   max-height: 250px;
   width: 168px;
   overflow: scroll;
@@ -73,7 +73,7 @@ ul[role="listbox"] li[role="option"] {
 .combobox .group.focus,
 .combobox .group:hover {
   padding: 2px;
-  border: 2px solid currentColor;
+  border: 2px solid currentcolor;
   border-radius: 4px;
 }
 
@@ -94,6 +94,6 @@ ul[role="listbox"] li[role="option"] {
   background-color: #def;
   padding-top: 0;
   padding-bottom: 0;
-  border-top: 2px solid currentColor;
-  border-bottom: 2px solid currentColor;
+  border-top: 2px solid currentcolor;
+  border-bottom: 2px solid currentcolor;
 }

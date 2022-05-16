@@ -94,8 +94,8 @@
 }
 
 .menubar-navigation [role="menuitem"] svg {
-  fill: currentColor;
-  stroke: currentColor;
+  fill: currentcolor;
+  stroke: currentcolor;
 }
 
 .menubar-navigation [role="menuitem"] svg.down {
