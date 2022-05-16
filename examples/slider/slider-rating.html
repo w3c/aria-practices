@@ -117,10 +117,10 @@
         <li>To highlight the interactive nature of the rating stars, a focus ring appears around the group of stars when the thumb has focus.</li>
         <li>
           To ensure the borders of the stars and focus ring have sufficient contrast with the background when high contrast settings invert colors, the color of the borders are synchronized with the color of the text content.
-          For example, the color of the star borders is set to match the foreground color of  high contrast mode text by specifying the CSS <code>currentColor</code> value for the <code>stroke</code> property of each inline SVG <code>polygon</code> element.
+          For example, the color of the star borders is set to match the foreground color of  high contrast mode text by specifying the CSS <code>currentcolor</code> value for the <code>stroke</code> property of each inline SVG <code>polygon</code> element.
           To enable the high contrast background color to be the used as the contrasting color when a star is not fully or partially filled, the <code>fill-opacity</code> attribute of the <code>polygon</code> is set to zero.
           If specific colors were used to specify the <code>stroke</code> and <code>fill</code> properties, the color of these elements would remain the same in high contrast mode, which could lead to insufficient contrast between them and their background or even make them invisible if their color were to match the high contrast mode background.
-          <br>Note: The SVG element needs to have the CSS <code>forced-color-adjust</code> property set to the value <code>auto</code> for the <code>currentColor</code> value to be updated in high contrast modes.
+          <br>Note: The SVG element needs to have the CSS <code>forced-color-adjust</code> property set to the value <code>auto</code> for the <code>currentcolor</code> value to be updated in high contrast modes.
           Some browsers do not use <code>auto</code> for the default value.
         </li>
       </ul>

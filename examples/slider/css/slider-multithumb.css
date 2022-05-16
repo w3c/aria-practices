@@ -16,25 +16,25 @@
 
 .slider-multithumb .slider-group .value {
   font-size: 80%;
-  color: currentColor;
-  fill: currentColor;
+  color: currentcolor;
+  fill: currentcolor;
 }
 
 .slider-multithumb .slider-group .rail {
-  stroke: currentColor;
+  stroke: currentcolor;
   stroke-width: 2px;
   fill-opacity: 0;
 }
 
 .slider-multithumb .slider-group .range {
-  fill: currentColor;
+  fill: currentcolor;
   opacity: 0.4;
 }
 
 .slider-multithumb .slider-group .thumb {
   stroke-opacity: 0;
   stroke-width: 2px;
-  fill: currentColor;
+  fill: currentcolor;
 }
 
 .slider-multithumb .slider-group .focus-ring {
@@ -48,7 +48,7 @@
 
 .slider-multithumb .slider-group g.rail,
 .slider-multithumb .slider-group g.focus {
-  color: currentColor;
+  color: currentcolor;
 }
 
 .slider-multithumb .slider-group.active g.rail {
@@ -66,23 +66,23 @@
 }
 
 .slider-multithumb [role="slider"]:hover .focus-ring {
-  stroke: currentColor;
+  stroke: currentcolor;
   stroke-width: 1px;
   stroke-opacity: 0.8;
 }
 
 .slider-multithumb [role="slider"]:hover .focus-ring,
 .slider-multithumb [role="slider"]:focus .focus-ring {
-  stroke: currentColor;
+  stroke: currentcolor;
   stroke-opacity: 1;
   stroke-width: 3px;
 }
 
 .slider-multithumb [role="slider"]:focus .thumb {
-  stroke: currentColor;
+  stroke: currentcolor;
 }
 
 .slider-multithumb [role="slider"]:focus .value {
-  color: currentColor;
+  color: currentcolor;
   font-weight: bold;
 }

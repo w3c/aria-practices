@@ -73,7 +73,7 @@ button[aria-haspopup="listbox"]::after {
   width: 0;
   height: 0;
   border: 8px solid transparent;
-  border-top-color: currentColor;
+  border-top-color: currentcolor;
   border-bottom: 0;
   content: "";
 }
@@ -86,7 +86,7 @@ button[aria-haspopup="listbox"][aria-expanded="true"]::after {
   height: 0;
   border: 8px solid transparent;
   border-top: 0;
-  border-bottom-color: currentColor;
+  border-bottom-color: currentcolor;
   content: "";
 }
 

@@ -21,7 +21,7 @@
 
 .rating-slider svg .star {
   stroke-width: 2px;
-  stroke: currentColor;
+  stroke: currentcolor;
   fill-opacity: 0;
 }
 
@@ -32,56 +32,56 @@
 }
 
 .rating-slider[aria-valuenow="5"] svg .star {
-  fill: currentColor;
+  fill: currentcolor;
   fill-opacity: 1;
 }
 
 .rating-slider[aria-valuenow="0.5"] svg .star-1 .fill-left {
-  fill: currentColor;
+  fill: currentcolor;
   fill-opacity: 1;
 }
 
 .rating-slider[aria-valuenow="1"] svg .star-1 .star {
-  fill: currentColor;
+  fill: currentcolor;
   fill-opacity: 1;
 }
 
 .rating-slider[aria-valuenow="1.5"] svg .star-1 .star,
 .rating-slider[aria-valuenow="1.5"] svg .star-2 .fill-left {
-  fill: currentColor;
+  fill: currentcolor;
   fill-opacity: 1;
 }
 
 .rating-slider[aria-valuenow="2"] svg .star-2 .star {
-  fill: currentColor;
+  fill: currentcolor;
   fill-opacity: 1;
 }
 
 .rating-slider[aria-valuenow="2.5"] svg .star-2 .star,
 .rating-slider[aria-valuenow="2.5"] svg .star-3 .fill-left {
-  fill: currentColor;
+  fill: currentcolor;
   fill-opacity: 1;
 }
 
 .rating-slider[aria-valuenow="3"] svg .star-3 .star {
-  fill: currentColor;
+  fill: currentcolor;
   fill-opacity: 1;
 }
 
 .rating-slider[aria-valuenow="3.5"] svg .star-3 .star,
 .rating-slider[aria-valuenow="3.5"] svg .star-4 .fill-left {
-  fill: currentColor;
+  fill: currentcolor;
   fill-opacity: 1;
 }
 
 .rating-slider[aria-valuenow="4"] svg .star-4 .star {
-  fill: currentColor;
+  fill: currentcolor;
   fill-opacity: 1;
 }
 
 .rating-slider[aria-valuenow="4.5"] svg .star-4 .star,
 .rating-slider[aria-valuenow="4.5"] svg .star-5 .fill-left {
-  fill: currentColor;
+  fill: currentcolor;
   fill-opacity: 1;
 }
 
@@ -93,5 +93,5 @@
 
 .rating-slider:focus svg .focus-ring {
   stroke-width: 2px;
-  stroke: currentColor;
+  stroke: currentcolor;
 }

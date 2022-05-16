@@ -28,13 +28,13 @@ button[role="switch"] svg {
 button[role="switch"] svg rect {
   fill-opacity: 0;
   stroke-width: 2;
-  stroke: currentColor;
+  stroke: currentcolor;
 }
 
 button[role="switch"] svg rect.off {
   display: block;
-  stroke: currentColor;
-  fill: currentColor;
+  stroke: currentcolor;
+  fill: currentcolor;
   fill-opacity: 1;
 }
 
@@ -49,8 +49,8 @@ button[role="switch"] svg rect.on {
 button[role="switch"][aria-checked="true"] svg rect.on {
   color: green;
   display: block;
-  stroke-color: currentColor;
-  fill: currentColor;
+  stroke-color: currentcolor;
+  fill: currentcolor;
   fill-opacity: 1;
 }
 
