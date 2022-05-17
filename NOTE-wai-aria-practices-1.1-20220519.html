@@ -1,0 +1,583 @@
+<!DOCTYPE html><html lang="en-US"><head>
+<meta charset="utf-8">
+<meta name="generator" content="ReSpec 32.1.6">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<style>
+dfn{cursor:pointer}
+.dfn-panel{position:absolute;z-index:35;min-width:300px;max-width:500px;padding:.5em .75em;margin-top:.6em;font-family:"Helvetica Neue",sans-serif;font-size:small;background:#fff;color:#000;box-shadow:0 1em 3em -.4em rgba(0,0,0,.3),0 0 1px 1px rgba(0,0,0,.05);border-radius:2px}
+.dfn-panel:not(.docked)>.caret{position:absolute;top:-9px}
+.dfn-panel:not(.docked)>.caret::after,.dfn-panel:not(.docked)>.caret::before{content:"";position:absolute;border:10px solid transparent;border-top:0;border-bottom:10px solid #fff;top:0}
+.dfn-panel:not(.docked)>.caret::before{border-bottom:9px solid #a2a9b1}
+.dfn-panel *{margin:0}
+.dfn-panel b{display:block;color:#000;margin-top:.25em}
+.dfn-panel ul a[href]{color:#333}
+.dfn-panel>div{display:flex}
+.dfn-panel a.self-link{font-weight:700;margin-right:auto}
+.dfn-panel .marker{padding:.1em;margin-left:.5em;border-radius:.2em;text-align:center;white-space:nowrap;font-size:90%;color:#040b1c}
+.dfn-panel .marker.dfn-exported{background:#d1edfd;box-shadow:0 0 0 .125em #1ca5f940}
+.dfn-panel .marker.idl-block{background:#8ccbf2;box-shadow:0 0 0 .125em #0670b161}
+.dfn-panel a:not(:hover){text-decoration:none!important;border-bottom:none!important}
+.dfn-panel a[href]:hover{border-bottom-width:1px}
+.dfn-panel ul{padding:0}
+.dfn-panel li{margin-left:1em}
+.dfn-panel.docked{position:fixed;left:.5em;top:unset;bottom:2em;margin:0 auto;max-width:calc(100vw - .75em * 2 - .5em - .2em * 2);max-height:30vh;overflow:auto}
+</style>
+  
+  
+<title>WAI-ARIA Authoring Practices 1.1</title>
+  
+  
+  
+  
+<style id="respec-mainstyle">
+@keyframes pop{
+0%{transform:scale(1,1)}
+25%{transform:scale(1.25,1.25);opacity:.75}
+100%{transform:scale(1,1)}
+}
+:is(h1,h2,h3,h4,h5,h6,a) abbr{border:none}
+dfn{font-weight:700}
+a.internalDFN{color:inherit;border-bottom:1px solid #99c;text-decoration:none}
+a.externalDFN{color:inherit;border-bottom:1px dotted #ccc;text-decoration:none}
+a.bibref{text-decoration:none}
+.respec-offending-element:target{animation:pop .25s ease-in-out 0s 1}
+.respec-offending-element,a[href].respec-offending-element{text-decoration:red wavy underline}
+@supports not (text-decoration:red wavy underline){
+.respec-offending-element:not(pre){display:inline-block}
+.respec-offending-element{background:url(data:image/gif;base64,R0lGODdhBAADAPEAANv///8AAP///wAAACwAAAAABAADAEACBZQjmIAFADs=) bottom repeat-x}
+}
+#references :target{background:#eaf3ff;animation:pop .4s ease-in-out 0s 1}
+cite .bibref{font-style:normal}
+code{color:#c63501}
+th code{color:inherit}
+a[href].orcid{padding-left:4px;padding-right:4px}
+a[href].orcid>svg{margin-bottom:-2px}
+.toc a,.tof a{text-decoration:none}
+a .figno,a .secno{color:#000}
+ol.tof,ul.tof{list-style:none outside none}
+.caption{margin-top:.5em;font-style:italic}
+table.simple{border-spacing:0;border-collapse:collapse;border-bottom:3px solid #005a9c}
+.simple th{background:#005a9c;color:#fff;padding:3px 5px;text-align:left}
+.simple th a{color:#fff;padding:3px 5px;text-align:left}
+.simple th[scope=row]{background:inherit;color:inherit;border-top:1px solid #ddd}
+.simple td{padding:3px 10px;border-top:1px solid #ddd}
+.simple tr:nth-child(even){background:#f0f6ff}
+.section dd>p:first-child{margin-top:0}
+.section dd>p:last-child{margin-bottom:0}
+.section dd{margin-bottom:1em}
+.section dl.attrs dd,.section dl.eldef dd{margin-bottom:0}
+#issue-summary>ul{column-count:2}
+#issue-summary li{list-style:none;display:inline-block}
+details.respec-tests-details{margin-left:1em;display:inline-block;vertical-align:top}
+details.respec-tests-details>*{padding-right:2em}
+details.respec-tests-details[open]{z-index:999999;position:absolute;border:thin solid #cad3e2;border-radius:.3em;background-color:#fff;padding-bottom:.5em}
+details.respec-tests-details[open]>summary{border-bottom:thin solid #cad3e2;padding-left:1em;margin-bottom:1em;line-height:2em}
+details.respec-tests-details>ul{width:100%;margin-top:-.3em}
+details.respec-tests-details>li{padding-left:1em}
+.self-link:hover{opacity:1;text-decoration:none;background-color:transparent}
+aside.example .marker>a.self-link{color:inherit}
+.header-wrapper{display:flex;align-items:baseline}
+:is(h2,h3,h4,h5,h6):not(#toc>h2,#abstract>h2,#sotd>h2,.head>h2){position:relative;left:-.5em}
+:is(h2,h3,h4,h5,h6):not(#toch2)+a.self-link{color:inherit;order:-1;position:relative;left:-1.1em;font-size:1rem;opacity:.5}
+:is(h2,h3,h4,h5,h6)+a.self-link::before{content:"§";text-decoration:none;color:var(--heading-text)}
+:is(h2,h3)+a.self-link{top:-.2em}
+:is(h4,h5,h6)+a.self-link::before{color:#000}
+@media (max-width:767px){
+dd{margin-left:0}
+}
+@media print{
+.removeOnSave{display:none}
+}
+</style>
+  
+<link href="common/css/common.css" rel="stylesheet" type="text/css">
+
+<link rel="canonical" href="https://www.w3.org/TR/wai-aria-practices-1.1/">
+<style>
+var{position:relative;cursor:pointer}
+var[data-type]::after,var[data-type]::before{position:absolute;left:50%;top:-6px;opacity:0;transition:opacity .4s;pointer-events:none}
+var[data-type]::before{content:"";transform:translateX(-50%);border-width:4px 6px 0 6px;border-style:solid;border-color:transparent;border-top-color:#000}
+var[data-type]::after{content:attr(data-type);transform:translateX(-50%) translateY(-100%);background:#000;text-align:center;font-family:"Dank Mono","Fira Code",monospace;font-style:normal;padding:6px;border-radius:3px;color:#daca88;text-indent:0;font-weight:400}
+var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
+</style>
+<script id="initialUserConfig" type="application/json">{
+  "specStatus": "NOTE",
+  "noRecTrack": true,
+  "shortName": "wai-aria-practices-1.1",
+  "publishDate": "2022-05-19",
+  "copyrightStart": "2015",
+  "previousPublishDate": "2019-08-14",
+  "previousMaturity": "NOTE",
+  "github": "w3c/aria-practices",
+  "editors": [
+    {
+      "name": "Matt King",
+      "mailto": "mck@fb.com",
+      "company": "Facebook",
+      "companyURI": "https://www.facebook.com/",
+      "w3cid": 44582,
+      "url": "mailto:mck@fb.com"
+    },
+    {
+      "name": "JaEun Jemma Ku",
+      "mailto": "jku@uic.edu",
+      "company": "University of Illinois",
+      "companyURI": "https://illinois.edu/",
+      "w3cid": 74097,
+      "url": "mailto:jku@uic.edu"
+    },
+    {
+      "name": "James Nurthen",
+      "mailto": "nurthen@adobe.com",
+      "company": "Adobe",
+      "companyURI": "https://www.adobe.com/",
+      "w3cid": 37155,
+      "url": "mailto:nurthen@adobe.com"
+    },
+    {
+      "name": "Zoë Bijl",
+      "company": "Invited Expert",
+      "w3cid": 74040
+    },
+    {
+      "name": "Michael Cooper",
+      "url": "https://www.w3.org/People/cooper/",
+      "company": "W3C",
+      "companyURI": "https://www.w3.org/",
+      "w3cid": 34017
+    }
+  ],
+  "formerEditors": [
+    {
+      "name": "Joseph Scheuhammer",
+      "company": "Inclusive Design Research Centre, OCAD University",
+      "companyURI": "https://idrc.ocad.ca/",
+      "w3cid": 42279,
+      "retiredDate": "2014-10-01"
+    },
+    {
+      "name": "Lisa Pappas",
+      "company": "SAS",
+      "companyURI": "https://www.sas.com/",
+      "w3cid": 41725,
+      "retiredDate": "2009-10-01"
+    },
+    {
+      "name": "Rich Schwerdtfeger",
+      "company": "IBM Corporation",
+      "companyURI": "https://ibm.com/",
+      "w3cid": 2460,
+      "retiredDate": "2014-10-01"
+    }
+  ],
+  "ariaSpecURLs": {
+    "ED": "https://w3c.github.io/aria/",
+    "FPWD": "https://www.w3.org/TR/wai-aria-1.2/",
+    "WD": "https://www.w3.org/TR/wai-aria-1.2/",
+    "REC": "https://www.w3.org/TR/wai-aria/"
+  },
+  "accNameURLs": {
+    "ED": "https://w3c.github.io/accname/",
+    "WD": "https://www.w3.org/TR/accname-1.2/",
+    "FPWD": "https://www.w3.org/TR/accname-1.2/",
+    "REC": "https://www.w3.org/TR/accname/"
+  },
+  "coreMappingURLs": {
+    "ED": "https://w3c.github.io/core-aam/",
+    "WD": "https://www.w3.org/TR/core-aam-1.2/",
+    "FPWD": "https://www.w3.org/TR/core-aam-1.2/",
+    "REC": "https://www.w3.org/TR/core-aam/"
+  },
+  "htmlMappingURLs": {
+    "ED": "https://w3c.github.io/html-aam/",
+    "WD": "https://www.w3.org/TR/html-aam-1.0/",
+    "FPWD": "https://www.w3.org/TR/html-aam-1.0/",
+    "REC": "https://www.w3.org/TR/html-aam-1.0/"
+  },
+  "group": "aria",
+  "wgPublicList": "public-aria-practices",
+  "maxTocLevel": 4,
+  "preProcess": [
+    null
+  ],
+  "localBiblio": {
+    "ACCNAME-AAM": {
+      "aliasOf": "ACCNAME-AAM-1.1"
+    },
+    "ARIA-PRACTICES": {
+      "aliasOf": "WAI-ARIA-PRACTICES-1.2"
+    },
+    "CORE-AAM": {
+      "aliasOf": "CORE-AAM-1.1"
+    },
+    "DPUB-ARIA": {
+      "aliasOf": "DPUB-ARIA-1.0"
+    },
+    "GRAPHICS-ARIA": {
+      "aliasOf": "GRAPHICS-ARIA-1.0"
+    },
+    "GRAPHICS-AAM": {
+      "aliasOf": "GRAPHICS-AAM-1.0"
+    },
+    "EPUB-Content": {
+      "href": "http://www.idpf.org/epub/31/spec/epub-contentdocs.html",
+      "title": "EPUB Content Documents 3.1",
+      "publisher": "IDPF"
+    },
+    "HTML-AAM": {
+      "aliasOf": "HTML-AAM-1.0"
+    },
+    "MathML-Core": {
+      "href": "https://mathml-refresh.github.io/mathml-core/",
+      "title": "MathML Core",
+      "authors": [
+        "David Carlisle",
+        "Frédéric Wang"
+      ]
+    },
+    "SVG-AAM": {
+      "aliasOf": "SVG-AAM-1.0"
+    },
+    "SVG1": {
+      "aliasOf": "SVG"
+    },
+    "WAI-ARIA": {
+      "aliasOf": "WAI-ARIA-1.1"
+    }
+  },
+  "publishISODate": "2022-05-19T00:00:00.000Z",
+  "generatedSubtitle": "W3C Group Note 19 May 2022"
+}</script>
+<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-NOTE"></head>
+<body class="h-entry informative"><div class="head">
+    <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72" height="48">
+  </a></p>
+    <h1 id="title" class="title">WAI-ARIA Authoring Practices 1.1</h1> 
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#NOTE">W3C Group Note</a> <time class="dt-published" datetime="2022-05-19">19 May 2022</time></p>
+    <details open="">
+      <summary>More details about this document</summary>
+      <dl>
+        <dt>This version:</dt><dd>
+                <a class="u-url" href="https://www.w3.org/TR/2022/NOTE-wai-aria-practices-1.1-20220519/">https://www.w3.org/TR/2022/NOTE-wai-aria-practices-1.1-20220519/</a>
+              </dd>
+        <dt>Latest published version:</dt><dd>
+                <a href="https://www.w3.org/TR/wai-aria-practices-1.1/">https://www.w3.org/TR/wai-aria-practices-1.1/</a>
+              </dd>
+        <dt>Latest editor's draft:</dt><dd><a href="https://w3c.github.io/aria-practices/">https://w3c.github.io/aria-practices/</a></dd>
+        <dt>History:</dt><dd>
+                    <a href="https://www.w3.org/standards/history/wai-aria-practices-1.1">https://www.w3.org/standards/history/wai-aria-practices-1.1</a>
+                  </dd><dd>
+                    <a href="https://github.com/w3c/aria-practices/commits/">Commit history</a>
+                  </dd>
+        
+        
+        
+        
+        
+        <dt>Editors:</dt><dd class="editor p-author h-card vcard" data-editor-id="44582">
+    <a class="ed_mailto u-email email p-name" href="mailto:mck@fb.com">Matt King</a> (<span class="p-org org h-org">Facebook</span>)
+  </dd><dd class="editor p-author h-card vcard" data-editor-id="74097">
+    <a class="ed_mailto u-email email p-name" href="mailto:jku@uic.edu">JaEun Jemma Ku</a> (<span class="p-org org h-org">University of Illinois</span>)
+  </dd><dd class="editor p-author h-card vcard" data-editor-id="37155">
+    <a class="ed_mailto u-email email p-name" href="mailto:nurthen@adobe.com">James Nurthen</a> (<span class="p-org org h-org">Adobe</span>)
+  </dd><dd class="editor p-author h-card vcard" data-editor-id="74040">
+    <span class="p-name fn">Zoë Bijl</span> (<span class="p-org org h-org">Invited Expert</span>)
+  </dd><dd class="editor p-author h-card vcard" data-editor-id="34017">
+    <a class="u-url url p-name fn" href="https://www.w3.org/People/cooper/">Michael Cooper</a> (<span class="p-org org h-org">W3C</span>)
+  </dd>
+        <dt>
+                Former editors:
+              </dt><dd class="editor p-author h-card vcard" data-editor-id="42279">
+    <span class="p-name fn">Joseph Scheuhammer</span> (<span class="p-org org h-org">Inclusive Design Research Centre, OCAD University</span>) -  Until <time datetime="2014-10-01">01 October 2014</time>
+  </dd><dd class="editor p-author h-card vcard" data-editor-id="41725">
+    <span class="p-name fn">Lisa Pappas</span> (<span class="p-org org h-org">SAS</span>) -  Until <time datetime="2009-10-01">01 October 2009</time>
+  </dd><dd class="editor p-author h-card vcard" data-editor-id="2460">
+    <span class="p-name fn">Rich Schwerdtfeger</span> (<span class="p-org org h-org">IBM Corporation</span>) -  Until <time datetime="2014-10-01">01 October 2014</time>
+  </dd>
+        
+        <dt>Feedback:</dt><dd>
+        <a href="https://github.com/w3c/aria-practices/">GitHub w3c/aria-practices</a>
+        (<a href="https://github.com/w3c/aria-practices/pulls/">pull requests</a>,
+        <a href="https://github.com/w3c/aria-practices/issues/new/choose">new issue</a>,
+        <a href="https://github.com/w3c/aria-practices/issues/">open issues</a>)
+      </dd><dd><a href="mailto:public-aria-practices@w3.org?subject=%5Bwai-aria-practices-1.1%5D%20YOUR%20TOPIC%20HERE">public-aria-practices@w3.org</a> with subject line <kbd>[wai-aria-practices-1.1] <em>… message topic …</em></kbd> (<a rel="discussion" href="https://lists.w3.org/Archives/Public/public-aria-practices">archives</a>)</dd>
+        
+        
+      </dl>
+    </details>
+    
+    
+    <p class="copyright">
+    <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
+    ©
+    2015-2022
+    
+    <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
+    <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>,
+    <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C
+    <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+    <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
+    <a rel="license" href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" title="W3C Software and Document Notice and License">permissive document license</a> rules apply.
+  </p>
+    <hr title="Separator for header">
+  </div>
+	<section id="abstract" class="introductory"><h2>Abstract</h2>WAI-ARIA Authoring Practices have been moved to <a href="https://www.w3.org/WAI/aria/apg/">https://www.w3.org/WAI/aria/apg/</a>.</section>
+
+	<section id="sotd" class="introductory"><h2>Status of This Document</h2><p><em>This section describes the status of this
+      document at the time of its publication. A list of current <abbr title="World Wide Web Consortium">W3C</abbr>
+      publications and the latest revision of this technical report can be found
+      in the <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at
+      https://www.w3.org/TR/.</em></p>
+		<p> This version of WAI-ARIA Authoring Practices is published to retire it from the Working Group Note track. The <em>content continues to be updated</em> in a format that is more useful to developers:</p>
+		<p><a href="https://www.w3.org/WAI/aria/apg/">https://www.w3.org/WAI/aria/apg/</a></p>
+		<p>The content continues to evolve in that location. The content is no longer versioned, but continuously updated. Improved code examples are also part of that resource.</p>
+	<p>
+    This document was published by the <a href="https://www.w3.org/groups/wg/aria">Accessible Rich Internet Applications Working Group</a> as
+    a Group Note using the
+        <a href="https://www.w3.org/2021/Process-20211102/#recs-and-notes">Note track</a>. 
+  </p><p>Group Notes are not endorsed by
+        <abbr title="World Wide Web Consortium">W3C</abbr> nor its Members. </p><p>
+    This is a draft document and may be updated, replaced or obsoleted by other
+    documents at any time. It is inappropriate to cite this document as other
+    than work in progress.
+    
+  </p><p data-deliverer="83726">
+    
+        The
+        <a href="https://www.w3.org/Consortium/Patent-Policy/"><abbr title="World Wide Web Consortium">W3C</abbr> Patent
+          Policy</a>
+        does not carry any licensing requirements or commitments on this
+        document.
+      
+    
+  </p><p>
+                  This document is governed by the
+                  <a id="w3c_process_revision" href="https://www.w3.org/2021/Process-20211102/">2 November 2021 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
+                </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#abstract">Abstract</a></li><li class="tocline"><a class="tocxref" href="#sotd">Status of This Document</a></li></ol></nav>
+
+
+<p role="navigation" id="back-to-top">
+    <a href="#title"><abbr title="Back to Top">↑</abbr></a>
+  </p><script id="respec-dfn-panel">(() => {
+// @ts-check
+if (document.respec) {
+  document.respec.ready.then(setupPanel);
+} else {
+  setupPanel();
+}
+
+function setupPanel() {
+  const listener = panelListener();
+  document.body.addEventListener("keydown", listener);
+  document.body.addEventListener("click", listener);
+}
+
+function panelListener() {
+  /** @type {HTMLElement} */
+  let panel = null;
+  return event => {
+    const { target, type } = event;
+
+    if (!(target instanceof HTMLElement)) return;
+
+    // For keys, we only care about Enter key to activate the panel
+    // otherwise it's activated via a click.
+    if (type === "keydown" && event.key !== "Enter") return;
+
+    const action = deriveAction(event);
+
+    switch (action) {
+      case "show": {
+        hidePanel(panel);
+        /** @type {HTMLElement} */
+        const dfn = target.closest("dfn, .index-term");
+        panel = document.getElementById(`dfn-panel-for-${dfn.id}`);
+        const coords = deriveCoordinates(event);
+        displayPanel(dfn, panel, coords);
+        break;
+      }
+      case "dock": {
+        panel.style.left = null;
+        panel.style.top = null;
+        panel.classList.add("docked");
+        break;
+      }
+      case "hide": {
+        hidePanel(panel);
+        panel = null;
+        break;
+      }
+    }
+  };
+}
+
+/**
+ * @param {MouseEvent|KeyboardEvent} event
+ */
+function deriveCoordinates(event) {
+  const target = /** @type HTMLElement */ (event.target);
+
+  // We prevent synthetic AT clicks from putting
+  // the dialog in a weird place. The AT events sometimes
+  // lack coordinates, so they have clientX/Y = 0
+  const rect = target.getBoundingClientRect();
+  if (
+    event instanceof MouseEvent &&
+    event.clientX >= rect.left &&
+    event.clientY >= rect.top
+  ) {
+    // The event probably happened inside the bounding rect...
+    return { x: event.clientX, y: event.clientY };
+  }
+
+  // Offset to the middle of the element
+  const x = rect.x + rect.width / 2;
+  // Placed at the bottom of the element
+  const y = rect.y + rect.height;
+  return { x, y };
+}
+
+/**
+ * @param {Event} event
+ */
+function deriveAction(event) {
+  const target = /** @type {HTMLElement} */ (event.target);
+  const hitALink = !!target.closest("a");
+  if (target.closest("dfn:not([data-cite]), .index-term")) {
+    return hitALink ? "none" : "show";
+  }
+  if (target.closest(".dfn-panel")) {
+    if (hitALink) {
+      return target.classList.contains("self-link") ? "hide" : "dock";
+    }
+    const panel = target.closest(".dfn-panel");
+    return panel.classList.contains("docked") ? "hide" : "none";
+  }
+  if (document.querySelector(".dfn-panel:not([hidden])")) {
+    return "hide";
+  }
+  return "none";
+}
+
+/**
+ * @param {HTMLElement} dfn
+ * @param {HTMLElement} panel
+ * @param {{ x: number, y: number }} clickPosition
+ */
+function displayPanel(dfn, panel, { x, y }) {
+  panel.hidden = false;
+  // distance (px) between edge of panel and the pointing triangle (caret)
+  const MARGIN = 20;
+
+  const dfnRects = dfn.getClientRects();
+  // Find the `top` offset when the `dfn` can be spread across multiple lines
+  let closestTop = 0;
+  let minDiff = Infinity;
+  for (const rect of dfnRects) {
+    const { top, bottom } = rect;
+    const diffFromClickY = Math.abs((top + bottom) / 2 - y);
+    if (diffFromClickY < minDiff) {
+      minDiff = diffFromClickY;
+      closestTop = top;
+    }
+  }
+
+  const top = window.scrollY + closestTop + dfnRects[0].height;
+  const left = x - MARGIN;
+  panel.style.left = `${left}px`;
+  panel.style.top = `${top}px`;
+
+  // Find if the panel is flowing out of the window
+  const panelRect = panel.getBoundingClientRect();
+  const SCREEN_WIDTH = Math.min(window.innerWidth, window.screen.width);
+  if (panelRect.right > SCREEN_WIDTH) {
+    const newLeft = Math.max(MARGIN, x + MARGIN - panelRect.width);
+    const newCaretOffset = left - newLeft;
+    panel.style.left = `${newLeft}px`;
+    /** @type {HTMLElement} */
+    const caret = panel.querySelector(".caret");
+    caret.style.left = `${newCaretOffset}px`;
+  }
+
+  // As it's a dialog, we trap focus.
+  // TODO: when <dialog> becomes a implemented, we should really
+  // use that.
+  trapFocus(panel, dfn);
+}
+
+/**
+ * @param {HTMLElement} panel
+ * @param {HTMLElement} dfn
+ * @returns
+ */
+function trapFocus(panel, dfn) {
+  /** @type NodeListOf<HTMLAnchorElement> elements */
+  const anchors = panel.querySelectorAll("a[href]");
+  // No need to trap focus
+  if (!anchors.length) return;
+
+  // Move focus to first anchor element
+  const first = anchors.item(0);
+  first.focus();
+
+  const trapListener = createTrapListener(anchors, panel, dfn);
+  panel.addEventListener("keydown", trapListener);
+
+  // Hiding the panel releases the trap
+  const mo = new MutationObserver(records => {
+    const [record] = records;
+    const target = /** @type HTMLElement */ (record.target);
+    if (target.hidden) {
+      panel.removeEventListener("keydown", trapListener);
+      mo.disconnect();
+    }
+  });
+  mo.observe(panel, { attributes: true, attributeFilter: ["hidden"] });
+}
+
+/**
+ *
+ * @param {NodeListOf<HTMLAnchorElement>} anchors
+ * @param {HTMLElement} panel
+ * @param {HTMLElement} dfn
+ * @returns
+ */
+function createTrapListener(anchors, panel, dfn) {
+  const lastIndex = anchors.length - 1;
+  let currentIndex = 0;
+  return event => {
+    switch (event.key) {
+      // Hitting "Tab" traps us in a nice loop around elements.
+      case "Tab": {
+        event.preventDefault();
+        currentIndex += event.shiftKey ? -1 : +1;
+        if (currentIndex < 0) {
+          currentIndex = lastIndex;
+        } else if (currentIndex > lastIndex) {
+          currentIndex = 0;
+        }
+        anchors.item(currentIndex).focus();
+        break;
+      }
+
+      // Hitting "Enter" on an anchor releases the trap.
+      case "Enter":
+        hidePanel(panel);
+        break;
+
+      // Hitting "Escape" returns focus to dfn.
+      case "Escape":
+        hidePanel(panel);
+        dfn.focus();
+        return;
+    }
+  };
+}
+
+/** @param {HTMLElement} panel */
+function hidePanel(panel) {
+  if (!panel) return;
+  panel.hidden = true;
+  panel.classList.remove("docked");
+}
+})()</script><script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script></body></html>
