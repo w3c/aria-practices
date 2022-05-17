@@ -9,17 +9,17 @@ var respecConfig = {
   noRecTrack: true,
 
   // The specifications short name, as in https://www.w3.org/TR/short-name/
-  shortName: 'wai-aria-practices-1.2',
+  shortName: 'wai-aria-practices-1.1',
 
   // If you wish the publication date to be other than today,
   // set publishDate.
   publishDate: "2022-05-19",
-  copyrightStart: '2018',
+  copyrightStart: '2015',
 
   // If there is a previously published draft, uncomment this
   // and set its YYYY-MM-DD date and its maturity status.
   //
-  previousPublishDate:  "2021-11-29",
+  previousPublishDate:  "2019-08-14",
   previousMaturity:  "NOTE",
   // prevRecURI: "",
   // previousDiffURI: "",
