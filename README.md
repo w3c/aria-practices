@@ -1,9 +1,8 @@
 # WAI-ARIA: Authoring Practices Guide
 
-This repository maintains the WAI-ARIA Authoring Practices Guide.
+This repository maintains the WAI-ARIA Authoring Practices Guide (APG).
 
-* [Latest editor's draft built from main branch](http://w3c.github.io/aria-practices/)
-* [Most recent version published on w3.org](https://www.w3.org/TR/wai-aria-practices/)
+* Published at: [w3.org/wai/aria/apg](https://www.w3.org/wai/aria/apg/)
 * Developed by the [Authoring Practices Task Force](https://www.w3.org/WAI/ARIA/task-forces/practices/) of the [ARIA Working Group](http://www.w3.org/WAI/ARIA/).
 * Staff contact: [Michael Cooper](http://www.w3.org/People/cooper/).
 
@@ -19,7 +18,7 @@ Please do not provide commit access to this repository without coordination.
 
 1. Comment in an existing issue or raise a new issue, expressing your willingness to help and briefly summarizing the nature of your proposed resolution.
 2. An editor will confirm there are no conflicting plans and, if needed, provide guidance.
-3. Be sure you have ESLint configured as described below.
+3. Be sure you have linters installed and configured as described below.
 4. Read our wiki page about [submitting pull requests](https://github.com/w3c/aria-practices/wiki/Submitting-Pull-Requests).
 5. Do some fabulous work and submit a pull request.
 
@@ -103,28 +102,14 @@ To see the complete list of style rules that are applied by ESLint, review the [
 
 ### Editorial documentation
 
-General documentation for editing ARIA deliverables is available in the
-[ARIA repository](https://github.com/w3c/aria/).
-Some of that documentation covers technical procedures not needed
-for this specification.
-
-## How to update document snapshot
-
-Note: These instructions are for editors of the APG who have repository commit access.
-
-1. Go to the [editors draft on rawgit](https://cdn.rawgit.com/w3c/aria-practices/main/aria-practices.html)
-2. Press the ReSpec button (top right hand corner)
-3. Select 'Save snapshot'
-4. Select 'Save as HTML'
-5. Open the gh-pages branch of the `aria-practices` repository
-6. Open `index.html` in your preferred editor
-7. Overwrite contents of `index.html` with the snapshot copy you saved
-8. Commit and push changes
-9. Review changes at [GitHub pages APG snapshot](http://w3c.github.io/aria-practices/)
+See the [APG Editorial Style Guidelines](https://github.com/w3c/aria-practices/wiki/APG-Editorial-Style-Guidelines)
+for information about writing prose for the APG.
+The [ReadMe for the ARIA specification](https://github.com/w3c/aria/)
+contains additional useful editorial guidance.
 
 ## ARIA Roles, Properties and States Referenced in Guidance and Examples(Also known as APG Coverage Report)
 
-[APG Coverage Report](https://raw.githack.com/w3c/aria-practices/coverage/coverage/index.html) includes information on number of guidance and example references in the WAI-ARIA Authoring Practices for each ARIA role, property and state. 
+[APG Coverage Report](https://raw.githack.com/w3c/aria-practices/main/coverage/index.html) includes information on number of guidance and example references in the WAI-ARIA Authoring Practices for each ARIA role, property and state. 
 
 As of January 11, 2022, APG has examples of 
 
