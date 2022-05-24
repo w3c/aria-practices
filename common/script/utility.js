@@ -9,3 +9,8 @@ function addPlatformMaintainers() {
 		if (node.textContent.trim() == "Authors:") node.textContent = "Platform Mapping Maintainers:";
 	})
 }
+function fixContributors() {
+	document.querySelectorAll("#gh-contributors li a").forEach(function(node){
+		if (node.textContent.indexOf("[bot]") >  0) node.parentElement.parentElement.removeChild(node.parentElement);
+	})
+}
