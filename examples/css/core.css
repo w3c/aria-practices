@@ -1,5 +1,5 @@
 /* Style for syntax highlighting */
-@import url("github.css");
+@import "github.css";
 
 body:not(.toc-inline) {
   padding-right: 1.5em;
