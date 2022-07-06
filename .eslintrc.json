@@ -14,7 +14,8 @@
     "jsdoc/require-param-type": 0,
     "jsdoc/require-returns-description": 0,
     "strict": [2, "global"],
-    "no-console": "error"
+    "no-console": "error",
+    "prettier/prettier": ["error", { "endOfLine": "auto" }]
   },
   "overrides": [
     {
