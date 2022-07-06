@@ -51,7 +51,7 @@
     "htmlhint": "^1.1.4",
     "htmlparser2": "^7.2.0",
     "husky": "^8.0.1",
-    "lint-staged": "^12.3.4",
+    "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "selenium-webdriver": "^4.1.1",
     "stylelint": "^14.5.3",
