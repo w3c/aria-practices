@@ -68,7 +68,7 @@ const getExampleFiles = function (currentDirPath, exampleFiles) {
  * @returns {string}
  */
 const getKeyboardRowName = function ($, $tableRow) {
-  return $('th', $tableRow).text().replace(/\n/g, ', ');
+  return $('th', $tableRow).prop('innerText').replace(/\n/g, ', ');
 };
 
 /**
@@ -81,9 +81,9 @@ const getKeyboardRowName = function ($, $tableRow) {
 const getAttributeRowName = function ($, $tableRow) {
   // use the 'th' contents text to identify the row. If there is no text
   // in the 'th' element, use the 'element' column text.
-  let rowName = $('th', $tableRow).text();
+  let rowName = $('th', $tableRow).prop('innerText');
   if (!rowName) {
-    rowName = $(':nth-child(3)', $tableRow).text();
+    rowName = $(':nth-child(3)', $tableRow).prop('innerText');
   }
   return rowName;
 };

@@ -28,7 +28,7 @@ const ariaPracticesFile = path.join(__dirname, '..', 'aria-practices.html');
   const $ = cheerio.load(output);
   const examples = [];
   $('.widget a[href^="examples/"]').each((index, el) => {
-    const title = $(el).text();
+    const title = $(el).prop('innerText');
     const href = $(el).attr('href');
 
     if (href.indexOf('examples/landmarks') === -1) {
