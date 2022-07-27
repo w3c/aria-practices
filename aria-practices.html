@@ -731,7 +731,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       <p>
         A <a href="#combobox" class="role-reference">combobox</a> is an input widget with an associated popup that enables users to select a value for the combobox from a collection of possible values.
         In some implementations, the popup presents allowed values, while in other implementations, the popup presents suggested values, and users may either select one of the suggestions or type a value.
-        The popup may be a <a href="#Listbox">listbox</a>,
+        The popup may be a <a href="#listbox">listbox</a>,
         <a href="#grid">grid</a>,
         <a href="#TreeView">tree</a>, or
         <a href="#dialog_modal">dialog.</a>
@@ -794,7 +794,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         the popup may close and, if present, the inline completion string disappears.
       </p>
       <p>
-        Two other widgets that are also visually compact and enable users to make a single choice from a set of discrete choices are <a href="#Listbox">listbox</a> and <a href="#menubutton">menu button</a>.
+        Two other widgets that are also visually compact and enable users to make a single choice from a set of discrete choices are <a href="#listbox">listbox</a> and <a href="#menubutton">menu button</a>.
         One feature that distinguishes combobox from both listbox and menu button is that the user's choice can be presented as a value in an editable field, which gives users the ability to select some or all of the value for copying to the clipboard.
         Comboboxes and menu buttons can be implemented so users can explore the set of allowed choices without losing a previously made choice.
         That is, users can navigate the set of available choices in a combobox popup or menu and then press <kbd>escape</kbd>, which closes the popup or menu without changing previous input.
@@ -1535,7 +1535,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
           While This type of focus movement wrapping can be very helpful in a layout grid, it would be disorienting if used in a data grid, especially for users of assistive technologies.
         </p>
 
-        <p> Because arrow keys are used to move focus inside of a <code>grid</code>, a <code>grid</code> is both easier to build and use if the components it contains do not require the arrow keys to operate. If a cell contains an element like a <a href="#Listbox">listbox</a>, then an extra key command to focus and activate the listbox is needed as well as a command for restoring the grid navigation functionality. Approaches to supporting this need are described in the section on <a href="#gridNav_inside">Editing and Navigating Inside a Cell</a>. </p>
+        <p> Because arrow keys are used to move focus inside of a <code>grid</code>, a <code>grid</code> is both easier to build and use if the components it contains do not require the arrow keys to operate. If a cell contains an element like a <a href="#listbox">listbox</a>, then an extra key command to focus and activate the listbox is needed as well as a command for restoring the grid navigation functionality. Approaches to supporting this need are described in the section on <a href="#gridNav_inside">Editing and Navigating Inside a Cell</a>. </p>
 
         <section class="notoc">
           <h5>Keyboard Interaction For Layout Grids</h5>
@@ -1794,7 +1794,7 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
       </section>
     </section>
 
-    <section class="widget" id="Listbox">
+    <section class="widget" id="listbox">
       <h3>Listbox</h3>
       <p>
         A <a href="#listbox" class="role-reference">listbox</a> widget presents a list of options and allows a user to select one or more of them.
@@ -4763,7 +4763,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
                   <li>If the <code>listbox</code> role is applied to an HTML <code>select</code> element (with the <code>multiple</code> attribute or a <code>size</code> attribute having a value greater than 1), can be named with an HTML <code>label</code> element.</li>
                   <li>Otherwise use <code>aria-labelledby</code> if a visible label is present.</li>
                   <li>Use <code>aria-label</code> if a visible label is not present.</li>
-                  <li>See the <a href="#Listbox">Listbox Design Pattern</a>.</li>
+                  <li>See the <a href="#listbox">Listbox Design Pattern</a>.</li>
                 </ul>
               </td>
             </tr>
@@ -5575,7 +5575,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       <ul>
         <li><a href="#combobox">Combobox</a></li>
         <li><a href="#grid">Grid</a></li>
-        <li><a href="#Listbox">Listbox</a></li>
+        <li><a href="#listbox">Listbox</a></li>
         <li><a href="#menu">Menu or menu bar</a></li>
         <li><a href="#radiobutton">Radiogroup</a></li>
         <li><a href="#tabpanel">Tabs</a></li>
@@ -5877,7 +5877,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
           For the following composite widget elements, keep them focusable when disabled:
 
           <ul>
-            <li>Options in a <a href="#Listbox">Listbox</a></li>
+            <li>Options in a <a href="#listbox">Listbox</a></li>
             <li>Menu items in a <a href="#menu">Menu or menu bar</a></li>
             <li>Tab elements in a set of <a href="#tabpanel">Tabs</a></li>
             <li>Tree items in a <a href="#TreeView">Tree View</a></li>
@@ -6144,6 +6144,694 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
           <p>For example, consider a save function that is available when the focus is in an editor. Most browsers use ... to be continued ...</p>
         </section>
       </section>
+    </section>
+  </section>
+
+  <section id="communicating_widget_states">
+    <h2>Communicating Widget States</h2>
+
+    <p>
+      ARIA can represent several different widgets, and these widgets can have a variety of states,
+      such as an option being selected,
+      a checkbox being checked or unchecked,
+      or an accordion being expanded or collapsed.
+    </p>
+
+    <p>
+      The following table summarizes the states discussed in this section.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>State</th>
+          <th>Description</th>
+          <th>HTML attribute for similar concept</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <code>aria-selected</code>
+          </td>
+          <td>the element is chosen for further operation</td>
+          <td>
+            <code>selected</code> attribute on
+            <code>option</code>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code>aria-checked</code>
+          </td>
+          <td>the element is checked, unchecked, or mixed state</td>
+          <td>
+            <code>checked</code> attribute on
+            <code>input</code>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code>aria-pressed</code>
+          </td>
+          <td>for toggle buttons: pressed or unpressed</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>
+            <code>aria-expanded</code>
+          </td>
+          <td>an element owned or controlled by this element can be expanded or collapsed</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>
+            <code>aria-disabled</code>
+          </td>
+          <td>the element is not editable or operable</td>
+          <td>
+            <code>disabled</code> attribute on form controls
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code>aria-readonly</code>
+          </td>
+          <td>the element is not editable, but is operable</td>
+          <td>
+            <code>readonly</code> attribute on
+            <code>input</code> and
+            <code>textarea</code>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      HTML also has built-in form controls with similar states.
+      When using HTML form controls that have built-in ways to represent these states,
+      do not use ARIA states.
+      Only use the HTML attributes or APIs.
+    </p>
+
+    <p>
+      This section covers what ARIA&#39;s widget states are,
+      which roles support each state,
+      how the ARIA states map to HTML&#39;s built-in widget states,
+      and how to use them.
+    </p>
+
+    <p class="note">
+      The <code>aria-hidden</code> state is not yet covered in this document, but is planned to be part of a section about the accessibility tree.
+      See <a href="https://github.com/w3c/aria-practices/pull/1045">pull request w3c/aria-practices#1045</a>.
+    </p>
+
+    <p class="note">The <code>aria-invalid</code> state is not yet covered in this document, but is planned to be part of a section about forms.
+    </p>
+
+    <section id="communicating_widget_states_aria-selected">
+      <h3><code>aria-selected</code></h3>
+
+      <p>
+        The <code>aria-selected</code> attribute indicates whether the element is chosen for further operation.
+        Some widgets or parts of widgets can be selected.
+        A widget might allow only a single selection,
+        or can allow multiple items to be selected.
+        Use <code>aria-multiselectable="true"</code> to indicate that multiple values can be selected.
+      </p>
+
+      <p>
+        The <code>aria-selected</code> attribute allows these values:
+      </p>
+
+      <ul>
+        <li><code>true</code>: the element is selectable and is selected.</li>
+
+        <li><code>false</code>: the element is selectable but is not selected.</li>
+
+        <li><code>undefined</code> (default): the element is not selectable.</li>
+      </ul>
+
+      <p>
+        Typically, selection can be changed by clicking with a pointing device,
+        touching for touchscreens,
+        or using arrow keys with a keyboard.
+        When multiple selections are possible,
+        this might be done by holding a modifier key on the keyboard while clicking with a pointing device,
+        long-pressing for touchscreens,
+        or using a modifier key (e.g. Shift) while typing arrows on a keyboard to select adjacent items,
+        or a different modifier key (e.g. Command or Control) while typing arrows to move focus
+        without changing the selection, and then typing Space to select or unselect.
+        However, these paradigms might vary depending on what kind of widget it is,
+        and the conventions of the host operating system or device.
+      </p>
+
+      <p>
+        The <code>aria-selected</code> attribute is supported in these widgets:
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Widget</th>
+            <th>Roles in the widget where
+              <code>aria-selected</code> applies
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <code>grid</code>,
+              <code>treegrid</code>
+            </td>
+            <td>
+              <code>row</code>,
+              <code>gridcell</code>,
+              <code>columnheader</code>,
+              <code>rowheader</code>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code>listbox</code>
+            </td>
+            <td>
+              <code>option</code>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code>tree</code>
+            </td>
+            <td>
+              <code>treeitem</code>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code>tablist</code>
+            </td>
+            <td>
+              <code>tab</code>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <section id="communicating_widget_states_selecting_rows_and_cells">
+        <h4>Selecting rows and cells in <code>grid</code> and <code>treegrid</code></h4>
+
+        <p>A <code>gridcell</code> in a <code>grid</code> or <code>treegrid</code> supports the <code>aria-selected</code> state.
+          The widget could support selecting one or multiple cells.
+        </p>
+
+        <p>
+          For example, consider an editable spreadsheet.
+          One or more sells can be selected, which are marked up with <code>aria-selected="true"</code>.
+          See the <a href="/examples/grid/advancedDataGrid.html">Advanced Data Grid</a> design pattern.
+        </p>
+
+        <p>
+          The <code>row</code> role within a <code>grid</code>, <code>table</code> or <code>treegrid</code> element supports the <code>aria-selected</code> state.
+        </p>
+
+        <p>
+          See the <a href="examples/combobox/aria1.1pattern/grid-combo.html">ARIA 1.1 Combobox with Grid Popup Example</a>
+          of the <a href="#combobox">Combobox</a> design pattern.
+        </p>
+      </section>
+
+      <section id="communicating_widget_states_selecting_options">
+        <h4>Selecting options in listboxes and treeitems in trees</h4>
+
+        <p>
+          <code>aria-selected</code> is a required state for the <code>option</code> role in a <code>listbox</code> element.
+          When an item is selected, specify <code>aria-selected="true"</code>.
+          When an item is not selected, specify <code>aria-selected="false"</code>;
+          do not omit the attribute.
+        </p>
+
+        <p>
+          See the <a href="#combobox">Combobox</a> and the <a href="#listbox">Listbox</a> design patterns for examples.
+        </p>
+
+        <p>
+          The <code>option</code> role and the subclass role <code>treeitem</code> support both <code>aria-selected</code> and <code>aria-checked</code>.
+          In most cases, using only <code>aria-selected</code> is the right choice.
+          Do not add both <code>aria-selected</code> and <code>aria-checked</code> "just in case",
+          since that would increase verbosity for assistive technology users and could cause unnecessary confusion.
+          A valid use of <code>aria-checked</code> over <code>aria-selected</code> is when you need to support a <code>mixed</code> selection state.
+        </p>
+
+        <p>
+          A further difference between selected and checked is that
+          <code>aria-selected</code> is either selected or not selected,
+          whereas <code>aria-checked</code> supports a three states
+          (<code>true</code>, <code>false</code>, and <code>mixed</code>).
+        </p>
+      </section>
+
+      <section id="communicating_widget_states_selecting_tabs">
+        <h4>Selecting tabs in a tablist</h4>
+
+        <p>
+          The <code>tab</code> role in a <code>tablist</code> element supports the <code>aria-selected</code> state,
+          to indicate which tab is active in a tab panel.
+        </p>
+
+        <p>
+          See the <a href="#tabpanel">Tabs</a> design pattern for examples.
+        </p>
+      </section>
+
+      <section id="communicating_widget_states_html_selection">
+        <h4>HTML elements that support selection</h4>
+
+        <p>
+          The HTML <code>select</code> element allows selection of either a single item or multiple items,
+          depending on the attributes on the <code>select</code> element.
+        </p>
+
+        <p>
+          Default selection can be specified with the <code>selected</code> attribute on the <code>option</code> element.
+        </p>
+
+        <p>
+          The user can change the selection, but this is not represented with any attributes.
+          Instead, there are DOM APIs to read and mutate the selection state from script.
+        </p>
+      </section>
+    </section>
+
+    <section id="communicating_widget_states_aria-checked">
+      <h3><code>aria-checked</code></h3>
+
+      <p>
+        The <code>aria-checked</code> attribute indicates whether the element is checked.
+      </p>
+
+      <p>
+        The <code>aria-checked</code> attribute allows these values:
+      </p>
+
+      <ul>
+        <li><code>true</code>: the element supports being checked and is checked.</li>
+
+        <li><code>false</code>: the element supports being checked but is not checked.</li>
+
+        <li><code>mixed</code>: the element supports being checked and is in the mixed state for a tri-state checkbox.</li>
+
+        <li><code>undefined</code> (default): the element does not support being checked.</li>
+      </ul>
+
+      <p>
+        The <code>aria-checked</code> attribute is supported for these roles:
+      </p>
+
+      <ul>
+        <li><code>checkbox</code>, <code>menuitemcheckbox</code></li>
+
+        <li><code>radio</code>, <code>menuitemradio</code></li>
+
+        <li><code>switch</code></li>
+
+        <li><code>option</code> (in a <code>listbox</code>)</li>
+
+        <li><code>treeitem</code> (in a <code>tree</code>)</li>
+      </ul>
+
+      <p>
+        The <code>mixed</code> value is supported for the <code>checkbox</code>, <code>menuitemcheckbox</code>, <code>option</code> and <code>treeitem</code> roles.
+        It is prohibited on the <code>radio</code>, <code>menuitemradio</code> and <code>switch</code> roles.
+      </p>
+
+      <p>
+        In HTML, the <code>&lt;input type="checkbox"></code> element where the
+        <code>indeterminate</code> IDL attribute is set to <code>true</code> is by default mapped to
+        <code>aria-checked="mixed"</code>.
+        There is no way to represent <code>indeterminate</code> declaratively with markup in HTML.
+      </p>
+
+      <section id="communicating_widget_states_checking_checkboxes">
+        <h4>Checking checkboxes</h4>
+
+        <p>
+          <code>aria-checked</code> is a required state for the <code>checkbox</code> and <code>menuitemcheckbox</code> roles.
+        </p>
+
+        <p>
+          Set <code>aria-checked="true"</code> when the checkbox is checked,
+          and <code>aria-checked="false"</code> when it is unchecked.
+        </p>
+
+        <p>
+          A checkbox can support a third <code>mixed</code> state.
+          For example, if there is a group of checkboxes and one checkbox allows checking or unchecking the entire group,
+          that checkbox can be in the <code>mixed</code> state if the group of checkboxes have some checked and some unchecked.
+        </p>
+
+        <p>
+          See the <a href="#checkbox">Checkbox</a> design pattern for examples.
+        </p>
+      </section>
+
+      <section id="communicating_widget_states_checking_radio_buttons">
+        <h4>Checking radio buttons</h4>
+
+        <p>
+          <code>aria-checked</code> is a required state for the <code>radio</code> and <code>menuitemradio</code> roles.
+        </p>
+
+        <p>
+          A radio button usually participates in a group of radio buttons,
+          where checking one radio button unchecks the other radio buttons in the group.
+        </p>
+
+        <p>
+          Use <code>aria-checked="true"</code> on the radio button that is checked,
+          and <code>aria-checked="false"</code> on the other radio buttons in the group.
+        </p>
+
+        <p>
+          See the <a href="#radiobutton">Radio Group</a> design pattern for examples.
+        </p>
+      </section>
+
+      <section id="communicating_widget_states_toggling_a_switch">
+        <h4>Toggling a switch</h4>
+
+        <p>
+          A switch control is similar to a checkbox.
+          It does not support the <code>mixed</code> state,
+          and it is said to be "on" or "off" rather than "checked" or "unchecked".
+          However, the <code>aria-checked</code> attribute is still used to indicate its state.
+        </p>
+
+        <p>
+          Use <code>aria-checked="true"</code> to indicate that the switch is on.
+          Use <code>aria-checked="false"</code> to indicate that the switch is off.
+        </p>
+
+        <p>
+          HTML does not (yet) have a native switch control.
+        </p>
+      </section>
+
+      <section id="communicating_widget_states_checking_options">
+        <h4>Checking options in listboxes and treeitems in trees</h4>
+
+        <p>
+          The <code>option</code> role and the subclass <code>treeitem</code> role support <code>aria-checked</code>,
+          but require the <code>aria-selected</code> state.
+        </p>
+
+        <p>
+          See the previous section on <code>aria-selected</code> for examples of when it can be appropriate to use <code>aria-checked</code>.
+        </p>
+      </section>
+    </section>
+
+    <section id="communicating_widget_states_aria-pressed">
+      <h3><code>aria-pressed</code></h3>
+
+      <p>
+        The <code>button</code> role can represent a toggle button by using the <code>aria-pressed</code> attribute.
+        When the <code>aria-pressed</code> attribute is present and has a non-empty value,
+        the button is a toggle button.
+        A toggle button is a two-state button, either pressed or unpressed.
+      </p>
+
+      <p>
+        The <code>true</code> value indicates that the button is pressed, and
+        the <code>false</code> value indicates that the button is unpressed.
+      </p>
+
+      <p>
+        HTML does not have a native way to represent toggle buttons,
+        but <code>aria-pressed</code> can be used with the HTML <code>button</code> element.
+      </p>
+
+      <pre><code class="lang-html">&lt;button aria-pressed="false">Mute&lt;/button></code></pre>
+
+      <p>
+        See the <a href="#button">Button</a> design pattern for examples.
+      </p>
+    </section>
+
+
+    <section id="communicating_widget_states_aria-expanded">
+      <h3><code>aria-expanded</code></h3>
+
+      <p>
+        The <code>aria-expanded</code> attribute informs assistive technology users that an interactive element can be expanded,
+        meaning it owns or controls another element that can be collapsed or expanded.
+      </p>
+
+      <p>
+        For example, a button can toggle the visibility of some content, as in an accordion.
+      </p>
+
+      <pre><code class="lang-html">&lt;h2>&lt;button aria-controls="spoiler" aria-expanded="false">Spoil the end&lt;/button>&lt;/h2>
+      &lt;div id="spoiler">
+       &lt;p>Ultimately, all stars burn out and the black holes evaporate from Hawking radiation,
+       and the universe reaches maximum entropy.&lt;/p>
+      &lt;/div></code></pre>
+
+      <p>Clicking the button shows or hides the "spoiler" element with JavaScript,
+        and also changes the value of <code>aria-expanded</code> to <code>true</code> when showing,
+        and <code>false</code> when hiding.
+        Users of assistive technology would know from focusing the button whether it is collapsed or expanded.
+      </p>
+
+      <p>
+        The <code>aria-expanded</code> state is used in these design patterns:
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Design pattern</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <a href="#accordion">Accordion</a>
+            </td>
+            <td>A section With show/hide functionality</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="#combobox">Combobox</a>
+            </td>
+            <td>An input widget with an associated popup</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="#disclosure">Disclosure</a>
+            </td>
+            <td>A button that controls visibility of a section of content</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="#listbox">Listbox</a>
+            </td>
+            <td>A list of options</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="#menu">Menubar</a>
+            </td>
+            <td>A list of choices or actions</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="#menubutton">Menu Button</a>
+            </td>
+            <td>A button that opens a menu</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="#toolbar">Toolbar</a>
+            </td>
+            <td>A set of controls</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="#treegrid">Treegrid</a>
+            </td>
+            <td>A hierarchical data grid consisting of tabular information that is editable or interactive</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="#TreeView">Tree View</a>
+            </td>
+            <td>A hierarchical list, possibly where items can be collapsed</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="communicating_widget_states_aria-disabled">
+      <h3><code>aria-disabled</code></h3>
+
+      <p>
+        The <code>aria-disabled</code> state indicates that the element is not editable or operable.
+      </p>
+
+      <p>
+        Usually, disabled elements are not focusable,
+        including descendants of the element.
+        However, in some composite widgets, it can be desirable to keep some elements focusable.
+        See the <a href="#kbd_disabled_controls">Focusability of disabled controls</a> section.
+      </p>
+
+      <p>
+        Use CSS to change the appearance of disabled controls,
+        so that it is clear for visual users that the element is disabled.
+      </p>
+
+      <p>
+        The <code>aria-disabled</code> state is supported on the following roles:
+      </p>
+
+      <ul>
+        <li><code>application</code></li>
+
+        <li><code>button</code></li>
+
+        <li>
+          <code>composite</code> (including subclass roles
+          <code>grid</code>,
+          <code>combobox</code>,
+          <code>listbox</code>,
+          <code>menu</code>,
+          <code>menubar</code>,
+          <code>radiogroup</code>,
+          <code>select</code>,
+          <code>tablist</code>,
+          <code>tree</code>,
+          <code>treegrid</code>)
+        </li>
+
+        <li>
+          <code>gridcell</code> (including subclass roles
+          <code>columnheader</code> and
+          <code>rowheader</code>)
+        </li>
+
+        <li>
+          <code>group</code> (including subclass roles
+          <code>row</code>,
+          <code>toolbar</code>)
+        </li>
+
+        <li>
+          <code>input</code> (including subclass roles
+          <code>checkbox</code>,
+          <code>menuitemcheckbox</code>,
+          <code>menuitemradio</code>,
+          <code>option</code>,
+          <code>radio</code>,
+          <code>searchbox</code>,
+          <code>slider</code>,
+          <code>spinbutton</code>,
+          <code>switch</code>,
+          <code>textbox</code>,
+          <code>treeitem</code>)
+        </li>
+
+        <li><code>link</code></li>
+
+        <li><code>menuitem</code></li>
+
+        <li><code>scrollbar</code></li>
+
+        <li><code>separator</code></li>
+
+        <li><code>tab</code></li>
+      </ul>
+
+      <p>In HTML, most built-in widgets can be disabled by using the <code>disabled</code> attribute.
+        There is no need to also use <code>aria-disabled</code> in such cases.
+      </p>
+
+      <p>See the following design patterns for examples:</p>
+
+      <ul>
+        <li><a href="#accordion">Accordion (Sections With Show/Hide Functionality)</a></li>
+
+        <li><a href="#menu">Menu or Menu bar</a></li>
+
+        <li><a href="#toolbar">Toolbar</a></li>
+      </ul>
+    </section>
+
+    <section id="communicating_widget_states_aria-readonly">
+      <h3><code>aria-readonly</code></h3>
+
+      <p>
+        The <code>aria-readonly</code> state indicates whether an element allows its value to be changed.
+      </p>
+
+      <ul>
+        <li><code>true</code>: the element does not allow its value to be changed, but is otherwise operable.</li>
+
+        <li><code>false</code>: the element allows the value to be changed.</li>
+      </ul>
+
+      <p>
+        The <code>aria-readonly</code> attribute is supported for these roles:
+      </p>
+
+      <ul>
+        <li><code>checkbox</code>, <code>menuitemcheckbox</code>, <code>switch</code></li>
+
+        <li><code>combobox</code></li>
+
+        <li><code>grid</code>, <code>treegrid</code></li>
+
+        <li><code>gridcell</code>, <code>columnheader</code>, <code>rowheader</code></li>
+
+        <li><code>listbox</code></li>
+
+        <li><code>radiogroup</code></li>
+
+        <li><code>slider</code></li>
+
+        <li><code>spinbutton</code></li>
+
+        <li><code>textbox</code>, <code>searchbox</code></li>
+
+        <li><code>menuitemradio</code></li>
+      </ul>
+
+      <p>
+        When an element is readonly, it should still be focusable and allow text selection,
+        only not allow editing or otherwise changing the value or state of the element.
+      </p>
+
+      <p>
+        When <code>aria-readonly</code> is applied to a <code>grid</code> or <code>treegrid</code>,
+        the value is propagated to all <code>gridcells</code> in the widget.
+        Each <code>gridcell</code> can override this propagation by setting
+        <code>aria-readonly</code> on the <code>gridcell</code>.
+        See the <a href="#grid">Grid Design Pattern</a> for examples.
+      </p>
+
+      <p>
+        HTML has the <code>readonly</code> attribute for the <code>input</code> and
+        <code>textarea</code> elements.
+        When using those elements, use the <code>readonly</code> attribute instead of <code>aria-readonly</code>.
+        For example:
+      </p>
+
+      <pre><code>&lt;label>
+       Address
+       &lt;textarea readonly>&lt;/textarea>
+      &lt;/label></code></pre>
     </section>
   </section>
 
