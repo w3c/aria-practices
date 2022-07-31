@@ -6,6 +6,43 @@
 <title>Link Pattern</title>
 </head>
 <body>
+  <h1>Link Pattern</h1>
+  
+  <section>
+    <h2>About This Pattern</h2>
+    <p>
+      A <a href="#link" class="role-reference">link</a> widget provides an interactive reference to a resource.
+      The target resource can be either external or local, i.e., either outside or within the current page or application.
+     </p>
+    <p class="note">
+      Authors are strongly encouraged to use a native host language link element, such as an HTML
+      <code>&lt;A&gt;</code> element with an <code>href</code> attribute. As with other WAI-ARIA
+      widget roles, applying the link role to an element will not cause browsers to enhance the
+      element with standard link behaviors, such as navigation to the link target or context menu
+      actions.
+      When using the <code>link</code> role, providing these features of the element is the author's responsibility.
+    </p>
+  </section>
+
+  <section>
+    <h2>Examples</h2>
+    <p><a href="examples/link.html">Link Examples</a>: Link widgets constructed from HTML <code>span</code> and <code>img</code> elements.</p>
+  </section>
+
+  <section>
+    <h2>Keyboard Interaction</h2>
+    <ul>
+      <li><kbd>Enter</kbd>: Executes the link and moves focus to the link target.</li>
+      <li><kbd>Shift + F10</kbd> (Optional): Opens a context menu for the link.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>WAI-ARIA Roles, States, and Properties</h2>
+    <p>
+        The element containing the link text or graphic has role of <a href="#link" class="role-reference">link</a>.
+    </p>
+  </section>
   
 </body>
 </html>
