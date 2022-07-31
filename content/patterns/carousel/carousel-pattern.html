@@ -7,32 +7,35 @@
 </head>
 <body>
   <h1>Carousel (Slide Show or Image Rotator) Pattern</h1>
-  <h2>About This Pattern</h2>
-  <p>
-    A carousel presents a set of items, referred to as slides, by sequentially displaying a subset of one or more slides.
-    Typically, one slide is displayed at a time, and users can activate a next or previous slide control that hides the current slide and &quot;rotates&quot; the next or previous slide into view.
-    In some implementations, rotation automatically starts when the page loads, and it may also automatically stop once all the slides have been displayed.
-    While a slide may contain any type of content, image carousels where each slide contains nothing more than a single image are common.
-  </p>
-  <p>
-    Ensuring all users can easily control and are not adversely affected by slide rotation is an essential aspect of making carousels accessible.
-    For instance, the screen reader experience can be confusing and disorienting if slides that are not visible on screen are incorrectly hidden, e.g., displayed off-screen.
-    Similarly, if slides rotate automatically and a screen reader user is not aware of the rotation, the user may read an element on slide one, execute the screen reader command for next element, and, instead of hearing the next element on slide one,  hear an element from slide 2 without any knowledge that the element just announced is from an entirely new context.
-  </p>
-  <p>Features needed to provide sufficient rotation control include:</p>
-  <ul>
-    <li>Buttons for displaying the previous and next slides.</li>
-    <li>Optionally, a control, or group of controls, for choosing a specific slide to display. For example, slide picker controls can be marked up as tabs in a tablist with the slide represented by a tabpanel element.</li>
-    <li>If the carousel can automatically rotate, it also:
-      <ul>
-        <li>Has a button for stopping and restarting rotation. This is particularly important for supporting assistive technologies operating in a mode that does not move either keyboard focus or the mouse.</li>
-        <li>Stops rotating when keyboard focus enters the carousel. It does not restart unless the user explicitly requests it to do so.</li>
-        <li>Stops rotating whenever the mouse is hovering over the carousel.</li>
-      </ul>
-    </li>
-  </ul>
+  
+  <section>
+    <h2>About This Pattern</h2>
+    <p>
+      A carousel presents a set of items, referred to as slides, by sequentially displaying a subset of one or more slides.
+      Typically, one slide is displayed at a time, and users can activate a next or previous slide control that hides the current slide and &quot;rotates&quot; the next or previous slide into view.
+      In some implementations, rotation automatically starts when the page loads, and it may also automatically stop once all the slides have been displayed.
+      While a slide may contain any type of content, image carousels where each slide contains nothing more than a single image are common.
+    </p>
+    <p>
+      Ensuring all users can easily control and are not adversely affected by slide rotation is an essential aspect of making carousels accessible.
+      For instance, the screen reader experience can be confusing and disorienting if slides that are not visible on screen are incorrectly hidden, e.g., displayed off-screen.
+      Similarly, if slides rotate automatically and a screen reader user is not aware of the rotation, the user may read an element on slide one, execute the screen reader command for next element, and, instead of hearing the next element on slide one,  hear an element from slide 2 without any knowledge that the element just announced is from an entirely new context.
+    </p>
+    <p>Features needed to provide sufficient rotation control include:</p>
+    <ul>
+      <li>Buttons for displaying the previous and next slides.</li>
+      <li>Optionally, a control, or group of controls, for choosing a specific slide to display. For example, slide picker controls can be marked up as tabs in a tablist with the slide represented by a tabpanel element.</li>
+      <li>If the carousel can automatically rotate, it also:
+        <ul>
+          <li>Has a button for stopping and restarting rotation. This is particularly important for supporting assistive technologies operating in a mode that does not move either keyboard focus or the mouse.</li>
+          <li>Stops rotating when keyboard focus enters the carousel. It does not restart unless the user explicitly requests it to do so.</li>
+          <li>Stops rotating whenever the mouse is hovering over the carousel.</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
 
-  <section class="notoc">
+  <section>
     <h2>Examples</h2>
     <ul>
       <li><a href="examples/carousel-1-prev-next.html">Auto-Rotating Image Carousel with Buttons for Slide Control:</a> A basic image carousel that demonstrates the accessibility features necessary for carousels that rotate automatically on page load and also enables users to choose which slide is displayed with buttons for previous and next slide.</li>
@@ -40,7 +43,7 @@
     </ul>
   </section>
 
-  <section class="notoc">
+  <section>
     <h2>Terms</h2>
     <p>The following terms are used to describe components of a carousel.</p>
     <dl>
@@ -57,7 +60,7 @@
     </dl>
   </section>
 
-  <section class="notoc">
+  <section>
     <h2>Keyboard Interaction</h2>
     <ul>
       <li>
@@ -74,7 +77,7 @@
     </ul>
   </section>
 
-  <section class="notoc">
+  <section>
     <h2>WAI-ARIA Roles, States, and Properties</h2>
     <p>This section describes the element composition for three styles of carousels:</p>
     <ul>
@@ -168,6 +171,6 @@
       </li>
     </ul>
   </section>
-</section>
+  
 </body>
 </html>

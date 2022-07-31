@@ -7,32 +7,35 @@
 </head>
 <body>
   <h1>Button Pattern</h1>
-  <h2>About This Pattern</h2>
-  <p>
-    A <a class="role-reference" href="#button">button</a> is a widget that enables users to trigger an action or event, such as submitting a form, opening a dialog, canceling an action, or performing a delete operation.
-    A common convention for informing users that a button launches a dialog is to append &quot;&#8230;&quot; (ellipsis) to the button label, e.g., &quot;Save as&#8230;&quot;.
-  </p>
-  <p>In addition to the ordinary button widget, WAI-ARIA supports 2 other types of buttons:</p>
-  <ul>
-    <li>
-      Toggle button: A two-state button that can be either off (not pressed) or on (pressed).
-      To tell assistive technologies that a button is a toggle button, specify a value for the attribute <a href="#aria-pressed" class="state-reference">aria-pressed</a>.
-      For example, a button labelled mute in an audio player could indicate that sound is muted by setting the pressed state true.
-      <strong>Important:</strong> it is critical the label on a toggle does not change when its state changes.
-      In this example, when the pressed state is true, the label remains &quot;Mute&quot; so a screen reader would say something like &quot;Mute toggle button pressed&quot;.
-      Alternatively, if the design were to call for the button label to change from &quot;Mute&quot; to &quot;Unmute,&quot; the aria-pressed attribute would not be needed.
-    </li>
-    <li>Menu button: as described in the <a href="../menu-button/menu-button-pattern.html">menu button pattern</a>, a button is revealed to assistive technologies as a menu button if it has the property <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>.</li>
-  </ul>
-  <p class="note">
-    The types of actions performed by buttons are distinctly different from the function of a link (see <a href="../link/link-pattern.html">link pattern</a>).
-    It is important that both the appearance and role of a widget match the function it provides.
-    Nevertheless, elements occasionally have the visual style of a link but perform the action of a button.
-    In such cases, giving the element role <code>button</code> helps assistive technology users understand the function of the element.
-    However, a better solution is to adjust the visual design so it matches the function and ARIA role.
-  </p>
+  
+  <section>
+    <h2>About This Pattern</h2>
+    <p>
+      A <a class="role-reference" href="#button">button</a> is a widget that enables users to trigger an action or event, such as submitting a form, opening a dialog, canceling an action, or performing a delete operation.
+      A common convention for informing users that a button launches a dialog is to append &quot;&#8230;&quot; (ellipsis) to the button label, e.g., &quot;Save as&#8230;&quot;.
+    </p>
+    <p>In addition to the ordinary button widget, WAI-ARIA supports 2 other types of buttons:</p>
+    <ul>
+      <li>
+        Toggle button: A two-state button that can be either off (not pressed) or on (pressed).
+        To tell assistive technologies that a button is a toggle button, specify a value for the attribute <a href="#aria-pressed" class="state-reference">aria-pressed</a>.
+        For example, a button labelled mute in an audio player could indicate that sound is muted by setting the pressed state true.
+        <strong>Important:</strong> it is critical the label on a toggle does not change when its state changes.
+        In this example, when the pressed state is true, the label remains &quot;Mute&quot; so a screen reader would say something like &quot;Mute toggle button pressed&quot;.
+        Alternatively, if the design were to call for the button label to change from &quot;Mute&quot; to &quot;Unmute,&quot; the aria-pressed attribute would not be needed.
+      </li>
+      <li>Menu button: as described in the <a href="../menu-button/menu-button-pattern.html">menu button pattern</a>, a button is revealed to assistive technologies as a menu button if it has the property <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>.</li>
+    </ul>
+    <p class="note">
+      The types of actions performed by buttons are distinctly different from the function of a link (see <a href="../link/link-pattern.html">link pattern</a>).
+      It is important that both the appearance and role of a widget match the function it provides.
+      Nevertheless, elements occasionally have the visual style of a link but perform the action of a button.
+      In such cases, giving the element role <code>button</code> helps assistive technology users understand the function of the element.
+      However, a better solution is to adjust the visual design so it matches the function and ARIA role.
+    </p>
+  </section>
 
-  <section class="notoc">
+  <section>
     <h2>Examples</h2>
     <ul>
       <li><a href="examples/button.html">Button Examples</a>: Examples of clickable HTML <code>div</code> and <code>span</code> elements made into accessible command and toggle buttons.</li>
@@ -40,7 +43,7 @@
     </ul>
   </section>
 
-  <section class="notoc">
+  <section>
     <h2>Keyboard Interaction</h2>
     <p>When the button has focus:</p>
     <ul>
@@ -82,7 +85,7 @@
     </ul>
   </section>
 
-  <section class="notoc">
+  <section>
     <h2>WAI-ARIA Roles, States, and Properties</h2>
     <ul>
       <li>The button has role of <a class="role-reference" href="#button">button</a>.</li>
@@ -99,5 +102,6 @@
       </li>
     </ul>
   </section>
+  
 </body>
 </html>
