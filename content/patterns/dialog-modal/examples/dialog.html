@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Modal Dialog Example | WAI-ARIA Authoring Practices 1.2</title>
+<title>Modal Dialog Example</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!--  Core js and css shared by all examples; do not modify when using this template. -->
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
-<link href="../css/core.css" rel="stylesheet">
-<script src="../js/examples.js" type="text/javascript"></script>
-<script src="../js/highlight.pack.js"></script>
-<script src="../js/app.js"></script>
+<link href="../../../shared/css/core.css" rel="stylesheet">
+<script src="../../../shared/js/examples.js" type="text/javascript"></script>
+<script src="../../../shared/js/highlight.pack.js"></script>
+<script src="../../../shared/js/app.js"></script>
 
 <!--  js and css for this example. -->
 <link href="css/dialog.css" rel="stylesheet">
@@ -22,17 +22,17 @@
 <body>
   <nav aria-label="Related Links" class="feedback">
     <ul>
-      <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
-      <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
       <li><a href="https://github.com/w3c/aria-practices/projects/6">Related Issues</a></li>
-      <li><a href="../../#dialog_modal">Design Pattern</a></li>
+      <li><a href="../dialog-modal-pattern.html">Design Pattern</a></li>
     </ul>
   </nav>
   <main>
     <h1>Modal Dialog Example</h1>
+    <section>
+      <h2>About This Example</h2>
     <p>
       Following is an example implementation of the
-      <a href="../../#dialog_modal">design pattern for modal dialogs.</a>
+      <a href="../dialog-modal-pattern.html">design pattern for modal dialogs.</a>
       The below <q>Add Delivery Address</q> button opens a modal dialog that contains two buttons that open other dialogs.
       The accessibility features section explains the rationale for initial focus placement and use of <code>aria-describedby</code> in each dialog.
     </p>
@@ -41,6 +41,7 @@
       <li><a href="alertdialog.html">Alert Dialog Example</a>: A confirmation prompt that demonstrates an alert dialog.</li>
       <li><a href="datepicker-dialog.html">Date Picker Dialog example</a>: Demonstrates a dialog containing a calendar grid for choosing a date.</li>
     </ul>
+    </section>
     <section>
       <div class="example-header">
         <h2 id="ex_label">Example</h2>
@@ -367,9 +368,6 @@
 
     </section>
   </main>
-  <nav>
-    <a href="../../#dialog_modal">Modal Dialog Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
-  </nav>
 
   <script>
     sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
