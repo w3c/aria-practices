@@ -2,14 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Navigation Menu Button Example | WAI-ARIA Authoring Practices 1.2</title>
+    <title>Navigation Menu Button Example</title>
 
     <!--  Core js and css shared by all examples; do not modify when using this template. -->
     <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
-    <link rel="stylesheet" href="../css/core.css">
-    <script src="../js/examples.js"></script>
-    <script src="../js/highlight.pack.js"></script>
-    <script src="../js/app.js"></script>
+    <link rel="stylesheet" href="../../../shared/css/core.css">
+    <script src="../../../shared/js/examples.js"></script>
+    <script src="../../../shared/js/highlight.pack.js"></script>
+    <script src=".../../../shared/js/app.js"></script>
 
     <!--  JS and CSS for this example -->
     <link href="css/menu-button-links.css" rel="stylesheet">
@@ -18,17 +18,17 @@
   <body>
     <nav aria-label="Related Links" class="feedback">
       <ul>
-        <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
-        <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
         <li><a href="https://github.com/w3c/aria-practices/projects/5">Related Issues</a></li>
-        <li><a href="../../#menubutton">Design Pattern</a></li>
+        <li><a href="../menu-button-pattern.html">Design Pattern</a></li>
       </ul>
     </nav>
     <main>
       <h1>Navigation Menu Button Example</h1>
+      <section>
+        <h2>About This Example</h2>
       <p>
         This example demonstrates the
-        <a href="../../#menubutton">menu button design pattern</a>
+        <a href="../menu-button-pattern.html">menu button design pattern</a>
         for a button that displays a menu of link targets.
         The menu items are made from HTML links, so they  maintain their HTML link behaviors.
         That is, activating a menuitem loads the link target, and the browser's link context menu and associated actions are available.
@@ -46,6 +46,7 @@
         <li><a href="menu-button-actions.html">Action Menu Button Example Using element.focus()</a>: A button that opens a menu of actions or commands where focus in the menu is managed using <code>element.focus()</code>.</li>
         <li><a href="menu-button-actions-active-descendant.html">Action Menu Button Example Using aria-activedescendant</a>: A button that opens a menu of actions or commands where focus in the menu is managed using aria-activedescendant.</li>
       </ul>
+      </section>
       <section>
         <div class="example-header">
           <h2 id="ex_label">Example</h2>
@@ -368,8 +369,5 @@
         </script>
       </section>
     </main>
-    <nav>
-      <a href="../../#menubutton">Menu Button Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
-    </nav>
   </body>
 </html>
