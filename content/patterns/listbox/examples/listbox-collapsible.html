@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>(Deprecated) Collapsible Dropdown Listbox Example | WAI-ARIA Authoring Practices 1.2</title>
+<title>(Deprecated) Collapsible Dropdown Listbox Example</title>
 
 <!--  Core js and css shared by all examples; do not modify when using this template. -->
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
-<link rel="stylesheet" href="../css/core.css">
-<script src="../js/examples.js"></script>
-<script src="../js/highlight.pack.js"></script>
-<script src="../js/app.js"></script>
-<script src="../js/utils.js" type="text/javascript"></script>
+<link rel="stylesheet" href="../../../shared/css/core.css">
+<script src="../../../shared/js/examples.js"></script>
+<script src="../../../shared/js/highlight.pack.js"></script>
+<script src="../../../shared/js/app.js"></script>
+<script src=".../../../shared/js/utils.js" type="text/javascript"></script>
 
 <!--  CSS and JS for this example. -->
 <link href="css/listbox.css" rel="stylesheet">
@@ -20,20 +20,20 @@
 <body>
   <nav aria-label="Related Links" class="feedback">
     <ul>
-      <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
-      <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
       <li><a href="https://github.com/w3c/aria-practices/projects/13">Related Issues</a></li>
-      <li><a href="../../#Listbox">Design Pattern</a></li>
+      <li><a href="../listbox-pattern.html">Design Pattern</a></li>
     </ul>
   </nav>
   <main>
   <h1>(Deprecated) Collapsible Dropdown Listbox Example</h1>
+  <section>
+    <h2>About This Example</h2>
   <div class="advisement">
     <p><strong>DEPRECATION WARNING:</strong> This pattern has been deprecated, and will be removed in a future version of the ARIA Authoring Practices. The <a href="../combobox/combobox-select-only.html">select-only combobox</a> should be used as an alternative to this pattern.</p>
   </div>
   <p>
     The following example implementation of the
-    <a href="../../#Listbox">design pattern for listbox</a>
+    <a href="../listbox-pattern.html">design pattern for listbox</a>
     demonstrates a collapsible single-select listbox widget that is functionally similar to an HTML <code>select</code> input with the attribute <code>size=&quot;1&quot;</code>.
     The widget consists of a button that triggers the display of a listbox.
     In its default state, the widget is collapsed (the listbox is not visible)  and the button label shows the currently selected option from the listbox.
@@ -41,11 +41,12 @@
   </p>
   <p>Similar examples include:</p>
   <ul>
-    <li><a href="../combobox/combobox-select-only.html">Select-Only Combobox</a>: A single-select combobox with no text input that is functionally similar to an HTML <code>select</code> element.</li>
+    <li><a href="../../combobox/examples/combobox-select-only.html">Select-Only Combobox</a>: A single-select combobox with no text input that is functionally similar to an HTML <code>select</code> element.</li>
     <li><a href="listbox-scrollable.html">Scrollable Listbox Example</a>: Single-select listbox that scrolls to reveal more options, similar to HTML <code>select</code> with <code>size</code> attribute greater than one.</li>
     <li><a href="listbox-rearrangeable.html">Example Listboxes with Rearrangeable Options</a>: Examples of both single-select and multi-select listboxes with accompanying toolbars where options can be added, moved, and removed.</li>
     <li><a href="listbox-grouped.html">Listbox Example with Grouped Options</a>: Single-select listbox with grouped options, similar to an HTML <code>select</code> with <code>optgroup</code> children.</li>
   </ul>
+  </section>
   <section>
     <div class="example-header">
       <h2 id="ex_label">Example</h2>
@@ -312,8 +313,5 @@
     </script>
   </section>
   </main>
-  <nav>
-    <a href="../../#Listbox">Listbox Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
-  </nav>
 </body>
 </html>
