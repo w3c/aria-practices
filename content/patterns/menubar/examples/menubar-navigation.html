@@ -6,10 +6,10 @@
 
   <!--  Core js and css shared by all examples; do not modify when using this template. -->
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
-  <link rel="stylesheet" href="../css/core.css">
-  <script src="../js/examples.js"></script>
-  <script src="../js/highlight.pack.js"></script>
-  <script src="../js/app.js"></script>
+  <link rel="stylesheet" href="../../../shared/css/core.css">
+  <script src="../../../shared/js/examples.js"></script>
+  <script src="../../../shared/js/highlight.pack.js"></script>
+  <script src="../../../shared/js/app.js"></script>
 
   <!--  CSS and JS specific to this example  -->
   <link href="css/menubar-navigation.css" rel="stylesheet">
@@ -18,27 +18,27 @@
 <body>
   <nav aria-label="Related Links" class="feedback">
       <ul>
-        <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
-        <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
         <li><a href="https://github.com/w3c/aria-practices/projects/5">Related Issues</a></li>
-        <li><a href="../../#menu">Design Pattern</a></li>
+        <li><a href="../menu-and-menubar-pattern.html">Design Pattern</a></li>
       </ul>
     </nav>
   <main>
   <h1>Navigation Menubar Example</h1>
+  <section>
+    <h2>About This Example</h2>
   <div class="advisement">
-    <p><strong>CAUTION!</strong> Before considering use of the <a href="../../#menu">ARIA menubar pattern</a> for site navigation, it is important to understand:</p>
+    <p><strong>CAUTION!</strong> Before considering use of the <a href="../menu-and-menubar-pattern.html">ARIA menubar pattern</a> for site navigation, it is important to understand:</p>
     <ul>
       <li>The <code>menubar</code> pattern requires complex functionality that is unnecessary for typical site navigation that is styled to look like a menubar with expandable sections or <q>fly outs</q>.</li>
       <li>
-        A pattern more suited for typical site navigation with expandable groups of links is the <a href="../../#disclosure">disclosure pattern.</a>
-        For an example, see <a href="../disclosure/disclosure-navigation.html">Example Disclosure Navigation Menu.</a>
+        A pattern more suited for typical site navigation with expandable groups of links is the <a href="../../disclosure/disclosure-pattern.html">disclosure pattern.</a>
+        For an example, see <a href="../../disclosure/examples/disclosure-navigation.html">Example Disclosure Navigation Menu.</a>
       </li>
     </ul>
   </div>
   <p>
     The following implementation of the
-    <a href="../../#menu">design pattern for menubar</a>
+    <a href="../menu-and-menubar-pattern.html">design pattern for menubar</a>
     demonstrates how a menubar can provide navigation menus.
     The parent menu items in the menubar represent a section of a mythical university web site and open a submenu containing menu items that link to pages within that section.
     The navigation system it illustrates is comparable to the navigation illustrated in the <a href="../disclosure/disclosure-navigation.html">Example of Disclosure for Navigation Menus</a>.
@@ -47,10 +47,10 @@
   <p>Similar examples include: </p>
   <ul>
     <li><a href="menubar-editor.html">Editor Menubar Example</a>: Example of a menubar that presents text styling actions similar to an editor application.</li>
-    <li><a href="../disclosure/disclosure-navigation.html">Example Disclosure Navigation Menu</a>: Navigation menus implemented as simple drop down lists of links that are shown and hidden using disclosure buttons.</li>
-    <li><a href="../disclosure/disclosure-navigation-hybrid.html">Example Disclosure Navigation Menu with Top-Level Links</a></li>
+    <li><a href="../../disclosure/examples/disclosure-navigation.html">Example Disclosure Navigation Menu</a>: Navigation menus implemented as simple drop down lists of links that are shown and hidden using disclosure buttons.</li>
+    <li><a href="../../disclosure/examples/disclosure-navigation-hybrid.html">Example Disclosure Navigation Menu with Top-Level Links</a></li>
   </ul>
-
+  </section> 
   <section id="code-ex-1">
     <div class="example-header">
       <h2 id="ex_label">Example</h2>
@@ -855,8 +855,5 @@
     </script>
   </section>
   </main>
-  <nav>
-    <a href="../../#menu">Menu or Menubar Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
-  </nav>
 </body>
 </html>
