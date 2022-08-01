@@ -46,7 +46,7 @@
     "eslint-plugin-html": "^6.2.0",
     "eslint-plugin-jsdoc": "^39.3.3",
     "eslint-plugin-prettier": "^4.2.1",
-    "geckodriver": "^3.0.1",
+    "geckodriver": "^3.0.2",
     "glob": "^8.0.3",
     "htmlhint": "^1.1.4",
     "htmlparser2": "^8.0.1",
