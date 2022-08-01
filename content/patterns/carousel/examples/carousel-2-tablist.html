@@ -2,15 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Auto-Rotating Image Carousel with Tabs for Slide Control Example | WAI-ARIA Authoring Practices 1.2</title>
+    <title>Auto-Rotating Image Carousel with Tabs for Slide Control Example</title>
 
     <!--  Core js and css shared by all examples; do not modify when using this template. -->
     <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
-    <link rel="stylesheet" href="../css/core.css">
+    <link rel="stylesheet" href="../../../shared/css/core.css">
     <link rel="stylesheet" href="css/carousel-tablist.css">
-    <script src="../js/examples.js"></script>
-    <script src="../js/highlight.pack.js"></script>
-    <script src="../js/app.js"></script>
+    <script src="../../../shared/js/examples.js"></script>
+    <script src="../../../shared/js/highlight.pack.js"></script>
+    <script src="../../../shared/js/app.js"></script>
 
     <script src="js/carousel-tablist.js" type="text/javascript"></script>
 
@@ -18,20 +18,20 @@
     <body>
     <nav aria-label="Related Links" class="feedback">
       <ul>
-        <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
-        <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
         <li><a href="https://github.com/w3c/aria-practices/projects/10">Related Issues</a></li>
-        <li><a href="../../#carousel">Design Pattern</a></li>
+        <li><a href="../carousel-pattern.html">Design Pattern</a></li>
       </ul>
     </nav>
     <main>
       <h1>Auto-Rotating Image Carousel with Tabs for Slide Control Example</h1>
+  <section> 
+    <h2>About This Example</h2>
       <p>
         The following example implementation of the
-        <a href="../../#carousel">carousel design pattern</a>
+        <a href="../carousel-pattern.html">carousel design pattern</a>
         demonstrates features of the pattern that are essential to accessibility for carousels that automatically start rotating when the page loads.
         This example also illustrates how to use the
-        <a href="../../#tabpanel">tabs pattern</a>
+        <a href="../tabs-pattern.html">tabs pattern</a>
         to provide users with a way to skip slides in the sequence by directly choosing which one to view.
          Navigation among slides is provided by a series of circular buttons that function as tabs and are rendered over the rotating slides.
         Automatic rotation stops when users move focus to any control or link in the carousel or hover the mouse over carousel content.
@@ -41,7 +41,7 @@
       <ul>
         <li><a href="carousel-1-prev-next.html">Auto-Rotating Image Carousel with Buttons for Slide Control:</a> A basic image carousel that demonstrates the accessibility features necessary for carousels that rotate automatically on page load and also enables users to choose which slide is displayed with buttons for previous and next slide.</li>
       </ul>
-
+  </section>   
       <section>
         <h2>Example Options</h2>
 
@@ -788,12 +788,6 @@
           sourceCode.make();
         </script>
       </section>
-
     </main>
-
-    <nav>
-      <a href="../../#carousel">Carousel Pattern in WAI-ARIA Authoring Practices 1.2</a>
-    </nav>
-
   </body>
 </html>
