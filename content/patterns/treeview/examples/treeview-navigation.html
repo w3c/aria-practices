@@ -2,14 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Navigation Treeview Example | WAI-ARIA Authoring Practices 1.2</title>
+    <title>Navigation Treeview Example</title>
 
     <!--  Core js and css shared by all examples; do not modify when using this template. -->
     <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
-    <link rel="stylesheet" href="../css/core.css">
-    <script src="../js/examples.js"></script>
-    <script src="../js/highlight.pack.js"></script>
-    <script src="../js/app.js"></script>
+    <link rel="stylesheet" href="../../../shared/css/core.css">
+    <script src="../../../shared/js/examples.js"></script>
+    <script src="../../../shared/js/highlight.pack.js"></script>
+    <script src=".../../../shared/js/app.js">
 
     <link href="css/treeview-navigation.css" rel="stylesheet">
     <script type="text/javascript" src="js/treeview-navigation.js"></script>
@@ -17,24 +17,24 @@
   <body>
   <nav aria-label="Related Links" class="feedback">
       <ul>
-        <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
-        <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
         <li><a href="https://github.com/w3c/aria-practices/projects/17">Related Issues</a></li>
-        <li><a href="../../#TreeView">Design Pattern</a></li>
+        <li><a href="../treeview-pattern.html">Design Pattern</a></li>
       </ul>
     </nav>
     <main>
       <h1>Navigation Treeview Example</h1>
+      <section>
+      <h2>About This Example</h2>
       <div class="advisement">
-        <p><strong>CAUTION!</strong> Before considering use of the <a href="../../#TreeView">ARIA tree pattern</a> for site navigation, it is important to understand:</p>
+        <p><strong>CAUTION!</strong> Before considering use of the <a href="../treeview-pattern.html">ARIA tree pattern</a> for site navigation, it is important to understand:</p>
         <ul>
           <li>Correct implementation of the <code>tree</code> role requires implementation of complex functionality that is not needed for typical site navigation that is styled to look like a tree with expandable sections.</li>
-          <li>A pattern more suited for typical site navigation with expandable groups of links is the <a href="../../#disclosure">disclosure pattern.</a></li>
+          <li>A pattern more suited for typical site navigation with expandable groups of links is the <a href="../../disclosure/disclosure-pattern.html">disclosure pattern.</a></li>
         </ul>
       </div>
       <p>
         The below example demonstrates how the
-        <a href="../../#TreeView">Treeview Design Pattern</a>
+        <a href="../treeview-pattern.html">Treeview Design Pattern</a>
         can be used to build a navigation tree for a set of hierarchically organized web pages.
         It illustrates navigation of a mythical university web site that is comparable to the navigation illustrated in the <a href="../disclosure/disclosure-navigation.html">Example Disclosure Navigation Menu</a>.
         As noted above, the disclosure pattern is better suited for most web sites because few sites need the additional keyboard functionality required to support the ARIA <code>tree</code> role.
@@ -51,7 +51,7 @@
         <li><a href="treeview-1/treeview-1a.html">File Directory Treeview using <em>computed</em> properties</a></li>
         <li><a href="treeview-1/treeview-1b.html">File Directory Treeview using <em>declared</em> properties</a></li>
       </ul>
-
+      </section>
       <section>
         <div class="example-header">
           <h2 id="ex_label">Example</h2>
@@ -735,8 +735,5 @@
         </script>
       </section>
   </main>
-  <nav>
-    <a href="../../#TreeView">Tree View Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
-  </nav>
   </body>
 </html>
