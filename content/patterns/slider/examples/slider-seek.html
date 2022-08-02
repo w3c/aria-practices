@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Media Seek Slider Example | WAI-ARIA Authoring Practices 1.2</title>
+  <title>Media Seek Slider Example</title>
 
   <!--  Core js and css shared by all examples; do not modify when using this template. -->
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
-  <link rel="stylesheet" href="../css/core.css">
-  <script src="../js/examples.js"></script>
-  <script src="../js/highlight.pack.js"></script>
-  <script src="../js/app.js"></script>
+  <link rel="stylesheet" href="../../../shared/css/core.css">
+  <script src="../../../shared/js/examples.js"></script>
+  <script src=".../../../shared/js/highlight.pack.js"></script>
+  <script src="../../../shared/js/app.js"></script>
 
   <link rel="stylesheet" href="css/slider-seek.css">
   <script src="js/slider-seek.js"></script>
@@ -19,14 +19,14 @@
 <body>
   <nav aria-label="Related Links" class="feedback">
     <ul>
-      <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
-      <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
       <li><a href="https://github.com/w3c/aria-practices/projects/3">Related Issues</a></li>
-      <li><a href="../../#slider">Design Pattern</a></li>
+      <li><a href="../slider-pattern.html">Design Pattern</a></li>
     </ul>
   </nav>
   <main>
     <h1>Media Seek Slider Example</h1>
+    <section>
+      <h2>About This Example</h2>
     <div class="advisement">
       <p>
         <strong>WARNING!</strong> Some users of touch-based assistive technologies may experience difficulty utilizing widgets that implement this slider pattern because the gestures their assistive technology provides for operating sliders may not yet generate the necessary output.
@@ -37,7 +37,7 @@
     </div>
     <p>
       The following example of the
-      <a href="../../#slider">slider design pattern</a>
+      <a href="../slider-pattern.html">slider design pattern</a>
       illustrates a seek control that could be used to move the current play position in an audio or video media player.
       The example demonstrates how to use <code>aria-valuetext</code> to provide assistive technology users with meaningful names for numeric values.
       In this case, the value of the control is the position in seconds.
@@ -47,12 +47,13 @@
     </p>
     <p>Similar examples include: </p>
     <ul>
+      <li><a href="../../radio/examples/radio-rating.html">Rating Radio Group Example</a>: Radio group that provides input for a five-star rating scale.</li>
       <li><a href="slider-color-viewer.html">Color Viewer Slider Example</a>: Basic  horizontal sliders that illustrate setting numeric values for a color picker.</li>
       <li><a href="slider-temperature.html">Vertical Temperature Slider Example</a>: Demonstrates using <code>aria-orientation</code> to specify vertical orientation and <code>aria-valuetext</code> to communicate unit of measure for a temperature input.</li>
-      <li><a href="slider-rating.html">Rating Slider Example</a>: Horizontal slider that demonstrates using <code>aria-valuetext</code> to communicate current and maximum value of a rating input for a five star rating scale.</li>
-      <li><a href="multithumb-slider.html">Horizontal Multi-Thumb Slider Example</a>: Demonstrates using sliders with two thumbs to provide inputs for  numeric ranges, such as for searching in a price range.</li>
+      <li><a href="slider-seek.html">Media Seek Slider Example</a>: Horizontal slider that demonstrates using <code>aria-valuetext</code> to communicate current and maximum values of time in media to make the values easy to understand for assistive technology users by converting the total number of seconds to minutes and seconds.</li>
+      <li><a href="../../slider-multithumb/examples/slider-multithumb.html">Horizontal Multi-Thumb Slider Example</a>: Demonstrates using sliders with two thumbs to provide inputs for  numeric ranges, such as for searching in a price range.</li>
     </ul>
-
+    </section>
     <section>
       <div class="example-header">
         <h2 id="ex_label">Example</h2>
@@ -328,8 +329,5 @@
       </script>
     </section>
   </main>
-  <nav>
-    <a href="../../#slider">Slider Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
-  </nav>
 </body>
 </html>
