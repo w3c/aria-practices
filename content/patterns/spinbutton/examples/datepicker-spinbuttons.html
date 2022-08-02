@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Date Picker Spin Button Example | WAI-ARIA Authoring Practices 1.2</title>
+<title>Date Picker Spin Button Example</title>
 
 <!--  Core js and css shared by all examples; do not modify when using this template. -->
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
-<link rel="stylesheet" href="../css/core.css">
+<link rel="stylesheet" href="../../../shared/css/core.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
-<script src="../js/examples.js" type="text/javascript"></script>
-<script src="../js/highlight.pack.js"></script>
-<script src="../js/app.js"></script>
+<script src="../../../shared/js/examples.js" type="text/javascript"></script>
+<script src="../../../shared/js/highlight.pack.js"></script>
+<script src="../../../shared/js/app.js"></script>
 
 <link href="css/datepicker-spinbuttons.css" rel="stylesheet">
 <script src="js/spinbutton-date.js" type="text/javascript"></script>
@@ -20,16 +20,16 @@
 <body>
   <nav aria-label="Related Links" class="feedback">
     <ul>
-      <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
-      <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
       <li><a href="https://github.com/w3c/aria-practices/projects/14">Related Issues</a></li>
-      <li><a href="../../#spinbutton">Design Pattern</a></li>
+      <li><a href="../spinbutton-pattern.html">Design Pattern</a></li>
     </ul>
   </nav>
   <main>
     <h1>Date Picker Spin Button Example</h1>
+    <section>
+      <h2>About This Example</h2>
     <p>
-      The following example uses the <a href="../../#spinbutton">Spin Button Design Pattern</a> to implement a date picker.
+      The following example uses the <a href="../spinbutton-pattern.html">Spin Button Design Pattern</a> to implement a date picker.
       It includes three spin buttons: one for setting the day, a second for month, and a third for year.
     </p>
     <p>Similar examples include:</p>
@@ -37,6 +37,7 @@
       <li><a href="../toolbar/toolbar.html">Toolbar Example</a>: A toolbar that contains a spin button for setting font size.</li>
       <li><a href="../dialog-modal/datepicker-dialog.html">Date Picker Dialog Example</a>: Demonstrates a dialog containing a calendar grid for choosing a date.</li>
     </ul>
+    </section>
     <section>
       <div class="example-header">
         <h2 id="ex_label">Example</h2>
@@ -154,7 +155,7 @@
 
     <section>
       <h2 id="kbd_label">Keyboard Support</h2>
-      <p>The spin buttons provide the following keyboard support described in the <a href="../../#spinbutton">spin button design pattern.</a></p>
+      <p>The spin buttons provide the following keyboard support described in the <a href="../spinbutton-pattern.html">spin button design pattern.</a></p>
       <table aria-labelledby="kbd_label" class="def">
         <thead>
           <tr>
@@ -359,8 +360,5 @@
       </script>
     </section>
   </main>
-  <nav>
-    <a href="../../#spinbutton">Spin Button Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
-  </nav>
 </body>
 </html>
