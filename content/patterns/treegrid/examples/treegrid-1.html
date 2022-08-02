@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 
-<title>Treegrid Email Inbox Example | WAI-ARIA Authoring Practices 1.2</title>
+<title>Treegrid Email Inbox Example</title>
 
 <!--  Core js and css shared by all examples; do not modify when using this template. -->
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
-<link rel="stylesheet" href="../css/core.css">
-<script src="../js/examples.js"></script>
-<script src="../js/highlight.pack.js"></script>
-<script src="../js/app.js"></script>
+<link rel="stylesheet" href="../../../shared/css/core.css">
+<script src="../../../shared/js/examples.js"></script>
+<script src="../../../shared/js/highlight.pack.js"></script>
+<script src=".../../../shared/js/app.js">
 
 <!--  js and css for this example. -->
 <link href="css/treegrid-1.css" rel="stylesheet">
@@ -40,14 +40,14 @@
 <body>
   <nav aria-label="Related Links" class="feedback">
     <ul>
-      <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
-      <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
       <li><a href="https://github.com/w3c/aria-practices/projects/17">Related Issues</a></li>
-      <li><a href="../../#treegrid">Treegrid Design Pattern</a></li>
+      <li><a href="../treegrid-pattern.html">Treegrid Design Pattern</a></li>
     </ul>
 </nav>
   <main>
   <h1>Treegrid Email Inbox Example</h1>
+  <section>
+    <h2>About This Example</h2>
   <p>
     <strong>NOTE:</strong> This example is new in APG 1.1 release 2.
     Please provide feedback in
@@ -55,18 +55,20 @@
   </p>
   <p>
     The following example demonstrates how the
-    <a href="../../#treegrid">treegrid design pattern</a>
+    <a href="../treegrid-pattern.html">treegrid design pattern</a>
     can be used to make an interactive tree that enables users to both navigate the hierarchical structure of email conversations
     and also navigate elements that describe each email, such as subject and sender.
   </p>
   <p>Similar examples include: </p>
   <ul>
-    <li><a href="../grid/dataGrids.html">Data Grid Examples</a>: Three example implementations of grid that include features relevant to presenting tabular information, such as content editing, sort, and column hiding.</li>
-    <li><a href="../treeview/treeview-1/treeview-1a.html">File Directory Treeview using <em>computed</em> properties</a></li>
-    <li><a href="../treeview/treeview-1/treeview-1b.html">File Directory Treeview using <em>declared</em> properties</a></li>
-    <li><a href="../treeview/treeview-2/treeview-2a.html">Navigation Treeview using <em>computed</em> properties</a></li>
-    <li><a href="../treeview/treeview-2/treeview-2b.html">Navigation Treeview using <em>declared</em> properties</a></li>
+    <li><a href="../../grid/examples/dataGrids.html">Data Grid Examples</a>: Three example implementations of grid that include features relevant to presenting tabular information, such as content editing, sort, and column hiding.</li>
+    <li><a href="../../treeview/examples/treeview-1/treeview-1a.html">File Directory Treeview using <em>computed</em> properties</a></li>
+    <li><a href="../../treeview/examples/treeview/treeview-1/treeview-1b.html">File Directory Treeview using <em>declared</em> properties</a></li>
+    <li><a href="../../treeview/examples/treeview/treeview-2/treeview-2a.html">Navigation Treeview using <em>computed</em> properties</a></li>
+    <li><a href="../../treeview/examples/treeview/treeview-2/treeview-2b.html">Navigation Treeview using <em>declared</em> properties</a></li>
   </ul>
+  </section>
+  <section>
   <h2>Example Usage Options</h2>
   <p>
     This example demonstrates three different ways of implementing the keyboard navigation specified in the treegrid pattern.
@@ -98,6 +100,7 @@
     <li>Columns are merely for attractive presentation; there is no need to navigate them individually.</li>
     <li>A screen reader user can easily understand the UI when all information in a row is announced as a single string without any separation.</li>
   </ul>
+  </section>
   <section>
     <div class="example-header">
       <h2 id="ex_label">Example</h2>
@@ -492,9 +495,5 @@
     </script>
   </section>
   </main>
-  <nav>
-    <!--  Update the pattern_ID parameter of this link to refer to the APG design pattern section related to this example.  -->
-    <a href="../../#treegrid">Treegrid Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
-  </nav>
 </body>
 </html>
