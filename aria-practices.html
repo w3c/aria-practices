@@ -122,7 +122,7 @@
       <p>On the other hand, some uses of ARIA are more like suspenders or belts; they add meaning that provides essential support to the original content.</p>
       <pre><code>
         &lt;button aria-pressed=&quot;false&quot;&gt;Mute&lt;/button&gt;
-      </code></pre>
+</code></pre>
       <p>
         This is the power of ARIA.
         It enables authors to describe nearly any user interface component in ways that assistive technologies can reliably interpret, thus making components accessible to assistive technology users.
@@ -4348,7 +4348,7 @@ However, most authors do not need such detailed understanding of the algorithms 
 &lt;/figure&gt;</code></pre>
           <p>
             Like with <code>table</code> elements, if a <code>figure</code> is not named using <code>aria-label</code> or <code>aria-labelledby</code>, the content of the <code>figcaption</code> element will be used as the accessible name.
-            However unlike <code>table</code> elements, if the <code>figcaption</code> element is not used for the name, it does not become an accessible description unless it is referenced by <code>aria-describedby</code>.
+            However, unlike <code>table</code> elements, if the <code>figcaption</code> element is not used for the name, it does not become an accessible description unless it is referenced by <code>aria-describedby</code>.
             Nevertheless, assistive technologies will render the content of a <code>figcaption</code> regardless of whether it is used as a name, description, or neither.
           </p>
           <p>Using the <code>caption</code> element to name a <code>table</code> element, or a <code>figcaption</code> element to name a <code>figure</code> element, satisfies <a href="#naming_rule_visible_text">Rule 2: Prefer Visible Text</a> and <a href="#naming_rule_native_techniques">Rule 3: Prefer Native Techniques</a>.</p>
@@ -6625,10 +6625,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
           &lt;/table&gt;
         </code>
       </pre>
-
-
     </section>
-
   </section>
 
   <section id="range_related_properties">
@@ -6938,6 +6935,144 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       <p>The spin button example above can be made using the native HTML <code>&lt;input type="number"&gt;</code> element.</p>
 
       <pre><code>&lt;label&gt;Price per paperclip: $&lt;input type="number" min="0.01" value="0.5" max="2" step="0.01"&gt;&lt;/label&gt;</code></pre>
+    </section>
+  </section>
+  
+  <section id="aria-level">
+    <h2>Describing Hierarchical Structure with <code>aria-level</code></h2>
+    <p>
+      When elements have a hierarchical relationship, such as headings of nested sections or data in tree structures, the value of <a href="#aria-level" class="property-reference">aria-level</a> communicates an element's level within the hierarchy to assistive technologies.
+      The value of <code>aria-level</code> is an integer greater than or equal to 1, with <code>1</code> indicating the top level of the structure.
+      The number increases for each level of nesting.
+    </p>
+    <p>
+      When possible, browsers automatically calculate <code>aria-level</code> from the DOM structure.
+      Do not override browser calculations by specifying <code>aria-level</code> if the DOM structure already accurately represents the elements' hierarchical relationships.
+    </p>
+    <p>The <code>aria-level</code> property is supported on elements with the following roles:</p>
+    <ul>
+      <li><code>heading</code></li>
+      <li><code>listitem</code></li>
+      <li><code>treeitem</code></li>
+      <li><code>row</code> (if in a <code>treegrid</code>)</li>
+    </ul>
+    <section id="aria-level_heading_role">
+      <h3>Using <code>aria-level</code> with the <code>heading</code> Role</h3>
+      <p>
+        When the <code>aria-level</code> property is used on an element with the <code>heading</code> role, browsers present the element to assistive technologies in the same way they present native HTML heading elements: <code>h1</code>, <code>h2</code>, <code>h3</code>, <code>h4</code>, <code>h5</code> and <code>h6</code>.
+        Only use the <code>aria-level</code> property and the <code>heading</code> role when a native HTML element cannot be used.
+      </p>
+      <p>
+        For example, the following SVG uses the <code>heading</code> role and <code>aria-level</code> property to create headings within a graph.
+        In this graph, the headings "Deciduous Trees" and "Evergreen Trees" are both subheadings of "Total Trees".
+    </p>
+      <pre><code>&lt;svg width="1000" height="1000"&gt;
+  &lt;text x="10" y="10" role="heading" aria-level="1"&gt;Total Trees:&lt;/text&gt;
+  &lt;text x="10" y="100" role="heading" aria-level="2"&gt;Deciduous Trees:&lt;/text&gt;
+  &lt;text x="10" y="200" role="heading" aria-level="2"&gt;Evergreen Trees:&lt;/text&gt;
+  ...
+&lt;/svg&gt;
+</code></pre>
+
+      <p class="note">
+        Note that <code>aria-level</code> values greater than 6 for headings are not currently supported by all assistive technologies.
+      </p>
+
+      <section id="aria-level_heading_role_remediation">
+        <h4>Remediation Use Cases for Headings</h4>
+        <p>
+          In rare scenarios, legacy code cannot be converted to use HTML heading elements.
+          In these cases, the <code>aria-level</code> property and the <code>heading</code> role can be added to elements that assistive technologies should treat like native HTML heading elements.
+        </p>
+        <div class="example">
+          <p>
+            For example, consider the following markup as the starting point.
+            It does not follow best practice and is not accessible.
+            We assume in this example the constraint that elements and class names can't be changed, but ARIA attributes can be added.
+          </p>
+
+          <pre><code>&lt;div class="heading-big"&gt;Housing Specification&lt;/div&gt;
+&lt;div id="room-definition" class="heading-small"&gt;Definition of a Room&lt;/div&gt;
+...</code></pre>
+
+          <p>
+            By adding the <code>role</code> and <code>aria-level</code> attributes, we specify that "Definition of a Room" is the heading of a subsection of the section titled "Housing Specification":
+          </p>
+
+          <pre><code>&lt;div role="heading" aria-level="1" class="heading-big"&gt;Housing Specification&lt;/div&gt;
+&lt;div role="heading" aria-level="2" id="room-definition" class="heading-small"&gt;Definition of a Room&lt;/div&gt;
+...
+</code></pre>
+
+          <p>
+            If the original markup <em>could</em> be changed arbitrarily, the equivalent and preferred HTML would be:
+          </p>
+
+          <pre><code>&lt;h1&gt;Housing Specification&lt;/h1&gt;
+&lt;h2 id="room-definition"&gt;Definition of a Room&lt;/h2&gt;
+...
+</code></pre>
+        </div>
+      </section>
+    </section>
+
+    <section id="aria-level_listitem_role">
+      <h3>Using <code>aria-level</code> with the <code>listitem</code> Role</h3>
+      <p>
+        Browsers automatically calculate the value of <code>aria-level</code> for elements with the <code>listitem</code> role.
+        While ARIA 1.2 supports <code>aria-level</code> on <code>listitem</code> elements, the Authoring Practices Task Force has not found a scenario where applying <code>aria-level</code> to a <code>listitem</code> is needed and has
+        <a href="https://github.com/w3c/aria/issues/1369">raised an issue</a>
+        suggesting the support be deprecated.
+      </p>
+    </section>
+
+    <section id="aria-level_treeitem_role">
+      <h3>Using <code>aria-level</code> with the <code>treeitem</code> Role</h3>
+      <p>
+        Browsers automatically compute an <code>aria-level</code> value for elements with role <code>treeitem</code>.
+        The computed level for a <code>treeitem</code> element is based on the number of <code>group</code> elements in the ancestor chain between that <code>treeitem</code> and the element with role <code>tree</code>.
+        The top-level <code>treeitem</code> elements, which are immediate descendants of the <code>tree</code> with no intervening <code>group</code>, have <code>aria-level</code> of <code>1</code>.
+        However, in some implementations of the <a href="#TreeView">Tree View Design Pattern</a>
+        when the DOM structure does not represent the actual level and the level is important for understanding the content or actions of the treeitem,
+        it is necessary to explicitly declare the <code>aria-level</code>.
+      </p>
+      <p>
+        The following example shows a File Directory where a nested folder "report-1" is being viewed.
+        The parent folder "Reports" is at the top-level in the directory structure, and the "report-1" folder is level 2.
+        The files within the "report-1" folder are thus level 3, even though only these files are currently being viewed.
+      </p>
+      <pre><code>&lt;h2 id="tree_label"&gt;Viewing: report-1&lt;/h2&gt;
+&lt;ul role="tree" aria-labelledby="tree_label"&gt;
+  &lt;li role="treeitem" class="doc" aria-level="3"&gt;report-1A.docx&lt;/li&gt;
+  &lt;li role="treeitem" class="doc" aria-level="3"&gt;report-1B.docx&lt;/li&gt;
+  &lt;li role="treeitem" class="doc" aria-level="3"&gt;report-1C.docx&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+       <p class="note">See the <a href="#TreeView">Tree View Design Pattern</a> for how this example handles focus and keyboard navigation.</p>
+    </section>
+
+    <section id="aria-level_row_role">
+      <h3>Using <code>aria-level</code> with the <code>row</code> Role</h3>
+      <p>The <code>aria-level</code> attribute can be used on an element with <code>row</code> role to describe nesting of rows in a <code>treegrid</code>, as explained in the <a href="#treegrid">treegrid pattern</a>.
+      In this example, the DOM tree does not represent the hierarchical relationship between rows.
+      Each email is in a <code>tr</code> element, which are siblings in the DOM tree, therefore <code>aria-level</code> is necessary to communicate that the emails form a tree structure.
+      The rows with <code>aria-level="2"</code> represent responses to the last previous row with <code>aria-level="1"</code> and visually this relationship is typically displayed the rows with <code>aria-level="2"</code> indented. <code>aria-level</code> in this example is providing the information of the response relationship that is represented visually by indenting.</p>
+      <pre><code>&lt;table role="treegrid"&gt;
+  &lt;tr&gt;
+  &lt;th&gt;From:&lt;/th&gt;
+  &lt;th&gt;Subject:&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr aria-level="1"&gt;
+  &lt;td&gt;Laura&lt;/td&gt;
+  &lt;td&gt;We should definitely cover the bike shed in rainbows.&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr aria-level="2"&gt;
+  &lt;td&gt;Fred&lt;/td&gt;
+  &lt;td&gt;Re: We should definitely cover the bike shed in rainbows.&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+      <p>Do not use <code>aria-level</code> on rows that are in a <code>grid</code> or a <code>table</code> because only rows in a <code>treegrid</code> are expected to have a hierarchical relationship.</p>
     </section>
   </section>
 
