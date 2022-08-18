@@ -6,7 +6,8 @@ const assertAriaControls = require('../util/assertAriaControls');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertAriaActivedescendant = require('../util/assertAriaActivedescendant');
 
-const exampleFile = 'menu-button/menu-button-actions-active-descendant.html';
+const exampleFile =
+  'content/patterns/menu-button/examples/menu-button-actions-active-descendant.html';
 
 const ex = {
   menubuttonSelector: '#ex1 button',

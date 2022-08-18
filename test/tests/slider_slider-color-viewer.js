@@ -4,7 +4,7 @@ const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaRoles = require('../util/assertAriaRoles');
 
-const exampleFile = 'slider/slider-color-viewer.html';
+const exampleFile = 'content/patterns/slider/examples/slider-color-viewer.html';
 
 const ex = {
   groupSelector: '#ex1 [role="group"]',

@@ -4,7 +4,8 @@ const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertRovingTabindex = require('../util/assertRovingTabindex');
 
-const exampleFile = 'treeview/treeview-1/treeview-1b.html';
+const exampleFile =
+  'content/patterns/treeview/examples/treeview-1/treeview-1b.html';
 
 const ex = {
   treeSelector: '#ex1 [role="tree"]',

@@ -1,7 +1,7 @@
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 
-const exampleFile = 'button/button.html';
+const exampleFile = 'content/patterns/button/examples/button.html';
 
 const ex = {
   buttons: [
