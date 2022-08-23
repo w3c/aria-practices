@@ -266,7 +266,6 @@
         "**/*.min.js",
         "**/*.pack.js",
         "**/*.paint",
-        "aria-practices-DeletedSectionsArchive.html",
         "content/shared/css/github.css",
         "content/shared/js/skipto.js",
         "content/patterns/landmarks/examples/css/bootstrap.css",
