@@ -12,8 +12,8 @@ const glob = require('glob');
 const cheerio = require('cheerio');
 const HTMLParser = require('node-html-parser');
 
-const exampleFilePath = path.join(__dirname, '..', 'coverage', 'index.html');
-const exampleTemplatePath = path.join(__dirname, 'coverage-report.template');
+const coverageReportPath = path.join(__dirname, '..', 'coverage', 'index.html');
+const templatePath = path.join(__dirname, 'coverage-report.template');
 
 const csvRoleFilePath = path.join(
   __dirname,
@@ -28,7 +28,7 @@ const csvPropFilePath = path.join(
   'prop-coverage.csv'
 );
 
-let output = fs.readFileSync(exampleTemplatePath, function (err) {
+let output = fs.readFileSync(templatePath, function (err) {
   console.log('Error reading aria index:', err);
 });
 
@@ -445,7 +445,7 @@ function getExampleCodeId(html) {
 
 // Index roles, properties and states used in examples
 glob
-  .sync('examples/!(landmarks)/**/!(index).html', {
+  .sync('content/patterns/!(landmarks)/examples/**/!(index).html', {
     cwd: path.join(__dirname, '..'),
     nodir: true,
   })
@@ -453,16 +453,6 @@ glob
     console.log('[file]: ' + file);
     let dir = path.dirname(file);
     console.log('[ dir]: ' + dir);
-
-    // Ignore any files in the 'examples/js` directory
-    if (dir.indexOf('examples/js') >= 0) {
-      return;
-    }
-
-    // Ignore any files in the 'examples/template` directory
-    if (dir.indexOf('examples/coding-template') >= 0) {
-      return;
-    }
 
     if (file.toLowerCase().indexOf('deprecated') >= 0) {
       console.log('  [ignored]');
@@ -697,56 +687,56 @@ addLandmarkRole(
   ['banner'],
   false,
   'Banner Landmark',
-  '../examples/landmarks/banner.html'
+  '../patterns/landmarks/examples/banner.html'
 );
 
 addLandmarkRole(
   ['complementary'],
   true,
   'Complementary Landmark',
-  '../examples/landmarks/complementary.html'
+  '../patterns/landmarks/examples/complementary.html'
 );
 
 addLandmarkRole(
   ['contentinfo'],
   false,
   'Contentinfo Landmark',
-  '../examples/landmarks/contentinfo.html'
+  '../patterns/landmarks/examples/contentinfo.html'
 );
 
 addLandmarkRole(
   ['form'],
   true,
   'Form Landmark',
-  '../examples/landmarks/form.html'
+  '../patterns/landmarks/examples/form.html'
 );
 
 addLandmarkRole(
   ['main'],
   true,
   'Main Landmark',
-  '../examples/landmarks/main.html'
+  '../patterns/landmarks/examples/main.html'
 );
 
 addLandmarkRole(
   ['navigation'],
   true,
   'Navigation Landmark',
-  '../examples/landmarks/navigation.html'
+  '../patterns/landmarks/examples/navigation.html'
 );
 
 addLandmarkRole(
   ['region'],
   true,
   'Region Landmark',
-  '../examples/landmarks/region.html'
+  '../patterns/landmarks/examples/region.html'
 );
 
 addLandmarkRole(
   ['search'],
   true,
   'Search Landmark',
-  '../examples/landmarks/search.html'
+  '../patterns/landmarks/examples/search.html'
 );
 
 function getListItem(item) {
@@ -1143,7 +1133,7 @@ const result = $.html()
     '<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">\n'
   );
 
-fs.writeFile(exampleFilePath, result, function (err) {
+fs.writeFile(coverageReportPath, result, function (err) {
   if (err) {
     console.log('Error saving updated aria practices:', err);
   }
