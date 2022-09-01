@@ -78,7 +78,7 @@
     ]
   },
   "dependencies": {
-    "@octokit/rest": "^18.12.0",
+    "@octokit/rest": "^19.0.4",
     "dotenv": "^16.0.1",
     "node-html-parser": "^5.2.0"
   }
