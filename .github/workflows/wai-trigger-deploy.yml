@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Trigger wai-aria-practices update
-        uses: actions/github-script@v5
+        uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.GH_TOKEN }}
           script: |
