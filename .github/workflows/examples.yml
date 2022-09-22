@@ -7,13 +7,13 @@ on:
     paths:
       - "package*.json"
       - ".github/workflows/examples.yml"
-      - "examples/**"
+      - "content/**/examples/**"
       - "scripts/reference-tables.*"
   pull_request:
     paths:
       - "package*.json"
       - ".github/workflows/examples.yml"
-      - "examples/**"
+      - "content/**/examples/**"
       - "scripts/reference-tables.*"
 
 jobs:
