@@ -3,7 +3,7 @@ const { By, Key } = require('selenium-webdriver');
 const assertAriaControls = require('../util/assertAriaControls');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertTabOrder = require('../util/assertTabOrder');
-const exampleFile = 'disclosure/disclosure-faq.html';
+const exampleFile = 'content/patterns/disclosure/examples/disclosure-faq.html';
 
 const ex = {
   buttonSelector: '#ex1 button',

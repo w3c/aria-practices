@@ -7,7 +7,8 @@ const assertAriaSelectedAndActivedescendant = require('../util/assertAriaSelecte
 const assertAriaActivedescendant = require('../util/assertAriaActivedescendant');
 const assertAttributeDNE = require('../util/assertAttributeDNE');
 
-const exampleFile = 'listbox/listbox-rearrangeable.html';
+const exampleFile =
+  'content/patterns/listbox/examples/listbox-rearrangeable.html';
 
 const ex = {
   1: {

@@ -412,10 +412,10 @@ function addOpenInCodePenForm(
     head: '<base href="' + location.href + '">',
     css_external:
       location.origin +
-      '/examples/css/core.css;' +
+      '/content/shared/css/core.css;' +
       'https://www.w3.org/StyleSheets/TR/2016/base.css;' +
       'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
-    js_external: location.origin + 'examples/js/utils.js',
+    js_external: location.origin + 'content/shared/js/utils.js',
   };
 
   var totalFetchedFiles = 0;

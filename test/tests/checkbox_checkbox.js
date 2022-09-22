@@ -5,7 +5,7 @@ const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertTabOrder = require('../util/assertTabOrder');
 
-const exampleFile = 'checkbox/checkbox.html';
+const exampleFile = 'content/patterns/checkbox/examples/checkbox.html';
 
 const ex = {
   groupSelector: '#ex1 [role="group"]',

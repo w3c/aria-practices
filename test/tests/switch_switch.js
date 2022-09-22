@@ -3,7 +3,7 @@ const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaRoles = require('../util/assertAriaRoles');
 
-const exampleFile = 'switch/switch.html';
+const exampleFile = 'content/patterns/switch/examples/switch.html';
 
 const ex = {
   switchSelector: '#ex1 [role="switch"]',
