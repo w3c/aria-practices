@@ -9,7 +9,7 @@ on:
       - "!**/*.min.js"
       - "!**/*.pack.js"
       - "!**/*.paint"
-      - "!content/landmarks/examples/css/bootstrap.css"
+      - "!content/patterns/landmarks/examples/css/bootstrap.css"
       - "!common/**"
       - "!respec-config.js"
 
@@ -19,7 +19,7 @@ on:
       - "!**/*.min.js"
       - "!**/*.pack.js"
       - "!**/*.paint"
-      - "!content/landmarks/examples/css/bootstrap.css"
+      - "!content/patterns/landmarks/examples/css/bootstrap.css"
       - "!common/**"
       - "!respec-config.js"
 

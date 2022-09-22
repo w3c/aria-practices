@@ -4,7 +4,7 @@ const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaRoles = require('../util/assertAriaRoles');
 
-const exampleFile = 'slider/slider-temperature.html';
+const exampleFile = 'content/patterns/slider/examples/slider-temperature.html';
 
 const ex = {
   railRects: '#ex1 rect.rail',

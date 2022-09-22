@@ -6,7 +6,7 @@ const assertAriaRoles = require('../util/assertAriaRoles');
 const assertAriaSelectedAndActivedescendant = require('../util/assertAriaSelectedAndActivedescendant');
 const assertAttributeDNE = require('../util/assertAttributeDNE');
 
-const exampleFile = 'listbox/listbox-grouped.html';
+const exampleFile = 'content/patterns/listbox/examples/listbox-grouped.html';
 
 const ex = {
   listboxSelector: '#ex [role="listbox"]',

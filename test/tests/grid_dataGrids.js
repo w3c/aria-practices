@@ -4,7 +4,7 @@ const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaRoles = require('../util/assertAriaRoles');
 
-const exampleFile = 'grid/dataGrids.html';
+const exampleFile = 'content/patterns/grid/examples/dataGrids.html';
 
 const ex = {
   1: {

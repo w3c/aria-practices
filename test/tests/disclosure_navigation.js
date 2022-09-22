@@ -5,7 +5,8 @@ const assertAttributeValues = require('../util/assertAttributeValues');
 const assertTabOrder = require('../util/assertTabOrder');
 const assertHasFocus = require('../util/assertHasFocus');
 
-const exampleFile = 'disclosure/disclosure-navigation.html';
+const exampleFile =
+  'content/patterns/disclosure/examples/disclosure-navigation.html';
 
 const ex = {
   buttonSelector: '#exTest button',

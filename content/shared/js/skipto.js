@@ -1,21 +1,21 @@
 /*! skipto - v4.2.0 - 2022-06-16
-* https://github.com/paypal/skipto
-* Copyright (c) 2022 Jon Gunderson; Licensed BSD
-* Copyright (c) 2021 PayPal Accessibility Team and University of Illinois; Licensed BSD */
- /*@cc_on @*/
+ * https://github.com/paypal/skipto
+ * Copyright (c) 2022 Jon Gunderson; Licensed BSD
+ * Copyright (c) 2021 PayPal Accessibility Team and University of Illinois; Licensed BSD */
+/*@cc_on @*/
 /*@if (@_jscript_version >= es6) @*/
 /* ========================================================================
-* Copyright (c) <2022> (ver 4.2) Jon Gunderson
-* Copyright (c) <2021> PayPal and University of Illinois
-* All rights reserved.
-* Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-* Neither the name of PayPal or any of its subsidiaries or affiliates, nor the name of the University of Illinois, nor the names of any other contributors contributors may be used to endorse or promote products derived from this software without specific prior written permission.
-* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-* ======================================================================== */
+ * Copyright (c) <2022> (ver 4.2) Jon Gunderson
+ * Copyright (c) <2021> PayPal and University of Illinois
+ * All rights reserved.
+ * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+ * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+ * Neither the name of PayPal or any of its subsidiaries or affiliates, nor the name of the University of Illinois, nor the names of any other contributors contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * ======================================================================== */
 
-(function() {
+(function () {
   'use strict';
   const SkipTo = {
     skipToId: 'id-skip-to-js-50',
@@ -29,7 +29,8 @@
     firstChars: [],
     headingLevels: [],
     skipToIdIndex: 1,
-    showAllLandmarksSelector: 'main, [role=main], [role=search], nav, [role=navigation], section[aria-label], section[aria-labelledby], section[title], [role=region][aria-label], [role=region][aria-labelledby], [role=region][title], form[aria-label], form[aria-labelledby], aside, [role=complementary], body > header, [role=banner], body > footer, [role=contentinfo]',
+    showAllLandmarksSelector:
+      'main, [role=main], [role=search], nav, [role=navigation], section[aria-label], section[aria-labelledby], section[title], [role=region][aria-label], [role=region][aria-labelledby], [role=region][title], form[aria-label], form[aria-labelledby], aside, [role=complementary], body > header, [role=banner], body > footer, [role=contentinfo]',
     showAllHeadingsSelector: 'h1, h2, h3, h4, h5, h6',
     // Default configuration values
     config: {
@@ -40,9 +41,9 @@
 
       // Customization of button and menu
       altShortcut: '0', // default shortcut key is the number zero
-      optionShortcut: 'º', // default shortcut key character associated with option+0 on mac 
-      attachElement: 'header',
-      displayOption: 'popup', // options: static (default), popup
+      optionShortcut: 'º', // default shortcut key character associated with option+0 on mac
+      attachElement: 'body',
+      displayOption: 'static', // options: static (default), popup
       // container element, use containerClass for custom styling
       containerElement: 'div',
       containerRole: '',
@@ -75,10 +76,12 @@
 
       // Action labels and messages
       actionGroupLabel: 'Actions',
-      actionShowHeadingsHelp: 'Toggles between showing "All" and "Selected" Headings.',
+      actionShowHeadingsHelp:
+        'Toggles between showing "All" and "Selected" Headings.',
       actionShowSelectedHeadingsLabel: 'Show Selected Headings ($num)',
       actionShowAllHeadingsLabel: 'Show All Headings ($num)',
-      actionShowLandmarksHelp: 'Toggles between showing "All" and "Selected" Landmarks.',
+      actionShowLandmarksHelp:
+        'Toggles between showing "All" and "Selected" Landmarks.',
       actionShowSelectedLandmarksLabel: 'Show Selected Landmarks ($num)',
       actionShowAllLandmarksLabel: 'Show All Landmarks ($num)',
 
@@ -88,7 +91,8 @@
       actionShowAllLandmarksAriaLabel: 'Show all $num landmarks',
 
       // Selectors for landmark and headings sections
-      landmarks: 'main, [role="main"], [role="search"], nav, [role="navigation"], aside, [role="complementary"]',
+      landmarks:
+        'main, [role="main"], [role="search"], nav, [role="navigation"], aside, [role="complementary"]',
       headings: 'main h1, [role="main"] h1, main h2, [role="main"] h2',
 
       // Custom CSS position and colors
@@ -105,10 +109,11 @@
       buttonBackgroundColor: '',
     },
     colorThemes: {
-      'default': {
-        fontFamily: 'Noto Sans, Trebuchet MS, Helvetica Neue, Arial, sans-serif',
+      default: {
+        fontFamily:
+          'Noto Sans, Trebuchet MS, Helvetica Neue, Arial, sans-serif',
         fontSize: '14px',
-        positionLeft: '0px',
+        positionLeft: 'unset',
         menuTextColor: '#000',
         menuBackgroundColor: '#def',
         menuitemFocusTextColor: '#fff',
@@ -116,21 +121,24 @@
         focusBorderColor: '#005a9c',
         buttonTextColor: '#005a9c',
         buttonBackgroundColor: '#ddd',
-      }
+      },
     },
-    defaultCSS: '.skip-to.popup{position:absolute;top:-30em;left:0}.skip-to,.skip-to.popup.focus{position:absolute;top:0;left:$positionLeft;font-family:$fontFamily;font-size:$fontSize}.skip-to.fixed{position:fixed}.skip-to button{position:relative;margin:0;padding:6px 8px 6px 8px;border-width:0 1px 1px 1px;border-style:solid;border-radius:0 0 6px 6px;border-color:$buttonBackgroundColor;color:$menuTextColor;background-color:$buttonBackgroundColor;z-index:100000!important;font-family:$fontFamily;font-size:$fontSize}.skip-to [role=menu]{position:absolute;min-width:17em;display:none;margin:0;padding:.25rem;background-color:$menuBackgroundColor;border-width:2px;border-style:solid;border-color:$focusBorderColor;border-radius:5px;z-index:100000!important;overflow-x:hidden}.skip-to [role=group]{display:grid;grid-auto-rows:min-content;grid-row-gap:1px}.skip-to [role=separator]:first-child{border-radius:5px 5px 0 0}.skip-to [role=menuitem]{padding:3px;width:auto;border-width:0;border-style:solid;color:$menuTextColor;background-color:$menuBackgroundColor;z-index:100000!important;display:grid;overflow-y:auto;grid-template-columns:repeat(6,1.2rem) 1fr;grid-column-gap:2px;font-size:1em}.skip-to [role=menuitem] .label,.skip-to [role=menuitem] .level{font-size:100%;font-weight:400;color:$menuTextColor;display:inline-block;background-color:$menuBackgroundColor;line-height:inherit;display:inline-block}.skip-to [role=menuitem] .level{text-align:right;padding-right:4px}.skip-to [role=menuitem] .label{text-align:left;margin:0;padding:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.skip-to [role=menuitem] .label:first-letter,.skip-to [role=menuitem] .level:first-letter{text-decoration:underline;text-transform:uppercase}.skip-to [role=menuitem].skip-to-h1 .level{grid-column:1}.skip-to [role=menuitem].skip-to-h2 .level{grid-column:2}.skip-to [role=menuitem].skip-to-h3 .level{grid-column:3}.skip-to [role=menuitem].skip-to-h4 .level{grid-column:4}.skip-to [role=menuitem].skip-to-h5 .level{grid-column:5}.skip-to [role=menuitem].skip-to-h6 .level{grid-column:8}.skip-to [role=menuitem].skip-to-h1 .label{grid-column:2/8}.skip-to [role=menuitem].skip-to-h2 .label{grid-column:3/8}.skip-to [role=menuitem].skip-to-h3 .label{grid-column:4/8}.skip-to [role=menuitem].skip-to-h4 .label{grid-column:5/8}.skip-to [role=menuitem].skip-to-h5 .label{grid-column:6/8}.skip-to [role=menuitem].skip-to-h6 .label{grid-column:7/8}.skip-to [role=menuitem].skip-to-h1.no-level .label{grid-column:1/8}.skip-to [role=menuitem].skip-to-h2.no-level .label{grid-column:2/8}.skip-to [role=menuitem].skip-to-h3.no-level .label{grid-column:3/8}.skip-to [role=menuitem].skip-to-h4.no-level .label{grid-column:4/8}.skip-to [role=menuitem].skip-to-h5.no-level .label{grid-column:5/8}.skip-to [role=menuitem].skip-to-h6.no-level .label{grid-column:6/8}.skip-to [role=menuitem].skip-to-nesting-level-1 .nesting{grid-column:1}.skip-to [role=menuitem].skip-to-nesting-level-2 .nesting{grid-column:2}.skip-to [role=menuitem].skip-to-nesting-level-3 .nesting{grid-column:3}.skip-to [role=menuitem].skip-to-nesting-level-0 .label{grid-column:1/8}.skip-to [role=menuitem].skip-to-nesting-level-1 .label{grid-column:2/8}.skip-to [role=menuitem].skip-to-nesting-level-2 .label{grid-column:3/8}.skip-to [role=menuitem].skip-to-nesting-level-3 .label{grid-column:4/8}.skip-to [role=menuitem].action .label,.skip-to [role=menuitem].no-items .label{grid-column:1/8}.skip-to [role=separator]{margin:1px 0 1px 0;padding:3px;display:block;width:auto;font-weight:700;border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:$menuTextColor;background-color:$menuBackgroundColor;color:$menuTextColor;z-index:100000!important}.skip-to [role=separator] .mofn{font-weight:400;font-size:85%}.skip-to [role=separator]:first-child{border-radius:5px 5px 0 0}.skip-to [role=menuitem].last{border-radius:0 0 5px 5px}.skip-to.focus{display:block}.skip-to button:focus,.skip-to button:hover{background-color:$menuBackgroundColor;color:$menuTextColor;outline:0}.skip-to button:focus{padding:6px 7px 5px 7px;border-width:0 2px 2px 2px;border-color:$focusBorderColor}.skip-to [role=menuitem]:focus{padding:1px;border-width:2px;border-style:solid;border-color:$focusBorderColor;background-color:$menuitemFocusBackgroundColor;color:$menuitemFocusTextColor;outline:0}.skip-to [role=menuitem]:focus .label,.skip-to [role=menuitem]:focus .level{background-color:$menuitemFocusBackgroundColor;color:$menuitemFocusTextColor}',
+    defaultCSS:
+      '.skip-to.popup{position:absolute;top:-30em;left:0}.skip-to,.skip-to.popup.focus{position:absolute;top:0;left:$positionLeft;font-family:$fontFamily;font-size:$fontSize}.skip-to.fixed{position:fixed}.skip-to button{position:relative;margin:0;padding:6px 8px 6px 8px;border-width:0 1px 1px 1px;border-style:solid;border-radius:0 0 6px 6px;border-color:$buttonBackgroundColor;color:$menuTextColor;background-color:$buttonBackgroundColor;z-index:100000!important;font-family:$fontFamily;font-size:$fontSize}.skip-to [role=menu]{position:absolute;min-width:17em;display:none;margin:0;padding:.25rem;background-color:$menuBackgroundColor;border-width:2px;border-style:solid;border-color:$focusBorderColor;border-radius:5px;z-index:100000!important;overflow-x:hidden}.skip-to [role=group]{display:grid;grid-auto-rows:min-content;grid-row-gap:1px}.skip-to [role=separator]:first-child{border-radius:5px 5px 0 0}.skip-to [role=menuitem]{padding:3px;width:auto;border-width:0;border-style:solid;color:$menuTextColor;background-color:$menuBackgroundColor;z-index:100000!important;display:grid;overflow-y:clip;grid-template-columns:repeat(6,1.2rem) 1fr;grid-column-gap:2px;font-size:1em}.skip-to [role=menuitem] .label,.skip-to [role=menuitem] .level{font-size:100%;font-weight:400;color:$menuTextColor;display:inline-block;background-color:$menuBackgroundColor;line-height:inherit;display:inline-block}.skip-to [role=menuitem] .level{text-align:right;padding-right:4px}.skip-to [role=menuitem] .label{text-align:left;margin:0;padding:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.skip-to [role=menuitem] .label:first-letter,.skip-to [role=menuitem] .level:first-letter{text-decoration:underline;text-transform:uppercase}.skip-to [role=menuitem].skip-to-h1 .level{grid-column:1}.skip-to [role=menuitem].skip-to-h2 .level{grid-column:2}.skip-to [role=menuitem].skip-to-h3 .level{grid-column:3}.skip-to [role=menuitem].skip-to-h4 .level{grid-column:4}.skip-to [role=menuitem].skip-to-h5 .level{grid-column:5}.skip-to [role=menuitem].skip-to-h6 .level{grid-column:8}.skip-to [role=menuitem].skip-to-h1 .label{grid-column:2/8}.skip-to [role=menuitem].skip-to-h2 .label{grid-column:3/8}.skip-to [role=menuitem].skip-to-h3 .label{grid-column:4/8}.skip-to [role=menuitem].skip-to-h4 .label{grid-column:5/8}.skip-to [role=menuitem].skip-to-h5 .label{grid-column:6/8}.skip-to [role=menuitem].skip-to-h6 .label{grid-column:7/8}.skip-to [role=menuitem].skip-to-h1.no-level .label{grid-column:1/8}.skip-to [role=menuitem].skip-to-h2.no-level .label{grid-column:2/8}.skip-to [role=menuitem].skip-to-h3.no-level .label{grid-column:3/8}.skip-to [role=menuitem].skip-to-h4.no-level .label{grid-column:4/8}.skip-to [role=menuitem].skip-to-h5.no-level .label{grid-column:5/8}.skip-to [role=menuitem].skip-to-h6.no-level .label{grid-column:6/8}.skip-to [role=menuitem].skip-to-nesting-level-1 .nesting{grid-column:1}.skip-to [role=menuitem].skip-to-nesting-level-2 .nesting{grid-column:2}.skip-to [role=menuitem].skip-to-nesting-level-3 .nesting{grid-column:3}.skip-to [role=menuitem].skip-to-nesting-level-0 .label{grid-column:1/8}.skip-to [role=menuitem].skip-to-nesting-level-1 .label{grid-column:2/8}.skip-to [role=menuitem].skip-to-nesting-level-2 .label{grid-column:3/8}.skip-to [role=menuitem].skip-to-nesting-level-3 .label{grid-column:4/8}.skip-to [role=menuitem].action .label,.skip-to [role=menuitem].no-items .label{grid-column:1/8}.skip-to [role=separator]{margin:1px 0 1px 0;padding:3px;display:block;width:auto;font-weight:700;border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:$menuTextColor;background-color:$menuBackgroundColor;color:$menuTextColor;z-index:100000!important}.skip-to [role=separator] .mofn{font-weight:400;font-size:85%}.skip-to [role=separator]:first-child{border-radius:5px 5px 0 0}.skip-to [role=menuitem].last{border-radius:0 0 5px 5px}.skip-to.focus{display:block}.skip-to button:focus,.skip-to button:hover{background-color:$menuBackgroundColor;color:$menuTextColor;outline:0}.skip-to button:focus{padding:6px 7px 5px 7px;border-width:0 2px 2px 2px;border-color:$focusBorderColor}.skip-to [role=menuitem]:focus{padding:1px;border-width:2px;border-style:solid;border-color:$focusBorderColor;background-color:$menuitemFocusBackgroundColor;color:$menuitemFocusTextColor;outline:0}.skip-to [role=menuitem]:focus .label,.skip-to [role=menuitem]:focus .level{background-color:$menuitemFocusBackgroundColor;color:$menuitemFocusTextColor}',
 
     //
     // Functions related to configuring the features
     // of skipTo
     //
-    isNotEmptyString: function(str) {
-      return (typeof str === 'string') && str.length && str.trim() && str !== "&nbsp;";
+    isNotEmptyString: function (str) {
+      return (
+        typeof str === 'string' && str.length && str.trim() && str !== '&nbsp;'
+      );
     },
-    isEmptyString: function(str) {
-      return (typeof str !== 'string') || str.length === 0 && !str.trim();
+    isEmptyString: function (str) {
+      return typeof str !== 'string' || (str.length === 0 && !str.trim());
     },
-    init: function(config) {
+    init: function (config) {
       let node;
       let buttonVisibleLabel;
       let buttonAriaLabel;
@@ -173,7 +181,7 @@
             case 'fixed':
               this.domNode.classList.add('fixed');
               break;
-            case 'onfocus':  // Legacy option
+            case 'onfocus': // Legacy option
             case 'popup':
               this.domNode.classList.add('popup');
               break;
@@ -185,11 +193,14 @@
 
       // Place skip to at the beginning of the document
       if (attachElement.firstElementChild) {
-        attachElement.insertBefore(this.domNode, attachElement.firstElementChild);
+        attachElement.insertBefore(
+          this.domNode,
+          attachElement.firstElementChild
+        );
       } else {
         attachElement.appendChild(this.domNode);
       }
-      
+
       // Menu button
       [buttonVisibleLabel, buttonAriaLabel] = this.getBrowserSpecificShortcut();
 
@@ -200,11 +211,16 @@
       this.buttonNode.setAttribute('aria-expanded', 'false');
       this.buttonNode.setAttribute('aria-controls', this.skipToMenuId);
 
-      this.buttonNode.addEventListener('keydown', this.handleButtonKeydown.bind(this));
-      this.buttonNode.addEventListener('click', this.handleButtonClick.bind(this));
+      this.buttonNode.addEventListener(
+        'keydown',
+        this.handleButtonKeydown.bind(this)
+      );
+      this.buttonNode.addEventListener(
+        'click',
+        this.handleButtonClick.bind(this)
+      );
 
       this.domNode.appendChild(this.buttonNode);
-
 
       this.menuNode = document.createElement('div');
       this.menuNode.setAttribute('role', 'menu');
@@ -214,7 +230,11 @@
       this.domNode.appendChild(this.menuNode);
       this.domNode.addEventListener('focusin', this.handleFocusin.bind(this));
       this.domNode.addEventListener('focusout', this.handleFocusout.bind(this));
-      window.addEventListener('pointerdown', this.handleBackgroundPointerdown.bind(this), true);
+      window.addEventListener(
+        'pointerdown',
+        this.handleBackgroundPointerdown.bind(this),
+        true
+      );
 
       if (this.usesAltKey || this.usesOptionKey) {
         document.addEventListener(
@@ -224,19 +244,22 @@
       }
     },
 
-    updateStyle: function(stylePlaceholder, value, defaultValue) {
+    updateStyle: function (stylePlaceholder, value, defaultValue) {
       if (typeof value !== 'string' || value.length === 0) {
         value = defaultValue;
       }
       let index1 = this.defaultCSS.indexOf(stylePlaceholder);
       let index2 = index1 + stylePlaceholder.length;
       while (index1 >= 0 && index2 < this.defaultCSS.length) {
-        this.defaultCSS = this.defaultCSS.substring(0, index1) + value + this.defaultCSS.substring(index2);
+        this.defaultCSS =
+          this.defaultCSS.substring(0, index1) +
+          value +
+          this.defaultCSS.substring(index2);
         index1 = this.defaultCSS.indexOf(stylePlaceholder, index2);
         index2 = index1 + stylePlaceholder.length;
       }
     },
-    addCSSColors: function() {
+    addCSSColors: function () {
       let theme = this.colorThemes['default'];
       if (typeof this.colorThemes[this.config.colorTheme] === 'object') {
         theme = this.colorThemes[this.config.colorTheme];
@@ -244,27 +267,60 @@
       this.updateStyle('$fontFamily', this.config.fontFamily, theme.fontFamily);
       this.updateStyle('$fontSize', this.config.fontSize, theme.fontSize);
 
-      this.updateStyle('$positionLeft', this.config.positionLeft, theme.positionLeft);
+      this.updateStyle(
+        '$positionLeft',
+        this.config.positionLeft,
+        theme.positionLeft
+      );
 
-      this.updateStyle('$menuTextColor', this.config.menuTextColor, theme.menuTextColor);
-      this.updateStyle('$menuBackgroundColor', this.config.menuBackgroundColor, theme.menuBackgroundColor);
+      this.updateStyle(
+        '$menuTextColor',
+        this.config.menuTextColor,
+        theme.menuTextColor
+      );
+      this.updateStyle(
+        '$menuBackgroundColor',
+        this.config.menuBackgroundColor,
+        theme.menuBackgroundColor
+      );
 
-      this.updateStyle('$menuitemFocusTextColor', this.config.menuitemFocusTextColor, theme.menuitemFocusTextColor);
-      this.updateStyle('$menuitemFocusBackgroundColor', this.config.menuitemFocusBackgroundColor, theme.menuitemFocusBackgroundColor);
+      this.updateStyle(
+        '$menuitemFocusTextColor',
+        this.config.menuitemFocusTextColor,
+        theme.menuitemFocusTextColor
+      );
+      this.updateStyle(
+        '$menuitemFocusBackgroundColor',
+        this.config.menuitemFocusBackgroundColor,
+        theme.menuitemFocusBackgroundColor
+      );
 
-      this.updateStyle('$focusBorderColor', this.config.focusBorderColor, theme.focusBorderColor);
+      this.updateStyle(
+        '$focusBorderColor',
+        this.config.focusBorderColor,
+        theme.focusBorderColor
+      );
 
-      this.updateStyle('$buttonTextColor', this.config.buttonTextColor, theme.buttonTextColor);
-      this.updateStyle('$buttonBackgroundColor', this.config.buttonBackgroundColor, theme.buttonBackgroundColor);
+      this.updateStyle(
+        '$buttonTextColor',
+        this.config.buttonTextColor,
+        theme.buttonTextColor
+      );
+      this.updateStyle(
+        '$buttonBackgroundColor',
+        this.config.buttonBackgroundColor,
+        theme.buttonBackgroundColor
+      );
     },
 
     getBrowserSpecificShortcut: function () {
-      const platform =  navigator.platform.toLowerCase();
+      const platform = navigator.platform.toLowerCase();
       const userAgent = navigator.userAgent.toLowerCase();
 
-      const hasWin    = platform.indexOf('win') >= 0;
-      const hasMac    = platform.indexOf('mac') >= 0;
-      const hasLinux  = platform.indexOf('linux') >= 0 || platform.indexOf('bsd') >= 0;
+      const hasWin = platform.indexOf('win') >= 0;
+      const hasMac = platform.indexOf('mac') >= 0;
+      const hasLinux =
+        platform.indexOf('linux') >= 0 || platform.indexOf('bsd') >= 0;
       const hasAndroid = userAgent.indexOf('android') >= 0;
 
       this.usesAltKey = hasWin || (hasLinux && !hasAndroid);
@@ -288,7 +344,10 @@
             this.config.altLabel
           );
           label = label + buttonShortcut;
-          ariaLabel = this.config.altButtonAriaLabel.replace('$key', this.config.altShortcut);
+          ariaLabel = this.config.altButtonAriaLabel.replace(
+            '$key',
+            this.config.altShortcut
+          );
         }
 
         if (this.usesOptionKey) {
@@ -297,34 +356,43 @@
             this.config.optionLabel
           );
           label = label + buttonShortcut;
-          ariaLabel = this.config.optionButtonAriaLabel.replace('$key', this.config.altShortcut);
+          ariaLabel = this.config.optionButtonAriaLabel.replace(
+            '$key',
+            this.config.altShortcut
+          );
         }
       }
       return [label, ariaLabel];
     },
-    setUpConfig: function(appConfig) {
+    setUpConfig: function (appConfig) {
       let localConfig = this.config,
         name,
-        appConfigSettings = typeof appConfig.settings !== 'undefined' ? appConfig.settings.skipTo : {};
+        appConfigSettings =
+          typeof appConfig.settings !== 'undefined'
+            ? appConfig.settings.skipTo
+            : {};
       for (name in appConfigSettings) {
         //overwrite values of our local config, based on the external config
-        if ((typeof localConfig[name] !== 'undefined') &&
-           ((typeof appConfigSettings[name] === 'string') &&
-            (appConfigSettings[name].length > 0 ) ||
-           typeof appConfigSettings[name] === 'boolean')
-          ) {
+        if (
+          typeof localConfig[name] !== 'undefined' &&
+          ((typeof appConfigSettings[name] === 'string' &&
+            appConfigSettings[name].length > 0) ||
+            typeof appConfigSettings[name] === 'boolean')
+        ) {
           localConfig[name] = appConfigSettings[name];
         } else {
-          throw new Error('** SkipTo Problem with user configuration option "' + name + '".');
+          throw new Error(
+            '** SkipTo Problem with user configuration option "' + name + '".'
+          );
         }
       }
     },
-    renderStyleElement: function(cssString) {
+    renderStyleElement: function (cssString) {
       const styleNode = document.createElement('style');
       const headNode = document.getElementsByTagName('head')[0];
       const css = document.createTextNode(cssString);
 
-      styleNode.setAttribute("type", "text/css");
+      styleNode.setAttribute('type', 'text/css');
       // ID is used to test whether skipto is already loaded
       styleNode.id = this.skipToId;
       styleNode.appendChild(css);
@@ -336,7 +404,7 @@
     // the popup menu
     //
 
-    getFirstChar: function(menuitem) {
+    getFirstChar: function (menuitem) {
       const label = menuitem.querySelector('.label');
       if (label && this.isNotEmptyString(label.textContent)) {
         return label.textContent.trim()[0].toLowerCase();
@@ -344,7 +412,7 @@
       return '';
     },
 
-    getHeadingLevelFromAttribute: function(menuitem) {
+    getHeadingLevelFromAttribute: function (menuitem) {
       if (menuitem.hasAttribute('data-level')) {
         return menuitem.getAttribute('data-level');
       }
@@ -356,7 +424,7 @@
       this.firstChars = [];
       this.headingLevels = [];
 
-      for(let i = 0; i < this.menuitemNodes.length; i += 1) {
+      for (let i = 0; i < this.menuitemNodes.length; i += 1) {
         mi = this.menuitemNodes[i];
         this.firstChars.push(this.getFirstChar(mi));
         this.headingLevels.push(this.getHeadingLevelFromAttribute(mi));
@@ -367,12 +435,12 @@
       let menuitemNodes = this.menuNode.querySelectorAll('[role=menuitem');
 
       this.menuitemNodes = [];
-      for(let i = 0; i < menuitemNodes.length; i += 1) {
+      for (let i = 0; i < menuitemNodes.length; i += 1) {
         this.menuitemNodes.push(menuitemNodes[i]);
       }
 
       this.firstMenuitem = this.menuitemNodes[0];
-      this.lastMenuitem = this.menuitemNodes[this.menuitemNodes.length-1];
+      this.lastMenuitem = this.menuitemNodes[this.menuitemNodes.length - 1];
       this.lastMenuitem.classList.add('last');
       this.updateKeyboardShortCuts();
     },
@@ -393,9 +461,18 @@
       }
 
       // add event handlers
-      menuitemNode.addEventListener('keydown', this.handleMenuitemKeydown.bind(this));
-      menuitemNode.addEventListener('click', this.handleMenuitemClick.bind(this));
-      menuitemNode.addEventListener('pointerenter', this.handleMenuitemPointerenter.bind(this));
+      menuitemNode.addEventListener(
+        'keydown',
+        this.handleMenuitemKeydown.bind(this)
+      );
+      menuitemNode.addEventListener(
+        'click',
+        this.handleMenuitemClick.bind(this)
+      );
+      menuitemNode.addEventListener(
+        'pointerenter',
+        this.handleMenuitemPointerenter.bind(this)
+      );
 
       groupNode.appendChild(menuitemNode);
 
@@ -423,7 +500,7 @@
         menuitemNode.setAttribute('data-nesting', mi.nestingLevel);
         menuitemNode.classList.add('skip-to-nesting-level-' + mi.nestingLevel);
 
-        if (mi.nestingLevel > 0 && (mi.nestingLevel > this.lastNestingLevel)) {
+        if (mi.nestingLevel > 0 && mi.nestingLevel > this.lastNestingLevel) {
           nestingNode = document.createElement('span');
           nestingNode.classList.add('nesting');
           menuitemNode.append(nestingNode);
@@ -449,7 +526,7 @@
       titleNode.textContent = title;
 
       if (this.config.enableActions && this.config.enableMofN) {
-        if ((typeof m === 'number') && (typeof n === 'number')) {
+        if (typeof m === 'number' && typeof n === 'number') {
           s = this.config.mofnGroupLabel;
           s = s.replace('$m', m);
           s = s.replace('$n', n);
@@ -458,12 +535,12 @@
       }
     },
 
-    renderMenuitemGroup: function(groupId, title) {
+    renderMenuitemGroup: function (groupId, title) {
       let labelNode, groupNode, spanNode;
       let menuNode = this.menuNode;
       if (this.isNotEmptyString(title)) {
         labelNode = document.createElement('div');
-        labelNode.id = groupId + "-label";
+        labelNode.id = groupId + '-label';
         labelNode.setAttribute('role', 'separator');
         menuNode.appendChild(labelNode);
 
@@ -486,40 +563,39 @@
       return groupNode;
     },
 
-    removeMenuitemGroup: function(groupId) {
+    removeMenuitemGroup: function (groupId) {
       let node = document.getElementById(groupId);
       this.menuNode.removeChild(node);
-      node = document.getElementById(groupId + "-label");
+      node = document.getElementById(groupId + '-label');
       this.menuNode.removeChild(node);
     },
 
-    renderMenuitemsToGroup: function(groupNode, menuitems, msgNoItemsFound) {
-    groupNode.innerHTML = '';
-    this.lastNestingLevel = 0;
+    renderMenuitemsToGroup: function (groupNode, menuitems, msgNoItemsFound) {
+      groupNode.innerHTML = '';
+      this.lastNestingLevel = 0;
 
-    if (menuitems.length === 0) {
+      if (menuitems.length === 0) {
         const item = {};
         item.name = msgNoItemsFound;
         item.tagName = '';
         item.class = 'no-items';
         item.dataId = '';
         this.renderMenuitemToGroup(groupNode, item);
-    }
-    else {
+      } else {
         for (var i = 0; i < menuitems.length; i += 1) {
-        this.renderMenuitemToGroup(groupNode, menuitems[i]);
+          this.renderMenuitemToGroup(groupNode, menuitems[i]);
         }
-    }
-},
+      }
+    },
 
-    getShowMoreHeadingsSelector: function(option) {
+    getShowMoreHeadingsSelector: function (option) {
       if (option === 'all') {
         return this.showAllHeadingsSelector;
       }
       return this.config.headings;
     },
 
-    getShowMoreHeadingsLabel: function(option, n) {
+    getShowMoreHeadingsLabel: function (option, n) {
       let label = this.config.actionShowSelectedHeadingsLabel;
       if (option === 'all') {
         label = this.config.actionShowAllHeadingsLabel;
@@ -527,7 +603,7 @@
       return label.replace('$num', n);
     },
 
-    getShowMoreHeadingsAriaLabel: function(option, n) {
+    getShowMoreHeadingsAriaLabel: function (option, n) {
       let label = this.config.actionShowSelectedHeadingsAriaLabel;
 
       if (option === 'all') {
@@ -537,12 +613,16 @@
       return label.replace('$num', n);
     },
 
-    renderActionMoreHeadings: function(groupNode) {
+    renderActionMoreHeadings: function (groupNode) {
       let item, menuitemNode;
       let option = 'all';
 
-      let selectedHeadingsLen = this.getHeadings(this.getShowMoreHeadingsSelector('selected')).length;
-      let allHeadingsLen = this.getHeadings(this.getShowMoreHeadingsSelector('all')).length;
+      let selectedHeadingsLen = this.getHeadings(
+        this.getShowMoreHeadingsSelector('selected')
+      ).length;
+      let allHeadingsLen = this.getHeadings(
+        this.getShowMoreHeadingsSelector('all')
+      ).length;
       let noAction = selectedHeadingsLen === allHeadingsLen;
       let headingsLen = allHeadingsLen;
 
@@ -566,26 +646,38 @@
       return noAction;
     },
 
-    updateHeadingGroupMenuitems: function(option) {
+    updateHeadingGroupMenuitems: function (option) {
       let headings, headingsLen, labelNode, groupNode;
 
-      const selectedHeadings = this.getHeadings(this.getShowMoreHeadingsSelector('selected'));
+      const selectedHeadings = this.getHeadings(
+        this.getShowMoreHeadingsSelector('selected')
+      );
       const selectedHeadingsLen = selectedHeadings.length;
-      const allHeadings = this.getHeadings(this.getShowMoreHeadingsSelector('all'));
+      const allHeadings = this.getHeadings(
+        this.getShowMoreHeadingsSelector('all')
+      );
       const allHeadingsLen = allHeadings.length;
 
       // Update list of headings
-      if ( option === 'all' ) {
+      if (option === 'all') {
         headings = allHeadings;
-      }
-      else {
+      } else {
         headings = selectedHeadings;
       }
 
-      this.renderGroupLabel('id-skip-to-group-headings-label', this.config.headingGroupLabel, headings.length, allHeadings.length);
+      this.renderGroupLabel(
+        'id-skip-to-group-headings-label',
+        this.config.headingGroupLabel,
+        headings.length,
+        allHeadings.length
+      );
 
       groupNode = document.getElementById('id-skip-to-group-headings');
-      this.renderMenuitemsToGroup(groupNode, headings, this.config.msgNoHeadingsFound);
+      this.renderMenuitemsToGroup(
+        groupNode,
+        headings,
+        this.config.msgNoHeadingsFound
+      );
       this.updateMenuitems();
 
       // Move focus to first heading menuitem
@@ -602,22 +694,30 @@
         headingsLen = allHeadingsLen;
       }
 
-      const menuitemNode = this.menuNode.querySelector('[data-id=skip-to-more-headings]');
+      const menuitemNode = this.menuNode.querySelector(
+        '[data-id=skip-to-more-headings]'
+      );
       menuitemNode.setAttribute('data-show-heading-option', option);
-      menuitemNode.setAttribute('aria-label', this.getShowMoreHeadingsAriaLabel(option, headingsLen));
+      menuitemNode.setAttribute(
+        'aria-label',
+        this.getShowMoreHeadingsAriaLabel(option, headingsLen)
+      );
 
       labelNode = menuitemNode.querySelector('span.label');
-      labelNode.textContent = this.getShowMoreHeadingsLabel(option, headingsLen);
+      labelNode.textContent = this.getShowMoreHeadingsLabel(
+        option,
+        headingsLen
+      );
     },
 
-    getShowMoreLandmarksSelector: function(option) {
+    getShowMoreLandmarksSelector: function (option) {
       if (option === 'all') {
         return this.showAllLandmarksSelector;
       }
       return this.config.landmarks;
     },
 
-    getShowMoreLandmarksLabel: function(option, n) {
+    getShowMoreLandmarksLabel: function (option, n) {
       let label = this.config.actionShowSelectedLandmarksLabel;
 
       if (option === 'all') {
@@ -626,7 +726,7 @@
       return label.replace('$num', n);
     },
 
-    getShowMoreLandmarksAriaLabel: function(option, n) {
+    getShowMoreLandmarksAriaLabel: function (option, n) {
       let label = this.config.actionShowSelectedLandmarksAriaLabel;
 
       if (option === 'all') {
@@ -636,12 +736,16 @@
       return label.replace('$num', n);
     },
 
-    renderActionMoreLandmarks: function(groupNode) {
+    renderActionMoreLandmarks: function (groupNode) {
       let item, menuitemNode;
       let option = 'all';
 
-      const selectedLandmarksLen = this.getLandmarks(this.getShowMoreLandmarksSelector('selected')).length;
-      const allLandmarksLen = this.getLandmarks(this.getShowMoreLandmarksSelector('all')).length;
+      const selectedLandmarksLen = this.getLandmarks(
+        this.getShowMoreLandmarksSelector('selected')
+      ).length;
+      const allLandmarksLen = this.getLandmarks(
+        this.getShowMoreLandmarksSelector('all')
+      ).length;
       const noAction = selectedLandmarksLen === allLandmarksLen;
       let landmarksLen = allLandmarksLen;
 
@@ -656,7 +760,10 @@
         item.class = 'action';
         item.dataId = 'skip-to-more-landmarks';
         item.name = this.getShowMoreLandmarksLabel(option, landmarksLen);
-        item.ariaLabel =  this.getShowMoreLandmarksAriaLabel(option, landmarksLen);
+        item.ariaLabel = this.getShowMoreLandmarksAriaLabel(
+          option,
+          landmarksLen
+        );
 
         menuitemNode = this.renderMenuitemToGroup(groupNode, item);
 
@@ -666,26 +773,39 @@
       return noAction;
     },
 
-    updateLandmarksGroupMenuitems: function(option) {
+    updateLandmarksGroupMenuitems: function (option) {
       let landmarks, landmarksLen, labelNode, groupNode;
 
-      const selectedLandmarks = this.getLandmarks(this.getShowMoreLandmarksSelector('selected'));
+      const selectedLandmarks = this.getLandmarks(
+        this.getShowMoreLandmarksSelector('selected')
+      );
       const selectedLandmarksLen = selectedLandmarks.length;
-      const allLandmarks = this.getLandmarks(this.getShowMoreLandmarksSelector('all'), true);
+      const allLandmarks = this.getLandmarks(
+        this.getShowMoreLandmarksSelector('all'),
+        true
+      );
       const allLandmarksLen = allLandmarks.length;
 
       // Update landmark menu items
-      if ( option === 'all' ) {
+      if (option === 'all') {
         landmarks = allLandmarks;
-      }
-      else {
+      } else {
         landmarks = selectedLandmarks;
       }
 
-      this.renderGroupLabel('id-skip-to-group-landmarks-label', this.config.landmarkGroupLabel, landmarks.length, allLandmarks.length);
+      this.renderGroupLabel(
+        'id-skip-to-group-landmarks-label',
+        this.config.landmarkGroupLabel,
+        landmarks.length,
+        allLandmarks.length
+      );
 
       groupNode = document.getElementById('id-skip-to-group-landmarks');
-      this.renderMenuitemsToGroup(groupNode, landmarks, this.config.msgNoLandmarksFound);
+      this.renderMenuitemsToGroup(
+        groupNode,
+        landmarks,
+        this.config.msgNoLandmarksFound
+      );
       this.updateMenuitems();
 
       // Move focus to first landmark menuitem
@@ -702,26 +822,34 @@
         landmarksLen = allLandmarksLen;
       }
 
-      const menuitemNode = this.menuNode.querySelector('[data-id=skip-to-more-landmarks]');
+      const menuitemNode = this.menuNode.querySelector(
+        '[data-id=skip-to-more-landmarks]'
+      );
       menuitemNode.setAttribute('data-show-landmark-option', option);
-      menuitemNode.setAttribute('aria-label', this.getShowMoreLandmarksAriaLabel(option, landmarksLen));
+      menuitemNode.setAttribute(
+        'aria-label',
+        this.getShowMoreLandmarksAriaLabel(option, landmarksLen)
+      );
 
       labelNode = menuitemNode.querySelector('span.label');
-      labelNode.textContent = this.getShowMoreLandmarksLabel(option, landmarksLen);
+      labelNode.textContent = this.getShowMoreLandmarksLabel(
+        option,
+        landmarksLen
+      );
     },
 
-    renderMenu: function() {
+    renderMenu: function () {
       let groupNode,
-      selectedLandmarks,
-      allLandmarks,
-      landmarkElements,
-      selectedHeadings,
-      allHeadings,
-      headingElements,
-      selector,
-      option,
-      hasNoAction1,
-      hasNoAction2;
+        selectedLandmarks,
+        allLandmarks,
+        landmarkElements,
+        selectedHeadings,
+        allHeadings,
+        headingElements,
+        selector,
+        option,
+        hasNoAction1,
+        hasNoAction2;
       // remove current menu items from menu
       while (this.menuNode.lastElementChild) {
         this.menuNode.removeChild(this.menuNode.lastElementChild);
@@ -739,9 +867,21 @@
         landmarkElements = allLandmarks;
       }
 
-      groupNode = this.renderMenuitemGroup('id-skip-to-group-landmarks', this.config.landmarkGroupLabel);
-      this.renderMenuitemsToGroup(groupNode, landmarkElements, this.config.msgNoLandmarksFound);
-      this.renderGroupLabel('id-skip-to-group-landmarks-label', this.config.landmarkGroupLabel, landmarkElements.length, allLandmarks.length);
+      groupNode = this.renderMenuitemGroup(
+        'id-skip-to-group-landmarks',
+        this.config.landmarkGroupLabel
+      );
+      this.renderMenuitemsToGroup(
+        groupNode,
+        landmarkElements,
+        this.config.msgNoLandmarksFound
+      );
+      this.renderGroupLabel(
+        'id-skip-to-group-landmarks-label',
+        this.config.landmarkGroupLabel,
+        landmarkElements.length,
+        allLandmarks.length
+      );
 
       // Create headings group
       selector = this.getShowMoreHeadingsSelector('all');
@@ -754,13 +894,28 @@
         headingElements = allHeadings;
       }
 
-      groupNode = this.renderMenuitemGroup('id-skip-to-group-headings', this.config.headingGroupLabel);
-      this.renderMenuitemsToGroup(groupNode, headingElements, this.config.msgNoHeadingsFound);
-      this.renderGroupLabel('id-skip-to-group-headings-label', this.config.headingGroupLabel, headingElements.length, allHeadings.length);
+      groupNode = this.renderMenuitemGroup(
+        'id-skip-to-group-headings',
+        this.config.headingGroupLabel
+      );
+      this.renderMenuitemsToGroup(
+        groupNode,
+        headingElements,
+        this.config.msgNoHeadingsFound
+      );
+      this.renderGroupLabel(
+        'id-skip-to-group-headings-label',
+        this.config.headingGroupLabel,
+        headingElements.length,
+        allHeadings.length
+      );
 
       // Create actions, if enabled
       if (this.config.enableActions) {
-        groupNode = this.renderMenuitemGroup('id-skip-to-group-actions', this.config.actionGroupLabel);
+        groupNode = this.renderMenuitemGroup(
+          'id-skip-to-group-actions',
+          this.config.actionGroupLabel
+        );
         hasNoAction1 = this.renderActionMoreLandmarks(groupNode);
         hasNoAction2 = this.renderActionMoreHeadings(groupNode);
         // Remove action label if no actions are available
@@ -777,21 +932,21 @@
     // Menu scripting event functions and utilities
     //
 
-    setFocusToMenuitem: function(menuitem) {
+    setFocusToMenuitem: function (menuitem) {
       if (menuitem) {
         menuitem.focus();
       }
     },
 
-    setFocusToFirstMenuitem: function() {
+    setFocusToFirstMenuitem: function () {
       this.setFocusToMenuitem(this.firstMenuitem);
     },
 
-    setFocusToLastMenuitem: function() {
+    setFocusToLastMenuitem: function () {
       this.setFocusToMenuitem(this.lastMenuitem);
     },
 
-    setFocusToPreviousMenuitem: function(menuitem) {
+    setFocusToPreviousMenuitem: function (menuitem) {
       let newMenuitem, index;
       if (menuitem === this.firstMenuitem) {
         newMenuitem = this.lastMenuitem;
@@ -803,7 +958,7 @@
       return newMenuitem;
     },
 
-    setFocusToNextMenuitem: function(menuitem) {
+    setFocusToNextMenuitem: function (menuitem) {
       let newMenuitem, index;
       if (menuitem === this.lastMenuitem) {
         newMenuitem = this.firstMenuitem;
@@ -815,7 +970,7 @@
       return newMenuitem;
     },
 
-    setFocusByFirstCharacter: function(menuitem, char) {
+    setFocusByFirstCharacter: function (menuitem, char) {
       let start, index;
       if (char.length > 1) {
         return;
@@ -853,7 +1008,7 @@
     },
 
     // Utilities
-    getIndexFirstChars: function(startIndex, char) {
+    getIndexFirstChars: function (startIndex, char) {
       for (let i = startIndex; i < this.firstChars.length; i += 1) {
         if (char === this.firstChars[i]) {
           return i;
@@ -862,7 +1017,7 @@
       return -1;
     },
     // Popup menu methods
-    openPopup: function() {
+    openPopup: function () {
       this.menuNode.setAttribute('aria-busy', 'true');
       const h = (80 * window.innerHeight) / 100;
       this.menuNode.style.maxHeight = h + 'px';
@@ -872,23 +1027,23 @@
       this.buttonNode.setAttribute('aria-expanded', 'true');
     },
 
-    closePopup: function() {
+    closePopup: function () {
       if (this.isOpen()) {
         this.buttonNode.setAttribute('aria-expanded', 'false');
         this.menuNode.style.display = 'none';
       }
     },
-    isOpen: function() {
+    isOpen: function () {
       return this.buttonNode.getAttribute('aria-expanded') === 'true';
     },
     // Menu event handlers
-    handleFocusin: function() {
+    handleFocusin: function () {
       this.domNode.classList.add('focus');
     },
-    handleFocusout: function() {
+    handleFocusout: function () {
       this.domNode.classList.remove('focus');
     },
-    handleButtonKeydown: function(event) {
+    handleButtonKeydown: function (event) {
       let key = event.key,
         flag = false;
       switch (key) {
@@ -920,7 +1075,7 @@
         event.preventDefault();
       }
     },
-    handleButtonClick: function(event) {
+    handleButtonClick: function (event) {
       if (this.isOpen()) {
         this.closePopup();
         this.buttonNode.focus();
@@ -961,9 +1116,8 @@
         event.stopPropagation();
         event.preventDefault();
       }
-    },    
-    skipToElement: function(menuitem) {
-
+    },
+    skipToElement: function (menuitem) {
       const isVisible = this.isVisible;
       let focusNode = false;
       let scrollNode = false;
@@ -973,7 +1127,7 @@
         if (e) {
           for (let j = 0; j < selectors.length; j += 1) {
             const elems = e.querySelectorAll(selectors[j]);
-            for(let i = 0; i < elems.length; i +=1) {
+            for (let i = 0; i < elems.length; i += 1) {
               if (isVisible(elems[i])) {
                 return elems[i];
               }
@@ -983,15 +1137,41 @@
         return e;
       }
 
-      const searchSelectors = ['input', 'button', 'input[type=button]', 'input[type=submit]', 'a'];
-      const navigationSelectors = ['a', 'input', 'button', 'input[type=button]', 'input[type=submit]'];
-      const landmarkSelectors = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'section', 'article', 'p', 'li', 'a'];
+      const searchSelectors = [
+        'input',
+        'button',
+        'input[type=button]',
+        'input[type=submit]',
+        'a',
+      ];
+      const navigationSelectors = [
+        'a',
+        'input',
+        'button',
+        'input[type=button]',
+        'input[type=submit]',
+      ];
+      const landmarkSelectors = [
+        'h1',
+        'h2',
+        'h3',
+        'h4',
+        'h5',
+        'h6',
+        'section',
+        'article',
+        'p',
+        'li',
+        'a',
+      ];
 
       const isLandmark = menuitem.classList.contains('landmark');
       const isSearch = menuitem.classList.contains('skip-to-search');
       const isNav = menuitem.classList.contains('skip-to-nav');
 
-      elem = document.querySelector('[data-skip-to-id="' + menuitem.getAttribute('data-id') + '"]');
+      elem = document.querySelector(
+        '[data-skip-to-id="' + menuitem.getAttribute('data-id') + '"]'
+      );
 
       if (elem) {
         if (isSearch) {
@@ -1002,9 +1182,8 @@
         }
         if (focusNode && this.isVisible(focusNode)) {
           focusNode.focus();
-          focusNode.scrollIntoView({block: 'nearest'});
-        }
-        else {
+          focusNode.scrollIntoView({ block: 'nearest' });
+        } else {
           if (isLandmark) {
             scrollNode = findVisibleElement(elem, landmarkSelectors);
             if (scrollNode) {
@@ -1013,11 +1192,11 @@
           }
           elem.tabIndex = -1;
           elem.focus();
-          elem.scrollIntoView({block: 'center'});
+          elem.scrollIntoView({ block: 'center' });
         }
       }
     },
-    handleMenuitemAction: function(tgt) {
+    handleMenuitemAction: function (tgt) {
       let option;
       switch (tgt.getAttribute('data-id')) {
         case '':
@@ -1040,7 +1219,7 @@
           break;
       }
     },
-    handleMenuitemKeydown: function(event) {
+    handleMenuitemKeydown: function (event) {
       let tgt = event.currentTarget,
         key = event.key,
         flag = false;
@@ -1110,16 +1289,16 @@
         event.preventDefault();
       }
     },
-    handleMenuitemClick: function(event) {
+    handleMenuitemClick: function (event) {
       this.handleMenuitemAction(event.currentTarget);
       event.stopPropagation();
       event.preventDefault();
     },
-    handleMenuitemPointerenter: function(event) {
+    handleMenuitemPointerenter: function (event) {
       let tgt = event.currentTarget;
       tgt.focus();
     },
-    handleBackgroundPointerdown: function(event) {
+    handleBackgroundPointerdown: function (event) {
       if (!this.domNode.contains(event.target)) {
         if (this.isOpen()) {
           this.closePopup();
@@ -1128,13 +1307,14 @@
       }
     },
     // methods to extract landmarks, headings and ids
-    normalizeName: function(name) {
-      if (typeof name === 'string') return name.replace(/\w\S*/g, function(txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      });
-      return "";
+    normalizeName: function (name) {
+      if (typeof name === 'string')
+        return name.replace(/\w\S*/g, function (txt) {
+          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+      return '';
     },
-    getTextContent: function(elem) {
+    getTextContent: function (elem) {
       function getText(e, strings) {
         // If text node get the text and return
         if (e.nodeType === Node.TEXT_NODE) {
@@ -1144,7 +1324,7 @@
           if (e.nodeType === Node.ELEMENT_NODE) {
             // check to see if IMG or AREA element and to use ALT content if defined
             let tagName = e.tagName.toLowerCase();
-            if ((tagName === 'img') || (tagName === 'area')) {
+            if (tagName === 'img' || tagName === 'area') {
               if (e.alt) {
                 strings.push(e.alt);
               }
@@ -1159,17 +1339,17 @@
         }
       } // end function getStrings
       // Create return object
-      let str = "Test",
+      let str = 'Test',
         strings = [];
       getText(elem, strings);
-      if (strings.length) str = strings.join(" ");
+      if (strings.length) str = strings.join(' ');
       return str;
     },
-    getAccessibleName: function(elem) {
+    getAccessibleName: function (elem) {
       let labelledbyIds = elem.getAttribute('aria-labelledby'),
         label = elem.getAttribute('aria-label'),
         title = elem.getAttribute('title'),
-        name = "";
+        name = '';
       if (labelledbyIds && labelledbyIds.length) {
         let str,
           strings = [],
@@ -1180,7 +1360,7 @@
           if (e) str = this.getTextContent(e);
           if (str && str.length) strings.push(str);
         }
-        name = strings.join(" ");
+        name = strings.join(' ');
       } else {
         if (this.isNotEmptyString(label)) {
           name = label;
@@ -1192,19 +1372,16 @@
       }
       return name;
     },
-    isVisible: function(element) {
+    isVisible: function (element) {
       function isVisibleRec(el) {
-        if (el.parentNode.nodeType !== 1 || 
-            (el.parentNode.tagName === 'BODY')) {
+        if (el.parentNode.nodeType !== 1 || el.parentNode.tagName === 'BODY') {
           return true;
         }
         const computedStyle = window.getComputedStyle(el);
         const display = computedStyle.getPropertyValue('display');
         const visibility = computedStyle.getPropertyValue('visibility');
         const hidden = el.getAttribute('hidden');
-        if ((display === 'none') ||
-          (visibility === 'hidden') ||
-          (hidden !== null)) {
+        if (display === 'none' || visibility === 'hidden' || hidden !== null) {
           return false;
         }
         const isVis = isVisibleRec(el.parentNode);
@@ -1213,7 +1390,7 @@
 
       return isVisibleRec(element);
     },
-    getHeadings: function(targets) {
+    getHeadings: function (targets) {
       let dataId, level;
       if (typeof targets !== 'string') {
         targets = this.config.headings;
@@ -1224,8 +1401,11 @@
       for (let i = 0, len = headings.length; i < len; i += 1) {
         let heading = headings[i];
         let role = heading.getAttribute('role');
-        if ((typeof role === 'string') && (role === 'presentation')) continue;
-        if (this.isVisible(heading) && this.isNotEmptyString(heading.innerHTML)) {
+        if (typeof role === 'string' && role === 'presentation') continue;
+        if (
+          this.isVisible(heading) &&
+          this.isNotEmptyString(heading.innerHTML)
+        ) {
           if (heading.hasAttribute('data-skip-to-id')) {
             dataId = heading.getAttribute('data-skip-to-id');
           } else {
@@ -1248,7 +1428,7 @@
       }
       return headingElementsArr;
     },
-    getLocalizedLandmarkName: function(tagName, name) {
+    getLocalizedLandmarkName: function (tagName, name) {
       let n;
       switch (tagName) {
         case 'aside':
@@ -1276,7 +1456,7 @@
         case 'search':
           n = this.config.searchLabel;
           break;
-          // When an ID is used as a selector, assume for main content
+        // When an ID is used as a selector, assume for main content
         default:
           n = tagName;
           break;
@@ -1286,7 +1466,7 @@
       }
       return n;
     },
-    getNestingLevel: function(landmark, landmarks) {
+    getNestingLevel: function (landmark, landmarks) {
       let nestingLevel = 0;
       let parentNode = landmark.parentNode;
       while (parentNode) {
@@ -1304,7 +1484,7 @@
       }
       return nestingLevel;
     },
-    getLandmarks: function(targets, allFlag) {
+    getLandmarks: function (targets, allFlag) {
       if (typeof allFlag !== 'boolean') {
         allFlag = false;
       }
@@ -1329,7 +1509,7 @@
         }
         let role = landmark.getAttribute('role');
         let tagName = landmark.tagName.toLowerCase();
-        if ((typeof role === 'string') && (role === 'presentation')) continue;
+        if (typeof role === 'string' && role === 'presentation') continue;
         if (this.isVisible(landmark)) {
           if (!role) role = tagName;
           let name = this.getAccessibleName(landmark);
@@ -1366,17 +1546,31 @@
               break;
           }
           // if using ID for selectQuery give tagName as main
-          if (['aside', 'footer', 'form', 'header', 'main', 'nav', 'section', 'search'].indexOf(tagName) < 0) {
+          if (
+            [
+              'aside',
+              'footer',
+              'form',
+              'header',
+              'main',
+              'nav',
+              'section',
+              'search',
+            ].indexOf(tagName) < 0
+          ) {
             tagName = 'main';
           }
           if (landmark.hasAttribute('aria-roledescription')) {
-            tagName = landmark.getAttribute('aria-roledescription').trim().replace(' ', '-');
+            tagName = landmark
+              .getAttribute('aria-roledescription')
+              .trim()
+              .replace(' ', '-');
           }
           if (landmark.hasAttribute('data-skip-to-id')) {
             dataId = landmark.getAttribute('data-skip-to-id');
           } else {
             landmark.setAttribute('data-skip-to-id', this.skipToIdIndex);
-            dataId =  this.skipToIdIndex;
+            dataId = this.skipToIdIndex;
           }
           const landmarkItem = {};
           landmarkItem.dataId = dataId.toString();
@@ -1386,7 +1580,10 @@
           landmarkItem.tagName = tagName;
           landmarkItem.nestingLevel = 0;
           if (allFlag) {
-            landmarkItem.nestingLevel = this.getNestingLevel(landmark, landmarks);
+            landmarkItem.nestingLevel = this.getNestingLevel(
+              landmark,
+              landmarks
+            );
           }
           this.skipToIdIndex += 1;
           allLandmarks.push(landmarkItem);
@@ -1423,14 +1620,26 @@
       if (allFlag) {
         return allLandmarks;
       }
-      return [].concat(mainElements, searchElements, navElements, asideElements, regionElements, footerElements, otherElements);
-    }
+      return [].concat(
+        mainElements,
+        searchElements,
+        navElements,
+        asideElements,
+        regionElements,
+        footerElements,
+        otherElements
+      );
+    },
   };
   // Initialize skipto menu button with onload event
-  window.addEventListener('load', function() {
-    SkipTo.init(window.SkipToConfig ||
-                ((typeof window.Joomla === 'object' && typeof window.Joomla.getOptions === 'function') ? window.Joomla.getOptions('skipto-settings', {}) : {})
-                );
+  window.addEventListener('load', function () {
+    SkipTo.init(
+      window.SkipToConfig ||
+        (typeof window.Joomla === 'object' &&
+        typeof window.Joomla.getOptions === 'function'
+          ? window.Joomla.getOptions('skipto-settings', {})
+          : {})
+    );
   });
 })();
 /*@end @*/

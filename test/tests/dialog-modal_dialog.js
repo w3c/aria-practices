@@ -5,7 +5,7 @@ const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaDescribedby = require('../util/assertAriaDescribedby');
 const assert = require('assert');
 
-const exampleFile = 'dialog-modal/dialog.html';
+const exampleFile = 'content/patterns/dialog-modal/examples/dialog.html';
 
 const ex = {
   dialogSelector: '[role="dialog"]',

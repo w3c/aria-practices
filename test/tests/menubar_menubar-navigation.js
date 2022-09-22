@@ -7,7 +7,7 @@ const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertRovingTabindex = require('../util/assertRovingTabindex');
 
-const exampleFile = 'menubar/menubar-navigation.html';
+const exampleFile = 'content/patterns/menubar/examples/menubar-navigation.html';
 
 const ex = {
   // landmark selectors
