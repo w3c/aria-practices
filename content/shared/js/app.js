@@ -69,7 +69,7 @@
 
 // Add skipto.js to examples
 (function () {
-  let ref = window.location.href.split('patterns')[0];
+  let ref = window.location.href.match(/(.+\/)(patterns|index)\//)[1];
   if (ref) {
     let head = document.getElementsByTagName('head')[0];
     let scriptNode = document.createElement('script');
