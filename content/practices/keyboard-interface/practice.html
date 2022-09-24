@@ -7,20 +7,23 @@
 </head>
 <body>
   <h1>Developing a Keyboard Interface</h1>
-  <p>
-    Unlike native HTML form elements, browsers do not provide keyboard support for graphical user interface (GUI) components that are made accessible with ARIA; authors have to provide the keyboard support in their code.
-    This section describes the principles and methods for making the functionality of a web page that includes ARIA widgets, such as menus and grids, as well as interactive components, such as toolbars and dialogs, operable with a keyboard.
-    Along with the basics of focus management, this section offers guidance toward the objective of providing experiences to people who rely on a keyboard that are as efficient and enjoyable as the experiences available to others.
-  </p>
+  <section>
+    <h2>Introduction</h2>
+    <p>
+      Unlike native HTML form elements, browsers do not provide keyboard support for graphical user interface (GUI) components that are made accessible with ARIA; authors have to provide the keyboard support in their code.
+      This section describes the principles and methods for making the functionality of a web page that includes ARIA widgets, such as menus and grids, as well as interactive components, such as toolbars and dialogs, operable with a keyboard.
+      Along with the basics of focus management, this section offers guidance toward the objective of providing experiences to people who rely on a keyboard that are as efficient and enjoyable as the experiences available to others.
+    </p>
     <p>This section covers: </p>
-  <ol>
-    <li>Understanding fundamental principles of focus movement conventions used in ARIA design patterns.</li>
-    <li>Maintaining visible focus, predictable focus movement, and distinguishing between keyboard focus and the selected state.</li>
-    <li>Managing movement of keyboard focus between components, e.g., how the focus moves when the <kbd>Tab</kbd> and <kbd>Shift+Tab</kbd> keys are pressed.</li>
-    <li>Managing movement of keyboard focus inside components that contain multiple focusable elements, e.g., two different methods for programmatically exposing focus inside widgets like radio groups, menus, listboxes, trees, and grids.</li>
-    <li>Determining when to make disabled interactive elements focusable.</li>
-    <li>Assigning and revealing keyboard shortcuts, including guidance on how to avoid problematic conflicts with keyboard commands of assistive technologies, browsers, and operating systems.</li>
-  </ol>
+    <ol>
+      <li>Understanding fundamental principles of focus movement conventions used in ARIA design patterns.</li>
+      <li>Maintaining visible focus, predictable focus movement, and distinguishing between keyboard focus and the selected state.</li>
+      <li>Managing movement of keyboard focus between components, e.g., how the focus moves when the <kbd>Tab</kbd> and <kbd>Shift+Tab</kbd> keys are pressed.</li>
+      <li>Managing movement of keyboard focus inside components that contain multiple focusable elements, e.g., two different methods for programmatically exposing focus inside widgets like radio groups, menus, listboxes, trees, and grids.</li>
+      <li>Determining when to make disabled interactive elements focusable.</li>
+      <li>Assigning and revealing keyboard shortcuts, including guidance on how to avoid problematic conflicts with keyboard commands of assistive technologies, browsers, and operating systems.</li>
+    </ol>
+  </section>
   <section id="kbd_generalnav">
     <h2>Fundamental Keyboard Navigation Conventions</h2>
 
