@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Grid and Table Properties</title>
+</head>
+<body>
+  <h1>Grid and Table Properties</h1>
+  <section>
+    <h2>Introduction</h2>
+    <p>
+      To fully present and describe a grid or table, in addition to parsing the headers, rows, and cells using the roles described in the
+      <a href="../../patterns/grid/grid-pattern.html">grid pattern</a> or <a href="../../patterns/table/table-pattern.html">table pattern</a>,
+      assistive technologies need to be able to determine:
+    </p>
+    <ul>
+      <li>The number of rows and columns.</li>
+      <li>Whether any columns or rows are hidden, e.g., columns 1 through 3 and  5 through 8 are visible but column 4 is hidden.</li>
+      <li>Whether a cell spans multiple rows or columns.</li>
+      <li>Whether and how data is sorted.</li>
+    </ul>
+    <p>
+      Browsers automatically populate their accessibility tree with the number of rows and columns in a grid or table based on the rendered DOM.
+      However, there are many situations where the DOM does not contain the whole grid or table, such as when the data set is too large to fully render.
+      Additionally, some of this information, like skipped columns or rows and how data is sorted, cannot be derived from the DOM structure.
+    </p>
+    <p>The below sections explain how to use the following properties that ARIA provides for grid and table accessibility.</p>
+    <table class="widget-features">
+      <caption>Grid and Table Property Definitions</caption>
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Definition</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th><code>aria-colcount</code></th>
+          <td>Defines the total number of columns in a <code>table</code>, <code>grid</code>, or <code>treegrid</code>.</td>
+        </tr>
+        <tr>
+          <th><code>aria-rowcount</code></th>
+          <td>Defines the total number of rows in a <code>table</code>, <code>grid</code>, or <code>treegrid</code>.</td>
+        </tr>
+        <tr>
+          <th><code>aria-colindex</code></th>
+          <td>
+            <ul>
+              <li>Defines a cell's position with respect to the total number of columns within a <code>table</code>, <code>grid</code>, or <code>treegrid</code>.</li>
+              <li><strong>Note:</strong> Numbering starts with 1, not 0.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th><code>aria-rowindex</code></th>
+          <td>
+            <ul>
+              <li>Defines a cell's position with respect to the total number of rows within a <code>table</code>, <code>grid</code>, or <code>treegrid</code>.</li>
+              <li><strong>Note:</strong> Numbering starts with 1, not 0.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th><code>aria-colspan</code></th>
+          <td>Defines the number of columns spanned by a cell or gridcell within a <code>table</code>, <code>grid</code>, or <code>treegrid</code>.</td>
+        </tr>
+        <tr>
+          <th><code>aria-rowspan</code></th>
+          <td>Defines the number of rows spanned by a cell or gridcell within a <code>table</code>, <code>grid</code>, or <code>treegrid</code>.</td>
+        </tr>
+        <tr>
+          <th><code>aria-sort</code></th>
+          <td>Indicates if items in a row or column are sorted in ascending or descending order.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+<section id="gridAndTableProperties_rows">
+  <h2>Using <code>aria-rowcount</code> and <code>aria-rowindex</code></h2>
+  <p>
+    When the number of rows represented by the DOM structure is not the total number of rows available for a table, grid, or treegrid,
+    the  <code>aria-rowcount</code>  property is used to communicate the total number of rows available,
+    and it is accompanied by the <code>aria-rowindex</code> property to identify the row indices of the rows that are present in the DOM.
+  </p>
+  <p>
+    The <code>aria-rowcount</code> is specified on the element with the <code>table</code>, <code>grid</code>, or <code>treegrid</code> role.
+    Its value is an integer equal to the total number of rows available, including header rows.
+    If the total number of rows is unknown, a value of <code>-1</code> may be specified.
+    Using a value of <code>-1</code> indicates that more rows are available to include in the DOM without specifying the size of the available supply.
+  </p>
+  <p>
+    When <code>aria-rowcount</code> is used on a <code>table</code>, <code>grid</code>, or <code>treegrid</code>,
+    a value for <code>aria-rowindex</code> property is specified on each of its descendant rows, including any header rows.
+    The value of <code>aria-rowindex</code> is an integer that is:
+  </p>
+  <ol>
+    <li>Greater than or equal to 1.</li>
+    <li>Greater than the value of <code>aria-rowindex</code> on any previous rows.</li>
+    <li>Set to the index of the first row in the span if cells span multiple rows.</li>
+    <li>Less than or equal to the total number of rows.</li>
+  </ol>
+  <p>
+    <strong>WARNING!</strong> Missing or inconsistent values of <code>aria-rowindex</code> could have devastating effects on assistive technology behavior.
+    For example, specifying an invalid value for <code>aria-rowindex</code> or setting it on some but not all rows in a table, could cause screen reader table reading functions to skip rows or simply stop functioning.
+  </p>
+  <p>
+    The following code demonstrates the use of <code>aria-rowcount</code> and <code>aria-rowindex</code> properties on a table containing a hypothetical class list.
+  </p>
+  <pre>
+    <code>
+      &lt;!--
+        aria-rowcount tells assistive technologies the actual size of the grid
+        is 463 rows even though only 4 rows are present in the markup.
+      --&gt;
+      &lt;table role=&quot;grid&quot; aria-rowcount=&quot;463&quot;&gt;
+        aria-label=&quot;Student roster for history 101&quot;
+        &lt;thead&gt;
+          &lt;tr aria-rowindex=&quot;1&quot;&gt;
+            &lt;th&gt;Last Name&lt;/th&gt;
+            &lt;th&gt;First Name&lt;/th&gt;
+            &lt;th&gt;E-mail&lt;/th&gt;
+            &lt;th&gt;Major&lt;/th&gt;
+            &lt;th&gt;Minor&lt;/th&gt;
+            &lt;th&gt;Standing&lt;/th&gt;
+          &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            &lt;!--
+              aria-rowindex tells assistive technologies that this
+              row is row 51 in the grid of 463 rows.
+            --&gt;
+          &lt;tr aria-rowindex=&quot;51&quot;&gt;
+            &lt;td&gt;Henderson&lt;/td&gt;
+            &lt;td&gt;Alan&lt;/td&gt;
+            &lt;td&gt;ahederson56@myuniveristy.edu&lt;/td&gt;
+            &lt;td&gt;Business&lt;/td&gt;
+            &lt;td&gt;Spanish&lt;/td&gt;
+            &lt;td&gt;Junior&lt;/td&gt;
+          &lt;/tr&gt;
+            &lt;!--
+              aria-rowindex tells assistive technologies that this
+              row is row 52 in the grid of 463 rows.
+            --&gt;
+          &lt;tr aria-rowindex=&quot;52&quot;&gt;
+            &lt;td&gt;Henderson&lt;/td&gt;
+            &lt;td&gt;Alice&lt;/td&gt;
+            &lt;td&gt;ahederson345@myuniveristy.edu&lt;/td&gt;
+            &lt;td&gt;Engineering&lt;/td&gt;
+            &lt;td&gt;none&lt;/td&gt;
+            &lt;td&gt;Sophomore&lt;/td&gt;
+          &lt;/tr&gt;
+            &lt;!--
+              aria-rowindex tells assistive technologies that this
+              row is row 53 in the grid of 463 rows.
+            --&gt;
+          &lt;tr aria-rowindex=&quot;53&quot;&gt;
+            &lt;td&gt;Henderson&lt;/td&gt;
+            &lt;td&gt;Andrew&lt;/td&gt;
+            &lt;td&gt;ahederson75@myuniveristy.edu&lt;/td&gt;
+            &lt;td&gt;General Studies&lt;/td&gt;
+            &lt;td&gt;none&lt;/td&gt;
+            &lt;td&gt;Freshman&lt;/td&gt;
+          &lt;/tr&gt;
+        &lt;/tbody&gt;
+      &lt;/table&gt;
+    </code>
+  </pre>
+</section>
+  <section id="gridAndTableProperties_cols">
+    <h2>Using <code>aria-colcount</code> and <code>aria-colindex</code></h2>
+    <p>
+      When the number of columns represented by the DOM structure is not the total number of columns available for a table, grid, or treegrid,
+      the  <code>aria-colcount</code>  property is used to communicate the total number of columns available,
+      and it is accompanied by the <code>aria-colindex</code> property to identify the column indices of the columns that are present in the DOM.
+    </p>
+    <p>
+      The <code>aria-colcount</code> is specified on the element with the <code>table</code>, <code>grid</code>, or <code>treegrid</code> role.
+      Its value is an integer equal to the total number of columns available.
+      If the total number of columns is unknown, a value of <code>-1</code> may be specified.
+      Using a value of <code>-1</code> indicates that more columns are available to include in the DOM without specifying the size of the available supply.
+    </p>
+    <p>
+      When <code>aria-colcount</code> is used on a <code>table</code>, <code>grid</code>, or <code>treegrid</code>,
+      a value for <code>aria-colindex</code> property is either specified on each of its descendant rows or on every cell in each descendant row, depending on whether the columns are contiguous as described below.
+      The value of <code>aria-colindex</code> is an integer that is:
+    </p>
+    <ol>
+      <li>Greater than or equal to 1.</li>
+      <li>When set on a cell, greater than the value set on any previous cell within the same row.</li>
+      <li>Set to the index of the first column in the span if a cell spans multiple columns.</li>
+      <li>Less than or equal to the total number of columns.</li>
+    </ol>
+    <p>
+      <strong>WARNING!</strong> Missing or inconsistent values of <code>aria-colindex</code> could have devastating effects on assistive technology behavior.
+      For example, specifying an invalid value for <code>aria-colindex</code> or setting it on some but not all cells in a row, could cause screen reader table reading functions to skip cells or simply stop functioning.
+    </p>
+    <section id="gridAndTableProperties_cols_contiguous">
+      <h3>Using <code>aria-colindex</code> When Column Indices Are Contiguous</h3>
+      <p>
+        When all the cells in a row have column index numbers that are consecutive integers,
+        <code>aria-colindex</code> can be set on the row element with a value equal to the index number of the first column in the set.
+        Browsers will then compute a column number for each cell in the row.
+      </p>
+      <p>
+        The following code shows a grid with 16 columns, of which columns 2 through 5 are displayed to the user.
+        Because the set of columns is contiguous, <code>aria-colindex</code> can be placed on each row.
+      </p>
+<pre>
+<code>
+&lt;div role="grid" aria-colcount="16"&gt;
+  &lt;div role="rowgroup"&gt;
+    &lt;div role="row" <strong>aria-colindex="2"</strong>&gt;
+      &lt;span role="columnheader"&gt;First Name&lt;/span&gt;
+      &lt;span role="columnheader"&gt;Last Name&lt;/span&gt;
+      &lt;span role="columnheader"&gt;Company&lt;/span&gt;
+      &lt;span role="columnheader"&gt;Address&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div role="rowgroup"&gt;
+    &lt;div role="row" <strong>aria-colindex="2"</strong>&gt;
+      &lt;span role="gridcell"&gt;Fred&lt;/span&gt;
+      &lt;span role="gridcell"&gt;Jackson&lt;/span&gt;
+      &lt;span role="gridcell"&gt;Acme, Inc.&lt;/span&gt;
+      &lt;span role="gridcell"&gt;123 Broad St.&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div role="row" <strong>aria-colindex="2"</strong>&gt;
+      &lt;span role="gridcell"&gt;Sara&lt;/span&gt;
+      &lt;span role="gridcell"&gt;James&lt;/span&gt;
+      &lt;span role="gridcell"&gt;Acme, Inc.&lt;/span&gt;
+      &lt;span role="gridcell"&gt;123 Broad St.&lt;/span&gt;
+    &lt;/div&gt;
+   &#8230;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code>
+</pre>
+    </section>
+    <section id="gridAndTableProperties_cols_noncontiguous">
+      <h3>Using <code>aria-colindex</code> When Column Indices Are Not Contiguous</h3>
+      <p>
+        When the cells in a row have column index numbers that are not consecutive integers, <code>aria-colindex</code> needs to be set on each cell in the row.
+        The following example shows a grid for an online grade book where the first two columns contain a student name and subsequent columns contain scores.
+        In this example, the first two columns with the student name are shown, but the score columns have been scrolled to show columns 10 through 13.
+        Columns 3 through 9 are not visible so are not in the DOM.
+      </p>
+<pre>
+<code>
+&lt;table role=&quot;grid&quot; aria-rowcount=&quot;463&quot; aria-colcount=&quot;13&quot;&gt;
+  aria-label=&quot;Student grades for history 101&quot;
+  &lt;!--
+    aria-rowcount and aria-colcount tell assistive technologies
+    the actual size of the grid is 463 rows by 13 columns,
+    which is not the number rows and columns found in the markup.
+  --&gt;
+  &lt;thead&gt;
+    &lt;tr aria-rowindex=&quot;1&quot;&gt;
+      &lt;!--
+        aria-colindex tells assistive technologies that the
+        following columns represent columns 1 and 2 of the total data set.
+      --&gt;
+      &lt;th aria-colindex=&quot;1&quot;&gt;Last Name&lt;/th&gt;
+      &lt;th aria-colindex=&quot;2&quot;&gt;First Name&lt;/th&gt;
+      &lt;!--
+        aria-colindex tells users of assistive technologies that the
+        following columns represent columns 10, 11, 12, and 13 of
+        the overall data set of grades.
+      --&gt;
+      &lt;th aria-colindex=&quot;10&quot;&gt;Homework 4&lt;/th&gt;
+      &lt;th aria-colindex=&quot;11&quot;&gt;Quiz 2&lt;/th&gt;
+      &lt;th aria-colindex=&quot;12&quot;&gt;Homework 5&lt;/th&gt;
+      &lt;th aria-colindex=&quot;13&quot;&gt;Homework 6&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr aria-rowindex=&quot;50&quot;&gt;
+      &lt;!--
+        every cell needs to define the aria-colindex attribute
+      --&gt;
+      &lt;td aria-colindex=&quot;1&quot;&gt;Henderson&lt;/td&gt;
+      &lt;td aria-colindex=&quot;2&quot;&gt;Alan&lt;/td&gt;
+      &lt;td aria-colindex=&quot;10&quot;&gt;8&lt;/td&gt;
+      &lt;td aria-colindex=&quot;11&quot;&gt;25&lt;/td&gt;
+      &lt;td aria-colindex=&quot;12&quot;&gt;9&lt;/td&gt;
+      &lt;td aria-colindex=&quot;13&quot;&gt;9&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr aria-rowindex=&quot;51&quot;&gt;
+      &lt;td aria-colindex=&quot;1&quot;&gt;Henderson&lt;/td&gt;
+      &lt;td aria-colindex=&quot;2&quot;&gt;Alice&lt;/td&gt;
+      &lt;td aria-colindex=&quot;10&quot;&gt;10&lt;/td&gt;
+      &lt;td aria-colindex=&quot;11&quot;&gt;27&lt;/td&gt;
+      &lt;td aria-colindex=&quot;12&quot;&gt;10&lt;/td&gt;
+      &lt;td aria-colindex=&quot;13&quot;&gt;8&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr aria-rowindex=&quot;52&quot;&gt;
+      &lt;td aria-colindex=&quot;1&quot;&gt;Henderson&lt;/td&gt;
+      &lt;td aria-colindex=&quot;2&quot;&gt;Andrew&lt;/td&gt;
+      &lt;td aria-colindex=&quot;10&quot;&gt;9&lt;/td&gt;
+      &lt;td aria-colindex=&quot;11&quot;&gt;0&lt;/td&gt;
+      &lt;td aria-colindex=&quot;12&quot;&gt;29&lt;/td&gt;
+      &lt;td aria-colindex=&quot;13&quot;&gt;8&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</code>
+</pre>
+    </section>
+  </section>
+  <section id="gridAndTableProperties_spans">
+    <h2>Defining cell spans using <code>aria-colspan</code> and <code>aria-rowspan</code></h2>
+    <p>
+      For tables, grids, and treegrids  created using elements other than HTML <code>table</code> elements,
+      row and column spans are defined with the <code>aria-rowspan</code> and <code>aria-colspan</code> properties.
+    </p>
+    <p>The value of <code>aria-colspan</code> is an integer that is:</p>
+    <ol>
+      <li>Greater than or equal to 1.</li>
+      <li>less than the value that would cause the cell to overlap the next cell in the same row.</li>
+    </ol>
+    <p>The value of <code>aria-rowspan</code> is an integer that is:</p>
+    <ol>
+      <li>Greater than or equal to 0.</li>
+      <li>0 means the cell spans all the remaining rows in its row group.</li>
+      <li>less than the value that would cause the cell to overlap the next cell in the same column.</li>
+    </ol>
+    <p>
+      The following example grid has a two row header.
+      The first two columns have headers that span both rows of the header.
+      The subsequent 6 columns are grouped into 3 pairs with headers in the first row that each span two columns.
+    </p>
+<pre>
+<code>
+  &lt;div role=&quot;grid&quot; aria-rowcount=&quot;463&quot;&gt;
+    aria-label=&quot;Student grades for history 101&quot;
+    &lt;div role=&quot;rowgroup&quot;&gt;
+      &lt;div role=&quot;row&quot; aria-rowindex=&quot;1&quot;&gt;
+          &lt;!--
+            aria-rowspan and aria-colspan provide
+            assistive technologies with the correct data cell header information
+            when header cells span more than one row or column.
+          --&gt;
+          &lt;span role="columnheader" aria-rowspan=&quot;2&quot;&gt;Last Name&lt;/span&gt;
+          &lt;span role="columnheader" aria-rowspan=&quot;2&quot;&gt;First Name&lt;/span&gt;
+          &lt;span role="columnheader" aria-colspan=&quot;2&quot;&gt;Test 1&lt;/span&gt;
+          &lt;span role="columnheader" aria-colspan=&quot;2&quot;&gt;Test 2&lt;/span&gt;
+          &lt;span role="columnheader" aria-colspan=&quot;2&quot;&gt;Final&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div role=&quot;row&quot; aria-rowindex=&quot;2&quot;&gt;
+          &lt;span role="columnheader"&gt;Score&lt;/span&gt;
+          &lt;span role="columnheader"&gt;Grade&lt;/span&gt;
+          &lt;span role="columnheader"&gt;Score&lt;/span&gt;
+          &lt;span role="columnheader"&gt;Grade&lt;/span&gt;
+          &lt;span role="columnheader"&gt;Total&lt;/span&gt;
+          &lt;span role="columnheader"&gt;Grade&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div role=&quot;rowgroup&quot;&gt;
+      &lt;div role=&quot;row&quot; aria-rowindex=&quot;50&quot;&gt;
+        &lt;span role=&quot;cell&quot;&gt;Henderson&lt;/span&gt;
+        &lt;span role=&quot;cell&quot;&gt;Alan&lt;/span&gt;
+        &lt;span role=&quot;cell&quot;&gt;89&lt;/span&gt;
+        &lt;span role=&quot;cell&quot;&gt;B+&lt;/span&gt;
+        &lt;span role=&quot;cell&quot;&gt;72&lt;/span&gt;
+        &lt;span role=&quot;cell&quot;&gt;C&lt;/span&gt;
+        &lt;span role=&quot;cell&quot;&gt;161&lt;/span&gt;
+        &lt;span role=&quot;cell&quot;&gt;B-&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div role=&quot;row&quot; aria-rowindex=&quot;51&quot;&gt;
+        &lt;span role=&quot;cell&quot;&gt;Henderson&lt;/span&gt;
+        &lt;span role=&quot;cell&quot;&gt;Alice&lt;/span&gt;
+        &lt;span role=&quot;cell&quot;&gt;94&lt;/span&gt;
+        &lt;span role=&quot;cell&quot;&gt;A&lt;/span&gt;
+        &lt;span role=&quot;cell&quot;&gt;86&lt;/span&gt;
+        &lt;span role=&quot;cell&quot;&gt;B&lt;/span&gt;
+        &lt;span role=&quot;cell&quot;&gt;180&lt;/span&gt;
+        &lt;span role=&quot;cell&quot;&gt;A-&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div role=&quot;row&quot; aria-rowindex=&quot;52&quot;&gt;
+        &lt;span role=&quot;cell&quot;&gt;Henderson&lt;/span&gt;
+        &lt;span role=&quot;cell&quot;&gt;Andrew&lt;/span&gt;
+        &lt;span role=&quot;cell&quot;&gt;82&lt;/span&gt;
+        &lt;span role=&quot;cell&quot;&gt;B-&lt;/span&gt;
+        &lt;span role=&quot;cell&quot;&gt;95&lt;/span&gt;
+        &lt;span role=&quot;cell&quot;&gt;A&lt;/span&gt;
+        &lt;span role=&quot;cell&quot;&gt;177&lt;/span&gt;
+        &lt;span role=&quot;cell&quot;&gt;B+&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+</code>
+</pre>
+    <p>
+      <strong>Note:</strong> When using HTML <code>table</code> elements,
+      use the native semantics of the <code>th</code> and <code>td</code> elements to define row and column spans
+      by using the <code>rowspan</code> and <code>colspan</code> attributes.
+    </p>
+  </section>
+  <section id="gridAndTableProperties_sort">
+    <h2>Indicating sort order with <code>aria-sort</code></h2>
+    <p>
+      When rows or columns are sorted, the <code>aria-sort</code> property can be applied to a column or row header to indicate the sorting method.
+      The following table describes allowed values for <code>aria-sort</code>.
+    </p>
+    <table class="widget-features">
+      <caption>
+        Description of values for <code>aria-sort</code>
+      </caption>
+      <thead>
+        <tr>
+          <th>Value</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th><code>ascending</code></th>
+          <td>Data are sorted in ascending order.</td>
+        </tr>
+        <tr>
+          <th><code>descending</code></th>
+          <td>Data are sorted in descending order.</td>
+        </tr>
+        <tr>
+          <th><code>other</code></th>
+          <td>Data are sorted by an algorithm other than ascending or descending.</td>
+        </tr>
+        <tr>
+          <th><code>none</code></th>
+          <td>Default (no sort applied).</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      It is important to note that ARIA does not provide a way to indicate levels of sort for data sets that have multiple sort keys.
+      Thus, there is limited value to applying <code>aria-sort</code> with a value other than <code>none</code> to more than one column or row.
+    </p>
+    <p>The following example grid uses <code>aria-sort</code> to indicate the rows are sorted from the highest "Quiz 2" score to the lowest "Quiz 2" score.</p>
+<pre>
+<code>
+&lt;table role=&quot;grid&quot; aria-rowcount=&quot;463&quot; aria-colcount=&quot;13&quot;
+  aria-label=&quot;Student grades for history 101&quot;&gt;
+  &lt;thead&gt;
+    &lt;tr aria-colindex=&quot;10&quot; aria-rowindex=&quot;1&quot;&gt;
+      &lt;th&gt;Homework 4&lt;/th&gt;
+      &lt;!--
+        aria-sort indicates the column with the heading
+        "Quiz 2" has been used to sort the rows of the grid.
+      --&gt;
+      &lt;th aria-sort=&quot;descending&quot;&gt;Quiz 2&lt;/th&gt;
+      &lt;th&gt;Homework 5&lt;/th&gt;
+      &lt;th&gt;Homework 6&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr aria-colindex=&quot;10&quot; aria-rowindex=&quot;50&quot;&gt;
+      &lt;td&gt;8&lt;/td&gt;
+      &lt;td&gt;30&lt;/td&gt;
+      &lt;td&gt;9&lt;/td&gt;
+      &lt;td&gt;9&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr aria-colindex=&quot;10&quot;  aria-rowindex=&quot;51&quot;&gt;
+      &lt;td&gt;10&lt;/td&gt;
+      &lt;td&gt;29&lt;/td&gt;
+      &lt;td&gt;10&lt;/td&gt;
+      &lt;td&gt;8&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr aria-colindex=&quot;10&quot;  aria-rowindex=&quot;52&quot;&gt;
+      &lt;td&gt;9&lt;/td&gt;
+      &lt;td&gt;9&lt;/td&gt;
+      &lt;td&gt;27&lt;/td&gt;
+      &lt;td&gt;6&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr aria-colindex=&quot;10&quot;  aria-rowindex=&quot;53&quot;&gt;
+      &lt;td&gt;9&lt;/td&gt;
+      &lt;td&gt;10&lt;/td&gt;
+      &lt;td&gt;26&lt;/td&gt;
+      &lt;td&gt;8&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr aria-colindex=&quot;10&quot;  aria-rowindex=&quot;54&quot;&gt;
+      &lt;td&gt;9&lt;/td&gt;
+      &lt;td&gt;7&lt;/td&gt;
+      &lt;td&gt;24&lt;/td&gt;
+      &lt;td&gt;6&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</code>
+</pre>
+
+  </section>
+</body>
+</html>
