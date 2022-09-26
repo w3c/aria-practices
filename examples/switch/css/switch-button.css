@@ -23,7 +23,8 @@ button[role="switch"] .label {
 
 button[role="switch"] svg {
   display: inline-block;
-  width: 40px;
+  width: 36px;
+  height: 20px;
   forced-color-adjust: auto;
   position: relative;
   top: 4px;
