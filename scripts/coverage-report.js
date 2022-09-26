@@ -12,20 +12,19 @@ const glob = require('glob');
 const cheerio = require('cheerio');
 const HTMLParser = require('node-html-parser');
 
-const coverageReportPath = path.join(__dirname, '..', 'coverage', 'index.html');
+const coverageReportPath = path.join(
+  __dirname,
+  '../content/about/coverage-and-quality/coverage-and-quality-report.html'
+);
 const templatePath = path.join(__dirname, 'coverage-report.template');
 
 const csvRoleFilePath = path.join(
   __dirname,
-  '..',
-  'coverage',
-  'role-coverage.csv'
+  '../content/about/coverage-and-quality/role-coverage.csv'
 );
 const csvPropFilePath = path.join(
   __dirname,
-  '..',
-  'coverage',
-  'prop-coverage.csv'
+  '../content/about/coverage-and-quality/prop-coverage.csv'
 );
 
 let output = fs.readFileSync(templatePath, function (err) {
@@ -687,56 +686,56 @@ addLandmarkRole(
   ['banner'],
   false,
   'Banner Landmark',
-  '../patterns/landmarks/examples/banner.html'
+  '../content/patterns/landmarks/examples/banner.html'
 );
 
 addLandmarkRole(
   ['complementary'],
   true,
   'Complementary Landmark',
-  '../patterns/landmarks/examples/complementary.html'
+  '../content/patterns/landmarks/examples/complementary.html'
 );
 
 addLandmarkRole(
   ['contentinfo'],
   false,
   'Contentinfo Landmark',
-  '../patterns/landmarks/examples/contentinfo.html'
+  '../content/patterns/landmarks/examples/contentinfo.html'
 );
 
 addLandmarkRole(
   ['form'],
   true,
   'Form Landmark',
-  '../patterns/landmarks/examples/form.html'
+  '../content/patterns/landmarks/examples/form.html'
 );
 
 addLandmarkRole(
   ['main'],
   true,
   'Main Landmark',
-  '../patterns/landmarks/examples/main.html'
+  '../content/patterns/landmarks/examples/main.html'
 );
 
 addLandmarkRole(
   ['navigation'],
   true,
   'Navigation Landmark',
-  '../patterns/landmarks/examples/navigation.html'
+  '../content/patterns/landmarks/examples/navigation.html'
 );
 
 addLandmarkRole(
   ['region'],
   true,
   'Region Landmark',
-  '../patterns/landmarks/examples/region.html'
+  '../content/patterns/landmarks/examples/region.html'
 );
 
 addLandmarkRole(
   ['search'],
   true,
   'Search Landmark',
-  '../patterns/landmarks/examples/search.html'
+  '../content/patterns/landmarks/examples/search.html'
 );
 
 function getListItem(item) {
