@@ -3,7 +3,8 @@ const { By, Key } = require('selenium-webdriver');
 const assertAriaControls = require('../util/assertAriaControls');
 const assertAttributeValues = require('../util/assertAttributeValues');
 
-const exampleFile = 'disclosure/disclosure-image-description.html';
+const exampleFile =
+  'content/patterns/disclosure/examples/disclosure-image-description.html';
 
 const ex = {
   buttonSelector: '#ex1 button',

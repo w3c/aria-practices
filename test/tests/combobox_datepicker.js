@@ -6,7 +6,8 @@ const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
 
-const exampleFile = 'combobox/combobox-datepicker.html';
+const exampleFile =
+  'content/patterns/combobox/examples/combobox-datepicker.html';
 
 let today = new Date();
 let todayDataDate = today.toISOString().split('T')[0];

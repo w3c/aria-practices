@@ -5,7 +5,7 @@ const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertTabOrder = require('../util/assertTabOrder');
 
-const exampleFile = 'tabs/tabs-manual.html';
+const exampleFile = 'content/patterns/tabs/examples/tabs-manual.html';
 
 const ex = {
   tablistSelector: '#ex1 [role="tablist"]',

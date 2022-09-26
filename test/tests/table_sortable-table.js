@@ -2,7 +2,7 @@ const { ariaTest } = require('..');
 // const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 
-const exampleFile = 'table/sortable-table.html';
+const exampleFile = 'content/patterns/table/examples/sortable-table.html';
 
 const ex = {
   ariaSortSelector: '#ex1 table th[aria-sort]',

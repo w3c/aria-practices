@@ -6,7 +6,8 @@ const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
 
-const exampleFile = 'dialog-modal/datepicker-dialog.html';
+const exampleFile =
+  'content/patterns/dialog-modal/examples/datepicker-dialog.html';
 
 let today = new Date();
 let todayDataDate = today.toISOString().split('T')[0];

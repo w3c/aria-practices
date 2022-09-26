@@ -1,7 +1,7 @@
 const { ariaTest } = require('..');
 const { By } = require('selenium-webdriver');
 
-const exampleFile = 'alert/alert.html';
+const exampleFile = 'content/patterns/alert/examples/alert.html';
 
 const ex = {
   buttonSelector: '#alert-trigger',

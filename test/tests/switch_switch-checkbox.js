@@ -5,7 +5,7 @@ const assertAttributeValues = require('../util/assertAttributeValues');
 const assertTabOrder = require('../util/assertTabOrder');
 const assertInputChecked = require('../util/assertInputChecked');
 
-const exampleFile = 'switch/switch-checkbox.html';
+const exampleFile = 'content/patterns/switch/examples/switch-checkbox.html';
 
 const ex = {
   switchSelector: '#ex1 [role="switch"]',

@@ -6,7 +6,8 @@ const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertTabOrder = require('../util/assertTabOrder');
 
-const exampleFile = 'carousel/carousel-2-tablist.html';
+const exampleFile =
+  'content/patterns/carousel/examples/carousel-2-tablist.html';
 
 const ex = {
   landmarkSelector: '#myCarousel',

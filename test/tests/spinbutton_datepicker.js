@@ -4,7 +4,8 @@ const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaRoles = require('../util/assertAriaRoles');
 
-const exampleFile = 'spinbutton/datepicker-spinbuttons.html';
+const exampleFile =
+  'content/patterns/spinbutton/examples/datepicker-spinbuttons.html';
 
 const valuesDay = [
   '',

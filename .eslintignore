@@ -1,5 +1,5 @@
 **/*.min.js
 common/
-examples/landmarks/js/visua11y.js
-examples/js/highlight.pack.js
-examples/js/skipto.js
+content/patterns/landmarks/examples/js/visua11y.js
+content/shared/js/highlight.pack.js
+content/shared/js/skipto.js

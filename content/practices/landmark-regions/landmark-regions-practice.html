@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Landmark Regions</title>
+</head>
+<body>
+  <h1>Landmark Regions</h1>
+  <section>
+    <h2>Introduction</h2>
+    <p>
+      ARIA landmark roles provide a powerful way to identify the organization and structure of a web page.
+      By classifying and labelling sections of a page, they enable structural information that is conveyed visually through layout to be represented programmatically.
+      Screen readers exploit landmark roles to provide keyboard navigation to important sections of a page.
+      Landmark regions can also be used as targets for &quot;skip links&quot; and by browser extensions to enhanced keyboard navigation.
+    </p>
+    <p>
+      This section explains how HTML sectioning elements and ARIA landmark roles
+      are used to make it easy for assistive technology users to understand the meaning of the layout of a page.
+    </p>
+  </section>
+  
+  <section>
+    <h2>HTML Sectioning Elements</h2>
+    <p>
+      Several HTML sectioning elements automatically create ARIA landmark regions.
+      So, in order to provide assistive technology users with a logical view of a page,
+      it is important to understand the effects of using HTML sectioning elements.
+      [[HTML-ARIA]] contains more information on HTML element role mapping.
+    </p>
+    <table class="widget-features">
+      <caption>Default landmark roles for HTML sectioning elements</caption>
+      <thead>
+        <tr>
+          <th>HTML Element</th>
+
+          <th>Default Landmark Role</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><code>aside</code></td>
+
+          <td><code>complementary</code></td>
+        </tr>
+
+        <tr>
+          <td><code>footer</code></td>
+
+          <td><code>contentinfo</code> when in context of the <code>body</code> element</td>
+        </tr>
+
+        <tr>
+          <td><code>header</code></td>
+
+          <td><code>banner</code> when in context of the <code>body</code> element</td>
+        </tr>
+
+        <tr>
+          <td><code>main</code></td>
+
+          <td><code>main</code></td>
+        </tr>
+
+        <tr>
+          <td><code>nav</code></td>
+
+          <td><code>navigation</code></td>
+        </tr>
+
+        <tr>
+          <td><code>section</code></td>
+
+          <td><code>region</code> when it has an accessible name using <code>aria-labelledby</code> or <code>aria-label</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  
+  <section>
+    <h2>General Principles of Landmark Design</h2>
+    <p>
+      Including <strong>all perceivable content</strong> on a page in one of its landmark regions
+      and giving each landmark region a semantically meaningful role
+      is one of the most effective ways of ensuring assistive technology users will not overlook information that is relevant to their needs.
+    </p>
+    <p><strong>Step 1: Identify the logical structure</strong></p>
+
+    <ul>
+      <li>Break the page into perceivable areas of content which designers typically indicate visually using alignment and spacing.</li>
+
+      <li>Areas can be further defined into logical sub-areas as needed.</li>
+
+      <li>An example of a sub-area is a portlet in a portal application.</li>
+    </ul>
+
+    <p><strong>Step 2: Assign landmark roles to each area</strong></p>
+
+    <ul>
+      <li>Assign landmark roles based on the type of content in the area.</li>
+
+      <li><code>banner</code>, <code>main</code>, <code>complementary</code> and <code>contentinfo</code> landmarks should be top level landmarks.</li>
+
+      <li>Landmark roles can be nested to identify parent/child relationships of the information being presented.</li>
+    </ul>
+
+    <p id="aria_lh_step3"><strong>Step 3: Label areas</strong></p>
+
+    <ul>
+      <li>
+        If a specific landmark role is used more than once on a page, provide each instance of that landmark with a unique label.
+        There is one rare circumstance where providing the same label to multiple instances of a landmark can be beneficial: the content and purpose of each instance is identical.
+        For example, a large search results table has two sets of identical pagination controls -- one above and one below the table, so each set is in a navigation region labelled <q>Search Results</q>.
+        In this case, adding extra information to the label that distinguishes the two instances may be more distracting than helpful.
+      </li>
+
+      <li>If a landmark is only used once on the page it may not require a label. See Landmark Roles section below. </li>
+
+      <li>If an area begins with a heading element (e.g. <code>h1-h6</code>) it can be used as the label for the area using the <code>aria-labelledby</code> attribute.</li>
+
+      <li>If an area requires a label and does not have a heading element, provide a label using the <code>aria-label</code> attribute.</li>
+
+      <li>
+        Do not use the landmark role as part of the label.
+        For example, a navigation landmark with a label &quot;Site Navigation&quot; will be announced by a screen reader as &quot;Site Navigation Navigation&quot;.
+        The label should simply be &quot;Site&quot;.
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Landmark Roles</h2>
+
+    <section class="widget" id="aria_lh_banner">
+      <h3 class="widget-name">Banner</h3>
+
+      <p>
+        A <a class="role-reference" href="#banner"><code>banner</code></a> landmark identifies site-oriented content at the beginning of each page within a website. Site-oriented content typically includes things such as the logo or identity
+        of the site sponsor, and site-specific search tool. A banner usually appears at the top of the page and typically spans the full width.
+      </p>
+
+      <ul>
+        <li>Each page may have one <code>banner</code> landmark.</li>
+
+        <li>The <code>banner</code> landmark should be a top-level landmark.</li>
+
+        <li>When a page contains nested <code>document</code> and/or <code>application</code> roles (e.g. typically through the use of <code>iframe</code> and <code>frame</code> elements), each <code>document</code> or <code>application</code> role may have
+          one <code>banner</code> landmark.</li>
+
+        <li>If a page includes more than one <code>banner</code> landmark, each should have a unique label (see <a href="#aria_lh_step3">Step 3</a> above).</li>
+      </ul>
+
+      <section>
+        <h4>HTML Techniques</h4>
+        <ul>
+          <li>The HTML <code>header</code> element defines a <code>banner</code> landmark when its context is the <code>body</code> element.</li>
+
+          <li>
+            The HTML <code>header</code> element is not considered a <code>banner</code> landmark when it is descendant of any of following elements (see <a href="" class="html-mapping">HTML Accessibility Mappings</a>):
+            <ul>
+              <li><code>article</code></li>
+              <li><code>aside</code></li>
+              <li><code>main</code></li>
+              <li><code>nav</code></li>
+              <li><code>section</code></li>
+            </ul>
+          </li>
+        </ul>
+
+        <h4>ARIA Techniques</h4>
+
+        <p>If the HTML <code>header</code> element technique is not being used, a <code>role=&quot;banner&quot;</code> attribute should be used to define a <code>banner</code> landmark.</p>
+      </section>
+
+      <section>
+        <h4>Examples</h4>
+
+        <p><a href="../../patterns/landmarks/examples/banner.html">Banner Landmark Example</a></p>
+      </section>
+
+    </section>
+
+    <section id="aria_lh_complementary">
+      <h3 class="widget-name">Complementary</h3>
+
+      <p>A <a class="role-reference" href="#complementary"><code>complementary</code></a> landmark is a supporting section of the document, designed to be complementary to the main content at a similar level in the DOM hierarchy, but remains meaningful
+        when separated from the main content.</p>
+
+      <ul>
+        <li><code>complementary</code> landmarks should be top level landmarks (e.g. not contained within any other landmarks).</li>
+
+        <li>If the complementary content is not related to the main content, a more general role should be assigned (e.g. <code>region</code>).</li>
+
+        <li>If a page includes more than one <code>complementary</code> landmark, each should have a unique label (see <a href="#aria_lh_step3">Step 3</a> above).</li>
+      </ul>
+
+      <section>
+        <h4>HTML Technique</h4>
+
+        <p>Use the HTML <code>aside</code> element to define a <code>complementary</code> landmark.</p>
+
+        <h4>ARIA Technique</h4>
+
+        <p>If the HTML <code>aside</code> element technique is not being used, use a <code>role=&quot;complementary&quot;</code> attribute to define a <code>complementary</code> landmark.</p>
+      </section>
+
+      <section>
+        <h4>Examples</h4>
+
+        <p><a href="../../patterns/landmarks/examples/complementary.html">Complementary Landmark Example</a></p>
+      </section>
+    </section>
+
+    <section id="aria_lh_contentinfo">
+      <h3 class="widget-name">Contentinfo</h3>
+
+      <p>A <a class="role-reference" href="#contentinfo"><code>contentinfo</code></a> landmark is a way to identify common information at the bottom of each page within a website, typically called the &quot;footer&quot; of the page, including information
+        such as copyrights and links to privacy and accessibility statements.</p>
+
+      <ul>
+        <li>Each page may have one <code>contentinfo</code> landmark.</li>
+
+        <li>The <code>contentinfo</code> landmark should be a top-level landmark.</li>
+
+        <li>When a page contains nested <code>document</code> and/or <code>application</code> roles (e.g. typically through the use of <code>iframe</code> and <code>frame</code> elements), each <code>document</code> or <code>application</code> role may have
+          one <code>contentinfo</code> landmark.</li>
+
+        <li>If a page includes more than one <code>contentinfo</code> landmark, each should have a unique label (see <a href="#aria_lh_step3">Step 3</a> above).</li>
+      </ul>
+
+      <section>
+
+        <h4>HTML Techniques</h4>
+
+        <ul>
+          <li>The HTML <code>footer</code> element defines a <code>contentinfo</code> landmark when its context is the <code>body</code> element.</li>
+
+          <li>
+            The HTML <code>footer</code> element is not considered a <code>contentinfo</code> landmark when it is descendant of any of following elements (see <a href="" class="html-mapping">HTML Accessibility Mappings</a>):
+            <ul>
+              <li><code>article</code></li>
+              <li><code>aside</code></li>
+              <li><code>main</code></li>
+              <li><code>nav</code></li>
+              <li><code>section</code></li>
+            </ul>
+          </li>
+        </ul>
+
+        <h4>ARIA Technique</h4>
+
+        <p>If the HTML <code>footer</code> element technique is not being used, a <code>role=&quot;contentinfo&quot;</code> attribute should be used to define a <code>contentinfo</code> landmark.</p>
+      </section>
+
+      <section>
+        <h4>Examples</h4>
+        <p><a href="../../patterns/landmarks/examples/contentinfo.html">Contentinfo Landmark Example</a></p>
+      </section>
+    </section>
+
+    <section id="aria_lh_form">
+      <h3 class="widget-name">Form</h3>
+
+      <p>A <a class="role-reference" href="#form"><code>form</code></a> landmark identifies a region that contains a collection of items and objects that, as a whole, combine to create a form when no other named landmark is appropriate (e.g. main
+        or search).</p>
+
+      <ul>
+        <li>Use the <code>search</code> landmark instead of the <code>form</code> landmark when the form is used for search functionality.</li>
+
+        <li>A <code>form</code> landmark should have a label to help users understand the purpose of the form.</li>
+
+        <li>A label for the <code>form</code> landmark should be visible to all users (e.g. an <code>h1-h6</code> element).</li>
+
+        <li>If a page includes more than one <code>form</code> landmark, each should have a unique label (see <a href="#aria_lh_step3">Step 3</a> above).</li>
+
+        <li>
+          Whenever possible, controls contained in a <code>form</code> landmark in an HTML document should use native host semantics:
+          <ul>
+            <li><code>button</code></li>
+
+            <li><code>input</code></li>
+
+            <li><code>select</code></li>
+
+            <li><code>textarea</code></li>
+          </ul>
+        </li>
+      </ul>
+
+      <section>
+        <h4>HTML Techniques</h4>
+
+        <p>The HTML <code>form</code> element defines a <code>form</code> landmark when it has an accessible name (e.g. <code>aria-labelledby</code>, <code>aria-label</code> or <code>title</code>).</p>
+
+        <h4>ARIA Technique</h4>
+
+        <p>Use the <code>role=&quot;form&quot;</code> to identify a region of the page; do not use it to identify every form field.</p>
+      </section>
+
+      <section>
+        <h4>Examples</h4>
+
+        <p><a href="../../patterns/landmarks/examples/form.html">Form Landmark Example</a></p>
+      </section>
+    </section>
+
+    <section id="aria_lh_main">
+      <h3 class="widget-name">Main</h3>
+
+      <p>A <a class="role-reference" href="#main"><code>main</code></a> landmark identifies the primary content of the page.</p>
+
+      <ul>
+        <li>Each page should have one <code>main</code> landmark.</li>
+
+        <li>The <code>main</code> landmark should be a top-level landmark.</li>
+
+        <li>When a page contains nested <code>document</code> and/or <code>application</code> roles (e.g. typically through the use of <code>iframe</code> and <code>frame</code> elements), each <code>document</code> or <code>application</code> role may have
+          one <code>main</code> landmark.</li>
+
+        <li>If a page includes more than one <code>main</code> landmark, each should have a unique label (see <a href="#aria_lh_step3">Step 3</a> above).</li>
+      </ul>
+
+      <section>
+        <h4>HTML Technique</h4>
+
+        <p>Use the HTML <code>main</code> element to define a <code>main</code> landmark.</p>
+
+        <h4>ARIA Technique</h4>
+
+        <p>If the HTML <code>main</code> element technique is not being used, use a <code>role=&quot;main&quot;</code> attribute to define a <code>main</code> landmark.</p>
+      </section>
+
+      <section>
+        <h4>Examples</h4>
+
+        <p><a href="../../patterns/landmarks/examples/main.html">Main Landmark Example</a></p>
+      </section>
+    </section>
+
+    <section id="aria_lh_navigation">
+      <h3 class="widget-name">Navigation</h3>
+
+      <p><a class="role-reference" href="#navigation"><code>Navigation</code></a> landmarks provide a way to identify groups (e.g. lists) of links that are intended to be used for website or page content navigation.</p>
+
+      <ul>
+        <li>If a page includes more than one <code>navigation</code> landmark, each should have a unique label (see <a href="#aria_lh_step3">Step 3</a> above).</li>
+
+        <li>If a <code>navigation</code> landmark has an identical set of links as another <code>navigation</code> landmark on the page, use the same label for each <code>navigation</code> landmark.</li>
+      </ul>
+
+      <section>
+        <h4>HTML Technique</h4>
+
+        <p>Use the HTML <code>nav</code> element to define a <code>navigation</code> landmark.</p>
+
+        <h4>ARIA Technique</h4>
+
+        <p>If the HTML <code>nav</code> element technique is not being used, use a <code>role=&quot;navigation&quot;</code> attribute to define a <code>navigation</code> landmark.</p>
+
+      </section>
+
+      <section>
+        <h4>Examples</h4>
+
+        <p><a href="../../patterns/landmarks/examples/navigation.html">Navigation Landmark Example</a></p>
+      </section>
+    </section>
+
+    <section id="aria_lh_region">
+      <h3 class="widget-name">Region</h3>
+
+      <p>A <a class="role-reference" href="#region"><code>region</code></a> landmark is a perceivable section of the page containing content that is sufficiently important for users to be able to navigate to the section.</p>
+
+      <ul>
+        <li>A <code>region</code> landmark must have a label.</li>
+
+        <li>If a page includes more than one <code>region</code> landmark, each should have a unique label (see <a href="#aria_lh_step3">Step 3</a> above).</li>
+
+        <li>The <code>region</code> landmark can be used identify content that named landmarks do not appropriately describe.</li>
+      </ul>
+
+      <section>
+        <h4>HTML Technique</h4>
+
+        <p>The HTML <code>section</code> element defines a <code>region</code> landmark when it has an accessible name (e.g. <code>aria-labelledby</code>, <code>aria-label</code> or <code>title</code>).</p>
+
+        <h4>ARIA Technique</h4>
+
+        <p>If the HTML <code>section</code> element technique is not being used, use a <code>role=&quot;region&quot;</code> attribute to define a <code>region</code> landmark.</p>
+      </section>
+
+      <section>
+        <h4>Examples</h4>
+
+        <p><a href="../../patterns/landmarks/examples/region.html">Region Landmark Example</a></p>
+      </section>
+    </section>
+
+    <section id="aria_lh_search">
+      <h3 class="widget-name">Search</h3>
+
+      <p>A <a class="role-reference" href="#search"><code>search</code></a> landmark contains a collection of items and objects that, as a whole, combine to create search functionality.</p>
+
+      <ul>
+        <li>Use the <code>search</code> landmark instead of the <code>form</code> landmark when the form is used for search functionality.</li>
+
+        <li>If a page includes more than one <code>search</code> landmark, each should have a unique label (see <a href="#aria_lh_step3">Step 3</a> above).</li>
+      </ul>
+
+      <section>
+        <h4>HTML Technique</h4>
+        <p>There is no HTML element that defines a <code>search</code> landmark.</p>
+
+        <h4>ARIA Technique</h4>
+
+        <p>The <code>role=&quot;search&quot;</code> attribute defines a <code>search</code> landmark.</p>
+      </section>
+
+      <section>
+        <h4>Examples</h4>
+
+        <p><a href="../../patterns/landmarks/examples/search.html">Search Landmark Example</a></p>
+      </section>
+    </section>
+  </section>
+
+</body>
+</html>

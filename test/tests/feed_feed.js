@@ -7,7 +7,7 @@ const assertAriaRoles = require('../util/assertAriaRoles');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaDescribedby = require('../util/assertAriaDescribedby');
 
-const exampleFile = 'feed/feed.html';
+const exampleFile = 'content/patterns/feed/examples/feed.html';
 
 const ex = {
   feedLinkSelector: '#ex1 a',

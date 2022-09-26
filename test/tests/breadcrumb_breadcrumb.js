@@ -2,7 +2,7 @@ const { ariaTest } = require('..');
 const { By } = require('selenium-webdriver');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 
-const exampleFile = 'breadcrumb/index.html';
+const exampleFile = 'content/patterns/breadcrumb/examples/breadcrumb.html';
 
 const ex = {
   breadcrumbSelector: '#ex1 nav',
