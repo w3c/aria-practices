@@ -7,6 +7,7 @@ button[role="switch"] {
   width: 17em;
   text-align: left;
   background-color: white;
+  color: black;
 }
 
 button[role="switch"] .label {
@@ -17,12 +18,14 @@ button[role="switch"] .label {
   margin: 0;
   width: 10em;
   vertical-align: middle;
+  color: black;
 }
 
 button[role="switch"] svg {
   forced-color-adjust: auto;
   position: relative;
   top: 4px;
+  stroke: black;
 }
 
 button[role="switch"] svg rect {
