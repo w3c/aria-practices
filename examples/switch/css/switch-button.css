@@ -58,7 +58,7 @@ button[role="switch"][aria-checked="true"] svg rect.on {
 }
 
 button[role="switch"] span.off {
-  display: inline;
+  display: inline-block;
 }
 
 button[role="switch"] span.on {
@@ -70,7 +70,7 @@ button[role="switch"][aria-checked="true"] span.off {
 }
 
 button[role="switch"][aria-checked="true"] span.on {
-  display: inline;
+  display: inline-block;
 }
 
 button[role="switch"]:focus,
