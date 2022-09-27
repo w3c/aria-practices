@@ -29,7 +29,6 @@ button[role="switch"] svg {
   forced-color-adjust: auto;
   position: relative;
   top: 4px;
-  stroke: black;
 }
 
 button[role="switch"] svg rect {
