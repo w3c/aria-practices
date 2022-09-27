@@ -28,19 +28,20 @@
     <h1>Editor Menubar Example</h1>
     <section>
       <h2>About This Example</h2>
-    <p>
-      The following example demonstrates using the
-      <a href="../menu-and-menubar-pattern.html">menubar design pattern</a>
-      to provide access to editing actions for a text area.
-      Each item in the menubar identifies a category of text formatting actions that can be executed from its submenu.
-      The submenus demonstrate <code>menuitemradio</code> and <code>menuitemcheckbox</code> elements.
-    </p>
-    <p>Similar examples include: </p>
-    <ul>
-      <li><a href="../../toolbar/examples/toolbar.html">Toolbar Example</a>: A text formatting toolbar that uses roving tabindex to manage focus and contains several types of controls, including toggle buttons, radio buttons, a menu button, a spin button, a checkbox, and a link.</li>
-      <li><a href="menubar-navigation.html">Navigation Menubar Example</a>: A menubar that presents site navigation menus.</li>
-    </ul>
-  </section>
+      <p>
+        The following example demonstrates using the
+        <a href="../menu-and-menubar-pattern.html">Menubar Pattern</a>
+        to provide access to editing actions for a text area.
+        Each item in the menubar identifies a category of text formatting actions that can be executed from its submenu.
+        The submenus demonstrate <code>menuitemradio</code> and <code>menuitemcheckbox</code> elements.
+      </p>
+      <p>Similar examples include: </p>
+      <ul>
+        <li><a href="../../toolbar/examples/toolbar.html">Toolbar Example</a>: A text formatting toolbar that uses roving tabindex to manage focus and contains several types of controls, including toggle buttons, radio buttons, a menu button, a spin button, a checkbox, and a link.</li>
+        <li><a href="menubar-navigation.html">Navigation Menubar Example</a>: A menubar that presents site navigation menus.</li>
+      </ul>
+    </section>
+    
   <section id="code-ex-1">
     <div class="example-header">
       <h2 id="ex1_label">Example</h2>
@@ -372,7 +373,10 @@
             <td>
               <ul>
                 <li>Identifies the element as a <code>menubar</code> container for a set of <code>menuitem</code> elements.</li>
-                <li>Is not focusable because focus is managed using <a href="../../#kbd_roving_tabindex">roving tabindex.</a></li>
+                  <li>
+                  The menubar element is not focusable because it implements the practice described in the section on
+                  <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.
+                </li>
               </ul>
             </td>
           </tr>
@@ -434,8 +438,7 @@
             <td>
               <ul>
                 <li>
-                  Makes the <code>menuitem</code> element keyboard focusable and
-                  part of the <kbd>tab</kbd> sequence of the page.
+                  Makes the <code>menuitem</code> element keyboard focusable and part of the <kbd>tab</kbd> sequence of the page.
                 </li>
                 <li>
                   Only one <code>menuitem</code> in the <code>menubar</code> has <code>tabindex="0"</code>.
@@ -444,7 +447,7 @@
                   When the page loads, the first item in the menubar has <code>tabindex="0"</code>.
                 </li>
                 <li>
-                  Focus is managed using <a href="../../#kbd_roving_tabindex">roving tabindex</a>.
+                  Focus is managed using the practice for <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.
                 </li>
               </ul>
             </td>
@@ -531,7 +534,10 @@
             <td>
               <ul>
                 <li>Identifies the element as a menu container for a set of menu items.</li>
-                <li>Is not focusable because focus is managed using <a href="../../#kbd_roving_tabindex">roving tabindex.</a></li>
+                <li>
+                  The menu element is not focusable because it implements the practice described in the section on
+                  <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.
+                </li>
               </ul>
             </td>
           </tr>
