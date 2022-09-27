@@ -19,7 +19,7 @@
 <body>
   <nav aria-label="Related Links" class="feedback">
     <ul>
-      <li><a href="https://github.com/w3c/aria-practices/projects/3">Related Issues</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/projects/22">Related Issues</a></li>
       <li><a href="../radio-group-pattern.html">Design Pattern</a></li>
     </ul>
   </nav>
@@ -27,17 +27,17 @@
     <h1>Rating Radio Group Example</h1>
     <section>
       <h2>About This Example</h2>
-    <p>
-      Following is an example of a rating input that demonstrates the
-      <a href="../radio-group-pattern.html">Radio Group Design Pattern.</a>
-      The rating is indicated by the number of stars selected by the user.
-    </p>
-    <p>Similar examples include: </p>
-    <ul>
-      <li><a href="../../slider/examples/slider-rating.html">Rating Slider Example</a>: Horizontal slider that demonstrates using <code>aria-valuetext</code> to communicate current and maximum value of a rating input for a five star rating scale.</li>
-      <li><a href="radio-activedescendant.html">Radio Group Example Using aria-activedescendant</a>: Radio button group that uses <code>aria-activedescendant</code> for managing keyboard focus.</li>
-      <li><a href="radio.html">Radio Group Example Using Roving tabindex</a>: A radio button group that uses roving <code>tabindex</code> for managing keyboard focus.</li>
-    </ul>
+      <p>
+        Following is an example of a rating input that demonstrates the
+        <a href="../radio-group-pattern.html">Radio Group Pattern.</a>
+        The rating is indicated by the number of stars selected by the user.
+      </p>
+      <p>Similar examples include: </p>
+      <ul>
+        <li><a href="../../slider/examples/slider-rating.html">Rating Slider Example</a>: Horizontal slider that demonstrates using <code>aria-valuetext</code> to communicate current and maximum value of a rating input for a five star rating scale.</li>
+        <li><a href="radio-activedescendant.html">Radio Group Example Using aria-activedescendant</a>: Radio button group that uses <code>aria-activedescendant</code> for managing keyboard focus.</li>
+        <li><a href="radio.html">Radio Group Example Using Roving tabindex</a>: A radio button group that uses roving <code>tabindex</code> for managing keyboard focus.</li>
+      </ul>
     </section>
     <section>
       <div class="example-header">
@@ -223,7 +223,7 @@
               <ul>
                 <li>Makes the element focusable but not part of the page <kbd>Tab</kbd> sequence.</li>
                 <li>Applied to all radio buttons contained in the radio group except for one that is included in the page <kbd>Tab</kbd> sequence.</li>
-                <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
+                <li>This approach to managing focus is described in the practice for <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.</li>
               </ul>
             </td>
           </tr>
@@ -237,7 +237,7 @@
                 <li>Set on only one radio in the radio group.</li>
                 <li>On page load, is set on the first radio button in the radio group.</li>
                 <li>Moves with focus inside the radio group so the most recently focused radio button is included in the page <kbd>Tab</kbd> sequence.</li>
-                <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
+                <li>This approach to managing focus is described in the practice for <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.</li>
               </ul>
             </td>
           </tr>
