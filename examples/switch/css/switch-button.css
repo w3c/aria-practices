@@ -5,6 +5,7 @@ button[role="switch"] {
   border: 0 solid #005a9c;
   border-radius: 5px;
   width: 17em;
+  height: 3em;
   text-align: left;
   background-color: white;
   color: black;
