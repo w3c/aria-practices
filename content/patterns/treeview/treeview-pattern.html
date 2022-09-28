@@ -7,43 +7,25 @@
 </head>
 <body>
   <h1>Tree View Pattern</h1>
-  <section>
+  <section id="about">
     <h2>About This Pattern</h2>
     <p>
       A tree view widget presents a hierarchical list.
       Any item in the hierarchy may have child items, and items that have children may be expanded or collapsed to show or hide the children.
       For example, in a file system navigator that uses a tree view to display folders and files, an item representing a folder can be expanded to reveal the contents of the folder, which may be files, folders, or both.
     </p>
-    <p>Terms for understanding tree views include:</p>
-    <dl>
-      <dt>Node</dt>
-      <dd>An item in a tree. </dd>
-      <dt>Root Node</dt>
-      <dd>Node at the base of the tree; it may have one or more child nodes but does not have a parent node.</dd>
-      <dt>Child Node</dt>
-      <dd>Node that has a parent; any node that is not a root node is a child node.</dd>
-      <dt>End Node</dt>
-      <dd>Node that does not have any child nodes; an end node may be either a root node or a child node.</dd>
-      <dt>Parent Node</dt>
-      <dd>Node with one or more child nodes. It can be open (expanded) or closed (collapsed).</dd>
-      <dt>Open Node</dt>
-      <dd>Parent node that is expanded so its child nodes are visible.</dd>
-      <dt>Closed Node</dt>
-      <dd>Parent node that is collapsed so the child nodes are not visible.</dd>
-    </dl>
     <p>
-      When using a keyboard to navigate a tree, a visual keyboard indicator informs the user which node is focused.
+      When using a keyboard to navigate a tree, a visual keyboard indicator informs the user which item is focused.
       If the tree allows the user to choose just one item for an action, then it is known as a single-select tree.
       In some implementations of single-select tree, the focused item also has a selected state; this is known as selection follows focus.
       However, in multi-select trees, which enable the user to select more than one item for an action, the selected state is always independent of the focus.
       For example, in a typical file system navigator, the user can move focus to select any number of files for an action, such as copy or move.
       It is important that the visual design distinguish between items that are selected and the item that has focus.
-      For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection</a>
-      and <a href="#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
+      For more details, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_vs_selection">this description of differences between focus and selection</a> and <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
     </p>
   </section>
 
-  <section>
+  <section id="examples">
     <h2>Examples</h2>
     <ul>
       <li>
@@ -61,7 +43,28 @@
     </ul>
   </section>
 
-  <section>
+  <section id="terms">
+    <h2>Terms</h2>
+    <p>Terms for describing tree views include:</p>
+    <dl>
+      <dt>Node</dt>
+      <dd>An item in a tree. </dd>
+      <dt>Root Node</dt>
+      <dd>Node at the base of the tree; it may have one or more child nodes but does not have a parent node.</dd>
+      <dt>Child Node</dt>
+      <dd>Node that has a parent; any node that is not a root node is a child node.</dd>
+      <dt>End Node</dt>
+      <dd>Node that does not have any child nodes; an end node may be either a root node or a child node.</dd>
+      <dt>Parent Node</dt>
+      <dd>Node with one or more child nodes. It can be open (expanded) or closed (collapsed).</dd>
+      <dt>Open Node</dt>
+      <dd>Parent node that is expanded so its child nodes are visible.</dd>
+      <dt>Closed Node</dt>
+      <dd>Parent node that is collapsed so the child nodes are not visible.</dd>
+    </dl>
+  </section>
+  
+  <section id="keyboard_interaction">
     <h2>Keyboard Interaction</h2>
     <p>For a vertically oriented tree:</p>
     <ul>
@@ -135,17 +138,17 @@
       </li>
     </ul>
     <ol class="note">
-      <li>DOM focus (the active element) is functionally distinct from the selected state. For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a></li>
+      <li>DOM focus (the active element) is functionally distinct from the selected state. For more details, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_vs_selection">this description of differences between focus and selection</a>.</li>
       <li>
         The <code>tree</code> role supports the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property,
         which provides an alternative to moving DOM focus among <code>treeitem</code> elements when implementing keyboard navigation.
-        For details, see <a href="#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.
+        For details, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.
       </li>
       <li>
         In a single-select tree, moving focus may optionally unselect the previously selected node and select the newly focused node.
         This model of selection is known as &quot;selection follows focus&quot;.
         Having selection follow focus can be very helpful in some circumstances and can severely degrade accessibility in others.
-        For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
+        For additional guidance, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
       </li>
       <li>If selecting or unselecting all nodes is an important function, implementing separate controls for these actions, such as buttons for &quot;Select All&quot; and &quot;Unselect All&quot;, significantly improves accessibility.</li>
     <li>
@@ -158,7 +161,7 @@
     </ol>
   </section>
 
-  <section id="tree_roles_states_props">
+  <section id="roles_states_properties">
     <h2>WAI-ARIA Roles, States, and Properties</h2>
     <ul>
       <li>All tree nodes are contained in or owned by an element with role <a class="role-reference" href="#tree">tree</a>.</li>
@@ -195,7 +198,7 @@
           </li>
           <li>
             Note that except in trees where selection follows focus, the selected state is distinct from focus.
-            For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection</a> and <a href="#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
+            For more details, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_vs_selection">this description of differences between focus and selection</a> and <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
           </li>
         </ul>
       </li>
