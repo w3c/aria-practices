@@ -30,13 +30,14 @@
     <div class="advisement">
       <p>
         Although this example uses the word "menu" in the colloquial sense to refer to a set of navigation links, it does not use the WAI-ARIA menu role.
-        That is because the menu and menubar roles require complex functionality, such as <a href="../../#kbd_general_within">composite widget focus management</a> and first-character navigation, that is unnecessary for typical site navigation.
+        This implementation of site navigation does not use the menu role because it does not provide the complex functionality that assistive technologies expect in a widget that has the menu role.
+        Typical site navigation does not need all the <a href="../../menubar/menu-and-menubar-pattern.html#keyboard_interaction">keyboard interactions specified by the menu and menubar pattern</a>.
       </p>
     </div>
 
     <p>
       The following example demonstrates using the
-      <a href="../disclosure-pattern.html">disclosure design pattern</a>
+      <a href="../disclosure-pattern.html">Disclosure Pattern</a>
       to show and hide dropdown lists of links in a navigation bar for a mythical university web site.
       Unlike the other <a href="disclosure-navigation.html">disclosure navigation menu example</a>, this example includes top-level links alongside the disclosure buttons.
     </p>

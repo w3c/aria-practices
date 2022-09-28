@@ -24,34 +24,35 @@
     <main>
       <h1>Navigation Treeview Example</h1>
       <section>
-      <h2>About This Example</h2>
-      <div class="advisement">
-        <p><strong>CAUTION!</strong> Before considering use of the <a href="../treeview-pattern.html">ARIA tree pattern</a> for site navigation, it is important to understand:</p>
+        <h2>About This Example</h2>
+        <div class="advisement">
+          <p><strong>CAUTION!</strong> Before considering use of the <a href="../treeview-pattern.html">Tree View Pattern</a> for site navigation, it is important to understand:</p>
+          <ul>
+            <li>Correct implementation of the <code>tree</code> role requires implementation of complex functionality that is not needed for typical site navigation that is styled to look like a tree with expandable sections.</li>
+            <li>A pattern more suited for typical site navigation with expandable groups of links is the <a href="../../disclosure/disclosure-pattern.html">disclosure pattern.</a></li>
+          </ul>
+        </div>
+        <p>
+          The below example demonstrates how the
+          <a href="../treeview-pattern.html">Tree View Pattern</a>
+          can be used to build a navigation tree for a set of hierarchically organized web pages.
+          It illustrates navigation of a mythical university web site that is comparable to the navigation illustrated in the <a href="../../disclosure/examples/disclosure-navigation.html">Example Disclosure Navigation Menu</a>.
+          As noted above, the disclosure pattern is better suited for most web sites because few sites need the additional keyboard functionality required to support the ARIA <code>tree</code> role.
+        </p>
+        <p>
+          This example relies on the browser to compute values for <code>aria-setsize</code>, <code>aria-posinset</code>, and <code>aria-level</code>.
+          The ARIA specification for these properties states that browsers can, but are not required to, compute their values.
+          So, some browser and assistive technology combinations may not compute or report correct position and level information if it is not explicitly declared.
+          If testing reveals gaps in support for these properties, override automatic computation by explicitly declaring their values as demonstrated in the example of a
+          <a href="treeview-1/treeview-1b.html">File Directory Treeview Example Using Declared Properties.</a>
+        </p>
+        <p>Similar examples include: </p>
         <ul>
-          <li>Correct implementation of the <code>tree</code> role requires implementation of complex functionality that is not needed for typical site navigation that is styled to look like a tree with expandable sections.</li>
-          <li>A pattern more suited for typical site navigation with expandable groups of links is the <a href="../../disclosure/disclosure-pattern.html">disclosure pattern.</a></li>
+          <li><a href="treeview-1/treeview-1a.html">File Directory Treeview using <em>computed</em> properties</a></li>
+          <li><a href="treeview-1/treeview-1b.html">File Directory Treeview using <em>declared</em> properties</a></li>
         </ul>
-      </div>
-      <p>
-        The below example demonstrates how the
-        <a href="../treeview-pattern.html">Treeview Design Pattern</a>
-        can be used to build a navigation tree for a set of hierarchically organized web pages.
-        It illustrates navigation of a mythical university web site that is comparable to the navigation illustrated in the <a href="../disclosure/disclosure-navigation.html">Example Disclosure Navigation Menu</a>.
-        As noted above, the disclosure pattern is better suited for most web sites because few sites need the additional keyboard functionality required to support the ARIA <code>tree</code> role.
-      </p>
-      <p>
-        This example relies on the browser to compute values for <code>aria-setsize</code>, <code>aria-posinset</code>, and <code>aria-level</code>.
-        The ARIA specification for these properties states that browsers can, but are not required to, compute their values.
-        So, some browser and assistive technology combinations may not compute or report correct position and level information if it is not explicitly declared.
-        If testing reveals gaps in support for these properties, override automatic computation by explicitly declaring their values as demonstrated in the example of a
-        <a href="treeview-1/treeview-1b.html">File Directory Treeview Example Using Declared Properties.</a>
-      </p>
-      <p>Similar examples include: </p>
-      <ul>
-        <li><a href="treeview-1/treeview-1a.html">File Directory Treeview using <em>computed</em> properties</a></li>
-        <li><a href="treeview-1/treeview-1b.html">File Directory Treeview using <em>declared</em> properties</a></li>
-      </ul>
       </section>
+
       <section>
         <div class="example-header">
           <h2 id="ex_label">Example</h2>
@@ -403,7 +404,7 @@
           It is a closed node when the children are hidden and an open node when it is expanded.
           An end node does not have any children.
           For a complete list of terms and definitions, see the
-          <a href="../../#TreeView">Treeview Design Pattern.</a>
+          <a href="../treeview-pattern.html#terms">Tree View Pattern</a>.
         </p>
       </section>
 
@@ -593,9 +594,8 @@
                 <ul>
                   <li>Identifies the <code>ul</code> element as a <code>tree</code> widget.</li>
                   <li>
-                    Because focus movement in the tree is managed with a
-                    <a href="../../#kbd_roving_tabindex">roving tabindex</a>,
-                    the <code>tree</code> container does not need a <code>tabindex</code> attribute.
+                    The tree element is not focusable because it implements the practice described in
+                    <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.
                   </li>
                 </ul>
               </td>

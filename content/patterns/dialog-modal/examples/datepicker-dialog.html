@@ -28,8 +28,8 @@
     <section>
     <h2>About This Example</h2>
     <p>
-      The example below includes a date input field and a button that opens a date picker that implements the <a href="../dialog-modal-pattern.html">dialog design pattern</a>.
-      The dialog contains a calendar that uses the <a href="../../#grid">grid pattern</a> to present buttons that enable the user to choose a day from the calendar.
+      The example below includes a date input field and a button that opens a date picker that implements the <a href="../dialog-modal-pattern.html">Dialog (Modal) Pattern</a>.
+      The dialog contains a calendar that uses the <a href="../../grid/grid-pattern.html">grid pattern</a> to present buttons that enable the user to choose a day from the calendar.
       Choosing a date from the calendar closes the dialog and populates the date input field.
       When the dialog is opened, if the input field is empty, or does not contain a valid date, then the current date is focused in the calendar.
       Otherwise, the focus is placed on the day in the calendar that matches the value of the date input field.
@@ -38,7 +38,7 @@
     <ul>
       <li><a href="alertdialog.html">Alert Dialog Example</a>: A confirmation prompt that demonstrates an alert dialog.</li>
       <li><a href="dialog.html">Modal Dialog Example</a>: An example demonstrating multiple layers of modal dialogs with both small and large amounts of content.</li>
-      <li><a href="../combobox/combobox-datepicker.html">Date Picker Combobox</a>: An editable date input combobox that opens a dialog containing a calendar grid and buttons for navigating by month and year.</li>
+      <li><a href="../../combobox/examples/combobox-datepicker.html">Date Picker Combobox</a>: An editable date input combobox that opens a dialog containing a calendar grid and buttons for navigating by month and year.</li>
     </ul>
   </section>
   <section>
@@ -270,7 +270,7 @@
             <td>
               <ul>
                 <li>Moves focus to next element in the dialog <kbd>Tab</kbd> sequence.</li>
-                <li>Note that, as specified in the <a href="../../#grid">grid design pattern</a>, only one button in the calendar grid is in the <kbd>Tab</kbd> sequence.</li>
+                <li>Note that, as specified in the <a href="../../grid/grid-pattern.html">Grid Pattern</a>, only one button in the calendar grid is in the <kbd>Tab</kbd> sequence.</li>
                 <li>If focus is on the last button (i.e., &quot;OK&quot;), moves focus to the first button (i.e. &quot;Previous Year&quot;).</li>
               </ul>
             </td>
@@ -280,7 +280,7 @@
             <td>
               <ul>
                 <li>Moves focus to previous element in the dialog <kbd>Tab</kbd> sequence.</li>
-                <li>Note that, as specified in the <a href="../../#grid">grid design pattern</a>, only one button in the calendar grid is in the <kbd>Tab</kbd> sequence.</li>
+                <li>Note that, as specified in the <a href="../../grid/grid-pattern.html">Grid Pattern</a>, only one button in the calendar grid is in the <kbd>Tab</kbd> sequence.</li>
                 <li>If focus is on the first button (i.e., &quot;Previous Year&quot;), moves focus to the last button (i.e. &quot;OK&quot;).</li>
               </ul>
             </td>
@@ -600,7 +600,7 @@
                 <li>Makes the cell focusable and includes it in the dialog <kbd>Tab</kbd> sequence.</li>
                 <li>Set dynamically by the JavaScript when the element is to be included in the dialog <kbd>Tab</kbd> sequence.</li>
                 <li>At any given time, only one <code>gridcell</code> within the grid is in the dialog <kbd>Tab</kbd> sequence.</li>
-                <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
+                <li>This approach to managing focus is described in the section on <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.</li>
               </ul>
             </td>
           </tr>
@@ -617,7 +617,7 @@
                 <li>Makes the cell focusable and excludes it from the dialog <kbd>Tab</kbd> sequence.</li>
                 <li>Changed dynamically to <code>0</code> by the JavaScript when the cell is to be included in the dialog <kbd>Tab</kbd> sequence.</li>
                 <li>At any given time, only one <code>gridcell</code> within the grid is in the dialog <kbd>Tab</kbd> sequence.</li>
-                <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
+                <li>This approach to managing focus is described in the section on <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.</li>
               </ul>
             </td>
           </tr>

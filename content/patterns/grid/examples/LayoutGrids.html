@@ -28,30 +28,31 @@
   <h1>Layout Grid Examples</h1>
   <section>
     <h2>About This Example</h2>
-  <p>
-    The following examples demonstrate how the
-    <a href="../grid-pattern.html">grid design pattern</a>
-    can be used to group a collection of interactive widgets into a single tab stop.
-    In these examples, each widget, such as a link or button, is in a separate cell of the grid, and the user can navigate between them with the arrow keys.
-    While navigating with the arrow keys, widgets receive keyboard focus and can be activated with <kbd>Space</kbd> or <kbd>Enter</kbd>.
-  </p>
-  <p>
-    In addition to streamlining keyboard interfaces, these grids also convey logical grouping and semantic relationships for the elements they contain.
-    For people who can see the screen, these groupings and relationships are visually communicated with layout and other elements of the visual design.
-    And, by navigating the logical structure that a grid widget provides, screen reader users are also able to easily perceive the same semantic relationships.
-  </p>
-  <p>
-    The distinguishing feature of <code>grid</code> that enables it to be used for grouping other widgets is that its cells are containers that preserve the semantics of their descendant elements.
-    That is, grid cells do not override or suppress the semantics of the elements they contain.
-    Thus, a link contained inside of a grid cell is presented to a screen reader as a link.
-    By contrast, a link inside of a menu is presented as a menuitem, and a link inside of a listbox is presented as an option.
-  </p>
-  <p>Similar examples include:</p>
-  <ul>
-    <li><a href="dataGrids.html">Data Grid Examples</a>: Three example implementations of grid that include features relevant to presenting tabular information, such as content editing, sort, and column hiding.</li>
-    <li><a href="advancedDataGrid.html">Advanced Data Grid Example</a>: Example of a grid with behaviors and features similar to a typical spreadsheet, including cell and row selection.</li>
-  </ul>
+    <p>
+      The following examples demonstrate how the
+      <a href="../grid-pattern.html">Grid Pattern</a>
+      can be used to group a collection of interactive widgets into a single tab stop.
+      In these examples, each widget, such as a link or button, is in a separate cell of the grid, and the user can navigate between them with the arrow keys.
+      While navigating with the arrow keys, widgets receive keyboard focus and can be activated with <kbd>Space</kbd> or <kbd>Enter</kbd>.
+    </p>
+    <p>
+      In addition to streamlining keyboard interfaces, these grids also convey logical grouping and semantic relationships for the elements they contain.
+      For people who can see the screen, these groupings and relationships are visually communicated with layout and other elements of the visual design.
+      And, by navigating the logical structure that a grid widget provides, screen reader users are also able to easily perceive the same semantic relationships.
+    </p>
+    <p>
+      The distinguishing feature of <code>grid</code> that enables it to be used for grouping other widgets is that its cells are containers that preserve the semantics of their descendant elements.
+      That is, grid cells do not override or suppress the semantics of the elements they contain.
+      Thus, a link contained inside of a grid cell is presented to a screen reader as a link.
+      By contrast, a link inside of a menu is presented as a menuitem, and a link inside of a listbox is presented as an option.
+    </p>
+    <p>Similar examples include:</p>
+    <ul>
+      <li><a href="dataGrids.html">Data Grid Examples</a>: Three example implementations of grid that include features relevant to presenting tabular information, such as content editing, sort, and column hiding.</li>
+      <li><a href="advancedDataGrid.html">Advanced Data Grid Example</a>: Example of a grid with behaviors and features similar to a typical spreadsheet, including cell and row selection.</li>
+    </ul>
   </section>
+  
   <section>
     <h2>Examples</h2>
     <section>
@@ -413,7 +414,7 @@
       <dt>Whether to focus a cell or an element inside it when the cell is clicked or a navigation key is pressed:</dt>
       <dd>
         The section of the grid pattern on
-        <a href="../../#gridNav">Setting Focus and Navigating Inside Cells</a>
+        <a href="../grid-pattern.html#gridNav">Setting Focus and Navigating Inside Cells</a>
         describes how to design the focus placement strategy.
       </dd>
       <dt>Whether focus can wrap from the last column to the first column in the next row or from the first column to the last column in the previous row when <kbd>Right Arrow</kbd> and <kbd>Left Arrow</kbd> are pressed:</dt>
@@ -592,8 +593,13 @@
           <td></td>
           <td><code>div</code></td>
           <td>
-            Identifies the element containing the grid widget.
-            Because focus is managed using <a href="../../#kbd_roving_tabindex">roving tabindex</a>, the grid element is not focusable.
+            <ul>
+              <li>Identifies the element containing the grid widget.</li>
+              <li>
+                The grid element is not focusable because it implements the practice described in the section on
+                <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.
+              </li>
+            </ul>
           </td>
         </tr>
         <tr data-test-id="aria-labelledby">
@@ -661,7 +667,7 @@
               <li>Applied to all cells that do not contain an interactive widget that consumes arrow keys, such as a link or button.</li>
               <li>Changed dynamically to <code>0</code> by the JavaScript when the cell is to be included in the page <kbd>Tab</kbd> sequence.</li>
               <li>At any given time, only one of the cells or widgets within the grid is in the page <kbd>Tab</kbd> sequence.</li>
-              <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
+              <li>This approach to managing focus is described in the section on <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.</li>
             </ul>
           </td>
         </tr>
@@ -675,7 +681,7 @@
               <li>Clicks and keyboard commands that move focus inside the grid can focus widgets if the containing cell is not focusable.</li>
               <li>Changed dynamically to <code>0</code> by the JavaScript when the widget is to be included in the page <kbd>Tab</kbd> sequence.</li>
               <li>At any given time, only one of the cells or widgets within the grid is in the page <kbd>Tab</kbd> sequence.</li>
-              <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
+              <li>This approach to managing focus is described in the section on <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.</li>
             </ul>
           </td>
         </tr>
@@ -688,7 +694,7 @@
               <li>Makes the element focusable and includes it in the page <kbd>Tab</kbd> sequence.</li>
               <li>Set dynamically by the JavaScript when the element is to be included in the page <kbd>Tab</kbd> sequence.</li>
               <li>At any given time, only one element within the grid is in the page <kbd>Tab</kbd> sequence.</li>
-              <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
+              <li>This approach to managing focus is described in the section on <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.</li>
             </ul>
           </td>
         </tr>
@@ -708,7 +714,7 @@
         <ul>
           <li><a href="js/layoutGrids.js" type="text/javascript">layoutGrids.js</a></li>
           <li><a href="js/dataGrid.js" type="text/javascript">dataGrid.js</a></li>
-          <li><a href="../js/utils.js">utils.js</a></li>
+          <li><a href="../../../shared/js/utils.js">utils.js</a></li>
         </ul>
       </li>
     </ul>
