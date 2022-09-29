@@ -2297,6 +2297,103 @@ Some JavaScript and CSS may not function correctly in Internet Explorer.
         </ul>
       </section>
     </section>
+    
+    <section class="widget" id="navigation-systems">
+      <h3 class="widget-name">Navigation Systems for Sites and Apps</h3>
+      <p class="ednote">
+        This section is work in progress intended to resolve
+        <a href="https://github.com/w3c/aria-practices/issues/89">issue 89</a>
+        and
+        <a href="https://github.com/w3c/aria-practices/issues/353">issue 353.</a>
+        </p>
+      <p>
+        While the collection of links or other widgets that provide navigation across a web site or among functions of a web app are often colloquially described as menus, it is rarely appropriate to implement them as an ARIA menu.  
+        In fact, there are many accessible design patterns that can be employed when building a navigation system, some of which require very little ARIA and minimal scripting and others, like the menu pattern, which offer advanced keyboard features but are substantially more complex to implement.  
+      </p>
+      <p>
+        In scenarios where a short list of links is persistently visible, i.e., the list doesn't fully or partially collapse, simply wrap a list of links in a navigation region and use <a class="state-reference">aria-current</a> to indicate which page is currently displayed.
+        For instance, a site-wide navigation structure for &quot;Company A&quot; that includes 4 pages could simply be implemented as follows. 
+      </p>
+      <pre><code>
+&lt;nav aria-label="Company A">
+  &lt;ul>
+    &lt;li>&lt;a aria-current="page">Page 1&lt;/a>&lt;/li>
+    &lt;li>&lt;a>Page 2&lt;/a>&lt;/li>
+    &lt;li>&lt;a>Page 3&lt;/a>&lt;/li>    
+    &lt;li>&lt;a>Page 4&lt;/a>&lt;/li>
+  &lt;/ul>
+&lt;/nav>      
+      </code></pre>
+      <p>
+        In In the above example, some code is necessary to ensure that when users activate a link, <code>aria-current</code> is removed from its previous location and added to the activated link.
+      </p>
+      <p>
+        In other scenarios where the design includes more complex functionality, such as fly outs or keyboard typeahead, the following examples demonstrate some of the many possible approaches.
+        To facilitate comparison, all the examples illustrate navigation for the same hypothetical web site belonging to a "Mythical University".  
+        And, each example is accompanied by a list of considerations to help authors decide whether the approach it illustrates satisfies the needs and constraints relevant in a particular situation.
+      </p>
+      
+      <section class="notoc">
+        <h4>Examples</h4>
+        <p class="ednote">
+          Not all of these examples yet implement navigation for the mythical university as described above.
+          Before this section can be merged, the navigation examples need to be harmonized, so they consistently present the Mythical University navigation.
+        </p>
+        <ul>
+          <li><a href="examples/disclosure/disclosure-navigation.html">Disclosure (Show/Hide) for Navigation Menus:</a>
+            <ul>
+              <li>Very little scripting is necessary, especially if the optional arrow key behavior is omitted.</li>
+              <li>Uses only 3 ARIA attributes: <code>aria-controls</code>, <code>aria-expanded</code> and <code>aria-current</code>. The most important one, <code>aria-expanded</code>, is very well supported by assistive technologies.</li>
+              <li>Unlike menu and tree widgets:
+                <ul>
+                  <li>Adds multiple elements to the page <kbd>Tab</kbd> sequence.</li>
+                  <li>Does not support first-letter accelerators that move focus to the next item starting with the letter typed.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="examples/menu-button/menu-button-links.html">Navigation Menu Button:</a>
+            <ul>
+              <li>Requires complex scripting.</li>
+              <li>Relies on the <code>aria-haspopup</code>, <code>aria-controls</code> and <code>aria-expanded</code> ARIA attributes.</li>
+              <li>Because the links are recast as menu items, screen reader users may not realize that standard context actions for links, such as open in new window, are available.</li>
+            </ul>
+          </li>
+          <li><a href="examples/menubar/menubar-navigation.html">Navigation Menubar:</a>
+            <ul>
+              <li>Requires complex scripting.</li>
+              <li>Relies on the <code>aria-haspopup</code> and <code>aria-expanded</code> ARIA attributes.</li>
+              <li>Because the links are recast as menu items, screen reader users may not realize that standard context actions for links, such as open in new window, are available.</li>
+            </ul>
+          </li>
+          <li><a href="examples/treeview/treeview-2/treeview-2a.html">Navigation Treeview:</a>
+            <ul>
+              <li>Requires complex scripting.</li>
+              <li>Relies on the <code>aria-expanded</code> ARIA attribute, and optionally the <code>aria-setsize</code>, <code>aria-posinset</code> and <code>aria-level</code> ARIA attributes.</li>
+              <li>Because the links are recast as tree items, screen reader users may not realize that standard context actions for links, such as open in new window, are available.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section class="notoc">
+        <h4>Keyboard Interaction</h4>
+        <p>The keyboard interaction is defined by the design patterns utilized in the navigation system.</p>
+      </section>
+
+      <section class="notoc">
+        <h4>WAI-ARIA Roles, States, and Properties</h4>
+        <p>While the roles, states, and properties needed depend on the design patterns utilized, the following are typically recommended for any navigation system.</p>
+        <ul>
+          <li>The navigation system is contained within a navigation landmark region.</li>
+          <li>
+            The landmark region has a label provided via <a href="#aria-label" class="property-reference">aria-label</a> or <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> that identifies the scope of the navigation.
+            For example, a navigation region containing site-wide navigation for a company named "XYZ" would be labeled "XYZ" while the navigation region containing navigation for a collection of product pages might be labeled "Products".
+          </li>
+          <li>The element representing the current page has <a href="#aria-current" class="property-reference">aria-current</a> set to <code>page</code>.</li>
+        </ul>
+      </section>
+    </section>
 
     <section class="widget" id="radiobutton">
       <h3>Radio Group</h3>
