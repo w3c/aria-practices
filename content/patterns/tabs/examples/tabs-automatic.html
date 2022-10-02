@@ -27,17 +27,18 @@
       <h1>Example of Tabs with Automatic Activation</h1>
       <section>
         <h2>About This Example</h2>
-      <p>
-          This example section demonstrates a tabs widget that implements the  <a href="../tabs-pattern.html">design pattern for tabs</a>.
-          In this example,  a tab is automatically activated and its associated panel is displayed when the tab receives focus.
-          It is recommended that authors consider implementing automatic activation of tabs <strong>only in</strong> circumstances where panels can be displayed instantly, i.e., all panel content is present in the DOM.
-          For additional guidance, see <a href="../../#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
-      </p>
-      <p>Similar examples include: </p>
-      <ul>
-        <li><a href="tabs-manual.html">Example of Tabs with Manual Activation</a>: A tabs widget where users activate a tab and display its panel by pressing <kbd>Space</kbd> or <kbd>Enter</kbd>.</li>
-      </ul>
+        <p>
+            This example section demonstrates a tabs widget that implements the  <a href="../tabs-pattern.html">Tabs Pattern</a>.
+            In this example,  a tab is automatically activated and its associated panel is displayed when the tab receives focus.
+            It is recommended that authors consider implementing automatic activation of tabs <strong>only in</strong> circumstances where panels can be displayed instantly, i.e., all panel content is present in the DOM.
+            For additional guidance, see <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
+        </p>
+        <p>Similar examples include: </p>
+        <ul>
+          <li><a href="tabs-manual.html">Example of Tabs with Manual Activation</a>: A tabs widget where users activate a tab and display its panel by pressing <kbd>Space</kbd> or <kbd>Enter</kbd>.</li>
+        </ul>
       </section>
+    
       <section>
         <div class="example-header">
           <h2 id="ex_label">Example</h2>
@@ -295,7 +296,7 @@
                   <li>Removes the element from the page <kbd>Tab</kbd> sequence.</li>
                   <li>Set when a tab is not selected so that only the selected tab is in the page <kbd>Tab</kbd> sequence.</li>
                   <li>Since an HTML <code>button</code> element is used for the tab, it is not necessary to set <code>tabindex="0"</code> on the selected (active) tab element.</li>
-                  <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
+                  <li>This approach to managing focus is described in the section on <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.</li>
                 </ul>
               </td>
             </tr>

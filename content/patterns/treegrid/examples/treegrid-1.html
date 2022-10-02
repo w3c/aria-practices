@@ -41,32 +41,25 @@
   <nav aria-label="Related Links" class="feedback">
     <ul>
       <li><a href="https://github.com/w3c/aria-practices/projects/17">Related Issues</a></li>
-      <li><a href="../treegrid-pattern.html">Treegrid Design Pattern</a></li>
+      <li><a href="../treegrid-pattern.html">Design Pattern</a></li>
     </ul>
 </nav>
   <main>
   <h1>Treegrid Email Inbox Example</h1>
   <section>
     <h2>About This Example</h2>
-  <p>
-    <strong>NOTE:</strong> This example is new in APG 1.1 release 2.
-    Please provide feedback in
-    <a href="https://github.com/w3c/aria-practices/issues/790">issue 790.</a>
-  </p>
-  <p>
-    The following example demonstrates how the
-    <a href="../treegrid-pattern.html">treegrid design pattern</a>
-    can be used to make an interactive tree that enables users to both navigate the hierarchical structure of email conversations
-    and also navigate elements that describe each email, such as subject and sender.
-  </p>
-  <p>Similar examples include: </p>
-  <ul>
-    <li><a href="../../grid/examples/dataGrids.html">Data Grid Examples</a>: Three example implementations of grid that include features relevant to presenting tabular information, such as content editing, sort, and column hiding.</li>
-    <li><a href="../../treeview/examples/treeview-1/treeview-1a.html">File Directory Treeview using <em>computed</em> properties</a></li>
-    <li><a href="../../treeview/examples/treeview/treeview-1/treeview-1b.html">File Directory Treeview using <em>declared</em> properties</a></li>
-    <li><a href="../../treeview/examples/treeview/treeview-2/treeview-2a.html">Navigation Treeview using <em>computed</em> properties</a></li>
-    <li><a href="../../treeview/examples/treeview/treeview-2/treeview-2b.html">Navigation Treeview using <em>declared</em> properties</a></li>
-  </ul>
+    <p>
+      The following example demonstrates how the
+      <a href="../treegrid-pattern.html">Treegrid Pattern</a>
+      can be used to make an interactive tree that enables users to both navigate the hierarchical structure of email conversations and also navigate elements that describe each email, such as subject and sender.
+    </p>
+    <p>Similar examples include: </p>
+    <ul>
+      <li><a href="../../grid/examples/dataGrids.html">Data Grid Examples</a>: Three example implementations of grid that include features relevant to presenting tabular information, such as content editing, sort, and column hiding.</li>
+      <li><a href="../../treeview/examples/treeview-1/treeview-1a.html">File Directory Treeview using <em>computed</em> properties</a></li>
+      <li><a href="../../treeview/examples/treeview-1/treeview-1b.html">File Directory Treeview using <em>declared</em> properties</a></li>
+      <li><a href="../../treeview/examples/treeview-navigation.html">Navigation Treeview Example</a></li>
+    </ul>
   </section>
   <section>
   <h2>Example Usage Options</h2>
@@ -92,7 +85,7 @@
   </ul>
   <p>
     Note: A row-only option is not provided.
-    A treegrid where cells cannot be focused would be implemented as a <a href="../../#TreeView">tree view</a>.
+    A treegrid where cells cannot be focused would be implemented as a <a href="../../treeview/treeview-pattern.html">tree view</a>.
     A treeview that has columns in its visual presentation may be appropriate when all the following conditions are present:
   </p>
   <ul>
@@ -376,8 +369,8 @@
               <li>Only one <code>row</code> or <code>gridcell</code> in the <code>treegrid</code> has <code>tabindex=&quot;0&quot;</code>.</li>
               <li>In this implementation, the first <code>row</code> in the <code>treegrid</code> is included in the tab sequence when the page loads.</li>
               <li>
-                When the user moves focus in the <code>treegrid</code>, the element included in the tab sequence changes to the element with focus as described in the section on
-                <a href="../../#kbd_roving_tabindex">roving tabindex.</a>
+                When the user moves focus in the <code>treegrid</code>, the element included in the tab sequence changes to the element with focus as described in the practice for
+                <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.
               </li>
              </ul>
           </td>

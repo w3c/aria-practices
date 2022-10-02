@@ -22,43 +22,43 @@
   <section>
     <h2>Example</h2>
     <p><a href="../dialog-modal/examples/alertdialog.html">Alert Dialog Example</a>: A confirmation prompt that demonstrates an alert dialog.</p>
-  </section>
+  </section >
 
-  <section>
+  <section id="keyboard_interaction">
     <h2>Keyboard Interaction</h2>
     <p>See the keyboard interaction section for the <a href="../dialog-modal/dialog-modal-pattern.html">modal dialog pattern</a>.</p>
   </section>
   
-  <section>
-      <h2>WAI-ARIA Roles, States, and Properties</h2>
-      <ul>
-          <li>
-              The element that contains all elements of the dialog, including the alert
-              message and any dialog buttons, has role
-              <a class="role-reference" href="#alertdialog">alertdialog</a>.
-          </li>
-          <li>
-              The element with role <code>alertdialog</code> has either:
-              <ul>
-                  <li>
-                      A value for
-                      <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>
-                      that refers to the element containing the title of the dialog if the
-                      dialog has a visible label.
-                  </li>
-                  <li>
-                      A value for
-                      <a href="#aria-label" class="property-reference">aria-label</a>
-                      if the dialog does not have a visible label.
-                  </li>
-              </ul>
-          </li>
-          <li>
-              The element with role <code>alertdialog</code> has a value set for
-              <a href="#aria-describedby" class="property-reference">aria-describedby</a>
-              that refers to the element containing the alert message.
-          </li>
-      </ul>
+  <section id="roles_states_properties">
+    <h2>WAI-ARIA Roles, States, and Properties</h2>
+    <ul>
+        <li>
+            The element that contains all elements of the dialog, including the alert
+            message and any dialog buttons, has role
+            <a class="role-reference" href="#alertdialog">alertdialog</a>.
+        </li>
+        <li>
+            The element with role <code>alertdialog</code> has either:
+            <ul>
+                <li>
+                    A value for
+                    <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>
+                    that refers to the element containing the title of the dialog if the
+                    dialog has a visible label.
+                </li>
+                <li>
+                    A value for
+                    <a href="#aria-label" class="property-reference">aria-label</a>
+                    if the dialog does not have a visible label.
+                </li>
+            </ul>
+        </li>
+        <li>
+            The element with role <code>alertdialog</code> has a value set for
+            <a href="#aria-describedby" class="property-reference">aria-describedby</a>
+            that refers to the element containing the alert message.
+        </li>
+    </ul>
   </section>
   
 </body>

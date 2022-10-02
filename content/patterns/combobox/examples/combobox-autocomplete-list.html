@@ -27,25 +27,26 @@
     <h1>Editable Combobox With List Autocomplete Example</h1>
     <section>
       <h2>About This Example</h2>
-    <p>
-      The below combobox for choosing the name of a US state or territory demonstrates the
-      <a href="../combobox-pattern.html">ARIA design pattern for combobox.</a>
-      The design pattern describes four types of autocomplete behavior.
-      This example illustrates the autocomplete behavior known as list autocomplete with manual selection.
-      If the user types one or more characters in the edit box and the typed characters match the beginning of the name of one or more states or territories, a listbox popup appears containing the matching names.
-      When the listbox appears, a suggested name is not automatically selected.
-      Thus, after typing, if the user tabs or clicks out of the combobox without choosing a value from the listbox, the typed string becomes the value of the combobox.
-      Note that this implementation enables users to input the name of a state or territory, but it does not prevent input of any other arbitrary value.
-    </p>
-    <p>Similar examples include:</p>
-    <ul>
-      <li><a href="combobox-select-only.html">Select-Only Combobox</a>: A single-select combobox with no text input that is functionally similar to an HTML <code>select</code> element.</li>
-      <li><a href="combobox-autocomplete-both.html">Editable Combobox with Both List and Inline Autocomplete</a>: An editable combobox that demonstrates the autocomplete behavior known as <q>list with inline autocomplete</q>.</li>
-      <li><a href="combobox-autocomplete-none.html">Editable Combobox Without Autocomplete</a>: An editable combobox that demonstrates the behavior associated with <code>aria-autocomplete=none</code>.</li>
-      <li><a href="grid-combo.html">Editable Combobox with Grid Popup</a>: An editable combobox that presents suggestions in a grid, enabling users to navigate descriptive information about each suggestion.</li>
-      <li><a href="combobox-datepicker.html">Date Picker Combobox</a>: An editable date input combobox that opens a dialog containing a calendar grid and buttons for navigating by month and year.</li>
-    </ul>
+      <p>
+        The below combobox for choosing the name of a US state or territory demonstrates the
+        <a href="../combobox-pattern.html">Combobox Pattern</a>.
+        The design pattern describes four types of autocomplete behavior.
+        This example illustrates the autocomplete behavior known as list autocomplete with manual selection.
+        If the user types one or more characters in the edit box and the typed characters match the beginning of the name of one or more states or territories, a listbox popup appears containing the matching names.
+        When the listbox appears, a suggested name is not automatically selected.
+        Thus, after typing, if the user tabs or clicks out of the combobox without choosing a value from the listbox, the typed string becomes the value of the combobox.
+        Note that this implementation enables users to input the name of a state or territory, but it does not prevent input of any other arbitrary value.
+      </p>
+      <p>Similar examples include:</p>
+      <ul>
+        <li><a href="combobox-select-only.html">Select-Only Combobox</a>: A single-select combobox with no text input that is functionally similar to an HTML <code>select</code> element.</li>
+        <li><a href="combobox-autocomplete-both.html">Editable Combobox with Both List and Inline Autocomplete</a>: An editable combobox that demonstrates the autocomplete behavior known as <q>list with inline autocomplete</q>.</li>
+        <li><a href="combobox-autocomplete-none.html">Editable Combobox Without Autocomplete</a>: An editable combobox that demonstrates the behavior associated with <code>aria-autocomplete=none</code>.</li>
+        <li><a href="grid-combo.html">Editable Combobox with Grid Popup</a>: An editable combobox that presents suggestions in a grid, enabling users to navigate descriptive information about each suggestion.</li>
+        <li><a href="combobox-datepicker.html">Date Picker Combobox</a>: An editable date input combobox that opens a dialog containing a calendar grid and buttons for navigating by month and year.</li>
+      </ul>
     </section>
+    
     <section>
       <div class="example-header">
         <h2 id="ex_label">Example</h2>
@@ -164,7 +165,7 @@
       <p>
       The example combobox on this page implements the following keyboard interface.
         Other variations and options for the keyboard interface are described in the
-        <a href="../../#keyboard-interaction-6">Keyboard Interaction section of the combobox design pattern.</a>
+        <a href="../combobox-pattern.html#keyboard_interaction">Keyboard Interaction section of the Combobox Pattern</a>.
       </p>
       <h3 id="kbd_label_textbox">Textbox</h3>
       <table aria-labelledby="kbd_label_textbox kbd_label" class="def">
@@ -230,7 +231,7 @@
         <strong>NOTE:</strong> When visual focus is in the listbox, DOM focus remains on the textbox and the value of <code>aria-activedescendant</code> on the textbox is set to a value that refers to the listbox option that is visually indicated as focused.
         Where the following descriptions of keyboard commands mention focus, they are referring to the visual focus indicator.
         For more information about this focus management technique, see
-        <a href="../../#kbd_focus_activedescendant">Using aria-activedescendant to Manage Focus.</a>
+        <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.
       </p>
       <table aria-labelledby="kbd_label_listbox kbd_label" class="def">
         <thead>
@@ -318,7 +319,7 @@
       <p>
         The example combobox on this page implements the following ARIA roles, states, and properties.
         Information about other ways of applying ARIA roles, states, and properties is available in the
-        <a href="../../#wai-aria-roles-states-and-properties-6">Roles, States, and Properties section of the combobox design pattern.</a>
+        <a href="../combobox-pattern.html#roles_states_properties">Roles, States, and Properties section of the Combobox Pattern</a>.
       </p>
       <h3 id="rps_label_textbox">Textbox</h3>
       <table aria-labelledby="rps_label_textbox rps_label" class="data attributes">
@@ -397,7 +398,7 @@
                 <li>Enables assistive technologies to know which element the application regards as focused while DOM focus remains on the <code>input</code> element.</li>
                 <li>
                   For more information about this focus management technique, see
-                  <a href="../../#kbd_focus_activedescendant">Using aria-activedescendant to Manage Focus.</a>
+                  <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.
                 </li>
               </ul>
             </td>

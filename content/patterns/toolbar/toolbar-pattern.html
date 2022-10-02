@@ -7,7 +7,7 @@
 </head>
 <body>
   <h1>Toolbar Pattern</h1>
-  <section>
+  <section id="about">
     <h2>About This Pattern</h2>
     <p>A <a class="role-reference" href="#toolbar">toolbar</a> is a container for grouping a set of controls, such as buttons, menubuttons, or checkboxes.</p>
     <p>
@@ -29,7 +29,7 @@
     </ul>
   </section>
 
-  <section>
+  <section id="examples">
     <h2>Example</h2>
     <p>
       <a href="examples/toolbar.html">Toolbar Example</a>:
@@ -37,7 +37,7 @@
     </p>
   </section>
   
-  <section>
+  <section id="keyboard_interaction">
     <h2>Keyboard Interaction</h2>
     <ul>
       <li><kbd>Tab</kbd> and <kbd>Shift + Tab</kbd>: Move focus into and out of the toolbar. When focus moves into a toolbar:
@@ -65,13 +65,13 @@
       <li>
         Typically, disabled elements are not focusable when navigating with a keyboard.
         However, in circumstances where discoverability of a function is crucial, it may be helpful if disabled controls are focusable so screen reader users are more likely to be aware of their presence.
-        For additional guidance, see <a href="#kbd_disabled_controls">Focusability of disabled controls</a>.
+        For additional guidance, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_disabled_controls">Focusability of disabled controls</a>.
       </li>
       <li>In applications where quick access to a toolbar is important, such as accessing an editor's toolbar from its text area, a documented shortcut key for moving focus from the relevant context to its corresponding toolbar is recommended.</li>
     </ol>
   </section>
   
-  <section>
+  <section id="roles_states_properties">
     <h2>WAI-ARIA Roles, States, and Properties</h2>
     <ul>
       <li>The element that serves as the toolbar container has role <a class="role-reference" href="#toolbar">toolbar</a>.  </li>

@@ -23,28 +23,28 @@
   <nav aria-label="Related Links" class="feedback">
     <ul>
       <li><a href="https://github.com/w3c/aria-practices/projects/15">Related Issues</a></li>
-      <li><a href="../../#grid">Design Pattern</a></li>
+      <li><a href="../grid-pattern.html">Design Pattern</a></li>
     </ul>
   </nav>
   <main>
   <h1>Data Grid Examples</h1>
   <section>
     <h2>About This Example</h2>
-  <p>
-    Following are three example implementations of the
-    <a href="../grid-pattern.html">design pattern for grid</a>
-    that demonstrate the keyboard interactions and ARIA features that enable accessible, interactive  presentation
-    of tabular information. Each of the following three grids presents a set of financial
-    transactions. The first is a simple grid with minimum ARIA markup and keyboard support. The
-    second and third implementations add advanced features, such as content editing, sort, scroll,
-    and show/hide.
-  </p>
-  <p>Similar examples include:</p>
-  <ul>
-    <li><a href="LayoutGrids.html">Layout Grid Examples</a>: Three example implementations of grids that are used to lay out widgets, including a collection of navigation links, a message recipients list, and a set of search results.</li>
-    <li><a href="advancedDataGrid.html">Advanced Data Grid Example</a>: Example of a grid with behaviors and features similar to a typical spreadsheet, including cell and row selection.</li>
-  </ul>
+    <p>
+      Following are three example implementations of the
+      <a href="../grid-pattern.html">Grid Pattern</a>
+      that demonstrate the keyboard interactions and ARIA features that enable accessible, interactive  presentation of tabular information.
+      Each of the following three grids presents a set of financial transactions.
+      The first is a simple grid with minimum ARIA markup and keyboard support.
+      The second and third implementations add advanced features, such as content editing, sort, scroll, and show/hide.
+    </p>
+    <p>Similar examples include:</p>
+    <ul>
+      <li><a href="LayoutGrids.html">Layout Grid Examples</a>: Three example implementations of grids that are used to lay out widgets, including a collection of navigation links, a message recipients list, and a set of search results.</li>
+      <li><a href="advancedDataGrid.html">Advanced Data Grid Example</a>: Example of a grid with behaviors and features similar to a typical spreadsheet, including cell and row selection.</li>
+    </ul>
   </section>
+  
   <section>
     <h2>Examples</h2>
     <section>
@@ -657,9 +657,8 @@
             <ul>
               <li>Identifies the element that serves as the grid widget container.</li>
               <li>
-                Because focus is managed using
-                <a href="../../#kbd_roving_tabindex">roving tabindex</a>
-                , the grid element is not focusable.
+                The grid element is not focusable because it implements the practice described in the section on
+                <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.
               </li>
               <li>
                 Since the <code>grid</code> role is applied to a <code>table</code> element, the <code>row</code>

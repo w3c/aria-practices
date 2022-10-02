@@ -7,8 +7,7 @@
 </head>
 <body>
   <h1>Listbox Pattern</h1>
-  
-  <section>
+  <section id="about">
     <h2>About This Pattern</h2>
     <p>
       A <a href="#listbox" class="role-reference">listbox</a> widget presents a list of options and allows a user to select one or more of them.
@@ -21,7 +20,7 @@
       Thus, if an option contains a semantic element, such as a heading, screen reader users will not have access to the semantics.
       In addition, the interaction model conveyed by the listbox role to assistive technologies does not support interacting with elements inside of an option.
       Because of these traits of the listbox widget, it does not provide an accessible way to present a list of interactive elements, such as links, buttons, or checkboxes.
-      To present a list of interactive elements, see the <a href="../grid/grid-pattern.html">grid</a> pattern.
+      To present a list of interactive elements, see the <a href="../grid/grid-pattern.html">Grid Pattern</a>.
     </p>
     <p>
       Avoiding very long option names facilitates understandability and perceivability for screen reader users.
@@ -38,7 +37,7 @@
     </p>
   </section>
 
-  <section>
+  <section id="examples">
     <h2>Examples</h2>
     <ul>
       <li><a href="examples/listbox-scrollable.html">Scrollable Listbox Example</a>: Single-select listbox that scrolls to reveal more options, similar to HTML <code>select</code> with <code>size</code> attribute greater than one.</li>
@@ -47,7 +46,7 @@
     </ul>
   </section>
 
-  <section id="listbox_kbd_interaction">
+  <section id="keyboard_interaction">
     <h2>Keyboard Interaction</h2>
     <p>For a vertically oriented listbox:</p>
     <ul>
@@ -106,17 +105,17 @@
       </li>
     </ul>
     <ol class="note">
-      <li>DOM focus (the active element) is functionally distinct from the selected state. For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a></li>
+      <li>DOM focus (the active element) is functionally distinct from the selected state. For more details, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_vs_selection">this description of differences between focus and selection</a>.</li>
       <li>
         The <code>listbox</code> role supports the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property,
         which provides an alternative to moving DOM focus among <code>option</code> elements when implementing keyboard navigation.
-        For details, see <a href="#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.
+        For details, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.
       </li>
       <li>
         In a single-select listbox, moving focus may optionally unselect the previously selected option and select the newly focused option.
         This model of selection is known as &quot;selection follows focus&quot;.
         Having selection follow focus can be very helpful in some circumstances and can severely degrade accessibility in others.
-        For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
+        For additional guidance, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
       </li>
       <li>If selecting or unselecting all options is an important function, implementing separate controls for these actions, such as buttons for &quot;Select All&quot; and &quot;Unselect All&quot;, significantly improves accessibility.</li>
       <li>
@@ -129,7 +128,7 @@
     </ol>
   </section>
 
-  <section id="listbox_roles_states_props">
+  <section id="roles_states_properties">
     <h2>WAI-ARIA Roles, States, and Properties</h2>
     <ul>
       <li>An element that contains or owns all the listbox options has role <a href="#listbox" class="role-reference">listbox</a>.</li>
@@ -170,7 +169,7 @@
           </li>
           <li>
             Note that except in listboxes where selection follows focus, the selected state is distinct from focus.
-            For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection</a> and <a href="#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
+            For more details, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_vs_selection">this description of differences between focus and selection</a> and <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
           </li>
         </ul>
       </li>

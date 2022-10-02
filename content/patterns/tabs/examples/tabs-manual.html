@@ -28,19 +28,21 @@
       <h1>Example of Tabs with Manual Activation</h1>
       <section>
         <h2>About This Example</h2>
-      <p>
-          The below example section demonstrates a tabs widget that implements the  <a href="../../#tabpanel">tabs design pattern</a>.
+        <p>
+          The below example section demonstrates a tabs widget that implements the  <a href="../tabs-pattern.html">Tabs Pattern</a>.
           In this example,  a panel is displayed when users activate its tab with either <kbd>Space</kbd>, <kbd>Enter</kbd>, or a mouse click.
           So, for keyboard users, activating a tab requires two steps: 1) focus the tab, and 2) activate the tab.
           This two-step process is referred to as manual activation.
           Manual activation of tabs is recommended unless panels can be displayed instantly, i.e., all the panel content is present in the DOM.
-          For additional guidance, see <a href="../../#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
-      </p>
+          For additional guidance, see <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
+        </p>
       <p>Similar examples include: </p>
       <ul>
         <li><a href="tabs-automatic.html">Example of Tabs with Automatic Activation</a>: A tabs widget where tabs are automatically activated and their panel is displayed when they receive focus.</li>
       </ul>
       </section>
+
+
       <section>
         <div class="example-header">
           <h2 id="ex_label">Example</h2>
@@ -302,7 +304,7 @@
                   <li>Removes the element from the page <kbd>Tab</kbd> sequence.</li>
                   <li>Set when a tab is not selected so that only the selected (active) tab is in the page <kbd>Tab</kbd> sequence.</li>
                   <li>Since an HTML <code>button</code> element is used for the tab, it is not necessary to set <code>tabindex="0"</code> on the selected (active) tab element.</li>
-                  <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
+                  <li>This approach to managing focus is described in the section on <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.</li>
                 </ul>
               </td>
             </tr>

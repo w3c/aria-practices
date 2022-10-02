@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-  <html lang="en">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <title>Radio Group Example Using Roving tabindex</title>
@@ -26,17 +26,18 @@
       <h1>Radio Group Example Using Roving tabindex</h1>
       <section>
         <h2>About This Example</h2>
-      <p>
-        This example implements the features of the <a href="../radio-group-pattern.html">Radio Group Design Pattern</a>
-        for two radio groups -- one for choosing a pizza crust and another for choosing a delivery method.
-        This implementation uses a roving tabindex for managing focus within the radio group.
-      </p>
-      <p>Similar examples include: </p>
-      <ul>
-        <li><a href="radio-activedescendant.html">Radio Group Example Using aria-activedescendant</a>: Radio button group that uses <code>aria-activedescendant</code> for managing keyboard focus.</li>
-        <li><a href="radio-rating.html">Rating Radio Group Example</a>: Radio group that provides input for a five-star rating scale.</li>
-      </ul>
+        <p>
+          This example implements the features of the <a href="../radio-group-pattern.html">Radio Group Pattern</a>
+          for two radio groups -- one for choosing a pizza crust and another for choosing a delivery method.
+          This implementation uses a roving tabindex for managing focus within the radio group.
+        </p>
+        <p>Similar examples include: </p>
+        <ul>
+          <li><a href="radio-activedescendant.html">Radio Group Example Using aria-activedescendant</a>: Radio button group that uses <code>aria-activedescendant</code> for managing keyboard focus.</li>
+          <li><a href="radio-rating.html">Rating Radio Group Example</a>: Radio group that provides input for a five-star rating scale.</li>
+        </ul>
       </section>
+      
       <section>
         <div class="example-header">
           <h2 id="ex_label">Example</h2>
@@ -155,7 +156,7 @@
         </table>
       </section>
 
-<section>
+      <section>
         <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
         <table aria-labelledby="rps_label" class="data attributes">
           <thead>
@@ -203,7 +204,7 @@
                 <ul>
                   <li>Makes the element focusable but not part of the page <kbd>Tab</kbd> sequence.</li>
                   <li>Applied to all radio buttons contained in the radio group except for one that is included in the page <kbd>Tab</kbd> sequence.</li>
-                  <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
+                  <li>This approach to managing focus is described in the practice for <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.</li>
                 </ul>
               </td>
             </tr>
@@ -217,7 +218,7 @@
                   <li>Set on only one radio in the radio group.</li>
                   <li>On page load, is set on the first radio button in the radio group.</li>
                   <li>Moves with focus inside the radio group so the most recently focused radio button is included in the page <kbd>Tab</kbd> sequence.</li>
-                  <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
+                  <li>This approach to managing focus is described in the practice for <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.</li>
                 </ul>
               </td>
             </tr>

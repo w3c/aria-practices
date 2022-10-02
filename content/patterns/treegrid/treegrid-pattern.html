@@ -27,18 +27,18 @@
       However, in a multi-select <code>treegrid</code>, which enables users to select more than one row or cell for an action, the selected state is independent of the focus.
       For example, in a hierarchical e-mail discussion grid, users can move focus to select any number of rows for an action, such as delete or move.
       It is important that the visual design distinguish between items that are selected and the item that has focus.
-      For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a>
+      For more details, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_vs_selection">this description of differences between focus and selection</a>.
     </p>
   </section>
 
-  <section>
+  <section id="examples">
     <h2>Example</h2>
     <p>
       <a href="examples/treegrid-1.html">E-mail Inbox <code>treegrid</code> Example</a>: A treegrid for navigating an e-mail inbox that demonstrates three keyboard navigation models -- rows first, cells first, and cells only.
     </p>
   </section>
 
-  <section>
+  <section id="keyboard_interaction">
     <h2>Keyboard Interaction</h2>
     <p>
       The following keys provide <code>treegrid</code> navigation by moving focus among rows and cells of the grid.
@@ -127,11 +127,11 @@
     <ul class="note">
       <li>
         When the above <code>treegrid</code> navigation keys move focus, whether the focus is set on an element inside the cell or on the cell depends on cell content.
-        See <a href="#gridNav_focus">Whether to Focus on a Cell or an Element Inside It</a>.
+        See <a href="../grid/grid-pattern.html#gridNav_focus">Whether to Focus on a Cell or an Element Inside It</a>.
       </li>
       <li>
         While navigation keys, such as arrow keys, are moving focus from cell to cell, they are not available to do something like operate a combobox or move an editing caret inside of a cell.
-        If this functionality is needed, see <a href="#gridNav_inside">Editing and Navigating Inside a Cell</a>.
+        If this functionality is needed, see <a href="../grid/grid-pattern.html#gridNav_inside">Editing and Navigating Inside a Cell</a>.
       </li>
       <li>If navigation functions can dynamically add more rows or columns to the DOM, key events that move focus to the beginning or end of the grid, such as <kbd>control + End</kbd>, may move focus to the last row in the DOM rather than the last available row in the back-end data.</li>
     </ul>
@@ -181,10 +181,10 @@
         </ul>
       </li>
     </ul>
-    <p class="note">See <a href="#kbd_common_conventions">Key Assignment Conventions for Common Functions</a> for cut, copy, and paste key assignments.</p>
+    <p class="note">See <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_common_conventions">Key Assignment Conventions for Common Functions</a> for cut, copy, and paste key assignments.</p>
   </section>
 
-  <section id="treegrid_roles_states_props">
+  <section id="roles_states_properties">
     <h2>WAI-ARIA Roles, States, and Properties</h2>
     <ul>
       <li>The treegrid container has role <a href="#treegrid" class="role-reference">treegrid</a>. </li>
@@ -215,20 +215,20 @@
         Otherwise, a label is specified for the grid element using <a href="#aria-label" class="property-reference">aria-label</a>.
       </li>
       <li>If the treegrid has a caption or description, <a href="#aria-describedby" class="property-reference">aria-describedby</a> is set on the grid element with a value referring to the element containing the description.</li>
-      <li>If the treegrid provides sort functions, <a href="#aria-sort" class="property-reference">aria-sort</a> is set to an appropriate value on the header cell element for the sorted column or row as described in the section on <a href="#gridAndTableProperties">grid and table properties</a>. </li>
+      <li>If the treegrid provides sort functions, <a href="#aria-sort" class="property-reference">aria-sort</a> is set to an appropriate value on the header cell element for the sorted column or row as described in the <a href="../../practices/grid-and-table-properties/grid-and-table-properties-practice.html#gridAndTableProperties_sort">Grid and Table Properties Practice</a>.</li>
       <li>
         If the treegrid provides content editing functionality and contains cells that may have edit capabilities disabled in certain conditions, <a href="#aria-readonly" class="state-reference">aria-readonly</a> is set to <code>true</code> on cells where editing is disabled.
         If edit functions are disabled for all cells, instead of setting <code>aria-readonly</code> to <code>true</code> on every cell, <code>aria-readonly</code> may be set to <code>true</code> on the <code>treegrid</code> element.
         Treegrids that do not provide cell content editing functions do not include the <code>aria-readonly</code> attribute on any of their elements.
       </li>
       <li>
-        If there are conditions where some rows or columns are hidden or not present in the DOM, e.g., data is dynamically loaded when scrolling or the grid provides functions for hiding rows or columns, the following properties are applied as described in the section on <a href="#gridAndTableProperties">grid and table properties</a>.
+        If there are conditions where some rows or columns are hidden or not present in the DOM, e.g., data is dynamically loaded when scrolling or the treegrid provides functions for hiding rows or columns, the following properties are applied as described in the <a href="../../practices/grid-and-table-properties/grid-and-table-properties-practice.html">Grid and Table Properties Practice</a>.
         <ul>
           <li><a href="#aria-colcount" class="property-reference">aria-colcount</a> or <a href="#aria-rowcount" class="property-reference">aria-rowcount</a> is set to the total number of columns or rows, respectively. </li>
           <li><a href="#aria-colindex" class="property-reference">aria-colindex</a> or <a href="#aria-rowindex" class="property-reference">aria-rowindex</a> is set to the position of a cell within a row or column, respectively. </li>
         </ul>
       </li>
-      <li>If the treegrid includes cells that span multiple rows or multiple columns, and if the <code>treegrid</code> role is NOT applied to an HTML <code>table</code> element, then <a href="#aria-rowspan" class="property-reference">aria-rowspan</a> or <a href="#aria-colspan" class="property-reference">aria-colspan</a> is applied as described in <a href="#gridAndTableProperties">grid and table properties</a>.</li>
+      <li>If the treegrid includes cells that span multiple rows or multiple columns, and if the <code>treegrid</code> role is NOT applied to an HTML <code>table</code> element, then <a href="#aria-rowspan" class="property-reference">aria-rowspan</a> or <a href="#aria-colspan" class="property-reference">aria-colspan</a> is applied as described in the <a href="../../practices/grid-and-table-properties/grid-and-table-properties-practice.html#gridAndTableProperties_spans">Grid and Table Properties Practice</a>.</li>
     </ul>
     <ul class="note">
       <li>
