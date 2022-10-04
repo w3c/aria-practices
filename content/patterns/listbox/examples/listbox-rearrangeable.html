@@ -15,6 +15,7 @@
 
     <!-- JS and CSS for this example -->
     <link href="css/listbox.css" rel="stylesheet">
+    <script src="../../../shared/js/utils.js"></script>
     <script src="js/listbox.js"></script>
     <script src="js/toolbar.js"></script>
     <script src="js/listbox-rearrangeable.js"></script>
@@ -196,7 +197,8 @@
       <section>
         <h2 id="kbd_label">Keyboard Support</h2>
         <p>
-          The example listboxes on this page implement the following keyboard interface. Other variations and options for the keyboard interface are described in the
+          The example listboxes on this page implement the following keyboard interface.
+          Other variations and options for the keyboard interface are described in the
           <a href="../listbox-pattern.html#keyboard_interaction">Keyboard Interaction section of the Listbox Pattern</a>.
         </p>
         <table aria-labelledby="kbd_label" class="def">
@@ -210,10 +212,10 @@
             <tr data-test-id="key-down-arrow">
               <th><kbd>Down Arrow</kbd></th>
               <td>
-                <ul>
-                  <li>Moves focus to the next option.</li>
-                  <li>In the example 1 single-select listboxes, also selects the focused option.</li>
-                </ul>
+              <ul>
+                <li>Moves focus to the next option.</li>
+                <li>In the example 1 single-select listboxes, also selects the focused option.</li>
+              </ul>
               </td>
             </tr>
             <tr data-test-id="key-up-arrow">
@@ -245,7 +247,14 @@
             </tr>
           </tbody>
         </table>
-        <h4 id="kbd_label_multiselect">Multiple selection keys supported in example 2</h4>
+        <h3 id="kbd_label_multiselect">Multiple selection keys supported in example 2</h3>
+        <p class="note">
+          The selection behavior demonstrated differs from the behavior provided by browsers for native HTML <code>&lt;select multiple&gt;</code> elements.
+          The HTML select element behavior is to alter selection with unmodified up/down arrow keys, requiring the use of modifier keys to select multiple options.
+          This example demonstrates  the multiple selection interaction model recommended in the
+          <a href="../listbox-pattern.html#keyboard_interaction">Keyboard Interaction section of the Listbox Pattern</a>,
+          which  does not require the use of modifier keys.
+        </p>
         <table aria-labelledby="kbd_label_multiselect" class="def">
           <thead>
             <tr>
