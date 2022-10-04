@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alert Dialog Example</title>
-    <!--  Core js and css shared by all examples; do not modify when using this template. -->
-    <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
-    <link rel="stylesheet" href="../../../shared/css/core.css">
+
+    <!-- Core JS and CSS shared by all examples -->
+    <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css" />
+    <link rel="stylesheet" href="../../../shared/css/core.css" />
     <script src="../../../shared/js/examples.js"></script>
     <script src="../../../shared/js/highlight.pack.js"></script>
     <script src="../../../shared/js/app.js"></script>
-    <script src="../../../shared/js/utils.js"></script>
+    <script src="../../../shared/js/skipto.js"></script>
 
-    <!--  js and css for this example. -->
+    <!-- JS and CSS for this example -->
     <script src="js/dialog.js"></script>
-    <link href="css/dialog.css" rel="stylesheet">
+    <link href="css/dialog.css" rel="stylesheet" />
     <script src="js/alertdialog.js"></script>
   </head>
-
   <body>
     <nav aria-label="Related Links" class="feedback">
       <ul>
@@ -26,12 +27,10 @@
     </nav>
     <main>
       <h1>Alert Dialog Example</h1>
+
       <section>
         <h2>About This Example</h2>
-        <p>
-          The below example of a confirmation prompt demonstrates the <a href="../../alert-dialog/alert-dialog-pattern.html">Alert Dialog Pattern</a>.
-          It also includes an example of the <a href="../../alert/alert-pattern.html">Alert Pattern</a> to make comparing the experiences provided by the two patterns easy.
-        </p>
+        <p>The below example of a confirmation prompt demonstrates the <a href="../../alert-dialog/alert-dialog-pattern.html">Alert Dialog Pattern</a>. It also includes an example of the <a href="../../alert/alert-pattern.html">Alert Pattern</a> to make comparing the experiences provided by the two patterns easy.</p>
         <p>To use this example:</p>
         <ul>
           <li>
@@ -42,7 +41,8 @@
               <li>The "discard" button is disabled if the notes text area does not contain any text.</li>
             </ul>
           </li>
-          <li>Activate the "save" button to trigger an alert when the contents of the "Notes" text area is saved to <a href="https://www.w3.org/TR/webstorage/#the-localstorage-attribute">local storage</a>.
+          <li>
+            Activate the "save" button to trigger an alert when the contents of the "Notes" text area is saved to <a href="https://www.w3.org/TR/webstorage/#the-localstorage-attribute">local storage</a>.
             <ul>
               <li>A successful save triggers a short alert to notify the user that the notes have been saved.</li>
               <li>The "save" button is disabled if the user's local storage value is the same as the "Notes" field.</li>
@@ -50,9 +50,7 @@
           </li>
           <li>Modify the "notes" text area as needed to enable and disable the discard and save functions.</li>
         </ul>
-        <p>
-            Note: This example uses code from the <a href="dialog.html">modal dialog example</a> to create the behaviors of the <code>alertdialog</code> so referencing that example may be useful.
-          </p>
+        <p>Note: This example uses code from the <a href="dialog.html">modal dialog example</a> to create the behaviors of the <code>alertdialog</code> so referencing that example may be useful.</p>
         <p>Similar examples include:</p>
         <ul>
           <li><a href="../../alert/examples/alert.html">Alert</a>: a basic alert.</li>
@@ -60,7 +58,7 @@
           <li><a href="datepicker-dialog.html">Date Picker Dialog example</a>: Demonstrates a dialog containing a calendar grid for choosing a date.</li>
         </ul>
       </section>
-      
+
       <section>
         <div class="example-header">
           <h2 id="ex_label">Example</h2>
@@ -95,21 +93,17 @@
         </div>
         <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
       </section>
+
       <section>
         <h2>Accessibility Features</h2>
         <ul>
           <li>The accessible name of the alert dialog is set to its heading ("Confirmation").</li>
           <li>The dialog's prompt ("Are you sure...?") is referenced via <code>aria-describedby</code> to ensure that the user is immediately aware of the prompt.</li>
-          <li>
-            Focus is automatically set to the first focusable element inside the dialog, which is the "No" <code>button</code>.
-            This is the least destructive action, so focusing "No" helps prevent users from accidentally confirming the destructive "Discard" action, which cannot be undone.
-          </li>
-          <li>
-          When the buttons are disabled, <code>aria-disabled</code> is used instead of the HTML <code>disabled</code> attribute so the buttons will remain in the page <kbd>Tab</kbd> sequence.
-          This makes it easier for screen reader users to discover the buttons and discern how the interface works.
-          </li>
+          <li>Focus is automatically set to the first focusable element inside the dialog, which is the "No" <code>button</code>. This is the least destructive action, so focusing "No" helps prevent users from accidentally confirming the destructive "Discard" action, which cannot be undone.</li>
+          <li>When the buttons are disabled, <code>aria-disabled</code> is used instead of the HTML <code>disabled</code> attribute so the buttons will remain in the page <kbd>Tab</kbd> sequence. This makes it easier for screen reader users to discover the buttons and discern how the interface works.</li>
         </ul>
       </section>
+
       <section>
         <h2 id="kbd_label">Keyboard Support</h2>
         <table aria-labelledby="kbd_label" class="def">
@@ -153,8 +147,9 @@
           </tbody>
         </table>
       </section>
+
       <section>
-        <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
+        <h2 id="rps_label">Role, Property, State, and Tabindex Attributes</h2>
         <table aria-labelledby="rps_label" class="data attributes">
           <thead>
             <tr>
@@ -169,43 +164,33 @@
               <th scope="row"><code>alertdialog</code></th>
               <td></td>
               <td><code>div</code></td>
-              <td>
-                Identifies the element that serves as the alert dialog container.
-              </td>
+              <td>Identifies the element that serves as the alert dialog container.</td>
             </tr>
             <tr>
               <td></td>
               <th scope="row"><code>aria-labelledby="ID_REFERENCE"</code></th>
               <td><code>div</code></td>
-              <td>
-                Gives the alert dialog an accessible name by referring to the element that provides the alert dialog title.
-              </td>
+              <td>Gives the alert dialog an accessible name by referring to the element that provides the alert dialog title.</td>
             </tr>
             <tr>
               <td></td>
               <th scope="row"><code>aria-describedby="ID_REFERENCE"</code></th>
               <td><code>div</code></td>
-              <td>
-                Gives the alert dialog an accessible description by referring to the alert dialog content that describes the primary message or purpose of the alert dialog.
-              </td>
+              <td>Gives the alert dialog an accessible description by referring to the alert dialog content that describes the primary message or purpose of the alert dialog.</td>
             </tr>
             <tr>
               <td></td>
               <th scope="row"><code>aria-modal="true"</code></th>
               <td><code>div</code></td>
-              <td>
-                Tells assistive technologies that the windows underneath the current alert dialog are not available for interaction (inert).
-              </td>
+              <td>Tells assistive technologies that the windows underneath the current alert dialog are not available for interaction (inert).</td>
             </tr>
-              <tr>
-                <th scope="row"><code>alert</code></th>
-                <td></td>
-                <td><code>div</code></td>
-                <td>
-                  Identifies the element that serves as the alert notification.
-                </td>
-              </tr>
-              <tr>
+            <tr>
+              <th scope="row"><code>alert</code></th>
+              <td></td>
+              <td><code>div</code></td>
+              <td>Identifies the element that serves as the alert notification.</td>
+            </tr>
+            <tr>
               <td></td>
               <th scope="row"><code>aria-disabled="true"</code></th>
               <td><code>button</code></td>
@@ -215,13 +200,8 @@
         </table>
         <h3>Notes on <code>aria-modal</code> and <code>aria-hidden</code></h3>
         <ul>
-          <li>
-            The <code>aria-modal</code> property was introduced in ARIA 1.1.
-            As a relatively new property, screen reader users may experience varying degrees of support for it.
-          </li>
-          <li>
-            Applying the <code>aria-modal</code> property to the <code>dialog</code> element replaces the technique of using <code>aria-hidden</code> on the background for informing assistive technologies that content outside a dialog is inert.
-          </li>
+          <li>The <code>aria-modal</code> property was introduced in ARIA 1.1. As a relatively new property, screen reader users may experience varying degrees of support for it.</li>
+          <li>Applying the <code>aria-modal</code> property to the <code>dialog</code> element replaces the technique of using <code>aria-hidden</code> on the background for informing assistive technologies that content outside a dialog is inert.</li>
           <li>
             In legacy dialog implementations where <code>aria-hidden</code> is used to make content outside a dialog inert for assistive technology users, it is important that:
             <ul>
@@ -231,13 +211,15 @@
           </li>
         </ul>
       </section>
+
       <section>
         <h2 id="src_label">Javascript and CSS Source Code</h2>
         <ul id="css_js_files">
-          <li> CSS: <a href="css/dialog.css" type="text/css">dialog.css</a></li>
-          <li> Javascript: <a href="js/alertdialog.js" type="text/javascript">alertdialog.js</a>, <a href="js/dialog.js" type="text/javascript">dialog.js</a>, <a href="../../../shared/js/utils.js">utils.js</a></li>
+          <li>CSS: <a href="css/dialog.css" type="text/css">dialog.css</a></li>
+          <li>Javascript: <a href="js/alertdialog.js" type="text/javascript">alertdialog.js</a>, <a href="js/dialog.js" type="text/javascript">dialog.js</a>, <a href="../../../shared/js/utils.js">utils.js</a></li>
         </ul>
       </section>
+
       <section>
         <h2 id="sc1_label">HTML Source Code</h2>
         <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
