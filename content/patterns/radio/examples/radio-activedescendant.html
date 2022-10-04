@@ -77,7 +77,7 @@
           </li>
           <li>Because transparent borders are visible on some systems with high contrast enabled, only the focused element has a visible border. When focusable elements are not focused, they have a 0-width border and additional padding equal in width to the border that is used to indicate focus.</li>
           <li>
-            To ensure the inline SVG radio button graphics in the CSS file have sufficient contrast with the background when high contrast settings change the color of text content, CSS <code>forced-color-adjust</code> is set to <code>auto</code> on the <code>svg</code> graphics. This causes the colors of the <code>stroke</code> and <code>fill</code> of the circle elements to be overridden by the high contrast color setting. To make the background of the <code>circle</code> elements match the high contrast background color, the <code>fill-opacity</code> attribute of the outer <code>circle</code> is set to zero and the <code>stroke-opacity</code> attribute of the inner <code>circle</code> is set to zero. If <code>forced-color-adjust</code> were not used to override the colors specified for the <code>stroke</code> and <code>fill</code> properties, those colors would remain the same in high contrast mode, which could lead to insufficient contrast between the radio circle elements and the background or even make them invisible if their color matched the high contrast mode background.<br />
+            To ensure the inline SVG radio button graphics in the CSS file have sufficient contrast with the background when high contrast settings change the color of text content, CSS <code>forced-color-adjust</code> is set to <code>auto</code> on the <code>svg</code> graphics. This causes the colors of the <code>stroke</code> and <code>fill</code> of the circle elements to be overridden by the high contrast color setting. To make the background of the <code>circle</code> elements match the high contrast background color, the <code>fill-opacity</code> attribute of the outer <code>circle</code> is set to zero and the <code>stroke-opacity</code> attribute of the inner <code>circle</code> is set to zero. If <code>forced-color-adjust</code> were not used to override the colors specified for the <code>stroke</code> and <code>fill</code> properties, those colors would remain the same in high contrast mode, which could lead to insufficient contrast between the radio circle elements and the background or even make them invisible if their color matched the high contrast mode background.<br>
             Note: The explicit setting of <code>forced-color-adjust</code> is necessary because some browsers do not use <code>auto</code> as the default value for SVG graphics.
           </li>
         </ul>
@@ -114,7 +114,7 @@
               </td>
             </tr>
             <tr data-test-id="key-down-right-arrow">
-              <th><kbd>Down arrow</kbd><br /><kbd>Right arrow</kbd></th>
+              <th><kbd>Down arrow</kbd><br><kbd>Right arrow</kbd></th>
               <td>
                 <ul>
                   <li>Moves focus to and checks the next <code>radio</code> button in the group.</li>
@@ -124,7 +124,7 @@
               </td>
             </tr>
             <tr data-test-id="key-up-left-arrow">
-              <th><kbd>Up arrow</kbd><br /><kbd>Left arrow</kbd></th>
+              <th><kbd>Up arrow</kbd><br><kbd>Left arrow</kbd></th>
               <td>
                 <ul>
                   <li>Moves focus to and checks the previous <code>radio</code> button in the group.</li>
