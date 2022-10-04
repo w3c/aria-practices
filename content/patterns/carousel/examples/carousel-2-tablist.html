@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auto-Rotating Image Carousel with Tabs for Slide Control Example</title>
 
     <!-- Core JS and CSS shared by all examples -->
-    <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css" />
-    <link rel="stylesheet" href="../../../shared/css/core.css" />
+    <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
+    <link rel="stylesheet" href="../../../shared/css/core.css">
     <script src="../../../shared/js/examples.js"></script>
     <script src="../../../shared/js/highlight.pack.js"></script>
     <script src="../../../shared/js/app.js"></script>
     <script src="../../../shared/js/skipto.js"></script>
 
     <!-- JS and CSS for this example -->
-    <link rel="stylesheet" href="css/carousel-tablist.css" />
+    <link rel="stylesheet" href="css/carousel-tablist.css">
     <script src="js/carousel-tablist.js"></script>
   </head>
   <body>
@@ -49,20 +49,20 @@
           <legend>Carousel View and Behavior Options</legend>
 
           <label for="accessible-controls">
-            <input type="checkbox" id="accessible-controls" value="moreaccessible" aria-describedby="accessible-controls-desc" />
+            <input type="checkbox" id="accessible-controls" value="moreaccessible" aria-describedby="accessible-controls-desc">
             Display controls and captions outside of image
           </label>
           <p id="accessible-controls-desc">This option is more accessible than rendering controls and captions within the image, because controls are easier to perceive and captions are easier to read without rotating images behind them.</p>
 
           <label for="rotation-paused">
-            <input type="checkbox" id="rotation-paused" value="paused" aria-describedby="rotation-paused-desc" />
+            <input type="checkbox" id="rotation-paused" value="paused" aria-describedby="rotation-paused-desc">
             Pause auto-rotation on load (<a href="javascript:history.go(0)"><img class="reload" src="images/reload-icon.png" alt="" />reload needed</a>)
           </label>
           <p id="rotation-paused-desc">This option controls whether the carousel is paused or playing on page load. The paused option improves accessibility for users with visual impairments and people who are distracted or confused by auto-rotation, but allows users to start auto-rotation using the start/stop button.</p>
           <p>Note: If the user has chosen reduced motion in system settings, auto-rotation will always be paused on load.</p>
 
           <label for="rotation-disabled">
-            <input type="checkbox" id="rotation-disabled" value="norotate" aria-describedby="rotation-disabled-desc" />
+            <input type="checkbox" id="rotation-disabled" value="norotate" aria-describedby="rotation-disabled-desc">
             Disable auto-rotation
           </label>
           <p id="rotation-disabled-desc">This option improves accessibility for users with visual impairments and people who are distracted or confused by auto-rotation by disabling the auto-rotation feature and removing the start/stop button from the user interface. Users can use the tablist to manually navigate through the slides.</p>
