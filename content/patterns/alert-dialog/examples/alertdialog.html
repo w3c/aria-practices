@@ -15,15 +15,14 @@
     <script src="../../../shared/js/skipto.js"></script>
 
     <!-- JS and CSS for this example -->
-    <script src="js/dialog.js"></script>
-    <link href="css/dialog.css" rel="stylesheet">
+    <link href="css/alertdialog.css" rel="stylesheet">
     <script src="js/alertdialog.js"></script>
   </head>
   <body>
     <nav aria-label="Related Links" class="feedback">
       <ul>
         <li><a href="https://github.com/w3c/aria-practices/projects/20">Related Issues</a></li>
-        <li><a href="../../alert-dialog/alert-dialog-pattern.html">Design Pattern</a></li>
+        <li><a href="../alert-dialog-pattern.html">Design Pattern</a></li>
       </ul>
     </nav>
     <main>
@@ -31,7 +30,7 @@
 
       <section>
         <h2>About This Example</h2>
-        <p>The below example of a confirmation prompt demonstrates the <a href="../../alert-dialog/alert-dialog-pattern.html">Alert Dialog Pattern</a>. It also includes an example of the <a href="../../alert/alert-pattern.html">Alert Pattern</a> to make comparing the experiences provided by the two patterns easy.</p>
+        <p>The below example of a confirmation prompt demonstrates the <a href="../alert-dialog-pattern.html">Alert Dialog Pattern</a>. It also includes an example of the <a href="../../alert/alert-pattern.html">Alert Pattern</a> to make comparing the experiences provided by the two patterns easy.</p>
         <p>To use this example:</p>
         <ul>
           <li>
@@ -55,8 +54,8 @@
         <p>Similar examples include:</p>
         <ul>
           <li><a href="../../alert/examples/alert.html">Alert</a>: a basic alert.</li>
-          <li><a href="dialog.html">Modal Dialog Example</a>: An example demonstrating multiple layers of modal dialogs with both small and large amounts of content.</li>
-          <li><a href="datepicker-dialog.html">Date Picker Dialog example</a>: Demonstrates a dialog containing a calendar grid for choosing a date.</li>
+          <li><a href="../../dialog-modal/examples/dialog.html">Modal Dialog Example</a>: An example demonstrating multiple layers of modal dialogs with both small and large amounts of content.</li>
+          <li><a href="../../dialog-modal/examples/datepicker-dialog.html">Date Picker Dialog example</a>: Demonstrates a dialog containing a calendar grid for choosing a date.</li>
         </ul>
       </section>
 
@@ -87,7 +86,7 @@
               </div>
               <div class="dialog_form_actions">
                 <button type="button" onclick="closeDialog(this)">No</button>
-                <button type="button" id="notes_confirm" onclick="discardInput(this)">Yes</button>
+                <button type="button" id="notes_confirm" onclick="discardInput()">Yes</button>
               </div>
             </div>
           </div>
@@ -216,7 +215,7 @@
       <section>
         <h2 id="src_label">Javascript and CSS Source Code</h2>
         <ul id="css_js_files">
-          <li>CSS: <a href="css/dialog.css" type="text/css">dialog.css</a></li>
+          <li>CSS: <a href="css/alertdialog.css" type="text/css">dialog.css</a></li>
           <li>Javascript: <a href="js/alertdialog.js" type="text/javascript">alertdialog.js</a>, <a href="js/dialog.js" type="text/javascript">dialog.js</a>, <a href="../../../shared/js/utils.js">utils.js</a></li>
         </ul>
       </section>

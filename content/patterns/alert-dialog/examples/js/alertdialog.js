@@ -1,10 +1,179 @@
-/* global closeDialog, openDialog */
-
 'use strict';
 
 var aria = aria || {};
 
 aria.Utils = aria.Utils || {};
+
+/**
+ * @description Set focus on descendant nodes until the first focusable element is
+ *       found.
+ * @param element
+ *          DOM node for which to find the first focusable descendant.
+ * @returns {boolean}
+ *  true if a focusable element is found and focus is set.
+ */
+aria.Utils.focusFirstDescendant = function (element) {
+  for (var i = 0; i < element.childNodes.length; i++) {
+    var child = element.childNodes[i];
+    if (
+      aria.Utils.attemptFocus(child) ||
+      aria.Utils.focusFirstDescendant(child)
+    ) {
+      return true;
+    }
+  }
+  return false;
+}; // end focusFirstDescendant
+
+/**
+ * @description Set Attempt to set focus on the current node.
+ * @param element
+ *          The node to attempt to focus on.
+ * @returns {boolean}
+ *  true if element is focused.
+ */
+aria.Utils.attemptFocus = function (element) {
+  if (!aria.Utils.isFocusable(element)) {
+    return false;
+  }
+
+  aria.Utils.IgnoreUtilFocusChanges = true;
+  try {
+    element.focus();
+  } catch (e) {
+    // continue regardless of error
+  }
+  aria.Utils.IgnoreUtilFocusChanges = false;
+  return document.activeElement === element;
+}; // end attemptFocus
+
+/**
+ * @class
+ * @description Dialog object providing modal focus management.
+ *
+ * Assumptions: The element serving as the dialog container is present in the
+ * DOM and hidden. The dialog container has role='dialog'.
+ * @param dialogId
+ *          The ID of the element serving as the dialog container.
+ * @param focusAfterClosed
+ *          Either the DOM node or the ID of the DOM node to focus when the
+ *          dialog closes.
+ * @param focusFirst
+ *          Optional parameter containing either the DOM node or the ID of the
+ *          DOM node to focus when the dialog opens. If not specified, the
+ *          first focusable element in the dialog will receive focus.
+ */
+aria.Dialog = function (dialogId, focusAfterClosed, focusFirst) {
+  this.dialogNode = document.getElementById(dialogId);
+  if (this.dialogNode === null) {
+    throw new Error('No element found with id="' + dialogId + '".');
+  }
+
+  var validRoles = ['dialog', 'alertdialog'];
+  var isDialog = (this.dialogNode.getAttribute('role') || '')
+    .trim()
+    .split(/\s+/g)
+    .some(function (token) {
+      return validRoles.some(function (role) {
+        return token === role;
+      });
+    });
+  if (!isDialog) {
+    throw new Error(
+      'Dialog() requires a DOM element with ARIA role of dialog or alertdialog.'
+    );
+  }
+
+  // Wrap in an individual backdrop element if one doesn't exist
+  // Native <dialog> elements use the ::backdrop pseudo-element, which
+  // works similarly.
+  var backdropClass = 'dialog-backdrop';
+  if (this.dialogNode.parentNode.classList.contains(backdropClass)) {
+    this.backdropNode = this.dialogNode.parentNode;
+  } else {
+    this.backdropNode = document.createElement('div');
+    this.backdropNode.className = backdropClass;
+    this.dialogNode.parentNode.insertBefore(this.backdropNode, this.dialogNode);
+    this.backdropNode.appendChild(this.dialogNode);
+  }
+  this.backdropNode.classList.add('active');
+
+  // Disable scroll on the body element
+  document.body.classList.add(aria.Utils.dialogOpenClass);
+
+  if (typeof focusAfterClosed === 'string') {
+    this.focusAfterClosed = document.getElementById(focusAfterClosed);
+  } else if (typeof focusAfterClosed === 'object') {
+    this.focusAfterClosed = focusAfterClosed;
+  } else {
+    throw new Error(
+      'the focusAfterClosed parameter is required for the aria.Dialog constructor.'
+    );
+  }
+
+  if (typeof focusFirst === 'string') {
+    this.focusFirst = document.getElementById(focusFirst);
+  } else if (typeof focusFirst === 'object') {
+    this.focusFirst = focusFirst;
+  } else {
+    this.focusFirst = null;
+  }
+
+  // Bracket the dialog node with two invisible, focusable nodes.
+  // While this dialog is open, we use these to make sure that focus never
+  // leaves the document even if dialogNode is the first or last node.
+  var preDiv = document.createElement('div');
+  this.preNode = this.dialogNode.parentNode.insertBefore(
+    preDiv,
+    this.dialogNode
+  );
+  this.preNode.tabIndex = 0;
+  var postDiv = document.createElement('div');
+  this.postNode = this.dialogNode.parentNode.insertBefore(
+    postDiv,
+    this.dialogNode.nextSibling
+  );
+  this.postNode.tabIndex = 0;
+
+  this.addListeners();
+  aria.openedDialog = this;
+  this.dialogNode.className = 'default_dialog'; // make visible
+
+  if (this.focusFirst) {
+    this.focusFirst.focus();
+  } else {
+    aria.Utils.focusFirstDescendant(this.dialogNode);
+  }
+
+  this.lastFocus = document.activeElement;
+}; // end Dialog constructor
+
+/**
+ * @description
+ *  Hides the current top dialog,
+ *  removes listeners of the top dialog,
+ *  restore listeners of a parent dialog if one was open under the one that just closed,
+ *  and sets focus on the element specified for focusAfterClosed.
+ */
+aria.Dialog.prototype.close = function () {
+  aria.openedDialog = null;
+  this.removeListeners();
+  aria.Utils.remove(this.preNode);
+  aria.Utils.remove(this.postNode);
+  this.dialogNode.className = 'hidden';
+  this.backdropNode.classList.remove('active');
+  this.focusAfterClosed.focus();
+
+  document.body.classList.remove(aria.Utils.dialogOpenClass);
+}; // end close
+
+aria.Dialog.prototype.addListeners = function () {
+  document.addEventListener('focus', this.trapFocus, true);
+}; // end addListeners
+
+aria.Dialog.prototype.removeListeners = function () {
+  document.removeEventListener('focus', this.trapFocus, true);
+}; // end removeListeners
 
 aria.Utils.disableCtrl = function (ctrl) {
   ctrl.setAttribute('aria-disabled', 'true');
@@ -183,9 +352,13 @@ document.addEventListener('DOMContentLoaded', function initAlertDialog() {
     'notes_confirm'
   );
 
-  window.discardInput = function (closeBtn) {
+  window.closeDialog = function () {
+    aria.openedDialog.close();
+  }; // end closeDialog
+
+  window.discardInput = function () {
     notes.discard.call(notes);
-    closeDialog(closeBtn);
+    window.closeDialog();
   };
 
   window.openAlertDialog = function (dialogId, triggerBtn, focusFirst) {
@@ -208,6 +381,6 @@ document.addEventListener('DOMContentLoaded', function initAlertDialog() {
     var count = target.value.split(/\s/).length;
     var frag = count > 1 ? 'words' : 'word';
     wordCount.textContent = count + ' ' + frag + ' will be deleted.';
-    openDialog(dialogId, target, focusFirst);
+    new aria.Dialog(dialogId, target, focusFirst);
   };
 });
