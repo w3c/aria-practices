@@ -18,13 +18,23 @@
 
       <section id="introduction">
         <h2>Introduction</h2>
-        <p>ARIA provides a set of roles that convey the accessibility semantics of structures on a page. These roles express the meaning that is conveyed by the layout and appearance of elements that organize and structure content, such as headings, lists, and tables.</p>
-        <p>some host languages, such as HTML, include elements that express the same semantics as an ARIA role. For instance, the HTML <code>&lt;p&gt;</code> element is mapped to accessibility APIs in exactly the same way as <code>&lt;div role="paragraph"&gt;</code>. The ARIA and HTML specifications refer to this mapping of HTML elements to ARIA attributes as implied semantics, i.e., the implied ARIA role of the HTML <code>&lt;p&gt;</code> element is <code>paragraph</code>.</p>
+        <p>
+          ARIA provides a set of roles that convey the accessibility semantics of structures on a page.
+          These roles express the meaning that is conveyed by the layout and appearance of elements that organize and structure content, such as headings, lists, and tables.
+        </p>
+        <p>
+          Some host languages, such as HTML, include elements that express the same semantics as an ARIA role.
+          For instance, the HTML <code>&lt;p&gt;</code> element is mapped to accessibility APIs in exactly the same way as <code>&lt;div role="paragraph"&gt;</code>.
+          The ARIA and HTML specifications refer to this mapping of HTML elements to ARIA attributes as implied semantics, i.e., the implied ARIA role of the HTML <code>&lt;p&gt;</code> element is <code>paragraph</code>.
+        </p>
       </section>
 
       <section id="when_to_use_structural_roles">
         <h2>When to Use Structural Roles</h2>
-        <p>When developing HTML, it is important to use native HTML elements where ever possible. Do not use an ARIA role or property if it is possible to use an HTML element that has equivalent semantics.</p>
+        <p>
+          When developing HTML, it is important to use native HTML elements where ever possible.
+          Do not use an ARIA role or property if it is possible to use an HTML element that has equivalent semantics.
+        </p>
         <p>Circumstances where it is appropriate to use ARIA attributes instead of equivalent HTML are:</p>
         <ol>
           <li>When the HTML element cannot be styled in a way that meets visual design requirements.</li>
@@ -37,8 +47,8 @@
       <section id="all_structural_roles">
         <h2>All Structural Roles and Their HTML Equivalents</h2>
         <p>
-          The following table lists all structural roles defined in ARIA 1.2. As described above in the section on
-          <a href="#when_to_use_structural_roles">When to Use Structural Roles</a>, use an equivalent HTML element instead of an ARIA structural role unless the ARIA role does not have an HTML equivalent or one of the four circumstances that makes using ARIA necessary exists.
+          The following table lists all structural roles defined in ARIA 1.2.
+          As described above in the section on <a href="#when_to_use_structural_roles">When to Use Structural Roles</a>, use an equivalent HTML element instead of an ARIA structural role unless the ARIA role does not have an HTML equivalent or one of the four circumstances that makes using ARIA necessary exists.
         </p>
         <table class="widget-features">
           <caption>

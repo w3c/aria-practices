@@ -31,11 +31,11 @@
       <section>
         <h2>About This Example</h2>
         <p>
-          The following example implementation of the
-          <a href="../carousel-pattern.html">Carousel Pattern</a>
-          demonstrates features of the pattern that are essential to accessibility for carousels that automatically start rotating when the page loads. This example also illustrates how to use the
-          <a href="../../tabs/tabs-pattern.html">tabs pattern</a>
-          to provide users with a way to skip slides in the sequence by directly choosing which one to view. Navigation among slides is provided by a series of circular buttons that function as tabs and are rendered over the rotating slides. Automatic rotation stops when users move focus to any control or link in the carousel or hover the mouse over carousel content. The accessibility features section that follows the example describes these aspects of the design in detail.
+          The following example implementation of the <a href="../carousel-pattern.html">Carousel Pattern</a> demonstrates features of the pattern that are essential to accessibility for carousels that automatically start rotating when the page loads.
+          This example also illustrates how to use the <a href="../../tabs/tabs-pattern.html">tabs pattern</a> to provide users with a way to skip slides in the sequence by directly choosing which one to view.
+          Navigation among slides is provided by a series of circular buttons that function as tabs and are rendered over the rotating slides.
+          Automatic rotation stops when users move focus to any control or link in the carousel or hover the mouse over carousel content.
+          The accessibility features section that follows the example describes these aspects of the design in detail.
         </p>
         <p>Similar examples include:</p>
         <ul>
@@ -59,14 +59,20 @@
             <input type="checkbox" id="rotation-paused" value="paused" aria-describedby="rotation-paused-desc">
             Pause auto-rotation on load (<a href="javascript:history.go(0)"><img class="reload" src="images/reload-icon.png" alt="">reload needed</a>)
           </label>
-          <p id="rotation-paused-desc">This option controls whether the carousel is paused or playing on page load. The paused option improves accessibility for users with visual impairments and people who are distracted or confused by auto-rotation, but allows users to start auto-rotation using the start/stop button.</p>
+          <p id="rotation-paused-desc">
+            This option controls whether the carousel is paused or playing on page load.
+            The paused option improves accessibility for users with visual impairments and people who are distracted or confused by auto-rotation, but allows users to start auto-rotation using the start/stop button.
+          </p>
           <p>Note: If the user has chosen reduced motion in system settings, auto-rotation will always be paused on load.</p>
 
           <label for="rotation-disabled">
             <input type="checkbox" id="rotation-disabled" value="norotate" aria-describedby="rotation-disabled-desc">
             Disable auto-rotation
           </label>
-          <p id="rotation-disabled-desc">This option improves accessibility for users with visual impairments and people who are distracted or confused by auto-rotation by disabling the auto-rotation feature and removing the start/stop button from the user interface. Users can use the tablist to manually navigate through the slides.</p>
+          <p id="rotation-disabled-desc">
+            This option improves accessibility for users with visual impairments and people who are distracted or confused by auto-rotation by disabling the auto-rotation feature and removing the start/stop button from the user interface.
+            Users can use the tablist to manually navigate through the slides.
+          </p>
         </fieldset>
       </section>
 
@@ -270,12 +276,23 @@
       <section>
         <h2>Accessibility Features</h2>
         <h3>Controlling Automatic Slide Rotation</h3>
-        <p>Users can stop and start slide rotation, which is an essential aspect of accessibility of the carousel for a variety of people with disabilities. People with low vision or a cognitive disability that affects visual processing or reading benefit from being able to control slide rotation so they have sufficient time to explore slide content. Similarly, since screen reader users cannot perceive automatic rotation, it can make reading the page confusing and disorienting. For example, when slides are automatically rotating, a screen reader user may read an element on slide one, execute a screen reader command to read the next element, and, instead of hearing the next element on slide one, hear an element from slide 2 without any knowledge that the element just announced is from an entirely new context.</p>
+        <p>
+          Users can stop and start slide rotation, which is an essential aspect of accessibility of the carousel for a variety of people with disabilities.
+          People with low vision or a cognitive disability that affects visual processing or reading benefit from being able to control slide rotation so they have sufficient time to explore slide content.
+          Similarly, since screen reader users cannot perceive automatic rotation, it can make reading the page confusing and disorienting.
+          For example, when slides are automatically rotating, a screen reader user may read an element on slide one, execute a screen reader command to read the next element, and, instead of hearing the next element on slide one, hear an element from slide 2 without any knowledge that the element just announced is from an entirely new context.
+        </p>
         <p>This example includes the following features for giving users control over slide rotation:</p>
         <ul>
           <li>If operating system preferences have been set for reduced motion or disabling animations, the auto-rotation is initially paused.</li>
-          <li>Hovering the mouse over any carousel content pauses automatic rotation. Automatic rotation resumes when the mouse moves away from the carousel unless another condition that prevents rotation, such as keyboard focus, has been triggered.</li>
-          <li>Moving keyboard focus to any of the carousel content, including the tab elements, pauses automatic rotation. Automatic rotation only resumes if the user explicitly activates the <q>Play</q> button.</li>
+          <li>
+            Hovering the mouse over any carousel content pauses automatic rotation.
+            Automatic rotation resumes when the mouse moves away from the carousel unless another condition that prevents rotation, such as keyboard focus, has been triggered.
+          </li>
+          <li>
+            Moving keyboard focus to any of the carousel content, including the tab elements, pauses automatic rotation.
+            Automatic rotation only resumes if the user explicitly activates the <q>Play</q> button.
+          </li>
           <li>
             The carousel also contains a rotation control button that can stop and start automatic rotation.
             <ul>
@@ -286,16 +303,29 @@
               <li>If a user activates the rotation control button to start rotation it is assumed the user wants auto-rotation to start immediately and focus or hover states within the carousel are ignored.. The rotation will only stop if the button is activated again,</li>
             </ul>
           </li>
-          <li>The example includes an option to completely disable automatic slide rotation. When this option is selected the start/stop button is not rendered and slides can only be rotated through activation of the tab controls.</li>
+          <li>
+            The example includes an option to completely disable automatic slide rotation.
+            When this option is selected the start/stop button is not rendered and slides can only be rotated through activation of the tab controls.
+          </li>
         </ul>
         <h3>Color Contrast of Text and Rotation Controls</h3>
-        <p>In the view of this carousel where the controls and captions are displayed inside the image, background images could cause color contrast for the controls and text to become insufficient. However, this view includes the following features to prevent this potential problem and ensure it meets WCAG 2.1 color contrast requirements:</p>
+        <p>
+          In the view of this carousel where the controls and captions are displayed inside the image, background images could cause color contrast for the controls and text to become insufficient.
+          However, this view includes the following features to prevent this potential problem and ensure it meets WCAG 2.1 color contrast requirements:
+        </p>
         <ul>
-          <li>When the tabs controlling the rendering of slides are inside the image, the tabs have foreground and background colors that meet WCAG 2.1 color contrast requirements. In addition, the focus styling uses SVG images that make the focus indicator highly visible when a control receives keyboard focus.</li>
+          <li>
+            When the tabs controlling the rendering of slides are inside the image, the tabs have foreground and background colors that meet WCAG 2.1 color contrast requirements.
+            In addition, the focus styling uses SVG images that make the focus indicator highly visible when a control receives keyboard focus.
+          </li>
           <li>The transparency of the caption area is decreased so the caption text meets the WCAG 2.1 color contrast requirements.</li>
         </ul>
 
-        <p>One way to avoid the color contrast issues of controls and text inside the image is to move them to outside the image. Moving the controls and text to a solid background makes it easier for the author to control color contrast and for the user to perceive them. An example of this technique is one of the view options.</p>
+        <p>
+          One way to avoid the color contrast issues of controls and text inside the image is to move them to outside the image.
+          Moving the controls and text to a solid background makes it easier for the author to control color contrast and for the user to perceive them.
+          An example of this technique is one of the view options.
+        </p>
 
         <h3>Focus Styling of the Tablist and Tabs</h3>
         <ul>
@@ -303,8 +333,17 @@
           <li>The CSS border width used for focus styling is changed from 0 to 2 pixels when the control receives focus to support visibility of focus when operating system high contrast options are enabled.</li>
         </ul>
         <h3>Screen Reader Announcement of Slide Changes</h3>
-        <p>When automatic rotation is turned off, the carousel slide content is included in a live region. This makes it easier for screen reader users to scan through the carousel slides. When screen reader users activate a new tab, the new slide content is announced, giving users immediate feedback that helps them determine whether or not to interact with the content. Very importantly, if automatic rotation is turned on, the live region is disabled. If it were not, the page would become unusable as announcements of the continuously changing content constantly interrupt anything else the user is reading.</p>
-        <p>Note that making a tab panel live is not recommended for typical tabs. In the carousel use case, where the primary intent is quick, light-weight scanning of content, the live region is used to simulate the type of experience that non-screen reader users have with auto-rotation.</p>
+        <p>
+          When automatic rotation is turned off, the carousel slide content is included in a live region.
+          This makes it easier for screen reader users to scan through the carousel slides.
+          When screen reader users activate a new tab, the new slide content is announced, giving users immediate feedback that helps them determine whether or not to interact with the content.
+          Very importantly, if automatic rotation is turned on, the live region is disabled.
+          If it were not, the page would become unusable as announcements of the continuously changing content constantly interrupt anything else the user is reading.
+        </p>
+        <p>
+          Note that making a tab panel live is not recommended for typical tabs.
+          In the carousel use case, where the primary intent is quick, light-weight scanning of content, the live region is used to simulate the type of experience that non-screen reader users have with auto-rotation.
+        </p>
       </section>
 
       <section>
@@ -350,7 +389,10 @@
                 <th><kbd>Tab</kbd></th>
                 <td>
                   <ul>
-                    <li>When focus moves into the <code>tablist</code>, places focus on the active <code>tab</code> element. Each slide in the carousel is controlled by a <code>tab</code>.</li>
+                    <li>
+                      When focus moves into the <code>tablist</code>, places focus on the active <code>tab</code> element.
+                      Each slide in the carousel is controlled by a <code>tab</code>.
+                    </li>
                     <li>When the tab list contains the focus, moves focus to the next element in the <kbd>tab</kbd> sequence, which is a link in the currently shown slide.</li>
                   </ul>
                 </td>

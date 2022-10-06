@@ -32,9 +32,8 @@
       <section>
         <h2>About This Example</h2>
         <p>
-          The following example implementation of the
-          <a href="../listbox-pattern.html">Listbox Pattern</a>
-          demonstrates a scrollable single-select listbox widget. This widget is functionally similar to an HTML <code>select</code> input where the <code>size</code> attribute has a value greater than one.
+          The following example implementation of the <a href="../listbox-pattern.html">Listbox Pattern</a> demonstrates a scrollable single-select listbox widget.
+          This widget is functionally similar to an HTML <code>select</code> input where the <code>size</code> attribute has a value greater than one.
         </p>
         <p>Similar examples include:</p>
         <ul>
@@ -88,7 +87,10 @@
         <h3>Notes</h3>
         <p>This listbox is scrollable; it has more options than its height can accommodate.</p>
         <ol>
-          <li>Scrolling only works as expected if the listbox is the options' <code>offsetParent</code>. The example uses <code>position: relative</code> on the listbox to that effect.</li>
+          <li>
+            Scrolling only works as expected if the listbox is the options' <code>offsetParent</code>.
+            The example uses <code>position: relative</code> on the listbox to that effect.
+          </li>
           <li>
             When an option is focused that isn't (fully) visible, the listbox's scroll position is updated:
             <ol>
@@ -99,15 +101,18 @@
             </ol>
           </li>
           <li>When a fully visible option is focused in any way, no scrolling occurs.</li>
-          <li>Normal scrolling through any scrolling mechanism (including <kbd>Page Up</kbd> and <kbd>Page Down</kbd>) works as expected. The scroll position will jump as described for <code>focusItem</code> if a means other than a mouse click is used to change focus after scrolling.</li>
+          <li>
+            Normal scrolling through any scrolling mechanism (including <kbd>Page Up</kbd> and <kbd>Page Down</kbd>) works as expected.
+            The scroll position will jump as described for <code>focusItem</code> if a means other than a mouse click is used to change focus after scrolling.
+          </li>
         </ol>
       </section>
 
       <section>
         <h2 id="kbd_label">Keyboard Support</h2>
         <p>
-          The example listboxes on this page implement the following keyboard interface. Other variations and options for the keyboard interface are described in the
-          <a href="../listbox-pattern.html#keyboard_interaction">Keyboard Interaction section of the Listbox Pattern</a>.
+          The example listboxes on this page implement the following keyboard interface.
+          Other variations and options for the keyboard interface are described in the <a href="../listbox-pattern.html#keyboard_interaction">Keyboard Interaction section of the Listbox Pattern</a>.
         </p>
         <table aria-labelledby="kbd_label" class="def">
           <thead>
@@ -140,8 +145,8 @@
       <section>
         <h2 id="rps_label">Role, Property, State, and Tabindex Attributes</h2>
         <p>
-          The example listboxes on this page implement the following ARIA roles, states, and properties. Information about other ways of applying ARIA roles, states, and properties is available in the
-          <a href="../listbox-pattern.html#roles_states_properties">Roles, States, and Properties section of the Listbox Pattern</a>.
+          The example listboxes on this page implement the following ARIA roles, states, and properties.
+          Information about other ways of applying ARIA roles, states, and properties is available in the <a href="../listbox-pattern.html#roles_states_properties">Roles, States, and Properties section of the Listbox Pattern</a>.
         </p>
         <table aria-labelledby="rps_label" class="data attributes">
           <thead>

@@ -18,9 +18,21 @@
 
       <section id="about">
         <h2>About This Pattern</h2>
-        <p>A <a href="#dialog" class="role-reference">dialog</a> is a window overlaid on either the primary window or another dialog window. Windows under a modal dialog are inert. That is, users cannot interact with content outside an active dialog window. Inert content outside an active dialog is typically visually obscured or dimmed so it is difficult to discern, and in some implementations, attempts to interact with the inert content cause the dialog to close.</p>
-        <p>Like non-modal dialogs, modal dialogs contain their tab sequence. That is, <kbd>Tab</kbd> and <kbd>Shift + Tab</kbd> do not move focus outside the dialog. However, unlike most non-modal dialogs, modal dialogs do not provide means for moving keyboard focus outside the dialog window without closing the dialog.</p>
-        <p>The <a href="#alertdialog" class="role-reference">alertdialog</a> role is a special-case dialog role designed specifically for dialogs that divert users' attention to a brief, important message. Its usage is described in the <a href="../alert-dialog/alert-dialog-pattern.html">Alert Dialog Pattern</a>.</p>
+        <p>
+          A <a href="#dialog" class="role-reference">dialog</a> is a window overlaid on either the primary window or another dialog window.
+          Windows under a modal dialog are inert.
+          That is, users cannot interact with content outside an active dialog window.
+          Inert content outside an active dialog is typically visually obscured or dimmed so it is difficult to discern, and in some implementations, attempts to interact with the inert content cause the dialog to close.
+        </p>
+        <p>
+          Like non-modal dialogs, modal dialogs contain their tab sequence.
+          That is, <kbd>Tab</kbd> and <kbd>Shift + Tab</kbd> do not move focus outside the dialog.
+          However, unlike most non-modal dialogs, modal dialogs do not provide means for moving keyboard focus outside the dialog window without closing the dialog.
+        </p>
+        <p>
+          The <a href="#alertdialog" class="role-reference">alertdialog</a> role is a special-case dialog role designed specifically for dialogs that divert users' attention to a brief, important message.
+          Its usage is described in the <a href="../alert-dialog/alert-dialog-pattern.html">Alert Dialog Pattern</a>.
+        </p>
       </section>
 
       <section id="examples">
@@ -33,9 +45,15 @@
 
       <section id="keyboard_interaction">
         <h2>Keyboard Interaction</h2>
-        <p>In the following description, the term <q>tabbable element</q> refers to any element with a <code>tabindex</code> value of zero or greater. Note that values greater than 0 are strongly discouraged.</p>
+        <p>
+          In the following description, the term <q>tabbable element</q> refers to any element with a <code>tabindex</code> value of zero or greater.
+          Note that values greater than 0 are strongly discouraged.
+        </p>
         <ul>
-          <li>When a dialog opens, focus moves to an element inside the dialog. See notes below regarding initial focus placement.</li>
+          <li>
+            When a dialog opens, focus moves to an element inside the dialog.
+            See notes below regarding initial focus placement.
+          </li>
           <li>
             <kbd>Tab</kbd>:
             <ul>
@@ -54,25 +72,39 @@
         </ul>
         <ol class="note">
           <li>
-            When a dialog opens, focus moves to an element contained in the dialog. Generally, focus is initially set on the first focusable element. However, the most appropriate focus placement will depend on the nature and size of the content. Examples include:
+            When a dialog opens, focus moves to an element contained in the dialog.
+            Generally, focus is initially set on the first focusable element.
+            However, the most appropriate focus placement will depend on the nature and size of the content.
+            Examples include:
             <ul>
-              <li>If the dialog content includes semantic structures, such as lists, tables, or multiple paragraphs, that need to be perceived in order to easily understand the content, i.e., if the content would be difficult to understand when announced as a single unbroken string, then it is advisable to add <code>tabindex="-1"</code> to a static element at the start of the content and initially focus that element. This makes it easier for assistive technology users to read the content by navigating the semantic structures. Additionally, it is advisable to omit applying <code>aria-describedby</code> to the dialog container in this scenario.</li>
+              <li>
+                If the dialog content includes semantic structures, such as lists, tables, or multiple paragraphs, that need to be perceived in order to easily understand the content, i.e., if the content would be difficult to understand when announced as a single unbroken string, then it is advisable to add <code>tabindex="-1"</code> to a static element at the start of the content and initially focus that element.
+                This makes it easier for assistive technology users to read the content by navigating the semantic structures.
+                Additionally, it is advisable to omit applying <code>aria-describedby</code> to the dialog container in this scenario.
+              </li>
               <li>If content is large enough that focusing the first interactive element could cause the beginning of content to scroll out of view, it is advisable to add <code>tabindex="-1"</code> to a static element at the top of the dialog, such as the dialog title or first paragraph, and initially focus that element.</li>
-              <li>If a dialog contains the final step in a process that is not easily reversible, such as deleting data or completing a financial transaction, it may be advisable to set focus on the least destructive action, especially if undoing the action is difficult or impossible. The <a href="../alert-dialog/alert-dialog-pattern.html">Alert Dialog Pattern</a> is often employed in such circumstances.</li>
+              <li>
+                If a dialog contains the final step in a process that is not easily reversible, such as deleting data or completing a financial transaction, it may be advisable to set focus on the least destructive action, especially if undoing the action is difficult or impossible.
+                The <a href="../alert-dialog/alert-dialog-pattern.html">Alert Dialog Pattern</a> is often employed in such circumstances.</li>
               <li>If a dialog is limited to interactions that either provide additional information or continue processing, it may be advisable to set focus to the element that is likely to be most frequently used, such as an <q>OK</q> or <q>Continue</q> button.</li>
             </ul>
           </li>
           <li>
             When a dialog closes, focus returns to the element that invoked the dialog unless either:
             <ul>
-              <li>The invoking element no longer exists. Then, focus is set on another element that provides logical work flow.</li>
+              <li>
+                The invoking element no longer exists.
+                Then, focus is set on another element that provides logical work flow.
+              </li>
               <li>
                 The work flow design includes the following conditions that can occasionally make focusing a different element a more logical choice:
                 <ol>
                   <li>It is very unlikely users need to immediately re-invoke the dialog.</li>
                   <li>The task completed in the dialog is directly related to a subsequent step in the work flow.</li>
                 </ol>
-                For example, a grid has an associated toolbar with a button for adding rows. the Add Rows button opens a dialog that prompts for the number of rows. After the dialog closes, focus is placed in the first cell of the first new row.
+                For example, a grid has an associated toolbar with a button for adding rows.
+                The Add Rows button opens a dialog that prompts for the number of rows.
+                After the dialog closes, focus is placed in the first cell of the first new row.
               </li>
             </ul>
           </li>
@@ -90,29 +122,29 @@
             The dialog has either:
             <ul>
               <li>
-                A value set for the
-                <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>
-                property that refers to a visible dialog title.
+                A value set for the <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> property that refers to a visible dialog title.
               </li>
               <li>A label specified by <a href="#aria-label" class="property-reference">aria-label</a>.</li>
             </ul>
           </li>
-          <li>Optionally, the <a href="#aria-describedby" class="property-reference">aria-describedby</a> property is set on the element with the <code>dialog</code> role to indicate which element or elements in the dialog contain content that describes the primary purpose or message of the dialog. Specifying descriptive elements enables screen readers to announce the description along with the dialog title and initially focused element when the dialog opens, which is typically helpful only when the descriptive content is simple and can easily be understood without structural information. It is advisable to omit specifying <code>aria-describedby</code> if the dialog content includes semantic structures, such as lists, tables, or multiple paragraphs, that need to be perceived in order to easily understand the content, i.e., if the content would be difficult to understand when announced as a single unbroken string.</li>
+          <li>
+            Optionally, the <a href="#aria-describedby" class="property-reference">aria-describedby</a> property is set on the element with the <code>dialog</code> role to indicate which element or elements in the dialog contain content that describes the primary purpose or message of the dialog.
+            Specifying descriptive elements enables screen readers to announce the description along with the dialog title and initially focused element when the dialog opens, which is typically helpful only when the descriptive content is simple and can easily be understood without structural information.
+            It is advisable to omit specifying <code>aria-describedby</code> if the dialog content includes semantic structures, such as lists, tables, or multiple paragraphs, that need to be perceived in order to easily understand the content, i.e., if the content would be difficult to understand when announced as a single unbroken string.
+          </li>
         </ul>
         <ul class="note">
           <li>
-            Because marking a dialog modal by setting
-            <a href="#aria-modal" class="property-reference">aria-modal</a>
-            to <code>true</code> can prevent users of some assistive technologies from perceiving content outside the dialog, users of those technologies will experience severe negative ramifications if a dialog is marked modal but does not behave as a modal for other users. So, mark a dialog modal <strong>only when both:</strong>
+            Because marking a dialog modal by setting <a href="#aria-modal" class="property-reference">aria-modal</a> to <code>true</code> can prevent users of some assistive technologies from perceiving content outside the dialog, users of those technologies will experience severe negative ramifications if a dialog is marked modal but does not behave as a modal for other users.
+            So, mark a dialog modal <strong>only when both:</strong>
             <ol>
               <li>Application code prevents all users from interacting in any way with content outside of it.</li>
               <li>Visual styling obscures the content outside of it.</li>
             </ol>
           </li>
           <li>
-            The <code>aria-modal</code> property introduced by ARIA 1.1 replaces
-            <a href="#aria-hidden" class="state-reference">aria-hidden</a>
-            for informing assistive technologies that content outside a dialog is inert. However, in legacy dialog implementations where <code>aria-hidden</code> is used to make content outside a dialog inert for assistive technology users, it is important that:
+            The <code>aria-modal</code> property introduced by ARIA 1.1 replaces <a href="#aria-hidden" class="state-reference">aria-hidden</a> for informing assistive technologies that content outside a dialog is inert.
+            However, in legacy dialog implementations where <code>aria-hidden</code> is used to make content outside a dialog inert for assistive technology users, it is important that:
             <ol>
               <li><code>aria-hidden</code> is set to <code>true</code> on each element containing a portion of the inert layer.</li>
               <li>The dialog element is not a descendant of any element that has <code>aria-hidden</code> set to <code>true</code>.</li>

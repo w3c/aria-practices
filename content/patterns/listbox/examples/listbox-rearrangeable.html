@@ -33,9 +33,9 @@
       <section>
         <h2>About This Example</h2>
         <p>
-          The following two example implementations of the
-          <a href="../listbox-pattern.html">Listbox Pattern</a>
-          demonstrate differences between single-select and multi-select functionality. In both examples, users can use action buttons to move options from one list to another. In the first implementation, users can choose a single option and then activate an action button while in the second example, they may select multiple options before activating an action button.
+          The following two example implementations of the <a href="../listbox-pattern.html">Listbox Pattern</a> demonstrate differences between single-select and multi-select functionality.
+          In both examples, users can use action buttons to move options from one list to another.
+          In the first implementation, users can choose a single option and then activate an action button while in the second example, they may select multiple options before activating an action button.
         </p>
         <p>Similar examples include:</p>
         <ul>
@@ -52,7 +52,10 @@
           </div>
           <div role="separator" id="ex1_start_sep" aria-labelledby="ex1_start_sep ex1_label" aria-label="Start of"></div>
           <div id="ex1">
-            <p>Rank features important to you when choosing where to live. If a feature is unimportant, move it to the unimportant features list.</p>
+            <p>
+              Rank features important to you when choosing where to live.
+              If a feature is unimportant, move it to the unimportant features list.
+            </p>
             <div class="listbox-area">
               <div class="left-area">
                 <span id="ss_imp_l" class="listbox-label">Important Features:</span>
@@ -101,7 +104,10 @@
               </ol>
             </li>
             <li>Only one option may be selected at a time (have <code>aria-selected=&quot;true&quot;</code>).</li>
-            <li>As the user moves focus in the list, selection also moves. That is, both the value of <code>aria-activedescendant</code> and the element that has <code>aria-selected=&quot;true&quot;</code> change.</li>
+            <li>
+              As the user moves focus in the list, selection also moves.
+              That is, both the value of <code>aria-activedescendant</code> and the element that has <code>aria-selected=&quot;true&quot;</code> change.
+            </li>
           </ol>
         </section>
 
@@ -185,8 +191,16 @@
                 </ul>
               </li>
               <li>Availability of the shortcuts is communicated to assistive technologies via the <code>aria-keyshortcuts</code> property on the button elements.</li>
-              <li>Each shortcut is only captured when focus is in a context where it is relevant. For example, <kbd>Enter</kbd> performs an add only when focus is in the available options list, and <kbd>Delete</kbd> performs a remove only when focus is in the chosen options list.</li>
-              <li>Using a shortcut key intentionally places focus to optimize both screen reader and keyboard usability. For example, pressing <kbd>Alt + Up Arrow</kbd> in the &quot;Important Features&quot; list keeps focus on the option that is moved up, enabling all keyboard users to easily perform consecutive move operations for an option and screen reader users to hear the position of an option after it is moved. Similarly, pressing <kbd>Enter</kbd> in the available options list leaves focus in the available options list. If the option that had focus before the add operation is no longer present in the list, focus lands on the first of the subsequent options that is still present.</li>
+              <li>
+                Each shortcut is only captured when focus is in a context where it is relevant.
+                For example, <kbd>Enter</kbd> performs an add only when focus is in the available options list, and <kbd>Delete</kbd> performs a remove only when focus is in the chosen options list.
+              </li>
+              <li>
+                Using a shortcut key intentionally places focus to optimize both screen reader and keyboard usability.
+                For example, pressing <kbd>Alt + Up Arrow</kbd> in the &quot;Important Features&quot; list keeps focus on the option that is moved up, enabling all keyboard users to easily perform consecutive move operations for an option and screen reader users to hear the position of an option after it is moved.
+                Similarly, pressing <kbd>Enter</kbd> in the available options list leaves focus in the available options list.
+                If the option that had focus before the add operation is no longer present in the list, focus lands on the first of the subsequent options that is still present.
+              </li>
             </ol>
           </li>
           <li>In example 1, since there are four action buttons, a toolbar widget is used to group all the action buttons into a single tab stop.</li>
@@ -198,8 +212,7 @@
         <h2 id="kbd_label">Keyboard Support</h2>
         <p>
           The example listboxes on this page implement the following keyboard interface.
-          Other variations and options for the keyboard interface are described in the
-          <a href="../listbox-pattern.html#keyboard_interaction">Keyboard Interaction section of the Listbox Pattern</a>.
+          Other variations and options for the keyboard interface are described in the <a href="../listbox-pattern.html#keyboard_interaction">Keyboard Interaction section of the Listbox Pattern</a>.
         </p>
         <table aria-labelledby="kbd_label" class="def">
           <thead>
@@ -251,9 +264,7 @@
         <p class="note">
           The selection behavior demonstrated differs from the behavior provided by browsers for native HTML <code>&lt;select multiple&gt;</code> elements.
           The HTML select element behavior is to alter selection with unmodified up/down arrow keys, requiring the use of modifier keys to select multiple options.
-          This example demonstrates  the multiple selection interaction model recommended in the
-          <a href="../listbox-pattern.html#keyboard_interaction">Keyboard Interaction section of the Listbox Pattern</a>,
-          which  does not require the use of modifier keys.
+          This example demonstrates the multiple selection interaction model recommended in the <a href="../listbox-pattern.html#keyboard_interaction">Keyboard Interaction section of the Listbox Pattern</a>, which does not require the use of modifier keys.
         </p>
         <table aria-labelledby="kbd_label_multiselect" class="def">
           <thead>
@@ -288,7 +299,10 @@
                 <kbd>Control + A</kbd> (All Platforms)<br>
                 <kbd>Command-A</kbd> (macOS)
               </th>
-              <td>selects all options in the list. If all options are selected, unselects all options.</td>
+              <td>
+                Selects all options in the list.
+                If all options are selected, unselects all options.
+              </td>
             </tr>
           </tbody>
         </table>
@@ -297,8 +311,8 @@
       <section>
         <h2 id="rps_label">Role, Property, State, and Tabindex Attributes</h2>
         <p>
-          The example listboxes on this page implement the following ARIA roles, states, and properties. Information about other ways of applying ARIA roles, states, and properties is available in the
-          <a href="../listbox-pattern.html#roles_states_properties">Roles, States, and Properties section of the Listbox Pattern</a>.
+          The example listboxes on this page implement the following ARIA roles, states, and properties.
+          Information about other ways of applying ARIA roles, states, and properties is available in the <a href="../listbox-pattern.html#roles_states_properties">Roles, States, and Properties section of the Listbox Pattern</a>.
         </p>
         <table aria-labelledby="rps_label" class="data attributes">
           <thead>

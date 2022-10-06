@@ -31,8 +31,13 @@
       <section>
         <h2>About This Example</h2>
         <p>
-          The below combobox for choosing the name of a US state or territory demonstrates the
-          <a href="../combobox-pattern.html">Combobox Pattern</a>. The design pattern describes four types of autocomplete behavior. This example illustrates the autocomplete behavior known as list autocomplete with manual selection. If the user types one or more characters in the edit box and the typed characters match the beginning of the name of one or more states or territories, a listbox popup appears containing the matching names. When the listbox appears, a suggested name is not automatically selected. Thus, after typing, if the user tabs or clicks out of the combobox without choosing a value from the listbox, the typed string becomes the value of the combobox. Note that this implementation enables users to input the name of a state or territory, but it does not prevent input of any other arbitrary value.
+          The below combobox for choosing the name of a US state or territory demonstrates the <a href="../combobox-pattern.html">Combobox Pattern</a>.
+          The design pattern describes four types of autocomplete behavior.
+          This example illustrates the autocomplete behavior known as list autocomplete with manual selection.
+          If the user types one or more characters in the edit box and the typed characters match the beginning of the name of one or more states or territories, a listbox popup appears containing the matching names.
+          When the listbox appears, a suggested name is not automatically selected.
+          Thus, after typing, if the user tabs or clicks out of the combobox without choosing a value from the listbox, the typed string becomes the value of the combobox.
+          Note that this implementation enables users to input the name of a state or territory, but it does not prevent input of any other arbitrary value.
         </p>
         <p>Similar examples include:</p>
         <ul>
@@ -126,7 +131,11 @@
       <section>
         <h2>Accessibility Features</h2>
         <ul>
-          <li>Browsers do not manage visibility of elements referenced by aria-activedescendant like they do for elements with focus. When a keyboard event changes the active option in the listbox, the JavaScript scrolls the option referenced by aria-activedescendant into view. Managing aria-activedescendant visibility is essential to accessibility for people who use a browser's zoom feature to increase the size of content.</li>
+          <li>
+            Browsers do not manage visibility of elements referenced by aria-activedescendant like they do for elements with focus.
+            When a keyboard event changes the active option in the listbox, the JavaScript scrolls the option referenced by aria-activedescendant into view.
+            Managing aria-activedescendant visibility is essential to accessibility for people who use a browser's zoom feature to increase the size of content.
+          </li>
           <li>
             To enhance perceivability when operating the combobox, visual keyboard focus and hover are styled using the CSS <code>:hover</code> pseudo-class, and <code>focus</code> and <code>blur</code> event handlers:
             <ul>
@@ -134,11 +143,17 @@
               <li>To make it easier to perceive that either the input or button can be clicked to open the listbox, hover causes the same styling as focus.</li>
               <li>To help people with visual impairments identify the combobox as an interactive element, the cursor is changed to a pointer when hovering over the combobox or list.</li>
               <li>To make it easier to distinguish the selected listbox option from other options, selection creates a 2 pixel border above and below the option.</li>
-              <li>Note: Because transparent borders are visible on some systems with operating system high contrast settings enabled, transparency cannot be used to create a visual difference between the element that is focused an other elements. Instead of using transparency, the focused element has a thicker border and less padding. When an element receives focus, its border changes from zero to two pixels and padding is reduced by two pixels. When an element loses focus, its border changes from two pixels to two and padding is increased by two pixels.</li>
+              <li>
+                Note: Because transparent borders are visible on some systems with operating system high contrast settings enabled, transparency cannot be used to create a visual difference between the element that is focused an other elements.
+                Instead of using transparency, the focused element has a thicker border and less padding.
+                When an element receives focus, its border changes from zero to two pixels and padding is reduced by two pixels.
+                When an element loses focus, its border changes from two pixels to two and padding is increased by two pixels.
+              </li>
             </ul>
           </li>
           <li>
-            To ensure the inline SVG graphic used for the arrow in the open button has sufficient contrast with the background when high contrast settings change the color of text content, CSS <code>forced-color-adjust</code> is set to <code>auto</code> on the <code>svg</code> element and and the <code>fill</code> attribute of the <code>polygon</code> element is set to <code>currentcolor</code>. This causes the colors of the <code>fill</code> of the polygon elements to be overridden by the high contrast color setting. If <code>forced-color-adjust</code> were not used to override the colors specified for the <code>fill</code> property, the color would remain the same in high contrast mode, which could lead to insufficient contrast between the arrow and the background or even make it invisible if the color matched the high contrast mode background.<br>
+            To ensure the inline SVG graphic used for the arrow in the open button has sufficient contrast with the background when high contrast settings change the color of text content, CSS <code>forced-color-adjust</code> is set to <code>auto</code> on the <code>svg</code> element and and the <code>fill</code> attribute of the <code>polygon</code> element is set to <code>currentcolor</code>.
+            This causes the colors of the <code>fill</code> of the polygon elements to be overridden by the high contrast color setting. If <code>forced-color-adjust</code> were not used to override the colors specified for the <code>fill</code> property, the color would remain the same in high contrast mode, which could lead to insufficient contrast between the arrow and the background or even make it invisible if the color matched the high contrast mode background.<br>
             Note: The explicit setting of <code>forced-color-adjust</code> is necessary because some browsers do not use <code>auto</code> as the default value for SVG graphics.
           </li>
         </ul>
@@ -147,8 +162,8 @@
       <section>
         <h2 id="kbd_label">Keyboard Support</h2>
         <p>
-          The example combobox on this page implements the following keyboard interface. Other variations and options for the keyboard interface are described in the
-          <a href="../combobox-pattern.html#keyboard_interaction">Keyboard Interaction section of the Combobox Pattern</a>.
+          The example combobox on this page implements the following keyboard interface.
+          Other variations and options for the keyboard interface are described in the <a href="../combobox-pattern.html#keyboard_interaction">Keyboard Interaction section of the Combobox Pattern</a>.
         </p>
         <h3 id="kbd_label_textbox">Textbox</h3>
         <table aria-labelledby="kbd_label_textbox kbd_label" class="def">
@@ -208,7 +223,11 @@
           </tbody>
         </table>
         <h3 id="kbd_label_listbox">Listbox Popup</h3>
-        <p><strong>NOTE:</strong> When visual focus is in the listbox, DOM focus remains on the textbox and the value of <code>aria-activedescendant</code> on the textbox is set to a value that refers to the listbox option that is visually indicated as focused. Where the following descriptions of keyboard commands mention focus, they are referring to the visual focus indicator. For more information about this focus management technique, see <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.</p>
+        <p>
+          <strong>NOTE:</strong> When visual focus is in the listbox, DOM focus remains on the textbox and the value of <code>aria-activedescendant</code> on the textbox is set to a value that refers to the listbox option that is visually indicated as focused.
+          Where the following descriptions of keyboard commands mention focus, they are referring to the visual focus indicator.
+          For more information about this focus management technique, see <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.
+        </p>
         <table aria-labelledby="kbd_label_listbox kbd_label" class="def">
           <thead>
             <tr>
@@ -291,8 +310,8 @@
       <section>
         <h2 id="rps_label">Role, Property, State, and Tabindex Attributes</h2>
         <p>
-          The example combobox on this page implements the following ARIA roles, states, and properties. Information about other ways of applying ARIA roles, states, and properties is available in the
-          <a href="../combobox-pattern.html#roles_states_properties">Roles, States, and Properties section of the Combobox Pattern</a>.
+          The example combobox on this page implements the following ARIA roles, states, and properties.
+          Information about other ways of applying ARIA roles, states, and properties is available in the <a href="../combobox-pattern.html#roles_states_properties">Roles, States, and Properties section of the Combobox Pattern</a>.
         </p>
         <h3 id="rps_label_textbox">Textbox</h3>
         <table aria-labelledby="rps_label_textbox rps_label" class="data attributes">
@@ -369,10 +388,7 @@
                   <li>When an option in the listbox is visually indicated as having keyboard focus, refers to that option.</li>
                   <li>When navigation keys, such as <kbd>Down Arrow</kbd>, are pressed, the JavaScript changes the value.</li>
                   <li>Enables assistive technologies to know which element the application regards as focused while DOM focus remains on the <code>input</code> element.</li>
-                  <li>
-                    For more information about this focus management technique, see
-                    <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.
-                  </li>
+                  <li>For more information about this focus management technique, see <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.</li>
                 </ul>
               </td>
             </tr>

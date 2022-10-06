@@ -18,8 +18,20 @@
 
       <section id="about">
         <h2>About This Pattern</h2>
-        <p>A tree view widget presents a hierarchical list. Any item in the hierarchy may have child items, and items that have children may be expanded or collapsed to show or hide the children. For example, in a file system navigator that uses a tree view to display folders and files, an item representing a folder can be expanded to reveal the contents of the folder, which may be files, folders, or both.</p>
-        <p>When using a keyboard to navigate a tree, a visual keyboard indicator informs the user which item is focused. If the tree allows the user to choose just one item for an action, then it is known as a single-select tree. In some implementations of single-select tree, the focused item also has a selected state; this is known as selection follows focus. However, in multi-select trees, which enable the user to select more than one item for an action, the selected state is always independent of the focus. For example, in a typical file system navigator, the user can move focus to select any number of files for an action, such as copy or move. It is important that the visual design distinguish between items that are selected and the item that has focus. For more details, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_vs_selection">this description of differences between focus and selection</a> and <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.</p>
+        <p>
+          A tree view widget presents a hierarchical list.
+          Any item in the hierarchy may have child items, and items that have children may be expanded or collapsed to show or hide the children.
+          For example, in a file system navigator that uses a tree view to display folders and files, an item representing a folder can be expanded to reveal the contents of the folder, which may be files, folders, or both.
+        </p>
+        <p>
+          When using a keyboard to navigate a tree, a visual keyboard indicator informs the user which item is focused.
+          If the tree allows the user to choose just one item for an action, then it is known as a single-select tree.
+          In some implementations of single-select tree, the focused item also has a selected state; this is known as selection follows focus.
+          However, in multi-select trees, which enable the user to select more than one item for an action, the selected state is always independent of the focus.
+          For example, in a typical file system navigator, the user can move focus to select any number of files for an action, such as copy or move.
+          It is important that the visual design distinguish between items that are selected and the item that has focus.
+          For more details, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_vs_selection">this description of differences between focus and selection</a> and <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
+        </p>
       </section>
 
       <section id="examples">
@@ -44,7 +56,10 @@
           <dt>End Node</dt>
           <dd>Node that does not have any child nodes; an end node may be either a root node or a child node.</dd>
           <dt>Parent Node</dt>
-          <dd>Node with one or more child nodes. It can be open (expanded) or closed (collapsed).</dd>
+          <dd>
+            Node with one or more child nodes.
+            It can be open (expanded) or closed (collapsed).
+          </dd>
           <dt>Open Node</dt>
           <dd>Parent node that is expanded so its child nodes are visible.</dd>
           <dt>Closed Node</dt>
@@ -90,7 +105,11 @@
           <li><kbd>Up Arrow</kbd>: Moves focus to the previous node that is focusable without opening or closing a node.</li>
           <li><kbd>Home</kbd>: Moves focus to the first node in the tree without opening or closing a node.</li>
           <li><kbd>End</kbd>: Moves focus to the last node in the tree that is focusable without opening a node.</li>
-          <li><kbd>Enter</kbd>: activates a node, i.e., performs its default action. For parent nodes, one possible default action is to open or close the node. In single-select trees where selection does not follow focus (see note below), the default action is typically to select the focused node.</li>
+          <li>
+            <kbd>Enter</kbd>: activates a node, i.e., performs its default action.
+            For parent nodes, one possible default action is to open or close the node.
+            In single-select trees where selection does not follow focus (see note below), the default action is typically to select the focused node.
+          </li>
           <li>
             Type-ahead is recommended for all trees, especially for trees with more than 7 root nodes:
             <ul>
@@ -109,9 +128,18 @@
                   <li><kbd>Shift + Down Arrow</kbd> (Optional): Moves focus to and toggles the selection state of the next node.</li>
                   <li><kbd>Shift + Up Arrow</kbd> (Optional): Moves focus to and toggles the selection state of the previous node.</li>
                   <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous nodes from the most recently selected node to the current node.</li>
-                  <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the node with focus and all nodes up to the first node. Optionally, moves focus to the first node.</li>
-                  <li><kbd>Control + Shift + End</kbd> (Optional): Selects the node with focus and all nodes down to the last node. Optionally, moves focus to the last node.</li>
-                  <li><kbd>Control + A</kbd> (Optional): Selects all nodes in the tree. Optionally, if all nodes are selected, it can also unselect all nodes.</li>
+                  <li>
+                    <kbd>Control + Shift + Home</kbd> (Optional): Selects the node with focus and all nodes up to the first node.
+                    Optionally, moves focus to the first node.
+                  </li>
+                  <li>
+                    <kbd>Control + Shift + End</kbd> (Optional): Selects the node with focus and all nodes down to the last node.
+                    Optionally, moves focus to the last node.
+                  </li>
+                  <li>
+                    <kbd>Control + A</kbd> (Optional): Selects all nodes in the tree.
+                    Optionally, if all nodes are selected, it can also unselect all nodes.
+                  </li>
                 </ul>
               </li>
               <li>
@@ -123,18 +151,38 @@
                   <li><kbd>Control + Up Arrow</kbd>: Without changing the selection state, moves focus to the previous node.</li>
                   <li><kbd>Control + Space</kbd>: Toggles the selection state of the focused node.</li>
                   <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous nodes from the most recently selected node to the current node.</li>
-                  <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the node with focus and all nodes up to the first node. Optionally, moves focus to the first node.</li>
-                  <li><kbd>Control + Shift + End</kbd> (Optional): Selects the node with focus and all nodes down to the last node. Optionally, moves focus to the last node.</li>
-                  <li><kbd>Control + A</kbd> (Optional): Selects all nodes in the tree. Optionally, if all nodes are selected, it can also unselect all nodes.</li>
+                  <li>
+                    <kbd>Control + Shift + Home</kbd> (Optional): Selects the node with focus and all nodes up to the first node.
+                    Optionally, moves focus to the first node.
+                  </li>
+                  <li>
+                    <kbd>Control + Shift + End</kbd> (Optional): Selects the node with focus and all nodes down to the last node.
+                    Optionally, moves focus to the last node.
+                  </li>
+                  <li>
+                    <kbd>Control + A</kbd> (Optional): Selects all nodes in the tree.
+                    Optionally, if all nodes are selected, it can also unselect all nodes.
+                  </li>
                 </ul>
               </li>
             </ul>
           </li>
         </ul>
         <ol class="note">
-          <li>DOM focus (the active element) is functionally distinct from the selected state. For more details, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_vs_selection">this description of differences between focus and selection</a>.</li>
-          <li>The <code>tree</code> role supports the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property, which provides an alternative to moving DOM focus among <code>treeitem</code> elements when implementing keyboard navigation. For details, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.</li>
-          <li>In a single-select tree, moving focus may optionally unselect the previously selected node and select the newly focused node. This model of selection is known as &quot;selection follows focus&quot;. Having selection follow focus can be very helpful in some circumstances and can severely degrade accessibility in others. For additional guidance, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.</li>
+          <li>
+            DOM focus (the active element) is functionally distinct from the selected state.
+            For more details, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_vs_selection">this description of differences between focus and selection</a>.
+          </li>
+          <li>
+            The <code>tree</code> role supports the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property, which provides an alternative to moving DOM focus among <code>treeitem</code> elements when implementing keyboard navigation.
+            For details, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.
+          </li>
+          <li>
+            In a single-select tree, moving focus may optionally unselect the previously selected node and select the newly focused node.
+            This model of selection is known as &quot;selection follows focus&quot;.
+            Having selection follow focus can be very helpful in some circumstances and can severely degrade accessibility in others.
+            For additional guidance, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
+          </li>
           <li>If selecting or unselecting all nodes is an important function, implementing separate controls for these actions, such as buttons for &quot;Select All&quot; and &quot;Unselect All&quot;, significantly improves accessibility.</li>
           <li>
             If the nodes in a tree are arranged horizontally:
@@ -154,40 +202,70 @@
           <li>Each root node is contained in the element with role <code>tree</code> or referenced by an <a href="#aria-owns" class="property-reference">aria-owns</a> property set on the <code>tree</code> element.</li>
           <li>Each parent node contains or owns an element with role <a class="role-reference" href="#group">group</a>.</li>
           <li>Each child node is contained in or owned by an element with role <a class="role-reference" href="#group">group</a> that is contained in or owned by the node that serves as the parent of that child.</li>
-          <li>Each element with role <code>treeitem</code> that serves as a parent node has <a class="property-reference" href="#aria-expanded">aria-expanded</a> set to <code>false</code> when the node is in a closed state and set to <code>true</code> when the node is in an open state. End nodes do not have the <code>aria-expanded</code> attribute because, if they were to have it, they would be incorrectly described to assistive technologies as parent nodes.</li>
-          <li>If the tree supports selection of more than one node, the element with role <code>tree</code> has <a class="property-reference" href="#aria-multiselectable">aria-multiselectable</a> set to <code>true</code>. Otherwise, <code>aria-multiselectable</code> is either set to <code>false</code> or the default value of <code>false</code> is implied.</li>
+          <li>
+            Each element with role <code>treeitem</code> that serves as a parent node has <a class="property-reference" href="#aria-expanded">aria-expanded</a> set to <code>false</code> when the node is in a closed state and set to <code>true</code> when the node is in an open state.
+            End nodes do not have the <code>aria-expanded</code> attribute because, if they were to have it, they would be incorrectly described to assistive technologies as parent nodes.
+          </li>
+          <li>
+            If the tree supports selection of more than one node, the element with role <code>tree</code> has <a class="property-reference" href="#aria-multiselectable">aria-multiselectable</a> set to <code>true</code>.
+            Otherwise, <code>aria-multiselectable</code> is either set to <code>false</code> or the default value of <code>false</code> is implied.
+          </li>
           <li>
             The selection state of each selectable node is indicated with either <a href="#aria-selected" class="state-reference">aria-selected</a> or <a href="#aria-checked" class="state-reference">aria-checked</a>:
             <ul>
-              <li>If the selection state is indicated with <code>aria-selected</code>, then <code>aria-checked</code> is not specified for any nodes. Alternatively, if the selection state is indicated with <code>aria-checked</code>, then <code>aria-selected</code> is not specified for any nodes. See notes below regarding considerations for which property to use and for details of the unusual conditions that might allow for both properties in the same tree.</li>
-              <li>If any nodes are selected, each selected node has either <a href="#aria-selected" class="state-reference">aria-selected</a> or <a href="#aria-checked" class="state-reference">aria-checked</a> set to <code>true</code>. No more than one node is selected at a time if the element with role <code>tree</code> does <em>not</em> have <a class="property-reference" href="#aria-multiselectable">aria-multiselectable</a> set to <code>true</code>.</li>
+              <li>
+                If the selection state is indicated with <code>aria-selected</code>, then <code>aria-checked</code> is not specified for any nodes.
+                Alternatively, if the selection state is indicated with <code>aria-checked</code>, then <code>aria-selected</code> is not specified for any nodes.
+                See notes below regarding considerations for which property to use and for details of the unusual conditions that might allow for both properties in the same tree.
+              </li>
+              <li>
+                If any nodes are selected, each selected node has either <a href="#aria-selected" class="state-reference">aria-selected</a> or <a href="#aria-checked" class="state-reference">aria-checked</a> set to <code>true</code>.
+                No more than one node is selected at a time if the element with role <code>tree</code> does <em>not</em> have <a class="property-reference" href="#aria-multiselectable">aria-multiselectable</a> set to <code>true</code>.
+              </li>
               <li>All nodes that are selectable but not selected have either <a href="#aria-selected" class="state-reference">aria-selected</a> or <a href="#aria-checked" class="state-reference">aria-checked</a> set to <code>false</code>.</li>
               <li>If the tree contains nodes that are not selectable, neither <a href="#aria-selected" class="state-reference">aria-selected</a> nor <a href="#aria-checked" class="state-reference">aria-checked</a> is present on those nodes.</li>
-              <li>Note that except in trees where selection follows focus, the selected state is distinct from focus. For more details, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_vs_selection">this description of differences between focus and selection</a> and <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.</li>
+              <li>
+                Note that except in trees where selection follows focus, the selected state is distinct from focus.
+                For more details, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_vs_selection">this description of differences between focus and selection</a> and <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
+              </li>
             </ul>
           </li>
           <li>The element with role <code>tree</code> has either a visible label referenced by <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> or a value specified for <a href="#aria-label" class="property-reference">aria-label</a>.</li>
           <li>If the complete set of available nodes is not present in the DOM due to dynamic loading as the user moves focus in or scrolls the tree, each node has <a href="#aria-level" class="property-reference">aria-level</a>, <a href="#aria-setsize" class="property-reference">aria-setsize</a>, and <a href="#aria-posinset" class="property-reference">aria-posinset</a> specified.</li>
-          <li>If the <code>tree</code> element is horizontally oriented, it has <a href="#aria-orientation" class="property-reference">aria-orientation</a> set to <code>horizontal</code>. The default value of <code>aria-orientation</code> for a tree is <code>vertical</code>.</li>
+          <li>
+            If the <code>tree</code> element is horizontally oriented, it has <a href="#aria-orientation" class="property-reference">aria-orientation</a> set to <code>horizontal</code>.
+            The default value of <code>aria-orientation</code> for a tree is <code>vertical</code>.
+          </li>
         </ul>
         <ol class="note">
           <li>
             Some factors to consider when choosing whether to indicate selection with <code>aria-selected</code> or <code>aria-checked</code> are:
             <ul>
-              <li>Some design systems use <code>aria-selected</code> for single-select widgets and <code>aria-checked</code> for multi-select widgets. In the absence of factors that would make an alternative convention more appropriate, this is a recommended convention.</li>
-              <li>The language of instructions and the appearance of the interface might suggest one attribute is more appropriate than the other. For instance, do instructions say to <q>select</q> items? Or, is the visual indicator of selection a check mark?</li>
+              <li>
+                Some design systems use <code>aria-selected</code> for single-select widgets and <code>aria-checked</code> for multi-select widgets.
+                In the absence of factors that would make an alternative convention more appropriate, this is a recommended convention.
+              </li>
+              <li>
+                The language of instructions and the appearance of the interface might suggest one attribute is more appropriate than the other.
+                For instance, do instructions say to <q>select</q> items? Or, is the visual indicator of selection a check mark?
+              </li>
               <li>It is important to adopt a consistent convention for selection models across a site or app.</li>
             </ul>
           </li>
           <li>
-            Conditions that would permit a tree to include both <code>aria-selected</code> and <code>aria-checked</code> are extremely rare. It is strongly recommended to avoid designing a tree widget that would have the need for more than one type of state. If both states were to be used within a tree, all the following conditions need to be satisfied:
+            Conditions that would permit a tree to include both <code>aria-selected</code> and <code>aria-checked</code> are extremely rare.
+            It is strongly recommended to avoid designing a tree widget that would have the need for more than one type of state.
+            If both states were to be used within a tree, all the following conditions need to be satisfied:
             <ul>
               <li>The meaning and purpose of <code>aria-selected</code> is different from the meaning and purpose of <code>aria-checked</code> in the user interface.</li>
               <li>The user interface makes the meaning and purpose of each state apparent.</li>
               <li>The user interface provides a separate method for controlling each state.</li>
             </ul>
           </li>
-          <li>If <a href="#aria-owns" class="property-reference">aria-owns</a> is set on the tree container to include elements that are not DOM children of the container, those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children. Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order.</li>
+          <li>
+            If <a href="#aria-owns" class="property-reference">aria-owns</a> is set on the tree container to include elements that are not DOM children of the container, those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children.
+            Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order.
+          </li>
         </ol>
       </section>
     </main>

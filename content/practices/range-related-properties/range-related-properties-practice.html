@@ -27,7 +27,11 @@
           <li><code>slider</code></li>
           <li><code>spinbutton</code></li>
         </ul>
-        <p>For example, a spin button for choosing a day within the month of January would allow integer values that range from 1 to 31. In some cases, the value is represented numerically, but is not presented as a number to users. For instance, a spin button for choosing a day of the week could support values from 1 to 7 but they could be presented to the user as day names, e.g., "Monday", "Tuesday", etc.</p>
+        <p>
+          For example, a spin button for choosing a day within the month of January would allow integer values that range from 1 to 31.
+          In some cases, the value is represented numerically, but is not presented as a number to users.
+          For instance, a spin button for choosing a day of the week could support values from 1 to 7 but they could be presented to the user as day names, e.g., "Monday", "Tuesday", etc.
+        </p>
         <p>This section describes considerations for using the following four properties that communicate characteristics of a range widget:</p>
         <table>
           <thead>
@@ -47,7 +51,10 @@
             </tr>
             <tr>
               <th><code>aria-valuenow</code></th>
-              <td>Defines the current value of a range widget. This value is a number greater than or equal to <code>aria-valuemin</code> and less than or equal to <code>aria-valuemax</code> (if they are specified).</td>
+              <td>
+                Defines the current value of a range widget.
+                This value is a number greater than or equal to <code>aria-valuemin</code> and less than or equal to <code>aria-valuemax</code> (if they are specified).
+              </td>
             </tr>
             <tr>
               <th><code>aria-valuetext</code></th>
@@ -59,8 +66,18 @@
 
       <section id="range_related_properties_using_aria-valuemin_aria-valuemax_and_aria-valuenow">
         <h2>Using <code>aria-valuemin</code>, <code>aria-valuemax</code> and <code>aria-valuenow</code></h2>
-        <p>When the value of a range widget is constrained to known limits, the <code>aria-valuemin</code> and <code>aria-valuemax</code> properties are used to inform assistive technologies of the minimum and maximum values of the range. For some widgets, assistive technologies use this information to present the current value as a percentage. When using these properties, set <code>aria-valuemin</code> to the lowest value allowed for the widget and <code>aria-valuemax</code> to the highest allowed value. If values for <code>aria-valuemin</code> and <code>aria-valuemax</code> are not set, default values are exposed to assistive technologies unless the widget is a <code>spinbutton</code>, which is the only range widget that does not have default limits.</p>
-        <p>The <code>aria-valuenow</code> property is used to inform assistive technologies of the current value of a range widget. Set <code>aria-valuenow</code> to the current value of the widget, ensuring the value of <code>aria-valuenow</code> falls within the range defined by <code>aria-valuemin</code> and <code>aria-valuemax</code>. If the current value of a <code>progressbar</code> or <code>spinbutton</code> is indeterminate or unknown, omit the <code>aria-valuenow</code> property. The <code>aria-valuenow</code> property is required for the <code>meter</code>, <code>scrollbar</code>, <code>separator</code> (if the element is focusable), and <code>slider</code> roles.</p>
+        <p>
+          When the value of a range widget is constrained to known limits, the <code>aria-valuemin</code> and <code>aria-valuemax</code> properties are used to inform assistive technologies of the minimum and maximum values of the range.
+          For some widgets, assistive technologies use this information to present the current value as a percentage.
+          When using these properties, set <code>aria-valuemin</code> to the lowest value allowed for the widget and <code>aria-valuemax</code> to the highest allowed value.
+          If values for <code>aria-valuemin</code> and <code>aria-valuemax</code> are not set, default values are exposed to assistive technologies unless the widget is a <code>spinbutton</code>, which is the only range widget that does not have default limits.
+        </p>
+        <p>
+          The <code>aria-valuenow</code> property is used to inform assistive technologies of the current value of a range widget.
+          Set <code>aria-valuenow</code> to the current value of the widget, ensuring the value of <code>aria-valuenow</code> falls within the range defined by <code>aria-valuemin</code> and <code>aria-valuemax</code>.
+          If the current value of a <code>progressbar</code> or <code>spinbutton</code> is indeterminate or unknown, omit the <code>aria-valuenow</code> property.
+          The <code>aria-valuenow</code> property is required for the <code>meter</code>, <code>scrollbar</code>, <code>separator</code> (if the element is focusable), and <code>slider</code> roles.
+        </p>
         <p>The range widget roles have the following default values and requirements for <code>aria-valuemin</code>, <code>aria-valuemax</code> and <code>aria-valuenow</code>.</p>
         <table>
           <thead>
@@ -131,7 +148,8 @@
 
         <p>
           When the element's values are contained within a range but those values are not numeric (such as "small", "medium" and "large"), or they are numeric but there is value in communicating more information than just a number,
-          <code>aria-valuetext</code> is used to surface the text value to assistive technologies. Only use <code>aria-valuetext</code> when <code>aria-valuenow</code> is not sufficiently meaningful for users because using <code>aria-valuetext</code> will prevent assistive technologies from communicating <code>aria-valuenow</code>.
+          <code>aria-valuetext</code> is used to surface the text value to assistive technologies.
+          Only use <code>aria-valuetext</code> when <code>aria-valuenow</code> is not sufficiently meaningful for users because using <code>aria-valuetext</code> will prevent assistive technologies from communicating <code>aria-valuenow</code>.
         </p>
 
         <div class="example">
@@ -148,7 +166,11 @@
 
       <section id="range_related_properties_meter_role">
         <h2>Range properties with meter</h2>
-        <p>The <code>aria-valuemin</code> and <code>aria-valuemax</code> properties only need to be set for elements with role <code>meter</code> if the meter's minimum value is not 0 or its maximum value is not 100. It is necessary, however, to always specify a value for <code>aria-valuenow</code> and to ensure the value is greater than or equal to the minimum allowed value and less than or equal to the maximum allowed value. A detailed description of the <code>meter</code> role is in the <a href="../../patterns/meter/meter-pattern.html">meter pattern</a>.</p>
+        <p>
+          The <code>aria-valuemin</code> and <code>aria-valuemax</code> properties only need to be set for elements with role <code>meter</code> if the meter's minimum value is not 0 or its maximum value is not 100.
+          It is necessary, however, to always specify a value for <code>aria-valuenow</code> and to ensure the value is greater than or equal to the minimum allowed value and less than or equal to the maximum allowed value.
+          A detailed description of the <code>meter</code> role is in the <a href="../../patterns/meter/meter-pattern.html">meter pattern</a>.
+        </p>
 
         <p>This example of a meter shows the current Central Processing Unit (CPU) usage.</p>
 
@@ -160,7 +182,10 @@
 &lt;/div&gt;
 </code></pre>
 
-        <p>The <code>aria-valuetext</code> property can be set to a string that makes the meter value understandable. For example, a CPU usage meter value might be conveyed as <code>aria-valuetext="90% of CPU is being used"</code>.</p>
+        <p>
+          The <code>aria-valuetext</code> property can be set to a string that makes the meter value understandable.
+          For example, a CPU usage meter value might be conveyed as <code>aria-valuetext="90% of CPU is being used"</code>.
+        </p>
         <p>Here is another example of a meter that has a range different from the default of 0 for <code>aria-valuemin</code> and 100 for <code>aria-valuemax</code>.</p>
 
         <pre><code>&lt;span id="ph_alkaline_meter_label"&gt;Alkaline pH(Power of Hydrogen) Level&lt;/span&gt;
@@ -176,7 +201,11 @@
       <section id="range_related_properties_progressbar_role">
         <h2>Range properties with progress bars</h2>
 
-        <p>The <code>aria-valuemin</code> and <code>aria-valuemax</code> properties only need to be set for the <code>progressbar</code> role when the progress bar's minimum is not 0 or the maximum value is not 100. The aria-valuenow property needs to be set for a <code>progressbar</code> if its value is known (e.g. not indeterminate). If the <code>aria-valuenow</code> property is set, the author needs to make sure it is within the minimum and maximum values.</p>
+        <p>
+          The <code>aria-valuemin</code> and <code>aria-valuemax</code> properties only need to be set for the <code>progressbar</code> role when the progress bar's minimum is not 0 or the maximum value is not 100.
+          The aria-valuenow property needs to be set for a <code>progressbar</code> if its value is known (e.g. not indeterminate).
+          If the <code>aria-valuenow</code> property is set, the author needs to make sure it is within the minimum and maximum values.
+        </p>
         <p>Following is an example of a progress bar represented by an SVG.</p>
 
         <pre><code>&lt;div&gt;&lt;span id="loadlabel"&gt;Loading:&lt;/span&gt;
@@ -205,7 +234,10 @@
       <section id="range_related_properties_scrollbar_role">
         <h2>Range properties with scrollbars</h2>
 
-        <p>The <code>aria-valuemin</code> and <code>aria-valuemax</code> properties only need to be set for the <code>scrollbar</code> role when it's minimum value is not 0 or the maximum value is not 100. The <code>aria-valuenow</code> property is required for <code>scrollbar</code> and the author needs to make sure it is within the minimum and maximum values.</p>
+        <p>
+          The <code>aria-valuemin</code> and <code>aria-valuemax</code> properties only need to be set for the <code>scrollbar</code> role when it's minimum value is not 0 or the maximum value is not 100.
+          The <code>aria-valuenow</code> property is required for <code>scrollbar</code> and the author needs to make sure it is within the minimum and maximum values.
+        </p>
         <p><code>aria-valuenow</code> will generally be exposed as a percentage between <code>aria-valuemin</code> and <code>aria-valuemax</code> calculated by assistive technologies.</p>
 
         <pre><code>&lt;span id="pi-label"&gt;Pi&lt;/div&gt;
@@ -228,8 +260,15 @@
 
       <section id="range_related_properties_slider_role">
         <h2>Range properties with sliders</h2>
-        <p>The <code>aria-valuemin</code> and <code>aria-valuemax</code> properties only need to be set for the <code>slider</code> role when the slider's minimum is not 0 or the maximum value is not 100. The <code>aria-valuenow</code> property is required for <code>slider</code> role and the author needs to make sure it is within the minimum and maximum values. A detailed description of the <code>slider</code> role can be found in the <a href="../../patterns/slider/slider-pattern.html">slider pattern</a> and <a href="../../patterns/slider-multithumb/slider-multithumb-pattern.html">slider (multi-thumb) pattern</a>.</p>
-        <p>The following example shows a temperature controller. In this example, <code>aria-valuenow</code> is meaningful to the user, and so <code>aria-valuetext</code> is not used.</p>
+        <p>
+          The <code>aria-valuemin</code> and <code>aria-valuemax</code> properties only need to be set for the <code>slider</code> role when the slider's minimum is not 0 or the maximum value is not 100.
+          The <code>aria-valuenow</code> property is required for <code>slider</code> role and the author needs to make sure it is within the minimum and maximum values.
+          A detailed description of the <code>slider</code> role can be found in the <a href="../../patterns/slider/slider-pattern.html">slider pattern</a> and <a href="../../patterns/slider-multithumb/slider-multithumb-pattern.html">slider (multi-thumb) pattern</a>.
+        </p>
+        <p>
+          The following example shows a temperature controller.
+          In this example, <code>aria-valuenow</code> is meaningful to the user, and so <code>aria-valuetext</code> is not used.
+        </p>
         <pre><code>&lt;div class="rail"&gt;
   &lt;div id="thumb" role="slider" aria-valuemin="50" aria-valuenow="68" aria-valuemax="100"
     aria-label="Temperature (F)" tabindex="0"&gt;
@@ -238,7 +277,11 @@
 </code></pre>
         <p>The slider example above can be made using the HTML <code>&lt;input type="range"&gt;</code> element.</p>
         <pre><code>&lt;input type="range" min="50" value="68" max="100" aria-label="Temperature (F)"&gt;</code></pre>
-        <p>The following example is a fan control. The <code>aria-valuenow</code> value is "1", which is not meaningful to the user. The <code>aria-valuetext</code> property is used so that assistive technology will surface its value ("low") instead.</p>
+        <p>
+          The following example is a fan control.
+          The <code>aria-valuenow</code> value is "1", which is not meaningful to the user.
+          The <code>aria-valuetext</code> property is used so that assistive technology will surface its value ("low") instead.
+        </p>
         <pre><code>&lt;div class="rail"&gt;
   &lt;div id="thumb" role="slider" aria-valuemin="0" aria-valuenow="1" aria-valuemax="3"
     aria-valuetext="low" aria-label="Fan speed" tabindex="0" &gt;
@@ -254,7 +297,14 @@
       <section id="range_related_properties_spinbutton_role">
         <h2>Range properties with spin buttons</h2>
 
-        <p>The <code>aria-valuemin</code> and <code>aria-valuemax</code> properties are used only when a <code>spinbutton</code> has a defined range. They do not have default values, so if they are not specified, range limits will not be exposed to assistive technologies. Similarly, the <code>aria-valuenow</code> property is set only when a <code>spinbutton</code> has a value. If it is not set, a value is not exposed to assistive technologies for the <code>spinbutton</code>. <code>aria-valuetext</code> can be used when appropriate. A detailed description of the <code>spinbutton</code> role can be found in the <a href="../../patterns/spinbutton/spinbutton-pattern.html">spinbutton pattern</a>.</p>
+        <p>
+          The <code>aria-valuemin</code> and <code>aria-valuemax</code> properties are used only when a <code>spinbutton</code> has a defined range.
+          They do not have default values, so if they are not specified, range limits will not be exposed to assistive technologies.
+          Similarly, the <code>aria-valuenow</code> property is set only when a <code>spinbutton</code> has a value.
+          If it is not set, a value is not exposed to assistive technologies for the <code>spinbutton</code>.
+          <code>aria-valuetext</code> can be used when appropriate.
+          A detailed description of the <code>spinbutton</code> role can be found in the <a href="../../patterns/spinbutton/spinbutton-pattern.html">spinbutton pattern</a>.
+        </p>
 
         <p>The following example sets the price of paperclips in cents.</p>
 

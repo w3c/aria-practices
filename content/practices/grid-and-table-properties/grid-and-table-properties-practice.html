@@ -18,17 +18,18 @@
 
       <section id="introduction">
         <h2>Introduction</h2>
-        <p>
-          To fully present and describe a grid or table, in addition to parsing the headers, rows, and cells using the roles described in the
-          <a href="../../patterns/grid/grid-pattern.html">grid pattern</a> or <a href="../../patterns/table/table-pattern.html">table pattern</a>, assistive technologies need to be able to determine:
-        </p>
+        <p>To fully present and describe a grid or table, in addition to parsing the headers, rows, and cells using the roles described in the <a href="../../patterns/grid/grid-pattern.html">grid pattern</a> or <a href="../../patterns/table/table-pattern.html">table pattern</a>, assistive technologies need to be able to determine:</p>
         <ul>
           <li>The number of rows and columns.</li>
           <li>Whether any columns or rows are hidden, e.g., columns 1 through 3 and 5 through 8 are visible but column 4 is hidden.</li>
           <li>Whether a cell spans multiple rows or columns.</li>
           <li>Whether and how data is sorted.</li>
         </ul>
-        <p>Browsers automatically populate their accessibility tree with the number of rows and columns in a grid or table based on the rendered DOM. However, there are many situations where the DOM does not contain the whole grid or table, such as when the data set is too large to fully render. Additionally, some of this information, like skipped columns or rows and how data is sorted, cannot be derived from the DOM structure.</p>
+        <p>
+          Browsers automatically populate their accessibility tree with the number of rows and columns in a grid or table based on the rendered DOM.
+          However, there are many situations where the DOM does not contain the whole grid or table, such as when the data set is too large to fully render.
+          Additionally, some of this information, like skipped columns or rows and how data is sorted, cannot be derived from the DOM structure.
+        </p>
         <p>The below sections explain how to use the following properties that ARIA provides for grid and table accessibility.</p>
         <table class="widget-features">
           <caption>
@@ -86,15 +87,26 @@
       <section id="gridAndTableProperties_rows">
         <h2>Using <code>aria-rowcount</code> and <code>aria-rowindex</code></h2>
         <p>When the number of rows represented by the DOM structure is not the total number of rows available for a table, grid, or treegrid, the <code>aria-rowcount</code> property is used to communicate the total number of rows available, and it is accompanied by the <code>aria-rowindex</code> property to identify the row indices of the rows that are present in the DOM.</p>
-        <p>The <code>aria-rowcount</code> is specified on the element with the <code>table</code>, <code>grid</code>, or <code>treegrid</code> role. Its value is an integer equal to the total number of rows available, including header rows. If the total number of rows is unknown, a value of <code>-1</code> may be specified. Using a value of <code>-1</code> indicates that more rows are available to include in the DOM without specifying the size of the available supply.</p>
-        <p>When <code>aria-rowcount</code> is used on a <code>table</code>, <code>grid</code>, or <code>treegrid</code>, a value for <code>aria-rowindex</code> property is specified on each of its descendant rows, including any header rows. The value of <code>aria-rowindex</code> is an integer that is:</p>
+        <p>
+          The <code>aria-rowcount</code> is specified on the element with the <code>table</code>, <code>grid</code>, or <code>treegrid</code> role.
+          Its value is an integer equal to the total number of rows available, including header rows.
+          If the total number of rows is unknown, a value of <code>-1</code> may be specified.
+          Using a value of <code>-1</code> indicates that more rows are available to include in the DOM without specifying the size of the available supply.
+        </p>
+        <p>
+          When <code>aria-rowcount</code> is used on a <code>table</code>, <code>grid</code>, or <code>treegrid</code>, a value for <code>aria-rowindex</code> property is specified on each of its descendant rows, including any header rows.
+          The value of <code>aria-rowindex</code> is an integer that is:
+        </p>
         <ol>
           <li>Greater than or equal to 1.</li>
           <li>Greater than the value of <code>aria-rowindex</code> on any previous rows.</li>
           <li>Set to the index of the first row in the span if cells span multiple rows.</li>
           <li>Less than or equal to the total number of rows.</li>
         </ol>
-        <p><strong>WARNING!</strong> Missing or inconsistent values of <code>aria-rowindex</code> could have devastating effects on assistive technology behavior. For example, specifying an invalid value for <code>aria-rowindex</code> or setting it on some but not all rows in a table, could cause screen reader table reading functions to skip rows or simply stop functioning.</p>
+        <p>
+          <strong>WARNING!</strong> Missing or inconsistent values of <code>aria-rowindex</code> could have devastating effects on assistive technology behavior.
+          For example, specifying an invalid value for <code>aria-rowindex</code> or setting it on some but not all rows in a table, could cause screen reader table reading functions to skip rows or simply stop functioning.
+        </p>
         <p>The following code demonstrates the use of <code>aria-rowcount</code> and <code>aria-rowindex</code> properties on a table containing a hypothetical class list.</p>
         <pre><code>&lt;!--
   aria-rowcount tells assistive technologies the actual size of the grid
@@ -157,22 +169,36 @@
       <section id="gridAndTableProperties_cols">
         <h2>Using <code>aria-colcount</code> and <code>aria-colindex</code></h2>
         <p>When the number of columns represented by the DOM structure is not the total number of columns available for a table, grid, or treegrid, the <code>aria-colcount</code> property is used to communicate the total number of columns available, and it is accompanied by the <code>aria-colindex</code> property to identify the column indices of the columns that are present in the DOM.</p>
-        <p>The <code>aria-colcount</code> is specified on the element with the <code>table</code>, <code>grid</code>, or <code>treegrid</code> role. Its value is an integer equal to the total number of columns available. If the total number of columns is unknown, a value of <code>-1</code> may be specified. Using a value of <code>-1</code> indicates that more columns are available to include in the DOM without specifying the size of the available supply.</p>
-        <p>When <code>aria-colcount</code> is used on a <code>table</code>, <code>grid</code>, or <code>treegrid</code>, a value for <code>aria-colindex</code> property is either specified on each of its descendant rows or on every cell in each descendant row, depending on whether the columns are contiguous as described below. The value of <code>aria-colindex</code> is an integer that is:</p>
+        <p>
+          The <code>aria-colcount</code> is specified on the element with the <code>table</code>, <code>grid</code>, or <code>treegrid</code> role.
+          Its value is an integer equal to the total number of columns available.
+          If the total number of columns is unknown, a value of <code>-1</code> may be specified.
+          Using a value of <code>-1</code> indicates that more columns are available to include in the DOM without specifying the size of the available supply.
+        </p>
+        <p>
+          When <code>aria-colcount</code> is used on a <code>table</code>, <code>grid</code>, or <code>treegrid</code>, a value for <code>aria-colindex</code> property is either specified on each of its descendant rows or on every cell in each descendant row, depending on whether the columns are contiguous as described below.
+          The value of <code>aria-colindex</code> is an integer that is:
+        </p>
         <ol>
           <li>Greater than or equal to 1.</li>
           <li>When set on a cell, greater than the value set on any previous cell within the same row.</li>
           <li>Set to the index of the first column in the span if a cell spans multiple columns.</li>
           <li>Less than or equal to the total number of columns.</li>
         </ol>
-        <p><strong>WARNING!</strong> Missing or inconsistent values of <code>aria-colindex</code> could have devastating effects on assistive technology behavior. For example, specifying an invalid value for <code>aria-colindex</code> or setting it on some but not all cells in a row, could cause screen reader table reading functions to skip cells or simply stop functioning.</p>
+        <p>
+          <strong>WARNING!</strong> Missing or inconsistent values of <code>aria-colindex</code> could have devastating effects on assistive technology behavior.
+          For example, specifying an invalid value for <code>aria-colindex</code> or setting it on some but not all cells in a row, could cause screen reader table reading functions to skip cells or simply stop functioning.
+        </p>
         <section id="gridAndTableProperties_cols_contiguous">
           <h3>Using <code>aria-colindex</code> When Column Indices Are Contiguous</h3>
           <p>
-            When all the cells in a row have column index numbers that are consecutive integers,
-            <code>aria-colindex</code> can be set on the row element with a value equal to the index number of the first column in the set. Browsers will then compute a column number for each cell in the row.
+            When all the cells in a row have column index numbers that are consecutive integers, <code>aria-colindex</code> can be set on the row element with a value equal to the index number of the first column in the set.
+            Browsers will then compute a column number for each cell in the row.
           </p>
-          <p>The following code shows a grid with 16 columns, of which columns 2 through 5 are displayed to the user. Because the set of columns is contiguous, <code>aria-colindex</code> can be placed on each row.</p>
+          <p>
+            The following code shows a grid with 16 columns, of which columns 2 through 5 are displayed to the user.
+            Because the set of columns is contiguous, <code>aria-colindex</code> can be placed on each row.
+          </p>
           <pre><code>&lt;div role="grid" aria-colcount="16"&gt;
   &lt;div role="rowgroup"&gt;
     &lt;div role="row" <strong>aria-colindex="2"</strong>&gt;
@@ -202,7 +228,12 @@
         </section>
         <section id="gridAndTableProperties_cols_noncontiguous">
           <h3>Using <code>aria-colindex</code> When Column Indices Are Not Contiguous</h3>
-          <p>When the cells in a row have column index numbers that are not consecutive integers, <code>aria-colindex</code> needs to be set on each cell in the row. The following example shows a grid for an online grade book where the first two columns contain a student name and subsequent columns contain scores. In this example, the first two columns with the student name are shown, but the score columns have been scrolled to show columns 10 through 13. Columns 3 through 9 are not visible so are not in the DOM.</p>
+          <p>
+            When the cells in a row have column index numbers that are not consecutive integers, <code>aria-colindex</code> needs to be set on each cell in the row.
+            The following example shows a grid for an online grade book where the first two columns contain a student name and subsequent columns contain scores.
+            In this example, the first two columns with the student name are shown, but the score columns have been scrolled to show columns 10 through 13.
+            Columns 3 through 9 are not visible so are not in the DOM.
+          </p>
           <pre><code>&lt;table role=&quot;grid&quot; aria-rowcount=&quot;463&quot; aria-colcount=&quot;13&quot;&gt;
   aria-label=&quot;Student grades for history 101&quot;
   &lt;!--
@@ -276,7 +307,11 @@
           <li>0 means the cell spans all the remaining rows in its row group.</li>
           <li>less than the value that would cause the cell to overlap the next cell in the same column.</li>
         </ol>
-        <p>The following example grid has a two row header. The first two columns have headers that span both rows of the header. The subsequent 6 columns are grouped into 3 pairs with headers in the first row that each span two columns.</p>
+        <p>
+          The following example grid has a two row header.
+          The first two columns have headers that span both rows of the header.
+          The subsequent 6 columns are grouped into 3 pairs with headers in the first row that each span two columns.
+        </p>
         <pre><code>&lt;div role=&quot;grid&quot; aria-rowcount=&quot;463&quot;
   aria-label=&quot;Student grades for history 101&quot;&gt;
   &lt;div role=&quot;rowgroup&quot;&gt;
@@ -339,12 +374,12 @@
 
       <section id="gridAndTableProperties_sort">
         <h2>Indicating sort order with <code>aria-sort</code></h2>
-        <p>When rows or columns are sorted, the <code>aria-sort</code> property can be applied to a column or row header to indicate the sorting method. The following table describes allowed values for <code>aria-sort</code>.</p>
+        <p>
+          When rows or columns are sorted, the <code>aria-sort</code> property can be applied to a column or row header to indicate the sorting method.
+          The following table describes allowed values for <code>aria-sort</code>.
+        </p>
         <table class="widget-features">
-          <caption>
-            Description of values for
-            <code>aria-sort</code>
-          </caption>
+          <caption>Description of values for <code>aria-sort</code></caption>
           <thead>
             <tr>
               <th>Value</th>
@@ -370,7 +405,10 @@
             </tr>
           </tbody>
         </table>
-        <p>It is important to note that ARIA does not provide a way to indicate levels of sort for data sets that have multiple sort keys. Thus, there is limited value to applying <code>aria-sort</code> with a value other than <code>none</code> to more than one column or row.</p>
+        <p>
+          It is important to note that ARIA does not provide a way to indicate levels of sort for data sets that have multiple sort keys.
+          Thus, there is limited value to applying <code>aria-sort</code> with a value other than <code>none</code> to more than one column or row.
+        </p>
         <p>The following example grid uses <code>aria-sort</code> to indicate the rows are sorted from the highest "Quiz 2" score to the lowest "Quiz 2" score.</p>
         <pre><code>&lt;table role=&quot;grid&quot; aria-rowcount=&quot;463&quot; aria-colcount=&quot;13&quot;
   aria-label=&quot;Student grades for history 101&quot;&gt;

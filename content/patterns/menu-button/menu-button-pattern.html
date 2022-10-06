@@ -18,7 +18,10 @@
 
       <section id="about">
         <h2>About This Pattern</h2>
-        <p>A menu button is a <a href="../button/button-pattern.html">button</a> that opens a menu as described in the <a href="../menubar/menu-and-menubar-pattern.html">Menu and Menubar Pattern</a>. It is often styled as a typical push button with a downward pointing arrow or triangle to hint that activating the button will display a menu.</p>
+        <p>
+          A menu button is a <a href="../button/button-pattern.html">button</a> that opens a menu as described in the <a href="../menubar/menu-and-menubar-pattern.html">Menu and Menubar Pattern</a>.
+          It is often styled as a typical push button with a downward pointing arrow or triangle to hint that activating the button will display a menu.
+        </p>
       </section>
 
       <section id="examples">
@@ -52,18 +55,15 @@
           <li>The element that opens the menu has role <a href="#button" class="role-reference">button</a>.</li>
           <li>The element with role <code>button</code> has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>.</li>
           <li>
-            When the menu is displayed, the element with role <code>button</code> has
-            <a href="#aria-expanded" class="state-reference">aria-expanded</a>
-            set to <code>true</code>. When the menu is hidden, it is recommended that <code>aria-expanded</code> is not present. If <code>aria-expanded</code> is specified when the menu is hidden, it is set to <code>false</code>.
+            When the menu is displayed, the element with role <code>button</code> has <a href="#aria-expanded" class="state-reference">aria-expanded</a> set to <code>true</code>.
+            When the menu is hidden, it is recommended that <code>aria-expanded</code> is not present.
+            If <code>aria-expanded</code> is specified when the menu is hidden, it is set to <code>false</code>.
           </li>
           <li>
-            The element that contains the menu items displayed by activating the button has role
-            <a href="#menu" class="role-reference">menu</a>.
+            The element that contains the menu items displayed by activating the button has role <a href="#menu" class="role-reference">menu</a>.
           </li>
           <li>
-            Optionally, the element with role <code>button</code> has a value specified for
-            <a href="#aria-controls" class="property-reference">aria-controls</a>
-            that refers to the element with role <code>menu</code>.
+            Optionally, the element with role <code>button</code> has a value specified for <a href="#aria-controls" class="property-reference">aria-controls</a> that refers to the element with role <code>menu</code>.
           </li>
           <li>Additional roles, states, and properties needed for the menu element are described in the <a href="../menubar/menu-and-menubar-pattern.html">Menu and Menubar Pattern</a>.</li>
         </ul>

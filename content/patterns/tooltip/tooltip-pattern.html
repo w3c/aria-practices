@@ -19,19 +19,22 @@
       <section id="about">
         <h2>About This Pattern</h2>
         <p>
-          <strong>NOTE:</strong> This design pattern is work in progress; it does not yet have task force consensus. Progress and discussions are captured in
-          <a href="https://github.com/w3c/aria-practices/issues/128">issue 128.</a>
+          <strong>NOTE:</strong> This design pattern is work in progress; it does not yet have task force consensus.
+          Progress and discussions are captured in <a href="https://github.com/w3c/aria-practices/issues/128">issue 128.</a>
         </p>
-        <p>A tooltip is a popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it. It typically appears after a small delay and disappears when <kbd>Escape</kbd> is pressed or on mouse out.</p>
-        <p>Tooltip widgets do not receive focus. A hover that contains focusable elements can be made using a non-modal dialog.</p>
+        <p>
+          A tooltip is a popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
+          It typically appears after a small delay and disappears when <kbd>Escape</kbd> is pressed or on mouse out.
+        </p>
+        <p>
+          Tooltip widgets do not receive focus.
+          A hover that contains focusable elements can be made using a non-modal dialog.
+        </p>
       </section>
 
       <section id="examples">
         <h2>Example</h2>
-        <p>
-          Work to develop a tooltip example is tracked by
-          <a href="https://github.com/w3c/aria-practices/issues/127">issue 127.</a>
-        </p>
+        <p>Work to develop a tooltip example is tracked by <a href="https://github.com/w3c/aria-practices/issues/127">issue 127.</a></p>
       </section>
 
       <section id="keyboard_interaction">
@@ -39,7 +42,10 @@
         <p><kbd>Escape</kbd>: Dismisses the Tooltip.</p>
         <ol class="note">
           <li>Focus stays on the triggering element while the tooltip is displayed.</li>
-          <li>If the tooltip is invoked when the trigger element receives focus, then it is dismissed when it no longer has focus (onBlur). If the tooltip is invoked with mouseIn, then it is dismissed with on mouseOut.</li>
+          <li>
+            If the tooltip is invoked when the trigger element receives focus, then it is dismissed when it no longer has focus (onBlur).
+            If the tooltip is invoked with mouseIn, then it is dismissed with on mouseOut.
+          </li>
         </ol>
       </section>
 
