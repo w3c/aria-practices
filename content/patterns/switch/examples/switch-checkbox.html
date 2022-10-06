@@ -30,7 +30,10 @@
 
       <section>
         <h2>About This Example</h2>
-        <p>This example illustrates implementing the <a href="../switch-pattern.html">Switch Pattern</a> with an HTML <code>input[type="checkbox"]</code> as the switch element and using CSS borders to provide graphical rendering of switch states. It also demonstrates using the HTML <code>fieldset</code> and <code>legend</code> elements to present multiple switches in a labeled group.</p>
+        <p>
+          This example illustrates implementing the <a href="../switch-pattern.html">Switch Pattern</a> with an HTML <code>input[type="checkbox"]</code> as the switch element and using CSS borders to provide graphical rendering of switch states.
+          It also demonstrates using the HTML <code>fieldset</code> and <code>legend</code> elements to present multiple switches in a labeled group.
+        </p>
         <p>Similar examples include:</p>
         <ul>
           <li><a href="switch.html">Switch Example</a>: A switch based on a <code>div</code> element that turns a notification preference on and off.</li>
@@ -79,7 +82,8 @@
         <ul>
           <li>To help assistive technology users understand that each switch belongs to a set of switches related to <q>Accessibility Preferences</q>, the switches are wrapped in a <code>fieldset</code> element labeled with a <code>legend</code> element.</li>
           <li>
-            To make understanding the state of the switch easier for users with visual or cognitive disabilities, a text equivalent of the state (<q>on</q> or <q>off</q>) is displayed adjacent to the graphical state indicator. CSS attribute selectors ensure the label displayed is synchronized with the value of the <code>input</code>.<br>
+            To make understanding the state of the switch easier for users with visual or cognitive disabilities, a text equivalent of the state (<q>on</q> or <q>off</q>) is displayed adjacent to the graphical state indicator.
+            CSS attribute selectors ensure the label displayed is synchronized with the value of the <code>input</code>.<br>
             <strong>NOTE:</strong> To prevent redundant announcement of the state by screen readers, the text indicators of state are hidden from assistive technologies with <code>aria-hidden</code>.
           </li>
           <li>
@@ -95,7 +99,12 @@
               <li>To make it easier to perceive focus and the relationship between a label and its associated switch, focus creates a border around both the switch and the label and also changes the background color.</li>
               <li>To make it easier to perceive that clicking either the label or switch will activate the switch, the hover indicator is the same as the focus indicator.</li>
               <li>To help people with visual impairments identify the switch as an interactive element, the cursor is changed to a pointer when hovering over the switch.</li>
-              <li>Note: Because transparent borders are visible on some systems with operating system high contrast settings enabled, transparency cannot be used to create a visual difference between the element that is focused an other elements. Instead of using transparency, the focused element has a thicker border and less padding. When an element receives focus, its border changes from zero to two pixels and padding is reduced by two pixels. When an element loses focus, its border changes from two pixels to two and padding is increased by two pixels.</li>
+              <li>
+                Note: Because transparent borders are visible on some systems with operating system high contrast settings enabled, transparency cannot be used to create a visual difference between the element that is focused an other elements.
+                Instead of using transparency, the focused element has a thicker border and less padding.
+                When an element receives focus, its border changes from zero to two pixels and padding is reduced by two pixels.
+                When an element loses focus, its border changes from two pixels to two and padding is increased by two pixels.
+              </li>
             </ul>
           </li>
         </ul>

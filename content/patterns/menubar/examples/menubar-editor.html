@@ -32,9 +32,9 @@
       <section>
         <h2>About This Example</h2>
         <p>
-          The following example demonstrates using the
-          <a href="../menu-and-menubar-pattern.html">Menubar Pattern</a>
-          to provide access to editing actions for a text area. Each item in the menubar identifies a category of text formatting actions that can be executed from its submenu. The submenus demonstrate <code>menuitemradio</code> and <code>menuitemcheckbox</code> elements.
+          The following example demonstrates using the <a href="../menu-and-menubar-pattern.html">Menubar Pattern</a> to provide access to editing actions for a text area.
+          Each item in the menubar identifies a category of text formatting actions that can be executed from its submenu.
+          The submenus demonstrate <code>menuitemradio</code> and <code>menuitemcheckbox</code> elements.
         </p>
         <p>Similar examples include:</p>
         <ul>
@@ -137,13 +137,22 @@
       <section>
         <h2>Accessibility Features</h2>
         <ul>
-          <li>Disabled menu items are demonstrated in the font size menu. If the font is set to its smallest size, the <q>Smaller</q> menu item is disabled. Similarly, if the font is set to its largest size, the <q>Larger</q> menu item is disabled.</li>
+          <li>
+            Disabled menu items are demonstrated in the font size menu.
+            If the font is set to its smallest size, the <q>Smaller</q> menu item is disabled.
+            Similarly, if the font is set to its largest size, the <q>Larger</q> menu item is disabled.
+          </li>
           <li>Users of assistive technologies can identify the currently active format options because they are represented by menu item radio and menu item checkbox elements that have a checked state.</li>
           <li>To prevent the character entities that visually represent The down arrow and checked icons from being announced by screen readers, they are hidden from the accessible name computation with the <code>aria-hidden</code> attribute.</li>
           <li>To help communicate that the arrow keys are available for directional navigation within the menubar and its submenus, a border is added to the menubar container when focus is within the menubar.</li>
-          <li>Like most desktop menubars, submenus open on mouse hover over a parent item in the menubar only if another submenu is already open. That is, if all submenus are closed, a click on a parent menu item is required to display a submenu. Minimizing automatic popups triggered by hover makes exploring with a screen magnifier easier.</li>
           <li>
-            In general, moving focus in response to mouse hover is avoided in accessible widgets; it causes unexpected context changes for keyboard users. However, like desktop menubars, there are two conditions in this example menubar where focus moves in response to hover in order to help maintain context for users who use both keyboard and mouse:
+            Like most desktop menubars, submenus open on mouse hover over a parent item in the menubar only if another submenu is already open.
+            That is, if all submenus are closed, a click on a parent menu item is required to display a submenu.
+            Minimizing automatic popups triggered by hover makes exploring with a screen magnifier easier.
+          </li>
+          <li>
+            In general, moving focus in response to mouse hover is avoided in accessible widgets; it causes unexpected context changes for keyboard users.
+            However, like desktop menubars, there are two conditions in this example menubar where focus moves in response to hover in order to help maintain context for users who use both keyboard and mouse:
             <ul>
               <li>After a parent menu item in the menubar has been activated and the user hovers over a different parent item in the menubar, focus will follow hover.</li>
               <li>When a submenu is open and the user hovers over an item in the submenu, focus follows hover.</li>
@@ -172,7 +181,10 @@
               <th>
                 <kbd>Escape</kbd>
               </th>
-              <td>If a submenu is open, closes it. Otherwise, does nothing.</td>
+              <td>
+                If a submenu is open, closes it.
+                Otherwise, does nothing.
+              </td>
             </tr>
             <tr data-test-id="menubar-key-right-arrow">
               <th>
@@ -355,10 +367,7 @@
               <td>
                 <ul>
                   <li>Identifies the element as a <code>menubar</code> container for a set of <code>menuitem</code> elements.</li>
-                  <li>
-                    The menubar element is not focusable because it implements the practice described in
-                    <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.
-                  </li>
+                  <li>The menubar element is not focusable because it implements the practice described in <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.</li>
                 </ul>
               </td>
             </tr>
@@ -494,8 +503,7 @@
                 <ul>
                   <li>Identifies the element as a menu container for a set of menu items.</li>
                   <li>
-                    The menu element is not focusable because it implements the practice described in the section on
-                    <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.
+                    The menu element is not focusable because it implements the practice described in the section on <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.
                   </li>
                 </ul>
               </td>

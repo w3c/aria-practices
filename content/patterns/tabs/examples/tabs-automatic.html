@@ -30,7 +30,12 @@
 
       <section>
         <h2>About This Example</h2>
-        <p>This example section demonstrates a tabs widget that implements the <a href="../tabs-pattern.html">Tabs Pattern</a>. In this example, a tab is automatically activated and its associated panel is displayed when the tab receives focus. It is recommended that authors consider implementing automatic activation of tabs <strong>only in</strong> circumstances where panels can be displayed instantly, i.e., all panel content is present in the DOM. For additional guidance, see <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.</p>
+        <p>
+          This example section demonstrates a tabs widget that implements the <a href="../tabs-pattern.html">Tabs Pattern</a>.
+          In this example, a tab is automatically activated and its associated panel is displayed when the tab receives focus.
+          It is recommended that authors consider implementing automatic activation of tabs <strong>only in</strong> circumstances where panels can be displayed instantly, i.e., all panel content is present in the DOM.
+          For additional guidance, see <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
+        </p>
         <p>Similar examples include:</p>
         <ul>
           <li><a href="tabs-manual.html">Example of Tabs with Manual Activation</a>: A tabs widget where users activate a tab and display its panel by pressing <kbd>Space</kbd> or <kbd>Enter</kbd>.</li>
@@ -61,16 +66,33 @@
             </div>
 
             <div id="tabpanel-1" role="tabpanel" tabindex="0" aria-labelledby="tab-1">
-              <p>Maria Theresia Ahlefeldt (16 January 1755 – 20 December 1810) was a Danish, (originally German), composer. She is known as the first female composer in Denmark. Maria Theresia composed music for several ballets, operas, and plays of the royal theatre. She was given good critic as a composer and described as a “<span lang="da">virkelig Tonekunstnerinde</span>” ('a True Artist of Music').</p>
+              <p>
+                Maria Theresia Ahlefeldt (16 January 1755 – 20 December 1810) was a Danish, (originally German), composer.
+                She is known as the first female composer in Denmark.
+                Maria Theresia composed music for several ballets, operas, and plays of the royal theatre.
+                She was given good critic as a composer and described as a “<span lang="da">virkelig Tonekunstnerinde</span>” ('a True Artist of Music').
+              </p>
             </div>
             <div id="tabpanel-2" role="tabpanel" tabindex="0" aria-labelledby="tab-2" class="is-hidden">
-              <p>Carl Joachim Andersen (29 April 1847 – 7 May 1909) was a Danish flutist, conductor and composer born in Copenhagen, son of the flutist Christian Joachim Andersen. Both as a virtuoso and as composer of flute music, he is considered one of the best of his time. He was considered to be a tough leader and teacher and demanded as such a lot from his orchestras but through that style he reached a high level.</p>
+              <p>
+                Carl Joachim Andersen (29 April 1847 – 7 May 1909) was a Danish flutist, conductor and composer born in Copenhagen, son of the flutist Christian Joachim Andersen.
+                Both as a virtuoso and as composer of flute music, he is considered one of the best of his time.
+                He was considered to be a tough leader and teacher and demanded as such a lot from his orchestras but through that style he reached a high level.
+              </p>
             </div>
             <div id="tabpanel-3" role="tabpanel" tabindex="0" aria-labelledby="tab-3" class="is-hidden">
-              <p>Ida Henriette da Fonseca (July 27, 1802 – July 6, 1858) was a Danish opera singer and composer. Ida Henriette da Fonseca was the daughter of Abraham da Fonseca (1776–1849) and Marie Sofie Kiærskou (1784–1863). She and her sister Emilie da Fonseca were students of Giuseppe Siboni, choir master of the Opera in Copenhagen. She was given a place at the royal Opera alongside her sister the same year she debuted in 1827.</p>
+              <p>
+                Ida Henriette da Fonseca (July 27, 1802 – July 6, 1858) was a Danish opera singer and composer.
+                Ida Henriette da Fonseca was the daughter of Abraham da Fonseca (1776–1849) and Marie Sofie Kiærskou (1784–1863).
+                She and her sister Emilie da Fonseca were students of Giuseppe Siboni, choir master of the Opera in Copenhagen.
+                She was given a place at the royal Opera alongside her sister the same year she debuted in 1827.
+              </p>
             </div>
             <div id="tabpanel-4" role="tabpanel" tabindex="0" aria-labelledby="tab-4" class="is-hidden">
-              <p>Peter Erasmus Lange-Müller (1 December 1850 – 26 February 1926) was a Danish composer and pianist. His compositional style was influenced by Danish folk music and by the work of Robert Schumann; Johannes Brahms; and his Danish countrymen, including J.P.E. Hartmann.</p>
+              <p>
+                Peter Erasmus Lange-Müller (1 December 1850 – 26 February 1926) was a Danish composer and pianist.
+                His compositional style was influenced by Danish folk music and by the work of Robert Schumann; Johannes Brahms; and his Danish countrymen, including J.P.E. Hartmann.
+              </p>
             </div>
           </div>
         </div>
@@ -80,13 +102,26 @@
       <section>
         <h2>Accessibility Features</h2>
         <ul>
-          <li>To make it easy for screen reader users to navigate from a tab to the beginning of content in the active <code>tabpanel</code>, the <code>tabpanel</code> element has <code>tabindex="0"</code> to include the panel in the page <kbd>Tab</kbd> sequence. It is recommended that all <code>tabpanel</code> elements in a tab set are focusable if there are any panels in the set that contain content where the first element in the panel is not focusable.</li>
+          <li>
+            To make it easy for screen reader users to navigate from a tab to the beginning of content in the active <code>tabpanel</code>, the <code>tabpanel</code> element has <code>tabindex="0"</code> to include the panel in the page <kbd>Tab</kbd> sequence.
+            It is recommended that all <code>tabpanel</code> elements in a tab set are focusable if there are any panels in the set that contain content where the first element in the panel is not focusable.
+          </li>
           <li>
             To ensure people who rely on browser or operating system high contrast settings can both distinguish the active (selected) tab from other tabs and perceive keyboard focus:
             <ul>
-              <li>The active tab has a 2 pixel border on its left and right sides and a 4 pixel border on top, while the names of inactive tabs have 1 pixel borders. The active tab is also 4 pixels higher than the inactive tabs.</li>
-              <li>The focus ring is drawn with a CSS border on a child <code>span</code> element of the tab element. This focus span is separated from the tab border by 2 pixels of space to ensure focus and selection are separately perceivable. Note that when a tab element is focused, the outline of the tab element itself is set to 0 so that only one focus ring is displayed.</li>
-              <li>Because transparent borders are visible on some systems when high contrast settings are enabled, only the focused <code>span</code> element has a visible border. When <code>span</code> elements are not indicating focus, they have a 0-width border and additional padding equal in width to the border that is used to indicate focus.</li>
+              <li>
+                The active tab has a 2 pixel border on its left and right sides and a 4 pixel border on top, while the names of inactive tabs have 1 pixel borders.
+                The active tab is also 4 pixels higher than the inactive tabs.
+              </li>
+              <li>
+                The focus ring is drawn with a CSS border on a child <code>span</code> element of the tab element.
+                This focus span is separated from the tab border by 2 pixels of space to ensure focus and selection are separately perceivable.
+                Note that when a tab element is focused, the outline of the tab element itself is set to 0 so that only one focus ring is displayed.
+              </li>
+              <li>
+                Because transparent borders are visible on some systems when high contrast settings are enabled, only the focused <code>span</code> element has a visible border.
+                When <code>span</code> elements are not indicating focus, they have a 0-width border and additional padding equal in width to the border that is used to indicate focus.
+              </li>
             </ul>
           </li>
         </ul>
@@ -216,10 +251,7 @@
               </td>
               <td>
                 <ul>
-                  <li>
-                    Indicates the tab is not selected and its associated tabpanel is <strong>NOT</strong>
-                    displayed.
-                  </li>
+                  <li>Indicates the tab is not selected and its associated tabpanel is <strong>NOT</strong> displayed.</li>
                   <li>Set for all tab elements in the tab set except the tab that is selected.</li>
                 </ul>
               </td>

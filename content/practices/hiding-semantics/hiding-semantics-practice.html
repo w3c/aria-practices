@@ -19,10 +19,9 @@
       <section id="introduction">
         <h2>Introduction</h2>
         <p>
-          While ARIA is primarily used to express semantics, there are some situations where hiding an element’s semantics from assistive technologies is helpful. This is done with the
-          <a href="#presentation" class="role-reference">presentation</a>
-          role, which declares that an element is being used only for presentation and therefore does not have any accessibility semantics. The ARIA 1.1 specification also includes role
-          <a href="#none" class="role-reference">none</a>, which serves as a synonym for <code>presentation</code>.
+          While ARIA is primarily used to express semantics, there are some situations where hiding an element’s semantics from assistive technologies is helpful.
+          This is done with the <a href="#presentation" class="role-reference">presentation</a> role, which declares that an element is being used only for presentation and therefore does not have any accessibility semantics.
+          The ARIA 1.1 specification also includes role <a href="#none" class="role-reference">none</a>, which serves as a synonym for <code>presentation</code>.
         </p>
         <p>For example, consider a tabs widget built using an HTML <code>ul</code> element.</p>
         <pre><code>&lt;ul role=&quot;tablist&quot;&gt;
@@ -37,7 +36,12 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 </code></pre>
-        <p>Because the list is declared to be a tablist, the list items are not in a list context. It could confuse users if an assistive technology were to render those list items. Applying role <code>presentation</code> to the <code>li</code> elements tells browsers to leave those elements out of their accessibility tree. Assistive technologies will thus be unaware of the list item elements and see the tab elements as immediate children of the tablist.</p>
+        <p>
+          Because the list is declared to be a tablist, the list items are not in a list context.
+          It could confuse users if an assistive technology were to render those list items.
+          Applying role <code>presentation</code> to the <code>li</code> elements tells browsers to leave those elements out of their accessibility tree.
+          Assistive technologies will thus be unaware of the list item elements and see the tab elements as immediate children of the tablist.
+        </p>
       </section>
 
       <section id="presentation_role_uses">
@@ -53,18 +57,26 @@
       <section id="presentation_role_effects">
         <h2>Effects of Role <code>presentation</code></h2>
         <p>
-          When <code>role="presentation"</code> is specified on an element, if a
-          <a href="#presentation_role_ignored">condition that requires a browser to ignore the <code>presentation</code> role</a>
-          does not exist, it has the following three effects.
+          When <code>role="presentation"</code> is specified on an element, if a <a href="#presentation_role_ignored">condition that requires a browser to ignore the <code>presentation</code> role</a> does not exist, it has the following three effects.
         </p>
         <ol>
           <li>The element’s implied ARIA role and any ARIA states and properties associated with that role are hidden from assistive technologies.</li>
-          <li>Text contained by the element, i.e., inner text, as well as inner text of all its descendant elements remains visible to assistive technologies. Of course, text is explicitly hidden, e.g., styled with <code>display: none</code> or has <code>aria-hidden="true"</code> is not visible to assistive technologies.</li>
           <li>
-            The roles, states, and properties of each descendant element remain visible to assistive technologies unless the descendant requires the context of the presentational element. For example:
+            Text contained by the element, i.e., inner text, as well as inner text of all its descendant elements remains visible to assistive technologies.
+            Of course, text is explicitly hidden, e.g., styled with <code>display: none</code> or has <code>aria-hidden="true"</code> is not visible to assistive technologies.
+          </li>
+          <li>
+            The roles, states, and properties of each descendant element remain visible to assistive technologies unless the descendant requires the context of the presentational element.
+            For example:
             <ul>
-              <li>If <code>presentation</code> is applied to a <code>ul</code> or <code>ol</code> element, each child <code>li</code> element inherits the <code>presentation</code> role because ARIA requires the <code>listitem</code> elements to have the parent <code>list</code> element. So, the <code>li</code> elements are not exposed to assistive technologies, but elements contained inside of those <code>li</code> elements, including nested lists, are visible to assistive technologies.</li>
-              <li>Similarly, if <code>presentation</code> is applied to a <code>table</code> element, the descendant <code>caption</code>, <code>thead</code>, <code>tbody</code>, <code>tfoot</code>, <code>tr</code>, <code>th</code>, and <code>td</code> elements inherit role <code>presentation</code> and are thus not exposed to assistive technologies. But, elements inside of the <code>th</code> and <code>td</code> elements, including nested tables, are exposed to assistive technologies.</li>
+              <li>
+                If <code>presentation</code> is applied to a <code>ul</code> or <code>ol</code> element, each child <code>li</code> element inherits the <code>presentation</code> role because ARIA requires the <code>listitem</code> elements to have the parent <code>list</code> element.
+                So, the <code>li</code> elements are not exposed to assistive technologies, but elements contained inside of those <code>li</code> elements, including nested lists, are visible to assistive technologies.
+              </li>
+              <li>
+                Similarly, if <code>presentation</code> is applied to a <code>table</code> element, the descendant <code>caption</code>, <code>thead</code>, <code>tbody</code>, <code>tfoot</code>, <code>tr</code>, <code>th</code>, and <code>td</code> elements inherit role <code>presentation</code> and are thus not exposed to assistive technologies.
+                But, elements inside of the <code>th</code> and <code>td</code> elements, including nested tables, are exposed to assistive technologies.
+              </li>
             </ul>
           </li>
         </ol>
@@ -75,10 +87,7 @@
         <p>Browsers ignore <code>role="presentation"</code>, and it therefore has no effect, if either of the following are true about the element to which it is applied:</p>
         <ul>
           <li>The element is focusable, e.g. it is natively focusable like an HTML link or input, or it has a <code>tabindex</code> attribute.</li>
-          <li>
-            The element has any
-            <a href="#global_states" class="specref">global ARIA states and properties</a>, e.g., <code>aria-label</code>.
-          </li>
+          <li>The element has any <a href="#global_states" class="specref">global ARIA states and properties</a>, e.g., <code>aria-label</code>.</li>
         </ul>
       </section>
 
@@ -98,7 +107,11 @@
 
       <section id="children_presentational">
         <h2>Roles That Automatically Hide Semantics by Making Their Descendants Presentational</h2>
-        <p>There are some types of user interface components that, when represented in a platform accessibility API, can only contain text. For example, accessibility APIs do not have a way of representing semantic elements contained in a button. To deal with this limitation, WAI-ARIA requires browsers to automatically apply role <code>presentation</code> to all descendant elements of any element with a role that cannot support semantic children.</p>
+        <p>
+          There are some types of user interface components that, when represented in a platform accessibility API, can only contain text.
+          For example, accessibility APIs do not have a way of representing semantic elements contained in a button.
+          To deal with this limitation, WAI-ARIA requires browsers to automatically apply role <code>presentation</code> to all descendant elements of any element with a role that cannot support semantic children.
+        </p>
         <p>The roles that require all children to be presentational are:</p>
         <ul>
           <li>button</li>
@@ -118,12 +131,14 @@
         </ul>
         <p>For instance, consider the following tab element, which contains a heading.</p>
         <pre><code>&lt;li role=&quot;tab&quot;&gt;&lt;h2&gt;Title of My Tab&lt;/h2&gt;&lt;/li&gt;</code></pre>
-        <p>Because WAI-ARIA requires descendants of tab to be presentational, the heading semantic is not exposed to assistive technology users. Thus, the following code is equivalent.</p>
+        <p>
+          Because WAI-ARIA requires descendants of tab to be presentational, the heading semantic is not exposed to assistive technology users.
+          Thus, the following code is equivalent.
+        </p>
         <pre><code>&lt;li role=&quot;tab&quot;&gt;&lt;h2 role=&quot;presentation&quot;&gt;Title of My Tab&lt;/h2&gt;&lt;/li&gt;</code></pre>
         <p>
-          So, from the perspective of anyone using a technology that relies on an accessibility API, such as a screen reader, the heading does not exist. As described above in the section on
-          <a href="#presentation_role_effects">Effects of Role <code>presentation</code></a
-          >, the previous code is equivalent to the following.
+          So, from the perspective of anyone using a technology that relies on an accessibility API, such as a screen reader, the heading does not exist.
+          As described above in the section on <a href="#presentation_role_effects">Effects of Role <code>presentation</code></a>, the previous code is equivalent to the following.
         </p>
         <pre><code>&lt;li role=&quot;tab&quot;&gt;Title of My Tab&lt;/li&gt;</code></pre>
       </section>

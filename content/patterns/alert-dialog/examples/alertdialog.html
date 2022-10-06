@@ -30,7 +30,10 @@
 
       <section>
         <h2>About This Example</h2>
-        <p>The below example of a confirmation prompt demonstrates the <a href="../alert-dialog-pattern.html">Alert Dialog Pattern</a>. It also includes an example of the <a href="../../alert/alert-pattern.html">Alert Pattern</a> to make comparing the experiences provided by the two patterns easy.</p>
+        <p>
+          The below example of a confirmation prompt demonstrates the <a href="../alert-dialog-pattern.html">Alert Dialog Pattern</a>.
+          It also includes an example of the <a href="../../alert/alert-pattern.html">Alert Pattern</a> to make comparing the experiences provided by the two patterns easy.
+        </p>
         <p>To use this example:</p>
         <ul>
           <li>
@@ -99,8 +102,14 @@
         <ul>
           <li>The accessible name of the alert dialog is set to its heading ("Confirmation").</li>
           <li>The dialog's prompt ("Are you sure...?") is referenced via <code>aria-describedby</code> to ensure that the user is immediately aware of the prompt.</li>
-          <li>Focus is automatically set to the first focusable element inside the dialog, which is the "No" <code>button</code>. This is the least destructive action, so focusing "No" helps prevent users from accidentally confirming the destructive "Discard" action, which cannot be undone.</li>
-          <li>When the buttons are disabled, <code>aria-disabled</code> is used instead of the HTML <code>disabled</code> attribute so the buttons will remain in the page <kbd>Tab</kbd> sequence. This makes it easier for screen reader users to discover the buttons and discern how the interface works.</li>
+          <li>
+            Focus is automatically set to the first focusable element inside the dialog, which is the "No" <code>button</code>.
+            This is the least destructive action, so focusing "No" helps prevent users from accidentally confirming the destructive "Discard" action, which cannot be undone.
+          </li>
+          <li>
+            When the buttons are disabled, <code>aria-disabled</code> is used instead of the HTML <code>disabled</code> attribute so the buttons will remain in the page <kbd>Tab</kbd> sequence.
+            This makes it easier for screen reader users to discover the buttons and discern how the interface works.
+          </li>
         </ul>
       </section>
 
@@ -200,7 +209,10 @@
         </table>
         <h3>Notes on <code>aria-modal</code> and <code>aria-hidden</code></h3>
         <ul>
-          <li>The <code>aria-modal</code> property was introduced in ARIA 1.1. As a relatively new property, screen reader users may experience varying degrees of support for it.</li>
+          <li>
+            The <code>aria-modal</code> property was introduced in ARIA 1.1.
+            As a relatively new property, screen reader users may experience varying degrees of support for it.
+          </li>
           <li>Applying the <code>aria-modal</code> property to the <code>dialog</code> element replaces the technique of using <code>aria-hidden</code> on the background for informing assistive technologies that content outside a dialog is inert.</li>
           <li>
             In legacy dialog implementations where <code>aria-hidden</code> is used to make content outside a dialog inert for assistive technology users, it is important that:
@@ -216,7 +228,7 @@
         <h2 id="src_label">Javascript and CSS Source Code</h2>
         <ul id="css_js_files">
           <li>CSS: <a href="css/alertdialog.css" type="text/css">dialog.css</a></li>
-          <li>Javascript: <a href="js/alertdialog.js" type="text/javascript">alertdialog.js</a>, <a href="js/dialog.js" type="text/javascript">dialog.js</a>, <a href="../../../shared/js/utils.js">utils.js</a></li>
+          <li>Javascript: <a href="js/alertdialog.js" type="text/javascript">alertdialog.js</a>, <a href="../../../shared/js/utils.js">utils.js</a></li>
         </ul>
       </section>
 

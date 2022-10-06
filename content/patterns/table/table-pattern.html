@@ -18,9 +18,21 @@
 
       <section id="about">
         <h2>About This Pattern</h2>
-        <p>Like an HTML <code>table</code> element, a WAI-ARIA <a href="#table" class="role-reference">table</a> is a static tabular structure containing one or more rows that each contain one or more cells; it is not an interactive widget. Thus, its cells are not focusable or selectable. The <a href="../grid/grid-pattern.html">grid pattern</a> is used to make an interactive widget that has a tabular structure.</p>
-        <p>However, tables are often used to present a combination of information and interactive widgets. Since a table is not a widget, each widget contained in a table is a separate stop in the page tab sequence. If the number of widgets is large, replacing the table with a grid can dramatically reduce the length of the page tab sequence because a grid is a composite widget that can contain other widgets.</p>
-        <p class="note">As with other WAI-ARIA roles that have a native host language equivalent, authors are strongly encouraged to use a native HTML <code>table</code> element whenever possible. This is especially important with role <code>table</code> because it is a new feature of WAI-ARIA 1.1. It is thus advisable to test implementations thoroughly with each browser and assistive technology combination that could be used by the target audience.</p>
+        <p>
+          Like an HTML <code>table</code> element, a WAI-ARIA <a href="#table" class="role-reference">table</a> is a static tabular structure containing one or more rows that each contain one or more cells; it is not an interactive widget.
+          Thus, its cells are not focusable or selectable.
+          The <a href="../grid/grid-pattern.html">grid pattern</a> is used to make an interactive widget that has a tabular structure.
+        </p>
+        <p>
+          However, tables are often used to present a combination of information and interactive widgets.
+          Since a table is not a widget, each widget contained in a table is a separate stop in the page tab sequence.
+          If the number of widgets is large, replacing the table with a grid can dramatically reduce the length of the page tab sequence because a grid is a composite widget that can contain other widgets.
+        </p>
+        <p class="note">
+          As with other WAI-ARIA roles that have a native host language equivalent, authors are strongly encouraged to use a native HTML <code>table</code> element whenever possible.
+          This is especially important with role <code>table</code> because it is a new feature of WAI-ARIA 1.1.
+          It is thus advisable to test implementations thoroughly with each browser and assistive technology combination that could be used by the target audience.
+        </p>
       </section>
 
       <section id="examples">
@@ -49,7 +61,10 @@
               <li><a href="#cell" class="role-reference">cell</a> if the cell does not contain column or row header information.</li>
             </ul>
           </li>
-          <li>If there is an element in the user interface that serves as a label for the table, <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> is set on the table element with a value that refers to the labelling element. Otherwise, a label is specified for the table element using <a href="#aria-label" class="property-reference">aria-label</a>.</li>
+          <li>
+            If there is an element in the user interface that serves as a label for the table, <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> is set on the table element with a value that refers to the labelling element.
+            Otherwise, a label is specified for the table element using <a href="#aria-label" class="property-reference">aria-label</a>.
+          </li>
           <li>If the table has a caption or description, <a href="#aria-describedby" class="property-reference">aria-describedby</a> is set on the table element with a value referring to the element containing the description.</li>
           <li>If the table contains sortable columns or rows, <a href="#aria-sort" class="property-reference">aria-sort</a> is set to an appropriate value on the header cell element for the sorted column or row as described in the <a href="../../practices/grid-and-table-properties/grid-and-table-properties-practice.html#gridAndTableProperties_sort">Grid and Table Properties Practice</a>.</li>
           <li>

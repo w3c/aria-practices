@@ -38,9 +38,12 @@
       <section>
         <h2>About This Example</h2>
         <p>
-          The following example of an editor toolbar implements the
-          <a href="../toolbar-pattern.html">Toolbar Pattern</a>
-          and demonstrates how a toolbar can group a set of interactive widgets into a single tab stop. For illustrative and interoperability assessment purposes, this implementation includes a diverse set of widgets, some of which may not be ordinarily grouped in the same toolbar. For instance, it includes both a checkbox and toggle buttons. In a typical implementation, the design would use either one or the other but not both. Similarly, the edit field is included to help simulate actual implementation and is not intended to represent an actual rich text editor. This example also illustrates the practice of <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.
+          The following example of an editor toolbar implements the <a href="../toolbar-pattern.html">Toolbar Pattern</a> and demonstrates how a toolbar can group a set of interactive widgets into a single tab stop.
+          For illustrative and interoperability assessment purposes, this implementation includes a diverse set of widgets, some of which may not be ordinarily grouped in the same toolbar.
+          For instance, it includes both a checkbox and toggle buttons.
+          In a typical implementation, the design would use either one or the other but not both.
+          Similarly, the edit field is included to help simulate actual implementation and is not intended to represent an actual rich text editor.
+          This example also illustrates the practice of <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.
         </p>
       </section>
 
@@ -128,8 +131,7 @@ Four score and seven years ago our fathers brought forth on this continent a new
 Now we are engaged in a great civil war, testing whether that nation, or any nation, so conceived and so dedicated, can long endure. We are met on a great battle-field of that war. We have come to dedicate a portion of that field, as a final resting place for those who here gave their lives that that nation might live. It is altogether fitting and proper that we should do this.
 
 But, in a larger sense, we can not dedicate, we can not consecrate, we can not hallow, this ground. The brave men, living and dead, who struggled here, have consecrated it, far above our poor power to add or detract. The world will little note, nor long remember what we say here, but it can never forget what they did here. It is for us the living, rather, to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced. It is rather for us to be here dedicated to the great task remaining before us, that from these honored dead we take increased devotion to that cause for which they gave the last full measure of devotion, that we here highly resolve that these dead shall not have died in vain, that this nation, under God, shall have a new birth of freedom, and that government of the people, by the people, for the people, shall not perish from the earth.
-</textarea
-          >
+</textarea>
         </div>
         <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
       </section>
@@ -138,12 +140,21 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
         <h2>Accessibility Features</h2>
         <h3>Keyboard Features</h3>
         <ul>
-          <li>When tabbing into the toolbar, focus returns to the control that last had focus. Focus movement inside the toolbar implements the practice of <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.</li>
-          <li>When any of the cut, copy and paste buttons are disabled they remain focusable to ensure screen reader users are aware of their presence. For additional guidance, see <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_disabled_controls">Focusability of disabled controls</a>.</li>
+          <li>
+            When tabbing into the toolbar, focus returns to the control that last had focus.
+            Focus movement inside the toolbar implements the practice of <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.
+          </li>
+          <li>
+            When any of the cut, copy and paste buttons are disabled they remain focusable to ensure screen reader users are aware of their presence.
+            For additional guidance, see <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_disabled_controls">Focusability of disabled controls</a>.
+          </li>
           <li>
             <kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd> navigate among elements in the toolbar so <kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> are available to:
             <ul>
-              <li>Navigate among radios in the text alignment group. For instance, <kbd>Down Arrow</kbd> moves focus from last to first member in the group.</li>
+              <li>
+                Navigate among radios in the text alignment group.
+                For instance, <kbd>Down Arrow</kbd> moves focus from last to first member in the group.
+              </li>
               <li>Open the font menu button, which can also be opened with <kbd>Enter</kbd>.</li>
               <li>Increase and decrease the font size spin button.</li>
             </ul>
@@ -243,7 +254,14 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
 
         <section>
           <h3 id="kbd_label_3">Radio Group (Text Alignment)</h3>
-          <p>The buttons for choosing left, center, or right text alignment are styled like toggle buttons. However, since pressing one toggles off another so that only one button in the group is in the pressed state, the toggles behave like radio buttons. Because ARIA is designed to inform assistive technologies about UI semantics and behaviors, not styling, the alignment toggles provide the following keyboard support described in the <a href="../../radio/radio-group-pattern.html#keyboard_interaction">Radio Group Pattern</a>. As described in the pattern, nesting a radio group in a toolbar calls for an important behavioral difference compared to radios outside a toolbar: moving focus inside the group does not automatically change which button is checked. In addition, because <kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd> are needed by the parent toolbar, they are not captured by the radio group. The toolbar thus provides navigation into, inside, and out of the nested radio group.</p>
+          <p>
+            The buttons for choosing left, center, or right text alignment are styled like toggle buttons.
+            However, since pressing one toggles off another so that only one button in the group is in the pressed state, the toggles behave like radio buttons.
+            Because ARIA is designed to inform assistive technologies about UI semantics and behaviors, not styling, the alignment toggles provide the following keyboard support described in the <a href="../../radio/radio-group-pattern.html#keyboard_interaction">Radio Group Pattern</a>.
+            As described in the pattern, nesting a radio group in a toolbar calls for an important behavioral difference compared to radios outside a toolbar: moving focus inside the group does not automatically change which button is checked.
+            In addition, because <kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd> are needed by the parent toolbar, they are not captured by the radio group.
+            The toolbar thus provides navigation into, inside, and out of the nested radio group.
+          </p>
           <table aria-labelledby="kbd_label_3 kbd_label" class="def">
             <thead>
               <tr>
@@ -285,7 +303,10 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
 
         <section>
           <h3 id="kbd_label_4">Button (Cut, Copy, Paste)</h3>
-          <p>The buttons for cut, copy, and paste provide the following keyboard support described in the <a href="../../button/button-pattern.html#keyboard_interaction">Button Pattern</a>. While they are HTML button elements, as described in the accessibility features section above, in order to remain focusable when disabled, they have <code>aria-disabled</code> instead of the HTML <code>disabled</code> attribute.</p>
+          <p>
+            The buttons for cut, copy, and paste provide the following keyboard support described in the <a href="../../button/button-pattern.html#keyboard_interaction">Button Pattern</a>.
+            While they are HTML button elements, as described in the accessibility features section above, in order to remain focusable when disabled, they have <code>aria-disabled</code> instead of the HTML <code>disabled</code> attribute.
+          </p>
           <table aria-labelledby="kbd_label_4 kbd_label" class="def">
             <thead>
               <tr>
@@ -296,7 +317,10 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
             <tbody>
               <tr data-test-id="toolbar-button-enter-or-space">
                 <th><kbd>Enter</kbd><br><kbd>Space</kbd></th>
-                <td>If the button is enabled, execute the action associated with the button. Otherwise, do nothing.</td>
+                <td>
+                  If the button is enabled, execute the action associated with the button.
+                  Otherwise, do nothing.
+                </td>
               </tr>
             </tbody>
           </table>
@@ -320,7 +344,10 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
                   <kbd>Down Arrow</kbd><br>
                   <kbd>Up Arrow</kbd>
                 </th>
-                <td>Open the menu and place focus on a menu item. In this implementation, the focus is set on the currently selected font family when the menu opens.</td>
+                <td>
+                  Open the menu and place focus on a menu item.
+                  In this implementation, the focus is set on the currently selected font family when the menu opens.
+                </td>
               </tr>
             </tbody>
           </table>
@@ -400,7 +427,10 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
 
         <section>
           <h3 id="kbd_label_8">Checkbox (Night Mode)</h3>
-          <p>The checkbox for toggling night mode provides the following keyboard support defined in the <a href="../../checkbox/checkbox-pattern.html#keyboard_interaction">Checkbox Pattern</a>. As an HTML input element, the browser provides the keyboard support.</p>
+          <p>
+            The checkbox for toggling night mode provides the following keyboard support defined in the <a href="../../checkbox/checkbox-pattern.html#keyboard_interaction">Checkbox Pattern</a>.
+            As an HTML input element, the browser provides the keyboard support.
+          </p>
           <table aria-labelledby="kbd_label_8 kbd_label" class="def">
             <thead>
               <tr>
@@ -419,7 +449,10 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
 
         <section>
           <h3 id="kbd_label_9">Link (Help)</h3>
-          <p>The link for opening a help page provides the following keyboard support described in the <a href="../../link/link-pattern.html#keyboard_interaction">Link Pattern</a>. As an HTML link, the keyboard support is provided by the browser.</p>
+          <p>
+            The link for opening a help page provides the following keyboard support described in the <a href="../../link/link-pattern.html#keyboard_interaction">Link Pattern</a>.
+            As an HTML link, the keyboard support is provided by the browser.
+          </p>
           <table aria-labelledby="kbd_label_9 kbd_label" class="def">
             <thead>
               <tr>
@@ -552,7 +585,11 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
 
         <section>
           <h3 id="rps_label_3">Radio Group (Text Alignment)</h3>
-          <p>The buttons for choosing left, center, or right text alignment are styled like toggle buttons. However, since pressing one toggles off another so that only one button in the group is in the pressed state, the toggles behave like radio buttons. Because ARIA is designed to inform assistive technologies about UI semantics and behavior, not styling, the alignment toggles implement the following ARIA attributes described in the <a href="../../radio/radio-group-pattern.html#roles_states_properties">Radio Group Pattern</a>.</p>
+          <p>
+            The buttons for choosing left, center, or right text alignment are styled like toggle buttons.
+            However, since pressing one toggles off another so that only one button in the group is in the pressed state, the toggles behave like radio buttons.
+            Because ARIA is designed to inform assistive technologies about UI semantics and behavior, not styling, the alignment toggles implement the following ARIA attributes described in the <a href="../../radio/radio-group-pattern.html#roles_states_properties">Radio Group Pattern</a>.
+          </p>
           <table aria-labelledby="rps_label_3 rps_label" class="data attributes">
             <thead>
               <tr>
@@ -620,7 +657,10 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
 
         <section>
           <h3 id="rps_label_4">Button (Cut, Copy, Paste)</h3>
-          <p>The buttons for cut, copy, and paste implement the following ARIA attributes described in the <a href="../../button/button-pattern.html#roles_states_properties">Button Pattern</a>. While they are HTML button elements, as described in the accessibility features section above, in order to remain focusable when disabled, they have <code>aria-disabled</code> instead of the HTML <code>disabled</code> attribute.</p>
+          <p>
+            The buttons for cut, copy, and paste implement the following ARIA attributes described in the <a href="../../button/button-pattern.html#roles_states_properties">Button Pattern</a>.
+            While they are HTML button elements, as described in the accessibility features section above, in order to remain focusable when disabled, they have <code>aria-disabled</code> instead of the HTML <code>disabled</code> attribute.
+          </p>
           <table aria-labelledby="rps_label_4 rps_label" class="data attributes">
             <thead>
               <tr>
@@ -678,7 +718,10 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
                 <td>
                   <ul>
                     <li>Indicates the <code>button</code> opens a menu.</li>
-                    <li><strong>NOTE:</strong> While ARIA does not include a <code>menubutton</code>, most platform accessibility APIs have a <code>menubutton</code> role. On those platforms, assistive technologies identify buttons with <code>aria-haspopup</code> set to either <code>true</code> or <code>menu</code> as menu buttons.</li>
+                    <li>
+                      <strong>NOTE:</strong> While ARIA does not include a <code>menubutton</code>, most platform accessibility APIs have a <code>menubutton</code> role.
+                      On those platforms, assistive technologies identify buttons with <code>aria-haspopup</code> set to either <code>true</code> or <code>menu</code> as menu buttons.
+                    </li>
                   </ul>
                 </td>
               </tr>
@@ -702,7 +745,10 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
                     <li>Added when the menu is open.</li>
                     <li>Indicates that the menu is displayed and that activating the menu button closes the menu.</li>
                     <li>The <code>aria-expanded</code> attribute is removed when the menu is closed.</li>
-                    <li>Included to support touch devices where screen reader users can touch the menu button when the menu is displayed. Keyboard users cannot focus the menu button when the menu is open.</li>
+                    <li>
+                      Included to support touch devices where screen reader users can touch the menu button when the menu is displayed.
+                      Keyboard users cannot focus the menu button when the menu is open.
+                    </li>
                   </ul>
                 </td>
               </tr>
@@ -754,7 +800,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
                 <td><code>li</code></td>
                 <td>
                   <ul>
-                    <li>Applied to an element with role <code>menuitemradio</code> to indicate the item is checked, informing users which font is applied to the text area .</li>
+                    <li>Applied to an element with role <code>menuitemradio</code> to indicate the item is checked, informing users which font is applied to the text area.</li>
                     <li>Only one item in the menu has the checked state at any given time.</li>
                   </ul>
                 </td>

@@ -34,9 +34,10 @@
       <section>
         <h2>About This Example</h2>
         <p>
-          Following are three example implementations of the
-          <a href="../grid-pattern.html">Grid Pattern</a>
-          that demonstrate the keyboard interactions and ARIA features that enable accessible, interactive presentation of tabular information. Each of the following three grids presents a set of financial transactions. The first is a simple grid with minimum ARIA markup and keyboard support. The second and third implementations add advanced features, such as content editing, sort, scroll, and show/hide.
+          Following are three example implementations of the <a href="../grid-pattern.html">Grid Pattern</a> that demonstrate the keyboard interactions and ARIA features that enable accessible, interactive presentation of tabular information.
+          Each of the following three grids presents a set of financial transactions.
+          The first is a simple grid with minimum ARIA markup and keyboard support.
+          The second and third implementations add advanced features, such as content editing, sort, scroll, and show/hide.
         </p>
         <p>Similar examples include:</p>
         <ul>
@@ -124,7 +125,11 @@
             <li>Data cells can be focused using standard navigation keys, including directional arrows, <kbd>Home</kbd>, <kbd>End</kbd>, <kbd>Control + Home</kbd>, and <kbd>Control + End</kbd>.</li>
             <li>The <kbd>Page Down</kbd> and <kbd>Page Up</kbd> keys are not supported since such scroll-like functions are not useful with so few rows.</li>
             <li>The links can be activated with the keyboard when focused.</li>
-            <li>Since the header cells do not provide any functionality, they are not focusable. Screen reader users are still aware of their presence because row and column headers are announced by screen readers during navigation. And, they are also navigable when using a screen reader's reading or browsing mode.</li>
+            <li>
+              Since the header cells do not provide any functionality, they are not focusable.
+              Screen reader users are still aware of their presence because row and column headers are announced by screen readers during navigation.
+              And, they are also navigable when using a screen reader's reading or browsing mode.
+            </li>
           </ol>
         </section>
         <section>
@@ -491,12 +496,12 @@
           <h4>Notes</h4>
           <ol>
             <li>In addition to the navigation keys supported in examples 1 and 2, <kbd>Page Down</kbd> and <kbd>Page Up</kbd> scroll the grid.</li>
-            <li>
-              As navigating up or down scrolls the visible set of rows, the <code>aria-rowindex</code>
-              value of the row containing the focus informs the screen reader of the number of that row within the total set of rows.
-            </li>
+            <li>As navigating up or down scrolls the visible set of rows, the <code>aria-rowindex</code> value of the row containing the focus informs the screen reader of the number of that row within the total set of rows.</li>
             <li>Activating the &quot;Hide Type and Category&quot; button hides the type and category columns.</li>
-            <li>The <code>aria-colindex</code> value on a cell informs screen readers of the position of that cell within the row. When one or more columns are hidden, screen reader users can be aware of the hidden columns because those column numbers are not present as users navigate across a row.</li>
+            <li>
+              The <code>aria-colindex</code> value on a cell informs screen readers of the position of that cell within the row.
+              When one or more columns are hidden, screen reader users can be aware of the hidden columns because those column numbers are not present as users navigate across a row.
+            </li>
           </ol>
         </section>
       </section>
@@ -624,10 +629,7 @@
               <td>
                 <ul>
                   <li>Identifies the element that serves as the grid widget container.</li>
-                  <li>
-                    The grid element is not focusable because it implements the practice described in the section on
-                    <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.
-                  </li>
+                  <li>The grid element is not focusable because it implements the practice described in the section on <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.</li>
                   <li>Since the <code>grid</code> role is applied to a <code>table</code> element, the <code>row</code> , <code>rowheader</code>, <code>colheader</code>, and <code>gridcell</code> roles do not need to be specified because they are implied by <code>tr</code>, <code>th</code>, and <code>td</code> tags.</li>
                 </ul>
               </td>

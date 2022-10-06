@@ -32,12 +32,21 @@
       <section>
         <h2>About This Example</h2>
         <p>
-          The following examples demonstrate how the
-          <a href="../grid-pattern.html">Grid Pattern</a>
-          can be used to group a collection of interactive widgets into a single tab stop. In these examples, each widget, such as a link or button, is in a separate cell of the grid, and the user can navigate between them with the arrow keys. While navigating with the arrow keys, widgets receive keyboard focus and can be activated with <kbd>Space</kbd> or <kbd>Enter</kbd>.
+          The following examples demonstrate how the <a href="../grid-pattern.html">Grid Pattern</a> can be used to group a collection of interactive widgets into a single tab stop.
+          In these examples, each widget, such as a link or button, is in a separate cell of the grid, and the user can navigate between them with the arrow keys.
+          While navigating with the arrow keys, widgets receive keyboard focus and can be activated with <kbd>Space</kbd> or <kbd>Enter</kbd>.
         </p>
-        <p>In addition to streamlining keyboard interfaces, these grids also convey logical grouping and semantic relationships for the elements they contain. For people who can see the screen, these groupings and relationships are visually communicated with layout and other elements of the visual design. And, by navigating the logical structure that a grid widget provides, screen reader users are also able to easily perceive the same semantic relationships.</p>
-        <p>The distinguishing feature of <code>grid</code> that enables it to be used for grouping other widgets is that its cells are containers that preserve the semantics of their descendant elements. That is, grid cells do not override or suppress the semantics of the elements they contain. Thus, a link contained inside of a grid cell is presented to a screen reader as a link. By contrast, a link inside of a menu is presented as a menuitem, and a link inside of a listbox is presented as an option.</p>
+        <p>
+          In addition to streamlining keyboard interfaces, these grids also convey logical grouping and semantic relationships for the elements they contain.
+          For people who can see the screen, these groupings and relationships are visually communicated with layout and other elements of the visual design.
+          And, by navigating the logical structure that a grid widget provides, screen reader users are also able to easily perceive the same semantic relationships.
+        </p>
+        <p>
+          The distinguishing feature of <code>grid</code> that enables it to be used for grouping other widgets is that its cells are containers that preserve the semantics of their descendant elements.
+          That is, grid cells do not override or suppress the semantics of the elements they contain.
+          Thus, a link contained inside of a grid cell is presented to a screen reader as a link.
+          By contrast, a link inside of a menu is presented as a menuitem, and a link inside of a listbox is presented as an option.
+        </p>
         <p>Similar examples include:</p>
         <ul>
           <li><a href="dataGrids.html">Data Grid Examples</a>: Three example implementations of grid that include features relevant to presenting tabular information, such as content editing, sort, and column hiding.</li>
@@ -71,11 +80,13 @@
                 <img src="imgs/black_keys.png" width="100" alt="Arrow keypad" class="indicator_graphic">
               </p>
               <p>
-                This focus ring means arrow key navigation is available. Press arrow keys to move inside the component. Press Tab to jump to the next component.
-                <span class="indicator_description"> As a reminder, an arrow keypad graphic also appears in the lower left corner of the page. </span>
+                This focus ring means arrow key navigation is available.
+                Press arrow keys to move inside the component.
+                Press Tab to jump to the next component.
+                <span class="indicator_description">As a reminder, an arrow keypad graphic also appears in the lower left corner of the page.</span>
               </p>
               <p>Components that support arrow keys often enable additional keys that make navigation easier, such as Home, End, Ctrl-Home, Ctrl-End, Page Up, and Page Down.</p>
-              <a id="close-nux-button" class="close-nux-button" role="button" tabindex="0"> Close Tutorial </a>
+              <a id="close-nux-button" class="close-nux-button" role="button" tabindex="0">Close Tutorial</a>
             </div>
           </div>
           <div role="separator" id="ex1_end_sep" aria-labelledby="ex1_end_sep ex1_label" aria-label="End of"></div>
@@ -86,10 +97,17 @@
               <ol type="A">
                 <li>The focus indicator changes to a dotted blue box.</li>
                 <li>When screen size is sufficiently large, A graphic of an arrow keypad appears in the page gutter on the bottom left.</li>
-                <li>The first time a user moves focus into the grid with <kbd>Tab</kbd>, a <q>NUX</q> (new user experience helper) appears in the page tab sequence immediately following the grid. The NUX explains the meaning of the focus indicator and keypad graphic, and it remains visible until the user closes it.</li>
+                <li>
+                  The first time a user moves focus into the grid with <kbd>Tab</kbd>, a <q>NUX</q> (new user experience helper) appears in the page tab sequence immediately following the grid.
+                  The NUX explains the meaning of the focus indicator and keypad graphic, and it remains visible until the user closes it.
+                </li>
               </ol>
             </li>
-            <li>This grid is useful in a responsive design. It dynamically adjusts the number of cells per row based on screen size. As the grid structure changes, the arrow key behavior adjusts accordingly.</li>
+            <li>
+              This grid is useful in a responsive design.
+              It dynamically adjusts the number of cells per row based on screen size.
+              As the grid structure changes, the arrow key behavior adjusts accordingly.
+            </li>
             <li>Since all of the links are part of a single logical group, repeatedly pressing either <kbd>Down Arrow</kbd> or <kbd>Right Arrow</kbd> will move focus through all links in different sequences that depend on the visual arrangement.</li>
             <li>The <kbd>Left Arrow</kbd> and <kbd>Up Arrow</kbd> keys reverse <kbd>Right Arrow</kbd> and <kbd>Down Arrow</kbd> focus movement, respectively.</li>
             <li>The <kbd>Home</kbd> and <kbd>End</kbd> keys will move focus to the first and last links, respectively.</li>
@@ -101,7 +119,10 @@
           <div class="example-header">
             <h3 id="ex2_label">Example 2: Pill List For a List of Message Recipients</h3>
           </div>
-          <p>Add recipients by typing a string in the &quot;New Recipient Name&quot; field and pressing <kbd>Enter</kbd> or activating the &quot;Add&quot; button. See how this grid behaves as the number of elements increases.</p>
+          <p>
+            Add recipients by typing a string in the &quot;New Recipient Name&quot; field and pressing <kbd>Enter</kbd> or activating the &quot;Add&quot; button.
+            See how this grid behaves as the number of elements increases.
+          </p>
           <div role="separator" id="ex2_start_sep" aria-labelledby="ex2_start_sep ex2_label" aria-label="Start of"></div>
           <div id="ex2">
             <!--
@@ -155,7 +176,10 @@
           <div class="example-header">
             <h3 id="ex3_label">Example 3: Scrollable Search Results</h3>
           </div>
-          <p>This example demonstrates how a grid can make moving through an infinitely large data set as easy and efficient for keyboard users as it is for mouse users. It presents a hypothetical set of search results for W3C resources about WAI-ARIA.</p>
+          <p>
+            This example demonstrates how a grid can make moving through an infinitely large data set as easy and efficient for keyboard users as it is for mouse users.
+            It presents a hypothetical set of search results for W3C resources about WAI-ARIA.
+          </p>
           <div role="separator" id="ex3_start_sep" aria-labelledby="ex3_start_sep ex3_label" aria-label="Start of"></div>
           <div id="ex3">
             <h4 id="ex3_search_results_label">Search Results for "W3C WAI-ARIA"</h4>
@@ -324,11 +348,13 @@
           <div role="separator" id="ex3_end_sep" aria-labelledby="ex3_end_sep ex3_label" aria-label="End of"></div>
           <h4>Notes</h4>
           <ol>
-            <li>This example shows how a logical row can span multiple physical rows. All three cells for each result are in a row, and that row occupies multiple visual rows on the screen.</li>
+            <li>
+              This example shows how a logical row can span multiple physical rows.
+              All three cells for each result are in a row, and that row occupies multiple visual rows on the screen.
+            </li>
             <li>In addition to the navigation keys supported in examples 1 and 2, <kbd>Page Down</kbd> and <kbd>Page Up</kbd> scroll the grid.</li>
             <li>
-              As navigating up or down scrolls the visible set of rows, the <code>aria-rowindex</code>
-              value of the row containing focus informs assistive technologies of the number of that row within the total set of rows.
+              As navigating up or down scrolls the visible set of rows, the <code>aria-rowindex</code> value of the row containing focus informs assistive technologies of the number of that row within the total set of rows.
             </li>
           </ol>
         </section>
@@ -341,23 +367,39 @@
         <dl>
           <dt>Whether to focus a cell or an element inside it when the cell is clicked or a navigation key is pressed:</dt>
           <dd>
-            The section of the grid pattern on
-            <a href="../grid-pattern.html#gridNav">Setting Focus and Navigating Inside Cells</a>
-            describes how to design the focus placement strategy.
+            The section of the grid pattern on <a href="../grid-pattern.html#gridNav">Setting Focus and Navigating Inside Cells</a> describes how to design the focus placement strategy.
           </dd>
           <dt>Whether focus can wrap from the last column to the first column in the next row or from the first column to the last column in the previous row when <kbd>Right Arrow</kbd> and <kbd>Left Arrow</kbd> are pressed:</dt>
-          <dd>This wrapping is expected in all grids except for those presenting tabular, i.e., spreadsheet-like, data. The <a href="dataGrids.html">data grid examples</a> demonstrate grids where focus movement does not wrap at the ends of rows.</dd>
+          <dd>
+            This wrapping is expected in all grids except for those presenting tabular, i.e., spreadsheet-like, data.
+            The <a href="dataGrids.html">data grid examples</a> demonstrate grids where focus movement does not wrap at the ends of rows.
+          </dd>
           <dt>Whether focus can wrap to the first row in the next column or the last row in the previous column when <kbd>Down Arrow</kbd> and <kbd>Up Arrow</kbd> are pressed:</dt>
-          <dd>The only condition where this wrapping is appropriate is when every cell in the grid belongs to a single logical set. In other words, if presentation of all elements in a single row is logically equivalent to presenting the same elements in an arbitrary number of rows and columns, then it is appropriate for <kbd>Down Arrow</kbd> and <kbd>Up Arrow</kbd> to behave as if all cells are in a single column. For instance, in example 1, all cells contain a navigation link. That set of six links could be presented in a single row, a single column, or divided into two rows of three or three rows of two; all these presentations would be logically equivalent. Conversely, in example 3, each logical row contains three cells, and it would be bizarre for the focus to move from the last search result link to the organization cell of the first search result when <kbd>Down Arrow</kbd> is pressed.</dd>
+          <dd>
+            The only condition where this wrapping is appropriate is when every cell in the grid belongs to a single logical set.
+            In other words, if presentation of all elements in a single row is logically equivalent to presenting the same elements in an arbitrary number of rows and columns, then it is appropriate for <kbd>Down Arrow</kbd> and <kbd>Up Arrow</kbd> to behave as if all cells are in a single column.
+            For instance, in example 1, all cells contain a navigation link.
+            That set of six links could be presented in a single row, a single column, or divided into two rows of three or three rows of two; all these presentations would be logically equivalent.
+            Conversely, in example 3, each logical row contains three cells, and it would be bizarre for the focus to move from the last search result link to the organization cell of the first search result when <kbd>Down Arrow</kbd> is pressed.
+          </dd>
         </dl>
         <p>The example JavaScript allows the desired focus placement and wrapping behavior to be declared in the HTML content as follows.</p>
         <ol>
-          <li>If a cell has <code>tabindex=&quot;-1&quot;</code>, focus is placed on the cell. Otherwise, it is placed on a focusable element inside the cell.</li>
+          <li>
+            If a cell has <code>tabindex=&quot;-1&quot;</code>, focus is placed on the cell.
+            Otherwise, it is placed on a focusable element inside the cell.
+          </li>
           <li>
             To determine whether arrow key events should wrap focus movement, the example JavaScript looks for the following custom data attributes:
             <ol type="A">
-              <li><code>data-wrap-cols=&quot;true&quot;</code>: When this custom data attribute is on the grid, <kbd>Right Arrow</kbd> and <kbd>Left Arrow</kbd> move focus from column to column even across row boundaries to the column (cell) in the next or previous row. Setting it <code>false</code> will disable this type of wrapping.</li>
-              <li><code>data-wrap-rows=&quot;true&quot;</code>: When this custom data attribute is on the grid, <kbd>Down Arrow</kbd> and <kbd>Up Arrow</kbd> move focus from row to row even across column boundaries to the row (cell) in the next or previous column. Setting it <code>false</code> will disable this type of wrapping.</li>
+              <li>
+                <code>data-wrap-cols=&quot;true&quot;</code>: When this custom data attribute is on the grid, <kbd>Right Arrow</kbd> and <kbd>Left Arrow</kbd> move focus from column to column even across row boundaries to the column (cell) in the next or previous row.
+                Setting it <code>false</code> will disable this type of wrapping.
+              </li>
+              <li>
+                <code>data-wrap-rows=&quot;true&quot;</code>: When this custom data attribute is on the grid, <kbd>Down Arrow</kbd> and <kbd>Up Arrow</kbd> move focus from row to row even across column boundaries to the row (cell) in the next or previous column.
+                Setting it <code>false</code> will disable this type of wrapping.
+              </li>
             </ol>
           </li>
         </ol>
@@ -365,7 +407,11 @@
 
       <section>
         <h2 id="kbd_label">Keyboard Support</h2>
-        <p><strong>NOTE:</strong> The following table describes keyboard commands that move focus among grid cells. In the examples on this page, some cells contain a single focusable widget, and if a cell contains a widget, the cell is not focusable; the widget receives focus instead of the cell. So, when a description says a command moves focus to a cell, the command may either focus the cell or a widget inside the cell.</p>
+        <p>
+          <strong>NOTE:</strong> The following table describes keyboard commands that move focus among grid cells.
+          In the examples on this page, some cells contain a single focusable widget, and if a cell contains a widget, the cell is not focusable; the widget receives focus instead of the cell.
+          So, when a description says a command moves focus to a cell, the command may either focus the cell or a widget inside the cell.
+        </p>
         <table aria-labelledby="kbd_label" class="def">
           <thead>
             <tr>
@@ -488,8 +534,7 @@
                 <ul>
                   <li>Identifies the element containing the grid widget.</li>
                   <li>
-                    The grid element is not focusable because it implements the practice described in the section on
-                    <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.
+                    The grid element is not focusable because it implements the practice described in the section on <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.
                   </li>
                 </ul>
               </td>

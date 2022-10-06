@@ -31,13 +31,16 @@
       <section>
         <h2>About This Example</h2>
         <div class="advisement">
-          <p>Although this example uses the word "menu" in the colloquial sense to refer to a set of navigation links, it does not use the WAI-ARIA menu role. This implementation of site navigation does not use the menu role because it does not provide the complex functionality that assistive technologies expect in a widget that has the menu role. Typical site navigation does not need all the <a href="../../menubar/menu-and-menubar-pattern.html#keyboard_interaction">keyboard interactions specified by the menu and menubar pattern</a>.</p>
+          <p>
+            Although this example uses the word "menu" in the colloquial sense to refer to a set of navigation links, it does not use the WAI-ARIA menu role.
+            This implementation of site navigation does not use the menu role because it does not provide the complex functionality that assistive technologies expect in a widget that has the menu role.
+            Typical site navigation does not need all the <a href="../../menubar/menu-and-menubar-pattern.html#keyboard_interaction">keyboard interactions specified by the menu and menubar pattern</a>.
+          </p>
         </div>
 
         <p>
-          The following example demonstrates using the
-          <a href="../disclosure-pattern.html">Disclosure Pattern</a>
-          to show and hide dropdown lists of links in a navigation bar for a mythical university web site. Unlike the other <a href="disclosure-navigation.html">disclosure navigation menu example</a>, this example includes top-level links alongside the disclosure buttons.
+          The following example demonstrates using the <a href="../disclosure-pattern.html">Disclosure Pattern</a> to show and hide dropdown lists of links in a navigation bar for a mythical university web site.
+          Unlike the other <a href="disclosure-navigation.html">disclosure navigation menu example</a>, this example includes top-level links alongside the disclosure buttons.
         </p>
         <p>Similar examples include:</p>
         <ul>
@@ -47,7 +50,10 @@
           <li><a href="../../menubar/examples/menubar-navigation.html">Navigation Menubar Example</a></li>
         </ul>
         <h2>Example Usage Options</h2>
-        <p>This example demonstrates two different ways of implementing keyboard support. Toggle between them with the following checkbox.</p>
+        <p>
+          This example demonstrates two different ways of implementing keyboard support.
+          Toggle between them with the following checkbox.
+        </p>
         <label for="arrow-behavior-switch">
           <input type="checkbox" id="arrow-behavior-switch" checked>
           Include optional support for arrow keys, <kbd>Home</kbd>, and <kbd>End</kbd>
@@ -142,7 +148,10 @@
           </nav>
           <div id="mythical-page-content" class="disclosure-page-content" tabindex="-1" role="region" aria-labelledby="mythical-page-heading">
             <h3 id="mythical-page-heading">Home</h3>
-            <p>Sample content section. Activating a link above will update and navigate to this region.</p>
+            <p>
+              Sample content section.
+              Activating a link above will update and navigate to this region.
+            </p>
           </div>
           <footer class="sample-footer">Mythical University footer information</footer>
         </div>
@@ -153,14 +162,28 @@
         <h2>Accessibility Features</h2>
         <ol>
           <li>Since this set of links and disclosure buttons provides navigation for the mythical university web site, the list that contains them is wrapped in a navigation landmark named <q>Mythical University</q>.</li>
-          <li>The semantics of the list structure communicate the hierarchy of the navigation system to assistive technology users. The top-level list has three items where each item contains a top-level link and an associated disclosure button. The set of links controlled by a disclosure button is in a list nested inside the list item that contains the button.</li>
-          <li>If a dropdown is open and focus is inside the navigation region, pressing <kbd>Esc</kbd> will close the dropdown. Moving focus out of the navigation region also closes an open dropdown.</li>
+          <li>
+            The semantics of the list structure communicate the hierarchy of the navigation system to assistive technology users.
+            The top-level list has three items where each item contains a top-level link and an associated disclosure button.
+            The set of links controlled by a disclosure button is in a list nested inside the list item that contains the button.
+          </li>
+          <li>
+            If a dropdown is open and focus is inside the navigation region, pressing <kbd>Esc</kbd> will close the dropdown.
+            Moving focus out of the navigation region also closes an open dropdown.
+          </li>
           <li>
             Optional navigation keys (Arrow keys, <kbd>Home</kbd>, and <kbd>End</kbd>):
             <ol>
               <li>Enabling the optional arrow key support prevents the default page scroll behavior when focus is contained within the navigation region.</li>
-              <li>Optional navigation key support is primarily for the benefit of keyboard users who are not running a screen reader. Screen readers that have both reading and interaction modes intercept these navigation keys and do not pass them to the page when the screen reader is in reading mode. When interacting with this example, such screen readers are typically in reading mode because this example does not use a widget role that triggers screen reader interaction mode.</li>
-              <li>If implemented, the optional navigation keys supplement, but do not replace, tabbing among buttons and links. This is because the buttons and links are not contained by an element with a widget role, such as <code>grid</code>, that is expected to occupy only one stop in the page <kbd>Tab</kbd> sequence and manage focus for all its descendants.</li>
+              <li>
+                Optional navigation key support is primarily for the benefit of keyboard users who are not running a screen reader.
+                Screen readers that have both reading and interaction modes intercept these navigation keys and do not pass them to the page when the screen reader is in reading mode.
+                When interacting with this example, such screen readers are typically in reading mode because this example does not use a widget role that triggers screen reader interaction mode.
+              </li>
+              <li>
+                If implemented, the optional navigation keys supplement, but do not replace, tabbing among buttons and links.
+                This is because the buttons and links are not contained by an element with a widget role, such as <code>grid</code>, that is expected to occupy only one stop in the page <kbd>Tab</kbd> sequence and manage focus for all its descendants.
+              </li>
             </ol>
           </li>
         </ol>
@@ -291,8 +314,7 @@
                 <ul>
                   <li>Indicates that the container controlled by the disclosure button is <em>hidden</em>.</li>
                   <li>
-                    CSS attribute selectors (e.g. <code>[aria-expanded="false"]</code>) are used to synchronize the visual states with the value of the <code>aria-expanded</code>
-                    attribute.
+                    CSS attribute selectors (e.g. <code>[aria-expanded="false"]</code>) are used to synchronize the visual states with the value of the <code>aria-expanded</code> attribute.
                   </li>
                 </ul>
               </td>
@@ -309,8 +331,7 @@
                 <ul>
                   <li>Indicates that the container controlled by the disclosure button is <em>visible</em>.</li>
                   <li>
-                    CSS attribute selectors (e.g. <code>[aria-expanded="true"]</code>) are used to synchronize the visual states with the value of the <code>aria-expanded</code>
-                    attribute.
+                    CSS attribute selectors (e.g. <code>[aria-expanded="true"]</code>) are used to synchronize the visual states with the value of the <code>aria-expanded</code> attribute.
                   </li>
                 </ul>
               </td>

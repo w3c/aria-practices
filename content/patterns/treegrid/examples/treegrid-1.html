@@ -51,11 +51,7 @@
 
       <section>
         <h2>About This Example</h2>
-        <p>
-          The following example demonstrates how the
-          <a href="../treegrid-pattern.html">Treegrid Pattern</a>
-          can be used to make an interactive tree that enables users to both navigate the hierarchical structure of email conversations and also navigate elements that describe each email, such as subject and sender.
-        </p>
+        <p>The following example demonstrates how the <a href="../treegrid-pattern.html">Treegrid Pattern</a> can be used to make an interactive tree that enables users to both navigate the hierarchical structure of email conversations and also navigate elements that describe each email, such as subject and sender.</p>
         <p>Similar examples include:</p>
         <ul>
           <li><a href="../../grid/examples/dataGrids.html">Data Grid Examples</a>: Three example implementations of grid that include features relevant to presenting tabular information, such as content editing, sort, and column hiding.</li>
@@ -71,7 +67,10 @@
 
       <section>
         <h2>Example Usage Options</h2>
-        <p>This example demonstrates three different ways of implementing the keyboard navigation specified in the treegrid pattern. The following links change the behavior of the navigation keys :</p>
+        <p>
+          This example demonstrates three different ways of implementing the keyboard navigation specified in the treegrid pattern.
+          The following links change the behavior of the navigation keys:
+        </p>
         <ul>
           <li id="option-cell-focus-allow">
             <a href="./treegrid-1.html">Rows are focused first, but cells can be focused</a>:<br>
@@ -86,7 +85,10 @@
             Useful when the desired experience is that the treegrid act primarily like a grid and there is no need to focus complete rows.
           </li>
         </ul>
-        <p>Note: A row-only option is not provided. A treegrid where cells cannot be focused would be implemented as a <a href="../../treeview/treeview-pattern.html">tree view</a>. A treeview that has columns in its visual presentation may be appropriate when all the following conditions are present:</p>
+        <p>
+          Note: A row-only option is not provided.
+          A treegrid where cells cannot be focused would be implemented as a <a href="../../treeview/treeview-pattern.html">tree view</a>.
+          A treeview that has columns in its visual presentation may be appropriate when all the following conditions are present:</p>
         <ul>
           <li>Columns are guaranteed to fit horizontally (no horizontal scrolling necessary).</li>
           <li>Columns are merely for attractive presentation; there is no need to navigate them individually.</li>
@@ -163,7 +165,11 @@
 
       <section>
         <h2 id="kbd_label">Keyboard Support</h2>
-        <p><strong>NOTE:</strong> The following table includes descriptions of how keyboard commands move focus among cells and rows in the treegrid implementation on this page. In the example on this page, some cells contain a single focusable widget, and if a cell contains a widget, the cell is not focusable; the widget receives focus instead of the cell. So, when a keyboard command description says a command moves focus to a cell, the command may either focus the cell or a widget inside the cell.</p>
+        <p>
+          <strong>NOTE:</strong> The following table includes descriptions of how keyboard commands move focus among cells and rows in the treegrid implementation on this page.
+          In the example on this page, some cells contain a single focusable widget, and if a cell contains a widget, the cell is not focusable; the widget receives focus instead of the cell.
+          So, when a keyboard command description says a command moves focus to a cell, the command may either focus the cell or a widget inside the cell.
+        </p>
         <table aria-labelledby="kbd_label" class="def">
           <thead>
             <tr>
@@ -428,7 +434,11 @@
             </tr>
           </tbody>
         </table>
-        <p><strong>NOTE:</strong> Due to an error in the ARIA 1.1 specification, the <code>aria-posinset</code> and <code>aria-setsize</code> properties are not supported on row elements. This is being corrected in ARIA 1.2. Consequently, when validating the HTML in this example, errors are generated.</p>
+        <p>
+          <strong>NOTE:</strong> Due to an error in the ARIA 1.1 specification, the <code>aria-posinset</code> and <code>aria-setsize</code> properties are not supported on row elements.
+          This is being corrected in ARIA 1.2.
+          Consequently, when validating the HTML in this example, errors are generated.
+        </p>
       </section>
 
       <section>

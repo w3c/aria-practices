@@ -18,7 +18,11 @@
 
       <section id="about">
         <h2>About This Pattern</h2>
-        <p>An accordion is a vertically stacked set of interactive headings that each contain a title, content snippet, or thumbnail representing a section of content. The headings function as controls that enable users to reveal or hide their associated sections of content. Accordions are commonly used to reduce the need to scroll when presenting multiple sections of content on a single page.</p>
+        <p>
+          An accordion is a vertically stacked set of interactive headings that each contain a title, content snippet, or thumbnail representing a section of content.
+          The headings function as controls that enable users to reveal or hide their associated sections of content.
+          Accordions are commonly used to reduce the need to scroll when presenting multiple sections of content on a single page.
+        </p>
         <p>Terms for understanding accordions include:</p>
         <dl>
           <dt>Accordion Header:</dt>
@@ -26,7 +30,10 @@
           <dt>Accordion Panel:</dt>
           <dd>Section of content associated with an accordion header.</dd>
         </dl>
-        <p>In some accordions, there are additional elements that are always visible adjacent to the accordion header. For instance, a menubutton may accompany each accordion header to provide access to actions that apply to that section. And, in some cases, a snippet of the hidden content may also be visually persistent.</p>
+        <p>
+          In some accordions, there are additional elements that are always visible adjacent to the accordion header.
+          For instance, a menubutton may accompany each accordion header to provide access to actions that apply to that section. And, in some cases, a snippet of the hidden content may also be visually persistent.
+        </p>
       </section>
 
       <section id="examples">
@@ -40,14 +47,26 @@
           <li>
             <kbd>Enter</kbd> or <kbd>Space</kbd>:
             <ul>
-              <li>When focus is on the accordion header for a collapsed panel, expands the associated panel. If the implementation allows only one panel to be expanded, and if another panel is expanded, collapses that panel.</li>
-              <li>When focus is on the accordion header for an expanded panel, collapses the panel if the implementation supports collapsing. Some implementations require one panel to be expanded at all times and allow only one panel to be expanded; so, they do not support a collapse function.</li>
+              <li>
+                When focus is on the accordion header for a collapsed panel, expands the associated panel.
+                If the implementation allows only one panel to be expanded, and if another panel is expanded, collapses that panel.
+              </li>
+              <li>
+                When focus is on the accordion header for an expanded panel, collapses the panel if the implementation supports collapsing.
+                Some implementations require one panel to be expanded at all times and allow only one panel to be expanded; so, they do not support a collapse function.
+              </li>
             </ul>
           </li>
           <li><kbd>Tab</kbd>: Moves focus to the next focusable element; all focusable elements in the accordion are included in the page <kbd>Tab</kbd> sequence.</li>
           <li><kbd>Shift + Tab</kbd>: Moves focus to the previous focusable element; all focusable elements in the accordion are included in the page <kbd>Tab</kbd> sequence.</li>
-          <li><kbd>Down Arrow</kbd> (Optional): If focus is on an accordion header, moves focus to the next accordion header. If focus is on the last accordion header, either does nothing or moves focus to the first accordion header.</li>
-          <li><kbd>Up Arrow</kbd> (Optional): If focus is on an accordion header, moves focus to the previous accordion header. If focus is on the first accordion header, either does nothing or moves focus to the last accordion header.</li>
+          <li>
+            <kbd>Down Arrow</kbd> (Optional): If focus is on an accordion header, moves focus to the next accordion header.
+            If focus is on the last accordion header, either does nothing or moves focus to the first accordion header.
+          </li>
+          <li>
+            <kbd>Up Arrow</kbd> (Optional): If focus is on an accordion header, moves focus to the previous accordion header.
+            If focus is on the first accordion header, either does nothing or moves focus to the last accordion header.
+          </li>
           <li><kbd>Home</kbd> (Optional): When focus is on an accordion header, moves focus to the first accordion header.</li>
           <li><kbd>End</kbd> (Optional): When focus is on an accordion header, moves focus to the last accordion header.</li>
         </ul>
@@ -68,10 +87,7 @@
           <li>The accordion header <code>button</code> element has <a href="#aria-controls" class="property-reference">aria-controls</a> set to the ID of the element containing the accordion panel content.</li>
           <li>If the accordion panel associated with an accordion header is visible, and if the accordion does not permit the panel to be collapsed, the header <code>button</code> element has <a href="#aria-disabled" class="state-reference">aria-disabled</a> set to <code>true</code>.</li>
           <li>
-            Optionally, each element that serves as a container for panel content has role
-            <a href="#region" class="role-reference">region</a> and
-            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>
-            with a value that refers to the button that controls display of the panel.
+            Optionally, each element that serves as a container for panel content has role <a href="#region" class="role-reference">region</a> and <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> with a value that refers to the button that controls display of the panel.
             <ul>
               <li>Avoid using the <code>region</code> role in circumstances that create landmark region proliferation, e.g., in an accordion that contains more than approximately 6 panels that can be expanded at the same time.</li>
               <li>Role <code>region</code> is especially helpful to the perception of structure by screen reader users when panels contain heading elements or a nested accordion.</li>

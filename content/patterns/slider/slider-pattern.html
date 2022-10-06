@@ -18,8 +18,16 @@
 
       <section id="about">
         <h2>About This Pattern</h2>
-        <p>A slider is an input where the user selects a value from within a given range. Sliders typically have a slider thumb that can be moved along a bar, rail, or track to change the value of the slider.</p>
-        <p class="warning">Some users of touch-based assistive technologies may experience difficulty utilizing widgets that implement this slider pattern because the gestures their assistive technology provides for operating sliders may not yet generate the necessary output. To change the slider value, touch-based assistive technologies need to respond to user gestures for increasing and decreasing the value by synthesizing key events. This is a new convention that may not be fully implemented by some assistive technologies. Authors should fully test slider widgets using assistive technologies on devices where touch is a primary input mechanism before considering incorporation into production systems.</p>
+        <p>
+          A slider is an input where the user selects a value from within a given range.
+          Sliders typically have a slider thumb that can be moved along a bar, rail, or track to change the value of the slider.
+        </p>
+        <p class="warning">
+          Some users of touch-based assistive technologies may experience difficulty utilizing widgets that implement this slider pattern because the gestures their assistive technology provides for operating sliders may not yet generate the necessary output.
+          To change the slider value, touch-based assistive technologies need to respond to user gestures for increasing and decreasing the value by synthesizing key events.
+          This is a new convention that may not be fully implemented by some assistive technologies.
+          Authors should fully test slider widgets using assistive technologies on devices where touch is a primary input mechanism before considering incorporation into production systems.
+        </p>
       </section>
 
       <section id="examples">
@@ -57,16 +65,15 @@
           <li>The slider element has the <a class="property-reference" href="#aria-valuenow">aria-valuenow</a> property set to a decimal value representing the current value of the slider.</li>
           <li>The slider element has the <a class="property-reference" href="#aria-valuemin">aria-valuemin</a> property set to a decimal value representing the minimum allowed value of the slider.</li>
           <li>The slider element has the <a class="property-reference" href="#aria-valuemax">aria-valuemax</a> property set to a decimal value representing the maximum allowed value of the slider.</li>
+          <li>If the value of <code>aria-valuenow</code> is not user-friendly, e.g., the day of the week is represented by a number, the <a class="property-reference" href="#aria-valuetext">aria-valuetext</a> property is set to a string that makes the slider value understandable, e.g., &quot;Monday&quot;.</li>
           <li>
-            If the value of <code>aria-valuenow</code> is not user-friendly, e.g., the day of the week is represented by a number, the
-            <a class="property-reference" href="#aria-valuetext">aria-valuetext</a>
-            property is set to a string that makes the slider value understandable, e.g., &quot;Monday&quot;.
+            If the slider has a visible label, it is referenced by <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the slider element.
+            Otherwise, the slider element has a label provided by <a href="#aria-label" class="property-reference">aria-label</a>.
           </li>
           <li>
-            If the slider has a visible label, it is referenced by
-            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the slider element. Otherwise, the slider element has a label provided by <a href="#aria-label" class="property-reference">aria-label</a>.
+            If the slider is vertically oriented, it has <a class="property-reference" href="#aria-orientation">aria-orientation</a> set to <code>vertical</code>.
+            The default value of <code>aria-orientation</code> for a slider is <code>horizontal</code>.
           </li>
-          <li>If the slider is vertically oriented, it has <a class="property-reference" href="#aria-orientation">aria-orientation</a> set to <code>vertical</code>. The default value of <code>aria-orientation</code> for a slider is <code>horizontal</code>.</li>
         </ul>
       </section>
     </main>

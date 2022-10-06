@@ -31,8 +31,9 @@
       <section>
         <h2>About This Example</h2>
         <p>
-          Following is an example implementation of the
-          <a href="../dialog-modal-pattern.html">Dialog (Modal) Pattern</a>. The below <q>Add Delivery Address</q> button opens a modal dialog that contains two buttons that open other dialogs. The accessibility features section explains the rationale for initial focus placement and use of <code>aria-describedby</code> in each dialog.
+          Following is an example implementation of the <a href="../dialog-modal-pattern.html">Dialog (Modal) Pattern</a>.
+          The below <q>Add Delivery Address</q> button opens a modal dialog that contains two buttons that open other dialogs.
+          The accessibility features section explains the rationale for initial focus placement and use of <code>aria-describedby</code> in each dialog.
         </p>
         <p>Similar examples include:</p>
         <ul>
@@ -96,8 +97,14 @@
             <div id="dialog2" role="dialog" aria-labelledby="dialog2_label" aria-describedby="dialog2_desc" aria-modal="true" class="hidden">
               <h2 id="dialog2_label" class="dialog_label">Verification Result</h2>
               <div id="dialog2_desc" class="dialog_desc">
-                <p tabindex="-1" id="dialog2_para1">This is just a demonstration. If it were a real application, it would provide a message telling whether the entered address is valid.</p>
-                <p>For demonstration purposes, this dialog has a lot of text. It demonstrates a scenario where:</p>
+                <p tabindex="-1" id="dialog2_para1">
+                  This is just a demonstration.
+                  If it were a real application, it would provide a message telling whether the entered address is valid.
+                </p>
+                <p>
+                  For demonstration purposes, this dialog has a lot of text.
+                  It demonstrates a scenario where:
+                </p>
                 <ul>
                   <li>The first interactive element, the help link, is at the bottom of the dialog.</li>
                   <li>If focus is placed on the first interactive element when the dialog opens, the validation message may not be visible.</li>
@@ -119,11 +126,16 @@
                 <ul>
                   <li>The larger a focusable element is, the more difficult it is to visually identify the location of focus, especially for users with a narrow field of view.</li>
                   <li>The dialog has a visual border, so creating a clear visual indicator of focus when the entire dialog has focus is not very feasible.</li>
-                  <li>Screen readers read the label and content of focusable elements. The dialog contains its label and a lot of content! If a dialog like this one has focus, the actual focus is difficult to comprehend.</li>
+                  <li>
+                    Screen readers read the label and content of focusable elements.
+                    The dialog contains its label and a lot of content! If a dialog like this one has focus, the actual focus is difficult to comprehend.
+                  </li>
                 </ul>
                 <p>
-                  In this dialog, the first paragraph has <code>tabindex=<q>-1</q></code
-                  >. The first paragraph is also contained inside the element that provides the dialog description, i.e., the element that is referenced by <code>aria-describedby</code>. With some screen readers, this may have one negative but relatively insignificant side effect when the dialog opens -- the first paragraph may be announced twice. Nonetheless, making the first paragraph focusable and setting the initial focus on it is the most broadly accessible option.
+                  In this dialog, the first paragraph has <code>tabindex=<q>-1</q></code>.
+                  The first paragraph is also contained inside the element that provides the dialog description, i.e., the element that is referenced by <code>aria-describedby</code>.
+                  With some screen readers, this may have one negative but relatively insignificant side effect when the dialog opens -- the first paragraph may be announced twice.
+                  Nonetheless, making the first paragraph focusable and setting the initial focus on it is the most broadly accessible option.
                 </p>
               </div>
               <div class="dialog_form_actions">
@@ -137,8 +149,9 @@
             <div id="dialog3" role="dialog" aria-labelledby="dialog3_label" aria-describedby="dialog3_desc" aria-modal="true" class="hidden">
               <h2 id="dialog3_label" class="dialog_label">Address Added</h2>
               <p id="dialog3_desc" class="dialog_desc">
-                The address you provided has been added to your list of delivery addresses. It is ready for immediate use. If you wish to remove it, you can do so from
-                <a href="#" onclick="openDialog('dialog4', this)">your profile.</a>
+                The address you provided has been added to your list of delivery addresses.
+                It is ready for immediate use.
+                If you wish to remove it, you can do so from <a href="#" onclick="openDialog('dialog4', this)">your profile.</a>
               </p>
               <div class="dialog_form_actions">
                 <button type="button" id="dialog3_close_btn" onclick="closeDialog(this)">OK</button>
@@ -160,7 +173,10 @@
       <section>
         <h2>Accessibility Features</h2>
         <ol>
-          <li>To make the content easier to read when displayed on small screens, the dialog fills 100% of the screen. Completely covering the background window also hides background movement that occurs on some mobile devices when scrolling content inside the dialog.</li>
+          <li>
+            To make the content easier to read when displayed on small screens, the dialog fills 100% of the screen.
+            Completely covering the background window also hides background movement that occurs on some mobile devices when scrolling content inside the dialog.
+          </li>
           <li>
             Focus and accessible descriptions are set based on the content of each dialog.
             <ol>
@@ -185,7 +201,11 @@
               <li>
                 <q>Address Added</q> dialog (id=dialog3):
                 <ul>
-                  <li>Initial focus is set on the <q>OK</q> button, which is the last focusable element. This is for efficiency since most users will simply dismiss the dialog as soon as they have read the message. Users can press <kbd>Tab</kbd> to focus on the <q>My Profile</q> link.</li>
+                  <li>
+                    Initial focus is set on the <q>OK</q> button, which is the last focusable element.
+                    This is for efficiency since most users will simply dismiss the dialog as soon as they have read the message.
+                    Users can press <kbd>Tab</kbd> to focus on the <q>My Profile</q> link.
+                  </li>
                   <li>The element containing the dialog message is referenced by <code>aria-describedby</code> to hint to screen readers that it should be announced when the dialog opens.</li>
                   <li>When the dialog closes, the user's point of regard is maintained by setting focus on the <q>Add Delivery Address</q> button.</li>
                 </ul>
@@ -274,7 +294,10 @@
               <td>
                 <ul>
                   <li>Gives the dialog an accessible description by referring to the dialog content that describes the primary message or purpose of the dialog.</li>
-                  <li>Used in three of the four dialogs included in the example. See the above accessibility features section for an explanation.</li>
+                  <li>
+                    Used in three of the four dialogs included in the example.
+                    See the above accessibility features section for an explanation.
+                  </li>
                 </ul>
               </td>
             </tr>
@@ -290,7 +313,10 @@
         </table>
         <h3>Notes on <code>aria-modal</code> and <code>aria-hidden</code></h3>
         <ol>
-          <li>The <code>aria-modal</code> property was introduced in ARIA 1.1. As a new property, screen reader users may experience varying degrees of support for it.</li>
+          <li>
+            The <code>aria-modal</code> property was introduced in ARIA 1.1.
+            As a new property, screen reader users may experience varying degrees of support for it.
+          </li>
           <li>Applying the <code>aria-modal</code> property to the <code>dialog</code> element replaces the technique of using <code>aria-hidden</code> on the background for informing assistive technologies that content outside a dialog is inert.</li>
           <li>
             In legacy dialog implementations where <code>aria-hidden</code> is used to make content outside a dialog inert for assistive technology users, it is important that:

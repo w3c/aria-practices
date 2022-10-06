@@ -33,11 +33,14 @@
       <section>
         <h2>About This Example</h2>
         <p>
-          The following example implementation of the
-          <a href="../../treeview-pattern.html">Tree View Pattern</a>
-          simulates a widget for selecting a file or folder from within a hierarchical file system for viewing in a file viewer. In the <q>My Documents</q> tree, each parent node represents a folder and each end node represents a file. Activating a node selects the node and puts the name of the folder or file in the read-only edit field that represents the file viewer.
+          The following example implementation of the <a href="../../treeview-pattern.html">Tree View Pattern</a> simulates a widget for selecting a file or folder from within a hierarchical file system for viewing in a file viewer.
+          In the <q>My Documents</q> tree, each parent node represents a folder and each end node represents a file.
+          Activating a node selects the node and puts the name of the folder or file in the read-only edit field that represents the file viewer.
         </p>
-        <p>The code in this example explicitly declares values for <code>aria-setsize</code>, <code>aria-posinset</code> and <code>aria-level</code>, which overrides browser computation of values for these properties. The ARIA specification for these properties states that browsers can, but are not required to, compute these values.</p>
+        <p>
+          The code in this example explicitly declares values for <code>aria-setsize</code>, <code>aria-posinset</code> and <code>aria-level</code>, which overrides browser computation of values for these properties.
+          The ARIA specification for these properties states that browsers can, but are not required to, compute these values.
+        </p>
         <p>Similar examples include:</p>
         <ul>
           <li>
@@ -160,14 +163,20 @@
       <section>
         <h2>Terms Used to Describe Trees</h2>
         <p>
-          A tree item that can be expanded to reveal child items is called a parent node. It is a closed node when the children are hidden and an open node when it is expanded. An end node does not have any children. For a complete list of terms and definitions, see the
-          <a href="../../treeview-pattern.html#terms">Tree View Pattern</a>.
+          A tree item that can be expanded to reveal child items is called a parent node.
+          It is a closed node when the children are hidden and an open node when it is expanded.
+          An end node does not have any children.
+          For a complete list of terms and definitions, see the <a href="../../treeview-pattern.html#terms">Tree View Pattern</a>.
         </p>
       </section>
 
       <section>
         <h2 id="kbd_label">Keyboard Support</h2>
-        <p>Note that in this example, selection and focus are distinct; moving focus does not change which node is selected. Because selection does not follow focus, keyboard and screen reader users can navigate and explore the tree without changing the content of the file viewer. To learn more about this aspect of the design, read the guidance section about <a href="../../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.</p>
+        <p>
+          Note that in this example, selection and focus are distinct; moving focus does not change which node is selected.
+          Because selection does not follow focus, keyboard and screen reader users can navigate and explore the tree without changing the content of the file viewer.
+          To learn more about this aspect of the design, read the guidance section about <a href="../../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
+        </p>
         <table aria-labelledby="kbd_label" class="def">
           <thead>
             <tr>
@@ -272,10 +281,7 @@
               <td>
                 <ul>
                   <li>Identifies the <code>ul</code> element as a <code>tree</code> widget.</li>
-                  <li>
-                    The tree element is not focusable because it implements the practice described in
-                    <a href="../../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.
-                  </li>
+                  <li>The tree element is not focusable because it implements the practice described in <a href="../../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.</li>
                 </ul>
               </td>
             </tr>

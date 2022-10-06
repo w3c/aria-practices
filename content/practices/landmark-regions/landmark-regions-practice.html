@@ -18,13 +18,22 @@
 
       <section id="introduction">
         <h2>Introduction</h2>
-        <p>ARIA landmark roles provide a powerful way to identify the organization and structure of a web page. By classifying and labelling sections of a page, they enable structural information that is conveyed visually through layout to be represented programmatically. Screen readers exploit landmark roles to provide keyboard navigation to important sections of a page. Landmark regions can also be used as targets for &quot;skip links&quot; and by browser extensions to enhanced keyboard navigation.</p>
+        <p>
+          ARIA landmark roles provide a powerful way to identify the organization and structure of a web page.
+          By classifying and labelling sections of a page, they enable structural information that is conveyed visually through layout to be represented programmatically.
+          Screen readers exploit landmark roles to provide keyboard navigation to important sections of a page.
+          Landmark regions can also be used as targets for &quot;skip links&quot; and by browser extensions to enhanced keyboard navigation.
+        </p>
         <p>This section explains how HTML sectioning elements and ARIA landmark roles are used to make it easy for assistive technology users to understand the meaning of the layout of a page.</p>
       </section>
 
       <section>
         <h2>HTML Sectioning Elements</h2>
-        <p>Several HTML sectioning elements automatically create ARIA landmark regions. So, in order to provide assistive technology users with a logical view of a page, it is important to understand the effects of using HTML sectioning elements. [[HTML-ARIA]] contains more information on HTML element role mapping.</p>
+        <p>
+          Several HTML sectioning elements automatically create ARIA landmark regions.
+          So, in order to provide assistive technology users with a logical view of a page, it is important to understand the effects of using HTML sectioning elements.
+          [[HTML-ARIA]] contains more information on HTML element role mapping.
+        </p>
         <table class="widget-features">
           <caption>
             Default landmark roles for HTML sectioning elements
@@ -103,15 +112,27 @@
         <p id="aria_lh_step3"><strong>Step 3: Label areas</strong></p>
 
         <ul>
-          <li>If a specific landmark role is used more than once on a page, provide each instance of that landmark with a unique label. There is one rare circumstance where providing the same label to multiple instances of a landmark can be beneficial: the content and purpose of each instance is identical. For example, a large search results table has two sets of identical pagination controls -- one above and one below the table, so each set is in a navigation region labelled <q>Search Results</q>. In this case, adding extra information to the label that distinguishes the two instances may be more distracting than helpful.</li>
+          <li>
+            If a specific landmark role is used more than once on a page, provide each instance of that landmark with a unique label.
+            There is one rare circumstance where providing the same label to multiple instances of a landmark can be beneficial: the content and purpose of each instance is identical.
+            For example, a large search results table has two sets of identical pagination controls -- one above and one below the table, so each set is in a navigation region labelled <q>Search Results</q>.
+            In this case, adding extra information to the label that distinguishes the two instances may be more distracting than helpful.
+          </li>
 
-          <li>If a landmark is only used once on the page it may not require a label. See Landmark Roles section below.</li>
+          <li>
+            If a landmark is only used once on the page it may not require a label.
+            See Landmark Roles section below.
+          </li>
 
           <li>If an area begins with a heading element (e.g. <code>h1-h6</code>) it can be used as the label for the area using the <code>aria-labelledby</code> attribute.</li>
 
           <li>If an area requires a label and does not have a heading element, provide a label using the <code>aria-label</code> attribute.</li>
 
-          <li>Do not use the landmark role as part of the label. For example, a navigation landmark with a label &quot;Site Navigation&quot; will be announced by a screen reader as &quot;Site Navigation Navigation&quot;. The label should simply be &quot;Site&quot;.</li>
+          <li>
+            Do not use the landmark role as part of the label.
+            For example, a navigation landmark with a label &quot;Site Navigation&quot; will be announced by a screen reader as &quot;Site Navigation Navigation&quot;.
+            The label should simply be &quot;Site&quot;.
+          </li>
         </ul>
       </section>
 
@@ -122,7 +143,9 @@
           <h3 class="widget-name">Banner</h3>
 
           <p>
-            A <a class="role-reference" href="#banner"><code>banner</code></a> landmark identifies site-oriented content at the beginning of each page within a website. Site-oriented content typically includes things such as the logo or identity of the site sponsor, and site-specific search tool. A banner usually appears at the top of the page and typically spans the full width.
+            A <a class="role-reference" href="#banner"><code>banner</code></a> landmark identifies site-oriented content at the beginning of each page within a website.
+            Site-oriented content typically includes things such as the logo or identity of the site sponsor, and site-specific search tool.
+            A banner usually appears at the top of the page and typically spans the full width.
           </p>
 
           <ul>
@@ -199,9 +222,7 @@
         <section id="aria_lh_contentinfo">
           <h3 class="widget-name">Contentinfo</h3>
 
-          <p>
-            A <a class="role-reference" href="#contentinfo"><code>contentinfo</code></a> landmark is a way to identify common information at the bottom of each page within a website, typically called the &quot;footer&quot; of the page, including information such as copyrights and links to privacy and accessibility statements.
-          </p>
+          <p>A <a class="role-reference" href="#contentinfo"><code>contentinfo</code></a> landmark is a way to identify common information at the bottom of each page within a website, typically called the &quot;footer&quot; of the page, including information such as copyrights and links to privacy and accessibility statements.</p>
 
           <ul>
             <li>Each page may have one <code>contentinfo</code> landmark.</li>
@@ -245,9 +266,7 @@
         <section id="aria_lh_form">
           <h3 class="widget-name">Form</h3>
 
-          <p>
-            A <a class="role-reference" href="#form"><code>form</code></a> landmark identifies a region that contains a collection of items and objects that, as a whole, combine to create a form when no other named landmark is appropriate (e.g. main or search).
-          </p>
+          <p>A <a class="role-reference" href="#form"><code>form</code></a> landmark identifies a region that contains a collection of items and objects that, as a whole, combine to create a form when no other named landmark is appropriate (e.g. main or search).</p>
 
           <ul>
             <li>Use the <code>search</code> landmark instead of the <code>form</code> landmark when the form is used for search functionality.</li>
@@ -292,9 +311,7 @@
         <section id="aria_lh_main">
           <h3 class="widget-name">Main</h3>
 
-          <p>
-            A <a class="role-reference" href="#main"><code>main</code></a> landmark identifies the primary content of the page.
-          </p>
+          <p>A <a class="role-reference" href="#main"><code>main</code></a> landmark identifies the primary content of the page.</p>
 
           <ul>
             <li>Each page should have one <code>main</code> landmark.</li>
@@ -326,9 +343,7 @@
         <section id="aria_lh_navigation">
           <h3 class="widget-name">Navigation</h3>
 
-          <p>
-            <a class="role-reference" href="#navigation"><code>Navigation</code></a> landmarks provide a way to identify groups (e.g. lists) of links that are intended to be used for website or page content navigation.
-          </p>
+          <p><a class="role-reference" href="#navigation"><code>Navigation</code></a> landmarks provide a way to identify groups (e.g. lists) of links that are intended to be used for website or page content navigation.</p>
 
           <ul>
             <li>If a page includes more than one <code>navigation</code> landmark, each should have a unique label (see <a href="#aria_lh_step3">Step 3</a> above).</li>
@@ -356,9 +371,7 @@
         <section id="aria_lh_region">
           <h3 class="widget-name">Region</h3>
 
-          <p>
-            A <a class="role-reference" href="#region"><code>region</code></a> landmark is a perceivable section of the page containing content that is sufficiently important for users to be able to navigate to the section.
-          </p>
+          <p>A <a class="role-reference" href="#region"><code>region</code></a> landmark is a perceivable section of the page containing content that is sufficiently important for users to be able to navigate to the section.</p>
 
           <ul>
             <li>A <code>region</code> landmark must have a label.</li>
@@ -388,9 +401,7 @@
         <section id="aria_lh_search">
           <h3 class="widget-name">Search</h3>
 
-          <p>
-            A <a class="role-reference" href="#search"><code>search</code></a> landmark contains a collection of items and objects that, as a whole, combine to create search functionality.
-          </p>
+          <p>A <a class="role-reference" href="#search"><code>search</code></a> landmark contains a collection of items and objects that, as a whole, combine to create search functionality.</p>
 
           <ul>
             <li>Use the <code>search</code> landmark instead of the <code>form</code> landmark when the form is used for search functionality.</li>

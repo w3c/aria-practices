@@ -30,7 +30,12 @@
 
       <section>
         <h2>About This Example</h2>
-        <p>The example below illustrates an implementation of the <a href="../table-pattern.html">Table Pattern</a> for a table with sortable rows. The example uses HTML table markup for all elements of the table structure, e.g., cells, rows, column headers, and caption. The <code>aria-sort</code> attribute is set on the column header of the currently sorted column, and the header text of sortable columns is wrapped in a <code>button</code> element. One column, the <q>Address</q> column is not sortable.</p>
+        <p>
+          The example below illustrates an implementation of the <a href="../table-pattern.html">Table Pattern</a> for a table with sortable rows.
+          The example uses HTML table markup for all elements of the table structure, e.g., cells, rows, column headers, and caption.
+          The <code>aria-sort</code> attribute is set on the column header of the currently sorted column, and the header text of sortable columns is wrapped in a <code>button</code> element.
+          One column, the <q>Address</q> column is not sortable.
+        </p>
         <p>Similar examples include:</p>
         <ul>
           <li><a href="../../grid/examples/dataGrids.html">Data Grid Examples</a>: Three example implementations of grid that include features relevant to presenting tabular information, such as content editing, sort, and column hiding.</li>
@@ -44,7 +49,11 @@
           <input type="checkbox" value="show-unsorted-icon" aria-describedby="show-unsorted-icon-desc">
           Display sort icon in headers of sortable columns that are not sorted
         </label>
-        <p id="show-unsorted-icon-desc">Adds a diamond shaped icon (e.g. <q>♢</q>) to the header of each column that can be sorted but is not currently sorted. Some sortable tables add an icon to unsorted columns to help users distinguish sortable columns from columns that cannot be sorted. It is <em>important</em> that the shape of the unsorted icon differ in more than just color and size from the icons that indicate sort direction (e.g. '▼' and '▲') so people with visual impairments can easily distinguish them.</p>
+        <p id="show-unsorted-icon-desc">
+          Adds a diamond shaped icon (e.g. <q>♢</q>) to the header of each column that can be sorted but is not currently sorted.
+          Some sortable tables add an icon to unsorted columns to help users distinguish sortable columns from columns that cannot be sorted.
+          It is <em>important</em> that the shape of the unsorted icon differ in more than just color and size from the icons that indicate sort direction (e.g. '▼' and '▲') so people with visual impairments can easily distinguish them.
+        </p>
       </section>
 
       <section>
@@ -125,7 +134,10 @@
       <section>
         <h2>Accessibility Features</h2>
         <ul>
-          <li>To help screen reader users understand the purpose of the buttons in the column headers, an off-screen description of the sort functionality of the buttons is appended to the caption text. The description is added to the caption instead of to each button to prevent repetitious verbosity that could interfere with understanding of the column titles.</li>
+          <li>
+            To help screen reader users understand the purpose of the buttons in the column headers, an off-screen description of the sort functionality of the buttons is appended to the caption text.
+            The description is added to the caption instead of to each button to prevent repetitious verbosity that could interfere with understanding of the column titles.
+          </li>
           <li>
             To enhance perceivability when operating the sort buttons, visual keyboard focus and hover are styled using CSS <code>:hover</code> and <code>:focus</code> pseudo-classes:
             <ul>
@@ -162,7 +174,10 @@
               <td><code>th</code></td>
               <td>
                 <ul>
-                  <li>Set on the currently sorted column. When the sorted column is changed, the <code>aria-sort</code> attribute is removed and set on the newly sorted column.</li>
+                  <li>
+                    Set on the currently sorted column.
+                    When the sorted column is changed, the <code>aria-sort</code> attribute is removed and set on the newly sorted column.
+                  </li>
                   <li>A value of &quot;<code>ascending</code>&quot; indicates the data cells in the column are sorted in ascending order.</li>
                   <li>A value of &quot;<code>descending</code>&quot; indicates the data cells in the column are sorted in descending order.</li>
                 </ul>
