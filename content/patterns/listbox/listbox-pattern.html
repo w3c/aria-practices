@@ -156,7 +156,10 @@
             DOM focus (the active element) is functionally distinct from the selected state.
             For more details, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_vs_selection">this description of differences between focus and selection</a>.
           </li>
-          <li>The <code>listbox</code> role supports the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property, which provides an alternative to moving DOM focus among <code>option</code> elements when implementing keyboard navigation. For details, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.</li>
+          <li>
+            The <code>listbox</code> role supports the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property, which provides an alternative to moving DOM focus among <code>option</code> elements when implementing keyboard navigation. For details, see
+            <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.
+          </li>
           <li>
             In a single-select listbox, moving focus may optionally unselect the previously selected option and select the newly focused option.
             This model of selection is known as &quot;selection follows focus&quot;.
@@ -213,7 +216,9 @@
               <li>All options that are selectable but not selected have either <a href="#aria-selected" class="state-reference">aria-selected</a> or <a href="#aria-checked" class="state-reference">aria-checked</a> set to <code>false</code>.</li>
               <li>
                 Note that except in listboxes where selection follows focus, the selected state is distinct from focus.
-                For more details, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_vs_selection">this description of differences between focus and selection</a> and <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.</li>
+                For more details, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_vs_selection">this description of differences between focus and selection</a>
+                and <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
+              </li>
             </ul>
           </li>
           <li>If the complete set of available options is not present in the DOM due to dynamic loading as the user scrolls, their <a href="#aria-setsize" class="property-reference">aria-setsize</a> and <a href="#aria-posinset" class="property-reference">aria-posinset</a> attributes are set appropriately.</li>
