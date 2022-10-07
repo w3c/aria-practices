@@ -33,7 +33,7 @@ jobs:
           APG_BRANCH: ${{ github.event.ref }}
 
   cleanup-pr-wai:
-    if: ${{ github.event_name == 'pull_request' }}
+    if: ${{ github.event_name == 'pull_request' || github.event_name == 'pull_request_target' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
