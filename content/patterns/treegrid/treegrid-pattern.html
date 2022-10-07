@@ -283,20 +283,27 @@
             Otherwise, a label is specified for the grid element using <a href="#aria-label" class="property-reference">aria-label</a>.
           </li>
           <li>If the treegrid has a caption or description, <a href="#aria-describedby" class="property-reference">aria-describedby</a> is set on the grid element with a value referring to the element containing the description.</li>
-          <li>If the treegrid provides sort functions, <a href="#aria-sort" class="property-reference">aria-sort</a> is set to an appropriate value on the header cell element for the sorted column or row as described in the <a href="../../practices/grid-and-table-properties/grid-and-table-properties-practice.html#gridAndTableProperties_sort">Grid and Table Properties Practice</a>.</li>
+          <li>
+            If the treegrid provides sort functions, <a href="#aria-sort" class="property-reference">aria-sort</a> is set to an appropriate value on the header cell element for the sorted column or row as described in the
+            <a href="../../practices/grid-and-table-properties/grid-and-table-properties-practice.html#gridAndTableProperties_sort">Grid and Table Properties Practice</a>.
+          </li>
           <li>
             If the treegrid provides content editing functionality and contains cells that may have edit capabilities disabled in certain conditions, <a href="#aria-readonly" class="state-reference">aria-readonly</a> is set to <code>true</code> on cells where editing is disabled.
             If edit functions are disabled for all cells, instead of setting <code>aria-readonly</code> to <code>true</code> on every cell, <code>aria-readonly</code> may be set to <code>true</code> on the <code>treegrid</code> element.
             Treegrids that do not provide cell content editing functions do not include the <code>aria-readonly</code> attribute on any of their elements.
           </li>
           <li>
-            If there are conditions where some rows or columns are hidden or not present in the DOM, e.g., data is dynamically loaded when scrolling or the treegrid provides functions for hiding rows or columns, the following properties are applied as described in the <a href="../../practices/grid-and-table-properties/grid-and-table-properties-practice.html">Grid and Table Properties Practice</a>.
+            If there are conditions where some rows or columns are hidden or not present in the DOM, e.g., data is dynamically loaded when scrolling or the treegrid provides functions for hiding rows or columns, the following properties are applied as described in the
+            <a href="../../practices/grid-and-table-properties/grid-and-table-properties-practice.html">Grid and Table Properties Practice</a>.
             <ul>
               <li><a href="#aria-colcount" class="property-reference">aria-colcount</a> or <a href="#aria-rowcount" class="property-reference">aria-rowcount</a> is set to the total number of columns or rows, respectively.</li>
               <li><a href="#aria-colindex" class="property-reference">aria-colindex</a> or <a href="#aria-rowindex" class="property-reference">aria-rowindex</a> is set to the position of a cell within a row or column, respectively.</li>
             </ul>
           </li>
-          <li>If the treegrid includes cells that span multiple rows or multiple columns, and if the <code>treegrid</code> role is NOT applied to an HTML <code>table</code> element, then <a href="#aria-rowspan" class="property-reference">aria-rowspan</a> or <a href="#aria-colspan" class="property-reference">aria-colspan</a> is applied as described in the <a href="../../practices/grid-and-table-properties/grid-and-table-properties-practice.html#gridAndTableProperties_spans">Grid and Table Properties Practice</a>.</li>
+          <li>
+            If the treegrid includes cells that span multiple rows or multiple columns, and if the <code>treegrid</code> role is NOT applied to an HTML <code>table</code> element, then <a href="#aria-rowspan" class="property-reference">aria-rowspan</a> or <a href="#aria-colspan" class="property-reference">aria-colspan</a> is applied as described in the
+            <a href="../../practices/grid-and-table-properties/grid-and-table-properties-practice.html#gridAndTableProperties_spans">Grid and Table Properties Practice</a>.
+          </li>
         </ul>
         <ul class="note">
           <li>A <code>treegrid</code> built from an HTML <code>table</code> that includes cells that span multiple rows or columns must use HTML <code>rowspan</code> and <code>colspan</code> and must not use <code>aria-rowspan</code> or <code>aria-colspan</code>.</li>

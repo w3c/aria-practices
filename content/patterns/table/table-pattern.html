@@ -66,15 +66,22 @@
             Otherwise, a label is specified for the table element using <a href="#aria-label" class="property-reference">aria-label</a>.
           </li>
           <li>If the table has a caption or description, <a href="#aria-describedby" class="property-reference">aria-describedby</a> is set on the table element with a value referring to the element containing the description.</li>
-          <li>If the table contains sortable columns or rows, <a href="#aria-sort" class="property-reference">aria-sort</a> is set to an appropriate value on the header cell element for the sorted column or row as described in the <a href="../../practices/grid-and-table-properties/grid-and-table-properties-practice.html#gridAndTableProperties_sort">Grid and Table Properties Practice</a>.</li>
           <li>
-            If there are conditions where some rows or columns are hidden or not present in the DOM, e.g., there are widgets on the page for hiding rows or columns, the following properties are applied as described in the <a href="../../practices/grid-and-table-properties/grid-and-table-properties-practice.html">Grid and Table Properties Practice</a>.
+            If the table contains sortable columns or rows, <a href="#aria-sort" class="property-reference">aria-sort</a> is set to an appropriate value on the header cell element for the sorted column or row as described in the
+            <a href="../../practices/grid-and-table-properties/grid-and-table-properties-practice.html#gridAndTableProperties_sort">Grid and Table Properties Practice</a>.
+          </li>
+          <li>
+            If there are conditions where some rows or columns are hidden or not present in the DOM, e.g., there are widgets on the page for hiding rows or columns, the following properties are applied as described in the
+            <a href="../../practices/grid-and-table-properties/grid-and-table-properties-practice.html">Grid and Table Properties Practice</a>.
             <ul>
               <li><a href="#aria-colcount" class="property-reference">aria-colcount</a> or <a href="#aria-rowcount" class="property-reference">aria-rowcount</a> is set to the total number of columns or rows, respectively.</li>
               <li><a href="#aria-colindex" class="property-reference">aria-colindex</a> or <a href="#aria-rowindex" class="property-reference">aria-rowindex</a> is set to the position of a cell within a row or column, respectively.</li>
             </ul>
           </li>
-          <li>If the table includes cells that span multiple rows or multiple columns, then <a href="#aria-rowspan" class="property-reference">aria-rowspan</a> or <a href="#aria-colspan" class="property-reference">aria-colspan</a> is applied as described in the <a href="../../practices/grid-and-table-properties/grid-and-table-properties-practice.html#gridAndTableProperties_spans">Grid and Table Properties Practice</a>.</li>
+          <li>
+            If the table includes cells that span multiple rows or multiple columns, then <a href="#aria-rowspan" class="property-reference">aria-rowspan</a> or <a href="#aria-colspan" class="property-reference">aria-colspan</a> is applied as described in the
+            <a href="../../practices/grid-and-table-properties/grid-and-table-properties-practice.html#gridAndTableProperties_spans">Grid and Table Properties Practice</a>.
+          </li>
         </ul>
         <p class="note">If rows or cells are included in a table via <a href="#aria-owns" class="property-reference">aria-owns</a>, they will be presented to assistive technologies after the DOM descendants of the <code>table</code> element unless the DOM descendants are also included in the <code>aria-owns</code> attribute.</p>
       </section>
