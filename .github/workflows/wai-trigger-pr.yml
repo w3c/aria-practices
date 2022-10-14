@@ -28,7 +28,7 @@ jobs:
           ref: refs/pull/${{ github.event.pull_request.number }}/head
 
       - name: Trigger wai-aria-practices PR update
-        uses: actions/github-script@v5
+        uses: actions/github-script@v6.3.3
         env:
           APG_BRANCH: ${{ github.head_ref }}
           APG_SHA: ${{ github.event.pull_request.head.sha }}
