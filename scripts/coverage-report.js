@@ -492,7 +492,7 @@ glob
       dataCSS += ' ';
     }
 
-    let ref = path.join('..', file);
+    let ref = path.join('../../..', file);
     let title = html
       .querySelector('title')
       .textContent.split('|')[0]
@@ -686,56 +686,56 @@ addLandmarkRole(
   ['banner'],
   false,
   'Banner Landmark',
-  '../content/patterns/landmarks/examples/banner.html'
+  '../../content/patterns/landmarks/examples/banner.html'
 );
 
 addLandmarkRole(
   ['complementary'],
   true,
   'Complementary Landmark',
-  '../content/patterns/landmarks/examples/complementary.html'
+  '../../../content/patterns/landmarks/examples/complementary.html'
 );
 
 addLandmarkRole(
   ['contentinfo'],
   false,
   'Contentinfo Landmark',
-  '../content/patterns/landmarks/examples/contentinfo.html'
+  '../../../content/patterns/landmarks/examples/contentinfo.html'
 );
 
 addLandmarkRole(
   ['form'],
   true,
   'Form Landmark',
-  '../content/patterns/landmarks/examples/form.html'
+  '../../../content/patterns/landmarks/examples/form.html'
 );
 
 addLandmarkRole(
   ['main'],
   true,
   'Main Landmark',
-  '../content/patterns/landmarks/examples/main.html'
+  '../../../content/patterns/landmarks/examples/main.html'
 );
 
 addLandmarkRole(
   ['navigation'],
   true,
   'Navigation Landmark',
-  '../content/patterns/landmarks/examples/navigation.html'
+  '../../../content/patterns/landmarks/examples/navigation.html'
 );
 
 addLandmarkRole(
   ['region'],
   true,
   'Region Landmark',
-  '../content/patterns/landmarks/examples/region.html'
+  '../../../content/patterns/landmarks/examples/region.html'
 );
 
 addLandmarkRole(
   ['search'],
   true,
   'Search Landmark',
-  '../content/patterns/landmarks/examples/search.html'
+  '../../../content/patterns/landmarks/examples/search.html'
 );
 
 function getListItem(item) {
