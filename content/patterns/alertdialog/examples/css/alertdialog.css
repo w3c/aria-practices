@@ -70,7 +70,7 @@
   overflow: hidden;
 }
 
-/* styling for alert-dialog example */
+/* styling for alertdialog example */
 .notes {
   display: block;
   font-size: 1rem;
@@ -90,6 +90,10 @@
   position: absolute;
   width: 1px;
   white-space: nowrap;
+}
+
+#ex_alertdialog [aria-disabled="true"] {
+  opacity: 0.4;
 }
 
 #notes_save {

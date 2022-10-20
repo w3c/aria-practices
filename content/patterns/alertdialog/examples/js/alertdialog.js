@@ -47,6 +47,17 @@ aria.Utils.attemptFocus = function (element) {
   return document.activeElement === element;
 }; // end attemptFocus
 
+aria.handleEscape = function (event) {
+  var key = event.which || event.keyCode;
+
+  if (key === aria.KeyCode.ESC && aria.openedDialog) {
+    aria.openedDialog.close();
+    event.stopPropagation();
+  }
+};
+
+document.addEventListener('keyup', aria.handleEscape);
+
 /**
  * @class
  * @description Dialog object providing modal focus management.
@@ -174,6 +185,22 @@ aria.Dialog.prototype.addListeners = function () {
 aria.Dialog.prototype.removeListeners = function () {
   document.removeEventListener('focus', this.trapFocus, true);
 }; // end removeListeners
+
+aria.Dialog.prototype.trapFocus = function (event) {
+  if (aria.Utils.IgnoreUtilFocusChanges) {
+    return;
+  }
+  var opened = aria.openedDialog;
+  if (opened.dialogNode.contains(event.target)) {
+    opened.lastFocus = event.target;
+  } else {
+    aria.Utils.focusFirstDescendant(opened.dialogNode);
+    if (opened.lastFocus == document.activeElement) {
+      aria.Utils.focusLastDescendant(opened.dialogNode);
+    }
+    opened.lastFocus = document.activeElement;
+  }
+}; // end trapFocus
 
 aria.Utils.disableCtrl = function (ctrl) {
   ctrl.setAttribute('aria-disabled', 'true');
