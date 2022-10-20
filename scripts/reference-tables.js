@@ -252,7 +252,7 @@ function addLandmarkRole(landmark, hasLabel, title, ref) {
 }
 
 glob
-  .sync('content/patterns/!(landmarks)/examples/**/!(index).html', {
+  .sync('content/patterns/!(landmarks)/examples/!(index).html', {
     cwd: path.join(__dirname, '..'),
     nodir: true,
   })

@@ -444,7 +444,7 @@ function getExampleCodeId(html) {
 
 // Index roles, properties and states used in examples
 glob
-  .sync('content/patterns/!(landmarks)/examples/**/!(index).html', {
+  .sync('content/patterns/!(landmarks)/examples/!(index).html', {
     cwd: path.join(__dirname, '..'),
     nodir: true,
   })

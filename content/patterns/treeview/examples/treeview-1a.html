@@ -7,12 +7,12 @@
 
     <!-- Core JS and CSS shared by all examples -->
     <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
-    <link rel="stylesheet" href="../../../../shared/css/core.css">
-    <script src="../../../../shared/js/examples.js"></script>
-    <script src="../../../../shared/js/utils.js"></script>
-    <script src="../../../../shared/js/highlight.pack.js"></script>
-    <script src="../../../../shared/js/app.js"></script>
-    <script src="../../../../shared/js/skipto.js"></script>
+    <link rel="stylesheet" href="../../../shared/css/core.css">
+    <script src="../../../shared/js/examples.js"></script>
+    <script src="../../../shared/js/utils.js"></script>
+    <script src="../../../shared/js/highlight.pack.js"></script>
+    <script src="../../../shared/js/app.js"></script>
+    <script src="../../../shared/js/skipto.js"></script>
 
     <!-- JS and CSS for this example -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
@@ -179,13 +179,12 @@
           Note that in this example, selection and focus are distinct; moving focus does not change which node is selected.
           Because selection does not follow focus, keyboard and screen reader users can navigate and explore the tree without changing the content of the file viewer.
           To learn more about this aspect of the design, see
-          <a href="../../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
+          <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
         </p>
         <table aria-labelledby="kbd_label" class="def">
           <thead>
             <tr>
               <th>Key</th>
-              7
               <th>Function</th>
             </tr>
           </thead>
@@ -288,7 +287,7 @@
                   <li>Identifies the <code>ul</code> element as a <code>tree</code> widget.</li>
                   <li>
                     The tree element is not focusable because it implements the practice described in
-                    <a href="../../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.
+                    <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.
                   </li>
                 </ul>
               </td>
@@ -327,7 +326,7 @@
                   <li>In this implementation, the first <code>treeitem</code> in the <code>tree</code> is included in the tab sequence when the page loads.</li>
                   <li>
                     When the user moves focus in the <code>tree</code>, the element included in the tab sequence changes to the element with focus as described in
-                    <a href="../../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.
+                    <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_roving_tabindex">Managing Focus Within Components Using a Roving tabindex</a>.
                   </li>
                 </ul>
               </td>
