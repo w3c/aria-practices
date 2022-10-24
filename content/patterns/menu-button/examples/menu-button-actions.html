@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en">
+  <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actions Menu Button Example Using element.focus()</title>
 
-    <!--  Core js and css shared by all examples; do not modify when using this template. -->
+    <!-- Core JS and CSS shared by all examples -->
     <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
     <link rel="stylesheet" href="../../../shared/css/core.css">
     <script src="../../../shared/js/examples.js"></script>
     <script src="../../../shared/js/highlight.pack.js"></script>
     <script src="../../../shared/js/app.js"></script>
+    <script src="../../../shared/js/skipto.js"></script>
 
-    <!--  JS and CSS for this example  -->
+    <!-- JS and CSS for this example -->
     <link href="css/menu-button-actions.css" rel="stylesheet">
-    <script src="js/menu-button-actions.js" type="text/javascript"></script>
+    <script src="js/menu-button-actions.js"></script>
   </head>
   <body>
     <nav aria-label="Related Links" class="feedback">
@@ -23,25 +26,24 @@
     </nav>
     <main>
       <h1>Actions Menu Button Example Using <code>element.focus()</code></h1>
+
       <section>
-      <h2>About This Example</h2>
-      <p>
-        This example demonstrates how the
-        <a href="../menu-button-pattern.html">Menu Button Pattern</a>
-      can be used to create a button that opens an actions menu.
-      In this example, choosing an action from the menu will cause the chosen action to be displayed in the <q>Last Action</q> edit box.
-    </p>
-    <p>
-    In this implementation, each item in the menu is made focusable by setting <code>tabindex=&quot;-1&quot;</code> so the JavaScript can use <code>element.focus()</code> to set focus in response to events that trigger focus movement inside the menu.
-    An alternative technique for managing focus movement among menu items is demonstrated in
-    <a href="menu-button-actions-active-descendant.html">the action menu button example that uses aria-activedescendant.</a>
-      </p>
-      <p>Similar examples include: </p>
-      <ul>
-        <li><a href="menu-button-actions-active-descendant.html">Action Menu Button Example Using aria-activedescendant</a>: A button that opens a menu of actions or commands where focus in the menu is managed using aria-activedescendant.</li>
-        <li><a href="menu-button-links.html">Navigation Menu Button</a>: A button that opens a menu of items that behave as links.</li>
-      </ul>
+        <h2>About This Example</h2>
+        <p>
+          This example demonstrates how the <a href="../menu-button-pattern.html">Menu Button Pattern</a> can be used to create a button that opens an actions menu.
+          In this example, choosing an action from the menu will cause the chosen action to be displayed in the <q>Last Action</q> edit box.
+        </p>
+        <p>
+          In this implementation, each item in the menu is made focusable by setting <code>tabindex=&quot;-1&quot;</code> so the JavaScript can use <code>element.focus()</code> to set focus in response to events that trigger focus movement inside the menu.
+          An alternative technique for managing focus movement among menu items is demonstrated in <a href="menu-button-actions-active-descendant.html">the action menu button example that uses aria-activedescendant.</a>
+        </p>
+        <p>Similar examples include:</p>
+        <ul>
+          <li><a href="menu-button-actions-active-descendant.html">Action Menu Button Example Using aria-activedescendant</a>: A button that opens a menu of actions or commands where focus in the menu is managed using aria-activedescendant.</li>
+          <li><a href="menu-button-links.html">Navigation Menu Button</a>: A button that opens a menu of items that behave as links.</li>
+        </ul>
       </section>
+
       <section>
         <div class="example-header">
           <h2 id="ex_label">Example</h2>
@@ -49,14 +51,10 @@
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div id="ex1">
           <div class="menu-button-actions">
-            <button type="button"
-                id="menubutton1"
-                aria-haspopup="true"
-                aria-controls="menu1"
-                >
+            <button type="button" id="menubutton1" aria-haspopup="true" aria-controls="menu1">
               Actions
               <svg xmlns="http://www.w3.org/2000/svg" class="down" width="12" height="9" viewBox="0 0 12 9">
-                <polygon points="1 0, 11 0, 6 8"/>
+                <polygon points="1 0, 11 0, 6 8" />
               </svg>
             </button>
 
@@ -67,9 +65,9 @@
               <li role="menuitem">Action 4</li>
             </ul>
           </div>
-        <p>
-          <label>Last Action: <input class="action" id="action_output" type="text" value=""></label>
-        </p>
+          <p>
+            <label>Last Action: <input class="action" id="action_output" type="text" value=""></label>
+          </p>
         </div>
         <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
       </section>
@@ -78,7 +76,8 @@
         <h2>Accessibility Features</h2>
         <ol>
           <li>A down arrow icon is included to help users understand that the button opens a menu.</li>
-          <li>To support operating system high contrast settings:
+          <li>
+            To support operating system high contrast settings:
             <ul>
               <li>
                 Because transparent borders are visible on some systems with operating system high contrast settings enabled, transparency cannot be used to create a visual difference between the element that is focused an other elements.
@@ -117,7 +116,7 @@
             </tr>
           </tbody>
         </table>
-         <h3 id="kbd2_label" class="widget">Menu</h3>
+        <h3 id="kbd2_label" class="widget">Menu</h3>
         <table aria-labelledby="kbd2_label kbd_label" class="def">
           <thead>
             <tr>
@@ -131,8 +130,8 @@
               <td>
                 <ul>
                   <li>Activates the menu item, causing the <q>Last Action</q> textbox to be updated.</li>
-                                    <li>Closes the menu.</li>
-                                    <li>Sets focus on the menu button</li>
+                  <li>Closes the menu.</li>
+                  <li>Sets focus on the menu button.</li>
                 </ul>
               </td>
             </tr>
@@ -154,7 +153,7 @@
                 </ul>
               </td>
             </tr>
-             <tr data-test-id="menu-key-down-arrow">
+            <tr data-test-id="menu-key-down-arrow">
               <th><kbd>Down Arrow</kbd></th>
               <td>
                 <ul>
@@ -185,7 +184,7 @@
       </section>
 
       <section>
-        <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
+        <h2 id="rps_label">Role, Property, State, and Tabindex Attributes</h2>
         <h3 id="rps1_label">Menu Button</h3>
         <table aria-labelledby="rps1_label rps_label" class="data attributes">
           <thead>
@@ -227,17 +226,20 @@
               </td>
             </tr>
             <tr data-test-id="menu-button-aria-expanded">
-                <td></td>
-                <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
-                <td><code>button</code></td>
-                <td>
-                  <ul>
-                    <li>Added when the menu is open.</li>
-                    <li>Indicates that the menu is displayed and that activating the menu button closes the menu.</li>
-                    <li>The <code>aria-expanded</code> attribute is removed when the menu is closed.</li>
-                    <li>Included to support touch devices where screen reader users can touch the menu button when the menu is displayed. Keyboard users cannot focus the menu button when the menu is open.</li>
-                  </ul>
-                </td>
+              <td></td>
+              <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
+              <td><code>button</code></td>
+              <td>
+                <ul>
+                  <li>Added when the menu is open.</li>
+                  <li>Indicates that the menu is displayed and that activating the menu button closes the menu.</li>
+                  <li>The <code>aria-expanded</code> attribute is removed when the menu is closed.</li>
+                  <li>
+                    Included to support touch devices where screen reader users can touch the menu button when the menu is displayed.
+                    Keyboard users cannot focus the menu button when the menu is open.
+                  </li>
+                </ul>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -307,7 +309,6 @@
             </tr>
           </tbody>
         </table>
-
       </section>
 
       <section>
@@ -318,22 +319,17 @@
           <li>Javascript: <a href="js/menu-button-actions.js" type="text/javascript">menu-button-actions.js</a></li>
         </ul>
       </section>
+
       <section>
         <h2 id="sc1_label">HTML Source Code</h2>
         <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
         <pre><code id="sc1"></code></pre>
         <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
-        <!--
-          The following script will show the reader the HTML source for the example that is in the div with ID 'ex1'.
-          It renders the HTML in the preceding div with ID 'sc1'.
-          If you change the ID of either the 'ex1' div or the 'sc1' div, be sure to update the sourceCode.add function parameters.
-          -->
         <script>
           sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
           sourceCode.make();
         </script>
       </section>
-
     </main>
   </body>
-  </html>
+</html>
