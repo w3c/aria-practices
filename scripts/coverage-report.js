@@ -384,7 +384,7 @@ function getUniqueRolesInExample(html, dataJS) {
       }
     }
   });
-  roles.forEach((role) => console.log('  [Example role]: ' + role));
+  // roles.forEach((role) => console.log('  [Example role]: ' + role));
   console.log('  [Example Roles]: ' + roles.length);
   return roles;
 }
@@ -598,7 +598,7 @@ function addGuidanceToPropertyOrState(prop, url, label, id) {
 }
 
 function getRolesPropertiesAndStatesFromHeaders(html, url) {
-  let dataHeadings = html.querySelectorAll('h2, h3, h4, h4, h5, h6');
+  let dataHeadings = html.querySelectorAll('h1, h2, h3, h4, h4, h5, h6');
 
   for (let i = 0; i < dataHeadings.length; i++) {
     let dataHeading = dataHeadings[i];
@@ -672,21 +672,30 @@ function getRolesPropertiesAndStatesFromGuidance(html, url) {
   getPropertiesAndStatesFromDataAttributesOnHeaders(html, url);
 }
 
-let data = fs.readFileSync(
-  path.join(__dirname, '../aria-practices.html'),
-  'utf8'
-);
+const patternFiles = glob.sync('content/patterns/!(landmarks)/*-pattern.html', {
+  cwd: path.join(__dirname, '..'),
+});
 
-let html = HTMLParser.parse(data);
+const practiceFiles = glob.sync('content/practices/*/*-practice.html', {
+  cwd: path.join(__dirname, '..'),
+});
 
-getRolesPropertiesAndStatesFromGuidance(html, '../aria-practices.html');
+const guidanceFiles = [...patternFiles, ...practiceFiles];
+
+guidanceFiles.forEach(function (file) {
+  let data = fs.readFileSync(file, 'utf8');
+
+  let html = HTMLParser.parse(data);
+
+  getRolesPropertiesAndStatesFromGuidance(html, path.join('../../../', file));
+});
 
 // Add landmark examples, since they are a different format
 addLandmarkRole(
   ['banner'],
   false,
   'Banner Landmark',
-  '../../content/patterns/landmarks/examples/banner.html'
+  '../../../content/patterns/landmarks/examples/banner.html'
 );
 
 addLandmarkRole(
