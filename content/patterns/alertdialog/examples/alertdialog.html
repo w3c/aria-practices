@@ -9,21 +9,21 @@
     <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
     <link rel="stylesheet" href="../../../shared/css/core.css">
     <script src="../../../shared/js/examples.js"></script>
+    <script src="../../../shared/js/utils.js"></script>
     <script src="../../../shared/js/highlight.pack.js"></script>
     <script src="../../../shared/js/app.js"></script>
     <script src="../../../shared/js/skipto.js"></script>
 
     <!-- JS and CSS for this example -->
-    <link href="css/dialog.css" rel="stylesheet">
+    <link href="css/alertdialog.css" rel="stylesheet">
     <script src="../../../shared/js/utils.js"></script>
-    <script src="js/dialog.js"></script>
     <script src="js/alertdialog.js"></script>
   </head>
   <body>
     <nav aria-label="Related Links" class="feedback">
       <ul>
         <li><a href="https://github.com/w3c/aria-practices/projects/20">Related Issues</a></li>
-        <li><a href="../../alert-dialog/alert-dialog-pattern.html">Design Pattern</a></li>
+        <li><a href="../alertdialog-pattern.html">Design Pattern</a></li>
       </ul>
     </nav>
     <main>
@@ -32,7 +32,7 @@
       <section>
         <h2>About This Example</h2>
         <p>
-          The below example of a confirmation prompt demonstrates the <a href="../../alert-dialog/alert-dialog-pattern.html">Alert Dialog Pattern</a>.
+          The below example of a confirmation prompt demonstrates the <a href="../alertdialog-pattern.html">Alert Dialog Pattern</a>.
           It also includes an example of the <a href="../../alert/alert-pattern.html">Alert Pattern</a> to make comparing the experiences provided by the two patterns easy.
         </p>
         <p>To use this example:</p>
@@ -41,7 +41,7 @@
             Activate the "discard" button to trigger a confirmation dialog that has the <code>alertdialog</code> role.
             <ul>
               <li>Activating the "yes" button in the confirmation dialog removes the contents of both the "Notes" text area and local storage of the notes.</li>
-              <li>Activating the "no" button or pressing <kbd>escape</kbd> closes the dialog.</li>
+              <li data-test-id="save-button">Activating the "no" button or pressing <kbd>escape</kbd> closes the dialog.</li>
               <li>The "discard" button is disabled if the notes text area does not contain any text.</li>
             </ul>
           </li>
@@ -55,12 +55,11 @@
           </li>
           <li>Modify the "notes" text area as needed to enable and disable the discard and save functions.</li>
         </ul>
-        <p>Note: This example uses code from the <a href="dialog.html">modal dialog example</a> to create the behaviors of the <code>alertdialog</code> so referencing that example may be useful.</p>
         <p>Similar examples include:</p>
         <ul>
           <li><a href="../../alert/examples/alert.html">Alert</a>: a basic alert.</li>
-          <li><a href="dialog.html">Modal Dialog Example</a>: An example demonstrating multiple layers of modal dialogs with both small and large amounts of content.</li>
-          <li><a href="datepicker-dialog.html">Date Picker Dialog example</a>: Demonstrates a dialog containing a calendar grid for choosing a date.</li>
+          <li><a href="../../dialog-modal/examples/dialog.html">Modal Dialog Example</a>: An example demonstrating multiple layers of modal dialogs with both small and large amounts of content.</li>
+          <li><a href="../../dialog-modal/examples/datepicker-dialog.html">Date Picker Dialog example</a>: Demonstrates a dialog containing a calendar grid for choosing a date.</li>
         </ul>
       </section>
 
@@ -82,16 +81,16 @@
               <path d="M27 4l-15 15-7-7-5 5 12 12 20-20z"></path>
             </svg>
           </button>
-          <button type="button" data-textbox="notes" id="notes_discard" onclick="openAlertDialog('alert_dialog', this)">Discard</button>
+          <button type="button" data-textbox="notes" id="notes_discard" onclick="openAlertDialog('alertdialog', this)">Discard</button>
           <div class="dialog-backdrop no-scroll">
-            <div id="alert_dialog" role="alertdialog" aria-modal="true" aria-labelledby="dialog_label" aria-describedby="dialog_desc" class="hidden">
+            <div id="alertdialog" role="alertdialog" aria-modal="true" aria-labelledby="dialog_label" aria-describedby="dialog_desc" class="hidden">
               <h2 id="dialog_label" class="dialog_label">Confirmation</h2>
               <div id="dialog_desc" class="dialog_desc">
                 <p>Are you sure you want to discard all of your notes?</p>
               </div>
               <div class="dialog_form_actions">
-                <button type="button" onclick="closeDialog(this)">No</button>
-                <button type="button" id="notes_confirm" onclick="discardInput(this)">Yes</button>
+                <button type="button" id="notes_cancel" onclick="closeDialog(this)">No</button>
+                <button type="button" id="notes_confirm" onclick="discardInput()">Yes</button>
               </div>
             </div>
           </div>
@@ -125,7 +124,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr data-test-id="key-tab">
               <th><kbd>Tab</kbd></th>
               <td>
                 <ul>
@@ -143,7 +142,7 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="key-escape">
               <th><kbd>Escape</kbd></th>
               <td>Closes the dialog.</td>
             </tr>
@@ -151,7 +150,7 @@
               <th><kbd>Command + S</kbd></th>
               <td>(Mac only) Save the contents of the notes <code>textarea</code> when focused.</td>
             </tr>
-            <tr>
+            <tr data-test-id="key-control-s">
               <th><kbd>Control + S</kbd></th>
               <td>(Windows only) Save the contents of the notes <code>textarea</code> when focused.</td>
             </tr>
@@ -171,32 +170,32 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr data-test-id="alertdialog-role">
               <th scope="row"><code>alertdialog</code></th>
               <td></td>
               <td><code>div</code></td>
               <td>Identifies the element that serves as the alert dialog container.</td>
             </tr>
-            <tr>
+            <tr data-test-id="aria-labelledby">
               <td></td>
               <th scope="row"><code>aria-labelledby="ID_REFERENCE"</code></th>
               <td><code>div</code></td>
               <td>Gives the alert dialog an accessible name by referring to the element that provides the alert dialog title.</td>
             </tr>
-            <tr>
+            <tr data-test-id="aria-describedby">
               <td></td>
               <th scope="row"><code>aria-describedby="ID_REFERENCE"</code></th>
               <td><code>div</code></td>
               <td>Gives the alert dialog an accessible description by referring to the alert dialog content that describes the primary message or purpose of the alert dialog.</td>
             </tr>
-            <tr>
+            <tr data-test-id="aria-modal">
               <td></td>
               <th scope="row"><code>aria-modal="true"</code></th>
               <td><code>div</code></td>
               <td>Tells assistive technologies that the windows underneath the current alert dialog are not available for interaction (inert).</td>
             </tr>
             <tr>
-              <th scope="row"><code>alert</code></th>
+              <th data-test-id="alert-role" scope="row"><code>alert</code></th>
               <td></td>
               <td><code>div</code></td>
               <td>Identifies the element that serves as the alert notification.</td>
@@ -229,8 +228,8 @@
       <section>
         <h2 id="src_label">Javascript and CSS Source Code</h2>
         <ul id="css_js_files">
-          <li>CSS: <a href="css/dialog.css" type="text/css">dialog.css</a></li>
-          <li>Javascript: <a href="js/alertdialog.js" type="text/javascript">alertdialog.js</a>, <a href="js/dialog.js" type="text/javascript">dialog.js</a>, <a href="../../../shared/js/utils.js">utils.js</a></li>
+          <li>CSS: <a href="css/alertdialog.css" type="text/css">alertdialog.css</a></li>
+          <li>Javascript: <a href="js/alertdialog.js" type="text/javascript">alertdialog.js</a>, <a href="../../../shared/js/utils.js">utils.js</a></li>
         </ul>
       </section>
 

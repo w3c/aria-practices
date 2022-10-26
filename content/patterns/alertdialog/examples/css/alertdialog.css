@@ -2,7 +2,7 @@
   display: none;
 }
 
-[role="dialog"] {
+[role="alertdialog"] {
   box-sizing: border-box;
   padding: 15px;
   border: 1px solid #000;
@@ -11,7 +11,7 @@
 }
 
 @media screen and (min-width: 640px) {
-  [role="dialog"] {
+  [role="alertdialog"] {
     position: absolute;
     top: 2rem;
     left: 50vw; /* move to the middle of the screen (assumes relative parent is the body/viewport) */
@@ -29,73 +29,9 @@
   text-align: center;
 }
 
-.dialog_form {
-  margin: 15px;
-}
-
-.dialog_form .label_text {
-  box-sizing: border-box;
-  padding-right: 0.5em;
-  display: inline-block;
-  font-size: 16px;
-  font-weight: bold;
-  width: 30%;
-  text-align: right;
-}
-
-.dialog_form .label_info {
-  box-sizing: border-box;
-  padding-right: 0.5em;
-  font-size: 12px;
-  width: 30%;
-  text-align: right;
-  display: inline-block;
-}
-
-.dialog_form_item {
-  margin: 10px 0;
-  font-size: 0;
-}
-
-.dialog_form_item .wide_input {
-  box-sizing: border-box;
-  max-width: 70%;
-  width: 27em;
-}
-
-.dialog_form_item .city_input {
-  box-sizing: border-box;
-  max-width: 70%;
-  width: 17em;
-}
-
-.dialog_form_item .state_input {
-  box-sizing: border-box;
-  max-width: 70%;
-  width: 15em;
-}
-
-.dialog_form_item .zip_input {
-  box-sizing: border-box;
-  max-width: 70%;
-  width: 9em;
-}
-
 .dialog_form_actions {
   text-align: right;
   padding: 0 20px 20px;
-}
-
-.dialog_close_button {
-  float: right;
-  position: absolute;
-  top: 10px;
-  left: 92%;
-  height: 25px;
-}
-
-.dialog_close_button img {
-  border: 0;
 }
 
 .dialog_desc {
@@ -132,4 +68,64 @@
 /* this is added to the body when a dialog is open */
 .has-dialog {
   overflow: hidden;
+}
+
+/* styling for alertdialog example */
+.notes {
+  display: block;
+  font-size: 1rem;
+  line-height: 1.3;
+  min-width: 400px;
+  max-width: 100%;
+  width: 33%;
+}
+
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: auto;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}
+
+#ex_alertdialog [aria-disabled="true"] {
+  opacity: 0.4;
+}
+
+#notes_save {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#notes_save svg {
+  display: block;
+  width: 0.75rem;
+}
+
+#notes_save .icon {
+  display: none;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#notes_save.loading .spinner {
+  display: block;
+  animation: rotate 2s linear infinite;
+}
+
+#notes_save.saved .check {
+  display: block;
 }
