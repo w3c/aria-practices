@@ -66,14 +66,3 @@
       });
   }
 })();
-
-// Add skipto.js to examples
-(function () {
-  let ref = window.location.href.match(/(.+\/)(patterns|about|index)\//)[1];
-  if (ref) {
-    let head = document.getElementsByTagName('head')[0];
-    let scriptNode = document.createElement('script');
-    scriptNode.setAttribute('src', ref + 'shared/js/skipto.js');
-    head.appendChild(scriptNode);
-  }
-})();
