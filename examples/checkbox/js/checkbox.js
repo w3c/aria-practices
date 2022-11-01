@@ -33,7 +33,7 @@ class Checkbox {
 
   /* EVENT HANDLERS */
 
-  // Make sure to prevent page scrolling on spacebar down
+  // Make sure to prevent page scrolling on space down
   onKeydown(event) {
     if (event.key === ' ') {
       event.preventDefault();
