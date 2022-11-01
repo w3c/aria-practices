@@ -55,7 +55,6 @@ class Checkbox {
 
     if (flag) {
       event.stopPropagation();
-      event.preventDefault();
     }
   }
 
