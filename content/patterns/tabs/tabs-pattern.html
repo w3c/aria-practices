@@ -95,23 +95,26 @@
             </ul>
           </li>
         </ul>
-        <ol class="note">
-          <li>
-            It is recommended that tabs activate automatically when they receive focus as long as their associated tab panels are displayed without noticeable latency.
-            This typically requires tab panel content to be preloaded.
-            Otherwise, automatic activation slows focus movement, which significantly hampers users' ability to navigate efficiently across the tab list.
-            For additional guidance, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
-          </li>
-          <li>
-            When a tab list has its <a href="#aria-orientation" class="property-reference">aria-orientation</a> set to <code>vertical</code>:
-            <ol>
-              <li><kbd>Down Arrow</kbd> performs as <kbd>Right Arrow</kbd> is described above.</li>
-              <li><kbd>Up Arrow</kbd> performs as <kbd>Left Arrow</kbd> is described above.</li>
-            </ol>
-          </li>
-          <li>If the tab list is horizontal, it does not listen for <kbd>Down Arrow</kbd> or <kbd>Up Arrow</kbd> so those keys can provide their normal browser scrolling functions even when focus is inside the tab list.</li>
-          <li>When the tabpanel does not contain any focusable elements or the first element with content is not focusable, the tabpanel should set <code>tabindex="0"</code> to include it in the tab sequence of the page.</li>
-        </ol>
+        <div class="note">
+          <h3>Note</h3>
+          <ol>
+            <li>
+              It is recommended that tabs activate automatically when they receive focus as long as their associated tab panels are displayed without noticeable latency.
+              This typically requires tab panel content to be preloaded.
+              Otherwise, automatic activation slows focus movement, which significantly hampers users' ability to navigate efficiently across the tab list.
+              For additional guidance, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
+            </li>
+            <li>
+              When a tab list has its <a href="#aria-orientation" class="property-reference">aria-orientation</a> set to <code>vertical</code>:
+              <ol>
+                <li><kbd>Down Arrow</kbd> performs as <kbd>Right Arrow</kbd> is described above.</li>
+                <li><kbd>Up Arrow</kbd> performs as <kbd>Left Arrow</kbd> is described above.</li>
+              </ol>
+            </li>
+            <li>If the tab list is horizontal, it does not listen for <kbd>Down Arrow</kbd> or <kbd>Up Arrow</kbd> so those keys can provide their normal browser scrolling functions even when focus is inside the tab list.</li>
+            <li>When the tabpanel does not contain any focusable elements or the first element with content is not focusable, the tabpanel should set <code>tabindex="0"</code> to include it in the tab sequence of the page.</li>
+          </ol>
+        </div>
       </section>
 
       <section id="roles_states_properties">

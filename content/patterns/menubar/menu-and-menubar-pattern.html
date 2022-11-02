@@ -150,26 +150,29 @@
           <li>Any key that corresponds to a printable character (Optional): Move focus to the next item in the current menu whose label begins with that printable character.</li>
           <li><kbd>Escape</kbd>: Close the menu that contains focus and return focus to the element or context, e.g., menu button or parent <code>menuitem</code>, from which the menu was opened.</li>
         </ul>
-        <ol class="note">
-          <li>Disabled menu items are focusable but cannot be activated.</li>
-          <li>A <a href="#separator" class="role-reference">separator</a> in a menu is not focusable or interactive.</li>
-          <li>
-            If a menu is opened or a menubar receives focus as a result of a context action, <kbd>Escape</kbd> or <kbd>Enter</kbd> may return focus to the invoking context.
-            For example, a rich text editor may have a menubar that receives focus when a shortcut key, e.g., <kbd>alt + F10</kbd>, is pressed while editing.
-            In this case, pressing <kbd>Escape</kbd> or activating a command from the menu may return focus to the editor.
-          </li>
-          <li>
-            Although it is recommended that authors avoid doing so, some implementations of navigation menubars may have <code>menuitem</code> elements that both perform a function and open a submenu.
-            In such implementations, <kbd>Enter</kbd> and <kbd>Space</kbd> perform a navigation function, e.g., load new content, while <kbd>Down Arrow</kbd>, in a horizontal menubar, opens the submenu associated with that same <code>menuitem</code>.
-          </li>
-          <li>
-            When items in a <code>menubar</code> are arranged vertically and items in <code>menu</code> containers are arranged horizontally:
-            <ol>
-              <li><kbd>Down Arrow</kbd> performs as <kbd>Right Arrow</kbd> is described above, and vice versa.</li>
-              <li><kbd>Up Arrow</kbd> performs as <kbd>Left Arrow</kbd> is described above, and vice versa.</li>
-            </ol>
-          </li>
-        </ol>
+        <div class="note">
+          <h3>Note</h3>
+          <ol>
+            <li>Disabled menu items are focusable but cannot be activated.</li>
+            <li>A <a href="#separator" class="role-reference">separator</a> in a menu is not focusable or interactive.</li>
+            <li>
+              If a menu is opened or a menubar receives focus as a result of a context action, <kbd>Escape</kbd> or <kbd>Enter</kbd> may return focus to the invoking context.
+              For example, a rich text editor may have a menubar that receives focus when a shortcut key, e.g., <kbd>alt + F10</kbd>, is pressed while editing.
+              In this case, pressing <kbd>Escape</kbd> or activating a command from the menu may return focus to the editor.
+            </li>
+            <li>
+              Although it is recommended that authors avoid doing so, some implementations of navigation menubars may have <code>menuitem</code> elements that both perform a function and open a submenu.
+              In such implementations, <kbd>Enter</kbd> and <kbd>Space</kbd> perform a navigation function, e.g., load new content, while <kbd>Down Arrow</kbd>, in a horizontal menubar, opens the submenu associated with that same <code>menuitem</code>.
+            </li>
+            <li>
+              When items in a <code>menubar</code> are arranged vertically and items in <code>menu</code> containers are arranged horizontally:
+              <ol>
+                <li><kbd>Down Arrow</kbd> performs as <kbd>Right Arrow</kbd> is described above, and vice versa.</li>
+                <li><kbd>Up Arrow</kbd> performs as <kbd>Left Arrow</kbd> is described above, and vice versa.</li>
+              </ol>
+            </li>
+          </ol>
+        </div>
       </section>
 
       <section id="roles_states_properties">
@@ -232,10 +235,11 @@
             The default value of <code>aria-orientation</code> for a menu is <code>vertical</code>.
           </li>
         </ul>
-        <p class="note">
-          If <a href="#aria-owns" class="property-reference">aria-owns</a> is set on the menu container to include elements that are not DOM children of the container, those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children.
-          Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order.
-        </p>
+        <div class="note">
+          <h3>Note</h3>
+          <p>If <a href="#aria-owns" class="property-reference">aria-owns</a> is set on the menu container to include elements that are not DOM children of the container, those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children.
+          Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order.</p>
+        </div>
       </section>
     </main>
   </body>
