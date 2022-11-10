@@ -19,6 +19,7 @@ class Checkbox {
     }
 
     this.domNode.addEventListener('keydown', this.onKeydown.bind(this));
+    this.domNode.addEventListener('keyup', this.onKeyup.bind(this));
     this.domNode.addEventListener('click', this.onClick.bind(this));
   }
 
@@ -32,7 +33,14 @@ class Checkbox {
 
   /* EVENT HANDLERS */
 
+  // Make sure to prevent page scrolling on space down
   onKeydown(event) {
+    if (event.key === ' ') {
+      event.preventDefault();
+    }
+  }
+
+  onKeyup(event) {
     var flag = false;
 
     switch (event.key) {
@@ -47,7 +55,6 @@ class Checkbox {
 
     if (flag) {
       event.stopPropagation();
-      event.preventDefault();
     }
   }
 
