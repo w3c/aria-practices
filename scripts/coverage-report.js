@@ -12,17 +12,22 @@ const glob = require('glob');
 const cheerio = require('cheerio');
 const HTMLParser = require('node-html-parser');
 
-const coverageReportPath = path.join(
+const joinPaths = (...segments) => {
+  // Normalize paths to avoid backslash-based paths on Windows
+  return path.join(...segments).replace(/\\/g, '/');
+};
+
+const coverageReportPath = joinPaths(
   __dirname,
   '../content/about/coverage-and-quality/coverage-and-quality-report.html'
 );
-const templatePath = path.join(__dirname, 'coverage-report.template');
+const templatePath = joinPaths(__dirname, 'coverage-report.template');
 
-const csvRoleFilePath = path.join(
+const csvRoleFilePath = joinPaths(
   __dirname,
   '../content/about/coverage-and-quality/role-coverage.csv'
 );
-const csvPropFilePath = path.join(
+const csvPropFilePath = joinPaths(
   __dirname,
   '../content/about/coverage-and-quality/prop-coverage.csv'
 );
@@ -445,7 +450,7 @@ function getExampleCodeId(html) {
 // Index roles, properties and states used in examples
 glob
   .sync('content/patterns/!(landmarks)/examples/**/!(index).html', {
-    cwd: path.join(__dirname, '..'),
+    cwd: joinPaths(__dirname, '..'),
     nodir: true,
   })
   .forEach(function (file) {
@@ -472,7 +477,7 @@ glob
         src.indexOf('app.js') < 0
       ) {
         console.log('  [script]: ' + src);
-        dataJS += fs.readFileSync(path.join(dir, src), 'utf8');
+        dataJS += fs.readFileSync(joinPaths(dir, src), 'utf8');
       }
       dataJS += ' ';
     }
@@ -487,12 +492,12 @@ glob
         href.indexOf('all.css') < 0
       ) {
         console.log('  [link]: ' + href);
-        dataCSS += fs.readFileSync(path.join(dir, href), 'utf8');
+        dataCSS += fs.readFileSync(joinPaths(dir, href), 'utf8');
       }
       dataCSS += ' ';
     }
 
-    let ref = path.join('../../..', file);
+    let ref = joinPaths('../../..', file);
     let title = html
       .querySelector('title')
       .textContent.split('|')[0]
@@ -673,11 +678,11 @@ function getRolesPropertiesAndStatesFromGuidance(html, url) {
 }
 
 const patternFiles = glob.sync('content/patterns/!(landmarks)/*-pattern.html', {
-  cwd: path.join(__dirname, '..'),
+  cwd: joinPaths(__dirname, '..'),
 });
 
 const practiceFiles = glob.sync('content/practices/*/*-practice.html', {
-  cwd: path.join(__dirname, '..'),
+  cwd: joinPaths(__dirname, '..'),
 });
 
 const guidanceFiles = [...patternFiles, ...practiceFiles];
@@ -687,7 +692,7 @@ guidanceFiles.forEach(function (file) {
 
   let html = HTMLParser.parse(data);
 
-  getRolesPropertiesAndStatesFromGuidance(html, path.join('../../../', file));
+  getRolesPropertiesAndStatesFromGuidance(html, joinPaths('../../../', file));
 });
 
 // Add landmark examples, since they are a different format

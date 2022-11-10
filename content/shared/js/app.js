@@ -23,28 +23,18 @@
       return;
     }
 
-    // The #browser_and_AT_support link
-    var supportLink = document.querySelector(
-      'a[href$="#browser_and_AT_support"]'
-    );
-    if (!supportLink) {
-      return;
-    }
-
-    // Get the right relative URL to the root aria-practices page
-    var urlPrefix = supportLink.getAttribute('href').split('#')[0];
-
+    // Use app.js link to create example-usage-warning.html link.
     // Expected outcome '../js/app.js' OR '../../js/app.js'
     var scriptSource = document
       .querySelector('[src$="app.js"]')
       .getAttribute('src');
-    // Replace 'app.js' part with 'notice.html'
-
-    var fetchSource = scriptSource.replace('app.js', './notice.html');
-    //fetch('https://raw.githack.com/w3c/aria-practices/1228-support-notice/examples/js/notice.html')
+    var fetchSource = scriptSource.replace(
+      '/js/app.js',
+      '/templates/example-usage-warning.html'
+    );
     fetch(fetchSource)
       .then(function (response) {
-        // Return notice.html as text
+        // Return example-usage-warning.html as text
         return response.text();
       })
       .then(function (html) {
@@ -54,15 +44,11 @@
       })
       .then(function (doc) {
         // Get the details element from the parsed response
-        var noticeElement = doc.querySelector('details');
-        // Rewrite links with the right urlPrefix
-        var links = doc.querySelectorAll('a[href^="/#"]');
-        for (var i = 0; i < links.length; ++i) {
-          links[i].pathname = urlPrefix;
-        }
+        var warningElement = doc.querySelector('details');
+        warningElement.classList.add('note'); // Needed for styling
         // Insert the support notice before the page's h1
         var heading = document.querySelector('h1');
-        heading.parentNode.insertBefore(noticeElement, heading.nextSibling);
+        heading.parentNode.insertBefore(warningElement, heading.nextSibling);
       });
   }
 })();
