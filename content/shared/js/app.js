@@ -6,49 +6,41 @@
   // Load syntax highlighting
   hljs.initHighlightingOnLoad();
 
-  // Add support notice to all examples
-  window.addEventListener('DOMContentLoaded', addSupportNotice, false);
+  // Add usage warning to all examples
+  window.addEventListener('DOMContentLoaded', addExampleUsageWarning, false);
 
-  function addSupportNotice() {
-    // The "Example" heading
-    var headings = document.querySelectorAll('h2');
-    var foundExampleHeading;
-    for (var i = 0; i < headings.length; ++i) {
-      if (headings[i].textContent.trim().match(/^Examples?$/)) {
-        foundExampleHeading = true;
-        break;
-      }
-    }
-    if (!foundExampleHeading) {
-      return;
-    }
+  // Rewrite links so they point to the proper spec document
+  window.addEventListener('DOMContentLoaded', resolveSpecLinks, false);
 
-    // Use app.js link to create example-usage-warning.html link.
-    // Expected outcome '../js/app.js' OR '../../js/app.js'
-    var scriptSource = document
+  async function addExampleUsageWarning() {
+    // Determine we are on an example page
+    if (!document.location.href.match(/examples\/[^/]+\.html/)) return;
+
+    // Generate the usage warning link using app.js link as a starting point
+    const scriptSource = document
       .querySelector('[src$="app.js"]')
       .getAttribute('src');
-    var fetchSource = scriptSource.replace(
+    const fetchSource = scriptSource.replace(
       '/js/app.js',
       '/templates/example-usage-warning.html'
     );
-    fetch(fetchSource)
-      .then(function (response) {
-        // Return example-usage-warning.html as text
-        return response.text();
-      })
-      .then(function (html) {
-        // Parse response as text/html
-        var parser = new DOMParser();
-        return parser.parseFromString(html, 'text/html');
-      })
-      .then(function (doc) {
-        // Get the details element from the parsed response
-        var warningElement = doc.querySelector('details');
-        warningElement.classList.add('note'); // Needed for styling
-        // Insert the support notice before the page's h1
-        var heading = document.querySelector('h1');
-        heading.parentNode.insertBefore(warningElement, heading.nextSibling);
-      });
+
+    // Load and parse the usage warning and insert it before the h1
+    const html = await (await fetch(fetchSource)).text();
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+
+    // Pull out the relevant part, the details element
+    const warningElement = doc.querySelector('details');
+    warningElement.classList.add('note'); // Needed for styling
+
+    // Insert the usage warning before the page's h1
+    const heading = document.querySelector('h1');
+    heading.parentNode.insertBefore(warningElement, heading.nextSibling);
+  }
+
+  async function resolveSpecLinks() {
+    const { specLinks } = await import('./specLinks.js');
+    const fixSpecLink = specLinks({ specStatus: 'ED' });
+    document.querySelectorAll('a[href]').forEach(fixSpecLink);
   }
 })();
