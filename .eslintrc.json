@@ -69,7 +69,7 @@
       "parserOptions": { "ecmaVersion": 11 }
     },
     {
-      "files": [ "content/shared/js/specLinks.js" ],
+      "files": [ "content/shared/js/specLinks.mjs" ],
       "parserOptions": { "sourceType": "module" }
     }
   ]

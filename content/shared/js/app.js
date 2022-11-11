@@ -39,7 +39,7 @@
   }
 
   async function resolveSpecLinks() {
-    const { specLinks } = await import('./specLinks.js');
+    const { specLinks } = await import('./specLinks.mjs');
     const fixSpecLink = specLinks({ specStatus: 'ED' });
     document.querySelectorAll('a[href]').forEach(fixSpecLink);
   }
