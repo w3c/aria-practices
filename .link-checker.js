@@ -1,5 +1,4 @@
 module.exports = {
-  contentDirectories: ['content', 'img'],
   filesToIgnore: ['content/shared/templates/example-usage-warning.html'],
   excludedLinks: {
     'content/patterns/menubar/examples/menubar-navigation.html': [

@@ -46,20 +46,15 @@ async function checkLinks() {
     return { consoleError, getErrorCount };
   };
 
-  const contentDirectoriesFormatted = `{${options.contentDirectories.join(
-    ','
-  )}}`;
-
   const htmlPaths = glob
-    .sync(`${contentDirectoriesFormatted}/**/*.html`, {
+    .sync('content/**/*.html', {
       cwd: path.join(__dirname, '..'),
     })
     .filter((htmlPath) => !options.filesToIgnore.includes(htmlPath));
 
-  const nonHtmlPaths = glob.sync(
-    `${contentDirectoriesFormatted}/**/*.!(html)`,
-    { cwd: path.join(__dirname, '..') }
-  );
+  const nonHtmlPaths = glob.sync('content/**/*.!(html)', {
+    cwd: path.join(__dirname, '..'),
+  });
 
   const allLinkData = {};
   const externalPageLoaders = {};
