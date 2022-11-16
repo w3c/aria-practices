@@ -1,14 +1,6 @@
 name: Link Checker
-on:
-  push:
-    branches-ignore:
-      - "dependabot/**"
-    paths:
-      - "content/**/*.html"
 
-  pull_request:
-    paths:
-      - "content/**/*.html"
+on: [push, pull_request]
 
 jobs:
   link-checker:
@@ -26,5 +18,5 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
-      - name: link-checker
+      - name: Run link checker
         run: npm run link-checker
