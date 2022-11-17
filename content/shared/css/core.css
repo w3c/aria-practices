@@ -129,7 +129,52 @@ th .example-header {
   box-shadow: inset 0 3px 5px 1px hsl(216deg 82% 30%);
 }
 
+#support-notice[open] summary {
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+}
+
 #support-notice summary p {
   display: inline;
   margin-left: 5px;
+}
+
+.note,
+.warning,
+.advisement {
+  border-right: none;
+  padding: 1em;
+  margin: 2em 0;
+}
+
+.note > h2,
+.note > h3,
+.note > h4,
+.warning > h2,
+.warning > h3,
+.warning > h4,
+.advisement > h2,
+.advisement > h3,
+.advisement > h4 {
+  margin: 0 0 0.5em;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: black;
+}
+
+.note > :first-child + *,
+.warning > :first-child + *,
+.advisement > :first-child + * {
+  margin-top: 0;
+}
+
+.note > :last-child,
+.warning > :last-child,
+.advisement > :last-child {
+  margin-bottom: initial;
+}
+
+.warning {
+  background-color: #fdd4e1;
+  border-left: 0.5em solid #c20d4a;
 }
