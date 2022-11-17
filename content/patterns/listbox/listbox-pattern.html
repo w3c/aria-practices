@@ -151,30 +151,33 @@
             </ul>
           </li>
         </ul>
-        <ol class="note">
-          <li>
-            DOM focus (the active element) is functionally distinct from the selected state.
-            For more details, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_vs_selection">this description of differences between focus and selection</a>.
-          </li>
-          <li>
-            The <code>listbox</code> role supports the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property, which provides an alternative to moving DOM focus among <code>option</code> elements when implementing keyboard navigation. For details, see
-            <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.
-          </li>
-          <li>
-            In a single-select listbox, moving focus may optionally unselect the previously selected option and select the newly focused option.
-            This model of selection is known as &quot;selection follows focus&quot;.
-            Having selection follow focus can be very helpful in some circumstances and can severely degrade accessibility in others.
-            For additional guidance, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
-          </li>
-          <li>If selecting or unselecting all options is an important function, implementing separate controls for these actions, such as buttons for &quot;Select All&quot; and &quot;Unselect All&quot;, significantly improves accessibility.</li>
-          <li>
-            If the options in a listbox are arranged horizontally:
-            <ol>
-              <li><kbd>Down Arrow</kbd> performs as <kbd>Right Arrow</kbd> is described above, and vice versa.</li>
-              <li><kbd>Up Arrow</kbd> performs as <kbd>Left Arrow</kbd> is described above, and vice versa.</li>
-            </ol>
-          </li>
-        </ol>
+        <div class="note">
+          <h3>Note</h3>
+          <ol>
+            <li>
+              DOM focus (the active element) is functionally distinct from the selected state.
+              For more details, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_vs_selection">this description of differences between focus and selection</a>.
+            </li>
+            <li>
+              The <code>listbox</code> role supports the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property, which provides an alternative to moving DOM focus among <code>option</code> elements when implementing keyboard navigation. For details, see
+              <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.
+            </li>
+            <li>
+              In a single-select listbox, moving focus may optionally unselect the previously selected option and select the newly focused option.
+              This model of selection is known as &quot;selection follows focus&quot;.
+              Having selection follow focus can be very helpful in some circumstances and can severely degrade accessibility in others.
+              For additional guidance, see <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
+            </li>
+            <li>If selecting or unselecting all options is an important function, implementing separate controls for these actions, such as buttons for &quot;Select All&quot; and &quot;Unselect All&quot;, significantly improves accessibility.</li>
+            <li>
+              If the options in a listbox are arranged horizontally:
+              <ol>
+                <li><kbd>Down Arrow</kbd> performs as <kbd>Right Arrow</kbd> is described above, and vice versa.</li>
+                <li><kbd>Up Arrow</kbd> performs as <kbd>Left Arrow</kbd> is described above, and vice versa.</li>
+              </ol>
+            </li>
+          </ol>
+        </div>
       </section>
 
       <section id="roles_states_properties">
@@ -227,37 +230,40 @@
             The default value of <code>aria-orientation</code> for <code>listbox</code> is <code>vertical</code>.
           </li>
         </ul>
-        <ol class="note">
-          <li>
-            Some factors to consider when choosing whether to indicate selection with <code>aria-selected</code> or <code>aria-checked</code> are:
-            <ul>
-              <li>
-                Some design systems use <code>aria-selected</code> for single-select widgets and <code>aria-checked</code> for multi-select widgets.
-                In the absence of factors that would make an alternative convention more appropriate, this is a recommended convention.
-              </li>
-              <li>
-                The language of instructions and the appearance of the interface might suggest one attribute is more appropriate than the other.
-                For instance, do instructions say to <q>select</q> items?
-                Or, is the visual indicator of selection a check mark?
-              </li>
-              <li>It is important to adopt a consistent convention for selection models across a site or app.</li>
-            </ul>
-          </li>
-          <li>
-            Conditions that would permit a listbox to include both <code>aria-selected</code> and <code>aria-checked</code> are extremely rare.
-            It is strongly recommended to avoid designing a listbox widget that would have the need for more than one type of state.
-            If both states were to be used within a listbox, all the following conditions need to be satisfied:
-            <ul>
-              <li>The meaning and purpose of <code>aria-selected</code> is different from the meaning and purpose of <code>aria-checked</code> in the user interface.</li>
-              <li>The user interface makes the meaning and purpose of each state apparent.</li>
-              <li>The user interface provides a separate method for controlling each state.</li>
-            </ul>
-          </li>
-          <li>
-            If <a href="#aria-owns" class="property-reference">aria-owns</a> is set on the listbox element to include elements that are not DOM children of the container, those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children.
-            Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order.
-          </li>
-        </ol>
+        <div class="note">
+          <h3>Note</h3>
+          <ol>
+            <li>
+              Some factors to consider when choosing whether to indicate selection with <code>aria-selected</code> or <code>aria-checked</code> are:
+              <ul>
+                <li>
+                  Some design systems use <code>aria-selected</code> for single-select widgets and <code>aria-checked</code> for multi-select widgets.
+                  In the absence of factors that would make an alternative convention more appropriate, this is a recommended convention.
+                </li>
+                <li>
+                  The language of instructions and the appearance of the interface might suggest one attribute is more appropriate than the other.
+                  For instance, do instructions say to <q>select</q> items?
+                  Or, is the visual indicator of selection a check mark?
+                </li>
+                <li>It is important to adopt a consistent convention for selection models across a site or app.</li>
+              </ul>
+            </li>
+            <li>
+              Conditions that would permit a listbox to include both <code>aria-selected</code> and <code>aria-checked</code> are extremely rare.
+              It is strongly recommended to avoid designing a listbox widget that would have the need for more than one type of state.
+              If both states were to be used within a listbox, all the following conditions need to be satisfied:
+              <ul>
+                <li>The meaning and purpose of <code>aria-selected</code> is different from the meaning and purpose of <code>aria-checked</code> in the user interface.</li>
+                <li>The user interface makes the meaning and purpose of each state apparent.</li>
+                <li>The user interface provides a separate method for controlling each state.</li>
+              </ul>
+            </li>
+            <li>
+              If <a href="#aria-owns" class="property-reference">aria-owns</a> is set on the listbox element to include elements that are not DOM children of the container, those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children.
+              Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order.
+            </li>
+          </ol>
+        </div>
       </section>
     </main>
   </body>
