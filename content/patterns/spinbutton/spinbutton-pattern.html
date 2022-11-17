@@ -59,18 +59,21 @@
             </ul>
           </li>
         </ul>
-        <ol class="note">
-          <li>Focus remains on the text field during operation.</li>
-          <li>
-            Standard single line text editing keys appropriate for the device platform:
-            <ol>
-              <li>include keys for input, cursor movement, selection, and text manipulation.</li>
-              <li>Standard key assignments for editing functions depend on the device operating system.</li>
-              <li>The most robust approach for providing text editing functions is to rely on browsers, which supply them for HTML inputs with type text and for elements with the <code>contenteditable</code> HTML attribute.</li>
-              <li><strong>IMPORTANT:</strong> Be sure that JavaScript does not interfere with browser-provided text editing functions by capturing key events for the keys used to perform them.</li>
-            </ol>
-          </li>
-        </ol>
+        <div class="note">
+          <h3>Note</h3>
+          <ol>
+            <li>Focus remains on the text field during operation.</li>
+            <li>
+              Standard single line text editing keys appropriate for the device platform:
+              <ol>
+                <li>include keys for input, cursor movement, selection, and text manipulation.</li>
+                <li>Standard key assignments for editing functions depend on the device operating system.</li>
+                <li>The most robust approach for providing text editing functions is to rely on browsers, which supply them for HTML inputs with type text and for elements with the <code>contenteditable</code> HTML attribute.</li>
+                <li><strong>IMPORTANT:</strong> Be sure that JavaScript does not interfere with browser-provided text editing functions by capturing key events for the keys used to perform them.</li>
+              </ol>
+            </li>
+          </ol>
+        </div>
       </section>
 
       <section id="roles_states_properties">

@@ -111,17 +111,20 @@
             <li><kbd>Control + Home</kbd>: moves focus to the first cell in the first row.</li>
             <li><kbd>Control + End</kbd>: moves focus to the last cell in the last row.</li>
           </ul>
-          <ul class="note">
-            <li>
-              When the above grid navigation keys move focus, whether the focus is set on an element inside the cell or the grid cell depends on cell content.
-              See <a href="#gridNav_focus">Whether to Focus on a Cell or an Element Inside It</a>.
-            </li>
-            <li>
-              While navigation keys, such as arrow keys, are moving focus from cell to cell, they are not available to do something like operate a combobox or move an editing caret inside of a cell.
-              If this functionality is needed, see <a href="#gridNav_inside">Editing and Navigating Inside a Cell</a>.
-            </li>
-            <li>If navigation functions can dynamically add more rows or columns to the DOM, key events that move focus to the beginning or end of the grid, such as <kbd>control + End</kbd>, may move focus to the last row in the DOM rather than the last available row in the back-end data.</li>
-          </ul>
+          <div class="note">
+            <h4>Note</h4>
+            <ul>
+              <li>
+                When the above grid navigation keys move focus, whether the focus is set on an element inside the cell or the grid cell depends on cell content.
+                See <a href="#gridNav_focus">Whether to Focus on a Cell or an Element Inside It</a>.
+              </li>
+              <li>
+                While navigation keys, such as arrow keys, are moving focus from cell to cell, they are not available to do something like operate a combobox or move an editing caret inside of a cell.
+                If this functionality is needed, see <a href="#gridNav_inside">Editing and Navigating Inside a Cell</a>.
+              </li>
+              <li>If navigation functions can dynamically add more rows or columns to the DOM, key events that move focus to the beginning or end of the grid, such as <kbd>control + End</kbd>, may move focus to the last row in the DOM rather than the last available row in the back-end data.</li>
+            </ul>
+          </div>
           <p>If a grid supports selection of cells, rows, or columns, the following keys are commonly used for these functions.</p>
           <ul>
             <li><kbd>Control + Space</kbd>: selects the column that contains the focus.</li>
@@ -135,8 +138,10 @@
             <li><kbd>Shift + Down Arrow</kbd>: Extends selection one cell down.</li>
             <li><kbd>Shift + Up Arrow</kbd>: Extends selection one cell Up.</li>
           </ul>
-          <p class="note">
-            See <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_common_conventions">Key Assignment Conventions for Common Functions</a> for cut, copy, and paste key assignments.</p>
+          <div class="note">
+            <h5>Note</h5>
+            <p>See <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_common_conventions">Key Assignment Conventions for Common Functions</a> for cut, copy, and paste key assignments.</p>
+          </div>
         </section>
       </section>
 
@@ -212,18 +217,20 @@
             <li><kbd>Control + Home</kbd> (optional): moves focus to the first cell in the first row.</li>
             <li><kbd>Control + End</kbd> (Optional): moves focus to the last cell in the last row.</li>
           </ul>
-          <ul class="note">
-            <li>
-              When the above grid navigation keys move focus, whether the focus is set on an element inside the cell or the grid cell depends on cell content.
-              See <a href="#gridNav_focus">Whether to Focus on a Cell or an Element Inside It</a>.
-            </li>
-            <li>
-              While navigation keys, such as arrow keys, are moving focus from cell to cell, they are not available to do something like operate a combobox or move an editing caret inside of a cell.
-              If this functionality is needed, see <a href="#gridNav_inside">Editing and Navigating Inside a Cell</a>.
-            </li>
-            <li>If navigation functions can dynamically add more rows or columns to the DOM, key events that move focus to the beginning or end of the grid, such as <kbd>control + End</kbd>, may move focus to the last row in the DOM rather than the last available row in the back-end data.</li>
-          </ul>
-
+          <div class="note">
+            <h4>Note</h4>
+            <ul>
+              <li>
+                When the above grid navigation keys move focus, whether the focus is set on an element inside the cell or the grid cell depends on cell content.
+                See <a href="#gridNav_focus">Whether to Focus on a Cell or an Element Inside It</a>.
+              </li>
+              <li>
+                While navigation keys, such as arrow keys, are moving focus from cell to cell, they are not available to do something like operate a combobox or move an editing caret inside of a cell.
+                If this functionality is needed, see <a href="#gridNav_inside">Editing and Navigating Inside a Cell</a>.
+              </li>
+              <li>If navigation functions can dynamically add more rows or columns to the DOM, key events that move focus to the beginning or end of the grid, such as <kbd>control + End</kbd>, may move focus to the last row in the DOM rather than the last available row in the back-end data.</li>
+            </ul>
+          </div>
           <p>
             It would be unusual for a layout grid to provide functions that require cell selection.
             If it did, though, the following keys are commonly used for these functions.
@@ -241,10 +248,11 @@
             <li><kbd>Shift + Down Arrow</kbd>: Extends selection one cell down.</li>
             <li><kbd>Shift + Up Arrow</kbd>: Extends selection one cell Up.</li>
           </ul>
-          <p class="note">
-            See <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_common_conventions">Key Assignment Conventions for Common Functions</a>
-            for cut, copy, and paste key assignments.
-          </p>
+          <div class="note">
+            <h4>Note</h4>
+            <p>See <a href="../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_common_conventions">Key Assignment Conventions for Common Functions</a>
+            for cut, copy, and paste key assignments.</p>
+          </div>
         </section>
       </section>
 
@@ -397,14 +405,17 @@
           </li>
         </ul>
 
-        <ul class="note">
-          <li>
-            If the element with the <code>grid</code> role is an HTML <code>table</code> element, then it is not necessary to use ARIA roles for rows and cells because the HTML elements have implied ARIA semantics.
-            For example, an HTML <code>&lt;TR&gt;</code> has an implied ARIA role of <code>row</code>.
-            A <code>grid</code> built from an HTML <code>table</code> that includes cells that span multiple rows or columns must use HTML <code>rowspan</code> and <code>colspan</code> and must not use <code>aria-rowspan</code> or <code>aria-colspan</code>.
-          </li>
-          <li>If rows or cells are included in a grid via <a href="#aria-owns" class="property-reference">aria-owns</a>, they will be presented to assistive technologies after the DOM descendants of the <code>grid</code> element unless the DOM descendants are also included in the <code>aria-owns</code> attribute.</li>
-        </ul>
+        <div class="note">
+          <h3>Note</h3>
+          <ul>
+            <li>
+              If the element with the <code>grid</code> role is an HTML <code>table</code> element, then it is not necessary to use ARIA roles for rows and cells because the HTML elements have implied ARIA semantics.
+              For example, an HTML <code>&lt;TR&gt;</code> has an implied ARIA role of <code>row</code>.
+              A <code>grid</code> built from an HTML <code>table</code> that includes cells that span multiple rows or columns must use HTML <code>rowspan</code> and <code>colspan</code> and must not use <code>aria-rowspan</code> or <code>aria-colspan</code>.
+            </li>
+            <li>If rows or cells are included in a grid via <a href="#aria-owns" class="property-reference">aria-owns</a>, they will be presented to assistive technologies after the DOM descendants of the <code>grid</code> element unless the DOM descendants are also included in the <code>aria-owns</code> attribute.</li>
+          </ul>
+        </div>
       </section>
     </main>
   </body>

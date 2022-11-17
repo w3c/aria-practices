@@ -81,24 +81,27 @@
           <li><kbd>Control + End</kbd>: Move focus to the first focusable element after the feed.</li>
           <li><kbd>Control + Home</kbd>: Move focus to the first focusable element before the feed.</li>
         </ul>
-        <ol class="note">
-          <li>Due to the lack of convention, providing easily discoverable keyboard interface documentation is especially important.</li>
-          <li>
-            In some cases, a feed may contain a nested feed.
-            For example, an article in a social media feed may contain a feed of comments on that article.
-            To navigate the nested feed, users first move focus inside the nested feed.
-            Options for supporting nested feed navigation include:
-            <ul>
-              <li>
-                Users move focus into the nested feed from the content of the containing article with <kbd>Tab</kbd>.
-                This may be slow if the article contains a significant number of links, buttons, or other widgets.
-              </li>
-              <li>Provide a key for moving focus from the elements in the containing article to the first item in the nested feed, e.g., <kbd>Alt + Page Down</kbd>.</li>
-              <li>To continue reading the outer feed, <kbd>Control + End</kbd> moves focus to the next article in the outer feed.</li>
-            </ul>
-          </li>
-          <li>In the rare circumstance that a feed article contains a widget that uses the above suggested keys, the feed navigation key will operate the contained widget, and the user needs to move focus to an element that does not utilize the feed navigation keys in order to navigate the feed.</li>
-        </ol>
+        <div class="note">
+          <h3>Note</h3>
+          <ol>
+            <li>Due to the lack of convention, providing easily discoverable keyboard interface documentation is especially important.</li>
+            <li>
+              In some cases, a feed may contain a nested feed.
+              For example, an article in a social media feed may contain a feed of comments on that article.
+              To navigate the nested feed, users first move focus inside the nested feed.
+              Options for supporting nested feed navigation include:
+              <ul>
+                <li>
+                  Users move focus into the nested feed from the content of the containing article with <kbd>Tab</kbd>.
+                  This may be slow if the article contains a significant number of links, buttons, or other widgets.
+                </li>
+                <li>Provide a key for moving focus from the elements in the containing article to the first item in the nested feed, e.g., <kbd>Alt + Page Down</kbd>.</li>
+                <li>To continue reading the outer feed, <kbd>Control + End</kbd> moves focus to the next article in the outer feed.</li>
+              </ul>
+            </li>
+            <li>In the rare circumstance that a feed article contains a widget that uses the above suggested keys, the feed navigation key will operate the contained widget, and the user needs to move focus to an element that does not utilize the feed navigation keys in order to navigate the feed.</li>
+          </ol>
+        </div>
       </section>
 
       <section id="roles_states_properties">

@@ -28,11 +28,12 @@
           Since a table is not a widget, each widget contained in a table is a separate stop in the page tab sequence.
           If the number of widgets is large, replacing the table with a grid can dramatically reduce the length of the page tab sequence because a grid is a composite widget that can contain other widgets.
         </p>
-        <p class="note">
-          As with other WAI-ARIA roles that have a native host language equivalent, authors are strongly encouraged to use a native HTML <code>table</code> element whenever possible.
+        <div class="note">
+          <h3>Note</h3>
+          <p>As with other WAI-ARIA roles that have a native host language equivalent, authors are strongly encouraged to use a native HTML <code>table</code> element whenever possible.
           This is especially important with role <code>table</code> because it is a new feature of WAI-ARIA 1.1.
-          It is thus advisable to test implementations thoroughly with each browser and assistive technology combination that could be used by the target audience.
-        </p>
+          It is thus advisable to test implementations thoroughly with each browser and assistive technology combination that could be used by the target audience.</p>
+        </div>
       </section>
 
       <section id="examples">
@@ -83,7 +84,10 @@
             <a href="../../practices/grid-and-table-properties/grid-and-table-properties-practice.html#gridAndTableProperties_spans">Grid and Table Properties Practice</a>.
           </li>
         </ul>
-        <p class="note">If rows or cells are included in a table via <a href="#aria-owns" class="property-reference">aria-owns</a>, they will be presented to assistive technologies after the DOM descendants of the <code>table</code> element unless the DOM descendants are also included in the <code>aria-owns</code> attribute.</p>
+        <div class="note">
+          <h3>Note</h3>
+          <p>If rows or cells are included in a table via <a href="#aria-owns" class="property-reference">aria-owns</a>, they will be presented to assistive technologies after the DOM descendants of the <code>table</code> element unless the DOM descendants are also included in the <code>aria-owns</code> attribute.</p>
+        </div>
       </section>
     </main>
   </body>
