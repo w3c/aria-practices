@@ -287,6 +287,7 @@
         "**/*.paint",
         "content/shared/css/github.css",
         "content/shared/js/skipto.js",
+        "content/shared/js/specLinks.mjs",
         "content/patterns/landmarks/examples/css/bootstrap.css",
         "content/patterns/landmarks/examples/css/bootstrap-theme.css",
         "content/patterns/landmarks/examples/js/visua11y.js",

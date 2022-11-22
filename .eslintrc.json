@@ -63,6 +63,14 @@
         "strict": 0,
         "no-unused-vars":  ["error", { "varsIgnorePattern": "SkipToConfig" }]
       }
+    },
+    {
+      "files": [ "content/shared/js/app.js" ],
+      "parserOptions": { "ecmaVersion": 11 }
+    },
+    {
+      "files": [ "content/shared/js/specLinks.mjs" ],
+      "parserOptions": { "sourceType": "module" }
     }
   ]
 }
