@@ -25,9 +25,7 @@
         <p>Before using ARIA or any of the guidance in this document, please take time to understand the following two essential principles.</p>
         <h3>Principle 1: A role is a promise</h3>
         <p>This code:</p>
-        <pre><code>
-          &lt;div role=&quot;button&quot;&gt;Place Order&lt;/div&gt;
-            </code> </pre>
+        <pre><code>&lt;div role=&quot;button&quot;&gt;Place Order&lt;/div&gt;</code></pre>
         <p>
           Is a promise that the author of that <code>&lt;div&gt;</code> has also incorporated JavaScript that provides the keyboard interactions expected for a button.
           Unlike HTML input elements, ARIA roles do not cause browsers to provide keyboard behaviors or styling.
@@ -40,14 +38,10 @@
           From the perspective of assistive technologies, ARIA gives authors the ability to dress up HTML and SVG elements with critical accessibility semantics that the assistive technologies would not otherwise be able to reliably derive.
         </p>
         <p>Some of ARIA is like a cloak; it covers up, or overrides, the original semantics or content.</p>
-        <pre><code>
-          &lt;a role=&quot;menuitem&quot;&gt;Assistive tech users perceive this element as an item in a menu, not a link.&lt;/a&gt;
-          &lt;a aria-label=&quot;Assistive tech users can only perceive the contents of this aria-label, not the link text&quot;&gt;Link Text&lt;/a&gt;
-  </code></pre>
+        <pre><code>&lt;a role=&quot;menuitem&quot;&gt;Assistive tech users perceive this element as an item in a menu, not a link.&lt;/a&gt;
+  &lt;a aria-label=&quot;Assistive tech users can only perceive the contents of this aria-label, not the link text&quot;&gt;Link Text&lt;/a&gt;</code></pre>
         <p>On the other hand, some uses of ARIA are more like suspenders or belts; they add meaning that provides essential support to the original content.</p>
-        <pre><code>
-          &lt;button aria-pressed=&quot;false&quot;&gt;Mute&lt;/button&gt;
-        </code></pre>
+        <pre><code>&lt;button aria-pressed=&quot;false&quot;&gt;Mute&lt;/button&gt;</code></pre>
         <p>
           This is the power of ARIA.
           It enables authors to describe nearly any user interface component in ways that assistive technologies can reliably interpret, thus making components accessible to assistive technology users.
@@ -56,22 +50,18 @@
           This is also the danger of ARIA.
           Authors can inadvertently override accessibility semantics.
         </p>
-        <pre>
-          <code>
-            &lt;table role=&quot;log&quot;&gt;
-              &lt;!--
-                Table that assistive technology users will not perceive as a table.
-                The log role tells browser this is a log, not a table.
-              --&gt;
-            &lt;/table&gt;
-            &lt;ul role=&quot;navigation&quot;&gt;
-              &lt;!-- This is a navigation region, not a list. --&gt;
-              &lt;li&gt;&lt;a href=&quot;uri1&quot;&gt;nav link 1&lt;/li&gt;
-              &lt;li&gt;&lt;a href=&quot;uri2&quot;&gt;nav link 2&lt;/li&gt;
-              &lt;!-- ERROR! Previous list items are not in a list! --&gt;
-            &lt;/ul&gt;
-          </code>
-        </pre>
+        <pre><code>&lt;table role=&quot;log&quot;&gt;
+  &lt;!--
+    Table that assistive technology users will not perceive as a table.
+    The log role tells browser this is a log, not a table.
+  --&gt;
+&lt;/table&gt;
+&lt;ul role=&quot;navigation&quot;&gt;
+  &lt;!-- This is a navigation region, not a list. --&gt;
+  &lt;li&gt;&lt;a href=&quot;uri1&quot;&gt;nav link 1&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;uri2&quot;&gt;nav link 2&lt;/li&gt;
+  &lt;!-- ERROR! Previous list items are not in a list! --&gt;
+&lt;/ul&gt;</code></pre>
       </section>
       <section id="browser_and_AT_support">
         <h2>Browser and Assistive Technology Support</h2>

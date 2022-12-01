@@ -187,8 +187,7 @@
             In two special cases, certain descendants are ignored: <code>group</code> descendants of <code>treeitem</code> elements and <code>menu</code> descendants of <code>menuitem</code> elements are omitted from the calculation.
             For example, in the following <code>tree</code>, the name of the first tree item is <q>Fruits</q>; <q>Apples</q>, <q>Bananas</q>, and <q>Oranges</q> are omitted.
           </p>
-          <pre><code>
-&lt;ul role="tree"&gt;
+          <pre><code>&lt;ul role="tree"&gt;
   &lt;li role="treeitem"&gt;Fruits
     &lt;ul role="group"&gt;
       &lt;li role="treeitem"&gt;Apples&lt;/li&gt;
@@ -196,8 +195,7 @@
       &lt;li role="treeitem"&gt;Oranges&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ul&gt;
-          </code></pre>
+&lt;/ul&gt;</code></pre>
           <div class="warning">
             <h3>Warning</h3>
             <p>If an element with one of the above roles that supports naming from child content is named by using <code>aria-label</code> or <code>aria-labelledby</code>, content contained in the element and its descendants is hidden from assistive technology users unless the descendant content is referenced by <code>aria-labelledby</code>.
@@ -220,8 +218,7 @@
             However, when applied to nearly any other type of element, assistive technologies will render both the value of <code>aria-label</code> and the content of the element.
             For example, the name of the following navigation region is &quot;Product&quot;.
           </p>
-          <pre><code>
-&lt;nav aria-label=&quot;Product&quot;&gt;
+          <pre><code>&lt;nav aria-label=&quot;Product&quot;&gt;
   &lt;!-- list of navigation links to product pages --&gt;
 &lt;/nav&gt;</code></pre>
           <p>When encountering this navigation region, a screen reader user will hear the name and role of the element, e.g., &quot;Product navigation region&quot;, and then be able to read through the links contained in the region.</p>
@@ -248,16 +245,14 @@
             The <a href="#aria-labelledby" class="property-reference">aria-labelledby property</a> enables authors to reference other elements on the page to define an accessible name.
             For example, the following switch is named by the text content of a previous sibling element.
           </p>
-          <pre><code>
-&lt;span id="night-mode-label"&gt;Night mode&lt;/span&gt;
+          <pre><code>&lt;span id="night-mode-label"&gt;Night mode&lt;/span&gt;
 &lt;span role="switch" aria-checked="false" tabindex="0" aria-labelledby="night-mode-label"&gt;&lt;/span&gt;</code></pre>
           <p>
             Note that while using <code>aria-labelledby</code> is similar in this situation to using an HTML <code>label</code> element with the <code>for</code> attribute, one significant difference is that browsers do not automatically make clicking on the labeling element activate the labeled element; that is an author responsibility.
             However, HTML <code>label</code> cannot be used to label a <code>span</code> element.
             Fortunately, an HTML <code>input</code> with <code>type="checkbox"</code> allows the ARIA <code>switch</code> role, so when feasible, using the following approach creates a more robust solution.
           </p>
-          <pre><code>
-&lt;label for="night-mode"&gt;Night mode&lt;/label&gt;
+          <pre><code>&lt;label for="night-mode"&gt;Night mode&lt;/label&gt;
 &lt;input type="checkbox" role="switch" id="night-mode"&gt;</code></pre>
           <p>The <code>aria-labelledby</code> property is useful in a wide variety of situations because:</p>
           <ul>
@@ -267,16 +262,14 @@
             <li>It incorporates the value of input elements, i.e., if it references a textbox, the value of the textbox is included in the calculated name string.</li>
           </ul>
           <p>An example of referencing a hidden element with <code>aria-labelledby</code> could be a label for a night switch control:</p>
-          <pre><code>
-&lt;span id="night-mode-label" hidden&gt;Night mode&lt;/span&gt;
+          <pre><code>&lt;span id="night-mode-label" hidden&gt;Night mode&lt;/span&gt;
 &lt;input type="checkbox" role="switch" aria-labelledby="night-mode-label"&gt;</code></pre>
           <p>
             In some cases, the most effective name for an element is its own content combined with the content of another element.
             Because <code>aria-labelledby</code> has highest precedence in name calculation, in those situations, it is possible to use <code>aria-labelledby</code> to reference both the element itself and the other element.
             In the following example, the &quot;Read more...&quot; link is named by the element itself and the article’s heading, resulting in a name for the link of &quot;Read more... 7 ways you can help save the bees&quot;.
           </p>
-          <pre><code>
-&lt;h2 id="bees-heading"&gt;7 ways you can help save the bees&lt;/h2&gt;
+          <pre><code>&lt;h2 id="bees-heading"&gt;7 ways you can help save the bees&lt;/h2&gt;
 &lt;p&gt;Bees are disappearing rapidly. Here are seven things you can do to help.&lt;/p&gt;
 &lt;p&gt;&lt;a id="bees-read-more" aria-labelledby="bees-read-more bees-heading"&gt;Read more...&lt;/a&gt;&lt;/p&gt;</code></pre>
           <p>
@@ -284,8 +277,7 @@
             If an element is referenced more than one time, only the first reference is processed.
             When concatenating content from multiple elements, browsers trim leading and trailing white space and separate content from each element with a single space.
           </p>
-          <pre><code>
-&lt;button id="download-button" aria-labelledby="download-button download-details"&gt;Download&lt;/button&gt;
+          <pre><code>&lt;button id="download-button" aria-labelledby="download-button download-details"&gt;Download&lt;/button&gt;
 &lt;span id="download-details"&gt;PDF, 2.4 MB&lt;/span&gt;</code></pre>
           <p>In the above example, the accessible name of the button will be "Download PDF, 2.4 MB", with a space between "Download" and "PDF", and not "DownloadPDF, 2.4 MB".</p>
           <div class="warning">
@@ -317,8 +309,7 @@
             However, unless the text is programmatically associated with the checkbox, assistive technology users will experience a checkbox without a label.
             Wrapping the checkbox and the labeling text in a <code>label</code> element as follows gives the checkbox an accessible name.
           </p>
-          <pre><code>
-&lt;label&gt;
+          <pre><code>&lt;label&gt;
   &lt;input type="checkbox" name="subscribe"&gt;
   subscribe to our newsletter
 &lt;/label&gt;</code></pre>
@@ -327,8 +318,7 @@
             This allows the label and the form control to be siblings or have different parents in the DOM, but requires adding an <code>id</code> attribute to the form control, which can be error-prone.
             When possible, use the above encapsulation technique for association instead of the following <code>for</code> attribute technique.
           </p>
-          <pre><code>
-&lt;input type="checkbox" name="subscribe" id="subscribe_checkbox"&gt;
+          <pre><code>&lt;input type="checkbox" name="subscribe" id="subscribe_checkbox"&gt;
 &lt;label for="subscribe_checkbox"&gt;subscribe to our newsletter&lt;/label&gt;</code></pre>
           <p>
             Using the <code>label</code> element is an effective technique for satisfying <a href="#naming_rule_visible_text">Rule 2: Prefer Visible Text</a>.
@@ -344,8 +334,7 @@
             The HTML <code>fieldset</code> element can be used to group form controls, and the <code>legend</code> element can be used to give the group a name.
             For example, a group of radio buttons can be grouped together in a <code>fieldset</code>, where the <code>legend</code> element labels the group for the radio buttons.
           </p>
-          <pre><code>
-&lt;fieldset&gt;
+          <pre><code>&lt;fieldset&gt;
   &lt;legend&gt;Select your starter class&lt;/legend&gt;
   &lt;label&gt;&lt;input type="radio" name="starter-class" value="green"&gt;Green&lt;/label&gt;
   &lt;label&gt;&lt;input type="radio" name="starter-class" value="red"&gt;Red&lt;/label&gt;
@@ -357,8 +346,7 @@
             If a question is not programmatically associated with its answer options, assistive technology users may access the answers without being aware of the question.
           </p>
           <p>Similar benefits can be gained from grouping and naming other types of related form fields using <code>fieldset</code> and <code>legend</code>.</p>
-          <pre><code>
-&lt;fieldset&gt;
+          <pre><code>&lt;fieldset&gt;
   &lt;legend&gt;Shipping address&lt;/legend&gt;
   &lt;p&gt;&lt;label&gt;Full name &lt;input name="name" required&gt;&lt;/label&gt;&lt;/p&gt;
   &lt;p&gt;&lt;label&gt;Address line 1 &lt;input name="address-1" required&gt;&lt;/label&gt;&lt;/p&gt;
@@ -384,15 +372,13 @@
             If the <code>table</code> element does not have <code>aria-label</code> or <code>aria-labelledby</code>, then the <code>caption</code> will be used as the accessible name.
             For example, the accessible name of the following table is <q>Special opening hours</q>.
           </p>
-          <pre><code>
-&lt;table&gt;
+          <pre><code>&lt;table&gt;
   &lt;caption&gt;Special opening hours&lt;/caption&gt;
   &lt;tr&gt;&lt;td&gt;30 May&lt;/td&gt;&lt;td&gt;Closed&lt;/td&gt;&lt;/tr&gt;
   &lt;tr&gt;&lt;td&gt;6 June&lt;/td&gt;&lt;td&gt;11:00-16:00&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;</code></pre>
           <p>The following example gives the table a number (<q>Table 1</q>) so it can be referenced.</p>
-          <pre><code>
-&lt;table&gt;
+          <pre><code>&lt;table&gt;
   &lt;caption&gt;Table 1. Traditional dietary intake of Okinawans and other Japanese circa 1950&lt;/caption&gt;
   &lt;thead&gt;
     &lt;tr&gt;
@@ -419,8 +405,7 @@
             Similarly, an HTML <code>figure</code> element can be given a caption using the <code>figcaption</code> element.
             The caption can appear before or after the figure, but it is more common for figures to have the caption after.
           </p>
-          <pre><code>
-&lt;figure&gt;
+          <pre><code>&lt;figure&gt;
   &lt;img alt="Painting of a person walking in a desert." src="Hole_JesusalDesierto.jpg"&gt;
   &lt;figcaption&gt;Jesus entering the desert as imagined by William Hole, 1908&lt;/figcaption&gt;
 &lt;/figure&gt;</code></pre>
@@ -445,8 +430,7 @@
             The <code>title</code> attribute is commonly presented visually as a tooltip when the user hovers over the element with a pointing device, which is not particularly discoverable, and is also not accessible to visual users without a pointing device.
           </p>
           <p>For example, a <code>fieldset</code> element without a <code>legend</code> element child, but with a <code>title</code> attribute, gets its accessible name from the <code>title</code> attribute.</p>
-          <pre><code>
-&lt;fieldset title="Select your starter class"&gt;
+          <pre><code>&lt;fieldset title="Select your starter class"&gt;
   &lt;label&gt;&lt;input type="radio" name="starter-class" value="green"&gt;Green&lt;/label&gt;
   &lt;label&gt;&lt;input type="radio" name="starter-class" value="red"&gt;Red&lt;/label&gt;
   &lt;label&gt;&lt;input type="radio" name="starter-class" value="blue"&gt;Blue&lt;/label&gt;
@@ -455,8 +439,7 @@
             For the HTML <code>input</code> and <code>textarea</code> elements, the <code>placeholder</code> attribute is used as a fallback labeling mechanism if nothing else (including the <code>title</code> attribute) results in a label.
             It is better to use a <code>label</code> element, since it does not disappear visually when the user focuses the form control.
           </p>
-          <pre><code>
-&lt;!-- Using a &lt;label&gt; is recommended --&gt;
+          <pre><code>&lt;!-- Using a &lt;label&gt; is recommended --&gt;
 &lt;label&gt;Search &lt;input type=search name=q&gt;&lt;/label&gt;
 
 &lt;!-- A placeholder is used as fallback --&gt;
@@ -1582,8 +1565,7 @@
           When calculating a name from content for the <code>treeitem</code> role, descendant content of child <code>group</code> elements are not included.
           For example, in the following <code>tree</code>, the name of the first tree item is <q>Fruits</q>; <q>Apples</q>, <q>Bananas</q>, and <q>Oranges</q> are automatically omitted.
         </p>
-        <pre><code>
-&lt;ul role="tree"&gt;
+        <pre><code>&lt;ul role="tree"&gt;
   &lt;li role="treeitem"&gt;Fruits
     &lt;ul role="group"&gt;
       &lt;li role="treeitem"&gt;Apples&lt;/li&gt;
@@ -1596,8 +1578,7 @@
           Similarly, when calculating a name from content for the <code>menuitem</code> role, descendant content of child <code>menu</code> elements are not included.
           So, the name of the first parent <code>menuitem</code> in the following <code>menu</code> is <q>Fruits</q>.
         </p>
-        <pre><code>
-&lt;ul role="menu"&gt;
+        <pre><code>&lt;ul role="menu"&gt;
   &lt;li role="menuitem"&gt;Fruits
     &lt;ul role="menu"&gt;
       &lt;li role="menuitem"&gt;Apples&lt;/li&gt;
@@ -1613,19 +1594,16 @@
           <pre><code>&lt;input name="code"&gt;</code></pre>
           <p>If there is a <code>placeholder</code> attribute, then it serves as a naming fallback mechanism (avoid doing this):</p>
 
-          <pre><code>
-&lt;input name="code"
+          <pre><code>&lt;input name="code"
   placeholder="One-time code"&gt;</code></pre>
 
           <p>If there is also a <code>title</code> attribute, then it is used as the accessible name instead of <code>placeholder</code>, but it is still a fallback (avoid doing this):</p>
-          <pre><code>
-&lt;input name="code"
+          <pre><code>&lt;input name="code"
   placeholder="123456"
   title="One-time code"&gt;</code></pre>
 
           <p>If there is also a <code>label</code> element (recommended), then that is used as the accessible name, and the <code>title</code> attribute is instead used as the accessible description:</p>
-          <pre><code>
-&lt;label&gt;One-time code
+          <pre><code>&lt;label&gt;One-time code
   &lt;input name="code"
     placeholder="123456"
     title="Get your code from the app."&gt;
@@ -1633,8 +1611,7 @@
 
           <p>If there is also an <code>aria-label</code> attribute (not recommended unless it adds clarity for assistive technology users), then that becomes the accessible name, overriding the <code>label</code> element:</p>
 
-          <pre><code>
-&lt;label&gt;Code
+          <pre><code>&lt;label&gt;Code
   &lt;input name="code"
     aria-label="One-time code"
     placeholder="123456"
@@ -1642,8 +1619,7 @@
 &lt;/label&gt;</code></pre>
 
           <p>If there is also an <code>aria-labelledby</code> attribute, that wins over the other elements and attributes (the <code>aria-label</code> attribute ought to be removed if it is not used):</p>
-          <pre><code>
-&lt;p&gt;Please fill in your &lt;span id="code-label"&gt;one-time code&lt;/span&gt; to log in.&lt;/p&gt;
+          <pre><code>&lt;p&gt;Please fill in your &lt;span id="code-label"&gt;one-time code&lt;/span&gt; to log in.&lt;/p&gt;
 &lt;p&gt;
   &lt;label&gt;Code
     &lt;input name="code"
@@ -1669,8 +1645,7 @@
             In this example, the label for the button is computed by first following the <code>aria-labelledby</code> reference to the parent element, and then computing the label for that element from the child nodes, first visiting the <code>button</code> element again but ignoring the <code>aria-labelledby</code> reference and instead using the <code>aria-label</code>, and then visiting the next child (the text node).
             The resulting label is <q>Remove meeting: Daily status report</q>.
           </p>
-          <pre><code>
-&lt;div id="meeting-1"&gt;
+          <pre><code>&lt;div id="meeting-1"&gt;
   &lt;button aria-labelledby="meeting-1" aria-label="Remove meeting:"&gt;X&lt;/button&gt;
   Daily status report
 &lt;/div&gt;</code></pre>
@@ -1685,16 +1660,14 @@
             The <code>aria-describedby</code> property works similarly to the <code>aria-labelledby</code> property.
             For example, a button could be described by a sibling paragraph.
           </p>
-          <pre><code>
-&lt;button aria-describedby="trash-desc"&gt;Move to trash&lt;/button&gt;
+          <pre><code>&lt;button aria-describedby="trash-desc"&gt;Move to trash&lt;/button&gt;
 ...
 &lt;p id="trash-desc"&gt;Items in the trash will be permanently removed after 30 days.&lt;/p&gt;</code></pre>
           <p>
             Descriptions are reduced to text strings.
             For example, if the description contains an HTML <code>img</code> element, a text equivalent of the image is computed.
           </p>
-          <pre><code>
-&lt;button aria-describedby="trash-desc"&gt;Move to &lt;img src="bin.svg" alt="trash"&gt;&lt;/button&gt;
+          <pre><code>&lt;button aria-describedby="trash-desc"&gt;Move to &lt;img src="bin.svg" alt="trash"&gt;&lt;/button&gt;
 ...
 &lt;p id="trash-desc"&gt;Items in &lt;img src="bin.svg" alt="the trash"&gt; will be permanently removed after 30 days.&lt;/p&gt;</code></pre>
           <p>
@@ -1703,8 +1676,7 @@
             The description could also be referenced from the text field directly with <code>aria-describedby</code>.
             In the following example, the accessible description for the <code>input</code> element is <q>Your username is the name that you use to log in to this service.</q>
           </p>
-          <pre><code>
-&lt;label for="username"&gt;Username&lt;/label&gt;
+          <pre><code>&lt;label for="username"&gt;Username&lt;/label&gt;
 &lt;input id="username" name="username" aria-describedby="username-desc"&gt;
 &lt;button aria-expanded="false" aria-controls="username-desc" aria-label="Help about username"&gt;?&lt;/button&gt;
 &lt;p id="username-desc" hidden&gt;
@@ -1719,8 +1691,7 @@
             For example, a preceding heading might serve as an appropriate accessible name, and the <code>caption</code> element might contain a longer description.
             In such a situation, <code>aria-labelledby</code> could be used on the <code>table</code> to set the accessible name to the heading content and the <code>caption</code> would become the accessible description.
           </p>
-          <pre><code>
-&lt;h2 id="events-heading"&gt;Upcoming events&lt;/h2&gt;
+          <pre><code>&lt;h2 id="events-heading"&gt;Upcoming events&lt;/h2&gt;
 &lt;table aria-labelledby="events-heading"&gt;
   &lt;caption&gt;
     Calendar of upcoming events, weeks 27 through 31, with each week starting with
@@ -1737,8 +1708,7 @@
             The HTML <code>figure</code> element can get its accessible <em>name</em> from its <code>figcaption</code> element, but it will not be used as the accessible <em>description</em>, even if it was not used as the accessible name.
             If the <code>figcaption</code> element is appropriate as an accessible description, and the accessible name is set using <code>aria-labelledby</code> or <code>aria-label</code>, then the <code>figcaption</code> can be explicitly set as the accessible description using the <code>aria-describedby</code> attribute.
           </p>
-          <pre><code>
-&lt;h2 id="neutron"&gt;Neutron&lt;/h2&gt;
+          <pre><code>&lt;h2 id="neutron"&gt;Neutron&lt;/h2&gt;
 &lt;figure aria-labelledby="neutron" aria-describedby="neutron-caption"&gt;
   &lt;img src="neutron.svg" alt="Within the neutron are three quarks (blue 'u', red 'd', green 'd') that are interconnected."&gt;
   &lt;figcaption id="neutron-caption"&gt;
@@ -1758,15 +1728,13 @@
           </p>
           <p>Note that the <code>title</code> attribute might not be accessible to some users, in particular sighted users not using a screen reader and not using a pointing device that supports hover (e.g., a mouse).</p>
           <p>For example, an <code>input</code> element with input constrained using the <code>pattern</code> attribute can use the <code>title</code> attribute to describe what the expected input is.</p>
-          <pre><code>
-&lt;label&gt; Part number:
+          <pre><code>&lt;label&gt; Part number:
   &lt;input pattern="[0-9][A-Z]{3}" name="part"
     title="A part number is a digit followed by three uppercase letters."/&gt;
 &lt;/label&gt;</code></pre>
           <p>The <code>title</code> attribute in this case can be shown to the user as a tooltip when the user hovers or focuses the control, but also as part of the error message when the user agent validates the form, if the <code>input</code> element's value doesn't match the <code>pattern</code>.</p>
           <p>As another example, a link can use the <code>title</code> attribute to describe the link in more detail.</p>
-          <pre><code>
-&lt;a href="http://twitter.com/W3C"
+          <pre><code>&lt;a href="http://twitter.com/W3C"
   title="Follow W3C on Twitter"&gt;
   &lt;img src="/2008/site/images/Twitter_bird_logo_2012.svg"
     alt="Twitter" class="social-icon" height="40" /&gt;
