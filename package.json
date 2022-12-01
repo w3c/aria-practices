@@ -50,7 +50,7 @@
     "glob": "^8.0.3",
     "htmlhint": "^1.1.4",
     "htmlparser2": "^8.0.1",
-    "husky": "^8.0.1",
+    "husky": "^8.0.2",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "selenium-webdriver": "^4.3.0",
