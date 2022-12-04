@@ -16,26 +16,60 @@
     <main>
       <h1>Introduction</h1>
       <p>
-        Learn  about the purpose of the APG, who it intends to serve, how it is organized, and the meaning of the term "accessibility semantics".
+        This introduction to the ARIA Authoring Practices Guide (APG) describes its purpose, audience, and organization and explains the terms "ARIA" and "accessibility semantics".
       </p>
       <section id="purpose">
         <h2>Purpose of the APG</h2>
         <p>
-          The ARIA Authoring Practices Guide (APG) describes development of web experiences for users of assistive technologies and keyboard interfaces.
-          It provides an illustrative library of accessible user interface patterns with example implementations that explain how to:
+          The APG explains how to develop web experiences for people who rely on assistive technologies and keyboard interfaces.
+          It includes a library of accessible user interface patterns with example implementations that explain how to:
         </p>
         <ul>
           <li>
-            Support accessibility with the features of the
+            Make common user interface patterns accessible by using features of the
             <a class="specref" href="#abstract">Accessible Rich Internet Application (ARIA) specification</a>
-            in combination with HTML, CSS, and other web technologies.
+            in combination with HTML, CSS, JavaScript, and other web technologies.
           </li>
           <li>
             Use ARIA, HTML, and CSS to implement fundamental accessibility practices, such as providing accessible names, enabling keyboard interaction, conveying page structure to assistive technologies, and supporting high contrast operating system settings.
           </li>
         </ul>
-        
+        <p>
+          The primary aim of the APG is to explain and illustrate appropriate use of ARIA attributes and related HTML, CSS, and JavaScript techniques for supporting accessibility.
+          By helping build understanding  of accessibility practices that are consistent with ARIA specifications, the APG can help readers deliver robust accessibility.
+        </p>
+        <p>
+          While it includes a library of patterns and functional examples, the APG does not strive to provide a   comprehensive design system or production-ready code.
+          Rather,    example code aims to illustrate accessibility concepts as clearly and simply as possible.
+          Similarly, while the examples are intended to be realistic and utilize modern coding techniques, their purpose is not to teach front-end engineering.
+        </p>
       </section>
+      
+      <section id="organization">
+        <h2>How the APG is Organized</h2>
+        <p>
+          The APG is organized into two major sections: patterns and practices.
+          Each pattern explains how to make a common user interface element, such as a button, menu, or dialog, accessible, and provides functional example implementations of the pattern.
+          The practices section gives in-depth explanation of how to satisfy a variety of accessibility needs that surface when making rich internet application experiences accessible.
+          For instance, the practices section on providing accessible names and descriptions gives detailed descriptions of seven different naming techniques as well as a table providing guidance for naming more than 80 types of elements.
+        </p>
+        <p>
+          The APG describes accessibility semantics and keyboard interaction for many common user interface patterns, ranging from typical buttons and popup menus to complex tree grids.
+          The patterns are illustrated by functional example code and linked to explanations of fundamental accessibility practices they incorporate.
+          Practices cover topics such as how to effectively utilize the many ways of encoding accessible names and convey web page structure with ARIA landmark regions.
+        </p>
+      </section>
+
+      <section id="audience">
+        <h2>Audience and Prerequisite Knowledge</h2>
+        <p>
+          The APG assumes basic understanding of web development, especially of HTML and CSS.
+          It may be particularly useful to designers and engineers who are working on site design systems and component libraries.
+          However, it is important to understand that the APG only covers a portion of what is needed to create accessible experiences.
+          To understand accessibility more broadly, it is advisable to start with the <a href="https://www.w3.org/WAI/fundamentals/">WAI Accessibility Fundamentals</a> and <a href="https://www.w3.org/WAI/design-develop/">WAI Overview of Design and Development</a>.
+        </p>
+      </section>
+
       <section id="semantics">
         <h2>What Are Accessibility Semantics?</h2>
         <p>
@@ -57,29 +91,7 @@
           <li>State: A dynamic property, such as selected, checked, or disabled, whose value may be changed by users or application events.</li>
         </ul>
       </section>
-      <section id="organization">
-        <h2>How the APG is Organized</h2>
-        <p>
-          The APG is organized into two major sections: patterns and practices.
-          Each pattern explains how to make a common user interface element, such as a button, menu, or dialog, accessible, and provides functional example implementations of the pattern.
-          The practices section gives in-depth explanation of how to satisfy a variety of accessibility needs that surface when making rich internet application experiences accessible.
-          For instance, the practices section on providing accessible names and descriptions gives detailed descriptions of seven different naming techniques as well as a table providing guidance for naming more than 80 types of elements.
-        </p>
-        <p>
-          The APG describes accessibility semantics and keyboard interaction for many common user interface patterns, ranging from typical buttons and popup menus to complex tree grids.
-          The patterns are illustrated by functional example code and linked to explanations of fundamental accessibility practices they incorporate.
-          Practices cover topics such as how to effectively utilize the many ways of encoding accessible names and convey web page structure with ARIA landmark regions.
-        </p>
-      </section>
-      <section id="audience">
-        <h2>Audience and Prerequisite Knowledge</h2>
-        <p>
-          The APG assumes basic understanding of web development, especially of HTML and CSS.
-          It may be particularly useful to designers and engineers who are working on site design systems and component libraries.
-          However, it is important to understand that the APG only covers a portion of what is needed to create accessible experiences.
-          To understand accessibility more broadly, it is advisable to start with the <a href="https://www.w3.org/WAI/fundamentals/">WAI Accessibility Fundamentals</a> and <a href="https://www.w3.org/WAI/design-develop/">WAI Overview of Design and Development</a>.
-        </p>
-      </section>
+
       <section id="references">
         <h2>References</h2>
         <p>
