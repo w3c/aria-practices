@@ -46,17 +46,22 @@
       </section>
 
       <section id="audience">
-        <h2>Audience and Prerequisite Knowledge</h2>
+        <h2>Who It's For and What  You Need to Know First</h2>
         <p>
-          The APG assumes basic understanding of web development, especially of HTML and CSS.
-          It may be particularly useful to designers and engineers who are working on site design systems and component libraries.
-          However, it is important to understand that the APG only covers a portion of what is needed to create accessible experiences.
+          While a significant portion of APG content assumes some understanding of HTML, CSS, and JavaScript, it is intended to serve not only web engineers but many others as well.
+        </p>
+        <ul>
+          <li>It may be particularly useful to designers and engineers who are working on site design systems and component libraries.</li>
+          <li>...</li>
+        </ul>
+        <p>
+          It is important to understand that the APG only covers a portion of what is needed to create accessible experiences.
           To understand accessibility more broadly, it is advisable to start with the <a href="https://www.w3.org/WAI/fundamentals/">WAI Accessibility Fundamentals</a> and <a href="https://www.w3.org/WAI/design-develop/">WAI Overview of Design and Development</a>.
         </p>
       </section>
       
       <section id="organization">
-        <h2>How the APG is Organized</h2>
+        <h2>How  the APG is Organized</h2>
         <p>
           The APG is organized into two major sections: patterns and practices.
           Each pattern explains how to make a common user interface element, such as a button, menu, or dialog, accessible, and provides functional example implementations of the pattern.
@@ -71,7 +76,16 @@
       </section>
 
       <section id="semantics">
-        <h2>What Are Accessibility Semantics?</h2>
+        <h2>What is ARIA and What Are Accessibility Semantics?</h2>
+        <p>
+          The accessibility semantics used in the APG patterns and described in APG practices are defined in the
+          <cite><a href="https://www.w3.org/TR/wai-aria-1.2/">WAI-ARIA 1.2 Specification</a></cite>.
+          That is, the ARIA specification standardizes the meaning of the attributes that describe elements and their states to assistive technologies, such as the meaning of <code>role="button"</code>.
+          These attributes and other features required to make sites usable by people who rely on assistive technologies or keyboard navigation are not natively included in the languages used to create web sites, such as HTML, JavaScript, CSS, and SVG.
+          The W3C Web Accessibility Initiative's (WAI) Accessible Rich Internet Applications working group (ARIA WG) is addressing these deficiencies through several W3C standards efforts.
+          The <a href="https://www.w3.org/WAI/intro/aria.php">WAI-ARIA Overview</a>
+          provides additional background on WAI-ARIA, summarizes those efforts, and lists the other documents included in the WAI-ARIA suite.
+        </p>
         <p>
           Accessibility semantics refer to the meaning of user interface elements that need to be conveyed to assistive technology users in order for those users to understand and use the elements.
           For example, people who can visually perceive a search icon button understand the element can be activated to perform a search by the way it is styled and positioned.
@@ -92,18 +106,6 @@
         </ul>
       </section>
 
-      <section id="references">
-        <h2>References</h2>
-        <p>
-          The accessibility semantics used in the APG patterns and described in APG practices are defined in the
-          <cite><a href="https://www.w3.org/TR/wai-aria-1.2/">WAI-ARIA 1.2 Specification</a></cite>.
-          That is, the ARIA specification standardizes the meaning of the attributes that describe elements and their states to assistive technologies, such as the meaning of <code>role="button"</code>.
-          These attributes and other features required to make sites usable by people who rely on assistive technologies or keyboard navigation are not natively included in the languages used to create web sites, such as HTML, JavaScript, CSS, and SVG.
-          The W3C Web Accessibility Initiative's (WAI) Accessible Rich Internet Applications working group (ARIA WG) is addressing these deficiencies through several W3C standards efforts.
-          The <a href="https://www.w3.org/WAI/intro/aria.php">WAI-ARIA Overview</a>
-          provides additional background on WAI-ARIA, summarizes those efforts, and lists the other documents included in the WAI-ARIA suite.
-        </p>
-      </section>
     </main>
   </body>
 </html>
