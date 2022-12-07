@@ -11,11 +11,11 @@ on:
       - "scripts/reference-tables.*"
       - "**/*.js"
       - "test/**"
-      - "examples/**"
+      - "content/**/examples/**"
       - "aria-practices.html"
       - "index.html"
-      - "!examples/landmarks/**"
-      - "!examples/coding-template/**"
+      - "!content/landmarks/examples/**"
+      - "!coding-template/**"
       - "!common/**"
 
 jobs:

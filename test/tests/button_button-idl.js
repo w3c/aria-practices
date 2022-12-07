@@ -1,7 +1,7 @@
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 
-const exampleFile = 'button/button_idl.html';
+const exampleFile = 'content/patterns/button/examples/button_idl.html';
 const assertDotValue = require('../util/assertDotValue');
 const assertAttributeValues = require('../util/assertAttributeValues');
 

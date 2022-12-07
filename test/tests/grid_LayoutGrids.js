@@ -1,7 +1,8 @@
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
-
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
+
+const exampleFile = 'content/patterns/grid/examples/LayoutGrids.html';
 
 const reload = async (t) => {
   return t.context.session.get(t.context.url);
@@ -161,7 +162,7 @@ const exampleInitialized = async function (t, exId) {
 
 ariaTest(
   'Test "role=grid" attribute exists',
-  'grid/LayoutGrids.html',
+  exampleFile,
   'grid-role',
   async (t) => {
     for (let exId in pageExamples) {
@@ -179,7 +180,7 @@ ariaTest(
 
 ariaTest(
   'Test "aria-labelledby" attribute exists',
-  'grid/LayoutGrids.html',
+  exampleFile,
   'aria-labelledby',
   async (t) => {
     for (let exId in pageExamples) {
@@ -192,7 +193,7 @@ ariaTest(
 
 ariaTest(
   'Test "aria-rowcount" attribute exists',
-  'grid/LayoutGrids.html',
+  exampleFile,
   'aria-rowcount',
   async (t) => {
     // This test only applies to example 3
@@ -226,7 +227,7 @@ ariaTest(
 
 ariaTest(
   'Test "role=row" attribute exists',
-  'grid/LayoutGrids.html',
+  exampleFile,
   'row-role',
   async (t) => {
     for (let exId in pageExamples) {
@@ -250,7 +251,7 @@ ariaTest(
 
 ariaTest(
   'test "aria-rowindex" attribute exists',
-  'grid/LayoutGrids.html',
+  exampleFile,
   'aria-rowindex',
   async (t) => {
     // This test only applies to example 3
@@ -280,7 +281,7 @@ ariaTest(
 
 ariaTest(
   'Test "role=gridcell" attribute exists',
-  'grid/LayoutGrids.html',
+  exampleFile,
   'gridcell-role',
   async (t) => {
     for (let exId in pageExamples) {
@@ -304,7 +305,7 @@ ariaTest(
 
 ariaTest(
   'Test "tabindex" appropriately set',
-  'grid/LayoutGrids.html',
+  exampleFile,
   'tabindex',
   async (t) => {
     for (let exId in pageExamples) {
@@ -374,7 +375,7 @@ ariaTest(
 
 ariaTest(
   'Right arrow key moves focus',
-  'grid/LayoutGrids.html',
+  exampleFile,
   'key-right-arrow',
   async (t) => {
     for (let [exId, ex] of Object.entries(pageExamples)) {
@@ -440,7 +441,7 @@ ariaTest(
 
 ariaTest(
   'Left arrow key moves focus',
-  'grid/LayoutGrids.html',
+  exampleFile,
   'key-left-arrow',
   async (t) => {
     for (let [exId, ex] of Object.entries(pageExamples)) {
@@ -515,7 +516,7 @@ ariaTest(
 
 ariaTest(
   'Down arrow key moves focus',
-  'grid/LayoutGrids.html',
+  exampleFile,
   'key-down-arrow',
   async (t) => {
     const cellSelectors = {
@@ -584,83 +585,74 @@ ariaTest(
   }
 );
 
-ariaTest(
-  'Up arrow key moves focus',
-  'grid/LayoutGrids.html',
-  'key-up-arrow',
-  async (t) => {
-    const cellSelectors = [
-      ['ex1', '#ex1 [role="gridcell"]', 'a'],
-      ['ex2', '#ex2 [role="row"] [role="gridcell"]:first-of-type', 'a'],
-      ['ex3', '#ex3 [role="row"] [role="gridcell"]:first-child', 'a'],
-    ];
+ariaTest('Up arrow key moves focus', exampleFile, 'key-up-arrow', async (t) => {
+  const cellSelectors = [
+    ['ex1', '#ex1 [role="gridcell"]', 'a'],
+    ['ex2', '#ex2 [role="row"] [role="gridcell"]:first-of-type', 'a'],
+    ['ex3', '#ex3 [role="row"] [role="gridcell"]:first-child', 'a'],
+  ];
 
-    for (let [exId, selector, focusableElement] of cellSelectors) {
-      if (exId == 'ex3') {
-        // This test depends on the "page down" button which is not specified by
-        // the widget's description. It does this to avoid relying on behaviors
-        // that are tested elsewhere.
-        await clickUntilDisabled(t.context.session, '#ex3_pagedown_button');
-      }
+  for (let [exId, selector, focusableElement] of cellSelectors) {
+    if (exId == 'ex3') {
+      // This test depends on the "page down" button which is not specified by
+      // the widget's description. It does this to avoid relying on behaviors
+      // that are tested elsewhere.
+      await clickUntilDisabled(t.context.session, '#ex3_pagedown_button');
+    }
 
-      const gridcellElements = await t.context.queryElements(t, selector);
-      const lastCellIndex = gridcellElements.length - 1;
+    const gridcellElements = await t.context.queryElements(t, selector);
+    const lastCellIndex = gridcellElements.length - 1;
 
-      // Find the last focusable element
-      let activeElement = await focusOnOrInCell(
-        t,
-        gridcellElements[lastCellIndex],
-        focusableElement
+    // Find the last focusable element
+    let activeElement = await focusOnOrInCell(
+      t,
+      gridcellElements[lastCellIndex],
+      focusableElement
+    );
+
+    if (!activeElement) {
+      throw new Error(
+        'Could not focus on element or any descendent in the last gridcell: ' +
+          selector
       );
+    }
 
-      if (!activeElement) {
-        throw new Error(
-          'Could not focus on element or any descendent in the last gridcell: ' +
-            selector
-        );
-      }
+    // Test focus moves to previous row on up arrow
 
-      // Test focus moves to previous row on up arrow
-
-      for (let index = gridcellElements.length - 2; index > -1; index--) {
-        await activeElement.sendKeys(Key.ARROW_UP);
-        const correctActiveElement = await checkActiveElement(
-          t,
-          selector,
-          index
-        );
-
-        t.true(
-          correctActiveElement,
-          'Example ' +
-            exId +
-            ': gridcell `' +
-            (await gridcellElements[index].getText()) +
-            '` should receive focus after arrow up'
-        );
-
-        activeElement = await t.context.session.executeScript(() => {
-          return document.activeElement;
-        });
-      }
-
-      // Test up arrow on first row
-
+    for (let index = gridcellElements.length - 2; index > -1; index--) {
       await activeElement.sendKeys(Key.ARROW_UP);
-      const correctActiveElement = await checkActiveElement(t, selector, 0);
+      const correctActiveElement = await checkActiveElement(t, selector, index);
+
       t.true(
         correctActiveElement,
         'Example ' +
           exId +
-          ': Up Arrow sent to fist gridcell should not move focus.'
+          ': gridcell `' +
+          (await gridcellElements[index].getText()) +
+          '` should receive focus after arrow up'
       );
+
+      activeElement = await t.context.session.executeScript(() => {
+        return document.activeElement;
+      });
     }
+
+    // Test up arrow on first row
+
+    await activeElement.sendKeys(Key.ARROW_UP);
+    const correctActiveElement = await checkActiveElement(t, selector, 0);
+    t.true(
+      correctActiveElement,
+      'Example ' +
+        exId +
+        ': Up Arrow sent to fist gridcell should not move focus.'
+    );
   }
-);
+});
 
 ariaTest(
   'PageDown key moves focus',
-  'grid/LayoutGrids.html',
+  exampleFile,
   'key-page-down',
   async (t) => {
     const cellSelectors = [
@@ -743,198 +735,173 @@ ariaTest(
   }
 );
 
-ariaTest(
-  'PageUp key moves focus',
-  'grid/LayoutGrids.html',
-  'key-page-up',
-  async (t) => {
-    const cellSelectors = [
-      ['first', '#ex3 [role="row"] [role="gridcell"]:nth-child(1)', 'a'],
-      [
-        'second',
-        '#ex3 [role="row"] [role="gridcell"]:nth-child(2)',
-        'gridcell',
-      ],
-      ['third', '#ex3 [role="row"] [role="gridcell"]:nth-child(3)', 'gridcell'],
-    ];
-    const jumpBy = Number(
-      await t.context.session
-        .findElement(By.css('#ex3 [role="grid"]'))
-        .getAttribute('data-per-page')
+ariaTest('PageUp key moves focus', exampleFile, 'key-page-up', async (t) => {
+  const cellSelectors = [
+    ['first', '#ex3 [role="row"] [role="gridcell"]:nth-child(1)', 'a'],
+    ['second', '#ex3 [role="row"] [role="gridcell"]:nth-child(2)', 'gridcell'],
+    ['third', '#ex3 [role="row"] [role="gridcell"]:nth-child(3)', 'gridcell'],
+  ];
+  const jumpBy = Number(
+    await t.context.session
+      .findElement(By.css('#ex3 [role="grid"]'))
+      .getAttribute('data-per-page')
+  );
+
+  for (let [initialCell, selector, focusableElement] of cellSelectors) {
+    await reload(t);
+    // This test depends on the "page down" button which is not specified by
+    // the widget's description. It does this to avoid relying on behaviors
+    // that are tested elsewhere.
+    await clickUntilDisabled(t.context.session, '#ex3_pagedown_button');
+
+    let finalIndex;
+    const gridcellElements = await t.context.queryElements(t, selector);
+
+    const lastCellIndex = gridcellElements.length - 1;
+
+    // Find the last focusable element
+    let activeElement = await focusOnOrInCell(
+      t,
+      gridcellElements[lastCellIndex],
+      focusableElement
     );
-
-    for (let [initialCell, selector, focusableElement] of cellSelectors) {
-      await reload(t);
-      // This test depends on the "page down" button which is not specified by
-      // the widget's description. It does this to avoid relying on behaviors
-      // that are tested elsewhere.
-      await clickUntilDisabled(t.context.session, '#ex3_pagedown_button');
-
-      let finalIndex;
-      const gridcellElements = await t.context.queryElements(t, selector);
-
-      const lastCellIndex = gridcellElements.length - 1;
-
-      // Find the last focusable element
-      let activeElement = await focusOnOrInCell(
-        t,
-        gridcellElements[lastCellIndex],
-        focusableElement
+    if (!activeElement) {
+      throw new Error(
+        'Could not focus on element or any descendent in the final gridcell: ' +
+          selector
       );
-      if (!activeElement) {
-        throw new Error(
-          'Could not focus on element or any descendent in the final gridcell: ' +
-            selector
-        );
-      }
+    }
 
-      // Test focus moves to next element on paging key
+    // Test focus moves to next element on paging key
 
-      // The final "page" of rows may not contain the maximum number of rows. In
-      // this case, the first "Page Up" keypress will involve traversing fewer
-      // rows than subsequent key presses.
-      const finalPageLength = gridcellElements.length % jumpBy || jumpBy;
-      const penultimate = gridcellElements.length - 1 - finalPageLength;
-      for (let index = penultimate; index > -1; index -= jumpBy) {
-        await activeElement.sendKeys(Key.PAGE_UP);
-        const correctActiveElement = await checkActiveElement(
-          t,
-          selector,
-          index
-        );
-
-        t.true(
-          correctActiveElement,
-          initialCell +
-            ' cell in row: gridcell `' +
-            (await gridcellElements[index].getText()) +
-            '` should receive focus after page up'
-        );
-
-        activeElement = await t.context.session.executeScript(() => {
-          return document.activeElement;
-        });
-        finalIndex = index;
-      }
-
-      // Test paging key on final element
-
+    // The final "page" of rows may not contain the maximum number of rows. In
+    // this case, the first "Page Up" keypress will involve traversing fewer
+    // rows than subsequent key presses.
+    const finalPageLength = gridcellElements.length % jumpBy || jumpBy;
+    const penultimate = gridcellElements.length - 1 - finalPageLength;
+    for (let index = penultimate; index > -1; index -= jumpBy) {
       await activeElement.sendKeys(Key.PAGE_UP);
-      const correctActiveElement = await checkActiveElement(
-        t,
-        selector,
-        finalIndex
-      );
+      const correctActiveElement = await checkActiveElement(t, selector, index);
+
       t.true(
         correctActiveElement,
         initialCell +
-          ' cell in row: Page Up sent to first gridcell should not move focus.'
-      );
-    }
-  }
-);
-
-ariaTest(
-  'Home key moves focus',
-  'grid/LayoutGrids.html',
-  'key-home',
-  async (t) => {
-    const firstElementInFirstRowText = {
-      ex1: 'ARIA 1.1 Specification',
-      ex2: 'Recipient Name 1',
-      ex3: 'WAI-ARIA Overview Web Accessibility Initiative W3C',
-    };
-
-    for (let [exId, ex] of Object.entries(pageExamples)) {
-      const gridcellElements = await t.context.queryElements(
-        t,
-        ex.gridcellSelector
+          ' cell in row: gridcell `' +
+          (await gridcellElements[index].getText()) +
+          '` should receive focus after page up'
       );
 
-      // Find the first focusable element
-      let activeElement = await focusOnOrInCell(
-        t,
-        gridcellElements[0],
-        ex.focusableElements[0]
-      );
-      if (!activeElement) {
-        throw new Error(
-          'Could not focus on element or any descendent in the first gridcell: ' +
-            ex.gridcellSelector
-        );
-      }
-
-      // Move the focused element off the first element in the row
-      await activeElement.sendKeys(Key.ARROW_RIGHT);
       activeElement = await t.context.session.executeScript(() => {
         return document.activeElement;
       });
+      finalIndex = index;
+    }
 
-      // Test focus moves back to the first element in the row after sending key HOME
-      await activeElement.sendKeys(Key.HOME);
-      activeElement = await t.context.session.executeScript(() => {
-        return document.activeElement;
-      });
+    // Test paging key on final element
 
-      t.is(
-        await activeElement.getText(),
-        firstElementInFirstRowText[exId],
-        'Example ' +
-          exId +
-          ': home should move focus to first element in the row'
+    await activeElement.sendKeys(Key.PAGE_UP);
+    const correctActiveElement = await checkActiveElement(
+      t,
+      selector,
+      finalIndex
+    );
+    t.true(
+      correctActiveElement,
+      initialCell +
+        ' cell in row: Page Up sent to first gridcell should not move focus.'
+    );
+  }
+});
+
+ariaTest('Home key moves focus', exampleFile, 'key-home', async (t) => {
+  const firstElementInFirstRowText = {
+    ex1: 'ARIA 1.1 Specification',
+    ex2: 'Recipient Name 1',
+    ex3: 'WAI-ARIA Overview Web Accessibility Initiative W3C',
+  };
+
+  for (let [exId, ex] of Object.entries(pageExamples)) {
+    const gridcellElements = await t.context.queryElements(
+      t,
+      ex.gridcellSelector
+    );
+
+    // Find the first focusable element
+    let activeElement = await focusOnOrInCell(
+      t,
+      gridcellElements[0],
+      ex.focusableElements[0]
+    );
+    if (!activeElement) {
+      throw new Error(
+        'Could not focus on element or any descendent in the first gridcell: ' +
+          ex.gridcellSelector
       );
     }
+
+    // Move the focused element off the first element in the row
+    await activeElement.sendKeys(Key.ARROW_RIGHT);
+    activeElement = await t.context.session.executeScript(() => {
+      return document.activeElement;
+    });
+
+    // Test focus moves back to the first element in the row after sending key HOME
+    await activeElement.sendKeys(Key.HOME);
+    activeElement = await t.context.session.executeScript(() => {
+      return document.activeElement;
+    });
+
+    t.is(
+      await activeElement.getText(),
+      firstElementInFirstRowText[exId],
+      'Example ' + exId + ': home should move focus to first element in the row'
+    );
   }
-);
+});
 
-ariaTest(
-  'End key moves focus',
-  'grid/LayoutGrids.html',
-  'key-end',
-  async (t) => {
-    const lastElementInFirstRowText = {
-      ex1: 'SVG 2 Specification',
-      ex2: 'X',
-      ex3: 'WAI-ARIA, the Accessible Rich Internet Applications Suite, defines a way to make Web content and Web applications more accessible to people with disabilities.',
-    };
+ariaTest('End key moves focus', exampleFile, 'key-end', async (t) => {
+  const lastElementInFirstRowText = {
+    ex1: 'SVG 2 Specification',
+    ex2: 'X',
+    ex3: 'WAI-ARIA, the Accessible Rich Internet Applications Suite, defines a way to make Web content and Web applications more accessible to people with disabilities.',
+  };
 
-    for (let [exId, ex] of Object.entries(pageExamples)) {
-      const gridcellElements = await t.context.queryElements(
-        t,
-        ex.gridcellSelector
-      );
+  for (let [exId, ex] of Object.entries(pageExamples)) {
+    const gridcellElements = await t.context.queryElements(
+      t,
+      ex.gridcellSelector
+    );
 
-      // Find the first focusable element
-      let activeElement = await focusOnOrInCell(
-        t,
-        gridcellElements[0],
-        ex.focusableElements[0]
-      );
-      if (!activeElement) {
-        throw new Error(
-          'Could not focus on element or any descendent in the first gridcell: ' +
-            ex.gridcellSelector
-        );
-      }
-
-      // Test focus to last element in row using key END
-      await activeElement.sendKeys(Key.END);
-      activeElement = await t.context.session.executeScript(() => {
-        return document.activeElement;
-      });
-
-      t.is(
-        await activeElement.getText(),
-        lastElementInFirstRowText[exId],
-        'Example ' + exId + ': END should move focus to last element in the row'
+    // Find the first focusable element
+    let activeElement = await focusOnOrInCell(
+      t,
+      gridcellElements[0],
+      ex.focusableElements[0]
+    );
+    if (!activeElement) {
+      throw new Error(
+        'Could not focus on element or any descendent in the first gridcell: ' +
+          ex.gridcellSelector
       );
     }
+
+    // Test focus to last element in row using key END
+    await activeElement.sendKeys(Key.END);
+    activeElement = await t.context.session.executeScript(() => {
+      return document.activeElement;
+    });
+
+    t.is(
+      await activeElement.getText(),
+      lastElementInFirstRowText[exId],
+      'Example ' + exId + ': END should move focus to last element in the row'
+    );
   }
-);
+});
 
 ariaTest(
   'control+home keys moves focus',
-  'grid/LayoutGrids.html',
+  exampleFile,
   'key-control-home',
   async (t) => {
     const firstElementInFirstRowText = {
@@ -987,7 +954,7 @@ ariaTest(
 
 ariaTest(
   'Control+end keys moves focus',
-  'grid/LayoutGrids.html',
+  exampleFile,
   'key-control-end',
   async (t) => {
     const lastElementInFirstRowText = {

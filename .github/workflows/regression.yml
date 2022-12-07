@@ -6,9 +6,8 @@ on:
       - ".github/workflows/regression.yml"
       - "package*.json"
       - "test/**"
-      - "examples/**"
-      - "!examples/landmarks/**"
-      - "!examples/coding-template/**"
+      - "content/**/examples/**"
+      - "!content/landmarks/examples/**"
   push:
     branches-ignore:
       - main
@@ -17,9 +16,8 @@ on:
       - ".github/workflows/regression.yml"
       - "package*.json"
       - "test/**"
-      - "examples/**"
-      - "!examples/landmarks/**"
-      - "!examples/coding-template/**"
+      - "content/**/examples/**"
+      - "!content/landmarks/examples/**"
 
 jobs:
   regression:

@@ -6,7 +6,8 @@ const assertAriaRoles = require('../util/assertAriaRoles');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaSelectedAndActivedescendant = require('../util/assertAriaSelectedAndActivedescendant');
 
-const exampleFile = 'listbox/listbox-collapsible.html';
+const exampleFile =
+  'content/patterns/listbox/examples/listbox-collapsible.html';
 
 const ex = {
   buttonSelector: '#ex button',

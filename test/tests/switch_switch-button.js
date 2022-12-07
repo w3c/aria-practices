@@ -5,7 +5,7 @@ const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertTabOrder = require('../util/assertTabOrder');
 
-const exampleFile = 'switch/switch-button.html';
+const exampleFile = 'content/patterns/switch/examples/switch-button.html';
 
 const ex = {
   groupSelector: '#ex1 [role="group"]',

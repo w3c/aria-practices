@@ -9,7 +9,7 @@ const assertRovingTabindex = require('../util/assertRovingTabindex');
 const assertHasFocus = require('../util/assertHasFocus');
 const assertAttributeCanBeToggled = require('../util/assertAttributeCanBeToggled');
 
-const exampleFile = 'toolbar/toolbar.html';
+const exampleFile = 'content/patterns/toolbar/examples/toolbar.html';
 
 const ex = {
   buttonIconSelector: '#ex1 button span.fas',
@@ -36,7 +36,7 @@ const ex = {
     last: '#ex1 [role="radio"]:nth-child(3)',
   },
   tabbableItemAfterToolbarSelector: '#textarea1',
-  tabbableItemBeforeToolbarSelector: '[href="../../#kbd_roving_tabindex"]',
+  tabbableItemBeforeToolbarSelector: '[href$="#kbd_roving_tabindex"]',
   toolbarSelector: '#ex1 [role="toolbar"]',
   checkboxSelector: '#ex1 #checkbox',
   linkSelector: '#ex1 #link',

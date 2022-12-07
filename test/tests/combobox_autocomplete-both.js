@@ -6,7 +6,8 @@ const assertAttributeDNE = require('../util/assertAttributeDNE');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertAriaSelectedAndActivedescendant = require('../util/assertAriaSelectedAndActivedescendant');
 
-const exampleFile = 'combobox/combobox-autocomplete-both.html';
+const exampleFile =
+  'content/patterns/combobox/examples/combobox-autocomplete-both.html';
 
 const ex = {
   textboxSelector: '#ex1 input[type="text"]',

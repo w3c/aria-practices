@@ -6,7 +6,7 @@ const assertAriaRoles = require('../util/assertAriaRoles');
 const assertRovingTabindex = require('../util/assertRovingTabindex');
 const assertTabOrder = require('../util/assertTabOrder');
 
-const exampleFile = 'radio/radio.html';
+const exampleFile = 'content/patterns/radio/examples/radio.html';
 
 const ex = {
   radiogroupSelector: '#ex1 [role="radiogroup"]',
