@@ -12,6 +12,10 @@
   // Rewrite links so they point to the proper spec document
   window.addEventListener('DOMContentLoaded', resolveSpecLinks, false);
 
+  // Support levels iframes should not show scrollbars, so a message with the
+  // correct height will be posted from the iframe.
+  window.addEventListener('message', fixIframeHeight);
+
   async function addExampleUsageWarning() {
     // Determine we are on an example page
     if (!document.location.href.match(/examples\/[^/]+\.html/)) return;
@@ -42,5 +46,16 @@
     const { specLinks } = await import('./specLinks.mjs');
     const fixSpecLink = specLinks({ specStatus: 'ED' });
     document.querySelectorAll('a[href]').forEach(fixSpecLink);
+  }
+
+  function fixIframeHeight(event) {
+    const data = event.data;
+    if (!data.iframe || !data.height || isNaN(data.height)) {
+      return;
+    }
+    const iframe = document.querySelector(`.${data.iframe}`);
+    if (!iframe) return;
+    const magicNumberAdjustment = 5;
+    iframe.style.height = `${data.height + magicNumberAdjustment}px`;
   }
 })();
