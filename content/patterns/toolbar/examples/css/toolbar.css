@@ -77,14 +77,14 @@
 }
 
 [role="toolbar"] button .popup-label::after {
-  border-color: rgb(0 0 0 / 0%);
+  border-color: rgb(0 0 0 / 0);
   border-top-color: #000;
   border-width: 10px;
   margin-left: -10px;
 }
 
 [role="toolbar"] button .popup-label::before {
-  border-color: rgb(255 255 255 / 0%);
+  border-color: rgb(255 255 255 / 0);
   border-top-color: #fff;
   border-width: 12px;
   margin-left: -12px;

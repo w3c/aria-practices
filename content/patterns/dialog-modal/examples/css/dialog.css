@@ -21,7 +21,7 @@
 
     min-width: calc(640px - (15px * 2)); /* == breakpoint - left+right margin */
     min-height: auto;
-    box-shadow: 0 19px 38px rgb(0 0 0 / 12%), 0 15px 12px rgb(0 0 0 / 22%);
+    box-shadow: 0 19px 38px rgb(0 0 0 / 0.12), 0 15px 12px rgb(0 0 0 / 0.22);
   }
 }
 
@@ -117,7 +117,7 @@
 
 @media screen and (min-width: 640px) {
   .dialog-backdrop {
-    background: rgb(0 0 0 / 30%);
+    background: rgb(0 0 0 / 0.3);
   }
 }
 

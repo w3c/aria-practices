@@ -58,7 +58,7 @@ img.reload {
   margin: 0;
   padding: 6px;
   display: inline-block;
-  background-color: rgb(0 0 0 / 65%);
+  background-color: rgb(0 0 0 / 0.65);
   border-radius: 5px;
   border: 0 solid transparent;
 }
@@ -91,13 +91,13 @@ img.reload {
 
 .carousel-tablist .carousel-item .carousel-caption a:hover,
 .carousel-tablist .carousel-item .carousel-caption span.contrast:hover {
-  background-color: rgb(0 0 0 / 100%);
+  background-color: rgb(0 0 0 / 1);
 }
 
 .carousel-tablist .carousel-item .carousel-caption a:focus {
   padding: 4px;
   border: 2px solid #eee;
-  background-color: rgb(0 0 0 / 100%);
+  background-color: rgb(0 0 0 / 1);
   outline: none;
   border-width: 2px solid #fff;
   color: #fff;
@@ -202,7 +202,7 @@ img.reload {
   display: inline-block;
   padding-top: 2px;
   height: 30px;
-  background-color: rgb(0 0 0 / 65%);
+  background-color: rgb(0 0 0 / 0.65);
 }
 
 .carousel-tablist [role="tablist"].focus {
@@ -340,7 +340,7 @@ img.reload {
 }
 
 .carousel-tablist-moreaccessible .carousel-item .carousel-caption a:hover {
-  background-color: rgb(0 0 0 / 20%);
+  background-color: rgb(0 0 0 / 0.2);
 }
 
 .carousel-tablist-moreaccessible .carousel-item .carousel-caption a:focus {
