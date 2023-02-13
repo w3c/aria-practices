@@ -8,10 +8,10 @@
     "example": "examples"
   },
   "scripts": {
-    "fix": "npm run lint:es -- --fix && npm run lint:css -- --fix",
+    "fix": "npm run lint:es -- --fix && stylelint --fix  \"**/*.css\" && prettier --write \"**/*.css\"",
     "htmlhint": "htmlhint \"**/*.html\" \"**/*.template\" --ignore \"common/**/*.html\" --format unix",
     "lint": "npm run lint:es && npm run lint:css && npm run lint:html && npm run lint:spelling",
-    "lint:css": "stylelint **/*.css",
+    "lint:css": "stylelint \"**/*.css\" && prettier --check \"**/*.css\"",
     "lint:es": "eslint . --report-unused-disable-directives",
     "lint:js": "npm run lint:es",
     "lint:html": "npm run htmlhint && npm run vnu-jar",
@@ -56,15 +56,14 @@
     "node-fetch": "^2.6.7",
     "prettier": "^2.7.1",
     "selenium-webdriver": "^4.3.0",
-    "stylelint": "^14.5.3",
-    "stylelint-config-prettier": "^9.0.3",
-    "stylelint-config-standard": "^24.0.0",
-    "stylelint-prettier": "^2.0.0",
+    "stylelint": "^15.1.0",
+    "stylelint-config-standard": "^30.0.1",
     "vnu-jar": "^21.2.5"
   },
   "lint-staged": {
     "*.css": [
-      "stylelint --fix"
+      "stylelint --fix",
+      "prettier --ignore-unknown --write"
     ],
     "*.js": [
       "eslint --fix"

@@ -1,2 +1,6 @@
 # Ignore external copied w3c files
 common
+
+# Vendored theme files
+bootstrap.css
+bootstrap-theme.css
