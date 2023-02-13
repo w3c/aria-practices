@@ -56,7 +56,7 @@
     "node-fetch": "^2.6.7",
     "prettier": "^2.7.1",
     "selenium-webdriver": "^4.3.0",
-    "stylelint": "^14.5.3",
+    "stylelint": "^14.16.1",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-standard": "^24.0.0",
     "stylelint-prettier": "^2.0.0",
