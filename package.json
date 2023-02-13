@@ -61,10 +61,8 @@
     "vnu-jar": "^21.2.5"
   },
   "lint-staged": {
-    "*.css": [
-      "stylelint --fix",
-      "prettier --ignore-unknown --write"
-    ],
+    "*": "prettier --ignore-unknown --write",
+    "*.css": "stylelint --fix",
     "*.js": [
       "eslint --fix"
     ],
