@@ -66,9 +66,9 @@
     "*.js": [
       "eslint --fix"
     ],
-    "examples/**/*.html": [
+    "content/patterns/**/examples/*.html": [
       "npm run reference-tables",
-      "git add examples/index.html"
+      "git add content/index/index.html"
     ]
   },
   "ava": {
