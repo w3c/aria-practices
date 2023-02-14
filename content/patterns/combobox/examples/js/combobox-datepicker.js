@@ -48,6 +48,7 @@ class ComboboxDatePicker {
     this.tbodyNode = this.dialogNode.querySelector('table.dates tbody');
 
     this.lastRowNode = null;
+    this.lastDate = -1;
 
     this.days = [];
 
@@ -234,6 +235,7 @@ class ComboboxDatePicker {
     this.buttonNode.classList.add('open');
     this.getDateFromCombobox();
     this.updateGrid();
+    this.lastDate = this.focusDay.getDate();
   }
 
   isOpen() {
@@ -497,59 +499,96 @@ class ComboboxDatePicker {
     this.setFocusDay();
   }
 
+  changeMonth(currentDate, numMonths) {
+    const getDays = (year, month) => new Date(year, month, 0).getDate();
+
+    const isPrev = numMonths < 0;
+    const numYears = Math.trunc(Math.abs(numMonths) / 12);
+    numMonths = Math.abs(numMonths) % 12;
+
+    const newYear = isPrev
+      ? currentDate.getFullYear() - numYears
+      : currentDate.getFullYear() + numYears;
+
+    const newMonth = isPrev
+      ? currentDate.getMonth() - numMonths
+      : currentDate.getMonth() + numMonths;
+
+    const newDate = new Date(newYear, newMonth, 1);
+
+    const daysInMonth = getDays(newDate.getFullYear(), newDate.getMonth() + 1);
+
+    // If lastDat is not initialized set to current date
+    this.lastDate = this.lastDate ? this.lastDate : currentDate.getDate();
+
+    if (this.lastDate > daysInMonth) {
+      newDate.setDate(daysInMonth);
+    } else {
+      newDate.setDate(this.lastDate);
+    }
+
+    return newDate;
+  }
+
   moveToNextYear() {
-    this.focusDay.setFullYear(this.focusDay.getFullYear() + 1);
+    this.focusDay = this.changeMonth(this.focusDay, 12);
     this.updateGrid();
   }
 
   moveToPreviousYear() {
-    this.focusDay.setFullYear(this.focusDay.getFullYear() - 1);
+    this.focusDay = this.changeMonth(this.focusDay, -12);
     this.updateGrid();
   }
 
   moveToNextMonth() {
-    this.focusDay.setMonth(this.focusDay.getMonth() + 1);
+    this.focusDay = this.changeMonth(this.focusDay, 1);
     this.updateGrid();
   }
 
   moveToPreviousMonth() {
-    this.focusDay.setMonth(this.focusDay.getMonth() - 1);
+    this.focusDay = this.changeMonth(this.focusDay, -1);
     this.updateGrid();
   }
 
   moveFocusToNextDay() {
     var d = new Date(this.focusDay);
     d.setDate(d.getDate() + 1);
+    this.lastDate = d.getDate();
     this.moveFocusToDay(d);
   }
 
   moveFocusToNextWeek() {
     var d = new Date(this.focusDay);
     d.setDate(d.getDate() + 7);
+    this.lastDate = d.getDate();
     this.moveFocusToDay(d);
   }
 
   moveFocusToPreviousDay() {
     var d = new Date(this.focusDay);
     d.setDate(d.getDate() - 1);
+    this.lastDate = d.getDate();
     this.moveFocusToDay(d);
   }
 
   moveFocusToPreviousWeek() {
     var d = new Date(this.focusDay);
     d.setDate(d.getDate() - 7);
+    this.lastDate = d.getDate();
     this.moveFocusToDay(d);
   }
 
   moveFocusToFirstDayOfWeek() {
     var d = new Date(this.focusDay);
     d.setDate(d.getDate() - d.getDay());
+    this.lastDate = d.getDate();
     this.moveFocusToDay(d);
   }
 
   moveFocusToLastDayOfWeek() {
     var d = new Date(this.focusDay);
     d.setDate(d.getDate() + (6 - d.getDay()));
+    this.lastDate = d.getDate();
     this.moveFocusToDay(d);
   }
 
@@ -736,7 +775,7 @@ class ComboboxDatePicker {
       );
       this.selectedDay = new Date(this.focusDay);
     } else {
-      // If not a valid date (MM/DD/YY) initialize with todays date
+      // If not a valid date (MM/DD/YY) initialize with today's date
       this.focusDay = new Date();
       this.selectedDay = new Date(0, 0, 1);
     }
