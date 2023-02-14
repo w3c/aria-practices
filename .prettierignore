@@ -8,7 +8,7 @@ bootstrap-theme.css
 # Ignore HTML formatting as the diffs are not great
 *.html
 
-# Ignore thire party JavaScript
+# Ignore third party JavaScript
 **/*.min.js
 content/patterns/landmarks/examples/js/visua11y.js
 content/shared/js/highlight.pack.js
