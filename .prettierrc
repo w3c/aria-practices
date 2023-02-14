@@ -6,6 +6,12 @@
       "options": {
         "singleQuote": false
       }
+    },
+    {
+      "files": ["**/*.yml"],
+      "options": {
+        "singleQuote": false
+      }
     }
   ]
 }

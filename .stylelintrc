@@ -4,18 +4,14 @@
     "media-feature-name-no-unknown": [
       true,
       {
-        "ignoreMediaFeatureNames": [
-          "forced-colors"
-        ]
-      },
+        "ignoreMediaFeatureNames": ["forced-colors"]
+      }
     ],
     "font-family-no-missing-generic-family-keyword": [
       true,
       {
-        "ignoreFontFamilies": [
-          "Font Awesome 5 Free"
-        ]
-      },
+        "ignoreFontFamilies": ["Font Awesome 5 Free"]
+      }
     ],
     "selector-class-pattern": null,
     "selector-id-pattern": null
