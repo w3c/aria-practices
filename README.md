@@ -2,17 +2,17 @@
 
 This repository maintains the WAI-ARIA Authoring Practices Guide (APG).
 
-* Published at: [w3.org/wai/aria/apg](https://www.w3.org/wai/aria/apg/)
-* Developed by the [Authoring Practices Task Force](https://www.w3.org/WAI/ARIA/task-forces/practices/) of the [ARIA Working Group](http://www.w3.org/WAI/ARIA/).
-* Staff contact: [Michael Cooper](http://www.w3.org/People/cooper/).
+- Published at: [w3.org/wai/aria/apg](https://www.w3.org/wai/aria/apg/)
+- Developed by the [Authoring Practices Task Force](https://www.w3.org/WAI/ARIA/task-forces/practices/) of the [ARIA Working Group](http://www.w3.org/WAI/ARIA/).
+- Staff contact: [Michael Cooper](http://www.w3.org/People/cooper/).
 
 Please do not provide commit access to this repository without coordination.
 
 ## How the work is organized
 
-* Work is planned and prioritized in our [milestones](https://github.com/w3c/aria-practices/milestones?direction=asc&sort=due_date&state=open). Each milestone corresponds to a working draft or release published to w3.org.
-* Work is organized by topic in our [projects](https://github.com/w3c/aria-practices/projects). Each project corresponds to a type of design pattern or section of guidance.
-* The [scope of work and roadmap](https://github.com/w3c/aria-practices/wiki/Scope) are described in the project wiki.
+- Work is planned and prioritized in our [milestones](https://github.com/w3c/aria-practices/milestones?direction=asc&sort=due_date&state=open). Each milestone corresponds to a working draft or release published to w3.org.
+- Work is organized by topic in our [projects](https://github.com/w3c/aria-practices/projects). Each project corresponds to a type of design pattern or section of guidance.
+- The [scope of work and roadmap](https://github.com/w3c/aria-practices/wiki/Scope) are described in the project wiki.
 
 ## Contributing
 
@@ -109,9 +109,9 @@ contains additional useful editorial guidance.
 
 ## ARIA Roles, Properties and States Referenced in Guidance and Examples(Also known as APG Coverage Report)
 
-[APG Coverage Report](https://raw.githack.com/w3c/aria-practices/main/coverage/index.html) includes information on number of guidance and example references in the WAI-ARIA Authoring Practices for each ARIA role, property and state. 
+[APG Coverage Report](https://raw.githack.com/w3c/aria-practices/main/coverage/index.html) includes information on number of guidance and example references in the WAI-ARIA Authoring Practices for each ARIA role, property and state.
 
-As of January 11, 2022, APG has examples of 
+As of January 11, 2022, APG has examples of
 
 1. CSV Files of Role, Properties and States Coverage
 2. Roles with no Guidance or Examples (29)
