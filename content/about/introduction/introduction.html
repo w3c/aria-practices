@@ -18,11 +18,12 @@
       <p>
         This introduction to the ARIA Authoring Practices Guide (APG) explains the purpose of the APG, who it intends to serve, and how it is organized.
       </p>
+
       <section id="purpose">
         <h2>Purpose of the APG</h2>
         <p>
           The APG explains how to develop web experiences for people who rely on assistive technologies and keyboard interfaces.
-          It includes a library of accessible user interface patterns with example implementations that explain how to:
+          It includes a library of accessible user interface patterns, example implementations of the patterns, and guidance that explain how to:
         </p>
         <ul>
           <li>
@@ -35,9 +36,41 @@
           </li>
         </ul>
         <p>
-          The primary aim of the APG is to explain and illustrate appropriate use of ARIA attributes and related HTML, CSS, and JavaScript techniques for supporting accessibility.
-          It strives to build broad understanding  and adoption of accessibility practices that are consistent with ARIA specifications and thus promote greater availability of robust accessible experiences.
+          The primary aim of the APG is to increase the availability of robust accessible experiences by building broad understanding  and encouraging adoption of web accessibility practices that:
         </p>
+        <ul>
+          <li>Are consistent with the intent of ARIA, HTML, CSS, and related  specifications.</li>
+          <li>Support assistive technology interoperability.</li>
+          <li>Promote practical techniques for developing modern GUIs that both support usability for people with disabilities and conform with WCAG requirements.</li>
+        </ul>
+      </section>
+
+      <section id="apg-is-informative">
+        <h2>APG is Not a Normative Standard</h2>
+        <p>
+          The accessibility guidance in the APG is different from accessibility requirements specified by <a href="https://www.w3.org/TR/WCAG21/">WCAG</a> and <a href="https://www.w3.org/TR/wai-aria/">ARIA</a>.
+          WCAG and ARIA are "W3C normative technical standards" while the APG is an "informative" resource.
+          W3C normative technical standards, which are formally known as "W3C Recommendations", have conformance models that define how to comply with the requirements documented in the standard.
+          Those requirements are developed using a rigorous process defined by
+          The <a href="https://www.w3.org/Consortium/Process#rec-track">W3C Recommendation Track</a>.
+        </p>
+        <p>
+          The APG does not specify normative requirements and thus does not have a conformance model.
+          The <a href="https://www.w3.org/groups/tf/aria-practices">ARIA Authoring Practices Task Force</a>, which is part of the <a href=""https://www.w3.org/groups/wg/aria">ARIA Working Group</a>,
+          uses consensus to ensure APG guidance is consistent with the ARIA specification, but it is not bound by the W3C Recommendation Track process.
+        </p>
+      </section>
+
+      <section>
+        <h2>Exercise Caution If Deviating from APG Guidance</h2>
+        <p>
+          While APG is not a standard, its patterns and practices do convey requirements from normative standards.
+          The patterns attempt to describe a range of variation that satisfies the requirements of  relevant accessibility specifications, and they provide links to those specifications.
+        </p>
+      </section>
+      
+      <section>
+        <h2>APG is not  a UI Design System</h2>
         <p>
           While the APG includes a library of patterns and functional examples, it's objectives do not include providing a   comprehensive design system or production-ready code.
           Rather, the examples, including  code style, are designed to facilitate learning the accessibility concepts they illustrate.
