@@ -14,7 +14,6 @@
  */
 class Listbox {
   constructor(listboxNode) {
-    if (!listboxNode) return;
     this.listboxNode = listboxNode;
     this.activeDescendant = this.listboxNode.getAttribute(
       'aria-activedescendant'
@@ -676,7 +675,3 @@ class Listbox {
     this.handleFocusChange = focusChangeHandler;
   }
 }
-
-(function () {
-  new Listbox();
-})();

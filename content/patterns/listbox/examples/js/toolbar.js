@@ -14,7 +14,6 @@
  */
 class Toolbar {
   constructor(toolbarNode) {
-    if (!toolbarNode) return;
     this.toolbarNode = toolbarNode;
     this.items = this.toolbarNode.querySelectorAll('.toolbar-item');
     this.selectedItem = this.toolbarNode.querySelector('.selected');
@@ -114,6 +113,3 @@ class Toolbar {
   }
 }
 
-(function () {
-  new Toolbar();
-})();

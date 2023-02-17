@@ -5,8 +5,6 @@
 
 'use strict';
 
-var Listbox = Listbox || {};
-
 /**
  * ARIA Scrollable Listbox Example
  *
