@@ -3,9 +3,10 @@
  *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
  */
 
-/* global aria */
-
 'use strict';
+
+var Listbox = Listbox || {};
+var Toolbar = Toolbar || {};
 
 /**
  * ARIA Listbox Examples
@@ -18,13 +19,13 @@ window.addEventListener('load', function () {
   // This onload handle initializes two examples. Only initialize example if the example
   // can be found in the dom.
   if (document.getElementById('ss_imp_list')) {
-    var ex1ImportantListbox = new aria.Listbox(
+    var ex1ImportantListbox = new Listbox(
       document.getElementById('ss_imp_list')
     );
-    var ex1UnimportantListbox = new aria.Listbox(
+    var ex1UnimportantListbox = new Listbox(
       document.getElementById('ss_unimp_list')
     );
-    new aria.Toolbar(document.querySelector('[role="toolbar"]'));
+    new Toolbar(document.querySelector('[role="toolbar"]'));
 
     ex1ImportantListbox.enableMoveUpDown(
       document.getElementById('ex1-up'),
@@ -71,10 +72,10 @@ window.addEventListener('load', function () {
   // This onload handle initializes two examples. Only initialize example if the example
   // can be found in the dom.
   if (document.getElementById('ms_imp_list')) {
-    var ex2ImportantListbox = new aria.Listbox(
+    var ex2ImportantListbox = new Listbox(
       document.getElementById('ms_imp_list')
     );
-    var ex2UnimportantListbox = new aria.Listbox(
+    var ex2UnimportantListbox = new Listbox(
       document.getElementById('ms_unimp_list')
     );
 

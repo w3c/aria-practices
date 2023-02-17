@@ -3,9 +3,9 @@
  *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
  */
 
-/* global aria */
-
 'use strict';
+
+var Listbox = Listbox || {};
 
 /**
  * ARIA Scrollable Listbox Example
@@ -15,5 +15,5 @@
  */
 
 window.addEventListener('load', function () {
-  new aria.Listbox(document.getElementById('ss_elem_list'));
+  new Listbox(document.getElementById('ss_elem_list'));
 });

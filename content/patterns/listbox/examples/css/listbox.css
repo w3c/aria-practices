@@ -44,12 +44,19 @@
 [role="option"] {
   position: relative;
   display: block;
-  padding: 0 1em 0 1.5em;
+  margin: 2px;
+  padding: 2px 1em 2px 1.5em;
   line-height: 1.8em;
+  cursor: pointer;
 }
 
-[role="option"].focused {
+[role="listbox"]:focus [role="option"].focused {
   background: #bde4ff;
+}
+
+[role="listbox"]:focus [role="option"].focused,
+[role="option"]:hover {
+  outline: 2px solid currentcolor;
 }
 
 [role="option"][aria-selected="true"]::before {
