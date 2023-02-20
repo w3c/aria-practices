@@ -40,7 +40,7 @@
     "@babel/eslint-parser": "^7.18.2",
     "ava": "^4.3.0",
     "cheerio": "^1.0.0-rc.12",
-    "cspell": "^6.2.2",
+    "cspell": "^6.24.0",
     "eslint": "^8.19.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-ava": "^13.2.0",
@@ -48,10 +48,10 @@
     "eslint-plugin-jsdoc": "^39.3.3",
     "eslint-plugin-prettier": "^4.2.1",
     "geckodriver": "^3.2.0",
-    "glob": "^8.0.3",
+    "glob": "^8.1.0",
     "htmlhint": "^1.1.4",
     "htmlparser2": "^8.0.1",
-    "husky": "^8.0.1",
+    "husky": "^8.0.3",
     "lint-staged": "^13.1.1",
     "node-fetch": "^2.6.7",
     "prettier": "^2.7.1",
@@ -66,9 +66,9 @@
     "*.js": [
       "eslint --fix"
     ],
-    "examples/**/*.html": [
+    "content/patterns/**/examples/*.html": [
       "npm run reference-tables",
-      "git add examples/index.html"
+      "git add content/index/index.html"
     ]
   },
   "ava": {
