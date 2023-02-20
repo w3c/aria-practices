@@ -22,7 +22,7 @@
       <section id="purpose">
         <h2>Purpose of the APG</h2>
         <p>
-          The APG explains how to develop web experiences for people who rely on assistive technologies and keyboard interfaces.
+          The APG synthesizes requirements from multiple accessibility and web technology specifications to explain how to develop web experiences for people who rely on assistive technologies and keyboard interfaces.
           It includes a library of accessible user interface patterns, example implementations of the patterns, and guidance that explain how to:
         </p>
         <ul>
@@ -40,15 +40,15 @@
         </p>
         <ul>
           <li>Are consistent with the intent of ARIA, HTML, CSS, and related  specifications.</li>
-          <li>Support assistive technology interoperability.</li>
-          <li>Promote practical techniques for developing modern GUIs that both support usability for people with disabilities and conform with WCAG requirements.</li>
+          <li>Support assistive technology interoperability, which is assessed by  the <a href="https://aria-at.w3.org/">ARIA and Assistive Technologies Project</a>.</li>
+          <li>Promote practical techniques for developing modern GUIs that both support usability for people with disabilities and conform with <a href="https://www.w3.org/TR/WCAG21/">WCAG</a> requirements.</li>
         </ul>
       </section>
 
-      <section id="apg-is-informative">
+      <section id="apg-is--not-normative">
         <h2>APG is Not a Normative Standard</h2>
         <p>
-          The accessibility guidance in the APG is different from accessibility requirements specified by <a href="https://www.w3.org/TR/WCAG21/">WCAG</a> and <a href="https://www.w3.org/TR/wai-aria/">ARIA</a>.
+          The accessibility guidance in the APG is different from accessibility requirements specified by <a href="https://www.w3.org/TR/WCAG21/">WCAG</a> and <a class="specref" href="#abstract">ARIA</a>.
           WCAG and ARIA are "W3C normative technical standards" while the APG is an "informative" resource.
           W3C normative technical standards, which are formally known as "W3C Recommendations", have conformance models that define how to comply with the requirements documented in the standard.
           Those requirements are developed using a rigorous process defined by
@@ -57,15 +57,28 @@
         <p>
           The APG does not specify normative requirements and thus does not have a conformance model.
           The <a href="https://www.w3.org/groups/tf/aria-practices">ARIA Authoring Practices Task Force</a>, which is part of the <a href="https://www.w3.org/groups/wg/aria">ARIA Working Group</a>,
-          uses consensus to ensure APG guidance is consistent with the ARIA specification, but it is not bound by the W3C Recommendation Track process.
+          uses consensus to ensure APG guidance is consistent with all relevant specifications, including ARIA, but its process for doing so is not bound by the W3C Recommendation Track process.
+        </p>
+        <p>
+          Some guidance provided by the APG is not covered by any normative specification.
+          Most notably, the patterns include keyboard interaction models that reflect a combination of one normative requirement specified by ARIA and conventions established by popular operating systems and software.
+          That is, in the section on <a href="#managingfocus">Managing focus</a>, ARIA specifies that the <kbd>Tab</kbd> key should not move focus inside of certain types of widgets.
+          However, ARIA does not specify how specific keys should move focus inside of those widgets.
+          The APG patterns provide keyboard interaction models that satisfy the ARIA requirements and represent broadly utilized conventions.
+          The majority of such conventions are so well established that it is advisable to treat them as requirements.
+          Where that is not the case, the guidance is clearly marked as optional.
+          Note that there are some keyboard commands where users could be better served if a web widget were to dynamically adjust to mirror the users' operating system conventions.
+          It is a <a href="https://github.com/w3c/aria-practices/issues/1438">known issue</a> that APG keyboard interaction patterns do not yet provide appropriate guidance for doing so for macOS.
         </p>
       </section>
 
-      <section>
+      <section id="caution-when-deviating">
         <h2>Exercise Caution If Deviating from APG Guidance</h2>
         <p>
           While APG is not a standard, its patterns and practices do convey requirements from normative standards.
-          The patterns attempt to describe a range of variation that satisfies the requirements of  relevant accessibility specifications, and they provide links to those specifications.
+          The patterns and practices describe wide ranges of options that satisfy the requirements of  relevant accessibility specifications, and the examples provide specific implementations that fit the guidance provided by the patterns and practices.
+          That said, the APG pattern library is not intended to serve as a catalog of all possible, valid, and potentially usable ways of building accessible user interfaces.
+          Beyond simply combining various patterns, some developers may find it necessary to deviate from them.
         </p>
       </section>
       
