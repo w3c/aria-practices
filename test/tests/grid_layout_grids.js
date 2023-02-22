@@ -2,7 +2,7 @@ const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 
-const exampleFile = 'content/patterns/grid/examples/LayoutGrids.html';
+const exampleFile = 'content/patterns/grid/examples/layout-grids.html';
 
 const reload = async (t) => {
   return t.context.session.get(t.context.url);
