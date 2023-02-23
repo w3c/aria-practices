@@ -1,5 +1,9 @@
 {
-  "extends": ["eslint:recommended", "plugin:jsdoc/recommended", "plugin:prettier/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:jsdoc/recommended",
+    "plugin:prettier/recommended"
+  ],
   "env": {
     "browser": true,
     "es6": true
@@ -50,26 +54,22 @@
       }
     },
     {
-      "files": [
-        "**/*.html"
-      ],
-      "plugins":[
-        "html"
-      ],
+      "files": ["**/*.html"],
+      "plugins": ["html"],
       "globals": {
         "sourceCode": true
       },
       "rules": {
         "strict": 0,
-        "no-unused-vars":  ["error", { "varsIgnorePattern": "SkipToConfig" }]
+        "no-unused-vars": ["error", { "varsIgnorePattern": "SkipToConfig" }]
       }
     },
     {
-      "files": [ "content/shared/js/app.js" ],
+      "files": ["content/shared/js/app.js"],
       "parserOptions": { "ecmaVersion": 11 }
     },
     {
-      "files": [ "content/shared/js/specLinks.mjs" ],
+      "files": ["content/shared/js/specLinks.mjs"],
       "parserOptions": { "sourceType": "module" }
     }
   ]
