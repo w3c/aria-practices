@@ -16,14 +16,14 @@
     <main>
       <h1>Introduction</h1>
       <p>
-        This introduction to the ARIA Authoring Practices Guide (APG) explains the purpose of the APG, who it intends to serve, and how it is organized.
+        This introduction to the ARIA Authoring Practices Guide (APG) describes the purpose of the APG, who it intends to serve, and how it is organized.
       </p>
 
       <section id="purpose">
         <h2>Purpose of the APG</h2>
         <p>
-          The APG synthesizes requirements from multiple accessibility and web technology specifications to explain how to develop web experiences for people who rely on assistive technologies and keyboard interfaces.
-          It includes a library of accessible user interface patterns, example implementations of the patterns, and guidance that explain how to:
+          The APG synthesizes requirements from multiple accessibility and web technology specifications into guidance for developing web experiences for people who rely on assistive technologies and keyboard interfaces.
+          It includes a library of accessible user interface patterns, example implementations of the patterns, and guidance sections that explain how to:
         </p>
         <ul>
           <li>
@@ -60,16 +60,15 @@
           uses consensus to ensure APG guidance is consistent with all relevant specifications, including ARIA, but its process for doing so is not bound by the W3C Recommendation Track process.
         </p>
         <p>
-          Some guidance provided by the APG is not covered by any normative specification.
-          Most notably, the patterns include keyboard interaction models that reflect a combination of one normative requirement specified by ARIA and conventions established by popular operating systems and software.
-          That is, in the section on <a class="specref" href="#managingfocus">Managing focus</a>, ARIA specifies that the <kbd>Tab</kbd> key should not move focus inside of certain types of widgets.
+          Some of the guidance in the APG is not covered by a normative specification.
+          For example, the patterns include keyboard interaction models that combine a normative requirement specified by ARIA with conventions established by popular operating systems and software.
+          In the section on <a class="specref" href="#managingfocus">Managing focus</a>, ARIA includes normative language stating that the <kbd>Tab</kbd> key should not move focus inside of certain types of widgets.
           However, ARIA does not specify how specific keys should move focus inside of those widgets.
-          The APG patterns provide keyboard interaction models that satisfy the ARIA requirements and represent broadly utilized conventions.
-          The majority of such conventions are so well established that it is advisable to treat them as requirements.
+          So, the APG Task Force relies on broadly utilized keyboard conventions to provide each pattern with a list of keyboard commands for navigation and operation.
+          While those lists are not normative, the majority of such conventions are so well established that it is advisable to treat them as requirements.
           Where that is not the case, the guidance is clearly marked as optional.
           Note that there are some keyboard commands where users could be better served if a web widget were to dynamically adjust to mirror the users' operating system conventions.
-          It is a <a href="https://github.com/w3c/aria-practices/issues/1438">known issue</a> that APG keyboard interaction patterns do not yet provide appropriate guidance for doing so for macOS.
-        </p>
+          It is a <a href="https://github.com/w3c/aria-practices/issues/1438">known issue</a> that some APG keyboard interaction models do not yet provide sufficient macOS-specific guidance.        </p>
       </section>
 
       <section id="caution-when-deviating">
@@ -80,11 +79,11 @@
           It is important to understand, however, that the APG pattern library is not intended to serve as a catalog of all possible, valid, and potentially usable ways of building accessible user interfaces.
         </p>
         <p>
-          So, some developers may find it necessary to go beyond  simply combining various APG patterns to create an experience that supports their UI requirements.
-          If developing a custom pattern or deviating from an APG pattern , be sure that:
+          Consequently, some developers may find it necessary to go beyond  simply combining various APG patterns to create an experience that supports their UI requirements.
+          If developing a custom pattern, ensure its design and behavior:
         </p>
         <ul>
-          <li>... consult relevant practices ...</li>
+          <li>Are consistent with all relevant guidance covered by <a href="../../practices/practices.html">APG practices</a>.</li>
           <li>... avoid conflicting unless ...</li>
           <li>... test test ...</li>
         </ul>
