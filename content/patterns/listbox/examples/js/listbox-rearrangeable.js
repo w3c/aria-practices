@@ -5,9 +5,6 @@
 
 'use strict';
 
-var Listbox = Listbox || {};
-var Toolbar = Toolbar || {};
-
 /**
  * ARIA Listbox Examples
  *
