@@ -3,9 +3,9 @@ name: Regression Tests Coverage Report
 on:
   pull_request_target:
     paths:
-    - "content/**/examples/**"
-    - "test/**"
-    - "!content/landmarks/examples/**"
+      - "content/**/examples/**"
+      - "test/**"
+      - "!content/landmarks/examples/**"
 
 permissions:
   contents: read

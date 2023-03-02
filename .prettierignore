@@ -1,2 +1,15 @@
 # Ignore external copied w3c files
 common
+
+# Vendored theme files
+bootstrap.css
+bootstrap-theme.css
+
+# Ignore HTML formatting as the diffs are not great
+*.html
+
+# Ignore third party JavaScript
+**/*.min.js
+content/patterns/landmarks/examples/js/visua11y.js
+content/shared/js/highlight.pack.js
+content/shared/js/skipto.js

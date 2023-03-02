@@ -54,7 +54,7 @@
   stroke: currentcolor;
   stroke-width: 2px;
   fill: currentcolor;
-  fill-opacity: 25%;
+  fill-opacity: 0.25;
 }
 
 .slider-temperature .thumb,
