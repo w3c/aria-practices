@@ -1,12 +1,16 @@
+/*
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ */
+
 'use strict';
+
 /**
  * ARIA Collapsible Dropdown Listbox Example
  *
  * @function onload
  * @description Initialize the listbox example once the page has loaded
  */
-
-var Listbox = Listbox || {};
 
 window.addEventListener('load', function () {
   const button = document.getElementById('exp_button');

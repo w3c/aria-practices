@@ -12,6 +12,7 @@
  * @param toolbarNode
  *  The DOM node pointing to the toolbar
  */
+
 class Toolbar {
   constructor(toolbarNode) {
     this.toolbarNode = toolbarNode;
