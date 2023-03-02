@@ -1,6 +1,7 @@
 const assert = require('assert');
 const { path: binaryPath } = require('geckodriver');
-const { spawn } = require('child_process');
+// eslint-disable-next-line no-unused-vars
+const { spawn, spawnSync } = require('child_process');
 
 const getJSON = require('./get-json');
 const forceSerial = require('./force-serial');
@@ -14,7 +15,7 @@ const startOnPort = (port, timeout) => {
   }
 
   const start = Date.now();
-  const child = spawn(binaryPath, ['--port', port]);
+  const child = spawnSync(binaryPath, ['--port', port]);
 
   return new Promise((resolve, reject) => {
     let stopPolling = false;
