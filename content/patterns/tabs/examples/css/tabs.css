@@ -9,6 +9,7 @@
 [role="tab"],
 [role="tab"]:focus,
 [role="tab"]:hover {
+  display: inline-block;
   position: relative;
   z-index: 2;
   top: 2px;
