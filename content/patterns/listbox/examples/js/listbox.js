@@ -46,7 +46,7 @@ aria.Listbox.prototype.registerEvents = function () {
 
   if (this.multiselectable) {
     this.listboxNode.addEventListener(
-      'pointerdown',
+      'mousedown',
       this.checkMouseDown.bind(this)
     );
   }
