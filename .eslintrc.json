@@ -57,6 +57,7 @@
       "files": ["**/*.html"],
       "plugins": ["html"],
       "globals": {
+        "Listbox": true,
         "sourceCode": true
       },
       "rules": {
