@@ -3,6 +3,8 @@
  *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
  */
 
+/* global aria */
+
 'use strict';
 
 /**
@@ -14,7 +16,7 @@
 
 window.addEventListener('load', function () {
   const button = document.getElementById('exp_button');
-  const exListbox = new Listbox(document.getElementById('exp_elem_list'));
+  const exListbox = new aria.Listbox(document.getElementById('exp_elem_list'));
   new ListboxButton(button, exListbox);
 });
 
