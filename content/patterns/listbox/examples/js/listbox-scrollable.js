@@ -1,3 +1,4 @@
+/* eslint  no-undef: off */
 /*
  *   This content is licensed according to the W3C Software License at
  *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
@@ -13,7 +14,5 @@
  */
 
 window.addEventListener('load', function () {
-  new Listbox(
-    document.getElementById('ss_elem_list')
-  ); /* eslint  no-undef: off */
+  new Listbox(document.getElementById('ss_elem_list'));
 });

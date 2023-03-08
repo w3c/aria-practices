@@ -1,3 +1,4 @@
+/* eslint  no-unused-vars : off */
 /*
  *   This content is licensed according to the W3C Software License at
  *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
@@ -14,7 +15,6 @@
  */
 
 class Listbox {
-  /* eslint  no-unused-vars : off */
   constructor(listboxNode) {
     this.listboxNode = listboxNode;
     this.activeDescendant = this.listboxNode.getAttribute(

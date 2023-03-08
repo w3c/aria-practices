@@ -1,3 +1,4 @@
+/* eslint  no-undef: off */
 /*
  *   This content is licensed according to the W3C Software License at
  *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
@@ -15,7 +16,7 @@
 window.addEventListener('load', function () {
   const button = document.getElementById('exp_button');
   const exListbox = new Listbox(document.getElementById('exp_elem_list'));
-  new ListboxButton(button, exListbox); /* eslint  no-undef: off */
+  new ListboxButton(button, exListbox);
 });
 
 class ListboxButton {
