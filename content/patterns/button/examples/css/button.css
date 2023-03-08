@@ -8,23 +8,21 @@
   color: #fff;
   text-shadow: 0 -1px 1px hsl(216deg 27% 25%);
   background-color: hsl(216deg 82% 51%);
-  background-image:
-    linear-gradient(
-      to bottom,
-      hsl(216deg 82% 53%),
-      hsl(216deg 82% 47%)
-    );
+  background-image: linear-gradient(
+    to bottom,
+    hsl(216deg 82% 53%),
+    hsl(216deg 82% 47%)
+  );
 }
 
 [role="button"]:hover {
   border-color: hsl(213deg 71% 29%);
   background-color: hsl(216deg 82% 31%);
-  background-image:
-    linear-gradient(
-      to bottom,
-      hsl(216deg 82% 33%),
-      hsl(216deg 82% 27%)
-    );
+  background-image: linear-gradient(
+    to bottom,
+    hsl(216deg 82% 33%),
+    hsl(216deg 82% 27%)
+  );
   cursor: default;
 }
 
@@ -51,12 +49,11 @@
 [role="button"]:active {
   border-color: hsl(213deg 71% 49%);
   background-color: hsl(216deg 82% 31%);
-  background-image:
-    linear-gradient(
-      to bottom,
-      hsl(216deg 82% 53%),
-      hsl(216deg 82% 47%)
-    );
+  background-image: linear-gradient(
+    to bottom,
+    hsl(216deg 82% 53%),
+    hsl(216deg 82% 47%)
+  );
   box-shadow: inset 0 3px 5px 1px hsl(216deg 82% 30%);
 }
 
@@ -65,23 +62,21 @@
   box-shadow: 0 1px 2px hsl(261deg 27% 55%);
   text-shadow: 0 -1px 1px hsl(261deg 27% 25%);
   background-color: hsl(261deg 82% 51%);
-  background-image:
-    linear-gradient(
-      to bottom,
-      hsl(261deg 82% 53%),
-      hsl(261deg 82% 47%)
-    );
+  background-image: linear-gradient(
+    to bottom,
+    hsl(261deg 82% 53%),
+    hsl(261deg 82% 47%)
+  );
 }
 
 [role="button"][aria-pressed]:hover {
   border-color: hsl(261deg 71% 29%);
   background-color: hsl(261deg 82% 31%);
-  background-image:
-    linear-gradient(
-      to bottom,
-      hsl(261deg 82% 33%),
-      hsl(261deg 82% 27%)
-    );
+  background-image: linear-gradient(
+    to bottom,
+    hsl(261deg 82% 33%),
+    hsl(261deg 82% 27%)
+  );
 }
 
 [role="button"][aria-pressed="true"] {
@@ -89,24 +84,22 @@
   padding-bottom: 0.3em;
   border-color: hsl(261deg 71% 49%);
   background-color: hsl(261deg 82% 31%);
-  background-image:
-    linear-gradient(
-      to bottom,
-      hsl(261deg 82% 63%),
-      hsl(261deg 82% 57%)
-    );
+  background-image: linear-gradient(
+    to bottom,
+    hsl(261deg 82% 63%),
+    hsl(261deg 82% 57%)
+  );
   box-shadow: inset 0 3px 5px 1px hsl(261deg 82% 30%);
 }
 
 [role="button"][aria-pressed="true"]:hover {
   border-color: hsl(261deg 71% 49%);
   background-color: hsl(261deg 82% 31%);
-  background-image:
-    linear-gradient(
-      to bottom,
-      hsl(261deg 82% 43%),
-      hsl(261deg 82% 37%)
-    );
+  background-image: linear-gradient(
+    to bottom,
+    hsl(261deg 82% 43%),
+    hsl(261deg 82% 37%)
+  );
   box-shadow: inset 0 3px 5px 1px hsl(261deg 82% 20%);
 }
 

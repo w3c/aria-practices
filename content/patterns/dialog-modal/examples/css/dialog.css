@@ -15,10 +15,9 @@
     position: absolute;
     top: 2rem;
     left: 50vw; /* move to the middle of the screen (assumes relative parent is the body/viewport) */
-    transform:
-      translateX(
-        -50%
-      ); /* move backwards 50% of this element's width */
+    transform: translateX(
+      -50%
+    ); /* move backwards 50% of this element's width */
 
     min-width: calc(640px - (15px * 2)); /* == breakpoint - left+right margin */
     min-height: auto;
