@@ -14,6 +14,7 @@
  */
 
 class Listbox {
+  /* eslint  no-unused-vars : off */
   constructor(listboxNode) {
     this.listboxNode = listboxNode;
     this.activeDescendant = this.listboxNode.getAttribute(

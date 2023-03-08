@@ -14,6 +14,7 @@
  */
 
 class Toolbar {
+  /* eslint  no-unused-vars : off */
   constructor(toolbarNode) {
     this.toolbarNode = toolbarNode;
     this.items = this.toolbarNode.querySelectorAll('.toolbar-item');
@@ -113,4 +114,3 @@ class Toolbar {
     element.focus();
   }
 }
-
