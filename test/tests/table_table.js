@@ -3,7 +3,7 @@ const assertAriaDescribedby = require('../util/assertAriaDescribedby');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
 
-const exampleFile = 'table/table.html';
+const exampleFile = 'content/patterns/table/examples/table.html';
 
 const ex = {
   tableSelector: '#ex1 [role="table"]',

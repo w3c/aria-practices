@@ -3,7 +3,7 @@ const { By, Key } = require('selenium-webdriver');
 const assertAriaControls = require('../util/assertAriaControls');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 
-const exampleFile = 'accordion/accordion.html';
+const exampleFile = 'content/patterns/accordion/examples/accordion.html';
 
 const ex = {
   buttonSelector: '#ex1 button',

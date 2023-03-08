@@ -6,9 +6,8 @@ on:
       - ".github/workflows/regression.yml"
       - "package*.json"
       - "test/**"
-      - "examples/**"
-      - "!examples/landmarks/**"
-      - "!examples/coding-template/**"
+      - "content/**/examples/**"
+      - "!content/landmarks/examples/**"
   push:
     branches-ignore:
       - main
@@ -17,9 +16,8 @@ on:
       - ".github/workflows/regression.yml"
       - "package*.json"
       - "test/**"
-      - "examples/**"
-      - "!examples/landmarks/**"
-      - "!examples/coding-template/**"
+      - "content/**/examples/**"
+      - "!content/landmarks/examples/**"
 
 jobs:
   regression:
@@ -30,13 +28,14 @@ jobs:
         CI_NODE_INDEX: [0, 1, 2, 3, 4]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
+          node-version: 16
           cache: npm
 
       - name: Install npm dependencies

@@ -1,8 +1,6 @@
 {
   "group": 83726,
-  "contacts": [
-    "michael-n-cooper"
-  ],
+  "contacts": ["michael-n-cooper"],
   "policy": "restricted",
   "repo-type": "note"
 }

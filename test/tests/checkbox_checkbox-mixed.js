@@ -5,7 +5,7 @@ const assertAriaRoles = require('../util/assertAriaRoles');
 const assertTabOrder = require('../util/assertTabOrder');
 const assertNoElements = require('../util/assertNoElements');
 
-const exampleFile = 'checkbox/checkbox-mixed.html';
+const exampleFile = 'content/patterns/checkbox/examples/checkbox-mixed.html';
 
 const ex = {
   checkboxSelector: '#ex1 [role="checkbox"]',

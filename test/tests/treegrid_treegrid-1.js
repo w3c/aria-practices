@@ -5,7 +5,7 @@ const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertRovingTabindex = require('../util/assertRovingTabindex');
 
-const exampleFile = 'treegrid/treegrid-1.html';
+const exampleFile = 'content/patterns/treegrid/examples/treegrid-1.html';
 
 const ex = {
   treegridSelector: '#ex1 [role="treegrid"]',

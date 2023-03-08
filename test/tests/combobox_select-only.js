@@ -4,7 +4,8 @@ const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaRoles = require('../util/assertAriaRoles');
 
-const exampleFile = 'combobox/combobox-select-only.html';
+const exampleFile =
+  'content/patterns/combobox/examples/combobox-select-only.html';
 
 const ex = {
   comboSelector: '#combo1',

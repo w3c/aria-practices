@@ -11,6 +11,8 @@ const cheerio = require('cheerio');
 const dotenv = require('dotenv');
 const fs = require('fs');
 const path = require('path');
+const glob = require('glob');
+
 dotenv.config();
 
 const octokit = new Octokit({
@@ -18,26 +20,29 @@ const octokit = new Octokit({
   userAgent: 'aria-at-repo-maintenance',
 });
 
-const ariaPracticesUrl = 'https://w3c.github.io/aria-practices/';
-const ariaPracticesFile = path.join(__dirname, '..', 'aria-practices.html');
-
 (async () => {
-  let output = fs.readFileSync(ariaPracticesFile, function (err) {
-    console.log('Error reading html:', err);
-  });
-  const $ = cheerio.load(output);
-  const examples = [];
-  $('.widget a[href^="examples/"]').each((index, el) => {
-    const title = $(el).text();
-    const href = $(el).attr('href');
-
-    if (href.indexOf('examples/landmarks') === -1) {
-      examples.push({
-        title,
-        url: ariaPracticesUrl + href,
-      });
-    }
-  });
+  let examples = await Promise.all(
+    glob
+      .sync('content/patterns/!(landmarks)/examples/!(index).html', {
+        cwd: path.join(__dirname, '..'),
+        nodir: true,
+      })
+      .map((filePath) => {
+        return new Promise((resolve, reject) => {
+          fs.readFile(filePath, { encoding: 'utf-8' }, (err, fileText) => {
+            if (err) return reject(err);
+            const $ = cheerio.load(fileText);
+            const title = $('h1').first().text().trim();
+            const url = filePath.replace(
+              /^content\/patterns\/(.+)\/examples\/(.+\.html)$/,
+              'https://www.w3.org/WAI/ARIA/apg/example-index/$1/$2'
+            );
+            resolve({ title, url });
+          });
+        });
+      })
+  );
+  examples.sort((a, b) => a.url.localeCompare(b.url));
 
   let column_id = process.env.GITHUB_PROJECT_COLUMN_ID;
 

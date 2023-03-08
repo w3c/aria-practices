@@ -7,20 +7,17 @@ on:
     paths:
       - ".github/workflows/wai-trigger-deploy.yml"
       - "common/**"
-      - "examples/**"
-      - "img/**"
-      - "aria-practices.html"
-      - "index.html"
+      - "content/**"
       - "README.md"
 
 jobs:
   deploy-wai:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Trigger wai-aria-practices update
-        uses: actions/github-script@v5
+        uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.GH_TOKEN }}
           script: |

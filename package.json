@@ -8,14 +8,15 @@
     "example": "examples"
   },
   "scripts": {
-    "fix": "npm run lint:es -- --fix && npm run lint:css -- --fix",
+    "fix": "npm run lint:es -- --fix && stylelint --fix  \"**/*.css\" && prettier --write \"**/*.css\"",
     "htmlhint": "htmlhint \"**/*.html\" \"**/*.template\" --ignore \"common/**/*.html\" --format unix",
     "lint": "npm run lint:es && npm run lint:css && npm run lint:html && npm run lint:spelling",
-    "lint:css": "stylelint **/*.css",
+    "lint:css": "stylelint \"**/*.css\" && prettier --check \"**/*.css\"",
     "lint:es": "eslint . --report-unused-disable-directives",
     "lint:js": "npm run lint:es",
     "lint:html": "npm run htmlhint && npm run vnu-jar",
     "lint:spelling": "cspell \"**/*.*\"",
+    "link-checker": "node ./scripts/link-checker.js",
     "reference-tables": "node scripts/reference-tables.js",
     "regression": "ava --timeout=1m",
     "regression-report": "node test/util/report",
@@ -35,41 +36,39 @@
   },
   "homepage": "https://github.com/w3c/aria-practices#readme",
   "devDependencies": {
-    "@babel/core": "^7.17.5",
-    "@babel/eslint-parser": "^7.17.0",
-    "ava": "^4.0.1",
-    "cheerio": "^1.0.0-rc.10",
-    "cspell": "^5.18.5",
-    "eslint": "^8.10.0",
-    "eslint-config-prettier": "^8.4.0",
+    "@babel/core": "^7.18.6",
+    "@babel/eslint-parser": "^7.18.2",
+    "ava": "^5.2.0",
+    "cheerio": "^1.0.0-rc.12",
+    "cspell": "^6.24.0",
+    "eslint": "^8.19.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-ava": "^13.2.0",
     "eslint-plugin-html": "^6.2.0",
-    "eslint-plugin-jsdoc": "^37.9.6",
-    "eslint-plugin-prettier": "^4.0.0",
-    "geckodriver": "^3.0.1",
-    "glob": "^7.2.0",
-    "htmlhint": "^1.1.2",
-    "htmlparser2": "^7.2.0",
-    "husky": "^7.0.4",
-    "lint-staged": "^12.3.4",
-    "prettier": "^2.5.1",
-    "selenium-webdriver": "^4.1.1",
-    "stylelint": "^14.5.3",
-    "stylelint-config-prettier": "^9.0.3",
-    "stylelint-config-standard": "^24.0.0",
-    "stylelint-prettier": "^2.0.0",
+    "eslint-plugin-jsdoc": "^39.3.3",
+    "eslint-plugin-prettier": "^4.2.1",
+    "geckodriver": "^3.2.0",
+    "glob": "^8.1.0",
+    "htmlhint": "^1.1.4",
+    "htmlparser2": "^8.0.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.1",
+    "node-fetch": "^2.6.7",
+    "prettier": "^2.7.1",
+    "selenium-webdriver": "^4.8.1",
+    "stylelint": "^15.1.0",
+    "stylelint-config-standard": "^30.0.1",
     "vnu-jar": "^21.2.5"
   },
   "lint-staged": {
-    "*.css": [
-      "stylelint --fix"
-    ],
+    "*": "prettier --ignore-unknown --write",
+    "*.css": "stylelint --fix",
     "*.js": [
       "eslint --fix"
     ],
-    "examples/**/*.html": [
+    "content/patterns/**/examples/*.html": [
       "npm run reference-tables",
-      "git add examples/index.html"
+      "git add content/index/index.html"
     ]
   },
   "ava": {
@@ -79,7 +78,7 @@
   },
   "dependencies": {
     "@octokit/rest": "^18.12.0",
-    "dotenv": "^16.0.0",
+    "dotenv": "^16.0.3",
     "node-html-parser": "^5.2.0"
   }
 }

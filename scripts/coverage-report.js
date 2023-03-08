@@ -12,23 +12,27 @@ const glob = require('glob');
 const cheerio = require('cheerio');
 const HTMLParser = require('node-html-parser');
 
-const exampleFilePath = path.join(__dirname, '..', 'coverage', 'index.html');
-const exampleTemplatePath = path.join(__dirname, 'coverage-report.template');
+const joinPaths = (...segments) => {
+  // Normalize paths to avoid backslash-based paths on Windows
+  return path.join(...segments).replace(/\\/g, '/');
+};
 
-const csvRoleFilePath = path.join(
+const coverageReportPath = joinPaths(
   __dirname,
-  '..',
-  'coverage',
-  'role-coverage.csv'
+  '../content/about/coverage-and-quality/coverage-and-quality-report.html'
 );
-const csvPropFilePath = path.join(
+const templatePath = joinPaths(__dirname, 'coverage-report.template');
+
+const csvRoleFilePath = joinPaths(
   __dirname,
-  '..',
-  'coverage',
-  'prop-coverage.csv'
+  '../content/about/coverage-and-quality/role-coverage.csv'
+);
+const csvPropFilePath = joinPaths(
+  __dirname,
+  '../content/about/coverage-and-quality/prop-coverage.csv'
 );
 
-let output = fs.readFileSync(exampleTemplatePath, function (err) {
+let output = fs.readFileSync(templatePath, function (err) {
   console.log('Error reading aria index:', err);
 });
 
@@ -385,7 +389,7 @@ function getUniqueRolesInExample(html, dataJS) {
       }
     }
   });
-  roles.forEach((role) => console.log('  [Example role]: ' + role));
+  // roles.forEach((role) => console.log('  [Example role]: ' + role));
   console.log('  [Example Roles]: ' + roles.length);
   return roles;
 }
@@ -445,24 +449,14 @@ function getExampleCodeId(html) {
 
 // Index roles, properties and states used in examples
 glob
-  .sync('examples/!(landmarks)/**/!(index).html', {
-    cwd: path.join(__dirname, '..'),
+  .sync('content/patterns/!(landmarks)/examples/**/!(index).html', {
+    cwd: joinPaths(__dirname, '..'),
     nodir: true,
   })
   .forEach(function (file) {
     console.log('[file]: ' + file);
     let dir = path.dirname(file);
     console.log('[ dir]: ' + dir);
-
-    // Ignore any files in the 'examples/js` directory
-    if (dir.indexOf('examples/js') >= 0) {
-      return;
-    }
-
-    // Ignore any files in the 'examples/template` directory
-    if (dir.indexOf('examples/coding-template') >= 0) {
-      return;
-    }
 
     if (file.toLowerCase().indexOf('deprecated') >= 0) {
       console.log('  [ignored]');
@@ -483,7 +477,7 @@ glob
         src.indexOf('app.js') < 0
       ) {
         console.log('  [script]: ' + src);
-        dataJS += fs.readFileSync(path.join(dir, src), 'utf8');
+        dataJS += fs.readFileSync(joinPaths(dir, src), 'utf8');
       }
       dataJS += ' ';
     }
@@ -498,12 +492,12 @@ glob
         href.indexOf('all.css') < 0
       ) {
         console.log('  [link]: ' + href);
-        dataCSS += fs.readFileSync(path.join(dir, href), 'utf8');
+        dataCSS += fs.readFileSync(joinPaths(dir, href), 'utf8');
       }
       dataCSS += ' ';
     }
 
-    let ref = path.join('..', file);
+    let ref = joinPaths('../../..', file);
     let title = html
       .querySelector('title')
       .textContent.split('|')[0]
@@ -609,7 +603,7 @@ function addGuidanceToPropertyOrState(prop, url, label, id) {
 }
 
 function getRolesPropertiesAndStatesFromHeaders(html, url) {
-  let dataHeadings = html.querySelectorAll('h2, h3, h4, h4, h5, h6');
+  let dataHeadings = html.querySelectorAll('h1, h2, h3, h4, h4, h5, h6');
 
   for (let i = 0; i < dataHeadings.length; i++) {
     let dataHeading = dataHeadings[i];
@@ -683,70 +677,79 @@ function getRolesPropertiesAndStatesFromGuidance(html, url) {
   getPropertiesAndStatesFromDataAttributesOnHeaders(html, url);
 }
 
-let data = fs.readFileSync(
-  path.join(__dirname, '../aria-practices.html'),
-  'utf8'
-);
+const patternFiles = glob.sync('content/patterns/!(landmarks)/*-pattern.html', {
+  cwd: joinPaths(__dirname, '..'),
+});
 
-let html = HTMLParser.parse(data);
+const practiceFiles = glob.sync('content/practices/*/*-practice.html', {
+  cwd: joinPaths(__dirname, '..'),
+});
 
-getRolesPropertiesAndStatesFromGuidance(html, '../aria-practices.html');
+const guidanceFiles = [...patternFiles, ...practiceFiles];
+
+guidanceFiles.forEach(function (file) {
+  let data = fs.readFileSync(file, 'utf8');
+
+  let html = HTMLParser.parse(data);
+
+  getRolesPropertiesAndStatesFromGuidance(html, joinPaths('../../../', file));
+});
 
 // Add landmark examples, since they are a different format
 addLandmarkRole(
   ['banner'],
   false,
   'Banner Landmark',
-  '../examples/landmarks/banner.html'
+  '../../../content/patterns/landmarks/examples/banner.html'
 );
 
 addLandmarkRole(
   ['complementary'],
   true,
   'Complementary Landmark',
-  '../examples/landmarks/complementary.html'
+  '../../../content/patterns/landmarks/examples/complementary.html'
 );
 
 addLandmarkRole(
   ['contentinfo'],
   false,
   'Contentinfo Landmark',
-  '../examples/landmarks/contentinfo.html'
+  '../../../content/patterns/landmarks/examples/contentinfo.html'
 );
 
 addLandmarkRole(
   ['form'],
   true,
   'Form Landmark',
-  '../examples/landmarks/form.html'
+  '../../../content/patterns/landmarks/examples/form.html'
 );
 
 addLandmarkRole(
   ['main'],
   true,
   'Main Landmark',
-  '../examples/landmarks/main.html'
+  '../../../content/patterns/landmarks/examples/main.html'
 );
 
 addLandmarkRole(
   ['navigation'],
   true,
   'Navigation Landmark',
-  '../examples/landmarks/navigation.html'
+  '../../../content/patterns/landmarks/examples/navigation.html'
 );
 
 addLandmarkRole(
   ['region'],
   true,
   'Region Landmark',
-  '../examples/landmarks/region.html'
+  '../../../content/patterns/landmarks/examples/region.html'
 );
 
 addLandmarkRole(
   ['search'],
   true,
   'Search Landmark',
-  '../examples/landmarks/search.html'
+  '../../../content/patterns/landmarks/examples/search.html'
 );
 
 function getListItem(item) {
@@ -1143,7 +1146,7 @@ const result = $.html()
     '<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">\n'
   );
 
-fs.writeFile(exampleFilePath, result, function (err) {
+fs.writeFile(coverageReportPath, result, function (err) {
   if (err) {
     console.log('Error saving updated aria practices:', err);
   }

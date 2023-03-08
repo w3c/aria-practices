@@ -6,7 +6,7 @@ const assertAriaRoles = require('../util/assertAriaRoles');
 const assertAriaSelectedAndActivedescendant = require('../util/assertAriaSelectedAndActivedescendant');
 const assertAttributeDNE = require('../util/assertAttributeDNE');
 
-const exampleFile = 'listbox/listbox-scrollable.html';
+const exampleFile = 'content/patterns/listbox/examples/listbox-scrollable.html';
 
 const ex = {
   listboxSelector: '#ex [role="listbox"]',

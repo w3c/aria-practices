@@ -11,11 +11,8 @@ on:
       - "scripts/reference-tables.*"
       - "**/*.js"
       - "test/**"
-      - "examples/**"
-      - "aria-practices.html"
-      - "index.html"
-      - "!examples/landmarks/**"
-      - "!examples/coding-template/**"
+      - "content/**"
+      - "!content/landmarks/examples/**"
       - "!common/**"
 
 jobs:
@@ -23,16 +20,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: refs/pull/${{ github.event.pull_request.number }}/head
 
       - name: Trigger wai-aria-practices PR update
-        uses: actions/github-script@v5
+        uses: actions/github-script@v6
         env:
           APG_BRANCH: ${{ github.head_ref }}
           APG_SHA: ${{ github.event.pull_request.head.sha }}
           APG_PR_NUMBER: ${{ github.event.pull_request.number }}
+          FORK_PATH: ${{ github.event.pull_request.head.repo.fork && github.event.pull_request.head.repo.full_name }}
         with:
           github-token: ${{ secrets.GH_TOKEN }}
           script: |
@@ -45,5 +43,6 @@ jobs:
                 apg_branch: process.env.APG_BRANCH,
                 apg_sha: process.env.APG_SHA,
                 apg_pr_number: process.env.APG_PR_NUMBER,
+                fork_path: process.env.FORK_PATH,
               }
             });
