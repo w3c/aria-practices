@@ -13,5 +13,7 @@
  */
 
 window.addEventListener('load', function () {
-  new Listbox(document.getElementById('ss_elem_list'));
+  new Listbox(
+    document.getElementById('ss_elem_list')
+  ); /* eslint  no-undef: off */
 });

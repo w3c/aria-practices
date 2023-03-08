@@ -1,3 +1,4 @@
+/* eslint no-use-before-define: 0 */ // --> OFF
 /*
  *   This content is licensed according to the W3C Software License at
  *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
@@ -17,7 +18,7 @@ window.addEventListener('load', function () {
   // can be found in the dom.
   if (document.getElementById('ss_imp_list')) {
     var ex1ImportantListbox = new Listbox(
-      document.getElementById('ss_imp_list')
+      /* eslint  no-undef: off */ document.getElementById('ss_imp_list')
     );
     var ex1UnimportantListbox = new Listbox(
       document.getElementById('ss_unimp_list')

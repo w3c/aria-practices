@@ -15,7 +15,7 @@
 window.addEventListener('load', function () {
   const button = document.getElementById('exp_button');
   const exListbox = new Listbox(document.getElementById('exp_elem_list'));
-  new ListboxButton(button, exListbox);
+  new ListboxButton(button, exListbox); /* eslint  no-undef: off */
 });
 
 class ListboxButton {
