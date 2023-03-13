@@ -127,6 +127,7 @@
   color: white;
   text-transform: none;
   font-weight: bold;
+  border: none;
 }
 
 .combobox-datepicker .dates {
