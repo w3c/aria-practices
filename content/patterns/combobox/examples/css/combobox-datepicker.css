@@ -195,6 +195,10 @@
   text-align: center;
 }
 
+.combobox-datepicker table {
+  border: none;
+}
+
 .combobox-datepicker .dates th,
 .combobox-datepicker .dates td {
   text-align: center;
