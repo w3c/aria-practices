@@ -91,6 +91,7 @@
   color: white;
   text-transform: none;
   font-weight: bold;
+  border: none;
 }
 
 .datepicker-dialog button {
@@ -177,11 +178,13 @@
   padding-left: 1em;
   padding-right: 1em;
   padding-top: 1em;
+  border: none;
 }
 
 .datepicker-dialog table.dates th,
 .datepicker-dialog table.dates td {
   text-align: center;
+  background: white;
 }
 
 .datepicker-dialog table.dates tr {
