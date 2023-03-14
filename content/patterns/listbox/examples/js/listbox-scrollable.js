@@ -8,7 +8,7 @@
 /**
  * @namespace aria
  * @description
- * The aria namespace is used to support sharing classe definitions between example files
+ * The aria namespace is used to support sharing class definitions between example files
  * without causing eslint errors for undefined classes
  */
 var aria = aria || {};
