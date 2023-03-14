@@ -179,12 +179,15 @@
   padding-right: 1em;
   padding-top: 1em;
   border: none;
+  border-collapse: separate;
 }
 
 .datepicker-dialog table.dates th,
 .datepicker-dialog table.dates td {
   text-align: center;
   background: white;
+  color: black;
+  border: none;
 }
 
 .datepicker-dialog table.dates tr {
@@ -213,6 +216,7 @@
 .datepicker-dialog table.dates td:hover {
   padding: 0;
   background-color: hsl(216deg 80% 92%);
+  color: black;
 }
 
 .datepicker-dialog table.dates td:focus {
