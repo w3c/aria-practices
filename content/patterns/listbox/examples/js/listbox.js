@@ -7,6 +7,11 @@
 'use strict';
 
 /**
+ * @namespace aria
+ */
+var aria = aria || {};
+
+/**
  * @class
  * @description
  *  Listbox object representing the state and interactions for a listbox widget
@@ -14,7 +19,7 @@
  *  The DOM node pointing to the listbox
  */
 
-class Listbox {
+aria.Listbox = class Listbox {
   constructor(listboxNode) {
     this.listboxNode = listboxNode;
     this.activeDescendant = this.listboxNode.getAttribute(
@@ -676,4 +681,4 @@ class Listbox {
   setHandleFocusChange(focusChangeHandler) {
     this.handleFocusChange = focusChangeHandler;
   }
-}
+};

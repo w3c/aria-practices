@@ -7,6 +7,11 @@
 'use strict';
 
 /**
+ * @namespace aria
+ */
+var aria = aria || {};
+
+/**
  * @class
  * @description
  *  Toolbar object representing the state and interactions for a toolbar widget
@@ -14,7 +19,7 @@
  *  The DOM node pointing to the toolbar
  */
 
-class Toolbar {
+aria.Toolbar = class Toolbar {
   constructor(toolbarNode) {
     this.toolbarNode = toolbarNode;
     this.items = this.toolbarNode.querySelectorAll('.toolbar-item');
@@ -113,4 +118,4 @@ class Toolbar {
   focusItem(element) {
     element.focus();
   }
-}
+};
