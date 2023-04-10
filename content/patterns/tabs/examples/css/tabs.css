@@ -3,12 +3,13 @@
 }
 
 [role="tablist"] {
-  min-width: 550px;
+  min-width: 100%;
 }
 
 [role="tab"],
 [role="tab"]:focus,
 [role="tab"]:hover {
+  display: inline-block;
   position: relative;
   z-index: 2;
   top: 2px;
@@ -18,10 +19,13 @@
   border: 1px solid hsl(219deg 1% 72%);
   border-bottom: 2px solid hsl(219deg 1% 72%);
   border-radius: 5px 5px 0 0;
-  overflow: visible;
   background: hsl(220deg 20% 94%);
   outline: none;
   font-weight: bold;
+  max-width: 22%;
+  overflow: hidden;
+  text-align: left;
+  cursor: pointer;
 }
 
 [role="tab"][aria-selected="true"] {
@@ -58,7 +62,7 @@
   border-radius: 0 5px 5px;
   background: hsl(220deg 43% 99%);
   min-height: 10em;
-  min-width: 550px;
+  width: 100%;
   overflow: auto;
 }
 
