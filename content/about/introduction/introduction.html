@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Introduction</title>
+
+    <!-- Core JS and CSS shared by all About content -->
+    <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
+    <link rel="stylesheet" href="../../shared/css/core.css">
+    <script src="../../shared/js/highlight.pack.js"></script>
+    <script src="../../shared/js/app.js"></script>
+    <script src="../../shared/js/skipto.js"></script>
+  </head>
+  <body>
+    <main>
+      <h1>Introduction</h1>
+      <p>
+        This introduction to the ARIA Authoring Practices Guide (APG) describes the purpose of the APG, the prerequisite knowledge it assumes, and how it is organized.
+      </p>
+
+      <section id="purpose">
+        <h2>Purpose of the APG</h2>
+        <p>
+          The APG synthesizes requirements from multiple accessibility and web technology specifications into guidance for developing web experiences for people who rely on assistive technologies and keyboard interfaces.
+          It includes a library of accessible user interface patterns, example implementations of the patterns, and guidance sections that explain how to:
+        </p>
+        <ul>
+          <li>
+            Make common user interface patterns accessible by using features of the
+            <a class="specref" href="#abstract">Accessible Rich Internet Application (ARIA) specification</a>
+            in combination with HTML, CSS, JavaScript, and other web technologies.
+          </li>
+          <li>
+            Use ARIA, HTML, and CSS to implement fundamental accessibility practices, such as providing accessible names, enabling keyboard interaction, conveying page structure to assistive technologies, and supporting high contrast operating system settings.
+          </li>
+        </ul>
+        <p>
+          The primary aim of the APG is to increase the availability of robust accessible experiences by building broad understanding  and encouraging adoption of web accessibility practices that:
+        </p>
+        <ul>
+          <li>Are consistent with the intent of ARIA, HTML, CSS, and related specifications.</li>
+          <li>Support assistive technology interoperability, which is assessed by the <a href="https://aria-at.w3.org/">ARIA and Assistive Technologies Project</a>.</li>
+          <li>Promote practical techniques for developing modern GUIs that both support usability for people with disabilities and conform with <a href="https://www.w3.org/TR/WCAG21/">WCAG</a> requirements.</li>
+        </ul>
+      </section>
+
+      <section id="apg-is--not-normative">
+        <h2>APG is Not a Normative Standard</h2>
+        <p>
+          The accessibility guidance in the APG is different from accessibility requirements specified by <a href="https://www.w3.org/TR/WCAG21/">WCAG</a> and <a class="specref" href="#abstract">ARIA</a>.
+          WCAG and ARIA are "W3C normative technical standards" while the APG is an "informative" resource.
+          W3C normative technical standards, which are formally known as "W3C Recommendations", have conformance models that define how to comply with the requirements documented in the standard.
+          Those requirements are developed using a rigorous process defined by
+          The <a href="https://www.w3.org/Consortium/Process#rec-track">W3C Recommendation Track</a>.
+        </p>
+        <p>
+          The APG does not specify normative requirements and thus does not have a conformance model.
+          The <a href="https://www.w3.org/groups/tf/aria-practices">ARIA Authoring Practices Task Force</a>, which is part of the <a href="https://www.w3.org/groups/wg/aria">ARIA Working Group</a>,
+          uses consensus to ensure APG guidance is consistent with all relevant specifications, including ARIA, but its process for doing so is not bound by the W3C Recommendation Track process.
+        </p>
+        <p>
+          Some of the guidance in the APG is not covered by a normative specification.
+          For example, the patterns include keyboard interaction models that combine a normative requirement specified by ARIA with conventions established by popular operating systems and software.
+          In the section on <a class="specref" href="#managingfocus">Managing focus</a>, ARIA includes normative language stating that the <kbd>Tab</kbd> key should not move focus inside of certain types of widgets.
+          However, ARIA does not specify how specific keys should move focus inside of those widgets.
+          So, the APG Task Force relies on broadly utilized keyboard conventions to provide each pattern with a list of keyboard commands for navigation and operation.
+          While those lists are not normative, the majority of such conventions are so well established that it is advisable to treat them as requirements.
+          Where that is not the case, the guidance is clearly marked as optional.
+          Note that there are some keyboard commands where users could be better served if a web widget were to dynamically adjust to mirror the users' operating system conventions.
+          It is a <a href="https://github.com/w3c/aria-practices/issues/1438">known issue</a> that some APG keyboard interaction models do not yet provide sufficient macOS-specific guidance.        </p>
+      </section>
+
+      <section id="caution-when-deviating">
+        <h2>Exercise Caution If Deviating from APG Patterns</h2>
+        <p>
+          While APG is not a standard, its patterns and practices do convey requirements from normative standards.
+          To help authors address a wide variety of UI design needs, the patterns and practices describe ranges of possibilities and options that satisfy those standards.
+          The examples each represent a specific way of implementing one or more patterns; they are intended to be illustrative, not prescriptive.
+        </p>
+        <p>
+          It is important to understand, however, that the APG pattern library is not intended to serve as a catalog of all possible, valid, and potentially usable ways of building accessible user interfaces.
+          Consequently, some developers may find it necessary to go beyond  simply combining various APG patterns to create an experience that supports their UI requirements.
+          If building UI that deviates from APG patterns, ensure the design and behavior of the UI:
+        </p>
+        <ul>
+          <li>Are consistent with relevant guidance covered by <a href="../../practices/practices.html">APG practices</a>.</li>
+          <li>Comply with normative requirements of the <a class="specref" href="#abstract">ARIA specification</a>.</li>
+          <li>Follow or mimic keyboard conventions in similar APG patterns or native operating system widgets.</li>
+        </ul>
+      </section>
+      
+      <section id="not-design-system">
+        <h2>APG is not a UI Design System</h2>
+        <p>
+          While the APG includes a library of patterns and functional examples, it's objectives do not include providing a comprehensive design system or production-ready code.
+          Not only would developing a production-ready design system be beyond the capacity of the Authoring Practices Task Force, developing examples that satisfy requirements of a unified design system would inhibit its primary aim of building broad understanding of relevant practices.
+          APG examples, including  code style, are designed to facilitate learning the accessibility concepts they illustrate.
+          To show how different approaches to design can satisfy accessibility requirements, the styles and behaviors of examples are sometimes intentionally inconsistent from one another.
+          Additionally, the examples are intended to be reasonably realistic and utilize modern coding techniques, but their purpose is not to teach other dimensions of web engineering, e.g., localization and robust platform interoperability.
+          Further information about platform and browser support is conveyed in the
+          <a href="../../practices/read-me-first/read-me-first-practice.html">Read Me First</a>.
+        </p>
+      </section>
+
+      <section id="prerequisite-knowledge">
+        <h2>Important Prerequisite Knowledge</h2>
+        <p>
+          The APG Task Force strives to make the APG welcoming to a broad audience by using plane and simple language wherever possible.
+          Consequently, even readers with minimal understanding of web development or accessibility can benefit from a significant portion of the guidance, e.g., the keyboard interaction patterns.
+          At the same time, many topics addressed by the APG are inherently complex and call for technically precise terminology.
+          Additionally, some important aspects of creating accessible experiences fall outside the scope of the APG.
+          This section describes the types of prerequisite knowledge and supporting resources that may enable readers to derive maximum benefit from the APG.
+        </p>
+        <p>
+          Broadly speaking, the APG blends accessibility, UI design, and web engineering.
+          To successfully utilize the APG, it is not necessary for readers to have working knowledge in all three disciplines.
+          Accessibility specialists will find the APG more beneficial with at least a rudimentary understanding of HTML and CSS while designers and engineers will need familiarity with some accessibility fundamentals.
+          All readers will need a firm grasp of some basic ARIA concepts.
+        </p>
+        <p>
+          People who understand web design or engineering but are not familiar with accessibility and assistive technologies may be able to implement much of the guidance provided by the patterns and example code.
+          However, because many aspects of the guidance are neither prescriptive nor comprehensive, readers may need to make decisions that require assessing tradeoffs that could impact users with disabilities.
+          In addition to having some understanding of the needs of people with disabilities and the role of assistive technologies in satisfying them, it is essential that developers can perform some testing.
+          Relevant resources for developing an understanding of accessibility and assistive technologies include:
+        </p>
+        <ul>
+          <li><a href="https://www.w3.org/WAI/fundamentals/">WAI Accessibility Fundamentals</a></li>
+          <li><a href="https://www.w3.org/WAI/design-develop/">WAI Overview of Design and Development</a></li>
+        </ul>
+        <p>
+          Readers who already have sufficient familiarity with accessibility and assistive technologies also need an understanding the purpose of ARIA and what accessibility semantics are.
+          These topics are covered by <a href="../aria-basics/aria-basics.html">ARIA Basics</a>.
+        </p>
+      </section>
+      
+      <section id="organization">
+        <h2>How the APG is Organized</h2>
+        <p>
+          The APG is organized into the following major sections.
+          Note that as advised in several places throughout the APG, it is important to understand the information presented in the
+          <a href="../../practices/read-me-first/read-me-first-practice.html">Read Me First</a>
+          before utilizing any of the patterns or practices.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Section</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="../../patterns/patterns.html">Patterns</a></td>
+              <td>
+                A library of more than 30 common user interface patterns, ranging from typical buttons and popup menus to complex tree grids.
+                Each pattern describes its purpose, keyboard interaction model, accessibility semantics, and is complemented by one or more illustrative functional example implementations.
+              </td>
+            </tr>
+            <tr>
+              <td><a href="../../practices/practices.html">Practices</a></td>
+              <td>
+                Gives in-depth explanation of how to satisfy a variety of accessibility needs that surface when making rich internet application experiences accessible, such as providing accessible names, enabling keyboard interaction, conveying page structure to assistive technologies, and supporting high contrast operating system settings.
+                For instance, the practices section on providing accessible names and descriptions gives detailed descriptions of seven different naming techniques as well as a table providing guidance for naming more than 80 types of elements.
+              </td>
+            </tr>
+            <tr>
+              <td><a href="../../index/index.html">Index</a></td>
+              <td>
+                Provides multiple indexes of example implementations of patterns, e.g., examples listed by ARIA role, state, and property.
+              </td>
+            </tr>
+            <tr>
+              <td><a href="../about.html">About</a></td>
+              <td>
+                Provides information about the APG, such as the introduction, acknowledgements, coverage and quality reports, and more.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      
+    </main>
+  </body>
+</html>
