@@ -118,6 +118,7 @@ aria.Listbox = class Listbox {
           } else {
             this.moveDownItems();
           }
+          this.updateScroll();
           return;
         }
 
