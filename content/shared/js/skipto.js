@@ -1,15 +1,15 @@
 /* ========================================================================
- * Version: 5.1.3
+ * Version: 5.1.5
  * Copyright (c) 2022, 2023 Jon Gunderson; Licensed BSD
  * Copyright (c) 2021 PayPal Accessibility Team and University of Illinois; Licensed BSD
  * All rights reserved.
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
  * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
- * Neither the name of PayPal or any of its subsidiaries or affiliates, nor the name of the University of Illinois, nor the names of any other contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+ * Neither the name of PayPal or any of its subsidiaries or affiliates, nor the name of the University of Illinois, nor the names of any other contributors contributors may be used to endorse or promote products derived from this software without specific prior written permission.
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * Documentation: https://skipto-landmarks-headings.github.io/page-script-5
+ * Documenation: https://skipto-landmarks-headings.github.io/page-script-5
  * Code: https://github.com/skipto-landmarks-headings/page-script-5
  * Report Issues: https://github.com/skipto-landmarks-headings/page-script-5/issues
  * ======================================================================== */
@@ -115,7 +115,7 @@
 
   const styleTemplate = document.createElement('template');
   styleTemplate.innerHTML = `
-<style type="text/css">
+<style type="text/css" id="id-skip-to-css">
 $skipToId.popup {
   position: absolute;
   top: -34px;
@@ -221,7 +221,7 @@ $skipToId [role="menuitem"] {
   grid-template-columns: repeat(6, 1.2rem) 1fr;
   grid-column-gap: 2px;
   font-size: 1em;
-  z-index: $zIndex !important;
+  z-index: $zIndex !important;  
 }
 
 $skipToId [role="menuitem"] .level,
@@ -372,7 +372,7 @@ $skipToId [role="menuitem"]:focus .label {
    *   @desc Returns
    *
    *   @param  {Object}  colorThemes  -  Javascript object with keyed color themes
-   *   @param  {String}  colorTheme   -  A string identifying a color theme
+   *   @param  {String}  colorTheme   -  A string identifying a color theme  
    *
    *   @returns {Object}  see @desc
    */
@@ -392,16 +392,16 @@ $skipToId [role="menuitem"]:focus .label {
     for (let item in colorThemes) {
       const hostnameSelector = colorThemes[item].hostnameSelector;
       const pathnameSelector = colorThemes[item].pathnameSelector;
-      let hostnameFlag = false;
-      let pathnameFlag = false;
+      let hostnameFlag = false; 
+      let pathnameFlag = false; 
 
 
       if (hostnameSelector) {
         if (hostname.indexOf(hostnameSelector) >= 0) {
-          if (!hostnameMatch ||
+          if (!hostnameMatch || 
               (colorThemes[hostnameMatch].hostnameSelector.length < hostnameSelector.length)) {
             hostnameMatch = item;
-            hostnameFlag = true;
+            hostnameFlag = true; 
             pathnameMatch = '';
           }
           else {
@@ -416,10 +416,10 @@ $skipToId [role="menuitem"]:focus .label {
 
       if (pathnameSelector) {
         if (pathname.indexOf(pathnameSelector) >= 0) {
-          if (!pathnameMatch ||
+          if (!pathnameMatch || 
               (colorThemes[pathnameMatch].pathnameSelector.length < pathnameSelector.length)) {
             pathnameMatch = item;
-            pathnameFlag = true;
+            pathnameFlag = true; 
           }
         }
       }
@@ -430,14 +430,14 @@ $skipToId [role="menuitem"]:focus .label {
     }
 
     if (hostandpathnameMatch) {
-      return colorThemes[hostandpathnameMatch];
+      return colorThemes[hostandpathnameMatch];      
     }
     else {
       if (hostnameMatch) {
-        return colorThemes[hostnameMatch];
+        return colorThemes[hostnameMatch];      
       } else {
         if (pathnameMatch) {
-          return colorThemes[pathnameMatch];
+          return colorThemes[pathnameMatch];      
         }
       }
     }
@@ -449,11 +449,11 @@ $skipToId [role="menuitem"]:focus .label {
   /*
    *   @function updateStyle
    *
-   *   @desc
+   *   @desc  
    *
-   *   @param
+   *   @param 
    *
-   *   @returns
+   *   @returns 
    */
   function updateStyle(stylePlaceholder, configValue, themeValue, defaultValue) {
     let value = defaultValue;
@@ -480,7 +480,7 @@ $skipToId [role="menuitem"]:focus .label {
    * @function addCSSColors
    *
    * @desc Updates the styling information in the attached
-   *       stylesheet to use the configured or default colors
+   *       stylesheet to use the configured or default colors  
    *
    * @param  {Object}  colorThemes -  Object with theme information
    * @param  {Object}  config      -  Configuration information object
@@ -490,7 +490,7 @@ $skipToId [role="menuitem"]:focus .label {
     const defaultTheme = getTheme(colorThemes, 'default');
 
     // Check for display option in theme
-    if ((typeof theme.displayOption === 'string') &&
+    if ((typeof theme.displayOption === 'string') && 
         ('fixed popup static'.indexOf(theme.displayOption.toLowerCase())>= 0)) {
       config.displayOption = theme.displayOption;
     }
@@ -529,6 +529,7 @@ $skipToId [role="menuitem"]:focus .label {
     styleTemplate.innerHTML = styleTemplate.innerHTML.replaceAll('$skipToId', '#' + skipToId);
     addCSSColors(colorThemes, config);
     const styleNode = styleTemplate.content.cloneNode(true);
+    styleNode.id = `${skipToId}-style`;
     const headNode = document.getElementsByTagName('head')[0];
     headNode.appendChild(styleNode);
   }
@@ -542,7 +543,7 @@ $skipToId [role="menuitem"]:focus .label {
 
   /*
    * @function getAttributeValue
-   *
+   * 
    * @desc Return attribute value if present on element,
    *       otherwise return empty string.
    *
@@ -582,7 +583,7 @@ $skipToId [role="menuitem"]:focus .label {
   /**
    * @fuction isVisible
    *
-   * @desc Returns true if the element is visible in the graphical rendering
+   * @desc Returns true if the element is visible in the graphical rendering 
    *
    * @param {node}  elem  - DOM element node of a labelable element
    */
@@ -599,7 +600,7 @@ $skipToId [role="menuitem"]:focus .label {
 
       const style = window.getComputedStyle(el, null);
       const display = style.getPropertyValue("display");
-      if (display === 'none') {
+      if (display === 'none') { 
         return true;
       }
 
@@ -633,7 +634,7 @@ $skipToId [role="menuitem"]:focus .label {
   // LOW-LEVEL HELPER FUNCTIONS (NOT EXPORTED)
 
   /*
-  *   @function  isDisplayNone
+  *   @function  isDisplayNone 
   *
   *   @desc Returns true if the element or parent element has set the CSS
   *         display property to none or has the hidden attribute,
@@ -641,7 +642,7 @@ $skipToId [role="menuitem"]:focus .label {
   *
   *   @param  {Object}  node  - a DOM node
   *
-  *   @returns  {Boolean} see @desc
+  *   @returns  {Boolean} see @desc 
   */
 
   function isDisplayNone (node) {
@@ -660,7 +661,7 @@ $skipToId [role="menuitem"]:focus .label {
         return true;
       }
 
-      // aria-hidden attribute with the value "true" is an same as
+      // aria-hidden attribute with the value "true" is an same as 
       // setting the hidden attribute for name calcuation
       if (node.hasAttribute('aria-hidden')) {
         if (node.getAttribute('aria-hidden').toLowerCase()  === 'true') {
@@ -680,9 +681,9 @@ $skipToId [role="menuitem"]:focus .label {
   }
 
   /*
-  *   @function isVisibilityHidden
-  *
-  *   @desc Returns true if the node (or it's parrent) has the CSS visibility
+  *   @function isVisibilityHidden 
+  *   
+  *   @desc Returns true if the node (or it's parrent) has the CSS visibility 
   *         property set to "hidden" or "collapse", otherwise false
   *
   *   @param  {Object}   node  -  DOM node
@@ -712,13 +713,13 @@ $skipToId [role="menuitem"]:focus .label {
   }
 
   /*
-  *   @function isAriaHiddenFalse
-  *
+  *   @function isAriaHiddenFalse 
+  *   
   *   @desc Returns true if the node has the aria-hidden property set to
-  *         "false", otherwise false.
-  *         NOTE: This function is important in the accessible namce
-  *               calculation, since content hidden with a CSS technique
-  *               can be included in the accessible name calculation when
+  *         "false", otherwise false.  
+  *         NOTE: This function is important in the accessible namce 
+  *               calculation, since content hidden with a CSS technique 
+  *               can be included in the accessible name calculation when 
   *               aria-hidden is set to false
   *
   *   @param  {Object}   node  -  DOM node
@@ -737,7 +738,7 @@ $skipToId [role="menuitem"]:focus .label {
     }
 
     if (node.nodeType === Node.ELEMENT_NODE) {
-      return (node.hasAttribute('aria-hidden') &&
+      return (node.hasAttribute('aria-hidden') && 
           (node.getAttribute('aria-hidden').toLowerCase() === 'false'));
     }
 
@@ -745,12 +746,12 @@ $skipToId [role="menuitem"]:focus .label {
   }
 
   /*
-  *   @function includeContentInName
-  *
+  *   @function includeContentInName 
+  *   
   *   @desc Checks the CSS display and hidden properties, and
   *         the aria-hidden property to see if the content
   *         should be included in the accessible name
-  *        calculation.  Returns true if it should be
+  *        calculation.  Returns true if it should be 
   *         included, otherwise false
   *
   *   @param  {Object}   node  -  DOM node
@@ -759,8 +760,8 @@ $skipToId [role="menuitem"]:focus .label {
   */
 
   function includeContentInName(node) {
-    const flag = isAriaHIddenFalse(node) ||
-      (!isVisibilityHidden(node) &&
+    const flag = isAriaHIddenFalse(node) || 
+      (!isVisibilityHidden(node) && 
       !isDisplayNone(node));
     return flag;
   }
@@ -772,11 +773,11 @@ $skipToId [role="menuitem"]:focus .label {
   *          their text values for an ARIA accessible name or description
   *          calculation.
   *
-  *          NOTE: This includes special handling of elements with 'alt'
+  *          NOTE: This includes special handling of elements with 'alt' 
   *                text and embedded controls.
-  *
+  *  
   *  @param {Object}  node  - A DOM node
-  *
+  * 
   *  @return {String}  The text content for an accessible name or description
   */
   function getNodeContents (node) {
@@ -834,11 +835,11 @@ $skipToId [role="menuitem"]:focus .label {
 
   /*
   *   @function couldHaveAltText
-  *
-  *   @desc  Based on HTML5 specification, returns true if
+  *   
+  *   @desc  Based on HTML5 specification, returns true if 
   *          the element could have an 'alt' attribute,
   *          otherwise false.
-  *
+  * 
   *   @param  {Object}  element  - DOM eleemnt node
   *
   *   @return {Boolean}  see @desc
@@ -861,13 +862,14 @@ $skipToId [role="menuitem"]:focus .label {
   *   @function addCssGeneratedContent
   *
   *   @desc Adds CSS-generated content for pseudo-elements
-  *         :before and :after. According to the CSS spec, test that content
+  *         :before and :after. According to the CSS spec, test that content 
   *         value is other than the default computed value of 'none'.
-  *
-  *         Note: Even if an author specifies content: 'none', because browsers
-  *               add the double-quote character to the beginning and end of
-  *               computed string values, the result cannot and will not be
+  * 
+  *         Note: Even if an author specifies content: 'none', because browsers 
+  *               add the double-quote character to the beginning and end of 
+  *               computed string values, the result cannot and will not be 
   *               equal to 'none'.
+  *
   *
   *   @param {Object}  element   - DOM node element
   *   @param {String}  contents  - Text content for DOM node
@@ -881,11 +883,12 @@ $skipToId [role="menuitem"]:focus .label {
         prefix = getComputedStyle(element, ':before').content,
         suffix = getComputedStyle(element, ':after').content;
 
-    if (prefix !== 'none') {
-      result = prefix.replaceAll('"', '') + result;
+    if ((prefix[0] === '"') && !prefix.toLowerCase().includes('moz-')) {
+      result = prefix.substring(1, (prefix.length-1)) + result;
     }
-    if (suffix !== 'none') {
-      result = result + suffix.replaceAll('"', '');
+
+    if ((suffix[0] === '"') && !suffix.toLowerCase().includes('moz-')) {
+      result = result + suffix.substring(1, (suffix.length-1)) ;
     }
 
     return result;
@@ -900,13 +903,13 @@ $skipToId [role="menuitem"]:focus .label {
   /**
    *   @fuction getAccessibleName
    *
-   *   @desc Returns the accessible name for an heading or landamrk
+   *   @desc Returns the accessible name for an heading or landamrk 
    *
    *   @paramn {Object}   dom      - Document of the current element
    *   @param  {node}     element  - DOM element node for either a heading or
    *                               landmark
    *   @param  {Boolean}  fromContent  - if true will compute name from content
-   *
+   * 
    *   @return {String} The accessible name for the landmark or heading element
    */
 
@@ -945,7 +948,7 @@ $skipToId [role="menuitem"]:focus .label {
   *   @param {String}  attribute -  Attribute name (e.g. "aria-labelledby", "aria-describedby",
   *                                 or "aria-errormessage")
   *
-  *   @returns {String} see @desc
+  *   @returns {String} see @desc 
   */
   function nameFromAttributeIdRefs (doc, element, attribute) {
     const value = getAttributeValue(element, attribute);
@@ -1024,7 +1027,7 @@ $skipToId [role="menuitem"]:focus .label {
    *          id for target elements
    *
    *   @returns  {Number} see @desc
-   */
+   */ 
   function getSkipToIdIndex () {
     return idIndex;
   }
@@ -1033,7 +1036,7 @@ $skipToId [role="menuitem"]:focus .label {
    *   @function incSkipToIdIndex
    *
    *   @desc  Adds one to the skipto index
-   */
+   */ 
   function incSkipToIdIndex () {
     idIndex += 1;
   }
@@ -1046,11 +1049,11 @@ $skipToId [role="menuitem"]:focus .label {
    *   @param  {Object}  element  - DOM element node
    *
    *   @returns {Boolean}  see @desc
-   */
+   */ 
   function isSkipableElement(element) {
       const tagName = element.tagName.toLowerCase();
       const type    = element.hasAttribute('type') ? element.getAttribute('type') : '';
-      const elemSelector = (tagName === 'input') && type.length ?
+      const elemSelector = (tagName === 'input') && type.length ? 
                               `${tagName}[type=${type}]` :
                               tagName;
       return skipableElements.includes(elemSelector);
@@ -1065,7 +1068,7 @@ $skipToId [role="menuitem"]:focus .label {
    *   @param  {Object}  element  - DOM element node
    *
    *   @returns {Boolean}  see @desc
-   */
+   */ 
   function isCustomElement(element) {
     return element.tagName.indexOf('-') >= 0;
   }
@@ -1079,7 +1082,7 @@ $skipToId [role="menuitem"]:focus .label {
    *   @param  {Object}  element  - DOM element node
    *
    *   @returns {Boolean}  see @desc
-   */
+   */ 
   function isSlotElement(node) {
     return (node instanceof HTMLSlotElement);
   }
@@ -1092,7 +1095,7 @@ $skipToId [role="menuitem"]:focus .label {
   *         of an element with a defined landmark role
   *
   *   @param  {Object}  node  - Element node from a berowser DOM
-  *
+  * 
   *   @reutrn {Boolean} Returns true if top level landmark, otherwise false
   */
 
@@ -1112,7 +1115,7 @@ $skipToId [role="menuitem"]:focus .label {
       node = node.parentNode;
     }
     return true;
-  }
+  }  
 
   /*
    *   @function checkForLandmark
@@ -1123,7 +1126,7 @@ $skipToId [role="menuitem"]:focus .label {
    *   @param  {Object}  element  - DOM element node
    *
    *   @returns {String}  see @desc
-   */
+   */ 
   function checkForLandmark (element) {
     if (element.hasAttribute('role')) {
       const role = element.getAttribute('role').toLowerCase();
@@ -1173,7 +1176,7 @@ $skipToId [role="menuitem"]:focus .label {
    * @desc Returns DOM node associated with the id, if id not found returns null
    *
    * @param {String}  targetId  - dom node element to attach button and menu
-   *
+   * 
    * @returns (Object) @desc
    */
   function queryDOMForSkipToId (targetId) {
@@ -1197,7 +1200,7 @@ $skipToId [role="menuitem"]:focus .label {
                   if (assignedNode.getAttribute('data-skip-to-id') === targetId) {
                     return assignedNode;
                   }
-                  targetNode = transverseDOMForSkipToId(assignedNode);
+                  targetNode = transverseDOMForSkipToId(assignedNode);                    
                   if (targetNode) {
                     return targetNode;
                   }
@@ -1231,10 +1234,10 @@ $skipToId [role="menuitem"]:focus .label {
    * @function findVisibleElement
    *
    * @desc Returns the first isible decsendant DOM node that matches a set of element tag names
-   *
+   * 
    * @param {node}   startingNode  - dom node to start search for element
    * @param {Array}  tagNames      - Array of tag names
-   *
+   * 
    * @returns (node} Returns first descendmt element, if not found returns false
    */
   function findVisibleElement (startingNode, tagNames) {
@@ -1259,7 +1262,7 @@ $skipToId [role="menuitem"]:focus .label {
                       return assignedNode;
                     }
                   }
-                  targetNode = transverseDOMForVisibleElement(assignedNode, targetTagName);
+                  targetNode = transverseDOMForVisibleElement(assignedNode, targetTagName);  
                   if (targetNode) {
                     return targetNode;
                   }
@@ -1310,7 +1313,7 @@ $skipToId [role="menuitem"]:focus .label {
    *   @desc Moves focus to the element identified by the memu item
    *
    *   @param {Object}  menutim  -  DOM element in the menu identifying the target element.
-   */
+   */ 
   function skipToElement(menuitem) {
 
     let focusNode = false;
@@ -1368,13 +1371,13 @@ $skipToId [role="menuitem"]:focus .label {
    *
    *   @desc  Returns an array of heading tag names to include in menu
    *          NOTE: It uses "includes" method to maximimze compatibility with
-   *          previous versions of SkipTo which used CSS selectors for
+   *          previous versions of SkipTo which used CSS selectors for 
    *          identifying targets.
    *
    *   @param {String}  targets  -  A space with the heading tags to inclucde
    *
    *   @returns {Array}  Array of heading element tag names to include in menu
-   */
+   */ 
   function getHeadingTargets(targets) {
     let targetHeadings = [];
     ['h1','h2','h3','h4','h5','h6'].forEach( h => {
@@ -1393,7 +1396,7 @@ $skipToId [role="menuitem"]:focus .label {
    *   @param  {Object}  element  -  DOM element node
    *
    *   @returns {Boolean}  see @desc
-   */
+   */ 
   function isMain (element) {
     const tagName = element.tagName.toLowerCase();
     const role = element.hasAttribute('role') ? element.getAttribute('role').toLowerCase() : '';
@@ -1403,14 +1406,14 @@ $skipToId [role="menuitem"]:focus .label {
   /*
    *   @function queryDOMForLandmarksAndHeadings
    *
-   *   @desc  Recursive function to return two arrays, one an array of the DOM element nodes for
-   *          landmarks and the other an array of DOM element ndoes for headings
+   *   @desc  Recursive function to return two arrays, one an array of the DOM element nodes for 
+   *          landmarks and the other an array of DOM element ndoes for headings  
    *
    *   @param  {Array}  landamrkTargets  -  An array of strings representing landmark regions
    *   @param  {Array}   headingTargets  -  An array of strings representing headings
    *
    *   @returns {Array}  @see @desc
-   */
+   */ 
   function queryDOMForLandmarksAndHeadings (landmarkTargets, headingTargets) {
     let headingInfo = [];
     let landmarkInfo = [];
@@ -1462,7 +1465,7 @@ $skipToId [role="menuitem"]:focus .label {
                   if (slotContent) {
                     transverseDOM(assignedNode, parentDoc, null, inMain);
                   } else {
-                    transverseDOM(assignedNode, doc, parentDoc, inMain);
+                    transverseDOM(assignedNode, doc, parentDoc, inMain);                  
                   }
                 }
               }
@@ -1483,7 +1486,7 @@ $skipToId [role="menuitem"]:focus .label {
 
     transverseDOM(document.body, document);
 
-    // If no elements found when onlyInMain is set, try
+    // If no elements found when onlyInMain is set, try 
     // to find any headings
     if ((headingInfo.length === 0) && onlyInMain) {
       onlyInMain = false;
@@ -1496,7 +1499,7 @@ $skipToId [role="menuitem"]:focus .label {
   /*
    * @function getLandmarksAndHeadings
    *
-   * @desc Returns two arrays of of DOM node elements with, one for landmark regions
+   * @desc Returns two arrays of of DOM node elements with, one for landmark regions 
    *       the other for headings with additional information needed to create
    *       menuitems
    *
@@ -1625,7 +1628,7 @@ $skipToId [role="menuitem"]:focus .label {
    *
    * @param {String} targets - String with landamrk and/or tag names
    *
-   * @returns {Array}  A normailized array of landmark names based on target configuration
+   * @returns {Array}  A normailized array of landmark names based on target configuration 
    */
   function getLandmarkTargets (targets) {
     let targetLandmarks = [];
@@ -1639,19 +1642,19 @@ $skipToId [role="menuitem"]:focus .label {
     if (targets.includes('nav')) {
       targetLandmarks.push('navigation');
     }
-    if (targets.includes('complementary') ||
+    if (targets.includes('complementary') || 
         targets.includes('aside')) {
       targetLandmarks.push('complementary');
     }
-    if (targets.includes('banner') ||
+    if (targets.includes('banner') || 
         targets.includes('header')) {
       targetLandmarks.push('banner');
     }
-    if (targets.includes('contentinfo') ||
+    if (targets.includes('contentinfo') || 
         targets.includes('footer')) {
       targetLandmarks.push('contentinfo');
     }
-    if (targets.includes('region') ||
+    if (targets.includes('region') || 
         targets.includes('section')) {
       targetLandmarks.push('region');
     }
@@ -1662,12 +1665,12 @@ $skipToId [role="menuitem"]:focus .label {
   /*
    * @function getLandmarks
    *
-   * @desc Returns an array of objects with information to build the
+   * @desc Returns an array of objects with information to build the 
    *       the landmarks menu, ordering in the array by the type of landmark
-   *       region
+   *       region 
    *
    * @param {Object} config     - Object with configuration information
-   * @param {Array}  landmarks  - Array of objects containing the DOM node and
+   * @param {Array}  landmarks  - Array of objects containing the DOM node and 
    *                              accessible name for landmarks
    *
    * @returns {Array}  see @desc
@@ -1781,11 +1784,11 @@ $skipToId [role="menuitem"]:focus .label {
   /**
    * @class SkiptoMenuButton
    *
-   * @desc Constructor for creating a button to open a menu of headings and landmarks on
+   * @desc Constructor for creating a button to open a menu of headings and landmarks on 
    *       a web page
    *
    * @param {Object}  attachNode  - DOM eleemnt node to attach button and menu container element
-   *
+   * 
    * @returns {Object}  DOM element node that is the contatiner for the button and the menu
    */
   class SkiptoMenuButton {
@@ -1889,13 +1892,13 @@ $skipToId [role="menuitem"]:focus .label {
         return this.containerNode;
 
       }
-
+        
       /*
        * @method getBrowserSpecificShortcut
        *
-       * @desc Identifies the operating system and updates labels for
+       * @desc Identifies the operating system and updates labels for 
        *       shortcut key to use either the "alt" or the "option"
-       *       label
+       *       label  
        *
        * @param {Object}  - SkipTp configure object
        *
@@ -1950,7 +1953,7 @@ $skipToId [role="menuitem"]:focus .label {
        * @method getFirstChar
        *
        * @desc Gets the first character in a menuitem to use as a shortcut key
-       *
+       * 
        * @param  {Object}  menuitem  - DOM element node
        *
        * @returns {String} see @desc
@@ -1967,7 +1970,7 @@ $skipToId [role="menuitem"]:focus .label {
        * @method getHeadingLevelFromAttribute
        *
        * @desc Returns the the heading level of the menu item
-       *
+       * 
        * @param  {Object}  menuitem  - DOM element node
        *
        * @returns {String} see @desc
@@ -2090,7 +2093,7 @@ $skipToId [role="menuitem"]:focus .label {
        * @method renderMenuitemsToGroup
        *
        * @desc Renders either the landmark region or headings menu group
-       *
+       * 
        * @param  {Object}  groupNode       -  DOM element node for the menu group
        * @param  {Array}   menuitems       -  Array of objects with menu item information
        * @param  {String}  msgNoItesmFound -  Message to render if there are no menu items
@@ -2117,7 +2120,7 @@ $skipToId [role="menuitem"]:focus .label {
       /*
        * @method renderMenu
        *
-       * @desc
+       * @desc 
        */
       renderMenu() {
         // remove landmark menu items
@@ -2178,7 +2181,7 @@ $skipToId [role="menuitem"]:focus .label {
        *
        * @desc Moves focus to previous menu item
        *
-       * @param {Object}  menuItem  - DOM element node
+       * @param {Object}  menuItem  - DOM element node 
        */
       setFocusToPreviousMenuitem(menuitem) {
         let newMenuitem, index;
@@ -2197,7 +2200,7 @@ $skipToId [role="menuitem"]:focus .label {
        *
        * @desc Moves focus to next menu item
        *
-       * @param {Object}  menuItem  - DOM element node
+       * @param {Object}  menuItem  - DOM element node 
        */
       setFocusToNextMenuitem(menuitem) {
         let newMenuitem, index;
@@ -2216,9 +2219,9 @@ $skipToId [role="menuitem"]:focus .label {
        *
        * @desc Moves focus to next menu item based on shortcut key
        *
-       * @param {Object}  menuItem  - Starting DOM element node
+       * @param {Object}  menuItem  - Starting DOM element node 
        * @param {String}  char      - Shortcut key to identify the
-       *                              next menu item
+       *                              next menu item  
        */
       setFocusByFirstCharacter(menuitem, char) {
         let start, index;
@@ -2260,9 +2263,9 @@ $skipToId [role="menuitem"]:focus .label {
       /*
        * @method getIndexFirstChars
        *
-       * @desc
+       * @desc  
        *
-       * @returns {Number}
+       * @returns {Number} 
        */
       getIndexFirstChars(startIndex, char) {
         for (let i = startIndex; i < this.firstChars.length; i += 1) {
@@ -2320,17 +2323,17 @@ $skipToId [role="menuitem"]:focus .label {
       isOpen() {
         return this.buttonNode.getAttribute('aria-expanded') === 'true';
       }
-
+      
       // Menu event handlers
-
+      
       handleFocusin() {
         this.containerNode.classList.add('focus');
       }
-
+      
       handleFocusout() {
         this.containerNode.classList.remove('focus');
       }
-
+      
       handleButtonKeydown(event) {
         let key = event.key,
           flag = false;
@@ -2404,7 +2407,7 @@ $skipToId [role="menuitem"]:focus .label {
           event.stopPropagation();
           event.preventDefault();
         }
-      }
+      }    
 
       handleMenuitemAction(tgt) {
         switch (tgt.getAttribute('data-id')) {
@@ -2531,11 +2534,11 @@ $skipToId [role="menuitem"]:focus .label {
 
         // Customization of button and menu
         altShortcut: '0', // default shortcut key is the number zero
-        optionShortcut: 'º', // default shortcut key character associated with option+0 on mac
+        optionShortcut: 'º', // default shortcut key character associated with option+0 on mac 
         attachElement: 'body',
         displayOption: 'static', // options: static (default), popup, fixed
         // container element, use containerClass for custom styling
-        containerElement: 'div',
+        containerElement: 'nav',
         containerRole: '',
         customClass: '',
 
@@ -2568,7 +2571,7 @@ $skipToId [role="menuitem"]:focus .label {
         headings: 'main h1 h2',
 
         // Place holders for configuration
-        colorTheme: 'aria',
+        colorTheme: '',
         fontFamily: '',
         fontSize: '',
         positionLeft: '',
@@ -2667,7 +2670,7 @@ $skipToId [role="menuitem"]:focus .label {
       /*
        * @method init
        *
-       * @desc Initializes the skipto button and menu with default and user
+       * @desc Initializes the skipto button and menu with default and user 
        *       defined options
        *
        * @param  {object} config - Reference to configuration object
@@ -2677,9 +2680,12 @@ $skipToId [role="menuitem"]:focus .label {
         let node;
 
         // Check if skipto is already loaded
-        if (document.querySelector('style#' + this.skipToId)) {
+        if (document.skipToHasBeenLoaded) {
+          console.warn('SkipTo.js is already loaded!');
           return;
         }
+
+        document.skipToHasBeenLoaded = true;
 
         let attachElement = document.body;
         if (config) {
@@ -2700,23 +2706,23 @@ $skipToId [role="menuitem"]:focus .label {
       /*
        * @method setupConfig
        *
-       * @desc Get configuration information from user configuration to change
-       *       default settings
+       * @desc Get configuration information from user configuration to change 
+       *       default settings 
        *
        * @param  {object}  appConfig - Javascript object with configuration information
        */
       setupConfig: function(appConfig) {
         let appConfigSettings;
-        // Support version 4.1 configuration object structure
+        // Support version 4.1 configuration object structure 
         // If found use it
-        if ((typeof appConfig.settings === 'object') &&
+        if ((typeof appConfig.settings === 'object') && 
             (typeof appConfig.settings.skipTo === 'object')) {
           appConfigSettings = appConfig.settings.skipTo;
         }
         else {
           // Version 5.0 removes the requirement for the "settings" and "skipto" properties
           // to reduce the complexity of configuring skipto
-          if ((typeof appConfig === 'undefined') ||
+          if ((typeof appConfig === 'undefined') || 
                (typeof appConfig !== 'object')) {
             appConfigSettings = {};
           }
