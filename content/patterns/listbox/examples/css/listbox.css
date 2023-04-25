@@ -59,7 +59,7 @@
   outline: 2px solid currentcolor;
 }
 
-[role="option"][aria-selected="true"]::before {
+[role="option"][aria-selected="true"] span.checkmark::before {
   position: absolute;
   left: 0.5em;
   content: "✓";

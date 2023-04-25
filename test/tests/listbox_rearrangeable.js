@@ -15,6 +15,7 @@ const ex = {
     listboxSelector: '#ex1 [role="listbox"]',
     importantSelector: '#ex1 [role="listbox"]#ss_imp_list',
     optionSelector: '#ex1 [role="option"]',
+    spanSelector: '#ex1 [role="option"] span.checkmark',
     numOptions: 10,
     firstOptionSelector: '#ex1 #ss_opt1',
     lastOptionSelector: '#ex1 #ss_opt10',
@@ -23,6 +24,7 @@ const ex = {
     listboxSelector: '#ex2 [role="listbox"]',
     availableSelector: '#ex2 [role="listbox"]#ms_imp_list',
     optionSelector: '#ex2 [role="option"]',
+    spanSelector: '#ex2 [role="option"] span.checkmark',
     numOptions: 10,
     firstOptionSelector: '#ex2 #ms_opt1',
     lastOptionSelector: '#ex2 #ms_opt10',
@@ -126,6 +128,16 @@ ariaTest(
   'role="option" on li elements',
   exampleFile,
   'option-role',
+  async (t) => {
+    await assertAttributeValues(t, ex[1].spanSelector, 'aria-hidden', 'true');
+    await assertAttributeValues(t, ex[2].spanSelector, 'aria-hidden', 'true');
+  }
+);
+
+ariaTest(
+  'aria-hidden="true" on li > span elements',
+  exampleFile,
+  'span-aria-hidden',
   async (t) => {
     await assertAriaRoles(t, 'ex1', 'option', 10, 'li');
     await assertAriaRoles(t, 'ex2', 'option', 10, 'li');

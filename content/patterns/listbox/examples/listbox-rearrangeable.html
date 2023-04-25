@@ -59,16 +59,37 @@
               <div class="left-area">
                 <span id="ss_imp_l" class="listbox-label">Important Features:</span>
                 <ul id="ss_imp_list" tabindex="0" role="listbox" aria-labelledby="ss_imp_l">
-                  <li id="ss_opt1" role="option">Proximity of public K-12 schools</li>
-                  <li id="ss_opt2" role="option">Proximity of child-friendly parks</li>
-                  <li id="ss_opt3" role="option">Proximity of grocery shopping</li>
-                  <li id="ss_opt4" role="option">Proximity of fast food</li>
-                  <li id="ss_opt5" role="option">Proximity of fine dining</li>
-                  <li id="ss_opt6" role="option">Neighborhood walkability</li>
-                  <li id="ss_opt7" role="option">Availability of public transit</li>
-                  <li id="ss_opt8" role="option">Proximity of hospital and medical services</li>
-                  <li id="ss_opt9" role="option">Level of traffic noise</li>
-                  <li id="ss_opt10" role="option">Access to major highways</li>
+                  <li id="ss_opt1" role="option">
+                    <span class="checkmark" aria-hidden="true"></span>
+                    Proximity of public K-12 schools
+                  </li>
+                  <li id="ss_opt2" role="option">
+                    <span class="checkmark" aria-hidden="true"></span>
+                    Proximity of child-friendly parks</li>
+                  <li id="ss_opt3" role="option">
+                    <span class="checkmark" aria-hidden="true"></span>
+                    Proximity of grocery shopping</li>
+                  <li id="ss_opt4" role="option">
+                    <span class="checkmark" aria-hidden="true"></span>
+                    Proximity of fast food</li>
+                  <li id="ss_opt5" role="option">
+                    <span class="checkmark" aria-hidden="true"></span>
+                    Proximity of fine dining</li>
+                  <li id="ss_opt6" role="option">
+                    <span class="checkmark" aria-hidden="true"></span>
+                    Neighborhood walkability</li>
+                  <li id="ss_opt7" role="option">
+                    <span class="checkmark" aria-hidden="true"></span>
+                    Availability of public transit</li>
+                  <li id="ss_opt8" role="option">
+                    <span class="checkmark" aria-hidden="true"></span>
+                    Proximity of hospital and medical services</li>
+                  <li id="ss_opt9" role="option">
+                    <span class="checkmark" aria-hidden="true"></span>
+                    Level of traffic noise</li>
+                  <li id="ss_opt10" role="option">
+                    <span class="checkmark" aria-hidden="true"></span>
+                    Access to major highways</li>
                 </ul>
                 <div role="toolbar" aria-label="Actions" class="toolbar">
                   <button type="button" id="ex1-up" class="toolbar-item selected" aria-keyshortcuts="Alt+ArrowUp" aria-disabled="true">Up</button>
@@ -121,16 +142,46 @@
               <div class="left-area">
                 <span id="ms_av_l" class="listbox-label">Available upgrades:</span>
                 <ul id="ms_imp_list" tabindex="0" role="listbox" aria-labelledby="ms_av_l" aria-multiselectable="true">
-                  <li id="ms_opt1" role="option" aria-selected="false">Leather seats</li>
-                  <li id="ms_opt2" role="option" aria-selected="false">Front seat warmers</li>
-                  <li id="ms_opt3" role="option" aria-selected="false">Rear bucket seats</li>
-                  <li id="ms_opt4" role="option" aria-selected="false">Rear seat warmers</li>
-                  <li id="ms_opt5" role="option" aria-selected="false">Front sun roof</li>
-                  <li id="ms_opt6" role="option" aria-selected="false">Rear sun roof</li>
-                  <li id="ms_opt7" role="option" aria-selected="false">Cloaking capability</li>
-                  <li id="ms_opt8" role="option" aria-selected="false">Food synthesizer</li>
-                  <li id="ms_opt9" role="option" aria-selected="false">Advanced waste recycling system</li>
-                  <li id="ms_opt10" role="option" aria-selected="false">Turbo vertical take-off capability</li>
+                  <li id="ms_opt1" role="option" aria-selected="false">
+                    <span class="icon"></span>
+                    Leather seats
+                  </li>
+                  <li id="ms_opt2" role="option" aria-selected="false">
+                    <span class="checkmark" aria-hidden="true"></span>
+                    Front seat warmers
+                  </li>
+                  <li id="ms_opt3" role="option" aria-selected="false">
+                    <span class="checkmark" aria-hidden="true"></span>
+                    Rear bucket seats
+                  </li>
+                  <li id="ms_opt4" role="option" aria-selected="false">
+                    <span class="checkmark" aria-hidden="true"></span>
+                    Rear seat warmers
+                  </li>
+                  <li id="ms_opt5" role="option" aria-selected="false">
+                    <span class="checkmark" aria-hidden="true"></span>
+                    Front sun roof
+                  </li>
+                  <li id="ms_opt6" role="option" aria-selected="false">
+                    <span class="checkmark" aria-hidden="true"></span>
+                    Rear sun roof
+                  </li>
+                  <li id="ms_opt7" role="option" aria-selected="false">
+                    <span class="checkmark" aria-hidden="true"></span>
+                    Cloaking capability
+                  </li>
+                  <li id="ms_opt8" role="option" aria-selected="false">
+                    <span class="checkmark" aria-hidden="true"></span>
+                    Food synthesizer
+                  </li>
+                  <li id="ms_opt9" role="option" aria-selected="false">
+                    <span class="checkmark" aria-hidden="true"></span>
+                    Advanced waste recycling system
+                  </li>
+                  <li id="ms_opt10" role="option" aria-selected="false">
+                    <span class="checkmark" aria-hidden="true"></span>
+                    Turbo vertical take-off capability
+                  </li>
                 </ul>
                 <button type="button" id="ex2-add" class="move-right-btn" aria-keyshortcuts="Alt+ArrowRight Enter" aria-disabled="true">Add</button>
               </div>
@@ -417,6 +468,14 @@
                   <li>Applied to elements with role option that are <strong>not</strong> visually styled as selected to inform assistive technologies that the options are selectable but not selected.</li>
                   <li>In example 1, this is unnecessary because the selection moves every time the focus moves.</li>
                 </ul>
+              </td>
+            </tr>
+            <tr data-test-id="span-aria-hidden">
+              <td></td>
+              <th><code>aria-hidden=&quot;true&quot;</code></th>
+              <td><code>span</code></td>
+              <td>
+                Removes the character entity used for the check mark icon from the accessibility tree to prevent it from being included in the accessible name of the option.
               </td>
             </tr>
           </tbody>
