@@ -53,23 +53,59 @@
               <div id="ss_elem_list" tabindex="0" role="listbox" aria-labelledby="ss_elem">
                 <ul role="group" aria-labelledby="cat1">
                   <li role="presentation" id="cat1">Land</li>
-                  <li id="ss_elem_1" role="option">Cat</li>
-                  <li id="ss_elem_2" role="option">Dog</li>
-                  <li id="ss_elem_3" role="option">Tiger</li>
-                  <li id="ss_elem_4" role="option">Reindeer</li>
-                  <li id="ss_elem_5" role="option">Raccoon</li>
+                  <li id="ss_elem_1" role="option">
+                    <span class="checkmark"></span>
+                    Cat
+                  </li>
+                  <li id="ss_elem_2" role="option">
+                    <span class="checkmark"></span>
+                    Dog
+                  </li>
+                  <li id="ss_elem_3" role="option">
+                    <span class="checkmark"></span>
+                    Tiger
+                  </li>
+                  <li id="ss_elem_4" role="option">
+                    <span class="checkmark"></span>
+                    Reindeer
+                  </li>
+                  <li id="ss_elem_5" role="option">
+                    <span class="checkmark"></span>
+                    Raccoon
+                  </li>
                 </ul>
                 <ul role="group" aria-labelledby="cat2">
-                  <li role="presentation" id="cat2">Water</li>
-                  <li id="ss_elem_6" role="option">Dolphin</li>
-                  <li id="ss_elem_7" role="option">Flounder</li>
-                  <li id="ss_elem_8" role="option">Eel</li>
+                  <li role="presentation" id="cat2">
+                    <span class="checkmark"></span>
+                    Water
+                  </li>
+                  <li id="ss_elem_6" role="option">
+                    <span class="checkmark"></span>
+                    Dolphin
+                  </li>
+                  <li id="ss_elem_7" role="option">
+                    <span class="checkmark"></span>
+                    Flounder
+                  </li>
+                  <li id="ss_elem_8" role="option">
+                    <span class="checkmark"></span>
+                    Eel
+                  </li>
                 </ul>
                 <ul role="group" aria-labelledby="cat3">
                   <li role="presentation" id="cat3">Air</li>
-                  <li id="ss_elem_9" role="option">Falcon</li>
-                  <li id="ss_elem_10" role="option">Winged Horse</li>
-                  <li id="ss_elem_11" role="option">Owl</li>
+                  <li id="ss_elem_9" role="option">
+                    <span class="checkmark"></span>
+                    Falcon
+                  </li>
+                  <li id="ss_elem_10" role="option">
+                    <span class="checkmark"></span>
+                    Winged Horse
+                  </li>
+                  <li id="ss_elem_11" role="option">
+                    <span class="checkmark"></span>
+                    Owl
+                  </li>
                 </ul>
               </div>
             </div>
@@ -236,6 +272,14 @@
                   <li>Applied to the element with role option that is visually styled as selected.</li>
                   <li>The option with this attribute is always the same as the option that is referenced by aria-activedescendant because it is a single-select listbox where selection follows focus.</li>
                 </ul>
+              </td>
+            </tr>
+            <tr data-test-id="span-aria-hidden">
+              <td></td>
+              <th><code>aria-hidden=&quot;true&quot;</code></th>
+              <td><code>span</code></td>
+              <td>
+                Removes the character entity used for the check mark icon from the accessibility tree to prevent it from being included in the accessible name of the option.
               </td>
             </tr>
           </tbody>

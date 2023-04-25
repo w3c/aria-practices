@@ -125,9 +125,9 @@ ariaTest(
 );
 
 ariaTest(
-  'role="option" on li elements',
+  'aria-hidden="true" on li > span elements',
   exampleFile,
-  'option-role',
+  'span-aria-hidden',
   async (t) => {
     await assertAttributeValues(t, ex[1].spanSelector, 'aria-hidden', 'true');
     await assertAttributeValues(t, ex[2].spanSelector, 'aria-hidden', 'true');
@@ -135,9 +135,9 @@ ariaTest(
 );
 
 ariaTest(
-  'aria-hidden="true" on li > span elements',
+  'role="option" on li elements',
   exampleFile,
-  'span-aria-hidden',
+  'option-role',
   async (t) => {
     await assertAriaRoles(t, 'ex1', 'option', 10, 'li');
     await assertAriaRoles(t, 'ex2', 'option', 10, 'li');
