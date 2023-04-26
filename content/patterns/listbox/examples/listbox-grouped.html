@@ -150,9 +150,8 @@
             Selected options have a check preceding the text label for the option.
           </li>
           <li>
-            Browsers do not manage visibility of elements referenced by <code>aria-activedescendant</code> like they do for elements with focus.
-            When a keyboard event changes the active option in the listbox, the JavaScript scrolls the option referenced by <code>aria-activedescendant</code> into view.
-            Managing <code>aria-activedescendant</code> visibility is essential to accessibility for people who use a browser's zoom feature to increase the size of content.
+            Because this listbox implementation is scrollable and manages which option is focus by <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_activedescendant">using aria-activedescendant</a>, the JavaScript must ensure the focused option is visible.
+            So, when a keyboard or pointer event changes the option referenced by <code>aria-activedescendant</code>, if the referenced option is not fully visible, the JavaScript scrolls the listbox to position the option in view.
           </li>
           <li>
             To enhance perceivability when operating the listbox, visual keyboard focus and hover are styled using the CSS <code>:hover</code> and <code>:focus</code> pseudo-classes:
