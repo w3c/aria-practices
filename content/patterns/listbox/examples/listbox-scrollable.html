@@ -212,6 +212,12 @@
           The example listbox on this page implements the following keyboard interface.
           Other variations and options for the keyboard interface are described in the <a href="../listbox-pattern.html#keyboard_interaction">Keyboard Interaction section of the Listbox Pattern</a>.
         </p>
+        <p>
+          <strong>NOTE:</strong> When visual focus is on an option in this listbox implementation, DOM focus remains on the listbox element and the value of <code>aria-activedescendant</code> on the listbox refers to the descendant option that is visually indicated as focused.
+          Where the following descriptions of keyboard commands mention focus, they are referring to the visual focus indicator, not DOM focus.
+          For more information about this focus management technique, see
+          <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.
+        </p>
         <table aria-labelledby="kbd_label" class="def">
           <thead>
             <tr>
