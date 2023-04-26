@@ -1,11 +1,6 @@
 {
   "version": "0.2",
-  "dictionaries": [
-    "html",
-    "css",
-    "javascript",
-    "npm"
-  ],
+  "dictionaries": ["html", "css", "javascript", "npm"],
   "words": [
     "accesskey",
     "Accesskey",
@@ -205,7 +200,6 @@
     "shizzle",
     "Shopify",
     "Siboni",
-    "skipto",
     "Smorgeni",
     "Sofie",
     "sortability",
@@ -287,7 +281,6 @@
     "**/*.pack.js",
     "**/*.paint",
     "content/shared/css/github.css",
-    "content/shared/js/skipto.js",
     "content/shared/js/specLinks.mjs",
     "content/patterns/landmarks/examples/css/bootstrap.css",
     "content/patterns/landmarks/examples/css/bootstrap-theme.css",

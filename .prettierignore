@@ -12,4 +12,3 @@ bootstrap-theme.css
 **/*.min.js
 content/patterns/landmarks/examples/js/visua11y.js
 content/shared/js/highlight.pack.js
-content/shared/js/skipto.js
