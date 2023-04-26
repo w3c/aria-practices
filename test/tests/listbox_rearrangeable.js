@@ -125,7 +125,7 @@ ariaTest(
 );
 
 ariaTest(
-  'aria-hidden="true" on li > span elements',
+  'aria-hidden="true" on span[class=icon] elements',
   exampleFile,
   'span-aria-hidden',
   async (t) => {
