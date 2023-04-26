@@ -59,7 +59,15 @@
   outline: 2px solid currentcolor;
 }
 
-[role="option"][aria-selected="true"] span.checkmark::before {
+.move-right-btn span.icon::after {
+  content: " →";
+}
+
+.move-left-btn span.icon::before {
+  content: "← ";
+}
+
+[role="option"][aria-selected="true"] span.icon::before {
   position: absolute;
   left: 0.5em;
   content: "✓";
@@ -125,14 +133,6 @@ button {
 
 button[aria-disabled="true"] {
   opacity: 0.5;
-}
-
-.move-right-btn::after {
-  content: " →";
-}
-
-.move-left-btn::before {
-  content: "← ";
 }
 
 .annotate {
