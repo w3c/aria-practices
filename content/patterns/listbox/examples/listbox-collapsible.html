@@ -290,10 +290,9 @@
               <td><code>ul</code></td>
               <td>
                 <ul>
-                  <li>Set by the JavaScript when it displays and sets focus on the listbox; otherwise is not present.</li>
-                  <li>Refers to the option in the listbox that is visually indicated as having keyboard focus.</li>
+                  <li>When an option in the listbox is visually indicated as having keyboard focus, refers to that option.</li>
+                  <li>Enables assistive technologies to know which element the application regards as focused while DOM focus remains on the listbox element.</li>
                   <li>When navigation keys, such as <kbd>Down Arrow</kbd>, are pressed, the JavaScript changes the value.</li>
-                  <li>Enables assistive technologies to know which element the application regards as focused while DOM focus remains on the <code>ul</code> element.</li>
                   <li>
                     For more information about this focus management technique, see
                     <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.

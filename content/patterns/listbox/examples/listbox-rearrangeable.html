@@ -277,7 +277,7 @@
           Other variations and options for the keyboard interface are described in the <a href="../listbox-pattern.html#keyboard_interaction">Keyboard Interaction section of the Listbox Pattern</a>.
         </p>
         <p>
-          <strong>NOTE:</strong> When visual focus is on an option in a listbox, DOM focus remains on the listbox element and the value of <code>aria-activedescendant</code> on the listbox refers to the descendant option that is visually indicated as focused.
+          <strong>NOTE:</strong> When visual focus is on an option in these implementations of listbox, DOM focus remains on the listbox element and the value of <code>aria-activedescendant</code> on the listbox refers to the descendant option that is visually indicated as focused.
           Where the following descriptions of keyboard commands mention focus, they are referring to the visual focus indicator, not DOM focus.
           For more information about this focus management technique, see
           <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.
@@ -429,10 +429,14 @@
               <td><code>ul</code></td>
               <td>
                 <ul>
-                  <li>Applied to the element with the listbox role, tells assistive technologies which of the options, if any, is visually indicated as having keyboard focus.</li>
-                  <li>DOM focus remains on the <code>ul</code> element and the idref specified for <code>aria-activedescendant</code> refers to the <code>li</code> element that is visually styled as focused.</li>
+                  <li>When an option in the listbox is visually indicated as having keyboard focus, refers to that option.</li>
+                  <li>Enables assistive technologies to know which element the application regards as focused while DOM focus remains on the listbox element.</li>
                   <li>When navigation keys, such as <kbd>Down Arrow</kbd>, are pressed, the JavaScript changes the value.</li>
                   <li>When the listbox is empty, <code>aria-activedescendant=""</code>.</li>
+                  <li>
+                    For more information about this focus management technique, see
+                    <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.
+                  </li>
                 </ul>
               </td>
             </tr>
