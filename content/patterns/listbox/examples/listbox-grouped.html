@@ -112,43 +112,12 @@
           </div>
         </div>
         <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
-        <h3>Notes</h3>
-        <p>This listbox is scrollable; it has more options than its height can accommodate.</p>
-        <ol>
-          <li>
-            Scrolling only works as expected if the listbox is the options' <code>offsetParent</code>.
-            The example uses <code>position: relative</code> on the listbox to that effect.
-          </li>
-          <li>
-            When an option is focused that isn't (fully) visible, the listbox's scroll position is updated:
-            <ol>
-              <li>If <kbd>Up Arrow</kbd> or <kbd>Down Arrow</kbd> is pressed, the previous or next option is scrolled into view.</li>
-              <li>If <kbd>Home</kbd> or <kbd>End</kbd> is pressed, the listbox scrolls all the way to the top or to the bottom.</li>
-              <li>If <code>focusItem</code> is called, the focused option will be scrolled to the top of the view if it was located above it or to the bottom if it was below it.</li>
-              <li>If the mouse is clicked on a partially visible option, it will be scrolled fully into view.</li>
-            </ol>
-          </li>
-          <li>When a fully visible option is focused in any way, no scrolling occurs.</li>
-          <li>
-            Normal scrolling through any scrolling mechanism (including <kbd>Page Up</kbd> and <kbd>Page Down</kbd>) works as expected.
-            The scroll position will jump as described for <code>focusItem</code> if a means other than a mouse click is used to change focus after scrolling.
-          </li>
-        </ol>
       </section>
 
 
-      <section>
-        <h2 id="accessibilityfeatures">Accessibility Features</h2>
-        <ol>
-          <li>
-            The listbox receives accessibility focus via <code>aria-activedescendant</code>.
-            This enables users to perceive the presence of the options, and enables assistive technology users to comprehend the size of the list of options.</li>
-          <li>
-            Navigating the list of options does not set the selection of an option.
-            This gives screen reader users, who need to navigate among the options to perceive them, the ability to explore options without changing the currently selected options.
-            The value is set when users press <kbd>Space</kbd> or <kbd>Enter</kbd>.
-            Selected options have a check preceding the text label for the option.
-          </li>
+      <section id="accessibility_features">
+        <h2>Accessibility Features</h2>
+        <ul>
           <li>
             Because this listbox implementation is scrollable and manages which option is focus by <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_activedescendant">using aria-activedescendant</a>, the JavaScript must ensure the focused option is visible.
             So, when a keyboard or pointer event changes the option referenced by <code>aria-activedescendant</code>, if the referenced option is not fully visible, the JavaScript scrolls the listbox to position the option in view.
@@ -156,11 +125,11 @@
           <li>
             To enhance perceivability when operating the listbox, visual keyboard focus and hover are styled using the CSS <code>:hover</code> and <code>:focus</code> pseudo-classes:
             <ul>
-              <li>To help people with visual impairments identify the listbox as an interactive element, the cursor is changed to a pointer when hovering over the combobox or list.</li>
+              <li>To help people with visual impairments identify the listbox as an interactive element, the cursor is changed to a pointer when hovering over the list.</li>
               <li>To make it easier to distinguish the selected listbox option from other options, selection creates a 2 pixel border above and below the option.</li>
             </ul>
           </li>
-        </ol>
+        </ul>
       </section>
 
       <section>
@@ -308,7 +277,7 @@
           </li>
           <li>
             Javascript:
-            <a href="js/listbox.js" type="text/javascript">listbox.js</a>, <a href="js/listbox-scrollable.js" type="text/javascript">listbox-scrollable.js</a>, <a href="../../../shared/js/utils.js">utils.js</a>
+            <a href="js/listbox.js" type="text/javascript">listbox.js</a>, <a href="js/listbox-scrollable.js" type="text/javascript">listbox-scrollable.js</a>
           </li>
         </ul>
       </section>
