@@ -107,28 +107,28 @@
           </div>
           <div role="separator" id="ex1_end_sep" aria-labelledby="ex1_end_sep ex1_label" aria-label="End of"></div>
           <h3>Notes</h3>
-          <ol>
+          <ul>
             <li>
               Assistive technologies are told which option in the list is visually focused by the value of <code>aria-activedescendant</code>:
-              <ol>
+              <ul>
                 <li>DOM focus remains on the <code>listbox</code> element.</li>
                 <li>When a key that moves focus is pressed or an option is clicked, JavaScript changes the value of <code>aria-activedescendant</code> on the <code>listbox</code> element.</li>
                 <li>If the <code>listbox</code> element does not contain any options, <code>aria-activedescendant</code> does not have a value.</li>
-              </ol>
+              </ul>
             </li>
             <li>
               When <kbd>Tab</kbd> moves focus into either listbox:
-              <ol>
+              <ul>
                 <li>If none of the options are selected, the first option receives focus.</li>
                 <li>If an option is selected, the selected option receives focus.</li>
-              </ol>
+              </ul>
             </li>
             <li>Only one option may be selected at a time (have <code>aria-selected="true"</code>).</li>
             <li>
               As the user moves focus in the list, selection also moves.
               That is, both the value of <code>aria-activedescendant</code> and the element that has <code>aria-selected="true"</code> change.
             </li>
-          </ol>
+          </ul>
         </section>
 
         <section>
@@ -195,42 +195,42 @@
           </div>
           <div role="separator" id="ex2_end_sep" aria-labelledby="ex2_end_sep ex2_label" aria-label="End of"></div>
           <h3>Notes</h3>
-          <ol>
+          <ul>
             <li>
               Like in example 1, assistive technologies are told which option in the list is visually focused by the value of <code>aria-activedescendant</code>:
-              <ol>
+              <ul>
                 <li>DOM focus remains on the <code>listbox</code> element.</li>
                 <li>When a key that moves focus is pressed or an option is clicked, JavaScript changes the value of <code>aria-activedescendant</code> on the <code>listbox</code> element.</li>
                 <li>If the <code>listbox</code> element does not contain any options, <code>aria-activedescendant</code> does not have a value.</li>
-              </ol>
+              </ul>
             </li>
             <li>
               When <kbd>Tab</kbd> moves focus into either listbox:
-              <ol>
+              <ul>
                 <li>If none of the options are selected, focus is set on the first option.</li>
                 <li>If one or more options are selected, focus is set on the first selected option.</li>
-              </ol>
+              </ul>
             </li>
             <li>
               Unlike example 1, more than one option may be selected at a time (have <code>aria-selected="true"</code>).
-              <ol>
+              <ul>
                 <li>The multi-select capability is communicated to assistive technologies by setting <code>aria-multiselectable="true"</code> on the <code>listbox</code> element.</li>
                 <li>All option elements have a value set for <code>aria-selected</code>.</li>
                 <li>Selected options have <code>aria-selected</code> set to <code>true</code> and all others have it set to <code>false</code>.</li>
                 <li>Keys that move focus do not change the selected state of an option.</li>
-              </ol>
+              </ul>
             </li>
             <li>Users can toggle the selected state of the focused option with <kbd>Space</kbd> or click.</li>
-          </ol>
+          </ul>
         </section>
       </section>
 
       <section>
         <h2>Accessibility Features</h2>
-        <ol>
+        <ul>
           <li>
             Keyboard shortcuts for action buttons:
-            <ol>
+            <ul>
               <li>
                 Action buttons have the following shortcuts:
                 <ul>
@@ -251,19 +251,10 @@
                 Similarly, pressing <kbd>Enter</kbd> in the available options list leaves focus in the available options list.
                 If the option that had focus before the add operation is no longer present in the list, focus lands on the first of the subsequent options that is still present.
               </li>
-            </ol>
+            </ul>
           </li>
           <li>In example 1, since there are four action buttons, a toolbar widget is used to group all the action buttons into a single tab stop.</li>
           <li>Live regions provide confirmation of completed actions.</li>
-           <li>
-            The listbox receives accessibility focus via <code>aria-activedescendant</code>.
-            This enables users to perceive the presence of the options, and enables assistive technology users to comprehend the size of the list of options.</li>
-          <li>
-            Navigating the list of options does not set the selection of an option.
-            This gives screen reader users, who need to navigate among the options to perceive them, the ability to explore options without changing the currently selected options.
-            The value is set when users press <kbd>Space</kbd> or <kbd>Enter</kbd>.
-            Selected options have a check preceding the text label for the option.
-          </li>
           <li>
             Browsers do not manage visibility of elements referenced by <code>aria-activedescendant</code> like they do for elements with focus.
             When a keyboard event changes the active option in the listbox, the JavaScript scrolls the option referenced by <code>aria-activedescendant</code> into view.
@@ -272,11 +263,11 @@
           <li>
             To enhance perceivability when operating the listbox, visual keyboard focus and hover are styled using the CSS <code>:hover</code> and <code>:focus</code> pseudo-classes:
             <ul>
-              <li>To help people with visual impairments identify the listbox as an interactive element, the cursor is changed to a pointer when hovering over the combobox or list.</li>
+              <li>To help people with visual impairments identify the listbox as an interactive element, the cursor is changed to a pointer when hovering over the list.</li>
               <li>To make it easier to distinguish the selected listbox option from other options, selection creates a 2 pixel border above and below the option.</li>
             </ul>
           </li>
-        </ol>
+        </ul>
       </section>
 
       <section>
