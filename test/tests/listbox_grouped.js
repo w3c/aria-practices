@@ -11,7 +11,6 @@ const exampleFile = 'content/patterns/listbox/examples/listbox-grouped.html';
 const ex = {
   listboxSelector: '#ex [role="listbox"]',
   optionSelector: '#ex [role="option"]',
-  spanSelector: '#ex [role="option"] span.checkmark',
   optionIdBase: '#ss_elem_',
 };
 
@@ -98,11 +97,16 @@ ariaTest(
 );
 
 ariaTest(
-  'aria-hidden="true" on li > span elements',
+  'aria-hidden="true" on li > span.checkmark elements',
   exampleFile,
   'span-aria-hidden',
   async (t) => {
-    await assertAttributeValues(t, ex.spanSelector, 'aria-hidden', 'true');
+    await assertAttributeValues(
+      t,
+      `${ex.optionSelector} span.checkmark`,
+      'aria-hidden',
+      'true'
+    );
   }
 );
 
