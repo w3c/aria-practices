@@ -123,10 +123,10 @@
                 <li>If an option is selected, the selected option receives focus.</li>
               </ol>
             </li>
-            <li>Only one option may be selected at a time (have <code>aria-selected=&quot;true&quot;</code>).</li>
+            <li>Only one option may be selected at a time (have <code>aria-selected="true"</code>).</li>
             <li>
               As the user moves focus in the list, selection also moves.
-              That is, both the value of <code>aria-activedescendant</code> and the element that has <code>aria-selected=&quot;true&quot;</code> change.
+              That is, both the value of <code>aria-activedescendant</code> and the element that has <code>aria-selected="true"</code> change.
             </li>
           </ol>
         </section>
@@ -212,9 +212,9 @@
               </ol>
             </li>
             <li>
-              Unlike example 1, more than one option may be selected at a time (have <code>aria-selected=&quot;true&quot;</code>).
+              Unlike example 1, more than one option may be selected at a time (have <code>aria-selected="true"</code>).
               <ol>
-                <li>The multi-select capability is communicated to assistive technologies by setting <code>aria-multiselectable=&quot;true&quot;</code> on the <code>listbox</code> element.</li>
+                <li>The multi-select capability is communicated to assistive technologies by setting <code>aria-multiselectable="true"</code> on the <code>listbox</code> element.</li>
                 <li>All option elements have a value set for <code>aria-selected</code>.</li>
                 <li>Selected options have <code>aria-selected</code> set to <code>true</code> and all others have it set to <code>false</code>.</li>
                 <li>Keys that move focus do not change the selected state of an option.</li>
@@ -234,10 +234,10 @@
               <li>
                 Action buttons have the following shortcuts:
                 <ul>
-                  <li>&quot;Up&quot;: <kbd>Alt + Up Arrow</kbd></li>
-                  <li>&quot;Down&quot;: <kbd>Alt + Down Arrow</kbd></li>
-                  <li>&quot;Add&quot;: <kbd>Enter</kbd></li>
-                  <li>&quot;Not Important&quot;, &quot;Important&quot;, and &quot;Remove&quot;: <kbd>Delete</kbd></li>
+                  <li>"Up": <kbd>Alt + Up Arrow</kbd></li>
+                  <li>"Down": <kbd>Alt + Down Arrow</kbd></li>
+                  <li>"Add": <kbd>Enter</kbd></li>
+                  <li>"Not Important", "Important", and "Remove": <kbd>Delete</kbd></li>
                 </ul>
               </li>
               <li>Availability of the shortcuts is communicated to assistive technologies via the <code>aria-keyshortcuts</code> property on the button elements.</li>
@@ -247,7 +247,7 @@
               </li>
               <li>
                 Using a shortcut key intentionally places focus to optimize both screen reader and keyboard usability.
-                For example, pressing <kbd>Alt + Up Arrow</kbd> in the &quot;Important Features&quot; list keeps focus on the option that is moved up, enabling all keyboard users to easily perform consecutive move operations for an option and screen reader users to hear the position of an option after it is moved.
+                For example, pressing <kbd>Alt + Up Arrow</kbd> in the "Important Features" list keeps focus on the option that is moved up, enabling all keyboard users to easily perform consecutive move operations for an option and screen reader users to hear the position of an option after it is moved.
                 Similarly, pressing <kbd>Enter</kbd> in the available options list leaves focus in the available options list.
                 If the option that had focus before the add operation is no longer present in the list, focus lands on the first of the subsequent options that is still present.
               </li>
@@ -404,19 +404,19 @@
             </tr>
             <tr data-test-id="listbox-aria-labelledby">
               <td></td>
-              <th scope="row"><code>aria-labelledby=&quot;ID_REF&quot;</code></th>
+              <th scope="row"><code>aria-labelledby="ID_REF"</code></th>
               <td><code>ul</code></td>
               <td>Applied to the element with the listbox role, it refers to the span containing its label.</td>
             </tr>
             <tr data-test-id="listbox-tabindex">
               <td></td>
-              <th scope="row"><code>tabindex=&quot;0&quot;</code></th>
+              <th scope="row"><code>tabindex="0"</code></th>
               <td><code>ul</code></td>
               <td>Applied to the element with the listbox role, it puts the listbox in the tab sequence.</td>
             </tr>
             <tr data-test-id="listbox-aria-multiselectable">
               <td></td>
-              <th scope="row"><code>aria-multiselectable=&quot;true&quot;</code></th>
+              <th scope="row"><code>aria-multiselectable="true"</code></th>
               <td><code>ul</code></td>
               <td>
                 <ul>
@@ -428,14 +428,14 @@
             </tr>
             <tr data-test-id="listbox-aria-activedescendant">
               <td></td>
-              <th scope="row"><code>aria-activedescendant=&quot;ID_REF&quot;</code></th>
+              <th scope="row"><code>aria-activedescendant="ID_REF"</code></th>
               <td><code>ul</code></td>
               <td>
                 <ul>
                   <li>Applied to the element with the listbox role, tells assistive technologies which of the options, if any, is visually indicated as having keyboard focus.</li>
                   <li>DOM focus remains on the <code>ul</code> element and the idref specified for <code>aria-activedescendant</code> refers to the <code>li</code> element that is visually styled as focused.</li>
                   <li>When navigation keys, such as <kbd>Down Arrow</kbd>, are pressed, the JavaScript changes the value.</li>
-                  <li>When the listbox is empty, <code>aria-activedescendant=&quot;&quot;</code>.</li>
+                  <li>When the listbox is empty, <code>aria-activedescendant=""</code>.</li>
                 </ul>
               </td>
             </tr>
@@ -447,7 +447,7 @@
             </tr>
             <tr data-test-id="option-aria-selected">
               <td></td>
-              <th scope="row"><code>aria-selected=&quot;true&quot;</code></th>
+              <th scope="row"><code>aria-selected="true"</code></th>
               <td><code>li</code></td>
               <td>
                 <ul>
@@ -460,7 +460,7 @@
             </tr>
             <tr data-test-id="option-aria-selected">
               <td></td>
-              <th><code>aria-selected=&quot;false&quot;</code></th>
+              <th><code>aria-selected="false"</code></th>
               <td><code>li</code></td>
               <td>
                 <ul>
@@ -472,7 +472,7 @@
             </tr>
             <tr data-test-id="span-aria-hidden">
               <td></td>
-              <th><code>aria-hidden=&quot;true&quot;</code></th>
+              <th><code>aria-hidden="true"</code></th>
               <td><code>span</code></td>
               <td>
                 Removes the character entity used for the check mark icon from the accessibility tree to prevent it from being included in the accessible name of the option.
