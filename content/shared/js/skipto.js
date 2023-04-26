@@ -2571,7 +2571,7 @@ $skipToId [role="menuitem"]:focus .label {
         headings: 'main h1 h2',
 
         // Place holders for configuration
-        colorTheme: '',
+        colorTheme: 'aria',
         fontFamily: '',
         fontSize: '',
         positionLeft: '',
