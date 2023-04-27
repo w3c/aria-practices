@@ -43,33 +43,50 @@ aria.Toolbar = class Toolbar {
 
   /**
    * @description
-   *  Handle various keyboard controls; LEFT/RIGHT will shift focus; DOWN
-   *  activates a menu button if it is the focused item.
+   *  Handle various keyboard commands to move focus:
+   *    LEFT:  Previous button
+   *    RIGHT: Next button
+   *    HOME:  First button
+   *    END:   Last button
    * @param evt
    *  The keydown event object
    */
   checkFocusChange(evt) {
     let nextIndex, nextItem;
 
-    switch (evt.key) {
-      case 'ArrowLeft':
-      case 'ArrowRight':
-        nextIndex = Array.prototype.indexOf.call(this.items, this.selectedItem);
-        nextIndex = evt.key === 'ArrowLeft' ? nextIndex - 1 : nextIndex + 1;
-        nextIndex = Math.max(Math.min(nextIndex, this.items.length - 1), 0);
+    // Do not move focus if any modifier keys pressed
+    if (!evt.shiftKey && !evt.metaKey && !evt.altKey && !evt.ctrlKey) {
+      switch (evt.key) {
+        case 'ArrowLeft':
+        case 'ArrowRight':
+          nextIndex = Array.prototype.indexOf.call(
+            this.items,
+            this.selectedItem
+          );
+          nextIndex = evt.key === 'ArrowLeft' ? nextIndex - 1 : nextIndex + 1;
+          nextIndex = Math.max(Math.min(nextIndex, this.items.length - 1), 0);
 
-        nextItem = this.items[nextIndex];
+          nextItem = this.items[nextIndex];
+          break;
+
+        case 'End':
+          nextItem = this.items[this.items.length - 1];
+          break;
+
+        case 'Home':
+          nextItem = this.items[0];
+          break;
+
+        default:
+          break;
+      }
+
+      if (nextItem) {
         this.selectItem(nextItem);
         this.focusItem(nextItem);
-        break;
-
-      case 'Down':
-        // if selected item is menu button, pressing DOWN should act like a click
-        if (this.selectedItem.classList.contains('menu-button')) {
-          evt.preventDefault();
-          this.selectedItem.click();
-        }
-        break;
+        evt.stopPropagation();
+        evt.preventDefault();
+      }
     }
   }
 
