@@ -54,7 +54,7 @@
     "husky": "^8.0.3",
     "lint-staged": "^13.1.1",
     "node-fetch": "^2.6.7",
-    "prettier": "^2.7.1",
+    "prettier": "^2.8.8",
     "selenium-webdriver": "^4.8.1",
     "stylelint": "^15.1.0",
     "stylelint-config-standard": "^30.0.1",
