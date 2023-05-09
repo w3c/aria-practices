@@ -1,5 +1,5 @@
 /* ========================================================================
- * Version: 5.1.5
+ * Version: 5.1.6
  * Copyright (c) 2022, 2023 Jon Gunderson; Licensed BSD
  * Copyright (c) 2021 PayPal Accessibility Team and University of Illinois; Licensed BSD
  * All rights reserved.
@@ -1409,12 +1409,13 @@ $skipToId [role="menuitem"]:focus .label {
    *   @desc  Recursive function to return two arrays, one an array of the DOM element nodes for 
    *          landmarks and the other an array of DOM element ndoes for headings  
    *
-   *   @param  {Array}  landamrkTargets  -  An array of strings representing landmark regions
+   *   @param  {Array}   landamrkTargets  -  An array of strings representing landmark regions
    *   @param  {Array}   headingTargets  -  An array of strings representing headings
+   *   @param  {String}  skiptoId        -  An array of strings representing headings
    *
    *   @returns {Array}  @see @desc
    */ 
-  function queryDOMForLandmarksAndHeadings (landmarkTargets, headingTargets) {
+  function queryDOMForLandmarksAndHeadings (landmarkTargets, headingTargets, skiptoId) {
     let headingInfo = [];
     let landmarkInfo = [];
     let targetLandmarks = getLandmarkTargets(landmarkTargets.toLowerCase());
@@ -1425,7 +1426,8 @@ $skipToId [role="menuitem"]:focus .label {
       for (let node = startingNode.firstChild; node !== null; node = node.nextSibling ) {
         if (node.nodeType === Node.ELEMENT_NODE) {
           const tagName = node.tagName.toLowerCase();
-          if (targetLandmarks.indexOf(checkForLandmark(node)) >= 0) {
+          if ((targetLandmarks.indexOf(checkForLandmark(node)) >= 0) &&
+              (node.id !== skiptoId)) {
             landmarkInfo.push({ node: node, name: getAccessibleName(doc, node)});
           }
           if (targetHeadings.indexOf(tagName) >= 0) {
@@ -1490,8 +1492,20 @@ $skipToId [role="menuitem"]:focus .label {
     // to find any headings
     if ((headingInfo.length === 0) && onlyInMain) {
       onlyInMain = false;
+      landmarkInfo = [];
       transverseDOM(document.body, document);
+      if (headingInfo.length === 0) {
+         console.warn(`[skipTo.js]: no headings found on page`);
+      }
+      else {
+        console.warn(`[skipTo.js]: no headings found in main landmark, but ${headingInfo.length} found in page.`);
+      }
     }
+
+    if (landmarkInfo.length === 0) {
+       console.warn(`[skipTo.js]: no landmarks found on page`);
+    }
+
 
     return [landmarkInfo, headingInfo];
   }
@@ -1508,20 +1522,22 @@ $skipToId [role="menuitem"]:focus .label {
    * @return see @desc
    */
 
-  function getLandmarksAndHeadings (config) {
+  function getLandmarksAndHeadings (config, skiptoId) {
 
     let landmarkTargets = config.landmarks;
     if (typeof landmarkTargets !== 'string') {
+      console.warn(`[skipto.js]: Error in landmark configuration`);
       landmarkTargets = 'main search navigation';
     }
 
     let headingTargets = config.headings;
     // If targets undefined, use default settings
     if (typeof headingTargets !== 'string') {
+      console.warn(`[skipto.js]: Error in heading configuration`);
       headingTargets = 'h1 h2';
     }
 
-    const [landmarks, headings] = queryDOMForLandmarksAndHeadings(landmarkTargets, headingTargets);
+    const [landmarks, headings] = queryDOMForLandmarksAndHeadings(landmarkTargets, headingTargets, skiptoId);
 
     return [getLandmarks(config, landmarks), getHeadings(config, headings)];
   }
@@ -1795,6 +1811,7 @@ $skipToId [role="menuitem"]:focus .label {
 
       constructor (attachNode, config, id) {
         this.config = config;
+        this.skiptoId = id;
 
         this.containerNode = document.createElement(config.containerElement);
         if (config.containerElement === 'nav') {
@@ -2133,7 +2150,8 @@ $skipToId [role="menuitem"]:focus .label {
         }
 
         // Create landmarks group
-        const [landmarkElements, headingElements] = getLandmarksAndHeadings(this.config);
+        const [landmarkElements, headingElements] = getLandmarksAndHeadings(this.config, this.skiptoId);
+
         this.renderMenuitemsToGroup(this.landmarkGroupNode, landmarkElements, this.config.msgNoLandmarksFound);
         this.renderMenuitemsToGroup(this.headingGroupNode,  headingElements, this.config.msgNoHeadingsFound);
 
@@ -2538,7 +2556,7 @@ $skipToId [role="menuitem"]:focus .label {
         attachElement: 'body',
         displayOption: 'static', // options: static (default), popup, fixed
         // container element, use containerClass for custom styling
-        containerElement: 'div',
+        containerElement: 'nav',
         containerRole: '',
         customClass: '',
 
@@ -2571,7 +2589,7 @@ $skipToId [role="menuitem"]:focus .label {
         headings: 'main h1 h2',
 
         // Place holders for configuration
-        colorTheme: 'aria',
+        colorTheme: '',
         fontFamily: '',
         fontSize: '',
         positionLeft: '',
@@ -2681,7 +2699,7 @@ $skipToId [role="menuitem"]:focus .label {
 
         // Check if skipto is already loaded
         if (document.skipToHasBeenLoaded) {
-          console.warn('SkipTo.js is already loaded!');
+          console.warn('[skipTo.js] Skipto is already loaded!');
           return;
         }
 
