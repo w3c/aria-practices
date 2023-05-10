@@ -2556,7 +2556,7 @@ $skipToId [role="menuitem"]:focus .label {
         attachElement: 'body',
         displayOption: 'static', // options: static (default), popup, fixed
         // container element, use containerClass for custom styling
-        containerElement: 'nav',
+        containerElement: 'div',
         containerRole: '',
         customClass: '',
 
@@ -2589,7 +2589,7 @@ $skipToId [role="menuitem"]:focus .label {
         headings: 'main h1 h2',
 
         // Place holders for configuration
-        colorTheme: '',
+        colorTheme: 'aria',
         fontFamily: '',
         fontSize: '',
         positionLeft: '',
