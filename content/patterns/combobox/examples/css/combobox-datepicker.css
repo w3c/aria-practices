@@ -127,6 +127,7 @@
   color: white;
   text-transform: none;
   font-weight: bold;
+  border: none;
 }
 
 .combobox-datepicker .dates {
@@ -134,6 +135,7 @@
   padding-left: 1em;
   padding-right: 1em;
   padding-top: 1em;
+  border-collapse: separate;
 }
 
 .combobox-datepicker .prev-year,
@@ -193,9 +195,16 @@
   text-align: center;
 }
 
+.combobox-datepicker table {
+  border: none;
+}
+
 .combobox-datepicker .dates th,
 .combobox-datepicker .dates td {
   text-align: center;
+  color: black;
+  background: white;
+  border: none;
 }
 
 .combobox-datepicker .dates tr {
@@ -227,6 +236,7 @@
 .combobox-datepicker .dates td:hover {
   padding: 0;
   background-color: hsl(216deg 80% 92%);
+  color: black;
 }
 
 .combobox-datepicker .dates td:focus {

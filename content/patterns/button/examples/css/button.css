@@ -32,7 +32,6 @@
 
 [role="button"]:focus::before {
   position: absolute;
-  z-index: -1;
 
   /* button border width - outline width - offset */
   top: calc(-1px - 3px - 3px);
