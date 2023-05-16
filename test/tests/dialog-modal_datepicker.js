@@ -66,8 +66,8 @@ const setDate = async function (t, day) {
   );
 };
 
-const checkDate = async function assertAriaRoles(t, dateSelector, day) {
-  const d = day.getDate() < 10 ? '0' + day.getDate() : day.getDate();
+const checkDate = async function (t, dateSelector, day) {
+  const d = String(day.getDate()).padStart(2, '0');
   const m =
     day.getMonth() < 9 ? '0' + (day.getMonth() + 1) : day.getMonth() + 1;
   const targetDate = `${day.getFullYear()}-${m}-${d}`;
@@ -838,14 +838,18 @@ ariaTest(
   exampleFile,
   'grid-shift-pageup',
   async (t) => {
-    const startDate = '1/31/2023';
+    const startDate = '2/29/2024';
     const targetDates = [
-      '1/31/2022',
-      '1/31/2021',
-      '1/31/2020',
-      '1/31/2019',
-      '1/31/2018',
-      '1/31/2017',
+      '2/28/2023',
+      '2/28/2022',
+      '2/28/2021',
+      '2/28/2020',
+      '2/28/2019',
+      '2/28/2018',
+      '2/28/2017',
+      '2/29/2016',
+      '2/28/2015',
+      '2/28/2014',
     ];
 
     let button = await t.context.queryElement(t, ex.buttonSelector);
