@@ -216,7 +216,7 @@ aria.FeedDisplay.prototype.renderItemData = function (itemData) {
       'alt="' +
       itemData.rating +
       ' stars" ' +
-      'src="imgs/rating-' +
+      'src="../../../../../content-assets/wai-aria-practices/patterns/feed/examples/imgs/rating-' +
       itemData.rating +
       '.png">' +
       '</div>';
