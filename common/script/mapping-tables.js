@@ -249,7 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll('button.expand').forEach(function (b){
     b.addEventListener('click', function () {
-      detailsContainer = b.parentElement.querySelector('.details');
+      detailsContainer = b.parentElement;
       expandCollapseDetails(detailsContainer, 'expand');
       b.disabled = true;
       b.parentElement
@@ -260,7 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll('button.collapse').forEach(function (b){
     b.addEventListener('click', function () {
-      detailsContainer = b.parentElement.querySelector('.details');
+      detailsContainer = b.parentElement;
       expandCollapseDetails(detailsContainer, 'collapse');
       b.disabled = true;
       b.parentElement

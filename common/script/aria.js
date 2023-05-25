@@ -217,9 +217,8 @@ function ariaAttributeReferences() {
       var subRoles = [];
       var roleIndex = '';
       var fromAuthor = '';
+      var fromHeading = "";
       var fromContent = '';
-      var fromEncapsulation = '';
-      var fromLegend = '';
       var fromProhibited = '';
 
       Array.prototype.slice
@@ -358,6 +357,16 @@ function ariaAttributeReferences() {
                     req +
                     '</li>';
                 }
+                if (node.textContent.indexOf('heading') !== -1) {
+                  fromHeading +=
+                    '<li><a href="#' +
+                    pnID +
+                    '" class="role-reference"><code>' +
+                    content +
+                    '</code></a>' +
+                    req +
+                    '</li>';
+                }
                 if (!isAbstract && node.textContent.indexOf('content') !== -1) {
                   fromContent +=
                     '<li><a href="#' +
@@ -370,26 +379,6 @@ function ariaAttributeReferences() {
                 }
                 if (node.textContent.indexOf('prohibited') !== -1) {
                   fromProhibited +=
-                    '<li><a href="#' +
-                    pnID +
-                    '" class="role-reference"><code>' +
-                    content +
-                    '</code></a>' +
-                    req +
-                    '</li>';
-                }
-                if (node.textContent.indexOf('encapsulation') !== -1) {
-                  fromEncapsulation +=
-                    '<li><a href="#' +
-                    pnID +
-                    '" class="role-reference"><code>' +
-                    content +
-                    '</code></a>' +
-                    req +
-                    '</li>';
-                }
-                if (node.textContent.indexOf('legend') !== -1) {
-                  fromLegend +=
                     '<li><a href="#' +
                     pnID +
                     '" class="role-reference"><code>' +
@@ -677,6 +666,16 @@ function ariaAttributeReferences() {
           parentNode.replaceChild(list, node);
         }
 
+        node = document.getElementById('index_fromheading');
+        if (node) {
+          parentNode = node.parentNode;
+          list = document.createElement('ul');
+          list.id = 'index_fromheading';
+          list.className = 'compact';
+          list.innerHTML = fromHeading;
+          parentNode.replaceChild(list, node);
+        }
+
         node = document.getElementById('index_fromcontent');
         if (node) {
           parentNode = node.parentNode;
@@ -684,26 +683,6 @@ function ariaAttributeReferences() {
           list.id = 'index_fromcontent';
           list.className = 'compact';
           list.innerHTML = fromContent;
-          parentNode.replaceChild(list, node);
-        }
-
-        node = document.getElementById('index_fromencapsulation');
-        if (node) {
-          parentNode = node.parentNode;
-          list = document.createElement('ul');
-          list.id = 'index_fromencapsulation';
-          list.className = 'compact';
-          list.innerHTML = fromEncapsulation;
-          parentNode.replaceChild(list, node);
-        }
-
-        node = document.getElementById('index_fromlegend');
-        if (node) {
-          parentNode = node.parentNode;
-          list = document.createElement('ul');
-          list.id = 'index_fromlegend';
-          list.className = 'compact';
-          list.innerHTML = fromLegend;
           parentNode.replaceChild(list, node);
         }
 
