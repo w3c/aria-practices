@@ -16,6 +16,7 @@ class CheckboxMixed {
     this.checkboxNodes = domNode.querySelectorAll('input[type="checkbox"]');
 
     this.mixedNode.addEventListener('keydown', this.onMixedKeydown.bind(this));
+    this.mixedNode.addEventListener('keyup', this.onMixedKeyup.bind(this));
     this.mixedNode.addEventListener('click', this.onMixedClick.bind(this));
     this.mixedNode.addEventListener('focus', this.onMixedFocus.bind(this));
     this.mixedNode.addEventListener('blur', this.onMixedBlur.bind(this));
@@ -116,22 +117,22 @@ class CheckboxMixed {
 
   /* EVENT HANDLERS */
 
+  // Prevent page scrolling on space down
   onMixedKeydown(event) {
-    var flag = false;
+    if (event.key === ' ') {
+      event.preventDefault();
+    }
+  }
 
+  onMixedKeyup(event) {
     switch (event.key) {
       case ' ':
         this.toggleMixed();
-        flag = true;
+        event.stopPropagation();
         break;
 
       default:
         break;
-    }
-
-    if (flag) {
-      event.stopPropagation();
-      event.preventDefault();
     }
   }
 
