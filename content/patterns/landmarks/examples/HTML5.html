@@ -121,8 +121,8 @@
           <aside aria-labelledby="id3">
             <h2 id="id3">Related Documents</h2>
             <ul>
-              <li><a href="https://w3c.github.io/aria-practices">WAI-ARIA Authoring Practices 1.2</a></li>
-              <li><a href="https://www.w3.org/TR/wai-aria-1.2/">WAI-ARIA 1.2 Specification</a></li>
+              <li><a href="https://w3.org/WAI/ARIA/apg/">ARIA Authoring Practices</a></li>
+              <li><a href="https://www.w3.org/TR/wai-aria-1.2/">ARIA 1.2 Specification</a></li>
 
               <li><a href="https://www.w3.org/TR/accname-1.2/">Accessible Name and Description Computation 1.2</a></li>
               <li><a href="http://www.w3.org/TR/core-aam-1.2/">Core Accessibility API Mappings 1.2</a></li>
@@ -141,7 +141,7 @@
             W3C ARIA Authoring Practices Task Force
           </div>
           <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
-            Copyright 2021
+            Copyright 2023
           </div>
         </footer>
       </div>
@@ -152,19 +152,9 @@
     <script type="text/javascript" src="js/bootstrap-accessibility-2.js"></script>
     <script type="text/javascript" src="js/visua11y.js"></script>
     <script type="text/javascript" src="js/show.js"></script>
-    <script type="text/javascript">
-      // Use the SkipTo defaults, but just showing custom configuration
-      var SkipToConfig = {
-        settings: {
-          skipTo: {
-            headings: 'h1, h2',
-            attachElement: '#skip-to-attach',
-
-            colorTheme: 'aria',
-          },
-        },
-      };
+    <!-- Customize SkipTo features using the data-skipto attribute -->
+    <script data-skipto="attachElement: #skip-to-attach; colorTheme: aria"
+            src="js/skipto.min.js">
     </script>
-    <script type="text/javascript" src="js/skipto.min.js"></script>
   </body>
 </html>
