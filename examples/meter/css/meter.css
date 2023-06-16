@@ -1,0 +1,13 @@
+
+[role=meter] {
+  position: relative;
+  border: 4px solid black;
+  height: 20px;
+  width: 200px;
+}
+
+#fill {
+  position: absolute;
+  height: 100%;
+  background-color: black;
+}
