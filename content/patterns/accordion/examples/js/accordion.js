@@ -7,40 +7,56 @@
 
 'use strict';
 
+// options are:
+// { onAccordionClick?: function, disableOpenButton?: boolean }
+
 class Accordion {
-  constructor(domNode) {
+  constructor(domNode, options = {}) {
     this.rootEl = domNode;
     this.buttonEl = this.rootEl.querySelector('button[aria-expanded]');
+    this.options = options;
 
     const controlsId = this.buttonEl.getAttribute('aria-controls');
     this.contentEl = document.getElementById(controlsId);
 
-    this.open = this.buttonEl.getAttribute('aria-expanded') === 'true';
+    this.isOpen = this.buttonEl.getAttribute('aria-expanded') === 'true';
 
     // add event listeners
     this.buttonEl.addEventListener('click', this.onButtonClick.bind(this));
   }
 
   onButtonClick() {
-    this.toggle(!this.open);
+    const { onAccordionClick = this.toggle.bind(this) } = this.options;
+
+    onAccordionClick(!this.isOpen, this);
   }
 
   toggle(open) {
     // don't do anything if the open state doesn't change
-    if (open === this.open) {
+    if (open === this.isOpen) {
       return;
     }
 
     // update the internal state
-    this.open = open;
+    this.isOpen = open;
 
     // handle DOM updates
     this.buttonEl.setAttribute('aria-expanded', `${open}`);
     if (open) {
       this.contentEl.removeAttribute('hidden');
+      if (this.options.disableOpenButton) {
+        this.buttonEl.setAttribute('aria-disabled', 'true');
+      }
     } else {
       this.contentEl.setAttribute('hidden', '');
+      if (this.options.disableOpenButton) {
+        this.buttonEl.removeAttribute('aria-disabled');
+      }
     }
+  }
+
+  updateOptions(options) {
+    this.options = options;
   }
 
   // Add public open and close methods for convenience
@@ -54,7 +70,7 @@ class Accordion {
 }
 
 // init accordions
-const accordions = document.querySelectorAll('.accordion h3');
-accordions.forEach((accordionEl) => {
-  new Accordion(accordionEl);
+const accordionEls = [...document.querySelectorAll('.accordion h3')];
+accordionEls.forEach((el) => {
+  new Accordion(el);
 });
