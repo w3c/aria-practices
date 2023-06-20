@@ -889,7 +889,7 @@ ariaTest(
           }
         }
 
-        // Test focus moves down
+        // Test focus moves up
         await sendKeyToGridcell(
           t,
           gridSelector,
