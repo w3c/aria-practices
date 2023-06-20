@@ -722,12 +722,12 @@ ariaTest('END moves focus', exampleFile, 'key-end', async (t) => {
     'Sending END to first row should result on focus on last row'
   );
 
-  // Send HOME to first gridcell
+  // Send END to first gridcell
   await putFocusOnRow1Gridcell(t, 0);
   await sendKeyToGridcellAndWait(t, 0, 0, Key.END);
   t.true(
     await checkFocusOnGridcell(t, 0, 2),
-    "Sending HOME to first row's first gridcell should move focus to first row's last gridcell"
+    "Sending END to first row's first gridcell should move focus to first row's last gridcell"
   );
 });
 
