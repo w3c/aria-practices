@@ -79,3 +79,38 @@ body {
   padding: 10px;
   width: 100%;
 }
+
+.restaurant-rating svg g {
+  color: #ffde00;
+}
+
+.restaurant-rating svg .star {
+  stroke-width: 2px;
+  stroke: #f8951d;
+  fill-opacity: 0;
+}
+
+.restaurant-rating[data-rating-value="1"] svg .star-1 .star {
+  fill: currentcolor;
+  fill-opacity: 1;
+}
+
+.restaurant-rating[data-rating-value="2"] svg .star-2 .star {
+  fill: currentcolor;
+  fill-opacity: 1;
+}
+
+.restaurant-rating[data-rating-value="3"] svg .star-3 .star {
+  fill: currentcolor;
+  fill-opacity: 1;
+}
+
+.restaurant-rating[data-rating-value="4"] svg .star-4 .star {
+  fill: currentcolor;
+  fill-opacity: 1;
+}
+
+.restaurant-rating[data-rating-value="5"] svg .star-5 .star {
+  fill: currentcolor;
+  fill-opacity: 1;
+}
