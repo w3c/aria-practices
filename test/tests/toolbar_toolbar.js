@@ -1105,7 +1105,6 @@ ariaTest(
   async (t) => {
     let textarea = await t.context.session.findElement(By.css('textarea'));
     await textarea.sendKeys(Key.chord(Key.CONTROL, 'a'));
-    await textarea.sendKeys(Key.chord(Key.COMMAND, 'a')); // macOS
     let originalText = await textarea.getAttribute('value');
 
     const buttons = await t.context.queryElements(
@@ -1197,7 +1196,6 @@ ariaTest(
   async (t) => {
     let textarea = await t.context.session.findElement(By.css('textarea'));
     await textarea.sendKeys(Key.chord(Key.CONTROL, 'a'));
-    await textarea.sendKeys(Key.chord(Key.COMMAND, 'a')); // macOS
     let originalText = await textarea.getAttribute('value');
 
     const buttons = await t.context.queryElements(
