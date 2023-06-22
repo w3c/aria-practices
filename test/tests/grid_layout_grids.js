@@ -936,7 +936,7 @@ ariaTest(
       });
 
       // Test focus to first element in row using key chord CONTROL+HOME
-      await activeElement.sendKeys(Key.chord(determineControlKey(), Key.HOME));
+      await activeElement.sendKeys(Key.chord(Key.CONTROL, Key.HOME));
       activeElement = await t.context.session.executeScript(() => {
         return document.activeElement;
       });
