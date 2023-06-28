@@ -114,3 +114,13 @@ body {
   fill: currentcolor;
   fill-opacity: 1;
 }
+
+@media (forced-colors: active) {
+  .restaurant-rating svg g {
+    color: currentcolor;
+  }
+
+  .restaurant-rating svg .star {
+    stroke: currentcolor;
+  }
+}
