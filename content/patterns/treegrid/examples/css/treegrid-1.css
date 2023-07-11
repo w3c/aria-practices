@@ -22,9 +22,21 @@
   cursor: default;
 }
 
-#treegrid-col1,
+#treegrid-col1 {
+  width: 25%;
+}
+
 #treegrid-col3 {
-  width: 30%;
+  width: 20%;
+}
+
+#treegrid-col2,
+#treegrid-col5 {
+  width: 15%;
+}
+
+#treegrid-col4 {
+  width: 10%;
 }
 
 #treegrid th {
