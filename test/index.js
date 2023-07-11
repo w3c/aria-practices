@@ -17,7 +17,7 @@ if (!coverageReportRun) {
   test.before(async () => {
     geckodriver = await startGeckodriver(1022, 12 * 1000);
     session = new webdriver.Builder()
-      .usingServer('http://localhost:' + geckodriver.port)
+      .usingServer('http://127.0.0.1:' + geckodriver.port)
       .withCapabilities({
         'moz:firefoxOptions': {
           args: firefoxArgs,
