@@ -59,15 +59,15 @@
   outline: 2px solid currentcolor;
 }
 
-.move-right-btn span.icon::after {
+.move-right-btn span.checkmark::after {
   content: " →";
 }
 
-.move-left-btn span.icon::before {
+.move-left-btn span.checkmark::before {
   content: "← ";
 }
 
-[role="option"][aria-selected="true"] span.icon::before {
+[role="option"][aria-selected="true"] span.checkmark::before {
   position: absolute;
   left: 0.5em;
   content: "✓";
