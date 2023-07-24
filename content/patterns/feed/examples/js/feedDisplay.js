@@ -207,18 +207,40 @@ aria.FeedDisplay.prototype.renderItemData = function (itemData) {
     '</div>';
 
   if (itemData.rating) {
+    const starText = `${itemData.rating} ${
+      itemData.rating === 1 ? 'star' : 'stars'
+    }`;
     var ratingID = 'restaurant-rating-' + this.feedSize;
     itemContent +=
       '<div class="restaurant-rating" id="' +
       ratingID +
+      '" data-rating-value="' +
+      itemData.rating +
       '">' +
-      '<img class="restaurant-star-img" ' +
-      'alt="' +
-      itemData.rating +
-      ' stars" ' +
-      'src="imgs/rating-' +
-      itemData.rating +
-      '.png">' +
+      '<svg aria-label="' +
+      starText +
+      '" xmlns="http://www.w3.org/2000/svg" viewBox="38 -5 100 48" width="90" height="25">' +
+      '<defs>' +
+      '<g id="star">' +
+      '<polygon points="2.0,13.4 11.7,20.5 8.0,31.1 17.7,24.8 27.4,31.9 23.7,20.5 33.4,13.4 21.4,13.4 17.7,2.0 14.0,13.4" />' +
+      '</g>' +
+      '</defs>' +
+      '<g class="star-1 star-2 star-3 star-4 star-5">' +
+      '<use class="star" xlink:href="#star" x="0" y="0" />' +
+      '</g>' +
+      '<g class="star-2 star-3 star-4 star-5">' +
+      '<use class="star" xlink:href="#star" x="35" y="0" />' +
+      '</g>' +
+      '<g class="star-3 star-4 star-5">' +
+      '<use class="star" xlink:href="#star" x="70" y="0" />' +
+      '</g>' +
+      '<g class="star-4 star-5">' +
+      '<use class="star" xlink:href="#star" x="105" y="0" />' +
+      '</g>' +
+      '<g class="star-5">' +
+      '<use class="star" xlink:href="#star" x="140" y="0" />' +
+      '</g>' +
+      '</svg>' +
       '</div>';
     describedbyIDs.push(ratingID);
   }
