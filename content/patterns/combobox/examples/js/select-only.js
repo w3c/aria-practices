@@ -241,10 +241,8 @@ Select.prototype.getSearchString = function (char) {
 };
 
 Select.prototype.onComboBlur = function (event) {
-  // do not do blur action if ignoreBlur flag has been set
-  // also do not blur if focus is moving to the listbox
-  if (this.ignoreBlur || this.listboxEl.contains(event.relatedTarget)) {
-    this.ignoreBlur = false;
+  // do nothing if relatedTarget is contained within listboxEl
+  if (this.listboxEl.contains(event.relatedTarget)) {
     return;
   }
 
