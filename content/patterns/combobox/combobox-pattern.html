@@ -19,9 +19,12 @@
       <section id="about">
         <h2>About This Pattern</h2>
         <p>
-          A <a href="#combobox" class="role-reference">combobox</a> is an input widget with an associated popup that enables users to select a value for the combobox from a collection of possible values.
-          In some implementations, the popup presents allowed values, while in other implementations, the popup presents suggested values, and users may either select one of the suggestions or type a value.
+          A <a href="#combobox" class="role-reference">combobox</a> is an input widget that has an associated popup.
+          The popup enables users to choose a value for the input from a collection.
           The popup may be a <a href="../listbox/listbox-pattern.html">listbox</a>, <a href="../grid/grid-pattern.html">grid</a>, <a href="../treeview/treeview-pattern.html">tree</a>, or <a href="../dialog-modal/dialog-modal-pattern.html">dialog.</a>
+        </p>
+        <p>
+          In some implementations, the popup presents allowed values, while in other implementations, the popup presents suggested values.
           Many implementations also include a third optional element -- a graphical <q>Open</q> button adjacent to the combobox, which indicates availability of the popup.
           Activating the <q>Open</q> button displays the popup if suggestions are available.
         </p>
@@ -29,7 +32,7 @@
           The combobox pattern supports several optional behaviors.
           The one that most shapes interaction is text input.
           Some comboboxes allow users to type and edit text in the combobox and others do not.
-          If a combobox does not support text input, it is referred to as select-only, meaning the only way users can set a value is by selecting a value in the popup.
+          If a combobox does not support text input, it is referred to as select-only, meaning the only way users can set its value is by selecting a value in the popup.
           For example, in some browsers, an HTML <code>select</code> element with <code>size="1"</code> is presented to assistive technologies as a combobox.
           Alternatively, if a combobox supports text input, it is referred to as editable.
           An editable combobox may either allow users to input any arbitrary value, or it may restrict its value to a discrete set of allowed values, in which case typing input serves to filter suggestions presented in the popup.
