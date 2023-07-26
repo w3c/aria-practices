@@ -15,7 +15,7 @@ const ex = {
     listboxSelector: '#ex1 [role="listbox"]',
     importantSelector: '#ex1 [role="listbox"]#ss_imp_list',
     optionSelector: '#ex1 [role="option"]',
-    spanSelector: '#ex1 span.icon',
+    spanSelector: '#ex1 span.checkmark',
     numOptions: 10,
     firstOptionSelector: '#ex1 #ss_opt1',
     lastOptionSelector: '#ex1 #ss_opt10',
@@ -125,7 +125,7 @@ ariaTest(
 );
 
 ariaTest(
-  'aria-hidden="true" on span[class=icon] elements',
+  'aria-hidden="true" on span[class=checkmark] elements',
   exampleFile,
   'span-aria-hidden',
   async (t) => {
