@@ -24,7 +24,7 @@ const ex = {
     listboxSelector: '#ex2 [role="listbox"]',
     availableSelector: '#ex2 [role="listbox"]#ms_imp_list',
     optionSelector: '#ex2 [role="option"]',
-    spanSelector: '#ex2 span.icon',
+    spanSelector: '#ex2 span.checkmark',
     numOptions: 10,
     firstOptionSelector: '#ex2 #ms_opt1',
     lastOptionSelector: '#ex2 #ms_opt10',
