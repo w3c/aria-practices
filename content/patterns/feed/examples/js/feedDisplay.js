@@ -296,7 +296,9 @@ aria.FeedDisplay.prototype.renderItemData = function (itemData) {
 };
 
 aria.FeedDisplay.prototype.setupEvents = function () {
-  window.addEventListener('scroll', this.handleScroll.bind(this));
+  document
+    .getElementById('dialog1')
+    .addEventListener('scroll', this.handleScroll.bind(this));
 };
 
 aria.FeedDisplay.prototype.handleScroll = function () {
@@ -314,12 +316,8 @@ aria.FeedDisplay.prototype.checkLoadMore = function () {
   }
 
   var lastFeedItem = this.feedItems[this.feedItems.length - 1];
-  var scrollTop =
-    window.pageYOffset ||
-    document.documentElement.scrollTop ||
-    document.body.scrollTop ||
-    0;
-  var scrollBottom = scrollTop + window.innerHeight;
+  var scrollTop = document.getElementById('dialog1').scrollTop;
+  var scrollBottom = scrollTop + 500;
 
   if (scrollBottom >= lastFeedItem.offsetTop - 300) {
     this.loadData();
