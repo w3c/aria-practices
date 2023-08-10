@@ -9,7 +9,7 @@
   padding: 15px;
   border: 1px solid #000;
   background-color: #fff;
-  max-height: 500px;
+  height: 100vh;
   overflow: scroll;
 }
 
@@ -24,6 +24,7 @@
 
     min-width: calc(640px - (15px * 2)); /* == breakpoint - left+right margin */
     min-height: auto;
+    height: 500px;
     box-shadow: 0 19px 38px rgb(0 0 0 / 12%), 0 15px 12px rgb(0 0 0 / 22%);
   }
 }

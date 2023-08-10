@@ -317,7 +317,8 @@ aria.FeedDisplay.prototype.checkLoadMore = function () {
 
   var lastFeedItem = this.feedItems[this.feedItems.length - 1];
   var scrollTop = document.getElementById('dialog1').scrollTop;
-  var scrollBottom = scrollTop + 500;
+  var scrollBottom =
+    scrollTop + document.getElementById('dialog1').offsetHeight;
 
   if (scrollBottom >= lastFeedItem.offsetTop - 300) {
     this.loadData();
