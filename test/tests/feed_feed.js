@@ -6,11 +6,12 @@ const assertAttributeDNE = require('../util/assertAttributeDNE');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaDescribedby = require('../util/assertAriaDescribedby');
+const assert = require('assert');
 
 const exampleFile = 'content/patterns/feed/examples/feed.html';
 
 const ex = {
-  feedLinkSelector: '#ex1 a',
+  feedLinkSelector: '#ex1 button',
   feedSelector: '[role="feed"]',
   articleSelector: '[role="article"]',
   timeToLoad10Articles: 2500,
@@ -21,15 +22,9 @@ const ex = {
 const navigateToFeed = async function (t) {
   await t.context.session.findElement(By.css(ex.feedLinkSelector)).click();
 
-  return t.context.session.wait(
-    () => {
-      return t.context.session.getCurrentUrl().then((url) => {
-        return url != t.context.url;
-      });
-    },
-    t.context.waitTime,
-    'The feed url did not load after clicking: ' + ex.feedLinkSelector
-  );
+  // Make sure the appropriate dialog is open
+  const dialog = await t.context.session.findElement(By.css('#dialog1'));
+  assert(await dialog.isDisplayed(), 'Feed dialog should have opened');
 };
 
 const waitForArticlesToLoad = async function (t) {
@@ -49,7 +44,7 @@ const waitForArticlesToLoad = async function (t) {
 
 const loadMoreArticles = async function (t) {
   return t.context.session.executeScript(() => {
-    window.scrollBy(0, 2000);
+    document.getElementById('dialog1').scrollBy(0, 2000);
   });
 };
 
