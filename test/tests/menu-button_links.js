@@ -6,7 +6,8 @@ const assertAriaControls = require('../util/assertAriaControls');
 const assertAriaRoles = require('../util/assertAriaRoles');
 // const replaceExternalLink = require('../util/replaceExternalLink');
 
-const exampleFile = 'menu-button/menu-button-links.html';
+const exampleFile =
+  'content/patterns/menu-button/examples/menu-button-links.html';
 
 const ex = {
   menubuttonSelector: '#ex1 button',

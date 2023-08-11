@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Accordion Example | WAI-ARIA Authoring Practices 1.2</title>
 <!--  Core js and css shared by all examples; do not modify when using this template. -->
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -12,7 +12,7 @@
 <script src="../js/app.js"></script>
 
 <!--  js and css for this example. -->
-<link rel="stylesheet" type="text/css" href="css/accordion.css" />
+<link rel="stylesheet" type="text/css" href="css/accordion.css">
 
 </head>
 <body>
@@ -31,126 +31,84 @@
     that demonstrates the
     <a href="../../#accordion">design pattern for accordion</a>.
   </p>
+  <p>Similar examples include:</p>
+  <ul>
+    <li><a href="accordion-group.html">Accordion Group</a>: A grouped set of accordions containing form fields that requires exactly one section open at a time.</li>
+  </ul>
+
   <section>
     <div class="example-header">
       <h2 id="ex_label">Example</h2>
     </div>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="ex1">
-      <div id="accordionGroup" class="accordion">
+      <div class="accordion">
         <h3>
           <button type="button" aria-expanded="true" class="accordion-trigger"
             aria-controls="sect1" id="accordion1id">
-            <span class="accordion-title">
-              Personal Information
-              <span class="accordion-icon"></span>
-            </span>
+            Jim Thatcher
+            <span class="accordion-icon"></span>
           </button>
         </h3>
-        <div id="sect1" role="region" aria-labelledby="accordion1id" class="accordion-panel">
-          <div>
-            <!-- Variable content within section, may include any type of markup or interactive widgets. -->
-            <fieldset>
-              <p>
-                <label for="cufc1">Name<span aria-hidden="true">*</span>:</label>
-                <input type="text" value="" name="Name" id="cufc1" class="required"
-                  aria-required="true"
-                >
-              </p>
-              <p>
-                <label for="cufc2">Email<span aria-hidden="true">*</span>:</label>
-                <input type="text" value="" name="Email" id="cufc2"
-                  aria-required="true"
-                >
-              </p>
-              <p>
-                <label for="cufc3">Phone:</label>
-                <input type="text" value="" name="Phone" id="cufc3">
-              </p>
-              <p>
-                <label for="cufc4">Extension:</label>
-                <input type="text" value="" name="Ext" id="cufc4">
-              </p>
-              <p>
-                <label for="cufc5">Country:</label>
-                <input type="text" value="" name="Country" id="cufc5">
-              </p>
-              <p>
-                <label for="cufc6">City/Province:</label>
-                <input type="text" value="" name="City_Province" id="cufc6">
-              </p>
-            </fieldset>
-          </div>
+        <div id="sect1" class="accordion-panel">
+          <p>Dr. Jim Thatcher received his PhD from the University of Michigan in 1963, one of the first PhD's in Computer Science. Together with his thesis advisor, Dr. Jesse Wright, Jim then joined the Mathematical Sciences Department of IBM Research, where he stayed until 1996.</p>
+
+          <p>His research area was mathematical computer science, including automata theory, semantics, and data abstraction. Jim began moving away from the abstract and toward the practical when he and Dr. Wright, who is blind, started working on an "audio access system" for the IBM Personal Computer, a system for providing on-screen information to a blind user through synthesized voice.</p>
+            
+          <p>This work culminated in the development of one of the first screen readers for DOS in 1984-85, called IBM Screen Reader. (Such access systems are now known as "screen readers"!) He later led the development of IBM Screen Reader/2, the first screen reader for a graphical user interface on the PC. Jim was intimately involved in the development of IBM Home Page Reader, a talking web browser for the blind and visually impaired.</p>
+            
+          <p>In 1996 Dr. Thatcher joined the IBM Accessibility Center in Austin, TX, where he led the effort to include accessibility in the IBM development process. A key part of that effort was the establishment of the IBM Accessibility Guidelines specifically for use within IBM's development community.</p>
+          
+          <!-- cspell:disable-next-line -->
+          <p>Jim served as Vice-Chair of the Electronic and Information Technology Access Advisory Committee (EITAAC) which was empanelled by the Access Board to propose standards for Section 508; he chaired the subcommittee on software standards. Later he wrote the course on Web Accessibility for Section 508 for ITTATC, the Information Technology Technical Assistance and Training Center, which was funded in support of Section 508.</p>
         </div>
+      </div>
+      <div class="accordion">
         <h3>
           <button type="button" aria-expanded="false" class="accordion-trigger"
             aria-controls="sect2" id="accordion2id">
-            <span class="accordion-title">
-              Billing Address
-              <span class="accordion-icon"></span>
-            </span>
+            <!-- cspell:disable-next-line -->
+            Marca Bristo
+            <span class="accordion-icon"></span>
           </button>
         </h3>
-        <div id="sect2" role="region" aria-labelledby="accordion2id" class="accordion-panel" hidden>
-          <div>
-            <fieldset>
-              <p>
-                <label for="b-add1">Address 1:</label>
-                <input type="text" name="b-add1" id="b-add1" />
-              </p>
-              <p>
-                <label for="b-add2">Address 2:</label>
-                <input type="text" name="b-add2" id="b-add2" />
-              </p>
-              <p>
-                <label for="b-city">City:</label>
-                <input type="text" name="b-city" id="b-city" />
-              </p>
-              <p>
-                <label for="b-state">State:</label>
-                <input type="text" name="b-state" id="b-state" />
-              </p>
-              <p>
-                <label for="b-zip">Zip Code:</label>
-                <input type="text" name="b-zip" id="b-zip" />
-              </p>
-            </fieldset>
-          </div>
+        <div id="sect2" class="accordion-panel" hidden>
+          <!-- cspell:disable-next-line -->
+          <p>Marca Bristo's career as an advocate for the disabled lasted more than four decades and influenced several presidential administrations. Her success in reshaping Chicago’s policies for the disabled formed the basis for national and international legislation as Ms. Bristo, in her motorized wheelchair, traveled around the world to promote her vision for independent living.</p>
+
+          <!-- cspell:disable-next-line -->
+          <p>Ms. Bristo formed what is now Access Living, a Chicago nonprofit organization that advocates on behalf of people with disabilities. She went on to play a key role in drafting and passing the Americans With Disabilities Act of 1990 — and then after receiving a presidential appointment, helped ensure it was enforced.</p>
+            
+          <p>Often described as an extension of the Civil Rights Act of 1964, the law barred discrimination against people with disabilities, a group that now includes roughly 1 in 4 American adults, or 61 million people, according to the Centers for Disease Control and Prevention.</p>
+          
+          <!-- cspell:disable-next-line -->
+          <p>“Without Marca’s work over the last 30 years, the Americans with Disabilities Act would not be in existence &amp; I would not be a U.S. Senator,” Tammy Duckworth, a Democrat from Illinois and the first disabled woman elected to Congress, wrote Sunday in a tweet. “Because she crawled up the steps of the Capitol to pass the ADA, I get to roll through its corridors to cast my votes in the U.S. Senate.”</p>
+          
+          <p>Edward M. Kennedy Jr., a former state senator in Connecticut, lost a leg to cancer in 1973, when he was 12. “She reframed the disability experience as a civil rights issue, as opposed to a medical issue,” Mr. Kennedy said on Saturday. “She was one of the pioneers trying to change the way people with disabilities thought about our circumstances. She used to talk about what she called ‘the internalization of oppression’ that existed in other civil rights struggles.”</p>
+          
+          <p>“She was a force of nature,” Mr. Kennedy added. “In both her personal life and political life, she was a role model for millions of people with disabilities in our country.”</p>
+          
+          <!-- cspell:disable-next-line -->
+          <p>Ever the advocate, in the days before her death, Ms. Bristo received a phone call from Ms. Pelosi. According to her husband, the Speaker wished her well and said “I wish there was something I could do,” to which Ms. Bristo quickly replied: “You can. Move the Disability Integration Act to committee and to a floor vote.”</p>
         </div>
+      </div>
+      <div class="accordion">
         <h3>
           <button type="button" aria-expanded="false" class="accordion-trigger"
             aria-controls="sect3" id="accordion3id">
-            <span class="accordion-title">
-              Shipping Address
-              <span class="accordion-icon"></span>
-            </span>
+            Ed Roberts
+            <span class="accordion-icon"></span>
           </button>
         </h3>
-        <div id="sect3" role="region" aria-labelledby="accordion3id" class="accordion-panel" hidden>
-          <div>
-            <fieldset>
-              <p>
-                <label for="m-add1">Address 1:</label>
-                <input type="text" name="m-add1" id="m-add1" />
-              </p>
-              <p>
-                <label for="m-add2">Address 2:</label>
-                <input type="text" name="m-add2" id="m-add2" />
-              </p>
-              <p>
-                <label for="m-city">City:</label>
-                <input type="text" name="m-city" id="m-city" />
-              </p>
-              <p>
-                <label for="m-state">State:</label>
-                <input type="text" name="m-state" id="m-state" />
-              </p>
-              <p>
-                <label for="m-zip">Zip Code:</label>
-                <input type="text" name="m-zip" id="m-zip" />
-              </p>
-            </fieldset>
-          </div>
+        <div id="sect3" class="accordion-panel" hidden>
+          <!-- cspell:disable-next-line -->
+          <p>Ed Roberts, in full Edward Verne Roberts, (born January 23, 1939, San Mateo, California, U.S.—died March 14, 1995, Berkeley), American disability rights activist who is considered the founder of the independent-living movement.</p>
+
+          <p>Roberts contracted polio at age 14 and was paralyzed from the neck down. Requiring an iron lung or a respirator to breathe, he attended high school in California by telephone before attending in person in his senior year. Early on, Roberts encountered obstacles as a result of his disability. Because he had not completed physical education and driver education courses, his high school refused to let him graduate, but the decision was reversed after his mother petitioned the school board for his diploma. In 1962, after two years of attending a local college, he was accepted to the University of California, Berkeley, but the university, which had been unaware of his disability when he applied, refused to admit him on the grounds that his iron lung would not fit in a dormitory room. Roberts challenged the administration and ultimately was admitted. While at Berkeley, he worked with the university to develop the Physically Disabled Students Program, a program run by and for disabled students to provide wheelchair repair, attendant referral, peer counseling, and other services that would enable them to live in the community. Roberts earned a bachelor’s degree in political science in 1964 and a master’s degree in political science two years later.</p>
+
+          <p>In 1972 Roberts and other members of the Physically Disabled Students Program came together in Berkeley to found the Center for Independent Living, an advocacy group that fought for changes that would give people with disabilities access to community life. The group’s first success was its campaign to persuade the city of Berkeley to install curb cuts, permitting wheelchair access.</p>
+
+          <p>In 1976 Roberts was appointed director of the California Department of Vocational Rehabilitation, an agency that in 1962 had deemed Roberts too disabled to hold a job. As director, he facilitated the establishment of independent living centres throughout the state. He also traveled to lobby for disability rights in the United States and around the world. After his death, a centre for people with disabilities was created in Berkeley and named for him.</p>
         </div>
       </div>
     </div>
@@ -234,24 +192,6 @@
             Points to the ID of the panel which the header controls.
           </td>
         </tr>
-        <tr data-test-id="region-role">
-          <th scope="row"><code>region</code></th>
-          <td></td>
-          <td><code>div</code></td>
-          <td>Creates a landmark region that contains the currently expanded accordion panel.</td>
-        </tr>
-        <tr data-test-id="region-aria-labelledby">
-          <td></td>
-          <th scope="row"><code>aria-labelledby="IDREF"</code></th>
-          <td><code>div</code></td>
-          <td>
-            <ul>
-              <li>Defines the accessible name for the <code>region</code> element.</li>
-              <li>References the accordion header button that expands and collapses the region.</li>
-              <li><code>region</code> elements are required to have an accessible name to be identified as a landmark.</li>
-            </ul>
-          </td>
-        </tr>
       </tbody>
     </table>
   </section>
@@ -279,6 +219,6 @@
   <nav>
     <a href="../../#accordion">Accordion Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
   </nav>
-  <script src="js/accordion.js"></script>
+  <script src="js/accordion.js" type="text/javascript"></script>
 </body>
 </html>

@@ -6,7 +6,8 @@ const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertRovingTabindex = require('../util/assertRovingTabindex');
 const assertAriaOwns = require('../util/assertAriaOwns');
 
-const exampleFile = 'treeview/treeview-navigation.html';
+const exampleFile =
+  'content/patterns/treeview/examples/treeview-navigation.html';
 
 const ex = {
   bannerSelector: '#ex1 header',

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>ARIA Basics</title>
+
+    <!-- Core JS and CSS shared by all About content -->
+    <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
+    <link rel="stylesheet" href="../../shared/css/core.css">
+    <script src="../../shared/js/highlight.pack.js"></script>
+    <script src="../../shared/js/app.js"></script>
+    <script src="../../shared/js/skipto.js"></script>
+  </head>
+  <body>
+    <main>
+      <h1>ARIA Basics</h1>
+      <p>
+        A solid understanding of what ARIA is, what accessibility semantics are, and their purpose and limitations can facilitate success when applying guidance provided by the APG.
+      </p>
+      <section id="what-is-aria">
+        <h2>What is ARIA?</h2>
+        <p>
+          ARIA, which stands for Accessible Rich Internet Applications, refers to a set of more than 150 declarations that can be added into web page code so assistive technologies, such as screen readers, can understand how to present the page.
+          For example, the text "Home" might be visually presented as a heading, an interactive link or button, or as the label for a phone number.
+          If the web code does not declare what the element containing that text represents, a screen reader cannot present it to a blind user in an accessible way.
+        </p>
+        <p>
+          The declarations that can be made with ARIA are defined by the <a href="https://www.w3.org/TR/wai-aria/">WAI-ARIA Specification</a>.
+          These attributes and other features required to make sites usable by people who rely on assistive technologies or keyboard navigation are not natively included in the languages used to create web sites, such as HTML, JavaScript, CSS, and SVG.
+          The W3C Web Accessibility Initiative's (WAI) Accessible Rich Internet Applications working group (ARIA WG) is addressing these deficiencies through several W3C standards efforts.
+          The <a href="https://www.w3.org/WAI/intro/aria.php">WAI-ARIA Overview</a>
+          provides additional background on WAI-ARIA, summarizes those efforts, and lists the other documents included in the WAI-ARIA suite.
+        </p>
+      </section>
+      <section id="semantics">
+        <h2>What Are Accessibility Semantics?</h2>
+        <p>
+          Accessibility semantics refer to the meaning of user interface elements that need to be conveyed to assistive technology users in order for those users to understand and use the elements.
+          For example, people who can visually perceive a search icon button understand the element can be activated to perform a search by the way it is styled and positioned.
+          To make that icon accessible to a screen reader user, one of the semantics that needs to be communicated is that the element represents an interactive button.
+          This is accomplished by encoding the element in a way that enables browsers to determine that the accessibility role of the element is <q>button</q>.
+          Similarly, another accessibility semantic browsers must be able to convey for the search icon is its accessible name, which inturn enables screen reader users to know the purpose of the button.
+        </p>
+        <p> 
+          The types of accessibility semantics that may be required to make an element accessible include:
+        </p>
+        <ul>
+          <li>
+            Role: The type of element, e.g., <q>button</q> or <q>list</q>.
+            ARIA includes more than 80 roles that can be declared in content.
+          </li>
+          <li>Properties: Attributes that provide information about the nature of an element, such as its name, orientation, or position in a set.</li>
+          <li>State: A dynamic property, such as selected, checked, or disabled, whose value may be changed by users or application events.</li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

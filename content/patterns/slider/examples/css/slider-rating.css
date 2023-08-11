@@ -1,0 +1,97 @@
+/* CSS Document */
+
+.rating-slider label {
+  display: block;
+}
+
+.rating-slider {
+  color: #005a9c;
+}
+
+.rating-slider svg {
+  forced-color-adjust: auto;
+  touch-action: pan-y;
+}
+
+.rating-slider svg .focus-ring {
+  fill: #eee;
+  stroke-width: 0;
+  fill-opacity: 0;
+}
+
+.rating-slider svg .star {
+  stroke-width: 2px;
+  stroke: currentcolor;
+  fill-opacity: 0;
+}
+
+.rating-slider svg .fill-left,
+.rating-slider svg .fill-right {
+  stroke-width: 0;
+  fill-opacity: 0;
+}
+
+.rating-slider[aria-valuenow="5"] svg .star {
+  fill: currentcolor;
+  fill-opacity: 1;
+}
+
+.rating-slider[aria-valuenow="0.5"] svg .star-1 .fill-left {
+  fill: currentcolor;
+  fill-opacity: 1;
+}
+
+.rating-slider[aria-valuenow="1"] svg .star-1 .star {
+  fill: currentcolor;
+  fill-opacity: 1;
+}
+
+.rating-slider[aria-valuenow="1.5"] svg .star-1 .star,
+.rating-slider[aria-valuenow="1.5"] svg .star-2 .fill-left {
+  fill: currentcolor;
+  fill-opacity: 1;
+}
+
+.rating-slider[aria-valuenow="2"] svg .star-2 .star {
+  fill: currentcolor;
+  fill-opacity: 1;
+}
+
+.rating-slider[aria-valuenow="2.5"] svg .star-2 .star,
+.rating-slider[aria-valuenow="2.5"] svg .star-3 .fill-left {
+  fill: currentcolor;
+  fill-opacity: 1;
+}
+
+.rating-slider[aria-valuenow="3"] svg .star-3 .star {
+  fill: currentcolor;
+  fill-opacity: 1;
+}
+
+.rating-slider[aria-valuenow="3.5"] svg .star-3 .star,
+.rating-slider[aria-valuenow="3.5"] svg .star-4 .fill-left {
+  fill: currentcolor;
+  fill-opacity: 1;
+}
+
+.rating-slider[aria-valuenow="4"] svg .star-4 .star {
+  fill: currentcolor;
+  fill-opacity: 1;
+}
+
+.rating-slider[aria-valuenow="4.5"] svg .star-4 .star,
+.rating-slider[aria-valuenow="4.5"] svg .star-5 .fill-left {
+  fill: currentcolor;
+  fill-opacity: 1;
+}
+
+/* focus styling */
+
+.rating-slider:focus {
+  outline: none;
+}
+
+.rating-slider:focus svg .focus-ring {
+  stroke-width: 2px;
+  stroke: currentcolor;
+}

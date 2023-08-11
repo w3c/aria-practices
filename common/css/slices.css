@@ -76,10 +76,10 @@ div.slices_footer {
 }
 * html .slices_skipnav {
 	display: block
-}
+} /*Switch on for IE6 and below*/
 *+html .slices_skipnav {
 	display: block
-}
+} /*Switch on for IE7*/
 :root .slices_skipnav {
 	display: block
 } /*Switch on for Moz, FF and Safari*/
@@ -111,7 +111,7 @@ div.slices_footer {
 	border: solid #777 2px;
 	color: #fff;
 	background: #333 !important
-}
+} /*Note IE bug that requires use of :active to mimic effect of :focus*/
 .slices_skipnav a:hover {
 	cursor: default
 }

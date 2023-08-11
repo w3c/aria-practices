@@ -5,7 +5,7 @@ const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAttributeDNE = require('../util/assertAttributeDNE');
 const assertAriaRoles = require('../util/assertAriaRoles');
 
-const exampleFile = 'combobox/grid-combo.html';
+const exampleFile = 'content/patterns/combobox/examples/grid-combo.html';
 
 const ex = {
   labelSelector: '#ex1 label',

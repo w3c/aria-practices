@@ -7,8 +7,9 @@ on:
       - "package*.json"
       - ".htmlhintrc"
       - ".vnurc"
-      - "aria-practices.html"
-      - "examples/**/*.html"
+      - "**/*.html"
+      - "**/*.template"
+      - "!common/**/*.html"
       - ".github/workflows/lint-html.yml"
       - ".github/workflows/vnu-jar-problem-matcher.json"
       - ".github/workflows/htmlhint-problem-matcher.json"
@@ -18,8 +19,9 @@ on:
       - "package*.json"
       - ".htmlhintrc"
       - ".vnurc"
-      - "aria-practices.html"
-      - "examples/**/*.html"
+      - "**/*.html"
+      - "**/*.template"
+      - "!common/**/*.html"
       - ".github/workflows/lint-html.yml"
       - ".github/workflows/vnu-jar-problem-matcher.json"
       - ".github/workflows/htmlhint-problem-matcher.json"
@@ -30,10 +32,10 @@ jobs:
 
     steps:
       - name: Clone repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           cache: npm
 

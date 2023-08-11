@@ -4,7 +4,8 @@ const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaRoles = require('../util/assertAriaRoles');
 
-const exampleFile = 'spinbutton/datepicker-spinbuttons.html';
+const exampleFile =
+  'content/patterns/spinbutton/examples/datepicker-spinbuttons.html';
 
 const valuesDay = [
   '',
@@ -356,6 +357,10 @@ ariaTest('up arrow on day', exampleFile, 'spinbutton-up-arrow', async (t) => {
 
   // Add 30 days to the control
   control = (control + 30) % daysInMonth;
+
+  if (control === 0) {
+    control = parseInt(ex.dayMax);
+  }
 
   t.is(
     parseInt(await daySpinner.getText()),

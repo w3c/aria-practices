@@ -6,7 +6,8 @@ const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
 
-const exampleFile = 'dialog-modal/datepicker-dialog.html';
+const exampleFile =
+  'content/patterns/dialog-modal/examples/datepicker-dialog.html';
 
 let today = new Date();
 let todayDataDate = today.toISOString().split('T')[0];
@@ -42,6 +43,41 @@ const ex = {
   nextYearButton: '#example [role="dialog"] button.next-year',
   cancelButton: '#example [role="dialog"] button[value="cancel"]',
   okButton: '#example [role="dialog"] button[value="ok"]',
+};
+
+const setDate = async function (t, day) {
+  const m = day.getMonth() + 1;
+  const d = day.getDate();
+  const y = day.getFullYear();
+
+  await (await t.context.queryElement(t, ex.inputSelector)).click();
+  return t.context.session.executeScript(
+    function () {
+      const inputSelector = arguments[0];
+      const month = arguments[1];
+      const day = arguments[2];
+      const year = arguments[3];
+      document.querySelector(inputSelector).value = `${month}/${day}/${year}`;
+    },
+    ex.inputSelector,
+    m,
+    d,
+    y
+  );
+};
+
+const checkDate = async function (t, dateSelector, day) {
+  const d = String(day.getDate()).padStart(2, '0');
+  const m =
+    day.getMonth() < 9 ? '0' + (day.getMonth() + 1) : day.getMonth() + 1;
+  const targetDate = `${day.getFullYear()}-${m}-${d}`;
+
+  t.is(
+    await t.context.session
+      .findElement(By.css(dateSelector))
+      .getAttribute('data-date'),
+    targetDate
+  );
 };
 
 const setDateToJanFirst2019 = async function (t) {
@@ -764,34 +800,36 @@ ariaTest(
   exampleFile,
   'grid-pageup',
   async (t) => {
-    await t.context.session.findElement(By.css(ex.buttonSelector)).click();
-    let day = new Date();
+    const startDate = '1/31/2023';
+    const targetDates = [
+      '12/31/2022',
+      '11/30/2022',
+      '10/31/2022',
+      '9/30/2022',
+      '8/31/2022',
+      '7/31/2022',
+      '6/30/2022',
+      '5/31/2022',
+      '4/30/2022',
+      '3/31/2022',
+      '2/28/2022',
+      '1/31/2022',
+    ];
 
-    await t.context.session
-      .findElement(By.css(ex.currentlyFocusedDay))
-      .sendKeys(Key.PAGE_UP);
-    day.setMonth(day.getMonth() - 1);
-    t.is(
+    let button = await t.context.queryElement(t, ex.buttonSelector);
+    let day = new Date(startDate);
+    await setDate(t, day);
+    await button.click();
+
+    for (let i = 0; i < targetDates.length; i += 1) {
+      day = new Date(targetDates[i]);
+
       await t.context.session
         .findElement(By.css(ex.currentlyFocusedDay))
-        .getAttribute('data-date'),
-      day.toISOString().split('T')[0],
-      'Sending PAGE UP should move focus back by month: ' +
-        day.toISOString().split('T')[0]
-    );
+        .sendKeys(Key.PAGE_UP);
 
-    await t.context.session
-      .findElement(By.css(ex.currentlyFocusedDay))
-      .sendKeys(Key.PAGE_UP);
-    day.setMonth(day.getMonth() - 1);
-    t.is(
-      await t.context.session
-        .findElement(By.css(ex.currentlyFocusedDay))
-        .getAttribute('data-date'),
-      day.toISOString().split('T')[0],
-      'Sending PAGE UP should move focus back by month, again:' +
-        day.toISOString().split('T')[0]
-    );
+      await checkDate(t, ex.currentlyFocusedDay, day);
+    }
   }
 );
 
@@ -800,34 +838,34 @@ ariaTest(
   exampleFile,
   'grid-shift-pageup',
   async (t) => {
-    await t.context.session.findElement(By.css(ex.buttonSelector)).click();
-    let day = new Date();
+    const startDate = '2/29/2024';
+    const targetDates = [
+      '2/28/2023',
+      '2/28/2022',
+      '2/28/2021',
+      '2/29/2020',
+      '2/28/2019',
+      '2/28/2018',
+      '2/28/2017',
+      '2/29/2016',
+      '2/28/2015',
+      '2/28/2014',
+    ];
 
-    await t.context.session
-      .findElement(By.css(ex.currentlyFocusedDay))
-      .sendKeys(Key.chord(Key.SHIFT, Key.PAGE_UP));
-    day.setFullYear(day.getFullYear() - 1);
-    t.is(
+    let button = await t.context.queryElement(t, ex.buttonSelector);
+    let day = new Date(startDate);
+    await setDate(t, day);
+    await button.click();
+
+    for (let i = 0; i < targetDates.length; i += 1) {
+      day = new Date(targetDates[i]);
+
       await t.context.session
         .findElement(By.css(ex.currentlyFocusedDay))
-        .getAttribute('data-date'),
-      day.toISOString().split('T')[0],
-      'Sending SHIFT+PAGE UP should move focus back by year: ' +
-        day.toISOString().split('T')[0]
-    );
+        .sendKeys(Key.chord(Key.SHIFT, Key.PAGE_UP));
 
-    await t.context.session
-      .findElement(By.css(ex.currentlyFocusedDay))
-      .sendKeys(Key.chord(Key.SHIFT, Key.PAGE_UP));
-    day.setFullYear(day.getFullYear() - 1);
-    t.is(
-      await t.context.session
-        .findElement(By.css(ex.currentlyFocusedDay))
-        .getAttribute('data-date'),
-      day.toISOString().split('T')[0],
-      'Sending SHIFT+PAGE UP should move focus back by year, again:' +
-        day.toISOString().split('T')[0]
-    );
+      await checkDate(t, ex.currentlyFocusedDay, day);
+    }
   }
 );
 
@@ -836,34 +874,36 @@ ariaTest(
   exampleFile,
   'grid-pagedown',
   async (t) => {
-    await t.context.session.findElement(By.css(ex.buttonSelector)).click();
-    let day = new Date();
+    const startDate = '1/31/2023';
+    const targetDates = [
+      '2/28/2023',
+      '3/31/2023',
+      '4/30/2023',
+      '5/31/2023',
+      '6/30/2023',
+      '7/31/2023',
+      '8/31/2023',
+      '9/30/2023',
+      '10/31/2023',
+      '11/30/2023',
+      '12/31/2023',
+      '1/31/2024',
+    ];
 
-    await t.context.session
-      .findElement(By.css(ex.currentlyFocusedDay))
-      .sendKeys(Key.PAGE_DOWN);
-    day.setMonth(day.getMonth() + 1);
-    t.is(
+    let button = await t.context.queryElement(t, ex.buttonSelector);
+    let day = new Date(startDate);
+    await setDate(t, day);
+    await button.click();
+
+    for (let i = 0; i < targetDates.length; i += 1) {
+      day = new Date(targetDates[i]);
+
       await t.context.session
         .findElement(By.css(ex.currentlyFocusedDay))
-        .getAttribute('data-date'),
-      day.toISOString().split('T')[0],
-      'Sending PAGE UP should move focus forward by month: ' +
-        day.toISOString().split('T')[0]
-    );
+        .sendKeys(Key.PAGE_DOWN);
 
-    await t.context.session
-      .findElement(By.css(ex.currentlyFocusedDay))
-      .sendKeys(Key.PAGE_DOWN);
-    day.setMonth(day.getMonth() + 1);
-    t.is(
-      await t.context.session
-        .findElement(By.css(ex.currentlyFocusedDay))
-        .getAttribute('data-date'),
-      day.toISOString().split('T')[0],
-      'Sending PAGE UP should move focus forward by month, again:' +
-        day.toISOString().split('T')[0]
-    );
+      await checkDate(t, ex.currentlyFocusedDay, day);
+    }
   }
 );
 
@@ -872,34 +912,30 @@ ariaTest(
   exampleFile,
   'grid-shift-pagedown',
   async (t) => {
-    await t.context.session.findElement(By.css(ex.buttonSelector)).click();
-    let day = new Date();
+    const startDate = '1/31/2023';
+    const targetDates = [
+      '1/31/2024',
+      '1/31/2025',
+      '1/31/2026',
+      '1/31/2027',
+      '1/31/2028',
+      '1/31/2029',
+    ];
 
-    await t.context.session
-      .findElement(By.css(ex.currentlyFocusedDay))
-      .sendKeys(Key.chord(Key.SHIFT, Key.PAGE_DOWN));
-    day.setFullYear(day.getFullYear() + 1);
-    t.is(
+    let button = await t.context.queryElement(t, ex.buttonSelector);
+    let day = new Date(startDate);
+    await setDate(t, day);
+    await button.click();
+
+    for (let i = 0; i < targetDates.length; i += 1) {
+      day = new Date(targetDates[i]);
+
       await t.context.session
         .findElement(By.css(ex.currentlyFocusedDay))
-        .getAttribute('data-date'),
-      day.toISOString().split('T')[0],
-      'Sending SHIFT+PAGE UP should move focus forward by year: ' +
-        day.toISOString().split('T')[0]
-    );
+        .sendKeys(Key.chord(Key.SHIFT, Key.PAGE_DOWN));
 
-    await t.context.session
-      .findElement(By.css(ex.currentlyFocusedDay))
-      .sendKeys(Key.chord(Key.SHIFT, Key.PAGE_DOWN));
-    day.setFullYear(day.getFullYear() + 1);
-    t.is(
-      await t.context.session
-        .findElement(By.css(ex.currentlyFocusedDay))
-        .getAttribute('data-date'),
-      day.toISOString().split('T')[0],
-      'Sending SHIFT+PAGE UP should move focus forward by year, again:' +
-        day.toISOString().split('T')[0]
-    );
+      await checkDate(t, ex.currentlyFocusedDay, day);
+    }
   }
 );
 

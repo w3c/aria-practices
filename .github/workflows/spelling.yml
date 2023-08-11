@@ -9,8 +9,7 @@ on:
       - "!**/*.min.js"
       - "!**/*.pack.js"
       - "!**/*.paint"
-      - "!aria-practices-DeletedSectionsArchive.html"
-      - "!examples/landmarks/css/bootstrap.css"
+      - "!content/patterns/landmarks/examples/css/bootstrap.css"
       - "!common/**"
       - "!respec-config.js"
 
@@ -20,8 +19,7 @@ on:
       - "!**/*.min.js"
       - "!**/*.pack.js"
       - "!**/*.paint"
-      - "!aria-practices-DeletedSectionsArchive.html"
-      - "!examples/landmarks/css/bootstrap.css"
+      - "!content/patterns/landmarks/examples/css/bootstrap.css"
       - "!common/**"
       - "!respec-config.js"
 
@@ -31,10 +29,10 @@ jobs:
 
     steps:
       - name: Clone repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           cache: npm
 

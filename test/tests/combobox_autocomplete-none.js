@@ -6,7 +6,8 @@ const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertAriaSelectedAndActivedescendant = require('../util/assertAriaSelectedAndActivedescendant');
 
-const exampleFile = 'combobox/combobox-autocomplete-none.html';
+const exampleFile =
+  'content/patterns/combobox/examples/combobox-autocomplete-none.html';
 
 const ex = {
   textboxSelector: '#ex1 input[type="text"]',

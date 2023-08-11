@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!--
+  This template is deprecated.
+  As of November 21, 2016, the task force agrees that:
+  * We will put one example per page.
+  * Multiple examples on a page add complexity, create greater potential for confusion.
+  * Priority is clarity and simplicity even if that creates some duplication of content.
+  An example that was implemented with this template can be found in: examples/checkbox/checkbox-2.html.
+  This template is for examples where multiple implementations of the same design pattern are demonstrated.
+  This template includes space for 3 implementations; reduce or expand as needed.
+  Use this template when multiple implementations are needed to demonstrate subtle but important variations in the design pattern.
+  If you use this template file, rename it to reflect the name of the example, e.g., TriStateCheckboxes.html.
+  Similarly, rename the javascript and CSS stub files in the js and css subdirectories and update the head element of this file.
+-->
+
+<!--  Give this example implementation a name and put it in the title element, e.g., "Checkbox" if implementing the checkbox pattern.
+  The name should be unique if the pattern will have multiple implementations,
+  e.g., "Simple Two-State Checkbox" or "Three-State Checkbox".
+  -->
+<title>EXAMPLE_NAME | WAI-ARIA Authoring Practices 1.2</title>
+
+<!--  Core js and css shared by all examples; do not modify when using this template. -->
+<link href="../css/core.css" rel="stylesheet">
+<script src="../js/examples.js" type="text/javascript"></script>
+
+<!--  js and css for this example.
+  When developing an example implementation of a design pattern,
+  these files will contain the CSS and JS for the example implementation.
+  Rename these files to match the name of the example, e.g., checkbox.js if implementing the checkbox design pattern.
+-->
+<link href="css/example_name.css" rel="stylesheet">
+<script src="js/example_name.js" type="text/javascript"></script>
+
+</head>
+<body>
+  <nav aria-label="Related Links" class="feedback">
+    <ul>
+      <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
+      <li><a href="project_url">Related Issues</a></li>
+      <li><a href="../../#pattern_id">Design Pattern</a></li>
+    </ul>
+  </nav>
+  <main> <!--  Repeat the name of the example in this H1  -->
+  <h1>EXAMPLE_NAME</h1>
+
+  <p>
+    <!-- Provide an overview of the example where the first sentence provides a link to the section of aria-practices.html that describes the pattern this example implements.
+            Include a simple, plain-language description of how the examples work and the differences among the implementations.
+            -->
+    Replace this text with an overview of the example that is something like the following.
+    Following are three example implementations of the
+    <a href="../../#checkbox">design pattern for checkbox</a>
+    that demonstrate how to make a widget that uses the <code>mixed</code> value for <code>aria-checked</code>.
+    These examples also show three different ways of labeling a collection of checkboxes so screen
+    reader users can perceive that all members of the collection are part of a logical group.
+  </p>
+  <p>
+    In the below examples, a set of checkboxes is used to choose condiments for a sandwich. The user
+    can use the first checkbox, labeled "All Condiments", to quickly specify a desire for either all
+    or none of the condiments. If the user chooses to have some but not all condiments, the "All
+    Condiments" checkbox will reflect that state as "partially checked"; this is the <code>mixed</code>
+    value of <code>aria-checked</code>.
+  </p>
+
+  <section>
+    <h2>Examples</h2>
+    <p>If there is a brief, important note that applies to all the implementations, put it here.</p>
+    <section>
+      <h3 id="ex1_label">Example 1: title of this variation of the implementation</h3>
+      <!--  If there is a preferred implementation, make it the first implementation.  -->
+      <p>
+        This is the preferred implementation whenever feasible. (Delete this paragraph if there
+        is not a preferred implementation.)
+      </p>
+      <div role="separator" id="ex1_start_sep" aria-labelledby="ex1_start_sep ex1_label" aria-label="Start of"></div>
+      <!--
+        Note the ID of the following div that contains the example HTML is used as a parameter for the sourceCode.add() function.
+        The sourceCode functions in the examples/js/examples.js render the HTML source to show it to the reader of the example page.
+        If you change the ID of this div, be sure to update the parameters of the sourceCode.add() function call, which is made following the div with id="sc1" where the HTML is render.
+        The div for the rendered HTML source is in the last section of the page.
+      -->
+      <div id="ex1">
+        <!--  Replace content of this div with the example.  -->
+        <p>This is the place where the reader will experience the first functioning example.</p>
+        <ul>
+          <li>
+            The HTML in this section along with the javascript and CSS it uses
+            demonstrate the design pattern.
+          </li>
+          <li>
+            When developing an example implementation for this guide, please follow the
+            <a href="https://ianpouncey.github.io/code-guide/">APG example coding guidelines.</a>
+          </li>
+          <!--  Target of previous link will need to be updated when we move the guidelines into the wiki from Ian's repo.  -->
+        </ul>
+      </div>
+      <div role="separator" id="ex1_end_sep" aria-labelledby="ex1_end_sep ex1_label" aria-label="End of"></div>
+      <h4>Notes</h4>
+      <ol>
+        <li>First of a short list of distinguishing characteristics of this implementation.</li>
+        <li>Second of a short list of distinguishing characteristics of this implementation.</li>
+        <li>... Continue as needed.</li>
+        <li>Do not describe common features that will be included in other sections below.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h3 id="ex2_label">Example 2: title of this variation of the implementation</h3>
+      <div role="separator" id="ex2_start_sep" aria-labelledby="ex2_start_sep ex2_label" aria-label="Start of"></div>
+      <!--
+        Note the ID of the following div that contains the example HTML is used as a parameter for the sourceCode.add() function.
+        The sourceCode functions in the examples/js/examples.js render the HTML source to show it to the reader of the example page.
+        If you change the ID of this div, be sure to update the parameters of the sourceCode.add() function call, which is made following the div with id="sc2" where the HTML is render.
+        The div for the rendered HTML source is in the last section of the page.
+      -->
+      <div id="ex2">
+        <!--  Replace content of this div with the example.  -->
+        <p>This is the place where the reader will experience the second functioning example.</p>
+        <ul>
+          <li>The HTML in this section along with the javascript and CSS it uses demonstrate
+            the design pattern.</li>
+          <li>
+            When developing an example implementation for this guide, please follow the
+            <a href="https://ianpouncey.github.io/code-guide/">APG example coding guidelines</a>
+            .
+          </li>
+          <!--  Target of previous link will need to be updated when we move the guidelines into the wiki from Ian's repo.  -->
+        </ul>
+      </div>
+      <div role="separator" id="ex2_end_sep" aria-labelledby="ex2_end_sep ex2_label" aria-label="End of"></div>
+      <h4>Notes</h4>
+      <ol>
+        <li>First of a short list of distinguishing characteristics of this implementation.</li>
+        <li>Second of a short list of distinguishing characteristics of this implementation.</li>
+        <li>... Continue as needed.</li>
+        <li>Do not describe common features that will be included in other sections below.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h3 id="ex3_label">Example 3: title of this variation of the implementation</h3>
+      <div role="separator" id="ex3_start_sep" aria-labelledby="ex3_start_sep ex3_label" aria-label="Start of"></div>
+      <!--
+        Note the ID of the following div that contains the example HTML is used as a parameter for the sourceCode.add() function.
+        The sourceCode functions in the examples/js/examples.js render the HTML source to show it to the reader of the example page.
+        If you change the ID of this div, be sure to update the parameters of the sourceCode.add() function call, which is made following the div with id="sc3" where the HTML is render.
+        The div for the rendered HTML source is in the last section of the page.
+    -->
+      <div id="ex3">
+        <!--  Replace content of this div with the example.  -->
+        <p>This is the place where the reader will experience the third functioning example.</p>
+        <ul>
+          <li>The HTML in this section along with the javascript and CSS it uses demonstrate
+            the design pattern.</li>
+          <li>
+            When developing an example implementation for this guide, please follow the
+            <a href="https://ianpouncey.github.io/code-guide/">APG example coding guidelines</a>
+            .
+          </li>
+          <!--  Target of previous link will need to be updated when we move the guidelines into the wiki from Ian's repo.  -->
+        </ul>
+      </div>
+      <div role="separator" id="ex3_end_sep" aria-labelledby="ex3_end_sep ex3_label" aria-label="End of"></div>
+      <h4>Notes</h4>
+      <ol>
+        <li>First of a short list of distinguishing characteristics of this implementation.</li>
+        <li>Second of a short list of distinguishing characteristics of this implementation.</li>
+        <li>... Continue as needed.</li>
+        <li>Do not describe common features that will be included in other sections below.</li>
+      </ol>
+    </section>
+  </section>
+
+  <section>
+    <h2>Other Accessibility Features</h2>
+    <p class="annotate">
+      Optional section; delete if not needed.
+      Use this section to list other accessibility features
+      demonstrated in these examples.
+      These could be features that are included to make the example more relevant to application in the real world but are not specifically part of the design pattern.
+      For an example use of this section, see the
+      <a href="../listbox/listbox.html">listbox pattern example page.</a>
+    </p>
+    <ol>
+      <li>Feature 1</li>
+      <li>Feature 2</li>
+      <li>Etc.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2 id="kbd_label">Keyboard Support</h2>
+    <!--
+      List the keys supported in this example.
+      Recommendation: Copy the list from the keyboard section of the design pattern in aria-practices.html
+      and then reduce/simplify it to describe only what this example supports and how it behaves.
+     -->
+    <ul>
+      <li><kbd>KEY_NAME</kbd>: function</li>
+      <li><kbd>KEY_NAME</kbd>: function</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
+    <!--
+      Update this table to describe how roles, properties, states, and tabindex are used in this example.
+      If the content will vary significantly for the above implementations, make this a level 4 section inside each of the above level 3 implementation sections.
+    -->
+    <table aria-labelledby="rps_label" class="data attributes">
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Applied to Element</th>
+          <th>Usage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th><code>role=&quot;ROLE_NAME&quot;</code></th>
+          <td><code>HTML_ELEMENT</code></td>
+          <td>Brief explanation of usage, purpose, benefit, and/or guidance that is relevant to this specific implementation.</td>
+        </tr>
+        <tr>
+          <th>
+            <!--  Specify states and properties used like this; replace with the attributes that are relevant. -->
+            <code>aria-labelledby=&quot;ID_REF&quot;</code>
+          </th>
+          <td><code>HTML_ELEMENT</code></td>
+          <td>Brief explanation of usage, purpose, benefit, and/or guidance that is relevant to this specific implementation.</td>
+        </tr>
+        <tr>
+          <th>And so on ... covering all relevant attributes</th>
+          <td>...</td>
+          <td>...</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Javascript and CSS Source Code</h2>
+    <!--  After the js and css files are named with the name of this example, change the href and text of the following 2 links to refer to the appropriate js and css files.  -->
+    <ul>
+      <li>
+        CSS:
+        <a href="css/example_name.css" type="tex/css">example_name.css</a>
+      </li>
+      <li>
+        Javascript:
+        <a href="js/example_name.js" type="text/javascript">example_name.js</a>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>HTML Source Code</h2>
+    <h3 id="sc1_label">Example 1: title of this variation of the implementation</h3>
+    <div id="sc1_start_sep" role="separator" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of HTML for"></div>
+    <pre><code id="sc1"></code></pre>
+    <div id="sc1_end_sep" role="separator" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of HTML for"></div>
+    <!--
+      The following script will show the reader the HTML source for the example that is in the div with ID 'ex1'.
+      It renders the HTML in the preceding pre element with ID 'sc1'.
+      If you change the ID of either the 'ex1' div or the 'sc1' pre, be sure to update the sourceCode.add function parameters.
+    -->
+    <script>
+      sourceCode.add('sc1', 'ex1');
+    </script>
+
+    <h3 id="sc2_label">Example 2: title of this variation of the implementation</h3>
+    <div id="sc2_start_sep" role="separator" aria-labelledby="sc2_start_sep sc2_label" aria-label="Start of HTML for"></div>
+    <pre id="sc2"></pre>
+    <div id="sc2_end_sep" role="separator" aria-labelledby="sc2_end_sep sc2_label" aria-label="End of HTML for"></div>
+    <!--
+      The following script will show the reader the HTML source for the example that is in the div with ID 'ex2'.
+      It renders the HTML in the preceding pre element with ID 'sc2'.
+      If you change the ID of either the 'ex2' div or the 'sc2' pre, be sure to update the sourceCode.add function parameters.
+      -->
+    <script>
+      sourceCode.add('sc2', 'ex2');
+    </script>
+
+    <h3 id="sc3_label">Example 3: title of this variation of the implementation</h3>
+    <div id="sc3_start_sep" role="separator" aria-labelledby="sc3_start_sep sc3_label" aria-label="Start of HTML for"></div>
+    <pre id="sc3"></pre>
+    <div id="sc3_end_sep" role="separator" aria-labelledby="sc3_end_sep sc3_label" aria-label="End of HTML for"></div>
+    <!--
+      The following script will show the reader the HTML source for the example that is in the div with ID 'ex3'.
+      It renders the HTML in the preceding pre element with ID 'sc3'.
+      If you change the ID of either the 'ex3' div or the 'sc3' pre, be sure to update the sourceCode.add function parameters.
+    -->
+    <script>
+      sourceCode.add('sc3', 'ex3');
+    </script>
+    <!--  After all source has been added, run make to do the insert.  -->
+    <script>
+      sourceCode.make();
+    </script>
+  </section>
+  </main>
+  <nav>
+    <!--  Update the pattern_ID parameter of this link to refer to the APG design pattern section related to this example.  -->
+    <a href="../../#pattern_ID">EXAMPLE_NAME Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
+  </nav>
+</body>
+</html>

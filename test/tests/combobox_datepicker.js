@@ -1,12 +1,13 @@
 const { ariaTest } = require('..');
-const { Key } = require('selenium-webdriver');
+const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAttributeDNE = require('../util/assertAttributeDNE');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
 
-const exampleFile = 'combobox/combobox-datepicker.html';
+const exampleFile =
+  'content/patterns/combobox/examples/combobox-datepicker.html';
 
 let today = new Date();
 let todayDataDate = today.toISOString().split('T')[0];
@@ -15,6 +16,7 @@ const ex = {
   comboboxSelector: '#ex1 .group input',
   buttonSelector: '#ex1 .group button',
   calendarNavigationButtonSelector: '#ex1 [role="dialog"] .header button',
+  currentlyFocusedDay: '#ex1 [role="dialog"] td[tabindex="0"]',
   dialogSelector: '#ex1 [role="dialog"]',
   cancelSelector: '#ex1 [role="dialog"] button[value="cancel"]',
   dialogMessageSelector: '#ex1 .dialog-message',
@@ -30,6 +32,7 @@ const ex = {
   prevMonth: '#ex1 [role="dialog"] button.prev-month',
   nextMonth: '#ex1 [role="dialog"] button.next-month',
   nextYear: '#ex1 [role="dialog"] button.next-year',
+  selectedDay: '#ex1 [role="dialog"] td[aria-selected="true"]',
 };
 
 ex.allFocusableElementsInDialog = [
@@ -41,6 +44,41 @@ ex.allFocusableElementsInDialog = [
   ex.nextMonth,
   ex.nextYear,
 ];
+
+const setDate = async function (t, day) {
+  const m = day.getMonth() + 1;
+  const d = day.getDate();
+  const y = day.getFullYear();
+
+  await (await t.context.queryElement(t, ex.comboboxSelector)).click();
+  return t.context.session.executeScript(
+    function () {
+      const inputSelector = arguments[0];
+      const month = arguments[1];
+      const day = arguments[2];
+      const year = arguments[3];
+      document.querySelector(inputSelector).value = `${month}/${day}/${year}`;
+    },
+    ex.comboboxSelector,
+    m,
+    d,
+    y
+  );
+};
+
+const checkDate = async function assertAriaRoles(t, dateSelector, day) {
+  const d = day.getDate() < 10 ? '0' + day.getDate() : day.getDate();
+  const m =
+    day.getMonth() < 9 ? '0' + (day.getMonth() + 1) : day.getMonth() + 1;
+  const targetDate = `${day.getFullYear()}-${m}-${d}`;
+
+  t.is(
+    await t.context.session
+      .findElement(By.css(dateSelector))
+      .getAttribute('data-date'),
+    targetDate
+  );
+};
 
 const setDateToJanFirst2019 = async function (t) {
   await (await t.context.queryElement(t, ex.comboboxSelector)).click();
@@ -189,15 +227,15 @@ ariaTest(
 );
 
 ariaTest(
-  'aria-live="polite" on keyboard support message',
+  'aria-autocomplete="none" on textbox',
   exampleFile,
-  'dialog-aria-live',
+  'textbox-aria-autocomplete',
   async (t) => {
     await assertAttributeValues(
       t,
-      ex.dialogMessageSelector,
-      'aria-live',
-      'polite'
+      ex.comboboxSelector,
+      'aria-autocomplete',
+      'none'
     );
   }
 );
@@ -219,6 +257,20 @@ ariaTest(
     await assertAttributeValues(
       t,
       `${ex.dialogSelector} h2`,
+      'aria-live',
+      'polite'
+    );
+  }
+);
+
+ariaTest(
+  'aria-live="polite" on keyboard support message',
+  exampleFile,
+  'dialog-aria-live',
+  async (t) => {
+    await assertAttributeValues(
+      t,
+      ex.dialogMessageSelector,
       'aria-live',
       'polite'
     );
@@ -521,138 +573,406 @@ ariaTest(
   }
 );
 
-// TODO: Missing tests. Either mark as "test-not-required" or write the test.
-ariaTest.failing(
-  `Test not implemented: grid-space`,
+ariaTest(
+  'ENTER selects date in focus and closes dialog box',
+  exampleFile,
+  'grid-enter',
+  async (t) => {
+    // By default, focus will be on today's date.
+    let day = new Date();
+
+    let combo = await t.context.queryElement(t, ex.comboboxSelector);
+    await setDate(t, day);
+    await combo.sendKeys(Key.ARROW_DOWN);
+
+    await t.context.session
+      .findElement(By.css(ex.selectedDay))
+      .sendKeys(Key.ARROW_RIGHT);
+    await t.context.session
+      .findElement(By.css(ex.currentlyFocusedDay))
+      .sendKeys(Key.ENTER);
+
+    day.setDate(day.getDate() + 1);
+
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.comboboxSelector))
+        .getAttribute('value'),
+      `${day.getMonth() + 1}/${day.getDate()}/${day.getFullYear()}`
+    );
+  }
+);
+
+ariaTest(
+  'SPACE selects date in focus',
   exampleFile,
   'grid-space',
   async (t) => {
-    t.fail();
+    // By default, focus will be on todays date.
+    let day = new Date();
+
+    let combo = await t.context.queryElement(t, ex.comboboxSelector);
+    await setDate(t, day);
+    await combo.sendKeys(Key.ARROW_DOWN);
+
+    await t.context.session
+      .findElement(By.css(ex.selectedDay))
+      .sendKeys(Key.ARROW_RIGHT);
+    await t.context.session
+      .findElement(By.css(ex.currentlyFocusedDay))
+      .sendKeys(' ');
+
+    day.setDate(day.getDate() + 1);
+    await checkDate(t, ex.selectedDay, day);
   }
 );
 
-ariaTest.failing(
-  `Test not implemented: grid-return`,
-  exampleFile,
-  'grid-return',
-  async (t) => {
-    t.fail();
-  }
-);
-
-ariaTest.failing(
-  `Test not implemented: grid-up-arrow`,
+ariaTest(
+  `UP ARROW moves focus to same day on previous week`,
   exampleFile,
   'grid-up-arrow',
   async (t) => {
-    t.fail();
+    // By default, focus will be on todays date.
+    let day = new Date();
+
+    let combo = await t.context.queryElement(t, ex.comboboxSelector);
+    await setDate(t, day);
+    await combo.sendKeys(Key.ARROW_DOWN);
+
+    await t.context.session
+      .findElement(By.css(ex.selectedDay))
+      .sendKeys(Key.ARROW_UP);
+
+    day.setDate(day.getDate() - 7);
+    await checkDate(t, ex.currentlyFocusedDay, day);
   }
 );
 
-ariaTest.failing(
-  `Test not implemented: grid-down-arrow`,
+ariaTest(
+  `DOWN ARROW moves focus to same day on next week`,
   exampleFile,
   'grid-down-arrow',
   async (t) => {
-    t.fail();
+    // By default, focus will be on todays date.
+    let day = new Date();
+
+    let combo = await t.context.queryElement(t, ex.comboboxSelector);
+    await setDate(t, day);
+    await combo.sendKeys(Key.ARROW_DOWN);
+
+    await t.context.session
+      .findElement(By.css(ex.selectedDay))
+      .sendKeys(Key.ARROW_DOWN);
+
+    day.setDate(day.getDate() + 7);
+    await checkDate(t, ex.currentlyFocusedDay, day);
   }
 );
 
-ariaTest.failing(
-  `Test not implemented: grid-right-arrow`,
+ariaTest(
+  `RIGHT ARROW moves focus to next day`,
   exampleFile,
   'grid-right-arrow',
   async (t) => {
-    t.fail();
+    // By default, focus will be on todays date.
+    let day = new Date();
+
+    let combo = await t.context.queryElement(t, ex.comboboxSelector);
+    await setDate(t, day);
+    await combo.sendKeys(Key.ARROW_DOWN);
+
+    await t.context.session
+      .findElement(By.css(ex.selectedDay))
+      .sendKeys(Key.ARROW_RIGHT);
+
+    day.setDate(day.getDate() + 1);
+    await checkDate(t, ex.currentlyFocusedDay, day);
   }
 );
 
-ariaTest.failing(
-  `Test not implemented: grid-left-arrow`,
+ariaTest(
+  `LEFT ARROW moves focus to previous day`,
   exampleFile,
   'grid-left-arrow',
   async (t) => {
-    t.fail();
+    // By default, focus will be on todays date.
+    let day = new Date();
+
+    let combo = await t.context.queryElement(t, ex.comboboxSelector);
+    await setDate(t, day);
+    await combo.sendKeys(Key.ARROW_DOWN);
+
+    await t.context.session
+      .findElement(By.css(ex.selectedDay))
+      .sendKeys(Key.ARROW_LEFT);
+
+    day.setDate(day.getDate() - 1);
+    await checkDate(t, ex.currentlyFocusedDay, day);
   }
 );
 
-ariaTest.failing(
-  `Test not implemented: grid-home`,
+ariaTest(
+  `HOME moves focus to the Sunday of the current week`,
   exampleFile,
   'grid-home',
   async (t) => {
-    t.fail();
+    const dates = [
+      ['3/1/2023', '2/26/2023'],
+      ['3/2/2023', '2/26/2023'],
+      ['3/3/2023', '2/26/2023'],
+      ['3/4/2023', '2/26/2023'],
+      ['3/5/2023', '3/5/2023'],
+      ['3/6/2023', '3/5/2023'],
+    ];
+
+    for (let i = 0; i < dates.length; i += 1) {
+      let startDate = dates[i][0];
+      let targetDate = dates[i][1];
+
+      let day = new Date(startDate);
+
+      let combo = await t.context.queryElement(t, ex.comboboxSelector);
+      await setDate(t, day);
+      await combo.sendKeys(Key.ARROW_DOWN);
+
+      await t.context.session
+        .findElement(By.css(ex.selectedDay))
+        .sendKeys(Key.HOME);
+
+      day = new Date(targetDate);
+      await checkDate(t, ex.currentlyFocusedDay, day);
+    }
   }
 );
 
-ariaTest.failing(
-  `Test not implemented: grid-end`,
+ariaTest(
+  `END moves focus to the Saturday of the current week`,
   exampleFile,
   'grid-end',
   async (t) => {
-    t.fail();
+    const dates = [
+      ['2/28/2023', '3/4/2023'],
+      ['3/1/2023', '3/4/2023'],
+      ['3/2/2023', '3/4/2023'],
+      ['3/3/2023', '3/4/2023'],
+      ['3/4/2023', '3/4/2023'],
+      ['3/5/2023', '3/11/2023'],
+    ];
+
+    for (let i = 0; i < dates.length; i += 1) {
+      let startDate = dates[i][0];
+      let targetDate = dates[i][1];
+
+      let day = new Date(startDate);
+
+      let combo = await t.context.queryElement(t, ex.comboboxSelector);
+      await setDate(t, day);
+      await combo.sendKeys(Key.ARROW_DOWN);
+
+      await t.context.session
+        .findElement(By.css(ex.selectedDay))
+        .sendKeys(Key.END);
+
+      day = new Date(targetDate);
+      await checkDate(t, ex.currentlyFocusedDay, day);
+    }
   }
 );
 
-ariaTest.failing(
-  `Test not implemented: grid-pageup`,
+ariaTest(
+  `PAGE UP moves focus to same day on previous month`,
   exampleFile,
   'grid-pageup',
   async (t) => {
-    t.fail();
+    const startDate = '1/31/2023';
+    const targetDates = [
+      '12/31/2022',
+      '11/30/2022',
+      '10/31/2022',
+      '9/30/2022',
+      '8/31/2022',
+      '7/31/2022',
+      '6/30/2022',
+      '5/31/2022',
+      '4/30/2022',
+      '3/31/2022',
+      '2/28/2022',
+      '1/31/2022',
+    ];
+
+    let combo = await t.context.queryElement(t, ex.comboboxSelector);
+    let day = new Date(startDate);
+    await setDate(t, day);
+    await combo.sendKeys(Key.ARROW_DOWN);
+
+    for (let i = 0; i < targetDates.length; i += 1) {
+      day = new Date(targetDates[i]);
+
+      await t.context.session
+        .findElement(By.css(ex.currentlyFocusedDay))
+        .sendKeys(Key.PAGE_UP);
+
+      await checkDate(t, ex.currentlyFocusedDay, day);
+    }
   }
 );
 
-ariaTest.failing(
-  `Test not implemented: grid-shift-pageup`,
+ariaTest(
+  `SHIFT PAGE UP moves focus to same day and month in the previous year`,
   exampleFile,
   'grid-shift-pageup',
   async (t) => {
-    t.fail();
+    const startDate = '1/31/2023';
+    const targetDates = [
+      '1/31/2022',
+      '1/31/2021',
+      '1/31/2020',
+      '1/31/2019',
+      '1/31/2018',
+      '1/31/2017',
+    ];
+
+    let combo = await t.context.queryElement(t, ex.comboboxSelector);
+    let day = new Date(startDate);
+    await setDate(t, day);
+    await combo.sendKeys(Key.ARROW_DOWN);
+
+    for (let i = 0; i < targetDates.length; i += 1) {
+      day = new Date(targetDates[i]);
+
+      await t.context.session
+        .findElement(By.css(ex.currentlyFocusedDay))
+        .sendKeys(Key.chord(Key.SHIFT, Key.PAGE_UP));
+
+      await checkDate(t, ex.currentlyFocusedDay, day);
+    }
   }
 );
 
-ariaTest.failing(
-  `Test not implemented: grid-pagedown`,
+ariaTest(
+  `PAGE DOWN moves focus to same day on next month`,
   exampleFile,
   'grid-pagedown',
   async (t) => {
-    t.fail();
+    const startDate = '1/31/2023';
+    const targetDates = [
+      '2/28/2023',
+      '3/31/2023',
+      '4/30/2023',
+      '5/31/2023',
+      '6/30/2023',
+      '7/31/2023',
+      '8/31/2023',
+      '9/30/2023',
+      '10/31/2023',
+      '11/30/2023',
+      '12/31/2023',
+      '1/31/2024',
+    ];
+
+    let combo = await t.context.queryElement(t, ex.comboboxSelector);
+    let day = new Date(startDate);
+    await setDate(t, day);
+    await combo.sendKeys(Key.ARROW_DOWN);
+
+    for (let i = 0; i < targetDates.length; i += 1) {
+      day = new Date(targetDates[i]);
+
+      await t.context.session
+        .findElement(By.css(ex.currentlyFocusedDay))
+        .sendKeys(Key.PAGE_DOWN);
+
+      await checkDate(t, ex.currentlyFocusedDay, day);
+    }
   }
 );
 
-ariaTest.failing(
-  `Test not implemented: grid-shift-pagedown`,
+ariaTest(
+  `SHIFT PAGE DOWN moves focus to same day and month in the next year`,
   exampleFile,
   'grid-shift-pagedown',
   async (t) => {
-    t.fail();
+    const startDate = '1/31/2023';
+    const targetDates = [
+      '1/31/2024',
+      '1/31/2025',
+      '1/31/2026',
+      '1/31/2027',
+      '1/31/2028',
+      '1/31/2029',
+    ];
+
+    let combo = await t.context.queryElement(t, ex.comboboxSelector);
+    let day = new Date(startDate);
+    await setDate(t, day);
+    await combo.sendKeys(Key.ARROW_DOWN);
+
+    for (let i = 0; i < targetDates.length; i += 1) {
+      day = new Date(targetDates[i]);
+
+      await t.context.session
+        .findElement(By.css(ex.currentlyFocusedDay))
+        .sendKeys(Key.chord(Key.SHIFT, Key.PAGE_DOWN));
+
+      await checkDate(t, ex.currentlyFocusedDay, day);
+    }
   }
 );
 
-ariaTest.failing(
-  `Test not implemented: okay-cancel-button-space-return`,
+ariaTest(
+  `ENTER on cancel button does not select date`,
   exampleFile,
   'okay-cancel-button-space-return',
   async (t) => {
-    t.fail();
-  }
-);
+    await t.context.session
+      .findElement(By.css(ex.comboboxSelector))
+      .sendKeys(Key.ARROW_DOWN);
 
-ariaTest.failing(
-  `Test not implemented: textbox-aria-autocomplete`,
-  exampleFile,
-  'textbox-aria-autocomplete',
-  async (t) => {
-    t.fail();
-  }
-);
+    await t.context.session
+      .findElement(By.css(ex.cancelSelector))
+      .sendKeys(Key.ENTER);
 
-ariaTest.failing(
-  `Test not implemented: textbox-aria-live`,
-  exampleFile,
-  'textbox-aria-live',
-  async (t) => {
-    t.fail();
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.comboboxSelector))
+        .getAttribute('value'),
+      '',
+      'ENTER sent to cancel should not set a date'
+    );
+
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.dialogSelector))
+        .getCssValue('display'),
+      'none',
+      'After sending ENTER to the "cancel" button, the calendar dialog should close'
+    );
+
+    await setDateToJanFirst2019(t);
+
+    await t.context.session
+      .findElement(By.css(ex.comboboxSelector))
+      .sendKeys(Key.ARROW_DOWN);
+
+    await t.context.session
+      .findElement(By.css(ex.currentlyFocusedDay))
+      .sendKeys(Key.ARROW_RIGHT);
+    await t.context.session
+      .findElement(By.css(ex.cancelSelector))
+      .sendKeys(Key.ENTER);
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.comboboxSelector))
+        .getAttribute('value'),
+      '1/1/2019',
+      'ENTER send to cancel should not change date'
+    );
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.dialogSelector))
+        .getCssValue('display'),
+      'none',
+      'After sending ENTER to the "cancel" button, the calendar dialog should close'
+    );
   }
 );

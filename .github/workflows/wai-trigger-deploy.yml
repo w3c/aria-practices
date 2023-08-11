@@ -1,0 +1,29 @@
+name: Trigger deploy for WAI-APG site
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/wai-trigger-deploy.yml"
+      - "common/**"
+      - "content/**"
+      - "README.md"
+
+jobs:
+  deploy-wai:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Trigger wai-aria-practices update
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GH_TOKEN }}
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: 'wai-aria-practices',
+              workflow_id: 'deploy.yml',
+              ref: 'main'
+            });

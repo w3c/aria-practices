@@ -4,6 +4,8 @@ const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 
+const exampleFile = 'content/patterns/link/examples/link.html';
+
 let pageExamples = [
   {
     exampleId: 'ex1',
@@ -23,7 +25,7 @@ let pageExamples = [
 
 ariaTest(
   'Test "role" attribute exists',
-  'link/link.html',
+  exampleFile,
   'link-role',
   async (t) => {
     for (let i = 0; i < pageExamples.length; i++) {
@@ -43,7 +45,7 @@ ariaTest(
 
 ariaTest(
   'Test "tabindex" attribute set to 0',
-  'link/link.html',
+  exampleFile,
   'tabindex',
   async (t) => {
     for (let i = 0; i < pageExamples.length; i++) {
@@ -61,7 +63,7 @@ ariaTest(
   }
 );
 
-ariaTest('Test "alt" attribute exists', 'link/link.html', 'alt', async (t) => {
+ariaTest('Test "alt" attribute exists', exampleFile, 'alt', async (t) => {
   for (let i = 0; i < pageExamples.length; i++) {
     let ex = pageExamples[i];
     if (!Object.prototype.hasOwnProperty.call(ex, 'alt')) {
@@ -79,7 +81,7 @@ ariaTest('Test "alt" attribute exists', 'link/link.html', 'alt', async (t) => {
 
 ariaTest(
   'Test "aria-label" attribute exists',
-  'link/link.html',
+  exampleFile,
   'aria-label',
   async (t) => {
     for (let i = 0; i < pageExamples.length; i++) {
@@ -93,40 +95,35 @@ ariaTest(
   }
 );
 
-ariaTest(
-  'Test "ENTER" key behavior',
-  'link/link.html',
-  'key-enter',
-  async (t) => {
-    for (let i = 0; i < pageExamples.length; i++) {
-      await t.context.session.get(t.context.url);
+ariaTest('Test "ENTER" key behavior', exampleFile, 'key-enter', async (t) => {
+  for (let i = 0; i < pageExamples.length; i++) {
+    await t.context.session.get(t.context.url);
 
-      let ex = pageExamples[i];
-      let linkLocator = By.css(ex.linkSelector);
-      let linkElement = await t.context.session.findElement(linkLocator);
+    let ex = pageExamples[i];
+    let linkLocator = By.css(ex.linkSelector);
+    let linkElement = await t.context.session.findElement(linkLocator);
 
-      // Update url to remove external reference for dependable testing
-      const newUrl = t.context.url + '#test-url-change';
-      await t.context.session.executeScript(
-        function () {
-          let [selector, newUrl] = arguments;
-          document.querySelector(selector).onkeydown = function (event) {
-            goToLink(event, newUrl);
-          };
-        },
-        ex.linkSelector,
-        newUrl
-      );
+    // Update url to remove external reference for dependable testing
+    const newUrl = t.context.url + '#test-url-change';
+    await t.context.session.executeScript(
+      function () {
+        let [selector, newUrl] = arguments;
+        document.querySelector(selector).onkeydown = function (event) {
+          goToLink(event, newUrl);
+        };
+      },
+      ex.linkSelector,
+      newUrl
+    );
 
-      await linkElement.sendKeys(Key.ENTER);
+    await linkElement.sendKeys(Key.ENTER);
 
-      t.is(
-        await t.context.session.getCurrentUrl(),
-        newUrl,
-        'ENTER key on element with selector "' +
-          ex.linkSelector +
-          '" should activate link.'
-      );
-    }
+    t.is(
+      await t.context.session.getCurrentUrl(),
+      newUrl,
+      'ENTER key on element with selector "' +
+        ex.linkSelector +
+        '" should activate link.'
+    );
   }
-);
+});
