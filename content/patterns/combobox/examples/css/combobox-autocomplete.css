@@ -13,7 +13,7 @@
   background-color: white;
   color: black;
   box-sizing: border-box;
-  height: 24px;
+  height: 30px;
   padding: 0;
   margin: 0;
   vertical-align: bottom;
@@ -46,7 +46,7 @@ ul[role="listbox"] {
   padding: 0;
   position: absolute;
   left: 4px;
-  top: 28px;
+  top: 34px;
   list-style: none;
   background-color: white;
   display: none;
