@@ -10,7 +10,7 @@ const assertAriaDescribedby = require('../util/assertAriaDescribedby');
 const exampleFile = 'content/patterns/feed/examples/feed.html';
 
 const ex = {
-  feedFrameSelector: '#ex1 iframe',
+  frameID: 'feed_frame',
   feedSelector: '[role="feed"]',
   articleSelector: '[role="article"]',
   timeToLoad10Articles: 2500,
@@ -19,7 +19,7 @@ const ex = {
 };
 
 const navigateToFeed = async function (t) {
-  await t.context.session.findElement(By.css(ex.feedFrameSelector)).click();
+  await t.context.session.switchTo().frame(ex.frameID);
 };
 
 const waitForArticlesToLoad = async function (t) {
