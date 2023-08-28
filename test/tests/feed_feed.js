@@ -6,12 +6,11 @@ const assertAttributeDNE = require('../util/assertAttributeDNE');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaDescribedby = require('../util/assertAriaDescribedby');
-const assert = require('assert');
 
 const exampleFile = 'content/patterns/feed/examples/feed.html';
 
 const ex = {
-  feedLinkSelector: '#ex1 button',
+  feedFrameSelector: '#ex1 iframe',
   feedSelector: '[role="feed"]',
   articleSelector: '[role="article"]',
   timeToLoad10Articles: 2500,
@@ -20,11 +19,7 @@ const ex = {
 };
 
 const navigateToFeed = async function (t) {
-  await t.context.session.findElement(By.css(ex.feedLinkSelector)).click();
-
-  // Make sure the appropriate dialog is open
-  const dialog = await t.context.session.findElement(By.css('#dialog1'));
-  assert(await dialog.isDisplayed(), 'Feed dialog should have opened');
+  await t.context.session.findElement(By.css(ex.feedFrameSelector)).click();
 };
 
 const waitForArticlesToLoad = async function (t) {
@@ -44,7 +39,7 @@ const waitForArticlesToLoad = async function (t) {
 
 const loadMoreArticles = async function (t) {
   return t.context.session.executeScript(() => {
-    document.getElementById('dialog1').scrollBy(0, 2000);
+    window.scrollBy(0, 2000);
   });
 };
 
