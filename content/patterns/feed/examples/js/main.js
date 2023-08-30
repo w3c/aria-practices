@@ -13,8 +13,11 @@
  * @function onload
  * @description Initialize the feed once the page has loaded
  */
-window.addEventListener('load', function () {
-  var feedNode = document.getElementById('restaurant-feed');
+document.getElementById('feed_frame').addEventListener('load', function () {
+  // var feedNode = document.getElementById('restaurant-feed');
+  var iframe = document.getElementById('feed_frame');
+  var feedNode =
+    iframe.contentWindow.document.getElementById('restaurant-feed');
   var delaySelect = document.getElementById('delay-time-select');
   var restaurantFeed = new aria.Feed(feedNode, delaySelect);
 

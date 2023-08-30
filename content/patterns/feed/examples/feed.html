@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feed Example</title>
+    <title>Infinite Scrolling Feed Example</title>
 
     <!-- Core JS and CSS shared by all examples -->
     <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -12,6 +12,12 @@
     <script src="../../../shared/js/highlight.pack.js"></script>
     <script src="../../../shared/js/app.js"></script>
     <script src="../../../shared/js/skipto.js"></script>
+
+    <!-- JS and CSS for this example -->
+    <script src="../../../shared/js/utils.js"></script>
+    <script src="js/feed.js"></script>
+    <script src="js/feedDisplay.js"></script>
+    <script src="js/main.js"></script>
   </head>
   <body>
     <nav aria-label="Related Links" class="feedback">
@@ -21,7 +27,7 @@
       </ul>
     </nav>
     <main>
-      <h1>Feed Example</h1>
+      <h1>Infinite Scrolling Feed Example</h1>
 
       <section>
         <h2>About This Example</h2>
@@ -44,7 +50,14 @@
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div id="ex1">
           <p>The example feed experience below is presented in an iframe in order not to obstruct from the rest of the content of the page. </p>
-          <iframe id="feed_frame" src="../feed-display.html" height="500" title="Feed example" style="width: 100%"></iframe>
+          <div id="side-panel">
+            <label for="delay-time-select">Select article loading delay</label>
+            <select id="delay-time-select" name="delay_time">
+              <option value="200">200 ms</option>
+              <option value="800">800 ms</option>
+            </select>
+          </div>
+          <iframe id="feed_frame" src="./feed-display.html" height="500" title="Feed example" style="width: 100%"></iframe>
         </div>
         <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
       </section>
