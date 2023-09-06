@@ -109,7 +109,7 @@ contains additional useful editorial guidance.
 
 ## ARIA Roles, Properties and States Referenced in Guidance and Examples(Also known as APG Coverage Report)
 
-[APG Coverage Report](https://raw.githack.com/w3c/aria-practices/main/coverage/index.html) includes information on number of guidance and example references in the WAI-ARIA Authoring Practices for each ARIA role, property and state.
+[APG Coverage Report](https://raw.githack.com/w3c/aria-practices/main/content/about/coverage-and-quality/coverage-and-quality-report.html) includes information on number of guidance and example references in the WAI-ARIA Authoring Practices for each ARIA role, property and state.
 
 As of January 11, 2022, APG has examples of
 
