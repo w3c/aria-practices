@@ -76,9 +76,6 @@ aria.Toolbar = class Toolbar {
         case 'Home':
           nextItem = this.items[0];
           break;
-
-        default:
-          break;
       }
 
       if (nextItem) {
