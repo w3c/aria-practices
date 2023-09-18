@@ -106,18 +106,3 @@ See the [APG Editorial Style Guidelines](https://github.com/w3c/aria-practices/w
 for information about writing prose for the APG.
 The [ReadMe for the ARIA specification](https://github.com/w3c/aria/)
 contains additional useful editorial guidance.
-
-## ARIA Roles, Properties and States Referenced in Guidance and Examples(Also known as APG Coverage Report)
-
-[APG Coverage Report](https://raw.githack.com/w3c/aria-practices/main/coverage/index.html) includes information on number of guidance and example references in the WAI-ARIA Authoring Practices for each ARIA role, property and state.
-
-As of January 11, 2022, APG has examples of
-
-1. CSV Files of Role, Properties and States Coverage
-2. Roles with no Guidance or Examples (29)
-3. Roles with at Least One Guidance or Example (13)
-4. Roles with More than One Guidance or Example (36)
-5. Properties and States with no Examples (12)
-6. Properties and States with One Examples (8)
-7. Properties and States with More than One Example (28)
-8. Example Coding Practices
