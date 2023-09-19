@@ -11,6 +11,7 @@ const exampleFile = 'content/patterns/listbox/examples/listbox-scrollable.html';
 const ex = {
   listboxSelector: '#ex [role="listbox"]',
   optionSelector: '#ex [role="option"]',
+  spanSelector: '#ex [role="option"] span.checkmark',
   numOptions: 26,
   firstOptionSelector: '#ex #ss_elem_Np',
 };
@@ -75,6 +76,15 @@ ariaTest(
   'option-role',
   async (t) => {
     await assertAriaRoles(t, 'ex', 'option', 26, 'li');
+  }
+);
+
+ariaTest(
+  'aria-hidden="true" on li > span elements',
+  exampleFile,
+  'span-aria-hidden',
+  async (t) => {
+    await assertAttributeValues(t, ex.spanSelector, 'aria-hidden', 'true');
   }
 );
 

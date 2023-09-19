@@ -97,6 +97,20 @@ ariaTest(
 );
 
 ariaTest(
+  'aria-hidden="true" on li > span.checkmark elements',
+  exampleFile,
+  'span-aria-hidden',
+  async (t) => {
+    await assertAttributeValues(
+      t,
+      `${ex.optionSelector} span.checkmark`,
+      'aria-hidden',
+      'true'
+    );
+  }
+);
+
+ariaTest(
   '"aria-selected" on option elements',
   exampleFile,
   'option-aria-selected',
