@@ -35,7 +35,7 @@ const startOnPort = (port, timeout) => {
         return;
       }
 
-      getJSON('http://localhost:' + port + '/status')
+      getJSON('http://127.0.0.1:' + port + '/status')
         .then((data) => {
           assert(data.value.ready);
 

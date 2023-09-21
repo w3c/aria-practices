@@ -1,11 +1,6 @@
 {
   "version": "0.2",
-  "dictionaries": [
-    "html",
-    "css",
-    "javascript",
-    "npm"
-  ],
+  "dictionaries": ["html", "css", "javascript", "npm"],
   "words": [
     "accesskey",
     "Accesskey",
@@ -146,6 +141,7 @@
     "Moloderno",
     "moreaccessible",
     "Moscovium",
+    "Montalvo",
     "MSAA",
     "Müller",
     "multithumb",

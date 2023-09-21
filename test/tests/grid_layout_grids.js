@@ -935,7 +935,7 @@ ariaTest(
         return document.activeElement;
       });
 
-      // Test focus to last element in row using key chord CONTROL+HOME
+      // Test focus to first element in row using key chord CONTROL+HOME
       await activeElement.sendKeys(Key.chord(Key.CONTROL, Key.HOME));
       activeElement = await t.context.session.executeScript(() => {
         return document.activeElement;
