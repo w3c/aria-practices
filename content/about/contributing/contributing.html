@@ -17,66 +17,112 @@
 <body>
   <main>
     <h1>Contributing to the APG</h1>
-    <p>
-      The APG Task Force relies on broad community representation and participation to continuously improve the usefulness and quality of the APG.
-      There are a variety of ways you can contribute and help promote development of accessible experiences.
-    </p>
-    <section id="working_groups">
-      <h2>Join a Working Group</h2>
 
-      <h3>ARIA Authoring Practices Group Task Force</h3>
+    <section id="intro">
+      <h2>Introduction  </h2>
       <p>
-        The <a target="_blank" href="https://www.w3.org/WAI/ARIA/task-forces/practices/">ARIA Authoring Practices Task Force</a> is a sub-group of the <a target="_blank" href="https://www.w3.org/WAI/ARIA/">ARIA Working Group</a>.  The group meets weekly to coordinate the development activities of the practices.  Members are expected to regularly attend meetings and to actively contribute to the development of the practices.  Examples of member contributions include:
+        Continuous improvement to the utility and quality of the APG depends on broad community input and participation.
+        Anyone may contribute feedback, suggestions, or code via the channels described below.
+        However, if you would like to contribute regularly, please consider
+        <a href="#joining-task-force">joining the Authoring Practices Task Force</a>.
+        As a task force participant, you have greater influence over APG development, and you and your organization will be listed as contributors where appropriate.
       </p>
-      <ul>
-        <li>Testing examples for WCAG compliance</li>
-        <li>Reviewing and editing example documentation</li>
-        <li>Creating code and test cases for examples</li>
-        <li>Creating and editing patterns of ARIA usage</li>
-        <li>Reviewing issues and responding to commenters</li>
-      </ul>
-
-      <p>NOTE: Participation in the task force is limited to members of the W3C and invited experts.</p>
-
-      <h3>ARIA and Assistive Technologies Community Group</h3>
-      <p>
-        The <a target="_blank" href="https://www.w3.org/community/aria-at/">ARIA and Assistive Technologies Community Group</a> is testing the implementation of assistive technology support for ARIA.  The community group also works with AT vendors to improve the consistency of how ARIA information is conveyed to users.  Results of implementation testing are integrated into the associated examples in the ARIA Authoring Practices.  The group meets weekly to coordinate the development of tests and testing with assistive technologies.  Members are expected to regularly attend meetings and to actively contribute to the assistive technology testing. Examples of member participation include:
-      </p>
-      <ul>
-        <li>Running test cases on specific screen readers and web browser</li>
-        <li>Providing feedback on test case development</li>
-      </ul>
-
-      <p>NOTE: Participation in the community group is open to anyone, assistive technology users are encouraged to participate.</p>
     </section>
 
-    <section id="other_ways">
-      <h2>Other Ways to Contribute</h2>
-
-      <h3>Raise a Github Issue</h3>
+    <section id="feedback">
+      <h2>Providing feedback</h2>
       <p>
-        The APG Task Force uses GitHub issues to manage the activities of the working group.  Creating an issue is the best way to ask a question or report problems with an example or other information in the ARIA Authoring Practices.  Before creating a new issue, please review the current list of issues to see if your question has been asked or your problem reported.  If an issue already exists feel free to add your own comments to the issue.  New issues are reviewed in the weekly APG meetings.
+        The APG provides two public feedback channels -- GitHub and email.
+        Links to both are provided at the bottom of every page in the APG.
       </p>
       <p>
-        <a target="_blank" href="https://github.com/w3c/aria-practices/issues">View and create APG issues on GitHub.</a>
+        GitHub issues are the best way to ask a question, make a suggestion,  or report a problem.
+        Before creating a new issue, it is helpful if you first review existing issues to determine whether there is an issue addressing the same concern.
+        If so, please comment on that issue rather than raising another.
+        If the concern you would like addressed is related to an example implementation of an APG pattern, at the bottom of the page, next to the revision date, there is a link named "Related Issues".
+        That link opens a GitHub project containing all issues associated with the relevant pattern and its examples.
       </p>
-
-      <h3>Contribute Code via GitHub</h3>
       <p>
-        Many valuable contributions are made by people who find or raise issues of interest in our GitHub repository and then submit proposed changes via a GitHub pull request.
-        If you choose this path, please start by studying our guidelines for contributing to the repository and maintaining code quality.
+        <a href="https://github.com/w3c/aria-practices/issues">View and create APG issues on GitHub.</a>
       </p>
-      <a target="_blank" href="https://github.com/w3c/aria-practices">View ReadMe in the GitHub repository</a>
-
-      <h3>Mailing Lists</h3>
       <p>
-        The APG Task Force uses the public aria-practices mailing list for email discussion.
+        The task force also uses the public aria-practices mailing list for email discussion.
         Meeting announcements, agendas, and links to minutes are sent to the mailing list.
-        While GitHub issues are the preferred place to discuss APG content, the mailing list is available to anyone who would prefer to communicate with the APG Task Force via email.
+        While GitHub issues are the preferred place to discuss APG content, the mailing list is available to anyone who would prefer to communicate with the APG Task Force by
+        <a href="mailto://public-aria-practices@w3.org">sending email</a>.
       </p>
       <p>
-        <a target="_blank" href="https://lists.w3.org/Archives/Public/public-aria-practices/">View the aria-practices mailing list archive</a>
+        <a " href="https://lists.w3.org/Archives/Public/public-aria-practices/">View the aria-practices mailing list archive</a>
       </p>
+    </section>
+    
+    <section id="making-content-improvements">
+      <h2>Making improvements to documentation or code</h2>
+      <p>
+        If you would like to help improve the APG with enhancements or fixes to documentation or code, please adhere to the following procedure.
+      </p>
+      <ol>
+        <li>Get your development environment ready:
+          <ul>
+            <li>
+              Install and configure linters as described in the
+              <a href="https://github.com/w3c/aria-practices#code-conformance">code conformance section of the repository readme</a>.
+            </li>
+            <li>
+              Read our wiki page about
+              <a href="https://github.com/w3c/aria-practices/wiki/Submitting-Pull-Requests">preparing and submitting pull requests</a>.
+            </li>
+          </ul>
+        </li>
+        <li>Comment in an existing issue or raise a new issue, expressing your willingness to help and briefly summarizing the nature of your proposed resolution.</li>
+        <li>An editor will confirm there are no conflicting plans and, if needed, provide guidance.</li>
+        <li>Do some fabulous work and submit a pull request.</li>
+        <li>Watch your GitHub notifications and respond to feedback during the pull request review process.</li>
+      </ol>
+      <p>
+        If you run into any difficulties, please feel free to ask questions either via a GitHub issue or by
+        <a href="mailto://public-aria-practices@w3.org">sending email to the public authoring practices mailing list</a>.
+      </p>
+    </section>
+
+    <section id="joining-task-force">
+      <h2>Joining The Authoring Practices Task Force</h2>
+      <p>
+        The APG is developed by the
+        <a target="_blank" href="https://www.w3.org/WAI/ARIA/task-forces/practices/">ARIA Authoring Practices Task Force</a>,
+        which  is a sub-group of the
+        <a target="_blank" href="https://www.w3.org/WAI/ARIA/">ARIA Working Group</a>.
+        The task force meets weekly to coordinate work on development of the APG.
+        Task force participants are expected to regularly attend meetings and to actively contribute.
+        Examples of contributions include:
+      </p>
+      <ul>
+        <li>Testing the functionality and accessibility of example implementations of the APG patterns</li>
+        <li>Fixing bugs and implementing  enhancements in example implementations of the APG patterns</li>
+        <li>Helping write responses to community feedback</li>
+        <li>Reviewing and editing documentation</li>
+        <li>Designing or engineering pattern implementation examples</li>
+        <li>Creating and editing patterns and practices for ARIA usage</li>
+      </ul>
+      <p>
+        To participate in the  Authoring Practices Task Force, you first need to
+        <a href="https://www.w3.org/WAI/ARIA/participation">become a participant in the ARIA Working Group</a>.
+        If you are already a participant in the ARIA Working Group, contact
+        <a href="https://www.w3.org/staff/#dmontalvo">Daniel Montalvo</a>
+        and request membership in the Authoring Practices Task Force.
+      </p>
+    </section>
+
+    <section id="aria-at">
+      <h2>Helping provide assistive technology support data</h2>
+      <p>
+        The assistive technology support tables included on APG example pages, e.g.,
+        <a href="../../patterns/radio/examples/radio-activedescendant.html#at-support">Assistive Technology Support for Radio Group Example Using aria-activedescendant</a>,
+        are provided by the
+        <a href="https://www.w3.org/groups/cg/aria-at/">ARIA and Assistive Technologies (ARIA-AT) Community Group</a>.
+        The ARIA-AT community group aims to ensure APG patterns have consistent and interoperable accessibility support.
+        If you would like to contribute to this aspect of the APG, you can learn more about the ARIA-AT project and how to contribute at
+        <a href="https://aria-at.w3.org/">ARIA and Assistive Technologies Home</a>.
     </section>
 
   </main>
