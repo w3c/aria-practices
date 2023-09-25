@@ -227,7 +227,7 @@ async function checkLinks() {
 
         let matchesHash = true;
         if (hash) {
-          matchesHash = !!matchingPage?.ids.includes(hash);
+          matchesHash = !!matchingPage?.ids.some((id) => id.includes(hash));
         }
 
         const isLinkBroken = !(
@@ -274,7 +274,11 @@ async function checkLinks() {
             hrefOrSrc.match(pattern)
           );
 
-        if (!isHashCheckingDisabled && hash && !pageData.ids.includes(hash)) {
+        if (
+          !isHashCheckingDisabled &&
+          hash &&
+          !pageData.ids.some((id) => id.includes(hash))
+        ) {
           consoleError(
             `Found broken external link on ${htmlPath}:${lineNumber}:${columnNumber}, ` +
               'hash not found on page'
