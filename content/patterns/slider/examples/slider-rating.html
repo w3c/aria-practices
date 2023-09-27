@@ -62,38 +62,36 @@
         <div id="ex1">
           <div id="id-rating-label" class="label">Rating</div>
 
-          <div id="id-rating" class="rating-slider" role="slider" tabindex="0" aria-valuemin="0" aria-valuenow="0" aria-valuemax="5" aria-valuetext="no stars" aria-labelledby="id-rating-label">
+          <div id="id-rating" class="rating-slider" role="slider" tabindex="0" aria-valuemin="0" aria-valuenow="0" aria-valuemax="7" aria-valuetext="no stars" aria-labelledby="id-rating-label">
             <!-- SVG position and dimension values added through Javascript -->
 
             <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="224" height="48">
               <defs>
-                <g id="star">
-                  <polygon points="2.0,13.4 11.7,20.5 8.0,31.1 17.7,24.8 27.4,31.9 23.7,20.5 33.4,13.4 21.4,13.4 17.7,2.0 14.0,13.4" />
-                </g>
-                <g id="fill-left">
-                  <polygon points="2.0,13.4 11.7,20.5 8.0,31.1 17.7,24.8 17.7,2.0 14.0,13.4" />
+                <g id="circle">
+                  <circle cx="10" cy="10" r="10"/>
                 </g>
               </defs>
-              <rect class="focus-ring" x="2" y="2" width="212" height="44" rx="5" />
-              <g class="star-1 star-2 star-3 star-4 star-5">
-                <use class="star" xlink:href="#star" x="10" y="7" />
-                <use class="fill-left" xlink:href="#fill-left" x="10" y="7" />
+              <rect class="focus-ring" x="2" y="2" width="218" height="36" rx="5" />
+              <g class="circle-1">
+                <use class="circle" xlink:href="#circle" x="10" y="10" />
               </g>
-              <g class="star-2 star-3 star-4 star-5">
-                <use class="star" xlink:href="#star" x="50" y="7" />
-                <use class="fill-left" xlink:href="#fill-left" x="50" y="7" />
+              <g class="circle-2">
+                <use class="circle" xlink:href="#circle" x="40" y="10" />
               </g>
-              <g class="star-3 star-4 star-5">
-                <use class="star" xlink:href="#star" x="90" y="7" />
-                <use class="fill-left" xlink:href="#fill-left" x="90" y="7" />
+              <g class="circle-3">
+                <use class="circle" xlink:href="#circle" x="70" y="10" />
               </g>
-              <g class="star-4 star-5">
-                <use class="star" xlink:href="#star" x="130" y="7" />
-                <use class="fill-left" xlink:href="#fill-left" x="130" y="7" />
+              <g class="circle-4">
+                <use class="circle" xlink:href="#circle" x="100" y="10" />
               </g>
-              <g class="star-5">
-                <use class="star" xlink:href="#star" x="170" y="7" />
-                <use class="fill-left" xlink:href="#fill-left" x="170" y="7" />
+              <g class="circle-5">
+                <use class="circle" xlink:href="#circle" x="130" y="10" />
+              </g>
+              <g class="circle-6">
+                <use class="circle" xlink:href="#circle" x="160" y="10" />
+              </g>
+              <g class="circle-7">
+                <use class="circle" xlink:href="#circle" x="190" y="10" />
               </g>
             </svg>
           </div>
