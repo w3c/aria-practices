@@ -55,7 +55,7 @@
     "lint-staged": "^13.1.1",
     "node-fetch": "^2.6.7",
     "prettier": "^2.7.1",
-    "selenium-webdriver": "^4.8.1",
+    "selenium-webdriver": "^4.13.0",
     "stylelint": "^15.1.0",
     "stylelint-config-standard": "^30.0.1",
     "vnu-jar": "^21.2.5"
