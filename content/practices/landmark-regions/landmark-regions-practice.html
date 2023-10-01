@@ -103,10 +103,13 @@
 
         <ul>
           <li>Assign landmark roles based on the type of content in the area.</li>
-
           <li><code>banner</code>, <code>main</code>, <code>complementary</code> and <code>contentinfo</code> landmarks should be top level landmarks.</li>
-
           <li>Landmark roles can be nested to identify parent/child relationships of the information being presented.</li>
+          <li>
+            Note that wrapping  the content  of a modal dialog in a landmark region is unnecessary.
+            A landmark wrapping modal content cannot provide any benefit to users because it is not perceivable unless the modal is open.
+            However, when a modal is open, a landmark wrapping its content would be superfluous because the modal itself is a container that provides both a name and boundaries.
+          </li>
         </ul>
 
         <p id="aria_lh_step3"><strong>Step 3: Label areas</strong></p>
