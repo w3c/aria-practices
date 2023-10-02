@@ -11,9 +11,16 @@ module.exports = {
       '.carousel-image a',
     ],
   },
+  hashCheckHandlers: [
+    {
+      name: 'github',
+      pattern: /^https:\/\/github\.com\/.*/,
+      matchHash: (ids, hash) =>
+        ids.includes(hash) || ids.includes(`user-content-${hash}`),
+    },
+  ],
   ignoreHashesOnExternalPagesMatchingRegex: [
     // Some hash links are resolved with JS and are therefore difficult to check algorithmically
-    /^https:\/\/github\.com\/.*\/wiki\//,
     /^https:\/\/html\.spec\.whatwg\.org\/multipage\//,
   ],
 };
