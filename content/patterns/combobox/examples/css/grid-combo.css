@@ -23,7 +23,7 @@
   margin: 0;
   padding: 0;
   position: absolute;
-  top: 1.7em;
+  top: auto;
   z-index: 1;
 }
 
