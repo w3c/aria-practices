@@ -33,6 +33,23 @@ async function checkLinks() {
     return getLineNumber;
   };
 
+  const checkPathForHash = (hrefOrSrc, ids = [], hash) => {
+    // On some websites, the ids may not exactly match the hash included
+    // in the link.
+    // For e.g. GitHub will prepend client facing ids with their own
+    // calculated value. A heading in a README for example could be
+    // 'Foo bar', navigated to with https://github.com/foo/bar#foo-bar,
+    // but GitHub calculates the actual markup id included in the document
+    // as being 'user-content-foo-bar' for its own page processing purposes.
+    //
+    // See https://github.com/w3c/aria-practices/issues/2809
+    const handler = options.hashCheckHandlers.find(({ pattern }) =>
+      pattern.test(hrefOrSrc)
+    );
+    if (handler) return handler.matchHash(ids, hash);
+    else return ids.includes(hash);
+  };
+
   const countConsoleErrors = () => {
     let errorCount = 0;
 
@@ -227,16 +244,11 @@ async function checkLinks() {
 
         let matchesHash = true;
         if (hash) {
-          // On some websites, the ids may not exactly match the hash included
-          // in the link.
-          // For e.g. GitHub will prepend client facing ids with their own
-          // calculated value. A heading in a README for example could be
-          // Foo bar, navigated to with https://github.com/foo/bar#foo-bar,
-          // but GitHub calculates the actual markup id included in the document
-          // as being user-content-foo-bar for its own page processing purposes.
-          //
-          // See https://github.com/w3c/aria-practices/issues/2809
-          matchesHash = !!matchingPage?.ids.some((id) => id.includes(hash));
+          matchesHash = !!checkPathForHash(
+            pathMinusHash,
+            matchingPage?.ids,
+            hash
+          );
         }
 
         const isLinkBroken = !(
@@ -286,7 +298,7 @@ async function checkLinks() {
         if (
           !isHashCheckingDisabled &&
           hash &&
-          !pageData.ids.some((id) => id.includes(hash))
+          !checkPathForHash(hrefOrSrc, pageData.ids, hash)
         ) {
           consoleError(
             `Found broken external link on ${htmlPath}:${lineNumber}:${columnNumber}, ` +
