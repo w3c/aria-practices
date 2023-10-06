@@ -19,49 +19,63 @@
   fill-opacity: 0;
 }
 
-.rating-slider svg .circle {
+.rating-slider svg .value {
   stroke-width: 2px;
   stroke: currentcolor;
   fill-opacity: 0;
 }
 
-.rating-slider svg .fill-left,
-.rating-slider svg .fill-right {
-  stroke-width: 0;
-  fill-opacity: 0;
-}
-
-.rating-slider[aria-valuenow="1"] svg .circle-1 .circle {
+.rating-slider[aria-valuenow="0"] svg .rating-0 .value {
   fill: currentcolor;
   fill-opacity: 1;
 }
 
-.rating-slider[aria-valuenow="2"] svg .circle-2 .circle {
+.rating-slider[aria-valuenow="1"] svg .rating-1 .value {
   fill: currentcolor;
   fill-opacity: 1;
 }
 
-.rating-slider[aria-valuenow="3"] svg .circle-3 .circle {
+.rating-slider[aria-valuenow="2"] svg .rating-2 .value {
   fill: currentcolor;
   fill-opacity: 1;
 }
 
-.rating-slider[aria-valuenow="4"] svg .circle-4 .circle {
+.rating-slider[aria-valuenow="3"] svg .rating-3 .value {
   fill: currentcolor;
   fill-opacity: 1;
 }
 
-.rating-slider[aria-valuenow="5"] svg .circle-5 .circle {
+.rating-slider[aria-valuenow="4"] svg .rating-4 .value {
   fill: currentcolor;
   fill-opacity: 1;
 }
 
-.rating-slider[aria-valuenow="6"] svg .circle-6 .circle {
+.rating-slider[aria-valuenow="5"] svg .rating-5 .value {
   fill: currentcolor;
   fill-opacity: 1;
 }
 
-.rating-slider[aria-valuenow="7"] svg .circle-7 .circle {
+.rating-slider[aria-valuenow="6"] svg .rating-6 .value {
+  fill: currentcolor;
+  fill-opacity: 1;
+}
+
+.rating-slider[aria-valuenow="7"] svg .rating-7 .value {
+  fill: currentcolor;
+  fill-opacity: 1;
+}
+
+.rating-slider[aria-valuenow="8"] svg .rating-8 .value {
+  fill: currentcolor;
+  fill-opacity: 1;
+}
+
+.rating-slider[aria-valuenow="9"] svg .rating-9 .value {
+  fill: currentcolor;
+  fill-opacity: 1;
+}
+
+.rating-slider[aria-valuenow="10"] svg .rating-10 .value {
   fill: currentcolor;
   fill-opacity: 1;
 }
@@ -72,7 +86,57 @@
   outline: none;
 }
 
-.rating-slider:focus svg .focus-ring {
+.rating-slider svg .focus {
+  stroke-width: 0;
+  stroke: currentcolor;
+  fill-opacity: 0;
+}
+
+.rating-slider[aria-valuenow="-1"]:focus svg .focus-ring {
   stroke-width: 2px;
   stroke: currentcolor;
+}
+
+.rating-slider[aria-valuenow="0"]:focus svg .rating-0 .focus {
+  stroke-width: 2px;
+}
+
+.rating-slider[aria-valuenow="1"]:focus svg .rating-1 .focus {
+  stroke-width: 2px;
+}
+
+.rating-slider[aria-valuenow="2"]:focus svg .rating-2 .focus {
+  stroke-width: 2px;
+}
+
+.rating-slider[aria-valuenow="3"]:focus svg .rating-3 .focus {
+  stroke-width: 2px;
+}
+
+.rating-slider[aria-valuenow="4"]:focus svg .rating-4 .focus {
+  stroke-width: 2px;
+}
+
+.rating-slider[aria-valuenow="5"]:focus svg .rating-5 .focus {
+  stroke-width: 2px;
+}
+
+.rating-slider[aria-valuenow="6"]:focus svg .rating-6 .focus {
+  stroke-width: 2px;
+}
+
+.rating-slider[aria-valuenow="7"]:focus svg .rating-7 .focus {
+  stroke-width: 2px;
+}
+
+.rating-slider[aria-valuenow="8"]:focus svg .rating-8 .focus {
+  stroke-width: 2px;
+}
+
+.rating-slider[aria-valuenow="9"]:focus svg .rating-9 .focus {
+  stroke-width: 2px;
+}
+
+.rating-slider[aria-valuenow="10"]:focus svg .rating-10 .focus {
+  stroke-width: 2px;
 }

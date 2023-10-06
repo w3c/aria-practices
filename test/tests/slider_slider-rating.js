@@ -10,12 +10,12 @@ const ex = {
   sliderSelector: '#ex1 [role="slider"]',
   ratingSelector: '#id-rating',
   svgSelector: '#ex1 svg',
-  ratingMax: '5',
-  ratingMin: '0',
-  ratingDefault: '0',
-  ratingDefaultValue: 'zero of five stars',
-  ratingInc: 0.5,
-  ratingPageInc: 1,
+  ratingMax: '10',
+  ratingMin: '-1',
+  ratingDefault: '-1',
+  ratingDefaultValue: 'no rating on the 11 point rating scale selected',
+  ratingInc: 1,
+  ratingPageInc: 2,
 };
 
 const sendAllSlidersToEnd = async function (t) {
@@ -33,50 +33,41 @@ const getRatingValueAndText = function (v, change) {
   let valuetext = 'Unexpected value: ' + value;
 
   switch (value) {
+    case -1:
+      return 'no rating selected';
+
     case 0:
-      valuetext = 'zero stars';
-      break;
+      return 'Unacceptable service';
 
-    case 0.5:
-      valuetext = 'one half star';
-      break;
+    case 1:
+      return 'Extremely dissatisfied';
 
-    case 1.0:
-      valuetext = 'one star';
-      break;
+    case 2:
+      return 'Strongly dissatisfied';
 
-    case 1.5:
-      valuetext = 'one and a half stars';
-      break;
+    case 3:
+      return 'dissatisfied';
 
-    case 2.0:
-      valuetext = 'two stars';
-      break;
+    case 4:
+      return 'Slightly dissatisfied';
 
-    case 2.5:
-      valuetext = 'two and a half stars';
-      break;
+    case 5:
+      return 'Neither satisfied or dissatisfied';
 
-    case 3.0:
-      valuetext = 'three stars';
-      break;
+    case 6:
+      return 'Slightly satisfied';
 
-    case 3.5:
-      valuetext = 'three and a half stars';
-      break;
+    case 7:
+      return 'Satisfied';
 
-    case 4.0:
-      valuetext = 'four stars';
-      break;
+    case 8:
+      return 'Strongly satisfied';
 
-    case 4.5:
-      valuetext = 'four and a half stars';
-      break;
+    case 9:
+      return 'Extremely satisfied';
 
-    case 5.0:
-      valuetext = 'five stars';
-      break;
-
+    case 10:
+      return 'Completely satisfied';
     default:
       break;
   }

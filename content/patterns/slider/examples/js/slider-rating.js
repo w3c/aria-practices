@@ -20,8 +20,8 @@ class RatingSlider {
     //    var  color = getComputedStyle(this.sliderNode).color;
     //    this.svgNode.setAttribute('color', color);
 
-    this.railWidth = 200;
-    this.railOffset = 10;
+    this.railWidth = 360;
+    this.railOffset = 20;
 
     this.valueMin = this.getValueMin();
     this.valueMax = this.getValueMax();
@@ -75,29 +75,41 @@ class RatingSlider {
 
   getValueText(value) {
     switch (value) {
-      case 0:
+      case -1:
         return 'no rating selected';
 
+      case 0:
+        return 'Unacceptable service';
+
       case 1:
-        return 'Strongly disagree';
+        return 'Extremely dissatisfied';
 
       case 2:
-        return 'Disagree';
+        return 'Strongly dissatisfied';
 
       case 3:
-        return 'Somewhat disagree';
+        return 'dissatisfied';
 
       case 4:
-        return 'Neither agree or disagree';
+        return 'Slightly dissatisfied';
 
       case 5:
-        return 'Somewhat agree';
+        return 'Neither satisfied or dissatisfied';
 
       case 6:
-        return 'Agree';
+        return 'Slightly satisfied';
 
       case 7:
-        return 'Strongly agree';
+        return 'Satisfied';
+
+      case 8:
+        return 'Strongly satisfied';
+
+      case 9:
+        return 'Extremely satisfied';
+
+      case 10:
+        return 'Completely satisfied';
 
       default:
         break;
@@ -108,29 +120,41 @@ class RatingSlider {
 
   getValueTextWithMax(value) {
     switch (value) {
+      case -1:
+        return 'no rating on the 11 point rating scale selected';
+
       case 0:
-        return 'no rating on the seven point rating scale selected';
+        return 'Unacceptable service, first of eleven point rating scale';
 
       case 1:
-        return 'Strongly disagree, first of seven point rating scale';
+        return 'Extremely dissatisfied, second of eleven point rating scale';
 
       case 2:
-        return 'Disagree, second of seven point rating scale';
+        return 'Strongly dissatisfied, third of eleven point rating scale';
 
       case 3:
-        return 'Somewhat disagree, seven point rating scale';
+        return 'dissatisfied, fourth of eleven point rating scale';
 
       case 4:
-        return 'Neither agree or disagree, seven point rating scale';
+        return 'Slightly dissatisfied, fifth of eleven point rating scale';
 
       case 5:
-        return 'Somewhat agree, fifth of seven point rating scale';
+        return 'Neither satisfied or dissatisfied, sixth of eleven point rating scale';
 
       case 6:
-        return 'Agree, sixth of seven point rating scale';
+        return 'Slightly satisfied, seventh of eleven point rating scale';
 
       case 7:
-        return 'Strongly agree, seventh of seven point rating scale';
+        return 'Satisfied, eighth of eleven point rating scale';
+
+      case 8:
+        return 'Strongly satisfied, ninth of eleven point rating scale';
+
+      case 9:
+        return 'Extremely satisfied, tenth of eleven point rating scale';
+
+      case 10:
+        return 'Completely satisfied, eleventh of eleven point rating scale';
 
       default:
         break;
@@ -140,7 +164,7 @@ class RatingSlider {
   }
 
   moveSliderTo(value) {
-    value = Math.min(Math.max(value, 1), this.valueMax);
+    value = Math.min(Math.max(value, this.valueMin + 1), this.valueMax);
     this.sliderNode.setAttribute('aria-valuenow', value);
     this.sliderNode.setAttribute('aria-valuetext', this.getValueText(value));
   }
@@ -173,7 +197,7 @@ class RatingSlider {
         break;
 
       case 'Home':
-        this.moveSliderTo(1);
+        this.moveSliderTo(this.valueMin + 1);
         flag = true;
         break;
 
