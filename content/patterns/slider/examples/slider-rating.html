@@ -40,13 +40,12 @@
         </div>
         <p>
           Following is an example of a rating input that demonstrates the <a href="../slider-pattern.html">Slider Pattern</a>.
-          This rating widget employs a slider because the slider pattern supports step values of any size.
-          This particular input enables half-star steps.
-          A typical five-star rating widget that allows only five possible values could instead be implemented as a <a href="../../radio/radio-group-pattern.html">radio group.</a>
+          This rating widget employs a slider because number of rating values.
+          </a>
         </p>
         <p>Similar examples include:</p>
         <ul>
-          <li><a href="../../radio/examples/radio-rating.html">Rating Radio Group Example</a>: Radio group that provides input for a five-star rating scale.</li>
+          <li><a href="../../radio/examples/radio-rating.html">Rating Radio Group Example</a>: Radio group that provides input for a eleve point rating scale.</li>
           <li><a href="slider-color-viewer.html">Color Viewer Slider Example</a>: Basic horizontal sliders that illustrate setting numeric values for a color picker.</li>
           <li><a href="slider-temperature.html">Vertical Temperature Slider Example</a>: Demonstrates using <code>aria-orientation</code> to specify vertical orientation and <code>aria-valuetext</code> to communicate unit of measure for a temperature input.</li>
           <li><a href="slider-seek.html">Media Seek Slider Example</a>: Horizontal slider that demonstrates using <code>aria-valuetext</code> to communicate current and maximum values of time in media to make the values easy to understand for assistive technology users by converting the total number of seconds to minutes and seconds.</li>
@@ -134,11 +133,10 @@
             To ensure assistive technology users correctly perceive the maximum slider value, this example uses the <code>aria-valuetext</code> property to communicate both the current and maximum values.
             However, since repeating the maximum value every time the slider value changes is potentially distracting, the maximum value is included in <code>aria-valuetext</code> only when the slider is initialized and when the thumb loses keyboard focus.
           </li>
-          <li>To highlight the interactive nature of the rating stars, a focus ring appears around the group of stars when the thumb has focus.</li>
+          <li>To highlight the interactive nature of the satisfaction rating, a focus ring appears around the group of rating options when the thumb has focus and no rating value has been selected.</li>
           <li>
-            To ensure the borders of the stars and focus ring have sufficient contrast with the background when high contrast settings invert colors, the color of the borders are synchronized with the color of the text content.
-            For example, the color of the star borders is set to match the foreground color of high contrast mode text by specifying the CSS <code>currentcolor</code> value for the <code>stroke</code> property of each inline SVG <code>polygon</code> element.
-            To enable the high contrast background color to be the used as the contrasting color when a star is not fully or partially filled, the <code>fill-opacity</code> attribute of the <code>polygon</code> is set to zero.
+            To ensure the borders of the circles and focus ring have sufficient contrast with the background when high contrast settings invert colors, the color of the borders are synchronized with the color of the text content.
+            For example, the color of the circle borders is set to match the foreground color of high contrast mode text by specifying the CSS <code>currentcolor</code> value for the <code>stroke</code> property of each inline SVG <code>polygon</code> element.
             If specific colors were used to specify the <code>stroke</code> and <code>fill</code> properties, the color of these elements would remain the same in high contrast mode, which could lead to insufficient contrast between them and their background or even make them invisible if their color were to match the high contrast mode background.<br>
             Note: The SVG element needs to have the CSS <code>forced-color-adjust</code> property set to the value <code>auto</code> for the <code>currentcolor</code> value to be updated in high contrast modes.
             Some browsers do not use <code>auto</code> for the default value.</li>
@@ -157,41 +155,41 @@
           <tbody>
             <tr data-test-id="key-right-arrow">
               <th><kbd>Right Arrow</kbd></th>
-              <td>Increases slider one half star.</td>
+              <td>Increases slider by one rating step.</td>
             </tr>
             <tr data-test-id="key-up-arrow">
               <th><kbd>Up Arrow</kbd></th>
-              <td>Increases slider one half star.</td>
+              <td>Increases slider by one rating step.</td>
             </tr>
             <tr data-test-id="key-left-arrow">
               <th><kbd>Left Arrow</kbd></th>
-              <td>Decreases slider one half star.</td>
+              <td>Decreases slider by one rating step.</td>
             </tr>
             <tr data-test-id="key-down-arrow">
               <th><kbd>Down Arrow</kbd></th>
-              <td>Decreases slider one half star.</td>
+              <td>Decreases slider by one rating step.</td>
             </tr>
             <tr data-test-id="key-page-up">
               <th><kbd>Page Up</kbd></th>
               <td>
                 Increases slider value multiple steps.
-                In this slider, jumps one star.
+                In this slider, by two rating step.
               </td>
             </tr>
             <tr data-test-id="key-page-down">
               <th><kbd>Page Down</kbd></th>
               <td>
                 Decreases slider value multiple steps.
-                In this slider, jumps one star.
+                In this slider, by two rating step.
               </td>
             </tr>
             <tr data-test-id="key-home">
               <th><kbd>Home</kbd></th>
-              <td>Sets slider to its minimum value, no stars.</td>
+              <td>Sets slider to its minimum value, unaccpetable.</td>
             </tr>
             <tr data-test-id="key-end">
               <th><kbd>End</kbd></th>
-              <td>Sets slider to its maximum value, five stars.</td>
+              <td>Sets slider to its maximum value, completely satisified.</td>
             </tr>
           </tbody>
         </table>
@@ -237,7 +235,7 @@
             <tr data-test-id="aria-valuemax">
               <td></td>
               <th scope="row">
-                <code>aria-valuemax="5"</code>
+                <code>aria-valuemax="10"</code>
               </th>
               <td>
                 <code>div</code>
@@ -247,12 +245,12 @@
             <tr data-test-id="aria-valuemin">
               <td></td>
               <th scope="row">
-                <code>aria-valuemin="0"</code>
+                <code>aria-valuemin="-1"</code>
               </th>
               <td>
                 <code>div</code>
               </td>
-              <td>Specifies the minimum value of the slider.</td>
+              <td>Specifies the minimum value of the slider.  NOTE: -1 means no rating value has been selected.</td>
             </tr>
             <tr data-test-id="aria-valuenow">
               <td></td>
@@ -274,8 +272,8 @@
               </td>
               <td>
                 <ul>
-                  <li>A string value that provides a user-friendly name for the current value of the slider -- the number of stars and half stars.</li>
-                  <li>When initialized, and when the slider loses focus, the string also includes the maximum value of five stars, e.g., <q>3 of 5 stars</q>.</li>
+                  <li>A string value that provides a user-friendly name for the current value of the slider -- the level of satisfaction.</li>
+                  <li>When initialized, and when the slider loses focus, the string also includes the number of rating values e.g., <q>seventh of eleven point rating scale</q>.</li>
                 </ul>
               </td>
             </tr>
