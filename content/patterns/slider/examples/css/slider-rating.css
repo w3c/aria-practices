@@ -25,6 +25,14 @@
   fill-opacity: 0;
 }
 
+.rating-slider svg .label {
+  font-size: 90%;
+}
+
+.rating-slider svg .description {
+  font-size: 90%;
+}
+
 .rating-slider[aria-valuenow="0"] svg .rating-0 .value {
   fill: currentcolor;
   fill-opacity: 1;
