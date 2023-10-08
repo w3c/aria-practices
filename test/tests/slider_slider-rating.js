@@ -28,46 +28,62 @@ const sendAllSlidersToEnd = async function (t) {
 
 const getRatingValueAndText = function (v, change) {
   let value = parseFloat(v) + parseFloat(change);
-  value = Math.min(Math.max(value, ex.ratingMin), ex.ratingMax);
+
+  let min = parseFloat(change) <= 0 ? 0 : parseFloat(ex.ratingMin);
+
+  value = Math.min(Math.max(value, min), ex.ratingMax);
 
   let valuetext = 'Unexpected value: ' + value;
 
   switch (value) {
     case -1:
-      return 'no rating selected';
+      valuetext = 'no rating selected';
+      break;
 
     case 0:
-      return 'Unacceptable service';
+      valuetext = 'Unacceptable service';
+      break;
 
     case 1:
-      return 'Extremely dissatisfied';
+      valuetext = 'Extremely dissatisfied';
+      break;
 
     case 2:
-      return 'Strongly dissatisfied';
+      valuetext = 'Strongly dissatisfied';
+      break;
 
     case 3:
-      return 'dissatisfied';
+      valuetext = 'dissatisfied';
+      break;
 
     case 4:
-      return 'Slightly dissatisfied';
+      valuetext = 'Slightly dissatisfied';
+      break;
 
     case 5:
-      return 'Neither satisfied or dissatisfied';
+      valuetext = 'Neither satisfied or dissatisfied';
+      break;
 
     case 6:
-      return 'Slightly satisfied';
+      valuetext = 'Slightly satisfied';
+      break;
 
     case 7:
-      return 'Satisfied';
+      valuetext = 'Satisfied';
+      break;
 
     case 8:
-      return 'Strongly satisfied';
+      valuetext = 'Strongly satisfied';
+      break;
 
     case 9:
-      return 'Extremely satisfied';
+      valuetext = 'Extremely satisfied';
+      break;
 
     case 10:
-      return 'Completely satisfied';
+      valuetext = 'Completely satisfied';
+      break;
+
     default:
       break;
   }
@@ -195,8 +211,7 @@ ariaTest(
     t.deepEqual(
       await getValueAndText(t, ex.ratingSelector),
       [value, text],
-      'After sending 1 arrow right key to the rating slider, aria-valuenow should be " + value + " and aria-value-text should be: ' +
-        text
+      `After sending 1 arrow right key to the rating slider, aria-valuenow should be "${value}"" and aria-value-text should be: ${text}`
     );
 
     // Send more than 5 keys to rating slider
@@ -316,7 +331,7 @@ ariaTest(
     t.deepEqual(
       await getValueAndText(t, ex.ratingSelector),
       [value, text],
-      'After sending key end to the heat slider, aria-valuenow should be "' +
+      'After sending key end to the rating slider, aria-valuenow should be "' +
         value +
         '" and aria-value-text should be: ' +
         text
@@ -471,7 +486,7 @@ ariaTest(
     t.deepEqual(
       await getValueAndText(t, ex.ratingSelector),
       [value, text],
-      'After sending key home to the heat slider, aria-valuenow should be "' +
+      'After sending key home to the rating slider, aria-valuenow should be "' +
         ex.ratingMin +
         '" and aria-value-text should be: ' +
         text

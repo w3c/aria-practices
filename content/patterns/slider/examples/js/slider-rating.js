@@ -170,8 +170,8 @@ class RatingSlider {
   }
 
   onSliderKeydown(event) {
-    var flag = false;
-    var value = this.getValue();
+    let flag = false;
+    let value = this.getValue();
 
     switch (event.key) {
       case 'ArrowLeft':
