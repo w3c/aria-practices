@@ -79,7 +79,7 @@ class RatingSlider {
         return 'no rating selected';
 
       case 0:
-        return 'Unacceptable service';
+        return 'Unacceptable';
 
       case 1:
         return 'Extremely dissatisfied';
@@ -124,7 +124,7 @@ class RatingSlider {
         return 'no rating on the 11 point rating scale selected';
 
       case 0:
-        return 'Unacceptable service, first of eleven point rating scale';
+        return 'Unacceptable, first of eleven point rating scale';
 
       case 1:
         return 'Extremely dissatisfied, second of eleven point rating scale';

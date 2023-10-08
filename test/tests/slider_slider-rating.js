@@ -41,7 +41,7 @@ const getRatingValueAndText = function (v, change) {
       break;
 
     case 0:
-      valuetext = 'Unacceptable service';
+      valuetext = 'Unacceptable';
       break;
 
     case 1:
