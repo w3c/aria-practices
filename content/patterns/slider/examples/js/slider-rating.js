@@ -251,9 +251,9 @@ class RatingSlider {
     if (this.isMoving) {
       const x = this.getSVGPoint(event).x;
       const diffX = x - this.railOffset;
-      const fract =
+      const rating =
         0.5 + (diffX * (this.valueMax - this.valueMin)) / this.railWidth;
-      const value = Math.round(fract);
+      const value = Math.round(rating);
 
       this.moveSliderTo(value);
 
