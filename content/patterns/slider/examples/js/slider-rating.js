@@ -20,8 +20,8 @@ class RatingSlider {
     //    var  color = getComputedStyle(this.sliderNode).color;
     //    this.svgNode.setAttribute('color', color);
 
-    this.railWidth = 360;
-    this.railOffset = 20;
+    this.railWidth = 300;
+    this.railOffset = 30;
 
     this.valueMin = this.getValueMin();
     this.valueMax = this.getValueMax();
@@ -224,9 +224,8 @@ class RatingSlider {
   onRailClick(event) {
     const x = this.getSVGPoint(event).x;
     const diffX = x - this.railOffset;
-    const rating =
-      0.5 + (diffX * (this.valueMax - this.valueMin)) / this.railWidth;
-    const value = Math.round(rating);
+    const rating = (diffX * this.valueMax) / this.railWidth;
+    const value = Math.floor(rating);
 
     this.moveSliderTo(value);
 
@@ -251,9 +250,8 @@ class RatingSlider {
     if (this.isMoving) {
       const x = this.getSVGPoint(event).x;
       const diffX = x - this.railOffset;
-      const rating =
-        0.5 + (diffX * (this.valueMax - this.valueMin)) / this.railWidth;
-      const value = Math.round(rating);
+      const rating = (diffX * this.valueMax) / this.railWidth;
+      const value = Math.floor(rating);
 
       this.moveSliderTo(value);
 
