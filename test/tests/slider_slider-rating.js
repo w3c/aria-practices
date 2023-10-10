@@ -11,9 +11,9 @@ const ex = {
   ratingSelector: '#id-rating',
   svgSelector: '#ex1 svg',
   ratingMax: '10',
-  ratingMin: '-1',
-  ratingDefault: '-1',
-  ratingDefaultValue: 'no rating on the 11 point rating scale selected',
+  ratingMin: '0',
+  ratingDefault: '0',
+  ratingDefaultValue: 'no rating on the 10 point satisfaction scale selected',
   ratingInc: 1,
   ratingPageInc: 2,
 };
@@ -29,59 +29,55 @@ const sendAllSlidersToEnd = async function (t) {
 const getRatingValueAndText = function (v, change) {
   let value = parseFloat(v) + parseFloat(change);
 
-  let min = parseFloat(change) <= 0 ? 0 : parseFloat(ex.ratingMin);
+  let min = parseFloat(change) <= 0 ? 1 : parseFloat(ex.ratingMin);
 
   value = Math.min(Math.max(value, min), ex.ratingMax);
 
   let valuetext = 'Unexpected value: ' + value;
 
   switch (value) {
-    case -1:
-      valuetext = 'no rating selected';
-      break;
-
     case 0:
-      valuetext = 'Unacceptable';
+      valuetext = 'no satisfaction rating selected';
       break;
 
     case 1:
-      valuetext = 'Extremely dissatisfied';
+      valuetext = 'one, extremely dissatisfied';
       break;
 
     case 2:
-      valuetext = 'Strongly dissatisfied';
+      valuetext = 'two';
       break;
 
     case 3:
-      valuetext = 'dissatisfied';
+      valuetext = 'three';
       break;
 
     case 4:
-      valuetext = 'Slightly dissatisfied';
+      valuetext = 'four';
       break;
 
     case 5:
-      valuetext = 'Neither satisfied or dissatisfied';
+      valuetext = 'five';
       break;
 
     case 6:
-      valuetext = 'Slightly satisfied';
+      valuetext = 'six';
       break;
 
     case 7:
-      valuetext = 'Satisfied';
+      valuetext = 'seven';
       break;
 
     case 8:
-      valuetext = 'Strongly satisfied';
+      valuetext = 'eight';
       break;
 
     case 9:
-      valuetext = 'Extremely satisfied';
+      valuetext = 'nine';
       break;
 
     case 10:
-      valuetext = 'Completely satisfied';
+      valuetext = 'ten, extremely satisfied';
       break;
 
     default:

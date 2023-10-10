@@ -75,41 +75,38 @@ class RatingSlider {
 
   getValueText(value) {
     switch (value) {
-      case -1:
-        return 'no rating selected';
-
       case 0:
-        return 'Unacceptable';
+        return 'no satisfaction rating selected';
 
       case 1:
-        return 'Extremely dissatisfied';
+        return 'one, extremely dissatisfied';
 
       case 2:
-        return 'Strongly dissatisfied';
+        return 'two';
 
       case 3:
-        return 'dissatisfied';
+        return 'three';
 
       case 4:
-        return 'Slightly dissatisfied';
+        return 'four';
 
       case 5:
-        return 'Neither satisfied or dissatisfied';
+        return 'five';
 
       case 6:
-        return 'Slightly satisfied';
+        return 'six';
 
       case 7:
-        return 'Satisfied';
+        return 'seven';
 
       case 8:
-        return 'Strongly satisfied';
+        return 'eight';
 
       case 9:
-        return 'Extremely satisfied';
+        return 'nine';
 
       case 10:
-        return 'Completely satisfied';
+        return 'ten, extremely satisfied';
 
       default:
         break;
@@ -120,41 +117,38 @@ class RatingSlider {
 
   getValueTextWithMax(value) {
     switch (value) {
-      case -1:
-        return 'no rating on the 11 point rating scale selected';
-
       case 0:
-        return 'Unacceptable, first of eleven point rating scale';
+        return 'no rating on the 10 point satisfaction scale selected';
 
       case 1:
-        return 'Extremely dissatisfied, second of eleven point rating scale';
+        return 'one, extremely unsatisfied, first value on ten point satisfaction scale';
 
       case 2:
-        return 'Strongly dissatisfied, third of eleven point rating scale';
+        return 'two, second value on ten point satisfaction scale';
 
       case 3:
-        return 'dissatisfied, fourth of eleven point rating scale';
+        return 'three, third value on ten point satisfaction scale';
 
       case 4:
-        return 'Slightly dissatisfied, fifth of eleven point rating scale';
+        return 'four, fourth value on ten point satisfaction scale';
 
       case 5:
-        return 'Neither satisfied or dissatisfied, sixth of eleven point rating scale';
+        return 'five, fifth value on ten point satisfaction scale';
 
       case 6:
-        return 'Slightly satisfied, seventh of eleven point rating scale';
+        return 'six, sixth value on ten point satisfaction scale';
 
       case 7:
-        return 'Satisfied, eighth of eleven point rating scale';
+        return 'seven, seventh value on ten point satisfaction scale';
 
       case 8:
-        return 'Strongly satisfied, ninth of eleven point rating scale';
+        return 'eight, eighth value on ten point satisfaction scale';
 
       case 9:
-        return 'Extremely satisfied, tenth of eleven point rating scale';
+        return 'nine, ninth value on ten point satisfaction scale';
 
       case 10:
-        return 'Completely satisfied, eleventh of eleven point rating scale';
+        return 'ten, extremely satisfied, tenth value on ten point satisfaction scale';
 
       default:
         break;
