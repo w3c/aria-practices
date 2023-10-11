@@ -85,8 +85,9 @@
 
 /* focus styling */
 
-.rating-slider:focus {
-  outline: none;
+.rating-slider:focus,
+.rating-slider:focus-visible {
+  outline: none !important;
 }
 
 .rating-slider svg .focus {
