@@ -1104,7 +1104,14 @@ ariaTest(
   'toolbar-button-enter-or-space',
   async (t) => {
     let textarea = await t.context.session.findElement(By.css('textarea'));
-    await textarea.sendKeys(Key.chord(Key.CONTROL, 'a'));
+
+    // See https://w3c.github.io/webdriver/#processing-capabilities for details
+    // on 'platformName' capability.
+    const capabilities = await t.context.session.getCapabilities();
+    const platformName = capabilities.get('platformName');
+    const modifierKey = platformName === 'mac' ? Key.COMMAND : Key.CONTROL;
+
+    await textarea.sendKeys(Key.chord(modifierKey, 'a'));
     let originalText = await textarea.getAttribute('value');
 
     const buttons = await t.context.queryElements(
@@ -1195,7 +1202,14 @@ ariaTest(
   'toolbar-button-enter-or-space',
   async (t) => {
     let textarea = await t.context.session.findElement(By.css('textarea'));
-    await textarea.sendKeys(Key.chord(Key.CONTROL, 'a'));
+
+    // See https://w3c.github.io/webdriver/#processing-capabilities for details
+    // on 'platformName' capability.
+    const capabilities = await t.context.session.getCapabilities();
+    const platformName = capabilities.get('platformName');
+    const modifierKey = platformName === 'mac' ? Key.COMMAND : Key.CONTROL;
+
+    await textarea.sendKeys(Key.chord(modifierKey, 'a'));
     let originalText = await textarea.getAttribute('value');
 
     const buttons = await t.context.queryElements(

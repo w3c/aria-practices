@@ -295,7 +295,7 @@ ariaTest(
     let chooseDateButton = await t.context.session.findElement(
       By.css(ex.buttonSelector)
     );
-    chooseDateButton.sendKeys(' ');
+    chooseDateButton.sendKeys(Key.SPACE);
 
     t.not(
       await t.context.session

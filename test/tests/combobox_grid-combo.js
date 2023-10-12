@@ -871,21 +871,23 @@ ariaTest(
   'popup-key-home',
   async (t) => {
     // Send key "a" then key "ARROW_DOWN" to put the focus on the grid
-    const combobox = t.context.session.findElement(By.css(ex.comboboxSelector));
+    const combobox = await t.context.session.findElement(
+      By.css(ex.comboboxSelector)
+    );
     await combobox.sendKeys('a', Key.ARROW_DOWN);
 
-    // Send key "ARROW_HOME"
+    // Send key "HOME"
     await combobox.sendKeys(Key.HOME);
 
     t.true(
       await confirmCursorIndex(t, ex.comboboxSelector, 0),
-      'Cursor should be at index 0 after one ARROW_HOME key'
+      'Cursor should be at index 0 after one HOME key'
     );
 
     t.is(
       await combobox.getAttribute('aria-activedescendant'),
       '',
-      'Focus should be on the combobox after one ARROW_HOME key'
+      'Focus should be on the combobox after one HOME key'
     );
   }
 );
