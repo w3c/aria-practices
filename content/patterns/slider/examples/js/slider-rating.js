@@ -8,7 +8,7 @@
  *   Desc:   RatingSlider widget that implements ARIA Authoring Practices
  */
 
-const OFFSET_SIZE = 4;
+const OFFSET_SIZE = 6;
 
 class RatingSlider {
   constructor(domNode) {
@@ -43,8 +43,8 @@ class RatingSlider {
     this.focusRect = domNode.querySelector('.focus-ring');
 
     this.infoDefaultFocus = {
-      x: OFFSET_SIZE,
-      y: OFFSET_SIZE,
+      x: 2,
+      y: 2,
       width: infoLastRect.x + infoLastRect.width + OFFSET_SIZE,
       height: infoFirstRect.y + infoLastRect.height + OFFSET_SIZE,
       rx: OFFSET_SIZE,
