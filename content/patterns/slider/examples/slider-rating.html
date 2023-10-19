@@ -71,61 +71,49 @@
               aria-labelledby="id-rating-label">
             <!-- SVG position and dimension values added through Javascript -->
 
-            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="386" height="96">
-              <rect class="focus-ring" x="23" y="2" width="358" height="90" rx="5" />
-              <g class="rating-1">
-                <circle class="value" cx="66" cy="20" r="10"/>
-                <circle class="focus" cx="66" cy="20" r="14"/>
-                <text class="label" x="62" y="50">1</text>
-                <text class="description"  x="34" y="65">Extremely</text>
-                <text class="description"  x="31" y="80">Unsatisfied</text>
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="520" height="96">
+              <rect class="focus-ring" x="23" y="2" width="54" height="90" rx="5" />
+              <g class="rating">
+                <rect class="value" height="24" width="48" x="13" y="30"></rect>
+                <text class="label" x="32" y="47">1</text>
+                <text class="description"  x="13" y="20">Extremely Unsatisfied</text>
               </g>
-              <g class="rating-2">
-                <circle class="value" cx="96" cy="20" r="10"/>
-                <circle class="focus" cx="96" cy="20" r="14"/>
-                <text class="label" x="92" y="50">2</text>
+              <g class="rating">
+                <rect class="value" height="24" width="48" x="61" y="30"></rect>
+                <text class="label" x="80" y="47">2</text>
               </g>
-              <g class="rating-3">
-                <circle class="value" cx="126" cy="20" r="10"/>
-                <circle class="focus" cx="126" cy="20" r="14"/>
-                <text class="label" x="120" y="50">3</text>
+              <g class="rating">
+                <rect class="value" height="24" width="48" x="109" y="30"></rect>
+                <text class="label" x="128" y="47">3</text>
               </g>
-              <g class="rating-4">
-                <circle class="value" cx="156" cy="20" r="10"/>
-                <circle class="focus" cx="156" cy="20" r="14"/>
-                <text class="label" x="152" y="50">4</text>
+              <g class="rating">
+                <rect class="value" height="24" width="48" x="157" y="30"></rect>
+                <text class="label" x="176" y="47">4</text>
               </g>
-              <g class="rating-5">
-                <circle class="value" cx="186" cy="20" r="10"/>
-                <circle class="focus" cx="186" cy="20" r="14"/>
-                <text class="label" x="182" y="50">5</text>
+              <g class="rating">
+                <rect class="value" height="24" width="48" x="205" y="30"></rect>
+                <text class="label" x="224" y="47">5</text>
               </g>
-              <g class="rating-6">
-                <circle class="value" cx="216" cy="20" r="10"/>
-                <circle class="focus" cx="216" cy="20" r="14"/>
-                <text class="label" x="212" y="50">6</text>
+              <g class="rating">
+                <rect class="value" height="24" width="48" x="253" y="30"></rect>
+                <text class="label" x="272" y="47">6</text>
               </g>
-              <g class="rating-7">
-                <circle class="value" cx="246" cy="20" r="10"/>
-                <circle class="focus" cx="246" cy="20" r="14"/>
-                <text class="label" x="242" y="50">7</text>
+              <g class="rating">
+                <rect class="value" height="24" width="48" x="301" y="30"></rect>
+                <text class="label" x="320" y="47">7</text>
               </g>
-              <g class="rating-8">
-                <circle class="value" cx="276" cy="20" r="10"/>
-                <circle class="focus" cx="276" cy="20" r="14"/>
-                <text class="label" x="272" y="50">8</text>
+              <g class="rating">
+                <rect class="value" height="24" width="48" x="349" y="30"></rect>
+                <text class="label" x="368" y="47">8</text>
               </g>
-              <g class="rating-9">
-                <circle class="value" cx="306" cy="20" r="10"/>
-                <circle class="focus" cx="306" cy="20" r="14"/>
-                <text class="label" x="302" y="50">9</text>
+              <g class="rating">
+                <rect class="value" height="24" width="48" x="397" y="30"></rect>
+                <text class="label" x="416" y="47">9</text>
                </g>
-              <g class="rating-10">
-                <circle class="value" cx="336" cy="20" r="10"/>
-                <circle class="focus" cx="336" cy="20" r="14"/>
-                <text class="label" x="328" y="50">10</text>
-                <text class="description"  x="306" y="65">Extremely</text>
-                <text class="description"  x="311" y="80">Satisfied</text>
+              <g class="rating">
+                <rect class="value" height="24" width="48" x="445" y="30"></rect>
+                <text class="label" x="458" y="47">10</text>
+                <text class="description"  x="369" y="20">Extremely Satisfied</text>
                </g>
             </svg>
           </div>
@@ -140,10 +128,10 @@
             To ensure assistive technology users correctly perceive the maximum slider value, this example uses the <code>aria-valuetext</code> property to communicate both the current and maximum values.
             However, since repeating the maximum value every time the slider value changes is potentially distracting, the maximum value is included in <code>aria-valuetext</code> only when the slider is initialized and when the thumb loses keyboard focus.
           </li>
-          <li>To highlight the interactive nature of the satisfaction rating, a focus ring appears around the group of rating options when the thumb has focus and no rating value has been selected.</li>
+          <li>To highlight the interactive nature of the satisfaction rating, a focus ring appears around the group of rating options when the slider has focus and no rating value has been selected.</li>
           <li>
-            To ensure the borders of the circles and focus ring have sufficient contrast with the background when high contrast settings invert colors, the color of the borders are synchronized with the color of the text content.
-            For example, the color of the circle borders is set to match the foreground color of high contrast mode text by specifying the CSS <code>currentcolor</code> value for the <code>stroke</code> property of each inline SVG <code>circle</code> and <code>text</code> elements.
+            To ensure the borders of the rating values and focus ring have sufficient contrast with the background when high contrast settings invert colors, the color of the borders are synchronized with the color of the text content.
+            For example, the color of the rating value borders is set to match the foreground color of high contrast mode text by specifying the CSS <code>currentcolor</code> value for the <code>stroke</code> property of each inline SVG <code>rect</code> and <code>text</code> elements.
             If specific colors were used to specify the <code>stroke</code> and <code>fill</code> properties, the color of these elements would remain the same in high contrast mode, which could lead to insufficient contrast between them and their background or even make them invisible if their color were to match the high contrast mode background.<br>
             Note: The SVG element needs to have the CSS <code>forced-color-adjust</code> property set to the value <code>auto</code> for the <code>currentcolor</code> value to be updated in high contrast modes.
             Some browsers do not use <code>auto</code> for the default value.</li>

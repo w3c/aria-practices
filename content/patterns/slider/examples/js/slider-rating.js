@@ -8,6 +8,8 @@
  *   Desc:   RatingSlider widget that implements ARIA Authoring Practices
  */
 
+const OFFSET_SIZE = 4;
+
 class RatingSlider {
   constructor(domNode) {
     this.sliderNode = domNode;
@@ -16,12 +18,37 @@ class RatingSlider {
 
     this.svgNode = domNode.querySelector('svg');
 
-    // Inherit system text colors
-    //    var  color = getComputedStyle(this.sliderNode).color;
-    //    this.svgNode.setAttribute('color', color);
+    this.ratingRects = Array.from(
+      domNode.querySelectorAll('g.rating rect.value')
+    );
+    this.infoRatingRects = [];
 
-    this.railWidth = 300;
-    this.railOffset = 30;
+    this.ratingRects.forEach((r) => {
+      const info = {
+        x: parseInt(r.getAttribute('x')),
+        y: parseInt(r.getAttribute('y')),
+        width: parseInt(r.getAttribute('width')),
+        height: parseInt(r.getAttribute('height')),
+        rx: 0,
+      };
+      this.infoRatingRects.push(info);
+    });
+
+    const infoFirstRect = this.infoRatingRects[0];
+    const infoLastRect = this.infoRatingRects[this.infoRatingRects.length - 1];
+
+    this.railOffset = infoFirstRect.x;
+    this.railWidth = infoLastRect.x + infoLastRect.width - infoFirstRect.x;
+
+    this.focusRect = domNode.querySelector('.focus-ring');
+
+    this.infoDefaultFocus = {
+      x: OFFSET_SIZE,
+      y: OFFSET_SIZE,
+      width: infoLastRect.x + infoLastRect.width + OFFSET_SIZE,
+      height: infoFirstRect.y + infoLastRect.height + OFFSET_SIZE,
+      rx: OFFSET_SIZE,
+    };
 
     this.valueMin = this.getValueMin();
     this.valueMax = this.getValueMax();
@@ -52,6 +79,8 @@ class RatingSlider {
       'blur',
       this.addTotalCirclesToRatingLabel.bind(this)
     );
+
+    this.setFocusRing(0);
   }
 
   // Get point in global SVG space
@@ -157,10 +186,86 @@ class RatingSlider {
     return 'Unexpected value: ' + value;
   }
 
+  resetRects() {
+    for (let i = 0; i < this.ratingRects.length; i += 1) {
+      const rect = this.ratingRects[i];
+      const info = this.infoRatingRects[i];
+
+      rect.setAttribute('x', info.x);
+      rect.setAttribute('y', info.y);
+      rect.setAttribute('width', info.width);
+      rect.setAttribute('height', info.height);
+      rect.setAttribute('rx', info.rx);
+
+      rect.parentNode.classList.remove('current');
+    }
+  }
+
+  setSelectedRating(value) {
+    let rect, info;
+
+    const leftValue = value - 1;
+    const rightValue = value + 1;
+
+    if (value > 0) {
+      rect = this.ratingRects[value - 1];
+      info = this.infoRatingRects[value - 1];
+
+      rect.setAttribute('x', info.x - OFFSET_SIZE);
+      rect.setAttribute('y', info.y - OFFSET_SIZE);
+      rect.setAttribute('width', info.width + 2 * OFFSET_SIZE);
+      rect.setAttribute('height', info.height + 2 * OFFSET_SIZE);
+      rect.setAttribute('rx', OFFSET_SIZE);
+
+      rect.parentNode.classList.add('current');
+    }
+
+    if (leftValue > 0) {
+      rect = this.ratingRects[leftValue - 1];
+      info = this.infoRatingRects[leftValue - 1];
+
+      rect.setAttribute('width', info.width - OFFSET_SIZE);
+    }
+
+    if (rightValue <= this.valueMax) {
+      rect = this.ratingRects[rightValue - 1];
+      info = this.infoRatingRects[rightValue - 1];
+
+      rect.setAttribute('x', info.x + OFFSET_SIZE);
+      rect.setAttribute('width', info.width - OFFSET_SIZE);
+    }
+  }
+
+  setFocusRing(value) {
+    const size = 2 * OFFSET_SIZE;
+
+    if (value > 0 && value <= this.valueMax) {
+      const info = this.infoRatingRects[value - 1];
+
+      this.focusRect.setAttribute('x', info.x - size);
+      this.focusRect.setAttribute('y', info.y - size);
+      this.focusRect.setAttribute('width', info.width + 2 * size);
+      this.focusRect.setAttribute('height', info.height + 2 * size);
+      this.focusRect.setAttribute('rx', size);
+    } else {
+      // Set ring around entire control
+
+      this.focusRect.setAttribute('x', this.infoDefaultFocus.x);
+      this.focusRect.setAttribute('y', this.infoDefaultFocus.y);
+      this.focusRect.setAttribute('width', this.infoDefaultFocus.width);
+      this.focusRect.setAttribute('height', this.infoDefaultFocus.height);
+      this.focusRect.setAttribute('rx', this.infoDefaultFocus.rx);
+    }
+  }
+
   moveSliderTo(value) {
     value = Math.min(Math.max(value, this.valueMin + 1), this.valueMax);
     this.sliderNode.setAttribute('aria-valuenow', value);
     this.sliderNode.setAttribute('aria-valuetext', this.getValueText(value));
+
+    this.resetRects();
+    this.setSelectedRating(value);
+    this.setFocusRing(value);
   }
 
   onSliderKeydown(event) {
@@ -219,7 +324,7 @@ class RatingSlider {
     const x = this.getSVGPoint(event).x;
     const diffX = x - this.railOffset;
     const rating = (diffX * this.valueMax) / this.railWidth;
-    const value = Math.floor(rating);
+    const value = Math.ceil(rating);
 
     this.moveSliderTo(value);
 
@@ -245,7 +350,7 @@ class RatingSlider {
       const x = this.getSVGPoint(event).x;
       const diffX = x - this.railOffset;
       const rating = (diffX * this.valueMax) / this.railWidth;
-      const value = Math.floor(rating);
+      const value = Math.ceil(rating);
 
       this.moveSliderTo(value);
 
