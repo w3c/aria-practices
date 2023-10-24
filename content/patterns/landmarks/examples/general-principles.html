@@ -80,6 +80,11 @@
               <li>
                 Landmark roles can be nested to identify parent/child relationships of the information being presented.
               </li>
+              <li>
+                Note that wrapping  the content  of a modal dialog in a landmark region is unnecessary.
+                A landmark that wraps modal content cannot provide any benefit to users because it is not perceivable unless the modal is open.
+                In addition, when a modal is open, a landmark containing its content is   superfluous because the modal itself is a container that provides both a name and boundaries.
+              </li>
             </ul>
 
             <p style="font-weight: bold">Step 3: Label each area</p>
