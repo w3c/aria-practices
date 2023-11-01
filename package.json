@@ -57,7 +57,7 @@
     "prettier": "^2.7.1",
     "selenium-webdriver": "^4.8.1",
     "stylelint": "^15.1.0",
-    "stylelint-config-standard": "^30.0.1",
+    "stylelint-config-standard": "^34.0.0",
     "vnu-jar": "^21.2.5"
   },
   "lint-staged": {
