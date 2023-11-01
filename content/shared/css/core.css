@@ -107,10 +107,7 @@ th .example-header {
   z-index: -1;
 
   /* button border width - outline width - offset */
-  top: calc(-1px - 3px - 3px);
-  right: calc(-1px - 3px - 3px);
-  bottom: calc(-1px - 3px - 3px);
-  left: calc(-1px - 3px - 3px);
+  inset: calc(-1px - 3px - 3px);
   border: 3px solid hsl(213deg 71% 49%);
 
   /* button border radius + outline width + offset */
