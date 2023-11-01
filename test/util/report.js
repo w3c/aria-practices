@@ -7,7 +7,7 @@ const fs = require('fs');
 const htmlparser2 = require('htmlparser2');
 const spawn = require('cross-spawn');
 
-const examplePath = path.resolve(__dirname, '..', '..', 'examples');
+const examplePath = path.resolve(__dirname, '..', '..', 'content', 'patterns');
 const testsPath = path.resolve(__dirname, '..', 'tests');
 const ignoreExampleDirs = path.resolve(
   __dirname,
@@ -182,8 +182,8 @@ const getRegressionTestCoverage = function (exampleCoverage) {
     '..',
     'node_modules',
     'ava',
-    'lib',
-    'cli.js'
+    'entrypoints',
+    'cli.mjs'
   );
   const cmdArgs = [avaCmdPath, ...allTestFiles, '--tap', '-c', '1'];
 
@@ -197,15 +197,15 @@ const getRegressionTestCoverage = function (exampleCoverage) {
     process.exitCode = 1;
     process.exit();
   }
-
-  let testRegex = /^# (\S+) [>›] (\S+\.html) \[data-test-id="(\S+)"\]/gm;
+  let testRegex = /[>›] (\S+\.html) \[data-test-id="(\S+)"]/gm;
   let matchResults;
   while ((matchResults = testRegex.exec(avaResults))) {
-    let example = matchResults[2];
+    let example = matchResults[1];
+    example = example.replace('content/patterns/', '');
 
     // If the test file has a data-test-id, the data-test-id must exist on
     // the test page.
-    exampleCoverage[example].missingTests.delete(matchResults[3]);
+    exampleCoverage[example].missingTests.delete(matchResults[2]);
   }
 };
 
