@@ -162,7 +162,7 @@ class MenuButtonActionsActiveDescendant {
 
   closePopup() {
     if (this.isOpen()) {
-      this.buttonNode.removeAttribute('aria-expanded');
+      this.buttonNode.setAttribute('aria-expanded', 'false');
       this.menuNode.setAttribute('aria-activedescendant', '');
       for (var i = 0; i < this.menuitemNodes.length; i++) {
         this.menuitemNodes[i].classList.remove('focus');
