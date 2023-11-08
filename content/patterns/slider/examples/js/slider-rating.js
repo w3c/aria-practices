@@ -8,7 +8,10 @@
  *   Desc:   RatingSlider widget that implements ARIA Authoring Practices
  */
 
-const OFFSET_SIZE = 6;
+const SELECTED_SIZE = 6;
+const RAIL_LEFT = 13;
+const RAIL_TOP = 35;
+const RAIL_HEIGHT = 24;
 
 class RatingSlider {
   constructor(domNode) {
@@ -17,38 +20,18 @@ class RatingSlider {
     this.isMoving = false;
 
     this.svgNode = domNode.querySelector('svg');
+    this.focusRect = domNode.querySelector('.focus-ring');
 
     this.ratingRects = Array.from(
       domNode.querySelectorAll('g.rating rect.value')
     );
-    this.infoRatingRects = [];
 
-    this.ratingRects.forEach((r) => {
-      const info = {
-        x: parseInt(r.getAttribute('x')),
-        y: parseInt(r.getAttribute('y')),
-        width: parseInt(r.getAttribute('width')),
-        height: parseInt(r.getAttribute('height')),
-        rx: 0,
-      };
-      this.infoRatingRects.push(info);
-    });
+    this.ratingRectLabels = Array.from(
+      domNode.querySelectorAll('g.rating text.label')
+    );
 
-    const infoFirstRect = this.infoRatingRects[0];
-    const infoLastRect = this.infoRatingRects[this.infoRatingRects.length - 1];
-
-    this.railOffset = infoFirstRect.x;
-    this.railWidth = infoLastRect.x + infoLastRect.width - infoFirstRect.x;
-
-    this.focusRect = domNode.querySelector('.focus-ring');
-
-    this.infoDefaultFocus = {
-      x: 2,
-      y: 2,
-      width: infoLastRect.x + infoLastRect.width + OFFSET_SIZE,
-      height: infoFirstRect.y + infoLastRect.height + OFFSET_SIZE,
-      rx: OFFSET_SIZE,
-    };
+    [this.infoRatingRects, this.railWidth] = this.calcRatingRects();
+    this.infoDefaultFocusRect = this.calcDefaultFocusRect();
 
     this.valueMin = this.getValueMin();
     this.valueMax = this.getValueMax();
@@ -74,11 +57,13 @@ class RatingSlider {
     // bind a pointerup event handler to stop tracking pointer movements
     document.addEventListener('pointerup', this.onPointerUp.bind(this));
 
-    this.addTotalCirclesToRatingLabel();
+    this.addTotalRectsToRatingLabel();
     this.sliderNode.addEventListener(
       'blur',
-      this.addTotalCirclesToRatingLabel.bind(this)
+      this.addTotalRectsToRatingLabel.bind(this)
     );
+
+    window.addEventListener('resize', this.onResize.bind(this));
 
     this.setFocusRing(0);
   }
@@ -186,22 +171,88 @@ class RatingSlider {
     return 'Unexpected value: ' + value;
   }
 
+  calcRatingRects() {
+    let infoRatingRects = [];
+
+    const railWidth = Math.min(
+      Math.max(24, this.sliderNode.getBoundingClientRect().width),
+      600
+    );
+    const rectWidth = (railWidth - RAIL_LEFT) / 10;
+
+    let left = RAIL_LEFT;
+
+    for (let i = 0; i < this.ratingRects.length; i += 1) {
+      const rect = this.ratingRects[i];
+      const label = this.ratingRectLabels[i];
+
+      rect.setAttribute('x', left);
+      rect.setAttribute('y', RAIL_TOP);
+      rect.setAttribute('width', rectWidth);
+      rect.setAttribute('height', RAIL_HEIGHT);
+      rect.removeAttribute('rx');
+
+      const labelWidth = label.getBoundingClientRect().width;
+      const labelHeight = label.getBoundingClientRect().height;
+
+      label.setAttribute('x', 2 + left + (rectWidth - labelWidth) / 2);
+      label.setAttribute(
+        'y',
+        -2 + RAIL_TOP + RAIL_HEIGHT - (RAIL_HEIGHT - labelHeight + 4) / 2
+      );
+
+      const info = {
+        x: left,
+        y: RAIL_TOP,
+        width: rectWidth,
+        height: RAIL_HEIGHT,
+        rx: 0,
+      };
+
+      infoRatingRects[i] = info;
+
+      rect.parentNode.classList.remove('current');
+
+      left += rectWidth;
+    }
+
+    // adjust extremely satisfied label position
+    const descNodes = this.sliderNode.querySelectorAll('g.rating .description');
+    let descX = RAIL_LEFT;
+    descNodes[0].setAttribute('x', descX);
+
+    descX = railWidth - descNodes[1].getBoundingClientRect().width + 5;
+    descNodes[1].setAttribute('x', descX);
+
+    return [infoRatingRects, railWidth];
+  }
+
+  calcDefaultFocusRect() {
+    return {
+      x: 2,
+      y: 2,
+      width: this.railWidth + SELECTED_SIZE,
+      height: RAIL_TOP + RAIL_HEIGHT + SELECTED_SIZE,
+      rx: SELECTED_SIZE,
+    };
+  }
+
   resetRects() {
     for (let i = 0; i < this.ratingRects.length; i += 1) {
       const rect = this.ratingRects[i];
-      const info = this.infoRatingRects[i];
+      const infoRect = this.infoRatingRects[i];
 
-      rect.setAttribute('x', info.x);
-      rect.setAttribute('y', info.y);
-      rect.setAttribute('width', info.width);
-      rect.setAttribute('height', info.height);
-      rect.setAttribute('rx', info.rx);
+      rect.setAttribute('x', infoRect.x);
+      rect.setAttribute('y', infoRect.y);
+      rect.setAttribute('width', infoRect.width);
+      rect.setAttribute('height', infoRect.height);
+      rect.removeAttribute('rx');
 
       rect.parentNode.classList.remove('current');
     }
   }
 
-  setSelectedRating(value) {
+  setSelectedRatingRect(value) {
     let rect, info;
 
     const leftValue = value - 1;
@@ -211,11 +262,11 @@ class RatingSlider {
       rect = this.ratingRects[value - 1];
       info = this.infoRatingRects[value - 1];
 
-      rect.setAttribute('x', info.x - OFFSET_SIZE);
-      rect.setAttribute('y', info.y - OFFSET_SIZE);
-      rect.setAttribute('width', info.width + 2 * OFFSET_SIZE);
-      rect.setAttribute('height', info.height + 2 * OFFSET_SIZE);
-      rect.setAttribute('rx', OFFSET_SIZE);
+      rect.setAttribute('x', info.x - SELECTED_SIZE);
+      rect.setAttribute('y', info.y - SELECTED_SIZE);
+      rect.setAttribute('width', info.width + 2 * SELECTED_SIZE);
+      rect.setAttribute('height', info.height + 2 * SELECTED_SIZE);
+      rect.setAttribute('rx', SELECTED_SIZE);
 
       rect.parentNode.classList.add('current');
     }
@@ -224,20 +275,20 @@ class RatingSlider {
       rect = this.ratingRects[leftValue - 1];
       info = this.infoRatingRects[leftValue - 1];
 
-      rect.setAttribute('width', info.width - OFFSET_SIZE);
+      rect.setAttribute('width', info.width - SELECTED_SIZE);
     }
 
     if (rightValue <= this.valueMax) {
       rect = this.ratingRects[rightValue - 1];
       info = this.infoRatingRects[rightValue - 1];
 
-      rect.setAttribute('x', info.x + OFFSET_SIZE);
-      rect.setAttribute('width', info.width - OFFSET_SIZE);
+      rect.setAttribute('x', info.x + SELECTED_SIZE);
+      rect.setAttribute('width', info.width - SELECTED_SIZE);
     }
   }
 
   setFocusRing(value) {
-    const size = 2 * OFFSET_SIZE;
+    const size = 2 * SELECTED_SIZE;
 
     if (value > 0 && value <= this.valueMax) {
       const info = this.infoRatingRects[value - 1];
@@ -250,11 +301,11 @@ class RatingSlider {
     } else {
       // Set ring around entire control
 
-      this.focusRect.setAttribute('x', this.infoDefaultFocus.x);
-      this.focusRect.setAttribute('y', this.infoDefaultFocus.y);
-      this.focusRect.setAttribute('width', this.infoDefaultFocus.width);
-      this.focusRect.setAttribute('height', this.infoDefaultFocus.height);
-      this.focusRect.setAttribute('rx', this.infoDefaultFocus.rx);
+      this.focusRect.setAttribute('x', this.infoDefaultFocusRect.x);
+      this.focusRect.setAttribute('y', this.infoDefaultFocusRect.y);
+      this.focusRect.setAttribute('width', this.infoDefaultFocusRect.width);
+      this.focusRect.setAttribute('height', this.infoDefaultFocusRect.height);
+      this.focusRect.setAttribute('rx', SELECTED_SIZE);
     }
   }
 
@@ -264,7 +315,7 @@ class RatingSlider {
     this.sliderNode.setAttribute('aria-valuetext', this.getValueText(value));
 
     this.resetRects();
-    this.setSelectedRating(value);
+    this.setSelectedRatingRect(value);
     this.setFocusRing(value);
   }
 
@@ -315,14 +366,14 @@ class RatingSlider {
     }
   }
 
-  addTotalCirclesToRatingLabel() {
+  addTotalRectsToRatingLabel() {
     let valuetext = this.getValueTextWithMax(this.getValue());
     this.sliderNode.setAttribute('aria-valuetext', valuetext);
   }
 
   onRailClick(event) {
     const x = this.getSVGPoint(event).x;
-    const diffX = x - this.railOffset;
+    const diffX = x - RAIL_LEFT;
     const rating = (diffX * this.valueMax) / this.railWidth;
     const value = Math.ceil(rating);
 
@@ -348,7 +399,7 @@ class RatingSlider {
   onPointerMove(event) {
     if (this.isMoving) {
       const x = this.getSVGPoint(event).x;
-      const diffX = x - this.railOffset;
+      const diffX = x - RAIL_LEFT;
       const rating = (diffX * this.valueMax) / this.railWidth;
       const value = Math.ceil(rating);
 
@@ -361,6 +412,13 @@ class RatingSlider {
 
   onPointerUp() {
     this.isMoving = false;
+  }
+
+  onResize() {
+    [this.infoRatingRects, this.railWidth] = this.calcRatingRects();
+    this.infoDefaultFocusRect = this.calcDefaultFocusRect();
+    this.setSelectedRatingRect(this.getValue());
+    this.setFocusRing(this.getValue());
   }
 }
 
