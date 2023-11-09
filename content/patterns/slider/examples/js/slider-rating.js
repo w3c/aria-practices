@@ -175,7 +175,7 @@ class RatingSlider {
     let infoRatingRects = [];
 
     const railWidth = Math.min(
-      Math.max(24, this.sliderNode.getBoundingClientRect().width),
+      Math.max(260, this.sliderNode.getBoundingClientRect().width),
       600
     );
     const rectWidth = (railWidth - RAIL_LEFT) / 10;
@@ -221,7 +221,7 @@ class RatingSlider {
     let descX = RAIL_LEFT;
     descNodes[0].setAttribute('x', descX);
 
-    descX = railWidth - descNodes[1].getBoundingClientRect().width + 5;
+    descX = railWidth - descNodes[1].getBoundingClientRect().width + 2;
     descNodes[1].setAttribute('x', descX);
 
     return [infoRatingRects, railWidth];
@@ -278,7 +278,7 @@ class RatingSlider {
       rect.setAttribute('width', info.width - SELECTED_SIZE);
     }
 
-    if (rightValue <= this.valueMax) {
+    if (rightValue <= this.valueMax && value > 0) {
       rect = this.ratingRects[rightValue - 1];
       info = this.infoRatingRects[rightValue - 1];
 
