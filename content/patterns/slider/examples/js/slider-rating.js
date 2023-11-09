@@ -178,7 +178,7 @@ class RatingSlider {
       Math.max(260, this.sliderNode.getBoundingClientRect().width),
       600
     );
-    const rectWidth = (railWidth - RAIL_LEFT) / 10;
+    const rectWidth = Math.round((railWidth - RAIL_LEFT) / 10);
 
     let left = RAIL_LEFT;
 
@@ -198,7 +198,7 @@ class RatingSlider {
       label.setAttribute('x', 2 + left + (rectWidth - labelWidth) / 2);
       label.setAttribute(
         'y',
-        -2 + RAIL_TOP + RAIL_HEIGHT - (RAIL_HEIGHT - labelHeight + 4) / 2
+        -1 + RAIL_TOP + RAIL_HEIGHT - (RAIL_HEIGHT - labelHeight + 4) / 2
       );
 
       const info = {
@@ -221,7 +221,9 @@ class RatingSlider {
     let descX = RAIL_LEFT;
     descNodes[0].setAttribute('x', descX);
 
-    descX = railWidth - descNodes[1].getBoundingClientRect().width + 2;
+    descX = Math.round(
+      railWidth - descNodes[1].getBoundingClientRect().width + 2
+    );
     descNodes[1].setAttribute('x', descX);
 
     return [infoRatingRects, railWidth];
