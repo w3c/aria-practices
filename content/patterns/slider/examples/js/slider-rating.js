@@ -195,10 +195,16 @@ class RatingSlider {
       const labelWidth = label.getBoundingClientRect().width;
       const labelHeight = label.getBoundingClientRect().height;
 
-      label.setAttribute('x', 2 + left + (rectWidth - labelWidth) / 2);
+      label.setAttribute(
+        'x',
+        2 + left + Math.round((rectWidth - labelWidth) / 2)
+      );
       label.setAttribute(
         'y',
-        -1 + RAIL_TOP + RAIL_HEIGHT - (RAIL_HEIGHT - labelHeight + 4) / 2
+        -1 +
+          RAIL_TOP +
+          RAIL_HEIGHT -
+          Math.round((RAIL_HEIGHT - labelHeight + 4) / 2)
       );
 
       const info = {
