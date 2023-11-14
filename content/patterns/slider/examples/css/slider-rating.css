@@ -5,7 +5,7 @@
 }
 
 .rating-slider {
-  color: #005a9c;
+  color: blue;
 }
 
 .rating-slider svg {
@@ -14,33 +14,34 @@
 }
 
 .rating-slider svg .focus-ring {
-  fill: #eee;
+  fill: linktext;
   stroke-width: 0;
   fill-opacity: 0;
 }
 
 .rating-slider svg .value {
   stroke-width: 2px;
-  stroke: currentcolor;
+  stroke: linktext;
   fill-opacity: 0;
 }
 
 .rating-slider svg .label {
   font-size: 90%;
-  color: white;
+  fill: linktext;
 }
 
 .rating-slider svg .description {
   font-size: 90%;
+  fill: linktext;
 }
 
 .rating-slider svg .current .value {
-  fill: currentcolor;
+  fill: linktext;
   fill-opacity: 1;
 }
 
 .rating-slider svg .current .label {
-  fill: white;
+  fill: canvas;
   font-weight: bold;
 }
 
@@ -53,11 +54,11 @@
 
 .rating-slider svg .focus {
   stroke-width: 0;
-  stroke: currentcolor;
+  stroke: linktext;
   fill-opacity: 0;
 }
 
 .rating-slider:focus svg .focus-ring {
   stroke-width: 2px;
-  stroke: currentcolor;
+  stroke: linktext;
 }
