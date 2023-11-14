@@ -5,7 +5,7 @@
 }
 
 .rating-slider {
-  color: blue;
+  color: #005a9c;
 }
 
 .rating-slider svg {
@@ -14,34 +14,34 @@
 }
 
 .rating-slider svg .focus-ring {
-  fill: linktext;
+  fill: currentcolor;
   stroke-width: 0;
   fill-opacity: 0;
 }
 
 .rating-slider svg .value {
   stroke-width: 2px;
-  stroke: linktext;
+  stroke: currentcolor;
   fill-opacity: 0;
 }
 
 .rating-slider svg .label {
   font-size: 90%;
-  fill: linktext;
+  fill: currentcolor;
 }
 
 .rating-slider svg .description {
   font-size: 90%;
-  fill: linktext;
+  fill: currentcolor;
 }
 
 .rating-slider svg .current .value {
-  fill: linktext;
+  fill: currentcolor;
   fill-opacity: 1;
 }
 
 .rating-slider svg .current .label {
-  fill: canvas;
+  fill: white;
   font-weight: bold;
 }
 
@@ -54,11 +54,47 @@
 
 .rating-slider svg .focus {
   stroke-width: 0;
-  stroke: linktext;
+  stroke: currentcolor;
   fill-opacity: 0;
 }
 
 .rating-slider:focus svg .focus-ring {
   stroke-width: 2px;
-  stroke: linktext;
+  stroke: currentcolor;
+}
+
+@media (forced-colors: active) {
+  .rating-slider svg .focus-ring {
+    fill: linktext;
+  }
+
+  .rating-slider svg .value {
+    stroke: linktext;
+  }
+
+  .rating-slider svg .label {
+    fill: linktext;
+  }
+
+  .rating-slider svg .description {
+    fill: linktext;
+  }
+
+  .rating-slider svg .current .value {
+    fill: linktext;
+  }
+
+  .rating-slider svg .current .label {
+    fill: canvas;
+  }
+
+  /* focus styling */
+
+  .rating-slider svg .focus {
+    stroke: linktext;
+  }
+
+  .rating-slider:focus svg .focus-ring {
+    stroke: linktext;
+  }
 }
