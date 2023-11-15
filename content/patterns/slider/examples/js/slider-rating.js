@@ -192,6 +192,8 @@ class RatingSlider {
       rect.setAttribute('height', RAIL_HEIGHT);
       rect.removeAttribute('rx');
 
+      label.setAttribute('style', 'font-size: 95%');
+
       const labelWidth = Math.round(label.getBBox().width);
       const labelHeight = Math.round(label.getBBox().height);
 
@@ -259,7 +261,7 @@ class RatingSlider {
   }
 
   setSelectedRatingRect(value) {
-    let rect, info;
+    let label, rect, info;
 
     const leftValue = value - 1;
     const rightValue = value + 1;
@@ -267,14 +269,34 @@ class RatingSlider {
     if (value > 0) {
       rect = this.ratingRects[value - 1];
       info = this.infoRatingRects[value - 1];
+      label = this.ratingRectLabels[value - 1];
+
+      rect.parentNode.classList.add('current');
+
+      const rectWidth = info.width + 2 * SELECTED_SIZE;
 
       rect.setAttribute('x', info.x - SELECTED_SIZE);
       rect.setAttribute('y', info.y - SELECTED_SIZE);
-      rect.setAttribute('width', info.width + 2 * SELECTED_SIZE);
+      rect.setAttribute('width', rectWidth);
       rect.setAttribute('height', info.height + 2 * SELECTED_SIZE);
       rect.setAttribute('rx', SELECTED_SIZE);
 
-      rect.parentNode.classList.add('current');
+      label.setAttribute('style', 'font-size: 120%');
+
+      const labelWidth = Math.round(label.getBBox().width);
+      const labelHeight = Math.round(label.getBBox().height);
+
+      label.setAttribute(
+        'x',
+        2 + info.x - SELECTED_SIZE + Math.round((rectWidth - labelWidth) / 2)
+      );
+      label.setAttribute(
+        'y',
+        -1 +
+          RAIL_TOP +
+          RAIL_HEIGHT -
+          Math.round((RAIL_HEIGHT - labelHeight + 4) / 2)
+      );
     }
 
     if (leftValue > 0) {
