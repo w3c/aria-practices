@@ -27,11 +27,13 @@
 
 .rating-slider svg .label {
   font-size: 90%;
+  font-family: sans-serif;
   fill: currentcolor;
 }
 
 .rating-slider svg .description {
   font-size: 90%;
+  font-family: sans-serif;
   fill: canvasText;
 }
 

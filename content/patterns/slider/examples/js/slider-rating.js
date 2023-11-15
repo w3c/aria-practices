@@ -192,8 +192,11 @@ class RatingSlider {
       rect.setAttribute('height', RAIL_HEIGHT);
       rect.removeAttribute('rx');
 
-      const labelWidth = label.getBBox().width;
-      const labelHeight = label.getBBox().height;
+      const labelWidth = Math.round(label.getBBox().width);
+      const labelHeight = Math.round(label.getBBox().height);
+
+      label.setAttribute('data-width', labelWidth);
+      label.setAttribute('data-height', labelHeight);
 
       label.setAttribute(
         'x',
