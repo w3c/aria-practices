@@ -192,8 +192,8 @@ class RatingSlider {
       rect.setAttribute('height', RAIL_HEIGHT);
       rect.removeAttribute('rx');
 
-      const labelWidth = label.getBoundingClientRect().width;
-      const labelHeight = label.getBoundingClientRect().height;
+      const labelWidth = label.getBBox().width;
+      const labelHeight = label.getBBox().height;
 
       label.setAttribute(
         'x',
@@ -227,9 +227,7 @@ class RatingSlider {
     let descX = RAIL_LEFT;
     descNodes[0].setAttribute('x', descX);
 
-    descX = Math.round(
-      railWidth - descNodes[1].getBoundingClientRect().width + 2
-    );
+    descX = Math.round(railWidth - descNodes[1].getBBox().width + 2);
     descNodes[1].setAttribute('x', descX);
 
     return [infoRatingRects, railWidth];
