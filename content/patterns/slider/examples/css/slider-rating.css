@@ -33,7 +33,7 @@
 
 .rating-slider svg .description {
   font-size: 90%;
-  fill: canvasText;
+  fill: canvastext;
 }
 
 .rating-slider svg .current .value {
