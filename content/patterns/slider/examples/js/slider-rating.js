@@ -183,33 +183,18 @@ class RatingSlider {
     let left = RAIL_LEFT;
 
     for (let i = 0; i < this.ratingRects.length; i += 1) {
-      const rect = this.ratingRects[i];
-      const label = this.ratingRectLabels[i];
+      const rectNode = this.ratingRects[i];
+      const labelNode = this.ratingRectLabels[i];
 
-      rect.setAttribute('x', left);
-      rect.setAttribute('y', RAIL_TOP);
-      rect.setAttribute('width', rectWidth);
-      rect.setAttribute('height', RAIL_HEIGHT);
-      rect.removeAttribute('rx');
+      rectNode.setAttribute('x', left);
+      rectNode.setAttribute('y', RAIL_TOP);
+      rectNode.setAttribute('width', rectWidth);
+      rectNode.setAttribute('height', RAIL_HEIGHT);
+      rectNode.removeAttribute('rx');
 
-      label.setAttribute('style', 'font-size: 95%');
+      this.setLabelPosition(labelNode, left, rectWidth);
 
-      const labelWidth = Math.round(label.getBBox().width);
-      const labelHeight = Math.round(label.getBBox().height);
-
-      label.setAttribute(
-        'x',
-        2 + left + Math.round((rectWidth - labelWidth) / 2)
-      );
-      label.setAttribute(
-        'y',
-        -1 +
-          RAIL_TOP +
-          RAIL_HEIGHT -
-          Math.round((RAIL_HEIGHT - labelHeight + 4) / 2)
-      );
-
-      const info = {
+      const infoRect = {
         x: left,
         y: RAIL_TOP,
         width: rectWidth,
@@ -217,9 +202,9 @@ class RatingSlider {
         rx: 0,
       };
 
-      infoRatingRects[i] = info;
+      infoRatingRects[i] = infoRect;
 
-      rect.parentNode.classList.remove('current');
+      rectNode.parentNode.classList.remove('current');
 
       left += rectWidth;
     }
@@ -247,84 +232,92 @@ class RatingSlider {
 
   resetRects() {
     for (let i = 0; i < this.ratingRects.length; i += 1) {
-      const rect = this.ratingRects[i];
+      const rectNode = this.ratingRects[i];
       const infoRect = this.infoRatingRects[i];
+      const labelNode = this.ratingRectLabels[i];
 
-      rect.setAttribute('x', infoRect.x);
-      rect.setAttribute('y', infoRect.y);
-      rect.setAttribute('width', infoRect.width);
-      rect.setAttribute('height', infoRect.height);
-      rect.removeAttribute('rx');
+      rectNode.setAttribute('x', infoRect.x);
+      rectNode.setAttribute('y', infoRect.y);
+      rectNode.setAttribute('width', infoRect.width);
+      rectNode.setAttribute('height', infoRect.height);
+      rectNode.removeAttribute('rx');
 
-      rect.parentNode.classList.remove('current');
+      this.setLabelPosition(labelNode, infoRect.x, infoRect.width);
+
+      rectNode.parentNode.classList.remove('current');
     }
   }
 
   setSelectedRatingRect(value) {
-    let label, rect, info;
+    let labelNode, rectNode, infoRect;
 
     const leftValue = value - 1;
     const rightValue = value + 1;
 
     if (value > 0) {
-      rect = this.ratingRects[value - 1];
-      info = this.infoRatingRects[value - 1];
-      label = this.ratingRectLabels[value - 1];
+      rectNode = this.ratingRects[value - 1];
+      infoRect = this.infoRatingRects[value - 1];
+      labelNode = this.ratingRectLabels[value - 1];
 
-      rect.parentNode.classList.add('current');
+      rectNode.parentNode.classList.add('current');
 
-      const rectWidth = info.width + 2 * SELECTED_SIZE;
+      const rectWidth = infoRect.width + 2 * SELECTED_SIZE;
+      const x = infoRect.x - SELECTED_SIZE;
 
-      rect.setAttribute('x', info.x - SELECTED_SIZE);
-      rect.setAttribute('y', info.y - SELECTED_SIZE);
-      rect.setAttribute('width', rectWidth);
-      rect.setAttribute('height', info.height + 2 * SELECTED_SIZE);
-      rect.setAttribute('rx', SELECTED_SIZE);
+      rectNode.setAttribute('x', x);
+      rectNode.setAttribute('y', infoRect.y - SELECTED_SIZE);
+      rectNode.setAttribute('width', rectWidth);
+      rectNode.setAttribute('height', infoRect.height + 2 * SELECTED_SIZE);
+      rectNode.setAttribute('rx', SELECTED_SIZE);
 
-      label.setAttribute('style', 'font-size: 120%');
-
-      const labelWidth = Math.round(label.getBBox().width);
-      const labelHeight = Math.round(label.getBBox().height);
-
-      label.setAttribute(
-        'x',
-        2 + info.x - SELECTED_SIZE + Math.round((rectWidth - labelWidth) / 2)
-      );
-      label.setAttribute(
-        'y',
-        -1 +
-          RAIL_TOP +
-          RAIL_HEIGHT -
-          Math.round((RAIL_HEIGHT - labelHeight + 4) / 2)
-      );
+      this.setLabelPosition(labelNode, x, rectWidth, '120%');
     }
 
     if (leftValue > 0) {
-      rect = this.ratingRects[leftValue - 1];
-      info = this.infoRatingRects[leftValue - 1];
+      rectNode = this.ratingRects[leftValue - 1];
+      infoRect = this.infoRatingRects[leftValue - 1];
 
-      rect.setAttribute('width', info.width - SELECTED_SIZE);
+      rectNode.setAttribute('width', infoRect.width - SELECTED_SIZE);
     }
 
     if (rightValue <= this.valueMax && value > 0) {
-      rect = this.ratingRects[rightValue - 1];
-      info = this.infoRatingRects[rightValue - 1];
+      rectNode = this.ratingRects[rightValue - 1];
+      infoRect = this.infoRatingRects[rightValue - 1];
 
-      rect.setAttribute('x', info.x + SELECTED_SIZE);
-      rect.setAttribute('width', info.width - SELECTED_SIZE);
+      rectNode.setAttribute('x', infoRect.x + SELECTED_SIZE);
+      rectNode.setAttribute('width', infoRect.width - SELECTED_SIZE);
     }
+  }
+
+  setLabelPosition(labelNode, x, rectWidth, fontSize = '95%') {
+    labelNode.setAttribute('style', `font-size: ${fontSize}`);
+
+    const labelWidth = Math.round(labelNode.getBBox().width);
+    const labelHeight = Math.round(labelNode.getBBox().height);
+
+    labelNode.setAttribute(
+      'x',
+      2 + x + Math.round((rectWidth - labelWidth) / 2)
+    );
+    labelNode.setAttribute(
+      'y',
+      -1 +
+        RAIL_TOP +
+        RAIL_HEIGHT -
+        Math.round((RAIL_HEIGHT - labelHeight + 4) / 2)
+    );
   }
 
   setFocusRing(value) {
     const size = 2 * SELECTED_SIZE;
 
     if (value > 0 && value <= this.valueMax) {
-      const info = this.infoRatingRects[value - 1];
+      const infoRect = this.infoRatingRects[value - 1];
 
-      this.focusRect.setAttribute('x', info.x - size);
-      this.focusRect.setAttribute('y', info.y - size);
-      this.focusRect.setAttribute('width', info.width + 2 * size);
-      this.focusRect.setAttribute('height', info.height + 2 * size);
+      this.focusRect.setAttribute('x', infoRect.x - size);
+      this.focusRect.setAttribute('y', infoRect.y - size);
+      this.focusRect.setAttribute('width', infoRect.width + 2 * size);
+      this.focusRect.setAttribute('height', infoRect.height + 2 * size);
       this.focusRect.setAttribute('rx', size);
     } else {
       // Set ring around entire control
