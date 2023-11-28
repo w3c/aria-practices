@@ -235,32 +235,17 @@
                 </ul>
               </td>
             </tr>
-            <tr data-test-id="button-aria-expanded">
-              <td></td>
-              <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
-              <td><code>button</code></td>
-              <td>
-                <ul>
-                  <li>Added when the menu is open.</li>
-                  <li>Indicates that the menu is displayed and that activating the menu button closes the menu.</li>
-                  <li>The <code>aria-expanded</code> attribute is removed when the menu is closed.</li>
-                  <li>
-                    Included to support touch devices where screen reader users can touch the menu button when the menu is displayed.
-                    Keyboard users cannot focus the menu button when the menu is open.
-                  </li>
-                </ul>
-              </td>
-            </tr>
             <tr data-test-id="button-aria-expanded-false">
               <td></td>
               <th scope="row"><code>aria-expanded=&quot;false&quot;</code></th>
               <td><code>button</code></td>
-              <td>
-                <ul>
-                  <li>Added when the menu is closed.</li>
-                  <li>The <code>aria-expanded</code> attribute is set to false when the menu is closed.</li>
-                </ul>
-              </td>
+              <td>Indicates the menu is not displayed and that activating the menu button opens the menu.</td>
+            </tr>
+            <tr data-test-id="button-aria-expanded">
+              <td></td>
+              <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
+              <td><code>button</code></td>
+              <td>Indicates the menu is displayed and that activating the menu button closes the menu.</td>
             </tr>
           </tbody>
         </table>
