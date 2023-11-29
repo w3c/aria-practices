@@ -6,6 +6,12 @@
 
 .rating-slider {
   color: #005a9c;
+  -webkit-touch-callout: none;
+  user-select: none;
+  user-select: none;
+  user-select: none;
+  user-select: none;
+  user-select: none;
 }
 
 .rating-slider svg {
@@ -19,7 +25,7 @@
   fill-opacity: 0;
 }
 
-.rating-slider svg .value {
+.rating-slider svg .target {
   stroke-width: 2px;
   stroke: currentcolor;
   fill-opacity: 0;
@@ -36,7 +42,7 @@
   fill: canvastext;
 }
 
-.rating-slider svg .current .value {
+.rating-slider svg .current .target {
   fill: currentcolor;
   fill-opacity: 1;
 }
@@ -69,7 +75,7 @@
     fill: linktext;
   }
 
-  .rating-slider svg .value {
+  .rating-slider svg .target {
     stroke: linktext;
   }
 
@@ -81,7 +87,7 @@
     fill: linktext;
   }
 
-  .rating-slider svg .current .value {
+  .rating-slider svg .current .target {
     fill: linktext;
   }
 
