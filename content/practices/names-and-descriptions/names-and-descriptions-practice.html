@@ -307,20 +307,20 @@
           <p>
             For example, text displayed adjacent to a checkbox may be visually associated with the checkbox, so it is understood as the checkbox label by users who can perceive that visual association.
             However, unless the text is programmatically associated with the checkbox, assistive technology users will experience a checkbox without a label.
-            Wrapping the checkbox and the labeling text in a <code>label</code> element as follows gives the checkbox an accessible name. This is often referred to as <em>implicit</em> labelling.
+            Wrapping the checkbox and the labeling text in a <code>label</code> element as follows gives the checkbox an accessible name. This is often referred to as <em>implicit</em> labeling.
           </p>
           <pre><code>&lt;label&gt;
   &lt;input type="checkbox" name="subscribe"&gt;
   subscribe to our newsletter
 &lt;/label&gt;</code></pre>
           <p>
-            A form control can also be associated with a label by using the <code>for</code> attribute on the <code>label</code> element, using <em>explicit</em> labelling.
+            A form control can also be associated with a label by using the <code>for</code> attribute on the <code>label</code> element, using <em>explicit</em> labeling.
             This allows the label and the form control to be siblings or have different parents in the DOM, but requires adding a unique <code>id</code> attribute to each form control.
           </p>
           <pre><code>&lt;input type="checkbox" name="subscribe" id="subscribe_checkbox"&gt;
 &lt;label for="subscribe_checkbox"&gt;subscribe to our newsletter&lt;/label&gt;</code></pre>
           <p>
-            While both techniques are equally valid, currently explicit labels are better supported by assistive technology. When possible, use the above technique for <em>explicit</em> labelling instead of the <em>implicit</em> technique.
+            While both techniques are equally valid, currently explicit labels are better supported by assistive technology. When possible, use the above technique for <em>explicit</em> labeling instead of the <em>implicit</em> technique.
           </p>
           <p>
             Using the <code>label</code> element is an effective technique for satisfying <a href="#naming_rule_visible_text">Rule 2: Prefer Visible Text</a>.
