@@ -40,7 +40,7 @@
     "@babel/eslint-parser": "^7.22.15",
     "ava": "^5.3.1",
     "cheerio": "^1.0.0-rc.12",
-    "cspell": "^7.3.8",
+    "cspell": "^8.0.0",
     "eslint": "^8.52.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-ava": "^13.2.0",
