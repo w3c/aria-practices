@@ -30,7 +30,7 @@ class RatingSlider {
       domNode.querySelectorAll('g.rating text.label')
     );
 
-    [this.infoTargetRects, this.railWidth] = this.calcRatingRects();
+    [this.targetInfo, this.railWidth] = this.calcRatingRects();
     this.infoDefaultFocusRect = this.calcDefaultFocusRect();
 
     this.valueMin = this.getValueMin();
@@ -184,7 +184,7 @@ class RatingSlider {
 
       this.setLabelPosition(labelNode, left, rectWidth);
 
-      const infoTarget = {
+      const targetInfo = {
         x: left,
         y: RAIL_TOP,
         width: rectWidth,
@@ -192,7 +192,7 @@ class RatingSlider {
         rx: 0,
       };
 
-      infoRatingRects[i] = infoTarget;
+      infoRatingRects[i] = targetInfo;
 
       targetNode.parentNode.classList.remove('current');
 
@@ -223,41 +223,41 @@ class RatingSlider {
   resetRects() {
     for (let i = 0; i < this.targetRects.length; i += 1) {
       const targetNode = this.targetRects[i];
-      const infoTarget = this.infoTargetRects[i];
+      const targetInfo = this.targetInfo[i];
       const labelNode = this.labelTexts[i];
 
-      targetNode.setAttribute('x', infoTarget.x);
-      targetNode.setAttribute('y', infoTarget.y);
-      targetNode.setAttribute('width', infoTarget.width);
-      targetNode.setAttribute('height', infoTarget.height);
+      targetNode.setAttribute('x', targetInfo.x);
+      targetNode.setAttribute('y', targetInfo.y);
+      targetNode.setAttribute('width', targetInfo.width);
+      targetNode.setAttribute('height', targetInfo.height);
       targetNode.removeAttribute('rx');
 
-      this.setLabelPosition(labelNode, infoTarget.x, infoTarget.width);
+      this.setLabelPosition(labelNode, targetInfo.x, targetInfo.width);
 
       targetNode.parentNode.classList.remove('current');
     }
   }
 
   setSelectedRatingRect(value) {
-    let labelNode, targetNode, infoTarget;
+    let labelNode, targetNode, targetInfo;
 
     const leftValue = value - 1;
     const rightValue = value + 1;
 
     if (value > 0) {
       targetNode = this.targetRects[value - 1];
-      infoTarget = this.infoTargetRects[value - 1];
+      targetInfo = this.targetInfo[value - 1];
       labelNode = this.labelTexts[value - 1];
 
       targetNode.parentNode.classList.add('current');
 
-      const rectWidth = infoTarget.width + 2 * SELECTED_SIZE;
-      const x = infoTarget.x - SELECTED_SIZE;
+      const rectWidth = targetInfo.width + 2 * SELECTED_SIZE;
+      const x = targetInfo.x - SELECTED_SIZE;
 
       targetNode.setAttribute('x', x);
-      targetNode.setAttribute('y', infoTarget.y - SELECTED_SIZE);
+      targetNode.setAttribute('y', targetInfo.y - SELECTED_SIZE);
       targetNode.setAttribute('width', rectWidth);
-      targetNode.setAttribute('height', infoTarget.height + 2 * SELECTED_SIZE);
+      targetNode.setAttribute('height', targetInfo.height + 2 * SELECTED_SIZE);
       targetNode.setAttribute('rx', SELECTED_SIZE);
 
       this.setLabelPosition(labelNode, x, rectWidth, '120%');
@@ -265,17 +265,17 @@ class RatingSlider {
 
     if (leftValue > 0) {
       targetNode = this.targetRects[leftValue - 1];
-      infoTarget = this.infoTargetRects[leftValue - 1];
+      targetInfo = this.targetInfo[leftValue - 1];
 
-      targetNode.setAttribute('width', infoTarget.width - SELECTED_SIZE);
+      targetNode.setAttribute('width', targetInfo.width - SELECTED_SIZE);
     }
 
     if (rightValue <= this.valueMax && value > 0) {
       targetNode = this.targetRects[rightValue - 1];
-      infoTarget = this.infoTargetRects[rightValue - 1];
+      targetInfo = this.targetInfo[rightValue - 1];
 
-      targetNode.setAttribute('x', infoTarget.x + SELECTED_SIZE);
-      targetNode.setAttribute('width', infoTarget.width - SELECTED_SIZE);
+      targetNode.setAttribute('x', targetInfo.x + SELECTED_SIZE);
+      targetNode.setAttribute('width', targetInfo.width - SELECTED_SIZE);
     }
   }
 
@@ -302,12 +302,12 @@ class RatingSlider {
     const size = 2 * SELECTED_SIZE;
 
     if (value > 0 && value <= this.valueMax) {
-      const infoTarget = this.infoTargetRects[value - 1];
+      const targetInfo = this.targetInfo[value - 1];
 
-      this.focusRect.setAttribute('x', infoTarget.x - size);
-      this.focusRect.setAttribute('y', infoTarget.y - size);
-      this.focusRect.setAttribute('width', infoTarget.width + 2 * size);
-      this.focusRect.setAttribute('height', infoTarget.height + 2 * size);
+      this.focusRect.setAttribute('x', targetInfo.x - size);
+      this.focusRect.setAttribute('y', targetInfo.y - size);
+      this.focusRect.setAttribute('width', targetInfo.width + 2 * size);
+      this.focusRect.setAttribute('height', targetInfo.height + 2 * size);
       this.focusRect.setAttribute('rx', size);
     } else {
       // Set ring around entire control
@@ -421,7 +421,7 @@ class RatingSlider {
   }
 
   onResize() {
-    [this.infoTargetRects, this.railWidth] = this.calcRatingRects();
+    [this.targetInfo, this.railWidth] = this.calcRatingRects();
     this.infoDefaultFocusRect = this.calcDefaultFocusRect();
     this.setSelectedRatingRect(this.getValue());
     this.setFocusRing(this.getValue());
