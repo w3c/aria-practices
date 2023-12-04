@@ -164,7 +164,7 @@ class MenuButtonActionsActiveDescendant {
     if (this.isOpen()) {
       this.buttonNode.setAttribute('aria-expanded', 'false');
       this.menuNode.setAttribute('aria-activedescendant', '');
-      for (var i = 0; i < this.menuitemNodes.length; i++) {
+      for (let i = 0; i < this.menuitemNodes.length; i++) {
         this.menuitemNodes[i].classList.remove('focus');
       }
       this.menuNode.style.display = 'none';
