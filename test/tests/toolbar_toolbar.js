@@ -311,7 +311,7 @@ ariaTest(
       t,
       ex.fontFamilyButtonSelector,
       'aria-expanded',
-      'true'
+      'false'
     );
   }
 );
