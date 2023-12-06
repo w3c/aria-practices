@@ -301,25 +301,28 @@
         <section id="naming_with_labels">
           <h3>Naming Form Controls with the Label Element</h3>
           <p>
-            The HTML <code>label</code> element enables authors to identify content that serves as a label and associate it with a form control.
+             The HTML <code>label</code> element enables authors to identify content that serves as a label and associate it with a form control.
             When a <code>label</code> element is associated with a form control, browsers calculate an accessible name for the form control from the <code>label</code> content.
           </p>
           <p>
             For example, text displayed adjacent to a checkbox may be visually associated with the checkbox, so it is understood as the checkbox label by users who can perceive that visual association.
             However, unless the text is programmatically associated with the checkbox, assistive technology users will experience a checkbox without a label.
-            Wrapping the checkbox and the labeling text in a <code>label</code> element as follows gives the checkbox an accessible name.
+            HTML provides two syntaxes for specifying this relationship.
+            The syntax with the broadest browser and assistive technology support is to set the <code>for</code> attribute on the <code>label</code> element to the <code>ID</code></code> of the control.
           </p>
-          <pre><code>&lt;label&gt;
-  &lt;input type="checkbox" name="subscribe"&gt;
-  subscribe to our newsletter
-&lt;/label&gt;</code></pre>
-          <p>
-            A form control can also be associated with a label by using the <code>for</code> attribute on the <code>label</code> element.
-            This allows the label and the form control to be siblings or have different parents in the DOM, but requires adding an <code>id</code> attribute to the form control, which can be error-prone.
-            When possible, use the above encapsulation technique for association instead of the following <code>for</code> attribute technique.
-          </p>
+
           <pre><code>&lt;input type="checkbox" name="subscribe" id="subscribe_checkbox"&gt;
 &lt;label for="subscribe_checkbox"&gt;subscribe to our newsletter&lt;/label&gt;</code></pre>
+
+          <p>
+            The other syntax, which doesn't return the correct accessible name in as many combinations of assistive technologies and browsers, is to wrap the checkbox and the labeling text in a <code>label</code> element.
+          </p>
+
+<pre><code>&lt;label&gt;
+&lt;input type="checkbox" name="subscribe"&gt;
+subscribe to our newsletter
+&lt;/label&gt;</code></pre>
+
           <p>
             Using the <code>label</code> element is an effective technique for satisfying <a href="#naming_rule_visible_text">Rule 2: Prefer Visible Text</a>.
             It also satisfies <a href="#naming_rule_native_techniques">Rule 3: Prefer Native Techniques</a>.
