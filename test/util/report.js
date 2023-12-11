@@ -201,7 +201,7 @@ const getRegressionTestCoverage = function (exampleCoverage) {
   let matchResults;
   while ((matchResults = testRegex.exec(avaResults))) {
     let example = matchResults[1];
-    example = example.replace('content/patterns/', '');
+    example = path.normalize(example.replace('content/patterns/', ''));
 
     // If the test file has a data-test-id, the data-test-id must exist on
     // the test page.
