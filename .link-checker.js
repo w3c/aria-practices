@@ -1,5 +1,8 @@
 module.exports = {
-  filesToIgnore: ['content/shared/templates/example-usage-warning.html'],
+  filesToIgnore: [
+    // For example:
+    // 'content/shared/templates/example-usage-warning.html',
+  ],
   excludedLinks: {
     'content/patterns/menubar/examples/menubar-navigation.html': [
       '#ex1 [role=menuitem]',
