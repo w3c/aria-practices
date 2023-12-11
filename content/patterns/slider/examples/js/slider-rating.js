@@ -122,37 +122,37 @@ class RatingSlider {
   getValueTextWithMax(value) {
     switch (value) {
       case 0:
-        return 'no rating on the 10 point satisfaction scale selected';
+        return 'Choose a rating from one to ten where 10 is extremely satisfied';
 
       case 1:
-        return 'one, extremely unsatisfied, first value on ten point satisfaction scale';
+        return 'one out of 10, extremely dissatisfied';
 
       case 2:
-        return 'two, second value on ten point satisfaction scale';
+        return 'two out of ten where ten is extremely satisfied';
 
       case 3:
-        return 'three, third value on ten point satisfaction scale';
+        return 'three  out of ten where ten is extremely satisfied';
 
       case 4:
-        return 'four, fourth value on ten point satisfaction scale';
+        return 'four  out of ten where ten is extremely satisfied';
 
       case 5:
-        return 'five, fifth value on ten point satisfaction scale';
+        return 'five  out of ten where ten is extremely satisfied';
 
       case 6:
-        return 'six, sixth value on ten point satisfaction scale';
+        return 'six  out of ten where ten is extremely satisfied';
 
       case 7:
-        return 'seven, seventh value on ten point satisfaction scale';
+        return 'seven  out of ten where ten is extremely satisfied';
 
       case 8:
-        return 'eight, eighth value on ten point satisfaction scale';
+        return 'eight  out of ten where ten is extremely satisfied';
 
       case 9:
-        return 'nine, ninth value on ten point satisfaction scale';
+        return 'nine  out of ten where ten is extremely satisfied';
 
       case 10:
-        return 'ten, extremely satisfied, tenth value on ten point satisfaction scale';
+        return 'ten  out of ten, extremely satisfied';
 
       default:
         break;
