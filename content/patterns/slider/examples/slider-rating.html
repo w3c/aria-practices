@@ -74,7 +74,7 @@
                aria-valuemin="0"
                aria-valuenow="0"
                aria-valuemax="10"
-               aria-valuetext="no rating on the 10 point satisfaction scale selected"
+               aria-valuetext="Choose a rating from 1 to 10 where 10 is extremely satisfied"
               aria-labelledby="id-rating-label">
             <!-- SVG position and dimension values added through Javascript -->
 
@@ -255,7 +255,7 @@
               <td>
                 <code>div</code>
               </td>
-              <td>Specifies the minimum value of the slider.  <br>NOTE: 0 identifies the slider as having no rating value selected.</td>
+              <td>Specifies the minimum value of the slider.  <br>NOTE: 0 indicates a rating value has not yet been set.</td>
             </tr>
             <tr data-test-id="aria-valuenow">
               <td></td>
@@ -277,15 +277,16 @@
               </td>
               <td>
                 <ul>
-                  <li>A string value that provides a user-friendly name for the current value of the slider -- the level of satisfaction.</li>
-                  <li>When initialized, and when the slider loses focus, the string also includes the number of rating values e.g., <q>seven, seventh value on ten point satisfaction scale</q>.</li>
+                  <li>A string that provides a user-friendly name for the current value.</li>
+                  <li>When the value is <code>0</code>, <code>1</code>, or <code>10</code>, provides the name of the value.</li>
+                  <li>When initialized and when the slider loses focus, the string also includes the number of rating values and the meaning of the maximum value, e.g., <q>seven out of 10 where 10 is extremely satisfied</q>.</li>
                 </ul>
               </td>
             </tr>
             <tr data-test-id="aria-labelledby">
               <td></td>
               <th scope="row">
-                <code>aria-labelledby="IDREF"</code>
+                <code>aria-labelledby="ID_REFERENCE"</code>
               </th>
               <td>
                 <code>div</code>
