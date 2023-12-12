@@ -301,7 +301,7 @@
         <section id="naming_with_labels">
           <h3>Naming Form Controls with the Label Element</h3>
           <p>
-             The HTML <code>label</code> element enables authors to identify content that serves as a label and associate it with a form control.
+            The HTML <code>label</code> element enables authors to identify content that serves as a label and associate it with a form control.
             When a <code>label</code> element is associated with a form control, browsers calculate an accessible name for the form control from the <code>label</code> content.
             For example, text displayed adjacent to a checkbox may be visually associated with the checkbox, so it is understood as the checkbox label by users who can perceive that visual association.
             However, unless the text is programmatically associated with the checkbox, assistive technology users will experience a checkbox without a label.
@@ -309,14 +309,15 @@
           <p>
             HTML provides two syntaxes for associating a label with a form control.
             The syntax with the broadest browser and assistive technology support is to set the <code>for</code> attribute on the <code>label</code> element to the <code>id</code> of the control.
+            This way of associating the label with the control is often called explicit association.
           </p>
 
           <pre><code>&lt;input type="checkbox" name="subscribe" id="subscribe_checkbox"&gt;
 &lt;label for="subscribe_checkbox"&gt;subscribe to our newsletter&lt;/label&gt;</code></pre>
 
           <p>
-            The other syntax is to wrap the checkbox and the labeling text in a <code>label</code> element.
-            However, some combinations of assistive technologies and browsers fail to treat the element as having the accessible name that is specified by using this syntax.
+            The other syntax, which is known as implicit association,  is to wrap the checkbox and the labeling text in a <code>label</code> element.
+            Some combinations of assistive technologies and browsers fail to treat the element as having an accessible name that is specified by using implicit association.
           </p>
 
 <pre><code>&lt;label&gt;
