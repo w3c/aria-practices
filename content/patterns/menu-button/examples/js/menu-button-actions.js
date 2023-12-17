@@ -156,7 +156,7 @@ class MenuButtonActions {
 
   closePopup() {
     if (this.isOpen()) {
-      this.buttonNode.removeAttribute('aria-expanded');
+      this.buttonNode.setAttribute('aria-expanded', 'false');
       this.menuNode.style.display = 'none';
     }
   }
