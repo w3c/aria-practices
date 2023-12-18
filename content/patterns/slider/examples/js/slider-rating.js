@@ -80,7 +80,7 @@ class RatingSlider {
   getValueText(value) {
     switch (value) {
       case 0:
-        return 'no satisfaction rating selected';
+        return 'Choose a rating from one to ten where 10 is extremely satisfied';
 
       case 1:
         return 'one, extremely dissatisfied';

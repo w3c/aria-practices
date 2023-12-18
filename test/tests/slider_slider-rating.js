@@ -13,7 +13,8 @@ const ex = {
   ratingMax: '10',
   ratingMin: '0',
   ratingDefault: '0',
-  ratingDefaultValue: 'no rating on the 10 point satisfaction scale selected',
+  ratingDefaultValue:
+    'Choose a rating from one to ten where 10 is extremely satisfied',
   ratingInc: 1,
   ratingPageInc: 2,
 };
@@ -37,7 +38,8 @@ const getRatingValueAndText = function (v, change) {
 
   switch (value) {
     case 0:
-      valuetext = 'no satisfaction rating selected';
+      valuetext =
+        'Choose a rating from one to ten where 10 is extremely satisfied';
       break;
 
     case 1:
