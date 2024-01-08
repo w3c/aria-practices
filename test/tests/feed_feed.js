@@ -254,7 +254,8 @@ ariaTest(
     await waitForArticlesToLoad(t);
 
     let articles = await t.context.queryElements(t, ex.articleSelector);
-    articles[0].sendKeys(Key.chord(Key.CONTROL, Key.END));
+    await articles[0].sendKeys(Key.chord(Key.CONTROL, Key.END));
+    await t.context.session.switchTo().defaultContent();
 
     t.true(
       await checkFocus(t, ex.delayTimeSelector, 0),
