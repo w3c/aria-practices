@@ -1,12 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Practices</title>
-</head>
-<body>
-  In a future iteration this file will contain a list of all practices.
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practices</title>
+
+    <!-- Core JS and CSS for the practices page -->
+    <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
+    <link rel="stylesheet" href="../shared/css/core.css">
+    <script src="../shared/js/highlight.pack.js"></script>
+    <script src="../shared/js/app.js"></script>
+    <script src="../shared/js/skipto.js"></script>
+  </head>
+  <body>
+    <h1>Practices</h1>
+    <ul class="tiles">
+      <li class="tile">
+        <a href="landmark-regions/landmark-regions-practice.html">
+          <h2 class="tile-name">
+            <span>Landmark Regions</span>
+          </h2>
+        </a>
+        <div class="tile-introduction">
+          ARIA landmark roles provide a powerful way to identify the organization and structure of a web page.
+        </div>
+      </li>
+
+      <li class="tile">
+        <a href="names-and-descriptions/names-and-descriptions-practice.html">
+          <h2 class="tile-name">
+            <span>Providing Accessible Names and Descriptions</span>
+          </h2>
+        </a>
+        <div class="tile-introduction">
+          Providing elements with accessible names, and where appropriate, accessible descriptions, is one of the most important responsibilities authors have when developing accessible web experiences.
+        </div>
+      </li>
+
+      <li class="tile">
+        <a href="keyboard-interface/keyboard-interface-practice.html">
+          <h2 class="tile-name">
+            <span>Developing a Keyboard Interface</span>
+          </h2>
+        </a>
+        <div class="tile-introduction">
+          Unlike native HTML form elements, browsers do not provide keyboard support for graphical user interface (GUI) components that are made accessible with ARIA; authors have to provide the keyboard support in their code.
+        </div>
+      </li>
+
+      <li class="tile">
+        <a
+          href="grid-and-table-properties/grid-and-table-properties-practice.html"
+        >
+          <h2 class="tile-name">
+            <span>Grid and Table Properties</span>
+          </h2>
+        </a>
+        <div class="tile-introduction">
+          To fully present and describe a grid or table, in addition to parsing the headers, rows, and cells using the roles described in the grid pattern or table pattern, assistive technologies need to be able to determine other structural and presentation characteristics, such as the number and visibility of rows and columns.
+        </div>
+      </li>
+
+      <li class="tile">
+        <a
+          href="range-related-properties/range-related-properties-practice.html"
+        >
+          <h2 class="tile-name">
+            <span>Communicating Value and Limits for Range Widgets</span>
+          </h2>
+        </a>
+        <div class="tile-introduction">
+          ARIA defines the following roles as range widgets, which means they communicate a value that is typically numeric and constrained to defined limits.
+        </div>
+      </li>
+
+      <li class="tile">
+        <a href="structural-roles/structural-roles-practice.html">
+          <h2 class="tile-name">
+            <span>Structural Roles</span>
+          </h2>
+        </a>
+        <div class="tile-introduction">
+          ARIA provides a set of roles that convey the accessibility semantics of structures on a page.
+        </div>
+      </li>
+
+      <li class="tile">
+        <a href="hiding-semantics/hiding-semantics-practice.html">
+          <h2 class="tile-name">
+            <span>Hiding Semantics with the&nbsp;<code>presentation</code>&nbsp;Role</span>
+          </h2>
+        </a>
+        <div class="tile-introduction">
+          While ARIA is primarily used to express semantics, there are some situations where hiding an element’s semantics from assistive technologies is helpful.
+        </div>
+      </li>
+    </ul>
+  </body>
 </html>

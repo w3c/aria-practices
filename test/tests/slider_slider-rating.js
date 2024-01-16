@@ -10,12 +10,13 @@ const ex = {
   sliderSelector: '#ex1 [role="slider"]',
   ratingSelector: '#id-rating',
   svgSelector: '#ex1 svg',
-  ratingMax: '5',
+  ratingMax: '10',
   ratingMin: '0',
   ratingDefault: '0',
-  ratingDefaultValue: 'zero of five stars',
-  ratingInc: 0.5,
-  ratingPageInc: 1,
+  ratingDefaultValue:
+    'Choose a rating from one to ten where 10 is extremely satisfied',
+  ratingInc: 1,
+  ratingPageInc: 2,
 };
 
 const sendAllSlidersToEnd = async function (t) {
@@ -28,53 +29,57 @@ const sendAllSlidersToEnd = async function (t) {
 
 const getRatingValueAndText = function (v, change) {
   let value = parseFloat(v) + parseFloat(change);
-  value = Math.min(Math.max(value, ex.ratingMin), ex.ratingMax);
+
+  let min = parseFloat(change) <= 0 ? 1 : parseFloat(ex.ratingMin);
+
+  value = Math.min(Math.max(value, min), ex.ratingMax);
 
   let valuetext = 'Unexpected value: ' + value;
 
   switch (value) {
     case 0:
-      valuetext = 'zero stars';
+      valuetext =
+        'Choose a rating from one to ten where 10 is extremely satisfied';
       break;
 
-    case 0.5:
-      valuetext = 'one half star';
+    case 1:
+      valuetext = 'one, extremely dissatisfied';
       break;
 
-    case 1.0:
-      valuetext = 'one star';
+    case 2:
+      valuetext = 'two';
       break;
 
-    case 1.5:
-      valuetext = 'one and a half stars';
+    case 3:
+      valuetext = 'three';
       break;
 
-    case 2.0:
-      valuetext = 'two stars';
+    case 4:
+      valuetext = 'four';
       break;
 
-    case 2.5:
-      valuetext = 'two and a half stars';
+    case 5:
+      valuetext = 'five';
       break;
 
-    case 3.0:
-      valuetext = 'three stars';
+    case 6:
+      valuetext = 'six';
       break;
 
-    case 3.5:
-      valuetext = 'three and a half stars';
+    case 7:
+      valuetext = 'seven';
       break;
 
-    case 4.0:
-      valuetext = 'four stars';
+    case 8:
+      valuetext = 'eight';
       break;
 
-    case 4.5:
-      valuetext = 'four and a half stars';
+    case 9:
+      valuetext = 'nine';
       break;
 
-    case 5.0:
-      valuetext = 'five stars';
+    case 10:
+      valuetext = 'ten, extremely satisfied';
       break;
 
     default:
@@ -204,8 +209,7 @@ ariaTest(
     t.deepEqual(
       await getValueAndText(t, ex.ratingSelector),
       [value, text],
-      'After sending 1 arrow right key to the rating slider, aria-valuenow should be " + value + " and aria-value-text should be: ' +
-        text
+      `After sending 1 arrow right key to the rating slider, aria-valuenow should be "${value}"" and aria-value-text should be: ${text}`
     );
 
     // Send more than 5 keys to rating slider
@@ -325,7 +329,7 @@ ariaTest(
     t.deepEqual(
       await getValueAndText(t, ex.ratingSelector),
       [value, text],
-      'After sending key end to the heat slider, aria-valuenow should be "' +
+      'After sending key end to the rating slider, aria-valuenow should be "' +
         value +
         '" and aria-value-text should be: ' +
         text
@@ -480,7 +484,7 @@ ariaTest(
     t.deepEqual(
       await getValueAndText(t, ex.ratingSelector),
       [value, text],
-      'After sending key home to the heat slider, aria-valuenow should be "' +
+      'After sending key home to the rating slider, aria-valuenow should be "' +
         ex.ratingMin +
         '" and aria-value-text should be: ' +
         text

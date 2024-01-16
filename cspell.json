@@ -1,11 +1,6 @@
 {
   "version": "0.2",
-  "dictionaries": [
-    "html",
-    "css",
-    "javascript",
-    "npm"
-  ],
+  "dictionaries": ["html", "css", "javascript", "npm"],
   "words": [
     "accesskey",
     "Accesskey",
@@ -31,6 +26,7 @@
     "Brinza",
     "Bucketwheat",
     "camelcase",
+    "canvastext",
     "Capitan",
     "Carron",
     "checkmark",
@@ -73,6 +69,7 @@
     "dropup",
     "Dubnium",
     "Dušek",
+    "entrypoints",
     "EXPANDO",
     "Fairchild",
     "Fancytree",
@@ -127,6 +124,7 @@
     "Leventhal",
     "Lewandowski",
     "Lilley",
+    "linktext",
     "listbox's",
     "Listboxes",
     "listitems",
@@ -146,6 +144,7 @@
     "Moloderno",
     "moreaccessible",
     "Moscovium",
+    "Montalvo",
     "MSAA",
     "Müller",
     "multithumb",
