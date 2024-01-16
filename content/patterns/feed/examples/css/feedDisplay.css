@@ -60,12 +60,12 @@ body {
 }
 
 .restaurant-type {
-  color: #777;
+  color: black;
   font-size: 13px;
 }
 
 .location-block {
-  color: #777;
+  color: black;
   display: inline-block;
   vertical-align: top;
   margin: 0 15px 10px;
