@@ -64,6 +64,10 @@ body {
   font-size: 13px;
 }
 
+.bookmark-button {
+  height: 24px;
+}
+
 .location-block {
   color: black;
   display: inline-block;
