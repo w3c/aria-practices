@@ -52,7 +52,7 @@
     "glob": "^8.1.0",
     "htmlhint": "^1.1.4",
     "htmlparser2": "^8.0.1",
-    "husky": "^8.0.3",
+    "husky": "^9.0.7",
     "lint-staged": "^13.1.1",
     "node-fetch": "^2.6.7",
     "prettier": "^2.7.1",
