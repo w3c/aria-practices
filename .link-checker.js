@@ -1,5 +1,8 @@
 module.exports = {
-  filesToIgnore: ['content/shared/templates/example-usage-warning.html'],
+  filesToIgnore: [
+    // For example:
+    // 'content/shared/templates/example-usage-warning.html',
+  ],
   excludedLinks: {
     'content/patterns/menubar/examples/menubar-navigation.html': [
       '#ex1 [role=menuitem]',
@@ -11,9 +14,17 @@ module.exports = {
       '.carousel-image a',
     ],
   },
+  hashCheckHandlers: [
+    {
+      name: 'github',
+      pattern: /^https:\/\/github\.com\/.*/,
+      matchHash: (ids, hash) =>
+        ids.includes(hash) || ids.includes(`user-content-${hash}`),
+    },
+  ],
   ignoreHashesOnExternalPagesMatchingRegex: [
     // Some hash links are resolved with JS and are therefore difficult to check algorithmically
-    /^https:\/\/github\.com\/.*\/wiki\//,
     /^https:\/\/html\.spec\.whatwg\.org\/multipage\//,
+    'https://github.com/w3c/aria-practices#code-conformance', // TODO: Remove when #2907 is resolved
   ],
 };
