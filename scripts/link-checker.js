@@ -302,7 +302,7 @@ async function checkLinks() {
         ) {
           consoleError(
             `Found broken external link on ${htmlPath}:${lineNumber}:${columnNumber}, ` +
-              'hash not found on page'
+              `hash "#${hash}" not found on page`
           );
         }
       }

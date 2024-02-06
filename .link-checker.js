@@ -25,5 +25,6 @@ module.exports = {
   ignoreHashesOnExternalPagesMatchingRegex: [
     // Some hash links are resolved with JS and are therefore difficult to check algorithmically
     /^https:\/\/html\.spec\.whatwg\.org\/multipage\//,
+    'https://github.com/w3c/aria-practices#code-conformance', // TODO: Remove when #2907 is resolved
   ],
 };
