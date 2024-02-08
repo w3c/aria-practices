@@ -33,7 +33,7 @@ async function checkLinks() {
     return getLineNumber;
   };
 
-  const checkPathForHash = (hrefOrSrc, ids = [], hash) => {
+  const checkPathForHash = (hrefOrSrc, ids = [], hash, ssr) => {
     // On some websites, the ids may not exactly match the hash included
     // in the link.
     // For e.g. GitHub will prepend client facing ids with their own
@@ -46,7 +46,7 @@ async function checkLinks() {
     const handler = options.hashCheckHandlers.find(({ pattern }) =>
       pattern.test(hrefOrSrc)
     );
-    if (handler) return handler.matchHash(ids, hash);
+    if (handler) return handler.matchHash(ids, hash, ssr);
     else return ids.includes(hash);
   };
 
@@ -149,7 +149,18 @@ async function checkLinks() {
               .querySelectorAll('[id]')
               .map((idElement) => idElement.getAttribute('id'));
 
-            return { ok: response.ok, status: response.status, ids };
+            // Handle GitHub README links.
+            // These links are stored within a react-partial element
+            const ssr = html
+              .querySelectorAll('react-partial')
+              .filter(
+                (partialElement) =>
+                  partialElement.getAttribute('partial-name') ===
+                  'repos-overview' // This is the partial that handles the READMEs
+              )
+              .flatMap((element) => element.getElementsByTagName('script'))
+              .map((element) => JSON.parse(element.innerHTML))[0];
+            return { ok: response.ok, status: response.status, ids, ssr };
           } catch (error) {
             return {
               errorMessage:
@@ -305,7 +316,7 @@ async function checkLinks() {
         if (
           !isHashCheckingDisabled &&
           hash &&
-          !checkPathForHash(hrefOrSrc, pageData.ids, hash)
+          !checkPathForHash(hrefOrSrc, pageData.ids, hash, pageData.ssr)
         ) {
           consoleError(
             `Found broken external link on ${htmlPath}:${lineNumber}:${columnNumber}, ` +
