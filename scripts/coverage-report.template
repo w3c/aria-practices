@@ -226,6 +226,7 @@
             <th>SVG in CSS</th>
             <th>SVG in JS</th>
             <th><code>forced-color-adjust</code></th>
+            <th><code>forced-colors:</code></th>
             <th>CSS ::before</th>
             <th>CSS ::after</th>
             <th>CSS content</th>

@@ -522,6 +522,7 @@ glob
       beforeCSS: getNumberOfReferences(dataCSS, '::before'),
       afterCSS: getNumberOfReferences(dataCSS, '::after'),
       forcedColorAdjust: getNumberOfReferences(dataCSS, 'forced-color-adjust'),
+      forcedColorsMediaQuery: getNumberOfReferences(dataCSS, 'forced-colors'),
 
       svgJS: getNumberOfReferences(dataJS, 'svg', true),
       classJS: getNumberOfReferences(dataJS, 'constructor\\('),
@@ -1013,6 +1014,7 @@ let IndexOfExampleGraphics = indexOfExamples.reduce(function (set, example) {
   count += example.svgCSS;
   count += example.svgJS;
   count += example.forcedColorAdjust;
+  count += example.forcedColorsMediaQuery;
   count += example.beforeCSS;
   count += example.afterCSS;
   count += example.contentCSS;
@@ -1027,6 +1029,7 @@ let IndexOfExampleGraphics = indexOfExamples.reduce(function (set, example) {
             <td>${htmlYesOrNo(example.svgCSS)}</td>
             <td>${htmlYesOrNo(example.svgJS)}</td>
             <td>${htmlYesOrNo(example.forcedColorAdjust)}</td>
+            <td>${htmlYesOrNo(example.forcedColorsMediaQuery)}</td>
             <td>${htmlYesOrNo(example.beforeCSS)}</td>
             <td>${htmlYesOrNo(example.afterCSS)}</td>
             <td>${htmlYesOrNo(example.contentCSS)}</td>
