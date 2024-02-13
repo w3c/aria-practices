@@ -135,7 +135,14 @@ async function checkLinks() {
 
         const getPageData = async () => {
           try {
-            const response = await fetch(externalPageLink);
+            const response = await fetch(externalPageLink, {
+              headers: {
+                // Spoof a normal looking User-Agent to keep the servers happy
+                // See https://github.com/JustinBeckwith/linkinator/blob/main/src/index.ts
+                'User-Agent':
+                  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36',
+              },
+            });
             const text = await response.text();
             const html = HTMLParser.parse(text);
             const ids = html
