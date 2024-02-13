@@ -1157,7 +1157,7 @@ const result = $.html()
   )
   .replace(
     '<p>Page last updated: </p>',
-    `<p> Page last updated: ${formattedDate}</p>`
+    `<p>Page last updated: ${formattedDate}</p>`
   );
 
 fs.writeFile(coverageReportPath, result, function (err) {
