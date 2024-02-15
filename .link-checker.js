@@ -20,7 +20,7 @@ module.exports = {
     {
       name: 'github',
       pattern: /^https:\/\/github\.com\/.*/,
-      matchHash: (ids, hash, ssr) => {
+      matchHash: (ids, hash, { ssr }) => {
         if (ssr) {
           // This is where the react-partial keeps data about READMEs and other *.md files
           const overviewFiles =
@@ -36,6 +36,16 @@ module.exports = {
           }
         }
         return ids.includes(hash) || ids.includes(`user-content-${hash}`);
+      },
+      getPartial: (html) => {
+        return html
+          .querySelectorAll('react-partial')
+          .filter(
+            (partialElement) =>
+              partialElement.getAttribute('partial-name') === 'repos-overview' // This is the partial that handles the READMEs
+          )
+          .flatMap((element) => element.getElementsByTagName('script'))
+          .map((element) => JSON.parse(element.innerHTML))[0];
       },
     },
   ],
