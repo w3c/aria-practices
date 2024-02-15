@@ -33,7 +33,24 @@ async function checkLinks() {
     return getLineNumber;
   };
 
-  const checkPathForHash = (hrefOrSrc, ids = [], hash, { ssr } = {}) => {
+  const getHashCheckHandler = (hrefOrSrc) => {
+    return options.hashCheckHandlers.find(({ pattern }) =>
+      pattern.test(hrefOrSrc)
+    );
+  };
+
+  const getReactPartial = (hrefOrSrc, html) => {
+    const handler = getHashCheckHandler(hrefOrSrc);
+    if (handler) return handler.getPartial(html);
+    return undefined;
+  };
+
+  const checkPathForHash = (
+    hrefOrSrc,
+    ids = [],
+    hash,
+    { reactPartial } = {}
+  ) => {
     // On some websites, the ids may not exactly match the hash included
     // in the link.
     // For e.g. GitHub will prepend client facing ids with their own
@@ -43,10 +60,8 @@ async function checkLinks() {
     // as being 'user-content-foo-bar' for its own page processing purposes.
     //
     // See https://github.com/w3c/aria-practices/issues/2809
-    const handler = options.hashCheckHandlers.find(({ pattern }) =>
-      pattern.test(hrefOrSrc)
-    );
-    if (handler) return handler.matchHash(ids, hash, { ssr });
+    const handler = getHashCheckHandler(hrefOrSrc);
+    if (handler) return handler.matchHash(ids, hash, { reactPartial });
     else return ids.includes(hash);
   };
 
@@ -151,14 +166,13 @@ async function checkLinks() {
 
             // Handle GitHub README links.
             // These links are stored within a react-partial element
-            const handler = options.hashCheckHandlers.find(({ pattern }) =>
-              pattern.test(hrefOrSrc)
-            );
-            let ssr = undefined;
-            if (handler) {
-              ssr = handler.getPartial(html);
-            }
-            return { ok: response.ok, status: response.status, ids, ssr };
+            const reactPartial = getReactPartial(hrefOrSrc, html);
+            return {
+              ok: response.ok,
+              status: response.status,
+              ids,
+              reactPartial,
+            };
           } catch (error) {
             return {
               errorMessage:
@@ -315,7 +329,7 @@ async function checkLinks() {
           !isHashCheckingDisabled &&
           hash &&
           !checkPathForHash(hrefOrSrc, pageData.ids, hash, {
-            ssr: pageData.ssr,
+            reactPartial: pageData.reactPartial,
           })
         ) {
           consoleError(
