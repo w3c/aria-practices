@@ -1,5 +1,10 @@
 const HTMLParser = require('node-html-parser');
 
+// Checks object for attribute and returns value.
+// If not found on first pass, recursively checks
+// nested objects and arrays of nested object(s)
+// until attribute is found. If not found,
+// returns undefined.
 const getAttributeValue = (obj, attribute) => {
   if (typeof obj !== 'object' || obj === null) return undefined;
   if (obj.hasOwnProperty(attribute)) return obj[attribute];
