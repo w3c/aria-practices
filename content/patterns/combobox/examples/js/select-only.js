@@ -170,6 +170,7 @@ function maintainScrollVisibility(activeElement, scrollParent) {
 const Select = function (el, options = []) {
   // element refs
   this.el = el;
+  this.labelEl = el.querySelector('.combo-label');
   this.comboEl = el.querySelector('[role=combobox]');
   this.listboxEl = el.querySelector('[role=listbox]');
 
@@ -194,6 +195,7 @@ Select.prototype.init = function () {
   this.comboEl.innerHTML = this.options[0];
 
   // add event listeners
+  this.labelEl.addEventListener('click', this.onLabelClick.bind(this));
   this.comboEl.addEventListener('blur', this.onComboBlur.bind(this));
   this.listboxEl.addEventListener('focusout', this.onComboBlur.bind(this));
   this.comboEl.addEventListener('click', this.onComboClick.bind(this));
@@ -238,6 +240,10 @@ Select.prototype.getSearchString = function (char) {
   // add most recent letter to saved search string
   this.searchString += char;
   return this.searchString;
+};
+
+Select.prototype.onLabelClick = function () {
+  this.comboEl.focus();
 };
 
 Select.prototype.onComboBlur = function (event) {
