@@ -473,7 +473,7 @@ glob
       let src = scripts[i].getAttribute('src');
       if (
         src.indexOf('examples.js') < 0 &&
-        src.indexOf('highlight.pack.js') < 0 &&
+        src.indexOf('highlight.min.js') < 0 &&
         src.indexOf('app.js') < 0
       ) {
         console.log('  [script]: ' + src);
