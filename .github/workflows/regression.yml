@@ -28,7 +28,7 @@ jobs:
         CI_NODE_INDEX: [0, 1, 2, 3, 4]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
