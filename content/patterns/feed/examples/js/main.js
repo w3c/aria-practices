@@ -15,7 +15,7 @@
  */
 window.addEventListener('load', function () {
   var feedNode = document.getElementById('restaurant-feed');
-  var delaySelect = document.getElementById('delay-time-select');
+  var delaySelect = window.parent.document.getElementById('delay-time-select');
   var restaurantFeed = new aria.Feed(feedNode, delaySelect);
 
   var restaurantFeedDisplay = new aria.FeedDisplay(restaurantFeed, function () {
