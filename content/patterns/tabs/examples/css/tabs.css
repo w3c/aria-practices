@@ -25,7 +25,7 @@
   max-width: 22%;
   overflow: hidden;
   text-align: left;
-  cursor: pointer;
+  cursor: default;
 }
 
 [role="tab"][aria-selected="true"] {
