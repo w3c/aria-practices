@@ -2,7 +2,6 @@ const assert = require('assert');
 
 /**
  * Confirm the roving tabindex has been initialized for a list of elements.
- *
  * @param {object} t                   - ava execution object
  * @param {string} elementsSelector - selector for elements which have roving tabindex
                                       by default, focus should be on the first item

@@ -8,7 +8,6 @@
 
 /**
  * ARIA Menu Button example
- *
  * @function onload
  * @description  after page has loaded initialize all menu buttons based on the selector "[aria-haspopup][aria-controls]"
  */

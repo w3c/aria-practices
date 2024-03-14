@@ -15,7 +15,6 @@ var aria = aria || {};
 
 /**
  * ARIA Scrollable Listbox Example
- *
  * @function onload
  * @description Initialize the listbox example once the page has loaded
  */
