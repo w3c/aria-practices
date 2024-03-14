@@ -31,10 +31,7 @@ table.sortable th button {
   background: transparent;
   border: none;
   display: inline;
-  right: 0;
-  left: 0;
-  top: 0;
-  bottom: 0;
+  inset: 0;
   width: 100%;
   text-align: left;
   outline: none;
