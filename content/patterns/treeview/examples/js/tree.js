@@ -14,7 +14,6 @@
 
 /**
  * ARIA Treeview example
- *
  * @function onload
  * @description  after page has loaded initialize all treeitems based on the role=treeitem
  */

@@ -12,7 +12,6 @@ const focusMatchesElement = async function (t, selector) {
 
 /**
  * Confirm the continuous subset of elements are in tab order for a test page
- *
  * @param {object} t                   - ava execution object
  * @param {Array} tabOrderSelectors - elements in tab order
  */

@@ -1,6 +1,5 @@
 /**
  * Replace and href with an link -- typically use url fragment -- to test behavior related to link following
- *
  * @param {ExecutionContext} t - Test execution context
  * @param {string} newUrl - the url to replace the external url
  * @param {string} linkSelector - CSS selector string

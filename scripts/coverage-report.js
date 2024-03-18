@@ -870,8 +870,7 @@ let PropsWithNoExamples = sortedPropertiesAndStates.reduce(function (
   }
 
   return `${set}`;
-},
-'');
+}, '');
 
 $('#props_with_no_examples_ul').html(PropsWithNoExamples);
 $('.props_with_no_examples_count').html(countNoExamples.toString());
@@ -898,8 +897,7 @@ let PropsWithOneExample = sortedPropertiesAndStates.reduce(function (
   }
 
   return `${set}`;
-},
-'');
+}, '');
 
 $('#props_with_one_example_tbody').html(PropsWithOneExample);
 $('.props_with_one_example_count').html(countOneExample.toString());
@@ -923,8 +921,7 @@ let PropsWithMoreThanOneExample = sortedPropertiesAndStates.reduce(function (
   }
 
   return `${set}`;
-},
-'');
+}, '');
 
 $('#props_with_more_than_one_tbody').html(PropsWithMoreThanOneExample);
 $('.props_with_more_than_one_examples_count').html(
@@ -1005,8 +1002,7 @@ let IndexOfExampleCodingPractices = indexOfExamples.reduce(function (
             <td>${example.documentationAttributes.length}</td>
             <td>${checkDocumentation}</td>
           </tr>`;
-},
-'');
+}, '');
 
 let IndexOfExampleGraphics = indexOfExamples.reduce(function (set, example) {
   let count = example.svgHTML;
@@ -1063,8 +1059,7 @@ let IndexOfExampleMousePointer = indexOfExamples.reduce(function (
             <td>${htmlYesOrNo(mouseCount)}</td>
             <td>${htmlYesOrNo(pointerCount)}</td>
           </tr>`;
-},
-'');
+}, '');
 
 let countClass = indexOfExamples.reduce(function (set, example) {
   return set + (example.classJS ? 1 : 0);

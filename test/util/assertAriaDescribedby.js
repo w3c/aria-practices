@@ -2,7 +2,6 @@ const assert = require('assert');
 
 /**
  * Confirm the aria-describedby attribute and corresponding element.
- *
  * @param {object} t                  - ava execution object
  * @param {string} elementSelector - the element with aria-describedby set
  */
@@ -26,9 +25,8 @@ module.exports = async function assertAriaDescribedby(t, elementSelector) {
       '"aria-describedby" attribute should exist on element: ' + elementSelector
     );
 
-    let descriptionValue = await elements[index].getAttribute(
-      'aria-describedby'
-    );
+    let descriptionValue =
+      await elements[index].getAttribute('aria-describedby');
 
     assert.ok(
       descriptionValue,

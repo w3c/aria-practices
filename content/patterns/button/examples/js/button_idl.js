@@ -29,7 +29,6 @@ function init() {
 
 /**
  * Activates the action button with the enter key.
- *
  * @param {KeyboardEvent} event
  */
 function actionButtonKeydownHandler(event) {
@@ -48,7 +47,6 @@ function actionButtonKeydownHandler(event) {
 
 /**
  * Activates the action button with the space key.
- *
  * @param {KeyboardEvent} event
  */
 function actionButtonKeyupHandler(event) {
@@ -65,7 +63,6 @@ function activateActionButton() {
 /**
  * Toggles the toggle button’s state if it’s actually a button element or has
  * the `role` attribute set to `button`.
- *
  * @param {MouseEvent} event
  */
 function toggleButtonClickHandler(event) {
@@ -79,7 +76,6 @@ function toggleButtonClickHandler(event) {
 
 /**
  * Toggles the toggle button’s state with the enter key.
- *
  * @param {KeyboardEvent} event
  */
 function toggleButtonKeydownHandler(event) {
@@ -93,7 +89,6 @@ function toggleButtonKeydownHandler(event) {
 
 /**
  * Toggles the toggle button’s state with space key.
- *
  * @param {KeyboardEvent} event
  */
 function toggleButtonKeyupHandler(event) {
@@ -105,7 +100,6 @@ function toggleButtonKeyupHandler(event) {
 
 /**
  * Toggles the toggle button’s state between *pressed* and *not pressed*.
- *
  * @param {HTMLElement} button
  */
 function toggleButtonState(button) {
