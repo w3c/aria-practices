@@ -120,7 +120,6 @@ class RadioGroupActiveDescendant {
     var currentItem = this.getCurrentRadioButton();
     switch (event.key) {
       case ' ':
-      case 'Enter':
         this.setChecked(currentItem);
         flag = true;
         break;
