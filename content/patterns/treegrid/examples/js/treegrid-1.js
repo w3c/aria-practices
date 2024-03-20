@@ -51,7 +51,7 @@ function TreeGrid(treegridElem, doAllowRowFocus, doStartRowFocus) {
     // textarea not supported as a cell widget as it's multiple lines
     // and needs up/down keys
     // These should all be descendants of a cell
-    var nodeList = root.querySelectorAll('a,button,input,td>[tabindex]');
+    var nodeList = root.querySelectorAll('a,button,input,select,td>[tabindex]');
     return Array.prototype.slice.call(nodeList);
   }
 
