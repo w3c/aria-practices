@@ -1,20 +1,23 @@
 const assert = require('assert');
-const { path: binaryPath } = require('geckodriver');
-const { spawn } = require('child_process');
+const { start } = require('geckodriver');
+const find = require('find-process');
 
 const getJSON = require('./get-json');
 const forceSerial = require('./force-serial');
+const waitPort = require('wait-port');
 const SERIES_LOCK = 8432;
 
-const startOnPort = (port, timeout) => {
+const startOnPort = async (port, timeout) => {
   if (timeout < 0) {
     return Promise.reject(
       new Error('Timed out while locating free port for WebDriver server')
     );
   }
 
-  const start = Date.now();
-  const child = spawn(binaryPath, ['--port', port]);
+  const startTime = Date.now();
+  // Start Geckodriver
+  const cp = await start({ port, log: 'fatal' });
+  await waitPort({ port });
 
   return new Promise((resolve, reject) => {
     let stopPolling = false;
@@ -23,14 +26,18 @@ const startOnPort = (port, timeout) => {
       resolve(null);
     };
 
-    child.on('close', giveUp);
+    find('port', port).then(function (list) {
+      if (list.length) {
+        giveUp();
+      }
+    });
 
     (function poll() {
       if (stopPolling) {
         return;
       }
 
-      if (timeout - (Date.now() - start) < 0) {
+      if (timeout - (Date.now() - startTime) < 0) {
         reject(new Error('Timed out while waiting for WebDriver server'));
         return;
       }
@@ -38,9 +45,12 @@ const startOnPort = (port, timeout) => {
       getJSON('http://127.0.0.1:' + port + '/status')
         .then((data) => {
           assert(data.value.ready);
-
-          child.removeListener('close', giveUp);
-          resolve(() => child.kill());
+          find('port', port).then(function (list) {
+            if (!list.length) {
+              stopPolling = true;
+            }
+          });
+          resolve(() => cp.kill());
         })
         .catch(() => setTimeout(poll, 500));
     })();
