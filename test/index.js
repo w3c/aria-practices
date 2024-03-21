@@ -3,13 +3,17 @@
 const path = require('path');
 const test = require('ava');
 const webdriver = require('selenium-webdriver');
+const firefox = require('selenium-webdriver/firefox');
 
 const startGeckodriver = require('./util/start-geckodriver');
 const queryElement = require('./util/queryElement');
 const queryElements = require('./util/queryElements');
 
 let session, geckodriver;
-const firefoxArgs = process.env.DEBUG ? [] : ['-headless'];
+let options = new firefox.Options();
+if (!process.env.DEBUG) {
+  options.addArguments('-headless');
+}
 const testWaitTime = parseInt(process.env.TEST_WAIT_TIME) || 500;
 const coverageReportRun = process.env.REGRESSION_COVERAGE_REPORT;
 
@@ -18,11 +22,7 @@ if (!coverageReportRun) {
     geckodriver = await startGeckodriver(1022, 12 * 1000);
     session = new webdriver.Builder()
       .usingServer('http://127.0.0.1:' + geckodriver.port)
-      .withCapabilities({
-        'moz:firefoxOptions': {
-          args: firefoxArgs,
-        },
-      })
+      .withCapabilities(options)
       .forBrowser('firefox')
       .build();
     await session;
