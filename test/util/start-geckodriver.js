@@ -1,5 +1,4 @@
 const assert = require('assert');
-const { path: binaryPath } = require('geckodriver');
 const { spawn } = require('child_process');
 
 const getJSON = require('./get-json');
@@ -14,7 +13,9 @@ const startOnPort = (port, timeout) => {
   }
 
   const start = Date.now();
-  const child = spawn(binaryPath, ['--port', port]);
+  // See https://www.npmjs.com/package/geckodriver for running
+  // geckodriver as a binary
+  const child = spawn('npx', ['geckodriver', '--port', port]);
 
   return new Promise((resolve, reject) => {
     let stopPolling = false;
