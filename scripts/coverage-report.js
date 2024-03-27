@@ -8,6 +8,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 const glob = require('glob');
 const cheerio = require('cheerio');
 const HTMLParser = require('node-html-parser');
@@ -17,6 +18,10 @@ const joinPaths = (...segments) => {
   return path.join(...segments).replace(/\\/g, '/');
 };
 
+const coverageFilesPath = joinPaths(
+  __dirname,
+  '../content/about/coverage-and-quality/'
+);
 const coverageReportPath = joinPaths(
   __dirname,
   '../content/about/coverage-and-quality/coverage-and-quality-report.html'
@@ -1138,15 +1143,30 @@ $('#example_summary_prototype').html(countPrototype);
 $('#example_summary_mouse').html(countMouse);
 $('#example_summary_pointer').html(countPointer);
 
-// Create a new Date object
-var currentDate = new Date();
+const getLastModifiedCoverageFilesFormattedDate = () => {
+  // Create a new Date object using git log date found for coverage-and-quality folder
+  const output = execSync(
+    `git log -1 --pretty="format:%cI" ${coverageFilesPath}`,
+    { cwd: path.dirname(coverageFilesPath) }
+  );
 
-// Format the date as a string
-const formattedDate = currentDate.toLocaleDateString('en-US', {
-  day: 'numeric',
-  month: 'long',
-  year: 'numeric',
-});
+  let date;
+  try {
+    date = new Date(output);
+  } catch (err) {
+    console.error(err);
+    return;
+  }
+
+  // Format the date as a string
+  return date.toLocaleDateString('en-US', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+};
+
+const formattedDate = getLastModifiedCoverageFilesFormattedDate();
 
 // cheerio seems to fold the doctype lines despite the template
 const result = $.html()
