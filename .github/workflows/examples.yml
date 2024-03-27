@@ -10,7 +10,7 @@ on:
       - "content/**/examples/**"
       - "scripts/reference-tables.*"
       - "scripts/coverage-report.*"
-      - "coverage/**"
+      - "content/about/coverage-and-quality/**"
   pull_request:
     paths:
       - "package*.json"
@@ -18,7 +18,7 @@ on:
       - "content/**/examples/**"
       - "scripts/reference-tables.*"
       - "scripts/coverage-report.*"
-      - "coverage/**"
+      - "content/about/coverage-and-quality/**"
 
 jobs:
   examples:
