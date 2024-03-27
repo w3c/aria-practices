@@ -1,6 +1,6 @@
 /* ========================================================================
- * Version: 5.2.1
- * Copyright (c) 2022, 2023 Jon Gunderson; Licensed BSD
+ * Version: 5.3.0
+ * Copyright (c) 2022, 2023, 2024 Jon Gunderson; Licensed BSD
  * Copyright (c) 2021 PayPal Accessibility Team and University of Illinois; Licensed BSD
  * All rights reserved.
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -9,6 +9,7 @@
  * Neither the name of PayPal or any of its subsidiaries or affiliates, nor the name of the University of Illinois, nor the names of any other contributors contributors may be used to endorse or promote products derived from this software without specific prior written permission.
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
+ * CDN: https://skipto-landmarks-headings.github.io/page-script-5/dist/skipto.min.js
  * Documenation: https://skipto-landmarks-headings.github.io/page-script-5
  * Code: https://github.com/skipto-landmarks-headings/page-script-5
  * Report Issues: https://github.com/skipto-landmarks-headings/page-script-5/issues
@@ -122,16 +123,19 @@ $skipToId.popup {
   transition: top 0.35s ease;
 }
 
-$skipToId button .text {
+$skipToId button .skipto-text {
   padding: 6px 8px 6px 8px;
   display: inline-block;
 }
 
-$skipToId button img {
-  height: 24px;
-  padding: 2px 4px 2px 4px;
+$skipToId button .skipto-small {
+  padding: 6px 8px 6px 8px;
   display: none;
-  background-color: #e8e9ea;
+}
+
+$skipToId button .skipto-medium {
+  padding: 6px 8px 6px 8px;
+  display: none;
 }
 
 $skipToId,
@@ -165,18 +169,54 @@ $skipToId button {
   z-index: $zIndex !important;
 }
 
-@media screen and (max-width: $mediaBreakPointpx) {
-  $skipToId button img {
-    display: block;
+@media screen and (max-width: $smallBreakPointpx) {
+  $skipToId:not(.popup) button .skipto-small {
+    transition: top 0.35s ease;
+    display: inline-block;
   }
 
-  $skipToId button {
-    border-color: #e8e9ea;
-  }
-
-  $skipToId button .text {
+  $skipToId:not(.popup) button .skipto-text,
+  $skipToId:not(.popup) button .skipto-medium {
+    transition: top 0.35s ease;
     display: none;
   }
+
+  $skipToId:not(.popup).focus button .skipto-text {
+    transition: top 0.35s ease;
+    display: inline-block;
+  }
+
+  $skipToId:not(.popup).focus button .skipto-small,
+  $skipToId:not(.popup).focus button .skipto-medium {
+    transition: top 0.35s ease;
+    display: none;
+  }
+
+}
+
+@media screen and (min-width: $smallBreakPointpx) and (max-width: $mediumBreakPointpx) {
+  $skipToId:not(.popup) button .skipto-medium {
+    transition: top 0.35s ease;
+    display: inline-block;
+  }
+
+  $skipToId:not(.popup) button .skipto-text,
+  $skipToId:not(.popup) button .skipto-small {
+    transition: top 0.35s ease;
+    display: none;
+  }
+
+  $skipToId:not(.popup).focus button .skipto-text {
+    transition: top 0.35s ease;
+    display: inline-block;
+  }
+
+  $skipToId:not(.popup).focus button .skipto-small,
+  $skipToId:not(.popup).focus button .skipto-medium {
+    transition: top 0.35s ease;
+    display: none;
+  }
+
 }
 
 $skipToId.fixed {
@@ -329,24 +369,19 @@ $skipToId button:hover {
   background-color: $menuBackgroundColor;
   color: $menuTextColor;
   outline: none;
-}
-
-$skipToId button:focus,
-$skipToId button:hover {
   border-width: 0px 2px 2px 2px;
   border-color: $focusBorderColor;
 }
 
-$skipToId button:focus .text,
-$skipToId button:hover .text {
+
+$skipToId button:focus .skipto-text,
+$skipToId button:hover .skipto-text,
+$skipToId button:focus .skipto-small,
+$skipToId button:hover .skipto-small,
+$skipToId button:focus .skipto-medium,
+$skipToId button:hover .skipto-medium {
   padding: 6px 7px 5px 7px;
 }
-
-$skipToId button:focus img,
-$skipToId button:hover img {
-  padding: 2px 3px 4px 3px;
-}
-
 
 $skipToId [role="menuitem"]:focus {
   padding: 1px;
@@ -499,7 +534,8 @@ $skipToId [role="menuitem"]:focus .label {
     updateStyle('$fontSize', config.fontSize, theme.fontSize, defaultTheme.fontSize);
 
     updateStyle('$positionLeft', config.positionLeft, theme.positionLeft, defaultTheme.positionLeft);
-    updateStyle('$mediaBreakPoint', config.mediaBreakPoint, theme.mediaBreakPoint, defaultTheme.mediaBreakPoint);
+    updateStyle('$smallBreakPoint', config.smallBreakPoint, theme.smallBreakPoint, defaultTheme.smallBreakPoint);
+    updateStyle('$mediumBreakPoint', config.mediumBreakPoint, theme.mediumBreakPoint, defaultTheme.mediumBreakPoint);
 
     updateStyle('$menuTextColor', config.menuTextColor, theme.menuTextColor, defaultTheme.menuTextColor);
     updateStyle('$menuBackgroundColor', config.menuBackgroundColor, theme.menuBackgroundColor, defaultTheme.menuBackgroundColor);
@@ -1851,14 +1887,19 @@ $skipToId [role="menuitem"]:focus .label {
         this.containerNode.appendChild(this.buttonNode);
 
         this.buttonTextNode = document.createElement('span');
-        this.buttonTextNode.classList.add('text');
+        this.buttonTextNode.classList.add('skipto-text');
         this.buttonTextNode.textContent = buttonVisibleLabel;
         this.buttonNode.appendChild(this.buttonTextNode);
 
-        const imageNode = document.createElement('img');
-        imageNode.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAALEwAACxMBAJqcGAAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KTMInWQAABP5JREFUWAm9V11MXEUUnjN7KbuwKD/L8qOp2kpbWCSFpkZN2qIxjQYWaC2JD/4kxsTE1MQHeedBY6K+mPSpJsakhcSgFaQk+qCh1DZRQmioSypVa0q1IKC1bFlw753jN5e9txfobmkBJ1nm3DPnb87fHEhkWGWVBx9QYqFCkSxk4nuFYMpA7jkilkIsMHNCGnI8m9VPl8/3/e0hcMEVAosjTc+wsl5iomcFc75LuTYA4ug7IajDZ+Qfnxw5dsMR5xoQqm0qF/OqgwXXO4cbscOQCwb5npuI9Yxq+bYBJTUHwqaZHMSNN99USjNE4jQoxuD5KeBnBSm+eZ4BYglWsQkhCzKLLWB6DHC1wwEj4j6DaiZHei8ZGmklkx+CwFZOgqalT772+qG67vb2duUwrXUPVzfVKMv6GMbsQm4ETVO8D5mHqHxXNLSQUFcFC23MdSmz9k3Fus+tVeGt+IsjrUFWc2MwokyfS5lTZiQTYndKuY5H33LlYCplv+Xmyq0Ep8PRvI+nYl0TzjngeKiqoQP63lrEzT9sIK5hIFKLhh1I76HKxjal5t4Tc17s6mEtNlQVbZse7f3A5SJx0dWn+D5DsbwmhBvqCpcQQDDb+ChuKmTrauvfy61h4qAhz0x70JJ8PYpUm5aZFaBvRElN9KGiyga2f1UN46W1rcUe+g0BkdwSiWiH1f4TqmocAGKP1oYqGPEZfGDyfN+vG6J9mVDbgNKqaMRkHkQTCtjnTBa8960U8hRyZAxljT4g44IsN1uWyVn6SRJ0dEP4xOzh5rqJTOXsZnf4kcbHlcUn0DhKl0pb2xc8mkC8R5nk11lCdE6M9sa8El0DNFLXqVCJN+GJF3GFbV7CdYK1Z45RoTw8febLWS1ziQFeJeHqlq2CrZ2WEBUkuBBt+p5M9F5eJDgJKfwot3xcBnJoB7yAB3JxoRUPEwX26r6Q1gCHeD32+yOthfNi/mVc4m0ke44tk+jIzOjJN/4XA5xLhKuj+y3FvTBkE7ww5zMKwrYBoUj0VSAr/RR450qs6y+HYSN2tOJuJHpzygtPG7oRmUl1FAhaEAndtN51FBdVNp5A/PGU3uXCs5uKtfseoCq+R14sGsBUbiAmuuxsT6Ahl3tV+SR1YAIY8eLuDObZzf6CGT1MOIsFwcOL7QTtwm/PA87h8j2nuKgvPnv97HL8ar+DlkoMDR1NZqLPaED8z+mz8FBtJgGZzvQIVV7d/OAfP/aMp6PLaABmtxdMqbakY749nuOZlGt+tzncXtjGUBiWItNNCko9RildJlvHWd19CJDbK0NAnOsMJKiIpJFNcmLBGUiY6rz3DIZDTyAJC7y4O4F1Ev52rhsDz5L1qPNFQl0lPRwc+XTwCgqjDD3bkpKfnBrtO+0QredeHGnZycocQB/IQ+EnA5RT6uvv7+dAeHsRFO0BUj/kB3NLtsfmpsbG1lN5KNIYFUp9DuW2R0lS50Ssu9NuQBjNc/5N8BBKDq9WahFdRhccQBx/JhbX8MDNI6SLHcShSbdjggFtALEuwA9zJu2DYrfJ4fBSdl7W7t9/+GLGfYz0LGguzH2GPr03ndz1wEP5KZKB551x3TXAEV5UGW0h4lfwOO3HdbMd/Fp2/fLBu1/B7Z9Mx072emWtMMA5rK9vNy5MDW8zhbUVLsxDqebil5be4VvcETQ9ExL9g3/rf3lqh/9iV1cXZpuV6z8QFu9El3GwrAAAAABJRU5ErkJggg==";
-        imageNode.setAttribute('alt', '');
-        this.buttonNode.appendChild(imageNode);
+        const smallButtonNode = document.createElement('span');
+        smallButtonNode.classList.add('skipto-small');
+        smallButtonNode.textContent = config.smallButtonLabel;
+        this.buttonNode.appendChild(smallButtonNode);
+
+        const mediumButtonNode = document.createElement('span');
+        mediumButtonNode.classList.add('skipto-medium');
+        mediumButtonNode.textContent = config.buttonLabel;
+        this.buttonNode.appendChild(mediumButtonNode);
 
         // Create menu container
 
@@ -2413,9 +2454,9 @@ $skipToId [role="menuitem"]:focus .label {
           !event.shiftKey &&
           !event.metaKey;
 
-        if (
-          (optionPressed && this.config.optionShortcut === key) ||
-          (altPressed && this.config.altShortcut === key)
+        if ((optionPressed && this.config.optionShortcut === key) ||
+          (altPressed    && this.config.altShortcut    === key) ||
+          (optionPressed && (48 === event.keyCode))
         ) {
           this.openPopup();
           this.setFocusToFirstMenuitem();
@@ -2566,6 +2607,7 @@ $skipToId [role="menuitem"]:focus .label {
 
         // Button labels and messages
         buttonLabel: 'Skip To Content',
+        smallButtonLabel: 'SkipTo',
         altLabel: 'Alt',
         optionLabel: 'Option',
         buttonShortcut: ' ($modifier+$key)',
@@ -2597,7 +2639,8 @@ $skipToId [role="menuitem"]:focus .label {
         fontFamily: '',
         fontSize: '',
         positionLeft: '',
-        mediaBreakPoint: '',
+        smallBreakPoint: '',
+        mediumBreakPoint: '',
         menuTextColor: '',
         menuBackgroundColor: '',
         menuitemFocusTextColor: '',
@@ -2612,7 +2655,8 @@ $skipToId [role="menuitem"]:focus .label {
           fontFamily: 'inherit',
           fontSize: 'inherit',
           positionLeft: '46%',
-          mediaBreakPoint: '540',
+          smallBreakPoint: '576',
+          mediumBreakPoint: '992',
           menuTextColor: '#1a1a1a',
           menuBackgroundColor: '#dcdcdc',
           menuitemFocusTextColor: '#eeeeee',
@@ -2686,6 +2730,17 @@ $skipToId [role="menuitem"]:focus .label {
           focusBorderColor: '#dd3444',
           buttonTextColor: '#fff',
           buttonBackgroundColor: '#036',
+        },
+        'openweba11y': {
+          hostnameSelector: 'openweba11y.com',
+          buttonTextColor: '#13294B',
+          buttonBackgroundColor: '#dddddd',
+          focusBorderColor: '#C5050C',
+          menuTextColor: '#13294B',
+          menuBackgroundColor: '#dddddd',
+          menuitemFocusTextColor: '#dddddd',
+          menuitemFocusBackgroundColor: '#13294B',
+          fontSize: '90%'
         }
       },
 
