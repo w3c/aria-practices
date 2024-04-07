@@ -129,7 +129,7 @@ aria.widget.SourceCode.prototype.createCode = function (
     var openTag = '';
     var nodeNameStr = node.nodeName.toLowerCase();
 
-    openTag += '<br/>' + indentation(indentLevel) + '&lt;' + nodeNameStr;
+    openTag += '\n' + indentation(indentLevel) + '&lt;' + nodeNameStr;
 
     var wrapAttributes = node.attributes.length > 2;
 
@@ -143,7 +143,7 @@ aria.widget.SourceCode.prototype.createCode = function (
         node.attributes[attrPos].nodeName + '="' + attributeValue + '"';
 
       if (wrapAttributes && attrPos !== node.attributes.length - 1) {
-        openTag += '<br/>' + indentation(indentLevel);
+        openTag += '\n' + indentation(indentLevel);
         openTag += '&nbsp;'.repeat(nodeNameStr.length + 2);
       }
     }
@@ -173,7 +173,7 @@ aria.widget.SourceCode.prototype.createCode = function (
             indentation(indentLevel)
           );
 
-          sourceCodeNode.innerHTML += '<br/>' + textNodeContent;
+          sourceCodeNode.innerHTML += '\n' + textNodeContent;
         }
         break;
 
@@ -186,7 +186,7 @@ aria.widget.SourceCode.prototype.createCode = function (
             indentation(indentLevel)
           );
 
-          sourceCodeNode.innerHTML += '<br/>' + commentNodeContent;
+          sourceCodeNode.innerHTML += '\n' + commentNodeContent;
         }
         break;
     }
@@ -198,7 +198,7 @@ aria.widget.SourceCode.prototype.createCode = function (
     var closeTag = '&lt;/' + node.nodeName.toLowerCase() + '&gt;';
 
     if (node.childNodes.length > 0) {
-      sourceCodeNode.innerHTML += '<br/>' + indentation(indentLevel);
+      sourceCodeNode.innerHTML += '\n' + indentation(indentLevel);
     }
 
     sourceCodeNode.innerHTML += closeTag;

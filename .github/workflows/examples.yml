@@ -9,12 +9,16 @@ on:
       - ".github/workflows/examples.yml"
       - "content/**/examples/**"
       - "scripts/reference-tables.*"
+      - "scripts/coverage-report.*"
+      - "content/about/coverage-and-quality/**"
   pull_request:
     paths:
       - "package*.json"
       - ".github/workflows/examples.yml"
       - "content/**/examples/**"
       - "scripts/reference-tables.*"
+      - "scripts/coverage-report.*"
+      - "content/about/coverage-and-quality/**"
 
 jobs:
   examples:
@@ -33,6 +37,26 @@ jobs:
 
       - name: Generate examples/index.html
         run: npm run reference-tables
+
+      - name: Ensure no git changes
+        run: git diff --exit-code
+
+  coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate coverage files
+        run: npm run coverage-report
 
       - name: Ensure no git changes
         run: git diff --exit-code
