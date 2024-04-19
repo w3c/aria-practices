@@ -1,5 +1,5 @@
 /* ========================================================================
- * Version: 5.3.1
+ * Version: 5.3.2
  * Copyright (c) 2022, 2023, 2024 Jon Gunderson; Licensed BSD
  * Copyright (c) 2021 PayPal Accessibility Team and University of Illinois; Licensed BSD
  * All rights reserved.
@@ -10,7 +10,7 @@
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * CDN: https://skipto-landmarks-headings.github.io/page-script-5/dist/skipto.min.js
- * Documenation: https://skipto-landmarks-headings.github.io/page-script-5
+ * Documentation: https://skipto-landmarks-headings.github.io/page-script-5
  * Code: https://github.com/skipto-landmarks-headings/page-script-5
  * Report Issues: https://github.com/skipto-landmarks-headings/page-script-5/issues
  * ======================================================================== */
@@ -388,13 +388,15 @@ $skipToId [role="menuitem"]:focus {
   border-width: 2px;
   border-style: solid;
   border-color: $focusBorderColor;
-  background-color: $menuitemFocusBackgroundColor;
-  color: $menuitemFocusTextColor;
   outline: none;
 }
 
+$skipToId [role="menuitem"]:focus,
+$skipToId [role="menuitem"]:hover,
 $skipToId [role="menuitem"]:focus .level,
-$skipToId [role="menuitem"]:focus .label {
+$skipToId [role="menuitem"]:focus .label,
+$skipToId [role="menuitem"]:hover .level,
+$skipToId [role="menuitem"]:hover .label {
   background-color: $menuitemFocusBackgroundColor;
   color: $menuitemFocusTextColor;
 }
@@ -2103,7 +2105,6 @@ $skipToId [role="menuitem"]:focus .label {
         // add event handlers
         menuitemNode.addEventListener('keydown', this.handleMenuitemKeydown.bind(this));
         menuitemNode.addEventListener('click', this.handleMenuitemClick.bind(this));
-        menuitemNode.addEventListener('pointerenter', this.handleMenuitemPointerenter.bind(this));
 
         groupNode.appendChild(menuitemNode);
 
@@ -2573,11 +2574,6 @@ $skipToId [role="menuitem"]:focus .label {
         this.handleMenuitemAction(event.currentTarget);
         event.stopPropagation();
         event.preventDefault();
-      }
-
-      handleMenuitemPointerenter(event) {
-        let tgt = event.currentTarget;
-        tgt.focus();
       }
 
       handleBackgroundPointerdown(event) {
