@@ -1946,6 +1946,8 @@ $skipToId [role="menuitem"].hover .label {
 
         attachNode.insertBefore(this.containerNode, attachNode.firstElementChild);
 
+        this.focusMenuitem = null;
+
         return this.containerNode;
 
       }
@@ -2103,6 +2105,7 @@ $skipToId [role="menuitem"].hover .label {
         menuitemNode.addEventListener('keydown', this.handleMenuitemKeydown.bind(this));
         menuitemNode.addEventListener('click', this.handleMenuitemClick.bind(this));
         menuitemNode.addEventListener('pointerenter', this.handleMenuitemPointerenter.bind(this));
+        menuitemNode.addEventListener('pointerleave', this.handleMenuitemPointerleave.bind(this));
         groupNode.appendChild(menuitemNode);
 
         // add heading level and label
@@ -2214,6 +2217,7 @@ $skipToId [role="menuitem"].hover .label {
           this.removeHoverClass();
           menuitem.classList.add('hover');
           menuitem.focus();
+          this.focusMenuitem = menuitem;
         }
       }
 
@@ -2393,7 +2397,7 @@ $skipToId [role="menuitem"].hover .label {
           node.classList.remove('hover');
         });
       }
-      
+
       // Menu event handlers
       
       handleFocusin() {
@@ -2590,6 +2594,11 @@ $skipToId [role="menuitem"].hover .label {
         let tgt = event.currentTarget;
         this.removeHoverClass();
         tgt.classList.add('hover');
+      }
+
+      handleMenuitemPointerleave(event) {
+        let tgt = event.currentTarget;
+        tgt.classList.remove('hover');
       }
 
       handleBackgroundPointerdown(event) {
