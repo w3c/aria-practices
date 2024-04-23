@@ -391,12 +391,9 @@ $skipToId [role="menuitem"]:focus {
   outline: none;
 }
 
-$skipToId [role="menuitem"]:focus,
-$skipToId [role="menuitem"]:hover,
-$skipToId [role="menuitem"]:focus .level,
-$skipToId [role="menuitem"]:focus .label,
-$skipToId [role="menuitem"]:hover .level,
-$skipToId [role="menuitem"]:hover .label {
+$skipToId [role="menuitem"].hover,
+$skipToId [role="menuitem"].hover .level,
+$skipToId [role="menuitem"].hover .label {
   background-color: $menuitemFocusBackgroundColor;
   color: $menuitemFocusTextColor;
 }
@@ -2062,8 +2059,8 @@ $skipToId [role="menuitem"]:hover .label {
       /*
        * @method updateMenuitems
        *
-       * @desc  Updates the menu information with the current manu items
-       *        used for menu navgation commands
+       * @desc  Updates the menu information with the current menu items
+       *        used for menu navigation commands
        */
       updateMenuitems () {
         let menuitemNodes = this.menuNode.querySelectorAll('[role=menuitem');
@@ -2105,7 +2102,7 @@ $skipToId [role="menuitem"]:hover .label {
         // add event handlers
         menuitemNode.addEventListener('keydown', this.handleMenuitemKeydown.bind(this));
         menuitemNode.addEventListener('click', this.handleMenuitemClick.bind(this));
-
+        menuitemNode.addEventListener('pointerenter', this.handleMenuitemPointerenter.bind(this));
         groupNode.appendChild(menuitemNode);
 
         // add heading level and label
@@ -2214,6 +2211,8 @@ $skipToId [role="menuitem"]:hover .label {
        */
       setFocusToMenuitem(menuitem) {
         if (menuitem) {
+          this.removeHoverClass();
+          menuitem.classList.add('hover');
           menuitem.focus();
         }
       }
@@ -2383,6 +2382,17 @@ $skipToId [role="menuitem"]:hover .label {
       isOpen() {
         return this.buttonNode.getAttribute('aria-expanded') === 'true';
       }
+
+      /*
+       * @method removeHoverClass
+       *
+       * @desc Removes hover class for menuitems
+       */
+      removeHoverClass() {
+        this.menuitemNodes.forEach( node => {
+          node.classList.remove('hover');
+        });
+      }
       
       // Menu event handlers
       
@@ -2475,7 +2485,7 @@ $skipToId [role="menuitem"]:hover .label {
             !event.metaKey;
 
           if ((optionPressed && this.config.optionShortcut === event.key) ||
-              (altPressed    && this.config.altShortcut    === event.key) ||
+              (altPressed && this.config.altShortcut === event.key) ||
               ((optionPressed || altPressed) && (48 === event.keyCode))
           ) {
             this.openPopup();
@@ -2574,6 +2584,12 @@ $skipToId [role="menuitem"]:hover .label {
         this.handleMenuitemAction(event.currentTarget);
         event.stopPropagation();
         event.preventDefault();
+      }
+
+      handleMenuitemPointerenter(event) {
+        let tgt = event.currentTarget;
+        this.removeHoverClass();
+        tgt.classList.add('hover');
       }
 
       handleBackgroundPointerdown(event) {
