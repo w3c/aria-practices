@@ -73,6 +73,10 @@ ariaTest(
 
       for (let l = 0; l < links.length; l++) {
         await buttons[b].click();
+        await t.context.session.executeScript(function () {
+          const link = arguments[0];
+          link.scrollIntoView({ block: 'center' });
+        }, links[l]);
         await links[l].click();
 
         t.is(
