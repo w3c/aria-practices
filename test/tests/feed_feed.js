@@ -15,7 +15,7 @@ const ex = {
   articleSelector: '[role="article"]',
   timeToLoad10Articles: 2500,
   numArticlesLoadedInSet: 10,
-  delayTimeSelector: '#delay-time-select',
+  termsOfUse: '#terms-of-use',
 };
 
 const navigateToFeed = async function (t) {
@@ -258,9 +258,9 @@ ariaTest(
     await t.context.session.switchTo().defaultContent();
 
     t.true(
-      await checkFocus(t, ex.delayTimeSelector, 0),
+      await checkFocus(t, ex.termsOfUse, 0),
       'Focus should move off the feed (onto element: ' +
-        ex.delayTimeSelector +
+        ex.termsOfUse +
         ') after sending keys CONTROL+END'
     );
   }
