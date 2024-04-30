@@ -17,6 +17,7 @@
     "jsdoc/require-param-description": 0,
     "jsdoc/require-param-type": 0,
     "jsdoc/require-returns-description": 0,
+    "jsdoc/tag-lines": ["warn", "any", { "startLines": 1 }],
     "strict": [2, "global"],
     "no-console": "error"
   },
