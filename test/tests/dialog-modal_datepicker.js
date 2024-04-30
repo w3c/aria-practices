@@ -62,7 +62,7 @@ const setDate = async function (t, day) {
     ex.inputSelector,
     m,
     d,
-    y
+    y,
   );
 };
 
@@ -76,7 +76,7 @@ const checkDate = async function (t, dateSelector, day) {
     await t.context.session
       .findElement(By.css(dateSelector))
       .getAttribute('data-date'),
-    targetDate
+    targetDate,
   );
 };
 
@@ -105,7 +105,7 @@ ariaTest(
   'calendar-button-aria-label',
   async (t) => {
     await assertAriaLabelExists(t, ex.buttonSelector);
-  }
+  },
 );
 
 // Dialog Tests
@@ -116,7 +116,7 @@ ariaTest(
   'dialog-role',
   async (t) => {
     await assertAriaRoles(t, 'example', 'dialog', 1, 'div');
-  }
+  },
 );
 
 ariaTest(
@@ -125,7 +125,7 @@ ariaTest(
   'dialog-aria-modal',
   async (t) => {
     await assertAttributeValues(t, ex.dialogSelector, 'aria-modal', 'true');
-  }
+  },
 );
 
 ariaTest(
@@ -134,7 +134,7 @@ ariaTest(
   'dialog-aria-label',
   async (t) => {
     await assertAriaLabelExists(t, ex.dialogSelector);
-  }
+  },
 );
 
 ariaTest(
@@ -143,7 +143,7 @@ ariaTest(
   'dialog-aria-live',
   async (t) => {
     await assertAttributeValues(t, ex.messageSelector, 'aria-live', 'polite');
-  }
+  },
 );
 
 ariaTest(
@@ -152,7 +152,7 @@ ariaTest(
   'change-date-button-aria-label',
   async (t) => {
     await assertAriaLabelExists(t, ex.controlButtons);
-  }
+  },
 );
 
 ariaTest(
@@ -164,9 +164,9 @@ ariaTest(
       t,
       `${ex.dialogSelector} h2`,
       'aria-live',
-      'polite'
+      'polite',
     );
-  }
+  },
 );
 
 ariaTest('grid role on table element', exampleFile, 'grid-role', async (t) => {
@@ -179,7 +179,7 @@ ariaTest(
   'grid-aria-labelledby',
   async (t) => {
     await assertAriaLabelledby(t, ex.gridSelector);
-  }
+  },
 );
 
 ariaTest(
@@ -192,7 +192,7 @@ ariaTest(
 
     let focusableButtons = await t.context.queryElements(
       t,
-      ex.currentMonthDateButtons
+      ex.currentMonthDateButtons,
     );
     let allButtons = await t.context.queryElements(t, ex.allDates);
 
@@ -203,7 +203,7 @@ ariaTest(
       for (let el = 0; el < allButtons.length; el++) {
         let date = await allButtons[el].getText();
         let disabled = (await allButtons[el].getAttribute('class')).includes(
-          'disabled'
+          'disabled',
         );
         let tabindex = dateSelected === date && !disabled ? '0' : '-1';
 
@@ -215,14 +215,14 @@ ariaTest(
             ' therefore the button number ' +
             el +
             ' should have tab index set to: ' +
-            tabindex
+            tabindex,
         );
       }
 
       // Send the tabindex="0" element the appropriate key to switch focus to the next element
       await focusableButtons[tabbableEl].sendKeys(Key.ARROW_RIGHT);
     }
-  }
+  },
 );
 
 ariaTest(
@@ -235,17 +235,21 @@ ariaTest(
 
     await setDateToJanFirst2019(t);
     await t.context.session.findElement(By.css(ex.buttonSelector)).click();
+
+    // Hacky fix: Reopens date picker to ensure update is applied to
+    // #example [role="dialog"] table.dates
+    await t.context.session.findElement(By.css(ex.buttonSelector)).click();
     await assertAttributeValues(t, ex.jan12019Day, 'aria-selected', 'true');
 
     let selectedButtons = await t.context.queryElements(
       t,
-      `${ex.allDates}[aria-selected="true"]`
+      `${ex.allDates}[aria-selected="true"]`,
     );
 
     t.is(
       selectedButtons.length,
       1,
-      'after setting date in box, only one button should have aria-selected'
+      'after setting date in box, only one button should have aria-selected',
     );
 
     await t.context.session.findElement(By.css(ex.jan22019Day)).click();
@@ -254,15 +258,15 @@ ariaTest(
 
     selectedButtons = await t.context.queryElements(
       t,
-      `${ex.allDates}[aria-selected="true"]`
+      `${ex.allDates}[aria-selected="true"]`,
     );
 
     t.is(
       selectedButtons.length,
       1,
-      'after clicking a date and re-opening datepicker, only one button should have aria-selected'
+      'after clicking a date and re-opening datepicker, only one button should have aria-selected',
     );
-  }
+  },
 );
 
 // Keyboard
@@ -273,7 +277,7 @@ ariaTest(
   'button-space-return',
   async (t) => {
     let chooseDateButton = await t.context.session.findElement(
-      By.css(ex.buttonSelector)
+      By.css(ex.buttonSelector),
     );
     chooseDateButton.sendKeys(Key.ENTER);
 
@@ -282,9 +286,9 @@ ariaTest(
         .findElement(By.css(ex.dialogSelector))
         .getCssValue('display'),
       'none',
-      'After sending ENTER to the "choose date" button, the calendar dialog should open'
+      'After sending ENTER to the "choose date" button, the calendar dialog should open',
     );
-  }
+  },
 );
 
 ariaTest(
@@ -293,7 +297,7 @@ ariaTest(
   'button-space-return',
   async (t) => {
     let chooseDateButton = await t.context.session.findElement(
-      By.css(ex.buttonSelector)
+      By.css(ex.buttonSelector),
     );
     chooseDateButton.sendKeys(' ');
 
@@ -302,9 +306,9 @@ ariaTest(
         .findElement(By.css(ex.dialogSelector))
         .getCssValue('display'),
       'none',
-      'After sending SPACE to the "choose date" button, the calendar dialog should open'
+      'After sending SPACE to the "choose date" button, the calendar dialog should open',
     );
-  }
+  },
 );
 
 ariaTest(
@@ -313,13 +317,13 @@ ariaTest(
   'dialog-esc',
   async (t) => {
     let chooseDateButton = await t.context.session.findElement(
-      By.css(ex.buttonSelector)
+      By.css(ex.buttonSelector),
     );
 
     for (let i = 0; i < ex.allFocusableElementsInDialog.length; i++) {
       await chooseDateButton.sendKeys(Key.ENTER);
       let el = t.context.session.findElement(
-        By.css(ex.allFocusableElementsInDialog[i])
+        By.css(ex.allFocusableElementsInDialog[i]),
       );
       await el.sendKeys(Key.ESCAPE);
 
@@ -330,7 +334,7 @@ ariaTest(
         'none',
         'After sending ESC to element "' +
           ex.allFocusableElementsInDialog[i] +
-          '" in the dialog, the calendar dialog should close'
+          '" in the dialog, the calendar dialog should close',
       );
 
       t.is(
@@ -340,10 +344,10 @@ ariaTest(
         '',
         'After sending ESC to element "' +
           ex.allFocusableElementsInDialog[i] +
-          '" in the dialog, no date should be selected'
+          '" in the dialog, no date should be selected',
       );
     }
-  }
+  },
 );
 
 ariaTest(
@@ -356,7 +360,7 @@ ariaTest(
     for (let itemSelector of ex.allFocusableElementsInDialog) {
       t.true(
         await focusMatchesElement(t, itemSelector),
-        'Focus should be on: ' + itemSelector
+        'Focus should be on: ' + itemSelector,
       );
 
       await t.context.session
@@ -367,9 +371,9 @@ ariaTest(
     t.true(
       await focusMatchesElement(t, ex.allFocusableElementsInDialog[0]),
       'After tabbing through all items, focus should return to: ' +
-        ex.allFocusableElementsInDialog[0]
+        ex.allFocusableElementsInDialog[0],
     );
-  }
+  },
 );
 
 ariaTest(
@@ -387,14 +391,14 @@ ariaTest(
     for (let i = lastIndex; i >= 0; i--) {
       t.true(
         await focusMatchesElement(t, ex.allFocusableElementsInDialog[i]),
-        'Focus should be on: ' + ex.allFocusableElementsInDialog[i]
+        'Focus should be on: ' + ex.allFocusableElementsInDialog[i],
       );
 
       await t.context.session
         .findElement(By.css(ex.allFocusableElementsInDialog[i]))
         .sendKeys(Key.chord(Key.SHIFT, Key.TAB));
     }
-  }
+  },
 );
 
 ariaTest(
@@ -422,7 +426,7 @@ ariaTest(
       'After selected next month button, date should be ' +
         day.toISOString().split('T')[0] +
         ' but found: ' +
-        dayInFocus
+        dayInFocus,
     );
 
     // send enter to next year button
@@ -440,7 +444,7 @@ ariaTest(
       'After selected next month button, then next year button date should be ' +
         day.toISOString().split('T')[0] +
         ' but found: ' +
-        dayInFocus
+        dayInFocus,
     );
 
     // Send enter to previous month button
@@ -458,7 +462,7 @@ ariaTest(
       'After selected next month button, then next year button date, then previous month button, date should be ' +
         day.toISOString().split('T')[0] +
         ' but found: ' +
-        dayInFocus
+        dayInFocus,
     );
 
     // Send enter to previous year button
@@ -477,9 +481,9 @@ ariaTest(
       'After selected next month button, then next year button date, then previous month button, then previous year button, date should be ' +
         day.toISOString().split('T')[0] +
         ' but found: ' +
-        dayInFocus
+        dayInFocus,
     );
-  }
+  },
 );
 
 ariaTest(
@@ -507,7 +511,7 @@ ariaTest(
       'After selected next month button, date should be ' +
         day.toISOString().split('T')[0] +
         ' but found: ' +
-        dayInFocus
+        dayInFocus,
     );
 
     // send space to next year button
@@ -525,7 +529,7 @@ ariaTest(
       'After selected next month button, then next year button date should be ' +
         day.toISOString().split('T')[0] +
         ' but found: ' +
-        dayInFocus
+        dayInFocus,
     );
 
     // Send space to previous month button
@@ -543,7 +547,7 @@ ariaTest(
       'After selected next month button, then next year button date, then previous month button, date should be ' +
         day.toISOString().split('T')[0] +
         ' but found: ' +
-        dayInFocus
+        dayInFocus,
     );
 
     // Send space to previous year button
@@ -562,9 +566,9 @@ ariaTest(
       'After selected next month button, then next year button date, then previous month button, then previous year button, date should be ' +
         day.toISOString().split('T')[0] +
         ' but found: ' +
-        dayInFocus
+        dayInFocus,
     );
-  }
+  },
 );
 
 ariaTest(
@@ -586,7 +590,7 @@ ariaTest(
         .findElement(By.css(ex.inputSelector))
         .getAttribute('value'),
       `${day.getMonth() + 1}/${day.getDate()}/${day.getFullYear()}`,
-      "ENTER sent to today's date button should select date"
+      "ENTER sent to today's date button should select date",
     );
 
     await t.context.session.findElement(By.css(ex.buttonSelector)).click();
@@ -603,9 +607,9 @@ ariaTest(
         .findElement(By.css(ex.inputSelector))
         .getAttribute('value'),
       `${day.getMonth() + 1}/${day.getDate()}/${day.getFullYear()}`,
-      "SPACE sent to tomorrow's date button should select tomorrow"
+      "SPACE sent to tomorrow's date button should select tomorrow",
     );
-  }
+  },
 );
 
 ariaTest(
@@ -631,10 +635,10 @@ ariaTest(
         'After sending ' +
           i +
           ' UP ARROWS to focused date, the focused date should be: ' +
-          day.toISOString().split('T')[0]
+          day.toISOString().split('T')[0],
       );
     }
-  }
+  },
 );
 
 ariaTest(
@@ -660,10 +664,10 @@ ariaTest(
         'After sending ' +
           i +
           ' DOWN ARROWS to focused date, the focused date should be: ' +
-          day.toISOString().split('T')[0]
+          day.toISOString().split('T')[0],
       );
     }
-  }
+  },
 );
 
 ariaTest(
@@ -689,10 +693,10 @@ ariaTest(
         'After sending ' +
           i +
           ' RIGHT ARROWS to focused date, the focused date should be: ' +
-          day.toISOString().split('T')[0]
+          day.toISOString().split('T')[0],
       );
     }
-  }
+  },
 );
 
 ariaTest(
@@ -718,10 +722,10 @@ ariaTest(
         'After sending ' +
           i +
           ' LEFT ARROWS to focused date, the focused date should be: ' +
-          day.toISOString().split('T')[0]
+          day.toISOString().split('T')[0],
       );
     }
-  }
+  },
 );
 
 ariaTest(
@@ -742,7 +746,7 @@ ariaTest(
         .getAttribute('data-date'),
       day.toISOString().split('T')[0],
       'Sending HOME should move focus to Sunday: ' +
-        day.toISOString().split('T')[0]
+        day.toISOString().split('T')[0],
     );
 
     await t.context.session
@@ -754,9 +758,9 @@ ariaTest(
         .getAttribute('data-date'),
       day.toISOString().split('T')[0],
       'Sending HOME to Sunday should not move focus from:' +
-        day.toISOString().split('T')[0]
+        day.toISOString().split('T')[0],
     );
-  }
+  },
 );
 
 ariaTest(
@@ -778,7 +782,7 @@ ariaTest(
         .getAttribute('data-date'),
       day.toISOString().split('T')[0],
       'Sending END should move focus to Saturday: ' +
-        day.toISOString().split('T')[0]
+        day.toISOString().split('T')[0],
     );
 
     await t.context.session
@@ -790,9 +794,9 @@ ariaTest(
         .getAttribute('data-date'),
       day.toISOString().split('T')[0],
       'Sending END to Saturday should not move focus from:' +
-        day.toISOString().split('T')[0]
+        day.toISOString().split('T')[0],
     );
-  }
+  },
 );
 
 ariaTest(
@@ -830,7 +834,7 @@ ariaTest(
 
       await checkDate(t, ex.currentlyFocusedDay, day);
     }
-  }
+  },
 );
 
 ariaTest(
@@ -866,7 +870,7 @@ ariaTest(
 
       await checkDate(t, ex.currentlyFocusedDay, day);
     }
-  }
+  },
 );
 
 ariaTest(
@@ -904,7 +908,7 @@ ariaTest(
 
       await checkDate(t, ex.currentlyFocusedDay, day);
     }
-  }
+  },
 );
 
 ariaTest(
@@ -936,7 +940,7 @@ ariaTest(
 
       await checkDate(t, ex.currentlyFocusedDay, day);
     }
-  }
+  },
 );
 
 ariaTest(
@@ -953,14 +957,14 @@ ariaTest(
         .findElement(By.css(ex.inputSelector))
         .getAttribute('value'),
       '',
-      'ENTER sent to cancel should not set a date'
+      'ENTER sent to cancel should not set a date',
     );
     t.is(
       await t.context.session
         .findElement(By.css(ex.dialogSelector))
         .getCssValue('display'),
       'none',
-      'After sending ENDER to the "cancel" button, the calendar dialog should close'
+      'After sending ENDER to the "cancel" button, the calendar dialog should close',
     );
 
     await setDateToJanFirst2019(t);
@@ -976,16 +980,16 @@ ariaTest(
         .findElement(By.css(ex.inputSelector))
         .getAttribute('value'),
       '1/1/2019',
-      'ENTER send to cancel should not change date'
+      'ENTER send to cancel should not change date',
     );
     t.is(
       await t.context.session
         .findElement(By.css(ex.dialogSelector))
         .getCssValue('display'),
       'none',
-      'After sending ENTER to the "cancel" button, the calendar dialog should close'
+      'After sending ENTER to the "cancel" button, the calendar dialog should close',
     );
-  }
+  },
 );
 
 ariaTest(
@@ -1002,14 +1006,14 @@ ariaTest(
         .findElement(By.css(ex.inputSelector))
         .getAttribute('value'),
       '',
-      'SPACE sent to cancel should not set a date'
+      'SPACE sent to cancel should not set a date',
     );
     t.is(
       await t.context.session
         .findElement(By.css(ex.dialogSelector))
         .getCssValue('display'),
       'none',
-      'After sending SPACE to the "cancel" button, the calendar dialog should close'
+      'After sending SPACE to the "cancel" button, the calendar dialog should close',
     );
 
     await setDateToJanFirst2019(t);
@@ -1025,16 +1029,16 @@ ariaTest(
         .findElement(By.css(ex.inputSelector))
         .getAttribute('value'),
       '1/1/2019',
-      'SPACE send to cancel should not change date'
+      'SPACE send to cancel should not change date',
     );
     t.is(
       await t.context.session
         .findElement(By.css(ex.dialogSelector))
         .getCssValue('display'),
       'none',
-      'After sending SPACE to the "cancel" button, the calendar dialog should close'
+      'After sending SPACE to the "cancel" button, the calendar dialog should close',
     );
-  }
+  },
 );
 
 ariaTest(
@@ -1053,14 +1057,14 @@ ariaTest(
         .findElement(By.css(ex.inputSelector))
         .getAttribute('value'),
       `${day.getMonth() + 1}/${day.getDate()}/${day.getFullYear()}`,
-      'ENTER sent to ok button should set a date'
+      'ENTER sent to ok button should set a date',
     );
     t.is(
       await t.context.session
         .findElement(By.css(ex.dialogSelector))
         .getCssValue('display'),
       'none',
-      'After sending ENTER to the "ok" button, the calendar dialog should close'
+      'After sending ENTER to the "ok" button, the calendar dialog should close',
     );
 
     await setDateToJanFirst2019(t);
@@ -1076,16 +1080,16 @@ ariaTest(
         .findElement(By.css(ex.inputSelector))
         .getAttribute('value'),
       '1/2/2019',
-      'ENTER send to ok should not change date to Jan 2nd'
+      'ENTER send to ok should not change date to Jan 2nd',
     );
     t.is(
       await t.context.session
         .findElement(By.css(ex.dialogSelector))
         .getCssValue('display'),
       'none',
-      'After sending ENTER to the "cancel" button, the calendar dialog should close'
+      'After sending ENTER to the "cancel" button, the calendar dialog should close',
     );
-  }
+  },
 );
 
 ariaTest(
@@ -1104,14 +1108,14 @@ ariaTest(
         .findElement(By.css(ex.inputSelector))
         .getAttribute('value'),
       `${day.getMonth() + 1}/${day.getDate()}/${day.getFullYear()}`,
-      'SPACE sent to ok button should set a date'
+      'SPACE sent to ok button should set a date',
     );
     t.is(
       await t.context.session
         .findElement(By.css(ex.dialogSelector))
         .getCssValue('display'),
       'none',
-      'After sending SPACE to the "ok" button, the calendar dialog should close'
+      'After sending SPACE to the "ok" button, the calendar dialog should close',
     );
 
     await setDateToJanFirst2019(t);
@@ -1127,14 +1131,14 @@ ariaTest(
         .findElement(By.css(ex.inputSelector))
         .getAttribute('value'),
       '1/2/2019',
-      'SPACE send to ok should not change date to Jan 2nd'
+      'SPACE send to ok should not change date to Jan 2nd',
     );
     t.is(
       await t.context.session
         .findElement(By.css(ex.dialogSelector))
         .getCssValue('display'),
       'none',
-      'After sending SPACE to the "cancel" button, the calendar dialog should close'
+      'After sending SPACE to the "cancel" button, the calendar dialog should close',
     );
-  }
+  },
 );
