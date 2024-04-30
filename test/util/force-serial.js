@@ -23,6 +23,7 @@ function bindPort(port) {
 /**
  * Execute an asynchronous operation in isolation of any similarly-scheduled
  * operations across processes.
+ *
  * @param {number} port - TCP/IP port to use as a resource lock
  * @param {Function} safe - function that will be executed in isolation
  * @returns {Promise} eventual value which shares the resolution of the

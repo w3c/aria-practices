@@ -2,6 +2,7 @@ const { By } = require('selenium-webdriver');
 
 /**
  * Asserts that an attribute to an element can either be toggled to a custom value, or true/false
+ *
  * @param {object} t                     - ava execution object
  * @param {string} selector    - element selector string
  * @param {string} attribute          - attribute to test

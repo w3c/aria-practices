@@ -9,6 +9,7 @@ var aria = aria || {};
 
 /**
  * ARIA Grid Examples
+ *
  * @function onload
  * @description Initialize the grid examples once the page has loaded
  */

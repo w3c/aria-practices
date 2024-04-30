@@ -61,6 +61,7 @@ const startOnAnyPort = (port, timeout) => {
 /**
  * Start a GeckoDriver server using a dynamically-determined available TCP/IP
  * port.
+ *
  * @param {number} port - the TCP/IP port from which to begin search
  * @param {number} timeout - the number of milliseconds to attempt to create a
  *                           server before reporting a failure

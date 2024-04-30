@@ -15,6 +15,7 @@ var aria = aria || {};
 
 /**
  * ARIA Listbox Examples
+ *
  * @function onload
  * @description Initialize the listbox examples once the page has loaded
  */

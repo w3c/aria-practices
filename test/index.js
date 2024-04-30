@@ -49,6 +49,7 @@ if (!coverageReportRun) {
 /**
  * Declare a test for a behavior documented on and demonstrated by an
  * aria-practices examples page.
+ *
  * @param {string} desc - short description of the test
  * @param {string} page - path to the example file
  * @param {string} testId - unique identifier for the documented behavior
@@ -64,6 +65,7 @@ const ariaTest = (desc, page, testId, body) => {
  * If the test passes when it is expected to fail, a failure will be reported.
  *
  * See arguments for ariaTest.
+ *
  * @param desc
  * @param page
  * @param testId

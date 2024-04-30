@@ -2,6 +2,7 @@ const assert = require('assert');
 
 /**
  * Confirm the dot value of an element in javascript (testing the IDL Interface)
+ *
  * @param {object} t                  - ava execution object
  * @param {string} elementSelector - a selector that returns one element
  * @param {string} attr            - the attribute to access by javascript dot notation

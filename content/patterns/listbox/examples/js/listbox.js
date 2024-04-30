@@ -342,6 +342,7 @@ aria.Listbox = class Listbox {
 
   /**
    * Prevent text selection on shift + click for multi-select listboxes
+   *
    * @param evt
    */
   checkMouseDown(evt) {
@@ -412,6 +413,7 @@ aria.Listbox = class Listbox {
 
   /**
    * Helper function to check if a number is within a range; no side effects.
+   *
    * @param index
    * @param start
    * @param end
@@ -426,6 +428,7 @@ aria.Listbox = class Listbox {
 
   /**
    * Select a range of options
+   *
    * @param start
    * @param end
    */

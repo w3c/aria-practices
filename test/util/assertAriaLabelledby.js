@@ -2,6 +2,7 @@ const assert = require('assert');
 
 /**
  * Confirm the aria-labelledby element.
+ *
  * @param {object} t                  - ava execution object
  * @param {string} elementSelector - the element with aria-labelledby set
  */

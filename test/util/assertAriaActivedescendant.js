@@ -4,6 +4,7 @@ const assert = require('assert');
 /**
  * Assert the aria-activedescendant focus is correctly set to the item that has
  * at the appropriate index.
+ *
  * @param {object} t                  - ava execution object
  * @param {string} activedescendantSelector - selector for element with aria-activeDescendant set
  * @param {string} optionsSelector - selector to select list of candidate elements for focus

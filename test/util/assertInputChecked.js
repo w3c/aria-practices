@@ -2,6 +2,7 @@ const assert = require('assert');
 
 /**
  * Confirm the input element checked state.
+ *
  * @param {object} t               - ava execution object
  * @param {string} elementSelector - the input element
  */

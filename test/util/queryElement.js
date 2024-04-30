@@ -2,6 +2,7 @@ const { By } = require('selenium-webdriver');
 
 /**
  * Return the first element found by selector. Wraps Selenium's findElement, but with a failing text for empty queries
+ *
  * @param {ExecutionContext} t - Test execution context
  * @param {string} selector - CSS selector string
  * @param {Element} context - Element to query within, defaulting to t.context.session

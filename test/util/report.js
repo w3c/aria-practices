@@ -37,6 +37,7 @@ const ignoreFiles = fs
 /**
  * Recursively find all example pages, saves to exampleFiles global
  * object.
+ *
  * @param {string} currentDirPath - root example directory
  * @param exampleFiles
  */
@@ -61,6 +62,7 @@ const getExampleFiles = function (currentDirPath, exampleFiles) {
 
 /**
  * Return human readable name for a "Keyboard Support" table row.
+ *
  * @param {jQuery} $         - loaded Cheerio dom
  * @param {jQuery} $tableRow - root example directory
  * @returns {string}
@@ -71,6 +73,7 @@ const getKeyboardRowName = function ($, $tableRow) {
 
 /**
  * Return human readable name for an "Attributes" table row.
+ *
  * @param {jQuery} $         - loaded Cheerio dom
  * @param {jQuery} $tableRow - root example directory
  * @returns {string}
@@ -96,6 +99,7 @@ const getAttributeRowName = function ($, $tableRow) {
  * missingKeys: <rows in keyboard support table missing data-test-ids>
  * }
  * }
+ *
  * @param {Array} exampleFiles     - all example files to process
  * @param {object} exampleCoverage - object to add coverage information to
  */
@@ -160,6 +164,7 @@ const processDocumentationInExampleFiles = function (
  * Runs ava tests in coverage mode to collect data on which tests exist.
  * After running, `exampleCoverage[example].missingTests` will be an array of
  * only data-test-ids for which no regression test was found.
+ *
  * @param {object} exampleCoverage - object with existing coverage information
  */
 const getRegressionTestCoverage = function (exampleCoverage) {

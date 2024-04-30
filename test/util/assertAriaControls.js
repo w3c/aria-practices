@@ -2,6 +2,7 @@ const assert = require('assert');
 
 /**
  * Confirm the aria-controls element.
+ *
  * @param {object} t                  - ava execution object
  * @param {string} elementSelector - the element with aria-controls set
  */

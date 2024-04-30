@@ -2,6 +2,7 @@ const assert = require('assert');
 
 /**
  * Assert a given attribute does not exist on all elements selected by selector
+ *
  * @param {object} t            - ava execution object
  * @param {string} selector  - elements to test
  * @param {string} attribute - attribute that should not exist

@@ -3,6 +3,7 @@ const assert = require('assert');
 /**
  * Confirm the specified aria role is found on an expected number of elements
  * and an expected element type.
+ *
  * @param {object} t             - ava execution object
  * @param {string} exampleId  - the id of the element containing the example
  * @param {string} role       - an aria role

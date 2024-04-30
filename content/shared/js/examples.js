@@ -43,6 +43,7 @@ var VOID_ELEMENTS = [
 
 /**
  * Creates a slider widget using ARIA
+ *
  * @property {Array} location Object containing the keyCodes used by the slider widget
  * @property {Array} code JQuery node object
  * @class SourceCode
@@ -57,6 +58,7 @@ aria.widget.SourceCode = function () {
 
 /**
  * Adds source code
+ *
  * @param {string} locationId      - ID of `code` element that will display the example html
  * @param {string} codeId          - ID of element containing only and all of the html used to render the example widget
  * @param {string} exampleHeaderId - ID of header element under which the "Open in Codepen" button belongs
@@ -78,6 +80,7 @@ aria.widget.SourceCode.prototype.add = function (
 
 /**
  * Generates HTML content for source code
+ *
  * @function make
  * @memberof aria.widget.SourceCode
  */
@@ -108,6 +111,7 @@ aria.widget.SourceCode.prototype.make = function () {
 
 /**
  * Creates the HTML for one node
+ *
  * @param {HTMLElement} sourceCodeNode element to put the source code in
  * @param {object} node DOM Element node to use to generate the source code
  * @param {number} indentLevel Level of indentation
@@ -203,6 +207,7 @@ aria.widget.SourceCode.prototype.createCode = function (
 
 /**
  * Returns the indentation string based on a given indent level.
+ *
  * @param {number} indentLevel
  * @returns {string}
  */
@@ -224,6 +229,7 @@ function indentation(indentLevel) {
  * hasText('\tcontent\n\r  ');
  * //> true
  * ```
+ *
  * @param {string} nodeContent content of a node to test for whitespace characters
  * @returns {boolean}
  */
@@ -237,6 +243,7 @@ function hasText(nodeContent) {
 
 /**
  * Replaces the characters `<` and `>` with their respective HTML entities.
+ *
  * @param {string} textContent
  * @returns {string}
  */
@@ -254,6 +261,7 @@ function sanitizeNodeValue(textContent) {
 
 /**
  * Strips any leading indentation from the text content of a node.
+ *
  * @param {string} textContent
  * @returns {string}
  */
@@ -301,6 +309,7 @@ function stripIndentation(textContent) {
  * 4. Increment the indentation level.
  *
  * Return the indentation level.
+ *
  * @param {string} textContent
  * @returns {number} The level of indentation
  */
@@ -330,6 +339,7 @@ function detectIndentation(textContent) {
 
 /**
  * Prepends each line of a string with the provided indentation string.
+ *
  * @param {string} input
  * @param {string} indentation
  * @returns {string}
@@ -346,6 +356,7 @@ function indentLines(input, indentation) {
 
 /**
  * Creates and adds an "Open in CodePen" button
+ *
  * @param {string} exampleIndex - the example number, if there are multiple examples
  * @param {string} exampleHeaderId - the example header to place the button next to
  * @param {string} exampleCodeId - the example html code

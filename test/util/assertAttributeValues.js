@@ -2,6 +2,7 @@ const assert = require('assert');
 
 /**
  * Confirm the value of an attribute on an element.
+ *
  * @param {object} t                  - ava execution object
  * @param {string} elementSelector - the element to check
  * @param {string} attribute       - the attribute

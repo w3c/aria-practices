@@ -15,6 +15,7 @@ var aria = aria || {};
 
 /**
  * ARIA Collapsible Dropdown Listbox Example
+ *
  * @function onload
  * @description Initialize the listbox example once the page has loaded
  */
