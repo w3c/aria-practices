@@ -20,7 +20,7 @@
   pointer-events: none;
   position: absolute;
   right: 16px;
-  top: 50%;
+  top: 65%;
   transform: translate(0, -65%) rotate(45deg);
   width: 12px;
 }
@@ -49,9 +49,9 @@
 
 .combo-label {
   display: block;
-  font-size: 20px;
   font-weight: 100;
   margin-bottom: 0.25em;
+  font-size: 1.2em;
 }
 
 .combo-menu {

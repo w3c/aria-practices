@@ -1133,26 +1133,12 @@ $('#example_summary_prototype').html(countPrototype);
 $('#example_summary_mouse').html(countMouse);
 $('#example_summary_pointer').html(countPointer);
 
-// Create a new Date object
-var currentDate = new Date();
-
-// Format the date as a string
-const formattedDate = currentDate.toLocaleDateString('en-US', {
-  day: 'numeric',
-  month: 'long',
-  year: 'numeric',
-});
-
 // cheerio seems to fold the doctype lines despite the template
 const result = $.html()
   .replace('<!DOCTYPE html>', '<!DOCTYPE html>\n')
   .replace(
     '<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">',
     '<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">\n'
-  )
-  .replace(
-    '<p>Page last updated: </p>',
-    `<p>Page last updated: ${formattedDate}</p>`
   );
 
 fs.writeFile(coverageReportPath, result, function (err) {
