@@ -92,12 +92,12 @@ const getAttributeRowName = function ($, $tableRow) {
  * Processes all example files to find data-test-ids and missing data-test-ids
  * Builds exampleCoverage object:
  * {
- * <exampleFile>: {
- * existingTestIds: <array of discovered data-test-ids>
- * missingTests: <copy of array of discovered data-test-ids>
- * missingAttrs: <rows in attribute table missing data-test-ids>
- * missingKeys: <rows in keyboard support table missing data-test-ids>
- * }
+ *   <exampleFile>: {
+ *     existingTestIds: <array of discovered data-test-ids>
+ *     missingTests: <copy of array of discovered data-test-ids>
+ *     missingAttrs: <rows in attribute table missing data-test-ids>
+ *     missingKeys: <rows in keyboard support table missing data-test-ids>
+ *   }
  * }
  *
  * @param {Array} exampleFiles     - all example files to process

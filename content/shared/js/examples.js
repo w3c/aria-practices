@@ -302,10 +302,10 @@ function stripIndentation(textContent) {
  * character in order to determine present indentation.
  *
  * 1. Starting from the position after the first newline, iterate over each
- * character in `textContent`.
+ *    character in `textContent`.
  * 2. If the character is a non-whitespace (i.e. `/\S/`), `break`.
  * 3. If the character is a newline, reset the indentation level and
- * `continue`.
+ *    `continue`.
  * 4. Increment the indentation level.
  *
  * Return the indentation level.
