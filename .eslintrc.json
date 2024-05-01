@@ -12,11 +12,13 @@
     "ecmaVersion": 6
   },
   "rules": {
+    "jsdoc/check-line-alignment": 0,
     "jsdoc/no-undefined-types": 0,
     "jsdoc/require-jsdoc": 0,
     "jsdoc/require-param-description": 0,
     "jsdoc/require-param-type": 0,
     "jsdoc/require-returns-description": 0,
+    "jsdoc/tag-lines": ["warn", "any", { "startLines": 1 }],
     "strict": [2, "global"],
     "no-console": "error"
   },
