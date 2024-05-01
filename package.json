@@ -72,7 +72,7 @@
       "npm run reference-tables",
       "git add content/index/index.html",
       "npm run coverage-report",
-      "git add coverage/"
+      "git add content/about/coverage-and-quality/"
     ]
   },
   "ava": {
