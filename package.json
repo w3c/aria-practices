@@ -37,18 +37,18 @@
   },
   "homepage": "https://github.com/w3c/aria-practices#readme",
   "devDependencies": {
-    "@babel/core": "^7.23.2",
-    "@babel/eslint-parser": "^7.22.15",
+    "@babel/core": "^7.24.5",
+    "@babel/eslint-parser": "^7.24.5",
     "ava": "^5.3.1",
     "cheerio": "^1.0.0-rc.12",
     "cross-spawn": "^7.0.3",
-    "cspell": "^7.3.8",
-    "eslint": "^8.52.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-ava": "^13.2.0",
-    "eslint-plugin-html": "^6.2.0",
-    "eslint-plugin-jsdoc": "^39.3.3",
-    "eslint-plugin-prettier": "^4.2.1",
+    "cspell": "^8.7.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-ava": "^14.0.0",
+    "eslint-plugin-html": "^8.1.1",
+    "eslint-plugin-jsdoc": "^48.2.3",
+    "eslint-plugin-prettier": "^5.1.3",
     "geckodriver": "^3.2.0",
     "glob": "^8.1.0",
     "htmlhint": "^1.1.4",
@@ -56,7 +56,7 @@
     "husky": "^9.0.11",
     "lint-staged": "^13.1.1",
     "node-fetch": "^2.6.7",
-    "prettier": "^2.7.1",
+    "prettier": "^3.2.5",
     "selenium-webdriver": "^4.14.0",
     "stylelint": "^15.1.0",
     "stylelint-config-standard": "^30.0.1",
@@ -72,7 +72,7 @@
       "npm run reference-tables",
       "git add content/index/index.html",
       "npm run coverage-report",
-      "git add coverage/"
+      "git add content/about/coverage-and-quality/"
     ]
   },
   "ava": {
@@ -82,7 +82,7 @@
   },
   "dependencies": {
     "@octokit/rest": "^18.12.0",
-    "dotenv": "^16.3.1",
+    "dotenv": "^16.4.5",
     "node-html-parser": "^5.2.0"
   }
 }

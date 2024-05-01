@@ -10,7 +10,7 @@ on:
       - "content/**/examples/**"
       - "scripts/reference-tables.*"
       - "scripts/coverage-report.*"
-      - "coverage/**"
+      - "content/about/coverage-and-quality/**"
   pull_request:
     paths:
       - "package*.json"
@@ -18,17 +18,17 @@ on:
       - "content/**/examples/**"
       - "scripts/reference-tables.*"
       - "scripts/coverage-report.*"
-      - "coverage/**"
+      - "content/about/coverage-and-quality/**"
 
 jobs:
   examples:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           cache: npm
 
