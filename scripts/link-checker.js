@@ -33,7 +33,24 @@ async function checkLinks() {
     return getLineNumber;
   };
 
-  const checkPathForHash = (hrefOrSrc, ids = [], hash) => {
+  const getHashCheckHandler = (hrefOrSrc) => {
+    return options.hashCheckHandlers.find(({ pattern }) =>
+      pattern.test(hrefOrSrc)
+    );
+  };
+
+  const getReactPartial = (hrefOrSrc, html) => {
+    const handler = getHashCheckHandler(hrefOrSrc);
+    if (handler) return handler.getPartial(html);
+    return undefined;
+  };
+
+  const checkPathForHash = (
+    hrefOrSrc,
+    ids = [],
+    hash,
+    { reactPartial } = {}
+  ) => {
     // On some websites, the ids may not exactly match the hash included
     // in the link.
     // For e.g. GitHub will prepend client facing ids with their own
@@ -43,10 +60,8 @@ async function checkLinks() {
     // as being 'user-content-foo-bar' for its own page processing purposes.
     //
     // See https://github.com/w3c/aria-practices/issues/2809
-    const handler = options.hashCheckHandlers.find(({ pattern }) =>
-      pattern.test(hrefOrSrc)
-    );
-    if (handler) return handler.matchHash(ids, hash);
+    const handler = getHashCheckHandler(hrefOrSrc);
+    if (handler) return handler.matchHash(ids, hash, { reactPartial });
     else return ids.includes(hash);
   };
 
@@ -135,14 +150,29 @@ async function checkLinks() {
 
         const getPageData = async () => {
           try {
-            const response = await fetch(externalPageLink);
+            const response = await fetch(externalPageLink, {
+              headers: {
+                // Spoof a normal looking User-Agent to keep the servers happy
+                // See https://github.com/JustinBeckwith/linkinator/blob/main/src/index.ts
+                'User-Agent':
+                  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36',
+              },
+            });
             const text = await response.text();
             const html = HTMLParser.parse(text);
             const ids = html
               .querySelectorAll('[id]')
               .map((idElement) => idElement.getAttribute('id'));
 
-            return { ok: response.ok, status: response.status, ids };
+            // Handle GitHub README links.
+            // These links are stored within a react-partial element
+            const reactPartial = getReactPartial(hrefOrSrc, html);
+            return {
+              ok: response.ok,
+              status: response.status,
+              ids,
+              reactPartial,
+            };
           } catch (error) {
             return {
               errorMessage:
@@ -298,11 +328,13 @@ async function checkLinks() {
         if (
           !isHashCheckingDisabled &&
           hash &&
-          !checkPathForHash(hrefOrSrc, pageData.ids, hash)
+          !checkPathForHash(hrefOrSrc, pageData.ids, hash, {
+            reactPartial: pageData.reactPartial,
+          })
         ) {
           consoleError(
             `Found broken external link on ${htmlPath}:${lineNumber}:${columnNumber}, ` +
-              'hash not found on page'
+              `hash "#${hash}" not found on page`
           );
         }
       }
