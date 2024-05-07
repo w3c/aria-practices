@@ -7,7 +7,8 @@ const HTMLParser = require('node-html-parser');
 // returns undefined.
 const getAttributeValue = (obj, attribute) => {
   if (typeof obj !== 'object' || obj === null) return undefined;
-  if (obj.hasOwnProperty(attribute)) return obj[attribute];
+  if (Object.prototype.hasOwnProperty.call(obj, attribute))
+    return obj[attribute];
 
   if (Array.isArray(obj)) {
     for (const element of obj) {
