@@ -33,10 +33,11 @@ jobs:
         with:
           cache: npm
 
-      - uses: xt0rted/stylelint-problem-matcher@v1
-
       - name: Install npm dependencies
         run: npm ci
 
       - name: Stylelint
-        run: npm run lint:css
+        run: npx stylelint "**/*.css" -f github
+
+      - name: Prettier
+        run: npx prettier --check "**/*.css"
