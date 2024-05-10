@@ -37,18 +37,14 @@
         failures block users. “Should” failures impede users. Learn more about ARIA-AT’s <a
           href="https://github.com/w3c/aria-at/wiki/Glossary#assertion-priority">definitions of Must and Should on the
           project wiki</a>.</p>
+
+      <h3>Example Must-Have</h3>
+      <p>TODO</p>
+      <h3>Example Should-Have</h3>
+      <p>TODO</p>
     </section>
     <section id="recommendations">
       <h2>Recommendations</h2>
-
-      <h3>Understand the failures</h3>
-      <p>Where possible, APG readers should avoid implementing patterns that have a score lower than 100% in the must
-        column. If, however, the reader finds themselves implementing a pattern with less than 100% in the Must column,
-        they should
-        take time to understand what is failing. Readers can learn more about the specific failures of a given pattern
-        by
-        navigating to the detailed report with the View Complete Report button.</p>
-
       <h3>Don’t Code to the Bugs</h3>
       <p>
         ARIA-AT is working with Assistive Technology vendors to get to 100% Must and Should passing rates. This means
@@ -57,9 +53,28 @@
         code to accommodate the Assistive Technology failure, especially if doing so would affect passing Assistive
         Technologies.
       </p>
+
+      <p>
+        When possible, readers should test with an AT that scores 100% in the Must-have column and hew to to that AT
+        since it is known to be wokring correctly.</p>
+
+      <h3>Understand the failures</h3>
+      <p>Where possible, APG readers should avoid implementing patterns that have a score lower than 100% in the must
+        column. If, however, the reader finds themselves implementing a pattern with less than 100% in the Must column,
+        they should
+        take time to understand what is failing. Readers should learn what specific part of an implementation is
+        problematic and design interactions around it that remain within the pattern's guidelines.
+      </p>
+      <p>
+        Readers can learn more about the specific failures of a given pattern
+        by
+        navigating to the detailed report with the View Complete Report button.
+      </p>
+
       <h3>Perform your own tests</h3>
 
-      <p>The original purpose of ARIA-AT data are to help Assistive Technology vendors coordinate the interoperable
+      <p>
+        The original purpose of ARIA-AT data are to help Assistive Technology vendors coordinate the interoperable
         rendering of ARIA. The ARIA-AT summary tables on APG should be used as an indicator for web developers about
         what
         areas to prioritize testing further, not as a final verdict on whether a feature in a web application will work.
