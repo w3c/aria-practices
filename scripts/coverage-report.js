@@ -522,6 +522,7 @@ glob
       beforeCSS: getNumberOfReferences(dataCSS, '::before'),
       afterCSS: getNumberOfReferences(dataCSS, '::after'),
       forcedColorAdjust: getNumberOfReferences(dataCSS, 'forced-color-adjust'),
+      forcedColors: getNumberOfReferences(dataCSS, 'forced-colors'),
 
       svgJS: getNumberOfReferences(dataJS, 'svg', true),
       classJS: getNumberOfReferences(dataJS, 'constructor\\('),
@@ -1009,6 +1010,7 @@ let IndexOfExampleGraphics = indexOfExamples.reduce(function (set, example) {
   count += example.svgCSS;
   count += example.svgJS;
   count += example.forcedColorAdjust;
+  count += example.forcedColors;
   count += example.beforeCSS;
   count += example.afterCSS;
   count += example.contentCSS;
@@ -1022,6 +1024,7 @@ let IndexOfExampleGraphics = indexOfExamples.reduce(function (set, example) {
             <td>${htmlYesOrNo(example.svgHTML)}</td>
             <td>${htmlYesOrNo(example.svgCSS)}</td>
             <td>${htmlYesOrNo(example.svgJS)}</td>
+            <td>${htmlYesOrNo(example.forcedColors)}</td>
             <td>${htmlYesOrNo(example.forcedColorAdjust)}</td>
             <td>${htmlYesOrNo(example.beforeCSS)}</td>
             <td>${htmlYesOrNo(example.afterCSS)}</td>
@@ -1118,6 +1121,10 @@ let countForcedColorAdjust = indexOfExamples.reduce(function (set, example) {
   return set + (example.forcedColorAdjust ? 1 : 0);
 }, 0);
 
+let countForcedColors = indexOfExamples.reduce(function (set, example) {
+  return set + (example.forcedColors ? 1 : 0);
+}, 0);
+
 $('#example_coding_practices_tbody').html(IndexOfExampleCodingPractices);
 $('#example_graphics_techniques_tbody').html(IndexOfExampleGraphics);
 $('#example_mouse_pointer_tbody').html(IndexOfExampleMousePointer);
@@ -1125,7 +1132,8 @@ $('#example_mouse_pointer_tbody').html(IndexOfExampleMousePointer);
 $('#example_summary_total').html(indexOfExamples.length);
 $('#example_summary_hc').html(countHighContrast);
 $('#example_summary_svg').html(countSVG);
-$('#example_summary_force_color').html(countForcedColorAdjust);
+$('#example_summary_force_colors').html(countForcedColors);
+$('#example_summary_force_color_adjust').html(countForcedColorAdjust);
 $('#example_summary_keycode').html(countKeyCode);
 $('#example_summary_which').html(countWhich);
 $('#example_summary_class').html(countClass);
