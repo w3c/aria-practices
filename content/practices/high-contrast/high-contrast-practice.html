@@ -8,6 +8,7 @@
     <!-- Core JS and CSS shared by all practices -->
     <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
     <link rel="stylesheet" href="../../shared/css/core.css">
+    <script src="../../shared/js/examples.js"></script>
     <script src="../../shared/js/highlight.pack.js"></script>
     <script src="../../shared/js/app.js"></script>
     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
@@ -25,13 +26,98 @@
           Many operating systems provide accessibility settings that enable users to specify high contrast preferences.
           This section explains how to ensure components respect those preferences.
         </p>
+
+        <p>This section covers:</p>
+        <ol>
+          <li>Using SVG graphics to create components whose rendering can adapt operating system color settings.</li>
+          <li>Using the <code>forced-colors</code> CSS media query for high contrast settings.</li>
+          <li>Using <code>currentColor</code> CSS data type for components consistency with the rendering of other components in high contrast settings.</li>
+          <li>Using <code>&lt;system-colors&gt;</code> CSS data types for consistency with the rendering of other components in high contrast settings.</li>
+        </ol>
       </section>
 
-      <section id="__">
-        <h2>section title</h2>
-        <p>
+      <section id="os-high-contrast">
+        <h2>Operating System Color and High Contrast Settings</h2>
+        <p>Mobile, tablet and desktop operating systems have accessibility features for users to change the colors used to render content, including the colors used to render content from web browsers.   The features are found in the accessibility settings of the operating system.  The following table highlights the major high contrast features in selected operating systems.
         </p>
+
+        <table class="data">
+          <thead>
+            <tr>
+              <th>Operating System</th>
+              <th>Accessibility Features</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Android</td>
+              <td>
+                <ul>
+                  <li>High contrast text</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>iPhone/iPad</td>
+              <td>
+                <ul>
+                  <li>Invert colors</li>
+                  <li>Increase contrast</li>
+                  <li>Display contrast</li>
+                  <li>Reduce transparency</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>Apple macOS</td>
+              <td>
+                <ul>
+                  <li>Smart invert</li>
+                  <li>Classic invert</li>
+                  <li>Increase contrast</li>
+                  <li>Display contrast</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>GNOME Desktop</td>
+              <td>
+                <ul>
+                  <li>Dark mode theme</li>
+                  <li>High contrast setting</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>Microsoft Windows 10/11</td>
+              <td>
+                <ul>
+                  <li>Enable high contrast theme</li>
+                  <li>Choose high contrast theme</li>
+                  <li>User can define custom theme</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </section>
+
+      <section id="forced-colors">
+        <h2><code>forced-colors</code> Media Query</h2>
+
+        <p>The <code>forced-colors</code> CSS media query provides a means for components to use the color preferences of people with visual impairments.   When the user chooses a high contrast setting in their operating system, browsers set <code>forced-colors</code> property to <code>active</code>.   CSS media queries change component colors to use operating system specified values using <code>&lt;system-colors&gt;</code> CSS data types.
+
+      </section>
+
+      <section id="svg">
+        <h2>SVG for Components</h2>
+
+        <p>Bit-mapped images (e.g. .png, .jpeg) should not be used for components, since they cannot change their rendering based on <code>forced-colors</code> media query.  SVG graphics on the other hand can respond to the <code>forced-colors</code> media query and scale smoothly as size of content is changed through zoom features of browsers.</p>
+
+      </section>
+
+
+
     </main>
   </body>
 </html>
