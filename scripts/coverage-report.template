@@ -168,13 +168,19 @@
             <td id="example_summary_svg"></td>
           </tr>
           <tr>
-            <th scope="row">Uses <code>forced-colors</code> in CSS</th>
+            <th scope="row">Uses <code>forced-colors</code> media query</th>
             <td id="example_summary_force_colors"></td>
           </tr>
+          <tr>
+            <th scope="row">Uses <code>currentColor</code> value</th>
+            <td id="example_summary_current_color"></td>
+          </tr>
+<!--
           <tr>
             <th scope="row">Uses <code>forced-color-adjust</code> in CSS/SVG</th>
             <td id="example_summary_force_color_adjust"></td>
           </tr>
+-->
           <tr>
             <th scope="row">Uses <code>event.KeyCode</code></th>
             <td id="example_summary_keycode"></td>
@@ -231,8 +237,8 @@
             <th>SVG in HTML</th>
             <th>SVG in CSS</th>
             <th>SVG in JS</th>
-            <th><code>forced-colors</code> in CSS</th>
-            <th><code>forced-color-adjust</code> in CSS/SVG</th>
+            <th><code>forced-colors</code> media query</th>
+            <th><code>currentColor</code> value</th>
             <th>CSS ::before</th>
             <th>CSS ::after</th>
             <th>CSS content</th>
