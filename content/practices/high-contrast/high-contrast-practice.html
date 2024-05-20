@@ -12,6 +12,13 @@
     <script src="../../shared/js/highlight.pack.js"></script>
     <script src="../../shared/js/app.js"></script>
     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+    <style>
+      table.data {
+        img {
+          border: 1px solid gray;
+        }
+      }
+    </style>
   </head>
   <body>
     <main>
@@ -118,9 +125,43 @@
 
         <h3 id="currentcolot-example"><code>currentcolor</code> Example</h3>
 
-        <p>The <a href="../../patterns/switch/examples/switch-button/">Switch Example</a> shows the use of <code>currentcolor</code>.
+        <p>The <a href="../../patterns/switch/examples/switch-button/">Button Switch Example</a> uses <code>currentcolor</code> value to style the SVG elements to use current color values for <code>stroke</code> and <code>fill</code> values on the container, on and off <code>rect</code>s  uses to create a border around the .
 
-        <h4 id="currentcolor-example-screenshots">Switch Example with Various High Contrast User Settings</h4>
+        <p>CSS snippit:</p>
+        <pre><code>
+...
+button[role="switch"] svg rect {
+  fill-opacity: 0;
+  stroke-width: 2;
+  stroke: currentcolor;
+}
+
+button[role="switch"] svg rect.off {
+  display: block;
+  stroke: currentcolor;
+  fill: currentcolor;
+  fill-opacity: 1;
+}
+
+button[role="switch"][aria-checked="true"] svg rect.off {
+  display: none;
+}
+
+button[role="switch"] svg rect.on {
+  display: none;
+}
+
+button[role="switch"][aria-checked="true"] svg rect.on {
+  color: green;
+  display: block;
+  stroke-color: currentcolor;
+  fill: currentcolor;
+  fill-opacity: 1;
+}
+...
+        </code></pre>
+
+        <h4 id="currentcolor-example-screenshots">Switch Example with Selected High Contrast User Settings</h4>
         <table aria-labelledby="currentcolor-example-screenshots" class="data">
           <thead>
             <tr>
@@ -133,27 +174,27 @@
             <tr>
               <td>macOS 14.4</td>
               <td>Invert Colors: Off</td>
-              <td></td>
+              <td><img height="45px" src="./images/macos-invert-off.png" alt="Screen shot of switch example with invert colors turned off"></td>
             </tr>
             <tr>
               <td>macOS 14.4</td>
               <td>Invert Colors: on</td>
-              <td></td>
+              <td><img height="45px" src="./images/macos-invert-on.png" alt="Screen shot of switch example with invert colors turned on"></td>
             </tr>
             <tr>
               <td>Windows 11</td>
               <td>Contrast Theme: none</td>
-              <td></td>
+              <td><img height="50px" src="./images/windows11-theme-none.png" alt="Screen shot of switch example with no contrast theme applied"></td>
             </tr>
             <tr>
               <td>Windows 11</td>
               <td>Contrast Theme: Night sky</td>
-              <td></td>
+              <td><img height="50px" src="./images/windows11-theme-night-sky.png" alt="Screen shot of switch example with night sky contrast theme applied"></td>
             </tr>
             <tr>
               <td>Windows 11</td>
               <td>Contrast Theme: Desert</td>
-              <td></td>
+              <td><img height="50px" src="./images/windows11-theme-desert.png" alt="Screen shot of switch example with desert contrast theme applied"></td>
             </tr>
           </tbody>
         </table>
