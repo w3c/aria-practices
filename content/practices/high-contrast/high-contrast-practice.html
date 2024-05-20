@@ -30,8 +30,8 @@
         <p>This section covers:</p>
         <ol>
           <li>Using SVG graphics to create components whose rendering can adapt operating system color settings.</li>
+          <li>Using <code>currentcolor</code> value for inheriting the <code>color</code> property value of ancestors.</li>
           <li>Using the <code>forced-colors</code> CSS media query for high contrast settings.</li>
-          <li>Using <code>currentcolor</code>  keyword for inheriting the color property value of ancesotrs.</li>
           <li>Using <code>&lt;system-colors&gt;</code> CSS data types for consistency with the rendering of other components in high contrast settings.</li>
         </ol>
       </section>
@@ -41,7 +41,8 @@
         <p>Mobile, tablet and desktop operating systems have accessibility features for users to change the colors used to render content, including the colors used to render content from web browsers.   The features are found in the accessibility settings of the operating system.  The following table highlights the major high contrast features in selected operating systems.
         </p>
 
-        <table class="data">
+        <h3 id="os-hc-features">Operating System High Contrast Features</h3>
+        <table  aria-labelledby="os-hc-features" class="data">
           <thead>
             <tr>
               <th>Operating System</th>
@@ -92,8 +93,8 @@
               <td>Microsoft Windows 10/11</td>
               <td>
                 <ul>
-                  <li>Enable high contrast theme</li>
-                  <li>Choose high contrast theme</li>
+                  <li>Enable high contrast color theme</li>
+                  <li>Choose high contrast color theme</li>
                   <li>User can define custom theme</li>
                 </ul>
               </td>
@@ -105,16 +106,62 @@
       <section id="svg">
         <h2>SVG for Components</h2>
 
-        <p>Bit-mapped images (e.g. .png, .jpeg) should not be used for components, since they cannot change their rendering based on user theme and high contrast settings.  SVG graphics can respond to the <code>forced-colors</code> CSS media query and/or the CSS <code>forced-color-adjust</code> property.  An additional advantage of SVG graphics is the smooth scaling of the graphic as size of content adjusted using browser zoom features.</p>
+        <p>Bit-mapped images (e.g. .png, .jpeg) should not be used for components, since their rendering cannot be changed based on user color theme and/or high contrast settings.  SVG graphics can respond to the <code>forced-colors</code> CSS media query and supports the use of <code>currentcolor</code> value for color properties.  An additional advantage of SVG graphics is the smooth scaling of the graphics as the size of content adjusted using browser zoom features. </p>
       </section>
 
       <section id="currentcolor">
         <h2><code>currentcolor</code> Keyword</h2>
 
-        <p>The <code>currentcolor</code> keyboard provides a means for components to use the color value of ancenstor elements to set the color properties of elements.   When the user chooses a high contrast settings the browser changes the colors for the <code>color</code> and <code>background-color</code> properties.</p>
+        <p>The <code>currentcolor</code> keyword provides a means for components to use the color value of ancestor elements to set the color properties of elements.   When the user chooses a high contrast setting the browser changes the <code>color</code> and <code>background-color</code> values of text content.   The <code>currentcolor</code> value inherits the text color value for use in setting other CSS color properties including: <code>border</code> and <code>outline</code> on HTML elements, and <code>stroke</code> and <code>fill</code> properties on SVG elements.  There is no equivalent color value for setting the text background color, so when using this technique it is important for the background color of the element to be transparent to pick up the change in background color. </p>
 
-        <h3 id="">Examples using <code>currentcolor</code> keyword</h3>
-        <table class="data">
+        <p>Note: Using <code>currentcolor</code> is the most popular technique in the ARIA APG examples for supporting user theme and high contrast settings.</p>
+
+        <h3 id="currentcolot-example"><code>currentcolor</code> Example</h3>
+
+        <p>The <a href="../../patterns/switch/examples/switch-button/">Switch Example</a> shows the use of <code>currentcolor</code>.
+
+        <h4 id="currentcolor-example-screenshots">Switch Example with Various High Contrast User Settings</h4>
+        <table aria-labelledby="currentcolor-example-screenshots" class="data">
+          <thead>
+            <tr>
+              <th>OS</th>
+              <th>Setting</th>
+              <th>Screen Shot</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>macOS 14.4</td>
+              <td>Invert Colors: Off</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>macOS 14.4</td>
+              <td>Invert Colors: on</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Windows 11</td>
+              <td>Contrast Theme: none</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Windows 11</td>
+              <td>Contrast Theme: Night sky</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Windows 11</td>
+              <td>Contrast Theme: Desert</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+
+
+
+        <h3 id="currentcolor-examples">Examples using <code>currentcolor</code> keyword</h3>
+        <table class="data" aria-labelledby="currentcolor-examples">
           <thead>
             <tr>
               <th>Example</th>
@@ -195,8 +242,8 @@
         <p>The <code>forced-colors</code> CSS media query provides a means for components to use the color preferences of people with visual impairments.   When the user chooses a high contrast setting in their operating system, browsers set <code>forced-colors</code> property to <code>active</code>.   CSS media queries change component colors to use operating system specified values using <code>&lt;system-colors&gt;</code> CSS data types.
 
 
-        <h3 id="">Examples using <code>forced-colors</code></h3>
-        <table class="data">
+        <h3 id="table-forced-colors">Examples using <code>forced-colors</code></h3>
+        <table aria-labelledby="table-forced-colors" class="data">
           <thead>
             <tr>
               <th>Example</th>
