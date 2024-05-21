@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>System Colors Test Page</title>
+  </head>
+  <body>
+    <h1>System Colors Test Page</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Value</th>
+          <th>Sample</th>
+          <th>Color</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody id="samples">
+      </tbody>
+    </table>
+
+    <input type="range"/>
+
+    <script>
+      const values = [
+        {value: 'AccentColor',     desc: 'Background of accented user interface controls'},
+        {value: 'AccentColorText', desc: 'Text of accented user interface controls'},
+        {value: 'ActiveText',      desc: 'Text of active links'},
+        {value: 'ButtonBorder',    desc: 'Base border color of controls'},
+        {value: 'ButtonFace',      desc: 'Background color of controls'},
+        {value: 'ButtonText',      desc: 'Text color of controls'},
+        {value: 'Canvas',          desc: 'Background of application content or documents'},
+        {value: 'CanvasText',      desc: 'Text color in application content or documents'},
+        {value: 'Field',           desc: 'Background of input fields'},
+        {value: 'FieldText',       desc: 'Text in input fields'},
+        {value: 'GrayText',        desc: 'Text color for disabled items (e.g. a disabled control)'},
+        {value: 'Highlight',       desc: 'Background of selected items'},
+        {value: 'HighlightText',   desc: 'Text color of selected items'},
+        {value: 'LinkText',        desc: 'Text of non-active, non-visited links'},
+        {value: 'Mark',            desc: 'Background of text that has been specially marked (such as by the HTML mark element)'},
+        {value: 'MarkText',        desc: 'Text that has been specially marked (such as by the HTML mark element)'},
+        {value: 'SelectedItem',    desc: 'Background of selected items, for example, a selected checkbox'},
+        {value: 'SelectedItemText', desc: 'Text of selected items'},
+        {value: 'VisitedText',     desc: 'Text of visited links'}
+      ];
+
+      const tbodyNode = document.getElementById('samples');
+
+      console.log(`[tbody]: ${tbodyNode}`);
+
+      values.forEach( v => {
+        if (v.value) {
+          const tr  = document.createElement('tr');
+          const tdv = document.createElement('td');
+          tdv.textContent = v.value;
+          tr.appendChild(tdv);
+          const tds = document.createElement('td');
+          tds.style.color = v.value;
+          tds.textContent = "Sample Text";
+          tr.appendChild(tds);
+          const tdc = document.createElement('td');
+          tdc.textContent = "??";
+          tr.appendChild(tdc);
+          const tdd = document.createElement('td');
+          tdd.textContent = v.desc;
+          tr.appendChild(tdd);
+          tbodyNode.appendChild(tr);
+          const cStyle = window.getComputedStyle(tds);
+          tdc.textContent = cStyle.color;
+        }
+      });
+    </script>
+  </body>
+</html>
