@@ -67,15 +67,17 @@
       <h3>Don’t Code to the Bugs</h3>
       <p>
         ARIA-AT is working with assistive technology vendors to increase their support levels.
-        This means that assistive technologies which use ARIA-AT will change over time.
-        When implementing a pattern that has less than 100% support for either MUST and SHOULD, be careful not to modify
-        code to accommodate the assistive technology failure, especially if doing so would affect passing assistive
-        technologies.
+        This means that assistive technologies that align with ARIA-AT interoperability tests will change over time.
+        Exercise caution when implementing a pattern where support levels are less than 100%.
+        Avoid modifying code to accommodate an assistive technology failure unless you are confident that the modification will:
       </p>
-
+      <ul>
+        <li>Not negatively affect the experience when using assistive technologies that provide 100% support.</li>
+        <li>Not negatively affect the experience when the failure being accommodated is resolved.</li>
+      </ul>
       <p>
-        When possible, readers should test with an AT that scores 100% in the Must-have column and hew to to that AT
-        since it is known to be working correctly.</p>
+        When possible, test implementations of APG patterns with an assistive technology that provides 100% support in both Must-Have and Should-Have columns.
+      </p>
 
       <h3>Understand the Failures</h3>
       <p>Where possible, APG readers should avoid implementing patterns that have a score lower than 100% in the must
