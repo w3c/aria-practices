@@ -38,6 +38,7 @@
         <ol>
           <li>Using SVG graphics to create components whose rendering can adapt operating system color settings.</li>
           <li>Using <code>currentcolor</code> value for inheriting the <code>color</code> property value of ancestors.</li>
+          <li>Setting the <code>forced-colors-adjust=auto</code> CSS property to SVG elements.</li>
           <li>Using the <code>forced-colors</code> CSS media query for high contrast settings.</li>
           <li>Using <code>&lt;system-colors&gt;</code> CSS data types for consistency with the rendering of other components in high contrast settings.</li>
         </ol>
@@ -114,6 +115,9 @@
         <h2>SVG for Components</h2>
 
         <p>Bit-mapped images (e.g. .png, .jpeg) should not be used for components, since their rendering cannot be changed based on user color theme and/or high contrast settings.  SVG graphics can respond to the <code>forced-colors</code> CSS media query and supports the use of <code>currentcolor</code> value for color properties.  An additional advantage of SVG graphics is the smooth scaling of the graphics as the size of content adjusted using browser zoom features. </p>
+
+        <p>Note: Be sure to include <code>forced-color-adjust=auto</code> CSS property to SVG elements, due to inconsistencies in browser setting the value to <code>auto</code>.</p>
+
       </section>
 
       <section id="currentcolor">
@@ -140,27 +144,27 @@
             <tr>
               <td>macOS 14.4</td>
               <td>Invert Colors: Off (default)</td>
-              <td><img height="85px" src="./images/macos-invert-off.png" alt="Screen shot of switch example with invert colors turned off"></td>
+              <td><img height="85px" src="./images/currentcolor-macos-invert-off.png" alt="Screen shot of switch example with invert colors turned off"></td>
             </tr>
             <tr>
               <td>macOS 14.4</td>
               <td>Invert Colors: on</td>
-              <td><img height="85px" src="./images/macos-invert-on.png" alt="Screen shot of switch example with invert colors turned on"></td>
+              <td><img height="85px" src="./images/currentcolor-macos-invert-on.png" alt="Screen shot of switch example with invert colors turned on"></td>
             </tr>
             <tr>
               <td>Windows 11</td>
               <td>Contrast Theme: none (default)</td>
-              <td><img height="90px" src="./images/windows11-theme-none.png" alt="Screen shot of switch example with no contrast theme applied"></td>
+              <td><img height="90px" src="./images/currentcolor-windows11-theme-none.png" alt="Screen shot of switch example with no contrast theme applied"></td>
             </tr>
             <tr>
               <td>Windows 11</td>
               <td>Contrast Theme: Night sky</td>
-              <td><img height="90px" src="./images/windows11-theme-night-sky.png" alt="Screen shot of switch example with night sky contrast theme applied"></td>
+              <td><img height="90px" src="./images/currentcolor-windows11-theme-night-sky.png" alt="Screen shot of switch example with night sky contrast theme applied"></td>
             </tr>
             <tr>
               <td>Windows 11</td>
               <td>Contrast Theme: Desert</td>
-              <td><img height="90px" src="./images/windows11-theme-desert.png" alt="Screen shot of switch example with desert contrast theme applied"></td>
+              <td><img height="90px" src="./images/currentcolor-windows11-theme-desert.png" alt="Screen shot of switch example with desert contrast theme applied"></td>
             </tr>
           </tbody>
         </table>
@@ -181,7 +185,7 @@
       <section id="forced-colors">
         <h2><code>forced-colors</code> Media Query</h2>
 
-        <p>The <code>forced-colors</code> CSS media query provides a means for components to use the color preferences of people with visual impairments.   When the user chooses a high contrast setting in their operating system, browsers set <code>forced-colors</code> property to <code>active</code>.   CSS media queries change component colors to use operating system specified values using <code>&lt;system-colors&gt;</code> CSS data types.
+        <p>The <code>forced-colors</code> CSS media query provides a means for components to use the color preferences of people with visual impairments.   When the user chooses a high contrast setting in their operating system, browsers set <code>forced-colors</code> property to <code>active</code>.   CSS media queries change component colors to use operating system specified values using <code>&lt;system-colors&gt;</code> CSS data types.  The advantage of using <code>forced-colors</code> over <code>currentcolor</code> is the ability to set a background color and to uniquely define colors for borders, outlines and text content.</p>
 
         <h4 id="currentcolor-example-screenshots">Rating Slider Example with Selected High Contrast User Settings</h4>
         <table aria-labelledby="currentcolor-example-screenshots" class="data">
@@ -196,27 +200,27 @@
             <tr>
               <td>macOS 14.4</td>
               <td>Invert Colors: Off (default)</td>
-              <td><img height="85px" src="./images/macos-invert-off.png" alt="Screen shot of switch example with invert colors turned off"></td>
+              <td><img height="85px" src="./images/forced-colors-macos-invert-off.png" alt="Screen shot of switch example with invert colors turned off"></td>
             </tr>
             <tr>
               <td>macOS 14.4</td>
               <td>Invert Colors: on</td>
-              <td><img height="85px" src="./images/macos-invert-on.png" alt="Screen shot of switch example with invert colors turned on"></td>
+              <td><img height="85px" src="./images/forced-colors-macos-invert-on.png" alt="Screen shot of switch example with invert colors turned on"></td>
             </tr>
             <tr>
               <td>Windows 11</td>
               <td>Contrast Theme: none (default)</td>
-              <td><img height="90px" src="./images/windows11-theme-none.png" alt="Screen shot of switch example with no contrast theme applied"></td>
+              <td><img height="90px" src="./images/forced-colors-windows11-theme-none.png" alt="Screen shot of switch example with no contrast theme applied"></td>
             </tr>
             <tr>
               <td>Windows 11</td>
               <td>Contrast Theme: Night sky</td>
-              <td><img height="90px" src="./images/windows11-theme-night-sky.png" alt="Screen shot of switch example with night sky contrast theme applied"></td>
+              <td><img height="90px" src="./images/forced-colors-windows11-theme-night-sky.png" alt="Screen shot of switch example with night sky contrast theme applied"></td>
             </tr>
             <tr>
               <td>Windows 11</td>
               <td>Contrast Theme: Desert</td>
-              <td><img height="90px" src="./images/windows11-theme-desert.png" alt="Screen shot of switch example with desert contrast theme applied"></td>
+              <td><img height="90px" src="./images/forced-colors-windows11-theme-desert.png" alt="Screen shot of switch example with desert contrast theme applied"></td>
             </tr>
           </tbody>
         </table>
