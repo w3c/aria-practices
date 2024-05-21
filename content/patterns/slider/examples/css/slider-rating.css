@@ -67,23 +67,23 @@
 
 @media (forced-colors: active) {
   .rating-slider svg .focus-ring {
-    fill: linktext;
+    fill: buttontext;
   }
 
   .rating-slider svg .target {
-    stroke: linktext;
+    stroke: buttontext;
   }
 
   .rating-slider svg .label {
-    fill: linktext;
+    fill: buttontext;
   }
 
   .rating-slider svg .description {
-    fill: linktext;
+    fill: buttontext;
   }
 
   .rating-slider svg .current .target {
-    fill: linktext;
+    fill: buttontext;
   }
 
   .rating-slider svg .current .label {
