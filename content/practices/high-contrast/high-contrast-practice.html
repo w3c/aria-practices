@@ -237,8 +237,8 @@
               tdv.textContent = v.value;
               tr.appendChild(tdv);
               const tds = document.createElement('td');
-              tds.style.color = v.value;
-              tds.textContent = "Sample Text";
+              tds.style.backgroundColor = v.value;
+              tds.textContent = "  ";
               tr.appendChild(tds);
               const tdc = document.createElement('td');
               tdc.style.fontFamily = 'monospace';
@@ -249,7 +249,7 @@
               tr.appendChild(tdd);
               tbodyNode.appendChild(tr);
               const cStyle = window.getComputedStyle(tds);
-              const colorHex = rgb2Hex(cStyle.color);
+              const colorHex = rgb2Hex(cStyle.backgroundColor);
               tdc.textContent =colorHex;
             }
           });
