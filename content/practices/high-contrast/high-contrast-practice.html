@@ -229,6 +229,7 @@
 
           console.log(`[tbody]: ${tbodyNode}`);
 
+
           values.forEach( v => {
             if (v.value) {
               const tr  = document.createElement('tr');
@@ -248,19 +249,26 @@
               tr.appendChild(tdd);
               tbodyNode.appendChild(tr);
               const cStyle = window.getComputedStyle(tds);
-              tdc.textContent = RGBToHex(cStyle.color);
+              const colorHex = rgb2Hex(cStyle.color);
+              tdc.textContent =colorHex;
             }
           });
 
-          function RGBToHex(rgb) {
+          function rgb2Hex(rgb) {
             // Choose correct separator
             let sep = rgb.indexOf(",") > -1 ? "," : " ";
             // Turn "rgb(r,g,b)" into [r,g,b]
-            rgb = rgb.substr(4).split(")")[0].split(sep);
+            rgb = rgb.split("(")[1].split(")")[0].split(sep);
 
-            let r = (+rgb[0]).toString(16),
-                g = (+rgb[1]).toString(16),
-                b = (+rgb[2]).toString(16);
+            console.log(`[rgb]: ${rgb[0]} ${rgb[1]} ${rgb[2]} ${rgb[3]}`);
+
+            let a = rgb[3] ? (1 - parseFloat(rgb[3])) : 1;
+
+            console.log(`[a]: ${a}`);
+
+            let r = (Math.round(parseInt(rgb[0])*a)).toString(16),
+                g = (Math.round(parseInt(rgb[1])*a)).toString(16),
+                b = (Math.round(parseInt(rgb[2])*a)).toString(16);
 
             if (r.length == 1)
               r = "0" + r;
