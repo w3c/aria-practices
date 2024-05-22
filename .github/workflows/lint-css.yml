@@ -26,17 +26,18 @@ jobs:
 
     steps:
       - name: Clone repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           cache: npm
-
-      - uses: xt0rted/stylelint-problem-matcher@v1
 
       - name: Install npm dependencies
         run: npm ci
 
       - name: Stylelint
-        run: npm run lint:css
+        run: npx stylelint "**/*.css" -f github
+
+      - name: Prettier
+        run: npx prettier --check "**/*.css"

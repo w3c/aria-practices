@@ -10,26 +10,16 @@ const assertAriaDescribedby = require('../util/assertAriaDescribedby');
 const exampleFile = 'content/patterns/feed/examples/feed.html';
 
 const ex = {
-  feedLinkSelector: '#ex1 a',
+  frameID: 'feed_frame',
   feedSelector: '[role="feed"]',
   articleSelector: '[role="article"]',
   timeToLoad10Articles: 2500,
   numArticlesLoadedInSet: 10,
-  delayTimeSelector: '#delay-time-select',
+  termsOfUse: '#terms-of-use',
 };
 
 const navigateToFeed = async function (t) {
-  await t.context.session.findElement(By.css(ex.feedLinkSelector)).click();
-
-  return t.context.session.wait(
-    () => {
-      return t.context.session.getCurrentUrl().then((url) => {
-        return url != t.context.url;
-      });
-    },
-    t.context.waitTime,
-    'The feed url did not load after clicking: ' + ex.feedLinkSelector
-  );
+  await t.context.session.switchTo().frame(ex.frameID);
 };
 
 const waitForArticlesToLoad = async function (t) {
@@ -264,12 +254,13 @@ ariaTest(
     await waitForArticlesToLoad(t);
 
     let articles = await t.context.queryElements(t, ex.articleSelector);
-    articles[0].sendKeys(Key.chord(Key.CONTROL, Key.END));
+    await articles[0].sendKeys(Key.chord(Key.CONTROL, Key.END));
+    await t.context.session.switchTo().defaultContent();
 
     t.true(
-      await checkFocus(t, ex.delayTimeSelector, 0),
+      await checkFocus(t, ex.termsOfUse, 0),
       'Focus should move off the feed (onto element: ' +
-        ex.delayTimeSelector +
+        ex.termsOfUse +
         ') after sending keys CONTROL+END'
     );
   }
