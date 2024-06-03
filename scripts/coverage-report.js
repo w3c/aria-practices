@@ -474,7 +474,8 @@ glob
       if (
         src.indexOf('examples.js') < 0 &&
         src.indexOf('highlight.pack.js') < 0 &&
-        src.indexOf('app.js') < 0
+        src.indexOf('app.js') < 0 &&
+        src.indexOf('skipto.js') < 0
       ) {
         console.log('  [script]: ' + src);
         dataJS += fs.readFileSync(joinPaths(dir, src), 'utf8');
