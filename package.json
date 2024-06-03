@@ -52,7 +52,7 @@
     "geckodriver": "^4.4.1",
     "glob": "^8.1.0",
     "htmlhint": "^1.1.4",
-    "htmlparser2": "^8.0.1",
+    "htmlparser2": "^9.1.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.5",
     "node-fetch": "^2.6.7",
