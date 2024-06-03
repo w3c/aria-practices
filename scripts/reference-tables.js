@@ -256,6 +256,7 @@ glob
     cwd: path.join(__dirname, '..'),
     nodir: true,
   })
+  .sort()
   .forEach(function (file) {
     console.log('[file]: ' + file);
 

@@ -453,6 +453,7 @@ glob
     cwd: joinPaths(__dirname, '..'),
     nodir: true,
   })
+  .sort()
   .forEach(function (file) {
     console.log('[file]: ' + file);
     let dir = path.dirname(file);
@@ -778,6 +779,10 @@ function getListHTML(list) {
   return html;
 }
 
+function sortFn(a, b) {
+  return a.ref < b.ref ? -1 : 1;
+}
+
 let sortedRoles = Object.getOwnPropertyNames(indexOfRolesInExamples).sort();
 
 let countNoExamples = 0;
@@ -785,8 +790,8 @@ let countOneExample = 0;
 let countMoreThanOneExample = 0;
 
 let RoleWithNoExamples = sortedRoles.reduce(function (set, role) {
-  let examples = indexOfRolesInExamples[role];
-  let guidance = indexOfRolesInGuidance[role];
+  let examples = indexOfRolesInExamples[role].sort(sortFn);
+  let guidance = indexOfRolesInGuidance[role].sort(sortFn);
 
   if (examples.length === 0 && guidance.length == 0) {
     countNoExamples += 1;
@@ -800,8 +805,8 @@ let RoleWithNoExamples = sortedRoles.reduce(function (set, role) {
 $('#roles_with_no_examples_ul').html(RoleWithNoExamples);
 
 let RoleWithOneExample = sortedRoles.reduce(function (set, role) {
-  let examples = indexOfRolesInExamples[role];
-  let guidance = indexOfRolesInGuidance[role];
+  let examples = indexOfRolesInExamples[role].sort(sortFn);
+  let guidance = indexOfRolesInGuidance[role].sort(sortFn);
 
   if (
     (examples.length === 1 && guidance.length === 0) ||
@@ -823,8 +828,8 @@ let RoleWithOneExample = sortedRoles.reduce(function (set, role) {
 $('#roles_with_one_example_tbody').html(RoleWithOneExample);
 
 let RoleWithMoreThanOneExample = sortedRoles.reduce(function (set, role) {
-  let examples = indexOfRolesInExamples[role];
-  let guidance = indexOfRolesInGuidance[role];
+  let examples = indexOfRolesInExamples[role].sort(sortFn);
+  let guidance = indexOfRolesInGuidance[role].sort(sortFn);
 
   if (examples.length > 1 || guidance.length > 1) {
     countMoreThanOneExample += 1;
@@ -861,8 +866,8 @@ let PropsWithNoExamples = sortedPropertiesAndStates.reduce(function (
   set,
   prop
 ) {
-  let examples = indexOfPropertiesAndStatesInExamples[prop];
-  let guidance = indexOfPropertiesAndStatesInGuidance[prop];
+  let examples = indexOfPropertiesAndStatesInExamples[prop].sort(sortFn);
+  let guidance = indexOfPropertiesAndStatesInGuidance[prop].sort(sortFn);
 
   if (examples.length === 0 && guidance.length === 0) {
     countNoExamples += 1;
@@ -880,8 +885,8 @@ let PropsWithOneExample = sortedPropertiesAndStates.reduce(function (
   set,
   prop
 ) {
-  let examples = indexOfPropertiesAndStatesInExamples[prop];
-  let guidance = indexOfPropertiesAndStatesInGuidance[prop];
+  let examples = indexOfPropertiesAndStatesInExamples[prop].sort(sortFn);
+  let guidance = indexOfPropertiesAndStatesInGuidance[prop].sort(sortFn);
 
   if (
     (examples.length === 1 && guidance.length === 0) ||
@@ -907,8 +912,8 @@ let PropsWithMoreThanOneExample = sortedPropertiesAndStates.reduce(function (
   set,
   prop
 ) {
-  let examples = indexOfPropertiesAndStatesInExamples[prop];
-  let guidance = indexOfPropertiesAndStatesInGuidance[prop];
+  let examples = indexOfPropertiesAndStatesInExamples[prop].sort(sortFn);
+  let guidance = indexOfPropertiesAndStatesInGuidance[prop].sort(sortFn);
 
   if (examples.length > 1 || guidance.length > 1) {
     countMoreThanOneExample += 1;
