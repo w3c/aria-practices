@@ -523,6 +523,7 @@ glob
       beforeCSS: getNumberOfReferences(dataCSS, '::before'),
       afterCSS: getNumberOfReferences(dataCSS, '::after'),
       forcedColorAdjust: getNumberOfReferences(dataCSS, 'forced-color-adjust'),
+      forcedColorsMediaQuery: getNumberOfReferences(dataCSS, 'forced-colors'),
 
       svgJS: getNumberOfReferences(dataJS, 'svg', true),
       classJS: getNumberOfReferences(dataJS, 'constructor\\('),
@@ -871,7 +872,8 @@ let PropsWithNoExamples = sortedPropertiesAndStates.reduce(function (
   }
 
   return `${set}`;
-}, '');
+},
+'');
 
 $('#props_with_no_examples_ul').html(PropsWithNoExamples);
 $('.props_with_no_examples_count').html(countNoExamples.toString());
@@ -898,7 +900,8 @@ let PropsWithOneExample = sortedPropertiesAndStates.reduce(function (
   }
 
   return `${set}`;
-}, '');
+},
+'');
 
 $('#props_with_one_example_tbody').html(PropsWithOneExample);
 $('.props_with_one_example_count').html(countOneExample.toString());
@@ -922,7 +925,8 @@ let PropsWithMoreThanOneExample = sortedPropertiesAndStates.reduce(function (
   }
 
   return `${set}`;
-}, '');
+},
+'');
 
 $('#props_with_more_than_one_tbody').html(PropsWithMoreThanOneExample);
 $('.props_with_more_than_one_examples_count').html(
@@ -1003,13 +1007,15 @@ let IndexOfExampleCodingPractices = indexOfExamples.reduce(function (
             <td>${example.documentationAttributes.length}</td>
             <td>${checkDocumentation}</td>
           </tr>`;
-}, '');
+},
+'');
 
 let IndexOfExampleGraphics = indexOfExamples.reduce(function (set, example) {
   let count = example.svgHTML;
   count += example.svgCSS;
   count += example.svgJS;
   count += example.forcedColorAdjust;
+  count += example.forcedColorsMediaQuery;
   count += example.beforeCSS;
   count += example.afterCSS;
   count += example.contentCSS;
@@ -1024,6 +1030,7 @@ let IndexOfExampleGraphics = indexOfExamples.reduce(function (set, example) {
             <td>${htmlYesOrNo(example.svgCSS)}</td>
             <td>${htmlYesOrNo(example.svgJS)}</td>
             <td>${htmlYesOrNo(example.forcedColorAdjust)}</td>
+            <td>${htmlYesOrNo(example.forcedColorsMediaQuery)}</td>
             <td>${htmlYesOrNo(example.beforeCSS)}</td>
             <td>${htmlYesOrNo(example.afterCSS)}</td>
             <td>${htmlYesOrNo(example.contentCSS)}</td>
@@ -1060,7 +1067,8 @@ let IndexOfExampleMousePointer = indexOfExamples.reduce(function (
             <td>${htmlYesOrNo(mouseCount)}</td>
             <td>${htmlYesOrNo(pointerCount)}</td>
           </tr>`;
-}, '');
+},
+'');
 
 let countClass = indexOfExamples.reduce(function (set, example) {
   return set + (example.classJS ? 1 : 0);

@@ -149,8 +149,9 @@ ariaTest(
     for (let expandIndex of [1, 2]) {
       await buttons[expandIndex].sendKeys(Key.ENTER);
       const panelDisplay = await panels[expandIndex].isDisplayed();
-      const buttonAria =
-        await buttons[expandIndex].getAttribute('aria-expanded');
+      const buttonAria = await buttons[expandIndex].getAttribute(
+        'aria-expanded'
+      );
 
       t.true(
         panelDisplay,
@@ -188,8 +189,9 @@ ariaTest(
     for (let expandIndex of [1, 2]) {
       await buttons[expandIndex].sendKeys(Key.SPACE);
       const panelDisplay = await panels[expandIndex].isDisplayed();
-      const buttonAria =
-        await buttons[expandIndex].getAttribute('aria-expanded');
+      const buttonAria = await buttons[expandIndex].getAttribute(
+        'aria-expanded'
+      );
 
       t.true(
         panelDisplay,
