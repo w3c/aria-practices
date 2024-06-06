@@ -2,564 +2,564 @@
 
 const htmlColorValues = [
   {
-    'name': 'INDIAN RED',
-    'hex': '#CD5C5C'
+    name: 'INDIAN RED',
+    hex: '#CD5C5C'
   },
   {
-    'name': 'LIGHT CORAL',
-    'hex': '#F08080'
+    name: 'LIGHT CORAL',
+    hex: '#F08080'
   },
   {
-    'name': 'SALMON',
-    'hex': '#FA8072'
+    name: 'SALMON',
+    hex: '#FA8072'
   },
   {
-    'name': 'DARK SALMON',
-    'hex': '#E9967A'
+    name: 'DARK SALMON',
+    hex: '#E9967A'
   },
   {
-    'name': 'LIGHT SALMON',
-    'hex': '#FFA07A'
+    name: 'LIGHT SALMON',
+    hex: '#FFA07A'
   },
   {
-    'name': 'CRIMSON',
-    'hex': '#DC143C'
+    name: 'CRIMSON',
+    hex: '#DC143C'
   },
   {
-    'name': 'RED',
-    'hex': '#FF0000'
+    name: 'RED',
+    hex: '#FF0000'
   },
   {
-    'name': 'DARK RED',
-    'hex': '#8B0000'
+    name: 'DARK RED',
+    hex: '#8B0000'
   },
   {
-    'name': 'PINK',
-    'hex': '#FFC0CB'
+    name: 'PINK',
+    hex: '#FFC0CB'
   },
   {
-    'name': 'LIGHT PINK',
-    'hex': '#FFB6C1'
+    name: 'LIGHT PINK',
+    hex: '#FFB6C1'
   },
   {
-    'name': 'HOT PINK',
-    'hex': '#FF69B4'
+    name: 'HOT PINK',
+    hex: '#FF69B4'
   },
   {
-    'name': 'DEEP PINK',
-    'hex': '#FF1493'
+    name: 'DEEP PINK',
+    hex: '#FF1493'
   },
   {
-    'name': 'MEDIUM VIOLET RED',
-    'hex': '#C71585'
+    name: 'MEDIUM VIOLET RED',
+    hex: '#C71585'
   },
   {
-    'name': 'PALE VIOLET RED',
-    'hex': '#DB7093'
+    name: 'PALE VIOLET RED',
+    hex: '#DB7093'
   },
   {
-    'name': 'CORAL',
-    'hex': '#FF7F50'
+    name: 'CORAL',
+    hex: '#FF7F50'
   },
   {
-    'name': 'TOMATO',
-    'hex': '#FF6347'
+    name: 'TOMATO',
+    hex: '#FF6347'
   },
   {
-    'name': 'ORANGE RED',
-    'hex': '#FF4500'
+    name: 'ORANGE RED',
+    hex: '#FF4500'
   },
   {
-    'name': 'DARK ORANGE',
-    'hex': '#FF8C00'
+    name: 'DARK ORANGE',
+    hex: '#FF8C00'
   },
   {
-    'name': 'ORANGE',
-    'hex': '#FFA500'
+    name: 'ORANGE',
+    hex: '#FFA500'
   },
   {
-    'name': 'GOLD',
-    'hex': '#FFD700'
+    name: 'GOLD',
+    hex: '#FFD700'
   },
   {
-    'name': 'YELLOW',
-    'hex': '#FFFF00'
+    name: 'YELLOW',
+    hex: '#FFFF00'
   },
   {
-    'name': 'LIGHT YELLOW',
-    'hex': '#FFFFE0'
+    name: 'LIGHT YELLOW',
+    hex: '#FFFFE0'
   },
   {
-    'name': 'LEMON CHIFFON',
-    'hex': '#FFFACD'
+    name: 'LEMON CHIFFON',
+    hex: '#FFFACD'
   },
   {
-    'name': 'LIGHT GOLDEN ROD YELLOW',
-    'hex': '#FAFAD2'
+    name: 'LIGHT GOLDEN ROD YELLOW',
+    hex: '#FAFAD2'
   },
   {
-    'name': 'PAPAYAWHIP',
-    'hex': '#FFEFD5'
+    name: 'PAPAYAWHIP',
+    hex: '#FFEFD5'
   },
   {
-    'name': 'MOCCASIN',
-    'hex': '#FFE4B5'
+    name: 'MOCCASIN',
+    hex: '#FFE4B5'
   },
   {
-    'name': 'PEACH PUFF',
-    'hex': '#FFDAB9'
+    name: 'PEACH PUFF',
+    hex: '#FFDAB9'
   },
   {
-    'name': 'PALE GOLDEN ROD',
-    'hex': '#EEE8AA'
+    name: 'PALE GOLDEN ROD',
+    hex: '#EEE8AA'
   },
   {
-    'name': 'KHAKI',
-    'hex': '#F0E68C'
+    name: 'KHAKI',
+    hex: '#F0E68C'
   },
   {
-    'name': 'DARK KHAKI',
-    'hex': '#BDB76B'
+    name: 'DARK KHAKI',
+    hex: '#BDB76B'
   },
   {
-    'name': 'LAVENDER',
-    'hex': '#E6E6FA'
+    name: 'LAVENDER',
+    hex: '#E6E6FA'
   },
   {
-    'name': 'THISTLE',
-    'hex': '#D8BFD8'
+    name: 'THISTLE',
+    hex: '#D8BFD8'
   },
   {
-    'name': 'PLUM',
-    'hex': '#DDA0DD'
+    name: 'PLUM',
+    hex: '#DDA0DD'
   },
   {
-    'name': 'VIOLET',
-    'hex': '#EE82EE'
+    name: 'VIOLET',
+    hex: '#EE82EE'
   },
   {
-    'name': 'ORCHID',
-    'hex': '#DA70D6'
+    name: 'ORCHID',
+    hex: '#DA70D6'
   },
   {
-    'name': 'FUCHSIA',
-    'hex': '#FF00FF'
+    name: 'FUCHSIA',
+    hex: '#FF00FF'
   },
   {
-    'name': 'MAGENTA',
-    'hex': '#FF00FF'
+    name: 'MAGENTA',
+    hex: '#FF00FF'
   },
   {
-    'name': 'MEDIUM ORCHID',
-    'hex': '#BA55D3'
+    name: 'MEDIUM ORCHID',
+    hex: '#BA55D3'
   },
   {
-    'name': 'MEDIUM PURPLE',
-    'hex': '#9370DB'
+    name: 'MEDIUM PURPLE',
+    hex: '#9370DB'
   },
   {
-    'name': 'REBECCA PURPLE',
-    'hex': '#663399'
+    name: 'REBECCA PURPLE',
+    hex: '#663399'
   },
   {
-    'name': 'BLUE VIOLET',
-    'hex': '#8A2BE2'
+    name: 'BLUE VIOLET',
+    hex: '#8A2BE2'
   },
   {
-    'name': 'DARK VIOLET',
-    'hex': '#9400D3'
+    name: 'DARK VIOLET',
+    hex: '#9400D3'
   },
   {
-    'name': 'DARK ORCHID',
-    'hex': '#9932CC'
+    name: 'DARK ORCHID',
+    hex: '#9932CC'
   },
   {
-    'name': 'DARK MAGENTA',
-    'hex': '#8B008B'
+    name: 'DARK MAGENTA',
+    hex: '#8B008B'
   },
   {
-    'name': 'PURPLE',
-    'hex': '#800080'
+    name: 'PURPLE',
+    hex: '#800080'
   },
   {
-    'name': 'INDIGO',
-    'hex': '#4B0082'
+    name: 'INDIGO',
+    hex: '#4B0082'
   },
   {
-    'name': 'SLATE BLUE',
-    'hex': '#6A5ACD'
+    name: 'SLATE BLUE',
+    hex: '#6A5ACD'
   },
   {
-    'name': 'DARK SLATE BLUE',
-    'hex': '#483D8B'
+    name: 'DARK SLATE BLUE',
+    hex: '#483D8B'
   },
   {
-    'name': 'MEDIUM SLATE BLUE',
-    'hex': '#7B68EE'
+    name: 'MEDIUM SLATE BLUE',
+    hex: '#7B68EE'
   },
   {
-    'name': 'GREEN YELLOW',
-    'hex': '#ADFF2F'
+    name: 'GREEN YELLOW',
+    hex: '#ADFF2F'
   },
   {
-    'name': 'CHARTREUSE',
-    'hex': '#7FFF00'
+    name: 'CHARTREUSE',
+    hex: '#7FFF00'
   },
   {
-    'name': 'LAWN GREEN',
-    'hex': '#7CFC00'
+    name: 'LAWN GREEN',
+    hex: '#7CFC00'
   },
   {
-    'name': 'LIME',
-    'hex': '#00FF00'
+    name: 'LIME',
+    hex: '#00FF00'
   },
   {
-    'name': 'LIME GREEN',
-    'hex': '#32CD32'
+    name: 'LIME GREEN',
+    hex: '#32CD32'
   },
   {
-    'name': 'PALE GREEN',
-    'hex': '#98FB98'
+    name: 'PALE GREEN',
+    hex: '#98FB98'
   },
   {
-    'name': 'LIGHT GREEN',
-    'hex': '#90EE90'
+    name: 'LIGHT GREEN',
+    hex: '#90EE90'
   },
   {
-    'name': 'MEDIUM SPRING GREEN',
-    'hex': '#00FA9A'
+    name: 'MEDIUM SPRING GREEN',
+    hex: '#00FA9A'
   },
   {
-    'name': 'SPRING GREEN',
-    'hex': '#00FF7F'
+    name: 'SPRING GREEN',
+    hex: '#00FF7F'
   },
   {
-    'name': 'MEDIUM SEA GREEN',
-    'hex': '#3CB371'
+    name: 'MEDIUM SEA GREEN',
+    hex: '#3CB371'
   },
   {
-    'name': 'SEA GREEN',
-    'hex': '#2E8B57'
+    name: 'SEA GREEN',
+    hex: '#2E8B57'
   },
   {
-    'name': 'FOREST GREEN',
-    'hex': '#228B22'
+    name: 'FOREST GREEN',
+    hex: '#228B22'
   },
   {
-    'name': 'GREEN',
-    'hex': '#008000'
+    name: 'GREEN',
+    hex: '#008000'
   },
   {
-    'name': 'DARK GREEN',
-    'hex': '#006400'
+    name: 'DARK GREEN',
+    hex: '#006400'
   },
   {
-    'name': 'YELLOW GREEN',
-    'hex': '#9ACD32'
+    name: 'YELLOW GREEN',
+    hex: '#9ACD32'
   },
   {
-    'name': 'OLIVE DRAB',
-    'hex': '#6B8E23'
+    name: 'OLIVE DRAB',
+    hex: '#6B8E23'
   },
   {
-    'name': 'OLIVE',
-    'hex': '#6B8E23'
+    name: 'OLIVE',
+    hex: '#6B8E23'
   },
   {
-    'name': 'DARK OLIVE GREEN',
-    'hex': '#556B2F'
+    name: 'DARK OLIVE GREEN',
+    hex: '#556B2F'
   },
   {
-    'name': 'MEDIUM AQUA MARINE',
-    'hex': '#66CDAA'
+    name: 'MEDIUM AQUA MARINE',
+    hex: '#66CDAA'
   },
   {
-    'name': 'DARK SEA GREEN',
-    'hex': '#8FBC8B'
+    name: 'DARK SEA GREEN',
+    hex: '#8FBC8B'
   },
   {
-    'name': 'LIGHT SEA GREEN',
-    'hex': '#20B2AA'
+    name: 'LIGHT SEA GREEN',
+    hex: '#20B2AA'
   },
   {
-    'name': 'DARK CYAN',
-    'hex': '#008B8B'
+    name: 'DARK CYAN',
+    hex: '#008B8B'
   },
   {
-    'name': 'TEAL',
-    'hex': '#008080'
+    name: 'TEAL',
+    hex: '#008080'
   },
   {
-    'name': 'AQUA',
-    'hex': '#00FFFF'
+    name: 'AQUA',
+    hex: '#00FFFF'
   },
   {
-    'name': 'CYAN',
-    'hex': '#00FFFF'
+    name: 'CYAN',
+    hex: '#00FFFF'
   },
   {
-    'name': 'LIGHT CYAN',
-    'hex': '#E0FFFF'
+    name: 'LIGHT CYAN',
+    hex: '#E0FFFF'
   },
   {
-    'name': 'PALE TURQUOISE',
-    'hex': '#AFEEEE'
+    name: 'PALE TURQUOISE',
+    hex: '#AFEEEE'
   },
   {
-    'name': 'AQUAMARINE',
-    'hex': '#7FFFD4'
+    name: 'AQUAMARINE',
+    hex: '#7FFFD4'
   },
   {
-    'name': 'TURQUOISE',
-    'hex': '#40E0D0'
+    name: 'TURQUOISE',
+    hex: '#40E0D0'
   },
   {
-    'name': 'MEDIUM TURQUOISE',
-    'hex': '#48D1CC'
+    name: 'MEDIUM TURQUOISE',
+    hex: '#48D1CC'
   },
   {
-    'name': 'DARK TURQUOISE',
-    'hex': '#00CED1'
+    name: 'DARK TURQUOISE',
+    hex: '#00CED1'
   },
   {
-    'name': 'CADET BLUE',
-    'hex': '#5F9EA0'
+    name: 'CADET BLUE',
+    hex: '#5F9EA0'
   },
   {
-    'name': 'STEEL BLUE',
-    'hex': '#4682B4'
+    name: 'STEEL BLUE',
+    hex: '#4682B4'
   },
   {
-    'name': 'LIGHT STEEL BLUE',
-    'hex': '#B0C4DE'
+    name: 'LIGHT STEEL BLUE',
+    hex: '#B0C4DE'
   },
   {
-    'name': 'POWDER BLUE',
-    'hex': '#B0E0E6'
+    name: 'POWDER BLUE',
+    hex: '#B0E0E6'
   },
   {
-    'name': 'LIGHT BLUE',
-    'hex': '#ADD8E6'
+    name: 'LIGHT BLUE',
+    hex: '#ADD8E6'
   },
   {
-    'name': 'SKY BLUE',
-    'hex': '#87CEEB'
+    name: 'SKY BLUE',
+    hex: '#87CEEB'
   },
   {
-    'name': 'LIGHT SKY BLUE',
-    'hex': '#87CEFA'
+    name: 'LIGHT SKY BLUE',
+    hex: '#87CEFA'
   },
   {
-    'name': 'DEEP SKY BLUE',
-    'hex': '#00BFFF'
+    name: 'DEEP SKY BLUE',
+    hex: '#00BFFF'
   },
   {
-    'name': 'DODGER BLUE',
-    'hex': '#1E90FF'
+    name: 'DODGER BLUE',
+    hex: '#1E90FF'
   },
   {
-    'name': 'CORN FLOWER BLUE',
-    'hex': '#6495ED'
+    name: 'CORN FLOWER BLUE',
+    hex: '#6495ED'
   },
   {
-    'name': 'ROYAL BLUE',
-    'hex': '#4169E1'
+    name: 'ROYAL BLUE',
+    hex: '#4169E1'
   },
   {
-    'name': 'BLUE',
-    'hex': '#0000FF'
+    name: 'BLUE',
+    hex: '#0000FF'
   },
   {
-    'name': 'MEDIUM BLUE',
-    'hex': '#0000CD'
+    name: 'MEDIUM BLUE',
+    hex: '#0000CD'
   },
   {
-    'name': 'DARK BLUE',
-    'hex': '#00008B'
+    name: 'DARK BLUE',
+    hex: '#00008B'
   },
   {
-    'name': 'NAVY',
-    'hex': '#00008B'
+    name: 'NAVY',
+    hex: '#00008B'
   },
   {
-    'name': 'MIDNIGHT BLUE',
-    'hex': '#191970'
+    name: 'MIDNIGHT BLUE',
+    hex: '#191970'
   },
   {
-    'name': 'CORN SILK',
-    'hex': '#FFF8DC'
+    name: 'CORN SILK',
+    hex: '#FFF8DC'
   },
   {
-    'name': 'BLANCHED ALMOND',
-    'hex': '#FFEBCD'
+    name: 'BLANCHED ALMOND',
+    hex: '#FFEBCD'
   },
   {
-    'name': 'BISQUE',
-    'hex': '#FFE4C4'
+    name: 'BISQUE',
+    hex: '#FFE4C4'
   },
   {
-    'name': 'NAVAJO WHITE',
-    'hex': '#FFDEAD'
+    name: 'NAVAJO WHITE',
+    hex: '#FFDEAD'
   },
   {
-    'name': 'WHEAT',
-    'hex': '#F5DEB3'
+    name: 'WHEAT',
+    hex: '#F5DEB3'
   },
   {
-    'name': 'BURLY WOOD',
-    'hex': '#DEB887'
+    name: 'BURLY WOOD',
+    hex: '#DEB887'
   },
   {
-    'name': 'TAN',
-    'hex': '#D2B48C'
+    name: 'TAN',
+    hex: '#D2B48C'
   },
   {
-    'name': 'ROSY BROWN',
-    'hex': '#BC8F8F'
+    name: 'ROSY BROWN',
+    hex: '#BC8F8F'
   },
   {
-    'name': 'SANDY BROWN',
-    'hex': '#F4A460'
+    name: 'SANDY BROWN',
+    hex: '#F4A460'
   },
   {
-    'name': 'GOLDENROD',
-    'hex': '#DAA520'
+    name: 'GOLDENROD',
+    hex: '#DAA520'
   },
   {
-    'name': 'DARK GOLDEN ROD',
-    'hex': '#B8860B'
+    name: 'DARK GOLDEN ROD',
+    hex: '#B8860B'
   },
   {
-    'name': 'PERU',
-    'hex': '#CD853F'
+    name: 'PERU',
+    hex: '#CD853F'
   },
   {
-    'name': 'CHOCOLATE',
-    'hex': '#D2691E'
+    name: 'CHOCOLATE',
+    hex: '#D2691E'
   },
   {
-    'name': 'SADDLE BROWN',
-    'hex': '#8B4513'
+    name: 'SADDLE BROWN',
+    hex: '#8B4513'
   },
   {
-    'name': 'SIENNA',
-    'hex': '#A0522D'
+    name: 'SIENNA',
+    hex: '#A0522D'
   },
   {
-    'name': 'BROWN',
-    'hex': '#A52A2A'
+    name: 'BROWN',
+    hex: '#A52A2A'
   },
   {
-    'name': 'MAROON',
-    'hex': '#800000'
+    name: 'MAROON',
+    hex: '#800000'
   },
   {
-    'name': 'WHITE',
-    'hex': '#FFFFFF'
+    name: 'WHITE',
+    hex: '#FFFFFF'
   },
   {
-    'name': 'SNOW',
-    'hex': '#FFFAFA'
+    name: 'SNOW',
+    hex: '#FFFAFA'
   },
   {
-    'name': 'HONEY DEW',
-    'hex': '#F0FFF0'
+    name: 'HONEY DEW',
+    hex: '#F0FFF0'
   },
   {
-    'name': 'MINT CREAM',
-    'hex': '#F5FFFA'
+    name: 'MINT CREAM',
+    hex: '#F5FFFA'
   },
   {
-    'name': 'AZURE',
-    'hex': '#F0FFFF'
+    name: 'AZURE',
+    hex: '#F0FFFF'
   },
   {
-    'name': 'ALICE BLUE',
-    'hex': '#F0F8FF'
+    name: 'ALICE BLUE',
+    hex: '#F0F8FF'
   },
   {
-    'name': 'GHOST WHITE',
-    'hex': '#F8F8FF'
+    name: 'GHOST WHITE',
+    hex: '#F8F8FF'
   },
   {
-    'name': 'WHITE SMOKE',
-    'hex': '#F5F5F5'
+    name: 'WHITE SMOKE',
+    hex: '#F5F5F5'
   },
   {
-    'name': 'SEA SHELL',
-    'hex': '#FFF5EE'
+    name: 'SEA SHELL',
+    hex: '#FFF5EE'
   },
   {
-    'name': 'BEIGE',
-    'hex': '#F5F5DC'
+    name: 'BEIGE',
+    hex: '#F5F5DC'
   },
   {
-    'name': 'OLD LACE',
-    'hex': '#FDF5E6'
+    name: 'OLD LACE',
+    hex: '#FDF5E6'
   },
   {
-    'name': 'FLORAL WHITE',
-    'hex': '#FDF5E6'
+    name: 'FLORAL WHITE',
+    hex: '#FDF5E6'
   },
   {
-    'name': 'IVORY',
-    'hex': '#FFFFF0'
+    name: 'IVORY',
+    hex: '#FFFFF0'
   },
   {
-    'name': 'ANTIQUE WHITE',
-    'hex': '#FAEBD7'
+    name: 'ANTIQUE WHITE',
+    hex: '#FAEBD7'
   },
   {
-    'name': 'LINEN',
-    'hex': '#FAF0E6'
+    name: 'LINEN',
+    hex: '#FAF0E6'
   },
   {
-    'name': 'LAVENDER BLUSH',
-    'hex': '#FFF0F5'
+    name: 'LAVENDER BLUSH',
+    hex: '#FFF0F5'
   },
   {
-    'name': 'MISTY ROSE',
-    'hex': '#FFE4E1'
+    name: 'MISTY ROSE',
+    hex: '#FFE4E1'
   },
   {
-    'name': 'GAINSBORO',
-    'hex': '#DCDCDC'
+    name: 'GAINSBORO',
+    hex: '#DCDCDC'
   },
   {
-    'name': 'LIGHT GRAY',
-    'hex': '#D3D3D3'
+    name: 'LIGHT GRAY',
+    hex: '#D3D3D3'
   },
   {
-    'name': 'SILVER',
-    'hex': '#C0C0C0'
+    name: 'SILVER',
+    hex: '#C0C0C0'
   },
   {
-    'name': 'DARK GRAY',
-    'hex': '#A9A9A9'
+    name: 'DARK GRAY',
+    hex: '#A9A9A9'
   },
   {
-    'name': 'GRAY',
-    'hex': '#808080'
+    name: 'GRAY',
+    hex: '#808080'
   },
   {
-    'name': 'DIMGRAY',
-    'hex': '#696969'
+    name: 'DIMGRAY',
+    hex: '#696969'
   },
   {
-    'name': 'LIGHT SLATE GRAY',
-    'hex': '#778899'
+    name: 'LIGHT SLATE GRAY',
+    hex: '#778899'
   },
   {
-    'name': 'SLATE GRAY',
-    'hex': '#708090'
+    name: 'SLATE GRAY',
+    hex: '#708090'
   },
   {
-    'name': 'DARK SLATE GRAY',
-    'hex': '#2F4F4F'
+    name: 'DARK SLATE GRAY',
+    hex: '#2F4F4F'
   },
   {
-    'name': 'BLACK',
-    'hex': '#000000'
+    name: 'BLACK',
+    hex: '#000000'
   }
 ]
 
