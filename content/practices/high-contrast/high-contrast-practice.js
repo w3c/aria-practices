@@ -580,18 +580,17 @@ function computeDistance(hex1, hex2) {
     r: parseInt(hex1.substring(1, 2), 16),
     b: parseInt(hex1.substring(3, 4), 16),
     g: parseInt(hex1.substring(5, 6), 16),
-  }
+  };
 
   const rgb2 = {
     r: parseInt(hex2.substring(1, 2), 16),
     b: parseInt(hex2.substring(3, 4), 16),
     g: parseInt(hex2.substring(5, 6), 16),
-  }
+  };
 
   return Math.pow((rgb1.r - rgb2.r), 2) +
-         Math.pow((rgb1.g - rgb2.g), 2) +
-         Math.pow((rgb1.b - rgb2.b), 2);
-
+    Math.pow((rgb1.g - rgb2.g), 2) +
+    Math.pow((rgb1.b - rgb2.b), 2);
 }
 
 /*
@@ -772,9 +771,9 @@ const systemColorValues = [
 
 function rgb2Hex(rgb) {
   // Choose correct separator
-  let sep = rgb.indexOf(",") > -1 ? "," : " ";
+  let sep = rgb.indexOf(',') > -1 ? ',' : ' ';
   // Turn "rgb(r,g,b)" into [r,g,b]
-  rgb = rgb.split("(")[1].split(")")[0].split(sep);
+  rgb = rgb.split('(')[1].split(')')[0].split(sep);
 
   let a = rgb[3] ? parseFloat(rgb[3]) : 1;
 
@@ -784,18 +783,18 @@ function rgb2Hex(rgb) {
     return 'transparent';
   }
 
-  let r = (Math.round(parseInt(rgb[0])*a)).toString(16),
-      g = (Math.round(parseInt(rgb[1])*a)).toString(16),
-      b = (Math.round(parseInt(rgb[2])*a)).toString(16);
+  let r = (Math.round(parseInt(rgb[0]) * a)).toString(16),
+      g = (Math.round(parseInt(rgb[1]) * a)).toString(16),
+      b = (Math.round(parseInt(rgb[2]) * a)).toString(16);
 
   if (r.length == 1)
-    r = "0" + r;
+    r = '0' + r;
   if (g.length == 1)
-    g = "0" + g;
+    g = '0' + g;
   if (b.length == 1)
-    b = "0" + b;
+    b = '0' + b;
 
-  return "#" + r + g + b;
+  return '#' + r + g + b;
 }
 
 // Fill in System color table
