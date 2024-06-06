@@ -560,8 +560,8 @@ const htmlColorValues = [
   {
     name: 'BLACK',
     hex: '#000000',
-  }
-]
+  },
+];
 
 /*
  * @function computeDistance
@@ -576,22 +576,21 @@ const htmlColorValues = [
  */
 
 function computeDistance(hex1, hex2) {
-
   const rgb1 = {
-    r: parseInt(hex1.substring(1,2), 16),
-    b: parseInt(hex1.substring(3,4), 16),
-    g: parseInt(hex1.substring(5,6), 16)
+    r: parseInt(hex1.substring(1, 2), 16),
+    b: parseInt(hex1.substring(3, 4), 16),
+    g: parseInt(hex1.substring(5, 6), 16),
   }
 
   const rgb2 = {
-    r: parseInt(hex2.substring(1,2), 16),
-    b: parseInt(hex2.substring(3,4), 16),
-    g: parseInt(hex2.substring(5,6), 16)
+    r: parseInt(hex2.substring(1, 2), 16),
+    b: parseInt(hex2.substring(3, 4), 16),
+    g: parseInt(hex2.substring(5, 6), 16),
   }
 
-  return Math.pow((rgb1.r - rgb2.r),2) +
-         Math.pow((rgb1.g - rgb2.g),2) +
-         Math.pow((rgb1.b - rgb2.b),2);
+  return Math.pow((rgb1.r - rgb2.r), 2) +
+         Math.pow((rgb1.g - rgb2.g), 2) +
+         Math.pow((rgb1.b - rgb2.b), 2);
 
 }
 
