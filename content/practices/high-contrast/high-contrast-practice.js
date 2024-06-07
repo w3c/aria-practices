@@ -1,6 +1,6 @@
 /* high-contrast.js */
 
-use strict;
+'use strict';
 
 const htmlColorValues = [
   {
