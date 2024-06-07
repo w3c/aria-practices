@@ -808,9 +808,9 @@ window.addEventListener('load', () => {
   systemColorValues.forEach((v) => {
     if (v.value) {
       const tr = document.createElement('tr');
-      const tdv = document.createElement('td');
-      tdv.textContent = v.value;
-      tr.appendChild(tdv);
+      const thv = document.createElement('th');
+      thv.textContent = v.value;
+      tr.appendChild(thv);
       const tds = document.createElement('td');
       const div = document.createElement('div');
       div.role = 'img';
