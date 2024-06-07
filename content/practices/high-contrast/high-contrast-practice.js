@@ -627,7 +627,6 @@ function getHTMLColorName(systemColorName, colorHex) {
     colorHex.substring(1, 2) === colorHex.substring(3, 4) &&
     colorHex.substring(1, 2) === colorHex.substring(5, 6)
   ) {
-
     switch (colorHex[1]) {
       case '0':
       case '1':
