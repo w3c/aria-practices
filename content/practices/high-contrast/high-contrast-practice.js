@@ -612,7 +612,7 @@ function getHTMLColorName (systemColorName, colorHex) {
     return `${systemColorName} is ${colorHex}`;
   }
 
-  for( let i = 0; i < htmlColorValues.length; i += 1) {
+  for (let i = 0; i < htmlColorValues.length; i += 1) {
     const v = htmlColorValues[i];
     if (v.hex.toLowerCase() === colorHex) {
       return `${systemColorName} is ${v.name.toLowerCase()}`;
@@ -621,8 +621,8 @@ function getHTMLColorName (systemColorName, colorHex) {
 
   // See if shade of gray
 
-  if ((colorHex.substring(1, 2) === colorHex.substring(3, 4)) &&
-      (colorHex.substring(1, 2) === colorHex.substring(5, 6))) {
+  if (colorHex.substring(1, 2) === colorHex.substring(3, 4) &&
+      colorHex.substring(1, 2) === colorHex.substring(5, 6)) {
 
     switch (colorHex[1]) {
       case '0':
@@ -646,10 +646,10 @@ function getHTMLColorName (systemColorName, colorHex) {
 
   // Look for closest color
 
-  let closestValue =htmlColorValues[0];
+  let closestValue = htmlColorValues[0];
   let closestComputedDistance = computeDistance(closestValue.hex, colorHex);
 
-  htmlColorValues.forEach( (v) => {
+  htmlColorValues.forEach((v) => {
     const cd = computeDistance(v.hex, colorHex);
     if (cd < closestComputedDistance) {
       closestValue = v;
@@ -755,7 +755,7 @@ const systemColorValues = [
     value:'VisitedText',
     name: 'Visited text',
     desc: 'Text of visited links',
-   }
+  },
 ];
 
 /*
@@ -775,8 +775,6 @@ function rgb2Hex(rgb) {
   rgb = rgb.split('(')[1].split(')')[0].split(sep);
 
   let a = rgb[3] ? parseFloat(rgb[3]) : 1;
-
-  console.log(`[rgb]: ${rgb} [a]: ${a}`);
 
   if (a < 0.01) {
     return 'transparent';
@@ -804,9 +802,9 @@ function rgb2Hex(rgb) {
 window.addEventListener('load', () => {
   const tbodyNode = document.getElementById('samples');
 
-  systemColorValues.forEach( v => {
+  systemColorValues.forEach((v) => {
     if (v.value) {
-      const tr  = document.createElement('tr');
+      const tr = document.createElement('tr');
       const tdv = document.createElement('td');
       tdv.textContent = v.value;
       tr.appendChild(tdv);
@@ -827,7 +825,7 @@ window.addEventListener('load', () => {
       tbodyNode.appendChild(tr);
       const cStyle = window.getComputedStyle(div);
       const colorHex = rgb2Hex(cStyle.backgroundColor);
-      tdc.textContent =colorHex;
+      tdc.textContent = colorHex;
       div.ariaLabel = getHTMLColorName(v.name, colorHex);
     }
   });
