@@ -588,9 +588,9 @@ function computeDistance(hex1, hex2) {
     g: parseInt(hex2.substring(5, 6), 16),
   };
 
-  return Math.pow((rgb1.r - rgb2.r), 2) +
-    Math.pow((rgb1.g - rgb2.g), 2) +
-    Math.pow((rgb1.b - rgb2.b), 2);
+  return Math.pow(rgb1.r - rgb2.r, 2) +
+    Math.pow(rgb1.g - rgb2.g, 2) +
+    Math.pow(rgb1.b - rgb2.b, 2);
 }
 
 /*
@@ -609,10 +609,10 @@ function getHTMLColorName (systemColorName, colorHex) {
   // Check for transparent
 
   if (colorHex[0] !== '#') {
-    return `${systemColorName} is ${colorHex}`
+    return `${systemColorName} is ${colorHex}`;
   }
 
-  for(let i = 0; i < htmlColorValues.length; i += 1) {
+  for( let i = 0; i < htmlColorValues.length; i += 1) {
     const v = htmlColorValues[i];
     if (v.hex.toLowerCase() === colorHex) {
       return `${systemColorName} is ${v.name.toLowerCase()}`;
@@ -621,8 +621,8 @@ function getHTMLColorName (systemColorName, colorHex) {
 
   // See if shade of gray
 
-  if ((colorHex.substring(1,2) === colorHex.substring(3,4)) &&
-      (colorHex.substring(1,2) === colorHex.substring(5,6))) {
+  if ((colorHex.substring(1, 2) === colorHex.substring(3, 4)) &&
+      (colorHex.substring(1, 2) === colorHex.substring(5, 6))) {
 
     switch (colorHex[1]) {
       case '0':
@@ -649,7 +649,7 @@ function getHTMLColorName (systemColorName, colorHex) {
   let closestValue =htmlColorValues[0];
   let closestComputedDistance = computeDistance(closestValue.hex, colorHex);
 
-  htmlColorValues.forEach( v => {
+  htmlColorValues.forEach( (v) => {
     const cd = computeDistance(v.hex, colorHex);
     if (cd < closestComputedDistance) {
       closestValue = v;
@@ -752,10 +752,9 @@ const systemColorValues = [
     desc: 'Text of selected items',
   },
   {
-    value:
-    'VisitedText',
+    value:'VisitedText',
     name: 'Visited text',
-     desc: 'Text of visited links'
+    desc: 'Text of visited links',
    }
 ];
 
@@ -783,16 +782,19 @@ function rgb2Hex(rgb) {
     return 'transparent';
   }
 
-  let r = (Math.round(parseInt(rgb[0]) * a)).toString(16),
-      g = (Math.round(parseInt(rgb[1]) * a)).toString(16),
-      b = (Math.round(parseInt(rgb[2]) * a)).toString(16);
+  let r = Math.round(parseInt(rgb[0]) * a).toString(16),
+      g = Math.round(parseInt(rgb[1]) * a).toString(16),
+      b = Math.round(parseInt(rgb[2]) * a).toString(16);
 
-  if (r.length == 1)
+  if (r.length == 1) {
     r = '0' + r;
-  if (g.length == 1)
+  }
+  if (g.length == 1) {
     g = '0' + g;
-  if (b.length == 1)
+  }
+  if (b.length == 1) {
     b = '0' + b;
+  }
 
   return '#' + r + g + b;
 }
@@ -817,7 +819,7 @@ window.addEventListener('load', () => {
       tr.appendChild(tds);
       const tdc = document.createElement('td');
       tdc.style.fontFamily = 'monospace';
-      tdc.textContent = "??";
+      tdc.textContent = '??';
       tr.appendChild(tdc);
       const tdd = document.createElement('td');
       tdd.textContent = v.desc;
