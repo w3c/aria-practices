@@ -588,9 +588,10 @@ function computeDistance(hex1, hex2) {
     g: parseInt(hex2.substring(5, 6), 16),
   };
 
-  return Math.pow(rgb1.r - rgb2.r, 2) +
+  return (
+    Math.pow(rgb1.r - rgb2.r, 2) +
     Math.pow(rgb1.g - rgb2.g, 2) +
-    Math.pow(rgb1.b - rgb2.b, 2);
+    Math.pow(rgb1.b - rgb2.b, 2));
 }
 
 /*
@@ -604,7 +605,7 @@ function computeDistance(hex1, hex2) {
  * @return {String) see @desc
  */
 
-function getHTMLColorName (systemColorName, colorHex) {
+function getHTMLColorName(systemColorName, colorHex) {
 
   // Check for transparent
 
@@ -620,9 +621,9 @@ function getHTMLColorName (systemColorName, colorHex) {
   }
 
   // See if shade of gray
-
-  if (colorHex.substring(1, 2) === colorHex.substring(3, 4) &&
-      colorHex.substring(1, 2) === colorHex.substring(5, 6)) {
+  if (
+    colorHex.substring(1, 2) === colorHex.substring(3, 4) &&
+    colorHex.substring(1, 2) === colorHex.substring(5, 6)) {
 
     switch (colorHex[1]) {
       case '0':
