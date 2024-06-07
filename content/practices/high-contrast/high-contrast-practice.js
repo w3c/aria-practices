@@ -594,7 +594,7 @@ function computeDistance(hex1, hex2) {
     Math.pow(rgb1.r - rgb2.r, 2) +
     Math.pow(rgb1.g - rgb2.g, 2) +
     Math.pow(rgb1.b - rgb2.b, 2)
-    );
+  );
 }
 
 /*
@@ -626,7 +626,7 @@ function getHTMLColorName(systemColorName, colorHex) {
   if (
     colorHex.substring(1, 2) === colorHex.substring(3, 4) &&
     colorHex.substring(1, 2) === colorHex.substring(5, 6)
-    ) {
+  ) {
 
     switch (colorHex[1]) {
       case '0':
