@@ -1,5 +1,7 @@
 /* high-contrast.js */
 
+use strict;
+
 const htmlColorValues = [
   {
     name: 'INDIAN RED',
@@ -591,7 +593,8 @@ function computeDistance(hex1, hex2) {
   return (
     Math.pow(rgb1.r - rgb2.r, 2) +
     Math.pow(rgb1.g - rgb2.g, 2) +
-    Math.pow(rgb1.b - rgb2.b, 2));
+    Math.pow(rgb1.b - rgb2.b, 2)
+    );
 }
 
 /*
@@ -606,7 +609,6 @@ function computeDistance(hex1, hex2) {
  */
 
 function getHTMLColorName(systemColorName, colorHex) {
-
   // Check for transparent
 
   if (colorHex[0] !== '#') {
@@ -623,7 +625,8 @@ function getHTMLColorName(systemColorName, colorHex) {
   // See if shade of gray
   if (
     colorHex.substring(1, 2) === colorHex.substring(3, 4) &&
-    colorHex.substring(1, 2) === colorHex.substring(5, 6)) {
+    colorHex.substring(1, 2) === colorHex.substring(5, 6)
+    ) {
 
     switch (colorHex[1]) {
       case '0':
@@ -753,7 +756,7 @@ const systemColorValues = [
     desc: 'Text of selected items',
   },
   {
-    value:'VisitedText',
+    value: 'VisitedText',
     name: 'Visited text',
     desc: 'Text of visited links',
   },
@@ -782,8 +785,8 @@ function rgb2Hex(rgb) {
   }
 
   let r = Math.round(parseInt(rgb[0]) * a).toString(16),
-      g = Math.round(parseInt(rgb[1]) * a).toString(16),
-      b = Math.round(parseInt(rgb[2]) * a).toString(16);
+    g = Math.round(parseInt(rgb[1]) * a).toString(16),
+    b = Math.round(parseInt(rgb[2]) * a).toString(16);
 
   if (r.length == 1) {
     r = '0' + r;
