@@ -32,9 +32,7 @@
       <section id="introduction">
         <h2>Introduction</h2>
         <p>
-          While all content and components should meet minimum contrast requirements by default, it is also possible to build components that automatically provide high contrast for users who need more than minimum contrast.
-          Many operating systems provide accessibility settings that enable users to specify high contrast preferences.
-          This section explains how to ensure components respect those preferences.
+          People with many types of visual impairments need to override the default colors used to render web content to make content perceivable to them.  Operating system provide settings to enable users to choose color themes or preset high contrast themes that are useful to them.  For web content to be compatible with high contrast settings, authors must ensure their content adapts to user settings.  This section explains how to ensure components respect those preferences and verify compatibility through testing.
         </p>
 
         <p>This section covers:</p>
@@ -172,9 +170,7 @@
           </tbody>
         </table>
 
-
-
-        <h3 id="currentcolor-examples">Other Examples using <code>currentcolor</code> keyword</h3>
+        <h3 id="currentcolor-examples">Examples using <code>currentcolor</code> keyword</h3>
         <ul>
           <li><a href="../../patterns/checkbox/examples/checkbox-mixed.html">Checkbox (Mixed-State)</a></li>
           <li><a href="../../patterns/disclosure/examples/disclosure-faq.html">Disclosure (Show/Hide) for Answers to Frequently Asked Questions</a></li>
@@ -183,7 +179,6 @@
           <li><a href="../../patterns/slider/examples/slider-temperature.html">Vertical Temperature Slider</a></li>
         </ul>
       </section>
-
 
       <section id="forced-colors">
         <h2><code>forced-colors</code> Media Query</h2>
@@ -206,7 +201,6 @@
           <tbody id="samples">
           </tbody>
         </table>
-
 
 
         <h3 id="forced-colors-example">Rating Slider Example</h3>
@@ -268,6 +262,39 @@
         </ul>
 
       </section>
+
+      <section id="testing">
+        <h2>Testing for High Contrast Support</h2>
+
+        <p>Testing for high contrast can be done in two ways</p>
+
+        <h3 id="os-high-contrast-config">Operating System High Contrast Testing</h3>
+
+        <ul>
+          <li><a href="https://support.microsoft.com/en-us/windows/change-color-contrast-in-windows-fedc744c-90ac-69df-aed5-c8a90125e696#WindowsVersion=Windows_11"> Windows 10 and 11: Change color contrast</a></li>
+          <li><a href="https://support.apple.com/guide/mac-help/change-display-colors-easier-onscreen-mchl11ddd4b3/mac">MacOS: Change display colors on Mac to make it easier to see what’s onscreen</a></li>
+          <li><a href="https://help.gnome.org/users/gnome-help/stable/a11y-contrast.html.en">Linux GNOME: Adjust the contrast</a></li>
+          <li><a href="https://support.apple.com/guide/ipad/change-color-and-brightness-ipad674f91c0/ipados">iPad: Change color on iPad to make it easier to see items onscreen</a></li>
+          <li><a href="https://support.apple.com/guide/iphone/change-color-and-brightness-iph3e2e1fb0/17.0/ios/17.0">iPhone: Change color on iPhone to make it easier to see items onscreen</a></li>
+          <li><a href="https://support.google.com/accessibility/android/answer/11183305">Android: Change text &amp; display settings</a></li>
+        </ul>
+
+        <h3 id="browser-high-contrast-config">Chrome High Contrast Testing</h3>
+
+        <p></p>
+
+        <ul>
+          <li><a href="https://developer.chrome.com/docs/devtools/rendering/emulate-css">Chrome: Emulate <code>prefers-color-scheme: dark</code> and <code>forced-colors: active</code></a></li>
+          <li><a href="https://chromewebstore.google.com/detail/high-contrast/djcfdncoelnlbldjfhinnjlhdjlikmph?hl%3Den&pli=1">Chrome High Contrast Extension</a></li>
+        </ul>
+
+        <h3 id="high-contrast-features">High Contrast Features</h3>
+
+        <p>Add content</p>
+
+
+      </section>
+
 
       <script src="./high-contrast-practice.js"></script>
     </main>
