@@ -4,7 +4,7 @@
 
 (function () {
   // Load syntax highlighting
-  hljs.initHighlightingOnLoad();
+  hljs.highlightAll();
 
   // Add usage warning to all examples
   window.addEventListener('DOMContentLoaded', addExampleUsageWarning, false);

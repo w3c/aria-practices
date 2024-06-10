@@ -474,7 +474,8 @@ glob
       if (
         src.indexOf('examples.js') < 0 &&
         src.indexOf('highlight.pack.js') < 0 &&
-        src.indexOf('app.js') < 0
+        src.indexOf('app.js') < 0 &&
+        src.indexOf('skipto.js') < 0
       ) {
         console.log('  [script]: ' + src);
         dataJS += fs.readFileSync(joinPaths(dir, src), 'utf8');
@@ -870,8 +871,7 @@ let PropsWithNoExamples = sortedPropertiesAndStates.reduce(function (
   }
 
   return `${set}`;
-},
-'');
+}, '');
 
 $('#props_with_no_examples_ul').html(PropsWithNoExamples);
 $('.props_with_no_examples_count').html(countNoExamples.toString());
@@ -898,8 +898,7 @@ let PropsWithOneExample = sortedPropertiesAndStates.reduce(function (
   }
 
   return `${set}`;
-},
-'');
+}, '');
 
 $('#props_with_one_example_tbody').html(PropsWithOneExample);
 $('.props_with_one_example_count').html(countOneExample.toString());
@@ -923,8 +922,7 @@ let PropsWithMoreThanOneExample = sortedPropertiesAndStates.reduce(function (
   }
 
   return `${set}`;
-},
-'');
+}, '');
 
 $('#props_with_more_than_one_tbody').html(PropsWithMoreThanOneExample);
 $('.props_with_more_than_one_examples_count').html(
@@ -1005,8 +1003,7 @@ let IndexOfExampleCodingPractices = indexOfExamples.reduce(function (
             <td>${example.documentationAttributes.length}</td>
             <td>${checkDocumentation}</td>
           </tr>`;
-},
-'');
+}, '');
 
 let IndexOfExampleGraphics = indexOfExamples.reduce(function (set, example) {
   let count = example.svgHTML;
@@ -1063,8 +1060,7 @@ let IndexOfExampleMousePointer = indexOfExamples.reduce(function (
             <td>${htmlYesOrNo(mouseCount)}</td>
             <td>${htmlYesOrNo(pointerCount)}</td>
           </tr>`;
-},
-'');
+}, '');
 
 let countClass = indexOfExamples.reduce(function (set, example) {
   return set + (example.classJS ? 1 : 0);
@@ -1138,26 +1134,12 @@ $('#example_summary_prototype').html(countPrototype);
 $('#example_summary_mouse').html(countMouse);
 $('#example_summary_pointer').html(countPointer);
 
-// Create a new Date object
-var currentDate = new Date();
-
-// Format the date as a string
-const formattedDate = currentDate.toLocaleDateString('en-US', {
-  day: 'numeric',
-  month: 'long',
-  year: 'numeric',
-});
-
 // cheerio seems to fold the doctype lines despite the template
 const result = $.html()
   .replace('<!DOCTYPE html>', '<!DOCTYPE html>\n')
   .replace(
     '<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">',
     '<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">\n'
-  )
-  .replace(
-    '<p>Page last updated: </p>',
-    `<p>Page last updated: ${formattedDate}</p>`
   );
 
 fs.writeFile(coverageReportPath, result, function (err) {
