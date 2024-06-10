@@ -20,14 +20,20 @@
     // Determine we are on an example page
     if (!document.location.href.match(/examples\/[^/]+\.html/)) return;
 
+    const isExperimental =
+      document.querySelector('main')?.getAttribute('data-content-phase') ===
+      'experimental';
+
+    const usageWarningLink = isExperimental
+      ? '/templates/experimental-example-usage-warning.html'
+      : '/templates/example-usage-warning.html';
+
     // Generate the usage warning link using app.js link as a starting point
     const scriptSource = document
       .querySelector('[src$="app.js"]')
       .getAttribute('src');
-    const fetchSource = scriptSource.replace(
-      '/js/app.js',
-      '/templates/example-usage-warning.html'
-    );
+
+    const fetchSource = scriptSource.replace('/js/app.js', usageWarningLink);
 
     // Load and parse the usage warning and insert it before the h1
     const html = await (await fetch(fetchSource)).text();
