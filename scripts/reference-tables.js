@@ -407,9 +407,14 @@ const examplesExperimental = indexOfExperimentalContent
   .map(exampleListItem)
   .join('');
 
-$('#examples_by_props_tbody').html(examplesByProps);
+if (examplesExperimental.length === 0) {
+  // Do no display the experimental section if there are no experimental examples
+  $('#examples_experimental').remove();
+} else {
+  $('#examples_experimental_ul').html(examplesExperimental);
+}
 
-$('#examples_experimental_ul').html(examplesExperimental);
+$('#examples_by_props_tbody').html(examplesByProps);
 
 // cheerio seems to fold the doctype lines despite the template
 const result = $.html()
