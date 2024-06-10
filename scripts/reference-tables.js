@@ -410,6 +410,8 @@ const examplesExperimental = indexOfExperimentalContent
 if (examplesExperimental.length === 0) {
   // Do no display the experimental section if there are no experimental examples
   $('#examples_experimental').remove();
+  // Remove the <li> element containing the link to Experimental Examples
+  $('a[href="#examples_experimental_label"]').parent().remove();
 } else {
   $('#examples_experimental_ul').html(examplesExperimental);
 }
