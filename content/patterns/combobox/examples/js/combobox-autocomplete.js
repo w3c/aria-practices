@@ -80,6 +80,10 @@ class ComboboxAutocomplete {
     // option role behavior and store reference in.options array.
     var nodes = this.listboxNode.getElementsByTagName('LI');
 
+    for (var n = 0; n < nodes.length; n++) {
+      nodes[n].innerHTML = nodes[n].innerHTML.trim();
+    }
+
     for (var i = 0; i < nodes.length; i++) {
       var node = nodes[i];
       this.allOptions.push(node);
