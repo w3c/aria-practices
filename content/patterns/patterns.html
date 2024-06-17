@@ -16,42 +16,44 @@
   </head>
   <body>
     <h1>Patterns</h1>
-    <form
-      action="javascript:void(0);"
-      onsubmit="aria.Filter.filterListItems(document.getElementById('pattern-search-input').value, '#patterns', 'pattern-name')"
-      role="search"
-    >
-      <input
-        type="text"
-        id="pattern-search-input"
-        placeholder="Search patterns"
-        oninput="aria.Filter.filterListItems(this.value, '#patterns', 'pattern-name')"
-        aria-label="Search patterns"
+    <section class="pattern-search">
+      <form
+        action="javascript:void(0);"
+        onsubmit="aria.Filter.filterListItems(document.getElementById('pattern-search-input').value, '#patterns', 'pattern-name')"
+        role="search"
       >
-      <button type="submit" aria-label="Submit search">Search</button>
-    </form>
-    <fieldset class="view-toggle">
-      <button aria-pressed="true" onclick="
-        document.querySelectorAll('.view-toggle button').forEach(btn => btn.setAttribute('aria-pressed', 'false'));
-        this.setAttribute('aria-pressed', 'true');
-        document.getElementById('patterns').classList.add('tiles');
-        document.getElementById('patterns').classList.remove('list');
-      "
-      aria-label="Show tiles view"
-      >
-        <img alt="" src="../images/icon-gridview.svg" width="25px">
-      </button>
-      <button aria-pressed="false" onclick="
-        document.querySelectorAll('.view-toggle button').forEach(btn => btn.setAttribute('aria-pressed', 'false'));
-        this.setAttribute('aria-pressed', 'true');
-        document.getElementById('patterns').classList.add('list');
-        document.getElementById('patterns').classList.remove('tiles');
+        <input
+          type="text"
+          id="pattern-search-input"
+          placeholder="Search patterns"
+          oninput="aria.Filter.filterListItems(this.value, '#patterns', 'pattern-name')"
+          aria-label="Search patterns"
+        >
+        <button type="submit" aria-label="Submit search">Search</button>
+      </form>
+      <fieldset class="view-toggle">
+        <button aria-pressed="true" onclick="
+          document.querySelectorAll('.view-toggle button').forEach(btn => btn.setAttribute('aria-pressed', 'false'));
+          this.setAttribute('aria-pressed', 'true');
+          document.getElementById('patterns').classList.add('tiles');
+          document.getElementById('patterns').classList.remove('list');
         "
-        aria-label="Show list view"
-      >
-        <img alt="" src="../images/icon-listview.svg" width="25px" >
-      </button>
-    </fieldset>
+        aria-label="Show tiles view"
+        >
+          <img alt="" src="../images/icon-gridview.svg" width="25px">
+        </button>
+        <button aria-pressed="false" onclick="
+          document.querySelectorAll('.view-toggle button').forEach(btn => btn.setAttribute('aria-pressed', 'false'));
+          this.setAttribute('aria-pressed', 'true');
+          document.getElementById('patterns').classList.add('list');
+          document.getElementById('patterns').classList.remove('tiles');
+          "
+          aria-label="Show list view"
+        >
+          <img alt="" src="../images/icon-listview.svg" width="25px" >
+        </button>
+      </fieldset>
+    </section>
     <ul id="patterns" class="tiles">
       <li class="pattern">
         <a href="accordion/accordion-pattern.html">
