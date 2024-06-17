@@ -16,373 +16,399 @@
   </head>
   <body>
     <h1>Patterns</h1>
-    <form action="javascript:void(0);" onsubmit="onSearchChange(e)" role="search">
+    <form
+      action="javascript:void(0);"
+      onsubmit="aria.Filter.filterListItems(document.getElementById('pattern-search-input').value, '#patterns', 'pattern-name')"
+      role="search"
+    >
       <input
         type="text"
         id="pattern-search-input"
         placeholder="Search patterns"
-        oninput="aria.Filter.filterListItems(document.getElementById('pattern-search-input').value, '.tiles', 'tile-name')"
+        oninput="aria.Filter.filterListItems(this.value, '#patterns', 'pattern-name')"
         aria-label="Search patterns"
       >
       <button type="submit" aria-label="Submit search">Search</button>
     </form>
-    <ul class="tiles">
-      <li class="tile">
+    <fieldset class="view-toggle">
+      <button aria-pressed="true" onclick="
+        document.querySelectorAll('.view-toggle button').forEach(btn => btn.setAttribute('aria-pressed', 'false'));
+        this.setAttribute('aria-pressed', 'true');
+        document.getElementById('patterns').classList.add('tiles');
+        document.getElementById('patterns').classList.remove('list');
+      "
+      aria-label="Show tiles view"
+      >
+        <img alt="" src="../images/icon-gridview.svg" width="25px">
+      </button>
+      <button aria-pressed="false" onclick="
+        document.querySelectorAll('.view-toggle button').forEach(btn => btn.setAttribute('aria-pressed', 'false'));
+        this.setAttribute('aria-pressed', 'true');
+        document.getElementById('patterns').classList.add('list');
+        document.getElementById('patterns').classList.remove('tiles');
+        "
+        aria-label="Show list view"
+      >
+        <img alt="" src="../images/icon-listview.svg" width="25px" >
+      </button>
+    </fieldset>
+    <ul id="patterns" class="tiles">
+      <li class="pattern">
         <a href="accordion/accordion-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-accordion.svg">
             <span>Accordion (Sections With Show/Hide Functionality)</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           An accordion is a vertically stacked set of interactive headings that each contain a title, content snippet, or thumbnail representing a section of content.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="alert/alert-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-alert.svg">
             <span>Alert</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           An alert is an element that displays a brief, important message in a way that attracts the user's attention without interrupting the user's task.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="alertdialog/alertdialog-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-alertdialog.svg">
             <span>Alert and Message Dialogs</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           An alert dialog is a modal dialog that interrupts the user's workflow to communicate an important message and acquire a response.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="breadcrumb/breadcrumb-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-breadcrumb.svg">
             <span>Breadcrumb</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           A breadcrumb trail consists of a list of links to the parent pages of the current page in hierarchical order.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="button/button-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-button.svg">
             <span>Button</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           A button is a widget that enables users to trigger an action or event, such as submitting a form, opening a dialog, canceling an action, or performing a delete operation.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="carousel/carousel-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-carousel.svg">
             <span>Carousel (Slide Show or Image Rotator)</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           A carousel presents a set of items, referred to as slides, by sequentially displaying a subset of one or more slides.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="checkbox/checkbox-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-checkbox.svg">
             <span>Checkbox</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           WAI-ARIA supports two types of checkbox widgets: dual-state checkboxes toggle between two choices -- checked and not checked -- and tri-state checkboxes, which allow an additional third state known as partially checked.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="combobox/combobox-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-combobox.svg">
             <span>Combobox</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           A combobox is an input widget that has an associated popup.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="dialog-modal/dialog-modal-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-dialog-modal.svg">
             <span>Dialog (Modal)</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           A dialog is a window overlaid on either the primary window or another dialog window.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="disclosure/disclosure-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-disclosure.svg">
             <span>Disclosure (Show/Hide)</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           A disclosure is a widget that enables content to be either collapsed (hidden) or expanded (visible).
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="feed/feed-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-feed.svg">
             <span>Feed</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           A feed is a section of a page that automatically loads new sections of content as the user scrolls.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="grid/grid-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-grid.svg">
             <span>Grid (Interactive Tabular Data and Layout Containers)</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           A grid widget is a container that enables users to navigate the information or interactive elements it contains using directional navigation keys, such as arrow keys, Home, and End.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="landmarks/landmarks-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-landmarks.svg">
             <span>Landmarks</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           Landmarks are a set of eight roles that identify the major sections of a page.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="link/link-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-link.svg">
             <span>Link</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           A link widget provides an interactive reference to a resource.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="listbox/listbox-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-listbox.svg">
             <span>Listbox</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           A listbox widget presents a list of options and allows a user to select one or more of them.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="menubar/menu-and-menubar-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-menubar.svg">
             <span>Menu and Menubar</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           A menu is a widget that offers a list of choices to the user, such as a set of actions or functions.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="menu-button/menu-button-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-menu-button.svg">
             <span>Menu Button</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           A menu button is a button that opens a menu as described in the Menu and Menubar Pattern.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="meter/meter-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-meter.svg">
             <span>Meter</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           A meter is a graphical display of a numeric value that varies within a defined range.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="radio/radio-group-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-radio.svg">
             <span>Radio Group</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           A radio group is a set of checkable buttons, known as radio buttons, where no more than one of the buttons can be checked at a time.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="slider/slider-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-slider.svg">
             <span>Slider</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           A slider is an input where the user selects a value from within a given range.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="slider-multithumb/slider-multithumb-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-slider-multithumb.svg">
             <span>Slider (Multi-Thumb)</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           A multi-thumb slider implements the Slider Pattern but includes two or more thumbs, often on a single rail.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="spinbutton/spinbutton-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-spinbutton.svg">
             <span>Spinbutton</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           A spinbutton is an input widget that restricts its value to a set or range of discrete values.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="switch/switch-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-switch.svg">
             <span>Switch</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           A switch is an input widget that allows users to choose one of two values: on or off.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="table/table-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-table.svg">
             <span>Table</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           Like an HTML table element, a WAI-ARIA table is a static tabular structure containing one or more rows that each contain one or more cells; it is not an interactive widget.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="tabs/tabs-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-tabs.svg">
             <span>Tabs</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           Tabs are a set of layered sections of content, known as tab panels, that display one panel of content at a time.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="toolbar/toolbar-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-toolbar.svg">
             <span>Toolbar</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           A toolbar is a container for grouping a set of controls, such as buttons, menubuttons, or checkboxes.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="tooltip/tooltip-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-tooltip.svg">
             <span>Tooltip</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           A tooltip is a popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="treeview/treeview-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-treeview.svg">
             <span>Tree View</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           A tree view widget presents a hierarchical list.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="treegrid/treegrid-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-treegrid.svg">
             <span>Treegrid</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           A treegrid widget presents a hierarchical data grid consisting of tabular information that is editable or interactive.
         </div>
       </li>
 
-      <li class="tile">
+      <li class="pattern">
         <a href="windowsplitter/windowsplitter-pattern.html">
-          <h2 class="tile-name">
+          <h2 class="pattern-name">
             <img alt="" src="../images/pattern-windowsplitter.svg">
             <span>Window Splitter</span>
           </h2>
         </a>
-        <div class="tile-introduction">
+        <div class="pattern-introduction">
           A window splitter is a moveable separator between two sections, or panes, of a window that enables users to change the relative size of the panes.
         </div>
       </li>
