@@ -38,14 +38,7 @@
         <button type="submit" aria-label="Submit search">Search</button>
       </form>
       <fieldset class="view-toggle">
-        <button aria-pressed="false" onclick="
-          document.querySelectorAll('.view-toggle button').forEach(btn => btn.setAttribute('aria-pressed', 'false'));
-          this.setAttribute('aria-pressed', 'true');
-          document.getElementById('patterns').classList.add('list');
-          document.getElementById('patterns').classList.remove('tiles');
-          "
-          aria-label="Show list view"
-        >
+        <button id="listViewButton" aria-pressed="false" aria-label="Show list view">
           <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="25" viewBox="0 0 25 21">
             <g transform="translate(0 -0.4)" fill="currentColor">
               <path d="M4,20.775H1a1.135,1.135,0,0,0-1,1v3a1.135,1.135,0,0,0,1,1H4a1.135,1.135,0,0,0,1-1v-3A1.135,1.135,0,0,0,4,20.775Zm20,1H9a1.135,1.135,0,0,0-1,1v1a1.135,1.135,0,0,0,1,1H24a1.135,1.135,0,0,0,1-1v-1A1.135,1.135,0,0,0,24,21.775Z" transform="translate(0 -20.375)" />
@@ -54,14 +47,7 @@
             </g>
           </svg>
         </button>
-        <button aria-pressed="true" onclick="
-          document.querySelectorAll('.view-toggle button').forEach(btn => btn.setAttribute('aria-pressed', 'false'));
-          this.setAttribute('aria-pressed', 'true');
-          document.getElementById('patterns').classList.add('tiles');
-          document.getElementById('patterns').classList.remove('list');
-        "
-        aria-label="Show tiles view"
-        >
+        <button id="tilesViewButton" aria-pressed="true" aria-label="Show tiles view">
           <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="22" viewBox="0 0 22 22" >
             <g transform="translate(0 -0.5)" fill="currentColor">
               <rect width="9" height="9" rx="1" transform="translate(0 0.5)"/>
@@ -435,4 +421,24 @@
       </li>
     </ul>
   </body>
+  <script>
+    document.getElementById('listViewButton').addEventListener('click', function() {
+      updateView('list');
+    });
+    document.getElementById('tilesViewButton').addEventListener('click', function() {
+      updateView('tiles');
+    });
+
+    function updateView(view) {
+      const buttons = document.querySelectorAll('.view-toggle button');
+      buttons.forEach(btn => {
+        btn.setAttribute('aria-pressed', 'false');
+        btn.classList.remove('active');
+      });
+      const activeButton = view === 'list' ? document.getElementById('listViewButton') : document.getElementById('tilesViewButton');
+      activeButton.setAttribute('aria-pressed', 'true');
+      activeButton.classList.add('active');
+      document.getElementById('patterns').className = view;
+    }
+  </script>
 </html>
