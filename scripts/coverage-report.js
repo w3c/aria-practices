@@ -518,7 +518,6 @@ glob
       highContrast: data.toLowerCase().indexOf('high contrast') > 0,
       svgHTML: html.querySelectorAll('svg').length,
       svgCSS: getNumberOfReferences(dataCSS, 'svg', true),
-      contentCSS: getNumberOfReferences(dataCSS, 'content'),
       forcedColors: getNumberOfReferences(dataCSS, 'forced-colors'),
       currentColor: getNumberOfReferences(dataCSS, 'currentColor', true),
 
@@ -1008,7 +1007,6 @@ let IndexOfExampleGraphics = indexOfExamples.reduce(function (set, example) {
   count += example.svgJS;
   count += example.forcedColors;
   count += example.currentColor;
-  count += example.contentCSS;
 
   if (count === 0) {
     return `${set}`;
@@ -1021,7 +1019,6 @@ let IndexOfExampleGraphics = indexOfExamples.reduce(function (set, example) {
             <td>${htmlYesOrNo(example.svgJS)}</td>
             <td>${htmlYesOrNo(example.forcedColors)}</td>
             <td>${htmlYesOrNo(example.currentColor)}</td>
-            <td>${htmlYesOrNo(example.contentCSS)}</td>
           </tr>`;
 }, '');
 

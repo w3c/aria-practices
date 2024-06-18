@@ -239,7 +239,6 @@
             <th>SVG in JS</th>
             <th><code>forced-colors</code> media query</th>
             <th><code>currentColor</code> value</th>
-            <th>CSS content</th>
           </tr>
         </thead>
         <tbody id="example_graphics_techniques_tbody">
