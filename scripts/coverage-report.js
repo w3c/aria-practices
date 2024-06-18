@@ -521,7 +521,6 @@ glob
       contentCSS: getNumberOfReferences(dataCSS, 'content'),
       beforeCSS: getNumberOfReferences(dataCSS, '::before'),
       afterCSS: getNumberOfReferences(dataCSS, '::after'),
-      //      forcedColorAdjust: getNumberOfReferences(dataCSS, 'forced-color-adjust'),
       forcedColors: getNumberOfReferences(dataCSS, 'forced-colors'),
       currentColor: getNumberOfReferences(dataCSS, 'currentColor', true),
 
@@ -764,7 +763,6 @@ function getListItem(item) {
 }
 
 function getListHTML(list) {
-  //  let html = '<abbr title="none" style="color: gray">-</abbr>';
   let html = '';
 
   if (list.length === 1) {
@@ -1010,7 +1008,6 @@ let IndexOfExampleGraphics = indexOfExamples.reduce(function (set, example) {
   let count = example.svgHTML;
   count += example.svgCSS;
   count += example.svgJS;
-  //  count += example.forcedColorAdjust;
   count += example.forcedColors;
   count += example.currentColor;
   count += example.beforeCSS;
@@ -1142,7 +1139,6 @@ $('#example_summary_hc').html(countHighContrast);
 $('#example_summary_svg').html(countSVG);
 $('#example_summary_force_colors').html(countForcedColors);
 $('#example_summary_current_color').html(countCurrentColor);
-// $('#example_summary_force_color_adjust').html(countForcedColorAdjust);
 $('#example_summary_keycode').html(countKeyCode);
 $('#example_summary_which').html(countWhich);
 $('#example_summary_class').html(countClass);
