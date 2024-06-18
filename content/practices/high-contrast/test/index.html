@@ -3,12 +3,82 @@
 <head>
   <title>High Contrast Testing Page</title>
   <style>
+
+    li {
+      padding: 0.125em;
+      max-width: 15em;
+    }
+
+    .link5 {
+      color: #cccccc;
+      background: #444444;
+    }
+
+    .link5 a,
+    .link5 a:visited {
+      display: inline-block;
+      padding-left: 0.125em;
+      padding-right: 0.125em;
+      color: #444444;
+      background: #cccccc;
+      text-decoration: none;
+    }
+
+    .link6 {
+      color: black;
+      background: DarkOrange;
+    }
+
+    .link6 a,
+    .link6 a:visited {
+      display: inline-block;
+      padding-left: 0.125em;
+      padding-right: 0.125em;
+      color: DarkOrange;
+      background: black;
+      text-decoration: none;
+    }
+
+    .link7 {
+      color: LemonChiffon;
+      background: DarkRed;
+    }
+
+    .link7 a,
+    .link7 a:visited {
+      display: inline-block;
+      padding-left: 0.125em;
+      padding-right: 0.125em;
+      color: DarkRed;
+      background: LemonChiffon;
+      text-decoration: none;
+    }
+
+    .link8 {
+      color: Gold;
+      background: Maroon;
+    }
+
+    .link8 a,
+    .link8 a:visited {
+      display: inline-block;
+      padding-left: 0.125em;
+      padding-right: 0.125em;
+      color: Maroon;
+      background: Gold;
+      text-decoration: none;
+    }
+
     .background {
       display: block;
-      height: 400px;
+      height: 150px;
       width: 400px;
       background-image: url('./green-arrow.jpg');
       background-position: center;
+    }
+
+    div img {
+      width: 50%;
     }
   </style>
 </head>
@@ -18,14 +88,60 @@
 <main>
   <h1>High Contrast Testing Page</h1>
 
-  <input type="image" src="green-arrow.jpg" style="height: 40px" alt="Next"/>
+  <h2>Links</h2>
 
-  <button>
-    <img src="green-arrow.jpg" alt="Next" style="height: 40px" />
-  </button>
+  <h3>Browser Defaults</h3>
 
-  <div class="background">
+  <ul>
+    <li>Follow <a href="#">Link 1</a> to a new page.</li>
+    <li>Follow <a href="#">Link 2</a> to a new page.</li>
+    <li>Follow <a href="#">Link 3</a> to a new page.</li>
+    <li>Follow <a href="#">Link 4</a> to a new page.</li>
+  </ul>
+
+  <h3>Author Set Colors</h3>
+
+  <ul>
+    <li class="link5">Follow <a href="#">Link 5</a> to a new page.</li>
+    <li class="link6">Follow <a href="#">Link 6</a> to a new page.</li>
+    <li class="link7">Follow <a href="#">Link 7</a> to a new page.</li>
+    <li class="link8">Follow <a href="#">Link 8</a> to a new page.</li>
+  </ul>
+
+  <h2>Buttons</h2>
+
+  <div>
+    <input type="image" src="green-arrow.jpg" style="height: 40px" alt="Next"/>
   </div>
+
+  <div>
+    <button>
+      <img src="green-arrow.jpg" alt="Next" style="height: 40px; width: 40px" />
+    </button>
+  </div>
+
+  <div>
+    <label>Name: <input type="text"></label>
+  </div>
+
+  <div>
+    <label>Options:
+      <select>
+        <option>Option 1</option>
+        <option>Option 2</option>
+        <option>Option 3</option>
+      </select>
+    </label>
+  </div>
+
+  <h2>Images</h2>
+
+  <div><img src="info-1.webp"/></div>
+
+  <div><img src="info-2.webp"/></div>
+
+  <div class="background">Background Image</div>
+
 
 </main>
 
