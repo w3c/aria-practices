@@ -22,6 +22,12 @@
         onsubmit="aria.Filter.filterListItems(document.getElementById('pattern-search-input').value, '#patterns', 'pattern-name')"
         role="search"
       >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20.414" height="20.414" viewBox="0 0 20.414 20.414">
+          <g transform="translate(-3.5 -3.5)" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+            <path d="M20.5,12.5a8,8,0,1,1-8-8,8,8,0,0,1,8,8Z" />
+            <path d="M29.325,29.325l-4.35-4.35" transform="translate(-6.825 -6.825)"/>
+          </g>
+        </svg>
         <input
           type="text"
           id="pattern-search-input"
@@ -40,7 +46,14 @@
         "
         aria-label="Show tiles view"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="false"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="currentColor" d="M296 32h192c13.3 0 24 10.7 24 24v160c0 13.3-10.7 24-24 24H296c-13.3 0-24-10.7-24-24V56c0-13.3 10.7-24 24-24zm-80 0H24C10.7 32 0 42.7 0 56v160c0 13.3 10.7 24 24 24h192c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24zM0 296v160c0 13.3 10.7 24 24 24h192c13.3 0 24-10.7 24-24V296c0-13.3-10.7-24-24-24H24c-13.3 0-24 10.7-24 24zm296 184h192c13.3 0 24-10.7 24-24V296c0-13.3-10.7-24-24-24H296c-13.3 0-24 10.7-24 24v160c0 13.3 10.7 24 24 24z"/></svg>
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" >
+            <g transform="translate(0 -0.5)" fill="currentColor">
+              <rect width="9" height="9" rx="1" transform="translate(0 0.5)"/>
+              <rect width="9" height="9" rx="1" transform="translate(0 13.5)"/>
+              <rect width="9" height="9" rx="1" transform="translate(13 0.5)"/>
+              <rect width="9" height="9" rx="1" transform="translate(13 13.5)"/>
+            </g>
+          </svg>
         </button>
         <button aria-pressed="false" onclick="
           document.querySelectorAll('.view-toggle button').forEach(btn => btn.setAttribute('aria-pressed', 'false'));
@@ -50,7 +63,13 @@
           "
           aria-label="Show list view"
         >
-          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="currentColor" d="M40 48C26.7 48 16 58.7 16 72v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V232c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V392c0-13.3-10.7-24-24-24H40z"/></svg>
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="25" height="21" viewBox="0 0 25 21">
+            <g transform="translate(0 -0.4)" fill="currentColor">
+              <path d="M4,20.775H1a1.135,1.135,0,0,0-1,1v3a1.135,1.135,0,0,0,1,1H4a1.135,1.135,0,0,0,1-1v-3A1.135,1.135,0,0,0,4,20.775Zm20,1H9a1.135,1.135,0,0,0-1,1v1a1.135,1.135,0,0,0,1,1H24a1.135,1.135,0,0,0,1-1v-1A1.135,1.135,0,0,0,24,21.775Z" transform="translate(0 -20.375)" />
+              <path d="M4,20.775H1a1.135,1.135,0,0,0-1,1v3a1.135,1.135,0,0,0,1,1H4a1.135,1.135,0,0,0,1-1v-3A1.135,1.135,0,0,0,4,20.775Zm20,1H9a1.135,1.135,0,0,0-1,1v1a1.135,1.135,0,0,0,1,1H24a1.135,1.135,0,0,0,1-1v-1A1.135,1.135,0,0,0,24,21.775Z" transform="translate(0 -12.375)"/>
+              <path d="M4,20.775H1a1.135,1.135,0,0,0-1,1v3a1.135,1.135,0,0,0,1,1H4a1.135,1.135,0,0,0,1-1v-3A1.135,1.135,0,0,0,4,20.775Zm20,1H9a1.135,1.135,0,0,0-1,1v1a1.135,1.135,0,0,0,1,1H24a1.135,1.135,0,0,0,1-1v-1A1.135,1.135,0,0,0,24,21.775Z" transform="translate(0 -4.375)"/>
+            </g>
+          </svg>
         </button>
       </fieldset>
     </section>
