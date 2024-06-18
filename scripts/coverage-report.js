@@ -519,8 +519,6 @@ glob
       svgHTML: html.querySelectorAll('svg').length,
       svgCSS: getNumberOfReferences(dataCSS, 'svg', true),
       contentCSS: getNumberOfReferences(dataCSS, 'content'),
-      beforeCSS: getNumberOfReferences(dataCSS, '::before'),
-      afterCSS: getNumberOfReferences(dataCSS, '::after'),
       forcedColors: getNumberOfReferences(dataCSS, 'forced-colors'),
       currentColor: getNumberOfReferences(dataCSS, 'currentColor', true),
 
@@ -1010,8 +1008,6 @@ let IndexOfExampleGraphics = indexOfExamples.reduce(function (set, example) {
   count += example.svgJS;
   count += example.forcedColors;
   count += example.currentColor;
-  count += example.beforeCSS;
-  count += example.afterCSS;
   count += example.contentCSS;
 
   if (count === 0) {
@@ -1025,8 +1021,6 @@ let IndexOfExampleGraphics = indexOfExamples.reduce(function (set, example) {
             <td>${htmlYesOrNo(example.svgJS)}</td>
             <td>${htmlYesOrNo(example.forcedColors)}</td>
             <td>${htmlYesOrNo(example.currentColor)}</td>
-            <td>${htmlYesOrNo(example.beforeCSS)}</td>
-            <td>${htmlYesOrNo(example.afterCSS)}</td>
             <td>${htmlYesOrNo(example.contentCSS)}</td>
           </tr>`;
 }, '');
