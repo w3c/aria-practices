@@ -13,6 +13,28 @@
     <script src="../shared/js/app.js"></script>
     <script src="../shared/js/filterBySearch.js"></script>
     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../shared/js/skipto.js"></script>
+    <script>
+      window.onload = function() {
+        document.getElementById('listViewButton').addEventListener('click', function() {
+          updateView('list');
+        });
+        document.getElementById('tilesViewButton').addEventListener('click', function() {
+          updateView('tiles');
+        });
+      }
+  
+      function updateView(view) {
+        const buttons = document.querySelectorAll('.view-toggle button');
+        buttons.forEach(btn => {
+          btn.setAttribute('aria-pressed', 'false');
+          btn.classList.remove('active');
+        });
+        const activeButton = view === 'list' ? document.getElementById('listViewButton') : document.getElementById('tilesViewButton');
+        activeButton.setAttribute('aria-pressed', 'true');
+        activeButton.classList.add('active');
+        document.getElementById('patterns').className = view;
+      }
+    </script>
   </head>
   <body>
     <h1>Patterns</h1>
@@ -47,7 +69,7 @@
             </g>
           </svg>
         </button>
-        <button id="tilesViewButton" aria-pressed="true" aria-label="Show tiles view">
+        <button id="tilesViewButton" aria-pressed="true" aria-label="Show tiles view" class="active">
           <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="22" viewBox="0 0 22 22" >
             <g transform="translate(0 -0.5)" fill="currentColor">
               <rect width="9" height="9" rx="1" transform="translate(0 0.5)"/>
@@ -421,24 +443,4 @@
       </li>
     </ul>
   </body>
-  <script>
-    document.getElementById('listViewButton').addEventListener('click', function() {
-      updateView('list');
-    });
-    document.getElementById('tilesViewButton').addEventListener('click', function() {
-      updateView('tiles');
-    });
-
-    function updateView(view) {
-      const buttons = document.querySelectorAll('.view-toggle button');
-      buttons.forEach(btn => {
-        btn.setAttribute('aria-pressed', 'false');
-        btn.classList.remove('active');
-      });
-      const activeButton = view === 'list' ? document.getElementById('listViewButton') : document.getElementById('tilesViewButton');
-      activeButton.setAttribute('aria-pressed', 'true');
-      activeButton.classList.add('active');
-      document.getElementById('patterns').className = view;
-    }
-  </script>
 </html>
