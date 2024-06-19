@@ -102,8 +102,6 @@ li {
 }
 
 
-}
-
 div img {
   width: 50%;
 }
@@ -130,37 +128,37 @@ div img {
   }
 }
 
-/* prefers-color-theme */
+/* prefers-color-scheme */
 
-#id-ct-undefined {
+#id-pcs-undefined {
   display: inline;
 }
 
-#id-ct-light {
+#id-pcs-light {
   display: none;
 }
 
-@media (prefers-color-theme: light) {
-  #id-ct-light {
+@media (prefers-color-scheme: light) {
+  #id-pcs-light {
     display: inline;
   }
 
-  #id-ct-undefined {
+  #id-pcs-undefined {
     display: none;
   }
 
 }
 
-#id-ct-dark {
+#id-pcs-dark {
   display: none;
 }
 
-@media (prefers-color-theme: dark) {
-  #id-ct-dark {
+@media (prefers-color-scheme: dark) {
+  #id-pcs-dark {
     display: inline;
   }
 
-  #id-ct-undefined {
+  #id-pcs-undefined {
     display: none;
   }
 
