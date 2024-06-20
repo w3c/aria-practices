@@ -90,24 +90,13 @@ aria.widget.SourceCode.prototype.add = function (
  */
 aria.widget.SourceCode.prototype.make = function () {
   for (var i = 0; i < this.location.length; i++) {
-    var sourceCodeNode = document.getElementById(this.location[i]);
-    var nodeCode = document.getElementById(this.code[i]);
-
-    sourceCodeNode.className = 'sourcecode';
-    this.createCode(sourceCodeNode, nodeCode, 0, true);
-
     if (this.HTMLSeparator[i]) {
       addOpenInCodePenForm(
-        i,
+        i + 1,
         this.HTMLSeparator[i],
         this.code[i],
         this.resources[i]
       );
-    }
-
-    // Remove unnecessary `<br>` element.
-    if (sourceCodeNode.innerHTML.startsWith('<br>')) {
-      sourceCodeNode.innerHTML = sourceCodeNode.innerHTML.replace('<br>', '');
     }
 
     // Adds the "Open In CodePen" button by the example header
