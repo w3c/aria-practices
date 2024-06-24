@@ -68,3 +68,57 @@ aria.Filter.applyFilterToElement = function (element, filter, className) {
 aria.Filter.isTextMatch = function (textValue, filter) {
   return textValue.toUpperCase().indexOf(filter) > -1;
 };
+
+/**
+ * Handles the click event for a pattern results view button.
+ *
+ * @param {HTMLElement} selectedViewButton - The view button that was clicked.
+ */
+aria.Filter.onViewButtonClicked = function (selectedViewButton) {
+  aria.Filter.deactivateAllViewButtons();
+  aria.Filter.updateActiveViewButton(selectedViewButton);
+
+  const newViewClassName = aria.Filter.getNewViewClassName(selectedViewButton);
+  aria.Filter.setResultsViewClass(newViewClassName);
+};
+
+/**
+ * Deactivates all view buttons by setting aria-pressed attribute and removing 'active' class
+ */
+aria.Filter.deactivateAllViewButtons = function () {
+  const buttons = document.querySelectorAll('.view-toggle button');
+  buttons.forEach((btn) => {
+    btn.setAttribute('aria-pressed', 'false');
+    btn.classList.remove('active');
+  });
+};
+
+/**
+ * Determines the new view class name based on the selected view button.
+ *
+ * @param {HTMLElement} selectedViewButton - The view button that was clicked.
+ * @returns {string} The new view class name.
+ */
+aria.Filter.getNewViewClassName = function (selectedViewButton) {
+  return selectedViewButton.id === 'listViewButton' ? 'list' : 'tiles';
+};
+
+/**
+ * Updates the active view button by setting aria-pressed attribute and adding 'active' class
+ *
+ * @param {HTMLElement} selectedViewButton - The view button that was clicked.
+ */
+aria.Filter.updateActiveViewButton = function (selectedViewButton) {
+  selectedViewButton.setAttribute('aria-pressed', 'true');
+  selectedViewButton.classList.add('active');
+};
+
+/**
+ * Sets the class name of the patterns result container to either 'list' or 'tiles' based on the selected view button
+ *
+ * @param {string} viewClass - The class name of the patterns result container.
+ */
+aria.Filter.setResultsViewClass = function (viewClass) {
+  const patternsContainer = document.getElementById('patterns');
+  patternsContainer.className = viewClass;
+};
