@@ -20,6 +20,7 @@ aria.Filter = aria.Filter || {};
  * @param {string} searchTerm - The term to filter the list items by.
  * @param {string} containerSelector - The CSS selector for the container holding the list items.
  * @param {string} className - The class name of the elements within each list item to be checked against the search term.
+ * @param {string} noResultsElementId - The id of the element to show when no results are found.
  * @description
  * This function filters the list items within a specified container by comparing the text content
  * of elements with a given class name to the provided search term. List items that do not match
@@ -28,14 +29,37 @@ aria.Filter = aria.Filter || {};
 aria.Filter.filterListItems = function (
   searchTerm,
   containerSelector,
-  className
+  className,
+  noResultsElementId
 ) {
   const container = document.querySelector(containerSelector);
   const listItems = container.getElementsByTagName('li');
   const filter = searchTerm.toUpperCase();
+  let hasResults = false;
   Array.from(listItems).forEach((element) => {
-    aria.Filter.applyFilterToElement(element, filter, className);
+    const isMatch = aria.Filter.applyFilterToElement(
+      element,
+      filter,
+      className
+    );
+    if (isMatch) {
+      hasResults = true;
+    }
   });
+  aria.Filter.updateVisibility(noResultsElementId, !hasResults);
+};
+
+/**
+ * Updates the visibility of an element based on the search results.
+ *
+ * @function updateVisibility
+ * @param {string} id - The id of the element to update.
+ * @param {boolean} isVisible - True if the element should be visible, false otherwise.
+ */
+aria.Filter.updateVisibility = function (id, isVisible) {
+  const el = document.getElementById(id);
+  el.style.display = isVisible ? '' : 'none';
+  el.setAttribute('aria-hidden', String(!isVisible));
 };
 
 /**
@@ -46,15 +70,17 @@ aria.Filter.filterListItems = function (
  * @param {HTMLElement} element - The element to which the visibility filter will be applied.
  * @param {string} filter - The text filter term, already converted to uppercase.
  * @param {string} className - The class name of the child element whose text content is checked against the filter.
+ * @returns {boolean} True if the filter term is found in the text value, false otherwise.
  */
 aria.Filter.applyFilterToElement = function (element, filter, className) {
   const targetElement = element.getElementsByClassName(className)[0];
   if (targetElement) {
     const textValue = targetElement.textContent || targetElement.innerText;
-    element.style.display = aria.Filter.isTextMatch(textValue, filter)
-      ? ''
-      : 'none';
+    const isMatch = aria.Filter.isTextMatch(textValue, filter);
+    element.style.display = isMatch ? '' : 'none';
+    return isMatch;
   }
+  return false;
 };
 
 /**
