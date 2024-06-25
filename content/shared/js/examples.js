@@ -54,7 +54,7 @@ aria.widget.SourceCode = function () {
   this.code = new Array();
   this.exampleHeader = new Array();
   this.resources = new Array();
-  this.HTMLSeparator = new Array();
+  this.HTMLHeader = new Array();
 };
 
 /**
@@ -64,7 +64,7 @@ aria.widget.SourceCode = function () {
  * @param {string} codeId          - ID of element containing only and all of the html used to render the example widget
  * @param {string} exampleHeaderId - ID of header element under which the "Open in Codepen" button belongs
  * @param {string} cssJsFilesId    - ID of element containing links to all the relevant js and css files used for the example widget
- * @param {string} HTMLSeparatorId - ID of the separator element under the HTML Source Code which the "Open in Codepen" button belongs
+ * @param {string} HTMLHeaderId - ID of the separator element under the HTML Source Code which the "Open in Codepen" button belongs
  * @function add
  * @memberof aria.widget.SourceCode
  */
@@ -73,12 +73,12 @@ aria.widget.SourceCode.prototype.add = function (
   codeId,
   exampleHeaderId,
   cssJsFilesId,
-  HTMLSeparatorId
+  HTMLHeaderId
 ) {
   this.location[this.location.length] = locationId;
   this.code[this.code.length] = codeId;
   this.exampleHeader[this.exampleHeader.length] = exampleHeaderId;
-  this.HTMLSeparator[this.HTMLSeparator.length] = HTMLSeparatorId;
+  this.HTMLHeader[this.HTMLHeader.length] = HTMLHeaderId;
   this.resources[this.resources.length] = cssJsFilesId;
 };
 
@@ -96,10 +96,10 @@ aria.widget.SourceCode.prototype.make = function () {
     sourceCodeNode.className = 'sourcecode';
     this.createCode(sourceCodeNode, nodeCode, 0, true);
 
-    if (this.HTMLSeparator[i]) {
+    if (this.HTMLHeader[i]) {
       addOpenInCodePenForm(
         i + 1,
-        this.HTMLSeparator[i],
+        this.HTMLHeader[i],
         this.code[i],
         this.resources[i]
       );
