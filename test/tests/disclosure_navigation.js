@@ -76,8 +76,9 @@ ariaTest(
         await t.context.session.executeScript(function () {
           const link = arguments[0];
           link.scrollIntoView({ behavior: 'instant', block: 'nearest' });
+          link.click();
         }, links[l]);
-        await links[l].click();
+        // await links[l].click();
 
         t.is(
           await links[l].getAttribute('aria-current'),
