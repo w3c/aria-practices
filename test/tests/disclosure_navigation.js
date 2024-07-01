@@ -75,7 +75,7 @@ ariaTest(
         await buttons[b].click();
         await t.context.session.executeScript(function () {
           const link = arguments[0];
-          link.scrollIntoView({ block: 'center' });
+          link.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }, links[l]);
         await links[l].click();
 
