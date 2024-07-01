@@ -69,17 +69,13 @@ ariaTest(
     const menus = await t.context.queryElements(t, ex.menuSelector);
 
     for (let b = 0; b < buttons.length; b++) {
-      await t.context.session.executeScript(function () {
-        const menu = arguments[0];
-        menu.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }, menus[b]);
       const links = await t.context.queryElements(t, 'a', menus[b]);
 
       for (let l = 0; l < links.length; l++) {
         await buttons[b].click();
         await t.context.session.executeScript(function () {
           const link = arguments[0];
-          link.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          link.scrollIntoView({ behavior: 'instant', block: 'nearest' });
         }, links[l]);
         await links[l].click();
 
