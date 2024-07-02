@@ -16,9 +16,9 @@
   </head>
   <body>
     <h1>Patterns</h1>
-    <section class="pattern-search">
-      <h2>Filter</h2>
-      <div class="pattern-search-flex-container">
+    <section class="pattern-filter-section">
+      <h2>Filter Patterns</h2>
+      <div class="pattern-filter-flex-container">
       <form
         action="javascript:void(0);"
         onsubmit="aria.Filter.filterListItems(document.getElementById('pattern-search-input').value, '#patterns', 'pattern-name', 'no-patterns-found')"
@@ -31,13 +31,12 @@
           </g>
         </svg>
         <input
-          type="text"
-          id="pattern-search-input"
-          placeholder="Search patterns"
+          type="search"
+          id="pattern-filter-input"
+          placeholder="Filter patterns"
           oninput="aria.Filter.filterListItems(this.value, '#patterns', 'pattern-name', 'no-patterns-found')"
-          aria-label="Search patterns"
+          aria-label="Filter patterns"
         >
-        <button type="submit" aria-label="Submit search">Search</button>
       </form>
       <fieldset class="view-toggle">
         <button id="listViewButton" onclick="aria.Filter.onViewButtonClicked(this)"  aria-pressed="false" aria-label="Show list view">
