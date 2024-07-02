@@ -84,6 +84,31 @@ aria.Filter.applyFilterToElement = function (element, filter, className) {
 };
 
 /**
+ * Clears the input element and filters the list items based on the empty string.
+ * Sets focus back to the input element.
+ *
+ * @param {HTMLElement} inputElement - The input element to clear.
+ * @param {string} containerSelector - The CSS selector for the container holding the list items.
+ * @param {string} className - The class name of the elements within each list item to be checked against the search term.
+ * @param {string} noResultsElementId - The id of the element to show when no results are found.
+ */
+aria.Filter.clearInput = function (
+  inputElement,
+  containerSelector,
+  className,
+  noResultsElementId
+) {
+  inputElement.value = '';
+  aria.Filter.filterListItems(
+    '',
+    containerSelector,
+    className,
+    noResultsElementId
+  );
+  inputElement.focus();
+};
+
+/**
  * Determines if the provided text value contains the filter term, ignoring case.
  *
  * @function isTextMatch
