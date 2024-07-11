@@ -92,13 +92,14 @@ aria.widget.SourceCode.prototype.make = function () {
   for (var i = 0; i < this.location.length; i++) {
     var sourceCodeNode = document.getElementById(this.location[i]);
     var nodeCode = document.getElementById(this.code[i]);
+    var exampleAmount = document.querySelectorAll('[id^="ex"]');
 
     sourceCodeNode.className = 'sourcecode';
     this.createCode(sourceCodeNode, nodeCode, 0, true);
 
     if (this.HTMLDescription[i]) {
       addOpenInCodePenForm(
-        i + 1,
+        i + exampleAmount,
         this.HTMLDescription[i],
         this.code[i],
         this.resources[i]
