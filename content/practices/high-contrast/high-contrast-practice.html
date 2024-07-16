@@ -37,6 +37,7 @@
 
         <p>This section covers:</p>
         <ol>
+          <li>Understanding the user agent features for adjusting the colors rendered by the browser.</li>
           <li>Using SVG graphics to create components whose rendering can adapt operating system contrast and theme settings.</li>
           <li>Setting the <code>forced-colors-adjust=auto</code> CSS property on SVG elements.</li>
           <li>Using the <code>prefers-contrast</code> CSS media query for high contrast settings.</li>
@@ -47,165 +48,75 @@
       </section>
 
       <section id="os-high-contrast">
-        <h2>Operating System Color and High Contrast Settings</h2>
-        <p>Mobile, tablet and desktop operating systems have accessibility features for users to change the colors used to render content, including the rendering of content from web browsers.   The features are found in the accessibility settings of the operating system.  The following table highlights the major high contrast features in selected operating systems.
-        </p>
+        <h2>Understanding User Options For Adjusting Colors</h2>
 
-        <h3 id="os-hc-features">Operating System High Contrast Features</h3>
+        <p>Inverting colors, increase contrast and color themes are the three main ways users can adjust the rendered colors of content.   These options are set through operating system accessibility features.  Not all of the options provide information for authors to adjust the rendering of content based on user settings.   The following table summarizes the features, operating systems and authors ability to detect the setting.</p>
+
+        <h3 id="os-hc-features">Operating System Color Adjustment Features</h3>
         <table  aria-labelledby="os-media-query" class="data">
           <thead>
             <tr>
-              <th>Operating System</th>
+              <th>Feature</th>
+              <th>Description</th>
+              <th>CSS Media Query</th>
+              <th>System Colors</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
               <th>Invert Colors</th>
-              <th>Increase Contrast</th>
-              <th>Color Themes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>Android</th>
-              <td>Yes</td>
-              <td>Yes</td>
-              <td>dark option</td>
-            </tr>
-            <tr>
-              <th>Linux GNOME (Fedora 40)</th>
-              <td>no</td>
-              <td>Yes</td>
-              <td>dark option</td>
-            </tr>
-            <tr>
-              <th>iPadOS</th>
-              <td>Yes</td>
-              <td>Yes</td>
-              <td>no</td>
-            </tr>
-            <tr>
-              <th>iPhoneOS</th>
-              <td>Yes</td>
-              <td>Yes</td>
-              <td>no</td>
-            </tr>
-            <tr>
-              <th>macOS</th>
-              <td>Yes</td>
-              <td>Yes</td>
-              <td>no</td>
-            </tr>
-            <tr>
-              <th>Windows 10/11</th>
-              <td>no</td>
-              <td>no</td>
-              <td>Multiple options</td>
-            </tr>
-          </tbody>
-        </table>
+              <td>
+                Invert colors is a simple transformation of the rendered colors by subtracting each RGB value from 255.  This is a simple way of turning t
+                Some examples:
 
+                <ul>
+                  <li>rgb(255,255,255) is rendered as rgb(0,0,0)</li>
+                  <li>rgb(165, 42, 42) is rendered as rgb(90,213,213)</li>
+                  <li>rgb(220, 220, 220) is rendered as rgb(35,35,35)</li>
+                </ul>
+              </td>
+              <td>
+                <em>none</em>
+              </td>
+              <td>
+                <em>defaults</em>
+              </td>
+            </tr>
+            <tr>
+              <th>Increase contrast</th>
+              <td>
+                When the user enables increased contrast the CSS media query <code>prefers-contrast</code> set to <code>more</code>.  The media query can be used by authors to provide a higher contrast color scheme, including switching to use <code>system-colors</code>.
+              </td>
+              <td><code>prefers-contrast: more</code></td>
+              <td>
+                <em>defaults</em>
+              </td>
+            </tr>
+            <tr>
+              <th>System Color Theme</th>
+              <td>
+                Operating systems support light and dark color themes.  While light color themes are typically the default on most operating systems, dark color themes are associated with lower power consumption, less eye strain and easier to read or are less disruptive in dark settings.  People with some types of visual impairments prefer to use the dark color theme.  When the user selects a color theme the CSS media query </code>prefers-color-theme</code> is set to either <code>light</code> or <code>dark</code>.
+              </td>
+              <td><code>prefers-color-theme: dark | light</code></td>
+              <td>
+                <em>defaults</em>
+              </td>
+            </tr>
+            <tr>
+              <th>Contrast Themes</th>
+              <td>
+                Some operating systems (e.g. Microsoft Windows) support high contrast color themes.
+                When the user selects a high contrast color theme the CSS media query <code>forced-colors</code> is set to <code>active</code>.   The media query can be used by authors to provide a higher contrast color scheme, including switching to use <code>system-colors</code>
+              </td>
+              <td><code>forced-colors: active</code> </td>
+              <td>
+                Change based on contrast theme selected
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </section>
 
-        <h3 id="os-media-query">Operating System Support for setting Media Queries</h3>
-        <table  aria-labelledby="os-media-query" class="data">
-          <thead>
-            <tr>
-              <th>Operating System and Feature</th>
-              <th>
-                <code>prefers-contrast</code>
-              </th>
-              <th>
-                <code>forced-colors</code>
-              </th>
-              <th>
-                <code>prefers-color-theme</code>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Android: High Contrast Text Enabled</td>
-              <td>
-                <code>more</code>
-              </td>
-              <td>
-                <code>none</code>
-              </td>
-              <td>
-                <code>light</code>
-              </td>
-            </tr>
-            <tr>
-              <td>Android: Dark Theme enabled</td>
-              <td>
-                <code>no-preference</code>
-              </td>
-              <td>
-                <code>none</code>
-              </td>
-              <td>
-                <code>dark</code>
-              </td>
-            </tr>
-            <tr>
-              <td>iPhone/iPad: Increase Contrast Enabled</td>
-              <td>
-                <code>more</code>
-              </td>
-              <td>
-                <code>none</code>
-              </td>
-              <td>
-                <code>light</code>
-              </td>
-            </tr>
-            <tr>
-              <td>Apple macOS: Increase Contrast Enabled</td>
-              <td>
-                <code>more</code>
-              </td>
-              <td>
-                <code>none</code>
-              </td>
-              <td>
-                <code>light</code>
-              </td>
-            </tr>
-            <tr>
-              <td>GNOME Desktop: Increase Contrast Enabled</td>
-              <td>
-                <code>more</code>
-              </td>
-              <td>
-                <code>none</code>
-              </td>
-              <td>
-                <code>light</code>
-              </td>
-            </tr>
-            <tr>
-              <td>GNOME Desktop: Dark Theme Enabled</td>
-              <td>
-                <code>no-preference</code>
-              </td>
-              <td>
-                <code>none</code>
-              </td>
-              <td>
-                <code>dark</code>
-              </td>
-            </tr>
-            <tr>
-              <td>Microsoft Windows 10/11: Dark Sky Theme</td>
-              <td>
-                <code>no-preference</code>
-              </td>
-              <td>
-                <code>active</code>
-              </td>
-              <td>
-                <code>dark</code>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
 
       <section id="svg">
         <h2>SVG for Components</h2>
