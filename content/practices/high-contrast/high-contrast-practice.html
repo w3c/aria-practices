@@ -37,7 +37,7 @@
 
         <p>This section covers:</p>
         <ol>
-          <li>Understanding the user agent features for adjusting the colors rendered by the browser.</li>
+          <li>Understanding user agent features for adjusting the colors rendered by the user agent.</li>
           <li>Using SVG graphics to create components whose rendering can adapt operating system contrast and theme settings.</li>
           <li>Setting the <code>forced-colors-adjust=auto</code> CSS property on SVG elements.</li>
           <li>Using the <code>prefers-contrast</code> CSS media query for high contrast settings.</li>
@@ -50,7 +50,7 @@
       <section id="os-high-contrast">
         <h2>Understanding User Options For Adjusting Colors</h2>
 
-        <p>Inverting colors, increase contrast and color themes are the three main ways users can adjust the rendered colors of content.   These options are set through operating system accessibility features.  Not all of the options provide information for authors to adjust the rendering of content based on user settings.   The following table summarizes the features, operating systems and authors ability to detect the setting.</p>
+        <p>Inverting colors, increase contrast and color themes are the three main ways users can adjust the rendered colors of web content.   These options are set through operating system accessibility features.  Not all of the options provide information for authors to adjust the rendering of content based on user settings.   The following table summarizes the features, operating systems and authors ability to detect the setting.</p>
 
         <h3 id="os-hc-features">Operating System Color Adjustment Features</h3>
         <table  aria-labelledby="os-media-query" class="data">
@@ -66,8 +66,8 @@
             <tr>
               <th>Invert Colors</th>
               <td>
-                Invert colors is a simple transformation of the rendered colors by subtracting each RGB value from 255.  This is a simple way of turning t
-                Some examples:
+                Invert colors is a simple transformation of the rendered colors by subtracting each RGB value from 255.  This is a simple way of turning a lighter color theme into a darker color theme or visa-versa depending on the original styling of the content.  Inverting colors can create a color palette that is easier for people with some types of visual impairments to perceive.
+                Some examples of color inversion:
 
                 <ul>
                   <li>rgb(255,255,255) is rendered as rgb(0,0,0)</li>
@@ -95,7 +95,7 @@
             <tr>
               <th>System Color Theme</th>
               <td>
-                Operating systems support light and dark color themes.  While light color themes are typically the default on most operating systems, dark color themes are associated with lower power consumption, less eye strain and easier to read or are less disruptive in dark settings.  People with some types of visual impairments prefer to use the dark color theme.  When the user selects a color theme the CSS media query </code>prefers-color-theme</code> is set to either <code>light</code> or <code>dark</code>.
+                Operating systems support <code>light</code> and <code>dark</code> color themes.  The <code>light</code> color theme is typically the default on most operating systems and the CSS media query </code>prefers-color-theme</code> is set to <code>light</code>. The <code>dark</code> color theme is associated with lower power consumption, less eye strain and considered easier to read or less disruptive in dark settings (e.g. night time).  People with some types of visual impairments prefer to use the dark color theme as their default.  When the user selects the <code>dark</code> color theme the CSS media query </code>prefers-color-theme</code> is set to <code>dark</code>.
               </td>
               <td><code>prefers-color-theme: dark | light</code></td>
               <td>
@@ -105,8 +105,8 @@
             <tr>
               <th>Contrast Themes</th>
               <td>
-                Some operating systems (e.g. Microsoft Windows) support high contrast color themes.
-                When the user selects a high contrast color theme the CSS media query <code>forced-colors</code> is set to <code>active</code>.   The media query can be used by authors to provide a higher contrast color scheme, including switching to use <code>system-colors</code>
+                Some operating systems, including Microsoft Windows, support high contrast color themes.
+                When the user selects a high contrast color theme the CSS media query <code>forced-colors</code> is set to <code>active</code>.   The media query can be used by authors to provide switch to use <code>system-colors</code> CSS Media Types so the content of the page adapts to the users color preferences.
               </td>
               <td><code>forced-colors: active</code> </td>
               <td>
