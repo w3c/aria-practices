@@ -66,9 +66,10 @@
             <tr>
               <th>Invert Colors</th>
               <td>
-                Invert colors is a simple transformation of the rendered colors by subtracting each RGB value from 255.  This is a simple way of turning a lighter color theme into a darker color theme or visa-versa depending on the original styling of the content.  Inverting colors can create a color palette that is easier for people with some types of visual impairments to perceive.
-                Some examples of color inversion:
-
+                <p>
+                  Invert colors is a simple transformation of the rendered colors by subtracting each RGB value from 255.  This is a simple way of turning a lighter color theme into a darker color theme or visa-versa depending on the original styling of the content.  Inverting colors can create a color palette that is easier for people with some types of visual impairments to perceive.
+                </p>
+                <p>Some examples of color inversion:</p>
                 <ul>
                   <li>rgb(255,255,255) is rendered as rgb(0,0,0)</li>
                   <li>rgb(165, 42, 42) is rendered as rgb(90,213,213)</li>
@@ -85,7 +86,7 @@
             <tr>
               <th>Increase contrast</th>
               <td>
-                When the user enables increased contrast the CSS media query <code>prefers-contrast</code> set to <code>more</code>.  The media query can be used by authors to provide a higher contrast color scheme, including switching to use <code>system-colors</code>.
+                When the user enables increased contrast the CSS media query <code>prefers-contrast</code> set to <code>more</code>.  The media query can be used by authors to provide a higher contrast color scheme, including switching to use <code>system-colors</code> CSS Media Types.
               </td>
               <td><code>prefers-contrast: more</code></td>
               <td>
@@ -95,7 +96,14 @@
             <tr>
               <th>System Color Theme</th>
               <td>
-                Operating systems support <code>light</code> and <code>dark</code> color themes.  The <code>light</code> color theme is typically the default on most operating systems and the CSS media query </code>prefers-color-theme</code> is set to <code>light</code>. The <code>dark</code> color theme is associated with lower power consumption, less eye strain and considered easier to read or less disruptive in dark settings (e.g. night time).  People with some types of visual impairments prefer to use the dark color theme as their default.  When the user selects the <code>dark</code> color theme the CSS media query </code>prefers-color-theme</code> is set to <code>dark</code>.
+                <p>
+                  Operating systems support <code>light</code> and <code>dark</code> color themes.
+                </p>
+                <p>The <code>light</code> color theme is typically the default on most operating systems.  Authors identify this preference when the CSS media query <code>prefers-color-theme</code> is set to <code>light</code>.
+                </p>
+                <p>
+                  The <code>dark</code> color theme is associated with lower power consumption, less eye strain and considered easier to read or less disruptive in dark settings (e.g. night time).  People with some types of visual impairments prefer to use the dark color theme as their default.  When the user selects the <code>dark</code> color theme the CSS media query <code>prefers-color-theme</code> is set to <code>dark</code>.
+                </p>
               </td>
               <td><code>prefers-color-theme: dark | light</code></td>
               <td>
@@ -106,7 +114,7 @@
               <th>Contrast Themes</th>
               <td>
                 Some operating systems, including Microsoft Windows, support high contrast color themes.
-                When the user selects a high contrast color theme the CSS media query <code>forced-colors</code> is set to <code>active</code>.   The media query can be used by authors to provide switch to use <code>system-colors</code> CSS Media Types so the content of the page adapts to the users color preferences.
+                When the user selects a high contrast color theme the CSS media query <code>forced-colors</code> is set to <code>active</code>.   The media query can be used by authors to switch to using <code>system-color</code> CSS Media Types so the content of the page adapts to the user color preferences.
               </td>
               <td><code>forced-colors: active</code> </td>
               <td>
