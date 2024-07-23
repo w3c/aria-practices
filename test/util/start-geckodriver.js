@@ -1,12 +1,11 @@
 const assert = require('assert');
-const { path: binaryPath } = require('geckodriver');
-const { spawn } = require('child_process');
+const { start: startGeckoDriver } = require('geckodriver');
 
 const getJSON = require('./get-json');
 const forceSerial = require('./force-serial');
 const SERIES_LOCK = 8432;
 
-const startOnPort = (port, timeout) => {
+const startOnPort = async (port, timeout) => {
   if (timeout < 0) {
     return Promise.reject(
       new Error('Timed out while locating free port for WebDriver server')
@@ -14,7 +13,7 @@ const startOnPort = (port, timeout) => {
   }
 
   const start = Date.now();
-  const child = spawn(binaryPath, ['--port', port]);
+  const child = await startGeckoDriver({ port });
 
   return new Promise((resolve, reject) => {
     let stopPolling = false;
