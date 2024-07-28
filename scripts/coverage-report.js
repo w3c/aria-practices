@@ -519,10 +519,8 @@ glob
       highContrast: data.toLowerCase().indexOf('high contrast') > 0,
       svgHTML: html.querySelectorAll('svg').length,
       svgCSS: getNumberOfReferences(dataCSS, 'svg', true),
-      contentCSS: getNumberOfReferences(dataCSS, 'content'),
-      beforeCSS: getNumberOfReferences(dataCSS, '::before'),
-      afterCSS: getNumberOfReferences(dataCSS, '::after'),
-      forcedColorAdjust: getNumberOfReferences(dataCSS, 'forced-color-adjust'),
+      forcedColors: getNumberOfReferences(dataCSS, 'forced-colors'),
+      currentColor: getNumberOfReferences(dataCSS, 'currentColor', true),
 
       svgJS: getNumberOfReferences(dataJS, 'svg', true),
       classJS: getNumberOfReferences(dataJS, 'constructor\\('),
@@ -763,7 +761,6 @@ function getListItem(item) {
 }
 
 function getListHTML(list) {
-  //  let html = '<abbr title="none" style="color: gray">-</abbr>';
   let html = '';
 
   if (list.length === 1) {
@@ -1009,10 +1006,8 @@ let IndexOfExampleGraphics = indexOfExamples.reduce(function (set, example) {
   let count = example.svgHTML;
   count += example.svgCSS;
   count += example.svgJS;
-  count += example.forcedColorAdjust;
-  count += example.beforeCSS;
-  count += example.afterCSS;
-  count += example.contentCSS;
+  count += example.forcedColors;
+  count += example.currentColor;
 
   if (count === 0) {
     return `${set}`;
@@ -1023,10 +1018,8 @@ let IndexOfExampleGraphics = indexOfExamples.reduce(function (set, example) {
             <td>${htmlYesOrNo(example.svgHTML)}</td>
             <td>${htmlYesOrNo(example.svgCSS)}</td>
             <td>${htmlYesOrNo(example.svgJS)}</td>
-            <td>${htmlYesOrNo(example.forcedColorAdjust)}</td>
-            <td>${htmlYesOrNo(example.beforeCSS)}</td>
-            <td>${htmlYesOrNo(example.afterCSS)}</td>
-            <td>${htmlYesOrNo(example.contentCSS)}</td>
+            <td>${htmlYesOrNo(example.forcedColors)}</td>
+            <td>${htmlYesOrNo(example.currentColor)}</td>
           </tr>`;
 }, '');
 
@@ -1115,8 +1108,18 @@ let countPointer = indexOfExamples.reduce(function (set, example) {
   return set + (count ? 1 : 0);
 }, 0);
 
+/*
 let countForcedColorAdjust = indexOfExamples.reduce(function (set, example) {
   return set + (example.forcedColorAdjust ? 1 : 0);
+}, 0);
+*/
+
+let countForcedColors = indexOfExamples.reduce(function (set, example) {
+  return set + (example.forcedColors ? 1 : 0);
+}, 0);
+
+let countCurrentColor = indexOfExamples.reduce(function (set, example) {
+  return set + (example.currentColor ? 1 : 0);
 }, 0);
 
 $('#example_coding_practices_tbody').html(IndexOfExampleCodingPractices);
@@ -1126,7 +1129,8 @@ $('#example_mouse_pointer_tbody').html(IndexOfExampleMousePointer);
 $('#example_summary_total').html(indexOfExamples.length);
 $('#example_summary_hc').html(countHighContrast);
 $('#example_summary_svg').html(countSVG);
-$('#example_summary_force_color').html(countForcedColorAdjust);
+$('#example_summary_force_colors').html(countForcedColors);
+$('#example_summary_current_color').html(countCurrentColor);
 $('#example_summary_keycode').html(countKeyCode);
 $('#example_summary_which').html(countWhich);
 $('#example_summary_class').html(countClass);

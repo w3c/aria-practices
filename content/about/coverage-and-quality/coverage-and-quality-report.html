@@ -1283,9 +1283,19 @@
             <td id="example_summary_svg">34</td>
           </tr>
           <tr>
-            <th scope="row">Uses <code>forced-color-adjust</code> on SVG</th>
-            <td id="example_summary_force_color">13</td>
+            <th scope="row">Uses <code>forced-colors</code> media query</th>
+            <td id="example_summary_force_colors">2</td>
           </tr>
+          <tr>
+            <th scope="row">Uses <code>currentColor</code> value</th>
+            <td id="example_summary_current_color">27</td>
+          </tr>
+<!--
+          <tr>
+            <th scope="row">Uses <code>forced-color-adjust</code> in CSS/SVG</th>
+            <td id="example_summary_force_color_adjust"></td>
+          </tr>
+-->
           <tr>
             <th scope="row">Uses <code>event.KeyCode</code></th>
             <td id="example_summary_keycode">16</td>
@@ -2113,7 +2123,7 @@
           </tr></tbody>
       </table>
 
-      <h3 id="example_graphics_techniques">Graphics Techniques</h3>
+      <h3 id="example_graphics_techniques">SVG and High Contrast Techniques</h3>
       <table aria-labelledby="example_graphics_techniques" class="data attributes">
         <thead>
           <tr>
@@ -2121,19 +2131,23 @@
             <th>SVG in HTML</th>
             <th>SVG in CSS</th>
             <th>SVG in JS</th>
-            <th><code>forced-color-adjust</code></th>
-            <th>CSS ::before</th>
-            <th>CSS ::after</th>
-            <th>CSS content</th>
+            <th><code>forced-colors</code> media query</th>
+            <th><code>currentColor</code> value</th>
           </tr>
         </thead>
         <tbody id="example_graphics_techniques_tbody">
           <tr>
+            <td><a href="../../../content/patterns/accordion/examples/accordion.html">Accordion</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+          </tr>
+          <tr>
             <td><a href="../../../content/patterns/alertdialog/examples/alertdialog.html">Alert Dialog</a></td>
             <td>Yes</td>
             <td>Yes</td>
-            <td></td>
-            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -2145,8 +2159,6 @@
             <td></td>
             <td></td>
             <td>Yes</td>
-            <td></td>
-            <td>Yes</td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/button/examples/button_idl.html">Button  (IDL Version)</a></td>
@@ -2154,9 +2166,7 @@
             <td>Yes</td>
             <td></td>
             <td></td>
-            <td>Yes</td>
             <td></td>
-            <td>Yes</td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/button/examples/button.html">Button</a></td>
@@ -2164,16 +2174,12 @@
             <td>Yes</td>
             <td></td>
             <td></td>
-            <td>Yes</td>
             <td></td>
-            <td>Yes</td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/carousel/examples/carousel-1-prev-next.html">Auto-Rotating Image Carousel  with Buttons for Slide Control</a></td>
             <td>Yes</td>
             <td>Yes</td>
-            <td></td>
-            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -2185,13 +2191,9 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/checkbox/examples/checkbox-mixed.html">Checkbox  (Mixed-State)</a></td>
-            <td></td>
-            <td>Yes</td>
             <td></td>
             <td>Yes</td>
             <td></td>
@@ -2200,8 +2202,6 @@
           </tr>
           <tr>
             <td><a href="../../../content/patterns/checkbox/examples/checkbox.html">Checkbox  (Two State)</a></td>
-            <td></td>
-            <td>Yes</td>
             <td></td>
             <td>Yes</td>
             <td></td>
@@ -2214,9 +2214,7 @@
             <td>Yes</td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>Yes</td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/combobox/examples/combobox-autocomplete-list.html">Editable Combobox With List Autocomplete</a></td>
@@ -2224,9 +2222,7 @@
             <td>Yes</td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>Yes</td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/combobox/examples/combobox-autocomplete-none.html">Editable Combobox without Autocomplete</a></td>
@@ -2234,9 +2230,7 @@
             <td>Yes</td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>Yes</td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/combobox/examples/combobox-datepicker.html">Date Picker Combobox</a></td>
@@ -2245,33 +2239,9 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td>Yes</td>
-          </tr>
-          <tr>
-            <td><a href="../../../content/patterns/combobox/examples/combobox-select-only.html">Select-Only Combobox</a></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Yes</td>
-            <td>Yes</td>
-          </tr>
-          <tr>
-            <td><a href="../../../content/patterns/dialog-modal/examples/datepicker-dialog.html">Date Picker Dialog</a></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Yes</td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/disclosure/examples/disclosure-faq.html">Disclosure (Show/Hide) for Answers to Frequently Asked Questions</a></td>
-            <td></td>
-            <td>Yes</td>
             <td></td>
             <td>Yes</td>
             <td></td>
@@ -2283,67 +2253,13 @@
             <td></td>
             <td>Yes</td>
             <td></td>
-            <td>Yes</td>
             <td></td>
-            <td></td>
-            <td>Yes</td>
-          </tr>
-          <tr>
-            <td><a href="../../../content/patterns/disclosure/examples/disclosure-navigation-hybrid.html">Disclosure Navigation Menu with Top-Level Links</a></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Yes</td>
-            <td>Yes</td>
-          </tr>
-          <tr>
-            <td><a href="../../../content/patterns/disclosure/examples/disclosure-navigation.html">Disclosure Navigation Menu</a></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Yes</td>
             <td>Yes</td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/feed/examples/feed-display.html">Feed Display</a></td>
             <td></td>
             <td>Yes</td>
-            <td>Yes</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Yes</td>
-          </tr>
-          <tr>
-            <td><a href="../../../content/patterns/grid/examples/advanced-data-grid.html">Advanced Data Grid</a></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Yes</td>
-            <td>Yes</td>
-          </tr>
-          <tr>
-            <td><a href="../../../content/patterns/grid/examples/data-grids.html">Data Grid</a></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Yes</td>
-            <td>Yes</td>
-          </tr>
-          <tr>
-            <td><a href="../../../content/patterns/grid/examples/layout-grids.html">Layout Grid</a></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
             <td>Yes</td>
             <td>Yes</td>
             <td>Yes</td>
@@ -2354,9 +2270,7 @@
             <td>Yes</td>
             <td></td>
             <td></td>
-            <td>Yes</td>
             <td></td>
-            <td>Yes</td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/listbox/examples/listbox-collapsible.html">(Deprecated) Collapsible Dropdown Listbox</a></td>
@@ -2364,8 +2278,6 @@
             <td></td>
             <td></td>
             <td></td>
-            <td>Yes</td>
-            <td>Yes</td>
             <td>Yes</td>
           </tr>
           <tr>
@@ -2375,8 +2287,6 @@
             <td></td>
             <td></td>
             <td>Yes</td>
-            <td>Yes</td>
-            <td>Yes</td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/listbox/examples/listbox-rearrangeable.html">Listboxes with Rearrangeable Options</a></td>
@@ -2384,8 +2294,6 @@
             <td></td>
             <td></td>
             <td></td>
-            <td>Yes</td>
-            <td>Yes</td>
             <td>Yes</td>
           </tr>
           <tr>
@@ -2395,8 +2303,6 @@
             <td></td>
             <td></td>
             <td>Yes</td>
-            <td>Yes</td>
-            <td>Yes</td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/menu-button/examples/menu-button-actions-active-descendant.html">Actions Menu Button  Using aria-activedescendant</a></td>
@@ -2404,9 +2310,7 @@
             <td>Yes</td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>Yes</td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/menu-button/examples/menu-button-actions.html">Actions Menu Button  Using element.focus()</a></td>
@@ -2414,9 +2318,7 @@
             <td>Yes</td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>Yes</td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/menu-button/examples/menu-button-links.html">Navigation Menu Button</a></td>
@@ -2424,9 +2326,7 @@
             <td>Yes</td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>Yes</td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/menubar/examples/menubar-editor.html">Editor Menubar</a></td>
@@ -2435,8 +2335,6 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td>Yes</td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/menubar/examples/menubar-navigation.html">Navigation Menubar</a></td>
@@ -2444,15 +2342,11 @@
             <td>Yes</td>
             <td>Yes</td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>Yes</td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/meter/examples/meter.html">Meter</a></td>
             <td>Yes</td>
-            <td></td>
-            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -2463,50 +2357,40 @@
             <td></td>
             <td>Yes</td>
             <td></td>
-            <td>Yes</td>
             <td></td>
             <td></td>
-            <td>Yes</td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/radio/examples/radio-rating.html">Rating Radio Group</a></td>
             <td>Yes</td>
             <td>Yes</td>
             <td></td>
+            <td></td>
             <td>Yes</td>
-            <td></td>
-            <td></td>
-            <td></td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/radio/examples/radio.html">Radio Group  Using Roving tabindex</a></td>
             <td></td>
             <td>Yes</td>
             <td></td>
-            <td>Yes</td>
             <td></td>
             <td></td>
-            <td>Yes</td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/slider-multithumb/examples/slider-multithumb.html">Horizontal Multi-Thumb Slider</a></td>
             <td>Yes</td>
             <td>Yes</td>
             <td>Yes</td>
+            <td></td>
             <td>Yes</td>
-            <td></td>
-            <td></td>
-            <td></td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/slider/examples/slider-color-viewer.html">Color Viewer Slider</a></td>
             <td>Yes</td>
             <td>Yes</td>
             <td>Yes</td>
+            <td></td>
             <td>Yes</td>
-            <td></td>
-            <td></td>
-            <td></td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/slider/examples/slider-rating.html">Rating Slider</a></td>
@@ -2514,36 +2398,28 @@
             <td>Yes</td>
             <td>Yes</td>
             <td>Yes</td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>Yes</td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/slider/examples/slider-seek.html">Media Seek Slider</a></td>
             <td>Yes</td>
             <td>Yes</td>
             <td>Yes</td>
+            <td></td>
             <td>Yes</td>
-            <td></td>
-            <td></td>
-            <td></td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/slider/examples/slider-temperature.html">Vertical Temperature Slider</a></td>
             <td>Yes</td>
             <td>Yes</td>
             <td>Yes</td>
+            <td></td>
             <td>Yes</td>
-            <td></td>
-            <td></td>
-            <td></td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/spinbutton/examples/datepicker-spinbuttons.html">Date Picker Spin Button</a></td>
             <td>Yes</td>
             <td>Yes</td>
-            <td></td>
-            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -2553,10 +2429,8 @@
             <td>Yes</td>
             <td>Yes</td>
             <td>Yes</td>
+            <td></td>
             <td>Yes</td>
-            <td></td>
-            <td></td>
-            <td></td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/table/examples/sortable-table.html">Sortable Table</a></td>
@@ -2564,8 +2438,6 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td>Yes</td>
             <td>Yes</td>
           </tr>
           <tr>
@@ -2574,9 +2446,7 @@
             <td>Yes</td>
             <td></td>
             <td></td>
-            <td>Yes</td>
-            <td>Yes</td>
-            <td>Yes</td>
+            <td></td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/treegrid/examples/treegrid-1.html">Treegrid Email Inbox</a></td>
@@ -2584,29 +2454,7 @@
             <td>Yes</td>
             <td></td>
             <td></td>
-            <td>Yes</td>
             <td></td>
-            <td>Yes</td>
-          </tr>
-          <tr>
-            <td><a href="../../../content/patterns/treeview/examples/treeview-1a.html">File Directory Treeview  Using Computed Properties</a></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Yes</td>
-            <td></td>
-            <td>Yes</td>
-          </tr>
-          <tr>
-            <td><a href="../../../content/patterns/treeview/examples/treeview-1b.html">File Directory Treeview  Using Declared Properties</a></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Yes</td>
-            <td></td>
-            <td>Yes</td>
           </tr>
           <tr>
             <td><a href="../../../content/patterns/treeview/examples/treeview-navigation.html">Navigation Treeview</a></td>
@@ -2614,9 +2462,7 @@
             <td>Yes</td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>Yes</td>
           </tr></tbody>
       </table>
 
