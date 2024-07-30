@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Experimental Example of Tabs with Remove Buttons</title>
+    <title>Experimental Example of Tabs with Action Buttons</title>
 
     <!-- Core JS and CSS shared by all examples -->
     <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -25,7 +25,7 @@
       </ul>
     </nav>
     <main data-content-phase="experimental">
-      <h1>Experimental Example of Tabs with Remove Buttons</h1>
+      <h1>Experimental Example of Tabs with Action Buttons</h1>
 
       <section>
         <h2>About This Experimental Example</h2>
@@ -33,8 +33,8 @@
         <p>
           This is an experimental implementation of the <a href="https://pr-preview.s3.amazonaws.com/w3c/aria/pull/1805.html#aria-actions">draft specification of the aria-actions attribute</a>.
           The <code>aria-actions</code> property enables an element to reference another interactive element that can be activated to perform an action on the referencing element.
-          In this example, a tab element is associated with a button that removes a tab from the tablist.
-          This association enables an assistive technology to both communicate the  availability of the action button and provide a command for activating the button while focus is on the tab.
+          In this example, each tab element references a menu button that opens a menu of actions that apply to the referencing tab.
+          The relationship provided by <code>aria-actions</code> enables an assistive technology to both communicate the  availability of the action button and provide a command for activating the button while focus is on the tab.
         </p>
         <p>
           The below example demonstrates a tabs widget that implements the <a href="../tabs-pattern.html">Tabs Pattern</a>.
@@ -46,8 +46,8 @@
         </p>
         <p>
           This example also demonstrates how to provide buttons that provide contextual actions for the tab.
-          Each tab has a remove icon.
-          The remove icon is referenced by <code>aria-actions</code>, which enables it to be activated by an assistive technology user while focus is on the tab.
+          Each tab has an associated context actions menu button.
+          The menu button is referenced by <code>aria-actions</code>, which enables it to be activated by an assistive technology user while focus is on the tab.
         </p>
         <p>Similar examples include:</p>
         <ul>
