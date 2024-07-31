@@ -60,7 +60,7 @@
     "selenium-webdriver": "^4.22.0",
     "stylelint": "^15.1.0",
     "stylelint-config-standard": "^30.0.1",
-    "vnu-jar": "^21.2.5"
+    "vnu-jar": "^23.4.11"
   },
   "lint-staged": {
     "*": "prettier --ignore-unknown --write",
