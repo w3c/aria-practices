@@ -8,11 +8,11 @@
     "example": "examples"
   },
   "scripts": {
-    "fix": "npm run lint:es -- --fix && stylelint --fix  \"**/*.css\" && prettier --write \"**/*.css\"",
+    "fix": "eslint . --fix && stylelint --fix  \"**/*.css\" && prettier --write .",
     "htmlhint": "htmlhint \"**/*.html\" \"**/*.template\" --ignore \"common/**/*.html\" --format unix",
     "lint": "npm run lint:es && npm run lint:css && npm run lint:html && npm run lint:spelling",
     "lint:css": "stylelint \"**/*.css\" && prettier --check \"**/*.css\"",
-    "lint:es": "eslint . --report-unused-disable-directives",
+    "lint:es": "eslint . && prettier --check \"**/*.{js,mjs,cjs}\"",
     "lint:js": "npm run lint:es",
     "lint:html": "npm run htmlhint && npm run vnu-jar",
     "lint:spelling": "cspell \"**/*.*\"",
@@ -37,27 +37,27 @@
   },
   "homepage": "https://github.com/w3c/aria-practices#readme",
   "devDependencies": {
-    "@babel/core": "^7.24.5",
-    "@babel/eslint-parser": "^7.24.5",
+    "@babel/core": "^7.25.2",
+    "@babel/eslint-parser": "^7.25.1",
     "ava": "^6.1.3",
     "cheerio": "^1.0.0-rc.12",
     "cross-spawn": "^7.0.3",
-    "cspell": "^8.8.3",
-    "eslint": "^8.57.0",
+    "cspell": "^8.13.0",
+    "eslint": "^9.8.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-ava": "^14.0.0",
+    "eslint-plugin-ava": "^15.0.0",
     "eslint-plugin-html": "^8.1.1",
-    "eslint-plugin-jsdoc": "^48.2.3",
-    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-jsdoc": "^48.10.2",
     "geckodriver": "^4.4.1",
     "glob": "^8.1.0",
+    "globals": "^15.1.0",
     "htmlhint": "^1.1.4",
-    "htmlparser2": "^8.0.1",
+    "htmlparser2": "^9.1.0",
     "husky": "^9.0.11",
-    "lint-staged": "^15.2.5",
+    "lint-staged": "^15.2.7",
     "node-fetch": "^2.6.7",
-    "prettier": "^3.2.5",
-    "selenium-webdriver": "^4.21.0",
+    "prettier": "^3.3.3",
+    "selenium-webdriver": "^4.22.0",
     "stylelint": "^15.11.0",
     "stylelint-config-standard": "^30.0.1",
     "vnu-jar": "^21.2.5"
@@ -71,6 +71,14 @@
     "content/patterns/**/examples/*.html": [
       "npm run reference-tables",
       "git add content/index/index.html",
+      "npm run coverage-report",
+      "git add content/about/coverage-and-quality/"
+    ],
+    "scripts/reference-tables.*": [
+      "npm run reference-tables",
+      "git add content/index/index.html"
+    ],
+    "scripts/coverage-report.*": [
       "npm run coverage-report",
       "git add content/about/coverage-and-quality/"
     ]
