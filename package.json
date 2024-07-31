@@ -49,7 +49,7 @@
     "eslint-plugin-html": "^8.1.1",
     "eslint-plugin-jsdoc": "^48.10.2",
     "geckodriver": "^4.4.1",
-    "glob": "^8.1.0",
+    "glob": "^11.0.0",
     "globals": "^15.1.0",
     "htmlhint": "^1.1.4",
     "htmlparser2": "^9.1.0",
