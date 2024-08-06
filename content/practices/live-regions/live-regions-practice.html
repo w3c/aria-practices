@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Notifying Users with Live Regions (Automatic Screen Reader Announcements)</title>
+
+  <!-- Core JS and CSS shared by all practices -->
+  <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
+  <link rel="stylesheet" href="../../shared/css/core.css">
+  <script src="../../shared/js/highlight.pack.js"></script>
+  <script src="../../shared/js/app.js"></script>
+  <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div"
+    src="../../shared/js/skipto.js"></script>
+</head>
+
+<body>
+  <main>
+    <h1>Notifying Users with Live Regions (Automatic Screen Reader Announcements)</h1>
+    <section id="introduction">
+      <h2>Introduction</h2>
+      <p>
+        Live regions are perceivable regions of a web page that are typically updated as a result of an external event when user focus might be elsewhere.
+        These regions are not always updated as a result of a user interaction.
+        By marking such elements as live regions, users of assistive technology can be informed of the updated content automatically.
+      </p>
+
+      <p>
+        Examples of live regions are a chat log and an error message.
+        However, different kinds of live regions have different expected behavior; users might expect an error message to disrupt what they are doing, since the error is important, but want to wait with reading new chat messages until they are done typing their own message.
+      </p>
+    </section>
+
+    <section id="live_region_states_and_properties">
+      <h2>Live Region States and Properties</h2>
+
+      <p>
+        ARIA has the following attributes mark up live regions.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>State/property</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>aria-live</code></td>
+            <td>Enables a live region.</td>
+          </tr>
+          <tr>
+            <td><code>aria-atomic</code></td>
+            <td>Indicates what content to announce.</td>
+          </tr>
+          <tr>
+            <td><code>aria-relevant</code></td>
+            <td>Indicates which content changes are relevant.</td>
+          </tr>
+          <tr>
+            <td><code>aria-busy</code></td>
+            <td>Defers content updates. Not specific to live regions. See the <a href="#aria-busy">next section</a>.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <section id="enable_live_regions_with_aria-live">
+        <h3>Enable Live Regions with <code>aria-live</code></h3>
+
+        <p>
+          The <code>aria-live</code> attribute indicates that an element is a live region.
+          Some roles implicitly set <code>aria-live</code>; this is discussed in a later section.
+        </p>
+
+        <ul>
+          <li><code>assertive</code>: assistive technologies can interrupt the user to provide this information,
+            but will not move the current focus, so the user&#39;s work flow is not interrupted.</li>
+
+          <li><code>polite</code>: assistive technologies will provide this information after the user is done with
+            their current task.</li>
+
+          <li><code>off</code>: assistive technologies will not provide this information unless this region has focus.
+          </li>
+        </ul>
+
+        <p>
+          With the exception of a few roles, the default value of <code>aria-live</code> is <code>off</code>.
+        </p>
+
+        <p>
+          For example, when the user types into a search field, the page could update the page with search results as
+          the user is typing.
+          To inform users of assistive technology that this has happened, a polite live region can be used.
+          When the user is done typing, and the search is complete, the user is informed of how many results were found,
+          without having to move focus away from the search field.
+        </p>
+
+        <pre><code>&lt;form role="search" aria-labelledby="search">
+&lt;h2 id="search">Search&lt;/h2>
+&lt;label>Search query: &lt;input type="search" name="q" oninput="updateSearch(event)">&lt;/label>
+&lt;div id="search-result-status" role="region" aria-live="polite">&lt;/div>
+&lt;/form>
+&lt;script>
+async function updateSearch(event) {
+const statusElement = document.getElementById(&#39;search-result-status&#39;);
+const results = await getSearchResults(event.target.value);
+statusElement.textContent = `${results.length} result(s) found.`;
+showResults(results);
+}
+&lt;/script>
+</code></pre>
+      </section>
+
+      <section id="indicate_what_content_to_announce_with_aria-atomic">
+        <h3>Indicate What Content to Announce with <code>aria-atomic</code></h3>
+
+        <p>
+          The <code>aria-atomic</code> attribute takes the values "true" and "false". The attribute can also be omitted.
+        </p>
+
+        <p>
+          When this attribute is set to <code>true</code>, assistive technologies will render the element as a whole,
+          and not just parts that have been changed.
+        </p>
+
+        <p>
+          When this attribute is set to <code>false</code>, assistive technologies will only render the changes (as per
+          <code>aria-relevant</code>) to the user.
+        </p>
+
+        <p>
+          When this attribute is omitted, the user agent will use the closest ancestor that has <code>aria-atomic</code>
+          set to <code>true</code> or <code>false</code>,
+          or if there is no such ancestor, <code>false</code>.
+        </p>
+
+        <p>
+          For example, consider a clock that can be set to notify the user of the current time at a regular interval.
+          Without <code>aria-atomic</code>, the assistive technology might only notify the changed components, rather
+          than the full time.
+        </p>
+
+        <pre><code>&lt;div id="clock" role="region" aria-live="polite" aria-atomic="true">
+The time is
+&lt;span>16&lt;/span>:&lt;span>34&lt;/span>:&lt;span>05&lt;/span>
+&lt;/div>
+</code></pre>
+      </section>
+
+      <section id="indicate_which_content_changes_are_relevant_with_aria-relevant">
+        <h3>Indicate Which Content Changes are Relevant with <code>aria-relevant</code></h3>
+
+        <p>
+          The <code>aria-relevant</code> attribute can be used to inform assistive technologies about which kinds of
+          changes are relevant to inform users about.
+          It takes a list of keywords, with the following meanings:
+        </p>
+
+        <ul>
+          <li><code>additions</code>: Element nodes are added to the accessibility tree within the live region.</li>
+          <li><code>text</code>: Text content or a text alternative is added to any descendant in the accessibility tree
+            of the live region.</li>
+          <li><code>removals</code>: Text content, a text alternative, or an element node within the live region is
+            removed from the accessibility tree.</li>
+          <li><code>all</code>: Synonym to <code>additions removals text</code></li>
+        </ul>
+
+        <p>
+          If <code>aria-relevant</code> is not specified, then the value of the closest ancestor element with an
+          <code>aria-relevant</code> attribute is used.
+          Specifying the <code>aria-relevant</code> attribute on an element overrides any value specified on an ancestor
+          element.
+          If there is no ancestor element with an <code>aria-relevant</code> attribute, the default value
+          <code>additions text</code> is used.
+        </p>
+
+        <p>
+          For example, a disappearing old message in a chat log is not significant, and users do not need to be informed
+          of the removal.
+          However, for a list of online contacts, a disappearing contact is significant (it indicates that the contact
+          is no longer online).
+          Instead of announcing the removal of something, it is often better to add new content that tells the user what
+          happened.
+          For example, "Alice is now offline" is clearer than "Alice" or "Removed, Alice".
+          Therefore, avoid using <code>removals</code> or <code>all</code>.
+        </p>
+
+        <p>
+          For example, a list of online contacts:
+        </p>
+
+        <pre><code>&lt;div role="region" aria-live="polite" aria-labelledby="contacts">
+&lt;h1 id="contacts">Contacts&lt;/h1>
+&lt;ul>
+&lt;li aria-atomic="true">&lt;a href="/contacts/alice">Alice&lt;/a> is now online&lt;/li>
+&lt;/ul>
+&lt;/div>
+</code></pre>
+
+        <p>
+          Note that this example omits the <code>aria-relevant</code> attribute, leaving it as the default value
+          (<code>additions text</code>).
+        </p>
+
+        <p>
+          When a contact comes online, it is added to the list, and users of assistive technology are informed of the
+          addition without disrupting their current task.
+          To communicate what happened, the text is "Alice is now online", rather than only "Alice".
+        </p>
+
+        <p>
+          Similarly when a user goes offline, the text could be changed to "Alice is now offline",
+          and then be hidden from the list after a timeout.
+        </p>
+
+        <p>
+          If a contact changes their display name, the text change would also be announced:
+          "Alice has changed their name to 4liz".
+          After a timeout, the text "Alice has changed their name to " could be removed, without causing a new
+          announcement.
+        </p>
+      </section>
+
+      <section id="triggering_live_regions">
+        <h3>Triggering Live Regions</h3>
+
+        <p>
+          Additions and removals in the accessibility tree can happen due to changes to the DOM tree or changes to the
+          applied CSS.
+          For example, changing the CSS <code>display</code> property to <code>none</code> causes the element to be
+          removed from the accessibility tree.
+          See the <a href="#accessibility-tree">Accessibility tree</a> section for more details.
+        </p>
+      </section>
+    </section>
+
+    <section id="special_case_live_regions">
+      <h2>Special Case Live Regions</h2>
+
+      <p>
+        The roles listed below implicitly set the <code>aria-live</code> attribute to indicate that it is a live region.
+        When using these roles, the <code>aria-live</code> attribute can be omitted,
+        or it can be specified to change the value from the default.
+      </p>
+
+      <ul>
+        <li><code>alert</code></li>
+        <li><code>log</code></li>
+        <li><code>status</code></li>
+        <li><code>timer</code></li>
+        <li><code>marquee</code></li>
+      </ul>
+
+      <section id="live_region_role_alert">
+        <h3>Live Region Role <code>alert</code></h3>
+
+        <p>
+          The <code>alert</code> role indicates important, usually time-sensitive, information.
+          Use this role when focus is not moved to the message, and the user is not expected to close the message.
+          For an alert dialog that can be closed, the the <code>alertdialog</code> role instead.
+        </p>
+
+        <p>
+          The default value for <code>aria-live</code> is <code>assertive</code>.
+          The default value for <code>aria-atomic</code> is <code>true</code>.
+        </p>
+
+        <p>
+          See the <a href="#alert">Alert design pattern</a> and the related <a
+            href="https://w3c.github.io/aria-practices/examples/alert/alert.html">Alert Example</a>.
+        </p>
+      </section>
+
+      <section id="live_region_role_log">
+        <h3>Live Region Role <code>log</code></h3>
+
+        <p>
+          The <code>log</code> role indicates that new information is added in meaningful order and old information
+          might disappear.
+        </p>
+
+        <p>
+          The default value for <code>aria-live</code> is <code>polite</code>.
+        </p>
+
+        <p>
+          For example, a chat log would be an appropriate use case for the <code>log</code> role.
+        </p>
+
+        <pre><code>&lt;h1 id="irc-log">IRC Log&lt;/h1>
+&lt;div role="log" aria-labelledby="irc-log">
+&lt;p>[10:26] &amp;lt;Charl> ok let&#39;s test it and see if it works&lt;/p>
+&lt;p>[10:59] &amp;lt;hsivonen> morning&lt;/p>
+&lt;/div>
+</code></pre>
+      </section>
+
+      <section id="live_region_role_status">
+        <h3>Live Region Role <code>status</code></h3>
+
+        <p>
+          The <code>status</code> role indicates that content is advisory information for the user but is not important
+          enough to justify an <code>alert</code>, often but not necessarily presented as a status bar.
+        </p>
+
+        <p>
+          The default value for <code>aria-live</code> is <code>polite</code>.
+          The default value for <code>aria-atomic</code> is <code>true</code>.
+        </p>
+
+        <p>
+          Do not move focus to the element with script when the content is changed.
+        </p>
+
+        <p>
+          For example, the search result summary example above could use <code>role="status"</code> instead of
+          <code>role="region"</code>:
+        </p>
+
+        <pre><code>&lt;form role="search" aria-labelledby="search">
+&lt;h2 id="search">Search&lt;/h2>
+&lt;label>Search query: &lt;input type="search" name="q" oninput="updateSearch(event)">&lt;/label>
+&lt;div id="search-result-status" role="status">&lt;/div>
+&lt;/form>
+</code></pre>
+
+        <p>
+          The HTML <code>output</code> element has the <code>status</code> role by default.
+          The <code>output</code> element is defined to represent the result of a calculation performed by the
+          application, or the result of a user action.
+          The result of a user search is thus appropriate use of the <code>output</code> element:
+        </p>
+
+        <pre><code>&lt;form role="search" aria-labelledby="search">
+&lt;h2 id="search">Search&lt;/h2>
+&lt;label>Search query: &lt;input type="search" name="q" oninput="updateSearch(event)">&lt;/label>
+&lt;output id="search-result-status">&lt;/output>
+&lt;/form>
+</code></pre>
+      </section>
+
+      <section id="live_region_role_timer_and_marquee">
+        <h3>Live Region Role <code>timer</code> and <code>marquee</code></h3>
+
+        <p>
+          Usage of the <code>timer</code> and <code>marquee</code> roles is discouraged.
+        </p>
+
+        <p>
+          The <code>timer</code> role is a numerical counter which indicates an amount of elapsed time from a start
+          point, or the time remaining until an end point.
+          The <code>timer</code> role is a subclass of the <code>status</code> role.
+          The default value of <code>aria-live</code> value of <code>off</code>.
+        </p>
+
+        <p>
+          The <code>marquee</code> role indicates non-essential information that changes frequently.
+          The default value of <code>aria-live</code> value of <code>off</code>.
+        </p>
+
+        <p class="note">
+          <a href="https://github.com/w3c/aria/issues/1104">Issue 1104 for the ARIA specification</a> proposes
+          deprecating these roles.
+        </p>
+      </section>
+    </section>
+
+
+  </main>
+</body>
+
+</html>
