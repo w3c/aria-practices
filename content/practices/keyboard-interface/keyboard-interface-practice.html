@@ -27,7 +27,7 @@
         <ol>
           <li>Understanding fundamental principles of focus movement conventions used in ARIA design patterns.</li>
           <li>Maintaining visible focus, predictable focus movement, and distinguishing between keyboard focus and the selected state.</li>
-          <li>Managing movement of keyboard focus between components, e.g., how the focus moves when the <kbd>Tab</kbd> and <kbd>Shift+Tab</kbd> keys are pressed.</li>
+          <li>Managing movement of keyboard focus between components, e.g., how the focus moves when the <kbd>Tab</kbd> and <kbd>Shift</kbd> + <kbd>Tab</kbd> keys are pressed.</li>
           <li>Managing movement of keyboard focus inside components that contain multiple focusable elements, e.g., two different methods for programmatically exposing focus inside widgets like radio groups, menus, listboxes, trees, and grids.</li>
           <li>Determining when to make disabled interactive elements focusable.</li>
           <li>Assigning and revealing keyboard shortcuts, including guidance on how to avoid problematic conflicts with keyboard commands of assistive technologies, browsers, and operating systems.</li>
@@ -54,7 +54,7 @@
         </p>
 
         <p>
-          A primary keyboard navigation convention common across all platforms is that the <kbd>tab</kbd> and <kbd>shift+tab</kbd> keys move focus from one UI component to another while other keys, primarily the arrow keys, move focus inside of components that include multiple focusable elements.
+          A primary keyboard navigation convention common across all platforms is that the <kbd>tab</kbd> and <kbd>shift</kbd> + <kbd>tab</kbd> keys move focus from one UI component to another while other keys, primarily the arrow keys, move focus inside of components that include multiple focusable elements.
           The path that the focus follows when pressing the <kbd>tab</kbd> key is known as the tab sequence or tab ring.
         </p>
 
@@ -262,7 +262,7 @@
 
         <p>
           As described in section <a href="#kbd_generalnav">Fundamental Keyboard Navigation Conventions</a>, the tab sequence should include only one focusable element of a composite UI component.
-          Once a composite contains focus, keys other than <kbd>Tab</kbd> and <kbd>Shift + Tab</kbd> enable the user to move focus among its focusable elements.
+          Once a composite contains focus, keys other than <kbd>Tab</kbd> and <kbd>Shift</kbd> + <kbd>Tab</kbd> enable the user to move focus among its focusable elements.
           Authors are free to choose which keys move focus inside of a composite, but they are strongly advised to use the same key bindings as similar components in common GUI operating systems as demonstrated in <a href="../../patterns/patterns.html">APG Patterns</a>.
         </p>
 
@@ -314,7 +314,7 @@
             </li>
 
             <li>
-              If the design calls for a specific element to be focused the next time the user moves focus into the composite with <kbd>Tab</kbd> or <kbd>Shift+Tab</kbd>, check if that target element has <code>tabindex="0"</code> when the composite loses focus.
+              If the design calls for a specific element to be focused the next time the user moves focus into the composite with <kbd>Tab</kbd> or <kbd>Shift</kbd> + <kbd>Tab</kbd>, check if that target element has <code>tabindex="0"</code> when the composite loses focus.
               If it does not, set <code>tabindex="0"</code> on the target element and set <code>tabindex="-1"</code> on the element that previously had <code>tabindex="0"</code>.
             </li>
           </ul>
@@ -355,7 +355,7 @@
               </ul>
             </li>
             <li>
-              If the design calls for a specific element to be focused the next time a user moves focus into the composite with <kbd>Tab</kbd> or <kbd>Shift+Tab</kbd>, check if aria-activedescendant is referring to that target element when the container loses focus.
+              If the design calls for a specific element to be focused the next time a user moves focus into the composite with <kbd>Tab</kbd> or <kbd>Shift</kbd> + <kbd>Tab</kbd>, check if aria-activedescendant is referring to that target element when the container loses focus.
               If it is not, set aria-activedescendant to refer to the target element.
             </li>
           </ul>
@@ -454,32 +454,32 @@
           <tbody>
             <tr>
               <th scope="row">open context menu</th>
-              <td><kbd>Shift + F10</kbd></td>
+              <td><kbd>Shift</kbd> + <kbd>F10</kbd></td>
               <td></td>
             </tr>
             <tr>
               <th scope="row">Copy to clipboard</th>
-              <td><kbd>Control + C</kbd></td>
-              <td><kbd>Command + C</kbd></td>
+              <td><kbd>Control</kbd> + <kbd>C</kbd></td>
+              <td><kbd>Command</kbd> + <kbd>C</kbd></td>
             </tr>
             <tr>
               <th scope="row">Paste from clipboard</th>
-              <td><kbd>Control + V</kbd></td>
-              <td><kbd>Command + V</kbd></td>
+              <td><kbd>Control</kbd> + <kbd>V</kbd></td>
+              <td><kbd>Command</kbd> + <kbd>V</kbd></td>
             </tr>
             <tr>
               <th scope="row">Cut to clipboard</th>
-              <td><kbd>Control + X</kbd></td>
-              <td><kbd>Command + X</kbd></td>
+              <td><kbd>Control</kbd> + <kbd>X</kbd></td>
+              <td><kbd>Command</kbd> + <kbd>X</kbd></td>
             </tr>
             <tr>
               <th scope="row">undo last action</th>
-              <td><kbd>Control + Z</kbd></td>
-              <td><kbd>Command + Z</kbd></td>
+              <td><kbd>Control</kbd> + <kbd>Z</kbd></td>
+              <td><kbd>Command</kbd> + <kbd>Z</kbd></td>
             </tr>
             <tr>
               <th scope="row">Redo action</th>
-              <td><kbd>Control + Y</kbd></td>
+              <td><kbd>Control</kbd> + <kbd>Y</kbd></td>
               <td><kbd>Command + Shift + Z</kbd></td>
             </tr>
           </tbody>
@@ -592,7 +592,7 @@
           <h3>Assigning Keyboard Shortcuts</h3>
           <p>When choosing the keys to assign to a shortcut, there are many factors to consider.</p>
           <ul>
-            <li>Making the shortcut easy to learn and remember by using a mnemonic (e.g., <kbd>Control + S</kbd> for "Save") or following a logical or spacial pattern.</li>
+            <li>Making the shortcut easy to learn and remember by using a mnemonic (e.g., <kbd>Control</kbd> + <kbd>S</kbd> for "Save") or following a logical or spacial pattern.</li>
             <li>Localizing the interface, including for differences in which keys are available and how they behave and for language considerations that could impact mnemonics.</li>
             <li>Avoiding and managing conflicts with key assignments used by an assistive technology, the browser, or the operating system.</li>
           </ul>
@@ -657,7 +657,7 @@
               <li><kbd>Caps Lock</kbd> + any other combination of keys.</li>
               <li><kbd>Insert</kbd> + any combination of other keys.</li>
               <li><kbd>Scroll Lock</kbd> + any combination of other keys.</li>
-              <li>macOS only: <kbd>Control+Option</kbd> + any combination of other keys.</li>
+              <li>macOS only: <kbd>Control</kbd> + <kbd>Option</kbd> + any combination of other keys.</li>
             </ol>
           </section>
 
