@@ -32,11 +32,6 @@ class TabsManual {
       tab.addEventListener('keydown', this.onKeydown.bind(this));
       tab.addEventListener('click', this.onClick.bind(this));
 
-      this.getTabAriaActions(tab).forEach((action) => {
-        action.addEventListener('keydown', this.onKeydown.bind(this));
-        action.addEventListener('blur', this.onBlur.bind(this));
-      });
-
       if (!this.firstTab) {
         this.firstTab = tab;
       }
@@ -46,43 +41,16 @@ class TabsManual {
     this.setSelectedTab(this.firstTab);
   }
 
-  getTabAriaActions(tab) {
-    var actions = tab.getAttribute('aria-actions');
-    if (actions) {
-      return actions.split(' ').map((id) => document.getElementById(id));
-    } else {
-      return [];
-    }
-  }
-
-  getTabAssociatedWithAction(action) {
-    return document.querySelector(`[aria-actions~="${action.id}"]`);
-  }
-
-  makeAssociatedActionsFocusable(tab) {
-    this.getTabAriaActions(tab).forEach((action) => {
-      action.removeAttribute('tabindex');
-    });
-  }
-
-  makeAssociatedActionsUnfocusable(tab) {
-    this.getTabAriaActions(tab).forEach((action) => {
-      action.tabIndex = -1;
-    });
-  }
-
   setSelectedTab(currentTab) {
     for (var i = 0; i < this.tabs.length; i += 1) {
       var tab = this.tabs[i];
       if (currentTab === tab) {
         tab.setAttribute('aria-selected', 'true');
         tab.removeAttribute('tabindex');
-        this.makeAssociatedActionsFocusable(tab);
         this.tabpanels[i].classList.remove('is-hidden');
       } else {
         tab.setAttribute('aria-selected', 'false');
         tab.tabIndex = -1;
-        this.makeAssociatedActionsUnfocusable(tab);
         this.tabpanels[i].classList.add('is-hidden');
       }
     }
@@ -90,13 +58,6 @@ class TabsManual {
 
   moveFocusToTab(currentTab) {
     currentTab.focus();
-    this.tabs.forEach((tab) => {
-      if (currentTab === tab) {
-        this.makeAssociatedActionsFocusable(tab);
-      } else if (tab.getAttribute('aria-selected') !== 'true') {
-        this.makeAssociatedActionsUnfocusable(tab);
-      }
-    });
   }
 
   moveFocusToPreviousTab(currentTab) {
@@ -126,10 +87,6 @@ class TabsManual {
   onKeydown(event) {
     var tgt = event.currentTarget,
       flag = false;
-
-    if (tgt.getAttribute('role') !== 'tab') {
-      tgt = this.getTabAssociatedWithAction(tgt);
-    }
 
     switch (event.key) {
       case 'ArrowLeft':
@@ -166,15 +123,6 @@ class TabsManual {
   // with the space and enter keys
   onClick(event) {
     this.setSelectedTab(event.currentTarget);
-  }
-
-  onBlur(event) {
-    const tab = event.currentTarget.closest(
-      '.menu-button-actions'
-    ).previousElementSibling;
-    if (tab.getAttribute('aria-selected') !== 'true') {
-      this.makeAssociatedActionsUnfocusable(tab);
-    }
   }
 }
 

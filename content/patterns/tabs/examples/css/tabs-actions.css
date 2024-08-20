@@ -33,10 +33,6 @@
   display: flex;
   gap: 0.5ch;
   z-index: 1;
-
-  /* overflow-x: auto; */
-
-  /* overflow-y: visible; */
   margin-block-start: 1rem;
   padding-block-start: var(--selected-tab-accent-block-size);
 }
@@ -114,10 +110,7 @@
 }
 
 [role="tab"][aria-selected="true"],
-[role="tab"][aria-selected="true"] ~ button:not([role="tab"]),
-[role="tab"][aria-selected="true"]
-  ~ .menu-button-actions
-  > button:not([role="tab"]) {
+[role="presentation"]:has([role="tab"][aria-selected="true"]) {
   color: hsl(var(--color-1-hue) var(--color-1-sat) var(--light-min));
   background-color: hsl(
     var(--color-1-hue)
