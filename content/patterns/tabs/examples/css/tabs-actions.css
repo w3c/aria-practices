@@ -28,9 +28,32 @@
   display: block;
 }
 
+.tabs output {
+  display: block;
+}
+
+.tabs output span {
+  display: inline-block;
+  padding: 0.25rem 1ch;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: darkgreen;
+  color: white;
+  border-radius: 0.25rem;
+}
+
+.tabs output span.error {
+  background-color: darkred;
+}
+
+.tabs button[data-operation] {
+  line-height: 1;
+}
+
 [role="tablist"] {
   position: relative;
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5ch;
   z-index: 1;
   margin-block-start: 1rem;
@@ -42,18 +65,14 @@
   border: 1px solid
     hsl(var(--color-1-hue) var(--color-1-sat) var(--light-diminish));
   background-color: hsl(
-    var(--color-1-hue)
-    var(--color-1-sat)
-    var(--light-inactive)
+    var(--color-1-hue) var(--color-1-sat) var(--light-inactive)
   );
   border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
 [role="tablist"] > *:hover {
   background-color: hsl(
-    var(--color-1-hue)
-    var(--color-1-sat)
-    var(--light-interest)
+    var(--color-1-hue) var(--color-1-sat) var(--light-interest)
   );
 }
 
@@ -112,11 +131,7 @@
 [role="tab"][aria-selected="true"],
 [role="presentation"]:has([role="tab"][aria-selected="true"]) {
   color: hsl(var(--color-1-hue) var(--color-1-sat) var(--light-min));
-  background-color: hsl(
-    var(--color-1-hue)
-    var(--color-1-sat)
-    var(--light-max)
-  );
+  background-color: hsl(var(--color-1-hue) var(--color-1-sat) var(--light-max));
 }
 
 [role="tablist"] > [role="tab"][aria-selected="true"],
@@ -124,9 +139,7 @@
   > [role="presentation"]:has([role="tab"][aria-selected="true"]) {
   border-radius: 0;
   border-block-end-color: hsl(
-    var(--color-1-hue)
-    var(--color-1-sat)
-    var(--light-max)
+    var(--color-1-hue) var(--color-1-sat) var(--light-max)
   );
 }
 
@@ -151,11 +164,7 @@
   padding: 1em 2ch;
   min-block-size: 10em;
   margin-block-end: 1rem;
-  background-color: hsl(
-    var(--color-1-hue)
-    var(--color-1-sat)
-    var(--light-max)
-  );
+  background-color: hsl(var(--color-1-hue) var(--color-1-sat) var(--light-max));
   border: 1px solid
     hsl(var(--color-1-hue) var(--color-1-sat) var(--light-diminish));
   border-radius: 0 var(--border-radius) var(--border-radius);
@@ -178,8 +187,8 @@
   inset-block-start: calc(100% - 1em);
   inset-inline-start: 0%;
   list-style: none;
-  font-size: 0.9em;
-  min-inline-size: 26ch;
+  font-size: 0.85rem;
+  min-inline-size: 28ch;
   padding: 1ch;
   background-color: white;
   border: 1px solid
