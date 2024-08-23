@@ -199,7 +199,7 @@ class TabsManual {
     const movementFunction = dir === 'forward' ? 'after' : 'before';
     const dest =
       dir === 'forward' ? 'nextElementSibling' : 'previousElementSibling';
-    const destIndex = index + dir === 'forward' ? 1 : -1;
+    const destIndex = dir === 'forward' ? index + 1 : index - 1;
     const destTabWrapper = tabWrapper[dest];
     const destTabPanel = tabPanel[dest];
 
