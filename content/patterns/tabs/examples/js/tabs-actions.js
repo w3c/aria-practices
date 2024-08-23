@@ -87,7 +87,7 @@ class TabsManual {
   }
 
   getClosestTabWrapper(el) {
-    return el.closest('[role="presentation"]');
+    return el ? el.closest('[role="presentation"]') : null;
   }
 
   getActionAssociatedWithOperation(operation) {
@@ -99,7 +99,7 @@ class TabsManual {
     }
   }
 
-  makeTabeAndActionsFocusable(tab) {
+  makeTabAndActionsFocusable(tab) {
     tab.removeAttribute('tabindex');
     this.getTabAriaActions(tab).forEach((action) => {
       action.removeAttribute('tabindex');
@@ -107,7 +107,8 @@ class TabsManual {
   }
 
   makeTabAndActionsUnfocusable(tab) {
-    if (tab.getAttribute('aria-selected') !== 'true') {
+    const selectedTab = this.getSelectedTab();
+    if (tab !== selectedTab) {
       tab.tabIndex = -1;
       this.getTabAriaActions(tab).forEach((action) => {
         action.tabIndex = -1;
@@ -120,7 +121,7 @@ class TabsManual {
       var tab = this.tabs[i];
       if (currentTab === tab) {
         tab.setAttribute('aria-selected', 'true');
-        this.makeTabeAndActionsFocusable(tab);
+        this.makeTabAndActionsFocusable(tab);
         this.tabpanels[i].classList.remove('is-hidden');
       } else {
         tab.setAttribute('aria-selected', 'false');
@@ -130,37 +131,84 @@ class TabsManual {
     }
   }
 
-  moveFocusToTab(currentTab) {
-    currentTab.focus();
+  getSelectedTab() {
+    return this.tablistNode.querySelector('[aria-selected="true"]');
+  }
+
+  moveFocusToTab(newTab) {
+    const selectedTab = this.getSelectedTab();
+    newTab.focus();
     this.tabs.forEach((tab) => {
-      if (currentTab === tab) {
-        this.makeTabeAndActionsFocusable(tab);
-      } else if (tab.getAttribute('aria-selected') !== 'true') {
+      if (newTab === tab) {
+        this.makeTabAndActionsFocusable(tab);
+      } else if (tab !== selectedTab) {
         this.makeTabAndActionsUnfocusable(tab);
       }
     });
+    return newTab;
   }
 
   moveFocusToPreviousTab(currentTab) {
-    var index;
-
+    var newTab;
     if (currentTab === this.firstTab) {
-      this.moveFocusToTab(this.lastTab);
+      newTab = this.lastTab;
     } else {
-      index = this.tabs.indexOf(currentTab);
-      this.moveFocusToTab(this.tabs[index - 1]);
+      newTab = this.tabs[this.tabs.indexOf(currentTab) - 1];
     }
+    return this.moveFocusToTab(newTab);
   }
 
   moveFocusToNextTab(currentTab) {
-    var index;
-
+    var newTab;
     if (currentTab === this.lastTab) {
-      this.moveFocusToTab(this.firstTab);
+      newTab = this.firstTab;
     } else {
-      index = this.tabs.indexOf(currentTab);
-      this.moveFocusToTab(this.tabs[index + 1]);
+      newTab = this.tabs[this.tabs.indexOf(currentTab) + 1];
     }
+    return this.moveFocusToTab(newTab);
+  }
+
+  copyTabpanelToClipboard(tab, output) {
+    const tabPanel = document.getElementById(tab.getAttribute('aria-controls'));
+    const tabText = tabPanel.textContent.replace(/\s+/g, ' ').trim();
+    navigator.clipboard.writeText(tabText).then(
+      () => {
+        this.presentFeedback(
+          output,
+          `Copied ${tab.textContent} tab contents to clipboard`
+        );
+      },
+      (err) => {
+        this.presentFeedback(
+          output,
+          `Failed to copy ${tab.textContent} tab contents to clipboard`,
+          err
+        );
+      }
+    );
+  }
+
+  deleteTab(tab) {
+    const tabWrapper = this.getClosestTabWrapper(tab);
+    const tabPanel = document.getElementById(tab.getAttribute('aria-controls'));
+    const selectedTab = this.getSelectedTab();
+
+    if (tab === selectedTab) {
+      const newTab =
+        tab === this.lastTab
+          ? this.moveFocusToPreviousTab(selectedTab)
+          : this.moveFocusToNextTab(selectedTab);
+      this.setSelectedTab(newTab);
+    } else {
+      this.moveFocusToTab(selectedTab);
+    }
+
+    this.tabs = this.tabs.filter((t) => t !== tab);
+    this.tabpanels = this.tabpanels.filter((tp) => tp !== tabPanel);
+    this.firstTab = this.tabs[0];
+    this.lastTab = this.tabs[this.tabs.length - 1];
+    tabWrapper.remove();
+    tabPanel.remove();
   }
 
   /* EVENT HANDLERS */
@@ -216,34 +264,29 @@ class TabsManual {
     }
 
     const operation = event.currentTarget;
-    const operationCode = operation.getAttribute('data-operation');
     const action = this.getActionAssociatedWithOperation(operation);
     const tab = this.getTabAssociatedWithAction(action);
-    const tabPanel = document.getElementById(tab.getAttribute('aria-controls'));
+    const operationCode = operation.getAttribute('data-operation');
+    const output = operation.closest('.tabs').querySelector('output');
 
     switch (operationCode) {
       case 'clipboard-copy': {
-        const tabText = tabPanel.textContent.replace(/\s+/g, ' ').trim();
-        navigator.clipboard.writeText(tabText).then(
-          () => {
-            this.presentFeedback(
-              operation,
-              `Copied ${tab.textContent} tab contents to clipboard`
-            );
-          },
-          (err) => {
-            this.presentFeedback(
-              operation,
-              `Failed to copy ${tab.textContent} tab contents to clipboard`,
-              err
-            );
-          }
-        );
+        this.copyTabpanelToClipboard(tab, output);
+        break;
+      }
+      case 'close': {
+        if (this.tabs.length > 1) {
+          const tabName = tab.textContent;
+          this.deleteTab(tab);
+          this.presentFeedback(output, `Closed the ${tabName} tab`);
+        } else {
+          this.presentFeedback(output, 'Cannot delete the last tab', 'error');
+        }
         break;
       }
       default: {
         this.presentFeedback(
-          operation,
+          output,
           `<em>Sorry, haven’t implemented the ${operationCode} operation yet</em>`,
           'error'
         );
@@ -251,8 +294,7 @@ class TabsManual {
     }
   }
 
-  presentFeedback(operation, msg, err) {
-    const output = operation.closest('.tabs').querySelector('output');
+  presentFeedback(output, msg, err) {
     if (output) {
       output.innerHTML = `<span class="${err ? 'error' : 'success'}">${msg}</span>`;
     }
