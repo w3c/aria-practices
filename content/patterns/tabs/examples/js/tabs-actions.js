@@ -90,6 +90,10 @@ class TabsManual {
     return el ? el.closest('[role="presentation"]') : null;
   }
 
+  getTabpanelAssociatedWithTab(tab) {
+    return document.getElementById(tab.getAttribute('aria-controls'));
+  }
+
   getActionAssociatedWithOperation(operation) {
     const idrefAction = operation.getAttribute('data-action');
     if (idrefAction) {
@@ -173,13 +177,13 @@ class TabsManual {
     const tabText = tabPanel.textContent.replace(/\s+/g, ' ').trim();
     navigator.clipboard.writeText(tabText).then(
       () => {
-        this.presentFeedback(
+        this.showSuccess(
           output,
           `Copied ${tab.textContent} tab contents to clipboard`
         );
       },
       (err) => {
-        this.presentFeedback(
+        this.showError(
           output,
           `Failed to copy ${tab.textContent} tab contents to clipboard`,
           err
@@ -188,7 +192,35 @@ class TabsManual {
     );
   }
 
+  relocateTab(tab, dir) {
+    const index = this.tabs.indexOf(tab);
+    const tabWrapper = this.getClosestTabWrapper(tab);
+    const tabPanel = this.getTabpanelAssociatedWithTab(tab);
+    const movementFunction = dir === 'forward' ? 'after' : 'before';
+    const dest =
+      dir === 'forward' ? 'nextElementSibling' : 'previousElementSibling';
+    const destIndex = index + dir === 'forward' ? 1 : -1;
+    const destTabWrapper = tabWrapper[dest];
+    const destTabPanel = tabPanel[dest];
+
+    if (destTabWrapper && destTabPanel) {
+      destTabWrapper[movementFunction](tabWrapper);
+      destTabPanel[movementFunction](tabPanel);
+      this.tabs.splice(destIndex, 0, this.tabs.splice(index, 1)[0]);
+      this.tabpanels.splice(destIndex, 0, this.tabpanels.splice(index, 1)[0]);
+      this.firstTab = this.tabs[0];
+      this.lastTab = this.tabs[this.tabs.length - 1];
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   deleteTab(tab) {
+    if (this.tabs.length === 1) {
+      return false;
+    }
+
     const tabWrapper = this.getClosestTabWrapper(tab);
     const tabPanel = document.getElementById(tab.getAttribute('aria-controls'));
     const selectedTab = this.getSelectedTab();
@@ -209,6 +241,8 @@ class TabsManual {
     this.lastTab = this.tabs[this.tabs.length - 1];
     tabWrapper.remove();
     tabPanel.remove();
+
+    return true;
   }
 
   /* EVENT HANDLERS */
@@ -268,35 +302,46 @@ class TabsManual {
     const tab = this.getTabAssociatedWithAction(action);
     const operationCode = operation.getAttribute('data-operation');
     const output = operation.closest('.tabs').querySelector('output');
+    const tabName = tab.textContent;
 
     switch (operationCode) {
       case 'clipboard-copy': {
         this.copyTabpanelToClipboard(tab, output);
         break;
       }
-      case 'close': {
-        if (this.tabs.length > 1) {
-          const tabName = tab.textContent;
-          this.deleteTab(tab);
-          this.presentFeedback(output, `Closed the ${tabName} tab`);
+      case 'move-backward':
+      case 'move-forward': {
+        const dir = operationCode === 'move-forward' ? 'forward' : 'backward';
+        if (this.relocateTab(tab, dir)) {
+          this.showSuccess(output, `Moved ${tabName} ${dir}.`);
         } else {
-          this.presentFeedback(output, 'Cannot delete the last tab', 'error');
+          this.showError(output, `Can’t move ${tabName} ${dir} any further.`);
+        }
+        break;
+      }
+      case 'close': {
+        if (this.deleteTab(tab)) {
+          this.showSuccess(output, `Closed ${tabName}.`);
+        } else {
+          this.showError(output, 'Can’t delete the last tab.');
         }
         break;
       }
       default: {
-        this.presentFeedback(
-          output,
-          `<em>Sorry, haven’t implemented the ${operationCode} operation yet</em>`,
-          'error'
-        );
+        this.showError(output, `Sorry, ${operationCode} isn’t built yet.`);
       }
     }
   }
 
-  presentFeedback(output, msg, err) {
+  showSuccess(output, msg) {
     if (output) {
-      output.innerHTML = `<span class="${err ? 'error' : 'success'}">${msg}</span>`;
+      output.innerHTML = `<span class="success">${msg}</span>`;
+    }
+  }
+
+  showError(output, msg) {
+    if (output) {
+      output.innerHTML = `<span class="error"><em>${msg}</em></span>`;
     }
   }
 
