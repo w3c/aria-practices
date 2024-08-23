@@ -302,7 +302,7 @@ class TabsManual {
     const tab = this.getTabAssociatedWithAction(action);
     const operationCode = operation.getAttribute('data-operation');
     const output = operation.closest('.tabs').querySelector('output');
-    const tabName = tab.textContent;
+    const tabName = tab.textContent.trim();
 
     switch (operationCode) {
       case 'clipboard-copy': {
