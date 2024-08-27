@@ -73,7 +73,11 @@ ariaTest(
 
       for (let l = 0; l < links.length; l++) {
         await buttons[b].click();
-        await links[l].click();
+        await t.context.session.executeScript(function () {
+          const link = arguments[0];
+          link.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          link.click();
+        }, links[l]);
 
         t.is(
           await links[l].getAttribute('aria-current'),

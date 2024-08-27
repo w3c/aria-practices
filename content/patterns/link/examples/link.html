@@ -149,6 +149,7 @@
 
       <section id="at-support">
         <h2>Assistive Technology Support</h2>
+        <p><a href="../../../about/at-support-tables/at-support-tables.html">Learn how to interpret and use assistive technology support data</a></p>
         <iframe
           class="support-levels-link-span-text"
           src="https://aria-at.w3.org/embed/reports/link-span-text"
@@ -172,24 +173,27 @@
         </ul>
       </section>
 
-      <section>
+      <section class="example-code">
         <h2>HTML Source Code</h2>
         <h3 id="sc1_label">Link 1</h3>
+        <p id="sc1_description">To copy the following HTML code, please open it in CodePen.</p>
         <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
         <pre><code id="sc1"></code></pre>
         <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
         <h3 id="sc2_label">Link 2</h3>
+        <p id="sc2_description">To copy the following HTML code, please open it in CodePen.</p>
         <div role="separator" id="sc2_start_sep" aria-labelledby="sc2_start_sep sc2_label" aria-label="Start of"></div>
         <pre><code id="sc2"></code></pre>
         <div role="separator" id="sc2_end_sep" aria-labelledby="sc2_end_sep sc2_label" aria-label="End of"></div>
         <h3 id="sc3_label">Link 3</h3>
+        <p id="sc3_description">To copy the following HTML code, please open it in CodePen.</p>
         <div role="separator" id="sc3_start_sep" aria-labelledby="sc3_start_sep sc3_label" aria-label="Start of"></div>
         <pre><code id="sc3"></code></pre>
         <div role="separator" id="sc3_end_sep" aria-labelledby="sc3_end_sep sc3_label" aria-label="End of"></div>
         <script>
-          sourceCode.add('sc1', 'ex1', 'ex1_label', 'css_js_files');
-          sourceCode.add('sc2', 'ex2', 'ex2_label', 'css_js_files');
-          sourceCode.add('sc3', 'ex3', 'ex3_label', 'css_js_files');
+          sourceCode.add('sc1', 'ex1', 'ex1_label', 'css_js_files', 'sc1_description');
+          sourceCode.add('sc2', 'ex2', 'ex2_label', 'css_js_files', 'sc2_description');
+          sourceCode.add('sc3', 'ex3', 'ex3_label', 'css_js_files', 'sc3_description');
           sourceCode.make();
         </script>
       </section>
