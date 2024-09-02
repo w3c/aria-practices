@@ -66,7 +66,7 @@
           <div class="tabs">
             <h3 id="tablist-1">Interesting Sharks</h3>
             <div role="tablist" aria-labelledby="tablist-1" class="manual">
-              <div role="presentation">
+              <div class="tab-wrapper">
                 <button id="tab-1" type="button" role="tab" aria-selected="true" aria-controls="tabpanel-1" aria-actions="tab-1-action">
                   <span class="focus">Nurse shark</span>
                 </button>
@@ -86,7 +86,7 @@
                   </ul>
                 </div>
               </div>
-              <div role="presentation">
+              <div class="tab-wrapper">
                 <button id="tab-2" type="button" role="tab" aria-selected="false" aria-controls="tabpanel-2" tabindex="-1" aria-actions="tab-2-action">
                   <span class="focus">Basking shark</span>
                 </button>
@@ -106,7 +106,7 @@
                   </ul>
                 </div>
               </div>
-              <div role="presentation">
+              <div class="tab-wrapper">
                 <button id="tab-3" type="button" role="tab" aria-selected="false" aria-controls="tabpanel-3" tabindex="-1" aria-actions="tab-3-action">
                   <span class="focus">Whale shark</span>
                 </button>
@@ -126,7 +126,7 @@
                   </ul>
                 </div>
               </div>
-              <div role="presentation">
+              <div class="tab-wrapper">
                 <button id="tab-4" type="button" role="tab" aria-selected="false" aria-controls="tabpanel-4" tabindex="-1" aria-actions="tab-4-action">
                   <span class="focus">Goblin shark</span>
                 </button>
@@ -218,151 +218,6 @@
               </p>
             </div>
             <output for="tablist-1" class="action"></output>
-          </div>
-
-          <div class="tabs">
-            <h3 id="tablist-3">Tropical Fruit</h3>
-            <div role="tablist" aria-labelledby="tablist-3" class="manual">
-              <div role="presentation">
-                <button id="tab-9" type="button" role="tab" aria-selected="true" aria-controls="tabpanel-9" aria-actions="tab-9-action-clipboard-copy tab-9-action-close">
-                  <span class="focus">Mangosteen</span>
-                </button>
-                <button type="button" id="tab-9-action-clipboard-copy" tabindex="-1" data-operation="clipboard-copy" aria-label="Copy Mangosteen tab content to clipboard">
-                  📋
-                </button>
-                <button type="button" id="tab-9-action-close" tabindex="-1" data-operation="close" aria-label="Close Mangosteen tab">
-                  ❌
-                </button>
-              </div>
-              <div role="presentation">
-                <button id="tab-10" type="button" role="tab" aria-selected="false" aria-controls="tabpanel-10" tabindex="-1" aria-actions="tab-10-action-clipboard-copy tab-10-action-close">
-                  <span class="focus">Durian</span>
-                </button>
-                <button type="button" id="tab-10-action-clipboard-copy" tabindex="-1" data-operation="clipboard-copy" aria-label="Copy Durian tab content to clipboard">
-                  📋
-                </button>
-                <button type="button" id="tab-10-action-close" tabindex="-1" data-operation="close" aria-label="Close Durian tab">
-                  ❌
-                </button>
-              </div>
-              <div role="presentation">
-                <button id="tab-11" type="button" role="tab" aria-selected="false" aria-controls="tabpanel-11" tabindex="-1" aria-actions="tab-11-action-clipboard-copy tab-11-action-close">
-                  <span class="focus">Guava</span>
-                </button>
-                <button type="button" id="tab-11-action-clipboard-copy" tabindex="-1" data-operation="clipboard-copy" aria-label="Copy Guava tab content to clipboard">
-                  📋
-                </button>
-                <button type="button" id="tab-11-action-close" tabindex="-1" data-operation="close" aria-label="Close Guava tab">
-                  ❌
-                </button>
-              </div>
-              <div role="presentation">
-                <button id="tab-12" type="button" role="tab" aria-selected="false" aria-controls="tabpanel-12" tabindex="-1" aria-actions="tab-12-action-clipboard-copy tab-12-action-close">
-                  <span class="focus">Lychee</span>
-                </button>
-                <button type="button" id="tab-12-action-clipboard-copy" tabindex="-1" data-operation="clipboard-copy" aria-label="Copy Lychee tab content to clipboard">
-                  📋
-                </button>
-                <button type="button" id="tab-12-action-close" tabindex="-1" data-operation="close" aria-label="Close Lychee tab">
-                  ❌
-                </button>
-              </div>
-            </div>
-            <div id="tabpanel-9" role="tabpanel" aria-labelledby="tab-9">
-              <p>
-                <a
-                href="https://en.wikipedia.org/wiki/Mangosteen">Mangosteen</a>,
-                also known as the purple mangosteen, is a tropical evergreen
-                tree with edible fruit native to Island Southeast Asia, from the
-                Malay Peninsula to Borneo. It has been cultivated extensively in
-                tropical Asia since ancient times.
-              </p>
-            </div>
-            <div id="tabpanel-10" role="tabpanel" aria-labelledby="tab-10" class="is-hidden">
-              <p>
-                The <a href="https://en.wikipedia.org/wiki/Durian">durian</a> is
-                the edible fruit of several tree species belonging to the genus
-                <span lang="la">Durio</span>. There are 30 recognized <span
-                lang="la">Durio</span> species, at least nine of which produce
-                edible fruit. <span lang="la">Durio zibethinus</span>, native to
-                Borneo and Sumatra, is the only species available on the
-                international market.
-              </p>
-            </div>
-            <div id="tabpanel-11" role="tabpanel" aria-labelledby="tab-11" class="is-hidden">
-              <p>
-                <a href="https://en.wikipedia.org/wiki/Guava">Guava</a> is a
-                common tropical fruit cultivated in many tropical and
-                subtropical regions. The common guava <span lang="la">Psidium
-                guajava</span> is a small tree in the myrtle family, native to
-                Mexico, Central America, the Caribbean and northern South
-                America.
-              </p>
-            </div>
-            <div id="tabpanel-12" role="tabpanel" aria-labelledby="tab-12" class="is-hidden">
-              <p>
-                <a href="https://en.wikipedia.org/wiki/Lychee">Lychee</a> is a
-                monotypic taxon and the sole member in the genus <span
-                lang="la">Litchi</span> in the soapberry family, <span
-                lang="la">Sapindaceae</span>. There are three distinct
-                subspecies of lychee. The most common is the Indochinese lychee
-                found in South China, Malaysia, and northern Vietnam.
-              </p>
-            </div>
-
-            <output for="tablist-3" class="action"></output>
-          </div>
-
-
-          <div class="tabs">
-            <h3 id="tablist-2">Danish Composers</h3>
-            <div role="tablist" aria-labelledby="tablist-2" class="manual">
-              <button id="tab-5" type="button" role="tab" aria-selected="true" aria-controls="tabpanel-5">
-                <span class="focus">Maria Ahlefeldt</span>
-              </button>
-              <button id="tab-6" type="button" role="tab" aria-selected="false" aria-controls="tabpanel-6" tabindex="-1">
-                <span class="focus">Carl Andersen</span>
-              </button>
-              <button id="tab-7" type="button" role="tab" aria-selected="false" aria-controls="tabpanel-7" tabindex="-1">
-                <span class="focus">Ida da Fonseca</span>
-              </button>
-              <button id="tab-8" type="button" role="tab" aria-selected="false" aria-controls="tabpanel-8" tabindex="-1">
-                <span class="focus">Peter Müller</span>
-              </button>
-            </div>
-            <div id="tabpanel-5" role="tabpanel" aria-labelledby="tab-5">
-              <p>
-                <a href="https://en.wikipedia.org/wiki/Maria_Theresia_Ahlefeldt">Maria Theresia Ahlefeldt</a>
-                (16 January 1755 – 20 December 1810) was a Danish, (originally German), composer.
-                She is known as the first female composer in Denmark.
-                Maria Theresia composed music for several ballets, operas, and plays of the royal theatre.
-                She was given good critic as a composer and described as a “<span lang="da">virkelig Tonekunstnerinde</span>” ('a True Artist of Music').
-              </p>
-            </div>
-            <div id="tabpanel-6" role="tabpanel" aria-labelledby="tab-6" class="is-hidden">
-              <p>
-                <a href="https://en.wikipedia.org/wiki/Joachim_Andersen_(composer)">Carl Joachim Andersen</a>
-                (29 April 1847 – 7 May 1909) was a Danish flutist, conductor and composer born in Copenhagen, son of the flutist Christian Joachim Andersen.
-                Both as a virtuoso and as composer of flute music, he is considered one of the best of his time.
-                He was considered to be a tough leader and teacher and demanded as such a lot from his orchestras but through that style he reached a high level.
-              </p>
-            </div>
-            <div id="tabpanel-7" role="tabpanel" aria-labelledby="tab-7" class="is-hidden">
-              <p>
-                <a href="https://en.wikipedia.org/wiki/Ida_Henriette_da_Fonseca">Ida Henriette da Fonseca</a>
-                (July 27, 1802 – July 6, 1858) was a Danish opera singer and composer.
-                Ida Henriette da Fonseca was the daughter of Abraham da Fonseca (1776–1849) and Marie Sofie Kiærskou (1784–1863).
-                She and her sister Emilie da Fonseca were students of Giuseppe Siboni, choir master of the Opera in Copenhagen.
-                She was given a place at the royal Opera alongside her sister the same year she debuted in 1827.
-              </p>
-            </div>
-            <div id="tabpanel-8" role="tabpanel" aria-labelledby="tab-8" class="is-hidden">
-              <p>
-                <a href="https://en.wikipedia.org/wiki/Peter_Lange-M%C3%BCller">Peter Erasmus Lange-Müller</a>
-                (1 December 1850 – 26 February 1926) was a Danish composer and pianist.
-                His compositional style was influenced by Danish folk music and by the work of Robert Schumann; Johannes Brahms; and his Danish countrymen, including J.P.E. Hartmann.
-              </p>
-            </div>
           </div>
         </div>
         <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>

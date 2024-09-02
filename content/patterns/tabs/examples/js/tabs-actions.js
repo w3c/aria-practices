@@ -87,7 +87,7 @@ class TabsManual {
   }
 
   getClosestTabWrapper(el) {
-    return el ? el.closest('[role="presentation"]') : null;
+    return el ? el.closest('.tab-wrapper') : null;
   }
 
   getTabpanelAssociatedWithTab(tab) {

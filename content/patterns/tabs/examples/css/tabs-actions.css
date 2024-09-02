@@ -76,7 +76,7 @@
   );
 }
 
-[role="tablist"] > [role="presentation"] {
+[role="tablist"] > .tab-wrapper {
   display: flex;
 }
 
@@ -129,14 +129,13 @@
 }
 
 [role="tab"][aria-selected="true"],
-[role="presentation"]:has([role="tab"][aria-selected="true"]) {
+.tab-wrapper:has([role="tab"][aria-selected="true"]) {
   color: hsl(var(--color-1-hue) var(--color-1-sat) var(--light-min));
   background-color: hsl(var(--color-1-hue) var(--color-1-sat) var(--light-max));
 }
 
 [role="tablist"] > [role="tab"][aria-selected="true"],
-[role="tablist"]
-  > [role="presentation"]:has([role="tab"][aria-selected="true"]) {
+[role="tablist"] > .tab-wrapper:has([role="tab"][aria-selected="true"]) {
   border-radius: 0;
   border-block-end-color: hsl(
     var(--color-1-hue) var(--color-1-sat) var(--light-max)
@@ -144,8 +143,7 @@
 }
 
 [role="tablist"] > [role="tab"][aria-selected="true"]::after,
-[role="tablist"]
-  > [role="presentation"]:has([role="tab"][aria-selected="true"])::after {
+[role="tablist"] > .tab-wrapper:has([role="tab"][aria-selected="true"])::after {
   content: "";
   position: absolute;
   inset-block-start: calc(-1 * var(--selected-tab-accent-block-size));
