@@ -771,7 +771,7 @@ const systemColorValues = [
  * @return {String) d=see @desc
  */
 
-function rgb2Hex(rgb) {
+function rgb2Hex(rgb, systemColor = '') {
   // Choose correct separator
   let sep = rgb.indexOf(',') > -1 ? ',' : ' ';
   // Turn "rgb(r,g,b)" into [r,g,b]
@@ -783,9 +783,9 @@ function rgb2Hex(rgb) {
     return 'transparent';
   }
 
-  let r = Math.round(parseInt(rgb[0]) * a).toString(16),
-    g = Math.round(parseInt(rgb[1]) * a).toString(16),
-    b = Math.round(parseInt(rgb[2]) * a).toString(16);
+  let r = Math.round((parseInt(rgb[0]) * a) + (255 * (1 - a))).toString(16),
+    g = Math.round((parseInt(rgb[1]) * a) + (255 * (1 - a))).toString(16),
+    b = Math.round((parseInt(rgb[2]) * a) + (255 * (1 - a))).toString(16);
 
   if (r.length == 1) {
     r = '0' + r;
@@ -797,7 +797,11 @@ function rgb2Hex(rgb) {
     b = '0' + b;
   }
 
-  return '#' + r + g + b;
+  const hex = '#' + r + g + b;
+
+  console.log(`[${systemColor}]: ${rgb} ${hex}`);
+
+  return hex;
 }
 
 // Fill in System color table
@@ -827,7 +831,7 @@ window.addEventListener('load', () => {
       tr.appendChild(tdd);
       tbodyNode.appendChild(tr);
       const cStyle = window.getComputedStyle(div);
-      const colorHex = rgb2Hex(cStyle.backgroundColor);
+      const colorHex = rgb2Hex(cStyle.backgroundColor, v.value);
       tdc.textContent = colorHex;
       div.ariaLabel = getHTMLColorName(v.name, colorHex);
     }
