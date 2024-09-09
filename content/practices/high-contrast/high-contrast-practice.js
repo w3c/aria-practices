@@ -771,7 +771,7 @@ const systemColorValues = [
  * @return {String) d=see @desc
  */
 
-function rgb2Hex(rgb, systemColor = '') {
+function rgb2Hex(rgb) {
   // Choose correct separator
   let sep = rgb.indexOf(',') > -1 ? ',' : ' ';
   // Turn "rgb(r,g,b)" into [r,g,b]
@@ -799,8 +799,6 @@ function rgb2Hex(rgb, systemColor = '') {
 
   const hex = '#' + r + g + b;
 
-  console.log(`[${systemColor}]: ${rgb} ${hex}`);
-
   return hex;
 }
 
@@ -821,18 +819,25 @@ window.addEventListener('load', () => {
       div.classList.add('sample');
       div.style.backgroundColor = v.value;
       tds.appendChild(div);
+      const divHex = document.createElement('div');
+      divHex.style.fontFamily = 'monospace';
+      tds.appendChild(divHex);
       tr.appendChild(tds);
-      const tdc = document.createElement('td');
-      tdc.style.fontFamily = 'monospace';
-      tdc.textContent = '??';
-      tr.appendChild(tdc);
+      const tdRGB = document.createElement('td');
+      tdRGB.style.fontFamily = 'monospace';
+      tdRGB.textContent = '??';
+      tr.appendChild(tdRGB);
+      const tdHex = document.createElement('td');
+      tdHex.style.fontFamily = 'monospace';
+      tdHex.textContent = '??';
       const tdd = document.createElement('td');
       tdd.textContent = v.desc;
       tr.appendChild(tdd);
       tbodyNode.appendChild(tr);
       const cStyle = window.getComputedStyle(div);
-      const colorHex = rgb2Hex(cStyle.backgroundColor, v.value);
-      tdc.textContent = colorHex;
+      tdRGB.textContent = cStyle.backgroundColor;
+      const colorHex = rgb2Hex(cStyle.backgroundColor);
+      divHex.textContent = colorHex;
       div.ariaLabel = getHTMLColorName(v.name, colorHex);
     }
   });
