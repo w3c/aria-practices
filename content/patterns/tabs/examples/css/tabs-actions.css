@@ -126,6 +126,7 @@
 [role="tab"] ~ .menu-button-actions > button:hover,
 [role="tab"] ~ .menu-button-actions > button:focus {
   color: hsl(var(--color-1-hue) var(--color-1-sat) var(--light-min));
+  outline-color: transparent;
 }
 
 [role="tab"][aria-selected="true"],
