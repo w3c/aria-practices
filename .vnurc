@@ -25,3 +25,5 @@ Bad value “none” for attribute “role” on element “svg”.
 Bad value “presentation” for attribute “role” on element “svg”.
 # https://github.com/validator/validator/issues/1122
 Element “input” is missing required attribute “aria-checked”.
+# https://github.com/w3c/aria-practices/issues/3070
+Attribute “aria-actions” not allowed on element “button” at this point.
