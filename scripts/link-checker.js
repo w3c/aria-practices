@@ -314,8 +314,9 @@ async function checkLinks() {
 
         if (!pageData.ok) {
           consoleError(
-            `Found broken external link on ${htmlPath}:${lineNumber}:${columnNumber}, ` +
-              `status was ${pageData.status}`
+            `Found broken external link on ${htmlPath}:${lineNumber}:${columnNumber}. ` +
+              `Link is ${hrefOrSrc}, ` +
+              `status is ${pageData.status}`
           );
           continue;
         }
