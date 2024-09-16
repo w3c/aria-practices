@@ -1115,7 +1115,7 @@ ariaTest(
   'toolbar-button-enter-or-space',
   async (t) => {
     let textarea = await t.context.session.findElement(By.css('textarea'));
-    await textarea.sendKeys(Key.chord(Key.CONTROL, 'a'));
+    await textarea.sendKeys(Key.chord(Key.META, 'a'));
     let originalText = await textarea.getAttribute('value');
 
     const buttons = await t.context.queryElements(
@@ -1206,7 +1206,7 @@ ariaTest(
   'toolbar-button-enter-or-space',
   async (t) => {
     let textarea = await t.context.session.findElement(By.css('textarea'));
-    await textarea.sendKeys(Key.chord(Key.CONTROL, 'a'));
+    await textarea.sendKeys(Key.chord(Key.META, 'a'));
     let originalText = await textarea.getAttribute('value');
 
     const buttons = await t.context.queryElements(
