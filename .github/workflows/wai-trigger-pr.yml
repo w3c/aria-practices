@@ -32,7 +32,7 @@ jobs:
           APG_PR_NUMBER: ${{ github.event.pull_request.number }}
           FORK_PATH: ${{ github.event.pull_request.head.repo.fork && github.event.pull_request.head.repo.full_name }}
         with:
-          github-token: ${{ secrets.GH_TOKEN }}
+          github-token: ${{ secrets.W3CGRUNTBOT_TOKEN }}
           script: |
             await github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,
