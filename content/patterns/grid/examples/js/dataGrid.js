@@ -194,9 +194,10 @@ aria.Grid.prototype.isValidCell = function (row, col) {
  *  Returns whether or not the cell has been hidden.
  */
 aria.Grid.prototype.isHidden = function (row, col) {
+  // prettier-ignore
   var cell = this.gridNode
-    .querySelectorAll(aria.GridSelector.ROW)
-    [row].querySelectorAll(aria.GridSelector.CELL)[col];
+    .querySelectorAll(aria.GridSelector.ROW)[row]
+    .querySelectorAll(aria.GridSelector.CELL)[col];
   return aria.Utils.hasClass(cell, aria.CSSClass.HIDDEN);
 };
 

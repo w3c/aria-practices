@@ -20,12 +20,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: refs/pull/${{ github.event.pull_request.number }}/head
 
       - name: Trigger wai-aria-practices PR update
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         env:
           APG_BRANCH: ${{ github.head_ref }}
           APG_SHA: ${{ github.event.pull_request.head.sha }}
