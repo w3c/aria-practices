@@ -59,6 +59,8 @@ aria.Listbox = class Listbox {
     if (this.activeDescendant) {
       const listitem = document.getElementById(this.activeDescendant);
       listitem.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    } else {
+      this.focusFirstItem();
     }
   }
 
