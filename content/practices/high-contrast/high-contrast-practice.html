@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Supporting High Contrast Settings</title>
+
+    <!-- Core JS and CSS shared by all practices -->
+    <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
+    <link rel="stylesheet" href="../../shared/css/core.css">
+    <script src="../../shared/js/examples.js"></script>
+    <script src="../../shared/js/highlight.pack.js"></script>
+    <script src="../../shared/js/app.js"></script>
+    <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+    <style type="text/css">
+      table.data img {
+        border: 1px solid gray;
+      }
+      #samples div.sample {
+        height: 30px;
+        width: 50px;
+        border: 1px solid gray;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Supporting High Contrast Settings</h1>
+      
+      <p>Editor's note: After content is complete and near ready for merge, add a heading and abstract to practices.html</p>
+
+      <section id="introduction">
+        <h2>Introduction</h2>
+        <p>
+          People with <a href="https://www.w3.org/WAI/people-use-web/abilities-barriers">visual impairments using the web</a> often need to increase the contrast of content to make it perceivable to them.  Operating systems provide settings for users to increase contrast or choose color themes that are useful to them.  Authors must ensure content adapts to user settings and this section explains how to components can adapt to those settings and verify compatibility through testing.
+        </p>
+
+        <p>This section covers:</p>
+        <ol>
+          <li>Understanding user agent features for adjusting the colors rendered by the user agent.</li>
+          <li>Using SVG graphics to create components whose rendering can adapt operating system contrast and theme settings.</li>
+          <li>Setting the <code>forced-colors-adjust=auto</code> CSS property on SVG elements.</li>
+          <li>Using the <code>prefers-contrast</code> CSS media query for high contrast settings.</li>
+          <li>Using the <code>forced-colors</code> CSS media query for high contrast settings.</li>
+          <li>Using <code>&lt;system-colors&gt;</code> CSS data types for consistency with the rendering of other components in high contrast settings.</li>
+          <li>Using <code>currentcolor</code> value for inheriting the <code>color</code> property value of ancestors.</li>
+        </ol>
+      </section>
+
+      <section id="os-high-contrast">
+        <h2>Understanding User Options For Adjusting Colors</h2>
+
+        <p>Inverting colors, increase contrast and color themes are the three main ways users can adjust the rendered colors of web content.   These options are set through operating system accessibility features.  Not all of the options provide information for authors to adjust the rendering of content based on user settings.   The following table summarizes the features, operating systems and authors ability to detect the setting.</p>
+
+        <h3 id="os-hc-features">Operating System Color Adjustment Features</h3>
+        <table  aria-labelledby="os-hc-features" class="data">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Description</th>
+              <th>CSS Media Query</th>
+              <th>System Colors</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Invert Colors</th>
+              <td>
+                <p>
+                  Invert colors is a simple transformation of the rendered colors by subtracting each RGB value from 255.  This is a simple way of turning a lighter color theme into a darker color theme or visa-versa depending on the original styling of the content.  Inverting colors can create a color palette that is easier for people with some types of visual impairments to perceive.
+                </p>
+                <p>Some examples of color inversion:</p>
+                <ul>
+                  <li>rgb(255,255,255) is rendered as rgb(0,0,0)</li>
+                  <li>rgb(165, 42, 42) is rendered as rgb(90,213,213)</li>
+                  <li>rgb(220, 220, 220) is rendered as rgb(35,35,35)</li>
+                </ul>
+              </td>
+              <td>
+                <em>none</em>
+              </td>
+              <td>
+                <em>defaults</em>
+              </td>
+            </tr>
+            <tr>
+              <th>Increase contrast</th>
+              <td>
+                When the user enables increased contrast the CSS media query <code>prefers-contrast</code> set to <code>more</code>.  The media query can be used by authors to provide a higher contrast color scheme, including switching to use <code>system-colors</code> CSS Media Types.
+              </td>
+              <td><code>prefers-contrast: more</code></td>
+              <td>
+                <em>defaults</em>
+              </td>
+            </tr>
+            <tr>
+              <th>System Color Theme</th>
+              <td>
+                <p>
+                  Operating systems support <code>light</code> and <code>dark</code> color themes.
+                </p>
+                <p>The <code>light</code> color theme is typically the default on most operating systems.  Authors identify this preference when the CSS media query <code>prefers-color-theme</code> is set to <code>light</code>.
+                </p>
+                <p>
+                  The <code>dark</code> color theme is associated with lower power consumption, less eye strain and considered easier to read or less disruptive in dark settings (e.g. night time).  People with some types of visual impairments prefer to use the dark color theme as their default.  When the user selects the <code>dark</code> color theme the CSS media query <code>prefers-color-theme</code> is set to <code>dark</code>.
+                </p>
+              </td>
+              <td><code>prefers-color-theme: dark | light</code></td>
+              <td>
+                <em>defaults</em>
+              </td>
+            </tr>
+            <tr>
+              <th>Contrast Themes</th>
+              <td>
+                Some operating systems, including Microsoft Windows, support high contrast color themes.
+                When the user selects a high contrast color theme the CSS media query <code>forced-colors</code> is set to <code>active</code>.   The media query can be used by authors to switch to using <code>system-color</code> CSS Media Types so the content of the page adapts to the user color preferences.
+              </td>
+              <td><code>forced-colors: active</code> </td>
+              <td>
+                Change based on contrast theme selected
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </section>
+
+
+      <section id="svg">
+        <h2>SVG for Components</h2>
+
+        <p>Bit-mapped images (e.g. .png, .jpeg) should not be used for components, since their rendering cannot be changed based on user color theme and/or high contrast settings.  SVG graphics can respond to the <code>forced-colors</code> CSS media query and supports the use of <code>currentcolor</code> value for color properties.  An additional advantage of SVG graphics is the smooth scaling of the graphics as the size of content adjusted using browser zoom features. SVG elements can also adapt to a wide variety of screen sizes and load faster due to their smaller size than equivalent bit-mapped images.</p>
+
+        <p>Note: Be sure to include <code>forced-color-adjust=auto</code> CSS property on SVG elements, due to inconsistencies in browsers setting the default value to <code>auto</code>.</p>
+
+      </section>
+
+      <section id="currentcolor">
+        <h2><code>currentcolor</code> Keyword</h2>
+
+        <p>The <code>currentcolor</code> keyword provides a means for components to use the color value of ancestors to set the color properties of an element.   When the user chooses a high contrast setting the browser changes the <code>color</code> and <code>background-color</code> values of text content.   The <code>currentcolor</code> value is set to the text color for use in setting the color of other properties including: <code>border</code> and <code>outline</code> on HTML elements, and <code>stroke</code> and <code>fill</code> properties on SVG elements.  Note: There is no equivalent value for using the background color, so when using this technique it is important for the background of the element to be transparent to allow the background color to be visible. </p>
+
+        <p>Using <code>currentcolor</code> is the most popular technique in the ARIA APG examples for supporting user theme and high contrast settings.</p>
+
+        <h3 id="currentcolot-example">Button Switch Example</h3>
+
+        <p>The <a href="../../patterns/switch/examples/switch-button.html">Button Switch Example</a> uses <code>currentcolor</code> value to style the SVG <code>rect</code> elements used as the switch container and to indicate the on and off states.  Current color applied to the <code>stroke</code> and <code>fill</code> properties of the <code>rect</code> elements.   The following table shows how the graphical rendering changes for some high contrast options. </p>
+
+        <h4 id="currentcolor-example-screenshots">Button Switch Example with Selected High Contrast User Settings</h4>
+        <table aria-labelledby="currentcolor-example-screenshots" class="data">
+          <thead>
+            <tr>
+              <th>Operating System</th>
+              <th>Setting</th>
+              <th>Screen Shot</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>macOS 14.4</td>
+              <td>Invert Colors: Off (default)</td>
+              <td><img src="./images/currentcolor-macos-invert-off.png" alt="Screen shot of switch example with invert colors turned off" style="height: 85px"></td>
+            </tr>
+            <tr>
+              <td>macOS 14.4</td>
+              <td>Invert Colors: on</td>
+              <td><img src="./images/currentcolor-macos-invert-on.png" alt="Screen shot of switch example with invert colors turned on" style="height: 85px"></td>
+            </tr>
+            <tr>
+              <td>Windows 11</td>
+              <td>Contrast Theme: none (default)</td>
+              <td><img src="./images/currentcolor-windows11-theme-none.png" alt="Screen shot of switch example with no contrast theme applied" style="height: 90px"></td>
+            </tr>
+            <tr>
+              <td>Windows 11</td>
+              <td>Contrast Theme: Night sky</td>
+              <td><img src="./images/currentcolor-windows11-theme-night-sky.png" alt="Screen shot of switch example with night sky contrast theme applied" style="height: 87px"></td>
+            </tr>
+            <tr>
+              <td>Windows 11</td>
+              <td>Contrast Theme: Desert</td>
+              <td><img src="./images/currentcolor-windows11-theme-desert.png" alt="Screen shot of switch example with desert contrast theme applied" style="height: 95px"></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 id="currentcolor-examples">Examples using <code>currentcolor</code> keyword</h3>
+        <ul>
+          <li><a href="../../patterns/checkbox/examples/checkbox-mixed.html">Checkbox (Mixed-State)</a></li>
+          <li><a href="../../patterns/disclosure/examples/disclosure-faq.html">Disclosure (Show/Hide) for Answers to Frequently Asked Questions</a></li>
+          <li><a href="../../patterns/radio/examples/radio-activedescendant.html">Radio Group  Using aria-activedescendant</a></li>
+          <li><a href="../../patterns/slider/examples/slider-seek.html">Media Seek Slider</a></li>
+          <li><a href="../../patterns/slider/examples/slider-temperature.html">Vertical Temperature Slider</a></li>
+        </ul>
+      </section>
+
+      <section id="forced-colors">
+        <h2><code>forced-colors</code> Media Query</h2>
+
+        <p>The <code>forced-colors</code> CSS media query provides a means for components to use the color preferences of people with visual impairments.   When the user chooses a high contrast setting in their operating system, browsers set <code>forced-colors</code> property to <code>active</code>.   CSS media queries can change component colors to use operating system specified values using <code>&lt;system-colors&gt;</code> CSS data types.  The advantage of using <code>forced-colors</code> over <code>currentcolor</code> is the ability to set a background color and to uniquely define colors for borders, outlines and text content.</p>
+
+        <h3 id="system-colors">System Colors</h3>
+
+        <p>The following table identifies the current system colors defined in <a href="https://www.w3.org/TR/css-color-4/#css-system-colors">CSS Color Module Level 4</a>.  System colors are supported in all major browsers, but the actual colors they render may vary between browsers and operating systems based on default and user theme and contrast settings.</p>
+
+        <table aria-labelledby="system-colors" class="data">
+          <thead>
+            <tr>
+              <th>System Color</th>
+              <th>Computed Sample</th>
+              <th style="min-width: 12em">Computed Color</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody id="samples">
+          </tbody>
+        </table>
+
+
+        <h3 id="forced-colors-example">Rating Slider Example</h3>
+
+        <p>The <a href="../../patterns/slider/examples/slider-rating.html">Rating Slider Example</a> uses CSS <code>forced-colors: active</code> media query to change the styling of SVG elements used for the rating scale, thumb and labels.  The <code>buttontext</code> system color value is used for <code>stroke</code> and <code>fill</code> properties of the range and thumb elements and <code>canvas</code> system color is used for the label elements (e.g. "Extremely Unsatisfied" and "Extremely Satisfied").   The following table shows how the graphical rendering changes for some high contrast options. </p>
+
+        <h4 id="forced-colors-example-screenshots">Rating Slider Example with Selected High Contrast User Settings</h4>
+        <table aria-labelledby="forced-colors-example-screenshots" class="data">
+          <thead>
+            <tr>
+              <th>Operating System</th>
+              <th>Setting</th>
+              <th>Screen Shot</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>macOS 14.4</td>
+              <td>Invert Colors: Off (default)</td>
+              <td>
+                <img src="./images/forced-colors-macos-invert-off.png" alt="Screen shot of switch example with invert colors turned off" style="height: 90px">
+              </td>
+            </tr>
+            <tr>
+              <td>macOS 14.4</td>
+              <td>Invert Colors: on</td>
+              <td>
+                <img src="./images/forced-colors-macos-invert-on.png" alt="Screen shot of switch example with invert colors turned on" style="height: 90px">
+              </td>
+            </tr>
+            <tr>
+              <td>Windows 11</td>
+              <td>Contrast Theme: none (default)</td>
+              <td>
+                <img src="./images/forced-colors-windows11-theme-none.png" alt="Screen shot of switch example with no contrast theme applied" style="height: 90px">
+              </td>
+            </tr>
+            <tr>
+              <td>Windows 11</td>
+              <td>Contrast Theme: Night sky</td>
+              <td>
+                <img src="./images/forced-colors-windows11-theme-night-sky.png" alt="Screen shot of switch example with night sky contrast theme applied" style="height: 90px">
+              </td>
+            </tr>
+            <tr>
+              <td>Windows 11</td>
+              <td>Contrast Theme: Desert</td>
+              <td>
+                <img src="./images/forced-colors-windows11-theme-desert.png" alt="Screen shot of switch example with desert contrast theme applied" style="height: 90px">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 id="table-forced-colors">Examples in using <code>forced-colors</code></h3>
+        <ul>
+          <li><a href="../../patterns/feed/examples/feed.html">Feed</a></li>
+          <li><a href="../../patterns/radio/examples/radio-rating.html">Rating Radio Group</a></li>
+        </ul>
+
+      </section>
+
+      <section id="testing">
+        <h2>Testing for High Contrast Support</h2>
+
+        <p>High contrast testing requires setting operating system contrast features or using browser extensions or configuration to emulate high contrast.  </p>
+
+        <h3 id="os-high-contrast-config">Operating System High Contrast Settings</h3>
+
+        <ul>
+          <li><a href="https://support.microsoft.com/en-us/windows/change-color-contrast-in-windows-fedc744c-90ac-69df-aed5-c8a90125e696"> Windows 10 and 11: Change color contrast in Windows</a></li>
+          <li><a href="https://support.apple.com/guide/mac-help/change-display-settings-for-accessibility-unac089/mac">macOS: Change Display settings for accessibility on Mac</a></li>
+          <li><a href="https://help.gnome.org/users/gnome-help/stable/a11y-contrast.html.en">Linux GNOME: Adjust the contrast</a></li>
+          <li><a href="https://support.apple.com/guide/ipad/make-text-easier-to-read-ipad9a246013/17.0/ipados/17.0">iPad: Make iPad text easier to read with accessibility features</a></li>
+          <li><a href="https://support.apple.com/guide/iphone/make-text-easier-to-read-iph3c076905a/17.0/ios/17.0">iPhone: Make iPhone text easier to read with accessibility features</a></li>
+          <li><a href="https://support.google.com/accessibility/android/answer/11183305">Android: Change text &amp; display settings</a></li>
+        </ul>
+
+        <h3 id="chrome-high-contrast-options">Chrome High Contrast Options</h3>
+
+        <p>There are two main ways to test for high contrast using the Chrome browser using the Render options in the DOM Inspector or installing the Google High Contrast extension.  The extension provides a toolbar button to easily toggle between high contrast and author styled rendering.  The DOM Inspector method is </p>
+
+        <ul>
+          <li>
+            <a href="https://developer.chrome.com/docs/devtools/rendering/emulate-css">DOM Inspector Render Tab: Emulate <code>prefers-color-scheme: dark</code> and <code>forced-colors: active</code></a>
+          </li>
+          <li>
+            <a href="https://chromewebstore.google.com/detail/high-contrast/djcfdncoelnlbldjfhinnjlhdjlikmph?hl%3Den&pli=1">Google High Contrast Extension</a>, use "Yellow on Black" option.
+          </li>
+        </ul>
+      </section>
+
+      <script src="./high-contrast-practice.js"></script>
+    </main>
+  </body>
+</html>
