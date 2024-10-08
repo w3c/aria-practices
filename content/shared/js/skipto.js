@@ -1,5 +1,5 @@
 /* ========================================================================
- * Version: 5.3.2
+ * Version: 5.6.2
  * Copyright (c) 2022, 2023, 2024 Jon Gunderson; Licensed BSD
  * Copyright (c) 2021 PayPal Accessibility Team and University of Illinois; Licensed BSD
  * All rights reserved.
@@ -17,6 +17,116 @@
 
 (function () {
   'use strict';
+
+  /* colorThemes */
+
+  const colorThemes = {
+    'default': {
+
+      fontFamily: 'inherit',
+      fontSize: 'inherit',
+      positionLeft: '46%',
+      smallBreakPoint: '576',
+      mediumBreakPoint: '992',
+      buttonTextColor: '#13294b',
+      buttonBackgroundColor: '#dddddd',
+      focusBorderColor: '#c5050c',
+      menuTextColor: '#13294b',
+      menuBackgroundColor: '#dddddd',
+      menuitemFocusTextColor: '#dddddd',
+      menuitemFocusBackgroundColor: '#13294b',
+      zIndex: '2000000',
+      zHighlight: '1999900',
+      displayOption: 'fixed'
+    },
+    'aria': {
+      hostnameSelector: 'w3.org',
+      pathnameSelector: 'ARIA/apg',
+      fontFamily: 'sans-serif',
+      fontSize: '10pt',
+      positionLeft: '7%',
+      menuTextColor: '#000',
+      menuBackgroundColor: '#def',
+      menuitemFocusTextColor: '#fff',
+      menuitemFocusBackgroundColor: '#005a9c',
+      focusBorderColor: '#005a9c',
+      buttonTextColor: '#005a9c',
+      buttonBackgroundColor: '#ddd',
+    },
+    'illinois': {
+      hostnameSelector: 'illinois.edu',
+      menuTextColor: '#00132c',
+      menuBackgroundColor: '#cad9ef',
+      menuitemFocusTextColor: '#eeeeee',
+      menuitemFocusBackgroundColor: '#00132c',
+      focusBorderColor: '#ff552e',
+      buttonTextColor: '#444444',
+      buttonBackgroundColor: '#dddede',
+    },
+    'openweba11y': {
+      hostnameSelector: 'openweba11y.com',
+      buttonTextColor: '#13294B',
+      buttonBackgroundColor: '#dddddd',
+      focusBorderColor: '#C5050C',
+      menuTextColor: '#13294B',
+      menuBackgroundColor: '#dddddd',
+      menuitemFocusTextColor: '#dddddd',
+      menuitemFocusBackgroundColor: '#13294B',
+      fontSize: '90%'
+    },
+    'skipto': {
+      hostnameSelector: 'skipto-landmarks-headings.github.io',
+      positionLeft: '25%',
+      fontSize: '14px',
+      menuTextColor: '#00132c',
+      menuBackgroundColor: '#cad9ef',
+      menuitemFocusTextColor: '#eeeeee',
+      menuitemFocusBackgroundColor: '#00132c',
+      focusBorderColor: '#ff552e',
+      buttonTextColor: '#444444',
+      buttonBackgroundColor: '#dddede',
+    },
+    'uic': {
+      hostnameSelector: 'uic.edu',
+      menuTextColor: '#001e62',
+      menuBackgroundColor: '#f8f8f8',
+      menuitemFocusTextColor: '#ffffff',
+      menuitemFocusBackgroundColor: '#001e62',
+      focusBorderColor: '#d50032',
+      buttonTextColor: '#ffffff',
+      buttonBackgroundColor: '#001e62',
+    },
+    'uillinois': {
+      hostnameSelector: 'uillinois.edu',
+      menuTextColor: '#001e62',
+      menuBackgroundColor: '#e8e9ea',
+      menuitemFocusTextColor: '#f8f8f8',
+      menuitemFocusBackgroundColor: '#13294b',
+      focusBorderColor: '#dd3403',
+      buttonTextColor: '#e8e9ea',
+      buttonBackgroundColor: '#13294b',
+    },
+    'uis': {
+      hostnameSelector: 'uis.edu',
+      menuTextColor: '#036',
+      menuBackgroundColor: '#fff',
+      menuitemFocusTextColor: '#fff',
+      menuitemFocusBackgroundColor: '#036',
+      focusBorderColor: '#dd3444',
+      buttonTextColor: '#fff',
+      buttonBackgroundColor: '#036',
+    },
+    'walmart': {
+      hostnameSelector: 'walmart.com',
+      buttonTextColor: '#ffffff',
+      buttonBackgroundColor: '#00419a',
+      focusBorderColor: '#ffc220',
+      menuTextColor: '#ffffff',
+      menuBackgroundColor: '#0071dc',
+      menuitemFocusTextColor: '#00419a',
+      menuitemFocusBackgroundColor: '#ffffff',
+    }
+  };
 
   /*
   *   debug.js
@@ -111,15 +221,18 @@
   /* style.js */
 
   /* Constants */
-  const debug$6 = new DebugLogging('style', false);
-  debug$6.flag = false;
+  const debug$8 = new DebugLogging('style', false);
+  debug$8.flag = false;
 
-  const styleTemplate = document.createElement('template');
-  styleTemplate.innerHTML = `
-<style type="text/css" id="id-skip-to-css">
+  const cssMenuTemplate = document.createElement('template');
+  cssMenuTemplate.textContent = `
 $skipToId.popup {
-  position: absolute;
-  top: -34px;
+  top: -36px;
+  transition: top 0.35s ease;
+}
+
+$skipToId.popup.show-border {
+  top: -28px;
   transition: top 0.35s ease;
 }
 
@@ -141,7 +254,7 @@ $skipToId button .skipto-medium {
 $skipToId,
 $skipToId.popup.focus,
 $skipToId.popup:hover {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: $positionLeft;
   font-family: $fontFamily;
@@ -151,10 +264,12 @@ $skipToId.popup:hover {
   margin-bottom: 4px;
   transition: left 1s ease;
   z-index: $zIndex !important;
+  user-select: none;
+  touch-action: none;
 }
 
 $skipToId button {
-  position: relative;
+  position: sticky;
   margin: 0;
   padding: 0;
   border-width: 0px 1px 1px 1px;
@@ -167,6 +282,7 @@ $skipToId button {
   font-family: $fontFamily;
   font-size: $fontSize;
   z-index: $zIndex !important;
+  touch-action: none;
 }
 
 @media screen and (max-width: $smallBreakPointpx) {
@@ -191,7 +307,6 @@ $skipToId button {
     transition: top 0.35s ease;
     display: none;
   }
-
 }
 
 @media screen and (min-width: $smallBreakPointpx) and (max-width: $mediumBreakPointpx) {
@@ -216,11 +331,10 @@ $skipToId button {
     transition: top 0.35s ease;
     display: none;
   }
-
 }
 
-$skipToId.fixed {
-  position: fixed;
+$skipToId.static {
+  position: absolute !important;
 }
 
 
@@ -236,7 +350,9 @@ $skipToId [role="menu"] {
   border-color: $focusBorderColor;
   border-radius: 5px;
   overflow-x: hidden;
+  overflow-y: scroll;
   z-index: $zIndex !important;
+  touch-action: none;
 }
 
 $skipToId [role="group"] {
@@ -274,6 +390,7 @@ $skipToId [role="menuitem"] .label {
   line-height: inherit;
   display: inline-block;
   white-space: nowrap;
+  border: none;
 }
 
 $skipToId [role="menuitem"] .level {
@@ -301,7 +418,7 @@ $skipToId [role="menuitem"].skip-to-h2 .level { grid-column: 2; }
 $skipToId [role="menuitem"].skip-to-h3 .level { grid-column: 3; }
 $skipToId [role="menuitem"].skip-to-h4 .level { grid-column: 4; }
 $skipToId [role="menuitem"].skip-to-h5 .level { grid-column: 5; }
-$skipToId [role="menuitem"].skip-to-h6 .level { grid-column: 8;}
+$skipToId [role="menuitem"].skip-to-h6 .level { grid-column: 6;}
 
 $skipToId [role="menuitem"].skip-to-h1 .label { grid-column: 2 / 8; }
 $skipToId [role="menuitem"].skip-to-h2 .label { grid-column: 3 / 8; }
@@ -397,7 +514,24 @@ $skipToId [role="menuitem"].hover .label {
   background-color: $menuitemFocusBackgroundColor;
   color: $menuitemFocusTextColor;
 }
-</style>
+`;
+
+  const cssHighlightTemplate = document.createElement('template');
+  cssHighlightTemplate.textContent = `
+$skipToId-highlight {
+  position: absolute;
+  border-radius: 3px;
+  border: 4px solid $buttonBackgroundColor;
+}
+
+$skipToId-highlight div {
+  position: relative;
+  top: -2px;
+  left: -2px;
+  border-radius: 3px;
+  border: 2px solid $focusBorderColor;
+  z-index: $zHighlight;
+}
 `;
 
   /*
@@ -405,12 +539,11 @@ $skipToId [role="menuitem"].hover .label {
    *
    *   @desc Returns
    *
-   *   @param  {Object}  colorThemes  -  Javascript object with keyed color themes
    *   @param  {String}  colorTheme   -  A string identifying a color theme  
    *
    *   @returns {Object}  see @desc
    */
-  function getTheme(colorThemes, colorTheme) {
+  function getTheme(colorTheme) {
     if (typeof colorThemes[colorTheme] === 'object') {
       return colorThemes[colorTheme];
     }
@@ -428,7 +561,6 @@ $skipToId [role="menuitem"].hover .label {
       const pathnameSelector = colorThemes[item].pathnameSelector;
       let hostnameFlag = false; 
       let pathnameFlag = false; 
-
 
       if (hostnameSelector) {
         if (hostname.indexOf(hostnameSelector) >= 0) {
@@ -489,7 +621,7 @@ $skipToId [role="menuitem"].hover .label {
    *
    *   @returns 
    */
-  function updateStyle(stylePlaceholder, configValue, themeValue, defaultValue) {
+  function updateStyle(cssContent, stylePlaceholder, configValue, themeValue, defaultValue) {
     let value = defaultValue;
     if (typeof configValue === 'string' && configValue) {
       value = configValue;
@@ -499,7 +631,6 @@ $skipToId [role="menuitem"].hover .label {
       }
     }
 
-    let cssContent = styleTemplate.innerHTML;
     let index1 = cssContent.indexOf(stylePlaceholder);
     let index2 = index1 + stylePlaceholder.length;
     while (index1 >= 0 && index2 < cssContent.length) {
@@ -507,73 +638,112 @@ $skipToId [role="menuitem"].hover .label {
       index1 = cssContent.indexOf(stylePlaceholder, index2);
       index2 = index1 + stylePlaceholder.length;
     }
-    styleTemplate.innerHTML = cssContent;
+    return cssContent;
   }
 
   /*
    * @function addCSSColors
    *
-   * @desc Updates the styling information in the attached
-   *       stylesheet to use the configured or default colors  
+   * @desc Updates the styling for the menu and highlight information
+   *       and returns the updated strings
    *
-   * @param  {Object}  colorThemes -  Object with theme information
-   * @param  {Object}  config      -  Configuration information object
+   * @param  {String}  cssMenu       -  CSS template for the button and menu
+   * @param  {String}  cssHighlight  -  CSS template for the highlighting
+   * @param  {Object}  config        -  SkipTo.js configuration information object
+   *
+   * @returns. see @desc
    */
-  function addCSSColors (colorThemes, config) {
-    const theme = getTheme(colorThemes, config.colorTheme);
-    const defaultTheme = getTheme(colorThemes, 'default');
+  function addCSSColors (cssMenu, cssHighlight, config) {
+    const theme = getTheme(config.colorTheme);
+    const defaultTheme = getTheme('default');
 
     // Check for display option in theme
-    if ((typeof theme.displayOption === 'string') && 
-        ('fixed popup static'.indexOf(theme.displayOption.toLowerCase())>= 0)) {
-      config.displayOption = theme.displayOption;
+    if ((typeof config.displayOption === 'string') &&
+        (['popup-border', 'fixed', 'popup', 'static'].includes(config.displayOption.toLowerCase()) < 0)) {
+
+      if ((typeof theme.displayOption === 'string') &&
+          (['popup-border', 'fixed', 'popup', 'static'].includes(theme.displayOption.toLowerCase())>= 0)) {
+        config.displayOption = theme.displayOption;
+      }
+      else {
+        config.displayOption = defaultTheme.displayOption;
+      }
     }
 
-    updateStyle('$fontFamily', config.fontFamily, theme.fontFamily, defaultTheme.fontFamily);
-    updateStyle('$fontSize', config.fontSize, theme.fontSize, defaultTheme.fontSize);
+    cssMenu = updateStyle(cssMenu, '$fontFamily', config.fontFamily, theme.fontFamily, defaultTheme.fontFamily);
+    cssMenu = updateStyle(cssMenu, '$fontSize', config.fontSize, theme.fontSize, defaultTheme.fontSize);
 
-    updateStyle('$positionLeft', config.positionLeft, theme.positionLeft, defaultTheme.positionLeft);
-    updateStyle('$smallBreakPoint', config.smallBreakPoint, theme.smallBreakPoint, defaultTheme.smallBreakPoint);
-    updateStyle('$mediumBreakPoint', config.mediumBreakPoint, theme.mediumBreakPoint, defaultTheme.mediumBreakPoint);
+    cssMenu = updateStyle(cssMenu, '$positionLeft', config.positionLeft, theme.positionLeft, defaultTheme.positionLeft);
+    cssMenu = updateStyle(cssMenu, '$smallBreakPoint', config.smallBreakPoint, theme.smallBreakPoint, defaultTheme.smallBreakPoint);
+    cssMenu = updateStyle(cssMenu, '$mediumBreakPoint', config.mediumBreakPoint, theme.mediumBreakPoint, defaultTheme.mediumBreakPoint);
 
-    updateStyle('$menuTextColor', config.menuTextColor, theme.menuTextColor, defaultTheme.menuTextColor);
-    updateStyle('$menuBackgroundColor', config.menuBackgroundColor, theme.menuBackgroundColor, defaultTheme.menuBackgroundColor);
+    cssMenu = updateStyle(cssMenu, '$menuTextColor', config.menuTextColor, theme.menuTextColor, defaultTheme.menuTextColor);
+    cssMenu = updateStyle(cssMenu, '$menuBackgroundColor', config.menuBackgroundColor, theme.menuBackgroundColor, defaultTheme.menuBackgroundColor);
 
-    updateStyle('$menuitemFocusTextColor', config.menuitemFocusTextColor, theme.menuitemFocusTextColor, defaultTheme.menuitemFocusTextColor);
-    updateStyle('$menuitemFocusBackgroundColor', config.menuitemFocusBackgroundColor, theme.menuitemFocusBackgroundColor, defaultTheme.menuitemFocusBackgroundColor);
+    cssMenu = updateStyle(cssMenu, '$menuitemFocusTextColor', config.menuitemFocusTextColor, theme.menuitemFocusTextColor, defaultTheme.menuitemFocusTextColor);
+    cssMenu = updateStyle(cssMenu, '$menuitemFocusBackgroundColor', config.menuitemFocusBackgroundColor, theme.menuitemFocusBackgroundColor, defaultTheme.menuitemFocusBackgroundColor);
 
-    updateStyle('$focusBorderColor', config.focusBorderColor, theme.focusBorderColor, defaultTheme.focusBorderColor);
+    cssMenu = updateStyle(cssMenu, '$focusBorderColor', config.focusBorderColor, theme.focusBorderColor, defaultTheme.focusBorderColor);
 
-    updateStyle('$buttonTextColor', config.buttonTextColor, theme.buttonTextColor, defaultTheme.buttonTextColor);
-    updateStyle('$buttonBackgroundColor', config.buttonBackgroundColor, theme.buttonBackgroundColor, defaultTheme.buttonBackgroundColor);
+    cssMenu = updateStyle(cssMenu, '$buttonTextColor', config.buttonTextColor, theme.buttonTextColor, defaultTheme.buttonTextColor);
+    cssMenu = updateStyle(cssMenu, '$buttonBackgroundColor', config.buttonBackgroundColor, theme.buttonBackgroundColor, defaultTheme.buttonBackgroundColor);
 
-    updateStyle('$zIndex', config.zIndex, theme.zIndex, defaultTheme.zIndex);
+    cssMenu = updateStyle(cssMenu, '$zIndex', config.zIndex, theme.zIndex, defaultTheme.zIndex);
+
+    cssMenu = updateStyle(cssMenu, '$zHighlight', config.zHighlight, theme.zHighlight, defaultTheme.zHighlight);
+
+    cssHighlight = updateStyle(cssHighlight, '$buttonBackgroundColor', config.buttonBackgroundColor, theme.buttonBackgroundColor, defaultTheme.buttonBackgroundColor);
+    cssHighlight = updateStyle(cssHighlight, '$focusBorderColor', config.focusBorderColor, theme.focusBorderColor, defaultTheme.focusBorderColor);
+
+    return [cssMenu, cssHighlight];
 
   }
 
   /*
-   *   @function enderStyleElement
+   *   @function renderStyleElement
    *
    *   @desc  Updates the style sheet template and then attaches it to the document
    *
-   * @param  {Object}  colorThemes     -  Object with theme information
+   * @param {Object}  attachNode      - DOM element node to attach button and menu container element
    * @param  {Object}  config          -  Configuration information object
    * @param  {String}  skipYToStyleId  -  Id used for the skipto container element
    */
-  function renderStyleElement (colorThemes, config, skipToId) {
-    styleTemplate.innerHTML = styleTemplate.innerHTML.replaceAll('$skipToId', '#' + skipToId);
-    addCSSColors(colorThemes, config);
-    const styleNode = styleTemplate.content.cloneNode(true);
-    styleNode.id = `${skipToId}-style`;
-    const headNode = document.getElementsByTagName('head')[0];
-    headNode.appendChild(styleNode);
+  function renderStyleElement (attachNode, config, skipToId) {
+    let cssMenu = cssMenuTemplate.textContent.slice(0);
+    cssMenu = cssMenu.replaceAll('$skipToId', '#' + skipToId);
+
+    let cssHighlight = cssHighlightTemplate.textContent.slice(0);
+    cssHighlight = cssHighlight.replaceAll('$skipToId', '#' + skipToId);
+
+    [cssMenu, cssHighlight] = addCSSColors(cssMenu, cssHighlight, config);
+
+
+    let styleNode = attachNode.querySelector('#id-skip-to-style');
+    if (!styleNode) {
+      styleNode = document.createElement('style');
+      attachNode.appendChild(styleNode);
+      styleNode.setAttribute('id', 'id-skip-to-style');
+    }
+    styleNode.textContent = cssMenu;
+
+    const headNode = document.querySelector('head');
+    if (headNode) {
+      let highlightStyleNode = headNode.querySelector('#id-skip-to-highlight');
+      if (!highlightStyleNode) {
+        highlightStyleNode = document.createElement('style');
+        headNode.appendChild(highlightStyleNode);
+        highlightStyleNode.setAttribute('id', 'id-skip-to-highlight');
+      }
+      highlightStyleNode.textContent = cssHighlight;
+    }
+
   }
 
   /* utils.js */
 
   /* Constants */
-  const debug$5 = new DebugLogging('Utils', false);
-  debug$5.flag = false;
+  const debug$7 = new DebugLogging('Utils', false);
+  debug$7.flag = false;
 
 
   /*
@@ -662,8 +832,8 @@ $skipToId [role="menuitem"].hover .label {
 
   /* constants */
 
-  const debug$4 = new DebugLogging('nameFrom', false);
-  debug$4.flag = false;
+  const debug$6 = new DebugLogging('nameFrom', false);
+  debug$6.flag = false;
 
   //
   // LOW-LEVEL HELPER FUNCTIONS (NOT EXPORTED)
@@ -932,8 +1102,8 @@ $skipToId [role="menuitem"].hover .label {
   /* accName.js */
 
   /* Constants */
-  const debug$3 = new DebugLogging('accName', false);
-  debug$3.flag = false;
+  const debug$5 = new DebugLogging('accName', false);
+  debug$5.flag = false;
 
   /**
    *   @fuction getAccessibleName
@@ -1011,8 +1181,8 @@ $skipToId [role="menuitem"].hover .label {
   /* landmarksHeadings.js */
 
   /* Constants */
-  const debug$2 = new DebugLogging('landmarksHeadings', false);
-  debug$2.flag = false;
+  const debug$4 = new DebugLogging('landmarksHeadings', false);
+  debug$4.flag = false;
 
   const skipableElements = [
     'base',
@@ -1027,7 +1197,8 @@ $skipToId [role="menuitem"].hover .label {
     'style',
     'template',
     'shadow',
-    'title'
+    'title',
+    'skip-to-content'
   ];
 
   const allowedLandmarkSelectors = [
@@ -1250,6 +1421,12 @@ $skipToId [role="menuitem"].hover .label {
                     return targetNode;
                   }
                 }
+                else {
+                  targetNode = transverseDOMForSkipToId(node);
+                  if (targetNode) {
+                    return targetNode;
+                  }
+                }
               } else {
                 targetNode = transverseDOMForSkipToId(node);
                 if (targetNode) {
@@ -1268,12 +1445,12 @@ $skipToId [role="menuitem"].hover .label {
   /**
    * @function findVisibleElement
    *
-   * @desc Returns the first isible decsendant DOM node that matches a set of element tag names
+   * @desc Returns the first visible descendant DOM node that matches a set of element tag names
    * 
    * @param {node}   startingNode  - dom node to start search for element
    * @param {Array}  tagNames      - Array of tag names
    * 
-   * @returns (node} Returns first descendmt element, if not found returns false
+   * @returns (node} Returns first descendant element, if not found returns false
    */
   function findVisibleElement (startingNode, tagNames) {
 
@@ -1308,6 +1485,12 @@ $skipToId [role="menuitem"].hover .label {
               if (isCustomElement(node)) {
                 if (node.shadowRoot) {
                   targetNode = transverseDOMForVisibleElement(node.shadowRoot, targetTagName);
+                  if (targetNode) {
+                    return targetNode;
+                  }
+                }
+                else {
+                  targetNode = transverseDOMForVisibleElement(node, targetTagName);
                   if (targetNode) {
                     return targetNode;
                   }
@@ -1455,7 +1638,7 @@ $skipToId [role="menuitem"].hover .label {
     let landmarkInfo = [];
     let targetLandmarks = getLandmarkTargets(landmarkTargets.toLowerCase());
     let targetHeadings  = getHeadingTargets(headingTargets.toLowerCase());
-    let onlyInMain = headingTargets.includes('main');
+    let onlyInMain = headingTargets.includes('main') || headingTargets.includes('main-only');
 
     function transverseDOM(startingNode, doc, parentDoc=null, inMain = false) {
       for (let node = startingNode.firstChild; node !== null; node = node.nextSibling ) {
@@ -1511,6 +1694,9 @@ $skipToId [role="menuitem"].hover .label {
               if (isCustomElement(node)) {
                 if (node.shadowRoot) {
                   transverseDOM(node.shadowRoot, node.shadowRoot, doc, inMain);
+                }
+                else {
+                  transverseDOM(node, doc, parentDoc, inMain);
                 }
               } else {
                 transverseDOM(node, doc, parentDoc, inMain);
@@ -1569,7 +1755,7 @@ $skipToId [role="menuitem"].hover .label {
     // If targets undefined, use default settings
     if (typeof headingTargets !== 'string') {
       console.warn(`[skipto.js]: Error in heading configuration`);
-      headingTargets = 'h1 h2';
+      headingTargets = 'main-only h1 h2';
     }
 
     const [landmarks, headings] = queryDOMForLandmarksAndHeadings(landmarkTargets, headingTargets, skiptoId);
@@ -1595,7 +1781,7 @@ $skipToId [role="menuitem"].hover .label {
       let heading = headings[i];
       let role = heading.node.getAttribute('role');
       if ((typeof role === 'string') && (role === 'presentation')) continue;
-      if (isVisible(heading.node) && isNotEmptyString(heading.node.innerHTML)) {
+      if (isVisible(heading.node) && isNotEmptyString(heading.node.textContent)) {
         if (heading.node.hasAttribute('data-skip-to-id')) {
           dataId = heading.node.getAttribute('data-skip-to-id');
         } else {
@@ -1672,14 +1858,14 @@ $skipToId [role="menuitem"].hover .label {
   /*
    * @function getLandmarkTargets
    *
-   * @desc Analyzes a configuration string for landamrk and tag names
+   * @desc Analyzes a configuration string for landmark and tag names
    *       NOTE: This function is included to maximize compatibility
-   *             with confiuguration strings that use CSS selectors
+   *             with configuration strings that use CSS selectors
    *             in previous versions of SkipTo
    *
-   * @param {String} targets - String with landamrk and/or tag names
+   * @param {String} targets - String with landmark and/or tag names
    *
-   * @returns {Array}  A normailized array of landmark names based on target configuration 
+   * @returns {Array}  A normalized array of landmark names based on target configuration
    */
   function getLandmarkTargets (targets) {
     let targetLandmarks = [];
@@ -1727,6 +1913,7 @@ $skipToId [role="menuitem"].hover .label {
    * @returns {Array}  see @desc
    */
   function getLandmarks(config, landmarks) {
+    let allElements = [];
     let mainElements = [];
     let searchElements = [];
     let navElements = [];
@@ -1794,6 +1981,8 @@ $skipToId [role="menuitem"].hover .label {
         landmarkItem.nestingLevel = 0;
         incSkipToIdIndex();
 
+        allElements.push(landmarkItem);
+
         // For sorting landmarks into groups
         switch (tagName) {
           case 'main':
@@ -1823,14 +2012,187 @@ $skipToId [role="menuitem"].hover .label {
         }
       }
     }
+    if (config.landmarks.includes('doc-order')) {
+      return allElements;
+    }
     return [].concat(mainElements, searchElements, navElements, asideElements, regionElements, footerElements, otherElements);
+  }
+
+  /* highlight.js */
+
+  /* Constants */
+  const debug$3 = new DebugLogging('highlight', false);
+  debug$3.flag = false;
+
+  const minWidth = 68;
+  const minHeight = 27;
+  const offset = 6;
+  const borderWidth = 2;
+
+  const overlayElement = document.createElement('div');
+  overlayElement.id = 'id-skip-to-highlight';
+  overlayElement.style.display = 'none';
+
+  window.addEventListener('load', () => {
+    if (document.body) {
+      document.body.appendChild(overlayElement);
+    }
+  });
+
+
+  const overlayElementChild = document.createElement('div');
+  overlayElement.appendChild(overlayElementChild);
+
+
+  /*
+   *   @function isElementInViewport
+   *
+   *   @desc  Returns true if element is already visible in view port,
+   *          otheriwse false
+   *
+   *   @param {Object} element : DOM node of element to highlight
+   *
+   *   @returns see @desc
+   */
+
+  function isElementInViewport(element) {
+    var rect = element.getBoundingClientRect();
+    return (
+        rect.top >= window.screenY &&
+        rect.left >= window.screenX &&
+        rect.bottom <= ((window.screenY + window.innerHeight) || 
+                        (window.screenY + document.documentElement.clientHeight)) &&
+        rect.right <= ((window.screenX + window.innerWidth) || 
+                       (window.screenX + document.documentElement.clientWidth))
+    );
+  }
+
+  /*
+   *   @function isElementStartInViewport
+   *
+   *   @desc  Returns true if start of the element is already visible in view port,
+   *          otheriwse false
+   *
+   *   @param {Object} element : DOM node of element to highlight
+   *
+   *   @returns see @desc
+   */
+
+  function isElementStartInViewport(element) {
+    var rect = element.getBoundingClientRect();
+    return (
+        rect.top >= window.screenY &&
+        rect.top <= ((window.screenY + window.innerHeight) || 
+                     (window.screenY + document.documentElement.clientHeight)) &&
+        rect.left >= window.screenX &&
+        rect.left <= ((window.screenX + window.innerWidth) || 
+                     (window.screenX + document.documentElement.clientWidth))
+    );
+  }
+
+
+  /*
+   *   @function isElementHeightLarge
+   *
+   *   @desc  Returns true if element client height is larger than clientHeight,
+   *          otheriwse false
+   *
+   *   @param {Object} element : DOM node of element to highlight
+   *
+   *   @returns see @desc
+   */
+
+  function isElementInHeightLarge(element) {
+    var rect = element.getBoundingClientRect();
+    return (1.2 * rect.height) > (window.innerHeight || document.documentElement.clientHeight);
+  }
+
+  /*
+   *   @function highlightElement
+   *
+   *   @desc  Highlights the element with the id on a page when highlighting
+   *          is enabled (NOTE: Highlight is enabled by default)
+   *
+   *   @param {String} id     : id of the element to highlight
+   */
+  function highlightElement(id) {
+    const mediaQuery = window.matchMedia(`(prefers-reduced-motion: reduce)`);
+    const isReduced = !mediaQuery || mediaQuery.matches;
+    const element = queryDOMForSkipToId(id);
+
+    if (element) {
+      updateOverlayElement(overlayElement, element);
+      if (isElementInHeightLarge(element)) {
+        if (!isElementStartInViewport(element)  && !isReduced) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+        }
+      }
+      else {
+        if (!isElementInViewport(element)  && !isReduced) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+        }
+      }
+    }
+  }
+
+  /*
+   *   @function removeHighlight
+   *
+   *   @desc  Hides the highlight element on the page
+   */
+  function removeHighlight() {
+    overlayElement.style.display = 'none';
+  }
+
+  /*
+   *  @function  updateOverlayElement
+   *
+   *  @desc  Create an overlay element and set its position on the page.
+   *
+   *  @param  {Object}  overlayElem      -  DOM element for overlay
+   *  @param  {Object}  element          -  DOM element node to highlight
+   *
+   */
+
+  function updateOverlayElement (overlayElem, element) {
+
+    const childElem = overlayElem.firstElementChild;
+
+    const rect = element.getBoundingClientRect();
+
+    const left   = rect.left > offset ?
+                    Math.round(rect.left - offset + window.scrollX) :
+                    Math.round(rect.left + window.scrollX);
+
+    const width  = rect.left > offset ?
+                    Math.max(rect.width  + offset * 2, minWidth) :
+                    Math.max(rect.width, minWidth);
+
+    const top    = rect.top > offset ?
+                    Math.round(rect.top  - offset + window.scrollY) :
+                    Math.round(rect.top + window.scrollY);
+
+    const height = rect.top > offset ?
+                    Math.max(rect.height + offset * 2, minHeight) :
+                    Math.max(rect.height, minHeight);
+
+    overlayElem.style.left   = left   + 'px';
+    overlayElem.style.width  = width  + 'px';
+    overlayElem.style.top    = top    + 'px';
+    overlayElem.style.height = height + 'px';
+
+    childElem.style.width  = (width  - 2 * borderWidth) + 'px';
+    childElem.style.height = (height - 2 * borderWidth) + 'px';
+
+
+    overlayElem.style.display = 'block';
   }
 
   /* skiptoMenuButton.js */
 
   /* Constants */
-  const debug$1 = new DebugLogging('SkipToButton', false);
-  debug$1.flag = false;
+  const debug$2 = new DebugLogging('SkipToButton', false);
+  debug$2.flag = false;
 
   /**
    * @class SkiptoMenuButton
@@ -1838,104 +2200,98 @@ $skipToId [role="menuitem"].hover .label {
    * @desc Constructor for creating a button to open a menu of headings and landmarks on 
    *       a web page
    *
-   * @param {Object}  attachNode  - DOM eleemnt node to attach button and menu container element
+   * @param {Object}  skipToContentElem  -  The skip-to-content objecy
    * 
-   * @returns {Object}  DOM element node that is the contatiner for the button and the menu
+   * @returns {Object}  DOM element node that is the container for the button and the menu
    */
   class SkiptoMenuButton {
 
-      constructor (attachNode, config, id) {
-        this.config = config;
-        this.skiptoId = id;
+      constructor (skipToContentElem) {
+        this.skipToContentElem = skipToContentElem;
+        this.config     = skipToContentElem.config;
+        this.skiptoId   = skipToContentElem.skipToId;
 
-        this.containerNode = document.createElement(config.containerElement);
-        if (config.containerElement === 'nav') {
-          this.containerNode.setAttribute('aria-label', config.buttonLabel);
+        // check for 'nav' element, if not use 'div' element
+        const ce = this.config.containerElement.toLowerCase().trim() === 'nav' ? 'nav' : 'div';
+
+        this.containerNode = document.createElement(ce);
+        skipToContentElem.shadowRoot.appendChild(this.containerNode);
+
+        this.containerNode.id = this.skiptoId;
+        if (ce === 'nav') {
+          this.containerNode.setAttribute('aria-label', this.config.buttonLabel);
+        }
+        if (isNotEmptyString(this.config.customClass)) {
+          this.containerNode.classList.add(this.config.customClass);
         }
 
-        this.containerNode.id = id;
-
-        if (isNotEmptyString(config.customClass)) {
-          this.containerNode.classList.add(config.customClass);
-        }
-
-        let displayOption = config.displayOption;
-        if (typeof displayOption === 'string') {
-          displayOption = displayOption.trim().toLowerCase();
-          if (displayOption.length) {
-            switch (config.displayOption) {
-              case 'fixed':
-                this.containerNode.classList.add('fixed');
-                break;
-              case 'onfocus':  // Legacy option
-              case 'popup':
-                this.containerNode.classList.add('popup');
-                break;
-            }
-          }
-        }
+        this.setDisplayOption(this.config.displayOption);
 
         // Create button
 
-        const [buttonVisibleLabel, buttonAriaLabel] = this.getBrowserSpecificShortcut(config);
+        const [buttonVisibleLabel, buttonAriaLabel] = this.getBrowserSpecificShortcut(this.config);
 
         this.buttonNode = document.createElement('button');
+        this.buttonNode.setAttribute('aria-haspopup', 'menu');
+        this.buttonNode.setAttribute('aria-expanded', 'false');
         this.buttonNode.setAttribute('aria-label', buttonAriaLabel);
+        this.buttonNode.setAttribute('aria-controls', 'id-skip-to-menu');
         this.buttonNode.addEventListener('keydown', this.handleButtonKeydown.bind(this));
         this.buttonNode.addEventListener('click', this.handleButtonClick.bind(this));
         this.containerNode.appendChild(this.buttonNode);
 
-        this.buttonTextNode = document.createElement('span');
-        this.buttonTextNode.classList.add('skipto-text');
-        this.buttonTextNode.textContent = buttonVisibleLabel;
-        this.buttonNode.appendChild(this.buttonTextNode);
+        this.textButtonNode = document.createElement('span');
+        this.buttonNode.appendChild(this.textButtonNode);
+        this.textButtonNode.classList.add('skipto-text');
+        this.textButtonNode.textContent = buttonVisibleLabel;
 
-        const smallButtonNode = document.createElement('span');
-        smallButtonNode.classList.add('skipto-small');
-        smallButtonNode.textContent = config.smallButtonLabel;
-        this.buttonNode.appendChild(smallButtonNode);
+        this.smallButtonNode = document.createElement('span');
+        this.buttonNode.appendChild(this.smallButtonNode);
+        this.smallButtonNode.classList.add('skipto-small');
+        this.smallButtonNode.textContent = this.config.smallButtonLabel;
 
-        const mediumButtonNode = document.createElement('span');
-        mediumButtonNode.classList.add('skipto-medium');
-        mediumButtonNode.textContent = config.buttonLabel;
-        this.buttonNode.appendChild(mediumButtonNode);
+        this.mediumButtonNode = document.createElement('span');
+        this.buttonNode.appendChild(this.mediumButtonNode);
+        this.mediumButtonNode.classList.add('skipto-medium');
+        this.mediumButtonNode.textContent = this.config.buttonLabel;
 
         // Create menu container
+        this.menuitemNodes = [];
 
         this.menuNode   = document.createElement('div');
-        this.menuNode.id = 'id-skip-to-menu';
+        this.menuNode.setAttribute('id', 'id-skip-to-menu');
         this.menuNode.setAttribute('role', 'menu');
-        this.menuNode.setAttribute('aria-label', config.menuLabel);
-        this.menuNode.setAttribute('aria-busy', 'true');
+        this.menuNode.setAttribute('aria-label', this.config.menuLabel);
         this.containerNode.appendChild(this.menuNode);
 
-        const landmarkGroupLabelNode = document.createElement('div');
-        landmarkGroupLabelNode.id = 'id-skip-to-menu-landmark-group-label';
-        landmarkGroupLabelNode.setAttribute('role', 'separator');
-        landmarkGroupLabelNode.textContent = this.config.landmarkGroupLabel;
-        this.menuNode.appendChild(landmarkGroupLabelNode);
+        this.landmarkGroupLabelNode = document.createElement('div');
+        this.landmarkGroupLabelNode.setAttribute('id', 'id-skip-to-menu-landmark-group-label');
+        this.landmarkGroupLabelNode.setAttribute('role', 'separator');
+        this.landmarkGroupLabelNode.textContent = this.config.landmarkGroupLabel;
+        this.menuNode.appendChild(this.landmarkGroupLabelNode);
 
         this.landmarkGroupNode = document.createElement('div');
+        this.landmarkGroupNode.setAttribute('id', 'id-skip-to-menu-landmark-group');
         this.landmarkGroupNode.setAttribute('role', 'group');
-        this.landmarkGroupNode.setAttribute('aria-labelledby', landmarkGroupLabelNode.id);
-        this.landmarkGroupNode.id = '#id-skip-to-menu-landmark-group';
+        this.landmarkGroupNode.setAttribute('aria-labelledby', 'id-skip-to-menu-landmark-group-label');
         this.menuNode.appendChild(this.landmarkGroupNode);
 
-        const headingGroupLabelNode = document.createElement('div');
-        headingGroupLabelNode.id = 'id-skip-to-menu-heading-group-label';
-        headingGroupLabelNode.setAttribute('role', 'separator');
-        headingGroupLabelNode.textContent = this.config.headingGroupLabel;
-        this.menuNode.appendChild(headingGroupLabelNode);
+        this.headingGroupLabelNode = document.createElement('div');
+        this.headingGroupLabelNode.setAttribute('id', 'id-skip-to-menu-heading-group-label');
+        this.headingGroupLabelNode.setAttribute('role', 'separator');
+        this.headingGroupLabelNode.textContent = this.config.headingGroupLabel;
+        this.menuNode.appendChild(this.headingGroupLabelNode);
 
         this.headingGroupNode = document.createElement('div');
+        this.headingGroupNode.setAttribute('id', 'id-skip-to-menu-heading-group');
         this.headingGroupNode.setAttribute('role', 'group');
-        this.headingGroupNode.setAttribute('aria-labelledby', headingGroupLabelNode.id);
-        this.headingGroupNode.id = '#id-skip-to-menu-heading-group';
+        this.headingGroupNode.setAttribute('aria-labelledby', 'id-skip-to-menu-heading-group-label');
         this.menuNode.appendChild(this.headingGroupNode);
 
         this.containerNode.addEventListener('focusin', this.handleFocusin.bind(this));
         this.containerNode.addEventListener('focusout', this.handleFocusout.bind(this));
-        window.addEventListener('pointerdown', this.handleBackgroundPointerdown.bind(this), true);
+        this.containerNode.addEventListener('pointerdown', this.handleContinerPointerdown.bind(this), true);
+        document.documentElement.addEventListener('pointerdown', this.handleBodyPointerdown.bind(this), true);
 
         if (this.usesAltKey || this.usesOptionKey) {
           document.addEventListener(
@@ -1944,14 +2300,51 @@ $skipToId [role="menuitem"].hover .label {
           );
         }
 
-        attachNode.insertBefore(this.containerNode, attachNode.firstElementChild);
+        skipToContentElem.shadowRoot.appendChild(this.containerNode);
 
         this.focusMenuitem = null;
-
-        return this.containerNode;
-
       }
-        
+
+      get highlightEnabled () {
+        return (typeof this.config.highlightTarget === 'string') ?
+                  this.config.highlightTarget.trim().toLowerCase() === 'enabled' :
+                  false;
+      }
+
+      /*
+       * @method focusButton
+       *
+       * @desc Sets keyboard focus on the menu button
+       */
+      focusButton() {
+        this.buttonNode.focus();
+        this.skipToContentElem.setAttribute('focus', 'button');
+      }
+
+
+      /*
+       * @method updateLabels
+       *
+       * @desc Updates labels, important for configuration changes in browser
+       *       add-ons and extensions
+       */
+      updateLabels(config) {
+        if (this.containerNode.hasAttribute('aria-label')) {
+          this.containerNode.setAttribute('aria-label', config.buttonLabel);
+        }
+
+        const [buttonVisibleLabel, buttonAriaLabel] = this.getBrowserSpecificShortcut(config);
+        this.buttonNode.setAttribute('aria-label', buttonAriaLabel);
+
+        this.textButtonNode.textContent = buttonVisibleLabel;
+        this.smallButtonNode.textContent = config.smallButtonLabel;
+        this.mediumButtonNode.textContent = config.buttonLabel;
+
+        this.menuNode.setAttribute('aria-label', config.menuLabel);
+        this.landmarkGroupLabelNode.textContent = config.landmarkGroupLabel;
+        this.headingGroupLabelNode.textContent = config.headingGroupLabel;
+      }
+
       /*
        * @method getBrowserSpecificShortcut
        *
@@ -1993,7 +2386,10 @@ $skipToId [role="menuitem"].hover .label {
               config.altLabel
             );
             label = label + buttonShortcut;
-            ariaLabel = config.altButtonAriaLabel.replace('$key', config.altShortcut);
+            ariaLabel = config.buttonAriaLabel.replace('$key', config.altShortcut);
+            ariaLabel = ariaLabel.replace('$buttonLabel', config.buttonLabel);
+            ariaLabel = ariaLabel.replace('$modifierLabel', config.altLabel);
+            ariaLabel = ariaLabel.replace('$shortcutLabel', config.shortcutLabel);
           }
 
           if (this.usesOptionKey) {
@@ -2002,7 +2398,10 @@ $skipToId [role="menuitem"].hover .label {
               config.optionLabel
             );
             label = label + buttonShortcut;
-            ariaLabel = config.optionButtonAriaLabel.replace('$key', config.altShortcut);
+            ariaLabel = config.buttonAriaLabel.replace('$key', config.altShortcut);
+            ariaLabel = ariaLabel.replace('$buttonLabel', config.buttonLabel);
+            ariaLabel = ariaLabel.replace('$modifierLabel', config.optionLabel);
+            ariaLabel = ariaLabel.replace('$shortcutLabel', config.shortcutLabel);
           }
         }
         return [label, ariaLabel];
@@ -2106,6 +2505,7 @@ $skipToId [role="menuitem"].hover .label {
         menuitemNode.addEventListener('click', this.handleMenuitemClick.bind(this));
         menuitemNode.addEventListener('pointerenter', this.handleMenuitemPointerenter.bind(this));
         menuitemNode.addEventListener('pointerleave', this.handleMenuitemPointerleave.bind(this));
+        menuitemNode.addEventListener('pointerover', this.handleMenuitemPointerover.bind(this));
         groupNode.appendChild(menuitemNode);
 
         // add heading level and label
@@ -2158,7 +2558,11 @@ $skipToId [role="menuitem"].hover .label {
        * @param  {String}  msgNoItesmFound -  Message to render if there are no menu items
        */
       renderMenuitemsToGroup(groupNode, menuitems, msgNoItemsFound) {
-        groupNode.innerHTML = '';
+        // remove all child nodes
+        while (groupNode.firstChild) {
+          groupNode.removeChild(groupNode.firstChild);
+        }
+
         this.lastNestingLevel = 0;
 
         if (menuitems.length === 0) {
@@ -2181,7 +2585,7 @@ $skipToId [role="menuitem"].hover .label {
        *
        * @desc 
        */
-      renderMenu() {
+      renderMenu(config, skipToId) {
         // remove landmark menu items
         while (this.landmarkGroupNode.lastElementChild) {
           this.landmarkGroupNode.removeChild(this.landmarkGroupNode.lastElementChild);
@@ -2192,10 +2596,10 @@ $skipToId [role="menuitem"].hover .label {
         }
 
         // Create landmarks group
-        const [landmarkElements, headingElements] = getLandmarksAndHeadings(this.config, this.skiptoId);
+        const [landmarkElements, headingElements] = getLandmarksAndHeadings(config, skipToId);
 
-        this.renderMenuitemsToGroup(this.landmarkGroupNode, landmarkElements, this.config.msgNoLandmarksFound);
-        this.renderMenuitemsToGroup(this.headingGroupNode,  headingElements, this.config.msgNoHeadingsFound);
+        this.renderMenuitemsToGroup(this.landmarkGroupNode, landmarkElements, config.msgNoLandmarksFound);
+        this.renderMenuitemsToGroup(this.headingGroupNode,  headingElements, config.msgNoHeadingsFound);
 
         // Update list of menuitems
         this.updateMenuitems();
@@ -2214,10 +2618,14 @@ $skipToId [role="menuitem"].hover .label {
        */
       setFocusToMenuitem(menuitem) {
         if (menuitem) {
-          this.removeHoverClass();
+          this.removeHoverClass(menuitem);
           menuitem.classList.add('hover');
           menuitem.focus();
+          this.skipToContentElem.setAttribute('focus', 'menu');
           this.focusMenuitem = menuitem;
+          if (this.highlightEnabled) {
+            highlightElement(menuitem.getAttribute('data-id'));
+          }
         }
       }
 
@@ -2342,13 +2750,14 @@ $skipToId [role="menuitem"].hover .label {
       /*
        * @method openPopup
        *
-       * @desc Opens the memu of landmark regions and headings
+       * @desc Opens the menu of landmark regions and headings
        */
       openPopup() {
+        debug$2.flag && debug$2.log(`[openPopup]`);
         this.menuNode.setAttribute('aria-busy', 'true');
         const h = (80 * window.innerHeight) / 100;
         this.menuNode.style.maxHeight = h + 'px';
-        this.renderMenu();
+        this.renderMenu(this.config, this.skipToId);
         this.menuNode.style.display = 'block';
         const buttonRect = this.buttonNode.getBoundingClientRect();
         const menuRect = this.menuNode.getBoundingClientRect();
@@ -2362,6 +2771,7 @@ $skipToId [role="menuitem"].hover .label {
         }
         this.menuNode.removeAttribute('aria-busy');
         this.buttonNode.setAttribute('aria-expanded', 'true');
+        this.skipToContentElem.setAttribute('focus', 'menu');
       }
 
       /*
@@ -2370,9 +2780,11 @@ $skipToId [role="menuitem"].hover .label {
        * @desc Closes the memu of landmark regions and headings
        */
       closePopup() {
+        debug$2.flag && debug$2.log(`[closePopup]`);
         if (this.isOpen()) {
           this.buttonNode.setAttribute('aria-expanded', 'false');
           this.menuNode.style.display = 'none';
+          removeHighlight();
         }
       }
 
@@ -2392,20 +2804,125 @@ $skipToId [role="menuitem"].hover .label {
        *
        * @desc Removes hover class for menuitems
        */
-      removeHoverClass() {
+      removeHoverClass(target=null) {
         this.menuitemNodes.forEach( node => {
-          node.classList.remove('hover');
+          if (node !== target) {
+            node.classList.remove('hover');
+          }
         });
       }
+
+      /*
+       * @method getMenuitem
+       *
+       * @desc Returns menuitem dom node if pointer is over it
+       *
+       * @param {Number}   x: client x coordinator of pointer
+       * @param {Number}   y: client y coordinator of pointer
+       *
+       * @return {object}  see @desc
+       */
+      getMenuitem(x, y) {
+        for (let i = 0; i < this.menuitemNodes.length; i += 1) {
+          const node = this.menuitemNodes[i];
+          const rect = node.getBoundingClientRect();
+
+          if ((rect.left <= x) &&
+              (rect.right >= x) &&
+              (rect.top <= y) &&
+              (rect.bottom >= y)) {
+                return node;
+              }
+        }
+        return false;
+      }
+
+      /*
+       * @method isOverButton
+       *
+       * @desc Returns true if pointer over button
+       *
+       * @param {Number}   x: client x coordinator of pointer
+       * @param {Number}   y: client y coordinator of pointer
+       *
+       * @return {object}  see @desc
+       */
+      isOverButton(x, y) {
+        const node = this.buttonNode;
+        const rect = node.getBoundingClientRect();
+
+        return (rect.left <= x) &&
+               (rect.right >= x) &&
+               (rect.top <= y) &&
+               (rect.bottom >= y);
+      }
+
+      /*
+       * @method isOverMenu
+       *
+       * @desc Returns true if pointer over the menu
+       *
+       * @param {Number}   x: client x coordinator of pointer
+       * @param {Number}   y: client y coordinator of pointer
+       *
+       * @return {object}  see @desc
+       */
+      isOverMenu(x, y) {
+        const node = this.menuNode;
+        const rect = node.getBoundingClientRect();
+
+        return (rect.left <= x) &&
+               (rect.right >= x) &&
+               (rect.top <= y) &&
+               (rect.bottom >= y);
+      }    
+
+      /*
+       * @method setDisplayOption
+       *
+       * @desc Set display option for button visibility wehn it does not
+       *       have focus
+       *
+       * @param  {String}  value - String with configuration information
+       */
+      setDisplayOption(value) {
+
+        if (typeof value === 'string') {
+          value = value.trim().toLowerCase();
+          if (value.length && this.containerNode) {
+
+            this.containerNode.classList.remove('static');
+            this.containerNode.classList.remove('popup');
+            this.containerNode.classList.remove('show-border');
+
+            switch (value) {
+              case 'static':
+                this.containerNode.classList.add('static');
+                break;
+              case 'onfocus':  // Legacy option
+              case 'popup':
+                this.containerNode.classList.add('popup');
+                break;
+              case 'popup-border':
+                this.containerNode.classList.add('popup');
+                this.containerNode.classList.add('show-border');
+                break;
+            }
+          }
+        }
+      }
+
 
       // Menu event handlers
       
       handleFocusin() {
         this.containerNode.classList.add('focus');
+        this.skipToContentElem.setAttribute('focus', 'button');
       }
       
       handleFocusout() {
         this.containerNode.classList.remove('focus');
+        this.skipToContentElem.setAttribute('focus', 'none');
       }
       
       handleButtonKeydown(event) {
@@ -2424,6 +2941,7 @@ $skipToId [role="menuitem"].hover .label {
           case 'Escape':
             this.closePopup();
             this.buttonNode.focus();
+            this.skipToContentElem.setAttribute('focus', 'button');
             flag = true;
             break;
           case 'Up':
@@ -2440,9 +2958,11 @@ $skipToId [role="menuitem"].hover .label {
       }
 
       handleButtonClick(event) {
+        debug$2.flag && debug$2.log(`[handleButtonClick]`);
         if (this.isOpen()) {
           this.closePopup();
           this.buttonNode.focus();
+          this.skipToContentElem.setAttribute('focus', 'button');
         } else {
           this.openPopup();
           this.setFocusToFirstMenuitem();
@@ -2530,8 +3050,9 @@ $skipToId [role="menuitem"].hover .label {
             flag = true;
           }
           if (event.key === 'Tab') {
-            this.buttonNode.focus();
             this.closePopup();
+            this.buttonNode.focus();
+            this.skipToContentElem.setAttribute('focus', 'button');
             flag = true;
           }
         } else {
@@ -2545,6 +3066,7 @@ $skipToId [role="menuitem"].hover .label {
             case 'Escape':
               this.closePopup();
               this.buttonNode.focus();
+              this.skipToContentElem.setAttribute('focus', 'button');
               flag = true;
               break;
             case 'Up':
@@ -2591,53 +3113,151 @@ $skipToId [role="menuitem"].hover .label {
       }
 
       handleMenuitemPointerenter(event) {
+        debug$2.flag && debug$2.log(`[enter]`);
         let tgt = event.currentTarget;
-        this.removeHoverClass();
         tgt.classList.add('hover');
+        if (this.highlightEnabled) {
+          highlightElement(tgt.getAttribute('data-id'));
+        }
+        event.stopPropagation();
+        event.preventDefault();
+      }
+
+     handleMenuitemPointerover(event) {
+        debug$2.flag && debug$2.log(`[over]`);
+        let tgt = event.currentTarget;
+        if (this.highlightEnabled) {
+          highlightElement(tgt.getAttribute('data-id'));
+        }
+        event.stopPropagation();
+        event.preventDefault();
       }
 
       handleMenuitemPointerleave(event) {
+        debug$2.flag && debug$2.log(`[leave]`);
         let tgt = event.currentTarget;
         tgt.classList.remove('hover');
+        event.stopPropagation();
+        event.preventDefault();
       }
 
-      handleBackgroundPointerdown(event) {
-        if (!this.containerNode.contains(event.target)) {
-          if (this.isOpen()) {
-            this.closePopup();
-            this.buttonNode.focus();
+      handleContinerPointerdown(event) {
+        debug$2.flag && debug$2.log(`[down]: target: ${event.pointerId}`);
+
+        if (this.isOverButton(event.clientX, event.clientY)) {
+          this.containerNode.releasePointerCapture(event.pointerId);
+        }
+        else {
+          this.containerNode.setPointerCapture(event.pointerId);
+          this.containerNode.addEventListener('pointermove', this.handleContinerPointermove.bind(this));
+          this.containerNode.addEventListener('pointerup', this.handleContinerPointerup.bind(this));
+
+          if (this.containerNode.contains(event.target)) {
+            if (this.isOpen()) {
+              if (!this.isOverMenu(event.clientX, event.clientY)) {
+                debug$2.flag && debug$2.log(`[down][close]`);
+                this.closePopup();
+                this.buttonNode.focus();
+                this.skipToContentElem.setAttribute('focus', 'button');
+              }
+            }
+            else {
+              debug$2.flag && debug$2.log(`[down][open]`);
+              this.openPopup();          
+              this.setFocusToFirstMenuitem();
+            }
+
           }
         }
+
+        event.stopPropagation();
+        event.preventDefault();
       }
+
+      handleContinerPointermove(event) {
+        const mi = this.getMenuitem(event.clientX, event.clientY);
+        if (mi) {
+          this.removeHoverClass(mi);
+          mi.classList.add('hover');
+          if (this.highlightEnabled) {
+            highlightElement(mi.getAttribute('data-id'));
+          }
+        }
+
+        event.stopPropagation();
+        event.preventDefault();
+      }
+
+      handleContinerPointerup(event) {
+
+        this.containerNode.releasePointerCapture(event.pointerId);
+        this.containerNode.removeEventListener('pointermove', this.handleContinerPointermove);
+        this.containerNode.removeEventListener('pointerup', this.handleContinerPointerup);
+
+        const mi = this.getMenuitem(event.clientX, event.clientY);
+        const omb = this.isOverButton(event.clientX, event.clientY);
+        debug$2.flag && debug$2.log(`[up] isOverButton: ${omb} getMenuitem: ${mi} id: ${event.pointerId}`);
+
+        if (mi) {
+          this.handleMenuitemAction(mi);          
+        }
+        else {
+          if (!omb) {
+            debug$2.flag && debug$2.log(`[up] not over button `);
+            if (this.isOpen()) {
+              debug$2.flag && debug$2.log(`[up] close `);
+              this.closePopup();
+              this.buttonNode.focus();
+              this.skipToContentElem.setAttribute('focus', 'button');
+            }        
+          }
+        }
+
+        event.stopPropagation();
+        event.preventDefault();
+      }
+
+      handleBodyPointerdown(event) {
+        debug$2.flag && debug$2.log(`[handleBodyPointerdown]: target: ${event.pointerId}`);
+
+        if (!this.isOverButton(event.clientX, event.clientY) &&
+            !this.isOverMenu(event.clientX, event.clientY)) {
+          this.closePopup();
+        }
+      }
+
+
   }
 
+  /* skiptoContent.js */
+
   /* constants */
-  const debug = new DebugLogging('skipto', false);
-  debug.flag = true;
+  const debug$1 = new DebugLogging('skiptoContent', false);
+  debug$1.flag = false;
 
-  (function() {
 
-    const SkipTo = {
-      skipToId: 'id-skip-to',
-      domNode: null,
-      buttonNode: null,
-      menuNode: null,
-      menuitemNodes: [],
-      firstMenuitem: false,
-      lastMenuitem: false,
-      firstChars: [],
-      headingLevels: [],
-      skipToIdIndex: 1,
+  class SkipToContent extends HTMLElement {
+
+    constructor() {
+      // Always call super first in constructor
+      super();
+      this.attachShadow({ mode: 'open' });
+      this.skipToId = 'id-skip-to';
+      this.version = "5.6.2";
+      this.buttonSkipTo = false;
+      this.initialized = false;
+
       // Default configuration values
-      config: {
+      this.config = {
         // Feature switches
         enableHeadingLevelShortcuts: true,
 
+        focusOption: 'none',  // used by extensions only
+
         // Customization of button and menu
         altShortcut: '0', // default shortcut key is the number zero
-        optionShortcut: 'º', // default shortcut key character associated with option+0 on mac 
-        attachElement: 'body',
-        displayOption: 'static', // options: static (default), popup, fixed
+        optionShortcut: 'º', // default shortcut key character associated with option+0 on mac
+        displayOption: '', // options: static, popup, fixed (default)
         // container element, use containerClass for custom styling
         containerElement: 'nav',
         containerRole: '',
@@ -2648,9 +3268,9 @@ $skipToId [role="menuitem"].hover .label {
         smallButtonLabel: 'SkipTo',
         altLabel: 'Alt',
         optionLabel: 'Option',
+        shortcutLabel: 'shortcut',
         buttonShortcut: ' ($modifier+$key)',
-        altButtonAriaLabel: 'Skip To Content, shortcut Alt plus $key',
-        optionButtonAriaLabel: 'Skip To Content, shortcut Option plus $key',
+        buttonAriaLabel: '$buttonLabel, $shortcutLabel $modifierLabel + $key',
 
         // Menu labels and messages
         menuLabel: 'Landmarks and Headings',
@@ -2670,7 +3290,10 @@ $skipToId [role="menuitem"].hover .label {
 
         // Selectors for landmark and headings sections
         landmarks: 'main search navigation complementary',
-        headings: 'main h1 h2',
+        headings: 'main-only h1 h2',
+
+        // Highlight options
+        highlightTarget: 'disabled', // options: 'enabled' (default) and 'disabled'
 
         // Place holders for configuration
         colorTheme: '',
@@ -2687,235 +3310,268 @@ $skipToId [role="menuitem"].hover .label {
         buttonTextColor: '',
         buttonBackgroundColor: '',
         zIndex: '',
-      },
-      colorThemes: {
-        'default': {
-          fontFamily: 'inherit',
-          fontSize: 'inherit',
-          positionLeft: '46%',
-          smallBreakPoint: '576',
-          mediumBreakPoint: '992',
-          menuTextColor: '#1a1a1a',
-          menuBackgroundColor: '#dcdcdc',
-          menuitemFocusTextColor: '#eeeeee',
-          menuitemFocusBackgroundColor: '#1a1a1a',
-          focusBorderColor: '#1a1a1a',
-          buttonTextColor: '#1a1a1a',
-          buttonBackgroundColor: '#eeeeee',
-          zIndex: '100000',
-        },
-        'aria': {
-          hostnameSelector: 'w3.org',
-          pathnameSelector: 'ARIA/apg',
-          fontFamily: 'sans-serif',
-          fontSize: '10pt',
-          positionLeft: '7%',
-          menuTextColor: '#000',
-          menuBackgroundColor: '#def',
-          menuitemFocusTextColor: '#fff',
-          menuitemFocusBackgroundColor: '#005a9c',
-          focusBorderColor: '#005a9c',
-          buttonTextColor: '#005a9c',
-          buttonBackgroundColor: '#ddd',
-        },
-        'illinois': {
-          hostnameSelector: 'illinois.edu',
-          menuTextColor: '#00132c',
-          menuBackgroundColor: '#cad9ef',
-          menuitemFocusTextColor: '#eeeeee',
-          menuitemFocusBackgroundColor: '#00132c',
-          focusBorderColor: '#ff552e',
-          buttonTextColor: '#444444',
-          buttonBackgroundColor: '#dddede',
-        },
-        'skipto': {
-          hostnameSelector: 'skipto-landmarks-headings.github.io',
-          fontSize: '14px',
-          menuTextColor: '#00132c',
-          menuBackgroundColor: '#cad9ef',
-          menuitemFocusTextColor: '#eeeeee',
-          menuitemFocusBackgroundColor: '#00132c',
-          focusBorderColor: '#ff552e',
-          buttonTextColor: '#444444',
-          buttonBackgroundColor: '#dddede',
-        },
-        'uic': {
-          hostnameSelector: 'uic.edu',
-          menuTextColor: '#001e62',
-          menuBackgroundColor: '#f8f8f8',
-          menuitemFocusTextColor: '#ffffff',
-          menuitemFocusBackgroundColor: '#001e62',
-          focusBorderColor: '#d50032',
-          buttonTextColor: '#ffffff',
-          buttonBackgroundColor: '#001e62',
-        },
-        'uillinois': {
-          hostnameSelector: 'uillinois.edu',
-          menuTextColor: '#001e62',
-          menuBackgroundColor: '#e8e9ea',
-          menuitemFocusTextColor: '#f8f8f8',
-          menuitemFocusBackgroundColor: '#13294b',
-          focusBorderColor: '#dd3403',
-          buttonTextColor: '#e8e9ea',
-          buttonBackgroundColor: '#13294b',
-        },
-        'uis': {
-          hostnameSelector: 'uis.edu',
-          menuTextColor: '#036',
-          menuBackgroundColor: '#fff',
-          menuitemFocusTextColor: '#fff',
-          menuitemFocusBackgroundColor: '#036',
-          focusBorderColor: '#dd3444',
-          buttonTextColor: '#fff',
-          buttonBackgroundColor: '#036',
-        },
-        'openweba11y': {
-          hostnameSelector: 'openweba11y.com',
-          buttonTextColor: '#13294B',
-          buttonBackgroundColor: '#dddddd',
-          focusBorderColor: '#C5050C',
-          menuTextColor: '#13294B',
-          menuBackgroundColor: '#dddddd',
-          menuitemFocusTextColor: '#dddddd',
-          menuitemFocusBackgroundColor: '#13294B',
-          fontSize: '90%'
-        }
-      },
+        zHighlight: ''
+      };
+    }
 
-      /*
-       * @method init
-       *
-       * @desc Initializes the skipto button and menu with default and user 
-       *       defined options
-       *
-       * @param  {object} config - Reference to configuration object
-       *                           can be undefined
-       */
-      init: function(globalConfig) {
-        let node;
+    static get observedAttributes() {
+      return [
+        "data-skipto",
+        "setfocus"
+        ];
+    }
 
-        // Check if skipto is already loaded
-        if (document.skipToHasBeenLoaded) {
-          console.warn('[skipTo.js] Skipto is already loaded!');
-          return;
-        }
+    attributeChangedCallback(name, oldValue, newValue) {
+      if (name === 'data-skipto') {
+        this.config = this.setupConfigFromDataAttribute(this.config, newValue);
+      }
 
-        document.skipToHasBeenLoaded = true;
+      if (name === 'setfocus') {
+          switch(newValue) {
+            case 'button':
+              this.buttonSkipTo.closePopup();
+              this.buttonSkipTo.buttonNode.focus();
+              break;
 
-        let attachElement = document.body;
+            case 'menu':
+              this.buttonSkipTo.openPopup();
+              this.buttonSkipTo.setFocusToFirstMenuitem();
+              break;
 
+            case 'none':
+              this.buttonSkipTo.closePopup();
+              document.body.focus();
+              break;
+          }
+      }
+    }
+
+    /*
+     * @method init
+     *
+     * @desc Initializes the skipto button and menu with default and user
+     *       defined options
+     *
+     * @param  {object} globalConfig - Reference to configuration object
+     *                                 can be undefined
+     */
+    init(globalConfig=false) {
+      if (!this.initialized) {
+        this.initialized = true;
         if (globalConfig) {
           this.config = this.setupConfigFromGlobal(this.config, globalConfig);
         }
 
-        this.config = this.setupConfigFromDataAttribute(this.config);
-
-        if (typeof this.config.attachElement === 'string') {
-          node = document.querySelector(this.config.attachElement);
-          if (node && node.nodeType === Node.ELEMENT_NODE) {
-            attachElement = node;
-          }
-        }
-        // Add skipto style sheet to document
-        renderStyleElement(this.colorThemes, this.config, this.skipToId);
-
-        new SkiptoMenuButton(attachElement, this.config, this.skipToId);
-      },
-
-      /*
-       * @method setupConfigFromGlobal
-       *
-       * @desc Get configuration information from author configuration to change
-       *       default settings 
-       *
-       * @param  {object}  config       - Javascript object with default configuration information
-       * @param  {object}  globalConfig - Javascript object with configuration information oin a global variable
-       */
-      setupConfigFromGlobal: function(config, globalConfig) {
-        let authorConfig = {};
-        // Support version 4.1 configuration object structure 
-        // If found use it
-        if ((typeof globalConfig.settings === 'object') &&
-            (typeof globalConfig.settings.skipTo === 'object')) {
-          authorConfig = globalConfig.settings.skipTo;
-        }
-        else {
-          // Version 5.0 removes the requirement for the "settings" and "skipto" properties
-          // to reduce the complexity of configuring skipto
-          if (typeof globalConfig === 'object') {
-            authorConfig = globalConfig;
-          }
-        }
-
-        for (const name in authorConfig) {
-          //overwrite values of our local config, based on the external config
-          if ((typeof config[name] !== 'undefined') &&
-             ((typeof authorConfig[name] === 'string') &&
-              (authorConfig[name].length > 0 ) ||
-             typeof authorConfig[name] === 'boolean')
-            ) {
-            config[name] = authorConfig[name];
-          } else {
-            console.warn('[SkipTo]: Unsupported or deprecated configuration option in global configuration object: ' + name);
-          }
-        }
-
-        return config;
-      },
-
-      /*
-       * @method setupConfigFromDataAttribute
-       *
-       * @desc Get configuration information from author configuration to change
-       *       default settings
-       *
-       * @param  {object}  config - Javascript object with default configuration information
-       */
-      setupConfigFromDataAttribute: function(config) {
-        let dataConfig = {};
-
         // Check for data-skipto attribute values for configuration
         const configElem = document.querySelector('[data-skipto]');
         if (configElem) {
-          const dataSkiptoValue = configElem.getAttribute('data-skipto');
-          if (dataSkiptoValue) {
-            const values = dataSkiptoValue.split(';');
-            values.forEach( v => {
-              let [prop, value] = v.split(':');
-              if (prop) {
-                prop = prop.trim();
-              }
-              if (value) {
-                value = value.trim();
-              }
-              if (prop && value) {
-                dataConfig[prop] = value;
-              }
-            });
-          }
+          const params = configElem.getAttribute('data-skipto');
+          this.config  = this.setupConfigFromDataAttribute(this.config, params);
         }
 
-        for (const name in dataConfig) {
-          //overwrite values of our local config, based on the external config
-          if ((typeof config[name] !== 'undefined') &&
-             ((typeof dataConfig[name] === 'string') &&
-              (dataConfig[name].length > 0 ) ||
-             typeof dataConfig[name] === 'boolean')
-            ) {
-            config[name] = dataConfig[name];
-          } else {
-            console.warn('[SkipTo]: Unsupported or deprecated configuration option in data-skipto attribute: ' + name);
-          }
-        }
-        return config;
-
+        // Add skipto style sheet to document
+        renderStyleElement(this.shadowRoot, this.config, this.skipToId);
+        this.buttonSkipTo = new SkiptoMenuButton(this);
       }
-    };
 
-    // Initialize skipto menu button with onload event
-    window.addEventListener('load', function() {
-      SkipTo.init(window.SkipToConfig);
-    });
+      this.setAttribute('focus', 'none');
+    }
+
+   /*
+     * @method setupConfigFromGlobal
+     *
+     * @desc Get configuration information from author configuration to change
+     *       default settings
+     *
+     * @param  {object}  config       - Javascript object with default configuration information
+     * @param  {object}  globalConfig - Javascript object with configuration information oin a global variable
+     */
+    setupConfigFromGlobal(config, globalConfig) {
+      let authorConfig = {};
+      // Support version 4.1 configuration object structure
+      // If found use it
+      if ((typeof globalConfig.settings === 'object') &&
+          (typeof globalConfig.settings.skipTo === 'object')) {
+        authorConfig = globalConfig.settings.skipTo;
+      }
+      else {
+        // Version 5.0 removes the requirement for the "settings" and "skipto" properties
+        // to reduce the complexity of configuring skipto
+        if (typeof globalConfig === 'object') {
+          authorConfig = globalConfig;
+        }
+      }
+
+      for (const name in authorConfig) {
+        //overwrite values of our local config, based on the external config
+        if ((typeof config[name] !== 'undefined') &&
+           ((typeof authorConfig[name] === 'string') &&
+            (authorConfig[name].length > 0 ) ||
+           typeof authorConfig[name] === 'boolean')
+          ) {
+          config[name] = authorConfig[name];
+        } else {
+          console.warn('[SkipTo]: Unsupported or deprecated configuration option in global configuration object: ' + name);
+        }
+      }
+
+      return config;
+    }
+
+    /*
+     * @method setupConfigFromDataAttribute
+     *
+     * @desc Update configuration information from author configuration to change
+     *       default settings
+     *
+     * @param  {Object}  config - Object with SkipTo.js configuration information
+     * @param  {String}  params - String with configuration information
+     */
+    setupConfigFromDataAttribute(config, params) {
+      let dataConfig = {};
+
+      if (params) {
+        const values = params.split(';');
+        values.forEach( v => {
+          let [prop, value] = v.split(':');
+          if (prop) {
+            prop = prop.trim();
+          }
+          if (value) {
+            value = value.trim();
+          }
+          if (prop && value) {
+            dataConfig[prop] = value;
+          }
+        });
+      }
+
+      for (const name in dataConfig) {
+        //overwrite values of our local config, based on the external config
+        if ((typeof config[name] !== 'undefined') &&
+           ((typeof dataConfig[name] === 'string') &&
+            (dataConfig[name].length > 0 ) ||
+           typeof dataConfig[name] === 'boolean')
+          ) {
+          config[name] = dataConfig[name];
+        } else {
+          console.warn('[SkipTo]: Unsupported or deprecated configuration option in data-skipto attribute: ' + name);
+        }
+      }
+
+      renderStyleElement(this.shadowRoot, config, this.skipToId);
+      if (this.buttonSkipTo) {
+        this.buttonSkipTo.updateLabels(config);
+        this.buttonSkipTo.setDisplayOption(config['displayOption']);
+      }
+
+      return config;
+    }
+
+
+  }
+
+  /* skipto.js */
+
+  /* constants */
+  const debug = new DebugLogging('skipto', false);
+  debug.flag = false;
+
+  (function() {
+
+    /*
+    *  @function removeLegacySkipToJS
+    *
+    *  @desc Removes legacy and duplicate versions of SkipTo.js
+    */
+
+    function removeLegacySkipToJS(skipToContentElem = null) {
+      const node = document.getElementById('id-skip-to');
+      debug.flag && debug.log(`[removeLegacySkipToJS]: ${node}`);
+      if (node !== null) {
+        // remove legacy SkipTo.js
+        node.remove();
+        const cssNode = document.getElementById('id-skip-to-css');
+        if (cssNode) {
+          cssNode.remove();
+        }
+        console.warn('[skipTo.js] legacy version removed, using SkipTo.js extension');
+      }
+      const nodes = document.querySelectorAll('skip-to-content');
+      if (nodes && nodes.length > 1) {
+        debug.flag && debug.log(`[removeLegacySkipToJS][${nodes.length}]: Removing duplicate copy of SkipTo.js`);
+        for (let i = 0; i <nodes.length; i += 1) {
+          const stcNode = nodes[i];
+          if (stcNode !== skipToContentElem) {
+            stcNode.remove();
+            console.warn('[skipTo.js] duplicate version removed');
+          }
+        }
+      }
+    }
+
+    /*
+    *. @function getSkipToContentElement
+    *
+    * @desc  Creates and add a skip-to-content element in the page
+    *
+    * @returns  Returns dom node of new element or false if the page
+    *           has a legacy SkipTo.js
+    */
+    function getSkipToContentElement() {
+
+      if (document.getElementById('id-skip-to')) {
+        removeLegacySkipToJS();
+      }
+
+      let skipToContentElem = document.querySelector(`skip-to-content`);
+
+      if (!skipToContentElem) {
+        window.customElements.define("skip-to-content", SkipToContent);
+        skipToContentElem = document.createElement('skip-to-content');
+        skipToContentElem.setAttribute('version', skipToContentElem.version);
+        // always attach SkipToContent element to body
+        if (document.body) {
+          document.body.insertBefore(skipToContentElem, document.body.firstElementChild);
+        }
+      }
+      return skipToContentElem;
+    }
+
+    // Check for SkipTo.js bookmarklet script, if it is initialize it immediately
+    if (document.getElementById(`id-skip-to-bookmarklet`)) {
+      debug.flag && debug.log(`[bookmarklet]`);
+      const skipToContentElem = getSkipToContentElement();
+      if (skipToContentElem) {
+        skipToContentElem.init();
+        skipToContentElem.buttonSkipTo.openPopup();
+        skipToContentElem.buttonSkipTo.setFocusToFirstMenuitem();
+      }
+    }
+    else {
+      if (document.getElementById(`id-skip-to-extension`)) {
+        debug.flag && debug.log(`[extension]`);
+        const skipToContentElem = getSkipToContentElement();
+        if (skipToContentElem) {
+          skipToContentElem.init();
+          window.addEventListener('load', function() {
+            debug.flag && debug.log(`[onload][extension][elem]: ${skipToContentElem}`);
+            removeLegacySkipToJS(skipToContentElem);
+          });
+        }
+      }
+      else {
+        // Initialize SkipTo.js menu button with onload event
+        window.addEventListener('load', function() {
+          debug.flag && debug.log(`[onload][script]`);
+          const skipToContentElem = getSkipToContentElement();
+          if (skipToContentElem) {
+            debug.flag && debug.log(`[onload][script][elem]: ${skipToContentElem}`);
+            skipToContentElem.init(window.SkipToConfig);
+          }
+        });
+      }
+    }
   })();
 
 })();
