@@ -528,7 +528,7 @@ $skipToId-overlay {
   border: 4px solid $buttonBackgroundColor;
 }
 
-$skipToId-overlay div {
+$skipToId-overlay div.overlay-border {
   margin: 0;
   padding: 0;
   position: relative;
@@ -2060,6 +2060,7 @@ $skipToId-overlay div {
       document.body.appendChild(overlayElem);
 
       const overlayElemChild = document.createElement('div');
+      overlayElemChild.className = 'overlay-border';
       overlayElem.appendChild(overlayElemChild);
     }
 
