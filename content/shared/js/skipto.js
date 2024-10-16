@@ -1,5 +1,5 @@
 /* ========================================================================
- * Version: 5.6.2
+ * Version: 5.6.3
  * Copyright (c) 2022, 2023, 2024 Jon Gunderson; Licensed BSD
  * Copyright (c) 2021 PayPal Accessibility Team and University of Illinois; Licensed BSD
  * All rights reserved.
@@ -62,6 +62,7 @@
       focusBorderColor: '#ff552e',
       buttonTextColor: '#444444',
       buttonBackgroundColor: '#dddede',
+      highlightTarget: 'disabled'
     },
     'openweba11y': {
       hostnameSelector: 'openweba11y.com',
@@ -105,6 +106,7 @@
       focusBorderColor: '#dd3403',
       buttonTextColor: '#e8e9ea',
       buttonBackgroundColor: '#13294b',
+      highlightTarget: 'disabled'
     },
     'uis': {
       hostnameSelector: 'uis.edu',
@@ -518,13 +520,13 @@ $skipToId [role="menuitem"].hover .label {
 
   const cssHighlightTemplate = document.createElement('template');
   cssHighlightTemplate.textContent = `
-$skipToId-highlight {
+$skipToId-overlay {
   position: absolute;
   border-radius: 3px;
   border: 4px solid $buttonBackgroundColor;
 }
 
-$skipToId-highlight div {
+$skipToId-overlay div {
   position: relative;
   top: -2px;
   left: -2px;
@@ -690,10 +692,14 @@ $skipToId-highlight div {
 
     cssMenu = updateStyle(cssMenu, '$zIndex', config.zIndex, theme.zIndex, defaultTheme.zIndex);
 
-    cssMenu = updateStyle(cssMenu, '$zHighlight', config.zHighlight, theme.zHighlight, defaultTheme.zHighlight);
-
+    cssHighlight = updateStyle(cssHighlight, '$zHighlight', config.zHighlight, theme.zHighlight, defaultTheme.zHighlight);
     cssHighlight = updateStyle(cssHighlight, '$buttonBackgroundColor', config.buttonBackgroundColor, theme.buttonBackgroundColor, defaultTheme.buttonBackgroundColor);
     cssHighlight = updateStyle(cssHighlight, '$focusBorderColor', config.focusBorderColor, theme.focusBorderColor, defaultTheme.focusBorderColor);
+
+    // Special case for theme configuration used in Illinois theme
+    if (typeof theme.highlightTarget === 'string') {
+      config.highlightTarget = theme.highlightTarget;
+    }
 
     return [cssMenu, cssHighlight];
 
@@ -2029,20 +2035,32 @@ $skipToId-highlight div {
   const offset = 6;
   const borderWidth = 2;
 
-  const overlayElement = document.createElement('div');
-  overlayElement.id = 'id-skip-to-highlight';
-  overlayElement.style.display = 'none';
+  const overlayId = 'id-skip-to-overlay';
 
-  window.addEventListener('load', () => {
-    if (document.body) {
-      document.body.appendChild(overlayElement);
+  /*
+   *   @function getOverlayElement
+   *
+   *   @desc  Returns DOM node for the overlay element
+   *
+   *   @returns {Object} see @desc
+   */
+
+  function getOverlayElement() {
+
+    let overlayElem = document.getElementById(overlayId);
+
+    if (overlayElem === null) {
+      overlayElem = document.createElement('div');
+      overlayElem.style.display = 'none';
+      overlayElem.id = overlayId;
+      document.body.appendChild(overlayElem);
+
+      const overlayElemChild = document.createElement('div');
+      overlayElem.appendChild(overlayElemChild);
     }
-  });
 
-
-  const overlayElementChild = document.createElement('div');
-  overlayElement.appendChild(overlayElementChild);
-
+    return overlayElem;
+  }
 
   /*
    *   @function isElementInViewport
@@ -2113,25 +2131,29 @@ $skipToId-highlight div {
    *   @desc  Highlights the element with the id on a page when highlighting
    *          is enabled (NOTE: Highlight is enabled by default)
    *
-   *   @param {String} id     : id of the element to highlight
+   *   @param {String} id               : id of the element to highlight
+   *   @param {String} ihighlightTarget : value of highlight target
    */
-  function highlightElement(id) {
+  function highlightElement(id, highlightTarget) {
     const mediaQuery = window.matchMedia(`(prefers-reduced-motion: reduce)`);
     const isReduced = !mediaQuery || mediaQuery.matches;
     const element = queryDOMForSkipToId(id);
 
-    if (element) {
-      updateOverlayElement(overlayElement, element);
+    if (element && highlightTarget) {
+
       if (isElementInHeightLarge(element)) {
         if (!isElementStartInViewport(element)  && !isReduced) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+          element.scrollIntoView({ behavior: highlightTarget, block: 'start', inline: 'nearest' });
         }
       }
       else {
         if (!isElementInViewport(element)  && !isReduced) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+          element.scrollIntoView({ behavior: highlightTarget, block: 'center', inline: 'nearest' });
         }
       }
+
+      const overlayElement = getOverlayElement();
+      updateOverlayElement(overlayElement, element);
     }
   }
 
@@ -2141,6 +2163,7 @@ $skipToId-highlight div {
    *   @desc  Hides the highlight element on the page
    */
   function removeHighlight() {
+    const overlayElement = getOverlayElement();
     overlayElement.style.display = 'none';
   }
 
@@ -2305,10 +2328,23 @@ $skipToId-highlight div {
         this.focusMenuitem = null;
       }
 
-      get highlightEnabled () {
-        return (typeof this.config.highlightTarget === 'string') ?
-                  this.config.highlightTarget.trim().toLowerCase() === 'enabled' :
-                  false;
+      /*
+       * @get highlightTarget
+       *
+       * @desc Returns normalized value for the highlightTarget option
+       */
+      get highlightTarget () {
+        let value = this.config.highlightTarget.trim().toLowerCase();
+
+        if ('enabled smooth'.includes(value)) {
+          return 'smooth';
+        }
+
+        if (value === 'instant') {
+          return 'instant';
+        }
+
+        return '';
       }
 
       /*
@@ -2623,9 +2659,7 @@ $skipToId-highlight div {
           menuitem.focus();
           this.skipToContentElem.setAttribute('focus', 'menu');
           this.focusMenuitem = menuitem;
-          if (this.highlightEnabled) {
-            highlightElement(menuitem.getAttribute('data-id'));
-          }
+          highlightElement(menuitem.getAttribute('data-id'), this.highlightTarget);
         }
       }
 
@@ -3116,9 +3150,7 @@ $skipToId-highlight div {
         debug$2.flag && debug$2.log(`[enter]`);
         let tgt = event.currentTarget;
         tgt.classList.add('hover');
-        if (this.highlightEnabled) {
-          highlightElement(tgt.getAttribute('data-id'));
-        }
+        highlightElement(tgt.getAttribute('data-id'), this.highlightTarget);
         event.stopPropagation();
         event.preventDefault();
       }
@@ -3126,9 +3158,7 @@ $skipToId-highlight div {
      handleMenuitemPointerover(event) {
         debug$2.flag && debug$2.log(`[over]`);
         let tgt = event.currentTarget;
-        if (this.highlightEnabled) {
-          highlightElement(tgt.getAttribute('data-id'));
-        }
+        highlightElement(tgt.getAttribute('data-id'), this.highlightTarget);
         event.stopPropagation();
         event.preventDefault();
       }
@@ -3179,9 +3209,7 @@ $skipToId-highlight div {
         if (mi) {
           this.removeHoverClass(mi);
           mi.classList.add('hover');
-          if (this.highlightEnabled) {
-            highlightElement(mi.getAttribute('data-id'));
-          }
+          highlightElement(mi.getAttribute('data-id'), this.highlightTarget);
         }
 
         event.stopPropagation();
@@ -3243,7 +3271,7 @@ $skipToId-highlight div {
       super();
       this.attachShadow({ mode: 'open' });
       this.skipToId = 'id-skip-to';
-      this.version = "5.6.2";
+      this.version = "5.6.3";
       this.buttonSkipTo = false;
       this.initialized = false;
 
@@ -3293,7 +3321,7 @@ $skipToId-highlight div {
         headings: 'main-only h1 h2',
 
         // Highlight options
-        highlightTarget: 'disabled', // options: 'enabled' (default) and 'disabled'
+        highlightTarget: 'instant', // options: 'instant' (default), 'smooth' and 'auto'
 
         // Place holders for configuration
         colorTheme: '',
