@@ -526,6 +526,7 @@ $skipToId-overlay {
   position: absolute;
   border-radius: 3px;
   border: 4px solid $buttonBackgroundColor;
+  box-sizing: border-box;
 }
 
 $skipToId-overlay div.overlay-border {
@@ -537,6 +538,7 @@ $skipToId-overlay div.overlay-border {
   border-radius: 3px;
   border: 2px solid $focusBorderColor;
   z-index: $zHighlight;
+  box-sizing: border-box;
 }
 `;
 
