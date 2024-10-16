@@ -521,12 +521,16 @@ $skipToId [role="menuitem"].hover .label {
   const cssHighlightTemplate = document.createElement('template');
   cssHighlightTemplate.textContent = `
 $skipToId-overlay {
+  margin: 0;
+  padding: 0;
   position: absolute;
   border-radius: 3px;
   border: 4px solid $buttonBackgroundColor;
 }
 
 $skipToId-overlay div {
+  margin: 0;
+  padding: 0;
   position: relative;
   top: -2px;
   left: -2px;
