@@ -48,9 +48,10 @@
         <p>This section covers:</p>
         <ol>
           <li>Understanding user agent features for adjusting the colors rendered by the user agent.</li>
-          <li>Using SVG graphics to create components whose rendering can adapt operating system contrast and theme settings.</li>
+          <li>The benefits of using SVG graphics to create components whose rendering can adapt to contrast and theme settings.</li>
           <li>Setting the <code>forced-colors-adjust=auto</code> CSS property on SVG elements.</li>
           <li>Using the <code>prefers-contrast</code> CSS media query for high contrast settings.</li>
+          <li>Using the <code>prefers-color-theme</code> CSS media query to support light and dark user settings.</li>
           <li>Using the <code>forced-colors</code> CSS media query for high contrast settings.</li>
           <li>Using <code>&lt;system-colors&gt;</code> CSS data types for consistency with the rendering of other components in high contrast settings.</li>
           <li>Using <code>currentcolor</code> value for inheriting the <code>color</code> property value of ancestors.</li>
@@ -134,9 +135,14 @@
         </section>
 
       <section id="invert-colors">
-        <h2>Invert Color</h2>
+        <h2>Invert Colors</h2>
 
-        <h3 id="invert-colors-example-screenshots">Button Switch Example for Invert Colors</h3>
+        <p>The invert colors setting is a simple transformation of colors used to render content to the opposite color.   For example, content rendered as white is changed to render as black.  A mostly blue content is rendered as a brown (e.g. a mixture of red and green).  There is no media query associated with the invert color setting.</p>
+
+        <p>Authors support this setting by insuring their content meets <a href="https://www.w3.org/TR/WCAG21/#contrast-minimum">WCAG 1.4.3: Contrast (Minimum)</a> contrast requirements, including the features of custom components.  The following example illustrates how the <code>switch</code> role example is rendered on macOS when invert colors is disabled and enabled.</p>
+
+
+        <h3 id="invert-colors-example-screenshots">Invert Color: Button Switch Example</h3>
         <table aria-labelledby="invert-colors-example-screenshots" class="data">
           <thead>
             <tr>
@@ -157,8 +163,17 @@
         </table>
       </section>
 
+      <section id="prefers-contrast">
+        <h2>Increase Contrast</h2>
+
+        <p>When the increase contrast setting is is enabled the <code>prefers-contrast</code> media query changes from <code>no-preference</code> to <code>more</code>.  </p>
+
+        <p>Note: Operating systems that support the <code>forced-colors</code> media query will set <code>prefers-contrast</code> to <code>custom</code> when the <code>forced-colors</code> is set to <code>active</code>.  </p>
+
+      </section>
+
       <section id="color-theme">
-        <h2>System Color Theme</h2>
+        <h2>System Color Theme (Light or Dark)</h2>
 
         <h3 id="color-theme-example-screenshots">Wikipedia Page with Showing User Theme Options</h3>
         <table aria-labelledby="color-theme-example-screenshots" class="data">
@@ -189,66 +204,9 @@
         </table>
       </section>
 
-      <section id="svg">
-        <h2>SVG for Components</h2>
-
-        <p>Bit-mapped images (e.g. .png, .jpeg) should not be used for components, since their rendering cannot be changed based on user color theme settings.  SVG graphics can respond to the <code>forced-colors</code> CSS media query and supports the use of <code>currentcolor</code> value for color properties.  An additional advantage of SVG graphics is the smooth scaling of the graphics as the size of content adjusted using browser zoom features. SVG elements can also adapt to a wide variety of screen sizes and load faster due to their smaller size than equivalent bit-mapped images.</p>
-
-        <p>Note: Be sure to include <code>forced-color-adjust=auto</code> CSS property on SVG elements, due to inconsistencies in browsers setting the default value to <code>auto</code>.</p>
-
-      </section>
-
-      <section id="cuntrast-theme">
-        <h2>Contrast Theme</h2>
-
-
-
-        <h3><code>currentcolor</code> Keyword</h3>
-
-        <p>The <code>currentcolor</code> keyword provides a means for components to use the color value of ancestors to set the color properties of an element.   When the user chooses a high contrast setting the browser changes the <code>color</code> and <code>background-color</code> values of text content.   The <code>currentcolor</code> value is set to the text color for use in setting the color of other properties including: <code>border</code> and <code>outline</code> on HTML elements, and <code>stroke</code> and <code>fill</code> properties on SVG elements.  Note: There is no equivalent value for using the background color, so when using this technique it is important for the background of the element to be transparent to allow the background color to be visible. </p>
-
-        <p>Using <code>currentcolor</code> is the most popular technique in the ARIA APG examples for supporting user theme and high contrast settings.</p>
-
-        <h3 id="currentcolot-example">Button Switch Example</h3>
-
-        <p>The <a href="../../patterns/switch/examples/switch-button.html">Button Switch Example</a> uses <code>currentcolor</code> value to style the SVG <code>rect</code> elements used as the switch container and to indicate the on and off states.  Current color applied to the <code>stroke</code> and <code>fill</code> properties of the <code>rect</code> elements.   The following table shows how the graphical rendering changes for some high contrast options. </p>
-
-        <h4 id="currentcolor-example-screenshots">Button Switch Example with Selected High Contrast User Settings in Windows 11</h4>
-        <table aria-labelledby="currentcolor-example-screenshots" class="data">
-          <thead>
-            <tr>
-              <th>Setting</th>
-              <th>Screen Shot</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Contrast Theme: none (default)</td>
-              <td><img src="./images/currentcolor-windows11-theme-none.png" alt="Screen shot of switch example with no contrast theme applied" style="height: 90px"></td>
-            </tr>
-            <tr>
-              <td>Contrast Theme: Night sky</td>
-              <td><img src="./images/currentcolor-windows11-theme-night-sky.png" alt="Screen shot of switch example with night sky contrast theme applied" style="height: 87px"></td>
-            </tr>
-            <tr>
-              <td>Contrast Theme: Desert</td>
-              <td><img src="./images/currentcolor-windows11-theme-desert.png" alt="Screen shot of switch example with desert contrast theme applied" style="height: 95px"></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h3 id="currentcolor-examples">Examples using <code>currentcolor</code> keyword</h3>
-        <ul>
-          <li><a href="../../patterns/checkbox/examples/checkbox-mixed.html">Checkbox (Mixed-State)</a></li>
-          <li><a href="../../patterns/disclosure/examples/disclosure-faq.html">Disclosure (Show/Hide) for Answers to Frequently Asked Questions</a></li>
-          <li><a href="../../patterns/radio/examples/radio-activedescendant.html">Radio Group  Using aria-activedescendant</a></li>
-          <li><a href="../../patterns/slider/examples/slider-seek.html">Media Seek Slider</a></li>
-          <li><a href="../../patterns/slider/examples/slider-temperature.html">Vertical Temperature Slider</a></li>
-        </ul>
-      </section>
 
       <section id="forced-colors">
-        <h2><code>forced-colors</code> Media Query</h2>
+        <h2>Forced Colors</h2>
 
         <p>The <code>forced-colors</code> CSS media query provides a means for components to use the color preferences of people with visual impairments.   When the user chooses a high contrast setting in their operating system, browsers set <code>forced-colors</code> property to <code>active</code>.   CSS media queries can change component colors to use operating system specified values using <code>&lt;system-colors&gt;</code> CSS data types.  The advantage of using <code>forced-colors</code> over <code>currentcolor</code> is the ability to set a background color and to uniquely define colors for borders, outlines and text content.</p>
 
@@ -327,6 +285,83 @@
           <li><a href="../../patterns/feed/examples/feed.html">Feed</a></li>
           <li><a href="../../patterns/radio/examples/radio-rating.html">Rating Radio Group</a></li>
         </ul>
+
+      </section>
+
+
+      <section id="currentcolor">
+        <h2><code>currentcolor</code> Keyword</h2>
+
+        <p>The <code>currentcolor</code> keyword provides a means for components to use the color value of ancestors to set the color properties of an element.   When the user chooses a high contrast setting the browser changes the <code>color</code> and <code>background-color</code> values of text content.   The <code>currentcolor</code> value is set to the text color for use in setting the color of other properties including: <code>border</code> and <code>outline</code> on HTML elements, and <code>stroke</code> and <code>fill</code> properties on SVG elements.  Note: There is no equivalent value for using the background color, so when using this technique it is important for the background of the element to be transparent to allow the background color to be visible. </p>
+
+        <p>Using <code>currentcolor</code> is the most popular technique in the ARIA APG examples for supporting user theme and high contrast settings.</p>
+
+        <h2 id="currentcolor-example">Button Switch Example</h2>
+
+        <p>The <a href="../../patterns/switch/examples/switch-button.html">Button Switch Example</a> uses <code>currentcolor</code> value to style the SVG <code>rect</code> elements used as the switch container and to indicate the on and off states.  Current color applied to the <code>stroke</code> and <code>fill</code> properties of the <code>rect</code> elements.   The following table shows how the graphical rendering changes for some high contrast options. </p>
+
+        <h3 id="currentcolor-example-screenshots">Button Switch Example with Selected High Contrast User Settings in Windows 11</h3>
+        <table aria-labelledby="currentcolor-example-screenshots" class="data">
+          <thead>
+            <tr>
+              <th>Setting</th>
+              <th>Screen Shot</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Contrast Theme: none (default)</td>
+              <td><img src="./images/currentcolor-windows11-theme-none.png" alt="Screen shot of switch example with no contrast theme applied" style="height: 90px"></td>
+            </tr>
+            <tr>
+              <td>Contrast Theme: Night sky</td>
+              <td><img src="./images/currentcolor-windows11-theme-night-sky.png" alt="Screen shot of switch example with night sky contrast theme applied" style="height: 87px"></td>
+            </tr>
+            <tr>
+              <td>Contrast Theme: Desert</td>
+              <td><img src="./images/currentcolor-windows11-theme-desert.png" alt="Screen shot of switch example with desert contrast theme applied" style="height: 95px"></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2 id="currentcolor-examples">Examples using <code>currentcolor</code> keyword</h2>
+        <ul>
+          <li><a href="../../patterns/checkbox/examples/checkbox-mixed.html">Checkbox (Mixed-State)</a></li>
+          <li><a href="../../patterns/disclosure/examples/disclosure-faq.html">Disclosure (Show/Hide) for Answers to Frequently Asked Questions</a></li>
+          <li><a href="../../patterns/radio/examples/radio-activedescendant.html">Radio Group  Using aria-activedescendant</a></li>
+          <li><a href="../../patterns/slider/examples/slider-seek.html">Media Seek Slider</a></li>
+          <li><a href="../../patterns/slider/examples/slider-temperature.html">Vertical Temperature Slider</a></li>
+        </ul>
+      </section>
+
+      <section id="svg">
+        <h2>SVG Graphics versus Bit-Mapped Images for Components</h2>
+
+        <h3>Limitations of Bit-Mapped Images</h3>
+
+        <p>The pixels used in bit-mapped images (e.g. .png, .jpeg) cannot respond to changes in media queries changes based on user contrast and theme preferences.  Low resolution images also do not scale smoothly when the browser zoom feature is used to increase the size of rendered content.  These limitations make bit-mapped images a problem for accessibility of custom components for people with visual impairments.  </p>
+
+        <p>Note: Bit-mapped images used for components should meet <a href="https://www.w3.org/TR/WCAG21/#contrast-minimum">WCAG 1.4.3: Contrast (Minimum)</a> requirement.
+
+        <h3>Benefits of SVG Graphics</h3>
+
+        <p>SVG graphics can respond to contrast related media queries including <code>prefers-contrast</code>, <code>prefers-color-theme</code> and <code>forced-colors</code> to change the styling of components.  SVG provide smooth scaling of the graphics as the size of content adjusted using browser zoom features. SVG elements can also adapt to a wide variety of screen sizes and load faster due to their smaller size than equivalent bit-mapped images.</p>
+
+        <p>Note: Be sure to include <code>forced-color-adjust=auto</code> CSS property on SVG elements, due to inconsistencies in browsers setting the default value to <code>auto</code>.</p>
+
+        <h3 id="graphics-summary">Summary of SVG vs. Bit-Mapped Features</h3>
+
+        <table aria-labelledby="graphics-summary" class="data">
+          <thead>
+            <tr>
+              <td></td>
+              <th>Invert Colors</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
 
       </section>
 
