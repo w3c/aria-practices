@@ -2155,7 +2155,7 @@ $skipToId-overlay div.overlay-border {
       }
       else {
         if (!isElementInViewport(element)  && !isReduced) {
-          element.scrollIntoView({ behavior: highlightTarget, block: 'center', inline: 'nearest' });
+          element.scrollIntoView({ behavior: highlightTarget, block: 'start', inline: 'nearest' });
         }
       }
 
