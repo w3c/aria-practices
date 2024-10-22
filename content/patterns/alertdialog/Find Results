@@ -1,0 +1,878 @@
+Searching 467 files for "<script data-skipto=" (case sensitive)
+
+~/Sites/aria-practices/scripts/reference-tables.template:
+   10    <script src="../shared/js/highlight.pack.js"></script>
+   11    <script src="../shared/js/app.js"></script>
+   12:   <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../shared/js/skipto.js"></script>
+   13  </head>
+   14  <body>
+
+~/Sites/aria-practices/scripts/coverage-report.template:
+   10    <script src="../../shared/js/highlight.pack.js"></script>
+   11    <script src="../../shared/js/app.js"></script>
+   12:   <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   13    <style>
+   14      .sr-only {position: absolute; top: -30em;}
+
+~/Sites/aria-practices/content/apg-home.html:
+   14      </style>
+   15  
+   16:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="shared/js/skipto.js"></script>
+   17  
+   18    </head>
+
+~/Sites/aria-practices/content/practices/practices.html:
+   12      <script src="../shared/js/highlight.pack.js"></script>
+   13      <script src="../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../shared/js/skipto.js"></script>
+   15    </head>
+   16    <body>
+
+~/Sites/aria-practices/content/practices/read-me-first/read-me-first-practice.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/practices/range-related-properties/range-related-properties-practice.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/practices/landmark-regions/landmark-regions-practice.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/practices/names-and-descriptions/names-and-descriptions-practice.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/practices/grid-and-table-properties/grid-and-table-properties-practice.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/practices/keyboard-interface/keyboard-interface-practice.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/practices/structural-roles/structural-roles-practice.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/practices/hiding-semantics/hiding-semantics-practice.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/index/index.html:
+    9    <script src="../shared/js/highlight.pack.js"></script>
+   10    <script src="../shared/js/app.js"></script>
+   11:   <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../shared/js/skipto.js"></script>
+   12  </head>
+   13  <body>
+
+~/Sites/aria-practices/content/about/about.html:
+   11      <script src="../shared/js/highlight.pack.js"></script>
+   12      <script src="../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/about/acknowledgements/acknowledgements.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/about/change-history/change-history.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/about/at-support-tables/at-support-tables.html:
+   12    <script src="../../shared/js/highlight.pack.js"></script>
+   13    <script src="../../shared/js/app.js"></script>
+   14:   <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div"
+   15      src="../../shared/js/skipto.js"></script>
+   16  </head>
+
+~/Sites/aria-practices/content/about/introduction/introduction.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/about/aria-basics/aria-basics.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/about/related-specifications/related-specifications.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/about/coverage-and-quality/coverage-and-quality-report.html:
+    9    <script src="../../shared/js/highlight.pack.js"></script>
+   10    <script src="../../shared/js/app.js"></script>
+   11:   <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   12    <style>
+   13      .sr-only {position: absolute; top: -30em;}
+
+~/Sites/aria-practices/content/patterns/patterns.html:
+   13      <script src="../shared/js/app.js"></script>
+   14      <script src="../shared/js/filterBySearch.js"></script>
+   15:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../shared/js/skipto.js"></script>
+   16    </head>
+   17    <body>
+
+~/Sites/aria-practices/content/patterns/grid/grid-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/grid/examples/data-grids.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!--  JS and CSS for this example. -->
+
+~/Sites/aria-practices/content/patterns/grid/examples/advanced-data-grid.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/grid/examples/layout-grids.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/alertdialog/alertdialog-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/alertdialog/examples/alertdialog.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/meter/meter-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/meter/examples/meter.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/spinbutton/spinbutton-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/spinbutton/examples/datepicker-spinbuttons.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/breadcrumb/breadcrumb-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/breadcrumb/examples/breadcrumb.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/switch/switch-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/switch/examples/switch-button.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/switch/examples/switch-checkbox.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/switch/examples/switch.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/feed/feed-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/feed/examples/feed.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15    </head>
+   16    <body>
+
+~/Sites/aria-practices/content/patterns/feed/examples/feed-display.html:
+   13      <script src="../../../shared/js/highlight.pack.js"></script>
+   14      <script src="../../../shared/js/app.js"></script>
+   15:     <!-- <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script> -->
+   16  
+   17      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/table/table-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/table/examples/sortable-table.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/table/examples/table.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/link/link-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/link/examples/link.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/button/button-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/button/examples/button.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/button/examples/button_idl.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/landmarks/landmarks-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/landmarks/examples/complementary.html:
+  211      <script type="text/javascript" src="js/show.js"></script>
+  212      <!-- Customize SkipTo features using the data-skipto attribute -->
+  213:     <script data-skipto="attachElement: #skip-to-attach; colorTheme: aria"
+  214              src="js/skipto.min.js">
+  215      </script>
+
+~/Sites/aria-practices/content/patterns/landmarks/examples/HTML5.html:
+  154      <script type="text/javascript" src="js/show.js"></script>
+  155      <!-- Customize SkipTo features using the data-skipto attribute -->
+  156:     <script data-skipto="attachElement: #skip-to-attach; colorTheme: aria"
+  157              src="js/skipto.min.js">
+  158      </script>
+
+~/Sites/aria-practices/content/patterns/landmarks/examples/form.html:
+  307      <script type="text/javascript" src="js/show.js"></script>
+  308      <!-- Customize SkipTo features using the data-skipto attribute -->
+  309:     <script data-skipto="attachElement: #skip-to-attach; colorTheme: aria"
+  310              src="js/skipto.min.js">
+  311      </script>
+
+~/Sites/aria-practices/content/patterns/landmarks/examples/region.html:
+  258      <script type="text/javascript" src="js/show.js"></script>
+  259      <!-- Customize SkipTo features using the data-skipto attribute -->
+  260:     <script data-skipto="attachElement: #skip-to-attach; colorTheme: aria"
+  261              src="js/skipto.min.js">
+  262      </script>
+
+~/Sites/aria-practices/content/patterns/landmarks/examples/contentinfo.html:
+  154      <script type="text/javascript" src="js/show.js"></script>
+  155      <!-- Customize SkipTo features using the data-skipto attribute -->
+  156:     <script data-skipto="attachElement: #skip-to-attach; colorTheme: aria"
+  157              src="js/skipto.min.js">
+  158      </script>
+
+~/Sites/aria-practices/content/patterns/landmarks/examples/at.html:
+  255      <script type="text/javascript" src="js/show.js"></script>
+  256      <!-- Customize SkipTo features using the data-skipto attribute -->
+  257:     <script data-skipto="attachElement: #skip-to-attach; colorTheme: aria"
+  258              src="js/skipto.min.js">
+  259      </script>
+
+~/Sites/aria-practices/content/patterns/landmarks/examples/resources.html:
+  128        <script type="text/javascript" src="js/show.js"></script>
+  129        <!-- Customize SkipTo features using the data-skipto attribute -->
+  130:       <script data-skipto="attachElement: #skip-to-attach; colorTheme: aria"
+  131                src="js/skipto.min.js">
+  132        </script>
+
+~/Sites/aria-practices/content/patterns/landmarks/examples/banner.html:
+  149      <script type="text/javascript" src="js/show.js"></script>
+  150      <!-- Customize SkipTo features using the data-skipto attribute -->
+  151:     <script data-skipto="attachElement: #skip-to-attach; colorTheme: aria"
+  152              src="js/skipto.min.js">
+  153      </script>
+
+~/Sites/aria-practices/content/patterns/landmarks/examples/main.html:
+  208      <script type="text/javascript" src="js/show.js"></script>
+  209      <!-- Customize SkipTo features using the data-skipto attribute -->
+  210:     <script data-skipto="attachElement: #skip-to-attach; colorTheme: aria"
+  211              src="js/skipto.min.js">
+  212      </script>
+
+~/Sites/aria-practices/content/patterns/landmarks/examples/general-principles.html:
+  154      <script type="text/javascript" src="js/show.js"></script>
+  155      <!-- Customize SkipTo features using the data-skipto attribute -->
+  156:     <script data-skipto="attachElement: #skip-to-attach; colorTheme: aria"
+  157              src="js/skipto.min.js">
+  158      </script>
+
+~/Sites/aria-practices/content/patterns/landmarks/examples/search.html:
+  141      <script type="text/javascript" src="js/show.js"></script>
+  142      <!-- Customize SkipTo features using the data-skipto attribute -->
+  143:     <script data-skipto="attachElement: #skip-to-attach; colorTheme: aria"
+  144              src="js/skipto.min.js">
+  145      </script>
+
+~/Sites/aria-practices/content/patterns/landmarks/examples/navigation.html:
+  222      <script type="text/javascript" src="js/show.js"></script>
+  223      <!-- Customize SkipTo features using the data-skipto attribute -->
+  224:     <script data-skipto="attachElement: #skip-to-attach; colorTheme: aria"
+  225              src="js/skipto.min.js">
+  226      </script>
+
+~/Sites/aria-practices/content/patterns/menu-button/menu-button-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/menu-button/examples/menu-button-actions.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/menu-button/examples/menu-button-actions-active-descendant.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/menu-button/examples/menu-button-links.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/combobox/combobox-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/combobox/examples/combobox-autocomplete-both.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/combobox/examples/combobox-autocomplete-list.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/combobox/examples/combobox-datepicker.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/combobox/examples/combobox-select-only.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/combobox/examples/combobox-autocomplete-none.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/combobox/examples/grid-combo.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/carousel/carousel-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/carousel/examples/carousel-1-prev-next.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/carousel/examples/carousel-2-tablist.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/slider/slider-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/slider/examples/slider-rating.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/slider/examples/slider-temperature.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/slider/examples/slider-seek.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/slider/examples/slider-color-viewer.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/dialog-modal/dialog-modal-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/dialog-modal/examples/dialog.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/dialog-modal/examples/datepicker-dialog.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/checkbox/checkbox-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/checkbox/examples/checkbox-mixed.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/checkbox/examples/checkbox.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/listbox/listbox-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/listbox/examples/listbox-grouped.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/listbox/examples/listbox-scrollable.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/listbox/examples/listbox-rearrangeable.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/listbox/examples/listbox-collapsible.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/toolbar/toolbar-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/toolbar/examples/help.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/toolbar/examples/toolbar.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/accordion/accordion-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/accordion/examples/accordion.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/alert/alert-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/alert/examples/alert.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/treeview/treeview-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/treeview/examples/treeview-1b.html:
+   13      <script src="../../../shared/js/highlight.pack.js"></script>
+   14      <script src="../../../shared/js/app.js"></script>
+   15:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   16  
+   17      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/treeview/examples/treeview-1a.html:
+   13      <script src="../../../shared/js/highlight.pack.js"></script>
+   14      <script src="../../../shared/js/app.js"></script>
+   15:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   16  
+   17      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/treeview/examples/treeview-navigation.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/menubar/menu-and-menubar-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/menubar/examples/menubar-editor.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/menubar/examples/menubar-navigation.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/slider-multithumb/slider-multithumb-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/slider-multithumb/examples/slider-multithumb.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/radio/radio-group-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/radio/examples/radio-activedescendant.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/radio/examples/radio-rating.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/radio/examples/radio.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/tooltip/tooltip-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/treegrid/treegrid-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/treegrid/examples/treegrid-1.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/windowsplitter/windowsplitter-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/tabs/tabs-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/tabs/examples/tabs-actions.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/tabs/examples/tabs-manual.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/tabs/examples/tabs-automatic.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/disclosure/disclosure-pattern.html:
+   11      <script src="../../shared/js/highlight.pack.js"></script>
+   12      <script src="../../shared/js/app.js"></script>
+   13:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+   14    </head>
+   15    <body>
+
+~/Sites/aria-practices/content/patterns/disclosure/examples/disclosure-navigation.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/disclosure/examples/disclosure-navigation-hybrid.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/disclosure/examples/disclosure-image-description.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+~/Sites/aria-practices/content/patterns/disclosure/examples/disclosure-faq.html:
+   12      <script src="../../../shared/js/highlight.pack.js"></script>
+   13      <script src="../../../shared/js/app.js"></script>
+   14:     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+   15  
+   16      <!-- JS and CSS for this example -->
+
+125 matches across 125 files
