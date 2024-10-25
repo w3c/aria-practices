@@ -1,10 +1,10 @@
 name: Spellcheck
 
-on:
+on:'
   push:
-    branches-ignore:
+    branches-ignore: "
       - "dependabot/**"
-    paths:
+    paths: **
       - "**/*.*"
       - "!**/*.min.js"
       - "!**/*.pack.js"
