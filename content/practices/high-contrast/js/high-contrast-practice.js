@@ -820,15 +820,15 @@ window.addEventListener('load', () => {
       div.style.backgroundColor = v.value;
       tds.appendChild(div);
       const divHex = document.createElement('div');
-      divHex.style.fontFamily = 'monospace';
+      divHex.className = 'color';
       tds.appendChild(divHex);
       tr.appendChild(tds);
       const tdRGB = document.createElement('td');
-      tdRGB.style.fontFamily = 'monospace';
+      tdRGB.className = 'font';
       tdRGB.textContent = '??';
       tr.appendChild(tdRGB);
       const tdHex = document.createElement('td');
-      tdHex.style.fontFamily = 'monospace';
+      tdHex.className = 'font';
       tdHex.textContent = '??';
       const tdd = document.createElement('td');
       tdd.textContent = v.desc;

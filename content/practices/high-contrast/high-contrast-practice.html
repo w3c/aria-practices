@@ -8,6 +8,9 @@
     <!-- Core JS and CSS shared by all practices -->
     <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
     <link rel="stylesheet" href="../../shared/css/core.css">
+
+    <link rel="stylesheet" href="./css/switch-increase-contrast.css">
+
     <script src="../../shared/js/examples.js"></script>
     <script src="../../shared/js/highlight.pack.js"></script>
     <script src="../../shared/js/app.js"></script>
@@ -26,10 +29,14 @@
         padding-top: 0;
       }
 
-      #samples div.sample {
+      table.data td div.sample {
         height: 30px;
         width: 50px;
         border: 1px solid gray;
+      }
+      .color,
+      .font {
+        font-family: monospace;
       }
     </style>
   </head>
@@ -47,23 +54,20 @@
 
         <p>This section covers:</p>
         <ol>
-          <li>Understanding user agent features for adjusting the colors rendered by the user agent.</li>
+          <li>Understanding user agent features for adjusting the colors rendered by the user agent to improve contrast and readability.</li>
           <li>The benefits of using SVG graphics to create components whose rendering can adapt to contrast and theme settings.</li>
-          <li>Setting the <code>forced-colors-adjust=auto</code> CSS property on SVG elements.</li>
-          <li>Using the <code>prefers-contrast</code> CSS media query for high contrast settings.</li>
-          <li>Using the <code>prefers-color-theme</code> CSS media query to support light and dark user settings.</li>
-          <li>Using the <code>forced-colors</code> CSS media query for high contrast settings.</li>
-          <li>Using <code>&lt;system-colors&gt;</code> CSS data types for consistency with the rendering of other components in high contrast settings.</li>
-          <li>Using <code>currentcolor</code> value for inheriting the <code>color</code> property value of ancestors.</li>
+          <li>Using the CSS media queries support user color and contrast preferences (e.g.  <code>prefers-contrast</code>, <code>prefers-color-theme</code> and <code>forced-colors</code>).</li>
+          <li>Using <code>&lt;system-colors&gt;</code> CSS data types for consistency with the rendering of other components.</li>
+          <li>Using <code>currentcolor</code> value for inheriting the <code>color</code> property value of text content that responds to user color and contrast preferences.</li>
         </ol>
       </section>
 
       <section id="os-high-contrast">
-        <h2>Understanding User Options For Adjusting Colors</h2>
+        <h2>Understanding User Options For Adjusting Contrast</h2>
 
-        <p>Inverting colors, increase contrast and color themes are the three main ways users can adjust the rendered colors of web content.   These options are set through operating system accessibility features.  Not all of the options provide information for authors to adjust the rendering of content based on user settings.   The following table summarizes the features, operating systems and authors ability to detect the setting.</p>
+        <p>Inverting colors, increase contrast and color themes are the three main ways users can adjust the rendered colors of web content to improve contrast for their visual or learning disability.   These options are set through operating system accessibility features.  Not all of the options provide information for authors to adjust the rendering of their content based on user settings.   The following table summarizes the features, operating systems and authors responsibility for improving accessibility.</p>
 
-        <h3 id="os-hc-features">Operating System Color Adjustment Features</h3>
+        <h3 id="os-hc-features">Operating System Contrast Adjustment Features</h3>
         <table  aria-labelledby="os-hc-features" class="data">
           <thead>
             <tr>
@@ -79,7 +83,7 @@
               <td>All</td>
               <td>
                 <p>
-                  Invert colors is a simple transformation of the rendered colors by subtracting each RGB value from 255.  This is a simple way of turning a lighter color theme into a darker color theme or visa-versa depending on the original styling of the content.  Inverting colors can create a color palette that is easier for people with some types of visual impairments to perceive.
+                  Invert colors is a simple transformation of the rendered colors by subtracting each RGB value from 255.  This is a simple way of turning a lighter color theme into a darker color theme or visa-versa depending on the original styling of the content.  Inverting colors can create a color palette that is easier for people with many types of visual impairments to perceive.  It is the most prominent setting in operating system accessibility features.
                 </p>
                 <p>Some examples of color inversion:</p>
                 <ul>
@@ -89,17 +93,17 @@
                 </ul>
               </td>
               <td>
-                Authors have <em>no</em> information to respond to when users enable invert colors option.
+                Authors have <em>no</em> information to respond to when users enable invert colors option.  Authors should insure their content meets the minimum color requirements of the <a href="https://www.w3.org/TR/WCAG22/">Web Content Accessibility Guidelines</a> (WCAG).
               </td>
             </tr>
             <tr>
               <th>Increase contrast</th>
               <td>All</td>
               <td>
-                When the user enables increased contrast the CSS media query <code>prefers-contrast</code> set to <code>more</code>.  The media query can be used by authors to provide a higher contrast color scheme, including switching to use <code>system-colors</code> CSS Media Types.
+                When the user enables increased contrast the CSS media query <code>prefers-contrast</code> set to <code>more</code>.  The media query can be used by authors to provide a higher contrast color scheme, including switching to use <code>system-colors</code> CSS media types.
               </td>
               <td>
-                Authors can respond to the <code>prefers-contrast: more</code> media query and <em>should</em> ensure rendered text content meets <a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced">WCAG 1.4.6: Contrast (Enhanced)</a> requirement.
+                Authors can respond by adding media queries to their CSS to detect the <code>prefers-contrast: more</code> value that updates rendered text content and components to meet <a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced">WCAG 1.4.6: Contrast (Enhanced)</a> requirement.
              </td>
             </tr>
             <tr>
@@ -112,11 +116,11 @@
                 <p>The <code>light</code> color theme is typically the default on most operating systems.  Authors identify this preference when the CSS media query <code>prefers-color-theme</code> is set to <code>light</code>.
                 </p>
                 <p>
-                  The <code>dark</code> color theme is associated with lower power consumption, less eye strain and considered easier to read or less disruptive in dark settings (e.g. night time).  People with some types of visual impairments prefer to use the dark color theme as their default.  When the user selects the <code>dark</code> color theme the CSS media query <code>prefers-color-theme</code> is set to <code>dark</code>.
+                  The <code>dark</code> color theme is associated with lower power consumption, less eye strain and considered easier to read or less disruptive in dark settings (e.g. night time).  People with some types of visual impairments prefer to  use the dark color theme as their default.  When the user selects the <code>dark</code> color theme the CSS media query <code>prefers-color-theme</code> is set to <code>dark</code>.
                 </p>
               </td>
               <td>
-                Authors can respond to the <code>prefers-color-theme: dark | light</code> media query by creating styles for dark text on a light background and light text on a dark background.   Text color contrast <em>should</em> meet <a href="https://www.w3.org/TR/WCAG21/#contrast-minimum">WCAG 1.4.3: Contrast (Minimum)</a> requirement.
+                Authors can respond by adding media queries to their CSS to detect the <code>prefers-color-theme: dark | light</code> media queries by creating styles for dark text on a light background and light text on a dark background.  The text content and components for both settings <em>must</em> meet <a href="https://www.w3.org/TR/WCAG21/#contrast-minimum">WCAG 1.4.3: Contrast (Minimum)</a> requirement.
               </td>
             </tr>
             <tr>
@@ -124,10 +128,10 @@
               <td>Windows 10 and 11</td>
               <td>
                 Some operating systems accessibility features include support for high contrast and user customizable color themes.
-                When a user selects a high contrast color theme the CSS media query <code>forced-colors</code> is set to <code>active</code>.   The media query can be used by authors to switch to using <code>system-color</code> CSS Media Types so the content of the page adapts to the user color preferences.
+                When a user selects a high contrast color theme the CSS media query <code>forced-colors</code> is set to <code>active</code>.   The media query can be used by authors to include the use of <code>system-color</code> CSS Media Types so the content of the page adapts to the user color preferences.
               </td>
               <td>
-                Authors can respond to the <code>forced-colors: active</code> media query by using <code>currentcolor</code> and <code>system-color</code> values to style user interface controls and custom widgets.
+                Authors can respond by adding media queries to their CSS to detect the <code>forced-colors: active</code> media query by using <code>currentcolor</code> and <code>system-color</code> values to style user interface controls and custom widgets to the user preferences.
               </td>
             </tr>
             </tbody>
@@ -137,12 +141,12 @@
       <section id="invert-colors">
         <h2>Invert Colors</h2>
 
-        <p>The invert colors setting is a simple transformation of colors used to render content to the opposite color.   For example, content rendered as white is changed to render as black.  A mostly blue content is rendered as a brown (e.g. a mixture of red and green).  There is no media query associated with the invert color setting.</p>
+        <p>The invert colors setting is a simple transformation of colors used to render content to the opposite color.   For example, content rendered as white is changed to black.  Content styled as blue is rendered as a brown (e.g. a mixture of red and green).  There are no media queries associated with identifying the invert color setting.</p>
 
-        <p>Authors support this setting by insuring their content meets <a href="https://www.w3.org/TR/WCAG21/#contrast-minimum">WCAG 1.4.3: Contrast (Minimum)</a> contrast requirements, including the features of custom components.  The following example illustrates how the <code>switch</code> role example is rendered on macOS when invert colors is disabled and enabled.</p>
+        <p>Authors support this setting by insuring their content meets <a href="https://www.w3.org/TR/WCAG21/#contrast-minimum">WCAG 1.4.3: Contrast (Minimum)</a> contrast requirements, including components.  The following example illustrates how the <code>switch</code> role example is rendered on macOS when invert colors is disabled and enabled.</p>
 
 
-        <h3 id="invert-colors-example-screenshots">Invert Color: Button Switch Example</h3>
+        <h3 id="invert-colors-example-screenshots">Invert Color Example: Button Switch</h3>
         <table aria-labelledby="invert-colors-example-screenshots" class="data">
           <thead>
             <tr>
@@ -166,16 +170,186 @@
       <section id="prefers-contrast">
         <h2>Increase Contrast</h2>
 
-        <p>When the increase contrast setting is is enabled the <code>prefers-contrast</code> media query changes from <code>no-preference</code> to <code>more</code>.  </p>
+        <p>When the increase contrast setting is is enabled the <code>prefers-contrast</code> media query changes from <code>no-preference</code> to <code>more</code>.  The author <em>should</em> update the rendering of text content and components to meet <a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced">WCAG 1.4.6: Contrast (Enhanced)</a> requirement.  If content already meets the enhanced requirement, the author <em>may</em> want to exceed the enhanced color contrast requirement.</p>
 
         <p>Note: Operating systems that support the <code>forced-colors</code> media query will set <code>prefers-contrast</code> to <code>custom</code> when the <code>forced-colors</code> is set to <code>active</code>.  </p>
+
+       <h3 id="prefers-contrast-example">Increase Contrast Example</h3>
+
+        <p>The example shows how the color contrast was increased from 4.57 to 7 when the <code>prefers-contrast: more</code> is set.  The example simulates the change on colors when the increased option switch is set to "on".  If you enable operating system "increased contrast" feature the example will use be rendered in any state with the increased contrast values.</p>
+
+        <div class="example">
+
+            <button type="button" role="switch" aria-checked="false" class="">
+              <span class="label">Increase Contrast</span>
+              <svg xmlns="http://www.w3.org/2000/svg" height="20" width="36">
+                <rect class="container" x="1" y="1" width="34" height="18" rx="9" />
+                <circle class="off" cx="11"  cy="10" r="8" />
+                <circle class="on"  cx="25" cy="10" r="8" />
+              </svg>
+              <span class="on" aria-hidden="true">On</span>
+              <span class="off" aria-hidden="true">Off</span>
+            </button>
+
+        </div>
+
+        <h4 id="increase-contrast-colors">Increase Contrast Example Color Changes</h4>
+        <table aria-labelledby="increase-contrast-colors" class="data">
+          <thead>
+            <tr>
+              <th rowspan="2" valign="bottom"><code>prefers-contrast</code></th>
+              <th colspan="3">Text</th>
+              <th colspan="4">Button</th>
+            </tr>
+            <tr>
+              <th abbr="Background">BG</th>
+              <th>Text</th>
+              <th abbr="Color Contrast Radio">CCR</th>
+              <th abbr="Background">BG</th>
+              <th>Border</th>
+              <th>Fill</th>
+              <th abbr="Color Contrast Radio">CCR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th><code>no-preference</code></th>
+              <td>
+                <div role="img"
+                     class="sample"
+                     style="background-color: #e9e9e9"
+                     aria-label="Color is a light gray">
+                </div>
+                <span class="color">#e9e9e9</span>
+              </td>
+              <td>
+                <div role="img"
+                     class="sample"
+                     style="background-color: #242424"
+                     aria-label="Color is a very dark gray">
+                </div>
+                <span class="color">#242424</span>
+              </td>
+              <td>12.8</td>
+              <td>
+                 <div role="img"
+                     class="sample"
+                     style="background-color: #a1a1a1"
+                     aria-label="Color is a very light gray">
+                </div>
+                <span class="color">#a1a1a1</span>
+              </td>
+              <td>
+                 <div role="img"
+                     class="sample"
+                     style="background-color: #757575"
+                     aria-label="Color is a medium gray">
+                </div>
+                <span class="color">#757575</span>
+              </td>
+              <td>
+                 <div role="img"
+                     class="sample"
+                     style="background-color: #ffffff"
+                     aria-label="Color is white">
+                </div>
+                <span class="color">#ffffff</span>
+              </td>
+              <td>4.6</td>
+            </tr>
+            <tr>
+              <th>
+                <code>more</code>
+              </th>
+              <td>
+                 <div role="img"
+                     class="sample"
+                     style="background-color: #eeeeee"
+                     aria-label="Accent color is light gray">
+                </div>
+                <span class="color">#eeeeee</span>
+              </td>
+              <td>
+                 <div role="img"
+                     class="sample"
+                     style="background-color: #000000"
+                     aria-label="Color is black">
+                </div>
+                <span class="color">#000000</span>
+              </td>
+              <td>18.1</td>
+              <td>
+                 <div role="img"
+                     class="sample"
+                     style="background-color: #0051A4"
+                     aria-label="Color is dark blue">
+                </div>
+                <span class="color">#0051A4</span>
+              </td>
+              <td>
+                 <div role="img"
+                     class="sample"
+                     style="background-color: #061d3a"
+                     aria-label="Color is very dark blue">
+                </div>
+                <span class="color">#061d3a</span>
+              </td>
+              <td>
+                 <div role="img"
+                     class="sample"
+                     style="background-color: #ffffff"
+                     aria-label="Color is white">
+                </div>
+                <span class="color">#ffffff</span>
+              </td>
+              <td>12.2</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>CSS Media Query Code</h4>
+
+        <pre>
+          <code>
+  @media (prefers-contrast: more) {
+
+    button[role="switch"] {
+      background-color: #eeeeee;
+      color: #000000;
+    }
+
+    button[role="switch"] .label {
+      color: #000000;
+    }
+
+    button[role="switch"] svg rect {
+      fill: #0051A4;
+      stroke: #061d3a;
+    }
+
+    button[role="switch"] svg circle.off,
+    button[role="switch"] svg circle.on {
+      stroke: #061d3a;
+      fill: #ffffff;
+    }
+  }
+          </code>
+        </pre>
+
+        <h3>Testing Increase Contrast</h3>
+
+        <p>Turn on the increase contrast feature for major operating systems and verify text and components color contrast ratios meet at least <a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced">WCAG 1.4.6: Contrast (Enhanced)</a> requirement.</p>
 
       </section>
 
       <section id="color-theme">
         <h2>System Color Theme (Light or Dark)</h2>
 
-        <h3 id="color-theme-example-screenshots">Wikipedia Page with Showing User Theme Options</h3>
+        <p>The light and dark color are not designed specifically for accessibility, but there are many people with visual impairments who prefer support for the dark color theme.   Both the light and dark color theme need to meet at least the <a href="https://www.w3.org/TR/WCAG21/#contrast-minimum">WCAG 1.4.3: Contrast (Minimum)</a> requirements to be beneficial to people with disabilities.  </p>
+
+        <p>The following example illustrates how Wikipedia supports system color theme media query.  The example includes showing the "Appearance" sidebar allowing the user to choose the light or dark theme and other rendering options for text size and column width.</p>
+
+        <h3 id="color-theme-example-screenshots">System Color Theme Example: Wikipedia Page</h3>
         <table aria-labelledby="color-theme-example-screenshots" class="data">
           <thead>
             <tr>
@@ -206,7 +380,7 @@
 
 
       <section id="forced-colors">
-        <h2>Forced Colors</h2>
+        <h2>Contrast Themes (Forced Colors)</h2>
 
         <p>The <code>forced-colors</code> CSS media query provides a means for components to use the color preferences of people with visual impairments.   When the user chooses a high contrast setting in their operating system, browsers set <code>forced-colors</code> property to <code>active</code>.   CSS media queries can change component colors to use operating system specified values using <code>&lt;system-colors&gt;</code> CSS data types.  The advantage of using <code>forced-colors</code> over <code>currentcolor</code> is the ability to set a background color and to uniquely define colors for borders, outlines and text content.</p>
 
@@ -355,7 +529,7 @@
           <thead>
             <tr>
               <td></td>
-              <th>Invert Colors</th>
+              <th></th>
               <th></th>
             </tr>
           </thead>
@@ -395,7 +569,8 @@
         </ul>
       </section>
 
-      <script src="./high-contrast-practice.js"></script>
+      <script src="./js/high-contrast-practice.js"></script>
+      <script src="../../patterns/switch/examples/js/switch-button.js"></script>
     </main>
   </body>
 </html>

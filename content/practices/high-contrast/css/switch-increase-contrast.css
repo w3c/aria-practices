@@ -1,0 +1,124 @@
+button[role="switch"] {
+  display: block;
+  margin: 2px;
+  padding: 4px 4px 8px 8px;
+  border: 0 solid #005a9c;
+  border-radius: 5px;
+  width: 17em;
+  height: 3em;
+  text-align: left;
+  background-color: #e9e9e9;
+  color: #242424;
+}
+
+button[role="switch"][aria-checked="true"] {
+  background-color: #eeeeee;
+  color: #000000;
+}
+
+button[role="switch"][aria-checked="true"] .label {
+  color: #242424;
+}
+
+button[role="switch"] .label {
+  position: relative;
+  top: -3px;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  width: 10em;
+  vertical-align: middle;
+  color: #242424;
+}
+
+button[role="switch"] svg {
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+  position: relative;
+  top: 4px;
+}
+
+button[role="switch"] svg rect {
+  fill: #a1a1a1;
+  stroke-width: 2;
+  stroke: #757575;
+}
+
+button[role="switch"] svg circle.off {
+  display: block;
+  stroke: #757575;
+  fill: #ffffff;
+  fill-opacity: 1;
+}
+
+button[role="switch"] svg circle.on {
+  display: none;
+}
+
+button[role="switch"][aria-checked="true"] svg rect {
+  fill: #0051a4;
+  stroke: #061d3a;
+}
+
+button[role="switch"][aria-checked="true"] svg circle.off {
+  display: none;
+}
+
+button[role="switch"][aria-checked="true"] svg circle.on {
+  display: block;
+  stroke: #061d3a;
+  fill: #ffffff;
+  fill-opacity: 1;
+}
+
+button[role="switch"] span.off {
+  display: inline-block;
+}
+
+button[role="switch"] span.on {
+  display: none;
+}
+
+button[role="switch"][aria-checked="true"] span.off {
+  display: none;
+}
+
+button[role="switch"][aria-checked="true"] span.on {
+  display: inline-block;
+}
+
+button[role="switch"]:focus,
+button[role="switch"]:hover {
+  padding: 2px 2px 6px 6px;
+  border-width: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+  @media (prefers-contrast: more) {
+
+    button[role="switch"] {
+      background-color: #eeeeee;
+      color: #000000;
+    }
+
+    button[role="switch"] .label {
+      color: #000000;
+    }
+
+    button[role="switch"] svg rect {
+      fill: #0051A4;
+      stroke: #061d3a;
+    }
+
+    button[role="switch"] svg circle.off,
+    button[role="switch"] svg circle.on {
+      stroke: #061d3a;
+      fill: #ffffff;
+    }
+
+  }
+
+
+}
