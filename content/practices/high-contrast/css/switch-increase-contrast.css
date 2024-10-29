@@ -12,12 +12,8 @@ button[role="switch"] {
 }
 
 button[role="switch"][aria-checked="true"] {
-  background-color: #eeeeee;
-  color: #000000;
-}
-
-button[role="switch"][aria-checked="true"] .label {
-  color: #242424;
+  background-color: #eee;
+  color: #000;
 }
 
 button[role="switch"] .label {
@@ -28,6 +24,10 @@ button[role="switch"] .label {
   margin: 0;
   width: 10em;
   vertical-align: middle;
+  color: #242424;
+}
+
+button[role="switch"][aria-checked="true"] .label {
   color: #242424;
 }
 
@@ -48,7 +48,7 @@ button[role="switch"] svg rect {
 button[role="switch"] svg circle.off {
   display: block;
   stroke: #757575;
-  fill: #ffffff;
+  fill: #fff;
   fill-opacity: 1;
 }
 
@@ -68,7 +68,7 @@ button[role="switch"][aria-checked="true"] svg circle.off {
 button[role="switch"][aria-checked="true"] svg circle.on {
   display: block;
   stroke: #061d3a;
-  fill: #ffffff;
+  fill: #fff;
   fill-opacity: 1;
 }
 
@@ -96,29 +96,24 @@ button[role="switch"]:hover {
   cursor: pointer;
 }
 
-  @media (prefers-contrast: more) {
-
-    button[role="switch"] {
-      background-color: #eeeeee;
-      color: #000000;
-    }
-
-    button[role="switch"] .label {
-      color: #000000;
-    }
-
-    button[role="switch"] svg rect {
-      fill: #0051A4;
-      stroke: #061d3a;
-    }
-
-    button[role="switch"] svg circle.off,
-    button[role="switch"] svg circle.on {
-      stroke: #061d3a;
-      fill: #ffffff;
-    }
-
+@media (prefers-contrast: more) {
+  button[role="switch"] {
+    background-color: #eee;
+    color: #000;
   }
 
+  button[role="switch"] .label {
+    color: #000;
+  }
 
+  button[role="switch"] svg rect {
+    fill: #0051a4;
+    stroke: #061d3a;
+  }
+
+  button[role="switch"] svg circle.off,
+  button[role="switch"] svg circle.on {
+    stroke: #061d3a;
+    fill: #fff;
+  }
 }
