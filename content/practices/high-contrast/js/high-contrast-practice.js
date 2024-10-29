@@ -783,9 +783,9 @@ function rgb2Hex(rgb) {
     return 'transparent';
   }
 
-  let r = Math.round((parseInt(rgb[0]) * a) + (255 * (1 - a))).toString(16),
-    g = Math.round((parseInt(rgb[1]) * a) + (255 * (1 - a))).toString(16),
-    b = Math.round((parseInt(rgb[2]) * a) + (255 * (1 - a))).toString(16);
+  let r = Math.round(parseInt(rgb[0]) * a + 255 * (1 - a)).toString(16),
+    g = Math.round(parseInt(rgb[1]) * a + 255 * (1 - a)).toString(16),
+    b = Math.round(parseInt(rgb[2]) * a + 255 * (1 - a)).toString(16);
 
   if (r.length == 1) {
     r = '0' + r;
