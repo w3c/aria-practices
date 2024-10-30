@@ -101,8 +101,6 @@ button[role="switch"]:hover {
     background-color: #eee;
     color: #000;
   }
-<<<<<<< HEAD
-=======
 
   button[role="switch"] .label {
     color: #000;
@@ -118,5 +116,4 @@ button[role="switch"]:hover {
     stroke: #061d3a;
     fill: #fff;
   }
->>>>>>> e9e705052c3d1ac25282c32dacde9436612ed5f5
 }
