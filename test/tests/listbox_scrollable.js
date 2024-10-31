@@ -12,8 +12,8 @@ const ex = {
   listboxSelector: '#ex [role="listbox"]',
   optionSelector: '#ex [role="option"]',
   spanSelector: '#ex [role="option"] span.checkmark',
-  numOptions: 26,
-  firstOptionSelector: '#ex #ss_elem_Np',
+  numOptions: 27,
+  firstOptionSelector: '#ex #ss_elem_None',
 };
 
 // Attributes
