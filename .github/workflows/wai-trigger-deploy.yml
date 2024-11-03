@@ -19,7 +19,7 @@ jobs:
       - name: Trigger wai-aria-practices update
         uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.GH_TOKEN }}
+          github-token: ${{ secrets.W3CGRUNTBOT_TOKEN }}
           script: |
             await github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,
