@@ -70,12 +70,10 @@
       </section>
 
       <section id="os-high-contrast">
-        <h2>Understanding User Options For Adjusting Contrast</h2>
-
-        <p>Inverting colors, increase contrast and color themes are the three main ways users can adjust the rendered colors of web content to improve contrast for their visual or learning disability.   These options are set through operating system accessibility features.  Not all of the options provide information for authors to adjust the rendering of their content based on user settings.   The following table summarizes the features, operating systems and authors responsibility for improving accessibility.</p>
-
-        <h3 id="os-hc-features">Operating System Contrast Adjustment Features</h3>
-        <table  aria-labelledby="os-hc-features" class="data">
+        <h2>User Options for Adjusting Colors and Contrast</h2>
+        <p>The following table summarizes operating system settings that enable users to adjust color themes and increase contrast as well as authoring practices for supporting those settings in web content.</p>
+        <table class="data">
+          <caption>Operating System Contrast Adjustment Features</caption>
           <thead>
             <tr>
               <th>Feature</th>
@@ -87,58 +85,93 @@
           <tbody>
             <tr>
               <th>Invert Colors</th>
-              <td>All</td>
               <td>
-                <p>
-                  Invert colors is a simple transformation of the rendered colors by subtracting each RGB value from 255.  This is a simple way of turning a lighter color theme into a darker color theme or visa-versa depending on the original styling of the content.  Inverting colors can create a color palette that is easier for people with many types of visual impairments to perceive.  It is the most prominent setting in operating system accessibility features.
-                </p>
-                <p>Some examples of color inversion:</p>
                 <ul>
-                  <li>rgb(255,255,255) is rendered as rgb(0,0,0)</li>
-                  <li>rgb(165, 42, 42) is rendered as rgb(90,213,213)</li>
-                  <li>rgb(220, 220, 220) is rendered as rgb(35,35,35)</li>
+                  <Li>macOS</Li>
+                  <li>Windows</li>
+                  <li>iOS</li>
+                  <li>Android</li>
                 </ul>
               </td>
               <td>
-                Authors have <em>no</em> information to respond to when users enable invert colors option.  Authors should insure their content meets the minimum color requirements of the <a href="https://www.w3.org/TR/WCAG22/">Web Content Accessibility Guidelines</a> (WCAG).
+                <p>
+                  Invert colors transforms colors by subtracting each RGB value from 255.
+                  This is a simple way of turning a light color theme into a dark color theme or vice-versa.
+                  It is a prominent feature in the accessibility settings of most operating systems.
+                </p>
+                <p>Examples of color inversion:</p>
+                <ul>
+                  <li>rgb(255, 255, 255) is rendered as rgb(0, 0, 0)</li>
+                  <li>rgb(165, 42, 42) is rendered as rgb(90, 213, 213)</li>
+                  <li>rgb(220, 220, 220) is rendered as rgb(35, 35, 35)</li>
+                </ul>
+              </td>
+              <td>
+                Browsers do not provide a way for authors to determine whether a user has the setting for invert colors enabled.
+                For invert colors to work well, ensure content meets the minimum color requirements specified by
+                <a href="https://www.w3.org/TR/WCAG22/">Web Content Accessibility Guidelines</a> (WCAG).
               </td>
             </tr>
             <tr>
               <th>Increase contrast</th>
-              <td>All</td>
               <td>
-                When the user enables increased contrast the CSS media query <code>prefers-contrast</code> set to <code>more</code>.  The media query can be used by authors to provide a higher contrast color scheme, including switching to use <code>system-colors</code> CSS media types.
+                <ul>
+                  <Li>macOS</Li>
+                  <li>Windows</li>
+                  <li>iOS</li>
+                  <li>Android</li>
+                </ul>
               </td>
               <td>
-                Authors can respond by adding media queries to their CSS to detect the <code>prefers-contrast: more</code> value that updates rendered text content and components to meet <a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced">WCAG 1.4.6: Contrast (Enhanced)</a> requirement.
-             </td>
-            </tr>
-            <tr>
-              <th>System Color Theme</th>
-              <td>All</td>
-              <td>
-                <p>
-                  Operating systems support <code>light</code> and <code>dark</code> color themes.
-                </p>
-                <p>The <code>light</code> color theme is typically the default on most operating systems.  Authors identify this preference when the CSS media query <code>prefers-color-theme</code> is set to <code>light</code>.
-                </p>
-                <p>
-                  The <code>dark</code> color theme is associated with lower power consumption, less eye strain and considered easier to read or less disruptive in dark settings (e.g. night time).  People with some types of visual impairments prefer to  use the dark color theme as their default.  When the user selects the <code>dark</code> color theme the CSS media query <code>prefers-color-theme</code> is set to <code>dark</code>.
-                </p>
+                Specifies that the user prefers contrast that is stronger than the default minimum.
+                Each operating system has its own approach to supporting this setting; there is no standard that specifies how much contrast should be increased when this setting is enabled.
+                A reasonable target for web content is specified by
+                <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-enhanced">WCAG 1.4.6: Contrast (Enhanced)</a>.
               </td>
               <td>
-                Authors can respond by adding media queries to their CSS to detect the <code>prefers-color-theme: dark | light</code> media queries by creating styles for dark text on a light background and light text on a dark background.  The text content and components for both settings <em>must</em> meet <a href="https://www.w3.org/TR/WCAG21/#contrast-minimum">WCAG 1.4.3: Contrast (Minimum)</a> requirement.
+                When this setting is enabled, the CSS media query <code>prefers-contrast</code> is set to <code>more</code>.
+                Develop a higher contrast color scheme and use this media query to determine when to enable it.
+                This can also include switching to use <code>system-colors</code> CSS media types.
               </td>
             </tr>
             <tr>
-              <th>Contrast Themes</th>
-              <td>Windows 10 and 11</td>
+              <th>
+                System Color Theme<br>
+                (AKA Light Mode and Dark Mode)
+              </th>
               <td>
-                Some operating systems accessibility features include support for high contrast and user customizable color themes.
-                When a user selects a high contrast color theme the CSS media query <code>forced-colors</code> is set to <code>active</code>.   The media query can be used by authors to include the use of <code>system-color</code> CSS Media Types so the content of the page adapts to the user color preferences.
+                <ul>
+                  <Li>macOS</Li>
+                  <li>Windows</li>
+                  <li>iOS</li>
+                  <li>Android</li>
+                </ul>
               </td>
               <td>
-                Authors can respond by adding media queries to their CSS to detect the <code>forced-colors: active</code> media query by using <code>currentcolor</code> and <code>system-color</code> values to style user interface controls and custom widgets to the user preferences.
+                Operating systems support <code>light</code> and <code>dark</code> color themes.
+                They typically default to the <code>light</code> color theme.
+                Many people switch to the <code>dark</code> color theme in dark settings, e.g. at night, because it can make content easier to read or be less disruptive to other people.
+                However, people with certain visual disabilities prefer a dark color theme as their default.
+              </td>
+              <td>
+                The CSS media query <code>prefers-color-theme</code> identifies the current color theme by returning <code>light</code> or <code>dark</code>.
+                Develop styles for dark text on a light background and light text on a dark background and use this media query to apply the appropriate style.
+                Ensure the text content and components for both settings meet
+                <a href="https://www.w3.org/TR/WCAG21/#contrast-minimum">WCAG 1.4.3: Contrast (Minimum)</a>.
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Contrast Themes<br>
+                (AKA High Contrast Mode)
+              </th>
+              <td>Windows 10 and later.</td>
+              <td>
+                This accessibility feature provides extra high contrast and user customizable color themes.
+              </td>
+              <td>
+                When a user selects a high contrast color theme, the CSS media query <code>forced-colors</code> is set to <code>active</code>.
+                Use <code>currentcolor</code> and <code>system-color</code> values to style user interface controls and custom widgets to the user preferences.
               </td>
             </tr>
             </tbody>
