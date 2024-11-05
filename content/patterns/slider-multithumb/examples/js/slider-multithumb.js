@@ -7,7 +7,6 @@
  *   Desc:   A dual slider widget that implements ARIA Authoring Practices
  */
 
-'use strict';
 class SliderMultithumb {
   constructor(domNode) {
     this.isMoving = false;
@@ -97,11 +96,11 @@ class SliderMultithumb {
 
     this.minSliderNode.addEventListener(
       'keydown',
-      this.onSliderKeydown.bind(this)
+      this.onSliderKeydown.bind(this),
     );
     this.minSliderNode.addEventListener(
       'pointerdown',
-      this.onSliderPointerdown.bind(this)
+      this.onSliderPointerdown.bind(this),
     );
 
     this.minSliderNode.addEventListener('focus', this.onSliderFocus.bind(this));
@@ -109,11 +108,11 @@ class SliderMultithumb {
 
     this.maxSliderNode.addEventListener(
       'keydown',
-      this.onSliderKeydown.bind(this)
+      this.onSliderKeydown.bind(this),
     );
     this.maxSliderNode.addEventListener(
       'pointerdown',
-      this.onSliderPointerdown.bind(this)
+      this.onSliderPointerdown.bind(this),
     );
 
     // bind a pointermove event handler to move pointer
@@ -171,13 +170,12 @@ class SliderMultithumb {
   }
 
   moveSliderTo(sliderNode, value) {
-    let valueMax,
-      valueMin,
-      pos,
-      x,
-      points = '',
-      width,
-      dollarValue;
+    let valueMax;
+    let valueMin;
+    let pos;
+    let points = '';
+    let x;
+    let width;
 
     if (this.isMinSlider(sliderNode)) {
       valueMin = this.getValueMin(this.minSliderNode);
@@ -190,12 +188,12 @@ class SliderMultithumb {
     value = Math.min(Math.max(value, valueMin), valueMax);
 
     sliderNode.setAttribute('aria-valuenow', value);
-    dollarValue = '$' + value;
+    const dollarValue = `$${value}`;
 
     pos = this.railX;
     pos += Math.round(
-      (value * (this.railWidth - this.thumbWidth)) /
-        (this.sliderMaxValue - this.sliderMinValue)
+      (value * (this.railWidth - this.thumbWidth))
+        / (this.sliderMaxValue - this.sliderMinValue),
     );
 
     if (this.isMinSlider(sliderNode)) {
@@ -216,7 +214,7 @@ class SliderMultithumb {
 
       // Position value
       width = this.minSliderValueNode.getBoundingClientRect().width;
-      pos = pos + (this.thumbWidth - width) / 2;
+      pos += (this.thumbWidth - width) / 2;
       if (pos + width > this.maxSliderLeft - 2) {
         pos = this.maxSliderLeft - width - 2;
       }
@@ -238,7 +236,7 @@ class SliderMultithumb {
       points += ` ${pos + this.thumb2Width},${this.thumbBottom}`;
       this.maxSliderThumbNode.setAttribute('points', points);
 
-      width = this.maxSliderValueNode.getBoundingClientRect().width;
+      width = Math.max(0,this.maxSliderValueNode.getBoundingClientRect().width);
       pos = pos + this.thumbWidth + (this.thumbWidth - width) / 2;
       if (pos - width < this.minSliderRight + 2) {
         pos = this.minSliderRight + width + 2;
@@ -251,8 +249,7 @@ class SliderMultithumb {
     // Set range rect
 
     x = this.getXFromThumb(this.minSliderThumbNode) + this.thumbWidth / 2;
-    width =
-      this.getXFromThumb(this.maxSliderThumbNode) - x + this.thumbWidth / 2;
+    width = this.getXFromThumb(this.maxSliderThumbNode) - x + this.thumbWidth / 2;
     this.rangeNode.setAttribute('x', x);
     this.rangeNode.setAttribute('width', width);
   }
@@ -331,9 +328,9 @@ class SliderMultithumb {
 
   onPointermove(event) {
     if (
-      this.isMoving &&
-      this.movingSliderNode &&
-      this.domNode.contains(event.target)
+      this.isMoving
+      && this.movingSliderNode
+      && this.domNode.contains(event.target)
     ) {
       let x = this.getSVGPoint(event).x - this.railX;
       if (this.isMinSliderMoving) {
@@ -343,7 +340,7 @@ class SliderMultithumb {
       }
       x = Math.min(x, this.railWidth - this.thumbWidth);
       const value = Math.round(
-        (x * this.sliderDiffValue) / (this.railWidth - this.thumbWidth)
+        (x * this.sliderDiffValue) / (this.railWidth - this.thumbWidth),
       );
       this.moveSliderTo(this.movingSliderNode, value);
 
@@ -360,18 +357,18 @@ class SliderMultithumb {
   // handle click event on the rail
   onRailClick(event) {
     const x = this.getSVGPoint(event).x - this.railX;
-    const diffMin =  x - this.minSliderPosition - (3 * this.thumbWidth / 2);
-    const diffMax = this.maxSliderPosition - x ;
-    const sliderNode = ((x < this.minSliderPosition) ||
-                        (diffMin < diffMax)) &&
-                       (x < this.maxSliderPosition) ?
-                     this.minSliderNode :
-                     this.maxSliderNode;
+    const diffMin = x - this.minSliderPosition - (3 * this.thumbWidth / 2);
+    const diffMax = this.maxSliderPosition - x;
+    const sliderNode = ((x < this.minSliderPosition)
+                        || (diffMin < diffMax))
+                       && (x < this.maxSliderPosition)
+      ? this.minSliderNode
+      : this.maxSliderNode;
 
     let p = Math.max(0, x - this.thumbWidth);
     p = Math.min(p, this.railWidth - this.thumbWidth);
     const value = Math.round(
-      (p * this.sliderDiffValue) / (this.railWidth - this.thumbWidth)
+      (p * this.sliderDiffValue) / (this.railWidth - this.thumbWidth),
     );
 
     this.moveSliderTo(sliderNode, value);
@@ -382,7 +379,7 @@ class SliderMultithumb {
 }
 
 // Initialize Multithumb Slider widgets on the page
-window.addEventListener('load', function () {
+window.addEventListener('load', () => {
   const slidersMultithumb = document.querySelectorAll('.slider-multithumb');
 
   for (let i = 0; i < slidersMultithumb.length; i++) {
