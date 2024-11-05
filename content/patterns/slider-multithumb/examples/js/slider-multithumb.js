@@ -362,11 +362,11 @@ class SliderMultithumb {
     const x = this.getSVGPoint(event).x - this.railX;
     const diffMin =  x - this.minSliderPosition - (3 * this.thumbWidth / 2);
     const diffMax = this.maxSliderPosition - x ;
-    const siderNode = ((x < this.minSliderPosition) ||
+    const sliderNode = ((x < this.minSliderPosition) ||
                         (diffMin < diffMax)) &&
                        (x < this.maxSliderPosition) ?
-                      this.minSliderNode :
-                      this.maxSliderNode;
+                     this.minSliderNode :
+                     this.maxSliderNode;
 
     let p = Math.max(0, x - this.thumbWidth);
     p = Math.min(p, this.railWidth - this.thumbWidth);
@@ -374,7 +374,7 @@ class SliderMultithumb {
       (p * this.sliderDiffValue) / (this.railWidth - this.thumbWidth)
     );
 
-    this.moveSliderTo(siderNode, value);
+    this.moveSliderTo(sliderNode, value);
 
     event.preventDefault();
     event.stopPropagation();
