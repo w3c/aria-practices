@@ -16,6 +16,14 @@
     <script src="../../shared/js/app.js"></script>
     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
     <style type="text/css">
+      table.data caption {
+         margin: 0;
+         padding: 0;
+         color: #005a9c;
+         font-style: normal;
+         text-align: left;
+         font-size: 1.1em;
+      }
       table.data img {
         border: 1px solid gray;
       }
@@ -178,14 +186,21 @@
 
       <section id="invert-colors">
         <h2>Invert Colors</h2>
-
-        <p>The invert colors setting is a simple transformation of colors used to render content to the opposite color.   For example, content rendered as white is changed to black.  Content styled as blue is rendered as a brown (e.g. a mixture of red and green).  There are no media queries associated with identifying the invert colors setting.</p>
-
-        <p>Authors support this setting by insuring their content meets <a href="https://www.w3.org/TR/WCAG21/#contrast-minimum">WCAG 1.4.3: Contrast (Minimum)</a> contrast requirements, including components.  The following example illustrates how the <code>switch</code> role example is rendered on macOS when invert colors is disabled and enabled.</p>
-
-
-        <h3 id="invert-colors-example-screenshots">Invert Colors Example: Button Switch</h3>
-        <table aria-labelledby="invert-colors-example-screenshots" class="data">
+        <p>
+          The invert colors setting is a simple transformation that renders content to its opposite color.
+          For example, content rendered as white is changed to black.
+          Content styled as blue is rendered as a brown, i.e., a mixture of red and green.
+          User agents do not provide a media query that can determine whether invert colors is enabled in the operating system.
+        </p>
+        <p>
+          To support invert colors effectively, insure content meets
+          <a href="https://www.w3.org/TR/WCAG22/#contrast-minimum">WCAG 1.4.3: Contrast (Minimum)</a>.
+        </p>
+        <p>
+          The following example illustrates how a <code>switch</code> element is rendered on macOS both when invert colors is disabled and enabled.
+        </p>
+        <table class="data">
+          <caption>Invert Colors Example: Button Switch</caption>
           <thead>
             <tr>
               <th>Setting</th>
@@ -207,14 +222,17 @@
 
       <section id="prefers-contrast">
         <h2>Increase Contrast</h2>
-
-        <p>When the increase contrast setting is is enabled the <code>prefers-contrast</code> media query changes from <code>no-preference</code> to <code>more</code>.  The author <em>should</em> update the rendering of text content and components to meet <a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced">WCAG 1.4.6: Contrast (Enhanced)</a> requirement.  If content already meets the enhanced requirement, the author <em>may</em> want to exceed the enhanced color contrast requirement.</p>
-
+        <p>When the increase contrast setting is is enabled the <code>prefers-contrast</code> media query changes from <code>no-preference</code> to <code>more</code>.
+          The author <em>should</em> update the rendering of text content and components to meet
+          <a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced">WCAG 1.4.6: Contrast (Enhanced)</a>
+          requirement. 
+          If content already meets the enhanced requirement, the author <em>may</em> want to exceed the enhanced color contrast requirement.
+        </p>
         <p>Note: Operating systems that support the <code>forced-colors</code> media query will set <code>prefers-contrast</code> to <code>custom</code> when the <code>forced-colors</code> is set to <code>active</code>.  </p>
 
        <h3 id="prefers-contrast-example">Increase Contrast Example</h3>
 
-        <p>The example shows how the color contrast was increased from 4.57 to 7 when the <code>prefers-contrast: more</code> is set.  The example simulates the change on colors when the increased option switch is set to "on".  If you enable operating system "increased contrast" feature the example will use be rendered in any state with the increased contrast values.</p>
+        <p>The example shows how the color contrast was increased from 12.8 to 18.1 for text and 4.6 to 12.2 for border and fill for the button when the <code>prefers-contrast: more</code> is set.  The example simulates the change on colors when the increased option switch is set to "on".  If you enable operating system "increased contrast" feature the example will use be rendered in any state with the increased contrast values.</p>
 
         <div class="example">
 
