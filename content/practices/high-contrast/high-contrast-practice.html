@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../shared/css/core.css">
 
     <link rel="stylesheet" href="./css/switch-increase-contrast.css">
+    <link rel="stylesheet" href="./css/switch-color-scheme.css">
 
     <script src="../../shared/js/examples.js"></script>
     <script src="../../shared/js/highlight.pack.js"></script>
@@ -68,7 +69,7 @@
         <p>This section covers:</p>
         <ol>
           <li>Operating system and user agent features that enable users to adjust rendered colors and contrast ratios.</li>
-          <li>Using the CSS media queries that support user color and contrast settings (<code>prefers-contrast</code>, <code>prefers-color-theme</code>, and <code>forced-colors</code>).</li>
+          <li>Using the CSS media queries that support user color and contrast settings (<code>prefers-contrast</code>, <code>prefers-color-scheme</code>, and <code>forced-colors</code>).</li>
           <li>Using <code>&lt;system-colors&gt;</code> CSS data types to provide consistent rendering of components.</li>
           <li>Using the value of <code>currentcolor</code> to inherit the value of the <code>color</code> property value of text content that responds to user color and contrast settings.</li>
           <li>The benefits of using SVG graphics when creating components that adapt to color contrast and theme settings.</li>
@@ -142,7 +143,7 @@
             </tr>
             <tr>
               <th>
-                System Color Theme<br>
+                System Color Scheme<br>
                 (AKA Light Mode and Dark Mode)
               </th>
               <td>
@@ -154,13 +155,13 @@
                 </ul>
               </td>
               <td>
-                Operating systems support <code>light</code> and <code>dark</code> color themes.
-                They typically default to the <code>light</code> color theme.
-                Many people switch to the <code>dark</code> color theme in dark settings, e.g. at night, because it can make content easier to read or be less disruptive to other people.
-                However, people with certain visual disabilities prefer a dark color theme as their default.
+                Operating systems support <code>light</code> and <code>dark</code> color schemes.
+                They typically default to the <code>light</code> color scheme.
+                Many people switch to the <code>dark</code> color scheme in dark settings, e.g. at night, because it can make content easier to read or be less disruptive to other people.
+                However, people with certain visual disabilities prefer a dark color scheme as their default.
               </td>
               <td>
-                The CSS media query <code>prefers-color-theme</code> identifies the current color theme by returning <code>light</code> or <code>dark</code>.
+                The CSS media query <code>prefers-color-scheme</code> identifies the current color scheme by returning <code>light</code> or <code>dark</code>.
                 Develop styles for dark text on a light background and light text on a dark background and use this media query to apply the appropriate style.
                 Ensure the text content and components for both settings meet
                 <a href="https://www.w3.org/TR/WCAG21/#contrast-minimum">WCAG 1.4.3: Contrast (Minimum)</a>.
@@ -236,7 +237,7 @@
 
         <div class="example">
 
-            <button type="button" role="switch" aria-checked="false" class="">
+            <button type="button" role="switch" aria-checked="false" class="increase-contrast">
               <span class="label">Increase Contrast</span>
               <svg xmlns="http://www.w3.org/2000/svg" height="20" width="36">
                 <rect class="container" x="1" y="1" width="34" height="18" rx="9" />
@@ -249,20 +250,19 @@
 
         </div>
 
-        <h4 id="increase-contrast-colors">Increase Contrast Example Color Changes</h4>
         <table aria-labelledby="increase-contrast-colors" class="data">
+          <caption>Increase Contrast Example Color Changes</caption>
           <thead>
             <tr>
               <th rowspan="2" style="vertical-align: bottom"><code>prefers-contrast</code></th>
               <th colspan="3">Text</th>
-              <th colspan="4">Button</th>
+              <th colspan="3">Button</th>
             </tr>
             <tr>
               <th abbr="Background">BG</th>
               <th>Text</th>
               <th abbr="Color Contrast Radio">CCR</th>
               <th abbr="Background">BG</th>
-              <th>Border</th>
               <th>Fill</th>
               <th abbr="Color Contrast Radio">CCR</th>
             </tr>
@@ -294,14 +294,6 @@
                      aria-label="Color is a very light gray">
                 </div>
                 <span class="color">#a1a1a1</span>
-              </td>
-              <td>
-                 <div role="img"
-                     class="sample"
-                     style="background-color: #757575"
-                     aria-label="Color is a medium gray">
-                </div>
-                <span class="color">#757575</span>
               </td>
               <td>
                  <div role="img"
@@ -341,14 +333,6 @@
                      aria-label="Color is dark blue">
                 </div>
                 <span class="color">#0051A4</span>
-              </td>
-              <td>
-                 <div role="img"
-                     class="sample"
-                     style="background-color: #061d3a"
-                     aria-label="Color is very dark blue">
-                </div>
-                <span class="color">#061d3a</span>
               </td>
               <td>
                  <div role="img"
@@ -398,15 +382,168 @@
 
       </section>
 
-      <section id="color-theme">
-        <h2>System Color Theme (Light or Dark)</h2>
+      <section id="color-scheme">
+        <h2>System Color Scheme (Light or Dark)</h2>
 
-        <p>The light and dark color are not designed specifically for accessibility, but there are many people with visual impairments who prefer support for the dark color theme.   Both the light and dark color theme need to meet at least the <a href="https://www.w3.org/TR/WCAG21/#contrast-minimum">WCAG 1.4.3: Contrast (Minimum)</a> requirements to be beneficial to people with disabilities.  </p>
+        <p>The light and dark color are not designed specifically for accessibility, but there are many people with visual impairments who prefer support for the dark color scheme.   Both the light and dark color scheme need to meet at least the <a href="https://www.w3.org/TR/WCAG21/#contrast-minimum">WCAG 1.4.3: Contrast (Minimum)</a> requirements to be beneficial to people with disabilities.  </p>
 
-        <p>The following example illustrates how Wikipedia supports system color theme media query.  The example includes showing the "Appearance" sidebar allowing the user to choose the light or dark theme and other rendering options for text size and column width.</p>
+       <h3 id="color-scheme-switch">System Color Scheme Example: Switch</h3>
 
-        <h3 id="color-theme-example-screenshots">System Color Theme Example: Wikipedia Page</h3>
-        <table aria-labelledby="color-theme-example-screenshots" class="data">
+        <p>The example shows how colors can change when users switch color schemes.  The example simulates the change of colors when the dark color theme is enabled when the switch is set to "on".  If you enable operating system "dark scheme" feature the example will be rendered in any state with the dark color scheme.</p>
+
+        <div class="example">
+
+            <button type="button" role="switch" aria-checked="false" class="color-scheme">
+              <span class="label">Dark Color Scheme</span>
+              <svg xmlns="http://www.w3.org/2000/svg" height="20" width="36">
+                <rect class="container" x="1" y="1" width="34" height="18" rx="9" />
+                <circle class="off" cx="11"  cy="10" r="8" />
+                <circle class="on"  cx="25" cy="10" r="8" />
+              </svg>
+              <span class="on" aria-hidden="true">On</span>
+              <span class="off" aria-hidden="true">Off</span>
+            </button>
+
+        </div>
+
+        <table class="data">
+          <caption>Color Scheme Changes</caption>
+          <thead>
+            <tr>
+              <th rowspan="2" style="vertical-align: bottom">
+                <code>prefers-color-scheme</code>
+              </th>
+              <th colspan="3">Text</th>
+              <th colspan="3">Button</th>
+            </tr>
+            <tr>
+              <th abbr="Background">BG</th>
+              <th>Text</th>
+              <th abbr="Color Contrast Radio">CCR</th>
+              <th abbr="Background">BG</th>
+              <th>Fill</th>
+              <th abbr="Color Contrast Radio">CCR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th><code>light</code></th>
+              <td>
+                <div role="img"
+                     class="sample"
+                     style="background-color: #e9e9e9"
+                     aria-label="Color is a light gray">
+                </div>
+                <span class="color">#e9e9e9</span>
+              </td>
+              <td>
+                <div role="img"
+                     class="sample"
+                     style="background-color: #242424"
+                     aria-label="Color is a very dark gray">
+                </div>
+                <span class="color">#242424</span>
+              </td>
+              <td>12.8</td>
+              <td>
+                 <div role="img"
+                     class="sample"
+                     style="background-color: #a1a1a1"
+                     aria-label="Color is a very light gray">
+                </div>
+                <span class="color">#a1a1a1</span>
+              </td>
+              <td>
+                 <div role="img"
+                     class="sample"
+                     style="background-color: #ffffff"
+                     aria-label="Color is white">
+                </div>
+                <span class="color">#ffffff</span>
+              </td>
+              <td>4.6</td>
+            </tr>
+            <tr>
+              <th>
+                <code>dark</code>
+              </th>
+              <td>
+                 <div role="img"
+                     class="sample"
+                     style="background-color: #333333"
+                     aria-label="Accent color is light gray">
+                </div>
+                <span class="color">#333333</span>
+              </td>
+              <td>
+                 <div role="img"
+                     class="sample"
+                     style="background-color: #ffffff"
+                     aria-label="Color is black">
+                </div>
+                <span class="color">#ffffff</span>
+              </td>
+              <td>12.6</td>
+              <td>
+                 <div role="img"
+                     class="sample"
+                     style="background-color: #3366cc"
+                     aria-label="Color is dark blue">
+                </div>
+                <span class="color">#3366cc</span>
+              </td>
+              <td>
+                 <div role="img"
+                     class="sample"
+                     style="background-color: #ffffff"
+                     aria-label="Color is white">
+                </div>
+                <span class="color">#ffffff</span>
+              </td>
+              <td>5.36</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>CSS Media Query Code</h4>
+
+        <pre>
+          <code>
+@media (prefers-color-scheme: dark) {
+  button.color-scheme[role="switch"] {
+    background-color: #333333;
+    color: #ffffff;
+  }
+
+  button.color-scheme[role="switch"] .label {
+    color: #ffffff;
+  }
+
+  button.color-scheme[role="switch"] svg rect {
+    fill: #3366cc;
+    stroke: #3366cc;
+  }
+
+  button.color-scheme[role="switch"] svg circle.off,
+  button.color-scheme[role="switch"] svg circle.on {
+    fill: #ffffff;
+    stroke: #ffffff;
+  }
+
+  button.color-scheme[role="switch"]:focus,
+  button.color-scheme[role="switch"]:hover {
+    border-color: #add8e6;
+  }
+}
+          </code>
+        </pre>
+
+
+        <h3 id="color-scheme-wikipedia">System Color Scheme Example: Wikipedia Page</h3>
+
+        <p>The following example illustrates how Wikipedia supports system color scheme media query.  The example includes showing the "Appearance" sidebar allowing the user to choose the light or dark scheme and other rendering options for text size and column width.</p>
+
+        <table aria-labelledby="color-scheme-example-screenshots" class="data">
           <thead>
             <tr>
               <th>Media Query</th>
@@ -416,22 +553,28 @@
           <tbody>
             <tr>
               <td>
-                <code>prefers-color-theme: light</code>
+                <code>prefers-color-scheme: light</code>
               </td>
               <td>
-                <img style="width: 95%" src="./images/wikipedia-theme-light.png" alt="Screen shot of wikipedia page with user preferences sidebar open.  The red circle shows the users settings radio button for light settings checked.">
+                <img style="width: 95%" src="./images/wikipedia-scheme-light.png" alt="Screen shot of wikipedia page with user preferences sidebar open.  The red circle shows the users settings radio button for light settings checked.">
               </td>
             </tr>
             <tr>
               <td>
-                <code>prefers-color-theme: dark</code>
+                <code>prefers-color-scheme: dark</code>
               </td>
               <td>
-                <img style="width: 95%" src="./images/wikipedia-theme-dark.png" alt="Screen shot of wikipedia page with user preferences sidebar open.  The red circle shows the users settings radio button for dark settings checked.">
+                <img style="width: 95%" src="./images/wikipedia-scheme-dark.png" alt="Screen shot of wikipedia page with user preferences sidebar open.  The red circle shows the users settings radio button for dark settings checked.">
               </td>
             </tr>
           </tbody>
         </table>
+
+        <h3>Testing Dark Color Scheme</h3>
+
+        <p>Turn on the dark color them feature for major operating systems and verify text and components color contrast ratios meet at least <a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced">WCAG 1.4.6: Contrast (Enhanced)</a> requirement.</p>
+
+
       </section>
 
 
@@ -575,7 +718,7 @@
 
         <h3>Benefits of SVG Graphics</h3>
 
-        <p>SVG graphics can respond to contrast related media queries including <code>prefers-contrast</code>, <code>prefers-color-theme</code> and <code>forced-colors</code> to change the styling of components.  SVG provide smooth scaling of the graphics as the size of content adjusted using browser zoom features. SVG elements can also adapt to a wide variety of screen sizes and load faster due to their smaller size than equivalent bit-mapped images.</p>
+        <p>SVG graphics can respond to contrast related media queries including <code>prefers-contrast</code>, <code>prefers-color-scheme</code> and <code>forced-colors</code> to change the styling of components.  SVG provide smooth scaling of the graphics as the size of content adjusted using browser zoom features. SVG elements can also adapt to a wide variety of screen sizes and load faster due to their smaller size than equivalent bit-mapped images.</p>
 
         <p>Note: Be sure to include <code>forced-color-adjust=auto</code> CSS property on SVG elements, due to inconsistencies in browsers setting the default value to <code>auto</code>.</p>
 
