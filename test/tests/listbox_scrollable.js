@@ -75,7 +75,7 @@ ariaTest(
   exampleFile,
   'option-role',
   async (t) => {
-    await assertAriaRoles(t, 'ex', 'option', 26, 'li');
+    await assertAriaRoles(t, 'ex', 'option', 27, 'li');
   }
 );
 
