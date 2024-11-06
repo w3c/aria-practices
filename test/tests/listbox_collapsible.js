@@ -13,7 +13,7 @@ const ex = {
   buttonSelector: '#ex button',
   listboxSelector: '#ex [role="listbox"]',
   optionSelector: '#ex [role="option"]',
-  numOptions: 26,
+  numOptions: 27,
 };
 
 const checkFocus = async function (t, selector) {
@@ -132,23 +132,27 @@ ariaTest(
       By.css(ex.listboxSelector)
     );
     const options = await t.context.queryElements(t, ex.optionSelector);
-    const optionId = await options[0].getAttribute('id');
+    const optionId0 = await options[0].getAttribute('id');
+    const optionId1 = await options[1].getAttribute('id');
 
-    // no active descendant is expected until arrow keys are used
+    // The first active descendant is selected
     t.is(
       await listbox.getAttribute('aria-activedescendant'),
-      null,
-      'activedescendant not set on open click'
+      optionId0,
+      'aria-activedescendant should be set to ' +
+        optionId0 +
+        ' for items: ' +
+        ex.listboxSelector
     );
 
-    // active descendant set to first item on down arrow
+    // The active descendant moves to the second item on down arrow
     await listbox.sendKeys(Key.DOWN);
 
     t.is(
       await listbox.getAttribute('aria-activedescendant'),
-      optionId,
+      optionId1,
       'aria-activedescendant should be set to ' +
-        optionId +
+        optionId1 +
         ' for items: ' +
         ex.listboxSelector
     );
@@ -160,7 +164,7 @@ ariaTest(
   exampleFile,
   'option-role',
   async (t) => {
-    await assertAriaRoles(t, 'ex', 'option', 26, 'li');
+    await assertAriaRoles(t, 'ex', 'option', 27, 'li');
   }
 );
 
@@ -444,7 +448,7 @@ ariaTest(
     // will automatically select the first option.
     await t.context.session.findElement(By.css(ex.buttonSelector)).click();
 
-    // The third item is 'Americium'
+    // The fourth item is 'Americium'
     let listbox = await t.context.session.findElement(
       By.css(ex.listboxSelector)
     );
@@ -453,7 +457,7 @@ ariaTest(
       t,
       ex.listboxSelector,
       ex.optionSelector,
-      2
+      3
     );
 
     // Reload page
@@ -464,14 +468,14 @@ ariaTest(
     await t.context.session.findElement(By.css(ex.buttonSelector)).click();
 
     // Keys in rapid session will treat characters like first few characters of item
-    // In this cae, 'Curium' at index 3 will be skipped for 'Californium' at index 5
+    // In this cae, 'Curium' at index 4 will be skipped for 'Californium' at index 6
     listbox = await t.context.session.findElement(By.css(ex.listboxSelector));
     await listbox.sendKeys('c', 'a');
     await assertAriaSelectedAndActivedescendant(
       t,
       ex.listboxSelector,
       ex.optionSelector,
-      5
+      6
     );
 
     // Reload page
@@ -483,25 +487,25 @@ ariaTest(
 
     listbox = await t.context.session.findElement(By.css(ex.listboxSelector));
 
-    // With a break, sending on 'b' will land us on 'Berkelium' at index 4
+    // With a break, sending on 'b' will land us on 'Berkelium' at index 5
     await listbox.sendKeys('b');
     await assertAriaSelectedAndActivedescendant(
       t,
       ex.listboxSelector,
       ex.optionSelector,
-      4
+      5
     );
 
     // Wait for half a second before sending second 'b'
     await new Promise((resolve) => setTimeout(resolve, 500));
 
-    // A second 'b' should land us on 'Bohrium' at index 14
+    // A second 'b' should land us on 'Bohrium' at index 15
     await listbox.sendKeys('b');
     await assertAriaSelectedAndActivedescendant(
       t,
       ex.listboxSelector,
       ex.optionSelector,
-      14
+      15
     );
   }
 );
