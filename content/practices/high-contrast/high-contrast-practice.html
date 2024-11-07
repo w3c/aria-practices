@@ -713,27 +713,39 @@
 
         <h3>Limitations of Bit-Mapped Images</h3>
 
-        <p>The pixels used in bit-mapped images (e.g. .png, .jpeg) cannot respond to changes in media queries changes based on user contrast and theme preferences.  Low resolution images also do not scale smoothly when the browser zoom feature is used to increase the size of rendered content.  These limitations make bit-mapped images a problem for accessibility of custom components for people with visual impairments.  </p>
+        <p>The colors of pixels used in bit-mapped images (e.g. .png, .jpeg) do not respond to changes in media query values making them difficult or impossible for people with some types of visual impairments to see when the change contrast settings.  Low resolution images also do not scale smoothly when the browser zoom features are used to increase the size of rendered content and the resulting distortion will make it more difficult or impossible for people to identify the component.</p>
 
         <p>Note: Bit-mapped images used for components should meet <a href="https://www.w3.org/TR/WCAG21/#contrast-minimum">WCAG 1.4.3: Contrast (Minimum)</a> requirement.</p>
 
         <h3>Benefits of SVG Graphics</h3>
 
-        <p>SVG graphics can respond to contrast related media queries including <code>prefers-contrast</code>, <code>prefers-color-scheme</code> and <code>forced-colors</code> to change the styling of components.  SVG provide smooth scaling of the graphics as the size of content adjusted using browser zoom features. SVG elements can also adapt to a wide variety of screen sizes and load faster due to their smaller size than equivalent bit-mapped images.</p>
+        <p>SVG graphics can respond to contrast related media queries including <code>prefers-contrast</code>, <code>prefers-color-scheme</code> and <code>forced-colors</code> to change the styling of components.  SVG provides smooth scaling of the graphics as the size of components are adjusted using browser zoom features. SVG elements can also adapt to a wide variety of screen sizes and load faster due to their smaller size than equivalent bit-mapped images.</p>
 
         <p>Note: Be sure to include <code>forced-color-adjust=auto</code> CSS property on SVG elements, due to inconsistencies in browsers setting the default value to <code>auto</code>.</p>
 
-        <h3 id="graphics-summary">Summary of SVG vs. Bit-Mapped Features</h3>
-
         <table aria-labelledby="graphics-summary" class="data">
+          <caption>Summary of SVG vs. Bit-Mapped Features</caption>
           <thead>
             <tr>
               <td></td>
-              <th></th>
-              <th></th>
+              <th>Color</th>
+              <th>Scaling</th>
+              <th>Perfomance</th>
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <th>Bit-Mapped</th>
+              <td>Pixels colors do not change based on media queries</td>
+              <td>Low resolution images are distorted when magnified</td>
+              <td>Larger and slower</td>
+            </tr>
+            <tr>
+              <th>SVG</th>
+              <td>Adaptable to user media query preferences</td>
+              <td>Designed for smooth scaling</td>
+              <td>Smaller and faster</td>
+            </tr>
           </tbody>
         </table>
 
