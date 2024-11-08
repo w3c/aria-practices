@@ -20,7 +20,7 @@
       table.data caption {
          margin: 0;
          padding: 0;
-         color: #005a9c;
+         color: rgb(0, 90, 106);
          font-style: normal;
          text-align: left;
          font-size: 1.1em;
@@ -574,7 +574,7 @@
 
         <h3>Testing Dark Color Scheme</h3>
 
-        <p>Turn on the dark color them feature for major operating systems and verify text and components color contrast ratios meet at least <a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced">WCAG 1.4.6: Contrast (Enhanced)</a> requirement.</p>
+        <p>Turn on the dark color them feature for major operating systems and verify text and components color contrast ratios meet at least <a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum">WCAG 1.4.2: Contrast (Minimum)</a> requirement.</p>
 
 
       </section>
@@ -583,7 +583,7 @@
       <section id="forced-colors">
         <h2>Contrast Themes (Forced Colors)</h2>
 
-        <p>The <code>forced-colors</code> CSS media query provides a means for components to use the color preferences of people with visual impairments.   When the user chooses a high contrast setting in their operating system, browsers set <code>forced-colors</code> property to <code>active</code>.   CSS media queries can change component colors to use operating system specified values using <code>&lt;system-colors&gt;</code> CSS data types.  The advantage of using <code>forced-colors</code> over <code>currentcolor</code> is the ability to set a background color and to uniquely define colors for borders, outlines and text content.</p>
+        <p>The <code>forced-colors</code> CSS media query provides a means for components to use the color preferences of people with visual impairments.   When the user chooses a color theme in their operating system, browsers set the <code>forced-colors</code> property to <code>active</code>.   CSS media queries can change component colors to use operating system specified values using <code>&lt;system-colors&gt;</code> CSS data types.  The advantage of using <code>forced-colors</code> over <code>currentcolor</code> is the ability to set a background color and to uniquely define colors for borders, outlines and text content.</p>
 
         <h3 id="system-colors">System Colors</h3>
 
@@ -602,10 +602,12 @@
           </tbody>
         </table>
 
-
         <h3 id="forced-colors-example">System Color Example: Rating Slider</h3>
 
         <p>The <a href="../../patterns/slider/examples/slider-rating.html">Rating Slider Example</a> uses CSS <code>forced-colors: active</code> media query to change the styling of SVG elements used for the rating scale, thumb and labels.  The <code>buttontext</code> system color value is used for <code>stroke</code> and <code>fill</code> properties of the range and thumb elements and <code>canvas</code> system color is used for the label elements (e.g. "Extremely Unsatisfied" and "Extremely Satisfied").   The following table shows how the graphical rendering changes for some high contrast options. </p>
+
+        <p>The <code>buttontext</code> system color value was chosen so the interactive slider elements would match the colors of other standard form controls on the page.  The <code>canvas</code> system color was chosen for the labels to match other static text on the page.
+        </p>
 
         <table aria-labelledby="forced-colors-example-screenshots" class="data">
           <caption>Rating Slider Example with Selected High Contrast User Settings</caption>
@@ -666,9 +668,7 @@
 
         <h3><code>currentcolor</code> Keyword</h3>
 
-        <p>The <code>currentcolor</code> keyword provides a means for components to use the color value of ancestors to set the color properties of an element.   When the user chooses a high contrast setting the browser changes the <code>color</code> and <code>background-color</code> values of text content.   The <code>currentcolor</code> value is set to the text color for use in setting the color of other properties including: <code>border</code> and <code>outline</code> on HTML elements, and <code>stroke</code> and <code>fill</code> properties on SVG elements.  Note: There is no equivalent value for using the background color, so when using this technique it is important for the background of the element to be transparent to allow the background color to be visible. </p>
-
-        <p>Using <code>currentcolor</code> is the most popular technique in the ARIA APG examples for supporting user theme and high contrast settings.</p>
+        <p>The <code>currentcolor</code> keyword provides a means for components to use the color value of ancestors to set the color properties of an element.   When the user chooses a high contrast setting the browser changes the <code>color</code> and <code>background-color</code> values of text content.   The <code>currentcolor</code> value is set to the text color for use in setting the color of other properties including: <code>border</code> and <code>outline</code> on HTML elements, and <code>stroke</code> and <code>fill</code> properties on SVG elements.  Note: There is no equivalent value for using the background color, so when using this technique it is important for the background of the element to be transparent to allow the background color of the page to be visible. </p>
 
         <h3 id="currentcolor-example">Current Color Example: Switch</h3>
 
@@ -730,7 +730,7 @@
               <td></td>
               <th>Color</th>
               <th>Scaling</th>
-              <th>Perfomance</th>
+              <th>Performance</th>
             </tr>
           </thead>
           <tbody>
