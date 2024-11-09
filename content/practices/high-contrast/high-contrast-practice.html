@@ -727,24 +727,21 @@
           <caption>Summary of SVG vs. Bit-Mapped Features</caption>
           <thead>
             <tr>
-              <td></td>
-              <th>Color</th>
-              <th>Scaling</th>
-              <th>Performance</th>
+              <th>Feature</th>
+              <th>Bit-Mapped</th>
+              <th>SVG</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th>Bit-Mapped</th>
-              <td>Pixels colors do not change based on media queries</td>
-              <td>Low resolution images are distorted when magnified</td>
-              <td>Larger and slower</td>
+              <th>Resizing and Screen Size</th>
+              <td>Distorted or small</td>
+              <td>Smooth scaling</td>
             </tr>
             <tr>
-              <th>SVG</th>
-              <td>Adaptable to user media query preferences</td>
-              <td>Designed for smooth scaling</td>
-              <td>Smaller and faster</td>
+              <th>Adapt to High Contrast</th>
+              <td>Colors are fixed</td>
+              <td>Responsive to media queries</td>
             </tr>
           </tbody>
         </table>
