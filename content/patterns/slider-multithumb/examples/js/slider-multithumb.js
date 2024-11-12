@@ -7,6 +7,8 @@
  *   Desc:   A dual slider widget that implements ARIA Authoring Practices
  */
 
+'use strict';
+
 class SliderMultithumb {
   constructor(domNode) {
     this.isMoving = false;
