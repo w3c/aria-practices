@@ -98,11 +98,11 @@ class SliderMultithumb {
 
     this.minSliderNode.addEventListener(
       'keydown',
-      this.onSliderKeydown.bind(this),
+      this.onSliderKeydown.bind(this)
     );
     this.minSliderNode.addEventListener(
       'pointerdown',
-      this.onSliderPointerdown.bind(this),
+      this.onSliderPointerdown.bind(this)
     );
 
     this.minSliderNode.addEventListener('focus', this.onSliderFocus.bind(this));
@@ -110,11 +110,11 @@ class SliderMultithumb {
 
     this.maxSliderNode.addEventListener(
       'keydown',
-      this.onSliderKeydown.bind(this),
+      this.onSliderKeydown.bind(this)
     );
     this.maxSliderNode.addEventListener(
       'pointerdown',
-      this.onSliderPointerdown.bind(this),
+      this.onSliderPointerdown.bind(this)
     );
 
     // bind a pointermove event handler to move pointer
@@ -194,8 +194,8 @@ class SliderMultithumb {
 
     pos = this.railX;
     pos += Math.round(
-      (value * (this.railWidth - this.thumbWidth))
-        / (this.sliderMaxValue - this.sliderMinValue),
+      (value * (this.railWidth - this.thumbWidth)) /
+        (this.sliderMaxValue - this.sliderMinValue)
     );
 
     if (this.isMinSlider(sliderNode)) {
@@ -238,7 +238,10 @@ class SliderMultithumb {
       points += ` ${pos + this.thumb2Width},${this.thumbBottom}`;
       this.maxSliderThumbNode.setAttribute('points', points);
 
-      width = Math.max(0,this.maxSliderValueNode.getBoundingClientRect().width);
+      width = Math.max(
+        0,
+        this.maxSliderValueNode.getBoundingClientRect().width
+      );
       pos = pos + this.thumbWidth + (this.thumbWidth - width) / 2;
       if (pos - width < this.minSliderRight + 2) {
         pos = this.minSliderRight + width + 2;
@@ -251,7 +254,8 @@ class SliderMultithumb {
     // Set range rect
 
     x = this.getXFromThumb(this.minSliderThumbNode) + this.thumbWidth / 2;
-    width = this.getXFromThumb(this.maxSliderThumbNode) - x + this.thumbWidth / 2;
+    width =
+      this.getXFromThumb(this.maxSliderThumbNode) - x + this.thumbWidth / 2;
     this.rangeNode.setAttribute('x', x);
     this.rangeNode.setAttribute('width', width);
   }
@@ -330,9 +334,9 @@ class SliderMultithumb {
 
   onPointermove(event) {
     if (
-      this.isMoving
-      && this.movingSliderNode
-      && this.domNode.contains(event.target)
+      this.isMoving &&
+      this.movingSliderNode &&
+      this.domNode.contains(event.target)
     ) {
       let x = this.getSVGPoint(event).x - this.railX;
       if (this.isMinSliderMoving) {
@@ -342,7 +346,7 @@ class SliderMultithumb {
       }
       x = Math.min(x, this.railWidth - this.thumbWidth);
       const value = Math.round(
-        (x * this.sliderDiffValue) / (this.railWidth - this.thumbWidth),
+        (x * this.sliderDiffValue) / (this.railWidth - this.thumbWidth)
       );
       this.moveSliderTo(this.movingSliderNode, value);
 
@@ -359,18 +363,18 @@ class SliderMultithumb {
   // handle click event on the rail
   onRailClick(event) {
     const x = this.getSVGPoint(event).x - this.railX;
-    const diffMin = x - this.minSliderPosition - (3 * this.thumbWidth / 2);
+    const diffMin = x - this.minSliderPosition - (3 * this.thumbWidth) / 2;
     const diffMax = this.maxSliderPosition - x;
-    const sliderNode = ((x < this.minSliderPosition)
-                        || (diffMin < diffMax))
-                       && (x < this.maxSliderPosition)
-      ? this.minSliderNode
-      : this.maxSliderNode;
+    const sliderNode =
+      (x < this.minSliderPosition || diffMin < diffMax) &&
+      x < this.maxSliderPosition
+        ? this.minSliderNode
+        : this.maxSliderNode;
 
     let p = Math.max(0, x - this.thumbWidth);
     p = Math.min(p, this.railWidth - this.thumbWidth);
     const value = Math.round(
-      (p * this.sliderDiffValue) / (this.railWidth - this.thumbWidth),
+      (p * this.sliderDiffValue) / (this.railWidth - this.thumbWidth)
     );
 
     this.moveSliderTo(sliderNode, value);
