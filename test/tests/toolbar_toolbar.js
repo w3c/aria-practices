@@ -7,7 +7,7 @@ const assertAttributeValues = require('../util/assertAttributeValues');
 const assertRovingTabindex = require('../util/assertRovingTabindex');
 const assertHasFocus = require('../util/assertHasFocus');
 const assertAttributeCanBeToggled = require('../util/assertAttributeCanBeToggled');
-const getOSPreferredModifierKey = require('../util/getOSPreferredModifierKey');
+const translatePlatformKey = require('../util/translatePlatformKey');
 
 const exampleFile = 'content/patterns/toolbar/examples/toolbar.html';
 
@@ -1116,8 +1116,8 @@ ariaTest(
   'toolbar-button-enter-or-space',
   async (t) => {
     let textarea = await t.context.session.findElement(By.css('textarea'));
-    let modifierKey = getOSPreferredModifierKey();
-    await textarea.sendKeys(Key.chord(modifierKey, 'a'));
+    let modifierKey = translatePlatformKey(Key.CONTROL);
+    await textarea.sendKeys(Key.chord(...modifierKey, 'a'));
     let originalText = await textarea.getAttribute('value');
 
     const buttons = await t.context.queryElements(
@@ -1208,8 +1208,8 @@ ariaTest(
   'toolbar-button-enter-or-space',
   async (t) => {
     let textarea = await t.context.session.findElement(By.css('textarea'));
-    let modifierKey = getOSPreferredModifierKey();
-    await textarea.sendKeys(Key.chord(modifierKey, 'a'));
+    let modifierKey = translatePlatformKey(Key.CONTROL);
+    await textarea.sendKeys(Key.chord(...modifierKey, 'a'));
     let originalText = await textarea.getAttribute('value');
 
     const buttons = await t.context.queryElements(
