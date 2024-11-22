@@ -4,7 +4,7 @@ const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAttributeDNE = require('../util/assertAttributeDNE');
 const assertAriaRoles = require('../util/assertAriaRoles');
-
+const isMacOS = require('../util/isMacOS');
 const exampleFile = 'content/patterns/combobox/examples/grid-combo.html';
 
 const ex = {
@@ -874,6 +874,13 @@ ariaTest(
     const combobox = t.context.session.findElement(By.css(ex.comboboxSelector));
     await combobox.sendKeys('a', Key.ARROW_DOWN);
 
+    // "ARROW_HOME" is not valid on macos, equivalent is an FN + ARROW_LEFT key chord
+    // Selenium WebDriver does not support FN keys, so this test is not valid on macos
+    if (isMacOS()) {
+      t.pass('Skipping test on macOS - HOME key not supported');
+      return;
+    }
+
     // Send key "ARROW_HOME"
     await combobox.sendKeys(Key.HOME);
 
@@ -898,6 +905,13 @@ ariaTest(
     // Send key "a" then key "ARROW_DOWN" to put the focus on the grid
     const combobox = t.context.session.findElement(By.css(ex.comboboxSelector));
     await combobox.sendKeys('a', Key.ARROW_DOWN);
+
+    // "ARROW_END" is not valid on macos, equivalent is an FN + ARROW_RIGHT key chord
+    // Selenium WebDriver does not support FN keys, so this test is not valid on macos
+    if (isMacOS()) {
+      t.pass('Skipping test on macOS - END key not supported');
+      return;
+    }
 
     // Send key "END_ARROW"
     await combobox.sendKeys(Key.END);

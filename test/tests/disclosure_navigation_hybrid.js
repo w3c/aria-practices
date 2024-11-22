@@ -82,18 +82,6 @@ ariaTest(
 
       if (links.length > 0) {
         await buttons[b].click();
-        // Add explicit wait for menu visibility
-        await t.context.session.wait(
-          async () => await menus[b].isDisplayed(),
-          1000,
-          'Menu should be displayed'
-        );
-        // Ensure link is interactive
-        await t.context.session.wait(
-          async () => await links[0].isEnabled(),
-          1000,
-          'Link should be enabled'
-        );
         await links[0].click();
 
         t.is(
