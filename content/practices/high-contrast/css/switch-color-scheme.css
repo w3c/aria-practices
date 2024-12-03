@@ -12,7 +12,7 @@ button.color-scheme[role="switch"] {
 }
 
 button.color-scheme[role="switch"][aria-checked="true"] {
-  background-color: #333333;
+  background-color: #333;
   color: #eeeee;
   border-color: #3366cc;
 }
@@ -106,23 +106,23 @@ button.color-scheme[role="switch"][aria-checked="true"]:hover {
 
 @media (prefers-color-scheme: dark) {
   button.color-scheme[role="switch"] {
-    background-color: #333333;
-    color: #ffffff;
+    background-color: #333;
+    color: #fff;
   }
 
   button.color-scheme[role="switch"] .label {
-    color: #ffffff;
+    color: #fff;
   }
 
   button.color-scheme[role="switch"] svg rect {
-    fill: #3366cc;
-    stroke: #3366cc;
+    fill: #36c;
+    stroke: #36c;
   }
 
   button.color-scheme[role="switch"] svg circle.off,
   button.color-scheme[role="switch"] svg circle.on {
-    fill: #ffffff;
-    stroke: #ffffff;
+    fill: #fff;
+    stroke: #fff;
   }
 
   button.color-scheme[role="switch"]:focus,
