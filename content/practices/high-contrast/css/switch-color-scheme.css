@@ -101,22 +101,27 @@ button.color-scheme[role="switch"][aria-checked="true"]:focus, button.color-sche
 }
 
 @media (prefers-color-scheme: dark) {
-     button.color-scheme[role="switch"] {
+
+    button.color-scheme[role="switch"] {
          background-color: #333;
          color: #fff;
     }
-     button.color-scheme[role="switch"] .label {
+
+    button.color-scheme[role="switch"] .label {
          color: #fff;
     }
-     button.color-scheme[role="switch"] svg rect {
+
+    button.color-scheme[role="switch"] svg rect {
          fill: #36c;
          stroke: #36c;
     }
-     button.color-scheme[role="switch"] svg circle.off, button.color-scheme[role="switch"] svg circle.on {
+
+    button.color-scheme[role="switch"] svg circle.off, button.color-scheme[role="switch"] svg circle.on {
          fill: #fff;
          stroke: #fff;
     }
-     button.color-scheme[role="switch"]:focus, button.color-scheme[role="switch"]:hover {
+
+    button.color-scheme[role="switch"]:focus, button.color-scheme[role="switch"]:hover {
          border-color: #add8e6;
     }
 }
