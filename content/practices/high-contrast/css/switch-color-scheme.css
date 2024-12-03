@@ -28,7 +28,8 @@ button.color-scheme[role="switch"] .label {
      color: #242424;
 }
 
-button.color-scheme[role="switch"][aria-checked="true"] .label, button.color-scheme[role="switch"][aria-checked="true"] .on {
+button.color-scheme[role="switch"][aria-checked="true"] .label,
+button.color-scheme[role="switch"][aria-checked="true"] .on {
      color: #fff;
 }
 
@@ -89,19 +90,20 @@ button.color-scheme[role="switch"][aria-checked="true"] span.on {
      display: inline-block;
 }
 
-button.color-scheme[role="switch"]:focus, button.color-scheme[role="switch"]:hover {
+button.color-scheme[role="switch"]:focus,
+button.color-scheme[role="switch"]:hover {
      padding: 2px 2px 6px 6px;
      border-width: 2px;
      outline: none;
      cursor: pointer;
 }
 
-button.color-scheme[role="switch"][aria-checked="true"]:focus, button.color-scheme[role="switch"][aria-checked="true"]:hover {
+button.color-scheme[role="switch"][aria-checked="true"]:focus,
+button.color-scheme[role="switch"][aria-checked="true"]:hover {
      border-color: #add8e6;
 }
 
 @media (prefers-color-scheme: dark) {
-
     button.color-scheme[role="switch"] {
          background-color: #333;
          color: #fff;
