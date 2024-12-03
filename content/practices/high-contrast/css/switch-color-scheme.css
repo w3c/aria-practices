@@ -13,8 +13,8 @@ button.color-scheme[role="switch"] {
 
 button.color-scheme[role="switch"][aria-checked="true"] {
   background-color: #333;
-  color: #eeeee;
-  border-color: #3366cc;
+  color: #eee;
+  border-color: #36c;
 }
 
 button.color-scheme[role="switch"] .label {
@@ -50,7 +50,7 @@ button.color-scheme[role="switch"] svg rect {
 button.color-scheme[role="switch"] svg circle.off {
   display: block;
   stroke: #757575;
-  fill: #ffffff;
+  fill: #fff;
   fill-opacity: 1;
 }
 
@@ -59,8 +59,8 @@ button.color-scheme[role="switch"] svg circle.on {
 }
 
 button.color-scheme[role="switch"][aria-checked="true"] svg rect {
-  fill: #3366cc;
-  stroke: #3366cc;
+  fill: #36c;
+  stroke: #36c;
 }
 
 button.color-scheme[role="switch"][aria-checked="true"] svg circle.off {
@@ -69,8 +69,8 @@ button.color-scheme[role="switch"][aria-checked="true"] svg circle.off {
 
 button.color-scheme[role="switch"][aria-checked="true"] svg circle.on {
   display: block;
-  stroke: #ffffff;
-  fill: #ffffff;
+  stroke: #fff;
+  fill: #fff;
   fill-opacity: 1;
 }
 
