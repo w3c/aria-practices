@@ -104,6 +104,7 @@ button.color-scheme[role="switch"][aria-checked="true"]:hover {
 }
 
 @media (prefers-color-scheme: dark) {
+
     button.color-scheme[role="switch"] {
          background-color: #333;
          color: #fff;
@@ -118,12 +119,14 @@ button.color-scheme[role="switch"][aria-checked="true"]:hover {
          stroke: #36c;
     }
 
-    button.color-scheme[role="switch"] svg circle.off, button.color-scheme[role="switch"] svg circle.on {
+    button.color-scheme[role="switch"] svg circle.off,
+    button.color-scheme[role="switch"] svg circle.on {
          fill: #fff;
          stroke: #fff;
     }
 
-    button.color-scheme[role="switch"]:focus, button.color-scheme[role="switch"]:hover {
+    button.color-scheme[role="switch"]:focus,
+    button.color-scheme[role="switch"]:hover {
          border-color: #add8e6;
     }
 }
