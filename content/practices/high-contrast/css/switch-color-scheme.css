@@ -30,7 +30,7 @@ button.color-scheme[role="switch"] .label {
 
 button.color-scheme[role="switch"][aria-checked="true"] .label,
 button.color-scheme[role="switch"][aria-checked="true"] .on {
-  color: #ffffff;
+  color: #fff;
 }
 
 button.color-scheme[role="switch"] svg {
