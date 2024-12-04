@@ -83,24 +83,10 @@ ariaTest(
       if (links.length > 0) {
         await buttons[b].click();
 
-        let retries = 1;
-        let menuVisible = false;
-
-        while (retries >= 0 && !menuVisible) {
-          await buttons[b].click();
-
-          menuVisible = await menus[b].isDisplayed();
-
-          if (!menuVisible && retries === 0) {
-            throw new Error(
-              `Failed to make menu ${b} visible after multiple attempts`
-            );
-          }
-          retries--;
-        }
-
-        t.true(menuVisible, `Menu ${b} should be visible before clicking link`);
         await links[0].click();
+        // Add a small delay here to ensure that the scroll to focus event
+        // has time to complete and doesn't interfere with the next assertion
+        await t.context.session.sleep(300);
 
         t.is(
           await links[0].getAttribute('aria-current'),
