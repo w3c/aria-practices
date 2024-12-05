@@ -82,7 +82,11 @@ ariaTest(
 
       if (links.length > 0) {
         await buttons[b].click();
+
         await links[0].click();
+        // Add a small delay here to ensure that the scroll to focus event
+        // has time to complete and doesn't interfere with the next assertion
+        await t.context.session.sleep(300);
 
         t.is(
           await links[0].getAttribute('aria-current'),
