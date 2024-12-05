@@ -9,13 +9,13 @@ fi
 AVACMD="npm run regression -- -t"
 ARGS=''
 
-TEST_FILES=$(git diff --name-only $COMMIT_RANGE | perl -nle'print $& while m{test/tests/\K.*}g' | uniq)
-TEST_INFRA=$(git diff --name-only $COMMIT_RANGE | perl -nle'print $& while m{test/(util|index)}g')
+TEST_FILES=$(git diff --name-only $COMMIT_RANGE | grep -oP 'test/tests/\K.*' | uniq)
+TEST_INFRA=$(git diff --name-only $COMMIT_RANGE | grep -oP 'test/(util|index)')
 
-EXAMPLE_DIRS=$(git diff --name-only $COMMIT_RANGE | perl -nle'print $& while m{examples/\K[\w-]+(?=/)}g' | uniq)
-EXAMPLE_INFRA=$(echo "$EXAMPLE_DIRS" | perl -nle'print if m{^(js|css)$}')
+EXAMPLE_DIRS=$(git diff --name-only $COMMIT_RANGE | grep -oP 'examples/\K[\w-]+(?=/)' | uniq)
+EXAMPLE_INFRA=$(echo "$EXAMPLE_DIRS" | grep -P '^(js|css)$')
 
-PACKAGE_UPDATE=$(git diff --name-only $COMMIT_RANGE | perl -nle'print if m{package(-lock)?\.json}')
+PACKAGE_UPDATE=$(git diff --name-only $COMMIT_RANGE | grep -P 'package(-lock)?\.json')
 
 if [[ $TEST_INFRA || $EXAMPLE_INFRA || $PACKAGE_UPDATE ]]
 then
