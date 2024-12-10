@@ -11,11 +11,6 @@ button.increase-contrast[role="switch"] {
   color: #242424;
 }
 
-button.increase-contrast[role="switch"][aria-checked="true"] {
-  background-color: #eee;
-  color: #000;
-}
-
 button.increase-contrast[role="switch"] .label {
   position: relative;
   top: -3px;
@@ -24,10 +19,6 @@ button.increase-contrast[role="switch"] .label {
   margin: 0;
   width: 10em;
   vertical-align: middle;
-  color: #242424;
-}
-
-button.increase-contrast[role="switch"][aria-checked="true"] .label {
   color: #242424;
 }
 
@@ -54,11 +45,6 @@ button.increase-contrast[role="switch"] svg circle.off {
 
 button.increase-contrast[role="switch"] svg circle.on {
   display: none;
-}
-
-button.increase-contrast[role="switch"][aria-checked="true"] svg rect {
-  fill: #0051a4;
-  stroke: #061d3a;
 }
 
 button.increase-contrast[role="switch"][aria-checked="true"] svg circle.off {

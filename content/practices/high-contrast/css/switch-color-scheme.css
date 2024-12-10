@@ -11,12 +11,6 @@ button.color-scheme[role="switch"] {
   color: #242424;
 }
 
-button.color-scheme[role="switch"][aria-checked="true"] {
-  background-color: #333;
-  color: #eee;
-  border-color: #36c;
-}
-
 button.color-scheme[role="switch"] .label {
   position: relative;
   top: -3px;
@@ -26,11 +20,6 @@ button.color-scheme[role="switch"] .label {
   width: 10em;
   vertical-align: middle;
   color: #242424;
-}
-
-button.color-scheme[role="switch"][aria-checked="true"] .label,
-button.color-scheme[role="switch"][aria-checked="true"] .on {
-  color: #fff;
 }
 
 button.color-scheme[role="switch"] svg {
@@ -56,11 +45,6 @@ button.color-scheme[role="switch"] svg circle.off {
 
 button.color-scheme[role="switch"] svg circle.on {
   display: none;
-}
-
-button.color-scheme[role="switch"][aria-checked="true"] svg rect {
-  fill: #36c;
-  stroke: #36c;
 }
 
 button.color-scheme[role="switch"][aria-checked="true"] svg circle.off {
@@ -96,11 +80,6 @@ button.color-scheme[role="switch"]:hover {
   border-width: 2px;
   outline: none;
   cursor: pointer;
-}
-
-button.color-scheme[role="switch"][aria-checked="true"]:focus,
-button.color-scheme[role="switch"][aria-checked="true"]:hover {
-  border-color: #add8e6;
 }
 
 @media (prefers-color-scheme: dark) {
