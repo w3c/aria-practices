@@ -879,6 +879,9 @@ ariaTest(
 
     // On macOS, the HOME key deselects the grid popup
     // but it doesn't move the cursor.
+    // This is being tracked in issue #3191
+    // https://github.com/w3c/aria-practices/issues/3191
+    // TODO: Remove this once the issue is fixed
     if (!isMacOS()) {
       t.true(
         await confirmCursorIndex(t, ex.comboboxSelector, 0),
