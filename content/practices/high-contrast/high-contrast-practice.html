@@ -226,31 +226,30 @@
 
       <section id="prefers-contrast">
         <h2>Increase Contrast</h2>
-        <p>When the increase contrast setting is enabled the <code>prefers-contrast</code> media query changes from <code>no-preference</code> to <code>more</code>.
-          The author <em>should</em> update the rendering of text content and components to meet
-          <a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced">WCAG 1.4.6: Contrast (Enhanced)</a>
-          requirement. 
-          If content already meets the enhanced requirement, the author <em>may</em> want to exceed the enhanced color contrast requirement.
+        <p>
+          When the increase contrast setting is enabled the <code>prefers-contrast</code> media query changes from <code>no-preference</code> to <code>more</code>.
+          To support the increase contrast setting, change  the rendering of text content and components to use a color scheme that meets or exceeds the requirements specified in
+          <a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced">WCAG 1.4.6: Contrast (Enhanced)</a>.
         </p>
-        <p>Note: Operating systems that support the <code>forced-colors</code> media query will set <code>prefers-contrast</code> to <code>custom</code> when the <code>forced-colors</code> is set to <code>active</code>.  </p>
-
-       <h3 id="prefers-contrast-example">Increase Contrast Example</h3>
-
-        <p>The example shows how the color contrast increases from 12.8 to 18.1 for text and 4.6 to 12.2 for border and fill for the button when the <code>prefers-contrast: more</code> is set.  When you enable your device's "increased contrast" feature the example will be rendered with the increased contrast values.</p>
+        <p>Note: Operating systems that support the <code>forced-colors</code> media query set <code>prefers-contrast</code> to <code>custom</code> when the <code>forced-colors</code> is set to <code>active</code>.  </p>
+        <h3 id="prefers-contrast-example">Increase Contrast Example</h3>
+        <p> Enable the "increased contrast" feature on your device, and color contrast ratios in the below example will change:</p>
+        <ul>
+          <li>Text contrast increases from 12.8 to 18.1.</li>
+          <li>Contrast of border and fill for the button increases from 4.6 to 12.2.</li>
+        </ul>
 
         <div class="example">
-
-            <button type="button" role="switch" aria-checked="false" class="increase-contrast">
-              <span class="label">Living Room Lights</span>
-              <svg xmlns="http://www.w3.org/2000/svg" height="20" width="36">
-                <rect class="container" x="1" y="1" width="34" height="18" rx="9" />
-                <circle class="off" cx="11"  cy="10" r="8" />
-                <circle class="on"  cx="25" cy="10" r="8" />
-              </svg>
-              <span class="on" aria-hidden="true">On</span>
-              <span class="off" aria-hidden="true">Off</span>
-            </button>
-
+          <button type="button" role="switch" aria-checked="false" class="increase-contrast">
+            <span class="label">Living Room Lights</span>
+            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="36">
+              <rect class="container" x="1" y="1" width="34" height="18" rx="9" />
+              <circle class="off" cx="11"  cy="10" r="8" />
+              <circle class="on"  cx="25" cy="10" r="8" />
+            </svg>
+            <span class="on" aria-hidden="true">On</span>
+            <span class="off" aria-hidden="true">Off</span>
+          </button>
         </div>
 
         <table class="data">
