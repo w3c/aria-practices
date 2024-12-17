@@ -43,7 +43,7 @@
     "cheerio": "^1.0.0-rc.12",
     "cross-spawn": "^7.0.6",
     "cspell": "^8.13.0",
-    "eslint": "^9.8.0",
+    "eslint": "^9.17.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-ava": "^15.0.0",
     "eslint-plugin-html": "^8.1.2",
