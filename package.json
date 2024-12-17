@@ -40,7 +40,7 @@
     "@babel/core": "^7.26.0",
     "@babel/eslint-parser": "^7.25.9",
     "ava": "^6.2.0",
-    "cheerio": "^1.0.0-rc.12",
+    "cheerio": "^1.0.0",
     "cross-spawn": "^7.0.6",
     "cspell": "^8.13.0",
     "eslint": "^9.17.0",
