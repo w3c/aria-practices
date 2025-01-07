@@ -399,7 +399,7 @@
         </p>
         <p>
           To support dark mode, develop styles for dark text on a light background and light text on a dark background and use a media query to apply the appropriate style.
-          The CSS media query <code>prefers-color-scheme</code> identifies the current color scheme by returning <code>light</code> or <code>dark</code>.
+          The CSS media query <code>prefers-color-scheme</code> identifies the current color scheme by returning <code>light</code> or <code>dark</code>.  Modern browsers support the color schemes using the <code>light-dark</code> function to identify a color value for a CSS property.
           Ensure the text content and components of both color schemes meet or exceed the color contrast ratios specified by
           <a href="https://www.w3.org/TR/WCAG21/#contrast-minimum">WCAG 1.4.3: Contrast (Minimum)</a>.
         </p>
@@ -524,32 +524,50 @@
 
         <pre>
           <code>
-@media (prefers-color-scheme: dark) {
-  button.color-scheme[role="switch"] {
-    background-color: #333;
-    color: #fff;
-  }
-
-  button.color-scheme[role="switch"] .label {
-    color: #fff;
-  }
-
-  button.color-scheme[role="switch"] svg rect {
-    fill: #36c;
-    stroke: #36c;
-  }
-
-  button.color-scheme[role="switch"] svg circle.off,
-  button.color-scheme[role="switch"] svg circle.on {
-    fill: #fff;
-    stroke: #fff;
-  }
-
-  button.color-scheme[role="switch"]:focus,
-  button.color-scheme[role="switch"]:hover {
-    border-color: #add8e6;
-  }
+:root {
+  color-scheme: light dark;
 }
+
+button.color-scheme[role="switch"] {
+  display: block;
+  margin: 2px;
+  padding: 4px 4px 8px 8px;
+  border: 0 solid light-dark(#005a9c, #add8e6);
+  border-radius: 5px;
+  width: 17em;
+  height: 3em;
+  text-align: left;
+  background-color: light-dark(#e9e9e9, #333);
+  color: light-dark(#242424, #fff);
+}
+
+button.color-scheme[role="switch"] .label {
+  position: relative;
+  top: -3px;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  width: 10em;
+  vertical-align: middle;
+  color: light-dark(#242424, #fff);
+}
+
+....
+
+button.color-scheme[role="switch"] svg rect {
+  fill: light-dark(#a1a1a1, #36c);
+  stroke-width: 2;
+  stroke: light-dark(#757575, #36c);
+}
+
+button.color-scheme[role="switch"] svg circle.off {
+  display: block;
+  stroke: light-dark(#757575, #fff);
+  fill: light-dark(#fff, #fff);
+  fill-opacity: 1;
+}
+
+....
           </code>
         </pre>
 
