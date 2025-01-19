@@ -353,7 +353,7 @@ addLandmarkRole(
 function exampleListItem(item) {
   let highContrast = '';
   if (item.highContrast) {
-    highContrast = ' (<abbr title="Forced Colors Media Query Support">FC</abbr>)';
+    highContrast = ' (<abbr title="High Contrast Support">HC</abbr>)';
   }
   return `
                 <li><a href="${item.ref}">${item.title}</a>${highContrast}</li>`;
