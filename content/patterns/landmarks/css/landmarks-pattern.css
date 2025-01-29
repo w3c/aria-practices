@@ -1,0 +1,66 @@
+.landmark h3 {
+  margin: 0;
+  padding: 0;
+}
+.landmark [role=tabpanel] h3 {
+  margin: 0;
+  padding: 0;
+  margin-top: 1em;
+}
+
+[role=tabpanel] pre {
+  margin: 0;
+  padding: 0;
+}
+pre code.hljs {
+  background-color: #eee;
+}
+
+fieldset {
+  margin-top: 1em;
+  max-width: 15em;
+}
+
+label {
+  margin-top: 0.5em;
+  display: block;
+}
+
+input[type=text] {
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+input[type=submit] {
+  margin-top: 1em;
+  display: block;
+}
+
+#at figure {
+  margin: 0;
+  padding: 0;
+  margin-top: 2em;
+  border: 2px solid #005a9c;
+  border-radius: 5px;
+  background-color: #ddd;
+  width: auto;
+  max-width: 760px;
+}
+
+#at figure figcaption {
+  margin: 0;
+  padding: 0.5em;
+  background-color: #ddd;
+  text-align: center;
+  font-weight: bold;
+  font-size: 110%;
+}
+
+#at figure img {
+  margin: 0;
+  padding: 2px;
+  border: none;
+  width: auto;
+}
+
