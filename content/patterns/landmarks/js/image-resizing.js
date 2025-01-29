@@ -9,9 +9,9 @@
 
 'use strict';
 
-function resizeImagesInFigures () {
+function resizeImagesInFigures() {
   const figures = document.querySelectorAll('#at figure');
-  for(let i = 0; i < figures.length; i += 1) {
+  for(let i = 0; i < figures.length; i++) {
     const image = figures[i].querySelector('img');
     if (image) {
       const rect = figures[i].getBoundingClientRect();
