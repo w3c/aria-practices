@@ -746,7 +746,7 @@ button.color-scheme[role="switch"] svg circle.off {
 
         <h3><code>currentcolor</code> Keyword</h3>
 
-        <p>The <code>currentcolor</code> keyword provides a means for components to use the color value of ancestors to set the color properties of an element.   When the user chooses a high contrast theme the browser changes the <code>color</code> and <code>background-color</code> values of text content.   The <code>currentcolor</code> value is set to the text color for use in setting the color of other properties including: <code>border</code> and <code>outline</code> on HTML elements, and <code>stroke</code> and <code>fill</code> properties on SVG elements.</p>
+        <p>The <code>currentcolor</code> keyword provides a means for components to use the color value of ancestors to set the color properties of an element, making <code>currentcolor</code> a convenient means for custom components using existing form controls like <code>input</code> and <code>button</code> elements to also automatically adapt to changes in contrast themes and dark color mode.  When the user chooses a contrast theme the browser changes the <code>color</code> and <code>background-color</code> values of HTML elements.   The <code>currentcolor</code> value is set to the color of the nearest ancestor element and can be used in setting the color of other properties including: <code>border</code> and <code>outline</code> on HTML elements, and <code>stroke</code> and <code>fill</code> properties on SVG elements.</p>
 
         <div class="support-notice">
           <div class="caution"><strong>Caution:</strong>
