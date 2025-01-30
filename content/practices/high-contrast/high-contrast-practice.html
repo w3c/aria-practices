@@ -756,7 +756,7 @@ button.color-scheme[role="switch"] svg circle.off {
 
         <h3 id="currentcolor-example">Current Color Example: Switch</h3>
 
-        <p>The <a href="../../patterns/switch/examples/switch-button.html">Button Switch Example</a> uses <code>currentcolor</code> value to style the SVG <code>rect</code> elements used as the switch container and to indicate the on and off states.  Current color applied to the <code>stroke</code> and <code>fill</code> properties of the <code>rect</code> elements.   The following table shows how the graphical rendering changes for some high contrast options. </p>
+        <p>The Button Switch Example uses <code>currentcolor</code> value to style the SVG elements used as the switch container and to indicate the on and off states.  Current color is derived from the <code>button</code> element (i.e. <code>ButtonText</code> system color) and applied to the <code>stroke</code> and <code>fill</code> properties of the <code>circle</code> elements. The SVG <code>rect</code> element has a transparent <code>fill-opacity</code> to show the background color of the <code>button</code> element (i.e. <code>ButtonFace</code> system color). The following table shows how the graphical rendering changes for some high contrast options. </p>
 
         <div class="example">
           <button type="button" role="switch" aria-checked="false" class="current-color">
