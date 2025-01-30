@@ -665,16 +665,6 @@ function getHTMLColorName(systemColorName, colorHex) {
 
 const systemColorValues = [
   {
-    value: 'AccentColor',
-    name: 'Accent color',
-    desc: 'Background of accented user interface controls',
-  },
-  {
-    value: 'AccentColorText',
-    name: 'Accent color text',
-    desc: 'Text of accented user interface controls',
-  },
-  {
     value: 'ActiveText',
     name: 'Active text',
     desc: 'Text of active links',

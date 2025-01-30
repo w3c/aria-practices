@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" href="./css/switch-increase-contrast.css">
     <link rel="stylesheet" href="./css/switch-color-scheme.css">
+    <link rel="stylesheet" href="./css/switch-current-color.css">
 
     <script src="../../shared/js/examples.js"></script>
     <script src="../../shared/js/highlight.pack.js"></script>
@@ -283,6 +284,16 @@
             <span class="on" aria-hidden="true">On</span>
             <span class="off" aria-hidden="true">Off</span>
           </button>
+          <button type="button" role="switch" aria-checked="false" class="increase-contrast">
+            <span class="label">Outdoor Lights</span>
+            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="36">
+              <rect class="container" x="1" y="1" width="34" height="18" rx="9" />
+              <circle class="off" cx="11"  cy="10" r="8" />
+              <circle class="on"  cx="25" cy="10" r="8" />
+            </svg>
+            <span class="on" aria-hidden="true">On</span>
+            <span class="off" aria-hidden="true">Off</span>
+          </button>
         </div>
 
         <table class="data">
@@ -445,6 +456,16 @@
         <div class="example">
           <button type="button" role="switch" aria-checked="false" class="color-scheme">
             <span class="label">Dining Room Lights</span>
+            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="36">
+              <rect class="container" x="1" y="1" width="34" height="18" rx="9" />
+              <circle class="off" cx="11"  cy="10" r="8" />
+              <circle class="on"  cx="25" cy="10" r="8" />
+            </svg>
+            <span class="on" aria-hidden="true">On</span>
+            <span class="off" aria-hidden="true">Off</span>
+          </button>
+          <button type="button" role="switch" aria-checked="false" class="color-scheme">
+            <span class="label">Outdoor Lights</span>
             <svg xmlns="http://www.w3.org/2000/svg" height="20" width="36">
               <rect class="container" x="1" y="1" width="34" height="18" rx="9" />
               <circle class="off" cx="11"  cy="10" r="8" />
@@ -656,12 +677,6 @@ button.color-scheme[role="switch"] svg circle.off {
 
         <p>The following table identifies the current system colors defined in <a href="https://www.w3.org/TR/css-color-4/#css-system-colors">CSS Color Module Level 4</a>.  System colors are supported in all major browsers, but the <strong>actual colors</strong> they render may vary between browsers and operating systems based on default and user theme and contrast settings.</p>
 
-        <div class="support-notice">
-          <div class="caution"><strong>Caution:</strong>
-            Some browsers may render a system color as <code>transparent</code>. For example the Chrome browser for <code>AccentColor</code> and <code>AccentColorText</code> colors.
-            Avoid using these system colors since the associated color contrast is less predictable.
-          </div>
-        </div>
 
         <table aria-labelledby="system-colors" class="data">
           <thead>
@@ -675,6 +690,12 @@ button.color-scheme[role="switch"] svg circle.off {
           <tbody id="samples">
           </tbody>
         </table>
+
+        <div class="support-notice">
+          <div class="caution"><strong>Caution:</strong>
+            The system colors <code>AccentColor</code> and <code>AccentColorText</code> are not supported by the Chrome browser and are not included in the preceding table.  They should not be used since they will result in unpredicatble color contrast ratios.
+          </div>
+        </div>
 
         <h3 id="forced-colors-example">System Color Example: Rating Slider</h3>
 
@@ -729,13 +750,36 @@ button.color-scheme[role="switch"] svg circle.off {
 
         <div class="support-notice">
           <div class="caution"><strong>Caution:</strong>
-            There is no equivalent to the <code>currentcolor</code> value for setting the background color, so when using this technique it is important for the background of the element to be transparent to allow the background color of the page to be visible.
+            There is no equivalent to the <code>currentcolor</code> value for setting the background color, so when using this technique it is important for verify the color contrast of the features of the component using <code>currentcolor</code> with the background color being rendered.
           </div>
         </div>
 
         <h3 id="currentcolor-example">Current Color Example: Switch</h3>
 
         <p>The <a href="../../patterns/switch/examples/switch-button.html">Button Switch Example</a> uses <code>currentcolor</code> value to style the SVG <code>rect</code> elements used as the switch container and to indicate the on and off states.  Current color applied to the <code>stroke</code> and <code>fill</code> properties of the <code>rect</code> elements.   The following table shows how the graphical rendering changes for some high contrast options. </p>
+
+        <div class="example">
+          <button type="button" role="switch" aria-checked="false" class="current-color">
+            <span class="label">Living Room Lights</span>
+            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="36">
+              <rect class="container" x="1" y="1" width="34" height="18" rx="9" />
+              <circle class="off" cx="11"  cy="10" r="7" />
+              <circle class="on"  cx="25" cy="10" r="7" />
+            </svg>
+            <span class="on" aria-hidden="true">On</span>
+            <span class="off" aria-hidden="true">Off</span>
+          </button>
+          <button type="button" role="switch" aria-checked="false" class="current-color">
+            <span class="label">Outdoor Lights</span>
+            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="36">
+              <rect class="container" x="1" y="1" width="34" height="18" rx="9" />
+              <circle class="off" cx="11"  cy="10" r="7" />
+              <circle class="on"  cx="25" cy="10" r="7" />
+            </svg>
+            <span class="on" aria-hidden="true">On</span>
+            <span class="off" aria-hidden="true">Off</span>
+          </button>
+        </div>
 
         <table class="data">
           <caption>Button Switch Example with Selected High Contrast User Settings in Windows 11</caption>
@@ -760,6 +804,45 @@ button.color-scheme[role="switch"] svg circle.off {
             </tr>
           </tbody>
         </table>
+
+       <h4>CSS Code using <code>currentcolor</code> value</h4>
+
+        <pre>
+          <code>
+....
+
+button.current-color[role="switch"] svg rect {
+  fill-opacity: 0;
+  stroke-width: 2;
+  stroke: currentcolor;
+}
+
+button.current-color[role="switch"] svg circle.off {
+  display: block;
+  stroke: currentcolor;
+  fill: currentcolor;
+  fill-opacity: 1;
+}
+
+button.current-color[role="switch"][aria-checked="true"] svg circle.off {
+  display: none;
+}
+
+button.current-color[role="switch"] svg circle.on {
+  display: none;
+}
+
+button.current-color[role="switch"][aria-checked="true"] svg circle.on {
+  color: green;
+  display: block;
+  stroke-color: currentcolor;
+  fill: currentcolor;
+  fill-opacity: 1;
+}
+
+....
+          </code>
+        </pre>
 
         <h3 id="currentcolor-examples">Examples using <code>currentcolor</code> keyword</h3>
         <ul>
