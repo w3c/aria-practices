@@ -671,9 +671,80 @@ button.color-scheme[role="switch"] svg circle.off {
       <section id="forced-colors">
         <h2>Contrast Themes (Forced Colors)</h2>
 
-        <p>The <code>forced-colors</code> CSS media query provides a means for components to use the color preferences of people with visual impairments.   When the user chooses a color theme in their operating system, browsers set the <code>forced-colors</code> property to <code>active</code>.   CSS media queries can change component colors to use operating system specified values using <code>&lt;system-colors&gt;</code> CSS data types.  The advantage of using <code>forced-colors</code> over <code>currentcolor</code> is the ability to set a background color and to uniquely define colors for borders, outlines and text content.</p>
+        <p>The <code>forced-colors</code> CSS media query provides a means for components to use the color preferences of people with visual impairments.   When the user chooses a color theme in their operating system, browsers set the <code>forced-colors</code> property to <code>active</code>.  When forced colors are active the browser forces colors for Authors can use either the <code>currentcolor</code> or <code>&lt;system-colors&gt;</code> values for CSS color properties for components adapt to user preferences.</p>
 
-        <h3 id="system-colors">System Colors</h3>
+        <table class="data">
+          <caption>Contrast Themes Effects for Windows 11 on HTML Content</caption>
+          <thead>
+            <tr>
+              <th rowspan="2" style="vertical-align: bottom">Elem.</th>
+              <th colspan="2">Style</th>
+              <th rowspan="2" style="vertical-align: bottom">Sample</th>
+              <th colspan="3">Contrast Themes Windows 11</th>
+            </tr>
+            <tr>
+              <th>Color</th>
+              <th>Background</th>
+              <th>Desert</th>
+              <th>Dusk</th>
+              <th>Night Sky</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <code>P</code>
+              </td>
+              <td>
+                <code>#000</code>
+              </td>
+              <td>
+                <code>#fff</code>
+              </td>
+              <td>
+                <p>Sample Text</p>
+              </td>
+              <td>
+                <img src="images/p-element-desert-theme.png" alt="screen shot of paragraph with no styling in Desert Contrast theme">
+              </td>
+              <td>
+                <img src="images/p-element-dusk-theme.png" alt="screen shot of paragraph with no styling in Dusk Contrast theme">
+              </td>
+              <td>
+                <img src="images/p-element-desert-theme.png" alt="screen shot of paragraph with no styling in Night Skiy Contrast theme">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code>P</code>
+              </td>
+              <td>
+                <code>#385170</code>
+              </td>
+              <td>
+                <code>#ececec</code>
+              </td>
+              <td>
+                <p style="color:  #385170; background-color: #ececec">Sample Text</p>
+              </td>
+              <td>
+                <img src="images/p-element-desert-theme.png" alt="screen shot of paragraph with no styling in Desert Contrast theme">
+              </td>
+              <td>
+                <img src="images/p-element-dusk-theme.png" alt="screen shot of paragraph with no styling in Dusk Contrast theme">
+              </td>
+              <td>
+                <img src="images/p-element-desert-theme.png" alt="screen shot of paragraph with no styling in Night Skiy Contrast theme">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3><code>currentcolor</code> vs. <code>&lt;system-colors&gt;</code></h3>
+
+        <p>CSS media queries can change component colors to use operating system specified values using <code>&lt;system-colors&gt;</code> CSS data types.  The advantage of using <code>forced-colors</code> over <code>currentcolor</code> is the ability to set a background color and to uniquely define colors for borders, outlines and text content.</p>
+
+        <h3 id="system-colors">Using System Colors</h3>
 
         <p>The following table identifies the current system colors defined in <a href="https://www.w3.org/TR/css-color-4/#css-system-colors">CSS Color Module Level 4</a>.  System colors are supported in all major browsers, but the <strong>actual colors</strong> they render may vary between browsers and operating systems based on default and user theme and contrast settings.</p>
 
@@ -744,7 +815,7 @@ button.color-scheme[role="switch"] svg circle.off {
           <li><a href="../../patterns/radio/examples/radio-rating.html">Rating Radio Group</a></li>
         </ul>
 
-        <h3><code>currentcolor</code> Keyword</h3>
+        <h3>Using <code>currentcolor</code></h3>
 
         <p>The <code>currentcolor</code> keyword provides a means for components to use the color value of ancestors to set the color properties of an element, making <code>currentcolor</code> a convenient means for custom components using existing form controls like <code>input</code> and <code>button</code> elements to also automatically adapt to changes in contrast themes and dark color mode.  When the user chooses a contrast theme the browser changes the <code>color</code> and <code>background-color</code> values of HTML elements.   The <code>currentcolor</code> value is set to the color of the nearest ancestor element and can be used in setting the color of other properties including: <code>border</code> and <code>outline</code> on HTML elements, and <code>stroke</code> and <code>fill</code> properties on SVG elements.</p>
 
