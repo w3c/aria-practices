@@ -54,7 +54,7 @@
     "htmlhint": "^1.1.4",
     "htmlparser2": "^9.1.0",
     "husky": "^9.1.7",
-    "lint-staged": "^15.2.11",
+    "lint-staged": "^15.4.3",
     "node-fetch": "^2.6.7",
     "prettier": "^3.4.2",
     "selenium-webdriver": "^4.27.0",
