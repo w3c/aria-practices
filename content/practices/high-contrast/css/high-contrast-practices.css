@@ -39,6 +39,10 @@ ul.system-colors li {
   list-style: none;
 }
 
+img.theme {
+  max-width: 125px;
+}
+
 .color,
 .font {
   font-family: monospace;
