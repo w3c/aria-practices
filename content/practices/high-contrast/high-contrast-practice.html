@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
     <link rel="stylesheet" href="../../shared/css/core.css">
 
+    <link rel="stylesheet" href="./css/high-contrast-practices.css">
+
     <link rel="stylesheet" href="./css/switch-increase-contrast.css">
     <link rel="stylesheet" href="./css/switch-color-scheme.css">
     <link rel="stylesheet" href="./css/switch-current-color.css">
@@ -17,70 +19,7 @@
     <script src="../../shared/js/highlight.pack.js"></script>
     <script src="../../shared/js/app.js"></script>
     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
-    <style type="text/css">
-      table.data caption {
-         margin: 0;
-         padding: 0;
-         color: rgb(0, 90, 106);
-         font-style: normal;
-         text-align: left;
-         font-size: 1.1em;
-      }
-      table.data img {
-        border: 1px solid gray;
-      }
-      table.data tbody th,
-      table.data tbody td {
-        vertical-align:top;
-      }
 
-      table.data tbody td p:first-child {
-        margin-top: 0;
-        padding-top: 0;
-      }
-
-      table.data td div.sample {
-        height: 30px;
-        width: 50px;
-        border: 1px solid gray;
-      }
-      .color,
-      .font {
-        font-family: monospace;
-      }
-
-    .support-notice {
-      background-color: #FDEFCE;
-      border: 1px solid #FCE1A4;
-      border-radius: 3px;
-      padding: 0;
-      overflow: unset;
-      --space-between-elements: 1em;
-      --left-right-padding: 70px;
-
-    }
-
-    .support-notice div.caution {
-      background-color: #FCEBC3;
-      padding-left: 60px;
-      padding-top: 1em;
-      padding-bottom: 1em;
-      position: relative;
-    }
-
-    .support-notice div.caution::before {
-      width: 32px;
-      height: 32px;
-      display: block;
-      content: '';
-      background-position: center center;
-      background-repeat: no-repeat;
-      position: absolute;
-      left: 1em;
-      top: 1em;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='31' viewBox='0 0 30 31'%3E%3Cg id='Group_1' data-name='Group 1' transform='translate(-11 -292)'%3E%3Cellipse id='Ellipse_1' data-name='Ellipse 1' cx='15' cy='15.5' rx='15' ry='15.5' transform='translate(11 292)' fill='%23d9ae4d'/%3E%3Cpath id='Path_3' data-name='Path 3' d='M4.524-17.368a4.507,4.507,0,0,0-1.56.312.278.278,0,0,0-.13.286V-14.9c0,2.184.416,8.294.468,9.022a.172.172,0,0,0,.182.156h2.08c.156,0,.182-.078.182-.156.078-.78.52-6.916.52-9.1v-1.872a.326.326,0,0,0-.156-.286A5.112,5.112,0,0,0,4.524-17.368Zm0,17.576A1.7,1.7,0,0,0,6.4-1.534,1.741,1.741,0,0,0,4.524-3.328,1.77,1.77,0,0,0,2.652-1.534,1.7,1.7,0,0,0,4.524.208Z' transform='translate(22 316)' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E%0A");
-    }
-    </style>
   </head>
   <body>
     <main>
@@ -671,7 +610,7 @@ button.color-scheme[role="switch"] svg circle.off {
       <section id="forced-colors">
         <h2>Contrast Themes (Forced Colors)</h2>
 
-        <p>The <code>forced-colors</code> CSS media query provides a means for components to use the color preferences of people with visual impairments.   When the user chooses a color theme in their operating system, browsers set the <code>forced-colors</code> property to <code>active</code>.  When forced colors are active the browser forces colors for Authors can use either the <code>currentcolor</code> or <code>&lt;system-colors&gt;</code> values for CSS color properties for components adapt to user preferences.</p>
+        <p>The <code>forced-colors</code> CSS media query provides a means for components to use the color preferences of people with visual impairments.   When the user chooses a contrast theme in the operating system (i.e. in Windows 11 Accessibility Settings > Contrast Theme), browsers set the <code>forced-colors</code> property to <code>active</code>.  When forced colors are active the browser overrides any author styling and applies the system color associated with the theme to each element.   Authors should use either the <code>currentcolor</code> or <code>&lt;system-colors&gt;</code> values for CSS color properties for their components to adapt to user preferences.</p>
 
         <table class="data">
           <caption>Contrast Themes Effects for Windows 11 on HTML Content</caption>
@@ -679,22 +618,28 @@ button.color-scheme[role="switch"] svg circle.off {
             <tr>
               <th rowspan="2" style="vertical-align: bottom">Element</th>
               <th rowspan="2" style="vertical-align: bottom">Sample</th>
-              <th colspan="4">Contrast Themes Windows 11</th>
+              <th rowspan="2" style="vertical-align: bottom">System<br>Colors</th>
+              <th colspan="3">Contrast Themes Windows 11</th>
             </tr>
             <tr>
               <th>Aquatic</th>
               <th>Desert</th>
-              <th>Dusk</th>
               <th>Night Sky</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>
-                <code>p</code>
+                Text Content
               </td>
               <td>
                 <p>Sample Text</p>
+              </td>
+              <td>
+                <ul class="system-colors">
+                  <li>CanvasText</li>
+                  <li>Canvas</li>
+                </ul>
               </td>
               <td>
                 <img src="images/p-element-aquatic-theme.png" alt="screen shot of paragraph with no styling in Auquatic Contrast theme">
@@ -703,18 +648,23 @@ button.color-scheme[role="switch"] svg circle.off {
                 <img src="images/p-element-desert-theme.png" alt="screen shot of paragraph with no styling in Desert Contrast theme">
               </td>
               <td>
-                <img src="images/p-element-dusk-theme.png" alt="screen shot of paragraph with no styling in Dusk Contrast theme">
-              </td>
-              <td>
                 <img src="images/p-element-desert-theme.png" alt="screen shot of paragraph with no styling in Night Skiy Contrast theme">
               </td>
             </tr>
             <tr>
               <td>
-                <code>a</code>
+                Links
               </td>
               <td>
                 <p><a href="#">Sample Link</a></p>
+              </td>
+              <td>
+                <ul class="system-colors">
+                  <li>ActiveText</li>
+                  <li>LinkText</li>
+                  <li>VisitedText</li>
+                  <li>Canvas</li>
+                </ul>
               </td>
               <td>
                 <img src="images/a-element-aquatic-theme.png" alt="screen shot of link in Aquatic Contrast theme">
@@ -723,18 +673,24 @@ button.color-scheme[role="switch"] svg circle.off {
                 <img src="images/a-element-desert-theme.png" alt="screen shot of link in Desert Contrast theme">
               </td>
               <td>
-                <img src="images/a-element-dusk-theme.png" alt="screen shot of link in Dusk Contrast theme">
-              </td>
-              <td>
                 <img src="images/a-element-desert-theme.png" alt="screen shot of link in Night Skiy Contrast theme">
               </td>
             </tr>
             <tr>
               <td>
-                <code>button</code>
+                Buttons
               </td>
               <td>
-                <p><button>Sample Button</button></p>
+                <p>
+                  <button>Sample Button</button>
+                </p>
+              </td>
+              <td>
+                <ul class="system-colors">
+                  <li>ButtonBorder</li>
+                  <li>ButtonFace</li>
+                  <li>ButtonText</li>
+                </ul>
               </td>
               <td>
                 <img src="images/button-element-aquatic-theme.png" alt="screen shot of button in Aquatic Contrast theme">
@@ -743,18 +699,22 @@ button.color-scheme[role="switch"] svg circle.off {
                 <img src="images/button-element-desert-theme.png" alt="screen shot of button in Desert Contrast theme">
               </td>
               <td>
-                <img src="images/button-element-dusk-theme.png" alt="screen shot of button in Dusk Contrast theme">
-              </td>
-              <td>
                 <img src="images/button-element-desert-theme.png" alt="screen shot of button in Night Skiy Contrast theme">
               </td>
             </tr>
             <tr>
               <td>
-                <code>input<br>[type="text"]</code>
+                Textbox
               </td>
               <td>
                 <p><input type="text" value="Sample value" size="15"></p>
+              </td>
+              <td>
+                <ul class="system-colors">
+                  <li>ButtonBorder</li>
+                  <li>ButtonFace</li>
+                  <li>ButtonText</li>
+                </ul>
               </td>
               <td>
                 <img src="images/input-text-element-aquatic-theme.png" alt="screen shot of text box in Aquatic Contrast theme">
@@ -763,7 +723,29 @@ button.color-scheme[role="switch"] svg circle.off {
                 <img src="images/input-text-element-desert-theme.png" alt="screen shot of text box in Desert Contrast theme">
               </td>
               <td>
-                <img src="images/input-text-element-dusk-theme.png" alt="screen shot of text box within Dusk Contrast theme">
+                <img src="images/input-text-element-desert-theme.png" alt="screen shot of text box in Night Skiy Contrast theme">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Range Control
+              </td>
+              <td>
+                <p><input type="range"></p>
+              </td>
+              <td>
+                <ul class="system-colors">
+                  <li>ActiveText??</li>
+                  <li>ButtonBorder</li>
+                  <li>ButtonFace</li>
+                  <li>ButtonText</li>
+                </ul>
+              </td>
+              <td>
+                <img src="images/input-text-element-aquatic-theme.png" alt="screen shot of text box in Aquatic Contrast theme">
+              </td>
+              <td>
+                <img src="images/input-text-element-desert-theme.png" alt="screen shot of text box in Desert Contrast theme">
               </td>
               <td>
                 <img src="images/input-text-element-desert-theme.png" alt="screen shot of text box in Night Skiy Contrast theme">
@@ -774,7 +756,7 @@ button.color-scheme[role="switch"] svg circle.off {
 
         <h3><code>currentcolor</code> vs. <code>&lt;system-colors&gt;</code></h3>
 
-        <p>CSS media queries can change component colors to use operating system specified values using <code>&lt;system-colors&gt;</code> CSS data types.  The advantage of using <code>forced-colors</code> over <code>currentcolor</code> is the ability to set a background color and to uniquely define colors for borders, outlines and text content.</p>
+        <p>Use the <code>forced-colors</code> CSS media query change component colors to  operating system specified values using <code>&lt;system-colors&gt;</code> CSS data types.  The advantage of using <code>forced-colors</code> over <code>currentcolor</code> is the ability to set a background color and to uniquely define colors for borders, outlines and text content.</p>
 
         <h3 id="system-colors">Using System Colors</h3>
 

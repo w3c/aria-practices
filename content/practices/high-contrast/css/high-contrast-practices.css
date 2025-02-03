@@ -1,0 +1,77 @@
+/* high-contrast-practices.css */
+
+table.data caption {
+   margin: 0;
+   padding: 0;
+   color: rgb(0, 90, 106);
+   font-style: normal;
+   text-align: left;
+   font-size: 1.1em;
+}
+table.data img {
+  border: 1px solid gray;
+}
+table.data tbody th,
+table.data tbody td {
+  vertical-align:top;
+}
+
+table.data tbody td p:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+table.data td div.sample {
+  height: 30px;
+  width: 50px;
+  border: 1px solid gray;
+}
+
+ul.system-colors {
+  margin: 0;
+  padding: 0;
+}
+
+ul.system-colors li {
+  margin: 0;
+  padding: 0;
+  font-family: monospace;
+  list-style: none;
+}
+
+.color,
+.font {
+  font-family: monospace;
+}
+
+.support-notice {
+  background-color: #FDEFCE;
+  border: 1px solid #FCE1A4;
+  border-radius: 3px;
+  padding: 0;
+  overflow: unset;
+  --space-between-elements: 1em;
+  --left-right-padding: 70px;
+
+}
+
+.support-notice div.caution {
+  background-color: #FCEBC3;
+  padding-left: 60px;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  position: relative;
+}
+
+.support-notice div.caution::before {
+  width: 32px;
+  height: 32px;
+  display: block;
+  content: '';
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 1em;
+  top: 1em;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='31' viewBox='0 0 30 31'%3E%3Cg id='Group_1' data-name='Group 1' transform='translate(-11 -292)'%3E%3Cellipse id='Ellipse_1' data-name='Ellipse 1' cx='15' cy='15.5' rx='15' ry='15.5' transform='translate(11 292)' fill='%23d9ae4d'/%3E%3Cpath id='Path_3' data-name='Path 3' d='M4.524-17.368a4.507,4.507,0,0,0-1.56.312.278.278,0,0,0-.13.286V-14.9c0,2.184.416,8.294.468,9.022a.172.172,0,0,0,.182.156h2.08c.156,0,.182-.078.182-.156.078-.78.52-6.916.52-9.1v-1.872a.326.326,0,0,0-.156-.286A5.112,5.112,0,0,0,4.524-17.368Zm0,17.576A1.7,1.7,0,0,0,6.4-1.534,1.741,1.741,0,0,0,4.524-3.328,1.77,1.77,0,0,0,2.652-1.534,1.7,1.7,0,0,0,4.524.208Z' transform='translate(22 316)' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E%0A");
+}
