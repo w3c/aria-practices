@@ -34,13 +34,13 @@ button.current-color[role="switch"] svg {
 button.current-color[role="switch"] svg rect {
   fill-opacity: 0;
   stroke-width: 2;
-  stroke: currentcolor;
+  stroke: #005a9c;
 }
 
 button.current-color[role="switch"] svg circle.off {
   display: block;
-  stroke: currentcolor;
-  fill: currentcolor;
+  stroke: #005a9c;
+  fill: #005a9c;
   fill-opacity: 1;
 }
 
@@ -55,8 +55,8 @@ button.current-color[role="switch"] svg circle.on {
 button.current-color[role="switch"][aria-checked="true"] svg circle.on {
   color: green;
   display: block;
-  stroke-color: currentcolor;
-  fill: currentcolor;
+  stroke-color: #005a9c;
+  fill: #005a9c;
   fill-opacity: 1;
 }
 
@@ -83,4 +83,34 @@ button.current-color[role="switch"]:hover {
   outline: none;
   background-color: #def;
   cursor: pointer;
+}
+
+@media (forced-colors: active) {
+
+  button.current-color[role="switch"] {
+    border-color: ButtonBorder;
+    background-color: ButtonFace;
+    color: ButtonText;
+  }
+
+  button.current-color[role="switch"] .label {
+    color: CanvasText;
+  }
+
+  button.current-color[role="switch"] svg rect {
+    fill-opacity: 0;
+    stroke-width: 2;
+    stroke: ButtonBorder;
+  }
+
+  button.current-color[role="switch"] svg circle.off {
+    stroke: ButtonBorder;
+    fill: ButtonBorder;
+  }
+
+  button.current-color[role="switch"][aria-checked="true"] svg circle.on {
+    stroke-color: ButtonBorder;
+    fill: highlight;
+  }
+
 }
