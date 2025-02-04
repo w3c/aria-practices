@@ -41,6 +41,10 @@ ul.system-colors li {
   list-style: none;
 }
 
+label.system-colors {
+  display: block;
+}
+
 img.theme {
   max-width: 125px;
 }
