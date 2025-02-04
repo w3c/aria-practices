@@ -84,3 +84,37 @@ div[role="switch"].system-color:hover {
   background-color: #def;
   cursor: pointer;
 }
+
+@media (forced-colors: active) {
+
+  div[role="switch"].system-color {
+    background-color: ButtonFace;
+    color: ButtonText;
+  }
+
+  div[role="switch"].system-color .label {
+    color: ButtonText;
+  }
+
+  div[role="switch"].system-color svg rect {
+    stroke: ButtonBorder;
+  }
+
+  div[role="switch"].system-color svg circle.off {
+    stroke: ButtonBorder;
+    fill: GrayText;
+  }
+
+  div[role="switch"].system-color[aria-checked="true"] svg circle.on {
+    stroke-color: ButtonBorder;
+    fill: ActiveText;
+  }
+
+  div[role="switch"].system-color:focus,
+  div[role="switch"].system-color:hover {
+    background-color: ButtonFace;
+    cursor: pointer;
+  }
+
+
+}
