@@ -26,6 +26,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest]
+
         CI_NODE_INDEX: [0, 1, 2, 3, 4]
 
     steps:
