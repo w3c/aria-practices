@@ -87,7 +87,6 @@ div[role="switch"].system-color:hover {
 }
 
 @media (forced-colors: active) {
-
   div[role="switch"].system-color {
     background-color: ButtonFace;
     color: ButtonText;
@@ -116,6 +115,4 @@ div[role="switch"].system-color:hover {
     background-color: ButtonFace;
     cursor: pointer;
   }
-
-
 }

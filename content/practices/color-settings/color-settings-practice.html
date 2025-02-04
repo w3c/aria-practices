@@ -112,7 +112,7 @@
               </td>
               <td>
                 Accessibility setting that specifies that the user prefers contrast that is stronger than the default minimum.
-                Typically, rendering of apps and content is not automatically changed by the operating system; app and content developers need to provide support.
+                Typically, rendering of apps and content is not automatically changed by the operating system, so the setting only works when authors provide support.
                 Each operating system has its own approach to supporting this setting; there is no standard that specifies how much contrast should be increased when this setting is enabled.
                 A reasonable target for web content is specified by
                 <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-enhanced">WCAG 1.4.6: Contrast (Enhanced)</a>.
@@ -140,7 +140,7 @@
               <td>
                 An operating system setting that enables users to choose between a <code>light</code> and <code>dark</code> color scheme.
                 It typically defaults to the <code>light</code> color scheme.
-                Typically, rendering of apps and content is not automatically changed by the operating system; app and content developers need to provide support.
+                Typically, rendering of apps and content is not automatically changed by the operating system, so the setting only works when authors provide support.
                 Many people switch to the <code>dark</code> color scheme in dark settings, e.g. at night, because it can make content easier to read or be less disruptive to other people.
                 However, people with certain visual disabilities prefer a dark color scheme as their default.
               </td>
@@ -622,7 +622,7 @@ button.color-scheme[role="switch"] svg circle.off {
       <section id="forced-colors">
         <h2>Contrast Themes (Forced Colors)</h2>
 
-        <p>The <code>forced-colors</code> CSS media query provides a means for components to use the color preferences of people with visual impairments.   When the user chooses a contrast theme in the operating system (i.e. in Windows 11 Accessibility Settings > Contrast Theme), browsers set the <code>forced-colors</code> property to <code>active</code>.  When forced colors are active the browser overrides any author styling and applies the system color associated with the theme to each element.   Authors need to match the styling preferences of users with the semantics features of their components. For example text used in custom components for labels and instructions should use the same colors as the users contrast theme for text content.  Components that behave as links need to match the contrast theme styling for links and other interactive custom components should be based on the styling used for buttons, textbox and range controls for their features.</p>
+        <p>The <code>forced-colors</code> CSS media query provides a means for components to use the color preferences of people with visual impairments.   When the user chooses a contrast theme in the operating system (i.e. in Windows 11 Accessibility Settings &gt; Contrast Theme), browsers set the <code>forced-colors</code> property to <code>active</code>.  When forced colors are active the browser overrides any author styling and applies the system color associated with the theme to each element.   Authors need to match the styling preferences of users with the semantics features of their components. For example text used in custom components for labels and instructions should use the same colors as the users contrast theme for text content.  Components that behave as links need to match the contrast theme styling for links and other interactive custom components should be based on the styling used for buttons, textbox and range controls for their features.</p>
 
 
         <table class="data">
