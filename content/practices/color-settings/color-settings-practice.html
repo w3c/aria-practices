@@ -81,7 +81,7 @@
               </td>
               <td>
                 <p>
-                  Accessibility setting that automatically transforms all rendered colors in all apps, including browser content, by subtracting each RGB value from 255.
+                  Operating system accessibility setting that automatically transforms all rendered colors in all apps, including browser content, by subtracting each RGB value from 255.
                   This is a simple way of enabling users to turn a light color theme into a dark color theme or vice-versa.
                   It is a prominent feature in the accessibility settings of most operating systems.
                 </p>
@@ -111,9 +111,9 @@
                 </ul>
               </td>
               <td>
-                Accessibility setting that specifies that the user prefers contrast that is stronger than the default minimum.
-                Typically, rendering of apps and content is not automatically changed by the operating system, so the setting only works when authors provide support.
-                Each operating system has its own approach to supporting this setting; there is no standard that specifies how much contrast should be increased when this setting is enabled.
+                Operating system accessibility setting indicating the user prefers contrast that is stronger than the default minimum.
+                Typically, this setting does not automatically change rendering of native apps or web content, so it only works when authors provide support for it.
+                Each operating system supports  this setting differently; there is no standard that specifies how much contrast should be increased when this setting is enabled.
                 A reasonable target for web content is specified by
                 <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-enhanced">WCAG 1.4.6: Contrast (Enhanced)</a>.
               </td>
@@ -139,8 +139,8 @@
               </td>
               <td>
                 An operating system setting that enables users to choose between a <code>light</code> and <code>dark</code> color scheme.
-                It typically defaults to the <code>light</code> color scheme.
-                Typically, rendering of apps and content is not automatically changed by the operating system, so the setting only works when authors provide support.
+                The default is usually the <code>light</code> color scheme.
+                Typically, this setting does not automatically change rendering of native apps or web content, so it only works when developers provide support for it.
                 Many people switch to the <code>dark</code> color scheme in dark settings, e.g. at night, because it can make content easier to read or be less disruptive to other people.
                 However, people with certain visual disabilities prefer a dark color scheme as their default.
               </td>
@@ -158,10 +158,11 @@
               </th>
               <td><a href="https://support.microsoft.com/en-us/windows/change-color-contrast-in-windows-fedc744c-90ac-69df-aed5-c8a90125e696">Windows 10 and later.</a></td>
               <td>
-                Accessibility feature that automatically forces the operating system and apps to render content using an alternative color theme chosen by the user.
+                Operating system accessibility feature that automatically forces all native apps and web content to render using an alternative color theme chosen by the user.
                 Some of the themes are designed to provide extra high contrast, and users can customize their chosen color theme.
-                Browser default styles respond to this setting using the system colors described below.
-                The user-chosen theme does not automatically override author specified colors, so content can disappear in certain circumstances.
+                Browsers replace author specified colors with user specified colors based on the type of HTML element.
+                Browser selections for replacement colors generally respect the system colors described below.
+                Note that ARIA attributes do not inform replacement color selection, e.g., a <code>div</code> with role <code>button</code> renders with text colors, not button colors.
               </td>
               <td>
                 When a user selects a high contrast color theme, the CSS media query <code>forced-colors</code> is set to <code>active</code>.
