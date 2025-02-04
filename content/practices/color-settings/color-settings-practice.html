@@ -76,8 +76,8 @@
               </td>
               <td>
                 <p>
-                  Invert colors transforms colors by subtracting each RGB value from 255.
-                  This is a simple way of turning a light color theme into a dark color theme or vice-versa.
+                  Accessibility setting that automatically transforms all rendered colors in all apps, including browser content, by subtracting each RGB value from 255.
+                  This is a simple way of enabling users to turn a light color theme into a dark color theme or vice-versa.
                   It is a prominent feature in the accessibility settings of most operating systems.
                 </p>
                 <p>Examples of color inversion:</p>
@@ -89,7 +89,8 @@
               </td>
               <td>
                 Browsers do not provide a way for authors to determine whether a user has the setting for invert colors enabled.
-                For invert colors to work well, ensure content meets the minimum color requirements specified by
+                For content to render well when invert colors is enabled,
+                ensure it meets the minimum color requirements specified by
                 <a href="https://www.w3.org/TR/WCAG22/">Web Content Accessibility Guidelines</a> (WCAG).
               </td>
             </tr>
@@ -105,7 +106,8 @@
                 </ul>
               </td>
               <td>
-                Specifies that the user prefers contrast that is stronger than the default minimum.
+                Accessibility setting that specifies that the user prefers contrast that is stronger than the default minimum.
+                Typically, rendering of apps and content is not automatically changed by the operating system; app and content developers need to provide support.
                 Each operating system has its own approach to supporting this setting; there is no standard that specifies how much contrast should be increased when this setting is enabled.
                 A reasonable target for web content is specified by
                 <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-enhanced">WCAG 1.4.6: Contrast (Enhanced)</a>.
@@ -119,7 +121,7 @@
             <tr>
               <th>
                 Color Scheme<br>
-                (AKA Light Mode and Dark Mode)
+                (AKA Light and Dark Modes)
               </th>
               <td>
                 <ul>
@@ -131,8 +133,9 @@
                 </ul>
               </td>
               <td>
-                Operating systems support <code>light</code> and <code>dark</code> color schemes.
-                They typically default to the <code>light</code> color scheme.
+                An operating system setting that enables users to choose between a <code>light</code> and <code>dark</code> color scheme.
+                It typically defaults to the <code>light</code> color scheme.
+                Typically, rendering of apps and content is not automatically changed by the operating system; app and content developers need to provide support.
                 Many people switch to the <code>dark</code> color scheme in dark settings, e.g. at night, because it can make content easier to read or be less disruptive to other people.
                 However, people with certain visual disabilities prefer a dark color scheme as their default.
               </td>
@@ -146,11 +149,14 @@
             <tr>
               <th>
                 Contrast Themes<br>
-                (AKA High Contrast Mode)
+                (AKA Forced Colors)
               </th>
               <td><a href="https://support.microsoft.com/en-us/windows/change-color-contrast-in-windows-fedc744c-90ac-69df-aed5-c8a90125e696">Windows 10 and later.</a></td>
               <td>
-                This accessibility feature provides extra high contrast and user customizable color themes.
+                Accessibility feature that automatically forces the operating system and apps to render content using an alternative color theme chosen by the user.
+                Some of the themes are designed to provide extra high contrast, and users can customize their chosen color theme.
+                Browser default styles respond to this setting using the system colors described below.
+                The user-chosen theme does not automatically override author specified colors, so content can disappear in certain circumstances.
               </td>
               <td>
                 When a user selects a high contrast color theme, the CSS media query <code>forced-colors</code> is set to <code>active</code>.
