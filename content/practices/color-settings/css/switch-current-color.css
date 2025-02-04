@@ -86,29 +86,29 @@ button.current-color[role="switch"]:hover {
 }
 
 @media (forced-colors: active) {
-  button.current-color[role="switch"] {
-    border-color: ButtonBorder;
-    background-color: ButtonFace;
-    color: ButtonText;
-  }
 
   button.current-color[role="switch"] .label {
-    color: CanvasText;
+    color: currentColor;
   }
 
   button.current-color[role="switch"] svg rect {
-    fill-opacity: 0;
-    stroke-width: 2;
-    stroke: ButtonBorder;
+    stroke: currentColor;
   }
 
   button.current-color[role="switch"] svg circle.off {
-    stroke: ButtonBorder;
-    fill: ButtonBorder;
+    stroke: currentColor;
+    fill: currentColor;
   }
 
   button.current-color[role="switch"][aria-checked="true"] svg circle.on {
-    stroke-color: ButtonBorder;
-    fill: highlight;
+    stroke-color: currentColor;
+    fill: currentColor;
   }
+
+  button.current-color[role="switch"]:focus svg,
+  button.current-color[role="switch"]:hover svg {
+    background-color: inherit;
+    color: currentColor;
+  }
+
 }

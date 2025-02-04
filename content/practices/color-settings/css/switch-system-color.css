@@ -9,6 +9,7 @@ div[role="switch"].system-color {
   text-align: left;
   background-color: white;
   color: black;
+  height: 22px;
 }
 
 div[role="switch"].system-color .label {
