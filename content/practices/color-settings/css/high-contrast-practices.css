@@ -1,19 +1,21 @@
 /* high-contrast-practices.css */
 
 table.data caption {
-   margin: 0;
-   padding: 0;
-   color: rgb(0, 90, 106);
-   font-style: normal;
-   text-align: left;
-   font-size: 1.1em;
+  margin: 0;
+  padding: 0;
+  color: rgb(0 90 106);
+  font-style: normal;
+  text-align: left;
+  font-size: 1.1em;
 }
+
 table.data img {
   border: 1px solid gray;
 }
+
 table.data tbody th,
 table.data tbody td {
-  vertical-align:top;
+  vertical-align: top;
 }
 
 table.data tbody td p:first-child {
@@ -49,18 +51,18 @@ img.theme {
 }
 
 .support-notice {
-  background-color: #FDEFCE;
-  border: 1px solid #FCE1A4;
+  background-color: #fdefce;
+  border: 1px solid #fce1a4;
   border-radius: 3px;
   padding: 0;
   overflow: unset;
+
   --space-between-elements: 1em;
   --left-right-padding: 70px;
-
 }
 
 .support-notice div.caution {
-  background-color: #FCEBC3;
+  background-color: #fcebc3;
   padding-left: 60px;
   padding-top: 1em;
   padding-bottom: 1em;
@@ -71,7 +73,7 @@ img.theme {
   width: 32px;
   height: 32px;
   display: block;
-  content: '';
+  content: "";
   background-position: center center;
   background-repeat: no-repeat;
   position: absolute;

@@ -86,7 +86,6 @@ button.current-color[role="switch"]:hover {
 }
 
 @media (forced-colors: active) {
-
   button.current-color[role="switch"] {
     border-color: ButtonBorder;
     background-color: ButtonFace;
@@ -112,5 +111,4 @@ button.current-color[role="switch"]:hover {
     stroke-color: ButtonBorder;
     fill: highlight;
   }
-
 }
