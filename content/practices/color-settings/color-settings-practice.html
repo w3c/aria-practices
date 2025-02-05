@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
     <link rel="stylesheet" href="../../shared/css/core.css">
 
-    <link rel="stylesheet" href="./css/color-settings-practices.css">
+    <link rel="stylesheet" href="./css/color-settings-practice.css">
 
     <link rel="stylesheet" href="./css/switch-increase-contrast.css">
     <link rel="stylesheet" href="./css/switch-color-scheme.css">
@@ -672,7 +672,8 @@ button.color-scheme[role="switch"] svg circle.off {
                 Links
               </td>
               <td>
-                <p><a href="#">Sample Link</a></p>
+                <div><a href="#">Link 1</a></div>
+                <div><a href="#">Link 2</a></div>
               </td>
               <td>
                 <ul class="system-colors">
@@ -697,9 +698,8 @@ button.color-scheme[role="switch"] svg circle.off {
                 Buttons
               </td>
               <td>
-                <p>
-                  <button>Sample Button</button>
-                </p>
+                  <button>Button 1</button>
+                  <input type="button" value="Button 2">
               </td>
               <td>
                 <ul class="system-colors">
@@ -724,11 +724,47 @@ button.color-scheme[role="switch"] svg circle.off {
               </td>
               <td>
                 <label class="system-colors">
-                  <input type="checkbox">Unchecked
+                  <input type="checkbox">Checkbox 1
                 </label>
                 <label class="system-colors">
-                  <input type="checkbox" checked>Checked
+                  <input type="checkbox" checked>Checkbox 2
                 </label>
+              </td>
+              <td>
+                <ul class="system-colors">
+                  <li>ButtonBorder</li>
+                  <li>ButtonFace</li>
+                  <li>ButtonText</li>
+                  <li>Highlight</li>
+                </ul>
+              </td>
+              <td>
+                <img class="theme" src="images/checkbox-element-aquatic-theme.png" alt="screen shot of button in Aquatic Contrast theme">
+              </td>
+              <td>
+                <img class="theme" src="images/checkbox-element-desert-theme.png" alt="screen shot of button in Desert Contrast theme">
+              </td>
+              <td>
+                <img class="theme" src="images/checkbox-element-night-sky-theme.png" alt="screen shot of button in Night Sky Contrast theme">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Radio Buttons
+              </td>
+              <td>
+                <feildset class="system-colors">
+                  <legend>Radio Group</legend>
+                  <label class="system-colors" for="radio-1">
+                    <input id="radio-1" type="radio" name="sample">Radio 1
+                  </label>
+                  <label class="system-colors" for="radio-2">
+                    <input id="radio-2" type="radio" name="sample" checked>Radio 2
+                  </label>
+                  <label class="system-colors" for="radio-3">
+                    <input id="radio-3" type="radio" name="sample">Radio 3
+                  </label>
+                </feildset>
               </td>
               <td>
                 <ul class="system-colors">
@@ -754,7 +790,8 @@ button.color-scheme[role="switch"] svg circle.off {
                 Textbox
               </td>
               <td>
-                <p><input type="text" value="Sample value" size="15" aria-label="Text box Sample"></p>
+                <label class="system-colors" for="textbox-1">Text Input 1</label>
+                <input id="textbox-1" type="text" value="Sample value" size="12">
               </td>
               <td>
                 <ul class="system-colors">
@@ -805,9 +842,9 @@ button.color-scheme[role="switch"] svg circle.off {
 
         <h3>Current Color vs. System Colors</h3>
 
-        <p>Use the <code>currentcolor</code> value when the component is using an existing HTML elements and their system color matches the semantics of the additional features of the component.  For example, this page includes an example  using the <code>button</code> element to create a switch.   The <code>currentcolor</code> value us used on the SVG elements to make sure they use the same color as the button elements for borders and text.</p>
+        <p>The Current Color value is useful when the custom component is using existing HTML elements and their system color matches the semantics of the features of the component.  For example, the following section includes an example  using the <code>button</code> element used to create a switch component.   The <code>currentcolor</code> value us used for styling the SVG elements to ensure they use same color as the button element for borders, fill, stroke and text.  Another advantage of using <code>currentcolor</code> is it can often be used without including a <code>forced-colors: active</code> media query, simplifying CSS code. An important concern of not using a media query is there is no equivalent value for setting the background color, so care must be taken to ensure the background color of the ancestor element is visible and provides sufficient contrast for the features of the custom component.  If there is not sufficient contrast, a media query will be needed an an appropriate background System Color defined.</p>
 
-        <p>Use <code>&lt;system-colors&gt;</code> values when not using HTML form controls to create components and when <code>currentcolor</code> is insufficient for matching the styling needs of the component.</p>
+        <p>System colors values should be used when the custom elements are built using elements whose current color does not match the semantics of the custom component and when <code>currentcolor</code> is insufficient for matching the styling needs of the component to make it's features discernible.  One example is using <code>div</code> elements to build a custom slider component.  Using <code>currentColor</code> with the <code>div</code> elements cause the features of the slider to be rendered as the <code>CanvasText</code> color, when the features should be rendered using <code>ButtonBorder</code>, <code>ButtonFace</code> and <code>ButtonText</code>. System Colors require using the <code>forced-colors: active</code> media query to ensure the System Colors are only used to override the authors theme when the use renables a Contrast Theme.</p>
 
 
         <h3>Using Current Color</h3>
@@ -928,9 +965,9 @@ button.current-color[role="switch"][aria-checked="true"] svg circle.on {
 
         <h3 id="using-system-colors">Using System Colors</h3>
 
-        <p>Using <code>&lt;system-colors&gt;</code> provides a more robust way for custom components to adapt to the appropriate system colors when users choose a contrast theme.  The best practice for using <code>&lt;system-colors&gt;</code> is in conjunction with the <code>forced-colors: active</code> media query, since using <code>&lt;system-colors&gt;</code> colors to exclusively specify component colors would result in both limiting the styling options of authors and content rendeirng varying widley between browsers.</p>
+        <p>Using <code>&lt;system-colors&gt;</code> provides a more robust way for custom components to use appropriate system colors when users choose a contrast theme.  The best practice for using <code>&lt;system-colors&gt;</code> is in conjunction with the <code>forced-colors: active</code> media query, since using <code>&lt;system-colors&gt;</code> to exclusively specify component colors results limiting the styling options of authors and component color rendering varying widely between browsers.</p>
 
-        <p>Authors need to use <code>&lt;system-colors&gt;</code> associated with the type of feature of the component.   Most commonly interactive components will be using the <code>buttonBorder</code>, <code>ButtonFace</code> and <code>ButtonText</code> values.  For more complex components to differentiate component features consider using <code>Highlight</code> or <code>ActiveText</code>.  See the HTML range slider (e.g. <code>input[type="range"])</code>) for how other colors than just button colors are used in styling the slider and thumb features.</p>
+        <p>Authors should use <code>&lt;system-colors&gt;</code> associated with the type of feature of the component.   Most custom components should be using the <code>buttonBorder</code>, <code>ButtonFace</code> and <code>ButtonText</code> values.  For more complex components to differentiate component features consider using <code>Highlight</code> or <code>ActiveText</code>.  See the HTML range slider (e.g. <code>input[type="range"])</code>) for how other colors than just button colors are used in styling the slider and thumb features.</p>
 
         <table class="data">
           <caption>System Colors Associated with Component Features</caption>
@@ -1008,7 +1045,11 @@ button.current-color[role="switch"][aria-checked="true"] svg circle.on {
             </tr>
             <tr>
               <td>
-                Range
+                <ul class="system-colors">
+                  <li>Checkbox</li>
+                  <li>Radio</li>
+                  <li>Range</li>
+                </ul>
               </td>
               <td>
                 <ul class="system-colors">
@@ -1020,7 +1061,10 @@ button.current-color[role="switch"][aria-checked="true"] svg circle.on {
                 </ul>
               </td>
               <td>
-                The features of the thumb and the slider in the range can be differentiated by using <code>ActiveText</code> or <code>Highlight</code> values for the thumb.  They can also be used to enhance the identification of the current value by using them to fill in the left side of the rail to the thumb control.
+                <ul class="compact">
+                  <li>For checkboxes and radio buttons the background of the checkbox and radio button can be highlighted using <code>ActiveText</code> or <code>Highlight</code> values for the thumb.</li>
+                  <li>For the range control the features of the thumb and the slider can be differentiated by using <code>ActiveText</code> or <code>Highlight</code> values for the thumb.  They can also be used to enhance the identification of the current value by using them to fill in the left side of the rail to the thumb control.</li>
+                </ul>
               </td>
             </tr>
           </tbody>

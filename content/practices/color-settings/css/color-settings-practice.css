@@ -41,6 +41,12 @@ ul.system-colors li {
   list-style: none;
 }
 
+ul.compact {
+  margin: 0;
+  padding: 0;
+  margin-left: 1em;
+}
+
 label.system-colors {
   display: block;
 }
