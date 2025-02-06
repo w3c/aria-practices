@@ -113,6 +113,5 @@ div[role="switch"].system-color:hover {
   div[role="switch"].system-color:focus,
   div[role="switch"].system-color:hover {
     background-color: ButtonFace;
-    cursor: pointer;
   }
 }

@@ -674,6 +674,7 @@ button.color-scheme[role="switch"] svg circle.off {
               <td>
                 <div><a href="#">Link 1</a></div>
                 <div><a href="#">Link 2</a></div>
+                <div><a href="#" disabled>Link 3</a></div>
               </td>
               <td>
                 <ul class="system-colors">
@@ -681,6 +682,7 @@ button.color-scheme[role="switch"] svg circle.off {
                   <li>LinkText</li>
                   <li>VisitedText</li>
                   <li>Canvas</li>
+                  <li>GrayText</li>
                 </ul>
               </td>
               <td>
@@ -706,6 +708,7 @@ button.color-scheme[role="switch"] svg circle.off {
                   <li>ButtonBorder</li>
                   <li>ButtonFace</li>
                   <li>ButtonText</li>
+                  <li>GrayText</li>
                 </ul>
               </td>
               <td>
@@ -735,10 +738,12 @@ button.color-scheme[role="switch"] svg circle.off {
               </td>
               <td>
                 <ul class="system-colors">
+                  <li>ActiveText</li>
                   <li>ButtonBorder</li>
                   <li>ButtonFace</li>
                   <li>ButtonText</li>
                   <li>Highlight</li>
+                  <li>GrayText</li>
                 </ul>
               </td>
               <td>
@@ -774,10 +779,12 @@ button.color-scheme[role="switch"] svg circle.off {
               </td>
               <td>
                 <ul class="system-colors">
+                  <li>ActiveText</li>
                   <li>ButtonBorder</li>
                   <li>ButtonFace</li>
                   <li>ButtonText</li>
                   <li>Highlight</li>
+                  <li>GrayText</li>
                 </ul>
               </td>
               <td>
@@ -812,6 +819,7 @@ button.color-scheme[role="switch"] svg circle.off {
                   <li>ButtonText</li>
                   <li>Field</li>
                   <li>FieldText</li>
+                  <li>GrayText</li>
                 </ul>
               </td>
               <td>
@@ -834,10 +842,12 @@ button.color-scheme[role="switch"] svg circle.off {
               </td>
               <td>
                 <ul class="system-colors">
+                  <li>ActiveText</li>
                   <li>ButtonBorder</li>
                   <li>ButtonFace</li>
                   <li>ButtonText</li>
                   <li>Highlight</li>
+                  <li>GrayText</li>
                 </ul>
               </td>
               <td>
@@ -855,9 +865,9 @@ button.color-scheme[role="switch"] svg circle.off {
 
         <h3>Current Color vs. System Colors</h3>
 
-        <p>The Current Color value is useful when the custom component is using existing HTML elements and their system color matches the semantics of the features of the component.  For example, the following section includes an example  using the <code>button</code> element used to create a switch component.   The <code>currentcolor</code> value us used for styling the SVG elements to ensure they use same color as the button element for borders, fill, stroke and text.  Another advantage of using <code>currentcolor</code> is it can often be used without including a <code>forced-colors: active</code> media query, simplifying CSS code. An important concern of not using a media query is there is no equivalent value for setting the background color, so care must be taken to ensure the background color of the ancestor element is visible and provides sufficient contrast for the features of the custom component.  If there is not sufficient contrast, a media query will be needed an an appropriate background System Color defined.</p>
+        <p>Current color can be used when the custom component is based on existing HTML elements and the system color matches the semantics of the features of the component.  For example, the following section includes an switch component example using the <code>button</code> element.   The <code>currentcolor</code> value is used for styling the SVG elements to ensure they use same color as the button element for borders, fill, stroke and text.  Another advantage of using <code>currentcolor</code> is it can often be used without including a <code>forced-colors: active</code> media query, simplifying CSS code. One concern of using current color is there is no direct control of the background color, so care must be taken to ensure the background color of the ancestor element is visible and provides sufficient contrast for the features of the custom component.  If there is not sufficient contrast, a media query will be needed an an appropriate background system color defined.</p>
 
-        <p>System colors values should be used when the custom elements are built using elements whose current color does not match the semantics of the custom component and when <code>currentcolor</code> is insufficient for matching the styling needs of the component to make it's features discernible.  Using System colors allows for setting both foreground and background colors and making features of the custom control more discernable.  One example is using <code>div</code> elements to build a custom slider component.  Using <code>currentColor</code> with the <code>div</code> elements cause the features of the slider to be rendered as the <code>CanvasText</code> color, when the features should be rendered using <code>ButtonBorder</code>, <code>ButtonFace</code> and <code>ButtonText</code>. System Colors require using the <code>forced-colors: active</code> media query to ensure the System Colors are only used to override the authors theme when the use renables a Contrast Theme.</p>
+        <p>System colors values should be used when the custom elements are built using elements whose current color does not match the semantics of the custom component and when <code>currentcolor</code> is insufficient for matching the styling needs of the component to make it's features discernible.  Using System colors allows for setting both foreground and background colors and making features of the custom control identifiable.  For example using <code>div</code> elements to build a custom slider component.  If the <code>currentColor</code> value is used the <code>div</code> elements cause the features of the slider to be rendered using the <code>CanvasText</code> color, when the slider features should be rendered using <code>ButtonBorder</code>, <code>ButtonFace</code> and <code>ButtonText</code>. System Colors require using the <code>forced-colors: active</code> media query to ensure the system colors are only used to override the authors theme when the use renables a Contrast Theme.</p>
 
        <table class="data">
           <caption>Summary of Current Color vs. System Color</caption>
@@ -959,15 +969,25 @@ button.color-scheme[role="switch"] svg circle.off {
           <tbody>
             <tr>
               <td>Contrast Theme: none (default)</td>
-              <td><img src="./images/currentcolor-windows11-theme-none.png" alt="Screen shot of switch example with no contrast theme applied" style="height: 90px"></td>
+              <td>
+                <img class="theme-switch-button" src="./images/switch-button-default.png" alt="Screen shot of switch example with no contrast theme applied">
+              </td>
+            </tr>
+            <tr>
+              <td>Contrast Theme: Aquatic</td>
+              <td><img class="theme-switch-button"  src="./images/switch-button-aquatic.png" alt="Screen shot of switch example with aquatic contrast theme applied"></td>
             </tr>
             <tr>
               <td>Contrast Theme: Desert</td>
-              <td><img src="./images/currentcolor-windows11-theme-desert.png" alt="Screen shot of switch example with desert contrast theme applied" style="height: 95px"></td>
+              <td>
+                <img class="theme-switch-button"  src="./images/switch-button-desert.png" alt="Screen shot of switch example with desert contrast theme applied">
+              </td>
             </tr>
             <tr>
               <td>Contrast Theme: Night sky</td>
-              <td><img src="./images/currentcolor-windows11-theme-night-sky.png" alt="Screen shot of switch example with night sky contrast theme applied" style="height: 87px"></td>
+              <td>
+                <img class="theme-switch-button"  src="./images/switch-button-night-sky.png" alt="Screen shot of switch example with night sky contrast theme applied">
+              </td>
             </tr>
           </tbody>
         </table>
@@ -1023,9 +1043,9 @@ button.current-color[role="switch"][aria-checked="true"] svg circle.on {
 
         <h3 id="using-system-colors">Using System Colors</h3>
 
-        <p>Using <code>&lt;system-colors&gt;</code> provides a more robust way for custom components to use appropriate system colors when users choose a contrast theme.  The best practice for using <code>&lt;system-colors&gt;</code> is in conjunction with the <code>forced-colors: active</code> media query, since using <code>&lt;system-colors&gt;</code> to exclusively specify component colors results limiting the styling options of authors and component color rendering varying widely between browsers.</p>
+        <p>The use of <code>&lt;system-colors&gt;</code> provides a more robust way for custom components to use appropriate colors when users choose a contrast theme.  The best practice for using <code>&lt;system-colors&gt;</code> is in conjunction with the <code>forced-colors: active</code> media query, since using <code>&lt;system-colors&gt;</code> to exclusively specify component colors limits the styling and theming options of authors.</p>
 
-        <p>Authors should use <code>&lt;system-colors&gt;</code> associated with the type of feature of the component.   Most custom components should be using the <code>buttonBorder</code>, <code>ButtonFace</code> and <code>ButtonText</code> values.  For more complex components to differentiate component features consider using <code>Highlight</code> or <code>ActiveText</code>.  See the HTML range slider (e.g. <code>input[type="range"])</code>) for how other colors than just button colors are used in styling the slider and thumb features.</p>
+        <p>Authors should use <code>&lt;system-colors&gt;</code> associated with the features and behaviors of the component.   Most interactive custom components should be using the <code>buttonBorder</code>, <code>ButtonFace</code> and <code>ButtonText</code> values.  For more complex components to differentiate component features consider using <code>Highlight</code> or <code>ActiveText</code> values to make the features easier to identify.  See the HTML range slider (e.g. <code>input[type="range"])</code>) for how other colors than just button colors are used in styling the slider and thumb features.</p>
 
         <table class="data">
           <caption>System Colors Associated with Component Features</caption>
@@ -1132,7 +1152,6 @@ button.current-color[role="switch"][aria-checked="true"] svg circle.on {
 
         <p>The following table identifies the current system colors defined in <a href="https://www.w3.org/TR/css-color-4/#css-system-colors">CSS Color Module Level 4</a>.  System colors are supported in all major browsers, but the <strong>actual colors</strong> they render may vary between browsers and operating systems based on default and user theme and contrast settings.</p>
 
-
         <table aria-labelledby="system-colors" class="data">
           <thead>
             <tr>
@@ -1148,11 +1167,13 @@ button.current-color[role="switch"][aria-checked="true"] svg circle.on {
 
         <div class="support-notice">
           <div class="caution"><strong>Caution:</strong>
-            The system colors <code>AccentColor</code> and <code>AccentColorText</code> are not supported by the Chrome browser and are not included in the preceding table.  They should not be used since they will result in unpredictable color contrast ratios.
+            The system colors <code>AccentColor</code> and <code>AccentColorText</code> are not supported by the Chrome browser and are not included in the preceding table.  They should not be used since they will result in unpredictable color contrast.
           </div>
         </div>
 
         <h3 id="forced-colors-example-switch">System Color Example: Switch using <code>div[role="switch"]</code></h3>
+
+      <p>The following switch example uses systems colors to style the SVG elements used to indicate the on and off states.  One reason current color cannot be used in this example is due to using <code>div[role="switch"]</code> to identify the switch component.  The <code>div</code> elements current color is <code>CanvasText</code>, and the switch needs to use the colors associated with buttons: <code>ButtonBorder</code>, <code>ButtonFace</code> and <code>ButtonText</code>. In addition to the button colors, the system colors <code>ActiveText</p> is used for the fill of the SVG circle when the switch is on the on state and the <code>GrayText</code> is used as the fill in the off state to make the state easier to dicern.</code>
 
         <div class="example">
           <div role="switch" tabindex="0" aria-checked="false" class="system-color">
@@ -1177,9 +1198,80 @@ button.current-color[role="switch"][aria-checked="true"] svg circle.on {
           </div>
         </div>
 
+        <p>The following table shows how the graphical rendering changes for the switch using System Colors for some high contrast options. </p>
+
+        <table class="data">
+          <caption>Switch Example using System Colors with Selected High Contrast User Settings in Windows 11</caption>
+          <thead>
+            <tr>
+              <th>Setting</th>
+              <th>Screen Shot</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Contrast Theme: none (default)</td>
+              <td>
+                <img class="theme-switch-button" src="./images/switch-div-default.png" alt="Screen shot of switch example using system colors with no contrast theme applied">
+              </td>
+            </tr>
+            <tr>
+              <td>Contrast Theme: Aquatic</td>
+              <td><img class="theme-switch-button"  src="./images/switch-div-aquatic.png" alt="Screen shot of switch example using system colors with aquatic contrast theme applied"></td>
+            </tr>
+            <tr>
+              <td>Contrast Theme: Desert</td>
+              <td>
+                <img class="theme-switch-button"  src="./images/switch-div-desert.png" alt="Screen shot of switch example using system colors with desert contrast theme applied">
+              </td>
+            </tr>
+            <tr>
+              <td>Contrast Theme: Night sky</td>
+              <td>
+                <img class="theme-switch-button"  src="./images/switch-div-night-sky.png" alt="Screen shot of switch example using system colors with night sky contrast theme applied">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+       <h4>CSS Code using <code>&lt;system-colors&gt;</code> value</h4>
+
+        <pre>
+          <code>
+@media (forced-colors: active) {
+  div[role="switch"].system-color {
+    background-color: ButtonFace;
+    color: ButtonText;
+  }
+
+  div[role="switch"].system-color .label {
+    color: ButtonText;
+  }
+
+  div[role="switch"].system-color svg rect {
+    stroke: ButtonBorder;
+  }
+
+  div[role="switch"].system-color svg circle.off {
+    stroke: ButtonBorder;
+    fill: GrayText;
+  }
+
+  div[role="switch"].system-color[aria-checked="true"] svg circle.on {
+    stroke-color: ButtonBorder;
+    fill: ActiveText;
+  }
+
+  div[role="switch"].system-color:focus,
+  div[role="switch"].system-color:hover {
+    background-color: ButtonFace;
+  }
+}
+          </code>
+        </pre>
+
 
         <h3 id="forced-colors-example-rating">System Color Example: Rating Slider</h3>
-
         <p>The <a href="../../patterns/slider/examples/slider-rating.html">Rating Slider Example</a> uses CSS <code>forced-colors: active</code> media query to change the styling of SVG elements used for the rating scale, thumb and labels.  The <code>buttontext</code> system color value is used for <code>stroke</code> and <code>fill</code> properties of the range and thumb elements and <code>canvas</code> system color is used for the label elements (e.g. "Extremely Unsatisfied" and "Extremely Satisfied").   The following table shows how the graphical rendering changes for some high contrast options. </p>
 
         <p>The <code>buttontext</code> system color value was chosen so the interactive slider elements would match the colors of other standard form controls on the page.  The <code>canvas</code> system color was chosen for the labels to match other static text on the page.

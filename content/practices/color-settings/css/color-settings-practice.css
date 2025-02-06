@@ -55,6 +55,11 @@ img.theme {
   max-width: 125px;
 }
 
+img.theme-switch-button {
+  max-width: 300px;
+}
+
+
 .color,
 .font {
   font-family: monospace;
