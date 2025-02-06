@@ -729,6 +729,9 @@ button.color-scheme[role="switch"] svg circle.off {
                 <label class="system-colors">
                   <input type="checkbox" checked>Checkbox 2
                 </label>
+                <label class="system-colors">
+                  <input type="checkbox" disabled>Checkbox 3
+                </label>
               </td>
               <td>
                 <ul class="system-colors">
@@ -764,6 +767,9 @@ button.color-scheme[role="switch"] svg circle.off {
                   <label class="system-colors" for="radio-3">
                     <input id="radio-3" type="radio" name="sample">Radio 3
                   </label>
+                  <label class="system-colors" for="radio-4">
+                    <input id="radio-4" type="radio" name="sample" disabled>Radio 4
+                  </label>
                 </feildset>
               </td>
               <td>
@@ -790,8 +796,14 @@ button.color-scheme[role="switch"] svg circle.off {
                 Textbox
               </td>
               <td>
-                <label class="system-colors" for="textbox-1">Text Input 1</label>
-                <input id="textbox-1" type="text" value="Sample value" size="12">
+                <div>
+                  <label class="system-colors" for="textbox-1">Text 1</label>
+                  <input id="textbox-1" type="text" value="Sample value 1" size="12">
+                </div>
+                <div>
+                  <label class="system-colors" for="textbox-2">Text 2</label>
+                  <input id="textbox-2" type="text" value="Sample value 2" disabled size="12">
+                </div>
               </td>
               <td>
                 <ul class="system-colors">
@@ -817,7 +829,8 @@ button.color-scheme[role="switch"] svg circle.off {
                 Range
               </td>
               <td>
-                <p><input type="range" aria-label="Sample Range"></p>
+                <p><input type="range" aria-label="Range 1"></p>
+                <p><input type="range" disabled aria-label="Range 2"></p>
               </td>
               <td>
                 <ul class="system-colors">
@@ -844,7 +857,52 @@ button.color-scheme[role="switch"] svg circle.off {
 
         <p>The Current Color value is useful when the custom component is using existing HTML elements and their system color matches the semantics of the features of the component.  For example, the following section includes an example  using the <code>button</code> element used to create a switch component.   The <code>currentcolor</code> value us used for styling the SVG elements to ensure they use same color as the button element for borders, fill, stroke and text.  Another advantage of using <code>currentcolor</code> is it can often be used without including a <code>forced-colors: active</code> media query, simplifying CSS code. An important concern of not using a media query is there is no equivalent value for setting the background color, so care must be taken to ensure the background color of the ancestor element is visible and provides sufficient contrast for the features of the custom component.  If there is not sufficient contrast, a media query will be needed an an appropriate background System Color defined.</p>
 
-        <p>System colors values should be used when the custom elements are built using elements whose current color does not match the semantics of the custom component and when <code>currentcolor</code> is insufficient for matching the styling needs of the component to make it's features discernible.  One example is using <code>div</code> elements to build a custom slider component.  Using <code>currentColor</code> with the <code>div</code> elements cause the features of the slider to be rendered as the <code>CanvasText</code> color, when the features should be rendered using <code>ButtonBorder</code>, <code>ButtonFace</code> and <code>ButtonText</code>. System Colors require using the <code>forced-colors: active</code> media query to ensure the System Colors are only used to override the authors theme when the use renables a Contrast Theme.</p>
+        <p>System colors values should be used when the custom elements are built using elements whose current color does not match the semantics of the custom component and when <code>currentcolor</code> is insufficient for matching the styling needs of the component to make it's features discernible.  Using System colors allows for setting both foreground and background colors and making features of the custom control more discernable.  One example is using <code>div</code> elements to build a custom slider component.  Using <code>currentColor</code> with the <code>div</code> elements cause the features of the slider to be rendered as the <code>CanvasText</code> color, when the features should be rendered using <code>ButtonBorder</code>, <code>ButtonFace</code> and <code>ButtonText</code>. System Colors require using the <code>forced-colors: active</code> media query to ensure the System Colors are only used to override the authors theme when the use renables a Contrast Theme.</p>
+
+       <table class="data">
+          <caption>Summary of Current Color vs. System Color</caption>
+          <thead>
+            <tr>
+              <th style="width: 7em">Technique</th>
+              <th>Media Query</th>
+              <th>Features/Use</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                Current Color
+              </td>
+              <td>
+                <em>Optional</em>
+              </td>
+              <td>
+                <ul class="compact">
+                  <li>Custom components based HTML form controls which defines the use of the <code>ButtonText</code> value for current color.</li>
+                  <li>Mono-color styling of component features.</li>
+                  <li>Media query only needed if background contrast issues are identified.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                System Colors
+              </td>
+              <td>
+                Required
+              </td>
+              <td>
+                <ul class="compact">
+                  <li>Multi-color styling of component features.</li>
+                  <li>Most custom components will be based on <code>ButtonFace</code>, <code>ButtonBorder</code> and <code>ButtonText</code> values.</li>
+                  <li>Use <code>Highlight</code> or <code>ActiveText</code> values to make component features easier to identify.</li>
+                  <li>For components with select-able text, use <code>Field</code> and <code>FieldText</code> to identify selections.</li>
+
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
 
         <h3>Using Current Color</h3>
