@@ -665,88 +665,155 @@ function getHTMLColorName(systemColorName, colorHex) {
 
 const systemColorValues = [
   {
+    value: 'AccentColor',
+    name: 'Accent Color',
+    contrastTheme: '',
+    chromium: false,
+    mozilla: false,
+    desc: 'Background of accented user interface controls.',
+  },
+  {
+    value: 'AccentColorText',
+    name: 'Accesnt Color Text',
+    contrastTheme: '',
+    chromium: false,
+    mozilla: false,
+    desc: 'Text of accented user interface controls.',
+  },
+  {
     value: 'ActiveText',
     name: 'Active text',
+    contrastTheme: 'Hyperlink',
+    chromium: true,
+    mozilla: true,
     desc: 'Text of active links',
   },
   {
     value: 'ButtonBorder',
     name: 'Button border',
+    contrastTheme: 'Button color',
+    chromium: true,
+    mozilla: true,
     desc: 'Base border color of controls',
   },
   {
     value: 'ButtonFace',
     name: 'Button face',
+    contrastTheme: 'Button background',
+    chromium: true,
+    mozilla: true,
     desc: 'Background color of controls',
   },
   {
     value: 'ButtonText',
     name: 'Button text',
+    contrastTheme: 'Button color',
+    chromium: true,
+    mozilla: true,
     desc: 'Text color of controls',
   },
   {
     value: 'Canvas',
     name: 'Canvas',
+    contrastTheme: 'Background',
+    chromium: true,
+    mozilla: true,
     desc: 'Background of application content or documents',
   },
   {
     value: 'CanvasText',
     name: 'Canvas text',
+    contrastTheme: 'Text',
+    chromium: true,
+    mozilla: true,
     desc: 'Text color in application content or documents',
   },
   {
     value: 'Field',
     name: 'Field',
+    contrastTheme: 'Button text background',
+    chromium: true,
+    mozilla: true,
     desc: 'Background of input fields',
   },
   {
     value: 'FieldText',
     name: 'Field text',
+    contrastTheme: 'Button text color',
+    chromium: true,
+    mozilla: true,
     desc: 'Text in input fields',
   },
   {
     value: 'GrayText',
     name: 'Gray text',
+    contrastTheme: 'Inactive text',
+    chromium: true,
+    mozilla: true,
     desc: 'Text color for disabled items (e.g. a disabled control)',
   },
   {
     value: 'Highlight',
     name: 'Highlight',
+    contrastTheme: 'Selected text background',
+    chromium: true,
+    mozilla: true,
     desc: 'Background of selected items',
   },
   {
     value: 'HighlightText',
     name: 'Highlight text',
+    contrastTheme: 'Selected text',
+    chromium: true,
+    mozilla: true,
     desc: 'Text color of selected items',
   },
   {
     value: 'LinkText',
     name: 'Link text',
+    contrastTheme: 'Hyperlink',
+    chromium: true,
+    mozilla: true,
     desc: 'Text of non-active, non-visited links',
   },
   {
     value: 'Mark',
     name: 'Mark',
+    contrastTheme: '',
+    chromium: false,
+    mozilla: false,
     desc: 'Background of text that has been specially marked (such as by the HTML mark element)',
   },
   {
     value: 'MarkText',
     name: 'Mark text',
+    contrastTheme: '',
+    chromium: false,
+    mozilla: false,
     desc: 'Text that has been specially marked (such as by the HTML mark element)',
   },
   {
     value: 'SelectedItem',
     name: 'Selected item',
+    contrastTheme: 'Selected text background',
+    chromium: false,
+    mozilla: true,
     desc: 'Background of selected items, for example, a selected checkbox',
   },
   {
     value: 'SelectedItemText',
     name: 'Selected item text',
+    contrastTheme: 'Selected text',
+    chromium: false,
+    mozilla: true,
     desc: 'Text of selected items',
   },
   {
     value: 'VisitedText',
     name: 'Visited text',
+    contrastTheme: 'Hyperlink',
+    chromium: true,
+    mozilla: false,
     desc: 'Text of visited links',
   },
 ];
@@ -795,14 +862,39 @@ function rgb2Hex(rgb) {
 // Fill in System color table
 
 window.addEventListener('load', () => {
-  const tbodyNode = document.getElementById('samples');
+  const tbodyNode = document.getElementById('system-colors');
+  const ulNode = document.getElementById('usable-system-colors');
+
 
   systemColorValues.forEach((v) => {
     if (v.value) {
+      // System Color Name
       const tr = document.createElement('tr');
       const thv = document.createElement('th');
       thv.textContent = v.value;
       tr.appendChild(thv);
+
+      // Windows 11 Contrast Theme Value
+      const tdct = document.createElement('td');
+      tdct.textContent = v.contrastTheme;
+      tr.appendChild(tdct);
+
+      // Chromium Support
+      const tdchrome = document.createElement('td');
+      v.chromium ?
+        tdchrome.textContent = 'Yes' :
+        tdchrome.textContent = '-';
+
+      tr.appendChild(tdchrome);
+
+      // Mozilla Support
+      const tdmoz = document.createElement('td');
+      v.mozilla ?
+        tdmoz.textContent = 'Yes' :
+        tdmoz.textContent = '-';
+      tr.appendChild(tdmoz);
+
+      // Color Sample
       const tds = document.createElement('td');
       const div = document.createElement('div');
       div.role = 'img';
@@ -813,22 +905,35 @@ window.addEventListener('load', () => {
       divHex.className = 'color';
       tds.appendChild(divHex);
       tr.appendChild(tds);
-      const tdRGB = document.createElement('td');
-      tdRGB.className = 'font';
-      tdRGB.textContent = '??';
-      tr.appendChild(tdRGB);
+//      const tdRGB = document.createElement('td');
+//      tdRGB.className = 'font';
+//      tdRGB.textContent = '??';
+//      tr.appendChild(tdRGB);
       const tdHex = document.createElement('td');
       tdHex.className = 'font';
       tdHex.textContent = '??';
+
+      // System Color Description
       const tdd = document.createElement('td');
       tdd.textContent = v.desc;
       tr.appendChild(tdd);
+
       tbodyNode.appendChild(tr);
       const cStyle = window.getComputedStyle(div);
-      tdRGB.textContent = cStyle.backgroundColor;
+//      tdRGB.textContent = cStyle.backgroundColor;
       const colorHex = rgb2Hex(cStyle.backgroundColor);
       divHex.textContent = colorHex;
       div.ariaLabel = getHTMLColorName(v.name, colorHex);
     }
+
+    // Usable colors list
+    if (v.chromium && v.mozilla) {
+      const liNode   = document.createElement('li');
+      const codeNode = document.createElement('code');
+      codeNode.textContent = v.value;
+      liNode.appendChild(codeNode);
+      ulNode.appendChild(liNode);
+    }
+
   });
 });
