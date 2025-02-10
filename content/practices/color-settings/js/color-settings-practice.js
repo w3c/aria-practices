@@ -868,66 +868,68 @@ window.addEventListener('load', () => {
 
   systemColorValues.forEach((v) => {
     if (v.value) {
-      // System Color Name
-      const tr = document.createElement('tr');
-      const thv = document.createElement('th');
-      thv.textContent = v.value;
-      tr.appendChild(thv);
+      if (v.chromium && v.mozilla) {
+        // System Color Name
+        const tr = document.createElement('tr');
+        const thv = document.createElement('th');
+        thv.textContent = v.value;
+        tr.appendChild(thv);
 
-      // Windows 11 Contrast Theme Value
-      const tdct = document.createElement('td');
-      tdct.textContent = v.contrastTheme;
-      tr.appendChild(tdct);
+        // Windows 11 Contrast Theme Value
+        const tdct = document.createElement('td');
+        tdct.textContent = v.contrastTheme;
+        tr.appendChild(tdct);
 
-      // Chromium Support
-      const tdchrome = document.createElement('td');
-      v.chromium ?
-        tdchrome.textContent = 'Yes' :
-        tdchrome.textContent = '-';
+        // Chromium Support
+        const tdchrome = document.createElement('td');
+        v.chromium ?
+          tdchrome.textContent = 'Yes' :
+          tdchrome.textContent = '-';
 
-      tr.appendChild(tdchrome);
+        tr.appendChild(tdchrome);
 
-      // Mozilla Support
-      const tdmoz = document.createElement('td');
-      v.mozilla ?
-        tdmoz.textContent = 'Yes' :
-        tdmoz.textContent = '-';
-      tr.appendChild(tdmoz);
+        // Mozilla Support
+        const tdmoz = document.createElement('td');
+        v.mozilla ?
+          tdmoz.textContent = 'Yes' :
+          tdmoz.textContent = '-';
+        tr.appendChild(tdmoz);
 
-      // Color Sample
-      const tds = document.createElement('td');
-      const div = document.createElement('div');
-      div.role = 'img';
-      div.classList.add('sample');
-      div.style.backgroundColor = v.value;
-      tds.appendChild(div);
-      const divHex = document.createElement('div');
-      divHex.className = 'color';
-      tds.appendChild(divHex);
-      tr.appendChild(tds);
-//      const tdRGB = document.createElement('td');
-//      tdRGB.className = 'font';
-//      tdRGB.textContent = '??';
-//      tr.appendChild(tdRGB);
-      const tdHex = document.createElement('td');
-      tdHex.className = 'font';
-      tdHex.textContent = '??';
+        // Color Sample
+        const tds = document.createElement('td');
+        const div = document.createElement('div');
+        div.role = 'img';
+        div.classList.add('sample');
+        div.style.backgroundColor = v.value;
+        tds.appendChild(div);
+        const divHex = document.createElement('div');
+        divHex.className = 'color';
+        tds.appendChild(divHex);
+        tr.appendChild(tds);
+  //      const tdRGB = document.createElement('td');
+  //      tdRGB.className = 'font';
+  //      tdRGB.textContent = '??';
+  //      tr.appendChild(tdRGB);
+        const tdHex = document.createElement('td');
+        tdHex.className = 'font';
+        tdHex.textContent = '??';
 
-      // System Color Description
-      const tdd = document.createElement('td');
-      tdd.textContent = v.desc;
-      tr.appendChild(tdd);
+        // System Color Description
+        const tdd = document.createElement('td');
+        tdd.textContent = v.desc;
+        tr.appendChild(tdd);
 
-      tbodyNode.appendChild(tr);
-      const cStyle = window.getComputedStyle(div);
-//      tdRGB.textContent = cStyle.backgroundColor;
-      const colorHex = rgb2Hex(cStyle.backgroundColor);
-      divHex.textContent = colorHex;
-      div.ariaLabel = getHTMLColorName(v.name, colorHex);
+        tbodyNode.appendChild(tr);
+        const cStyle = window.getComputedStyle(div);
+  //      tdRGB.textContent = cStyle.backgroundColor;
+        const colorHex = rgb2Hex(cStyle.backgroundColor);
+        divHex.textContent = colorHex;
+        div.ariaLabel = getHTMLColorName(v.name, colorHex);
+      }
     }
 
     // Usable colors list
-    if (v.chromium && v.mozilla) {
+    if (!v.chromium || !v.mozilla) {
       const liNode   = document.createElement('li');
       const codeNode = document.createElement('code');
       codeNode.textContent = v.value;
