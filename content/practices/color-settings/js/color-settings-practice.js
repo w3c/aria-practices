@@ -663,6 +663,59 @@ function getHTMLColorName(systemColorName, colorHex) {
   return `${systemColorName} is similar to ${closestValue.name.toLowerCase()}`;
 }
 
+const contrastThemeColors = [
+  { 
+    'name': "Aquatic", 
+    'os': "Windows 11",
+    'background': '#202020',
+    'text': '#ffffff',
+    'hyperlink': '#75e9fc',
+    'inactiveText': '#a6a6a6',
+    'selectedBackground': '#8ee3f0',
+    'selectedText': '#263b50',
+    'buttonBackground': '#202020',
+    'buttonText': '#ffffff',
+  },
+  { 
+    'name': "Desert", 
+    'os': "Windows 11",
+    'background': '#fffaef',
+    'text': '#3d3d3d',
+    'hyperlink': '#1c5e75',
+    'inactiveText': '#676767',
+    'selectedBackground': '#903909',
+    'selectedText': '#fff5e3',
+    'buttonBackground': '#fffaef',
+    'buttonText': '#202020',
+  },
+  { 
+    'name': "Dusk", 
+    'os': "Windows 11",
+    'background': '#2d3236',
+    'text': '#ffffff',
+    'hyperlink': '#70EBDE',
+    'inactiveText': '#a6a6a6',
+    'selectedBackground': '#a1bfde',
+    'selectedText': '#212d3b',
+    'buttonBackground': '#2d3236',
+    'buttonText': '#b6f6f0',
+  },
+  { 
+    'name': "Night Sky", 
+    'os': "Windows 11",
+    'background': '#000000',
+    'text': '#ffffff',
+    'hyperlink': '#8080ff',
+    'inactiveText': '#a6a6a6',
+    'selectedBackground': '#d6b4fd',
+    'selectedText': '#2b2b2b',
+    'buttonBackground': '#000000',
+    'buttonText': '#ffee32',
+  },
+
+];
+
+
 const systemColorValues = [
   {
     value: 'AccentColor',
