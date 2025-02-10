@@ -9,6 +9,11 @@ table.data caption {
   font-size: 1.1em;
 }
 
+table.data thead th.exampleLink {
+  vertical-align: bottom;
+}
+
+
 table.data img {
   border: 1px solid gray;
 }

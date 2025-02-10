@@ -663,7 +663,69 @@ function getHTMLColorName(systemColorName, colorHex) {
   return `${systemColorName} is similar to ${closestValue.name.toLowerCase()}`;
 }
 
-const contrastThemeColors = [
+const contrastThemeColorsWin10 = [
+  {
+    'name': "High Contrast #1",
+    'os': "Windows 10",
+    'background': '#000000',
+    'text': '#ffff00',
+    'hyperlink': '#8080ff',
+    'inactiveText': '#00ff00',
+    'selectedBackground': '#008000',
+    'selectedText': '#ffffff',
+    'buttonBackground': '#000000',
+    'buttonText': '#ffffff',
+  },
+  {
+    'name': "High Contrast #2",
+    'os': "Windows 10",
+    'background': '#000000',
+    'text': '#00ff00',
+    'hyperlink': '#8080ff',
+    'inactiveText': '#c0c0c0',
+    'selectedBackground': '#008000',
+    'selectedText': '#ffffff',
+    'buttonBackground': '#000000',
+    'buttonText': '#ffffff',
+  },
+  {
+    'name': "High Contrast Black",
+    'os': "Windows 10",
+    'background': '#000000',
+    'text': '#ffffff',
+    'hyperlink': '#ffff00',
+    'inactiveText': '#3ff23f',
+    'selectedBackground': '#1aebff',
+    'selectedText': '#000000',
+    'buttonBackground': '#000000',
+    'buttonText': '#ffffff',
+  },
+  {
+    'name': "High Contrast White",
+    'os': "Windows 10",
+    'background': '#ffffff',
+    'text': '#ffffff',
+    'hyperlink': '#00009f',
+    'inactiveText': '#600000',
+    'selectedBackground': '#37006e',
+    'selectedText': '#ffffff',
+    'buttonBackground': '#ffffff',
+    'buttonText': '#000000',
+  }
+];
+
+const contrastThemeFeatures = [
+    'background',
+    'text',
+    'hyperlink',
+    'inactiveText',
+    'selectedBackground',
+    'selectedText',
+    'buttonBackground',
+    'buttonText',
+  ]
+
+const contrastThemeColorsWin11 = [
   { 
     'name': "Aquatic", 
     'os': "Windows 11",
@@ -693,7 +755,7 @@ const contrastThemeColors = [
     'os': "Windows 11",
     'background': '#2d3236',
     'text': '#ffffff',
-    'hyperlink': '#70EBDE',
+    'hyperlink': '#70ebde',
     'inactiveText': '#a6a6a6',
     'selectedBackground': '#a1bfde',
     'selectedText': '#212d3b',
@@ -915,9 +977,40 @@ function rgb2Hex(rgb) {
 // Fill in System color table
 
 window.addEventListener('load', () => {
-  const tbodyNode = document.getElementById('system-colors');
-  const ulNode = document.getElementById('usable-system-colors');
 
+  function addColorCell(hexValue) {
+    const tds = document.createElement('td');
+    const div = document.createElement('div');
+    div.role = 'img';
+    div.classList.add('sample');
+    div.style.backgroundColor = hexValue;
+    tds.appendChild(div);
+    const divHex = document.createElement('div');
+    divHex.textContent = hexValue;
+    divHex.className = 'color';
+    tds.appendChild(divHex);
+    return tds;
+  }
+
+  const tbodyFeatureNode = document.getElementById('contrast-theme-features');
+
+  contrastThemeFeatures.forEach((v) => {
+        const tr = document.createElement('tr');
+
+        const thv = document.createElement('th');
+        thv.textContent = v;
+        tr.appendChild(thv);
+
+        tr.appendChild(addColorCell(contrastThemeColorsWin11[0][v]));
+        tr.appendChild(addColorCell(contrastThemeColorsWin11[1][v]));
+        tr.appendChild(addColorCell(contrastThemeColorsWin11[2][v]));
+        tr.appendChild(addColorCell(contrastThemeColorsWin11[3][v]));
+
+        tbodyFeatureNode.appendChild(tr);
+  });
+
+  const tbodyNode = document.getElementById('system-colors');
+  const ulNode = document.getElementById('unsupported-system-colors');
 
   systemColorValues.forEach((v) => {
     if (v.value) {
@@ -933,21 +1026,6 @@ window.addEventListener('load', () => {
         tdct.textContent = v.contrastTheme;
         tr.appendChild(tdct);
 
-        // Chromium Support
-        const tdchrome = document.createElement('td');
-        v.chromium ?
-          tdchrome.textContent = 'Yes' :
-          tdchrome.textContent = '-';
-
-        tr.appendChild(tdchrome);
-
-        // Mozilla Support
-        const tdmoz = document.createElement('td');
-        v.mozilla ?
-          tdmoz.textContent = 'Yes' :
-          tdmoz.textContent = '-';
-        tr.appendChild(tdmoz);
-
         // Color Sample
         const tds = document.createElement('td');
         const div = document.createElement('div');
@@ -959,10 +1037,7 @@ window.addEventListener('load', () => {
         divHex.className = 'color';
         tds.appendChild(divHex);
         tr.appendChild(tds);
-  //      const tdRGB = document.createElement('td');
-  //      tdRGB.className = 'font';
-  //      tdRGB.textContent = '??';
-  //      tr.appendChild(tdRGB);
+
         const tdHex = document.createElement('td');
         tdHex.className = 'font';
         tdHex.textContent = '??';
@@ -974,7 +1049,6 @@ window.addEventListener('load', () => {
 
         tbodyNode.appendChild(tr);
         const cStyle = window.getComputedStyle(div);
-  //      tdRGB.textContent = cStyle.backgroundColor;
         const colorHex = rgb2Hex(cStyle.backgroundColor);
         divHex.textContent = colorHex;
         div.ariaLabel = getHTMLColorName(v.name, colorHex);

@@ -625,7 +625,28 @@ button.color-scheme[role="switch"] svg circle.off {
 
         <p>The <code>forced-colors</code> CSS media query provides a means for components to use the color preferences of people with visual impairments.   When the user chooses a contrast theme in the operating system (i.e. in Windows 11 Accessibility Settings &gt; Contrast Theme), browsers set the <code>forced-colors</code> property to <code>active</code>.  When forced colors are active the browser overrides any author styling and applies the system color associated with the theme to each element.   Authors need to match the styling preferences of users with the semantics features of their components. For example text used in custom components for labels and instructions should use the same colors as the users contrast theme for text content.  Components that behave as links need to match the contrast theme styling for links and other interactive custom components should be based on the styling used for buttons, textbox and range controls for their features.</p>
 
-        <p>Authors can use either <code>currentcolor</code> or <code>&lt;system-colors&gt;</code> CSS values for components to adapt to appropriate colors in the contrast theme.</p>
+        <p>Authors can use either <code>currentcolor</code> or <code>&lt;system-colors&gt;</code> CSS values for components to adapt to appropriate colors in the contrast theme.  The following two tables demonstrate the colors for the built-in Contrast Themes to Windows 11.  Each Contrast Theme defines 8 colors associated with user iterface features.  The first table identifies the user interface features and the colors associated with each feature for the four default Contrast Themes.  The second table shows how HTML content is rendered in the Windows 11 Aquatic, Desert and Nigh Sky Contrast Themes.</p>
+
+
+        <table class="data">
+          <caption>Contrast Themes Colors for Windows 11</caption>
+          <thead>
+            <tr>
+              <th rowspan="2" style="vertical-align: bottom">Feature</th>
+              <th colspan="4">Windows 11 Contrast Themes</th>
+            </tr>
+            <tr>
+              <th>Aquatic</th>
+              <th>Desert</th>
+              <th>Dusk</th>
+              <th>Night Sky</th>
+            </tr>
+          </thead>
+          <tbody id="contrast-theme-features">
+          </tbody>
+        </table>
+
+        <p>Note: In Windows 11 users can edit the colors of a contrast theme to create their own unique theme.</p>
 
 
         <table class="data">
@@ -635,7 +656,7 @@ button.color-scheme[role="switch"] svg circle.off {
               <th rowspan="2" style="vertical-align: bottom">Element</th>
               <th rowspan="2" style="vertical-align: bottom">Sample</th>
               <th rowspan="2" style="vertical-align: bottom">System<br>Colors</th>
-              <th colspan="3">Contrast Themes Windows 11 (Chrome)</th>
+              <th colspan="3">Contrast Themes Windows 11</th>
             </tr>
             <tr>
               <th>Aquatic</th>
@@ -921,22 +942,30 @@ button.color-scheme[role="switch"] svg circle.off {
           <caption>Switch Label</caption>
           <thead>
             <tr>
-              <th rowspan="2">Example</th>
-              <th colspan="2">Span</th>
+              <th rowspan="2" style="width: 5em">Example</th>
+              <th colspan="2">Label Span</th>
             </tr>
             <tr>
-              <th>Background-Color</th>
-              <th>Color</th>
+              <th class="exampleColor">Background-Color</th>
+              <th class="exampleColor">Color</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><code>button[role="switch"]</code></td>
+              <td>
+                <a href="#currentcolor-example">
+                  <code>button[role="switch"]</code>
+                </a>
+              </td>
               <td>Opacity 0</td>
               <td>CurrentColor</td>
             </tr>
             <tr>
-              <td><code>div[role="switch"]</code></td>
+              <td>
+                <a href="forced-colors-example-switch">
+                  <code>div[role="switch"]</code>
+                </a>
+              </td>
               <td>ButtonFace</td>
               <td>ButtonText</td>
             </tr>
@@ -947,8 +976,8 @@ button.color-scheme[role="switch"] svg circle.off {
           <caption>Focus Ring</caption>
           <thead>
             <tr>
-              <th rowspan="2">Example</th>
-              <th colspan="2">SVG Rect</th>
+              <th rowspan="2"style="width: 5em">Example</th>
+              <th colspan="2">Focus Ring SVG Rect</th>
             </tr>
             <tr>
               <th>Stroke</th>
@@ -957,12 +986,20 @@ button.color-scheme[role="switch"] svg circle.off {
           </thead>
           <tbody>
             <tr>
-              <td><code>button[role="switch"]</code></td>
+              <td>
+                <a href="#currentcolor-example">
+                  <code>button[role="switch"]</code>
+                </a>
+              </td>
               <td>Opacity 0</td>
               <td>CurrentColor</td>
             </tr>
             <tr>
-              <td><code>div[role="switch"]</code></td>
+              <td>
+                <a href="forced-colors-example-switch">
+                  <code>div[role="switch"]</code>
+                </a>
+              </td>
               <td>ButtonBorder</td>
               <td>ButtonFace</td>
             </tr>
@@ -973,7 +1010,7 @@ button.color-scheme[role="switch"] svg circle.off {
           <caption>On/Off Switch Positions</caption>
           <thead>
             <tr>
-              <th rowspan="2">Example</th>
+              <th rowspan="2" style="width: 5em">Example</th>
               <th colspan="2">SVG Circle Off</th>
               <th colspan="2">SVG Circle On</th>
             </tr>
@@ -986,14 +1023,22 @@ button.color-scheme[role="switch"] svg circle.off {
           </thead>
           <tbody>
             <tr>
-              <td><code>button[role="switch"]</code></td>
+              <td>
+                <a href="#currentcolor-example">
+                  <code>button[role="switch"]</code>
+                </a>
+              </td>
               <td>CurrentColor</td>
               <td>CurrentColor</td>
               <td>CurrentColor</td>
               <td>CurrentColor</td>
             </tr>
             <tr>
-              <td><code>div[role="switch"]</code></td>
+              <td>
+                <a href="forced-colors-example-switch">
+                  <code>div[role="switch"]</code>
+                </a>
+              </td>
               <td>ButtonText</td>
               <td>GrayText</td>
               <td>ButtonText</td>
@@ -1239,31 +1284,27 @@ button.current-color[role="switch"][aria-checked="true"] svg circle.on {
 
         <h3 id="computed-system-colors">System Color Support</h3>
 
-        <p>The following table identifies the current system colors defined in <a href="https://www.w3.org/TR/css-color-4/#css-system-colors">CSS Color Module Level 4</a>.  System colors are supported in all major browsers, but the default <strong>colors</strong> they render may vary between browsers and operating systems.  When a user enables Contrast Themes not all system colors change to use one of the colors defined in the theme.   The followin table identifies which system colors support a colors in a contrast theme.  Fortunately for the supported, the system colors are consistently rendered between browsers.</p>
+        <p>The following table identifies the system colors defined in <a href="https://www.w3.org/TR/css-color-4/#css-system-colors">CSS Color Module Level 4</a> that support Contrast Themes.  When a user enables a Contrast Theme not all system colors change to use one of the colors defined in the theme.   The following table identifies which system colors support contrast theme colors.  The table also includes the default system color used by the default operating system.  The default colors are not consistent between browser and operating systems. </p>
+        <p>NOTE: Some system colors <em>not</em> in the table may support a Contrast Theme color in either Mozilla (e.g. Firefox) or Chromium (e.g. Chrome, Edge, Opera...) based browsers, but not in both.  Only colors supported in both browsers are included in the table. </p>
 
         <table aria-labelledby="system-colors" class="data">
           <thead>
             <tr>
               <th rowspan="2">System Color</th>
               <th rowspan="2">Contrast Theme Color</th>
-              <th colspan="2">Theme Support</th>
-              <th rowspan="2">Computed Sample</th>
+              <th rowspan="2">Computed Color</th>
               <th rowspan="2">Description</th>
-            </tr>
-            <tr>
-              <th>Chromium</th>
-              <th>Mozilla</th>
             </tr>
           </thead>
           <tbody id="system-colors">
           </tbody>
         </table>
 
-        <h3 id="system-colors">Supported System Colors in Contrast Themes</h3>
+        <h3 id="system-colors">System Colors that do not support Contrast Themes</h3>
 
-        <p>The following list of colors are considered "safe" to use when a user enables a contrast theme.  Safe colors are color that use one of the theme colors and are supported in both Mozilla and Chromium based browsers.</p>
+        <p>The following list of <code>&lt;system-colors&gt;</code> do not support contrast themes, since they do not render one of the contrast theme colors in both Mozilla (e.g. Firefox) or Chromium (e.g Chrome, Edge, Opera ..) based browsers.</p>
 
-        <ul id="usable-system-colors">
+        <ul id="unsupported-system-colors">
         </ul>
 
 
