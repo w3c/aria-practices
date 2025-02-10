@@ -918,22 +918,39 @@ button.color-scheme[role="switch"] svg circle.off {
 
 
        <table class="data">
-          <caption>Switch Examples using Current Color and Systems Colors</caption>
+          <caption>Switch Label</caption>
           <thead>
             <tr>
               <th rowspan="2">Example</th>
               <th colspan="2">Span</th>
-              <th colspan="2">SVG Rect</th>
-              <th colspan="2">SVG Circle Off</th>
-              <th colspan="2">SVG Circle On</th>
             </tr>
             <tr>
               <th>Background-Color</th>
               <th>Color</th>
-              <th>Stroke</th>
-              <th>Fill</th>
-              <th>Stroke</th>
-              <th>Fill</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>button[role="switch"]</code></td>
+              <td>Opacity 0</td>
+              <td>CurrentColor</td>
+            </tr>
+            <tr>
+              <td><code>div[role="switch"]</code></td>
+              <td>ButtonFace</td>
+              <td>ButtonText</td>
+            </tr>
+          </tbody>
+        </table>
+
+       <table class="data">
+          <caption>Focus Ring</caption>
+          <thead>
+            <tr>
+              <th rowspan="2">Example</th>
+              <th colspan="2">SVG Rect</th>
+            </tr>
+            <tr>
               <th>Stroke</th>
               <th>Fill</th>
             </tr>
@@ -943,8 +960,33 @@ button.color-scheme[role="switch"] svg circle.off {
               <td><code>button[role="switch"]</code></td>
               <td>Opacity 0</td>
               <td>CurrentColor</td>
-              <td>Opacity 0</td>
-              <td>CurrentColor</td>
+            </tr>
+            <tr>
+              <td><code>div[role="switch"]</code></td>
+              <td>ButtonBorder</td>
+              <td>ButtonFace</td>
+            </tr>
+          </tbody>
+        </table>
+
+       <table class="data">
+          <caption>On/Off Switch Positions</caption>
+          <thead>
+            <tr>
+              <th rowspan="2">Example</th>
+              <th colspan="2">SVG Circle Off</th>
+              <th colspan="2">SVG Circle On</th>
+            </tr>
+            <tr>
+              <th>Stroke</th>
+              <th>Fill</th>
+              <th>Stroke</th>
+              <th>Fill</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>button[role="switch"]</code></td>
               <td>CurrentColor</td>
               <td>CurrentColor</td>
               <td>CurrentColor</td>
@@ -952,10 +994,6 @@ button.color-scheme[role="switch"] svg circle.off {
             </tr>
             <tr>
               <td><code>div[role="switch"]</code></td>
-              <td>ButtonFace</td>
-              <td>ButtonText</td>
-              <td>ButtonBorder</td>
-              <td>ButtonFace</td>
               <td>ButtonText</td>
               <td>GrayText</td>
               <td>ButtonText</td>
