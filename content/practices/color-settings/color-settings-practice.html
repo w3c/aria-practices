@@ -46,7 +46,7 @@
 
         <p>This section covers:</p>
         <ol>
-          <li>Operating system and user agent features that enable users to adjust rendered colors and contrast ratios.</li>
+          <li>Operating system and browser features that enable users to adjust rendered colors and contrast ratios.</li>
           <li>Using the CSS media queries that support user color and contrast settings (<code>prefers-contrast</code>, <code>prefers-color-scheme</code>, and <code>forced-colors</code>).</li>
           <li>Using <code>&lt;system-colors&gt;</code> CSS data types to provide consistent rendering of components.</li>
           <li>Using the value of <code>currentcolor</code> to inherit the value of the <code>color</code> property value of text content that responds to user color and contrast settings.</li>
@@ -176,13 +176,13 @@
       <section id="invert-colors">
         <h2>Invert Colors</h2>
         <p>
-          The invert colors setting is a simple transformation that renders content to its opposite color.
+          The invert colors accessibility setting is an operating system feature that automatically transforms all rendered colors to their opposite.
           For example, content rendered as white is changed to black.
           Content styled as blue is rendered as a brown, i.e., a mixture of red and green.
-          User agents do not provide a media query that can determine whether invert colors is enabled in the operating system.
+          CSS does not provide a media query that enables authors to determine whether invert colors is enabled in the operating system.
         </p>
         <p>
-          To support invert colors effectively, ensure content meets
+          For content to render well when invert colors is enabled, ensure it meets
           <a href="https://www.w3.org/TR/WCAG22/#contrast-minimum">WCAG 1.4.3: Contrast (Minimum)</a>.
         </p>
         <p>
