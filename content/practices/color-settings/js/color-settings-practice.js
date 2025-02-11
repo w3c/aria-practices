@@ -663,57 +663,6 @@ function getHTMLColorName(systemColorName, colorHex) {
   return `${systemColorName} is similar to ${closestValue.name.toLowerCase()}`;
 }
 
-const contrastThemeColorsWin10 = [
-  {
-    'name': "High Contrast #1",
-    'os': "Windows 10",
-    'background': '#000000',
-    'text': '#ffff00',
-    'hyperlink': '#8080ff',
-    'inactiveText': '#00ff00',
-    'selectedBackground': '#008000',
-    'selectedText': '#ffffff',
-    'buttonBackground': '#000000',
-    'buttonText': '#ffffff',
-  },
-  {
-    'name': "High Contrast #2",
-    'os': "Windows 10",
-    'background': '#000000',
-    'text': '#00ff00',
-    'hyperlink': '#8080ff',
-    'inactiveText': '#c0c0c0',
-    'selectedBackground': '#008000',
-    'selectedText': '#ffffff',
-    'buttonBackground': '#000000',
-    'buttonText': '#ffffff',
-  },
-  {
-    'name': "High Contrast Black",
-    'os': "Windows 10",
-    'background': '#000000',
-    'text': '#ffffff',
-    'hyperlink': '#ffff00',
-    'inactiveText': '#3ff23f',
-    'selectedBackground': '#1aebff',
-    'selectedText': '#000000',
-    'buttonBackground': '#000000',
-    'buttonText': '#ffffff',
-  },
-  {
-    'name': "High Contrast White",
-    'os': "Windows 10",
-    'background': '#ffffff',
-    'text': '#ffffff',
-    'hyperlink': '#00009f',
-    'inactiveText': '#600000',
-    'selectedBackground': '#37006e',
-    'selectedText': '#ffffff',
-    'buttonBackground': '#ffffff',
-    'buttonText': '#000000',
-  }
-];
-
 const contrastThemeFeatures = [
     {name: 'Background', id: 'background'},
     {name: 'Text',       id: 'text'},
