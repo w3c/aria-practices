@@ -1023,9 +1023,9 @@ window.addEventListener('load', () => {
         tr.appendChild(thv);
 
         // Windows 11 Contrast Theme Value
-        const tdct = document.createElement('td');
-        tdct.textContent = v.contrastTheme;
-        tr.appendChild(tdct);
+        const tdName = document.createElement('td');
+        tdName.textContent = v.contrastTheme;
+        tr.appendChild(tdName);
 
         // Color Sample
         const tds = document.createElement('td');
