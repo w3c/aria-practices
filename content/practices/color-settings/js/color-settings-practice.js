@@ -789,7 +789,7 @@ const systemColorValues = [
   },
   {
     value: 'AccentColorText',
-    name: 'Accesnt Color Text',
+    name: 'Accent Color Text',
     contrastTheme: '',
     chromium: false,
     mozilla: false,
