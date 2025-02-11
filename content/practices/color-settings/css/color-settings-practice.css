@@ -13,7 +13,6 @@ table.data thead th.exampleLink {
   vertical-align: bottom;
 }
 
-
 table.data img {
   border: 1px solid gray;
 }
@@ -63,7 +62,6 @@ img.theme {
 img.theme-switch-button {
   max-width: 300px;
 }
-
 
 .color,
 .font {
