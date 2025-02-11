@@ -978,11 +978,12 @@ function rgb2Hex(rgb) {
 
 window.addEventListener('load', () => {
 
-  function addColorCell(hexValue) {
+  function addColorCell(value, hexValue) {
     const tds = document.createElement('td');
     const div = document.createElement('div');
     div.role = 'img';
     div.classList.add('sample');
+    div.setAttribute('aria-label', getHTMLColorName(value + ' feature', hexValue));
     div.style.backgroundColor = hexValue;
     tds.appendChild(div);
     const divHex = document.createElement('div');
@@ -1001,10 +1002,10 @@ window.addEventListener('load', () => {
         thv.textContent = v;
         tr.appendChild(thv);
 
-        tr.appendChild(addColorCell(contrastThemeColorsWin11[0][v]));
-        tr.appendChild(addColorCell(contrastThemeColorsWin11[1][v]));
-        tr.appendChild(addColorCell(contrastThemeColorsWin11[2][v]));
-        tr.appendChild(addColorCell(contrastThemeColorsWin11[3][v]));
+        tr.appendChild(addColorCell(v, contrastThemeColorsWin11[0][v]));
+        tr.appendChild(addColorCell(v, contrastThemeColorsWin11[1][v]));
+        tr.appendChild(addColorCell(v, contrastThemeColorsWin11[2][v]));
+        tr.appendChild(addColorCell(v, contrastThemeColorsWin11[3][v]));
 
         tbodyFeatureNode.appendChild(tr);
   });
