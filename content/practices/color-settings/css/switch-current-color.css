@@ -88,27 +88,27 @@ button.current-color[role="switch"]:hover {
 @media (forced-colors: active) {
 
   button.current-color[role="switch"] .label {
-    color: currentColor;
+    color: currentcolor;
   }
 
   button.current-color[role="switch"] svg rect {
-    stroke: currentColor;
+    stroke: currentcolor;
   }
 
   button.current-color[role="switch"] svg circle.off {
-    stroke: currentColor;
-    fill: currentColor;
+    stroke: currentcolor;
+    fill: currentcolor;
   }
 
   button.current-color[role="switch"][aria-checked="true"] svg circle.on {
-    stroke-color: currentColor;
-    fill: currentColor;
+    stroke-color: currentcolor;
+    fill: currentcolor;
   }
 
   button.current-color[role="switch"]:focus svg,
   button.current-color[role="switch"]:hover svg {
     background-color: inherit;
-    color: currentColor;
+    color: currentcolor;
   }
 
 }
