@@ -715,15 +715,15 @@ const contrastThemeColorsWin10 = [
 ];
 
 const contrastThemeFeatures = [
-    'background',
-    'text',
-    'hyperlink',
-    'inactiveText',
-    'selectedBackground',
-    'selectedText',
-    'buttonBackground',
-    'buttonText',
-  ]
+    {name: 'Background', id: 'background'},
+    {name: 'Text',       id: 'text'},
+    {name: 'Hyperlink',  id: 'hyperlink'},
+    {name: 'Inactive Text', id: 'inactiveText'},
+    {name: 'Selected Background', id: 'selectedBackground'},
+    {name: 'Selected Text', id: 'selectedText'},
+    {name: 'Button Background',   id: 'buttonBackground'},
+    {name: 'Button Text',   id: 'buttonText'},
+];
 
 const contrastThemeColorsWin11 = [
   { 
@@ -806,7 +806,7 @@ const systemColorValues = [
   {
     value: 'ButtonBorder',
     name: 'Button border',
-    contrastTheme: 'Button color',
+    contrastTheme: 'Button Text',
     chromium: true,
     mozilla: true,
     desc: 'Base border color of controls',
@@ -814,7 +814,7 @@ const systemColorValues = [
   {
     value: 'ButtonFace',
     name: 'Button face',
-    contrastTheme: 'Button background',
+    contrastTheme: 'Button Background',
     chromium: true,
     mozilla: true,
     desc: 'Background color of controls',
@@ -822,7 +822,7 @@ const systemColorValues = [
   {
     value: 'ButtonText',
     name: 'Button text',
-    contrastTheme: 'Button color',
+    contrastTheme: 'Button Text',
     chromium: true,
     mozilla: true,
     desc: 'Text color of controls',
@@ -846,7 +846,7 @@ const systemColorValues = [
   {
     value: 'Field',
     name: 'Field',
-    contrastTheme: 'Button text background',
+    contrastTheme: 'Button Background',
     chromium: true,
     mozilla: true,
     desc: 'Background of input fields',
@@ -862,7 +862,7 @@ const systemColorValues = [
   {
     value: 'GrayText',
     name: 'Gray text',
-    contrastTheme: 'Inactive text',
+    contrastTheme: 'Inactive Text',
     chromium: true,
     mozilla: true,
     desc: 'Text color for disabled items (e.g. a disabled control)',
@@ -870,7 +870,7 @@ const systemColorValues = [
   {
     value: 'Highlight',
     name: 'Highlight',
-    contrastTheme: 'Selected text background',
+    contrastTheme: 'Selected Background',
     chromium: true,
     mozilla: true,
     desc: 'Background of selected items',
@@ -878,7 +878,7 @@ const systemColorValues = [
   {
     value: 'HighlightText',
     name: 'Highlight text',
-    contrastTheme: 'Selected text',
+    contrastTheme: 'Selected Text',
     chromium: true,
     mozilla: true,
     desc: 'Text color of selected items',
@@ -910,7 +910,7 @@ const systemColorValues = [
   {
     value: 'SelectedItem',
     name: 'Selected item',
-    contrastTheme: 'Selected text background',
+    contrastTheme: 'Selected Background',
     chromium: false,
     mozilla: true,
     desc: 'Background of selected items, for example, a selected checkbox',
@@ -918,7 +918,7 @@ const systemColorValues = [
   {
     value: 'SelectedItemText',
     name: 'Selected item text',
-    contrastTheme: 'Selected text',
+    contrastTheme: 'Selected Text',
     chromium: false,
     mozilla: true,
     desc: 'Text of selected items',
@@ -995,17 +995,17 @@ window.addEventListener('load', () => {
 
   const tbodyFeatureNode = document.getElementById('contrast-theme-features');
 
-  contrastThemeFeatures.forEach((v) => {
+  contrastThemeFeatures.forEach((feature) => {
         const tr = document.createElement('tr');
 
         const thv = document.createElement('th');
-        thv.textContent = v;
+        thv.textContent = feature.name;
         tr.appendChild(thv);
 
-        tr.appendChild(addColorCell(v, contrastThemeColorsWin11[0][v]));
-        tr.appendChild(addColorCell(v, contrastThemeColorsWin11[1][v]));
-        tr.appendChild(addColorCell(v, contrastThemeColorsWin11[2][v]));
-        tr.appendChild(addColorCell(v, contrastThemeColorsWin11[3][v]));
+        tr.appendChild(addColorCell(feature.name, contrastThemeColorsWin11[0][feature.id]));
+        tr.appendChild(addColorCell(feature.name, contrastThemeColorsWin11[1][feature.id]));
+        tr.appendChild(addColorCell(feature.name, contrastThemeColorsWin11[2][feature.id]));
+        tr.appendChild(addColorCell(feature.name, contrastThemeColorsWin11[3][feature.id]));
 
         tbodyFeatureNode.appendChild(tr);
   });
