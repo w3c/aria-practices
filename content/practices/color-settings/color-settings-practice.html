@@ -625,7 +625,7 @@ button.color-scheme[role="switch"] svg circle.off {
 
         <p>The <code>forced-colors</code> CSS media query provides a means for components to use the color preferences of people with visual impairments.   When the user chooses a contrast theme in the operating system (i.e. in Windows 11 Accessibility Settings &gt; Contrast Theme), browsers set the <code>forced-colors</code> property to <code>active</code>.  When forced colors are active the browser overrides any author styling and applies the system color associated with the theme to each element.   Authors need to match the styling preferences of users with the semantics features of their components. For example text used in custom components for labels and instructions should use the same colors as the users contrast theme for text content.  Components that behave as links need to match the contrast theme styling for links and other interactive custom components should be based on the styling used for buttons, textbox and range controls for their features.</p>
 
-        <p>Authors can use either <code>currentcolor</code> or <code>&lt;system-colors&gt;</code> CSS values for components to adapt to appropriate colors in the contrast theme.  The following two tables demonstrate the colors for the built-in Contrast Themes to Windows 11.  Each Contrast Theme defines 8 colors associated with user iterface features.  The first table identifies the user interface features and the colors associated with each feature for the four default Contrast Themes.  The second table shows how HTML content is rendered in the Windows 11 Aquatic, Desert and Nigh Sky Contrast Themes.</p>
+        <p>Authors can use either <code>currentcolor</code> or <code>&lt;system-colors&gt;</code> CSS values for components to adapt to appropriate colors in the contrast theme.  The following two tables demonstrate the colors for the built-in Contrast Themes to Windows 11.  Each Contrast Theme defines 8 colors associated with user interface features.  The first table identifies the user interface features and the colors associated with each feature for the four default Contrast Themes.  The second table shows how HTML content is rendered in the Windows 11 Aquatic, Desert and Nigh Sky Contrast Themes.</p>
 
 
         <table class="data">
@@ -780,7 +780,7 @@ button.color-scheme[role="switch"] svg circle.off {
                 Radio Buttons
               </td>
               <td>
-                <feildset class="system-colors">
+                <fieldset class="system-colors">
                   <legend>Radio Group</legend>
                   <label class="system-colors" for="radio-1">
                     <input id="radio-1" type="radio" name="sample">Radio 1
@@ -794,7 +794,6 @@ button.color-scheme[role="switch"] svg circle.off {
                   <label class="system-colors" for="radio-4">
                     <input id="radio-4" type="radio" name="sample" disabled>Radio 4
                   </label>
-                </feildset>
               </td>
               <td>
                 <ul class="system-colors">
@@ -886,7 +885,7 @@ button.color-scheme[role="switch"] svg circle.off {
 
         <p>Current color can be used when the custom component is based on existing HTML elements and the system color matches the semantics of the features of the component.  For example, the following section includes an switch component example using the <code>button</code> element.   The <code>currentcolor</code> value is used for styling the SVG elements to ensure they use same color as the button element for borders, fill, stroke and text.  Another advantage of using <code>currentcolor</code> is it can often be used without including a <code>forced-colors: active</code> media query, simplifying CSS code. One concern of using current color is there is no direct control of the background color, so care must be taken to ensure the background color of the ancestor element is visible and provides sufficient contrast for the features of the custom component.  If there is not sufficient contrast, a media query will be needed an an appropriate background system color defined.</p>
 
-        <p>System colors values should be used when the custom elements are built using elements whose current color does not match the semantics of the custom component and when <code>currentcolor</code> is insufficient for matching the styling needs of the component to make it's features discernible.  Using System colors allows for setting both foreground and background colors and making features of the custom control identifiable.  For example using <code>div</code> elements to build a custom slider component.  If the <code>currentColor</code> value is used the <code>div</code> elements cause the features of the slider to be rendered using the <code>CanvasText</code> color, when the slider features should be rendered using <code>ButtonBorder</code>, <code>ButtonFace</code> and <code>ButtonText</code>. System Colors require using the <code>forced-colors: active</code> media query to ensure the system colors are only used to override the authors theme when the use renables a Contrast Theme.</p>
+        <p>System colors values should be used when the custom elements are built using elements whose current color does not match the semantics of the custom component and when <code>currentcolor</code> is insufficient for matching the styling needs of the component to make it's features discernible.  Using System colors allows for setting both foreground and background colors and making features of the custom control identifiable.  For example using <code>div</code> elements to build a custom slider component.  If the <code>currentColor</code> value is used the <code>div</code> elements cause the features of the slider to be rendered using the <code>CanvasText</code> color, when the slider features should be rendered using <code>ButtonBorder</code>, <code>ButtonFace</code> and <code>ButtonText</code>. System Colors require using the <code>forced-colors: active</code> media query to ensure the system colors are only used to override the authors theme when the use reenables a Contrast Theme.</p>
 
        <table class="data">
           <caption>Summary of Current Color vs. System Color for Interactive Components</caption>
