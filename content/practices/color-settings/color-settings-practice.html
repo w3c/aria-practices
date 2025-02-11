@@ -212,11 +212,18 @@
       <section id="prefers-contrast">
         <h2>Increase Contrast</h2>
         <p>
-          Increase contrast is an operating system feature, typically available in accessibility settings, that enables users to specify a preference for contrast that is higher than default minimum.
-          When the increase contrast setting is enabled, the <code>prefers-contrast</code> media query changes from <code>no-preference</code> to <code>more</code>.
-          To support the increase contrast setting, change  the rendering of text content and components to use a color scheme that meets or exceeds the requirements specified in
-          <a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced">WCAG 1.4.6: Contrast (Enhanced)</a>.
+          Increase contrast is an operating system feature, usually available in accessibility settings, that enables users to specify a preference for contrast that is higher than default minimum.
+          When users turn on increased contrast, each operating system changes the contrast of its own user interface differently; there is no standard for how much contrast should be increased.
+          Typically, this setting does not automatically change rendering of native apps or web content, so users benefit only when authors provide support for it.
         </p>
+        <p>To support the increase contrast setting:</p>
+        <ol>
+          <li>
+            Develop an increased contrast color scheme that meets or exceeds the requirements specified in
+            <a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced">WCAG 1.4.6: Contrast (Enhanced)</a>.
+          </li>
+          <li>When the the <code>prefers-contrast</code> media query changes from <code>no-preference</code> to <code>more</code>, render content using the increased contrast color scheme.</li>
+        </ol>
         <p>Note: Operating systems that support the <code>forced-colors</code> media query set <code>prefers-contrast</code> to <code>custom</code> when the <code>forced-colors</code> is set to <code>active</code>.  </p>
         <h3 id="prefers-contrast-example">Increase Contrast Example</h3>
         <p> Enable the "increased contrast" feature on your device, and color contrast ratios in the below example will change:</p>
