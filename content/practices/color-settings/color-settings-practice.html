@@ -141,7 +141,7 @@
                 An operating system setting that enables users to choose between a <code>light</code> and <code>dark</code> color scheme.
                 The default is usually the <code>light</code> color scheme.
                 Typically, this setting does not automatically change rendering of native apps or web content, so it only works when developers provide support for it.
-                Many people switch to the <code>dark</code> color scheme in dark settings, e.g. at night, because it can make content easier to read or be less disruptive to other people.
+                People switch to the <code>dark</code> color scheme in dark settings, e.g. at night, because it can make content easier to read or be less disruptive to other people.
                 However, people with certain visual disabilities prefer a dark color scheme as their default.
               </td>
               <td>
@@ -396,12 +396,11 @@
       <section id="color-scheme">
         <h2>Color Scheme (Light and Dark Modes)</h2>
         <p>
-          The color scheme known as dark mode is used by Many people in dark settings, e.g. at night, because it can make content easier to read or be less disruptive to other people.
+          The color scheme known as dark mode is used by people in dark settings, e.g. at night, because it can make content easier to read or be less disruptive to others.
           While such use cases were primary drivers of its development, dark mode also significantly improves accessibility for many people with visual impairments.
         </p>
         <p>
-          To support dark mode, develop styles for dark text on a light background and light text on a dark background and use a media query to apply the appropriate style.
-          The CSS media query <code>prefers-color-scheme</code> identifies the current color scheme by returning <code>light</code> or <code>dark</code>.  Browsers support the <code>prefers-color-scheme</code> media query using the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark"><code>light-dark</code> function</a> to identify a color value for a CSS property.
+          To support dark mode, develop styles for dark text on a light background and light text on a dark background.  The CSS <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark"><code>light-dark</code> function</a> or a CSS <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme">media query <code>prefers-color-scheme</code></a>, the media query identifies the current color scheme by returning <code>light</code> or <code>dark</code>.
         </p>
         <p>
           Ensure the text content and components of both color schemes meet or exceed the color contrast ratios specified by
