@@ -664,68 +664,66 @@ function getHTMLColorName(systemColorName, colorHex) {
 }
 
 const contrastThemeFeatures = [
-    {name: 'Background', id: 'background'},
-    {name: 'Text',       id: 'text'},
-    {name: 'Hyperlink',  id: 'hyperlink'},
-    {name: 'Inactive Text', id: 'inactiveText'},
-    {name: 'Selected Background', id: 'selectedBackground'},
-    {name: 'Selected Text', id: 'selectedText'},
-    {name: 'Button Background',   id: 'buttonBackground'},
-    {name: 'Button Text',   id: 'buttonText'},
+  { name: 'Background', id: 'background' },
+  { name: 'Text', id: 'text' },
+  { name: 'Hyperlink', id: 'hyperlink' },
+  { name: 'Inactive Text', id: 'inactiveText' },
+  { name: 'Selected Background', id: 'selectedBackground' },
+  { name: 'Selected Text', id: 'selectedText' },
+  { name: 'Button Background', id: 'buttonBackground' },
+  { name: 'Button Text', id: 'buttonText' },
 ];
 
 const contrastThemeColorsWin11 = [
-  { 
-    'name': "Aquatic", 
-    'os': "Windows 11",
-    'background': '#202020',
-    'text': '#ffffff',
-    'hyperlink': '#75e9fc',
-    'inactiveText': '#a6a6a6',
-    'selectedBackground': '#8ee3f0',
-    'selectedText': '#263b50',
-    'buttonBackground': '#202020',
-    'buttonText': '#ffffff',
+  {
+    name: 'Aquatic',
+    os: 'Windows 11',
+    background: '#202020',
+    text: '#ffffff',
+    hyperlink: '#75e9fc',
+    inactiveText: '#a6a6a6',
+    selectedBackground: '#8ee3f0',
+    selectedText: '#263b50',
+    buttonBackground: '#202020',
+    buttonText: '#ffffff',
   },
-  { 
-    'name': "Desert", 
-    'os': "Windows 11",
-    'background': '#fffaef',
-    'text': '#3d3d3d',
-    'hyperlink': '#1c5e75',
-    'inactiveText': '#676767',
-    'selectedBackground': '#903909',
-    'selectedText': '#fff5e3',
-    'buttonBackground': '#fffaef',
-    'buttonText': '#202020',
+  {
+    name: 'Desert',
+    os: 'Windows 11',
+    background: '#fffaef',
+    text: '#3d3d3d',
+    hyperlink: '#1c5e75',
+    inactiveText: '#676767',
+    selectedBackground: '#903909',
+    selectedText: '#fff5e3',
+    buttonBackground: '#fffaef',
+    buttonText: '#202020',
   },
-  { 
-    'name': "Dusk", 
-    'os': "Windows 11",
-    'background': '#2d3236',
-    'text': '#ffffff',
-    'hyperlink': '#70ebde',
-    'inactiveText': '#a6a6a6',
-    'selectedBackground': '#a1bfde',
-    'selectedText': '#212d3b',
-    'buttonBackground': '#2d3236',
-    'buttonText': '#b6f6f0',
+  {
+    name: 'Dusk',
+    os: 'Windows 11',
+    background: '#2d3236',
+    text: '#ffffff',
+    hyperlink: '#70ebde',
+    inactiveText: '#a6a6a6',
+    selectedBackground: '#a1bfde',
+    selectedText: '#212d3b',
+    buttonBackground: '#2d3236',
+    buttonText: '#b6f6f0',
   },
-  { 
-    'name': "Night Sky", 
-    'os': "Windows 11",
-    'background': '#000000',
-    'text': '#ffffff',
-    'hyperlink': '#8080ff',
-    'inactiveText': '#a6a6a6',
-    'selectedBackground': '#d6b4fd',
-    'selectedText': '#2b2b2b',
-    'buttonBackground': '#000000',
-    'buttonText': '#ffee32',
+  {
+    name: 'Night Sky',
+    os: 'Windows 11',
+    background: '#000000',
+    text: '#ffffff',
+    hyperlink: '#8080ff',
+    inactiveText: '#a6a6a6',
+    selectedBackground: '#d6b4fd',
+    selectedText: '#2b2b2b',
+    buttonBackground: '#000000',
+    buttonText: '#ffee32',
   },
-
 ];
-
 
 const systemColorValues = [
   {
@@ -926,13 +924,15 @@ function rgb2Hex(rgb) {
 // Fill in System color table
 
 window.addEventListener('load', () => {
-
   function addColorCell(value, hexValue) {
     const tds = document.createElement('td');
     const div = document.createElement('div');
     div.role = 'img';
     div.classList.add('sample');
-    div.setAttribute('aria-label', getHTMLColorName(value + ' feature', hexValue));
+    div.setAttribute(
+      'aria-label',
+      getHTMLColorName(value + ' feature', hexValue)
+    );
     div.style.backgroundColor = hexValue;
     tds.appendChild(div);
     const divHex = document.createElement('div');
@@ -945,18 +945,26 @@ window.addEventListener('load', () => {
   const tbodyFeatureNode = document.getElementById('contrast-theme-features');
 
   contrastThemeFeatures.forEach((feature) => {
-        const tr = document.createElement('tr');
+    const tr = document.createElement('tr');
 
-        const thv = document.createElement('th');
-        thv.textContent = feature.name;
-        tr.appendChild(thv);
+    const thv = document.createElement('th');
+    thv.textContent = feature.name;
+    tr.appendChild(thv);
 
-        tr.appendChild(addColorCell(feature.name, contrastThemeColorsWin11[0][feature.id]));
-        tr.appendChild(addColorCell(feature.name, contrastThemeColorsWin11[1][feature.id]));
-        tr.appendChild(addColorCell(feature.name, contrastThemeColorsWin11[2][feature.id]));
-        tr.appendChild(addColorCell(feature.name, contrastThemeColorsWin11[3][feature.id]));
+    tr.appendChild(
+      addColorCell(feature.name, contrastThemeColorsWin11[0][feature.id])
+    );
+    tr.appendChild(
+      addColorCell(feature.name, contrastThemeColorsWin11[1][feature.id])
+    );
+    tr.appendChild(
+      addColorCell(feature.name, contrastThemeColorsWin11[2][feature.id])
+    );
+    tr.appendChild(
+      addColorCell(feature.name, contrastThemeColorsWin11[3][feature.id])
+    );
 
-        tbodyFeatureNode.appendChild(tr);
+    tbodyFeatureNode.appendChild(tr);
   });
 
   const tbodyNode = document.getElementById('system-colors');
@@ -1007,12 +1015,11 @@ window.addEventListener('load', () => {
 
     // Usable colors list
     if (!v.chromium || !v.mozilla) {
-      const liNode   = document.createElement('li');
+      const liNode = document.createElement('li');
       const codeNode = document.createElement('code');
       codeNode.textContent = v.value;
       liNode.appendChild(codeNode);
       ulNode.appendChild(liNode);
     }
-
   });
 });

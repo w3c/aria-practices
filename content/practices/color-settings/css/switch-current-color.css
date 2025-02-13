@@ -86,7 +86,6 @@ button.current-color[role="switch"]:hover {
 }
 
 @media (forced-colors: active) {
-
   button.current-color[role="switch"] .label {
     color: currentcolor;
   }
@@ -110,5 +109,4 @@ button.current-color[role="switch"]:hover {
     background-color: inherit;
     color: currentcolor;
   }
-
 }
