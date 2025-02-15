@@ -227,14 +227,55 @@
 
   }
 
+  /* constants.js */
+
+  // Element IDs
+
+  const SKIP_TO_ID            = 'id-skip-to-ver-5';
+  const SKIP_TO_MENU_STYLE_ID = 'id-skip-to-menu-style';
+
+  const SCRIPT_EXTENSION_ID   = `id-skip-to-extension`;
+  const SCRIPT_BOOKMARKLET_ID = `id-skip-to-bookmarklet`;
+
+  const MENU_ID   = 'id-skip-to-menu';
+
+  const MENU_LANDMARK_GROUP_ID        = 'id-skip-to-landmark-group';
+  const MENU_LANDMARK_GROUP_LABEL_ID  = 'id-skip-to-landmark-group-label';
+
+  const MENU_HEADINGS_GROUP_ID        = 'id-skip-to-heading-group';
+  const MENU_HEADINGS_GROUP_LABEL_ID  = 'id-skip-to-heading-group-label';
+
+  const MENU_SHORTCUTS_GROUP_ID       = 'id-skip-to-shortcuts-group';
+  const MENU_SHORTCUTS_GROUP_LABEL_ID = 'id-skip-to-shortcuts-group-label';
+
+  const MESSAGE_ID = 'id-skip-to-message';
+
+  const HIGHLIGHT_ID = 'id-skip-to-highlight-overlay';
+
+  // Custom element names
+
+  const PAGE_SCRIPT_ELEMENT_NAME = 'skip-to-content';
+  const BOOKMARKLET_ELEMENT_NAME = 'skip-to-content-bookmarklet';
+  const EXTENSION_ELEMENT_NAME   = 'skip-to-content-extension';
+
+  const INFO_DIALOG_ELEMENT_NAME = 'skip-to-content-info-dialog-574';
+  const MESSAGE_ELEMENT_NAME     = 'skip-to-content-message-element-574';
+  const HIGHLIGHT_ELEMENT_NAME   = 'skip-to-content-highlight-element-574';
+
+  // Attributes
+
+  const ATTR_SKIP_TO_DATA = 'data-skipto';
+
+  // URLs to more information
+
+  const MORE_PAGE_SCRIPT_INFO_URL ='https://skipto-landmarks-headings.github.io/page-script-5/';
+  const MORE_SHORTCUT_INFO_URL    ='https://skipto-landmarks-headings.github.io/page-script-5/shortcuts.html';
+
   /* style.js */
 
   /* Constants */
   const debug$c = new DebugLogging('style', false);
   debug$c.flag = false;
-
-  const skipToMenuStyleID     = 'id-skip-to-menu-style';
-  const skipToHighlightStyleID = 'id-skip-to-highlight-style';
 
   const cssMenuTemplate = document.createElement('template');
   cssMenuTemplate.textContent = `
@@ -242,34 +283,34 @@
   color-scheme: light dark;
 }
 
-$skipToId.popup {
+#${SKIP_TO_ID}.popup {
   top: -36px;
   transition: top 0.35s ease;
 }
 
-$skipToId.popup.show-border {
+#${SKIP_TO_ID}.popup.show-border {
   top: -28px;
   transition: top 0.35s ease;
 }
 
-$skipToId button .skipto-text {
+#${SKIP_TO_ID} button .skipto-text {
   padding: 6px 8px 6px 8px;
   display: inline-block;
 }
 
-$skipToId button .skipto-small {
+#${SKIP_TO_ID} button .skipto-small {
   padding: 6px 8px 6px 8px;
   display: none;
 }
 
-$skipToId button .skipto-medium {
+#${SKIP_TO_ID} button .skipto-medium {
   padding: 6px 8px 6px 8px;
   display: none;
 }
 
-$skipToId,
-$skipToId.popup.focus,
-$skipToId.popup:hover {
+#${SKIP_TO_ID},
+#${SKIP_TO_ID}.popup.focus,
+#${SKIP_TO_ID}.popup:hover {
   position: fixed;
   top: 0;
   left: $positionLeft;
@@ -284,7 +325,7 @@ $skipToId.popup:hover {
   touch-action: none;
 }
 
-$skipToId button {
+#${SKIP_TO_ID} button {
   position: sticky;
   margin: 0;
   padding: 0;
@@ -302,59 +343,59 @@ $skipToId button {
 }
 
 @media screen and (max-width: $smallBreakPointpx) {
-  $skipToId:not(.popup) button .skipto-small {
+  #${SKIP_TO_ID}:not(.popup) button .skipto-small {
     transition: top 0.35s ease;
     display: inline-block;
   }
 
-  $skipToId:not(.popup) button .skipto-text,
-  $skipToId:not(.popup) button .skipto-medium {
+  #${SKIP_TO_ID}:not(.popup) button .skipto-text,
+  #${SKIP_TO_ID}:not(.popup) button .skipto-medium {
     transition: top 0.35s ease;
     display: none;
   }
 
-  $skipToId:not(.popup).focus button .skipto-text {
+  #${SKIP_TO_ID}:not(.popup).focus button .skipto-text {
     transition: top 0.35s ease;
     display: inline-block;
   }
 
-  $skipToId:not(.popup).focus button .skipto-small,
-  $skipToId:not(.popup).focus button .skipto-medium {
+  #${SKIP_TO_ID}:not(.popup).focus button .skipto-small,
+  #${SKIP_TO_ID}:not(.popup).focus button .skipto-medium {
     transition: top 0.35s ease;
     display: none;
   }
 }
 
 @media screen and (min-width: $smallBreakPointpx) and (max-width: $mediumBreakPointpx) {
-  $skipToId:not(.popup) button .skipto-medium {
+  #${SKIP_TO_ID}:not(.popup) button .skipto-medium {
     transition: top 0.35s ease;
     display: inline-block;
   }
 
-  $skipToId:not(.popup) button .skipto-text,
-  $skipToId:not(.popup) button .skipto-small {
+  #${SKIP_TO_ID}:not(.popup) button .skipto-text,
+  #${SKIP_TO_ID}:not(.popup) button .skipto-small {
     transition: top 0.35s ease;
     display: none;
   }
 
-  $skipToId:not(.popup).focus button .skipto-text {
+  #${SKIP_TO_ID}:not(.popup).focus button .skipto-text {
     transition: top 0.35s ease;
     display: inline-block;
   }
 
-  $skipToId:not(.popup).focus button .skipto-small,
-  $skipToId:not(.popup).focus button .skipto-medium {
+  #${SKIP_TO_ID}:not(.popup).focus button .skipto-small,
+  #${SKIP_TO_ID}:not(.popup).focus button .skipto-medium {
     transition: top 0.35s ease;
     display: none;
   }
 }
 
-$skipToId.static {
+#${SKIP_TO_ID}.static {
   position: absolute !important;
 }
 
 
-$skipToId [role="menu"] {
+#${SKIP_TO_ID} [role="menu"] {
   position: absolute;
   min-width: 16em;
   display: none;
@@ -369,22 +410,22 @@ $skipToId [role="menu"] {
   touch-action: none;
 }
 
-$skipToId [role="group"] {
+#${SKIP_TO_ID} [role="group"] {
   display: grid;
   grid-auto-rows: min-content;
   grid-row-gap: 1px;
 }
 
-$skipToId [role="group"].overflow {
+#${SKIP_TO_ID} [role="group"].overflow {
   overflow-x: hidden;
   overflow-y: scroll;
 }
 
-$skipToId [role="separator"]:first-child {
+#${SKIP_TO_ID} [role="separator"]:first-child {
   border-radius: 5px 5px 0 0;
 }
 
-$skipToId [role="menuitem"] {
+#${SKIP_TO_ID} [role="menuitem"] {
   padding: 3px;
   width: auto;
   border-width: 0px;
@@ -399,8 +440,8 @@ $skipToId [role="menuitem"] {
   z-index: $zIndex !important;  
 }
 
-$skipToId [role="menuitem"] .level,
-$skipToId [role="menuitem"] .label {
+#${SKIP_TO_ID} [role="menuitem"] .level,
+#${SKIP_TO_ID} [role="menuitem"] .label {
   font-size: 100%;
   font-weight: normal;
   color: light-dark($menuTextColor, $menuTextDarkColor);
@@ -412,12 +453,12 @@ $skipToId [role="menuitem"] .label {
   border: none;
 }
 
-$skipToId [role="menuitem"] .level {
+#${SKIP_TO_ID} [role="menuitem"] .level {
   text-align: right;
   padding-right: 4px;
 }
 
-$skipToId [role="menuitem"] .label {
+#${SKIP_TO_ID} [role="menuitem"] .label {
   text-align: left;
   margin: 0;
   padding: 0;
@@ -425,49 +466,49 @@ $skipToId [role="menuitem"] .label {
   text-overflow: ellipsis;
 }
 
-$skipToId [role="menuitem"] .level:first-letter,
-$skipToId [role="menuitem"] .label:first-letter {
+#${SKIP_TO_ID} [role="menuitem"] .level:first-letter,
+#${SKIP_TO_ID} [role="menuitem"] .label:first-letter {
   text-decoration: underline;
   text-transform: uppercase;
 }
 
 
-$skipToId [role="menuitem"].skip-to-h1 .level { grid-column: 1; }
-$skipToId [role="menuitem"].skip-to-h2 .level { grid-column: 2; }
-$skipToId [role="menuitem"].skip-to-h3 .level { grid-column: 3; }
-$skipToId [role="menuitem"].skip-to-h4 .level { grid-column: 4; }
-$skipToId [role="menuitem"].skip-to-h5 .level { grid-column: 5; }
-$skipToId [role="menuitem"].skip-to-h6 .level { grid-column: 6;}
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h1 .level { grid-column: 1; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h2 .level { grid-column: 2; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h3 .level { grid-column: 3; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h4 .level { grid-column: 4; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h5 .level { grid-column: 5; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h6 .level { grid-column: 6;}
 
-$skipToId [role="menuitem"].skip-to-h1 .label { grid-column: 2 / 8; }
-$skipToId [role="menuitem"].skip-to-h2 .label { grid-column: 3 / 8; }
-$skipToId [role="menuitem"].skip-to-h3 .label { grid-column: 4 / 8; }
-$skipToId [role="menuitem"].skip-to-h4 .label { grid-column: 5 / 8; }
-$skipToId [role="menuitem"].skip-to-h5 .label { grid-column: 6 / 8; }
-$skipToId [role="menuitem"].skip-to-h6 .label { grid-column: 7 / 8;}
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h1 .label { grid-column: 2 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h2 .label { grid-column: 3 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h3 .label { grid-column: 4 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h4 .label { grid-column: 5 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h5 .label { grid-column: 6 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h6 .label { grid-column: 7 / 8;}
 
-$skipToId [role="menuitem"].skip-to-h1.no-level .label { grid-column: 1 / 8; }
-$skipToId [role="menuitem"].skip-to-h2.no-level .label { grid-column: 2 / 8; }
-$skipToId [role="menuitem"].skip-to-h3.no-level .label { grid-column: 3 / 8; }
-$skipToId [role="menuitem"].skip-to-h4.no-level .label { grid-column: 4 / 8; }
-$skipToId [role="menuitem"].skip-to-h5.no-level .label { grid-column: 5 / 8; }
-$skipToId [role="menuitem"].skip-to-h6.no-level .label { grid-column: 6 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h1.no-level .label { grid-column: 1 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h2.no-level .label { grid-column: 2 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h3.no-level .label { grid-column: 3 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h4.no-level .label { grid-column: 4 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h5.no-level .label { grid-column: 5 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h6.no-level .label { grid-column: 6 / 8; }
 
-$skipToId [role="menuitem"].skip-to-nesting-level-1 .nesting { grid-column: 1; }
-$skipToId [role="menuitem"].skip-to-nesting-level-2 .nesting { grid-column: 2; }
-$skipToId [role="menuitem"].skip-to-nesting-level-3 .nesting { grid-column: 3; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-nesting-level-1 .nesting { grid-column: 1; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-nesting-level-2 .nesting { grid-column: 2; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-nesting-level-3 .nesting { grid-column: 3; }
 
-$skipToId [role="menuitem"].skip-to-nesting-level-0 .label { grid-column: 1 / 8; }
-$skipToId [role="menuitem"].skip-to-nesting-level-1 .label { grid-column: 2 / 8; }
-$skipToId [role="menuitem"].skip-to-nesting-level-2 .label { grid-column: 3 / 8; }
-$skipToId [role="menuitem"].skip-to-nesting-level-3 .label { grid-column: 4 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-nesting-level-0 .label { grid-column: 1 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-nesting-level-1 .label { grid-column: 2 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-nesting-level-2 .label { grid-column: 3 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-nesting-level-3 .label { grid-column: 4 / 8; }
 
-$skipToId [role="menuitem"].no-items .label,
-$skipToId [role="menuitem"].action .label {
+#${SKIP_TO_ID} [role="menuitem"].no-items .label,
+#${SKIP_TO_ID} [role="menuitem"].action .label {
   grid-column: 1 / 8;
 }
 
-$skipToId [role="separator"] {
+#${SKIP_TO_ID} [role="separator"] {
   margin: 1px 0px 1px 0px;
   padding: 3px;
   display: block;
@@ -481,27 +522,27 @@ $skipToId [role="separator"] {
   z-index: $zIndex !important;
 }
 
-$skipToId [role="separator"] .mofn {
+#${SKIP_TO_ID} [role="separator"] .mofn {
   font-weight: normal;
   font-size: 85%;
 }
 
-$skipToId [role="separator"]:first-child {
+#${SKIP_TO_ID} [role="separator"]:first-child {
   border-radius: 5px 5px 0 0;
 }
 
-$skipToId [role="menuitem"].last {
+#${SKIP_TO_ID} [role="menuitem"].last {
   border-radius: 0 0 5px 5px;
 }
 
 /* focus styling */
 
-$skipToId.focus {
+#${SKIP_TO_ID}.focus {
   display: block;
 }
 
-$skipToId button:focus,
-$skipToId button:hover {
+#${SKIP_TO_ID} button:focus,
+#${SKIP_TO_ID} button:hover {
   background-color: light-dark($menuBackgroundColor, $menuBackgroundDarkColor);
   color: light-dark($menuTextColor, $menuTextDarkColor);
   outline: none;
@@ -510,16 +551,16 @@ $skipToId button:hover {
 }
 
 
-$skipToId button:focus .skipto-text,
-$skipToId button:hover .skipto-text,
-$skipToId button:focus .skipto-small,
-$skipToId button:hover .skipto-small,
-$skipToId button:focus .skipto-medium,
-$skipToId button:hover .skipto-medium {
+#${SKIP_TO_ID} button:focus .skipto-text,
+#${SKIP_TO_ID} button:hover .skipto-text,
+#${SKIP_TO_ID} button:focus .skipto-small,
+#${SKIP_TO_ID} button:hover .skipto-small,
+#${SKIP_TO_ID} button:focus .skipto-medium,
+#${SKIP_TO_ID} button:hover .skipto-medium {
   padding: 6px 7px 5px 7px;
 }
 
-$skipToId [role="menuitem"]:focus {
+#${SKIP_TO_ID} [role="menuitem"]:focus {
   padding: 1px;
   border-width: 2px;
   border-style: solid;
@@ -527,265 +568,71 @@ $skipToId [role="menuitem"]:focus {
   outline: none;
 }
 
-$skipToId [role="menuitem"].hover,
-$skipToId [role="menuitem"].hover .level,
-$skipToId [role="menuitem"].hover .label {
+#${SKIP_TO_ID} [role="menuitem"].hover,
+#${SKIP_TO_ID} [role="menuitem"].hover .level,
+#${SKIP_TO_ID} [role="menuitem"].hover .label {
   background-color: light-dark($menuitemFocusBackgroundColor, $menuitemFocusBackgroundDarkColor);
   color: light-dark($menuitemFocusTextColor, $menuitemFocusTextDarkColor);
 }
 
-$skipToId [role="separator"].shortcuts-disabled,
-$skipToId [role="menuitem"].shortcuts-disabled {
+#${SKIP_TO_ID} [role="separator"].shortcuts-disabled,
+#${SKIP_TO_ID} [role="menuitem"].shortcuts-disabled {
   display: none;
 }
 
 @media (forced-colors: active) {
 
-  $skipToId button {
+  #${SKIP_TO_ID} button {
     border-color: ButtonBorder;
     color: ButtonText;
     background-color: ButtonFace;
   }
 
-  $skipToId [role="menu"] {
+  #${SKIP_TO_ID} [role="menu"] {
     background-color: ButtonFace;
     border-color: ButtonText;
   }
 
-  $skipToId [role="menuitem"] {
+  #${SKIP_TO_ID} [role="menuitem"] {
     color: ButtonText;
     background-color: ButtonFace;
   }
 
-  $skipToId [role="menuitem"] .level,
-  $skipToId [role="menuitem"] .label {
+  #${SKIP_TO_ID} [role="menuitem"] .level,
+  #${SKIP_TO_ID} [role="menuitem"] .label {
     color: ButtonText;
     background-color: ButtonFace;
   }
 
-  $skipToId [role="separator"] {
+  #${SKIP_TO_ID} [role="separator"] {
     border-bottom-color: ButtonBorder;
     background-color: ButtonFace;
     color: ButtonText;
     z-index: $zIndex !important;
   }
 
-  $skipToId button:focus,
-  $skipToId button:hover {
+  #${SKIP_TO_ID} button:focus,
+  #${SKIP_TO_ID} button:hover {
     background-color: ButtonFace;
     color: ButtonText;
     border-color: ButtonBorder;
   }
 
-  $skipToId [role="menuitem"]:focus {
+  #${SKIP_TO_ID} [role="menuitem"]:focus {
     background-color: ButtonText;
     color: ButtonFace;
     border-color: ButtonBorder;
   }
 
-  $skipToId [role="menuitem"].hover,
-  $skipToId [role="menuitem"].hover .level,
-  $skipToId [role="menuitem"].hover .label {
+  #${SKIP_TO_ID} [role="menuitem"].hover,
+  #${SKIP_TO_ID} [role="menuitem"].hover .level,
+  #${SKIP_TO_ID} [role="menuitem"].hover .label {
     background-color: ButtonText;
     color: ButtonFace;
   }
 
 }
 
-`;
-
-  const cssHighlightTemplate = document.createElement('template');
-  cssHighlightTemplate.textContent = `
-$skipToId-overlay {
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  border-radius: 3px;
-  border: 4px solid $buttonBackgroundColor;
-  box-sizing: border-box;
-  pointer-events:none;
-}
-
-$skipToId-overlay .overlay-border {
-  margin: 0;
-  padding: 0;
-  position: relative;
-  top: -2px;
-  left: -2px;
-  border-radius: 3px 3px 3px 3px;
-  border: 2px solid $focusBorderColor;
-  z-index: $zHighlight;
-  box-sizing: border-box;
-  pointer-events:none;
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-$skipToId-overlay .overlay-border.skip-to-hidden {
-  background-color: $hiddenHeadingBackgroundColor;
-  color: $hiddenHeadingColor;
-  font-style: italic;
-  font-weight: bold;
-  font-size: 0.9em;
-  text-align: center;
-  padding: .25em;
-  animation: fadeIn 1.5s;
-}
-
-$skipToId-overlay .overlay-border.hasInfoBottom {
-  border-radius: 3px 3px 3px 0;
-}
-
-$skipToId-overlay .overlay-border.hasInfoTop {
-  border-radius: 0 3px 3px 3px;
-}
-
-$skipToId-overlay .overlay-info {
-  position: relative;
-  text-align: left;
-  left: -2px;
-  padding: 1px 4px;
-  border: 2px solid $focusBorderColor;
-  background-color: $menuBackgroundColor;
-  color: $menuTextColor;
-  z-index: $zHighlight;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  pointer-events:none;
-}
-
-$skipToId-overlay .overlay-info.hasInfoTop {
-  border-radius: 3px 3px 0 0;
-}
-
-$skipToId-overlay .overlay-info.hasInfoBottom {
-  border-radius: 0 0 3px 3px;
-}
-
-@media (forced-colors: active) {
-
-  $skipToId-overlay {
-    border-color: ButtonBorder;
-  }
-
-  $skipToId-overlay .overlay-border {
-    border-color: ButtonBorder;
-  }
-
-  $skipToId-overlay .overlay-border.skip-to-hidden {
-    background-color: ButtonFace;
-    color: ButtonText;
-  }
-
-  $skipToId-overlay .overlay-info {
-    border-color: ButtonBorder;
-    background-color: ButtonFace;
-    color: ButtonText;
-  }
-
-}
-`;
-
-  const cssHighlightTemplateLightDark = document.createElement('template');
-  cssHighlightTemplateLightDark.textContent = `
-:root {
-  color-scheme: light dark;
-}
-
-$skipToId-overlay {
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  border-radius: 3px;
-  border: 4px solid light-dark($buttonBackgroundColor, $buttonBackgroundDarkColor);
-  box-sizing: border-box;
-  pointer-events:none;
-}
-
-$skipToId-overlay .overlay-border {
-  margin: 0;
-  padding: 0;
-  position: relative;
-  top: -2px;
-  left: -2px;
-  border-radius: 3px 3px 3px 3px;
-  border: 2px solid light-dark($focusBorderColor, $focusBorderDarkColor);
-  z-index: $zHighlight;
-  box-sizing: border-box;
-  pointer-events:none;
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-$skipToId-overlay .overlay-border.skip-to-hidden {
-  background-color: light-dark($hiddenHeadingBackgroundColor, $hiddenHeadingBackgroundDarkColor);
-  color: light-dark($hiddenHeadingColor, $hiddenHeadingDarkColor);
-  font-style: italic;
-  font-weight: bold;
-  font-size: 0.9em;
-  text-align: center;
-  padding: .25em;
-  animation: fadeIn 1.5s;
-}
-
-$skipToId-overlay .overlay-border.hasInfoBottom {
-  border-radius: 3px 3px 3px 0;
-}
-
-$skipToId-overlay .overlay-border.hasInfoTop {
-  border-radius: 0 3px 3px 3px;
-}
-
-$skipToId-overlay .overlay-info {
-  position: relative;
-  text-align: left;
-  left: -2px;
-  padding: 1px 4px;
-  border: 2px solid light-dark($focusBorderColor, $focusBorderDarkColor);
-  background-color: light-dark($menuBackgroundColor, $menuBackgroundDarkColor);
-  color: light-dark($menuTextColor, $menuTextDarkColor);
-  z-index: $zHighlight;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  pointer-events:none;
-}
-
-$skipToId-overlay .overlay-info.hasInfoTop {
-  border-radius: 3px 3px 0 0;
-}
-
-$skipToId-overlay .overlay-info.hasInfoBottom {
-  border-radius: 0 0 3px 3px;
-}
-
-@media (forced-colors: active) {
-
-  $skipToId-overlay {
-    border-color: ButtonBorder;
-  }
-
-  $skipToId-overlay .overlay-border {
-    border-color: ButtonBorder;
-  }
-
-  $skipToId-overlay .overlay-border.skip-to-hidden {
-    background-color: ButtonFace;
-    color: ButtonText;
-  }
-
-  $skipToId-overlay .overlay-info {
-    border-color: ButtonBorder;
-    background-color: ButtonFace;
-    color: ButtonText;
-  }
-
-}
 `;
 
 
@@ -903,13 +750,12 @@ $skipToId-overlay .overlay-info.hasInfoBottom {
    *       and returns the updated strings
    *
    * @param  {String}  cssMenu       -  CSS template for the button and menu
-   * @param  {String}  cssHighlight  -  CSS template for the highlighting
    * @param  {Object}  config        -  SkipTo.js configuration information object
    * @param  {Boolean} useURLTheme   -  When true use the theme associated with the URL
    *
    * @returns. see @desc
    */
-  function addCSSColors (cssMenu, cssHighlight, config, useURLTheme=false) {
+  function addCSSColors (cssMenu, config, useURLTheme=false) {
     const theme = useURLTheme ? getTheme(config.colorTheme) : {};
     const defaultTheme = getTheme('default');
 
@@ -953,30 +799,12 @@ $skipToId-overlay .overlay-info.hasInfoBottom {
 
     cssMenu = updateStyle(cssMenu, '$zIndex', config.zIndex, theme.zIndex, defaultTheme.zIndex);
 
-    cssHighlight = updateStyle(cssHighlight, '$zHighlight', config.zHighlight, theme.zHighlight, defaultTheme.zHighlight);
-    cssHighlight = updateStyle(cssHighlight, '$buttonBackgroundColor', config.buttonBackgroundColor, theme.buttonBackgroundColor, defaultTheme.buttonBackgroundColor);
-    cssHighlight = updateStyle(cssHighlight, '$buttonBackgroundDarkColor', config.buttonBackgroundDarkColor, theme.buttonBackgroundDarkColor, defaultTheme.buttonBackgroundDarkColor);
-    cssHighlight = updateStyle(cssHighlight, '$focusBorderColor', config.focusBorderColor, theme.focusBorderColor, defaultTheme.focusBorderColor);
-    cssHighlight = updateStyle(cssHighlight, '$focusBorderDarkColor', config.focusBorderDarkColor, theme.focusBorderDarkColor, defaultTheme.focusBorderDarkColor);
-    cssHighlight = updateStyle(cssHighlight, '$menuTextColor', config.menuitemFocusTextColor, theme.menuitemFocusTextColor, defaultTheme.menuitemFocusTextColor);
-    cssHighlight = updateStyle(cssHighlight, '$menuTextDarkColor', config.menuitemFocusTextDarkColor, theme.menuitemFocusTextDarkColor, defaultTheme.menuitemFocusTextDarkColor);
-    cssHighlight = updateStyle(cssHighlight, '$menuBackgroundColor', config.menuitemFocusBackgroundColor, theme.menuitemFocusBackgroundColor, defaultTheme.menuitemFocusBackgroundColor);
-    cssHighlight = updateStyle(cssHighlight, '$menuBackgroundDarkColor', config.menuitemFocusBackgroundDarkColor, theme.menuitemFocusBackgroundDarkColor, defaultTheme.menuitemFocusBackgroundDarkColor);
-    cssHighlight = updateStyle(cssHighlight, '$menuitemFocusTextColor', config.menuitemFocusTextColor, theme.menuitemFocusTextColor, defaultTheme.menuitemFocusTextColor);
-    cssHighlight = updateStyle(cssHighlight, '$menuitemFocusTextDarkColor', config.menuitemFocusTextDarkColor, theme.menuitemFocusTextDarkColor, defaultTheme.menuitemFocusTextDarkColor);
-    cssHighlight = updateStyle(cssHighlight, '$menuitemFocusBackgroundColor', config.menuitemFocusBackgroundColor, theme.menuitemFocusBackgroundColor, defaultTheme.menuitemFocusBackgroundColor);
-    cssHighlight = updateStyle(cssHighlight, '$menuitemFocusBackgroundDarkColor', config.menuitemFocusBackgroundDarkColor, theme.menuitemFocusBackgroundDarkColor, defaultTheme.menuitemFocusBackgroundDarkColor);
-    cssHighlight = updateStyle(cssHighlight, '$hiddenHeadingColor', config.hiddenHeadingColor, theme.hiddenHeadingColor, defaultTheme.hiddenHeadingColor);
-    cssHighlight = updateStyle(cssHighlight, '$hiddenHeadingDarkColor', config.hiddenHeadingDarkColor, theme.hiddenHeadingDarkColor, defaultTheme.hiddenHeadingDarkColor);
-    cssHighlight = updateStyle(cssHighlight, '$hiddenHeadingBackgroundColor', config.hiddenHeadingBackgroundColor, theme.hiddenHeadingBackgroundColor, defaultTheme.hiddenHeadingBackgroundColor);
-    cssHighlight = updateStyle(cssHighlight, '$hiddenHeadingBackgroundDarkColor', config.hiddenHeadingBackgroundDarkColor, theme.hiddenHeadingBackgroundDarkColor, defaultTheme.hiddenHeadingBackgroundDarkColor);
-
     // Special case for theme configuration used in Illinois theme
     if (typeof theme.highlightTarget === 'string') {
       config.highlightTarget = theme.highlightTarget;
     }
 
-    return [cssMenu, cssHighlight];
+    return cssMenu;
 
   }
 
@@ -992,39 +820,16 @@ $skipToId-overlay .overlay-info.hasInfoBottom {
    */
   function renderStyleElement (attachNode, config, skipToId, useURLTheme=false) {
     let cssMenu = cssMenuTemplate.textContent.slice(0);
-    cssMenu = cssMenu.replaceAll('$skipToId', '#' + skipToId);
 
-    debug$c.log(`[lightDarkSupported]: ${config.lightDarkSupported} ${typeof config.lightDarkSupported} ${config.lightDarkSupported === 'true'}`);
+    cssMenu = addCSSColors(cssMenu, config, useURLTheme);
 
-    let cssHighlight = config.lightDarkSupported === 'true' ?
-                       cssHighlightTemplateLightDark.textContent.slice(0) :
-                       cssHighlightTemplate.textContent.slice(0);
-
-    debug$c.log(`[cssHighlight]: ${cssHighlight}`);
-
-    cssHighlight = cssHighlight.replaceAll('$skipToId', '#' + skipToId);
-
-    [cssMenu, cssHighlight] = addCSSColors(cssMenu, cssHighlight, config, useURLTheme);
-
-
-    let styleNode = attachNode.querySelector(`#${skipToMenuStyleID}`);
+    let styleNode = attachNode.querySelector(`#${SKIP_TO_MENU_STYLE_ID}`);
     if (!styleNode) {
       styleNode = document.createElement('style');
       attachNode.appendChild(styleNode);
-      styleNode.setAttribute('id', `${skipToMenuStyleID}`);
+      styleNode.setAttribute('id', `${SKIP_TO_MENU_STYLE_ID}`);
     }
     styleNode.textContent = cssMenu;
-
-    const headNode = document.querySelector('head');
-    if (headNode) {
-      let highlightStyleNode = headNode.querySelector(`#${skipToHighlightStyleID}`);
-      if (!highlightStyleNode) {
-        highlightStyleNode = document.createElement('style');
-        headNode.appendChild(highlightStyleNode);
-        highlightStyleNode.setAttribute('id', `${skipToHighlightStyleID}`);
-      }
-      highlightStyleNode.textContent = cssHighlight;
-    }
 
   }
 
@@ -1121,25 +926,8 @@ $skipToId-overlay .overlay-info.hasInfoBottom {
   const debug$a = new DebugLogging('[shortcutsInfoDialog]', false);
   debug$a.flag = false;
 
-  const defaultStyleOptions$1 = {
-    fontFamily: 'sans-serif',
-    fontSize: '12pt',
-    focusBorderColor: '#c5050c',
-    focusBorderDarkColor: '#ffffff',
+  const defaultStyleOptions$2 = colorThemes['default'];
 
-    // Dialog styling defaults
-    dialogTextColor: '#000000',
-    dialogTextDarkColor: '#ffffff',
-    dialogBackgroundColor: '#ffffff',
-    dialogBackgroundDarkColor: '#000000',
-    dialogBackgroundTitleColor: '#eeeeee',
-    dialogBackgroundTitleDarkColor: '#013c93',
-
-  };
-
-
-  const MORE_PAGE_INFO_URL='https://skipto-landmarks-headings.github.io/page-script-5/page.html';
-  const MORE_SHORTCUT_INFO_URL='https://skipto-landmarks-headings.github.io/page-script-5/shortcuts.html';
 
   const styleTemplate$1 = document.createElement('template');
   styleTemplate$1.textContent = `
@@ -1299,6 +1087,11 @@ button:hover {
 }
 `;
 
+  /*
+   *
+   *
+   */
+
   class SkipToContentInfoDialog extends HTMLElement {
     constructor () {
 
@@ -1380,52 +1173,52 @@ button:hover {
       style = updateOption(style,
                            '$fontFamily',
                            config.fontFamily,
-                           defaultStyleOptions$1.fontFamily);
+                           defaultStyleOptions$2.fontFamily);
 
       style = updateOption(style,
                            '$fontSize',
                            config.fontSize,
-                           defaultStyleOptions$1.fontSize);
+                           defaultStyleOptions$2.fontSize);
 
       style = updateOption(style,
                            '$focusBorderColor',
                            config.focusBorderColor,
-                           defaultStyleOptions$1.focusBorderColor);
+                           defaultStyleOptions$2.focusBorderColor);
 
       style = updateOption(style,
                            '$focusBorderDarkColor',
                            config.focusBorderDarkColor,
-                           defaultStyleOptions$1.focusBorderDarkColor);
+                           defaultStyleOptions$2.focusBorderDarkColor);
 
       style = updateOption(style,
                            '$dialogTextColor',
                            config.dialogTextColor,
-                           defaultStyleOptions$1.dialogTextColor);
+                           defaultStyleOptions$2.dialogTextColor);
 
       style = updateOption(style,
                            '$dialogextDarkColor',
                            config.dialogextDarkColor,
-                           defaultStyleOptions$1.dialogextDarkColor);
+                           defaultStyleOptions$2.dialogextDarkColor);
 
       style = updateOption(style,
                            '$dialogBackgroundColor',
                            config.dialogBackgroundColor,
-                           defaultStyleOptions$1.dialogBackgroundColor);
+                           defaultStyleOptions$2.dialogBackgroundColor);
 
       style = updateOption(style,
                            '$dialogBackgroundDarkColor',
                            config.dialogBackgroundDarkColor,
-                           defaultStyleOptions$1.dialogBackgroundDarkColor);
+                           defaultStyleOptions$2.dialogBackgroundDarkColor);
 
       style = updateOption(style,
                            '$dialogBackgroundTitleColor',
                            config.dialogBackgroundTitleColor,
-                           defaultStyleOptions$1.dialogBackgroundTitleColor);
+                           defaultStyleOptions$2.dialogBackgroundTitleColor);
 
       style = updateOption(style,
                            '$dialogBackgroundTitleDarkColor',
                            config.dialogBackgroundTitleDarkColor,
-                           defaultStyleOptions$1.dialogBackgroundTitleDarkColor);
+                           defaultStyleOptions$2.dialogBackgroundTitleDarkColor);
 
 
       let styleNode = this.shadowRoot.querySelector('style');
@@ -1549,7 +1342,7 @@ button:hover {
         this.contentElem.removeChild(this.contentElem.lastElementChild);
       }
 
-      this.moreInfoURL = MORE_PAGE_INFO_URL;
+      this.moreInfoURL = MORE_PAGE_SCRIPT_INFO_URL;
 
       this.h2Elem.textContent = config.aboutInfoLabel;
       this.closeButton1.setAttribute('aria-label', config.closeLabel);
@@ -1602,27 +1395,503 @@ button:hover {
     }
   }
 
+  /* highlight.js */
+
+  /* Constants */
+  const debug$9 = new DebugLogging('highlight', false);
+  debug$9.flag = false;
+
+  const minWidth = 68;
+  const minHeight = 27;
+  const offset = 6;
+  const borderWidth = 2;
+
+  const defaultStyleOptions$1 = colorThemes['default'];
+
+  const styleHighlightTemplate = document.createElement('template');
+  styleHighlightTemplate.textContent = `
+:root {
+  color-scheme: light dark;
+}
+
+#${HIGHLIGHT_ID} {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  border-radius: 3px;
+  border: 4px solid light-dark($buttonBackgroundColor, $buttonBackgroundDarkColor);
+  box-sizing: border-box;
+  pointer-events:none;
+}
+
+#${HIGHLIGHT_ID} .overlay-border {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  top: -2px;
+  left: -2px;
+  border-radius: 3px 3px 3px 3px;
+  border: 2px solid light-dark($focusBorderColor, $focusBorderDarkColor);
+  z-index: $zHighlight;
+  box-sizing: border-box;
+  pointer-events:none;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+#${HIGHLIGHT_ID} .overlay-border.skip-to-hidden {
+  background-color: light-dark($hiddenHeadingBackgroundColor, $hiddenHeadingBackgroundDarkColor);
+  color: light-dark($hiddenHeadingColor, $hiddenHeadingDarkColor);
+  font-family: $fontFamily;
+  font-size: $fontSize;
+  font-style: italic;
+  font-weight: bold;
+  text-align: center;
+  padding: .25em;
+  animation: fadeIn 1.5s;
+}
+
+#${HIGHLIGHT_ID} .overlay-border.hasInfoBottom {
+  border-radius: 3px 3px 3px 0;
+}
+
+#${HIGHLIGHT_ID} .overlay-border.hasInfoTop {
+  border-radius: 0 3px 3px 3px;
+}
+
+#${HIGHLIGHT_ID} .overlay-info {
+  position: relative;
+  text-align: left;
+  left: -2px;
+  padding: 1px 4px;
+  font-size: $fontSize;
+  font-family: $fontFamily;
+  border: 2px solid light-dark($focusBorderColor, $focusBorderDarkColor);
+  background-color: light-dark($menuBackgroundColor, $menuBackgroundDarkColor);
+  color: light-dark($menuTextColor, $menuTextDarkColor);
+  z-index: $zHighlight;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events:none;
+}
+
+#${HIGHLIGHT_ID} .overlay-info.hasInfoTop {
+  border-radius: 3px 3px 0 0;
+}
+
+#${HIGHLIGHT_ID} .overlay-info.hasInfoBottom {
+  border-radius: 0 0 3px 3px;
+}
+
+@media (forced-colors: active) {
+
+  #${HIGHLIGHT_ID} {
+    border-color: ButtonBorder;
+  }
+
+  #${HIGHLIGHT_ID} .overlay-border {
+    border-color: ButtonBorder;
+  }
+
+  #${HIGHLIGHT_ID} .overlay-border.skip-to-hidden {
+    background-color: ButtonFace;
+    color: ButtonText;
+  }
+
+  #${HIGHLIGHT_ID} .overlay-info {
+    border-color: ButtonBorder;
+    background-color: ButtonFace;
+    color: ButtonText;
+  }
+
+}
+`;
+
+  /*
+   *   @class HighlightElement
+   *
+   */
+
+  class HighlightElement extends HTMLElement {
+
+    constructor() {
+      super();
+      this.attachShadow({ mode: 'open' });
+
+      // Get references
+
+      this.overlayElem  = document.createElement('div');
+      this.overlayElem.id = HIGHLIGHT_ID;
+      this.shadowRoot.appendChild(this.overlayElem);
+      this.overlayElem.style.display = 'none';
+
+      this.borderElem = document.createElement('div');
+      this.borderElem.className = 'overlay-border';
+      this.overlayElem.appendChild(this.borderElem);
+
+      this.infoElem = document.createElement('div');
+      this.infoElem.className = 'overlay-info';
+      this.overlayElem.appendChild(this.infoElem);
+
+      this.configureStyle();
+
+    }
+
+    /*
+     *   @method configureStyle
+     *
+     *   @desc  Updates stylesheet for styling the highlight information
+     *
+     *   @param {Object} config : color and font information
+     */
+
+
+    configureStyle(config={}) {
+
+      function updateOption(style, option, configOption, defaultOption) {
+        if (configOption) {
+          return style.replaceAll(option, configOption);
+        }
+        else {
+          return style.replaceAll(option, defaultOption);
+        }
+      }
+
+      // make a copy of the template
+      let style = styleHighlightTemplate.textContent.slice(0);
+
+      style = updateOption(style,
+                           '$fontFamily',
+                           config.fontFamily,
+                           defaultStyleOptions$1.fontFamily);
+
+      style = updateOption(style,
+                           '$fontSize',
+                           config.fontSize,
+                           defaultStyleOptions$1.fontSize);
+
+      style = updateOption(style,
+                           '$buttonBackgroundColor',
+                           config.buttonBackgroundColor,
+                           defaultStyleOptions$1.buttonBackgroundColor);
+
+      style = updateOption(style,
+                           '$buttonBackgroundDarkColor',
+                           config.buttonBackgroundDarkColor,
+                           defaultStyleOptions$1.buttonBackgroundDarkColor);
+
+      style = updateOption(style,
+                           '$focusBorderColor',
+                           config.focusBorderColor,
+                           defaultStyleOptions$1.focusBorderColor);
+
+      style = updateOption(style,
+                           '$focusBorderDarkColor',
+                           config.focusBorderDarkColor,
+                           defaultStyleOptions$1.focusBorderDarkColor);
+
+      style = updateOption(style,
+                           '$menuBackgroundColor',
+                           config.menuBackgroundColor,
+                           defaultStyleOptions$1.menuBackgroundColor);
+
+      style = updateOption(style,
+                           '$menuBackgroundDarkColor',
+                           config.menuBackgroundDarkColor,
+                           defaultStyleOptions$1.menuBackgroundDarkColor);
+
+      style = updateOption(style,
+                           '$menuTextColor',
+                           config.menuTextColor,
+                           defaultStyleOptions$1.menuTextColor);
+
+      style = updateOption(style,
+                           '$menuTextDarkColor',
+                           config.menuTextDarkColor,
+                           defaultStyleOptions$1.menuTextDarkColor);
+
+      style = updateOption(style,
+                           '$hiddenHeadingColor',
+                           config.hiddenHeadingColor,
+                           defaultStyleOptions$1.hiddenHeadingColor);
+
+      style = updateOption(style,
+                           '$hiddenHeadingDarkColor',
+                           config.hiddenHeadingDarkColor,
+                           defaultStyleOptions$1.hiddenHeadingDarkColor);
+
+      style = updateOption(style,
+                           '$hiddenHeadingBackgroundColor',
+                           config.hiddenHeadingBackgroundColor,
+                           defaultStyleOptions$1.hiddenHeadingBackgroundColor);
+
+      style = updateOption(style,
+                           '$hiddenHeadingBackgroundDarkColor',
+                           config.hiddenHeadingBackgroundDarkColor,
+                           defaultStyleOptions$1.hiddenHeadingBackgroundDarkColor);
+
+      style = updateOption(style,
+                           '$zHighlight',
+                           config.zHighlight,
+                           defaultStyleOptions$1.zHighlight);
+
+
+      let styleNode = this.shadowRoot.querySelector('style');
+
+      if (styleNode) {
+        styleNode.remove();
+      }
+
+      styleNode = document.createElement('style');
+      styleNode.textContent = style;
+      this.shadowRoot.appendChild(styleNode);
+
+    }
+
+    /*
+     *   @method isElementInViewport
+     *
+     *   @desc  Returns true if element is already visible in view port,
+     *          otheriwse false
+     *
+     *   @param {Object} element : DOM node of element to highlight
+     *
+     *   @returns see @desc
+     */
+
+    isElementInViewport(element) {
+      const rect = element.getBoundingClientRect();
+      return (
+        rect.top >= window.screenY &&
+        rect.left >= window.screenX &&
+        rect.bottom <= ((window.screenY + window.innerHeight) ||
+                        (window.screenY + document.documentElement.clientHeight)) &&
+        rect.right <= ((window.screenX + window.innerWidth) ||
+                       (window.screenX + document.documentElement.clientWidth)));
+    }
+
+
+    /*
+     *   @method isElementStartInViewport
+     *
+     *   @desc  Returns true if start of the element is already visible in view port,
+     *          otherwise false
+     *
+     *   @param {Object} element : DOM node of element to highlight
+     *
+     *   @returns see @desc
+     */
+
+    isElementStartInViewport(element) {
+      const rect = element.getBoundingClientRect();
+      return (
+          rect.top >= window.screenY &&
+          rect.top <= ((window.screenY + window.innerHeight) ||
+                       (window.screenY + document.documentElement.clientHeight)) &&
+          rect.left >= window.screenX &&
+          rect.left <= ((window.screenX + window.innerWidth) ||
+                       (window.screenX + document.documentElement.clientWidth)));
+    }
+
+
+    /*
+     *   @method isElementHeightLarge
+     *
+     *   @desc  Returns true if element client height is larger than clientHeight,
+     *          otheriwse false
+     *
+     *   @param {Object} element : DOM node of element to highlight
+     *
+     *   @returns see @desc
+     */
+
+    isElementInHeightLarge(element) {
+      var rect = element.getBoundingClientRect();
+      return (1.2 * rect.height) > (window.innerHeight || document.documentElement.clientHeight);
+    }
+
+    /*
+     *   @method highlight
+     *
+     *   @desc  Highlights the element with the id on a page when highlighting
+     *          is enabled (NOTE: Highlight is enabled by default)
+     *
+     *   @param {Object}  elem            : DOM node of element to highlight
+     *   @param {String}  highlightTarget : value of highlight target
+     *   @param {String}  info            : Information about target
+     *   @param {Boolean} force           : If true override isRduced
+     */
+
+    highlight(elem, highlightTarget, info='', force=false) {
+      const mediaQuery = window.matchMedia(`(prefers-reduced-motion: reduce)`);
+      const isReduced = !mediaQuery || mediaQuery.matches;
+
+      if (elem && highlightTarget) {
+
+        const scrollElement = this.updateHighlightElement(elem, info);
+
+        if (this.isElementInHeightLarge(elem)) {
+          if (!this.isElementStartInViewport(elem) && (!isReduced || force)) {
+            scrollElement.scrollIntoView({ behavior: highlightTarget, block: 'start', inline: 'nearest' });
+          }
+        }
+        else {
+          if (!this.isElementInViewport(elem)  && (!isReduced || force)) {
+            scrollElement.scrollIntoView({ behavior: highlightTarget, block: 'center', inline: 'nearest' });
+          }
+        }
+      }
+    }
+
+    /*
+     *   @method removeHighlight
+     *
+     *   @desc  Hides the highlight element on the page
+     */
+    removeHighlight() {
+      if (this.overlayElement) {
+        this.overlayElement.style.display = 'none';
+      }
+    }
+
+    /*
+     *  @method  updateHighlightElement
+     *
+     *  @desc  Create an overlay element and set its position on the page.
+     *
+     *  @param  {Object}  element          -  DOM element node to highlight
+     *  @param  {String}  info             -  Description of the element
+     *
+     */
+
+     updateHighlightElement (element, info) {
+
+      let rect  = element.getBoundingClientRect();
+
+      let isHidden = false;
+
+      const rectLeft  = rect.left > offset ?
+                      Math.round(rect.left - offset + window.scrollX) :
+                      Math.round(rect.left + window.scrollX);
+
+      let left = rectLeft;
+
+      const rectWidth  = rect.left > offset ?
+                      Math.max(rect.width  + offset * 2, minWidth) :
+                      Math.max(rect.width, minWidth);
+
+      let width = rectWidth;
+
+      const rectTop    = rect.top > offset ?
+                      Math.round(rect.top  - offset + window.scrollY) :
+                      Math.round(rect.top + window.scrollY);
+
+      let top = rectTop;
+
+      const rectHeight   = rect.top > offset ?
+                      Math.max(rect.height + offset * 2, minHeight) :
+                      Math.max(rect.height, minHeight);
+
+      let height = rectHeight;
+
+      if ((rect.height < 3) || (rect.width < 3)) {
+        isHidden = true;
+      }
+
+      if ((rectTop < 0) || (rectLeft < 0)) {
+        isHidden = true;
+        if (element.parentNode) {
+          const parentRect = element.parentNode.getBoundingClientRect();
+
+          if ((parentRect.top > 0) && (parentRect.left > 0)) {
+            top = parentRect.top > offset ?
+                      Math.round(parentRect.top  - offset + window.scrollY) :
+                      Math.round(parentRect.top + window.scrollY);
+            left = parentRect.left > offset ?
+                      Math.round(parentRect.left - offset + window.scrollX) :
+                      Math.round(parentRect.left + window.scrollX);
+          }
+          else {
+            left = offset;
+            top = offset;
+          }
+        }
+        else {
+          left = offset;
+          top = offset;
+        }
+      }
+
+      this.overlayElem.style.left   = left   + 'px';
+      this.overlayElem.style.top    = top    + 'px';
+
+      if (isHidden) {
+        this.borderElem.textContent = 'Heading is hidden';
+        this.borderElem.classList.add('skip-to-hidden');
+        this.overlayElem.style.width  = 'auto';
+        this.overlayElem.style.height = 'auto';
+        this.borderElem.style.width  = 'auto';
+        this.borderElem.style.height = 'auto';
+        height = this.borderElem.getBoundingClientRect().height;
+        width  = this.borderElem.getBoundingClientRect().width;
+        if (rect.top > offset) {
+          height += offset + 2;
+          width += offset + 2;
+        }
+      }
+      else {
+        this.borderElem.textContent = '';
+        this.borderElem.classList.remove('skip-to-hidden');
+        this.overlayElem.style.width  = width  + 'px';
+        this.overlayElem.style.height = height + 'px';
+        this.borderElem.style.width  = (width  - 2 * borderWidth) + 'px';
+        this.borderElem.style.height = (height - 2 * borderWidth) + 'px';
+      }
+
+      this.overlayElem.style.display = 'block';
+
+      if (info) {
+        this.infoElem.style.display = 'inline-block';
+        this.infoElem.textContent = info;
+        if (top >= this.infoElem.getBoundingClientRect().height) {
+          this.borderElem.classList.remove('hasInfoBottom');
+          this.infoElem.classList.remove('hasInfoBottom');
+          this.borderElem.classList.add('hasInfoTop');
+          this.infoElem.classList.add('hasInfoTop');
+          if (!isHidden) {
+            this.infoElem.style.top = (-1 * (height + this.infoElem.getBoundingClientRect().height - 2 * borderWidth)) + 'px';
+          }
+          else {
+            this.infoElem.style.top = (-1 * (this.infoElem.getBoundingClientRect().height + this.borderElem.getBoundingClientRect().height)) + 'px';
+          }
+        }
+        else {
+          this.borderElem.classList.remove('hasInfoTop');
+          this.infoElem.classList.remove('hasInfoTop');
+          this.borderElem.classList.add('hasInfoBottom');
+          this.infoElem.classList.add('hasInfoBottom');
+          this.infoElem.style.top = -2 + 'px';
+        }
+        return this.infoElem;
+      }
+      else {
+        this.borderElem.classList.remove('hasInfo');
+        this.infoElem.style.display = 'none';
+        return this.overlayElem;
+      }
+    }
+  }
+
   /* shortcutsMessage.js */
 
   /* Constants */
-  const debug$9 = new DebugLogging('[shortcutsMessage]', false);
-  debug$9.flag = false;
+  const debug$8 = new DebugLogging('[shortcutsMessage]', false);
+  debug$8.flag = false;
 
-  const defaultStyleOptions = {
-    fontFamily: 'sans-serif',
-    fontSize: '12pt',
-    focusBorderColor: '#c5050c',
-    focusBorderDarkColor: '#ffffff',
-
-    // Dialog styling defaults
-    dialogTextColor: '#000000',
-    dialogTextDarkColor: '#ffffff',
-    dialogBackgroundColor: '#ffffff',
-    dialogBackgroundDarkColor: '#000000',
-    dialogBackgroundTitleColor: '#eeeeee',
-    dialogBackgroundTitleDarkColor: '#013c93',
-
-  };
+  const defaultStyleOptions = colorThemes['default'];
 
   const styleTemplate = document.createElement('template');
   styleTemplate.textContent = `
@@ -1631,7 +1900,7 @@ button:hover {
   color-scheme: light dark;
 }
 
-div#skip-to-message {
+#${MESSAGE_ID} {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -1650,7 +1919,7 @@ div#skip-to-message {
   opacity: 1;
 }
 
-div#skip-to-message .header {
+#${MESSAGE_ID} .header {
   margin: 0;
   padding: 4px;
   border-bottom: 1px solid light-dark($focusBorderColor, $focusBorderDarkColor);
@@ -1662,7 +1931,7 @@ div#skip-to-message .header {
   font-size: 100%;
 }
 
-div#skip-to-message .content {
+#${MESSAGE_ID} .content {
   margin-left: 2em;
   margin-right: 2em;
   margin-top: 2em;
@@ -1673,34 +1942,34 @@ div#skip-to-message .content {
   text-algin: center;
 }
 
-div#skip-to-message.hidden {
+#${MESSAGE_ID}.hidden {
   display: none;
 }
 
-div#skip-to-message.show {
+#${MESSAGE_ID}.show {
   display: block;
   opacity: 1;
 }
 
-div#skip-to-message.fade {
+#${MESSAGE_ID}.fade {
   opacity: 0;
   transition: visibility 0s 1s, opacity 1s linear;
 }
 
 @media (forced-colors: active) {
 
-  div#skip-to-message {
+  #${MESSAGE_ID} {
     background-color: Canvas;
     color CanvasText;
     border-color: AccentColor;
   }
 
-  div#skip-to-message .header {
+  #${MESSAGE_ID} .header {
     background-color: Canvas;
     color CanvasText;
   }
 
-  div#skip-to-message .content {
+  #${MESSAGE_ID} .content {
     background-color: Canvas;
     color: CanvasText;
   }
@@ -1717,7 +1986,7 @@ div#skip-to-message.fade {
       // Get references
 
       this.messageDialog  = document.createElement('div');
-      this.messageDialog.id = 'skip-to-message';
+      this.messageDialog.id = MESSAGE_ID;
       this.messageDialog.classList.add('hidden');
       this.shadowRoot.appendChild(this.messageDialog);
 
@@ -1847,8 +2116,8 @@ div#skip-to-message.fade {
 
   /* constants */
 
-  const debug$8 = new DebugLogging('nameFrom', false);
-  debug$8.flag = false;
+  const debug$7 = new DebugLogging('nameFrom', false);
+  debug$7.flag = false;
 
   //
   // LOW-LEVEL HELPER FUNCTIONS (NOT EXPORTED)
@@ -2117,8 +2386,8 @@ div#skip-to-message.fade {
   /* accName.js */
 
   /* Constants */
-  const debug$7 = new DebugLogging('accName', false);
-  debug$7.flag = false;
+  const debug$6 = new DebugLogging('accName', false);
+  debug$6.flag = false;
 
   /**
    *   @fuction getAccessibleName
@@ -2196,8 +2465,8 @@ div#skip-to-message.fade {
   /* landmarksHeadings.js */
 
   /* Constants */
-  const debug$6 = new DebugLogging('landmarksHeadings', false);
-  debug$6.flag = false;
+  const debug$5 = new DebugLogging('landmarksHeadings', false);
+  debug$5.flag = false;
 
   const skipableElements = [
     'base',
@@ -2737,7 +3006,7 @@ div#skip-to-message.fade {
       for (let node = startingNode.firstChild; node !== null; node = node.nextSibling ) {
         if (node.nodeType === Node.ELEMENT_NODE) {
 
-          debug$6.flag && debug$6.log(`[transverseDOM][node]: ${node.tagName} isSlot:${isSlotElement(node)} isCustom:${isCustomElement(node)}`);
+          debug$5.flag && debug$5.log(`[transverseDOM][node]: ${node.tagName} isSlot:${isSlotElement(node)} isCustom:${isCustomElement(node)}`);
 
           checkForLandmark(doc, node);
           checkForHeading(doc, node, inMain);
@@ -3096,293 +3365,6 @@ div#skip-to-message.fade {
     return [].concat(mainElements, searchElements, navElements, asideElements, regionElements, footerElements, otherElements);
   }
 
-  /* highlight.js */
-
-  /* Constants */
-  const debug$5 = new DebugLogging('highlight', false);
-  debug$5.flag = false;
-
-  const minWidth = 68;
-  const minHeight = 27;
-  const offset = 6;
-  const borderWidth = 2;
-
-  const OVERLAY_ID = 'id-skip-to-overlay';
-
-  /*
-   *   @function getOverlayElement
-   *
-   *   @desc  Returns DOM node for the overlay element
-   *
-   *   @returns {Object} see @desc
-   */
-
-  function getOverlayElement() {
-
-    let overlayElem = document.getElementById(OVERLAY_ID);
-
-    if (!overlayElem) {
-      overlayElem = document.createElement('div');
-      overlayElem.style.display = 'none';
-      overlayElem.id = OVERLAY_ID;
-      document.body.appendChild(overlayElem);
-
-      const overlayElemChild = document.createElement('div');
-      overlayElemChild.className = 'overlay-border';
-      overlayElem.appendChild(overlayElemChild);
-    }
-
-    const infoElem = overlayElem.querySelector('.overlay-info');
-
-    if (infoElem === null) {
-      const overlayInfoChild = document.createElement('div');
-      overlayInfoChild.className = 'overlay-info';
-      overlayElem.appendChild(overlayInfoChild);
-    }
-
-    return overlayElem;
-  }
-
-  /*
-   *   @function isElementInViewport
-   *
-   *   @desc  Returns true if element is already visible in view port,
-   *          otheriwse false
-   *
-   *   @param {Object} element : DOM node of element to highlight
-   *
-   *   @returns see @desc
-   */
-
-  function isElementInViewport(element) {
-    var rect = element.getBoundingClientRect();
-    return (
-        rect.top >= window.screenY &&
-        rect.left >= window.screenX &&
-        rect.bottom <= ((window.screenY + window.innerHeight) || 
-                        (window.screenY + document.documentElement.clientHeight)) &&
-        rect.right <= ((window.screenX + window.innerWidth) || 
-                       (window.screenX + document.documentElement.clientWidth))
-    );
-  }
-
-  /*
-   *   @function isElementStartInViewport
-   *
-   *   @desc  Returns true if start of the element is already visible in view port,
-   *          otherwise false
-   *
-   *   @param {Object} element : DOM node of element to highlight
-   *
-   *   @returns see @desc
-   */
-
-  function isElementStartInViewport(element) {
-    var rect = element.getBoundingClientRect();
-    return (
-        rect.top >= window.screenY &&
-        rect.top <= ((window.screenY + window.innerHeight) || 
-                     (window.screenY + document.documentElement.clientHeight)) &&
-        rect.left >= window.screenX &&
-        rect.left <= ((window.screenX + window.innerWidth) || 
-                     (window.screenX + document.documentElement.clientWidth))
-    );
-  }
-
-
-  /*
-   *   @function isElementHeightLarge
-   *
-   *   @desc  Returns true if element client height is larger than clientHeight,
-   *          otheriwse false
-   *
-   *   @param {Object} element : DOM node of element to highlight
-   *
-   *   @returns see @desc
-   */
-
-  function isElementInHeightLarge(element) {
-    var rect = element.getBoundingClientRect();
-    return (1.2 * rect.height) > (window.innerHeight || document.documentElement.clientHeight);
-  }
-
-  /*
-   *   @function highlightElement
-   *
-   *   @desc  Highlights the element with the id on a page when highlighting
-   *          is enabled (NOTE: Highlight is enabled by default)
-   *
-   *   @param {Object}  elem            : DOM node of element to highlight
-   *   @param {String}  highlightTarget : value of highlight target
-   *   @param {String}  info            : Information about target
-   *   @param {Boolean} force           : If true override isRduced
-   */
-  function highlightElement(elem, highlightTarget, info='', force=false) {
-    const mediaQuery = window.matchMedia(`(prefers-reduced-motion: reduce)`);
-    const isReduced = !mediaQuery || mediaQuery.matches;
-
-    if (elem && highlightTarget) {
-
-      const overlayElem = getOverlayElement();
-      const scrollElement = updateOverlayElement(overlayElem, elem, info);
-
-      if (isElementInHeightLarge(elem)) {
-        if (!isElementStartInViewport(elem) && (!isReduced || force)) {
-          scrollElement.scrollIntoView({ behavior: highlightTarget, block: 'start', inline: 'nearest' });
-        }
-      }
-      else {
-        if (!isElementInViewport(elem)  && (!isReduced || force)) {
-          scrollElement.scrollIntoView({ behavior: highlightTarget, block: 'center', inline: 'nearest' });
-        }
-      }
-    }
-  }
-
-  /*
-   *   @function removeHighlight
-   *
-   *   @desc  Hides the highlight element on the page
-   */
-  function removeHighlight() {
-    const overlayElement = getOverlayElement();
-    if (overlayElement) {
-      overlayElement.style.display = 'none';
-    }
-  }
-
-  /*
-   *  @function  updateOverlayElement
-   *
-   *  @desc  Create an overlay element and set its position on the page.
-   *
-   *  @param  {Object}  overlayElem      -  DOM element for overlay
-   *  @param  {Object}  element          -  DOM element node to highlight
-   *  @param  {String}  info             -  Description of the element
-   *
-   */
-
-  function updateOverlayElement (overlayElem, element, info) {
-
-    const childElem = overlayElem.firstElementChild;
-    const infoElem  = overlayElem.querySelector('.overlay-info');
-
-    let rect  = element.getBoundingClientRect();
-
-    let isHidden = false;
-
-
-    const rectLeft  = rect.left > offset ?
-                    Math.round(rect.left - offset + window.scrollX) :
-                    Math.round(rect.left + window.scrollX);
-
-    let left = rectLeft;
-
-    const rectWidth  = rect.left > offset ?
-                    Math.max(rect.width  + offset * 2, minWidth) :
-                    Math.max(rect.width, minWidth);
-
-    let width = rectWidth;
-
-    const rectTop    = rect.top > offset ?
-                    Math.round(rect.top  - offset + window.scrollY) :
-                    Math.round(rect.top + window.scrollY);
-
-    let top = rectTop;
-
-    const rectHeight   = rect.top > offset ?
-                    Math.max(rect.height + offset * 2, minHeight) :
-                    Math.max(rect.height, minHeight);
-
-    let height = rectHeight;
-
-    if ((rect.height < 3) || (rect.width < 3)) {
-      isHidden = true;
-    }
-
-    if ((rectTop < 0) || (rectLeft < 0)) {
-      isHidden = true;
-      if (element.parentNode) {
-        const parentRect = element.parentNode.getBoundingClientRect();
-
-        if ((parentRect.top > 0) && (parentRect.left > 0)) {
-          top = parentRect.top > offset ?
-                    Math.round(parentRect.top  - offset + window.scrollY) :
-                    Math.round(parentRect.top + window.scrollY);
-          left = parentRect.left > offset ?
-                    Math.round(parentRect.left - offset + window.scrollX) :
-                    Math.round(parentRect.left + window.scrollX);
-        }
-        else {
-          left = offset;
-          top = offset;
-        }
-      }
-      else {
-        left = offset;
-        top = offset;
-      }
-    }
-
-    overlayElem.style.left   = left   + 'px';
-    overlayElem.style.top    = top    + 'px';
-
-    if (isHidden) {
-      childElem.textContent = 'Heading is hidden';
-      childElem.classList.add('skip-to-hidden');
-      overlayElem.style.width  = 'auto';
-      overlayElem.style.height = 'auto';
-      childElem.style.width  = 'auto';
-      childElem.style.height = 'auto';
-      height = childElem.getBoundingClientRect().height;
-      width  = childElem.getBoundingClientRect().width;
-      if (rect.top > offset) {
-        height += offset + 2;
-        width += offset + 2;
-      }
-    }
-    else {
-      childElem.textContent = '';
-      childElem.classList.remove('skip-to-hidden');
-      overlayElem.style.width  = width  + 'px';
-      overlayElem.style.height = height + 'px';
-      childElem.style.width  = (width  - 2 * borderWidth) + 'px';
-      childElem.style.height = (height - 2 * borderWidth) + 'px';
-    }
-
-    overlayElem.style.display = 'block';
-
-    if (info) {
-      infoElem.style.display = 'inline-block';
-      infoElem.textContent = info;
-      if (top >= infoElem.getBoundingClientRect().height) {
-        childElem.classList.remove('hasInfoBottom');
-        infoElem.classList.remove('hasInfoBottom');
-        childElem.classList.add('hasInfoTop');
-        infoElem.classList.add('hasInfoTop');
-        if (!isHidden) {
-          infoElem.style.top = (-1 * (height + infoElem.getBoundingClientRect().height - 2 * borderWidth)) + 'px';
-        }
-        else {
-          infoElem.style.top = (-1 * (infoElem.getBoundingClientRect().height + childElem.getBoundingClientRect().height)) + 'px';
-        }
-      }
-      else {
-        childElem.classList.remove('hasInfoTop');
-        infoElem.classList.remove('hasInfoTop');
-        childElem.classList.add('hasInfoBottom');
-        infoElem.classList.add('hasInfoBottom');
-        infoElem.style.top = -2 + 'px';
-      }
-      return infoElem;
-    }
-    else {
-      childElem.classList.remove('hasInfo');
-      infoElem.style.display = 'none';
-      return overlayElem;
-    }
-  }
-
   /* shortcuts.js */
 
   /* Constants */
@@ -3397,7 +3379,10 @@ div#skip-to-message.fade {
    */
   function monitorKeyboardFocus () {
     document.addEventListener('focusin', () => {
-      removeHighlight();
+      const highlightElem = document.querySelector(HIGHLIGHT_ELEMENT_NAME);
+      if (highlightElem) {
+        highlightElem.removeHighlight();
+      }
     });
   }
 
@@ -3451,7 +3436,11 @@ div#skip-to-message.fade {
         }
       }
 
-      highlightElement(elem, 'instant', info, true);  // force highlight since navigation
+      const highlightElem = document.querySelector(HIGHLIGHT_ELEMENT_NAME);
+      if (highlightElem) {
+        highlightElem.highlight(elem, 'instant', info, true);  // force highlight
+      }
+
     }
 
     return elem;
@@ -3764,7 +3753,6 @@ div#skip-to-message.fade {
       constructor (skipToContentElem) {
         this.skipToContentElem = skipToContentElem;
         this.config     = skipToContentElem.config;
-        this.skiptoId   = skipToContentElem.skipToId;
 
         // check for 'nav' element, if not use 'div' element
         const ce = this.config.containerElement.toLowerCase().trim() === 'nav' ? 'nav' : 'div';
@@ -3772,7 +3760,7 @@ div#skip-to-message.fade {
         this.containerNode = document.createElement(ce);
         skipToContentElem.shadowRoot.appendChild(this.containerNode);
 
-        this.containerNode.id = this.skiptoId;
+        this.containerNode.id = SKIP_TO_ID;
         if (ce === 'nav') {
           this.containerNode.setAttribute('aria-label', this.config.buttonLabel);
         }
@@ -3790,7 +3778,7 @@ div#skip-to-message.fade {
         this.buttonNode.setAttribute('aria-haspopup', 'menu');
         this.buttonNode.setAttribute('aria-expanded', 'false');
         this.buttonNode.setAttribute('aria-label', buttonAriaLabel);
-        this.buttonNode.setAttribute('aria-controls', 'id-skip-to-menu');
+        this.buttonNode.setAttribute('aria-controls', MENU_ID);
         this.buttonNode.addEventListener('keydown', this.handleButtonKeydown.bind(this));
         this.buttonNode.addEventListener('click', this.handleButtonClick.bind(this));
         this.containerNode.appendChild(this.buttonNode);
@@ -3814,39 +3802,39 @@ div#skip-to-message.fade {
         this.menuitemNodes = [];
 
         this.menuNode   = document.createElement('div');
-        this.menuNode.setAttribute('id', 'id-skip-to-menu');
+        this.menuNode.setAttribute('id', MENU_ID);
         this.menuNode.setAttribute('role', 'menu');
         this.menuNode.setAttribute('aria-label', this.config.menuLabel);
         this.containerNode.appendChild(this.menuNode);
 
         this.landmarkGroupLabelNode = document.createElement('div');
-        this.landmarkGroupLabelNode.setAttribute('id', 'id-skip-to-menu-landmark-group-label');
+        this.landmarkGroupLabelNode.setAttribute('id', MENU_LANDMARK_GROUP_LABEL_ID);
         this.landmarkGroupLabelNode.setAttribute('role', 'separator');
         this.landmarkGroupLabelNode.textContent = this.addNumberToGroupLabel(this.config.landmarkGroupLabel);
         this.menuNode.appendChild(this.landmarkGroupLabelNode);
 
         this.landmarkGroupNode = document.createElement('div');
-        this.landmarkGroupNode.setAttribute('id', 'id-skip-to-menu-landmark-group');
+        this.landmarkGroupNode.setAttribute('id', MENU_LANDMARK_GROUP_ID);
         this.landmarkGroupNode.setAttribute('role', 'group');
         this.landmarkGroupNode.className = 'overflow';
-        this.landmarkGroupNode.setAttribute('aria-labelledby', 'id-skip-to-menu-landmark-group-label');
+        this.landmarkGroupNode.setAttribute('aria-labelledby', MENU_LANDMARK_GROUP_LABEL_ID);
         this.menuNode.appendChild(this.landmarkGroupNode);
 
         this.headingGroupLabelNode = document.createElement('div');
-        this.headingGroupLabelNode.setAttribute('id', 'id-skip-to-menu-heading-group-label');
+        this.headingGroupLabelNode.setAttribute('id', MENU_HEADINGS_GROUP_ID);
         this.headingGroupLabelNode.setAttribute('role', 'separator');
         this.headingGroupLabelNode.textContent = this.addNumberToGroupLabel(this.config.headingGroupLabel);
         this.menuNode.appendChild(this.headingGroupLabelNode);
 
         this.headingGroupNode = document.createElement('div');
-        this.headingGroupNode.setAttribute('id', 'id-skip-to-menu-heading-group');
+        this.headingGroupNode.setAttribute('id', MENU_HEADINGS_GROUP_ID);
         this.headingGroupNode.setAttribute('role', 'group');
         this.headingGroupNode.className = 'overflow';
-        this.headingGroupNode.setAttribute('aria-labelledby', 'id-skip-to-menu-heading-group-label');
+        this.headingGroupNode.setAttribute('aria-labelledby', MENU_HEADINGS_GROUP_LABEL_ID);
         this.menuNode.appendChild(this.headingGroupNode);
 
         this.shortcutsGroupLabelNode = document.createElement('div');
-        this.shortcutsGroupLabelNode.setAttribute('id', 'id-skip-to-menu-shortcuts-group-label');
+        this.shortcutsGroupLabelNode.setAttribute('id', MENU_SHORTCUTS_GROUP_LABEL_ID);
         this.shortcutsGroupLabelNode.setAttribute('role', 'separator');
         if (this.config.shortcuts === 'enabled') {
           this.shortcutsGroupLabelNode.textContent = this.config.shortcutsGroupEnabledLabel;
@@ -3857,29 +3845,44 @@ div#skip-to-message.fade {
         this.menuNode.appendChild(this.shortcutsGroupLabelNode);
 
         this.shortcutsGroupNode = document.createElement('div');
-        this.shortcutsGroupNode.setAttribute('id', 'id-skip-to-menu-shortcuts-group');
+        this.shortcutsGroupNode.setAttribute('id', MENU_SHORTCUTS_GROUP_ID);
         this.shortcutsGroupNode.setAttribute('role', 'group');
-        this.shortcutsGroupNode.setAttribute('aria-labelledby', 'id-skip-to-menu-shortcutse-group-label');
+        this.shortcutsGroupNode.setAttribute('aria-labelledby', MENU_SHORTCUTS_GROUP_LABEL_ID);
         this.menuNode.appendChild(this.shortcutsGroupNode);
 
         if (this.config.aboutSupported === 'true') {
           this.renderAboutToMenu(this.menuNode, this.config);
         }
 
-        this.infoDialog = document.querySelector("skip-to-content-info-dialog");
+        // Information dialog
+
+        this.infoDialog = document.querySelector(INFO_DIALOG_ELEMENT_NAME);
 
         if (!this.infoDialog) {
-          window.customElements.define("skip-to-content-info-dialog", SkipToContentInfoDialog);
-          this.infoDialog = document.createElement('skip-to-content-info-dialog');
+          window.customElements.define(INFO_DIALOG_ELEMENT_NAME, SkipToContentInfoDialog);
+          this.infoDialog = document.createElement(INFO_DIALOG_ELEMENT_NAME);
           this.infoDialog.configureStyle(this.config);
           document.body.appendChild(this.infoDialog);
         }
 
-        this.shortcutsMessage = document.querySelector("skip-to-shortcuts-message");
+        // Highlight element
+
+        this.highlightElem = document.querySelector(HIGHLIGHT_ELEMENT_NAME);
+
+        if (!this.highlightElem) {
+          window.customElements.define(HIGHLIGHT_ELEMENT_NAME, HighlightElement);
+          this.highlightElem = document.createElement(HIGHLIGHT_ELEMENT_NAME);
+          this.highlightElem.configureStyle(this.config);
+          document.body.appendChild(this.highlightElem);
+        }
+
+        // Shortcut messages
+
+        this.shortcutsMessage = document.querySelector(MESSAGE_ELEMENT_NAME);
 
         if (!this.shortcutsMessage) {
-          window.customElements.define("skip-to-shortcuts-message", ShortcutsMessage);
-          this.shortcutsMessage = document.createElement('skip-to-shortcuts-message');
+          window.customElements.define(MESSAGE_ELEMENT_NAME, ShortcutsMessage);
+          this.shortcutsMessage = document.createElement(MESSAGE_ELEMENT_NAME);
           this.shortcutsMessage.configureStyle(this.config);
           document.body.appendChild(this.shortcutsMessage);
         }
@@ -4362,10 +4365,10 @@ div#skip-to-message.fade {
           this.focusMenuitem = menuitem;
           if (menuitem.hasAttribute('data-id')) {
             const elem = queryDOMForSkipToId(menuitem.getAttribute('data-id'));
-            highlightElement(elem, this.highlightTarget);
+            this.highlightElem.highlight(elem, this.highlightTarget);
           }
           else {
-            removeHighlight();
+            this.highlightElem.removeHighlight();
           }
         }
       }
@@ -4531,7 +4534,7 @@ div#skip-to-message.fade {
         if (this.isOpen()) {
           this.buttonNode.setAttribute('aria-expanded', 'false');
           this.menuNode.style.display = 'none';
-          removeHighlight();
+          this.highlightElem.removeHighlight();
         }
       }
 
@@ -4989,10 +4992,10 @@ div#skip-to-message.fade {
         tgt.classList.add('hover');
         if (tgt.hasAttribute('data-id')) {
           const elem = queryDOMForSkipToId(tgt.getAttribute('data-id'));
-          highlightElement(elem, this.highlightTarget);
+          this.highlightElem.highlight(elem, this.highlightTarget);
         }
         else {
-          removeHighlight();
+          this.highlightElem.removeHighlight();
         }
         event.stopPropagation();
         event.preventDefault();
@@ -5003,10 +5006,10 @@ div#skip-to-message.fade {
         let tgt = event.currentTarget;
         if (tgt.hasAttribute('data-id')) {
           const elem = queryDOMForSkipToId(tgt.getAttribute('data-id'));
-          highlightElement(elem, this.highlightTarget);
+          this.highlightElem.highlight(elem, this.highlightTarget);
         }
         else {
-          removeHighlight();
+          this.highlightElem.removeHighlight();
         }
         event.stopPropagation();
         event.preventDefault();
@@ -5060,10 +5063,10 @@ div#skip-to-message.fade {
           mi.classList.add('hover');
           if (mi.hasAttribute('data-id')) {
             const elem = queryDOMForSkipToId(mi.getAttribute('data-id'));
-            highlightElement(elem, this.highlightTarget);
+            this.highlightElem.highlight(elem, this.highlightTarget);
           }
           else {
-            removeHighlight();
+            this.highlightElem.removeHighlight();
           }
         }
 
@@ -5116,15 +5119,17 @@ div#skip-to-message.fade {
   const debug$1 = new DebugLogging('skiptoContent', false);
   debug$1.flag = false;
 
+  /* @class SkipToContent574
+   *
+   */
 
-  class SkipToContent573 extends HTMLElement {
+  class SkipToContent574 extends HTMLElement {
 
     constructor() {
       // Always call super first in constructor
       super();
       this.attachShadow({ mode: 'open' });
-      this.skipToId = 'id-skip-to';
-      this.version = "5.7.3";
+      this.version = "5.7.4";
       this.buttonSkipTo = false;
       this.initialized = false;
 
@@ -5281,7 +5286,7 @@ div#skip-to-message.fade {
 
     static get observedAttributes() {
       return [
-        "data-skipto",
+        ATTR_SKIP_TO_DATA,
         "setfocus",
         "type",
         "shortcuts",
@@ -5291,7 +5296,7 @@ div#skip-to-message.fade {
 
     attributeChangedCallback(name, oldValue, newValue) {
 
-      if (name === 'data-skipto') {
+      if (name === ATTR_SKIP_TO_DATA) {
         this.config = this.setupConfigFromDataAttribute(this.config, newValue);
       }
 
@@ -5356,9 +5361,9 @@ div#skip-to-message.fade {
         }
 
         // Check for data-skipto attribute values for configuration
-        const configElem = document.querySelector('[data-skipto]');
+        const configElem = document.querySelector(`[${ATTR_SKIP_TO_DATA}]`);
         if (configElem) {
-          const params = configElem.getAttribute('data-skipto');
+          const params = configElem.getAttribute(ATTR_SKIP_TO_DATA);
           this.config  = this.setupConfigFromDataAttribute(this.config, params);
         }
 
@@ -5463,19 +5468,28 @@ div#skip-to-message.fade {
       }
 
       renderStyleElement(this.shadowRoot, config, this.skipToId);
+
       if (this.buttonSkipTo) {
         this.buttonSkipTo.updateLabels(config);
         this.buttonSkipTo.setDisplayOption(config['displayOption']);
       }
 
-      const infoDialog = document.querySelector('skip-to-shortcuts-info-dialog');
+      const infoDialog = document.querySelector(INFO_DIALOG_ELEMENT_NAME);
+      debug$1.flag && debug$1.log(`[infoDialog]: ${infoDialog}`);
       if (infoDialog) {
         infoDialog.configureStyle(config);
       }
 
-      const shortcutsMessage = document.querySelector('skip-to-shortcuts-message');
+      const shortcutsMessage = document.querySelector(MESSAGE_ELEMENT_NAME);
+      debug$1.flag && debug$1.log(`[shortcutMessage]: ${shortcutsMessage}`);
       if (shortcutsMessage) {
         shortcutsMessage.configureStyle(config);
+      }
+
+      const highlight = document.querySelector(HIGHLIGHT_ELEMENT_NAME);
+      debug$1.flag && debug$1.log(`[highlight]: ${highlight}`);
+      if (highlight) {
+        highlight.configureStyle(config);
       }
 
       return config;
@@ -5508,13 +5522,6 @@ div#skip-to-message.fade {
 
   (function() {
 
-  const SkipToPageElmName        = 'skip-to-content';
-  const SkipToBookmarkletElmName = 'skip-to-content-bookmarklet';
-  const SkipToExtensionElmName   = 'skip-to-content-extension';
-
-  const SkipToExtensionID   = `id-skip-to-extension`;
-  const SkipToBookmarkletID = `id-skip-to-bookmarklet`;
-
     /*
     *  @function removeLegacySkipToJS
     *
@@ -5532,10 +5539,22 @@ div#skip-to-message.fade {
         }
       }
 
+      function removeElementsWithName(name) {
+        let nodes = document.getElementsByTagName(name);
+        // do more than once in case of duplicates
+        for(let i = 0; i < nodes.length; i += 1) {
+          const node = nodes[i];
+          console.warn(`[SkipTo.js]: Removing legacy 5.x component: ${name}`);
+          node.remove();
+        }
+      }
+
       // Remove 5.x legacy code
       removeElementsWithId('id-skip-to');
       removeElementsWithId('id-skip-to-css');
       removeElementsWithId('id-skip-to-highlight');
+
+      removeElementsWithName('skip-to-shortcuts-message');
 
       // Remove 4.x
       const nodes = document.querySelectorAll('div.skip-to');
@@ -5552,7 +5571,7 @@ div#skip-to-message.fade {
     *  @desc Removes duplicate versions of SkipTo.js
     */
     function removePageSkipTo() {
-      const nodes = document.querySelectorAll(SkipToPageElmName);
+      const nodes = document.querySelectorAll(PAGE_SCRIPT_ELEMENT_NAME);
       debug.flag && debug.log(`[removePageSkipTo]: ${nodes.length}`);
       for (let i = 0; i < nodes.length; i += 1) {
         nodes[i].remove();
@@ -5566,7 +5585,7 @@ div#skip-to-message.fade {
     *  @desc Removes duplicate versions of SkipTo.js
     */
     function removeBookmarkletSkipTo() {
-      const nodes = document.querySelectorAll(SkipToBookmarkletElmName);
+      const nodes = document.querySelectorAll(BOOKMARKLET_ELEMENT_NAME);
       debug.flag && debug.log(`[removeBookmarkletSkipTo]: ${nodes.length}`);
       for (let i = 0; i < nodes.length; i += 1) {
         nodes[i].remove();
@@ -5587,9 +5606,9 @@ div#skip-to-message.fade {
 
       removeLegacySkipToJS();
 
-      const isExtensionLoaded   = document.querySelector(SkipToExtensionElmName);
-      const isBookmarkletLoaded = document.querySelector(SkipToBookmarkletElmName);
-      const isPageLoaded        = document.querySelector(SkipToPageElmName);
+      const isExtensionLoaded   = document.querySelector(EXTENSION_ELEMENT_NAME);
+      const isBookmarkletLoaded = document.querySelector(BOOKMARKLET_ELEMENT_NAME);
+      const isPageLoaded        = document.querySelector(PAGE_SCRIPT_ELEMENT_NAME);
 
       let skipToContentElem = false;
 
@@ -5598,8 +5617,8 @@ div#skip-to-message.fade {
           if (!isExtensionLoaded) {
             if (!isBookmarkletLoaded) {
               removePageSkipTo();
-              window.customElements.define(SkipToBookmarkletElmName, SkipToContent573);
-              skipToContentElem = document.createElement(SkipToBookmarkletElmName);
+              window.customElements.define(BOOKMARKLET_ELEMENT_NAME, SkipToContent574);
+              skipToContentElem = document.createElement(BOOKMARKLET_ELEMENT_NAME);
               skipToContentElem.setAttribute('version', skipToContentElem.version);
               skipToContentElem.setAttribute('type', type);
               // always attach SkipToContent element to body
@@ -5614,11 +5633,10 @@ div#skip-to-message.fade {
           if (!isExtensionLoaded) {
             removePageSkipTo();
             removeBookmarkletSkipTo();
-            window.customElements.define(SkipToExtensionElmName, SkipToContent573);
-            skipToContentElem = document.createElement(SkipToExtensionElmName);
+            window.customElements.define(EXTENSION_ELEMENT_NAME, SkipToContent574);
+            skipToContentElem = document.createElement(EXTENSION_ELEMENT_NAME);
             skipToContentElem.setAttribute('version', skipToContentElem.version);
             skipToContentElem.setAttribute('type', type);
-            skipToContentElem.setAttribute('about', 'false');
             // always attach SkipToContent element to body
             if (document.body) {
               document.body.insertBefore(skipToContentElem, document.body.firstElementChild);
@@ -5628,8 +5646,8 @@ div#skip-to-message.fade {
 
         default:
           if (!isPageLoaded && !isBookmarkletLoaded && !isExtensionLoaded) {
-            window.customElements.define(SkipToPageElmName, SkipToContent573);
-            skipToContentElem = document.createElement(SkipToPageElmName);
+            window.customElements.define(PAGE_SCRIPT_ELEMENT_NAME, SkipToContent574);
+            skipToContentElem = document.createElement(PAGE_SCRIPT_ELEMENT_NAME);
             skipToContentElem.setAttribute('version', skipToContentElem.version);
             skipToContentElem.setAttribute('type', type);
             // always attach SkipToContent element to body
@@ -5643,7 +5661,7 @@ div#skip-to-message.fade {
     }
 
     // Check for SkipTo.js bookmarklet script, if it is initialize it immediately
-    if (document.getElementById(SkipToBookmarkletID)) {
+    if (document.getElementById(SCRIPT_BOOKMARKLET_ID)) {
       debug.flag && debug.log(`[bookmarklet]`);
       const skipToContentBookmarkletElem = getSkipToContentElement('bookmarklet');
       if (skipToContentBookmarkletElem) {
@@ -5654,7 +5672,7 @@ div#skip-to-message.fade {
     }
     else {
       // Check for SkipTo.js extension script, if it is initialize it immediately
-      if (document.getElementById(SkipToExtensionID)) {
+      if (document.getElementById(SCRIPT_EXTENSION_ID)) {
         debug.flag && debug.log(`[extension]`);
         const skipToContentExtensionElem = getSkipToContentElement('extension');
         if (skipToContentExtensionElem) {
