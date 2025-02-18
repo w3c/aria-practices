@@ -629,9 +629,25 @@ button.color-scheme[role="switch"] svg circle.off {
       <section id="forced-colors">
         <h2>Contrast Themes (Forced Colors)</h2>
 
-        <p>The <code>forced-colors</code> CSS media query provides a means for components to use the color preferences of people with visual impairments.   When the user chooses a contrast theme in the operating system (i.e. in <a href="https://support.microsoft.com/en-us/windows/change-color-contrast-in-windows-fedc744c-90ac-69df-aed5-c8a90125e696">Windows 11 Accessibility Settings &gt; Contrast Theme</a>), browsers set the <code>forced-colors</code> property to <code>active</code>.  When forced colors are active the browser overrides any author styling and applies the system color associated with the theme to each element.  Match the user's styling preferences based on the semantics features of custom components. For example text used in custom components for labels and instructions should use the same colors as the users theme for text content.  Components that behave as links need to match the theme styling for links and interactive components should be based on the styling used for buttons, textbox and range controls for their features.</p>
+        <p>
+          The <code>forced-colors</code> CSS media query provides a means for components to use the color preferences of people with visual impairments.
+          When the user chooses a contrast theme in the operating system (i.e. in
+          <a href="https://support.microsoft.com/en-us/windows/change-color-contrast-in-windows-fedc744c-90ac-69df-aed5-c8a90125e696">Windows 11 Accessibility Settings &gt; Contrast Theme</a>
+          ), browsers set the <code>forced-colors</code> property to <code>active</code>.
+          When forced colors are active the browser overrides any author styling and applies the system color associated with the theme to each element.
+          Match the user's styling preferences based on the semantics features of custom components.
+          For example text used in custom components for labels and instructions should use the same colors as the users theme for text content.
+          Components that behave as links need to match the theme styling for links and interactive components should be based on the styling used for buttons, textbox and range controls for their features.
+        </p>
 
-        <p>Authors can use either <code>currentcolor</code> or <code>&lt;system-colors&gt;</code> CSS values for components to adapt to appropriate colors in the contrast theme.  The following two tables demonstrate the colors for the built-in contrast themes in Windows 11.  Each contrast theme in Windows 10 and 11 define 8 colors associated with user interface features.  The first table identifies the user interface features and the colors associated with each feature for the four default Contrast Themes.  The second table shows how HTML content is rendered in the Windows 11 Aquatic, Desert and Night Sky Contrast Themes.  Note that there are some slight variations in how Mozilla (e.g. Firefox) and Chromium (e.g. Chrome, Edge, Opera...) based browsers will render HTML controls, for example the <code>input[type="range']</code> control.</p>
+        <p>
+          Authors can use either <code>currentcolor</code> or <code>&lt;system-colors&gt;</code> CSS values for components to adapt to appropriate colors in the contrast theme.
+          The following two tables demonstrate the colors for the built-in contrast themes in Windows 11.
+          Each contrast theme in Windows 10 and 11 defines 8 colors associated with user interface features.
+          The first table identifies the user interface features and the colors associated with each feature for the four default Contrast Themes.
+          The second table shows how HTML content is rendered in the Windows 11 Aquatic, Desert and Night Sky Contrast Themes.
+          Note that there are some slight variations in how Mozilla (e.g. Firefox) and Chromium (e.g. Chrome, Edge, Opera...) based browsers will render HTML controls, for example the <code>input[type="range']</code> control.
+        </p>
 
         <table class="data">
           <caption>Contrast Themes Colors for Windows 11</caption>
