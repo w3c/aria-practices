@@ -1160,38 +1160,42 @@ button.color-scheme[role="switch"] {
 
         <pre>
           <code>
-....
+button.current-color[role="switch"] {
+  svg {
+    rect {
+      fill-opacity: 0;
+      stroke-width: 2;
+      stroke: currentcolor;
+    }
 
-button.current-color[role="switch"] svg rect {
-  fill-opacity: 0;
-  stroke-width: 2;
-  stroke: currentcolor;
+    circle {
+      stroke: currentcolor;
+      fill: currentcolor;
+      fill-opacity: 1;
+
+      &.off {
+        display: block;
+      }
+
+      &.on {
+        display: none;
+      }
+    }
+  }
+
+  &[aria-checked="true"] {
+    svg circle {
+      &.off {
+        display: none;
+      }
+
+      &.on {
+        color: green;
+        display: block;
+      }
+    }
+  }
 }
-
-button.current-color[role="switch"] svg circle.off {
-  display: block;
-  stroke: currentcolor;
-  fill: currentcolor;
-  fill-opacity: 1;
-}
-
-button.current-color[role="switch"][aria-checked="true"] svg circle.off {
-  display: none;
-}
-
-button.current-color[role="switch"] svg circle.on {
-  display: none;
-}
-
-button.current-color[role="switch"][aria-checked="true"] svg circle.on {
-  color: green;
-  display: block;
-  stroke-color: currentcolor;
-  fill: currentcolor;
-  fill-opacity: 1;
-}
-
-....
           </code>
         </pre>
 
