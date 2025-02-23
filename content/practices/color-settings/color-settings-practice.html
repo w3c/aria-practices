@@ -356,28 +356,31 @@
 
         <pre>
           <code>
-  @media (prefers-contrast: more) {
+@media (prefers-contrast: more) {
+  button[role="switch"] {
+    background-color: #eeeeee;
+    color: #000;
 
-    button[role="switch"] {
-      background-color: #eeeeee;
+    .label {
       color: #000;
     }
 
-    button[role="switch"] .label {
-      color: #000;
-    }
+    svg {
+      rect {
+        fill: #0051A4;
+        stroke: #061d3a;
+      }
 
-    button[role="switch"] svg rect {
-      fill: #0051A4;
-      stroke: #061d3a;
-    }
-
-    button[role="switch"] svg circle.off,
-    button[role="switch"] svg circle.on {
-      stroke: #061d3a;
-      fill: #fff;
+      circle {
+        &.off,
+        &.on {
+          stroke: #061d3a;
+          fill: #fff;
+        }
+      }
     }
   }
+}
           </code>
         </pre>
 
