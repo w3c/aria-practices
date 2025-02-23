@@ -555,35 +555,35 @@ button.color-scheme[role="switch"] {
   text-align: left;
   background-color: light-dark(#e9e9e9, #333);
   color: light-dark(#242424, #fff);
+
+  .label {
+    position: relative;
+    top: -3px;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    width: 10em;
+    vertical-align: middle;
+    color: light-dark(#242424, #fff);
+  }
+
+  svg {
+    rect {
+      fill: light-dark(#a1a1a1, #36c);
+      stroke-width: 2;
+      stroke: light-dark(#757575, #36c);
+    }
+
+    circle {
+      &.off {
+        display: block;
+        stroke: light-dark(#757575, #fff);
+        fill: light-dark(#fff, #fff);
+        fill-opacity: 1;
+      }
+    }
+  }
 }
-
-button.color-scheme[role="switch"] .label {
-  position: relative;
-  top: -3px;
-  display: inline-block;
-  padding: 0;
-  margin: 0;
-  width: 10em;
-  vertical-align: middle;
-  color: light-dark(#242424, #fff);
-}
-
-....
-
-button.color-scheme[role="switch"] svg rect {
-  fill: light-dark(#a1a1a1, #36c);
-  stroke-width: 2;
-  stroke: light-dark(#757575, #36c);
-}
-
-button.color-scheme[role="switch"] svg circle.off {
-  display: block;
-  stroke: light-dark(#757575, #fff);
-  fill: light-dark(#fff, #fff);
-  fill-opacity: 1;
-}
-
-....
           </code>
         </pre>
 
