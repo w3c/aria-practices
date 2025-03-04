@@ -93,10 +93,12 @@
                 </ul>
               </td>
               <td>
-                Browsers do not provide a way for authors to determine whether a user has the setting for invert colors enabled.
-                For content to render well when invert colors is enabled,
-                ensure it meets the minimum color requirements specified by
-                <a href="https://www.w3.org/TR/WCAG22/">Web Content Accessibility Guidelines</a> (WCAG).
+                <p>
+                  When this setting is enabled, some browsers set the CSS media query <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/inverted-colors"><code>inverted-colors</code></a> to <code>invert</code>.  Inverting of colors can have unpleasant side effects, such as shadows turning into highlights, which can reduce the readability of the content, use gradients instead.
+                </p>
+                <p>
+                  For content to render well when invert colors is enabled, ensure it meets the minimum color requirements specified by <a href="https://www.w3.org/TR/WCAG22/">Web Content Accessibility Guidelines</a> (WCAG) and avoid using shadows.
+                </p>
               </td>
             </tr>
             <tr>
@@ -179,17 +181,25 @@
           The invert colors accessibility setting is an operating system feature that automatically transforms all rendered colors to their opposite.
           For example, content rendered as white is changed to black.
           Content styled as blue is rendered as a brown, i.e., a mixture of red and green.
-          CSS does not provide a media query that enables authors to determine whether invert colors is enabled in the operating system.
+          The <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/inverted-colors"><code>inverted-colors: inverted</code></a> CSS media query can be used to detect when the user setting for inverting colors, but it is not widely supported in browsers.
         </p>
-        <p>
-          For content to render well when invert colors is enabled, ensure it meets
-          <a href="https://www.w3.org/TR/WCAG22/#contrast-minimum">WCAG 1.4.3: Contrast (Minimum)</a>.
-        </p>
+
+        <p>To support the invert colors setting:</p>
+        <ol>
+          <li>
+            Develop a default color scheme that meets
+          <a href="https://www.w3.org/TR/WCAG22/#contrast-minimum">WCAG 1.4.3: Contrast (Minimum)</a> requirement.
+          </li>
+          <li>Avoid using shadow styling, use gradients instead.</li>
+        </ol>
+
+        <h3 id="invert-colors-example">Invert Colors Example</h3>
+
         <p>
           The following example illustrates how a <code>switch</code> element is rendered on macOS both when invert colors is disabled and enabled.
         </p>
-        <table class="data">
-          <caption>Invert Colors Example: Button Switch</caption>
+
+        <table class="data" aria-labelledby="invert-colors-example">
           <thead>
             <tr>
               <th>Setting</th>
@@ -225,6 +235,7 @@
           <li>When the the <code>prefers-contrast</code> media query changes from <code>no-preference</code> to <code>more</code>, render content using the increased contrast color scheme.</li>
         </ol>
         <p>Note: Operating systems that support the <code>forced-colors</code> media query set <code>prefers-contrast</code> to <code>custom</code> when the <code>forced-colors</code> is set to <code>active</code>.  </p>
+
         <h3 id="prefers-contrast-example">Increase Contrast Example</h3>
         <p> Enable the "increased contrast" feature on your device, and color contrast ratios in the below example will change:</p>
         <ul>
@@ -402,13 +413,34 @@
           The color scheme known as dark mode is used by people in dark settings, e.g. at night, because it can make content easier to read or be less disruptive to others.
           While such use cases were primary drivers of its development, dark mode also significantly improves accessibility for many people with visual impairments.
         </p>
-        <p>
-          To support dark mode, develop styles for dark text on a light background and light text on a dark background.  The CSS <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark"><code>light-dark</code> function</a> or a CSS <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme">media query <code>prefers-color-scheme</code></a>, the media query identifies the current color scheme by returning <code>light</code> or <code>dark</code>.
-        </p>
-        <p>
-          Ensure the text content and components of both color schemes meet or exceed the color contrast ratios specified by
-          <a href="https://www.w3.org/TR/WCAG21/#contrast-minimum">WCAG 1.4.3: Contrast (Minimum)</a>.
-        </p>
+
+        <p>To support the increase contrast setting:</p>
+        <ol>
+          <li>
+            To support dark mode, develop styles for dark text on a light background and light text on a dark background.  The CSS <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark"><code>light-dark</code> function</a> or a CSS <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme">media query <code>prefers-color-scheme</code></a>, the media query identifies the current color scheme by returning <code>light</code> or <code>dark</code>.
+          </li>
+          <li>
+            Choose color palettes that are easy to read in both light and dark modes.
+          </li>
+          <li>
+            Instead of shadow styling use highlights and gradients, since shadow styling is difficult to perceive in dark mode.
+          </li>
+          <li>
+            Use CSS filters on images to reduce their brightness to make them easier to view in dark mode (*** is this advice we want to give? ***).
+          </li>
+          <li>
+            Ensure the text content and components of both color schemes meet or exceed the color contrast ratios specified by
+            <a href="https://www.w3.org/TR/WCAG21/#contrast-minimum">WCAG 1.4.3: Contrast (Minimum)</a>.
+          </li>
+        </ol>
+
+        <p>Dark mode design resources:</p>
+        <ul>
+          <li><a href="https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/#design">CSS-Tricks: Dark Mode in CSS Guide</a></li>
+          <li><a href="https://www.uxdesigninstitute.com/blog/dark-mode-design-practical-guide/">UX Design Institute: How to design for dark mode: a practical guide</a></li>
+          <li><a href="https://medium.com/@tundehercules/designing-effective-dark-mode-interfaces-17f38ecea2e9">Medium: How to Design Accessible Dark Mode Interfaces</a></li>
+        </ul>
+
         <h3 id="color-scheme-switch">Color Scheme Example: Switch</h3>
         <p>
           The below example of a switch shows how colors can change when users switch color schemes.  
@@ -649,7 +681,7 @@ button.color-scheme[role="switch"] {
         </p>
 
         <p>
-          Authors can use either <code>currentcolor</code> or <code>&lt;system-colors&gt;</code> CSS values for components to adapt to appropriate colors in the contrast theme.
+          Authors should use <code>&lt;system-colors&gt;</code> CSS values for components to adapt to appropriate colors in the contrast theme.
           The following two tables demonstrate the colors for the built-in contrast themes in Windows 11.
           Each contrast theme in Windows 10 and 11 defines 8 colors associated with user interface features.
           The first table identifies the user interface features and the colors associated with each feature for the four default Contrast Themes.
@@ -911,311 +943,28 @@ button.color-scheme[role="switch"] {
           </tbody>
         </table>
 
-        <h3>Current Color vs. System Colors</h3>
-
-        <p>Current color can be used when the custom component is based on existing HTML elements and the system color matches the semantics of the features of the component.  For example, the following section includes a switch component example using the <code>button</code> element.   The <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value"><code>currentcolor</code> value</a> is used for styling the SVG elements to ensure they use same color as the button element for borders, fill, stroke and text.  Another advantage of using <code>currentcolor</code> is it can often be used without including a <code>forced-colors: active</code> media query, simplifying CSS code. One concern of using current color is there is no direct control of the background color, so care must be taken to ensure the background color of the ancestor element is visible and provides sufficient contrast for the features of the custom component.  If there is not sufficient contrast, a media query will be needed an an appropriate background system color defined.</p>
-
-        <p>System colors values should be used when the custom elements are built using elements whose current color does not match the semantics of the custom component and when <code>currentcolor</code> is insufficient for matching the styling needs of the component to make its features discernible.  Using System colors allows for setting both foreground and background colors and making features of the custom component identifiable.  For example using <code>div</code> elements to build a custom slider component.  If the <code>currentColor</code> value is used the <code>div</code> elements cause the features of the slider to be rendered using the <code>CanvasText</code> color, when the slider features should be rendered using <code>ButtonBorder</code>, <code>ButtonFace</code> and <code>ButtonText</code>. System Colors require using the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors"><code>forced-colors: active</code> media query</a> to ensure the system colors are only used to override the authors theme when the use reenables a Contrast Theme.</p>
-
-       <table class="data">
-          <caption>Summary of Current Color vs. System Color for Interactive Components</caption>
-          <thead>
-            <tr>
-              <th style="width: 7em">Technique</th>
-              <th>Media Query</th>
-              <th>Features/Use</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                Current Color
-              </td>
-              <td>
-                <em>Optional</em>
-              </td>
-              <td>
-                <ul class="compact">
-                  <li>Custom components based HTML form controls which defines the use of the <code>ButtonText</code> value for <code>currentColor</code>.</li>
-                  <li>Mono-color styling of component features.</li>
-                  <li>Media query only needed if background contrast issues are identified.</li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                System Colors
-              </td>
-              <td>
-                Required
-              </td>
-              <td>
-                <ul class="compact">
-                  <li>Multi-color styling of component features.</li>
-                  <li>Most custom components will be based on <code>ButtonFace</code>, <code>ButtonBorder</code> and <code>ButtonText</code> values.</li>
-                  <li>Use <code>Highlight</code> or <code>ActiveText</code> values to make component features easier to identify.</li>
-                  <li>For components with select-able text, use <code>Field</code> and <code>FieldText</code> to identify selections.</li>
-                  <li>Disabled components should use the <code>GrayText</code> value.</li>
-
-                </ul>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h4 id="compare-switch-examples">Comparing Switch Examples</h4>
-
-        <p>The switch examples for <code>currentcolor</code> and <code>&lt;system-colors&gt;</code> have very similar code.  The main difference in the HTML code is the Current Color example is based on using the <code>button</code> element and the system color example is based on a <code>div</code> element.  Both user the <code>role</code> attribute with the value <code>switch</code> to identify the custom component as a switch.  The descendant elements include <code>span</code> elements for the labels, an SVG <code>rect</code> element for the focus ring and two SVG <code>circle</code> elements to identify the on and off states of the switch.</p>
-
-        <p>The following tables describe the differences in the CSS code for switch examples using current color and system colors.  The system color example is able to use more colors to style the features of the switch, for example the <code>fill</code> of the off state SVG <code>circle</code> uses the <code>GrayText</code> system color and the <code>circle</code> for the on state is styled using <code>ActiveText</code>.</p>
-
-       <table class="data">
-          <caption>Switch Label</caption>
-          <thead>
-            <tr>
-              <th rowspan="2" style="width: 5em">Example</th>
-              <th colspan="2">Label Spans</th>
-            </tr>
-            <tr>
-              <th class="exampleColor">Background-Color</th>
-              <th class="exampleColor">Color</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <a href="#currentcolor-example">
-                  <code>button[role="switch"]</code>
-                </a>
-              </td>
-              <td>Opacity 0</td>
-              <td>CurrentColor</td>
-            </tr>
-            <tr>
-              <td>
-                <a href="#forced-colors-example-switch">
-                  <code>div[role="switch"]</code>
-                </a>
-              </td>
-              <td>ButtonFace</td>
-              <td>ButtonText</td>
-            </tr>
-          </tbody>
-        </table>
-
-       <table class="data">
-          <caption>Focus Ring</caption>
-          <thead>
-            <tr>
-              <th rowspan="2" style="width: 5em">Example</th>
-              <th colspan="2">Focus Ring SVG Rect</th>
-            </tr>
-            <tr>
-              <th>Stroke</th>
-              <th>Fill</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <a href="#currentcolor-example">
-                  <code>button[role="switch"]</code>
-                </a>
-              </td>
-              <td>Opacity 0</td>
-              <td>CurrentColor</td>
-            </tr>
-            <tr>
-              <td>
-                <a href="#forced-colors-example-switch">
-                  <code>div[role="switch"]</code>
-                </a>
-              </td>
-              <td>ButtonBorder</td>
-              <td>ButtonFace</td>
-            </tr>
-          </tbody>
-        </table>
-
-       <table class="data">
-          <caption>On/Off Switch Positions</caption>
-          <thead>
-            <tr>
-              <th rowspan="2" style="width: 5em">Example</th>
-              <th colspan="2">SVG Circle Off</th>
-              <th colspan="2">SVG Circle On</th>
-            </tr>
-            <tr>
-              <th>Stroke</th>
-              <th>Fill</th>
-              <th>Stroke</th>
-              <th>Fill</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <a href="#currentcolor-example">
-                  <code>button[role="switch"]</code>
-                </a>
-              </td>
-              <td>CurrentColor</td>
-              <td>CurrentColor</td>
-              <td>CurrentColor</td>
-              <td>CurrentColor</td>
-            </tr>
-            <tr>
-              <td>
-                <a href="#forced-colors-example-switch">
-                  <code>div[role="switch"]</code>
-                </a>
-              </td>
-              <td>ButtonText</td>
-              <td>GrayText</td>
-              <td>ButtonText</td>
-              <td>ActiveText</td>
-            </tr>
-          </tbody>
-        </table>
-
-
-        <h3>Using Current Color</h3>
-
-        <p>The <code>currentcolor</code> keyword provides a means for components to use the color value of the ancestor element to set the color properties of an element, making <code>currentcolor</code> a convenient means for custom components using existing form controls like <code>input</code> and <code>button</code> elements to adapt to changes in contrast themes.  When the user chooses a contrast theme the browser sets the <code>color</code> and <code>background-color</code> values of HTML elements and ignore any author styling.  When a component is based on a <code>button</code> or other HTML control the elements colors will be set to the users color preference and any descendant elements can inherit the color using the <code>currentcolor</code> value.  </p>
-
-        <p>The <code>currentcolor</code> can be used to set the CSS color of <code>color</code>, <code>border</code> and <code>outline</code> properties, and <code>stroke</code> and <code>fill</code> properties on SVG elements.  The <code>currentcolor</code> is often used without the <code>forced-colors</code> media query.</p>
-
-        <p>The limitation of using <code>currentColor</code> is that it only allows using one color for the features of a control.  The limitation becomes more apparent for more complex components that can benefit from multiple colors to make features of the component easier to perceive.</p>
-
-        <div class="support-notice">
-          <div class="caution"><strong>Caution:</strong>
-            There is no equivalent to the <code>currentcolor</code> value for setting the background color, so when using this technique it is important for verify the color contrast of the features of the component using <code>currentcolor</code> with the background color being rendered, this includes contrast of hover and focus events.
-          </div>
-        </div>
-
-        <h3 id="currentcolor-example">Current Color Example: Switch using <code>button[role="switch"]</code></h3>
-
-        <p>The button switch example uses <code>currentcolor</code> value to style the SVG elements indicating the on and off states.  Current color is derived from the <code>button</code> element (i.e. <code>ButtonText</code> system color) and applied to the <code>stroke</code> and <code>fill</code> properties of the <code>circle</code> elements. The SVG <code>rect</code> element has a transparent <code>fill-opacity</code> to show the background color of the <code>button</code> element (i.e. <code>ButtonFace</code> system color). </p>
-
-        <div class="example">
-          <button type="button" role="switch" aria-checked="false" class="current-color">
-            <span class="label">Living Room Lights</span>
-            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="36">
-              <rect class="container" x="1" y="1" width="34" height="18" rx="9" />
-              <circle class="off" cx="11"  cy="10" r="7" />
-              <circle class="on"  cx="25" cy="10" r="7" />
-            </svg>
-            <span class="on" aria-hidden="true">On</span>
-            <span class="off" aria-hidden="true">Off</span>
-          </button>
-          <button type="button" role="switch" aria-checked="false" class="current-color">
-            <span class="label">Outdoor Lights</span>
-            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="36">
-              <rect class="container" x="1" y="1" width="34" height="18" rx="9" />
-              <circle class="off" cx="11"  cy="10" r="7" />
-              <circle class="on"  cx="25" cy="10" r="7" />
-            </svg>
-            <span class="on" aria-hidden="true">On</span>
-            <span class="off" aria-hidden="true">Off</span>
-          </button>
-        </div>
-
-        <p>The following table shows how the graphical rendering changes for the switch using <code>currentColor</code> for some high contrast options. </p>
-
-        <table class="data">
-          <caption>Button Switch Example with Selected High Contrast User Settings in Windows 11</caption>
-          <thead>
-            <tr>
-              <th>Setting</th>
-              <th>Screen Shot</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Contrast Theme: none (default)</td>
-              <td>
-                <img class="theme-switch-button" src="./images/switch-button-default.png" alt="Screen shot of switch example with no contrast theme applied">
-              </td>
-            </tr>
-            <tr>
-              <td>Contrast Theme: Aquatic</td>
-              <td><img class="theme-switch-button"  src="./images/switch-button-aquatic.png" alt="Screen shot of switch example with aquatic contrast theme applied"></td>
-            </tr>
-            <tr>
-              <td>Contrast Theme: Desert</td>
-              <td>
-                <img class="theme-switch-button"  src="./images/switch-button-desert.png" alt="Screen shot of switch example with desert contrast theme applied">
-              </td>
-            </tr>
-            <tr>
-              <td>Contrast Theme: Night sky</td>
-              <td>
-                <img class="theme-switch-button"  src="./images/switch-button-night-sky.png" alt="Screen shot of switch example with night sky contrast theme applied">
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-       <h4>CSS Code using <code>currentcolor</code> value</h4>
-
-        <pre>
-          <code>
-button.current-color[role="switch"] {
-  svg {
-    rect {
-      fill-opacity: 0;
-      stroke-width: 2;
-      stroke: currentcolor;
-    }
-
-    circle {
-      stroke: currentcolor;
-      fill: currentcolor;
-      fill-opacity: 1;
-
-      &.off {
-        display: block;
-      }
-
-      &.on {
-        display: none;
-      }
-    }
-  }
-
-  &[aria-checked="true"] {
-    svg circle {
-      &.off {
-        display: none;
-      }
-
-      &.on {
-        color: green;
-        display: block;
-      }
-    }
-  }
-}
-          </code>
-        </pre>
-
-        <h3 id="currentcolor-examples">Examples using <code>currentcolor</code> keyword</h3>
-        <ul>
-          <li><a href="../../patterns/checkbox/examples/checkbox-mixed.html">Checkbox (Mixed-State)</a></li>
-          <li><a href="../../patterns/disclosure/examples/disclosure-faq.html">Disclosure (Show/Hide) for Answers to Frequently Asked Questions</a></li>
-          <li><a href="../../patterns/radio/examples/radio-activedescendant.html">Radio Group  Using aria-activedescendant</a></li>
-          <li><a href="../../patterns/slider/examples/slider-seek.html">Media Seek Slider</a></li>
-          <li><a href="../../patterns/slider/examples/slider-temperature.html">Vertical Temperature Slider</a></li>
-        </ul>
-
 
         <h3 id="using-system-colors">Using System Colors</h3>
 
-        <p>The use of <code>&lt;system-colors&gt;</code> provides a more robust way for custom components to use appropriate colors when users choose a contrast theme.  The best practice for using <code>&lt;system-colors&gt;</code> is in conjunction with the <code>forced-colors: active</code> media query, since using <code>&lt;system-colors&gt;</code> to exclusively specify component colors limits the styling and theming options of authors.</p>
+        <p>The use of <code>&lt;system-colors&gt;</code> to ensure custom custom components use appropriate colors when users choose a contrast theme.  The best practice for using <code>&lt;system-colors&gt;</code> is in conjunction with the <code>forced-colors: active</code> media query, since using <code>&lt;system-colors&gt;</code> to exclusively specify component colors limits the styling and theming options of authors.</p>
 
-        <p>Authors should use <code>&lt;system-colors&gt;</code> associated with the features and behaviors of the component.   Most interactive custom components should be using the <code>buttonBorder</code>, <code>ButtonFace</code> and <code>ButtonText</code> values.  For more complex components to differentiate component features consider using <code>Highlight</code> or <code>ActiveText</code> values to make the features easier to identify.  Disabled components should use <code>GrayText</code> to identify the disabled state.  See the <a href="#html-input-range-contrast-theme">HTML range slider</a> (e.g. <code>input[type="range"])</code>) for how other colors than just button colors are used in styling the slider and thumb features.</p>
+        <p>To support the increase contrast setting:</p>
+        <ol>
+          <li>
+            Authors should use <code>&lt;system-colors&gt;</code> associated with the features and behaviors of the component.
+          </li>
+          <li>
+            Most interactive custom components should be using the <code>buttonBorder</code>, <code>ButtonFace</code> and <code>ButtonText</code> values.
+          </li>
+          <li>
+            For more complex interactive components to differentiate component features consider using <code>Highlight</code> or <code>ActiveText</code> values to make the features easier to identify. See the <a href="#html-input-range-contrast-theme">HTML range slider</a> (e.g. <code>input[type="range"])</code>) for how other colors than just button colors are used in styling the slider and thumb features.
+          </li>
+          <li>
+            Disabled components should use <code>GrayText</code> to identify the disabled state.
+          </li>
+        </ol>
 
-        <table class="data">
+        <table class="data" aria-labelledby="using-system-colors">
           <caption>System Colors Associated with Component Features</caption>
           <thead>
             <tr>
@@ -1326,33 +1075,6 @@ button.current-color[role="switch"] {
             </tr>
           </tbody>
         </table>
-
-        <h3 id="computed-system-colors">System Color Support</h3>
-
-        <p>The following table identifies those system colors defined in <a href="https://www.w3.org/TR/css-color-4/#css-system-colors">CSS Color Module Level 4</a> which reliably support contrast themes in both Mozilla (e.g. Firefox) <em>and</em> Chromium (e.g. Chrome, Edge, Opera) based browsers.</p>
-        <p>The table also specifies and renders the specific color values which are commonly assigned by default, but these <strong>may vary</strong> between browsers and operating systems.</p>
-
-        <p>NOTE: Some system colors <em>not</em> in the table may support a contrast theme color in either Mozilla (e.g. Firefox) or Chromium (e.g. Chrome, Edge, Opera) based browsers, but not in both.  Only colors supported in both browsers are included in the table. </p>
-
-        <table aria-labelledby="system-colors" class="data">
-          <thead>
-            <tr>
-              <th>System Color</th>
-              <th>Contrast Theme Color</th>
-              <th>Computed Color</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody id="system-colors">
-          </tbody>
-        </table>
-
-        <h3 id="do-not-use-system-colors">System Colors that do not support Contrast Themes</h3>
-
-        <p>The following list of <code>&lt;system-colors&gt;</code> do not support contrast themes, since they do not render one of the contrast theme colors in both Mozilla (e.g. Firefox) and Chromium (e.g. Chrome, Edge, Opera) based browsers.</p>
-
-        <ul id="unsupported-system-colors">
-        </ul>
 
 
         <h3 id="forced-colors-example-switch">System Color Example: Switch using <code>div[role="switch"]</code></h3>
@@ -1501,6 +1223,33 @@ button.current-color[role="switch"] {
         <ul>
           <li><a href="../../patterns/feed/examples/feed.html">Feed</a></li>
           <li><a href="../../patterns/slider/examples/slider-rating.html">Rating Slider</a></li>
+        </ul>
+
+        <h3 id="computed-system-colors">Browser System Color Support</h3>
+
+        <p>The following table identifies those system colors defined in <a href="https://www.w3.org/TR/css-color-4/#css-system-colors">CSS Color Module Level 4</a> which reliably support contrast themes in both Mozilla (e.g. Firefox) <em>and</em> Chromium (e.g. Chrome, Edge, Opera) based browsers.</p>
+        <p>The table also specifies and renders the specific color values which are commonly assigned by default, but these <strong>vary</strong> between browsers and operating systems.</p>
+
+        <p>NOTE: Some system colors <em>not</em> in the table may support a contrast theme color in either Mozilla (e.g. Firefox) or Chromium (e.g. Chrome, Edge, Opera) based browsers, but not in both.  Only colors supported in both browsers are included in the table. </p>
+
+        <table aria-labelledby="system-colors" class="data">
+          <thead>
+            <tr>
+              <th>System Color</th>
+              <th>Contrast Theme Color</th>
+              <th>Computed Color</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody id="system-colors">
+          </tbody>
+        </table>
+
+        <h3 id="do-not-use-system-colors">System Colors that do not support Contrast Themes</h3>
+
+        <p>The following list of system colors do not support contrast themes, since they do not render one of the contrast theme colors in both Mozilla (e.g. Firefox) and Chromium (e.g. Chrome, Edge, Opera) based browsers.</p>
+
+        <ul id="unsupported-system-colors">
         </ul>
 
       </section>
