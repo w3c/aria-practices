@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Test Page: Contrast Themes</title>
+    <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
+    <link rel="stylesheet" href="../../shared/css/core.css">
+
+    <style>
+      .test-background {
+        background-image: url(./images/test-blue-sq.png);
+        color: white !important;
+      }
+
+      .test-gradient {
+        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+        color: white !important;
+      }
+
+    </style>
+
+  </head>
+  <body>
+    <main>
+      <h1>Test Page: Contrast Themes</h1>
+
+    <table class="data">
+      <caption>Background Images</caption>
+      <thead>
+        <tr>
+          <th>Test</th>
+          <th>Test Content</th>
+          <th>Firefox</th>
+          <th>Chrome</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            Background image on <code>div</code> element.
+          </td>
+          <td>
+            <div  class="test-background">
+              Text Content
+            </div>
+          </td>
+          <td>
+            ???
+          </td>
+          <td>
+            ???
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Background image on <code>a</code> element.
+          </td>
+          <td>
+            <a href="#"  class="test-background">
+              Link 1
+            </a>
+          </td>
+          <td>
+            ???
+          </td>
+          <td>
+            ???
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Background image on <code>button</code> element.
+          </td>
+          <td>
+            <button class="test-background">
+              Button 1
+            </button>
+          </td>
+          <td>
+            ???
+          </td>
+          <td>
+            ???
+          </td>
+        </tr>
+      </tbody>
+    </thead>
+
+    <table class="data">
+      <caption>Gradients</caption>
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Test Content</th>
+          <th>Firefox</th>
+          <th>Chrome</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            Gradient on <code>div</code> element.
+          </td>
+          <td>
+            <div  class="test-gradient">
+              Text Content
+            </div>
+          </td>
+          <td>
+            ???
+          </td>
+          <td>
+            ???
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Gradient on <code>a</code> element.
+          </td>
+          <td>
+            <a href="#"  class="test-gradient">
+              Link 1
+            </a>
+          </td>
+          <td>
+            ???
+          </td>
+          <td>
+            ???
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Gradient on <code>button</code> element.
+          </td>
+          <td>
+            <button class="test-gradient">
+              Button 1
+            </button>
+          </td>
+          <td>
+            ???
+          </td>
+          <td>
+            ???
+          </td>
+        </tr>
+      </tbody>
+    </thead>
+
+    <table class="data">
+      <caption>Current Color Inheritance</caption>
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Test Content</th>
+          <th>Firefox</th>
+          <th>Chrome</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            Descendant <code>span</code> with blue text color in <code>a</code> element.
+          </td>
+          <td>
+            <a href="#">
+              Link 1 <span style="color: green">span content</span>
+            </a>
+          </td>
+          <td>
+            ???
+          </td>
+          <td>
+            ???
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Descendant <code>SVG</code> using blue color value in <code>a</code> element.
+          </td>
+          <td>
+            <a href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" height="20" width="36">
+                <rect fill='#888' x="1" y="1" width="34" height="18" rx="9" />
+                <circle stroke="blue" fill="blue" cx="11"  cy="10" r="8" />
+              </svg>
+            </a>
+          </td>
+          <td>
+            ???
+          </td>
+          <td>
+            ???
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            Descendant <code>span</code> with blue text color in <code>button</code> element.
+          </td>
+          <td>
+            <button>
+              Button 1 <span style="color: green">span content</span>
+            </button>
+          </td>
+          <td>
+            ???
+          </td>
+          <td>
+            ???
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Descendant <code>SVG</code> using blue color value in <code>button</code> element.
+          </td>
+          <td>
+            <button>
+              <svg xmlns="http://www.w3.org/2000/svg" height="20" width="36">
+                <rect fill='#888' x="1" y="1" width="34" height="18" rx="9" />
+                <circle stroke="blue" fill="blue" cx="11"  cy="10" r="8" />
+              </svg>
+            </button>
+          </td>
+          <td>
+            ???
+          </td>
+          <td>
+            ???
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </main>
+  </body>
+</html>
