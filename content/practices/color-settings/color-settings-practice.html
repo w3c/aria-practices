@@ -1267,7 +1267,23 @@ button.color-scheme[role="switch"] {
 
         <p>SVG graphics can respond to contrast related media queries including <code>prefers-contrast</code>, <code>prefers-color-scheme</code> and <code>forced-colors</code> to change the styling of components.  SVG provides smooth scaling of the graphics as the size of components are adjusted using browser zoom features. SVG elements can also adapt to a wide variety of screen sizes and load faster due to their smaller size than equivalent bit-mapped images.</p>
 
-        <p>Note: Include <code>forced-color-adjust=auto</code> CSS property on the SVG element to ancestor colors are applied to SVG elements, due to inconsistencies in browsers setting the default value to <code>auto</code>.</p>
+        <h4>Using Current Color to Support Contrast Themes</h4>
+
+        <p>
+          When SVG elements are used in custom components the <code>currentcolor</code> value can be used on SVG <code>fill</code> and <code>stroke</code> properties to inherit color styling from ancestor elements, reducing the use media queries to update styling based on changes to user color settings.
+        </p>
+
+        <p>APG Examples using <code>currentcolor</code>:</p>
+
+        <ul>
+          <li><a href="../../patterns/checkbox/examples/checkbox-mixed/">Checkbox (Mixed-State)</a></li>
+          <li><a href="../../patterns/disclosure/examples/disclosure-faq/">Disclosure (Show/Hide) for Answers to Frequently Asked Questions</a></li>
+          <li><a href="../../patterns/radio/examples/radio-activedescendant/">Radio Group  Using aria-activedescendant</a></li>
+          <li><a href="../../patterns/slider/examples/slider-seek/">Media Seek Slider</a></li>
+          <li><a href="../../patterns/slider/examples/slider-temperature/">Vertical Temperature Slider</a></li>
+        </ul>
+
+
 
         <table class="data">
           <caption>Summary of SVG vs. Bit-Mapped Features</caption>
@@ -1281,12 +1297,12 @@ button.color-scheme[role="switch"] {
           <tbody>
             <tr>
               <th>Scale to Screen Size</th>
-              <td>No</td>
+              <td>Distortion<sup>1</sup></td>
               <td>Yes</td>
             </tr>
             <tr>
               <th>Smooth Zooming</th>
-              <td>Distortion</td>
+              <td>Distortion<sup>1</sup></td>
               <td>Yes</td>
             </tr>
             <tr>
@@ -1296,6 +1312,8 @@ button.color-scheme[role="switch"] {
             </tr>
           </tbody>
         </table>
+
+        <p><sup>1</sup> Distortion dependent on image quality and rendering dimensions.</p>
 
       </section>
 
