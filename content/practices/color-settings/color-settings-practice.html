@@ -1267,10 +1267,10 @@ button.color-scheme[role="switch"] {
 
         <p>SVG graphics can respond to contrast related media queries including <code>prefers-contrast</code>, <code>prefers-color-scheme</code> and <code>forced-colors</code> to change the styling of components.  SVG provides smooth scaling of the graphics as the size of components are adjusted using browser zoom features. SVG elements can also adapt to a wide variety of screen sizes and load faster due to their smaller size than equivalent bit-mapped images.</p>
 
-        <h4>Using Current Color to User Color Settings</h4>
+        <h4>Using Current Color Value</h4>
 
         <p>
-          When SVG elements are used in custom components the <code>currentcolor</code> value can be used on SVG <code>fill</code> and <code>stroke</code> properties to inherit color styling from ancestor elements to reduce the use media queries.  It is important that SVG components match the styling of other features of the custom component when user selects a color setting, for example applying a Contrast Theme in Microsoft Windows.
+          When SVG elements are used in custom components the <code>currentcolor</code> value can be used on SVG <code>fill</code> and <code>stroke</code> properties to inherit color styling from ancestor elements, reducing the need for media queries to update colors.  SVG should match the color styling of other features of the custom component based on user settings, for example applying a Contrast Theme in Microsoft Windows.
         </p>
 
         <p>Examples using current color:</p>
