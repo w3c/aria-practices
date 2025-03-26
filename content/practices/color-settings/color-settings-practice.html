@@ -94,7 +94,9 @@
               </td>
               <td>
                 <p>
-                  When this setting is enabled, some browsers set the CSS media query <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/inverted-colors"><code>inverted-colors</code></a> to <code>invert</code>.  Inverting of colors can have unpleasant side effects, such as shadows turning into highlights, which can reduce the readability of the content, use gradients instead.
+                  When this setting is enabled, some browsers set the CSS media query <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/inverted-colors"><code>inverted-colors</code></a> to <code>invert</code>.
+                </p>
+                <p>Inverting of colors can have unpleasant side effects, such as shadows turning into highlights, which can reduce the readability of the content, use gradients instead.
                 </p>
                 <p>
                   For content to render well when invert colors is enabled, ensure it meets the minimum color requirements specified by <a href="https://www.w3.org/TR/WCAG22/">Web Content Accessibility Guidelines</a> (WCAG) and avoid using shadows.
@@ -666,27 +668,9 @@ button.color-scheme[role="switch"] {
 
         <p>
           Contrast themes are an operating system accessibility feature that automatically forces all native apps and web content to render using an alternative color theme chosen by the user.
-          Some of the themes are designed to provide extra high contrast, and users can customize their chosen color theme.
+          Themes are designed to provide extra high contrast, and users can customize their chosen color theme.
           Browsers automatically replace each author specified color with one of a small set of colors specified by the user's chosen theme based on the type of HTML element.
-          The replacement color used by a browser for a specific element usually corresponds to one of the system colors described below.  In addition to forcing color changes the browser also ignores background images and gradients.
-        </p>
-        <p>
-          Note that ARIA attributes do not inform replacement color selection, e.g., a <code>div</code> with role <code>button</code> renders with text colors, not button colors.
-          When the user chooses a contrast theme, such as described by
-          <a href="https://support.microsoft.com/en-us/windows/change-color-contrast-in-windows-fedc744c-90ac-69df-aed5-c8a90125e696">Windows 11 Accessibility Settings &gt; Contrast Theme</a>,
-          browsers set the <code>forced-colors</code> property to <code>active</code>.
-          When using ARIA to alter the semantics of elements, specify system colors that match the semantics.
-          For example text used in custom components for labels and instructions should use the same colors as the users theme for text content.
-          Components that behave as links need to match the theme styling for links and interactive components should be based on the styling used for buttons, textbox and range controls for their features.
-        </p>
-
-        <p>
-          Authors should use <code>&lt;system-colors&gt;</code> CSS values for components to adapt to appropriate colors in the contrast theme.
-          The following two tables demonstrate the colors for the built-in contrast themes in Windows 11.
-          Each contrast theme in Windows 10 and 11 defines 8 colors associated with user interface features.
-          The first table identifies the user interface features and the colors associated with each feature for the four default Contrast Themes.
-          The second table shows how HTML content is rendered in the Windows 11 Aquatic, Desert and Night Sky Contrast Themes.
-          Note that there are some slight variations in how Mozilla (e.g. Firefox) and Chromium (e.g. Chrome, Edge, Opera...) based browsers will render HTML controls, for example the <code>input[type="range']</code> control.
+          The replacement color used by a browser for a specific element corresponds to one of the system colors described below.  In addition to forcing color changes the browser also ignores background images and gradients.  The following table shows the color themes user can choose in Windows 11.  Each theme is a set of eight colors, which the user can customize.
         </p>
 
         <table class="data">
@@ -709,6 +693,12 @@ button.color-scheme[role="switch"] {
 
         <p>Note: In Windows 10 and Windows 11 users can edit the colors of a contrast theme to create their own unique theme.</p>
 
+
+        <h3>HTML Controls and Contrast Themes</h3>
+        <p>
+          The following table shows how HTML content is rendered in the Windows 11 Aquatic, Desert and Night Sky Contrast Themes.
+          Note that there are some slight variations in how Mozilla (e.g. Firefox) and Chromium (e.g. Chrome, Edge, Opera...) based browsers will render HTML controls, for example the <code>input[type="range']</code> control.  The system colors used for the features of standard controls should inform author decisions on how to use system colors in custom components.
+        </p>
 
         <table class="data">
           <caption>Contrast Themes Effects for Windows 11 on HTML Content</caption>
@@ -943,12 +933,18 @@ button.color-scheme[role="switch"] {
           </tbody>
         </table>
 
+        <h3 id="using-system-colors">Supporting Contrast Themes in Custom Components</h3>
+        <p>
+          ARIA attributes do not inform replacement color selection, e.g., a <code>div</code> with role <code>button</code> renders with text colors, not button colors.
+          When the user chooses a contrast theme, such as described by
+          <a href="https://support.microsoft.com/en-us/windows/change-color-contrast-in-windows-fedc744c-90ac-69df-aed5-c8a90125e696">Windows 11 Accessibility Settings &gt; Contrast Theme</a>,
+          browsers set the <code>forced-colors</code> property to <code>active</code>.
+          When using ARIA to alter the semantics of elements authors need to verify the appropriate system color for each feature when forced colors are enabled.
 
-        <h3 id="using-system-colors">Using System Colors</h3>
+          The following table provides guidance on how system colors should be applied when forced colors is enabled for common user interface controls.  When native elements do not match the appropriate system color for elements with altered semantics, authors must set the appropriate system color using the <code>forced-colors: active</code> media query.
+        </p>
 
-        <p>The use of <code>&lt;system-colors&gt;</code> to ensure custom custom components use appropriate colors when users choose a contrast theme.  The best practice for using <code>&lt;system-colors&gt;</code> is in conjunction with the <code>forced-colors: active</code> media query, since using <code>&lt;system-colors&gt;</code> to exclusively specify component colors limits the styling and theming options of authors.</p>
-
-        <p>To support the increase contrast setting:</p>
+        <p>To support the <code>forced-colors: active</code> media query:</p>
         <ol>
           <li>
             Authors should use <code>&lt;system-colors&gt;</code> associated with the features and behaviors of the component.
@@ -1077,7 +1073,7 @@ button.color-scheme[role="switch"] {
         </table>
 
 
-        <h3 id="forced-colors-example-switch">System Color Example: Switch using <code>div[role="switch"]</code></h3>
+        <h3 id="forced-colors-example-switch">Contrast Theme Example: Switch using <code>div[role="switch"]</code></h3>
 
       <p>The following switch example uses systems colors to style the SVG elements used to indicate the on and off states.  One reason current color cannot be used in this example is due to using <code>div[role="switch"]</code> to identify the switch component.  The <code>div</code> elements current color is <code>CanvasText</code>, and the switch needs to use the colors associated with buttons: <code>ButtonBorder</code>, <code>ButtonFace</code> and <code>ButtonText</code>. In addition to the button colors, the system colors <code>ActiveText</code> is used for the fill of the SVG circle when the switch is on the on state and the <code>GrayText</code> is used as the fill in the off state to make the state easier to discern visually the state of the switch.</p>
 
@@ -1179,7 +1175,7 @@ button.color-scheme[role="switch"] {
         </pre>
 
 
-        <h3 id="forced-colors-example-rating">System Color Example: Rating Slider</h3>
+        <h3 id="forced-colors-example-rating">Contrast Theme Example: Rating Slider</h3>
         <p>The <a href="../../patterns/slider/examples/slider-rating.html">Rating Slider Example</a> uses CSS <code>forced-colors: active</code> media query to change the styling of SVG elements used for the rating scale, thumb and labels.  The <code>buttontext</code> system color value is used for <code>stroke</code> and <code>fill</code> properties of the range and thumb elements and <code>canvas</code> system color is used for the label elements (e.g. "Extremely Unsatisfied" and "Extremely Satisfied").   The following table shows how the graphical rendering changes for some Windows 11 contrast themes. </p>
 
         <p>The <code>buttontext</code> system color value was chosen so the interactive slider elements would match the colors of other standard form controls on the page.  The <code>canvas</code> system color was chosen for the labels to match other static text on the page.
