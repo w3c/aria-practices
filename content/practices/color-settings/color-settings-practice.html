@@ -697,7 +697,7 @@ button.color-scheme[role="switch"] {
         <h3>HTML Controls and Contrast Themes</h3>
         <p>
           The following table shows how HTML content is rendered in the Windows 11 Aquatic, Desert and Night Sky Contrast Themes.
-          Note that there are some slight variations in how Mozilla (e.g. Firefox) and Chromium (e.g. Chrome, Edge, Opera...) based browsers will render HTML controls, for example the <code>input[type="range']</code> control.  The system colors used for the features of standard controls should inform author decisions on how to use system colors in custom components.
+          Note that there are some slight variations in how Mozilla (e.g. Firefox) and Chromium (e.g. Chrome, Edge, Opera...) based browsers will render HTML controls, for example the <code>input[type="range']</code> control.  The custom theme colors are assigned to system colors and authors can use the system colors to define component features when forced colors media query is active.  The system colors used for the features of standard HTML controls provide guidance to authors on how to apply system colors in custom components.
         </p>
 
         <table class="data">
@@ -941,7 +941,7 @@ button.color-scheme[role="switch"] {
           browsers set the <code>forced-colors</code> property to <code>active</code>.
           When using ARIA to alter the semantics of elements authors need to verify the appropriate system color for each feature when forced colors are enabled.
 
-          The following table provides guidance on how system colors should be applied when forced colors is enabled for common user interface controls.  When native elements do not match the appropriate system color for elements with altered semantics, authors must set the appropriate system color using the <code>forced-colors: active</code> media query.
+          The following table provides guidance on how system colors should be applied when forced colors is enabled for common user interface controls.  When elements with altered semantics do not match the appropriate system color for elements, authors must set the appropriate system color using the <code>forced-colors: active</code> media query.
         </p>
 
         <p>To support the <code>forced-colors: active</code> media query:</p>
