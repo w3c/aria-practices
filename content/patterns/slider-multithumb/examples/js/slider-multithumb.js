@@ -66,8 +66,8 @@ class SliderMultithumb {
     this.svgNode.setAttribute('width', this.svgWidth);
     this.svgNode.setAttribute('height', this.svgHeight);
 
-    this.minSliderFocusNode.setAttribute('y', this.focusY);
-    this.maxSliderFocusNode.setAttribute('y', this.focusY);
+    this.minSliderFocusNode.setAttribute('y', Math.max(2, this.focusY));
+    this.maxSliderFocusNode.setAttribute('y', Math.max(2, this.focusY));
     this.minSliderFocusNode.setAttribute('width', this.focusWidth);
     this.maxSliderFocusNode.setAttribute('width', this.focusWidth);
     this.minSliderFocusNode.setAttribute('height', this.focusHeight);
