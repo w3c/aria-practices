@@ -428,6 +428,257 @@
           </section>
         </section>
       </section>
+
+<!-- Assistive Technology -->
+
+        <section id="at">
+          <h2>Assistive Technology Support</h2>
+
+          <p>Browsers do not provide any built-in support to users for the identification and navigation to landmark regions.   Assistive technolgues, including all major screen readers, do provide users with the ability to identify and navigate to landmark regions.  </p>
+
+
+          <p>The following sections demonstrate how various
+            assistive technologies support landmark region navigation.</p>
+
+            <ul>
+              <li><a href="#jaws">JAWS Screen Reader for Windows</a></li>
+              <li><a href="#nvda">NVDA Screen Reader for Windows</a></li>
+              <li><a href="#vo">VoiceOver Screen Reader for macOS</a></li>
+              <li><a href="#orca">ORCA Screen Reader for Linux/Gnome</a></li>
+              <li><a href="#skipto">SkipTo.js browser extensions</a></li>
+            </ul>
+
+            <section>
+              <h3 id="jaws">JAWS Screen Reader for Windows</h3>
+              <p>The following commands are available in the JAWS screen reader (since version 15) for navigating landmarks:</p>
+
+              <table class="table table-striped table-hover" aria-labelledby="jaws">
+
+                <thead>
+                  <tr>
+                    <th>Command</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><kbd>Q</kbd></td>
+                    <td>Go to main landmark</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>R</kbd></td>
+                    <td>Go to next landmark</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>Shift</kbd>+<kbd>R</kbd></td>
+                    <td>Go to previous landmark</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>Insert</kbd>+<kbd>Control</kbd>+<kbd>R</kbd></td>
+                    <td>List of landmarks</td>
+                  </tr>
+                </tbody>
+
+              </table>
+
+              <figure>
+                <figcaption>Screen shot of list of landmarks in JAWS</figcaption>
+                <img src="./images/landmarks-jaws.png" alt="">
+              </figure>
+            </section>
+
+            <section>
+              <h3 id="nvda">NVDA Screen Reader for Windows</h3>
+               <p>The following commands are available in NVDA screen reader (since version 2014.2) for navigating landmarks:</p>
+
+              <table class="table table-striped table-hover" aria-labelledby="nvda">
+
+                <thead>
+                  <tr>
+                    <th>Command</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><kbd>D</kbd></td>
+                    <td>Go to next landmark</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>Shift</kbd>+<kbd>D</kbd></td>
+                    <td>Go to previous landmark</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>NVDA</kbd>+<kbd>F7</kbd></td>
+                    <td>List of landmarks</td>
+                  </tr>
+                </tbody>
+
+              </table>
+
+              <figure>
+                <figcaption>Screen shot of list of landmarks in NVDA</figcaption>
+                <img src="./images/landmarks-nvda.png" alt="">
+              </figure>
+            </section>
+
+            <section>
+              <h3 id="vo">VoiceOver Screen Reader for macOS</h3>
+              <p>The following commands are available in VoiceOver screen reader for navigating landmarks:</p>
+              <table class="table table-striped table-hover" aria-labelledby="vo">
+
+                <thead>
+                  <tr>
+                    <th>Command</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><kbd>W</kbd> (Quick Nav)</td>
+                    <td>Go to next landmark</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>Shift</kbd>+<kbd>W</kbd> (Quick Nav)</td>
+                    <td>Go to previous landmark</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>Control</kbd>+<kbd>Option</kbd>+<kbd>U</kbd>, then <br><kbd>left</kbd> or <kbd>right arrow</kbd> key to landmark list</td>
+                    <td>List of landmarks</td>
+                  </tr>
+                </tbody>
+
+              </table>
+
+              <figure>
+                <figcaption>Screen shot of list of landmarks in VoiceOver</figcaption>
+                <img src="./images/landmarks-vo.png" alt="">
+              </figure>
+            </section>
+
+            <section>
+              <h3 id="orca">ORCA Screen Reader for Linux/GNOME</h3>
+              <p>The following commands are available in ORCA Screen reader for navigating landmarks:</p>
+
+              <table class="table table-striped table-hover" aria-labelledby="orca">
+
+                <thead>
+                  <tr>
+                    <th>Command</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><kbd>M</kbd></td>
+                    <td>Next landmark</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>Shift</kbd>+<kbd>M</kbd></td>
+                    <td>Previous landmark</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd></td>
+                    <td>List of landmarks</td>
+                  </tr>
+                </tbody>
+
+              </table>
+
+              <figure>
+                <figcaption>Screen shot of list of landmarks in Orca</figcaption>
+                <img src="./images/landmarks-orca.png" alt="">
+              </figure>
+          </section>
+
+          <section>
+              <h3 id="skipto">SkipTo.js Browser Extension</h3>
+
+              <p>The SkipTo.js browser extension implements the <a href="https://www.w3.org/TR/UAAG/">User Agent Accessibility Guidelines 1.0</a> requirement <q><a href="https://www.w3.org/TR/UAAG/guidelines.html#tech-nav-structure">9.9 Allow Structured Navigation</a></q>. It does this by providing keyboard navigation to landmarks and headings on any web page.  The keyboard shortcut to open the SkipTo menu is <kbd>alt</kbd> + <kbd>0</kbd> on Windows/Linux and <kbd>option</kbd> + <kbd>0</kbd> on Mac keyboards.  SkipTo.js also includes shortcut keys for sequential navigation to landmark regions and headings.</p>
+
+              <ul style="margin-top: 1em">
+                <li><a href="https://chromewebstore.google.com/detail/skiptojs-for-chrome/mgmnhfooeifhicajoeoamlchoadbioof">SkipTo.js for Chrome</a> and should also work with <a href="https://brave.com">Brave</a> and <a href="https://vivaldi.com">Vivaldi</a> web browsers</li>
+                <li><a href="https://addons.mozilla.org/en-GB/firefox/addon/skipto-js-for-firefox">SkipTo.js for Firefox</a></li>
+                <li><a href="https://addons.opera.com/en/extensions/details/skiptojs-for-opera/">SkipTo.js for Opera</a></li>
+              </ul>
+
+              <table class="table table-striped table-hover" aria-labelledby="skipto">
+
+                <thead>
+                  <tr>
+                    <th>Command</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><kbd>Alt</kbd>+<kbd>0</kbd> or <kbd>Option</kbd>+<kbd>0</kbd></td>
+                    <td>Open SkipTo.js Menu</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>R</kbd></td>
+                    <td>Go to next landmark region</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>Shift</kbd>+<kbd>R</kbd></td>
+                    <td>Go to previous landmark region</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>c</kbd></td>
+                    <td>Go to <code>complementary</code> landmark regions</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>m</kbd></td>
+                    <td>Go to <code>main</code> landmark regions</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>n</kbd></td>
+                    <td>Go to <code>navigation</code> landmark regions</td>
+                  </tr>
+                </tbody>
+
+              </table>
+
+              <figure>
+                <figcaption>Screen shot of list of headings and landmarks in SkipTo.js Menu</figcaption>
+                <img src="./images/landmarks-skipto.png" alt="">
+              </figure>
+            </section>
+
+        </section>
+
+<!-- Resources -->
+
+        <section id="resources">
+          <h2>ARIA Landmark Resources and Tools</h2>
+
+          <h3>Read More</h3>
+          <ul>
+            <li><a href="https://www.w3.org/TR/WCAG20-TECHS/aria#ARIA11">ARIA11: Using ARIA landmarks to identify regions of a page</a> (WCAG Technique)</li>
+            <li><a href="https://www.w3.org/TR/WCAG20-TECHS/aria#ARIA20">ARIA20: Using the region role to identify a region of the page</a> (WCAG Technique)</li>
+            <li><a href="https://alistapart.com/column/wai-finding-with-aria-landmark-roles">WAI-finding with ARIA Landmark Roles</a> (A List Apart)</li>
+            <li><a href="https://www.paciellogroup.com/blog/2013/02/using-wai-aria-landmarks-2013/">Using WAI-ARIA Landmarks – 2013</a> (Paciello Group)</li>
+            <li><a href="https://www.paciellogroup.com/blog/2015/01/basic-screen-reader-commands-for-accessibility-testing/">Basic screen reader commands for accessibility testing</a>  (Paciello Group)</li>
+            <li><a href="https://webaim.org/projects/screenreadersurvey10/#landmarks">Screen Reader User Survey #10 Results: Landmarks/Regions</a> (WebAIM)</li>
+            <li><a href="https://webaim.org/projects/screenreadersurvey10/#heading">Screen Reader User Survey #10 Results: Heading Levels</a> (WebAIM)</li>
+          </ul>
+
+          <h3>Tools</h3>
+
+          <ul>
+            <li><a href="https://skipto-landmarks-headings.github.io/page-script-5/extensions.html">SkipTo.js: Browser Extensions</a></li>
+            <li><a href="https://skipto-landmarks-headings.github.io/page-script-5/bookmarklets.html">SkipTo.js: Bookmarklets</a></li>
+            <li><a href="https://skipto-landmarks-headings.github.io/page-script-5/page-script.html">SkipTo.js: Page Script</a> (used on this page)</li>
+            <li><a href="http://matatk.agrip.org.uk/landmarks/">Landmarks Browser Extension</a></li>
+            <li><a href="https://accessibility-bookmarklets.org/">Accessibility Bookmarklets: Landmark Bookmarklet</a></li>
+            <li><a href="http://whatsock.com/training/matrices/visual-aria.htm">The Visual ARIA Bookmarklet</a></li>
+            <li><a href="https://ainspector.disability.illinois.edu">AInspector for Firefox</a> (<a href="https://opena11y.github.io/evaluation-library/rules-rc.html">OpenA11y Landmark Rules</a>)</li>
+          </ul>
+
+        </section>
+      </section>
+
+
     </main>
   </body>
 </html>
