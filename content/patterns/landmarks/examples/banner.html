@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Examples</title>
+
+    <!-- Core JS and CSS shared by all examples -->
+    <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
+    <link rel="stylesheet" href="../../../shared/css/core.css">
+    <script src="../../../shared/js/examples.js"></script>
+    <script src="../../../shared/js/highlight.pack.js"></script>
+    <script src="../../../shared/js/app.js"></script>
+    <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
+
+  </head>
+  <body>
+    <nav aria-label="Related Links" class="feedback">
+      <ul>
+        <li><a href="https://github.com/orgs/w3c/projects/144">Related Issues</a></li>
+        <li><a href="../landmark-pattern.html">Design Pattern</a></li>
+      </ul>
+    </nav>
+    <main>
+      <h1>Banner Example</h1>
+
+      <section>
+        <h2>About This Example</h2>
+        <img alt="" class="example-page-example-icon" src="../../../images/pattern-link.svg">
+        <p>
+          The examples
+        </p>
+
+
+      </section>
+
+
+      <section>
+        <div class="example-header">
+          <h2 id="ex_label">Example</h2>
+        </div>
+        <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
+
+        <div id="ex1">
+          <banner class="example">
+            Banner Content for a website
+          </banner>
+        </div>
+
+        <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
+      </section>
+
+      <section>
+        <h2 id="kbd_label">Keyboard Support</h2>
+        <p>See the <a href="../../../practices/landmark-regions/landmark-regions-practice.html#at">Assistive Technology</a> section in the landmark region practices for keyboard commands related to assistive technologies.</p>
+      </section>
+
+      <section>
+        <h2 id="rps_label">Role, Property, State, and Tabindex Attributes</h2>
+        <table aria-labelledby="rps_label" class="data attributes">
+          <thead>
+            <tr>
+              <th scope="col">Role</th>
+              <th scope="col">Attribute</th>
+              <th scope="col">Element</th>
+              <th scope="col">Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-test-id="bannder-role">
+              <th scope="row"><code>banner</code></th>
+              <td></td>
+              <td><code>header</code></td>
+              <td>
+                header element defines a banner landmark when it is a top level element.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>JavaScript and CSS Source Code</h2>
+        <ul id="css_js_files">
+          <li>
+            CSS:
+            <a href="css/banner.css" type="tex/css">link.css</a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="example-code">
+        <h2 id="sc1_label">HTML Source Code</h2>
+        <p id="sc1_description">To copy the following HTML code, please open it in CodePen.</p>
+        <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
+        <pre><code id="sc1"></code></pre>
+        <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
+        <script>
+          sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files', 'sc1_description');
+          sourceCode.make();
+        </script>
+      </section>
+
+    </main>
+  </body>
+</html>
