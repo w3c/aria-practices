@@ -305,49 +305,49 @@ addLandmarkRole(
   ['banner'],
   false,
   'Banner Landmark',
-  '../patterns/landmarks/examples/banner.html'
+  '../patterns/landmarks/landmarks-pattern.html#banner'
 );
 addLandmarkRole(
   ['complementary'],
   true,
   'Complementary Landmark',
-  '../patterns/landmarks/examples/complementary.html'
+  '../patterns/landmarks/landmarks-pattern.html#complementary'
 );
 addLandmarkRole(
   ['contentinfo'],
   false,
   'Contentinfo Landmark',
-  '../patterns/landmarks/examples/contentinfo.html'
+  '../patterns/landmarks/landmarks-pattern.html#contentinfo'
 );
 addLandmarkRole(
   ['form'],
   true,
   'Form Landmark',
-  '../patterns/landmarks/examples/form.html'
+  '../patterns/landmarks/landmarks-pattern.html#form'
 );
 addLandmarkRole(
   ['main'],
   true,
   'Main Landmark',
-  '../patterns/landmarks/examples/main.html'
+  '../patterns/landmarks/landmarks-pattern.html#main'
 );
 addLandmarkRole(
   ['navigation'],
   true,
   'Navigation Landmark',
-  '../patterns/landmarks/examples/navigation.html'
+  '../patterns/landmarks/landmarks-pattern.html#navigation'
 );
 addLandmarkRole(
   ['region'],
   true,
   'Region Landmark',
-  '../patterns/landmarks/examples/region.html'
+  '../patterns/landmarks/landmarks-pattern.html#region'
 );
 addLandmarkRole(
   ['search'],
   true,
   'Search Landmark',
-  '../patterns/landmarks/examples/search.html'
+  '../patterns/landmarks/landmarks-pattern.html#search'
 );
 
 function exampleListItem(item) {
