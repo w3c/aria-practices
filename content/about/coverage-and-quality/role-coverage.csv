@@ -53,7 +53,7 @@
 "progressbar","0","0"
 "radio","3","4","Guidance: Radio Group Pattern","Guidance: For Radio Groups Not Contained in a Toolbar","Guidance: For Radio Group Contained in a Toolbar","Example: Radio Group  Using aria-activedescendant","Example: Rating Radio Group","Example: Radio Group  Using Roving tabindex","Example: Toolbar"
 "radiogroup","0","4","Example: Radio Group  Using aria-activedescendant","Example: Rating Radio Group","Example: Radio Group  Using Roving tabindex","Example: Toolbar"
-"region","1","6","Guidance: Region","Example: Accordion","Example: Auto-Rotating Image Carousel  with Buttons for Slide Control","Example: Auto-Rotating Image Carousel with Tabs for Slide Control","Example: Navigation Menubar","Example: Navigation Treeview","Example: Region Landmark"
+"region","2","6","Guidance: Expandable Region Pattern","Guidance: Region","Example: Accordion","Example: Auto-Rotating Image Carousel  with Buttons for Slide Control","Example: Auto-Rotating Image Carousel with Tabs for Slide Control","Example: Navigation Menubar","Example: Navigation Treeview","Example: Region Landmark"
 "row","0","4","Example: Editable Combobox with Grid Popup","Example: Layout Grid","Example: Table","Example: Treegrid Email Inbox"
 "rowgroup","0","1","Example: Table"
 "rowheader","0","0"
