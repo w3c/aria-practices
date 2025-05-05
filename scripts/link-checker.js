@@ -155,7 +155,7 @@ async function checkLinks() {
                 // Spoof a normal looking User-Agent to keep the servers happy
                 // See https://github.com/JustinBeckwith/linkinator/blob/main/src/index.ts
                 'User-Agent':
-                  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36',
+                  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/605.1.1',
               },
             });
             const text = await response.text();
