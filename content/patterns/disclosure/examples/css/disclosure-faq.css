@@ -27,7 +27,6 @@ ol.faq div.desc {
   font-size: 110%;
   display: none;
   background-color: #fed;
-  border-bottom: 2px solid #777;
 }
 
 ol.faq button:hover,
