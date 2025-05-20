@@ -3,6 +3,8 @@ ol.faq li {
   margin: 0;
   padding: 0;
   list-style: none;
+  color: #000;
+  background-color: #fff;
 }
 
 ol.faq button {
