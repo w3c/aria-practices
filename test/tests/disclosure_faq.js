@@ -15,9 +15,9 @@ const ex = {
   ],
   answerSelectors: [
     '#ex1 ol div.desc:nth-of-type(1)',
-    '#ex1 ol div:descnth-of-type(2)',
-    '#ex1 ol div:descnth-of-type(3)',
-    '#ex1 ol div:descnth-of-type(4)',
+    '#ex1 ol div:desc:nth-of-type(2)',
+    '#ex1 ol div:desc:nth-of-type(3)',
+    '#ex1 ol div:desc:nth-of-type(4)',
   ],
 };
 
