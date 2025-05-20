@@ -8,16 +8,16 @@ const exampleFile = 'content/patterns/disclosure/examples/disclosure-faq.html';
 const ex = {
   buttonSelector: '#ex1 button',
   buttonSelectors: [
-    '#ex1 ol:nth-of-type(1) button',
-    '#ex1 ol:nth-of-type(2) button',
-    '#ex1 ol:nth-of-type(3) button',
-    '#ex1 ol:nth-of-type(4) button',
+    '#ex1 ol li:nth-of-type(1) button',
+    '#ex1 ol li:nth-of-type(2) button',
+    '#ex1 ol li:nth-of-type(3) button',
+    '#ex1 ol li:nth-of-type(4) button',
   ],
   answerSelectors: [
-    '#ex1 ol div.desc:nth-of-type(1)',
-    '#ex1 ol div:desc:nth-of-type(2)',
-    '#ex1 ol div:desc:nth-of-type(3)',
-    '#ex1 ol div:desc:nth-of-type(4)',
+    '#ex1 ol li:nth-of-type(1) .desc',
+    '#ex1 ol li:nth-of-type(2) .desc',
+    '#ex1 ol li:nth-of-type(3) .desc',
+    '#ex1 ol li:nth-of-type(4) .desc',
   ],
 };
 
