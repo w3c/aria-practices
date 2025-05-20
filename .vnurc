@@ -28,4 +28,4 @@ Element “input” is missing required attribute “aria-checked”.
 # https://github.com/w3c/aria-practices/issues/3070
 Attribute “aria-actions” not allowed on element “button” at this point.
 # https://github.com/w3c/aria-practices/issues/3265
-Element “search” not allowed as child of element “div” in this context. (Suppressing further errors from this subtree.)
+Element “search” not allowed as child of element “div” in this context.*
