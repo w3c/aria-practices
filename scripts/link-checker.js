@@ -149,41 +149,79 @@ async function checkLinks() {
         }
 
         const getPageData = async () => {
-          try {
-            const response = await nFetch(externalPageLink, {
-              headers: {
-                // Spoof a normal looking User-Agent to keep the servers happy
-                // See https://github.com/JustinBeckwith/linkinator/blob/main/src/index.ts
-                //
-                // To better future-proof against the ua string being
-                // responsible for any breakage, pull common, up-to-date strings
-                // from a reliable source.
-                // https://github.com/w3c/aria-practices/issues/3270
-                'User-Agent':
-                  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/605.1.1',
-              },
-            });
-            const text = await response.text();
-            const html = HTMLParser.parse(text);
-            const ids = html
-              .querySelectorAll('[id]')
-              .map((idElement) => idElement.getAttribute('id'));
+          const domain = new URL(externalPageLink).hostname;
+          let retryCount = 0;
+          const maxRetries = 3;
+          const baseDelay = 15;
 
-            // Handle GitHub README links.
-            // These links are stored within a react-partial element
-            const reactPartial = getReactPartial(hrefOrSrc, html);
-            return {
-              ok: response.ok,
-              status: response.status,
-              ids,
-              reactPartial,
-            };
-          } catch (error) {
-            return {
-              errorMessage:
-                `Found broken external link on ${htmlPath}:${lineNumber}:${columnNumber}\n` +
-                `  ${error.stack}`,
-            };
+          while (retryCount < maxRetries) {
+            try {
+              const response = await nFetch(externalPageLink, {
+                headers: {
+                  // Spoof a normal looking User-Agent to keep the servers happy
+                  // See https://github.com/JustinBeckwith/linkinator/blob/main/src/index.ts
+                  //
+                  // To better future-proof against the ua string being
+                  // responsible for any breakage, pull common, up-to-date strings
+                  // from a reliable source.
+                  // https://github.com/w3c/aria-practices/issues/3270
+                  'User-Agent':
+                    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/605.1.1',
+                },
+              });
+
+              // Handle rate limit-related statuses
+              if (
+                response.status === 403 ||
+                response.status === 429 ||
+                response.status === 503 ||
+                response.status === 508
+              ) {
+                // Found the retry-after unit returned from response headers too
+                // variable to use here, but ~15 seconds seems like a safe
+                // default
+                const retryAfter = baseDelay * 1000;
+                console.info(
+                  response.status === 429
+                    ? `Rate limited by ${domain}, waiting ${retryAfter}ms`
+                    : `Retrying ${domain} with response ${response.status} after ${retryAfter}ms`
+                );
+                await new Promise((resolve) => setTimeout(resolve, retryAfter));
+                retryCount++;
+                continue;
+              }
+
+              const text = await response.text();
+              const html = HTMLParser.parse(text);
+              const ids = html
+                .querySelectorAll('[id]')
+                .map((idElement) => idElement.getAttribute('id'));
+
+              // Handle GitHub README links.
+              // These links are stored within a react-partial element
+              const reactPartial = getReactPartial(hrefOrSrc, html);
+              return {
+                ok: response.ok,
+                status: response.status,
+                ids,
+                reactPartial,
+              };
+            } catch (error) {
+              if (retryCount < maxRetries - 1) {
+                const delay = baseDelay * 1000 * Math.pow(2, retryCount);
+                console.info(
+                  `Error fetching ${externalPageLink}, retrying in ${delay}ms`
+                );
+                await new Promise((resolve) => setTimeout(resolve, delay));
+                retryCount++;
+                continue;
+              }
+              return {
+                errorMessage:
+                  `Found broken external link on ${htmlPath}:${lineNumber}:${columnNumber}\n` +
+                  `  ${error.stack}`,
+              };
+            }
           }
         };
 
