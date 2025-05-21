@@ -207,7 +207,7 @@ async function checkLinks() {
                 reactPartial,
               };
             } catch (error) {
-              if (retryCount < maxRetries - 1) {
+              if (retryCount <= maxRetries) {
                 const delay = baseDelay * 1000 * Math.pow(2, retryCount);
                 console.info(
                   `Error fetching ${externalPageLink}, retrying in ${delay}ms`
