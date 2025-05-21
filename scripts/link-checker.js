@@ -177,18 +177,11 @@ async function checkLinks() {
                 response.status === 503 ||
                 response.status === 508
               ) {
-                // Found the retry-after unit returned from response headers too
-                // variable to use here, but ~15 seconds seems like a safe
-                // default
-                const retryAfter = baseDelay * 1000;
-                console.info(
+                throw new Error(
                   response.status === 429
-                    ? `Rate limited by ${domain}, waiting ${retryAfter}ms`
-                    : `Retrying ${domain} with response ${response.status} after ${retryAfter}ms`
+                    ? `Rate limited by ${domain}`
+                    : `Unsuccessful response from ${domain} (${response.status})`
                 );
-                await new Promise((resolve) => setTimeout(resolve, retryAfter));
-                retryCount++;
-                continue;
               }
 
               const text = await response.text();
@@ -207,10 +200,13 @@ async function checkLinks() {
                 reactPartial,
               };
             } catch (error) {
-              if (retryCount <= maxRetries) {
+              if (retryCount < maxRetries) {
+                // Found the retry-after unit returned from response headers too
+                // variable to use here, but ~15 seconds seems like a safe
+                // initial default
                 const delay = baseDelay * 1000 * Math.pow(2, retryCount);
                 console.info(
-                  `Error fetching ${externalPageLink}, retrying in ${delay}ms`
+                  `Error fetching ${externalPageLink}: ${error.message}, retrying in ${delay}ms`
                 );
                 await new Promise((resolve) => setTimeout(resolve, delay));
                 retryCount++;
@@ -251,17 +247,6 @@ async function checkLinks() {
     Object.entries(externalPageLoaders).map(
       async ([externalPageLink, getPageData]) => {
         let pageData = await getPageData();
-        if (pageData.errorMessage) {
-          console.info('Retrying once');
-          pageData = await getPageData();
-        }
-        if (pageData.errorMessage) {
-          await new Promise((resolve) => {
-            setTimeout(resolve, 2000);
-          });
-          console.info('Retrying twice');
-          pageData = await getPageData();
-        }
         externalPageData[externalPageLink] = pageData;
         loadedCount += 1;
       }
