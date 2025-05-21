@@ -11,13 +11,13 @@ const ex = {
     '#ex1 ol li:nth-child(1) button',
     '#ex1 ol li:nth-child(2) button',
     '#ex1 ol li:nth-child(3) button',
-    '#ex1 ol li:nth-child(4) button'
+    '#ex1 ol li:nth-child(4) button',
   ],
   answerSelectors: [
     '#ex1 ol li:nth-child(1) .desc',
     '#ex1 ol li:nth-child(2) .desc',
     '#ex1 ol li:nth-child(3) .desc',
-    '#ex1 ol li:nth-child(4) .desc'
+    '#ex1 ol li:nth-child(4) .desc',
   ],
 };
 

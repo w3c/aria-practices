@@ -79,7 +79,7 @@ window.addEventListener(
       'button[aria-expanded][aria-controls]'
     );
 
-    buttons.forEach( (b) => {
+    buttons.forEach((b) => {
       new DisclosureButton(b);
     });
   },
