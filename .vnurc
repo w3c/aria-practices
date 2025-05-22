@@ -27,3 +27,6 @@ Bad value “presentation” for attribute “role” on element “svg”.
 Element “input” is missing required attribute “aria-checked”.
 # https://github.com/w3c/aria-practices/issues/3070
 Attribute “aria-actions” not allowed on element “button” at this point.
+# https://github.com/validator/validator/issues/1364
+The “role” attribute must not be used on a “td” element which has a “table” ancestor with no “role” attribute, or with a “role” attribute whose value is “table”, “grid”, or “treegrid”.
+The “role” attribute must not be used on a “tr” element which has a “table” ancestor with no “role” attribute, or with a “role” attribute whose value is “table”, “grid”, or “treegrid”.
