@@ -59,7 +59,7 @@
     "prettier": "^3.5.3",
     "selenium-webdriver": "^4.32.0",
     "stylelint": "^16.19.1",
-    "stylelint-config-standard": "^36.0.1",
+    "stylelint-config-standard": "^38.0.0",
     "vnu-jar": "^24.10.17"
   },
   "lint-staged": {
