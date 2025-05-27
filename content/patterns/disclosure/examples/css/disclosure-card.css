@@ -253,6 +253,7 @@
         font-size: calc(20/16 * 1em);
         font-weight: 600;
         font-variant-caps: normal;
+        font-style: normal;
       }
 
       label:has(input[type="checkbox"]) {
