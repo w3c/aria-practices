@@ -176,7 +176,7 @@
     box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.2);
     margin: 0.25em;
     border-radius: 0.25em;
-    max-inline-size: calc(48rem * 10/16);
+    max-inline-size: calc(56rem * 10/16);
 
     header,
     hgroup {
