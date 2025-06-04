@@ -1,5 +1,5 @@
-ol.faq,
-ol.faq li {
+ul.faq,
+ul.faq li {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -7,7 +7,7 @@ ol.faq li {
   background-color: #fff;
 }
 
-ol.faq button {
+ul.faq button {
   margin: 0;
   margin-top: 16px;
   padding: 4px 8px;
@@ -19,7 +19,7 @@ ol.faq button {
   color: #000;
 }
 
-ol.faq div.desc {
+ul.faq div.desc {
   margin: 0;
   margin-top: 0.25em;
   margin-left: 1em;
@@ -29,21 +29,21 @@ ol.faq div.desc {
   background-color: #fed;
 }
 
-ol.faq button:hover,
-ol.faq button:focus {
+ul.faq button:hover,
+ul.faq button:focus {
   padding: 2px 6px;
   background-color: #def;
   border: 2px solid #005a9c;
   cursor: pointer;
 }
 
-ol.faq button[aria-expanded="false"]::before {
+ul.faq button[aria-expanded="false"]::before {
   content: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' style='forced-color-adjust: auto;'%3E%3Cpolygon points='1 1, 1 11, 8 6' fill='currentcolor' stroke= 'currentcolor' /%3E%3C/svg%3E%0A");
   position: relative;
   left: -2px;
 }
 
-ol.faq button[aria-expanded="true"]::before {
+ul.faq button[aria-expanded="true"]::before {
   content: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' style='forced-color-adjust: auto;'%3E%3Cpolygon points='1 1, 11 1, 6 8' fill='currentcolor' stroke= 'currentcolor' /%3E%3C/svg%3E ");
   position: relative;
   left: -4px;
