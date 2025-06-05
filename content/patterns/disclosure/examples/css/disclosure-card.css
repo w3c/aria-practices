@@ -137,7 +137,12 @@
         color: var(--color-interactive-hover-text);
         text-underline-offset: 0.2em;
         text-decoration-color: var(--color-interactive-hover-text);
+      }
+    }
 
+    &:hover,
+    &:has(button[aria-expanded]:focus) {
+      button[aria-expanded] {
         svg {
           scale: 1;
         }
