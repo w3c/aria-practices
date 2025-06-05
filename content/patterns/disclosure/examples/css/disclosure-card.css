@@ -131,32 +131,8 @@
 
     &:hover {
       border-color: var(--color-interactive-hover);
-    }
 
-    &[data-being-pressed] button[aria-expanded] {
-      color: var(--color-interactive-focus-text);
-      text-decoration-color: var(--color-interactive-focus);
-    }
-
-    &:has(button[aria-expanded]:focus),
-    &[data-being-pressed] {
-      outline-offset: 0.25em;
-      outline-width: 0.3em;
-      outline-color: var(--color-interactive-focus);
-    }
-
-    &:has(button[aria-expanded]:focus) button[aria-expanded] {
-      color: var(--color-interactive-focus-text);
-      text-decoration-color: var(--color-interactive-focus);
-    }
-
-    &[data-being-pressed] {
-      outline-width: 0.6em;
-    }
-
-    &:hover,
-    &:has(button[aria-expanded]:focus) {
-      [aria-expanded] {
+      button[aria-expanded] {
         color: var(--color-interactive-hover-text);
         text-underline-offset: 0.2em;
         text-decoration-color: var(--color-interactive-hover-text);
@@ -164,6 +140,23 @@
         svg {
           scale: 1;
         }
+      }
+    }
+
+    &[data-being-pressed],
+    &:has(button[aria-expanded]:focus) {
+      outline-offset: 0.25em;
+      outline-width: 0.3em;
+      outline-color: var(--color-interactive-focus);
+
+      &[data-being-pressed] {
+        outline-width: 0.6em;
+      }
+
+      button[aria-expanded] {
+        color: var(--color-interactive-focus-text);
+        text-decoration-color: var(--color-interactive-focus);
+        text-underline-offset: 0.2em;
       }
     }
   }
