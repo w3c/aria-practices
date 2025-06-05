@@ -1,12 +1,19 @@
 .disclosure-cards {
   interpolate-size: allow-keywords;
 
+  --length-xs: calc(10 / 16 * 0.175rem);
+  --length-s: calc(10 / 16 * 0.25rem);
+  --length-m: calc(10 / 16 * 1rem);
+  --length-l: calc(10 / 16 * 1.5rem);
+  --length-xl: calc(10 / 16 * 2rem);
+  --length-xxl: calc(10 / 16 * 3rem);
+  --transition-duration-snappy: 0;
+  --transition-duration-leisurely: 0;
   --color-interactive-idle: transparent;
   --color-interactive-hover: gray;
   --color-interactive-hover-text: black;
   --color-interactive-focus: blue;
   --color-interactive-focus-text: blue;
-  --transition-duration: 0.15s;
 
   @media (forced-colors: active) {
     --color-interactive-idle: Canvas;
@@ -14,11 +21,15 @@
     --color-interactive-hover-text: Highlight;
     --color-interactive-focus: Highlight;
     --color-interactive-focus-text: Highlight;
-    --transition-duration: 0;
+  }
+
+  @media (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+    --transition-duration-snappy: 0.15s;
+    --transition-duration-leisurely: 0.5s;
   }
 
   font-family: system-ui, sans-serif;
-  font-size: calc(10 / 16 * 1rem);
+  font-size: var(--length-m);
   line-height: 1.4;
   background-color: ghostwhite;
   margin-inline: -2em;
@@ -33,8 +44,8 @@
   }
 
   *:focus {
-    outline: calc(0.25rem * 10 / 16) solid var(--color-interactive-focus);
-    outline-offset: calc(0.25rem * 10 / 16);
+    outline: var(--length-s) solid var(--color-interactive-focus);
+    outline-offset: var(--length-s);
   }
 
   h1,
@@ -49,7 +60,8 @@
 
   h3 {
     font-weight: 500;
-    font-size: calc(3.2rem * 10 / 16);
+    font-size: var(--length-xxl);
+    border-block-end: var(--length-xs) solid currentcolor;
   }
 
   button {
@@ -66,20 +78,20 @@
       outline: 0;
       font-weight: 600;
       text-decoration: underline;
-      text-underline-offset: calc(1.4rem * 10 / 16);
+      text-underline-offset: 1em;
       text-decoration-color: var(--color-interactive-idle);
-      text-decoration-thickness: calc(0.2rem * 10 / 16);
+      text-decoration-thickness: var(--length-s);
       transition:
-        color var(--transition-duration) ease,
-        text-underline-offset var(--transition-duration) ease,
-        text-decoration-color var(--transition-duration) ease;
+        color var(--transition-duration-snappy) ease,
+        text-underline-offset var(--transition-duration-snappy) ease,
+        text-decoration-color var(--transition-duration-snappy) ease;
 
       svg {
         scale: 0.8;
-        rotate: 0;
+        rotate: 0deg;
         transition:
-          scale var(--transition-duration) ease,
-          rotate var(--transition-duration) ease;
+          scale var(--transition-duration-snappy) ease,
+          rotate var(--transition-duration-snappy) ease;
       }
     }
 
@@ -88,13 +100,13 @@
     }
 
     &:not([aria-expanded]) {
-      font-size: calc(20 / 16 * 1rem);
+      font-size: var(--length-xl);
       padding: 0.5ch 1ch;
       border: 1px solid black;
       color: white;
       font-weight: bold;
       background-color: rebeccapurple;
-      border-radius: calc(0.25rem * 10 / 16);
+      border-radius: var(--length-s);
 
       &:hover,
       &:focus {
@@ -112,10 +124,10 @@
     outline: 0 solid transparent;
     outline-offset: 0;
     transition:
-      outline-offset var(--transition-duration) ease,
-      outline-width var(--transition-duration) ease,
-      outline-color var(--transition-duration) ease,
-      border-color var(--transition-duration) ease;
+      outline-offset var(--transition-duration-snappy) ease,
+      outline-width var(--transition-duration-snappy) ease,
+      outline-color var(--transition-duration-snappy) ease,
+      border-color var(--transition-duration-snappy) ease;
 
     &:hover {
       border-color: var(--color-interactive-hover);
@@ -146,7 +158,7 @@
     &:has(button[aria-expanded]:focus) {
       [aria-expanded] {
         color: var(--color-interactive-hover-text);
-        text-underline-offset: calc(0.4rem * 10 / 16);
+        text-underline-offset: 0.2em;
         text-decoration-color: var(--color-interactive-hover-text);
 
         svg {
@@ -171,7 +183,7 @@
     box-shadow: 0 0.25em 0.5em rgba(0 0 0 / 20%);
     margin: 0.25em;
     border-radius: 0.25em;
-    max-inline-size: calc(56rem * 10 / 16);
+    max-inline-size: 84ch;
 
     header,
     hgroup {
@@ -201,12 +213,12 @@
       display: flex;
       flex-wrap: wrap;
       font-size: 1.6em;
-      margin-block-start: calc(1rem * 10 / 16);
+      margin-block-start: var(--length-xs);
     }
 
     .location {
       padding-inline-end: 1ch;
-      border-inline-end: calc(0.175rem * 10 / 16) solid lightgray;
+      border-inline-end: var(--length-xs) solid lightgray;
       margin-inline-end: 0.75ch;
     }
   }
@@ -216,8 +228,8 @@
     opacity: 1;
     overflow-y: clip;
     font-size: 1.6em;
-    transition: all 0.5s ease;
-    padding-block-end: calc(1.5rem * 10 / 16);
+    transition: all var(--transition-duration-leisurely) ease;
+    padding-block-end: var(--length-l);
 
     &[inert] {
       block-size: 0;
@@ -227,25 +239,25 @@
     .description {
       display: flex;
       flex-direction: column;
-      gap: calc(1.5rem * 10 / 16);
-      padding-block-start: calc(1.5rem * 10 / 16);
+      gap: var(--length-l);
+      padding-block-start: var(--length-l);
 
       > *:first-child {
-        border-block-start: calc(0.175rem * 10 / 16) solid lightgray;
-        padding-block-start: calc(1.5rem * 10 / 16);
+        border-block-start: var(--length-xs) solid lightgray;
+        padding-block-start: var(--length-l);
       }
     }
 
     form {
       display: flex;
       flex-direction: column;
-      gap: calc(1.6rem * 10 / 16);
-      margin-block-start: calc(1.5rem * 10 / 16);
-      border-block-start: calc(0.175rem * 10 / 16) solid lightgray;
-      padding-block-start: calc(1.5rem * 10 / 16);
+      gap: var(--length-l);
+      margin-block-start: var(--length-l);
+      border-block-start: var(--length-xs) solid lightgray;
+      padding-block-start: var(--length-l);
 
       h5 {
-        font-size: calc(20 / 16 * 1em);
+        font-size: var(--length-xl);
         font-weight: 600;
         font-variant-caps: normal;
         font-style: normal;
