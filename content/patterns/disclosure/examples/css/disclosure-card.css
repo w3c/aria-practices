@@ -74,13 +74,14 @@
     &[aria-expanded] {
       display: inline-flex;
       gap: 0.175ch;
-      border: 0;
+      padding-inline-start: 0.65ch;
       outline: 0;
       font-weight: 600;
       text-decoration: underline;
       text-underline-offset: 1em;
       text-decoration-color: var(--color-interactive-idle);
       text-decoration-thickness: var(--length-s);
+      border-inline-start: var(--length-xs) solid lightgray;
       transition:
         color var(--transition-duration-snappy) ease,
         text-underline-offset var(--transition-duration-snappy) ease,
@@ -206,13 +207,8 @@
       display: flex;
       flex-wrap: wrap;
       font-size: 1.6em;
+      gap: 1ch;
       margin-block-start: var(--length-xs);
-    }
-
-    .location {
-      padding-inline-end: 1ch;
-      border-inline-end: var(--length-xs) solid lightgray;
-      margin-inline-end: 0.75ch;
     }
   }
 
