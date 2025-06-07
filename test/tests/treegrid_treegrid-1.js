@@ -9,10 +9,10 @@ const exampleFile = 'content/patterns/treegrid/examples/treegrid-1.html';
 
 const ex = {
   treegridSelector: '#ex1 [role="treegrid"]',
-  emailRowSelector: '#ex1 tr',
+  emailRowSelector: '#ex1 tbody tr',
   gridcellSelector: '#ex1 [role="gridcell"]',
-  threadSelector: '#ex1 tr[aria-expanded]',
-  closedThreadSelector: '#ex1 tr[aria-expanded]',
+  threadSelector: '#ex1 tbody tr[aria-expanded]',
+  closedThreadSelector: '#ex1 tbody tr[aria-expanded]',
   emailLinkSelector: '#ex1 td a',
   lastRowIndex: 7,
   // For each row, the aria-level, aria-setsize and aria-posinset values
@@ -117,7 +117,7 @@ const isClosedThread = async function (el) {
 
 const checkFocusOnGridcell = async function (t, rowIndex, gridcellIndex) {
   let gridcellsSelector =
-    '#ex1 tr:nth-of-type(' + (rowIndex + 1) + ') [role="gridcell"]';
+    '#ex1 tbody tr:nth-of-type(' + (rowIndex + 1) + ') [role="gridcell"]';
 
   // If the gridcell is index 0 or 1, it does not contain a widget, focus
   // should be on the gridcell itself
@@ -138,7 +138,7 @@ const sendKeyToGridcellAndWait = async function (
   key
 ) {
   let gridcellSelector =
-    '#ex1 tr:nth-of-type(' + (rowIndex + 1) + ') [role="gridcell"]';
+    '#ex1 tbody tr:nth-of-type(' + (rowIndex + 1) + ') [role="gridcell"]';
   gridcellSelector =
     gridcellSelector + ':nth-of-type(' + (gridcellIndex + 1) + ')';
 
@@ -803,7 +803,7 @@ ariaTest.failing(
 
     // INTERACTIVE ITEM 1: Enter sent while focus is email gridcell should trigger link
 
-    const selector = '#ex1 tr:nth-of-type(1) a';
+    const selector = '#ex1 tbody tr:nth-of-type(1) a';
     const newUrl = t.context.url + '#test-url-change';
 
     // Reset the href to not be an email link in order to test
