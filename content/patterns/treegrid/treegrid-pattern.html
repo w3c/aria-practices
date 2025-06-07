@@ -258,9 +258,9 @@
         <h2>WAI-ARIA Roles, States, and Properties</h2>
         <ul>
           <li>The treegrid container has role <a href="#treegrid" class="role-reference">treegrid</a>.</li>
-          <li>Each row container has role <a href="#row" class="role-reference">row</a> and is either a DOM descendant of or owned by the <code>treegrid</code> element or an element with role <a href="#rowgroup" class="role-reference">rowgroup</a>.</li>
+          <li>Each row container has an implicit role of <a href="#row" class="role-reference">row</a> and is either a DOM descendant of or owned by the <code>treegrid</code> element or an element with role <a href="#rowgroup" class="role-reference">rowgroup</a>.</li>
           <li>
-            Each cell is either a DOM descendant of or owned by a <code>row</code> element and has one of the following roles:
+            Each cell is either a DOM descendant of or owned by a row element and has one of the following roles:
             <ul>
               <li><a href="#columnheader" class="role-reference">columnheader</a> if the cell contains a title or header information for the column.</li>
               <li><a href="#rowheader" class="role-reference">rowheader</a> if the cell contains title or header information for the row.</li>
@@ -268,8 +268,8 @@
             </ul>
           </li>
           <li>
-            A <code>row</code> that can be expanded or collapsed to show or hide a set of child rows is a parent row.
-            Each parent <code>row</code> has the <a class="property-reference" href="#aria-expanded">aria-expanded</a> state set on either the <code>row</code> element or on a cell contained in the<code>row</code>.
+            A row that can be expanded or collapsed to show or hide a set of child rows is a parent row.
+            Each parent row has the <a class="property-reference" href="#aria-expanded">aria-expanded</a> state set on either the row element or on a cell contained in therow.
             The <code>aria-expanded</code> state is set to <code>false</code> when the child rows are not displayed and set to <code>true</code> when the child rows are displayed.
             Rows that do not control display of child rows do not have the <code>aria-expanded</code> attribute because, if they were to have it, they would be incorrectly described to assistive technologies as parent rows.
           </li>
