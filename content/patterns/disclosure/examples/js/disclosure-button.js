@@ -19,7 +19,7 @@ class DisclosureButton {
     this.buttonNode = buttonNode;
     this.controlledNode = false;
 
-    var id = this.buttonNode.getAttribute('aria-controls');
+    const id = this.buttonNode.getAttribute('aria-controls');
 
     if (id) {
       this.controlledNode = document.getElementById(id);
@@ -75,13 +75,13 @@ class DisclosureButton {
 window.addEventListener(
   'load',
   function () {
-    var buttons = document.querySelectorAll(
+    const buttons = document.querySelectorAll(
       'button[aria-expanded][aria-controls]'
     );
 
-    for (var i = 0; i < buttons.length; i++) {
-      new DisclosureButton(buttons[i]);
-    }
+    buttons.forEach((b) => {
+      new DisclosureButton(b);
+    });
   },
   false
 );
