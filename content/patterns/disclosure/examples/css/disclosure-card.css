@@ -12,8 +12,8 @@
   --color-interactive-idle: transparent;
   --color-interactive-hover: gray;
   --color-interactive-hover-text: black;
-  --color-interactive-focus: blue;
-  --color-interactive-focus-text: blue;
+  --color-interactive-focus: var(--wai-green, #005a6a);
+  --color-interactive-focus-text: var(--wai-green, #005a6a);
 
   @media (forced-colors: active) {
     --color-interactive-idle: Canvas;
