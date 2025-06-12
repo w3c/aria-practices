@@ -32,3 +32,5 @@ Element “search” not allowed as child of element “div” in this context.*
 # https://github.com/validator/validator/issues/1364
 The “role” attribute must not be used on a “td” element which has a “table” ancestor with no “role” attribute, or with a “role” attribute whose value is “table”, “grid”, or “treegrid”.
 The “role” attribute must not be used on a “tr” element which has a “table” ancestor with no “role” attribute, or with a “role” attribute whose value is “table”, “grid”, or “treegrid”.
+# https://github.com/w3c/aria-practices/issues/3215
+Bad value “image” for attribute “role” on element “svg”.
