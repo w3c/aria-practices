@@ -42,7 +42,7 @@ const waitAndCheckExpandedTrue = async function (t, selector) {
     },
     t.context.waitTime,
     'Timeout waiting for aria-expanded to change to true on element: ' +
-    selector
+      selector
   );
 };
 
@@ -54,7 +54,7 @@ const waitAndCheckExpandedFalse = async function (t, selector) {
     },
     t.context.waitTime,
     'Timeout waiting for aria-expanded to change to false on element: ' +
-    selector
+      selector
   );
 };
 
@@ -79,7 +79,7 @@ ariaTest(
     let details = await t.context.queryElements(t, ex.detailSelector);
     for (let detail of details) {
       t.true(
-        await detail.getAttribute('inert') === 'true',
+        (await detail.getAttribute('inert')) === 'true',
         'All details containers should be inert before clicking the Details buttons'
       );
     }
@@ -91,7 +91,7 @@ ariaTest(
 
     for (let detail of details) {
       t.false(
-        await detail.getAttribute('inert') === 'true',
+        (await detail.getAttribute('inert')) === 'true',
         'All details containers should not be inert after clicking the Details buttons'
       );
     }
@@ -103,7 +103,6 @@ ariaTest(
 // Keys
 
 ariaTest('TAB should move focus', exampleFile, 'key-tab', async (t) => {
-
   await assertTabOrder(t, ex.buttonSelectors);
 
   let buttons = await t.context.queryElements(t, ex.buttonSelector);
@@ -129,13 +128,13 @@ ariaTest(
       t.true(
         await waitAndCheckExpandedTrue(t, buttonSelector),
         'Details button should have aria-expanded true after sending ENTER: ' +
-        buttonSelector
+          buttonSelector
       );
 
       t.false(
-        await t.context.session
+        (await t.context.session
           .findElement(By.css(detailSelector))
-          .getAttribute('inert') === 'true',
+          .getAttribute('inert')) === 'true',
         `\`${detailSelector}\` should not be inert after sending ENTER to \`${buttonSelector}\``
       );
 
@@ -144,13 +143,13 @@ ariaTest(
       t.true(
         await waitAndCheckExpandedFalse(t, buttonSelector),
         'Details button should have aria-expanded false after sending ENTER twice: ' +
-        buttonSelector
+          buttonSelector
       );
 
       t.true(
-        await t.context.session
+        (await t.context.session
           .findElement(By.css(detailSelector))
-          .getAttribute('inert') === 'true',
+          .getAttribute('inert')) === 'true',
         `\`${detailSelector}\` should be inert after sending ENTER to \`${buttonSelector}\``
       );
     }
@@ -172,13 +171,13 @@ ariaTest(
       t.true(
         await waitAndCheckExpandedTrue(t, buttonSelector),
         'Details button should have aria-expanded true after sending SPACE: ' +
-        buttonSelector
+          buttonSelector
       );
 
       t.false(
-        await t.context.session
+        (await t.context.session
           .findElement(By.css(detailSelector))
-          .getAttribute('inert') === 'true',
+          .getAttribute('inert')) === 'true',
         `\`${detailSelector}\` should not be inert after sending SPACE to \`${buttonSelector}\``
       );
 
@@ -187,13 +186,13 @@ ariaTest(
       t.true(
         await waitAndCheckExpandedFalse(t, buttonSelector),
         'Details button should have aria-expanded false after sending SPACE twice: ' +
-        buttonSelector
+          buttonSelector
       );
 
       t.true(
-        await t.context.session
+        (await t.context.session
           .findElement(By.css(detailSelector))
-          .getAttribute('inert') === 'true',
+          .getAttribute('inert')) === 'true',
         `\`${detailSelector}\` should be inert after sending SPACE to \`${buttonSelector}\``
       );
     }
