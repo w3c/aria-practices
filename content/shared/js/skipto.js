@@ -1,6 +1,6 @@
 /* ========================================================================
- * Version: 5.3.2
- * Copyright (c) 2022, 2023, 2024 Jon Gunderson; Licensed BSD
+ * Version: 5.7
+ * Copyright (c) 2022, 2023, 2024, 2025 Jon Gunderson; Licensed BSD
  * Copyright (c) 2021 PayPal Accessibility Team and University of Illinois; Licensed BSD
  * All rights reserved.
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,6 +17,125 @@
 
 (function () {
   'use strict';
+
+  /* colorThemes */
+
+  const colorThemes = {
+    'default': {
+
+      fontFamily: 'inherit',
+      fontSize: 'inherit',
+      positionLeft: '46%',
+      smallBreakPoint: '576',
+      mediumBreakPoint: '992',
+      buttonTextColor: '#13294b',
+      buttonBackgroundColor: '#dddddd',
+      focusBorderColor: '#c5050c',
+      menuTextColor: '#13294b',
+      menuBackgroundColor: '#dddddd',
+      menuitemFocusTextColor: '#dddddd',
+      menuitemFocusBackgroundColor: '#13294b',
+      menuTextDarkColor: '#ffffff',
+      menuBackgroundDarkColor: '#000000',
+      menuitemFocusTextDarkColor: '#ffffff',
+      menuitemFocusBackgroundDarkColor: '#013c93',
+      focusBorderDarkColor: '#ffffff',
+      buttonTextDarkColor: '#ffffff',
+      buttonBackgroundDarkColor: '#013c93',
+      zIndex: '2000000',
+      zHighlight: '1999900',
+      displayOption: 'fixed'
+    },
+    'aria': {
+      hostnameSelector: 'w3.org',
+      pathnameSelector: 'ARIA/apg',
+      fontFamily: 'sans-serif',
+      fontSize: '10pt',
+      positionLeft: '7%',
+      menuTextColor: '#000',
+      menuBackgroundColor: '#def',
+      menuitemFocusTextColor: '#fff',
+      menuitemFocusBackgroundColor: '#005a9c',
+      focusBorderColor: '#005a9c',
+      buttonTextColor: '#005a9c',
+      buttonBackgroundColor: '#ddd',
+    },
+    'illinois': {
+      hostnameSelector: 'illinois.edu',
+      menuTextColor: '#00132c',
+      menuBackgroundColor: '#cad9ef',
+      menuitemFocusTextColor: '#eeeeee',
+      menuitemFocusBackgroundColor: '#00132c',
+      focusBorderColor: '#ff552e',
+      buttonTextColor: '#444444',
+      buttonBackgroundColor: '#dddede',
+      highlightTarget: 'disabled'
+    },
+    'openweba11y': {
+      hostnameSelector: 'openweba11y.com',
+      buttonTextColor: '#13294B',
+      buttonBackgroundColor: '#dddddd',
+      focusBorderColor: '#C5050C',
+      menuTextColor: '#13294B',
+      menuBackgroundColor: '#dddddd',
+      menuitemFocusTextColor: '#dddddd',
+      menuitemFocusBackgroundColor: '#13294B',
+      fontSize: '90%'
+    },
+    'skipto': {
+      hostnameSelector: 'skipto-landmarks-headings.github.io',
+      positionLeft: '25%',
+      fontSize: '14px',
+      menuTextColor: '#00132c',
+      menuBackgroundColor: '#cad9ef',
+      menuitemFocusTextColor: '#eeeeee',
+      menuitemFocusBackgroundColor: '#00132c',
+      focusBorderColor: '#ff552e',
+      buttonTextColor: '#444444',
+      buttonBackgroundColor: '#dddede',
+    },
+    'uic': {
+      hostnameSelector: 'uic.edu',
+      menuTextColor: '#001e62',
+      menuBackgroundColor: '#f8f8f8',
+      menuitemFocusTextColor: '#ffffff',
+      menuitemFocusBackgroundColor: '#001e62',
+      focusBorderColor: '#d50032',
+      buttonTextColor: '#ffffff',
+      buttonBackgroundColor: '#001e62',
+    },
+    'uillinois': {
+      hostnameSelector: 'uillinois.edu',
+      menuTextColor: '#001e62',
+      menuBackgroundColor: '#e8e9ea',
+      menuitemFocusTextColor: '#f8f8f8',
+      menuitemFocusBackgroundColor: '#13294b',
+      focusBorderColor: '#dd3403',
+      buttonTextColor: '#e8e9ea',
+      buttonBackgroundColor: '#13294b',
+      highlightTarget: 'disabled'
+    },
+    'uis': {
+      hostnameSelector: 'uis.edu',
+      menuTextColor: '#036',
+      menuBackgroundColor: '#fff',
+      menuitemFocusTextColor: '#fff',
+      menuitemFocusBackgroundColor: '#036',
+      focusBorderColor: '#dd3444',
+      buttonTextColor: '#fff',
+      buttonBackgroundColor: '#036',
+    },
+    'walmart': {
+      hostnameSelector: 'walmart.com',
+      buttonTextColor: '#ffffff',
+      buttonBackgroundColor: '#00419a',
+      focusBorderColor: '#ffc220',
+      menuTextColor: '#ffffff',
+      menuBackgroundColor: '#0071dc',
+      menuitemFocusTextColor: '#00419a',
+      menuitemFocusBackgroundColor: '#ffffff',
+    }
+  };
 
   /*
   *   debug.js
@@ -108,40 +227,91 @@
 
   }
 
+  /* constants.js */
+
+  // Element IDs
+
+  const SKIP_TO_ID            = 'id-skip-to-ver-5';
+  const SKIP_TO_MENU_STYLE_ID = 'id-skip-to-menu-style';
+
+  const SCRIPT_EXTENSION_ID   = `id-skip-to-extension`;
+  const SCRIPT_BOOKMARKLET_ID = `id-skip-to-bookmarklet`;
+
+  const MENU_ID   = 'id-skip-to-menu';
+
+  const MENU_LANDMARK_GROUP_ID        = 'id-skip-to-landmark-group';
+  const MENU_LANDMARK_GROUP_LABEL_ID  = 'id-skip-to-landmark-group-label';
+
+  const MENU_HEADINGS_GROUP_ID        = 'id-skip-to-heading-group';
+  const MENU_HEADINGS_GROUP_LABEL_ID  = 'id-skip-to-heading-group-label';
+
+  const MENU_SHORTCUTS_GROUP_ID       = 'id-skip-to-shortcuts-group';
+  const MENU_SHORTCUTS_GROUP_LABEL_ID = 'id-skip-to-shortcuts-group-label';
+
+  const MESSAGE_ID = 'id-skip-to-message';
+
+  const HIGHLIGHT_ID = 'id-skip-to-highlight-overlay';
+
+  // Custom element names
+
+  const PAGE_SCRIPT_ELEMENT_NAME = 'skip-to-content';
+  const BOOKMARKLET_ELEMENT_NAME = 'skip-to-content-bookmarklet';
+  const EXTENSION_ELEMENT_NAME   = 'skip-to-content-extension';
+
+  const INFO_DIALOG_ELEMENT_NAME = 'skip-to-content-info-dialog-574';
+  const MESSAGE_ELEMENT_NAME     = 'skip-to-content-message-element-574';
+  const HIGHLIGHT_ELEMENT_NAME   = 'skip-to-content-highlight-element-574';
+
+  // Attributes
+
+  const ATTR_SKIP_TO_DATA = 'data-skipto';
+
+  // URLs to more information
+
+  const MORE_PAGE_SCRIPT_INFO_URL ='https://skipto-landmarks-headings.github.io/page-script-5/';
+  const MORE_SHORTCUT_INFO_URL    ='https://skipto-landmarks-headings.github.io/page-script-5/shortcuts.html';
+
   /* style.js */
 
   /* Constants */
-  const debug$6 = new DebugLogging('style', false);
-  debug$6.flag = false;
+  const debug$c = new DebugLogging('style', false);
+  debug$c.flag = false;
 
-  const styleTemplate = document.createElement('template');
-  styleTemplate.innerHTML = `
-<style type="text/css" id="id-skip-to-css">
-$skipToId.popup {
-  position: absolute;
-  top: -34px;
+  const cssMenuTemplate = document.createElement('template');
+  cssMenuTemplate.textContent = `
+:root {
+  color-scheme: light dark;
+}
+
+#${SKIP_TO_ID}.popup {
+  top: -36px;
   transition: top 0.35s ease;
 }
 
-$skipToId button .skipto-text {
+#${SKIP_TO_ID}.popup.show-border {
+  top: -28px;
+  transition: top 0.35s ease;
+}
+
+#${SKIP_TO_ID} button .skipto-text {
   padding: 6px 8px 6px 8px;
   display: inline-block;
 }
 
-$skipToId button .skipto-small {
+#${SKIP_TO_ID} button .skipto-small {
   padding: 6px 8px 6px 8px;
   display: none;
 }
 
-$skipToId button .skipto-medium {
+#${SKIP_TO_ID} button .skipto-medium {
   padding: 6px 8px 6px 8px;
   display: none;
 }
 
-$skipToId,
-$skipToId.popup.focus,
-$skipToId.popup:hover {
-  position: absolute;
+#${SKIP_TO_ID},
+#${SKIP_TO_ID}.popup.focus,
+#${SKIP_TO_ID}.popup:hover {
+  position: fixed;
   top: 0;
   left: $positionLeft;
   font-family: $fontFamily;
@@ -151,111 +321,117 @@ $skipToId.popup:hover {
   margin-bottom: 4px;
   transition: left 1s ease;
   z-index: $zIndex !important;
+  user-select: none;
+  touch-action: none;
 }
 
-$skipToId button {
-  position: relative;
+#${SKIP_TO_ID} button {
+  position: sticky;
   margin: 0;
   padding: 0;
   border-width: 0px 1px 1px 1px;
   border-style: solid;
   border-radius: 0px 0px 6px 6px;
-  border-color: $buttonBackgroundColor;
-  color: $buttonTextColor;
-  background-color: $buttonBackgroundColor;
+  border-color: light-dark($buttonBackgroundColor, $buttonBackgroundDarkColor);
+  color: light-dark($buttonTextColor, $buttonTextDarkColor);
+  background-color: light-dark($buttonBackgroundColor, $buttonBackgroundDarkColor);
   z-index: 100000 !important;
   font-family: $fontFamily;
   font-size: $fontSize;
   z-index: $zIndex !important;
+  touch-action: none;
 }
 
 @media screen and (max-width: $smallBreakPointpx) {
-  $skipToId:not(.popup) button .skipto-small {
+  #${SKIP_TO_ID}:not(.popup) button .skipto-small {
     transition: top 0.35s ease;
     display: inline-block;
   }
 
-  $skipToId:not(.popup) button .skipto-text,
-  $skipToId:not(.popup) button .skipto-medium {
+  #${SKIP_TO_ID}:not(.popup) button .skipto-text,
+  #${SKIP_TO_ID}:not(.popup) button .skipto-medium {
     transition: top 0.35s ease;
     display: none;
   }
 
-  $skipToId:not(.popup).focus button .skipto-text {
+  #${SKIP_TO_ID}:not(.popup).focus button .skipto-text {
     transition: top 0.35s ease;
     display: inline-block;
   }
 
-  $skipToId:not(.popup).focus button .skipto-small,
-  $skipToId:not(.popup).focus button .skipto-medium {
+  #${SKIP_TO_ID}:not(.popup).focus button .skipto-small,
+  #${SKIP_TO_ID}:not(.popup).focus button .skipto-medium {
     transition: top 0.35s ease;
     display: none;
   }
-
 }
 
 @media screen and (min-width: $smallBreakPointpx) and (max-width: $mediumBreakPointpx) {
-  $skipToId:not(.popup) button .skipto-medium {
+  #${SKIP_TO_ID}:not(.popup) button .skipto-medium {
     transition: top 0.35s ease;
     display: inline-block;
   }
 
-  $skipToId:not(.popup) button .skipto-text,
-  $skipToId:not(.popup) button .skipto-small {
+  #${SKIP_TO_ID}:not(.popup) button .skipto-text,
+  #${SKIP_TO_ID}:not(.popup) button .skipto-small {
     transition: top 0.35s ease;
     display: none;
   }
 
-  $skipToId:not(.popup).focus button .skipto-text {
+  #${SKIP_TO_ID}:not(.popup).focus button .skipto-text {
     transition: top 0.35s ease;
     display: inline-block;
   }
 
-  $skipToId:not(.popup).focus button .skipto-small,
-  $skipToId:not(.popup).focus button .skipto-medium {
+  #${SKIP_TO_ID}:not(.popup).focus button .skipto-small,
+  #${SKIP_TO_ID}:not(.popup).focus button .skipto-medium {
     transition: top 0.35s ease;
     display: none;
   }
-
 }
 
-$skipToId.fixed {
-  position: fixed;
+#${SKIP_TO_ID}.static {
+  position: absolute !important;
 }
 
 
-$skipToId [role="menu"] {
+#${SKIP_TO_ID} [role="menu"] {
   position: absolute;
-  min-width: 17em;
+  min-width: 16em;
   display: none;
   margin: 0;
   padding: 0.25rem;
-  background-color: $menuBackgroundColor;
+  background-color: light-dark($menuBackgroundColor, $menuBackgroundDarkColor);
   border-width: 2px;
   border-style: solid;
-  border-color: $focusBorderColor;
+  border-color: light-dark($focusBorderColor, $focusBorderDarkColor);
   border-radius: 5px;
-  overflow-x: hidden;
   z-index: $zIndex !important;
+  touch-action: none;
 }
 
-$skipToId [role="group"] {
+#${SKIP_TO_ID} [role="group"] {
   display: grid;
   grid-auto-rows: min-content;
   grid-row-gap: 1px;
 }
 
-$skipToId [role="separator"]:first-child {
+#${SKIP_TO_ID} [role="group"].overflow {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+#${SKIP_TO_ID} [role="separator"]:first-child {
   border-radius: 5px 5px 0 0;
 }
 
-$skipToId [role="menuitem"] {
+#${SKIP_TO_ID} [role="menuitem"] {
   padding: 3px;
   width: auto;
   border-width: 0px;
   border-style: solid;
-  color: $menuTextColor;
-  background-color: $menuBackgroundColor;
+  color: light-dark($menuTextColor, $menuTextDarkColor);
+  background-color: light-dark($menuBackgroundColor, $menuBackgroundDarkColor);
   display: grid;
   overflow-y: clip;
   grid-template-columns: repeat(6, 1.2rem) 1fr;
@@ -264,24 +440,25 @@ $skipToId [role="menuitem"] {
   z-index: $zIndex !important;  
 }
 
-$skipToId [role="menuitem"] .level,
-$skipToId [role="menuitem"] .label {
+#${SKIP_TO_ID} [role="menuitem"] .level,
+#${SKIP_TO_ID} [role="menuitem"] .label {
   font-size: 100%;
   font-weight: normal;
-  color: $menuTextColor;
-  background-color: $menuBackgroundColor;
+  color: light-dark($menuTextColor, $menuTextDarkColor);
+  background-color: light-dark($menuBackgroundColor, $menuBackgroundDarkColor);
   display: inline-block;
   line-height: inherit;
   display: inline-block;
   white-space: nowrap;
+  border: none;
 }
 
-$skipToId [role="menuitem"] .level {
+#${SKIP_TO_ID} [role="menuitem"] .level {
   text-align: right;
   padding-right: 4px;
 }
 
-$skipToId [role="menuitem"] .label {
+#${SKIP_TO_ID} [role="menuitem"] .label {
   text-align: left;
   margin: 0;
   padding: 0;
@@ -289,49 +466,49 @@ $skipToId [role="menuitem"] .label {
   text-overflow: ellipsis;
 }
 
-$skipToId [role="menuitem"] .level:first-letter,
-$skipToId [role="menuitem"] .label:first-letter {
+#${SKIP_TO_ID} [role="menuitem"] .level:first-letter,
+#${SKIP_TO_ID} [role="menuitem"] .label:first-letter {
   text-decoration: underline;
   text-transform: uppercase;
 }
 
 
-$skipToId [role="menuitem"].skip-to-h1 .level { grid-column: 1; }
-$skipToId [role="menuitem"].skip-to-h2 .level { grid-column: 2; }
-$skipToId [role="menuitem"].skip-to-h3 .level { grid-column: 3; }
-$skipToId [role="menuitem"].skip-to-h4 .level { grid-column: 4; }
-$skipToId [role="menuitem"].skip-to-h5 .level { grid-column: 5; }
-$skipToId [role="menuitem"].skip-to-h6 .level { grid-column: 8;}
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h1 .level { grid-column: 1; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h2 .level { grid-column: 2; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h3 .level { grid-column: 3; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h4 .level { grid-column: 4; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h5 .level { grid-column: 5; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h6 .level { grid-column: 6;}
 
-$skipToId [role="menuitem"].skip-to-h1 .label { grid-column: 2 / 8; }
-$skipToId [role="menuitem"].skip-to-h2 .label { grid-column: 3 / 8; }
-$skipToId [role="menuitem"].skip-to-h3 .label { grid-column: 4 / 8; }
-$skipToId [role="menuitem"].skip-to-h4 .label { grid-column: 5 / 8; }
-$skipToId [role="menuitem"].skip-to-h5 .label { grid-column: 6 / 8; }
-$skipToId [role="menuitem"].skip-to-h6 .label { grid-column: 7 / 8;}
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h1 .label { grid-column: 2 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h2 .label { grid-column: 3 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h3 .label { grid-column: 4 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h4 .label { grid-column: 5 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h5 .label { grid-column: 6 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h6 .label { grid-column: 7 / 8;}
 
-$skipToId [role="menuitem"].skip-to-h1.no-level .label { grid-column: 1 / 8; }
-$skipToId [role="menuitem"].skip-to-h2.no-level .label { grid-column: 2 / 8; }
-$skipToId [role="menuitem"].skip-to-h3.no-level .label { grid-column: 3 / 8; }
-$skipToId [role="menuitem"].skip-to-h4.no-level .label { grid-column: 4 / 8; }
-$skipToId [role="menuitem"].skip-to-h5.no-level .label { grid-column: 5 / 8; }
-$skipToId [role="menuitem"].skip-to-h6.no-level .label { grid-column: 6 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h1.no-level .label { grid-column: 1 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h2.no-level .label { grid-column: 2 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h3.no-level .label { grid-column: 3 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h4.no-level .label { grid-column: 4 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h5.no-level .label { grid-column: 5 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-h6.no-level .label { grid-column: 6 / 8; }
 
-$skipToId [role="menuitem"].skip-to-nesting-level-1 .nesting { grid-column: 1; }
-$skipToId [role="menuitem"].skip-to-nesting-level-2 .nesting { grid-column: 2; }
-$skipToId [role="menuitem"].skip-to-nesting-level-3 .nesting { grid-column: 3; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-nesting-level-1 .nesting { grid-column: 1; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-nesting-level-2 .nesting { grid-column: 2; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-nesting-level-3 .nesting { grid-column: 3; }
 
-$skipToId [role="menuitem"].skip-to-nesting-level-0 .label { grid-column: 1 / 8; }
-$skipToId [role="menuitem"].skip-to-nesting-level-1 .label { grid-column: 2 / 8; }
-$skipToId [role="menuitem"].skip-to-nesting-level-2 .label { grid-column: 3 / 8; }
-$skipToId [role="menuitem"].skip-to-nesting-level-3 .label { grid-column: 4 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-nesting-level-0 .label { grid-column: 1 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-nesting-level-1 .label { grid-column: 2 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-nesting-level-2 .label { grid-column: 3 / 8; }
+#${SKIP_TO_ID} [role="menuitem"].skip-to-nesting-level-3 .label { grid-column: 4 / 8; }
 
-$skipToId [role="menuitem"].no-items .label,
-$skipToId [role="menuitem"].action .label {
+#${SKIP_TO_ID} [role="menuitem"].no-items .label,
+#${SKIP_TO_ID} [role="menuitem"].action .label {
   grid-column: 1 / 8;
 }
 
-$skipToId [role="separator"] {
+#${SKIP_TO_ID} [role="separator"] {
   margin: 1px 0px 1px 0px;
   padding: 3px;
   display: block;
@@ -339,78 +516,136 @@ $skipToId [role="separator"] {
   font-weight: bold;
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-bottom-color: $menuTextColor;
-  background-color: $menuBackgroundColor;
-  color: $menuTextColor;
+  border-bottom-color: light-dark($menuTextColor, $menuTextDarkColor);
+  background-color: light-dark($menuBackgroundColor, $menuBackgroundColor);
+  color: light-dark($menuTextColor, $menuTextDarkColor);
   z-index: $zIndex !important;
 }
 
-$skipToId [role="separator"] .mofn {
+#${SKIP_TO_ID} [role="separator"] .mofn {
   font-weight: normal;
   font-size: 85%;
 }
 
-$skipToId [role="separator"]:first-child {
+#${SKIP_TO_ID} [role="separator"]:first-child {
   border-radius: 5px 5px 0 0;
 }
 
-$skipToId [role="menuitem"].last {
+#${SKIP_TO_ID} [role="menuitem"].last {
   border-radius: 0 0 5px 5px;
 }
 
 /* focus styling */
 
-$skipToId.focus {
+#${SKIP_TO_ID}.focus {
   display: block;
 }
 
-$skipToId button:focus,
-$skipToId button:hover {
-  background-color: $menuBackgroundColor;
-  color: $menuTextColor;
+#${SKIP_TO_ID} button:focus,
+#${SKIP_TO_ID} button:hover {
+  background-color: light-dark($menuBackgroundColor, $menuBackgroundDarkColor);
+  color: light-dark($menuTextColor, $menuTextDarkColor);
   outline: none;
   border-width: 0px 2px 2px 2px;
-  border-color: $focusBorderColor;
+  border-color: light-dark($focusBorderColor, $focusBorderDarkColor);
 }
 
 
-$skipToId button:focus .skipto-text,
-$skipToId button:hover .skipto-text,
-$skipToId button:focus .skipto-small,
-$skipToId button:hover .skipto-small,
-$skipToId button:focus .skipto-medium,
-$skipToId button:hover .skipto-medium {
+#${SKIP_TO_ID} button:focus .skipto-text,
+#${SKIP_TO_ID} button:hover .skipto-text,
+#${SKIP_TO_ID} button:focus .skipto-small,
+#${SKIP_TO_ID} button:hover .skipto-small,
+#${SKIP_TO_ID} button:focus .skipto-medium,
+#${SKIP_TO_ID} button:hover .skipto-medium {
   padding: 6px 7px 5px 7px;
 }
 
-$skipToId [role="menuitem"]:focus {
+#${SKIP_TO_ID} [role="menuitem"]:focus {
   padding: 1px;
   border-width: 2px;
   border-style: solid;
-  border-color: $focusBorderColor;
+  border-color: light-dark($focusBorderColor, $focusBorderDarkColor);
   outline: none;
 }
 
-$skipToId [role="menuitem"].hover,
-$skipToId [role="menuitem"].hover .level,
-$skipToId [role="menuitem"].hover .label {
-  background-color: $menuitemFocusBackgroundColor;
-  color: $menuitemFocusTextColor;
+#${SKIP_TO_ID} [role="menuitem"].hover,
+#${SKIP_TO_ID} [role="menuitem"].hover .level,
+#${SKIP_TO_ID} [role="menuitem"].hover .label {
+  background-color: light-dark($menuitemFocusBackgroundColor, $menuitemFocusBackgroundDarkColor);
+  color: light-dark($menuitemFocusTextColor, $menuitemFocusTextDarkColor);
 }
-</style>
+
+#${SKIP_TO_ID} [role="separator"].shortcuts-disabled,
+#${SKIP_TO_ID} [role="menuitem"].shortcuts-disabled {
+  display: none;
+}
+
+@media (forced-colors: active) {
+
+  #${SKIP_TO_ID} button {
+    border-color: ButtonBorder;
+    color: ButtonText;
+    background-color: ButtonFace;
+  }
+
+  #${SKIP_TO_ID} [role="menu"] {
+    background-color: ButtonFace;
+    border-color: ButtonText;
+  }
+
+  #${SKIP_TO_ID} [role="menuitem"] {
+    color: ButtonText;
+    background-color: ButtonFace;
+  }
+
+  #${SKIP_TO_ID} [role="menuitem"] .level,
+  #${SKIP_TO_ID} [role="menuitem"] .label {
+    color: ButtonText;
+    background-color: ButtonFace;
+  }
+
+  #${SKIP_TO_ID} [role="separator"] {
+    border-bottom-color: ButtonBorder;
+    background-color: ButtonFace;
+    color: ButtonText;
+    z-index: $zIndex !important;
+  }
+
+  #${SKIP_TO_ID} button:focus,
+  #${SKIP_TO_ID} button:hover {
+    background-color: ButtonFace;
+    color: ButtonText;
+    border-color: ButtonBorder;
+  }
+
+  #${SKIP_TO_ID} [role="menuitem"]:focus {
+    background-color: ButtonText;
+    color: ButtonFace;
+    border-color: ButtonBorder;
+  }
+
+  #${SKIP_TO_ID} [role="menuitem"].hover,
+  #${SKIP_TO_ID} [role="menuitem"].hover .level,
+  #${SKIP_TO_ID} [role="menuitem"].hover .label {
+    background-color: ButtonText;
+    color: ButtonFace;
+  }
+
+}
+
 `;
+
 
   /*
    *   @function getTheme
    *
    *   @desc Returns
    *
-   *   @param  {Object}  colorThemes  -  Javascript object with keyed color themes
    *   @param  {String}  colorTheme   -  A string identifying a color theme  
    *
    *   @returns {Object}  see @desc
    */
-  function getTheme(colorThemes, colorTheme) {
+  function getTheme(colorTheme) {
     if (typeof colorThemes[colorTheme] === 'object') {
       return colorThemes[colorTheme];
     }
@@ -428,7 +663,6 @@ $skipToId [role="menuitem"].hover .label {
       const pathnameSelector = colorThemes[item].pathnameSelector;
       let hostnameFlag = false; 
       let pathnameFlag = false; 
-
 
       if (hostnameSelector) {
         if (hostname.indexOf(hostnameSelector) >= 0) {
@@ -489,7 +723,7 @@ $skipToId [role="menuitem"].hover .label {
    *
    *   @returns 
    */
-  function updateStyle(stylePlaceholder, configValue, themeValue, defaultValue) {
+  function updateStyle(cssContent, stylePlaceholder, configValue, themeValue, defaultValue) {
     let value = defaultValue;
     if (typeof configValue === 'string' && configValue) {
       value = configValue;
@@ -499,7 +733,6 @@ $skipToId [role="menuitem"].hover .label {
       }
     }
 
-    let cssContent = styleTemplate.innerHTML;
     let index1 = cssContent.indexOf(stylePlaceholder);
     let index2 = index1 + stylePlaceholder.length;
     while (index1 >= 0 && index2 < cssContent.length) {
@@ -507,73 +740,104 @@ $skipToId [role="menuitem"].hover .label {
       index1 = cssContent.indexOf(stylePlaceholder, index2);
       index2 = index1 + stylePlaceholder.length;
     }
-    styleTemplate.innerHTML = cssContent;
+    return cssContent;
   }
 
   /*
    * @function addCSSColors
    *
-   * @desc Updates the styling information in the attached
-   *       stylesheet to use the configured or default colors  
+   * @desc Updates the styling for the menu and highlight information
+   *       and returns the updated strings
    *
-   * @param  {Object}  colorThemes -  Object with theme information
-   * @param  {Object}  config      -  Configuration information object
+   * @param  {String}  cssMenu       -  CSS template for the button and menu
+   * @param  {Object}  config        -  SkipTo.js configuration information object
+   * @param  {Boolean} useURLTheme   -  When true use the theme associated with the URL
+   *
+   * @returns. see @desc
    */
-  function addCSSColors (colorThemes, config) {
-    const theme = getTheme(colorThemes, config.colorTheme);
-    const defaultTheme = getTheme(colorThemes, 'default');
+  function addCSSColors (cssMenu, config, useURLTheme=false) {
+    const theme = useURLTheme ? getTheme(config.colorTheme) : {};
+    const defaultTheme = getTheme('default');
 
     // Check for display option in theme
-    if ((typeof theme.displayOption === 'string') && 
-        ('fixed popup static'.indexOf(theme.displayOption.toLowerCase())>= 0)) {
-      config.displayOption = theme.displayOption;
+    if ((typeof config.displayOption === 'string') &&
+        (['popup-border', 'fixed', 'popup', 'static'].includes(config.displayOption.toLowerCase()) < 0)) {
+
+      if ((typeof theme.displayOption === 'string') &&
+          (['popup-border', 'fixed', 'popup', 'static'].includes(theme.displayOption.toLowerCase())>= 0)) {
+        config.displayOption = theme.displayOption;
+      }
+      else {
+        config.displayOption = defaultTheme.displayOption;
+      }
     }
 
-    updateStyle('$fontFamily', config.fontFamily, theme.fontFamily, defaultTheme.fontFamily);
-    updateStyle('$fontSize', config.fontSize, theme.fontSize, defaultTheme.fontSize);
+    cssMenu = updateStyle(cssMenu, '$fontFamily', config.fontFamily, theme.fontFamily, defaultTheme.fontFamily);
+    cssMenu = updateStyle(cssMenu, '$fontSize', config.fontSize, theme.fontSize, defaultTheme.fontSize);
 
-    updateStyle('$positionLeft', config.positionLeft, theme.positionLeft, defaultTheme.positionLeft);
-    updateStyle('$smallBreakPoint', config.smallBreakPoint, theme.smallBreakPoint, defaultTheme.smallBreakPoint);
-    updateStyle('$mediumBreakPoint', config.mediumBreakPoint, theme.mediumBreakPoint, defaultTheme.mediumBreakPoint);
+    cssMenu = updateStyle(cssMenu, '$positionLeft', config.positionLeft, theme.positionLeft, defaultTheme.positionLeft);
+    cssMenu = updateStyle(cssMenu, '$smallBreakPoint', config.smallBreakPoint, theme.smallBreakPoint, defaultTheme.smallBreakPoint);
+    cssMenu = updateStyle(cssMenu, '$mediumBreakPoint', config.mediumBreakPoint, theme.mediumBreakPoint, defaultTheme.mediumBreakPoint);
 
-    updateStyle('$menuTextColor', config.menuTextColor, theme.menuTextColor, defaultTheme.menuTextColor);
-    updateStyle('$menuBackgroundColor', config.menuBackgroundColor, theme.menuBackgroundColor, defaultTheme.menuBackgroundColor);
+    cssMenu = updateStyle(cssMenu, '$menuTextColor', config.menuTextColor, theme.menuTextColor, defaultTheme.menuTextColor);
+    cssMenu = updateStyle(cssMenu, '$menuTextDarkColor', config.menuTextDarkColor, theme.menuTextDarkColor, defaultTheme.menuTextDarkColor);
+    cssMenu = updateStyle(cssMenu, '$menuBackgroundColor', config.menuBackgroundColor, theme.menuBackgroundColor, defaultTheme.menuBackgroundColor);
+    cssMenu = updateStyle(cssMenu, '$menuBackgroundDarkColor', config.menuBackgroundDarkColor, theme.menuBackgroundDarkColor, defaultTheme.menuBackgroundDarkColor);
 
-    updateStyle('$menuitemFocusTextColor', config.menuitemFocusTextColor, theme.menuitemFocusTextColor, defaultTheme.menuitemFocusTextColor);
-    updateStyle('$menuitemFocusBackgroundColor', config.menuitemFocusBackgroundColor, theme.menuitemFocusBackgroundColor, defaultTheme.menuitemFocusBackgroundColor);
+    cssMenu = updateStyle(cssMenu, '$menuitemFocusTextColor', config.menuitemFocusTextColor, theme.menuitemFocusTextColor, defaultTheme.menuitemFocusTextColor);
+    cssMenu = updateStyle(cssMenu, '$menuitemFocusTextDarkColor', config.menuitemFocusTextDarkColor, theme.menuitemFocusTextDarkColor, defaultTheme.menuitemFocusTextDarkColor);
+    cssMenu = updateStyle(cssMenu, '$menuitemFocusBackgroundColor', config.menuitemFocusBackgroundColor, theme.menuitemFocusBackgroundColor, defaultTheme.menuitemFocusBackgroundColor);
+    cssMenu = updateStyle(cssMenu, '$menuitemFocusBackgroundDarkColor', config.menuitemFocusBackgroundDarkColor, theme.menuitemFocusBackgroundDarkColor, defaultTheme.menuitemFocusBackgroundDarkColor);
 
-    updateStyle('$focusBorderColor', config.focusBorderColor, theme.focusBorderColor, defaultTheme.focusBorderColor);
+    cssMenu = updateStyle(cssMenu, '$focusBorderColor', config.focusBorderColor, theme.focusBorderColor, defaultTheme.focusBorderColor);
+    cssMenu = updateStyle(cssMenu, '$focusBorderDarkColor', config.focusBorderDarkColor, theme.focusBorderDarkColor, defaultTheme.focusBorderDarkColor);
 
-    updateStyle('$buttonTextColor', config.buttonTextColor, theme.buttonTextColor, defaultTheme.buttonTextColor);
-    updateStyle('$buttonBackgroundColor', config.buttonBackgroundColor, theme.buttonBackgroundColor, defaultTheme.buttonBackgroundColor);
+    cssMenu = updateStyle(cssMenu, '$buttonTextColor', config.buttonTextColor, theme.buttonTextColor, defaultTheme.buttonTextColor);
+    cssMenu = updateStyle(cssMenu, '$buttonTextDarkColor', config.buttonTextDarkColor, theme.buttonTextDarkColor, defaultTheme.buttonTextDarkColor);
+    cssMenu = updateStyle(cssMenu, '$buttonBackgroundColor', config.buttonBackgroundColor, theme.buttonBackgroundColor, defaultTheme.buttonBackgroundColor);
+    cssMenu = updateStyle(cssMenu, '$buttonBackgroundDarkColor', config.buttonBackgroundDarkColor, theme.buttonBackgroundDarkColor, defaultTheme.buttonBackgroundDarkColor);
 
-    updateStyle('$zIndex', config.zIndex, theme.zIndex, defaultTheme.zIndex);
+    cssMenu = updateStyle(cssMenu, '$zIndex', config.zIndex, theme.zIndex, defaultTheme.zIndex);
+
+    // Special case for theme configuration used in Illinois theme
+    if (typeof theme.highlightTarget === 'string') {
+      config.highlightTarget = theme.highlightTarget;
+    }
+
+    return cssMenu;
 
   }
 
   /*
-   *   @function enderStyleElement
+   *   @function renderStyleElement
    *
    *   @desc  Updates the style sheet template and then attaches it to the document
    *
-   * @param  {Object}  colorThemes     -  Object with theme information
+   * @param  {Object}  attachNode      - DOM element node to attach button and menu container element
    * @param  {Object}  config          -  Configuration information object
    * @param  {String}  skipYToStyleId  -  Id used for the skipto container element
+   * @param  {Boolean} useURLTheme     - When true use the theme associated with the URL
    */
-  function renderStyleElement (colorThemes, config, skipToId) {
-    styleTemplate.innerHTML = styleTemplate.innerHTML.replaceAll('$skipToId', '#' + skipToId);
-    addCSSColors(colorThemes, config);
-    const styleNode = styleTemplate.content.cloneNode(true);
-    styleNode.id = `${skipToId}-style`;
-    const headNode = document.getElementsByTagName('head')[0];
-    headNode.appendChild(styleNode);
+  function renderStyleElement (attachNode, config, skipToId, useURLTheme=false) {
+    let cssMenu = cssMenuTemplate.textContent.slice(0);
+
+    cssMenu = addCSSColors(cssMenu, config, useURLTheme);
+
+    let styleNode = attachNode.querySelector(`#${SKIP_TO_MENU_STYLE_ID}`);
+    if (!styleNode) {
+      styleNode = document.createElement('style');
+      attachNode.appendChild(styleNode);
+      styleNode.setAttribute('id', `${SKIP_TO_MENU_STYLE_ID}`);
+    }
+    styleNode.textContent = cssMenu;
+
   }
 
   /* utils.js */
 
   /* Constants */
-  const debug$5 = new DebugLogging('Utils', false);
-  debug$5.flag = false;
+  const debug$b = new DebugLogging('Utils', false);
+  debug$b.flag = false;
 
 
   /*
@@ -656,14 +920,1204 @@ $skipToId [role="menuitem"].hover .label {
     return !isDisplayNone(element);
   }
 
+  /* shortcutInfoDialog.js */
+
+  /* Constants */
+  const debug$a = new DebugLogging('[shortcutsInfoDialog]', false);
+  debug$a.flag = false;
+
+  const defaultStyleOptions$2 = colorThemes['default'];
+
+
+  const styleTemplate$1 = document.createElement('template');
+  styleTemplate$1.textContent = `
+/* infoDialog.css */
+
+dialog#skip-to-info-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-family: $fontFamily;
+  font-size: $fontSize;
+  max-width: 70%;
+  margin: 0;
+  padding: 0;
+  background-color: light-dark($dialogBackgroundColor, $dialogBackgroundDarkColor);
+  color: light-dark($dialogTextColor, $dialogTextDarkColor);
+  border-width: 2px;
+  border-style: solid;
+  border-color: light-dark($focusBorderColor, $focusBorderDarkColor);
+  border-radius: 5px;
+  z-index: 2000001;
+
+}
+
+dialog#skip-to-info-dialog .header {
+  margin: 0;
+  margin-bottom: 0.5em;
+  padding: 4px;
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-style: solid;
+  border-color: light-dark($focusBorderColor, $focusBorderDarkColor);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  font-weight:  bold;
+  background-color: light-dark($dialogBackgroundTitleColor, $dialogBackgroundTitleDarkColor);
+  color: light-dark($dialogTextColor, $dialogTextDarkColor);
+  position: relative;
+  font-size: 100%;
+}
+
+dialog#skip-to-info-dialog .header h2 {
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
+}
+
+dialog#skip-to-info-dialog .header button {
+  position: absolute;
+  top: -0.25em;
+  right: 0;
+  border: none;
+  background: transparent;
+  font-weight: bold;
+  color: light-dark(black, white);
+}
+
+dialog#skip-to-info-dialog .content {
+  margin-left: 2em;
+  margin-right: 2em;
+  margin-top: 0;
+  margin-bottom: 2em;
+}
+
+dialog#skip-to-info-dialog .content .desc {
+  max-width: 20em;
+}
+
+dialog#skip-to-info-dialog .content .happy {
+  margin-top: 0.5em;
+  text-align: center;
+  font-family: fantasy, cursive;
+  font-size: 1.25em;
+  font-weight: bold;
+  font-style: italic;
+  letter-spacing: 0.05em;
+}
+
+
+dialog#skip-to-info-dialog .content .version,
+dialog#skip-to-info-dialog .content .copyright {
+  margin-top: 0.5em;
+  text-align: center;
+  font-weight: bold;
+  font-size: 90%;
+}
+
+dialog#skip-to-info-dialog .content table {
+  width: auto;
+}
+
+dialog#skip-to-info-dialog .content caption {
+  margin: 0;
+  padding: 0;
+  margin-top: 1em;
+  text-align: left;
+  font-weight: bold;
+  font-size: 110%;
+}
+
+dialog#skip-to-info-dialog .content th {
+  margin: 0;
+  padding: 0;
+  padding-top: 0.125em;
+  padding-buttom: 0.125em;
+  text-align: left;
+  font-weight: bold;
+  font-size: 100%;
+}
+
+dialog#skip-to-info-dialog .content th {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: light-dark(#999999, #777777);
+}
+
+dialog#skip-to-info-dialog .content th.shortcut {
+  width: 2.5em;
+}
+
+dialog#skip-to-info-dialog .content td {
+  margin: 0;
+  padding: 0;
+  padding-top: 0.125em;
+  padding-buttom: 0.125em;
+  text-align: left;
+  font-size: 100%;
+}
+
+
+dialog#skip-to-info-dialog .content table tr:nth-child(even) {
+  background-color: light-dark(#eeeeee, #111111);
+}
+
+dialog#skip-to-info-dialog .buttons {
+  float: right;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+dialog#skip-to-info-dialog button {
+  margin: 6px;
+}
+
+dialog#skip-to-info-dialog .buttons button {
+  min-width: 5em;
+}
+
+button:focus {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+`;
+
+  /*
+   *
+   *
+   */
+
+  class SkipToContentInfoDialog extends HTMLElement {
+    constructor () {
+
+      super();
+      this.attachShadow({ mode: 'open' });
+
+      // Get references
+
+      this.infoDialog  = document.createElement('dialog');
+      this.infoDialog.id = 'skip-to-info-dialog';
+      this.shadowRoot.appendChild(this.infoDialog);
+
+      const headerElem  = document.createElement('div');
+      headerElem.className = 'header';
+      this.infoDialog.appendChild(headerElem);
+
+      this.h2Elem  = document.createElement('h2');
+      this.h2Elem.textContent = 'Keyboard Shortcuts';
+      headerElem.appendChild(this.h2Elem);
+
+      this.closeButton1  = document.createElement('button');
+      this.closeButton1.textContent = '✕';
+      headerElem.appendChild(this.closeButton1);
+      this.closeButton1.addEventListener('click', this.onCloseButtonClick.bind(this));
+      this.closeButton1.addEventListener('keydown', this.onKeyDown.bind(this));
+
+      this.contentElem  = document.createElement('div');
+      this.contentElem.className = 'content';
+      this.infoDialog.appendChild(this.contentElem);
+
+      const buttonsElem  = document.createElement('div');
+      buttonsElem.className = 'buttons';
+      this.infoDialog.appendChild(buttonsElem);
+
+      this.moreInfoButton  = document.createElement('button');
+      this.moreInfoButton.textContent = 'More Information';
+      buttonsElem.appendChild(this.moreInfoButton);
+      this.moreInfoButton.addEventListener('click', this.onMoreInfoClick.bind(this));
+
+      this.closeButton2  = document.createElement('button');
+      this.closeButton2.textContent  = 'Close';
+      buttonsElem.appendChild(this.closeButton2);
+      this.closeButton2.addEventListener('click', this.onCloseButtonClick.bind(this));
+      this.closeButton2.addEventListener('keydown', this.onKeyDown.bind(this));
+
+      this.moreInfoURL = '';
+
+    }
+
+    onCloseButtonClick () {
+      this.infoDialog.close();
+    }
+
+    openDialog () {
+      this.infoDialog.showModal();
+      this.closeButton2.focus();
+    }
+
+    onMoreInfoClick () {
+      if (this.moreInfoURL) {
+        window.open(this.moreInfoURL, '_blank').focus();
+      }
+    }
+
+    configureStyle(config={}) {
+
+      function updateOption(style, option, configOption, defaultOption) {
+        if (configOption) {
+          return style.replaceAll(option, configOption);
+        }
+        else {
+          return style.replaceAll(option, defaultOption);
+        }
+      }
+
+      // make a copy of the template
+      let style = styleTemplate$1.textContent.slice(0);
+
+      style = updateOption(style,
+                           '$fontFamily',
+                           config.fontFamily,
+                           defaultStyleOptions$2.fontFamily);
+
+      style = updateOption(style,
+                           '$fontSize',
+                           config.fontSize,
+                           defaultStyleOptions$2.fontSize);
+
+      style = updateOption(style,
+                           '$focusBorderColor',
+                           config.focusBorderColor,
+                           defaultStyleOptions$2.focusBorderColor);
+
+      style = updateOption(style,
+                           '$focusBorderDarkColor',
+                           config.focusBorderDarkColor,
+                           defaultStyleOptions$2.focusBorderDarkColor);
+
+      style = updateOption(style,
+                           '$dialogTextColor',
+                           config.dialogTextColor,
+                           defaultStyleOptions$2.dialogTextColor);
+
+      style = updateOption(style,
+                           '$dialogextDarkColor',
+                           config.dialogextDarkColor,
+                           defaultStyleOptions$2.dialogextDarkColor);
+
+      style = updateOption(style,
+                           '$dialogBackgroundColor',
+                           config.dialogBackgroundColor,
+                           defaultStyleOptions$2.dialogBackgroundColor);
+
+      style = updateOption(style,
+                           '$dialogBackgroundDarkColor',
+                           config.dialogBackgroundDarkColor,
+                           defaultStyleOptions$2.dialogBackgroundDarkColor);
+
+      style = updateOption(style,
+                           '$dialogBackgroundTitleColor',
+                           config.dialogBackgroundTitleColor,
+                           defaultStyleOptions$2.dialogBackgroundTitleColor);
+
+      style = updateOption(style,
+                           '$dialogBackgroundTitleDarkColor',
+                           config.dialogBackgroundTitleDarkColor,
+                           defaultStyleOptions$2.dialogBackgroundTitleDarkColor);
+
+
+      let styleNode = this.shadowRoot.querySelector('style');
+
+      if (styleNode) {
+        styleNode.remove();
+      }
+
+      styleNode = document.createElement('style');
+      styleNode.textContent = style;
+      this.shadowRoot.appendChild(styleNode);
+
+    }
+
+
+    updateShortcutContent (config) {
+
+        while (this.contentElem.lastElementChild) {
+          this.contentElem.removeChild(this.contentElem.lastElementChild);
+        }
+
+        this.moreInfoURL = MORE_SHORTCUT_INFO_URL;
+
+        this.h2Elem.textContent = config.shortcutsInfoLabel;
+        this.closeButton1.setAttribute('aria-label', config.closeLabel);
+        this.closeButton2.textContent = config.closeLabel;
+        this.moreInfoButton.textContent = config.moreInfoLabel;
+
+        function addRow(tbodyElem, shortcut, desc) {
+
+          const trElem = document.createElement('tr');
+          tbodyElem.appendChild(trElem);
+
+          const tdElem1 = document.createElement('td');
+          tdElem1.className = 'shortcut';
+          tdElem1.textContent = shortcut;
+          trElem.appendChild(tdElem1);
+
+          const tdElem2 = document.createElement('td');
+          tdElem2.className = 'desc';
+          tdElem2.textContent = desc;
+          trElem.appendChild(tdElem2);
+        }
+
+        // Regions
+
+        const tableElem1 = document.createElement('table');
+        this.contentElem.appendChild(tableElem1);
+
+        const captionElem1 = document.createElement('caption');
+        captionElem1.textContent = config.landmarkGroupLabel;
+        tableElem1.appendChild(captionElem1);
+
+        const theadElem1 = document.createElement('thead');
+        tableElem1.appendChild(theadElem1);
+
+        const trElem1 = document.createElement('tr');
+        theadElem1.appendChild(trElem1);
+
+        const thElem1 = document.createElement('th');
+        thElem1.className = 'shortcut';
+        thElem1.textContent = config.msgKey;
+        trElem1.appendChild(thElem1);
+
+        const thElem2 = document.createElement('th');
+        thElem2.className = 'desc';
+        thElem2.textContent = config.msgDescription;
+        trElem1.appendChild(thElem2);
+
+        const tbodyElem1 = document.createElement('tbody');
+        tableElem1.appendChild(tbodyElem1);
+
+        addRow(tbodyElem1, config.shortcutRegionNext,          config.msgNextRegion);
+        addRow(tbodyElem1, config.shortcutRegionPrevious,      config.msgPreviousRegion);
+        addRow(tbodyElem1, config.shortcutRegionMain,          config.msgMainRegions);
+        addRow(tbodyElem1, config.shortcutRegionNavigation,    config.msgNavigationRegions);
+        addRow(tbodyElem1, config.shortcutRegionComplementary, config.msgComplementaryRegions);
+
+        // Headings
+
+        const tableElem2 = document.createElement('table');
+        this.contentElem.appendChild(tableElem2);
+
+        const captionElem2 = document.createElement('caption');
+        captionElem2.textContent = config.headingGroupLabel;
+        tableElem2.appendChild(captionElem2);
+
+        const theadElem2 = document.createElement('thead');
+        tableElem2.appendChild(theadElem2);
+
+        const trElem2 = document.createElement('tr');
+        theadElem2.appendChild(trElem2);
+
+        const thElem3 = document.createElement('th');
+        thElem3.className = 'shortcut';
+        thElem3.textContent = config.msgKey;
+        trElem2.appendChild(thElem3);
+
+        const thElem4 = document.createElement('th');
+        thElem4.className = 'desc';
+        thElem4.textContent = config.msgDescription;
+        trElem2.appendChild(thElem4);
+
+        const tbodyElem2 = document.createElement('tbody');
+        tableElem2.appendChild(tbodyElem2);
+
+        addRow(tbodyElem2, config.shortcutHeadingNext, config.msgNextHeading);
+        addRow(tbodyElem2, config.shortcutHeadingPrevious, config.msgPreviousHeading);
+        addRow(tbodyElem2, config.shortcutHeadingH1, config.msgH1Headings);
+        addRow(tbodyElem2, config.shortcutHeadingH2, config.msgH2Headings);
+        addRow(tbodyElem2, config.shortcutHeadingH3, config.msgH3Headings);
+        addRow(tbodyElem2, config.shortcutHeadingH4, config.msgH4Headings);
+        addRow(tbodyElem2, config.shortcutHeadingH5, config.msgH5Headings);
+        addRow(tbodyElem2, config.shortcutHeadingH6, config.msgH6Headings);
+
+    }
+
+    updateAboutContent (config) {
+
+      while (this.contentElem.lastElementChild) {
+        this.contentElem.removeChild(this.contentElem.lastElementChild);
+      }
+
+      this.moreInfoURL = MORE_PAGE_SCRIPT_INFO_URL;
+
+      this.h2Elem.textContent = config.aboutInfoLabel;
+      this.closeButton1.setAttribute('aria-label', config.closeLabel);
+      this.closeButton2.textContent = config.closeLabel;
+      this.moreInfoButton.textContent = config.moreInfoLabel;
+
+      let divElem = document.createElement('div');
+      divElem.className = 'desc';
+      divElem.textContent = config.aboutDesc;
+      this.contentElem.appendChild(divElem);
+
+      divElem = document.createElement('div');
+      divElem.className = 'happy';
+      divElem.textContent = config.aboutHappy;
+      this.contentElem.appendChild(divElem);
+
+      divElem = document.createElement('div');
+      divElem.className = 'version';
+      divElem.textContent = config.aboutVersion;
+      this.contentElem.appendChild(divElem);
+
+      divElem = document.createElement('div');
+      divElem.className = 'copyright';
+      divElem.textContent = config.aboutCopyright;
+      this.contentElem.appendChild(divElem);
+
+    }
+
+    onKeyDown (event) {
+
+      if ((event.key === "Tab") &&
+          !event.altKey &&
+          !event.ctlKey &&
+          !event.metaKey) {
+
+        if (event.shiftKey &&
+            (event.currentTarget === this.closeButton1)) {
+          this.closeButton2.focus();
+          event.preventDefault();
+          event.stopPropagation();
+        }
+
+        if (!event.shiftKey &&
+            (event.currentTarget === this.closeButton2)) {
+          this.closeButton1.focus();
+          event.preventDefault();
+          event.stopPropagation();
+        }
+      }
+    }
+  }
+
+  /* highlight.js */
+
+  /* Constants */
+  const debug$9 = new DebugLogging('highlight', false);
+  debug$9.flag = false;
+
+  const minWidth = 68;
+  const minHeight = 27;
+  const offset = 6;
+  const borderWidth = 2;
+
+  const defaultStyleOptions$1 = colorThemes['default'];
+
+  const styleHighlightTemplate = document.createElement('template');
+  styleHighlightTemplate.textContent = `
+:root {
+  color-scheme: light dark;
+}
+
+#${HIGHLIGHT_ID} {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  border-radius: 3px;
+  border: 4px solid light-dark($buttonBackgroundColor, $buttonBackgroundDarkColor);
+  box-sizing: border-box;
+  pointer-events:none;
+}
+
+#${HIGHLIGHT_ID} .overlay-border {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  top: -2px;
+  left: -2px;
+  border-radius: 3px 3px 3px 3px;
+  border: 2px solid light-dark($focusBorderColor, $focusBorderDarkColor);
+  z-index: $zHighlight;
+  box-sizing: border-box;
+  pointer-events:none;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+#${HIGHLIGHT_ID} .overlay-border.skip-to-hidden {
+  background-color: light-dark($hiddenHeadingBackgroundColor, $hiddenHeadingBackgroundDarkColor);
+  color: light-dark($hiddenHeadingColor, $hiddenHeadingDarkColor);
+  font-family: $fontFamily;
+  font-size: $fontSize;
+  font-style: italic;
+  font-weight: bold;
+  text-align: center;
+  padding: .25em;
+  animation: fadeIn 1.5s;
+}
+
+#${HIGHLIGHT_ID} .overlay-border.hasInfoBottom {
+  border-radius: 3px 3px 3px 0;
+}
+
+#${HIGHLIGHT_ID} .overlay-border.hasInfoTop {
+  border-radius: 0 3px 3px 3px;
+}
+
+#${HIGHLIGHT_ID} .overlay-info {
+  position: relative;
+  text-align: left;
+  left: -2px;
+  padding: 1px 4px;
+  font-size: $fontSize;
+  font-family: $fontFamily;
+  border: 2px solid light-dark($focusBorderColor, $focusBorderDarkColor);
+  background-color: light-dark($menuBackgroundColor, $menuBackgroundDarkColor);
+  color: light-dark($menuTextColor, $menuTextDarkColor);
+  z-index: $zHighlight;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events:none;
+}
+
+#${HIGHLIGHT_ID} .overlay-info.hasInfoTop {
+  border-radius: 3px 3px 0 0;
+}
+
+#${HIGHLIGHT_ID} .overlay-info.hasInfoBottom {
+  border-radius: 0 0 3px 3px;
+}
+
+@media (forced-colors: active) {
+
+  #${HIGHLIGHT_ID} {
+    border-color: ButtonBorder;
+  }
+
+  #${HIGHLIGHT_ID} .overlay-border {
+    border-color: ButtonBorder;
+  }
+
+  #${HIGHLIGHT_ID} .overlay-border.skip-to-hidden {
+    background-color: ButtonFace;
+    color: ButtonText;
+  }
+
+  #${HIGHLIGHT_ID} .overlay-info {
+    border-color: ButtonBorder;
+    background-color: ButtonFace;
+    color: ButtonText;
+  }
+
+}
+`;
+
+  /*
+   *   @class HighlightElement
+   *
+   */
+
+  class HighlightElement extends HTMLElement {
+
+    constructor() {
+      super();
+      this.attachShadow({ mode: 'open' });
+
+      // Get references
+
+      this.overlayElem  = document.createElement('div');
+      this.overlayElem.id = HIGHLIGHT_ID;
+      this.shadowRoot.appendChild(this.overlayElem);
+      this.overlayElem.style.display = 'none';
+
+      this.borderElem = document.createElement('div');
+      this.borderElem.className = 'overlay-border';
+      this.overlayElem.appendChild(this.borderElem);
+
+      this.infoElem = document.createElement('div');
+      this.infoElem.className = 'overlay-info';
+      this.overlayElem.appendChild(this.infoElem);
+
+      this.configureStyle();
+
+    }
+
+    /*
+     *   @method configureStyle
+     *
+     *   @desc  Updates stylesheet for styling the highlight information
+     *
+     *   @param {Object} config : color and font information
+     */
+
+
+    configureStyle(config={}) {
+
+      function updateOption(style, option, configOption, defaultOption) {
+        if (configOption) {
+          return style.replaceAll(option, configOption);
+        }
+        else {
+          return style.replaceAll(option, defaultOption);
+        }
+      }
+
+      // make a copy of the template
+      let style = styleHighlightTemplate.textContent.slice(0);
+
+      style = updateOption(style,
+                           '$fontFamily',
+                           config.fontFamily,
+                           defaultStyleOptions$1.fontFamily);
+
+      style = updateOption(style,
+                           '$fontSize',
+                           config.fontSize,
+                           defaultStyleOptions$1.fontSize);
+
+      style = updateOption(style,
+                           '$buttonBackgroundColor',
+                           config.buttonBackgroundColor,
+                           defaultStyleOptions$1.buttonBackgroundColor);
+
+      style = updateOption(style,
+                           '$buttonBackgroundDarkColor',
+                           config.buttonBackgroundDarkColor,
+                           defaultStyleOptions$1.buttonBackgroundDarkColor);
+
+      style = updateOption(style,
+                           '$focusBorderColor',
+                           config.focusBorderColor,
+                           defaultStyleOptions$1.focusBorderColor);
+
+      style = updateOption(style,
+                           '$focusBorderDarkColor',
+                           config.focusBorderDarkColor,
+                           defaultStyleOptions$1.focusBorderDarkColor);
+
+      style = updateOption(style,
+                           '$menuBackgroundColor',
+                           config.menuBackgroundColor,
+                           defaultStyleOptions$1.menuBackgroundColor);
+
+      style = updateOption(style,
+                           '$menuBackgroundDarkColor',
+                           config.menuBackgroundDarkColor,
+                           defaultStyleOptions$1.menuBackgroundDarkColor);
+
+      style = updateOption(style,
+                           '$menuTextColor',
+                           config.menuTextColor,
+                           defaultStyleOptions$1.menuTextColor);
+
+      style = updateOption(style,
+                           '$menuTextDarkColor',
+                           config.menuTextDarkColor,
+                           defaultStyleOptions$1.menuTextDarkColor);
+
+      style = updateOption(style,
+                           '$hiddenHeadingColor',
+                           config.hiddenHeadingColor,
+                           defaultStyleOptions$1.hiddenHeadingColor);
+
+      style = updateOption(style,
+                           '$hiddenHeadingDarkColor',
+                           config.hiddenHeadingDarkColor,
+                           defaultStyleOptions$1.hiddenHeadingDarkColor);
+
+      style = updateOption(style,
+                           '$hiddenHeadingBackgroundColor',
+                           config.hiddenHeadingBackgroundColor,
+                           defaultStyleOptions$1.hiddenHeadingBackgroundColor);
+
+      style = updateOption(style,
+                           '$hiddenHeadingBackgroundDarkColor',
+                           config.hiddenHeadingBackgroundDarkColor,
+                           defaultStyleOptions$1.hiddenHeadingBackgroundDarkColor);
+
+      style = updateOption(style,
+                           '$zHighlight',
+                           config.zHighlight,
+                           defaultStyleOptions$1.zHighlight);
+
+
+      let styleNode = this.shadowRoot.querySelector('style');
+
+      if (styleNode) {
+        styleNode.remove();
+      }
+
+      styleNode = document.createElement('style');
+      styleNode.textContent = style;
+      this.shadowRoot.appendChild(styleNode);
+
+    }
+
+    /*
+     *   @method isElementInViewport
+     *
+     *   @desc  Returns true if element is already visible in view port,
+     *          otheriwse false
+     *
+     *   @param {Object} element : DOM node of element to highlight
+     *
+     *   @returns see @desc
+     */
+
+    isElementInViewport(element) {
+      const rect = element.getBoundingClientRect();
+      return (
+        rect.top >= window.screenY &&
+        rect.left >= window.screenX &&
+        rect.bottom <= ((window.screenY + window.innerHeight) ||
+                        (window.screenY + document.documentElement.clientHeight)) &&
+        rect.right <= ((window.screenX + window.innerWidth) ||
+                       (window.screenX + document.documentElement.clientWidth)));
+    }
+
+
+    /*
+     *   @method isElementStartInViewport
+     *
+     *   @desc  Returns true if start of the element is already visible in view port,
+     *          otherwise false
+     *
+     *   @param {Object} element : DOM node of element to highlight
+     *
+     *   @returns see @desc
+     */
+
+    isElementStartInViewport(element) {
+      const rect = element.getBoundingClientRect();
+      return (
+          rect.top >= window.screenY &&
+          rect.top <= ((window.screenY + window.innerHeight) ||
+                       (window.screenY + document.documentElement.clientHeight)) &&
+          rect.left >= window.screenX &&
+          rect.left <= ((window.screenX + window.innerWidth) ||
+                       (window.screenX + document.documentElement.clientWidth)));
+    }
+
+
+    /*
+     *   @method isElementHeightLarge
+     *
+     *   @desc  Returns true if element client height is larger than clientHeight,
+     *          otheriwse false
+     *
+     *   @param {Object} element : DOM node of element to highlight
+     *
+     *   @returns see @desc
+     */
+
+    isElementInHeightLarge(element) {
+      var rect = element.getBoundingClientRect();
+      return (1.2 * rect.height) > (window.innerHeight || document.documentElement.clientHeight);
+    }
+
+    /*
+     *   @method highlight
+     *
+     *   @desc  Highlights the element with the id on a page when highlighting
+     *          is enabled (NOTE: Highlight is enabled by default)
+     *
+     *   @param {Object}  elem            : DOM node of element to highlight
+     *   @param {String}  highlightTarget : value of highlight target
+     *   @param {String}  info            : Information about target
+     *   @param {Boolean} force           : If true override isRduced
+     */
+
+    highlight(elem, highlightTarget, info='', force=false) {
+      const mediaQuery = window.matchMedia(`(prefers-reduced-motion: reduce)`);
+      const isReduced = !mediaQuery || mediaQuery.matches;
+
+      if (elem && highlightTarget) {
+
+        const scrollElement = this.updateHighlightElement(elem, info);
+
+        if (this.isElementInHeightLarge(elem)) {
+          if (!this.isElementStartInViewport(elem) && (!isReduced || force)) {
+            scrollElement.scrollIntoView({ behavior: highlightTarget, block: 'start', inline: 'nearest' });
+          }
+        }
+        else {
+          if (!this.isElementInViewport(elem)  && (!isReduced || force)) {
+            scrollElement.scrollIntoView({ behavior: highlightTarget, block: 'center', inline: 'nearest' });
+          }
+        }
+      }
+    }
+
+    /*
+     *   @method removeHighlight
+     *
+     *   @desc  Hides the highlight element on the page
+     */
+    removeHighlight() {
+      if (this.overlayElement) {
+        this.overlayElement.style.display = 'none';
+      }
+    }
+
+    /*
+     *  @method  updateHighlightElement
+     *
+     *  @desc  Create an overlay element and set its position on the page.
+     *
+     *  @param  {Object}  element          -  DOM element node to highlight
+     *  @param  {String}  info             -  Description of the element
+     *
+     */
+
+     updateHighlightElement (element, info) {
+
+      let rect  = element.getBoundingClientRect();
+
+      let isHidden = false;
+
+      const rectLeft  = rect.left > offset ?
+                      Math.round(rect.left - offset + window.scrollX) :
+                      Math.round(rect.left + window.scrollX);
+
+      let left = rectLeft;
+
+      const rectWidth  = rect.left > offset ?
+                      Math.max(rect.width  + offset * 2, minWidth) :
+                      Math.max(rect.width, minWidth);
+
+      let width = rectWidth;
+
+      const rectTop    = rect.top > offset ?
+                      Math.round(rect.top  - offset + window.scrollY) :
+                      Math.round(rect.top + window.scrollY);
+
+      let top = rectTop;
+
+      const rectHeight   = rect.top > offset ?
+                      Math.max(rect.height + offset * 2, minHeight) :
+                      Math.max(rect.height, minHeight);
+
+      let height = rectHeight;
+
+      if ((rect.height < 3) || (rect.width < 3)) {
+        isHidden = true;
+      }
+
+      if ((rectTop < 0) || (rectLeft < 0)) {
+        isHidden = true;
+        if (element.parentNode) {
+          const parentRect = element.parentNode.getBoundingClientRect();
+
+          if ((parentRect.top > 0) && (parentRect.left > 0)) {
+            top = parentRect.top > offset ?
+                      Math.round(parentRect.top  - offset + window.scrollY) :
+                      Math.round(parentRect.top + window.scrollY);
+            left = parentRect.left > offset ?
+                      Math.round(parentRect.left - offset + window.scrollX) :
+                      Math.round(parentRect.left + window.scrollX);
+          }
+          else {
+            left = offset;
+            top = offset;
+          }
+        }
+        else {
+          left = offset;
+          top = offset;
+        }
+      }
+
+      this.overlayElem.style.left   = left   + 'px';
+      this.overlayElem.style.top    = top    + 'px';
+
+      if (isHidden) {
+        this.borderElem.textContent = 'Heading is hidden';
+        this.borderElem.classList.add('skip-to-hidden');
+        this.overlayElem.style.width  = 'auto';
+        this.overlayElem.style.height = 'auto';
+        this.borderElem.style.width  = 'auto';
+        this.borderElem.style.height = 'auto';
+        height = this.borderElem.getBoundingClientRect().height;
+        width  = this.borderElem.getBoundingClientRect().width;
+        if (rect.top > offset) {
+          height += offset + 2;
+          width += offset + 2;
+        }
+      }
+      else {
+        this.borderElem.textContent = '';
+        this.borderElem.classList.remove('skip-to-hidden');
+        this.overlayElem.style.width  = width  + 'px';
+        this.overlayElem.style.height = height + 'px';
+        this.borderElem.style.width  = (width  - 2 * borderWidth) + 'px';
+        this.borderElem.style.height = (height - 2 * borderWidth) + 'px';
+      }
+
+      this.overlayElem.style.display = 'block';
+
+      if (info) {
+        this.infoElem.style.display = 'inline-block';
+        this.infoElem.textContent = info;
+        if (top >= this.infoElem.getBoundingClientRect().height) {
+          this.borderElem.classList.remove('hasInfoBottom');
+          this.infoElem.classList.remove('hasInfoBottom');
+          this.borderElem.classList.add('hasInfoTop');
+          this.infoElem.classList.add('hasInfoTop');
+          if (!isHidden) {
+            this.infoElem.style.top = (-1 * (height + this.infoElem.getBoundingClientRect().height - 2 * borderWidth)) + 'px';
+          }
+          else {
+            this.infoElem.style.top = (-1 * (this.infoElem.getBoundingClientRect().height + this.borderElem.getBoundingClientRect().height)) + 'px';
+          }
+        }
+        else {
+          this.borderElem.classList.remove('hasInfoTop');
+          this.infoElem.classList.remove('hasInfoTop');
+          this.borderElem.classList.add('hasInfoBottom');
+          this.infoElem.classList.add('hasInfoBottom');
+          this.infoElem.style.top = -2 + 'px';
+        }
+        return this.infoElem;
+      }
+      else {
+        this.borderElem.classList.remove('hasInfo');
+        this.infoElem.style.display = 'none';
+        return this.overlayElem;
+      }
+    }
+  }
+
+  /* shortcutsMessage.js */
+
+  /* Constants */
+  const debug$8 = new DebugLogging('[shortcutsMessage]', false);
+  debug$8.flag = false;
+
+  const defaultStyleOptions = colorThemes['default'];
+
+  const styleTemplate = document.createElement('template');
+  styleTemplate.textContent = `
+/* shortcutsMessage.css */
+:root {
+  color-scheme: light dark;
+}
+
+#${MESSAGE_ID} {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+
+  font-family: $fontFamily;
+  font-size: $fontSize;
+  max-width: 70%;
+  margin: 0;
+  padding: 0;
+  background-color: light-dark($dialogBackgroundColor, $dialogBackgroundDarkColor);
+  border: 2px solid light-dark($focusBorderColor, $focusBorderDarkColor);
+  border-radius: 5px;
+  color: light-dark($dialogTextColor, $dialogTextDarkColor);
+  z-index: 2000001;
+  opacity: 1;
+}
+
+#${MESSAGE_ID} .header {
+  margin: 0;
+  padding: 4px;
+  border-bottom: 1px solid light-dark($focusBorderColor, $focusBorderDarkColor);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  font-weight:  bold;
+  background-color: light-dark($dialogBackgroundTitleColor, $dialogBackgroundTitleDarkColor);
+  color light-dark($dialogTextColor, $dialogTextDarkColor);
+  font-size: 100%;
+}
+
+#${MESSAGE_ID} .content {
+  margin-left: 2em;
+  margin-right: 2em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  background-color: light-dark($dialogBackgroundColor, $dialogBackgroundDarkColor);
+  color: light-dark($dialogTextColor, $dialogTextDarkColor);
+  font-size: 110%;
+  text-algin: center;
+}
+
+#${MESSAGE_ID}.hidden {
+  display: none;
+}
+
+#${MESSAGE_ID}.show {
+  display: block;
+  opacity: 1;
+}
+
+#${MESSAGE_ID}.fade {
+  opacity: 0;
+  transition: visibility 0s 1s, opacity 1s linear;
+}
+
+@media (forced-colors: active) {
+
+  #${MESSAGE_ID} {
+    background-color: Canvas;
+    color CanvasText;
+    border-color: AccentColor;
+  }
+
+  #${MESSAGE_ID} .header {
+    background-color: Canvas;
+    color CanvasText;
+  }
+
+  #${MESSAGE_ID} .content {
+    background-color: Canvas;
+    color: CanvasText;
+  }
+}
+
+`;
+
+  class ShortcutsMessage extends HTMLElement {
+    constructor () {
+
+      super();
+      this.attachShadow({ mode: 'open' });
+
+      // Get references
+
+      this.messageDialog  = document.createElement('div');
+      this.messageDialog.id = MESSAGE_ID;
+      this.messageDialog.classList.add('hidden');
+      this.shadowRoot.appendChild(this.messageDialog);
+
+      const headerElem  = document.createElement('div');
+      headerElem.className = 'header';
+      headerElem.textContent = 'SkipTo.js Message';
+      this.messageDialog.appendChild(headerElem);
+
+      this.contentElem  = document.createElement('div');
+      this.contentElem.className = 'content';
+      this.messageDialog.appendChild(this.contentElem);
+
+      this.timeoutShowID = false;
+      this.timeoutFadeID = false;
+
+    }
+
+    configureStyle(config={}) {
+
+      function updateOption(style, option, configOption, defaultOption) {
+        if (configOption) {
+          return style.replaceAll(option, configOption);
+        }
+        else {
+          return style.replaceAll(option, defaultOption);
+        }
+      }
+
+      // make a copy of the template
+      let style = styleTemplate.textContent.slice(0);
+
+      style = updateOption(style,
+                           '$fontFamily',
+                           config.fontFamily,
+                           defaultStyleOptions.fontFamily);
+
+      style = updateOption(style,
+                           '$fontSize',
+                           config.fontSize,
+                           defaultStyleOptions.fontSize);
+
+      style = updateOption(style,
+                           '$focusBorderColor',
+                           config.focusBorderColor,
+                           defaultStyleOptions.focusBorderColor);
+
+      style = updateOption(style,
+                           '$focusBorderDarkColor',
+                           config.focusBorderDarkColor,
+                           defaultStyleOptions.focusBorderDarkColor);
+
+
+      style = updateOption(style,
+                           '$dialogTextColor',
+                           config.dialogTextColor,
+                           defaultStyleOptions.dialogTextColor);
+
+      style = updateOption(style,
+                           '$dialogTextDarkColor',
+                           config.dialogTextDarkColor,
+                           defaultStyleOptions.dialogTextDarkColor);
+
+      style = updateOption(style,
+                           '$dialogBackgroundColor',
+                           config.dialogBackgroundColor,
+                           defaultStyleOptions.dialogBackgroundColor);
+
+      style = updateOption(style,
+                           '$dialogBackgroundDarkColor',
+                           config.dialogBackgroundDarkColor,
+                           defaultStyleOptions.dialogBackgroundDarkColor);
+
+      style = updateOption(style,
+                           '$dialogBackgroundTitleColor',
+                           config.dialogBackgroundTitleColor,
+                           defaultStyleOptions.dialogBackgroundTitleColor);
+
+      style = updateOption(style,
+                           '$dialogBackgroundTitleDarkColor',
+                           config.dialogBackgroundTitleDarkColor,
+                           defaultStyleOptions.dialogBackgroundTitleDarkColor);
+
+      let styleNode = this.shadowRoot.querySelector('style');
+
+      if (styleNode) {
+        styleNode.remove();
+      }
+
+      styleNode = document.createElement('style');
+      styleNode.textContent = style;
+      this.shadowRoot.appendChild(styleNode);
+
+    }
+
+    close() {
+      this.messageDialog.classList.remove('show');
+      this.messageDialog.classList.remove('fade');
+      this.messageDialog.classList.add('hidden');
+    }
+
+    open(message) {
+      clearInterval(this.timeoutFadeID);
+      clearInterval(this.timeoutShowID);
+      this.messageDialog.classList.remove('hidden');
+      this.messageDialog.classList.remove('fade');
+      this.messageDialog.classList.add('show');
+      this.contentElem.textContent = message;
+
+      const msg = this;
+
+      this.timeoutFadeID = setTimeout( () => {
+        msg.messageDialog.classList.add('fade');
+        msg.messageDialog.classList.remove('show');
+      }, 3000);
+
+      this.timeoutShowID = setTimeout( () => {
+        msg.close();
+      }, 4000);
+
+    }
+
+  }
+
   /*
   *   namefrom.js
   */
 
   /* constants */
 
-  const debug$4 = new DebugLogging('nameFrom', false);
-  debug$4.flag = false;
+  const debug$7 = new DebugLogging('nameFrom', false);
+  debug$7.flag = false;
 
   //
   // LOW-LEVEL HELPER FUNCTIONS (NOT EXPORTED)
@@ -932,8 +2386,8 @@ $skipToId [role="menuitem"].hover .label {
   /* accName.js */
 
   /* Constants */
-  const debug$3 = new DebugLogging('accName', false);
-  debug$3.flag = false;
+  const debug$6 = new DebugLogging('accName', false);
+  debug$6.flag = false;
 
   /**
    *   @fuction getAccessibleName
@@ -1011,8 +2465,8 @@ $skipToId [role="menuitem"].hover .label {
   /* landmarksHeadings.js */
 
   /* Constants */
-  const debug$2 = new DebugLogging('landmarksHeadings', false);
-  debug$2.flag = false;
+  const debug$5 = new DebugLogging('landmarksHeadings', false);
+  debug$5.flag = false;
 
   const skipableElements = [
     'base',
@@ -1052,6 +2506,14 @@ $skipToId [role="menuitem"].hover .label {
   'section'
   ];
 
+  const headingTags = [
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6'
+  ];
 
   let idIndex = 0;
 
@@ -1153,16 +2615,16 @@ $skipToId [role="menuitem"].hover .label {
   }  
 
   /*
-   *   @function checkForLandmark
+   *   @function checkForLandmarkRole
    *
-   *   @desc  Re=trns the lamdnark name if a landmark, otherwise an
-   *          empty string
+   *   @desc  Returns the type of landmark region,
+   *          otherwise an empty string
    *
    *   @param  {Object}  element  - DOM element node
    *
    *   @returns {String}  see @desc
    */ 
-  function checkForLandmark (element) {
+  function checkForLandmarkRole (element) {
     if (element.hasAttribute('role')) {
       const role = element.getAttribute('role').toLowerCase();
       if (allowedLandmarkSelectors.indexOf(role) >= 0) {
@@ -1250,6 +2712,12 @@ $skipToId [role="menuitem"].hover .label {
                     return targetNode;
                   }
                 }
+                else {
+                  targetNode = transverseDOMForSkipToId(node);
+                  if (targetNode) {
+                    return targetNode;
+                  }
+                }
               } else {
                 targetNode = transverseDOMForSkipToId(node);
                 if (targetNode) {
@@ -1268,12 +2736,12 @@ $skipToId [role="menuitem"].hover .label {
   /**
    * @function findVisibleElement
    *
-   * @desc Returns the first isible decsendant DOM node that matches a set of element tag names
+   * @desc Returns the first visible descendant DOM node that matches a set of element tag names
    * 
    * @param {node}   startingNode  - dom node to start search for element
    * @param {Array}  tagNames      - Array of tag names
    * 
-   * @returns (node} Returns first descendmt element, if not found returns false
+   * @returns (node} Returns first descendant element, if not found returns false
    */
   function findVisibleElement (startingNode, tagNames) {
 
@@ -1281,6 +2749,7 @@ $skipToId [role="menuitem"].hover .label {
       var targetNode = null;
       for (let node = startingNode.firstChild; node !== null; node = node.nextSibling ) {
         if (node.nodeType === Node.ELEMENT_NODE) {
+
           if (!isSkipableElement(node)) {
             // check for slotted content
             if (isSlotElement(node)) {
@@ -1308,6 +2777,12 @@ $skipToId [role="menuitem"].hover .label {
               if (isCustomElement(node)) {
                 if (node.shadowRoot) {
                   targetNode = transverseDOMForVisibleElement(node.shadowRoot, targetTagName);
+                  if (targetNode) {
+                    return targetNode;
+                  }
+                }
+                else {
+                  targetNode = transverseDOMForVisibleElement(node, targetTagName);
                   if (targetNode) {
                     return targetNode;
                   }
@@ -1351,19 +2826,36 @@ $skipToId [role="menuitem"].hover .label {
    */ 
   function skipToElement(menuitem) {
 
-    let focusNode = false;
-    let scrollNode = false;
     let elem;
-
-    const searchSelectors = ['input', 'button', 'a'];
-    const navigationSelectors = ['a', 'input', 'button'];
-    const landmarkSelectors = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'section', 'article', 'p', 'li', 'a'];
 
     const isLandmark = menuitem.classList.contains('landmark');
     const isSearch = menuitem.classList.contains('skip-to-search');
     const isNav = menuitem.classList.contains('skip-to-nav');
 
     elem = queryDOMForSkipToId(menuitem.getAttribute('data-id'));
+
+    setItemFocus(elem, isLandmark, isSearch, isNav);
+
+  }
+
+  /*
+   *   @function setItemFocus
+   *
+   *   @desc  Sets focus on the appropriate element
+   *
+   *   @param {Object}   elem        -  A target element
+   *   @param {Boolean}  isLandmark  -  True if item is a landmark, otherwise false
+   *   @param {Boolean}  isSearch    -  True if item is a search landmark, otherwise false
+   *   @param {Boolean}  isNav       -  True if item is a navigation landmark, otherwise false
+   */
+  function setItemFocus(elem, isLandmark, isSearch, isNav) {
+
+    let focusNode = false;
+    let scrollNode = false;
+
+    const searchSelectors = ['input', 'button', 'a'];
+    const navigationSelectors = ['a', 'input', 'button'];
+    const landmarkSelectors = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'section', 'article', 'p', 'li', 'a'];
 
     if (elem) {
       if (isSearch) {
@@ -1399,6 +2891,8 @@ $skipToId [role="menuitem"].hover .label {
         elem.scrollIntoView({block: 'center'});
       }
     }
+
+
   }
 
   /*
@@ -1435,6 +2929,9 @@ $skipToId [role="menuitem"].hover .label {
   function isMain (element) {
     const tagName = element.tagName.toLowerCase();
     const role = element.hasAttribute('role') ? element.getAttribute('role').toLowerCase() : '';
+    if ((role === 'presentation') || (role === 'none')) {
+      return false;
+    }
     return (tagName === 'main') || (role === 'main');
   }
 
@@ -1451,29 +2948,69 @@ $skipToId [role="menuitem"].hover .label {
    *   @returns {Array}  @see @desc
    */ 
   function queryDOMForLandmarksAndHeadings (landmarkTargets, headingTargets, skiptoId) {
+
     let headingInfo = [];
     let landmarkInfo = [];
     let targetLandmarks = getLandmarkTargets(landmarkTargets.toLowerCase());
     let targetHeadings  = getHeadingTargets(headingTargets.toLowerCase());
-    let onlyInMain = headingTargets.includes('main');
+    let onlyInMain = headingTargets.includes('main') || headingTargets.includes('main-only');
 
     function transverseDOM(startingNode, doc, parentDoc=null, inMain = false) {
-      for (let node = startingNode.firstChild; node !== null; node = node.nextSibling ) {
-        if (node.nodeType === Node.ELEMENT_NODE) {
-          const tagName = node.tagName.toLowerCase();
-          if ((targetLandmarks.indexOf(checkForLandmark(node)) >= 0) &&
-              (node.id !== skiptoId)) {
-            landmarkInfo.push({ node: node, name: getAccessibleName(doc, node)});
+
+      function checkForLandmark(doc, node) {
+        const landmark = checkForLandmarkRole(node);
+        if (landmark && (node.id !== skiptoId)) {
+          const accName = getAccessibleName(doc, node);
+          node.setAttribute('data-skip-to-info', `landmark ${landmark}`);
+          node.setAttribute('data-skip-to-acc-name', accName);
+
+          if ((targetLandmarks.indexOf(landmark) >= 0) ) {
+            landmarkInfo.push({
+              node: node,
+              name: accName
+            });
           }
+        }
+      }
+
+      function checkForHeading(doc, node, inMain) {
+        const isHeadingRole = node.role ? node.role.toLowerCase() === 'heading' : false;
+        const hasAriaLevel = parseInt(node.ariaLevel) > 0;
+        const tagName = (isHeadingRole && hasAriaLevel) ?
+                        `h${node.ariaLevel}` :
+                        node.tagName.toLowerCase();
+        const level = (isHeadingRole && hasAriaLevel) ?
+                      node.ariaLevel :
+                      headingTags.includes(tagName) ?
+                      tagName.substring(1) :
+                      '';
+        if (headingTags.includes(tagName) ||
+           (isHeadingRole && hasAriaLevel)) {
+          const accName = getAccessibleName(doc, node, true);
+          node.setAttribute('data-skip-to-info', `heading ${tagName}`);
+          node.setAttribute('data-skip-to-acc-name', accName);
           if (targetHeadings.indexOf(tagName) >= 0) {
             if (!onlyInMain || inMain) {
-              headingInfo.push({ node: node, name: getAccessibleName(doc, node, true)});
+              headingInfo.push({
+                node: node,
+                tagName: tagName,
+                level: level,
+                name: accName,
+                inMain: inMain
+              });
             }
           }
+        }
+      }
 
-          if (isMain(node)) {
-            inMain = true;
-          }
+      for (let node = startingNode.firstChild; node !== null; node = node.nextSibling ) {
+        if (node.nodeType === Node.ELEMENT_NODE) {
+
+          debug$5.flag && debug$5.log(`[transverseDOM][node]: ${node.tagName} isSlot:${isSlotElement(node)} isCustom:${isCustomElement(node)}`);
+
+          checkForLandmark(doc, node);
+          checkForHeading(doc, node, inMain);
+          inMain = isMain(node) || inMain;
 
           if (!isSkipableElement(node)) {
             // check for slotted content
@@ -1489,16 +3026,8 @@ $skipToId [role="menuitem"].hover .label {
               for (let i = 0; i < assignedNodes.length; i += 1) {
                 const assignedNode = assignedNodes[i];
                 if (assignedNode.nodeType === Node.ELEMENT_NODE) {
-                  const tagName = assignedNodes[i].tagName.toLowerCase();
-                  if (targetLandmarks.indexOf(checkForLandmark(assignedNode)) >= 0) {
-                    landmarkInfo.push({ node: assignedNode, name: getAccessibleName(nameDoc, assignedNode)});
-                  }
-
-                  if (targetHeadings.indexOf(tagName) >= 0) {
-                    if (!onlyInMain || inMain) {
-                      headingInfo.push({ node: assignedNode, name: getAccessibleName(nameDoc, assignedNode, true)});
-                    }
-                  }
+                  checkForLandmark(nameDoc, assignedNode);
+                  checkForHeading(nameDoc, assignedNode, inMain);
                   if (slotContent) {
                     transverseDOM(assignedNode, parentDoc, null, inMain);
                   } else {
@@ -1511,6 +3040,9 @@ $skipToId [role="menuitem"].hover .label {
               if (isCustomElement(node)) {
                 if (node.shadowRoot) {
                   transverseDOM(node.shadowRoot, node.shadowRoot, doc, inMain);
+                }
+                else {
+                  transverseDOM(node, doc, parentDoc, inMain);
                 }
               } else {
                 transverseDOM(node, doc, parentDoc, inMain);
@@ -1541,7 +3073,6 @@ $skipToId [role="menuitem"].hover .label {
        console.warn(`[skipTo.js]: no landmarks found on page`);
     }
 
-
     return [landmarkInfo, headingInfo];
   }
 
@@ -1569,7 +3100,7 @@ $skipToId [role="menuitem"].hover .label {
     // If targets undefined, use default settings
     if (typeof headingTargets !== 'string') {
       console.warn(`[skipto.js]: Error in heading configuration`);
-      headingTargets = 'h1 h2';
+      headingTargets = 'main-only h1 h2';
     }
 
     const [landmarks, headings] = queryDOMForLandmarksAndHeadings(landmarkTargets, headingTargets, skiptoId);
@@ -1588,30 +3119,33 @@ $skipToId [role="menuitem"].hover .label {
    * @returns see @desc
    */
   function getHeadings (config, headings) {
-    let dataId, level;
+    let dataId;
     let headingElementsArr = [];
 
     for (let i = 0, len = headings.length; i < len; i += 1) {
       let heading = headings[i];
+
       let role = heading.node.getAttribute('role');
-      if ((typeof role === 'string') && (role === 'presentation')) continue;
-      if (isVisible(heading.node) && isNotEmptyString(heading.node.innerHTML)) {
+      if ((typeof role === 'string') &&
+          ((role === 'presentation') || role === 'none')
+         ) continue;
+      if (isVisible(heading.node) && isNotEmptyString(heading.node.textContent)) {
         if (heading.node.hasAttribute('data-skip-to-id')) {
           dataId = heading.node.getAttribute('data-skip-to-id');
         } else {
           dataId = getSkipToIdIndex();
           heading.node.setAttribute('data-skip-to-id', dataId);
         }
-        level = heading.node.tagName.substring(1);
         const headingItem = {};
         headingItem.dataId = dataId.toString();
         headingItem.class = 'heading';
         headingItem.name = heading.name;
         headingItem.ariaLabel = headingItem.name + ', ';
-        headingItem.ariaLabel += config.headingLevelLabel + ' ' + level;
-        headingItem.tagName = heading.node.tagName.toLowerCase();
+        headingItem.ariaLabel += config.headingLevelLabel + ' ' + heading.level;
+        headingItem.tagName = heading.tagName;
         headingItem.role = 'heading';
-        headingItem.level = level;
+        headingItem.level = heading.level;
+        headingItem.inMain = heading.inMain;
         headingElementsArr.push(headingItem);
         incSkipToIdIndex();
       }
@@ -1672,14 +3206,14 @@ $skipToId [role="menuitem"].hover .label {
   /*
    * @function getLandmarkTargets
    *
-   * @desc Analyzes a configuration string for landamrk and tag names
+   * @desc Analyzes a configuration string for landmark and tag names
    *       NOTE: This function is included to maximize compatibility
-   *             with confiuguration strings that use CSS selectors
+   *             with configuration strings that use CSS selectors
    *             in previous versions of SkipTo
    *
-   * @param {String} targets - String with landamrk and/or tag names
+   * @param {String} targets - String with landmark and/or tag names
    *
-   * @returns {Array}  A normailized array of landmark names based on target configuration 
+   * @returns {Array}  A normalized array of landmark names based on target configuration
    */
   function getLandmarkTargets (targets) {
     let targetLandmarks = [];
@@ -1690,7 +3224,8 @@ $skipToId [role="menuitem"].hover .label {
     if (targets.includes('search')) {
       targetLandmarks.push('search');
     }
-    if (targets.includes('nav')) {
+    if (targets.includes('nav') ||
+        targets.includes('navigation')) {
       targetLandmarks.push('navigation');
     }
     if (targets.includes('complementary') || 
@@ -1727,6 +3262,7 @@ $skipToId [role="menuitem"].hover .label {
    * @returns {Array}  see @desc
    */
   function getLandmarks(config, landmarks) {
+    let allElements = [];
     let mainElements = [];
     let searchElements = [];
     let navElements = [];
@@ -1742,7 +3278,9 @@ $skipToId [role="menuitem"].hover .label {
       }
       let role = landmark.node.getAttribute('role');
       let tagName = landmark.node.tagName.toLowerCase();
-      if ((typeof role === 'string') && (role === 'presentation')) continue;
+      if ((typeof role === 'string') &&
+          ((role === 'presentation') || (role === 'none'))
+         ) continue;
       if (isVisible(landmark.node)) {
         if (!role) role = tagName;
         // normalize tagNames
@@ -1772,10 +3310,6 @@ $skipToId [role="menuitem"].hover .label {
             tagName = 'search';
             break;
         }
-        // if using ID for selectQuery give tagName as main
-        if (['aside', 'footer', 'form', 'header', 'main', 'nav', 'section', 'search'].indexOf(tagName) < 0) {
-          tagName = 'main';
-        }
         if (landmark.node.hasAttribute('aria-roledescription')) {
           tagName = landmark.node.getAttribute('aria-roledescription').trim().replace(' ', '-');
         }
@@ -1793,6 +3327,8 @@ $skipToId [role="menuitem"].hover .label {
         landmarkItem.tagName = tagName;
         landmarkItem.nestingLevel = 0;
         incSkipToIdIndex();
+
+        allElements.push(landmarkItem);
 
         // For sorting landmarks into groups
         switch (tagName) {
@@ -1823,14 +3359,384 @@ $skipToId [role="menuitem"].hover .label {
         }
       }
     }
+    if (config.landmarks.includes('doc-order')) {
+      return allElements;
+    }
     return [].concat(mainElements, searchElements, navElements, asideElements, regionElements, footerElements, otherElements);
+  }
+
+  /* shortcuts.js */
+
+  /* Constants */
+  const debug$4 = new DebugLogging('shortcuts', false);
+  debug$4.flag = false;
+
+
+  /**
+   * @function monitorKeyboardFocus
+   *
+   * @desc Removes highlighting when keyboard focus changes
+   */
+  function monitorKeyboardFocus () {
+    document.addEventListener('focusin', () => {
+      const highlightElem = document.querySelector(HIGHLIGHT_ELEMENT_NAME);
+      if (highlightElem) {
+        highlightElem.removeHighlight();
+      }
+    });
+  }
+
+  /**
+   * @function navigateContent
+   *
+   * @desc Returns DOM node associated with the id, if id not found returns null
+   *
+   * @param {String}  target         - Feature to navigate (e.g. heading, landmark)
+   * @param {String}  direction      - 'next' or 'previous'
+   * @param {boolean} useFirst       - if item not found use first
+   * @param {boolean} nameRequired   - if true, item must have accessible name
+   */
+
+  function navigateContent (target, direction, msgHeadingLevel, useFirst=false, nameRequired=false) {
+
+    const lastFocusElem = getFocusElement();
+    let elem = lastFocusElem;
+    let lastElem;
+    let count = 0;
+
+    // Note: The counter is used as a safety mechanism for any endless loops
+
+    do {
+      lastElem = elem;
+      elem = queryDOMForSkipToNavigation(target, direction, elem, useFirst, nameRequired);
+      debug$4.flag && debug$4.log(`[navigateContent][elem]: ${elem} (${lastElem === elem})`);
+      if (elem) {
+        elem.tabIndex = elem.tabIndex >= 0 ? elem.tabIndex : -1;
+        elem.focus();
+      }
+      count += 1;
+    }
+    while (elem && (count < 100) && (lastElem !== elem) && (lastFocusElem === getFocusElement()));
+
+    // Set highlight
+    if (elem) {
+
+      let info = elem.hasAttribute('data-skip-to-info') ?
+                 elem.getAttribute('data-skip-to-info').replace('heading', '').replace('landmark', '').trim() :
+                'unknown';
+
+      if (elem.getAttribute('data-skip-to-info').includes('heading')) {
+        info = msgHeadingLevel.replace('#', info.substring(1));
+      }
+
+      if (elem.hasAttribute('data-skip-to-acc-name')) {
+        const name = elem.getAttribute('data-skip-to-acc-name').trim();
+        if (name) {
+          info += `: ${name}`;
+        }
+      }
+
+      const highlightElem = document.querySelector(HIGHLIGHT_ELEMENT_NAME);
+      if (highlightElem) {
+        highlightElem.highlight(elem, 'instant', info, true);  // force highlight
+      }
+
+    }
+
+    return elem;
+  }
+
+  /**
+   * @function queryDOMForSkipToNavigation
+   *
+   * @desc Returns DOM node associated with the id, if id not found returns null
+   *
+   * @param {String}  target       - Feature to navigate (e.g. heading, landmark)
+   * @param {String}  direction    - 'next' or 'previous'
+   * @param {Object}  elem         - Element the search needs to pass, if null used focused element
+   * @param {boolean} useFirst     - if true, if item not found use first
+   * @param {boolean} nameRequired - if true, accessible name is required to include in navigation
+   *
+   * @returns {Object} @desc
+   */
+  function queryDOMForSkipToNavigation (target, direction, elem, useFirst=false, nameRequired=false) {
+
+    let lastNode = false;
+    let firstNode = false;
+    let passFound = false;
+
+    const passElem = elem ? elem : getFocusElement();
+
+    function transverseDOMForElement(startingNode) {
+
+      function checkForTarget (node) {
+
+        if (node.hasAttribute('data-skip-to-info') &&
+            node.getAttribute('data-skip-to-info').includes(target) &&
+            ( !nameRequired || (nameRequired &&
+              node.hasAttribute('data-skip-to-acc-name') &&
+              node.getAttribute('data-skip-to-acc-name').trim().length > 0))) {
+
+          if (target.includes('heading'))
+
+          debug$4.flag && debug$4.log(`[checkForTarget][${node.tagName}]: ${node.textContent.trim().substring(0, 10)} (vis:${isVisible(node)} pf:${passFound})`);
+
+          if (!firstNode &&
+              isVisible(node)) {
+            debug$4.flag && debug$4.log(`[checkForTarget][firstNode]`);
+            firstNode = node;
+          }
+
+          if ((node !== passElem) &&
+              isVisible(node)) {
+            debug$4.flag && debug$4.log(`[checkForTarget][lastNode]`);
+            lastNode = node;
+          }
+
+          if (passFound &&
+             (direction === 'next') &&
+              isVisible(node)) {
+            debug$4.flag && debug$4.log(`[checkForTarget][found]`);
+            return node;
+          }
+        }
+
+        if (node === passElem) {
+          passFound = true;
+          debug$4.flag && debug$4.log(`[checkForTarget][passFound]: ${node.tagName}`);
+          if (direction === 'previous') {
+            return lastNode;
+          }
+        }
+
+        return false;
+      }
+
+      let targetNode = null;
+      for (let node = startingNode.firstChild; node !== null; node = node.nextSibling ) {
+        if (node.nodeType === Node.ELEMENT_NODE) {
+
+          targetNode = checkForTarget(node);
+          if (targetNode) {
+            return targetNode;
+          }
+
+          if (!isSkipableElement(node)) {
+            // check for slotted content
+            if (isSlotElement(node)) {
+                // if no slotted elements, check for default slotted content
+              const assignedNodes = node.assignedNodes().length ?
+                                    node.assignedNodes() :
+                                    node.assignedNodes({ flatten: true });
+              for (let i = 0; i < assignedNodes.length; i += 1) {
+                const assignedNode = assignedNodes[i];
+                if (assignedNode.nodeType === Node.ELEMENT_NODE) {
+
+                  targetNode = checkForTarget(assignedNode);
+                  if (targetNode) {
+                    return targetNode;
+                  }
+
+                  targetNode = transverseDOMForElement(assignedNode);
+                  if (targetNode) {
+                    return targetNode;
+                  }
+                }
+              }
+            } else {
+              // check for custom elements
+              if (isCustomElement(node)) {
+                if (node.shadowRoot) {
+                  targetNode = transverseDOMForElement(node.shadowRoot);
+                  if (targetNode) {
+                    return targetNode;
+                  }
+                }
+                else {
+                  targetNode = transverseDOMForElement(node);
+                  if (targetNode) {
+                    return targetNode;
+                  }
+                }
+              } else {
+                targetNode = transverseDOMForElement(node);
+                if (targetNode) {
+                  return targetNode;
+                }
+              }
+            }
+          }
+        } // end if
+      } // end for
+      return false;
+    } // end function
+
+    passFound = passElem === document.body;
+    let node = transverseDOMForElement(document.body);
+
+    if (!node && useFirst && firstNode) {
+      node = firstNode;
+    }
+
+    return node;
+  }
+
+  /**
+   * @function getFocusElement
+   *
+   * @desc Returns DOM element node that has focus, if no DOM node
+   *       has focus returns null
+   *
+   * @returns {Object} @desc
+   */
+  function getFocusElement() {
+
+    let elem = document.activeElement;
+
+    while (elem.shadowRoot && elem.shadowRoot.activeElement) {
+      elem = elem.shadowRoot.activeElement;
+    }
+    return elem;
+  }
+
+  /* keyboardHelper.js */
+
+  /* Constants */
+  const debug$3 = new DebugLogging('[kbdHelpers]', false);
+  debug$3.flag = false;
+
+  /*
+   * @method isInteractiveElement
+   *
+   * @desc  Returns true if the element can use key presses, otherwise false
+   *
+   * @param  {object} elem - DOM node element
+   *
+   * @returns {Boolean}  see @desc
+   */
+
+  function elementTakesText (elem) {
+
+    const enabledInputTypes = [
+      'button',
+      'checkbox',
+      'color',
+      'image',
+      'radio',
+      'range',
+      'reset',
+      'submit'
+    ];
+
+    const tagName = elem.tagName ? elem.tagName.toLowerCase() : '';
+    const type =  tagName === 'input' ?
+                  (elem.type ? elem.type.toLowerCase() : 'text') :
+                  '';
+
+    debug$3.flag && debug$3.log(`[elementTakesText][type]: ${type} (${enabledInputTypes.includes(type)})`);
+
+    return (tagName === 'select') ||
+           (tagName === 'textarea') ||
+           ((tagName === 'input') &&
+            !enabledInputTypes.includes(type)) ||
+          inContentEditable(elem);
+  }
+
+  /*
+   * @function inContentEditable
+   *
+   * @desc Returns false if node is not in a content editable element,
+   *       otherwise true if it does
+   *
+   * @param  {Object}  elem - DOM node
+   *
+   * @returns {Boolean} see @desc
+   */
+  function inContentEditable (elem) {
+    let n = elem;
+    while (n.hasAttribute) {
+      if (n.hasAttribute('contenteditable') &&
+          (n.getAttribute('contenteditable').toLowerCase().trim() !== 'false')) {
+        return true;
+      }
+      n = n.parentNode;
+    }
+    return false;
+  }
+
+  /*
+   * @function noModifierPressed
+   *
+   * @desc Returns true if no modifier key is pressed, other false
+   *
+   * @param  {Object}  event - Event object
+   *
+   * @returns {Boolean} see @desc
+   */
+
+  function noModifierPressed (event) {
+    return !event.altKey &&
+          !event.ctrlKey &&
+          !event.shiftKey &&
+          !event.metaKey;
+  }
+
+  /*
+   * @function onlyShiftPressed
+   *
+   * @desc Returns true if only the shift modifier key is pressed, other false
+   *
+   * @param  {Object}  event - Event object
+   *
+   * @returns {Boolean} see @desc
+   */
+
+  function onlyShiftPressed (event) {
+    return !event.altKey &&
+          !event.ctrlKey &&
+          event.shiftKey &&
+          !event.metaKey;
+  }
+
+  /*
+   * @function onlyAltPressed
+   *
+   * @desc Returns true if only the alt modifier key is pressed, other false
+   *
+   * @param  {Object}  event - Event object
+   *
+   * @returns {Boolean} see @desc
+   */
+
+  function onlyAltPressed (event) {
+    return event.altKey &&
+          !event.ctrlKey &&
+          !event.shiftKey &&
+          !event.metaKey;
+  }
+
+  /*
+   * @function onlyOptionPressed
+   *
+   * @desc Returns true if only the option modifier key is pressed, other false
+   *
+   * @param  {Object}  event - Event object
+   *
+   * @returns {Boolean} see @desc
+   */
+
+  function onlyOptionPressed (event) {
+    return event.altKey &&
+          !event.ctrlKey &&
+          !event.shiftKey &&
+          !event.metaKey;
   }
 
   /* skiptoMenuButton.js */
 
   /* Constants */
-  const debug$1 = new DebugLogging('SkipToButton', false);
-  debug$1.flag = false;
+  const debug$2 = new DebugLogging('SkipToButton', false);
+  debug$2.flag = false;
 
   /**
    * @class SkiptoMenuButton
@@ -1838,104 +3744,153 @@ $skipToId [role="menuitem"].hover .label {
    * @desc Constructor for creating a button to open a menu of headings and landmarks on 
    *       a web page
    *
-   * @param {Object}  attachNode  - DOM eleemnt node to attach button and menu container element
+   * @param {Object}  skipToContentElem  -  The skip-to-content objecy
    * 
-   * @returns {Object}  DOM element node that is the contatiner for the button and the menu
+   * @returns {Object}  DOM element node that is the container for the button and the menu
    */
   class SkiptoMenuButton {
 
-      constructor (attachNode, config, id) {
-        this.config = config;
-        this.skiptoId = id;
+      constructor (skipToContentElem) {
+        this.skipToContentElem = skipToContentElem;
+        this.config     = skipToContentElem.config;
 
-        this.containerNode = document.createElement(config.containerElement);
-        if (config.containerElement === 'nav') {
-          this.containerNode.setAttribute('aria-label', config.buttonLabel);
+        // check for 'nav' element, if not use 'div' element
+        const ce = this.config.containerElement.toLowerCase().trim() === 'nav' ? 'nav' : 'div';
+
+        this.containerNode = document.createElement(ce);
+        skipToContentElem.shadowRoot.appendChild(this.containerNode);
+
+        this.containerNode.id = SKIP_TO_ID;
+        if (ce === 'nav') {
+          this.containerNode.setAttribute('aria-label', this.config.buttonLabel);
+        }
+        if (isNotEmptyString(this.config.customClass)) {
+          this.containerNode.classList.add(this.config.customClass);
         }
 
-        this.containerNode.id = id;
-
-        if (isNotEmptyString(config.customClass)) {
-          this.containerNode.classList.add(config.customClass);
-        }
-
-        let displayOption = config.displayOption;
-        if (typeof displayOption === 'string') {
-          displayOption = displayOption.trim().toLowerCase();
-          if (displayOption.length) {
-            switch (config.displayOption) {
-              case 'fixed':
-                this.containerNode.classList.add('fixed');
-                break;
-              case 'onfocus':  // Legacy option
-              case 'popup':
-                this.containerNode.classList.add('popup');
-                break;
-            }
-          }
-        }
+        this.setDisplayOption(this.config.displayOption);
 
         // Create button
 
-        const [buttonVisibleLabel, buttonAriaLabel] = this.getBrowserSpecificShortcut(config);
+        const [buttonVisibleLabel, buttonAriaLabel] = this.getBrowserSpecificShortcut(this.config);
 
         this.buttonNode = document.createElement('button');
+        this.buttonNode.setAttribute('aria-haspopup', 'menu');
+        this.buttonNode.setAttribute('aria-expanded', 'false');
         this.buttonNode.setAttribute('aria-label', buttonAriaLabel);
+        this.buttonNode.setAttribute('aria-controls', MENU_ID);
         this.buttonNode.addEventListener('keydown', this.handleButtonKeydown.bind(this));
         this.buttonNode.addEventListener('click', this.handleButtonClick.bind(this));
         this.containerNode.appendChild(this.buttonNode);
 
-        this.buttonTextNode = document.createElement('span');
-        this.buttonTextNode.classList.add('skipto-text');
-        this.buttonTextNode.textContent = buttonVisibleLabel;
-        this.buttonNode.appendChild(this.buttonTextNode);
+        this.textButtonNode = document.createElement('span');
+        this.buttonNode.appendChild(this.textButtonNode);
+        this.textButtonNode.classList.add('skipto-text');
+        this.textButtonNode.textContent = buttonVisibleLabel;
 
-        const smallButtonNode = document.createElement('span');
-        smallButtonNode.classList.add('skipto-small');
-        smallButtonNode.textContent = config.smallButtonLabel;
-        this.buttonNode.appendChild(smallButtonNode);
+        this.smallButtonNode = document.createElement('span');
+        this.buttonNode.appendChild(this.smallButtonNode);
+        this.smallButtonNode.classList.add('skipto-small');
+        this.smallButtonNode.textContent = this.config.smallButtonLabel;
 
-        const mediumButtonNode = document.createElement('span');
-        mediumButtonNode.classList.add('skipto-medium');
-        mediumButtonNode.textContent = config.buttonLabel;
-        this.buttonNode.appendChild(mediumButtonNode);
+        this.mediumButtonNode = document.createElement('span');
+        this.buttonNode.appendChild(this.mediumButtonNode);
+        this.mediumButtonNode.classList.add('skipto-medium');
+        this.mediumButtonNode.textContent = this.config.buttonLabel;
 
         // Create menu container
+        this.menuitemNodes = [];
 
         this.menuNode   = document.createElement('div');
-        this.menuNode.id = 'id-skip-to-menu';
+        this.menuNode.setAttribute('id', MENU_ID);
         this.menuNode.setAttribute('role', 'menu');
-        this.menuNode.setAttribute('aria-label', config.menuLabel);
-        this.menuNode.setAttribute('aria-busy', 'true');
+        this.menuNode.setAttribute('aria-label', this.config.menuLabel);
         this.containerNode.appendChild(this.menuNode);
 
-        const landmarkGroupLabelNode = document.createElement('div');
-        landmarkGroupLabelNode.id = 'id-skip-to-menu-landmark-group-label';
-        landmarkGroupLabelNode.setAttribute('role', 'separator');
-        landmarkGroupLabelNode.textContent = this.config.landmarkGroupLabel;
-        this.menuNode.appendChild(landmarkGroupLabelNode);
+        this.landmarkGroupLabelNode = document.createElement('div');
+        this.landmarkGroupLabelNode.setAttribute('id', MENU_LANDMARK_GROUP_LABEL_ID);
+        this.landmarkGroupLabelNode.setAttribute('role', 'separator');
+        this.landmarkGroupLabelNode.textContent = this.addNumberToGroupLabel(this.config.landmarkGroupLabel);
+        this.menuNode.appendChild(this.landmarkGroupLabelNode);
 
         this.landmarkGroupNode = document.createElement('div');
+        this.landmarkGroupNode.setAttribute('id', MENU_LANDMARK_GROUP_ID);
         this.landmarkGroupNode.setAttribute('role', 'group');
-        this.landmarkGroupNode.setAttribute('aria-labelledby', landmarkGroupLabelNode.id);
-        this.landmarkGroupNode.id = '#id-skip-to-menu-landmark-group';
+        this.landmarkGroupNode.className = 'overflow';
+        this.landmarkGroupNode.setAttribute('aria-labelledby', MENU_LANDMARK_GROUP_LABEL_ID);
         this.menuNode.appendChild(this.landmarkGroupNode);
 
-        const headingGroupLabelNode = document.createElement('div');
-        headingGroupLabelNode.id = 'id-skip-to-menu-heading-group-label';
-        headingGroupLabelNode.setAttribute('role', 'separator');
-        headingGroupLabelNode.textContent = this.config.headingGroupLabel;
-        this.menuNode.appendChild(headingGroupLabelNode);
+        this.headingGroupLabelNode = document.createElement('div');
+        this.headingGroupLabelNode.setAttribute('id', MENU_HEADINGS_GROUP_ID);
+        this.headingGroupLabelNode.setAttribute('role', 'separator');
+        this.headingGroupLabelNode.textContent = this.addNumberToGroupLabel(this.config.headingGroupLabel);
+        this.menuNode.appendChild(this.headingGroupLabelNode);
 
         this.headingGroupNode = document.createElement('div');
+        this.headingGroupNode.setAttribute('id', MENU_HEADINGS_GROUP_ID);
         this.headingGroupNode.setAttribute('role', 'group');
-        this.headingGroupNode.setAttribute('aria-labelledby', headingGroupLabelNode.id);
-        this.headingGroupNode.id = '#id-skip-to-menu-heading-group';
+        this.headingGroupNode.className = 'overflow';
+        this.headingGroupNode.setAttribute('aria-labelledby', MENU_HEADINGS_GROUP_LABEL_ID);
         this.menuNode.appendChild(this.headingGroupNode);
+
+        this.shortcutsGroupLabelNode = document.createElement('div');
+        this.shortcutsGroupLabelNode.setAttribute('id', MENU_SHORTCUTS_GROUP_LABEL_ID);
+        this.shortcutsGroupLabelNode.setAttribute('role', 'separator');
+        if (this.config.shortcuts === 'enabled') {
+          this.shortcutsGroupLabelNode.textContent = this.config.shortcutsGroupEnabledLabel;
+        }
+        else {
+          this.shortcutsGroupLabelNode.textContent = this.config.shortcutsGroupDisabledLabel;
+        }
+        this.menuNode.appendChild(this.shortcutsGroupLabelNode);
+
+        this.shortcutsGroupNode = document.createElement('div');
+        this.shortcutsGroupNode.setAttribute('id', MENU_SHORTCUTS_GROUP_ID);
+        this.shortcutsGroupNode.setAttribute('role', 'group');
+        this.shortcutsGroupNode.setAttribute('aria-labelledby', MENU_SHORTCUTS_GROUP_LABEL_ID);
+        this.menuNode.appendChild(this.shortcutsGroupNode);
+
+        if (this.config.aboutSupported === 'true') {
+          this.renderAboutToMenu(this.menuNode, this.config);
+        }
+
+        // Information dialog
+
+        this.infoDialog = document.querySelector(INFO_DIALOG_ELEMENT_NAME);
+
+        if (!this.infoDialog) {
+          window.customElements.define(INFO_DIALOG_ELEMENT_NAME, SkipToContentInfoDialog);
+          this.infoDialog = document.createElement(INFO_DIALOG_ELEMENT_NAME);
+          this.infoDialog.configureStyle(this.config);
+          document.body.appendChild(this.infoDialog);
+        }
+
+        // Highlight element
+
+        this.highlightElem = document.querySelector(HIGHLIGHT_ELEMENT_NAME);
+
+        if (!this.highlightElem) {
+          window.customElements.define(HIGHLIGHT_ELEMENT_NAME, HighlightElement);
+          this.highlightElem = document.createElement(HIGHLIGHT_ELEMENT_NAME);
+          this.highlightElem.configureStyle(this.config);
+          document.body.appendChild(this.highlightElem);
+        }
+
+        // Shortcut messages
+
+        this.shortcutsMessage = document.querySelector(MESSAGE_ELEMENT_NAME);
+
+        if (!this.shortcutsMessage) {
+          window.customElements.define(MESSAGE_ELEMENT_NAME, ShortcutsMessage);
+          this.shortcutsMessage = document.createElement(MESSAGE_ELEMENT_NAME);
+          this.shortcutsMessage.configureStyle(this.config);
+          document.body.appendChild(this.shortcutsMessage);
+        }
 
         this.containerNode.addEventListener('focusin', this.handleFocusin.bind(this));
         this.containerNode.addEventListener('focusout', this.handleFocusout.bind(this));
-        window.addEventListener('pointerdown', this.handleBackgroundPointerdown.bind(this), true);
+        this.containerNode.addEventListener('pointerdown', this.handleContinerPointerdown.bind(this), true);
+        document.documentElement.addEventListener('pointerdown', this.handleBodyPointerdown.bind(this), true);
 
         if (this.usesAltKey || this.usesOptionKey) {
           document.addEventListener(
@@ -1944,14 +3899,82 @@ $skipToId [role="menuitem"].hover .label {
           );
         }
 
-        attachNode.insertBefore(this.containerNode, attachNode.firstElementChild);
+        skipToContentElem.shadowRoot.appendChild(this.containerNode);
 
         this.focusMenuitem = null;
-
-        return this.containerNode;
-
       }
-        
+
+      /*
+       * @get highlightTarget
+       *
+       * @desc Returns normalized value for the highlightTarget option
+       */
+      get highlightTarget () {
+        let value = this.config.highlightTarget.trim().toLowerCase();
+
+        if ('enabled smooth'.includes(value)) {
+          return 'smooth';
+        }
+
+        if (value === 'instant') {
+          return 'instant';
+        }
+
+        return '';
+      }
+
+      /*
+       * @method focusButton
+       *
+       * @desc Sets keyboard focus on the menu button
+       */
+      focusButton() {
+        this.buttonNode.focus();
+        this.skipToContentElem.setAttribute('focus', 'button');
+      }
+
+      /*
+       * @method addNumberToGroupLabel
+       *
+       * @desc Updates group label with the number of items in group,
+       *       The '#' character in the string is replaced with the number
+       *       if number is not provided, just remove number
+       *
+       * @param  {String}  label  -  Label to include number,
+       * @param  {Number}  num    -  Number to add to label
+       *
+       * @return {String}  see @desc
+       */
+      addNumberToGroupLabel(label, num=0) {
+        if (num > 0) {
+          return `${label} (${num})`;
+        }
+        return label;
+      }
+
+      /*
+       * @method updateLabels
+       *
+       * @desc Updates labels, important for configuration changes in browser
+       *       add-ons and extensions
+       */
+      updateLabels(config) {
+        if (this.containerNode.hasAttribute('aria-label')) {
+          this.containerNode.setAttribute('aria-label', config.buttonLabel);
+        }
+
+        const [buttonVisibleLabel, buttonAriaLabel] = this.getBrowserSpecificShortcut(config);
+        this.buttonNode.setAttribute('aria-label', buttonAriaLabel);
+
+        this.textButtonNode.textContent = buttonVisibleLabel;
+        this.smallButtonNode.textContent = config.smallButtonLabel;
+        this.mediumButtonNode.textContent = config.buttonLabel;
+
+        this.menuNode.setAttribute('aria-label', config.menuLabel);
+        this.landmarkGroupLabelNode.textContent = this.addNumberToGroupLabel(config.landmarkGroupLabel);
+        this.headingGroupLabelNode.textContent = this.addNumberToGroupLabel(config.headingGroupLabel);
+      }
+
       /*
        * @method getBrowserSpecificShortcut
        *
@@ -1993,7 +4016,10 @@ $skipToId [role="menuitem"].hover .label {
               config.altLabel
             );
             label = label + buttonShortcut;
-            ariaLabel = config.altButtonAriaLabel.replace('$key', config.altShortcut);
+            ariaLabel = config.buttonAriaLabel.replace('$key', config.altShortcut);
+            ariaLabel = ariaLabel.replace('$buttonLabel', config.buttonLabel);
+            ariaLabel = ariaLabel.replace('$modifierLabel', config.altLabel);
+            ariaLabel = ariaLabel.replace('$shortcutLabel', config.shortcutLabel);
           }
 
           if (this.usesOptionKey) {
@@ -2002,7 +4028,10 @@ $skipToId [role="menuitem"].hover .label {
               config.optionLabel
             );
             label = label + buttonShortcut;
-            ariaLabel = config.optionButtonAriaLabel.replace('$key', config.altShortcut);
+            ariaLabel = config.buttonAriaLabel.replace('$key', config.altShortcut);
+            ariaLabel = ariaLabel.replace('$buttonLabel', config.buttonLabel);
+            ariaLabel = ariaLabel.replace('$modifierLabel', config.optionLabel);
+            ariaLabel = ariaLabel.replace('$shortcutLabel', config.shortcutLabel);
           }
         }
         return [label, ariaLabel];
@@ -2062,20 +4091,53 @@ $skipToId [role="menuitem"].hover .label {
        * @method updateMenuitems
        *
        * @desc  Updates the menu information with the current menu items
-       *        used for menu navigation commands
+       *        used for menu navigation commands and adds event handlers
        */
       updateMenuitems () {
         let menuitemNodes = this.menuNode.querySelectorAll('[role=menuitem');
 
         this.menuitemNodes = [];
         for(let i = 0; i < menuitemNodes.length; i += 1) {
-          this.menuitemNodes.push(menuitemNodes[i]);
+          const menuitemNode = menuitemNodes[i];
+          menuitemNode.addEventListener('keydown', this.handleMenuitemKeydown.bind(this));
+          menuitemNode.addEventListener('click', this.handleMenuitemClick.bind(this));
+          menuitemNode.addEventListener('pointerenter', this.handleMenuitemPointerenter.bind(this));
+          menuitemNode.addEventListener('pointerleave', this.handleMenuitemPointerleave.bind(this));
+          menuitemNode.addEventListener('pointerover', this.handleMenuitemPointerover.bind(this));
+          this.menuitemNodes.push(menuitemNode);
         }
 
         this.firstMenuitem = this.menuitemNodes[0];
         this.lastMenuitem = this.menuitemNodes[this.menuitemNodes.length-1];
         this.lastMenuitem.classList.add('last');
         this.updateKeyboardShortCuts();
+      }
+
+      /*
+       * @method renderAboutToMenu
+       *
+       * @desc Render the about menuitem
+       *
+       * @param  {Object}  menuNode   -  DOM element node for the menu
+       */
+      renderAboutToMenu (menuNode, config) {
+
+        const separatorNode = document.createElement('div');
+        separatorNode.setAttribute('role', 'separator');
+
+        const menuitemNode = document.createElement('div');
+        menuitemNode.setAttribute('role', 'menuitem');
+        menuitemNode.setAttribute('data-about-info', '');
+        menuitemNode.className = 'skip-to-nav skip-to-nesting-level-0';
+        menuitemNode.tabIndex = -1;
+
+        const labelNode = document.createElement('span');
+        labelNode.classList.add('label');
+        labelNode.textContent = config.aboutInfoLabel;
+        menuitemNode.appendChild(labelNode);
+
+        menuNode.appendChild(separatorNode);
+        menuNode.appendChild(menuitemNode);
       }
 
       /*
@@ -2101,11 +4163,7 @@ $skipToId [role="menuitem"].hover .label {
           menuitemNode.setAttribute('aria-label', mi.ariaLabel);
         }
 
-        // add event handlers
-        menuitemNode.addEventListener('keydown', this.handleMenuitemKeydown.bind(this));
-        menuitemNode.addEventListener('click', this.handleMenuitemClick.bind(this));
-        menuitemNode.addEventListener('pointerenter', this.handleMenuitemPointerenter.bind(this));
-        menuitemNode.addEventListener('pointerleave', this.handleMenuitemPointerleave.bind(this));
+        // add to group
         groupNode.appendChild(menuitemNode);
 
         // add heading level and label
@@ -2158,7 +4216,11 @@ $skipToId [role="menuitem"].hover .label {
        * @param  {String}  msgNoItesmFound -  Message to render if there are no menu items
        */
       renderMenuitemsToGroup(groupNode, menuitems, msgNoItemsFound) {
-        groupNode.innerHTML = '';
+        // remove all child nodes
+        while (groupNode.firstChild) {
+          groupNode.removeChild(groupNode.firstChild);
+        }
+
         this.lastNestingLevel = 0;
 
         if (menuitems.length === 0) {
@@ -2181,7 +4243,7 @@ $skipToId [role="menuitem"].hover .label {
        *
        * @desc 
        */
-      renderMenu() {
+      renderMenu(config, skipToId) {
         // remove landmark menu items
         while (this.landmarkGroupNode.lastElementChild) {
           this.landmarkGroupNode.removeChild(this.landmarkGroupNode.lastElementChild);
@@ -2192,13 +4254,95 @@ $skipToId [role="menuitem"].hover .label {
         }
 
         // Create landmarks group
-        const [landmarkElements, headingElements] = getLandmarksAndHeadings(this.config, this.skiptoId);
+        const [landmarkElements, headingElements] = getLandmarksAndHeadings(config, skipToId);
 
-        this.renderMenuitemsToGroup(this.landmarkGroupNode, landmarkElements, this.config.msgNoLandmarksFound);
-        this.renderMenuitemsToGroup(this.headingGroupNode,  headingElements, this.config.msgNoHeadingsFound);
+        this.renderMenuitemsToGroup(this.landmarkGroupNode, landmarkElements, config.msgNoLandmarksFound);
+        this.renderMenuitemsToGroup(this.headingGroupNode,  headingElements, config.msgNoHeadingsFound);
+        debug$2.flag && debug$2.log(`[shortcutsSupported]: ${config.shortcutsSupported}`);
+        this.renderMenuitemsToShortcutsGroup(this.shortcutsGroupLabelNode, this.shortcutsGroupNode);
 
         // Update list of menuitems
         this.updateMenuitems();
+
+        // Are all headings in the main region
+        const allInMain = headingElements.length > 0 ?
+              headingElements.reduce( (flag, item) => {
+                return flag && item.inMain;
+              }, true) :
+              false;
+
+        this.landmarkGroupLabelNode.textContent = this.addNumberToGroupLabel(config.landmarkGroupLabel, landmarkElements.length);
+        if (config.headings.includes('main') && allInMain) {
+          this.headingGroupLabelNode.textContent = this.addNumberToGroupLabel(config.headingMainGroupLabel, headingElements.length);
+        }
+        else {
+          this.headingGroupLabelNode.textContent = this.addNumberToGroupLabel(config.headingGroupLabel, headingElements.length);
+        }
+      }
+
+      /*
+       * @method renderMenuitemsToShortcutsGroup
+       *
+       * @desc Updates separator and menuitems related to page navigation
+       *
+       * @param  {Object}  groupLabelNode  -  DOM element node for the label for page navigation group
+       * @param  {Object}  groupLabelNode  -  DOM element node for the page navigation group
+       */
+      renderMenuitemsToShortcutsGroup (groupLabelNode, groupNode) {
+
+        // remove page navigation menu items
+        while (groupNode.lastElementChild) {
+          groupNode.removeChild(groupNode.lastElementChild);
+        }
+
+        if (this.config.shortcutsSupported === 'true') {
+          groupNode.classList.remove('shortcuts-disabled');
+          groupLabelNode.classList.remove('shortcuts-disabled');
+
+          const shortcutsToggleNode = document.createElement('div');
+          shortcutsToggleNode.setAttribute('role', 'menuitem');
+          shortcutsToggleNode.className = 'shortcuts skip-to-nav skip-to-nesting-level-0';
+          shortcutsToggleNode.setAttribute('tabindex', '-1');
+          groupNode.appendChild(shortcutsToggleNode);
+
+          const shortcutsToggleLabelNode = document.createElement('span');
+          shortcutsToggleLabelNode.className = 'label';
+          shortcutsToggleNode.appendChild(shortcutsToggleLabelNode);
+
+          if (this.config.shortcuts === 'enabled') {
+            groupLabelNode.textContent    = this.config.shortcutsGroupEnabledLabel;
+            shortcutsToggleNode.setAttribute('data-shortcuts-toggle', 'disable');
+            shortcutsToggleLabelNode.textContent = this.config.shortcutsToggleDisableLabel;
+          }
+          else {
+            groupLabelNode.textContent = this.config.shortcutsGroupDisabledLabel;
+            shortcutsToggleNode.setAttribute('data-shortcuts-toggle', 'enable');
+            shortcutsToggleLabelNode.textContent = this.config.shortcutsToggleEnableLabel;
+          }
+          groupNode.appendChild(shortcutsToggleNode);
+
+
+          const shortcutsInfoNode = document.createElement('div');
+          shortcutsInfoNode.setAttribute('role', 'menuitem');
+          shortcutsInfoNode.className = 'shortcuts skip-to-nav skip-to-nesting-level-0';
+          shortcutsInfoNode.setAttribute('tabindex', '-1');
+          shortcutsInfoNode.setAttribute('data-shortcuts-info', '');
+          groupNode.appendChild(shortcutsInfoNode);
+
+          const shortcutsInfoLabelNode = document.createElement('span');
+          shortcutsInfoLabelNode.className = 'label';
+          shortcutsInfoLabelNode.textContent = this.config.shortcutsInfoLabel;
+          shortcutsInfoNode.appendChild(shortcutsInfoLabelNode);
+
+
+        }
+        else {
+          groupNode.classList.add('shortcuts-disabled');
+          groupLabelNode.classList.add('shortcuts-disabled');
+        }
+
+
+
       }
 
   //
@@ -2214,10 +4358,18 @@ $skipToId [role="menuitem"].hover .label {
        */
       setFocusToMenuitem(menuitem) {
         if (menuitem) {
-          this.removeHoverClass();
+          this.removeHoverClass(menuitem);
           menuitem.classList.add('hover');
           menuitem.focus();
+          this.skipToContentElem.setAttribute('focus', 'menu');
           this.focusMenuitem = menuitem;
+          if (menuitem.hasAttribute('data-id')) {
+            const elem = queryDOMForSkipToId(menuitem.getAttribute('data-id'));
+            this.highlightElem.highlight(elem, this.highlightTarget);
+          }
+          else {
+            this.highlightElem.removeHighlight();
+          }
         }
       }
 
@@ -2342,14 +4494,19 @@ $skipToId [role="menuitem"].hover .label {
       /*
        * @method openPopup
        *
-       * @desc Opens the memu of landmark regions and headings
+       * @desc Opens the menu of landmark regions and headings
        */
       openPopup() {
+        debug$2.flag && debug$2.log(`[openPopup]`);
         this.menuNode.setAttribute('aria-busy', 'true');
-        const h = (80 * window.innerHeight) / 100;
-        this.menuNode.style.maxHeight = h + 'px';
-        this.renderMenu();
+        // Compute height of menu to not exceed about 80% of screen height
+        const h = (30 * window.innerHeight) / 100;
+        this.landmarkGroupNode.style.maxHeight = h + 'px';
+        this.headingGroupNode.style.maxHeight = h + 'px';
+        this.renderMenu(this.config, this.skipToId);
         this.menuNode.style.display = 'block';
+
+        // make sure menu is on screen and not clipped in the right edge of the window
         const buttonRect = this.buttonNode.getBoundingClientRect();
         const menuRect = this.menuNode.getBoundingClientRect();
         const diff = window.innerWidth - buttonRect.left - menuRect.width - 8;
@@ -2360,8 +4517,11 @@ $skipToId [role="menuitem"].hover .label {
             this.menuNode.style.left = diff + 'px';
           }
         }
+
         this.menuNode.removeAttribute('aria-busy');
         this.buttonNode.setAttribute('aria-expanded', 'true');
+        // use custom element attribute to set focus to the menu
+        this.skipToContentElem.setAttribute('focus', 'menu');
       }
 
       /*
@@ -2370,9 +4530,11 @@ $skipToId [role="menuitem"].hover .label {
        * @desc Closes the memu of landmark regions and headings
        */
       closePopup() {
+        debug$2.flag && debug$2.log(`[closePopup]`);
         if (this.isOpen()) {
           this.buttonNode.setAttribute('aria-expanded', 'false');
           this.menuNode.style.display = 'none';
+          this.highlightElem.removeHighlight();
         }
       }
 
@@ -2392,20 +4554,124 @@ $skipToId [role="menuitem"].hover .label {
        *
        * @desc Removes hover class for menuitems
        */
-      removeHoverClass() {
+      removeHoverClass(target=null) {
         this.menuitemNodes.forEach( node => {
-          node.classList.remove('hover');
+          if (node !== target) {
+            node.classList.remove('hover');
+          }
         });
+      }
+
+      /*
+       * @method getMenuitem
+       *
+       * @desc Returns menuitem dom node if pointer is over it
+       *
+       * @param {Number}   x: client x coordinator of pointer
+       * @param {Number}   y: client y coordinator of pointer
+       *
+       * @return {object}  see @desc
+       */
+      getMenuitem(x, y) {
+        for (let i = 0; i < this.menuitemNodes.length; i += 1) {
+          const node = this.menuitemNodes[i];
+          const rect = node.getBoundingClientRect();
+
+          if ((rect.left <= x) &&
+              (rect.right >= x) &&
+              (rect.top <= y) &&
+              (rect.bottom >= y)) {
+                return node;
+              }
+        }
+        return false;
+      }
+
+      /*
+       * @method isOverButton
+       *
+       * @desc Returns true if pointer over button
+       *
+       * @param {Number}   x: client x coordinator of pointer
+       * @param {Number}   y: client y coordinator of pointer
+       *
+       * @return {object}  see @desc
+       */
+      isOverButton(x, y) {
+        const node = this.buttonNode;
+        const rect = node.getBoundingClientRect();
+
+        return (rect.left <= x) &&
+               (rect.right >= x) &&
+               (rect.top <= y) &&
+               (rect.bottom >= y);
+      }
+
+      /*
+       * @method isOverMenu
+       *
+       * @desc Returns true if pointer over the menu
+       *
+       * @param {Number}   x: client x coordinator of pointer
+       * @param {Number}   y: client y coordinator of pointer
+       *
+       * @return {object}  see @desc
+       */
+      isOverMenu(x, y) {
+        const node = this.menuNode;
+        const rect = node.getBoundingClientRect();
+
+        return (rect.left <= x) &&
+               (rect.right >= x) &&
+               (rect.top <= y) &&
+               (rect.bottom >= y);
+      }    
+
+      /*
+       * @method setDisplayOption
+       *
+       * @desc Set display option for button visibility wehn it does not
+       *       have focus
+       *
+       * @param  {String}  value - String with configuration information
+       */
+      setDisplayOption(value) {
+
+        if (typeof value === 'string') {
+          value = value.trim().toLowerCase();
+          if (value.length && this.containerNode) {
+
+            this.containerNode.classList.remove('static');
+            this.containerNode.classList.remove('popup');
+            this.containerNode.classList.remove('show-border');
+
+            switch (value) {
+              case 'static':
+                this.containerNode.classList.add('static');
+                break;
+              case 'onfocus':  // Legacy option
+              case 'popup':
+                this.containerNode.classList.add('popup');
+                break;
+              case 'popup-border':
+                this.containerNode.classList.add('popup');
+                this.containerNode.classList.add('show-border');
+                break;
+            }
+          }
+        }
       }
 
       // Menu event handlers
       
       handleFocusin() {
         this.containerNode.classList.add('focus');
+        this.skipToContentElem.setAttribute('focus', 'button');
       }
       
       handleFocusout() {
         this.containerNode.classList.remove('focus');
+        this.skipToContentElem.setAttribute('focus', 'none');
       }
       
       handleButtonKeydown(event) {
@@ -2424,6 +4690,7 @@ $skipToId [role="menuitem"].hover .label {
           case 'Escape':
             this.closePopup();
             this.buttonNode.focus();
+            this.skipToContentElem.setAttribute('focus', 'button');
             flag = true;
             break;
           case 'Up':
@@ -2440,9 +4707,11 @@ $skipToId [role="menuitem"].hover .label {
       }
 
       handleButtonClick(event) {
+        debug$2.flag && debug$2.log(`[handleButtonClick]`);
         if (this.isOpen()) {
           this.closePopup();
           this.buttonNode.focus();
+          this.skipToContentElem.setAttribute('focus', 'button');
         } else {
           this.openPopup();
           this.setFocusToFirstMenuitem();
@@ -2453,40 +4722,16 @@ $skipToId [role="menuitem"].hover .label {
 
       handleDocumentKeydown (event) {
 
-        const enabledInputTypes = [
-          'button',
-          'checkbox',
-          'color',
-          'file',
-          'image',
-          'radio',
-          'range',
-          'reset',
-          'submit'
-        ];
+        this.shortcutsMessage.close();
 
-        const target = event.target;
-        const tagName = target.tagName ? target.tagName.toLowerCase() : '';
-        const type = tagName === 'input' ? target.type.toLowerCase() : '';
+        let flag = false;
+        let elem;
+        const focusElem = getFocusElement();
+        debug$2.flag && debug$2.log(`[handleDocumentKeydown][elementTakesText][${event.target.tagName}]: ${elementTakesText(focusElem)}`);
+        if (!elementTakesText(focusElem)) {
 
-        if ((tagName !== 'textarea') &&
-            ((tagName !== 'input') ||
-             ((tagName === 'input') && enabledInputTypes.includes(type))
-            )) {
-
-          const altPressed =
-            this.usesAltKey &&
-            event.altKey &&
-            !event.ctrlKey &&
-            !event.shiftKey &&
-            !event.metaKey;
-
-          const optionPressed =
-            this.usesOptionKey &&
-            event.altKey &&
-            !event.ctrlKey &&
-            !event.shiftKey &&
-            !event.metaKey;
+          const altPressed = this.usesAltKey && onlyAltPressed(event);
+          const optionPressed = this.usesOptionKey && onlyOptionPressed(event);
 
           if ((optionPressed && this.config.optionShortcut === event.key) ||
               (altPressed && this.config.altShortcut === event.key) ||
@@ -2494,6 +4739,126 @@ $skipToId [role="menuitem"].hover .label {
           ) {
             this.openPopup();
             this.setFocusToFirstMenuitem();
+            flag = true;
+          }
+
+          // Check for navigation keys
+          if ((this.config.shortcuts === 'enabled') &&
+              (onlyShiftPressed(event) || noModifierPressed(event))) {
+
+            switch (event.key) {
+              // ignore and space characters
+              case ' ':
+              case '':
+                break;
+
+              case this.config.shortcutRegionNext:
+                elem = navigateContent('landmark', 'next', this.config.msgHeadingLevel);
+                if (!elem) {
+                  this.shortcutsMessage.open(this.config.msgNoMoreRegions);
+                }
+                flag = true;
+                break;
+
+              case this.config.shortcutRegionPrevious:
+                elem = navigateContent('landmark', 'previous', this.config.msgHeadingLevel);
+                if (!elem) {
+                  this.shortcutsMessage.open(this.config.msgNoMoreRegions);
+                }
+                flag = true;
+                break;
+
+              case this.config.shortcutRegionComplementary:
+                elem = navigateContent('complementary', 'next', this.config.msgHeadingLevel, true);
+                if (!elem) {
+                  this.shortcutsMessage.open(this.config.msgNoMoreRegions.replace('%r', 'complementary'));
+                }
+                flag = true;
+                break;
+
+              case this.config.shortcutRegionMain:
+                elem = navigateContent('main', 'next', this.config.msgHeadingLevel, true);
+                if (!elem) {
+                  this.shortcutsMessage.open(this.config.msgNoMoreRegions.replace('%r', 'main'));
+                }
+                flag = true;
+                break;
+
+              case this.config.shortcutRegionNavigation:
+                elem = navigateContent('navigation', 'next', this.config.msgHeadingLevel, true);
+                if (!elem) {
+                  this.shortcutsMessage.open(this.config.msgNoMoreRegions.replace('%r', 'navigation'));
+                }
+                flag = true;
+                break;
+
+              case this.config.shortcutHeadingNext:
+                elem = navigateContent('heading', 'next', this.config.msgHeadingLevel, false, true);
+                if (!elem) {
+                  this.shortcutsMessage.open(this.config.msgNoMoreHeadings);
+                }
+                flag = true;
+                break;
+
+              case this.config.shortcutHeadingPrevious:
+                elem = navigateContent('heading', 'previous', this.config.msgHeadingLevel, false, true);
+                if (!elem) {
+                  this.shortcutsMessage.open(this.config.msgNoMoreHeadings);
+                }
+                flag = true;
+                break;
+
+              case this.config.shortcutHeadingH1:
+                elem = navigateContent('h1', 'next', this.config.msgHeadingLevel, true, true);
+                if (!elem) {
+                  this.shortcutsMessage.open(this.config.msgNoHeadingsLevelFound.replace('%h', '1'));
+                }
+                flag = true;
+                break;
+
+              case this.config.shortcutHeadingH2:
+                elem = navigateContent('h2', 'next', this.config.msgHeadingLevel, true, true);
+                if (!elem) {
+                  this.shortcutsMessage.open(this.config.msgNoHeadingsLevelFound.replace('%h', '2'));
+                }
+                flag = true;
+                break;
+
+              case this.config.shortcutHeadingH3:
+                elem = navigateContent('h3', 'next', this.config.msgHeadingLevel, true, true);
+                if (!elem) {
+                  this.shortcutsMessage.open(this.config.msgNoHeadingsLevelFound.replace('%h', '3'));
+                }
+                flag = true;
+                break;
+
+              case this.config.shortcutHeadingH4:
+                elem = navigateContent('h4', 'next', this.config.msgHeadingLevel, true, true);
+                if (!elem) {
+                  this.shortcutsMessage.open(this.config.msgNoHeadingsLevelFound.replace('%h', '4'));
+                }
+                flag = true;
+                break;
+
+              case this.config.shortcutHeadingH5:
+                elem = navigateContent('h5', 'next', this.config.msgHeadingLevel, true, true);
+                if (!elem) {
+                  this.shortcutsMessage.open(this.config.msgNoHeadingsLevelFound.replace('%h', '5'));
+                }
+                flag = true;
+                break;
+
+              case this.config.shortcutHeadingH6:
+                elem = navigateContent('h6', 'next', this.config.msgHeadingLevel, true, true);
+                if (!elem) {
+                  this.shortcutsMessage.open(this.config.msgNoHeadingsLevelFound.replace('%h', '6'));
+                }
+                flag = true;
+                break;
+            }
+          }
+
+          if (flag) {
             event.stopPropagation();
             event.preventDefault();
           }
@@ -2501,16 +4866,41 @@ $skipToId [role="menuitem"].hover .label {
       }    
 
       handleMenuitemAction(tgt) {
-        switch (tgt.getAttribute('data-id')) {
-          case '':
-            // this means there were no headings or landmarks in the list
-            break;
+        if (tgt.hasAttribute('data-id')) {
+          switch (tgt.getAttribute('data-id')) {
+            case '':
+              // this means there were no headings or landmarks in the list
+              break;
 
-          default:
-            this.closePopup();
-            skipToElement(tgt);
-            break;
+            default:
+              this.closePopup();
+              skipToElement(tgt);
+              break;
+          }
         }
+
+        if (tgt.hasAttribute('data-shortcuts-toggle')) {
+          if (tgt.getAttribute('data-shortcuts-toggle') === 'enable') {
+            this.skipToContentElem.setAttribute('shortcuts', 'enable');
+          }
+          else {
+            this.skipToContentElem.setAttribute('shortcuts', 'disable');
+          }
+          this.closePopup();
+        }
+
+        if (tgt.hasAttribute('data-shortcuts-info')) {
+          this.infoDialog.updateShortcutContent(this.skipToContentElem.config);
+          this.infoDialog.openDialog();
+          this.closePopup();
+        }
+
+        if (tgt.hasAttribute('data-about-info')) {
+          this.infoDialog.updateAboutContent(this.skipToContentElem.config);
+          this.infoDialog.openDialog();
+          this.closePopup();
+        }
+
       }
 
       handleMenuitemKeydown(event) {
@@ -2530,8 +4920,9 @@ $skipToId [role="menuitem"].hover .label {
             flag = true;
           }
           if (event.key === 'Tab') {
-            this.buttonNode.focus();
             this.closePopup();
+            this.buttonNode.focus();
+            this.skipToContentElem.setAttribute('focus', 'button');
             flag = true;
           }
         } else {
@@ -2545,13 +4936,18 @@ $skipToId [role="menuitem"].hover .label {
             case 'Escape':
               this.closePopup();
               this.buttonNode.focus();
+              this.skipToContentElem.setAttribute('focus', 'button');
               flag = true;
               break;
+            case 'Left':
+            case 'ArrowLeft':
             case 'Up':
             case 'ArrowUp':
               this.setFocusToPreviousMenuitem(tgt);
               flag = true;
               break;
+            case 'ArrowRight':
+            case 'Right':
             case 'ArrowDown':
             case 'Down':
               this.setFocusToNextMenuitem(tgt);
@@ -2591,53 +4987,164 @@ $skipToId [role="menuitem"].hover .label {
       }
 
       handleMenuitemPointerenter(event) {
+        debug$2.flag && debug$2.log(`[enter]`);
         let tgt = event.currentTarget;
-        this.removeHoverClass();
         tgt.classList.add('hover');
+        if (tgt.hasAttribute('data-id')) {
+          const elem = queryDOMForSkipToId(tgt.getAttribute('data-id'));
+          this.highlightElem.highlight(elem, this.highlightTarget);
+        }
+        else {
+          this.highlightElem.removeHighlight();
+        }
+        event.stopPropagation();
+        event.preventDefault();
+      }
+
+     handleMenuitemPointerover(event) {
+        debug$2.flag && debug$2.log(`[over]`);
+        let tgt = event.currentTarget;
+        if (tgt.hasAttribute('data-id')) {
+          const elem = queryDOMForSkipToId(tgt.getAttribute('data-id'));
+          this.highlightElem.highlight(elem, this.highlightTarget);
+        }
+        else {
+          this.highlightElem.removeHighlight();
+        }
+        event.stopPropagation();
+        event.preventDefault();
       }
 
       handleMenuitemPointerleave(event) {
+        debug$2.flag && debug$2.log(`[leave]`);
         let tgt = event.currentTarget;
         tgt.classList.remove('hover');
+        event.stopPropagation();
+        event.preventDefault();
       }
 
-      handleBackgroundPointerdown(event) {
-        if (!this.containerNode.contains(event.target)) {
-          if (this.isOpen()) {
-            this.closePopup();
-            this.buttonNode.focus();
+      handleContinerPointerdown(event) {
+        debug$2.flag && debug$2.log(`[down]: target: ${event.pointerId}`);
+
+        if (this.isOverButton(event.clientX, event.clientY)) {
+          this.containerNode.releasePointerCapture(event.pointerId);
+        }
+        else {
+          this.containerNode.setPointerCapture(event.pointerId);
+          this.containerNode.addEventListener('pointermove', this.handleContinerPointermove.bind(this));
+          this.containerNode.addEventListener('pointerup', this.handleContinerPointerup.bind(this));
+
+          if (this.containerNode.contains(event.target)) {
+            if (this.isOpen()) {
+              if (!this.isOverMenu(event.clientX, event.clientY)) {
+                debug$2.flag && debug$2.log(`[down][close]`);
+                this.closePopup();
+                this.buttonNode.focus();
+                this.skipToContentElem.setAttribute('focus', 'button');
+              }
+            }
+            else {
+              debug$2.flag && debug$2.log(`[down][open]`);
+              this.openPopup();          
+              this.setFocusToFirstMenuitem();
+            }
+
           }
+        }
+
+        event.stopPropagation();
+        event.preventDefault();
+      }
+
+      handleContinerPointermove(event) {
+        const mi = this.getMenuitem(event.clientX, event.clientY);
+        if (mi) {
+          this.removeHoverClass(mi);
+          mi.classList.add('hover');
+          if (mi.hasAttribute('data-id')) {
+            const elem = queryDOMForSkipToId(mi.getAttribute('data-id'));
+            this.highlightElem.highlight(elem, this.highlightTarget);
+          }
+          else {
+            this.highlightElem.removeHighlight();
+          }
+        }
+
+        event.stopPropagation();
+        event.preventDefault();
+      }
+
+      handleContinerPointerup(event) {
+
+        this.containerNode.releasePointerCapture(event.pointerId);
+        this.containerNode.removeEventListener('pointermove', this.handleContinerPointermove);
+        this.containerNode.removeEventListener('pointerup', this.handleContinerPointerup);
+
+        const mi = this.getMenuitem(event.clientX, event.clientY);
+        const omb = this.isOverButton(event.clientX, event.clientY);
+        debug$2.flag && debug$2.log(`[up] isOverButton: ${omb} getMenuitem: ${mi} id: ${event.pointerId}`);
+
+        if (mi) {
+          this.handleMenuitemAction(mi);          
+        }
+        else {
+          if (!omb) {
+            debug$2.flag && debug$2.log(`[up] not over button `);
+            if (this.isOpen()) {
+              debug$2.flag && debug$2.log(`[up] close `);
+              this.closePopup();
+              this.buttonNode.focus();
+              this.skipToContentElem.setAttribute('focus', 'button');
+            }        
+          }
+        }
+
+        event.stopPropagation();
+        event.preventDefault();
+      }
+
+      handleBodyPointerdown(event) {
+        debug$2.flag && debug$2.log(`[handleBodyPointerdown]: target: ${event.pointerId}`);
+
+        if (!this.isOverButton(event.clientX, event.clientY) &&
+            !this.isOverMenu(event.clientX, event.clientY)) {
+          this.closePopup();
         }
       }
   }
 
+  /* skiptoContent.js */
+
   /* constants */
-  const debug = new DebugLogging('skipto', false);
-  debug.flag = true;
+  const debug$1 = new DebugLogging('skiptoContent', false);
+  debug$1.flag = false;
 
-  (function() {
+  /* @class SkipToContent574
+   *
+   */
 
-    const SkipTo = {
-      skipToId: 'id-skip-to',
-      domNode: null,
-      buttonNode: null,
-      menuNode: null,
-      menuitemNodes: [],
-      firstMenuitem: false,
-      lastMenuitem: false,
-      firstChars: [],
-      headingLevels: [],
-      skipToIdIndex: 1,
+  class SkipToContent574 extends HTMLElement {
+
+    constructor() {
+      // Always call super first in constructor
+      super();
+      this.attachShadow({ mode: 'open' });
+      this.version = "5.7.4";
+      this.buttonSkipTo = false;
+      this.initialized = false;
+
       // Default configuration values
-      config: {
+      this.config = {
         // Feature switches
         enableHeadingLevelShortcuts: true,
+        lightDarkSupported: 'false',
+
+        focusOption: 'none',  // used by extensions only
 
         // Customization of button and menu
         altShortcut: '0', // default shortcut key is the number zero
-        optionShortcut: 'º', // default shortcut key character associated with option+0 on mac 
-        attachElement: 'body',
-        displayOption: 'static', // options: static (default), popup, fixed
+        optionShortcut: 'º', // default shortcut key character associated with option+0 on mac
+        displayOption: '', // options: static, popup, fixed (default)
         // container element, use containerClass for custom styling
         containerElement: 'nav',
         containerRole: '',
@@ -2648,14 +5155,75 @@ $skipToId [role="menuitem"].hover .label {
         smallButtonLabel: 'SkipTo',
         altLabel: 'Alt',
         optionLabel: 'Option',
+        shortcutLabel: 'shortcut',
         buttonShortcut: ' ($modifier+$key)',
-        altButtonAriaLabel: 'Skip To Content, shortcut Alt plus $key',
-        optionButtonAriaLabel: 'Skip To Content, shortcut Option plus $key',
+        buttonAriaLabel: '$buttonLabel, $shortcutLabel $modifierLabel + $key',
+
+        // Page navigation flag and keys
+        shortcutsSupported: 'true', // options: true or false
+        shortcuts: 'enabled',  // options: disabled and enabled
+        shortcutHeadingNext: 'h',
+        shortcutHeadingPrevious: 'H',
+        shortcutHeadingH1: '1',
+        shortcutHeadingH2: '2',
+        shortcutHeadingH3: '3',
+        shortcutHeadingH4: '4',
+        shortcutHeadingH5: '5',
+        shortcutHeadingH6: '6',
+
+        shortcutRegionNext: 'r',
+        shortcutRegionPrevious: 'R',
+        shortcutRegionMain: 'm',
+        shortcutRegionNavigation: 'n',
+        shortcutRegionComplementary: 'c',
+
+        shortcutsGroupEnabledLabel:  'Shortcuts: Enabled',
+        shortcutsGroupDisabledLabel: 'Shortcuts: Disabled',
+        shortcutsToggleEnableLabel:  'Enable shortcuts',
+        shortcutsToggleDisableLabel: 'Disable shortcuts',
+        shortcutsInfoLabel:          'Shortcut Information',
+
+        aboutSupported: 'true',
+        aboutInfoLabel: `About SkipTo.js`,
+        aboutHappy: `Happy Skipping!`,
+        aboutVersion: `Version ${this.version}`,
+        aboutCopyright: 'BSD License, Copyright 2021-2025',
+        aboutDesc: 'SkipTo.js is a free and open source utility to support authors in implementing the WCAG 4.2.1 Bypass Block requirement on their websites.',
+
+        closeLabel: 'Close',
+        moreInfoLabel: 'More Information',
+        msgKey: 'Key',
+        msgDescription: 'Description',
+
+        msgNextRegion: 'Next region',
+        msgPreviousRegion: 'Previous region',
+        msgNextHeading: 'Next heading',
+        msgPreviousHeading: 'Previous heading',
+
+        msgMainRegions: 'Main regions',
+        msgNavigationRegions: 'Navigation regions',
+        msgComplementaryRegions: 'Complementary regions',
+
+        msgHeadingLevel: 'Level #',
+        msgH1Headings: 'Level 1 headings',
+        msgH2Headings: 'Level 2 headings',
+        msgH3Headings: 'Level 3 headings',
+        msgH4Headings: 'Level 4 headings',
+        msgH5Headings: 'Level 5 headings',
+        msgH6Headings: 'Level 6 headings',
+
+        // Messages for navigation
+
+        msgNoMoreRegions: 'No more regions',
+        msgNoRegionsFound: 'No %r regions found',
+        msgNoMoreHeadings: 'No more headings',
+        msgNoHeadingsLevelFound: 'No level %h headings found',
 
         // Menu labels and messages
         menuLabel: 'Landmarks and Headings',
         landmarkGroupLabel: 'Landmark Regions',
         headingGroupLabel: 'Headings',
+        headingMainGroupLabel: 'Headings in Main Region',
         headingLevelLabel: 'Heading level',
         mainLabel: 'main',
         searchLabel: 'search',
@@ -2670,7 +5238,25 @@ $skipToId [role="menuitem"].hover .label {
 
         // Selectors for landmark and headings sections
         landmarks: 'main search navigation complementary',
-        headings: 'main h1 h2',
+        headings: 'main-only h1 h2',
+
+        // Highlight options
+        highlightTarget: 'instant', // options: 'instant' (default), 'smooth' and 'auto'
+
+        // Hidden heading when highlighting
+        msgHidden: 'Heading is hidden',
+        hiddenHeadingColor: '#000000',
+        hiddenHeadingDarkColor: '#000000',
+        hiddenHeadingBackgroundColor: '#ffcc00',
+        hiddenHeadingBackgroundDarkColor: '#ffcc00',
+
+        //Dialog styling
+        dialogTextColor: '#000000',
+        dialogTextDarkColor: '#ffffff',
+        dialogBackgroundColor: '#ffffff',
+        dialogBackgroundDarkColor: '#000000',
+        dialogBackgroundTitleColor: '#eeeeee',
+        dialogBackgroundTitleDarkColor: '#013c93',
 
         // Place holders for configuration
         colorTheme: '',
@@ -2686,236 +5272,432 @@ $skipToId [role="menuitem"].hover .label {
         focusBorderColor: '',
         buttonTextColor: '',
         buttonBackgroundColor: '',
+        menuTextDarkColor: '',
+        menuBackgroundDarkColor: '',
+        menuitemFocusTextDarkColor: '',
+        menuitemFocusBackgroundDarkColor: '',
+        focusBorderDarkColor: '',
+        buttonTextDarkColor: '',
+        buttonBackgroundDarkColor: '',
         zIndex: '',
-      },
-      colorThemes: {
-        'default': {
-          fontFamily: 'inherit',
-          fontSize: 'inherit',
-          positionLeft: '46%',
-          smallBreakPoint: '576',
-          mediumBreakPoint: '992',
-          menuTextColor: '#1a1a1a',
-          menuBackgroundColor: '#dcdcdc',
-          menuitemFocusTextColor: '#eeeeee',
-          menuitemFocusBackgroundColor: '#1a1a1a',
-          focusBorderColor: '#1a1a1a',
-          buttonTextColor: '#1a1a1a',
-          buttonBackgroundColor: '#eeeeee',
-          zIndex: '100000',
-        },
-        'aria': {
-          hostnameSelector: 'w3.org',
-          pathnameSelector: 'ARIA/apg',
-          fontFamily: 'sans-serif',
-          fontSize: '10pt',
-          positionLeft: '7%',
-          menuTextColor: '#000',
-          menuBackgroundColor: '#def',
-          menuitemFocusTextColor: '#fff',
-          menuitemFocusBackgroundColor: '#005a9c',
-          focusBorderColor: '#005a9c',
-          buttonTextColor: '#005a9c',
-          buttonBackgroundColor: '#ddd',
-        },
-        'illinois': {
-          hostnameSelector: 'illinois.edu',
-          menuTextColor: '#00132c',
-          menuBackgroundColor: '#cad9ef',
-          menuitemFocusTextColor: '#eeeeee',
-          menuitemFocusBackgroundColor: '#00132c',
-          focusBorderColor: '#ff552e',
-          buttonTextColor: '#444444',
-          buttonBackgroundColor: '#dddede',
-        },
-        'skipto': {
-          hostnameSelector: 'skipto-landmarks-headings.github.io',
-          fontSize: '14px',
-          menuTextColor: '#00132c',
-          menuBackgroundColor: '#cad9ef',
-          menuitemFocusTextColor: '#eeeeee',
-          menuitemFocusBackgroundColor: '#00132c',
-          focusBorderColor: '#ff552e',
-          buttonTextColor: '#444444',
-          buttonBackgroundColor: '#dddede',
-        },
-        'uic': {
-          hostnameSelector: 'uic.edu',
-          menuTextColor: '#001e62',
-          menuBackgroundColor: '#f8f8f8',
-          menuitemFocusTextColor: '#ffffff',
-          menuitemFocusBackgroundColor: '#001e62',
-          focusBorderColor: '#d50032',
-          buttonTextColor: '#ffffff',
-          buttonBackgroundColor: '#001e62',
-        },
-        'uillinois': {
-          hostnameSelector: 'uillinois.edu',
-          menuTextColor: '#001e62',
-          menuBackgroundColor: '#e8e9ea',
-          menuitemFocusTextColor: '#f8f8f8',
-          menuitemFocusBackgroundColor: '#13294b',
-          focusBorderColor: '#dd3403',
-          buttonTextColor: '#e8e9ea',
-          buttonBackgroundColor: '#13294b',
-        },
-        'uis': {
-          hostnameSelector: 'uis.edu',
-          menuTextColor: '#036',
-          menuBackgroundColor: '#fff',
-          menuitemFocusTextColor: '#fff',
-          menuitemFocusBackgroundColor: '#036',
-          focusBorderColor: '#dd3444',
-          buttonTextColor: '#fff',
-          buttonBackgroundColor: '#036',
-        },
-        'openweba11y': {
-          hostnameSelector: 'openweba11y.com',
-          buttonTextColor: '#13294B',
-          buttonBackgroundColor: '#dddddd',
-          focusBorderColor: '#C5050C',
-          menuTextColor: '#13294B',
-          menuBackgroundColor: '#dddddd',
-          menuitemFocusTextColor: '#dddddd',
-          menuitemFocusBackgroundColor: '#13294B',
-          fontSize: '90%'
+        zHighlight: ''
+      };
+    }
+
+    static get observedAttributes() {
+      return [
+        ATTR_SKIP_TO_DATA,
+        "setfocus",
+        "type",
+        "shortcuts",
+        "about"
+        ];
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+
+      if (name === ATTR_SKIP_TO_DATA) {
+        this.config = this.setupConfigFromDataAttribute(this.config, newValue);
+      }
+
+      if (name === 'type') {
+        if (newValue === 'extension') {
+          this.config.shortcuts = 'enabled';
         }
-      },
+      }
 
-      /*
-       * @method init
-       *
-       * @desc Initializes the skipto button and menu with default and user 
-       *       defined options
-       *
-       * @param  {object} config - Reference to configuration object
-       *                           can be undefined
-       */
-      init: function(globalConfig) {
-        let node;
-
-        // Check if skipto is already loaded
-        if (document.skipToHasBeenLoaded) {
-          console.warn('[skipTo.js] Skipto is already loaded!');
-          return;
+      if (name === 'shortcuts') {
+        if (newValue.trim().toLowerCase() === 'enable') {
+          this.config.shortcuts = 'enabled';
         }
+        else {
+          this.config.shortcuts = 'disabled';
+        }
+      }
 
-        document.skipToHasBeenLoaded = true;
+      if (name === 'about') {
+        if (newValue.trim().toLowerCase() === 'true') {
+          this.config.aboutSupported = 'true';
+        }
+        else {
+          this.config.aboutSupported = 'false';
+        }
+      }
 
-        let attachElement = document.body;
+      if (name === 'setfocus') {
+          switch(newValue) {
+            case 'button':
+              this.buttonSkipTo.closePopup();
+              this.buttonSkipTo.buttonNode.focus();
+              break;
 
+            case 'menu':
+              this.buttonSkipTo.openPopup();
+              this.buttonSkipTo.setFocusToFirstMenuitem();
+              break;
+
+            case 'none':
+              this.buttonSkipTo.closePopup();
+              document.body.focus();
+              break;
+          }
+      }
+    }
+
+    /*
+     * @method init
+     *
+     * @desc Initializes the skipto button and menu with default and user
+     *       defined options
+     *
+     * @param  {object} globalConfig - Reference to configuration object
+     *                                 can be undefined
+     */
+    init(globalConfig=false) {
+      if (!this.initialized) {
+        this.initialized = true;
         if (globalConfig) {
           this.config = this.setupConfigFromGlobal(this.config, globalConfig);
         }
 
-        this.config = this.setupConfigFromDataAttribute(this.config);
-
-        if (typeof this.config.attachElement === 'string') {
-          node = document.querySelector(this.config.attachElement);
-          if (node && node.nodeType === Node.ELEMENT_NODE) {
-            attachElement = node;
-          }
-        }
-        // Add skipto style sheet to document
-        renderStyleElement(this.colorThemes, this.config, this.skipToId);
-
-        new SkiptoMenuButton(attachElement, this.config, this.skipToId);
-      },
-
-      /*
-       * @method setupConfigFromGlobal
-       *
-       * @desc Get configuration information from author configuration to change
-       *       default settings 
-       *
-       * @param  {object}  config       - Javascript object with default configuration information
-       * @param  {object}  globalConfig - Javascript object with configuration information oin a global variable
-       */
-      setupConfigFromGlobal: function(config, globalConfig) {
-        let authorConfig = {};
-        // Support version 4.1 configuration object structure 
-        // If found use it
-        if ((typeof globalConfig.settings === 'object') &&
-            (typeof globalConfig.settings.skipTo === 'object')) {
-          authorConfig = globalConfig.settings.skipTo;
-        }
-        else {
-          // Version 5.0 removes the requirement for the "settings" and "skipto" properties
-          // to reduce the complexity of configuring skipto
-          if (typeof globalConfig === 'object') {
-            authorConfig = globalConfig;
-          }
-        }
-
-        for (const name in authorConfig) {
-          //overwrite values of our local config, based on the external config
-          if ((typeof config[name] !== 'undefined') &&
-             ((typeof authorConfig[name] === 'string') &&
-              (authorConfig[name].length > 0 ) ||
-             typeof authorConfig[name] === 'boolean')
-            ) {
-            config[name] = authorConfig[name];
-          } else {
-            console.warn('[SkipTo]: Unsupported or deprecated configuration option in global configuration object: ' + name);
-          }
-        }
-
-        return config;
-      },
-
-      /*
-       * @method setupConfigFromDataAttribute
-       *
-       * @desc Get configuration information from author configuration to change
-       *       default settings
-       *
-       * @param  {object}  config - Javascript object with default configuration information
-       */
-      setupConfigFromDataAttribute: function(config) {
-        let dataConfig = {};
-
         // Check for data-skipto attribute values for configuration
-        const configElem = document.querySelector('[data-skipto]');
+        const configElem = document.querySelector(`[${ATTR_SKIP_TO_DATA}]`);
         if (configElem) {
-          const dataSkiptoValue = configElem.getAttribute('data-skipto');
-          if (dataSkiptoValue) {
-            const values = dataSkiptoValue.split(';');
-            values.forEach( v => {
-              let [prop, value] = v.split(':');
-              if (prop) {
-                prop = prop.trim();
-              }
-              if (value) {
-                value = value.trim();
-              }
-              if (prop && value) {
-                dataConfig[prop] = value;
-              }
-            });
-          }
+          const params = configElem.getAttribute(ATTR_SKIP_TO_DATA);
+          this.config  = this.setupConfigFromDataAttribute(this.config, params);
         }
 
-        for (const name in dataConfig) {
-          //overwrite values of our local config, based on the external config
-          if ((typeof config[name] !== 'undefined') &&
-             ((typeof dataConfig[name] === 'string') &&
-              (dataConfig[name].length > 0 ) ||
-             typeof dataConfig[name] === 'boolean')
-            ) {
-            config[name] = dataConfig[name];
-          } else {
-            console.warn('[SkipTo]: Unsupported or deprecated configuration option in data-skipto attribute: ' + name);
-          }
+        // Add skipto style sheet to document
+        renderStyleElement(this.shadowRoot, this.config, this.skipToId, globalConfig);
+        this.buttonSkipTo = new SkiptoMenuButton(this);
+
+        // Add landmark and heading info to DOM elements for keyboard navigation
+        // if using bookmarklet or extension
+        if (!globalConfig) {
+          getLandmarksAndHeadings(this.config, this.skipToId);
+          monitorKeyboardFocus();
         }
-        return config;
 
       }
-    };
 
-    // Initialize skipto menu button with onload event
-    window.addEventListener('load', function() {
-      SkipTo.init(window.SkipToConfig);
-    });
+      this.setAttribute('focus', 'none');
+    }
+
+   /*
+     * @method setupConfigFromGlobal
+     *
+     * @desc Get configuration information from author configuration to change
+     *       default settings
+     *
+     * @param  {object}  config       - Javascript object with default configuration information
+     * @param  {object}  globalConfig - Javascript object with configuration information oin a global variable
+     */
+    setupConfigFromGlobal(config, globalConfig) {
+      let authorConfig = {};
+      // Support version 4.1 configuration object structure
+      // If found use it
+      if ((typeof globalConfig.settings === 'object') &&
+          (typeof globalConfig.settings.skipTo === 'object')) {
+        authorConfig = globalConfig.settings.skipTo;
+      }
+      else {
+        // Version 5.0 removes the requirement for the "settings" and "skipto" properties
+        // to reduce the complexity of configuring skipto
+        if (typeof globalConfig === 'object') {
+          authorConfig = globalConfig;
+        }
+      }
+
+      for (const name in authorConfig) {
+        //overwrite values of our local config, based on the external config
+        if ((typeof config[name] !== 'undefined') &&
+           ((typeof authorConfig[name] === 'string') &&
+            (authorConfig[name].length > 0 ) ||
+           typeof authorConfig[name] === 'boolean')
+          ) {
+          config[name] = authorConfig[name];
+        } else {
+          console.warn('[SkipTo]: Unsupported or deprecated configuration option in global configuration object: ' + name);
+        }
+      }
+
+      return config;
+    }
+
+    /*
+     * @method setupConfigFromDataAttribute
+     *
+     * @desc Update configuration information from author configuration to change
+     *       default settings
+     *
+     * @param  {Object}  config - Object with SkipTo.js configuration information
+     * @param  {String}  params - String with configuration information
+     */
+    setupConfigFromDataAttribute(config, params) {
+      let dataConfig = {};
+
+      if (params) {
+        const values = params.split(';');
+        values.forEach( v => {
+          const index = v.indexOf(':');
+          let prop  = v.substring(0,index);
+          let value = v.substring(index+1);
+          if (prop) {
+            prop = prop.trim();
+          }
+          if (value) {
+            value = value.trim();
+          }
+          if (prop && value) {
+            dataConfig[prop] = value;
+          }
+        });
+      }
+
+      for (const name in dataConfig) {
+        //overwrite values of our local config, based on the external config
+        if ((typeof config[name] !== 'undefined') &&
+           ((typeof dataConfig[name] === 'string') &&
+            (dataConfig[name].length > 0 ) ||
+           typeof dataConfig[name] === 'boolean')
+          ) {
+          config[name] = dataConfig[name];
+        } else {
+          console.warn('[SkipTo]: Unsupported or deprecated configuration option in data-skipto attribute: ' + name);
+        }
+      }
+
+      renderStyleElement(this.shadowRoot, config, this.skipToId);
+
+      if (this.buttonSkipTo) {
+        this.buttonSkipTo.updateLabels(config);
+        this.buttonSkipTo.setDisplayOption(config['displayOption']);
+      }
+
+      const infoDialog = document.querySelector(INFO_DIALOG_ELEMENT_NAME);
+      debug$1.flag && debug$1.log(`[infoDialog]: ${infoDialog}`);
+      if (infoDialog) {
+        infoDialog.configureStyle(config);
+      }
+
+      const shortcutsMessage = document.querySelector(MESSAGE_ELEMENT_NAME);
+      debug$1.flag && debug$1.log(`[shortcutMessage]: ${shortcutsMessage}`);
+      if (shortcutsMessage) {
+        shortcutsMessage.configureStyle(config);
+      }
+
+      const highlight = document.querySelector(HIGHLIGHT_ELEMENT_NAME);
+      debug$1.flag && debug$1.log(`[highlight]: ${highlight}`);
+      if (highlight) {
+        highlight.configureStyle(config);
+      }
+
+      return config;
+    }
+
+      /*
+     * @method supportShortcuts
+     *
+     * @desc  Set suuportShortcuts configuration property
+     *
+     * @param  {Boolean}  value - If true support keyboard shortcuts, otherwise disable
+     */
+    supportShortcuts(value) {
+      if (value) {
+        this.config.shortcutsSupported = 'true';
+        this.config.shortcuts = 'enabled';
+      }
+      else {
+        this.config.shortcutsSupported = 'false';
+        this.config.shortcuts = 'disabled';
+      }
+    }
+  }
+
+  /* skipto.js */
+
+  /* constants */
+  const debug = new DebugLogging('skipto', false);
+  debug.flag = false;
+
+  (function() {
+
+    /*
+    *  @function removeLegacySkipToJS
+    *
+    *  @desc Removes legacy and duplicate versions of SkipTo.js
+    */
+    function removeLegacySkipToJS() {
+
+      function removeElementsWithId(id) {
+        let node = document.getElementById(id);
+        // do more than once in case of duplicates
+        while (node) {
+          console.warn(`[SkipTo.js]: Removing legacy 5.x component: ${id}`);
+          node.remove ();
+          node = document.getElementById(id);
+        }
+      }
+
+      function removeElementsWithName(name) {
+        let nodes = document.getElementsByTagName(name);
+        // do more than once in case of duplicates
+        for(let i = 0; i < nodes.length; i += 1) {
+          const node = nodes[i];
+          console.warn(`[SkipTo.js]: Removing legacy 5.x component: ${name}`);
+          node.remove();
+        }
+      }
+
+      // Remove 5.x legacy code
+      removeElementsWithId('id-skip-to');
+      removeElementsWithId('id-skip-to-css');
+      removeElementsWithId('id-skip-to-highlight');
+
+      removeElementsWithName('skip-to-shortcuts-message');
+
+      // Remove 4.x
+      const nodes = document.querySelectorAll('div.skip-to');
+      debug.flag && debug.log(`[removeLegacySkipToJS]: ${nodes.length}`);
+      for(let i = 0; i < nodes.length; i += 1) {
+        nodes[i].remove();
+        console.warn(`[SkipTo.js]: Removing legacy 4.x component`);
+      }
+    }
+
+    /*
+    *  @function removePageSkipTo
+    *
+    *  @desc Removes duplicate versions of SkipTo.js
+    */
+    function removePageSkipTo() {
+      const nodes = document.querySelectorAll(PAGE_SCRIPT_ELEMENT_NAME);
+      debug.flag && debug.log(`[removePageSkipTo]: ${nodes.length}`);
+      for (let i = 0; i < nodes.length; i += 1) {
+        nodes[i].remove();
+        console.warn(`[SkipTo.js]: Removing ${nodes[i].tagName}`);
+      }
+    }
+
+    /*
+    *  @function removeBookmarkletSkipTo
+    *
+    *  @desc Removes duplicate versions of SkipTo.js
+    */
+    function removeBookmarkletSkipTo() {
+      const nodes = document.querySelectorAll(BOOKMARKLET_ELEMENT_NAME);
+      debug.flag && debug.log(`[removeBookmarkletSkipTo]: ${nodes.length}`);
+      for (let i = 0; i < nodes.length; i += 1) {
+        nodes[i].remove();
+        console.warn(`[SkipTo.js]: Removing ${nodes[i].tagName}`);
+      }
+    }
+
+
+    /*
+    *. @function getSkipToContentElement
+    *
+    * @desc  Creates and add a skip-to-content element in the page
+    *
+    * @returns  Returns dom node of new element or false if the page
+    *           has a legacy SkipTo.js
+    */
+    function getSkipToContentElement(type="pagescript") {
+
+      removeLegacySkipToJS();
+
+      const isExtensionLoaded   = document.querySelector(EXTENSION_ELEMENT_NAME);
+      const isBookmarkletLoaded = document.querySelector(BOOKMARKLET_ELEMENT_NAME);
+      const isPageLoaded        = document.querySelector(PAGE_SCRIPT_ELEMENT_NAME);
+
+      let skipToContentElem = false;
+
+      switch (type) {
+        case 'bookmarklet':
+          if (!isExtensionLoaded) {
+            if (!isBookmarkletLoaded) {
+              removePageSkipTo();
+              window.customElements.define(BOOKMARKLET_ELEMENT_NAME, SkipToContent574);
+              skipToContentElem = document.createElement(BOOKMARKLET_ELEMENT_NAME);
+              skipToContentElem.setAttribute('version', skipToContentElem.version);
+              skipToContentElem.setAttribute('type', type);
+              // always attach SkipToContent element to body
+              if (document.body) {
+                document.body.insertBefore(skipToContentElem, document.body.firstElementChild);
+              }
+            }
+          }
+          break;
+
+        case 'extension':
+          if (!isExtensionLoaded) {
+            removePageSkipTo();
+            removeBookmarkletSkipTo();
+            window.customElements.define(EXTENSION_ELEMENT_NAME, SkipToContent574);
+            skipToContentElem = document.createElement(EXTENSION_ELEMENT_NAME);
+            skipToContentElem.setAttribute('version', skipToContentElem.version);
+            skipToContentElem.setAttribute('type', type);
+            // always attach SkipToContent element to body
+            if (document.body) {
+              document.body.insertBefore(skipToContentElem, document.body.firstElementChild);
+            }
+          }
+          break;
+
+        default:
+          if (!isPageLoaded && !isBookmarkletLoaded && !isExtensionLoaded) {
+            window.customElements.define(PAGE_SCRIPT_ELEMENT_NAME, SkipToContent574);
+            skipToContentElem = document.createElement(PAGE_SCRIPT_ELEMENT_NAME);
+            skipToContentElem.setAttribute('version', skipToContentElem.version);
+            skipToContentElem.setAttribute('type', type);
+            // always attach SkipToContent element to body
+            if (document.body) {
+              document.body.insertBefore(skipToContentElem, document.body.firstElementChild);
+            }
+          }
+          break;
+      }
+      return skipToContentElem;
+    }
+
+    // Check for SkipTo.js bookmarklet script, if it is initialize it immediately
+    if (document.getElementById(SCRIPT_BOOKMARKLET_ID)) {
+      debug.flag && debug.log(`[bookmarklet]`);
+      const skipToContentBookmarkletElem = getSkipToContentElement('bookmarklet');
+      if (skipToContentBookmarkletElem) {
+        skipToContentBookmarkletElem.init();
+        skipToContentBookmarkletElem.buttonSkipTo.openPopup();
+        skipToContentBookmarkletElem.buttonSkipTo.setFocusToFirstMenuitem();
+      }
+    }
+    else {
+      // Check for SkipTo.js extension script, if it is initialize it immediately
+      if (document.getElementById(SCRIPT_EXTENSION_ID)) {
+        debug.flag && debug.log(`[extension]`);
+        const skipToContentExtensionElem = getSkipToContentElement('extension');
+        if (skipToContentExtensionElem) {
+          skipToContentExtensionElem.init();
+          window.addEventListener('load', function() {
+            debug.flag && debug.log(`[onload][extension][elem]: ${skipToContentExtensionElem}`);
+            removeLegacySkipToJS();
+            removePageSkipTo();
+          });
+        }
+      }
+      else {
+        // Initialize SkipTo.js menu button with onload event
+        window.addEventListener('load', function() {
+          debug.flag && debug.log(`[onload][script]`);
+          const skipToContentPageElem = getSkipToContentElement();
+          if (skipToContentPageElem) {
+            skipToContentPageElem.supportShortcuts(false);
+            debug.flag && debug.log(`[onload][script][elem]: ${skipToContentPageElem}`);
+            const initInfo = window.SkipToConfig ? window.SkipToConfig : {};
+            skipToContentPageElem.init(initInfo);
+          }
+        });
+      }
+    }
   })();
 
 })();
