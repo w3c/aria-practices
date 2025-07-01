@@ -52,7 +52,6 @@
     'aria': {
       hostnameSelector: 'w3.org',
       pathnameSelector: 'ARIA/apg',
-      headings: 'h1 h2',
       fontFamily: 'sans-serif',
       fontSize: '10pt',
       positionLeft: '7%',
@@ -5434,7 +5433,7 @@ button:hover {
 
         // Selectors for landmark and headings sections
         landmarks: 'main search navigation complementary',
-        headings: 'main-only h1 h2',
+        headings: 'h1 h2',
 
         // Highlight options
         highlightTarget:      defaultStyleOptions.highlightTarget,
