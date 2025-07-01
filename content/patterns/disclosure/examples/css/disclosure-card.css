@@ -1,19 +1,17 @@
 .disclosure-cards {
-  interpolate-size: allow-keywords;
-
   --length-xs: calc(10 / 16 * 0.175rem);
   --length-s: calc(10 / 16 * 0.25rem);
   --length-m: calc(10 / 16 * 1rem);
   --length-l: calc(10 / 16 * 1.5rem);
   --length-xl: calc(10 / 16 * 2rem);
   --length-xxl: calc(10 / 16 * 3rem);
-  --transition-duration-snappy: 0;
-  --transition-duration-leisurely: 0;
   --color-interactive-idle: transparent;
   --color-interactive-hover: gray;
   --color-interactive-hover-text: black;
   --color-interactive-focus: var(--wai-green, #005a6a);
   --color-interactive-focus-text: var(--wai-green, #005a6a);
+  --transition-duration-snappy: 0;
+  --transition-duration-leisurely: 0;
 
   @media (forced-colors: active) {
     --color-interactive-idle: Canvas;
@@ -34,6 +32,7 @@
   background-color: ghostwhite;
   margin-inline: -2em;
   padding: 2em;
+  interpolate-size: allow-keywords;
 
   *,
   *::before,
@@ -48,20 +47,15 @@
     outline-offset: var(--length-s);
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    line-height: 1.25;
+  h3 {
+    font: 500 var(--length-xxl)/1.25;
+    border-block-end: var(--length-xs) solid currentcolor;
     text-wrap: balance;
   }
 
-  h3 {
-    font-weight: 500;
-    font-size: var(--length-xxl);
-    border-block-end: var(--length-xs) solid currentcolor;
+  h5 {
+    font: normal normal 600 var(--length-xl);
+    line-height: 1.25;
   }
 
   button {
@@ -170,9 +164,8 @@
   .sessions {
     list-style: none;
     display: flex;
-    flex-wrap: wrap;
-    gap: 1em;
     flex-direction: column;
+    gap: 1em;
     margin-block: 2em;
   }
 
@@ -249,13 +242,6 @@
       margin-block-start: var(--length-l);
       border-block-start: var(--length-xs) solid lightgray;
       padding-block-start: var(--length-l);
-
-      h5 {
-        font-size: var(--length-xl);
-        font-weight: 600;
-        font-variant-caps: normal;
-        font-style: normal;
-      }
 
       label:has(input[type="checkbox"]) {
         display: flex;
