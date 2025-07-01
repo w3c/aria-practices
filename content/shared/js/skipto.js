@@ -44,7 +44,10 @@
       buttonBackgroundDarkColor: '#013c93',
       zIndex: '2000000',
       zHighlight: '1999900',
-      displayOption: 'fixed'
+      displayOption: 'fixed',
+      highlightTarget: 'instant',
+      highlightBorderSize: 'small',
+      highlightBorderStyle: 'solid'
     },
     'aria': {
       hostnameSelector: 'w3.org',
@@ -258,9 +261,9 @@
   const BOOKMARKLET_ELEMENT_NAME = 'skip-to-content-bookmarklet';
   const EXTENSION_ELEMENT_NAME   = 'skip-to-content-extension';
 
-  const INFO_DIALOG_ELEMENT_NAME = 'skip-to-content-info-dialog-574';
-  const MESSAGE_ELEMENT_NAME     = 'skip-to-content-message-element-574';
-  const HIGHLIGHT_ELEMENT_NAME   = 'skip-to-content-highlight-element-574';
+  const INFO_DIALOG_ELEMENT_NAME = 'skip-to-content-info-dialog-575';
+  const MESSAGE_ELEMENT_NAME     = 'skip-to-content-message-element-575';
+  const HIGHLIGHT_ELEMENT_NAME   = 'skip-to-content-highlight-element-575';
 
   // Attributes
 
@@ -926,7 +929,7 @@
   const debug$a = new DebugLogging('[shortcutsInfoDialog]', false);
   debug$a.flag = false;
 
-  const defaultStyleOptions$2 = colorThemes['default'];
+  const defaultStyleOptions$3 = colorThemes['default'];
 
 
   const styleTemplate$1 = document.createElement('template');
@@ -1033,7 +1036,7 @@ dialog#skip-to-info-dialog .content th {
   margin: 0;
   padding: 0;
   padding-top: 0.125em;
-  padding-buttom: 0.125em;
+  padding-bottom: 0.125em;
   text-align: left;
   font-weight: bold;
   font-size: 100%;
@@ -1053,7 +1056,7 @@ dialog#skip-to-info-dialog .content td {
   margin: 0;
   padding: 0;
   padding-top: 0.125em;
-  padding-buttom: 0.125em;
+  padding-bottom: 0.125em;
   text-align: left;
   font-size: 100%;
 }
@@ -1173,52 +1176,52 @@ button:hover {
       style = updateOption(style,
                            '$fontFamily',
                            config.fontFamily,
-                           defaultStyleOptions$2.fontFamily);
+                           defaultStyleOptions$3.fontFamily);
 
       style = updateOption(style,
                            '$fontSize',
                            config.fontSize,
-                           defaultStyleOptions$2.fontSize);
+                           defaultStyleOptions$3.fontSize);
 
       style = updateOption(style,
                            '$focusBorderColor',
                            config.focusBorderColor,
-                           defaultStyleOptions$2.focusBorderColor);
+                           defaultStyleOptions$3.focusBorderColor);
 
       style = updateOption(style,
                            '$focusBorderDarkColor',
                            config.focusBorderDarkColor,
-                           defaultStyleOptions$2.focusBorderDarkColor);
+                           defaultStyleOptions$3.focusBorderDarkColor);
 
       style = updateOption(style,
                            '$dialogTextColor',
                            config.dialogTextColor,
-                           defaultStyleOptions$2.dialogTextColor);
+                           defaultStyleOptions$3.dialogTextColor);
 
       style = updateOption(style,
                            '$dialogextDarkColor',
                            config.dialogextDarkColor,
-                           defaultStyleOptions$2.dialogextDarkColor);
+                           defaultStyleOptions$3.dialogextDarkColor);
 
       style = updateOption(style,
                            '$dialogBackgroundColor',
                            config.dialogBackgroundColor,
-                           defaultStyleOptions$2.dialogBackgroundColor);
+                           defaultStyleOptions$3.dialogBackgroundColor);
 
       style = updateOption(style,
                            '$dialogBackgroundDarkColor',
                            config.dialogBackgroundDarkColor,
-                           defaultStyleOptions$2.dialogBackgroundDarkColor);
+                           defaultStyleOptions$3.dialogBackgroundDarkColor);
 
       style = updateOption(style,
                            '$dialogBackgroundTitleColor',
                            config.dialogBackgroundTitleColor,
-                           defaultStyleOptions$2.dialogBackgroundTitleColor);
+                           defaultStyleOptions$3.dialogBackgroundTitleColor);
 
       style = updateOption(style,
                            '$dialogBackgroundTitleDarkColor',
                            config.dialogBackgroundTitleDarkColor,
-                           defaultStyleOptions$2.dialogBackgroundTitleDarkColor);
+                           defaultStyleOptions$3.dialogBackgroundTitleDarkColor);
 
 
       let styleNode = this.shadowRoot.querySelector('style');
@@ -1403,10 +1406,8 @@ button:hover {
 
   const minWidth = 68;
   const minHeight = 27;
-  const offset = 6;
-  const borderWidth = 2;
 
-  const defaultStyleOptions$1 = colorThemes['default'];
+  const defaultStyleOptions$2 = colorThemes['default'];
 
   const styleHighlightTemplate = document.createElement('template');
   styleHighlightTemplate.textContent = `
@@ -1418,31 +1419,45 @@ button:hover {
   margin: 0;
   padding: 0;
   position: absolute;
-  border-radius: 3px;
-  border: 4px solid light-dark($buttonBackgroundColor, $buttonBackgroundDarkColor);
+  border-radius: $highlightOffsetpx;
+  border: $shadowBorderWidthpx solid light-dark($menuBackgroundColor, $menuBackgroundDarkColor);
   box-sizing: border-box;
   pointer-events:none;
+  z-index: $zHighlight;
+}
+
+#${HIGHLIGHT_ID}.hasInfoBottom,
+#${HIGHLIGHT_ID} .overlay-border.hasInfoBottom {
+  border-radius: $highlightOffsetpx $highlightOffsetpx $highlightOffsetpx 0;
+}
+
+#${HIGHLIGHT_ID}.hasInfoTop,
+#${HIGHLIGHT_ID} .overlay-border.hasInfoTop {
+  border-radius: 0 $highlightOffsetpx $highlightOffsetpx $highlightOffsetpx;
 }
 
 #${HIGHLIGHT_ID} .overlay-border {
   margin: 0;
   padding: 0;
   position: relative;
-  top: -2px;
-  left: -2px;
-  border-radius: 3px 3px 3px 3px;
-  border: 2px solid light-dark($focusBorderColor, $focusBorderDarkColor);
+  border-radius: $highlightOffsetpx;
+  border: $overlayBorderWidthpx $highlightBorderStyle light-dark($focusBorderColor, $focusBorderDarkColor);
   z-index: $zHighlight;
   box-sizing: border-box;
   pointer-events:none;
+  background: transparent;
 }
+
 
 @keyframes fadeIn {
   0% { opacity: 0; }
   100% { opacity: 1; }
 }
 
-#${HIGHLIGHT_ID} .overlay-border.skip-to-hidden {
+#hidden-elem-msg {
+  position: absolute;
+  margin: 0;
+  padding: .25em;
   background-color: light-dark($hiddenHeadingBackgroundColor, $hiddenHeadingBackgroundDarkColor);
   color: light-dark($hiddenHeadingColor, $hiddenHeadingDarkColor);
   font-family: $fontFamily;
@@ -1450,26 +1465,18 @@ button:hover {
   font-style: italic;
   font-weight: bold;
   text-align: center;
-  padding: .25em;
   animation: fadeIn 1.5s;
-}
-
-#${HIGHLIGHT_ID} .overlay-border.hasInfoBottom {
-  border-radius: 3px 3px 3px 0;
-}
-
-#${HIGHLIGHT_ID} .overlay-border.hasInfoTop {
-  border-radius: 0 3px 3px 3px;
+  z-index: $zHighlight;
 }
 
 #${HIGHLIGHT_ID} .overlay-info {
+  margin: 0;
+  padding: 2px;
   position: relative;
   text-align: left;
-  left: -2px;
-  padding: 1px 4px;
   font-size: $fontSize;
   font-family: $fontFamily;
-  border: 2px solid light-dark($focusBorderColor, $focusBorderDarkColor);
+  border: $infoBorderWidthpx solid light-dark($menuBackgroundColor, $menuBackgroundDarkColor);
   background-color: light-dark($menuBackgroundColor, $menuBackgroundDarkColor);
   color: light-dark($menuTextColor, $menuTextDarkColor);
   z-index: $zHighlight;
@@ -1479,11 +1486,11 @@ button:hover {
 }
 
 #${HIGHLIGHT_ID} .overlay-info.hasInfoTop {
-  border-radius: 3px 3px 0 0;
+  border-radius: $highlightOffsetpx $highlightOffsetpx 0 0;
 }
 
 #${HIGHLIGHT_ID} .overlay-info.hasInfoBottom {
-  border-radius: 0 0 3px 3px;
+  border-radius: 0 0 $highlightOffsetpx $highlightOffsetpx;
 }
 
 @media (forced-colors: active) {
@@ -1536,6 +1543,17 @@ button:hover {
       this.infoElem.className = 'overlay-info';
       this.overlayElem.appendChild(this.infoElem);
 
+      this.hiddenElem = document.createElement('div');
+      this.hiddenElem.id = 'hidden-elem-msg';
+      this.shadowRoot.appendChild(this.hiddenElem);
+      this.hiddenElem.style.display = 'none';
+
+      this.borderWidth    = 0;
+      this.borderContrast = 0;
+      this.offset         = 0;
+
+      this.msgHeadingIsHidden = '';
+
       this.configureStyle();
 
     }
@@ -1548,7 +1566,6 @@ button:hover {
      *   @param {Object} config : color and font information
      */
 
-
     configureStyle(config={}) {
 
       function updateOption(style, option, configOption, defaultOption) {
@@ -1560,84 +1577,164 @@ button:hover {
         }
       }
 
+      // Get i18n Messages
+
+      this.msgHeadingIsHidden = typeof config.msgHeadingIsHidden === 'string' ?
+                              config.msgHeadingIsHidden :
+                              'Heading is hidden';
+
+      this.msgRegionIsHidden = typeof config.msgRegionIsHidden === 'string' ?
+                              config.msgRegionIsHidden :
+                              'Region is hidden';
+
+      this.msgElementIsHidden = typeof config.msgElementIsHidden === 'string' ?
+                              config.msgElemenIsHidden :
+                              'Element is hidden';
+
+
       // make a copy of the template
       let style = styleHighlightTemplate.textContent.slice(0);
 
       style = updateOption(style,
                            '$fontFamily',
                            config.fontFamily,
-                           defaultStyleOptions$1.fontFamily);
-
-      style = updateOption(style,
-                           '$fontSize',
-                           config.fontSize,
-                           defaultStyleOptions$1.fontSize);
+                           defaultStyleOptions$2.fontFamily);
 
       style = updateOption(style,
                            '$buttonBackgroundColor',
                            config.buttonBackgroundColor,
-                           defaultStyleOptions$1.buttonBackgroundColor);
+                           defaultStyleOptions$2.buttonBackgroundColor);
 
       style = updateOption(style,
                            '$buttonBackgroundDarkColor',
                            config.buttonBackgroundDarkColor,
-                           defaultStyleOptions$1.buttonBackgroundDarkColor);
+                           defaultStyleOptions$2.buttonBackgroundDarkColor);
 
       style = updateOption(style,
                            '$focusBorderColor',
                            config.focusBorderColor,
-                           defaultStyleOptions$1.focusBorderColor);
+                           defaultStyleOptions$2.focusBorderColor);
 
       style = updateOption(style,
                            '$focusBorderDarkColor',
                            config.focusBorderDarkColor,
-                           defaultStyleOptions$1.focusBorderDarkColor);
+                           defaultStyleOptions$2.focusBorderDarkColor);
 
       style = updateOption(style,
                            '$menuBackgroundColor',
                            config.menuBackgroundColor,
-                           defaultStyleOptions$1.menuBackgroundColor);
+                           defaultStyleOptions$2.menuBackgroundColor);
 
       style = updateOption(style,
                            '$menuBackgroundDarkColor',
                            config.menuBackgroundDarkColor,
-                           defaultStyleOptions$1.menuBackgroundDarkColor);
+                           defaultStyleOptions$2.menuBackgroundDarkColor);
 
       style = updateOption(style,
                            '$menuTextColor',
                            config.menuTextColor,
-                           defaultStyleOptions$1.menuTextColor);
+                           defaultStyleOptions$2.menuTextColor);
 
       style = updateOption(style,
                            '$menuTextDarkColor',
                            config.menuTextDarkColor,
-                           defaultStyleOptions$1.menuTextDarkColor);
+                           defaultStyleOptions$2.menuTextDarkColor);
 
       style = updateOption(style,
                            '$hiddenHeadingColor',
                            config.hiddenHeadingColor,
-                           defaultStyleOptions$1.hiddenHeadingColor);
+                           defaultStyleOptions$2.hiddenHeadingColor);
 
       style = updateOption(style,
                            '$hiddenHeadingDarkColor',
                            config.hiddenHeadingDarkColor,
-                           defaultStyleOptions$1.hiddenHeadingDarkColor);
+                           defaultStyleOptions$2.hiddenHeadingDarkColor);
 
       style = updateOption(style,
                            '$hiddenHeadingBackgroundColor',
                            config.hiddenHeadingBackgroundColor,
-                           defaultStyleOptions$1.hiddenHeadingBackgroundColor);
+                           defaultStyleOptions$2.hiddenHeadingBackgroundColor);
 
       style = updateOption(style,
                            '$hiddenHeadingBackgroundDarkColor',
                            config.hiddenHeadingBackgroundDarkColor,
-                           defaultStyleOptions$1.hiddenHeadingBackgroundDarkColor);
+                           defaultStyleOptions$2.hiddenHeadingBackgroundDarkColor);
 
       style = updateOption(style,
                            '$zHighlight',
                            config.zHighlight,
-                           defaultStyleOptions$1.zHighlight);
+                           defaultStyleOptions$2.zHighlight);
 
+      style = updateOption(style,
+                           '$highlightBorderStyle',
+                           config.highlightBorderStyle,
+                           defaultStyleOptions$2.highlightBorderStyle);
+
+      const highlightBorderSize =  config.highlightBorderSize ?
+                                   config.highlightBorderSize :
+                                   defaultStyleOptions$2.highlightBorderSize;
+
+      switch (highlightBorderSize) {
+        case 'small':
+          this.borderWidth = 2;
+          this.borderContrast = 1;
+          this.offset = 4;
+          this.fontSize = '12pt';
+          break;
+
+        case 'medium':
+          this.borderWidth = 3;
+          this.borderContrast = 2;
+          this.offset = 4;
+          this.fontSize = '13pt';
+          break;
+
+        case 'large':
+          this.borderWidth = 4;
+          this.borderContrast = 3;
+          this.offset = 6;
+           this.fontSize = '14pt';
+         break;
+
+        case 'x-large':
+          this.borderWidth = 6;
+          this.borderContrast = 3;
+          this.offset = 8;
+          this.fontSize = '16pt';
+          break;
+
+        default:
+          this.borderWidth = 2;
+          this.borderContrast = 1;
+          this.offset = 4;
+          this.fontSize = '12pt';
+          break;
+      }
+
+      style = updateOption(style,
+                           '$fontSize',
+                           this.fontSize,
+                           defaultStyleOptions$2.fontSize);
+
+      style = updateOption(style,
+                           '$highlightOffset',
+                           this.offset,
+                           this.offset);
+
+      style = updateOption(style,
+                           '$overlayBorderWidth',
+                           this.borderWidth,
+                           this.borderWidth);
+
+      style = updateOption(style,
+                           '$shadowBorderWidth',
+                           this.borderWidth + 2 * this.borderContrast,
+                           this.borderWidth + 2 * this.borderContrast);
+
+      style = updateOption(style,
+                           '$infoBorderWidth',
+                           this.borderWidth,
+                           this.borderWidth);
 
       let styleNode = this.shadowRoot.querySelector('style');
 
@@ -1652,18 +1749,216 @@ button:hover {
     }
 
     /*
+     *   @method highlight
+     *
+     *   @desc  Highlights the element on the page when highlighting
+     *          is enabled (NOTE: Highlight is enabled by default)
+     *
+     *   @param {Object}  elem            : DOM node of element to highlight
+     *   @param {String}  highlightTarget : value of highlight target
+     *   @param {String}  info            : Information about target
+     *   @param {Boolean} force           : If true override isRduced
+     */
+
+    highlight(elem, highlightTarget, info='', force=false) {
+      let scrollElement;
+      const mediaQuery = window.matchMedia(`(prefers-reduced-motion: reduce)`);
+      const isReduced = !mediaQuery || mediaQuery.matches;
+
+      if (elem && highlightTarget) {
+
+        const rect = elem.getBoundingClientRect();
+
+        // If target element is hidden create a visible element
+        debug$9.flag && debug$9.log(`[    info]: ${info}`);
+        debug$9.flag && debug$9.log(`[    rect]: Left: ${rect.left} Top: ${rect.top} Width: ${rect.width} height: ${rect.height}`);
+        debug$9.flag && debug$9.log(`[isHidden]: ${this.isElementHidden(elem)}`);
+
+        if (this.isElementHidden(elem)) {
+          // If element is hidden make hidden element message visible
+          // and use for highlighing
+          this.hiddenElem.textContent = this.getHiddenMessage(elem);
+          this.hiddenElem.style.display = 'block';
+
+          const left = rect.left > 0 ? rect.left + window.scrollX : this.offset;
+          const top  = rect.top > 0 ? rect.top + window.scrollY : this.offset;
+
+          this.hiddenElem.style.left = left + 'px';
+          this.hiddenElem.style.top = top + 'px';
+          scrollElement = this.updateHighlightElement(this.hiddenElem,
+                                                      info,
+                                                      0,
+                                                      this.borderWidth,
+                                                      this.borderContrast);
+        }
+        else {
+          this.hiddenElem.style.display = 'none';
+          scrollElement = this.updateHighlightElement(elem,
+                                                      info,
+                                                      this.offset,
+                                                      this.borderWidth,
+                                                      this.borderContrast);
+        }
+
+        if (this.isElementInHeightLarge(elem)) {
+          if (!this.isElementStartInViewport(elem) && (!isReduced || force)) {
+            scrollElement.scrollIntoView({ behavior: highlightTarget, block: 'start', inline: 'nearest' });
+          }
+        }
+        else {
+          if (!this.isElementInViewport(elem)  && (!isReduced || force)) {
+            scrollElement.scrollIntoView({ behavior: highlightTarget, block: 'center', inline: 'nearest' });
+          }
+        }
+      }
+    }
+
+    /*
+     *  @method  updateHighlightElement
+     *
+     *  @desc  Create an overlay element and set its position on the page.
+     *
+     *  @param  {Object}  elem          -  DOM element node to highlight
+     *  @param  {String}  info          -  Description of the element
+     *  @param  {Number}  offset        -  Number of pixels for offset
+     *  @param  {Number}  borderWidth   -  Number of pixels for border width
+     *  @param  {Number}  borderContrast  -  Number of pixels to provide border contrast
+     *
+     */
+
+     updateHighlightElement (elem, info, offset, borderWidth, borderContrast) {
+
+      const adjRect = this.getAdjustedRect(elem, offset, borderWidth, borderContrast);
+
+      const borderElemOffset = -1 * (this.borderWidth + this.borderContrast);
+
+      this.overlayElem.style.left   = adjRect.left   + 'px';
+      this.overlayElem.style.top    = adjRect.top    + 'px';
+      this.borderElem.style.left    = borderElemOffset + 'px';
+      this.borderElem.style.top     = borderElemOffset + 'px';
+
+      this.overlayElem.style.width  = adjRect.width  + 'px';
+      this.overlayElem.style.height = adjRect.height + 'px';
+      this.borderElem.style.width   = (adjRect.width - (2 * borderContrast)) + 'px';
+      this.borderElem.style.height  = (adjRect.height - (2 * borderContrast)) + 'px';
+
+      this.overlayElem.style.display = 'block';
+
+      if (info) {
+
+        this.infoElem.style.display = 'inline-block';
+        this.infoElem.textContent   = info;
+
+        const infoElemOffsetLeft = -1 * (borderWidth + 2 * borderContrast);
+        this.infoElem.style.left = infoElemOffsetLeft + 'px';
+
+        const infoElemRect    = this.infoElem.getBoundingClientRect();
+
+        // Is info displayed above or below the highlighted element
+        if (adjRect.top >= infoElemRect.height) {
+          // Info is displayed above the highlighted element (e.g. most of the time)
+          this.overlayElem.classList.remove('hasInfoBottom');
+          this.borderElem.classList.remove('hasInfoBottom');
+          this.infoElem.classList.remove('hasInfoBottom');
+          this.overlayElem.classList.add('hasInfoTop');
+          this.borderElem.classList.add('hasInfoTop');
+          this.infoElem.classList.add('hasInfoTop');
+          this.infoElem.style.top =  (-1 * (adjRect.height +
+                                           infoElemRect.height +
+                                           borderWidth))  + 'px';
+        }
+        else {
+          // Info is displayed below the highlighted element when it is at the top of
+          // the window
+
+          const infoElemOffsetTop  = -1 * (borderWidth + borderContrast);
+
+          this.overlayElem.classList.remove('hasInfoTop');
+          this.borderElem.classList.remove('hasInfoTop');
+          this.infoElem.classList.remove('hasInfoTop');
+          this.overlayElem.classList.add('hasInfoBottom');
+          this.borderElem.classList.add('hasInfoBottom');
+          this.infoElem.classList.add('hasInfoBottom');
+          this.infoElem.style.top  = infoElemOffsetTop + 'px';
+        }
+        return this.infoElem;
+      }
+      else {
+        this.overlayElem.classList.remove('hasInfoTop');
+        this.overlayElem.classList.remove('hasInfoBottom');
+        this.borderElem.classList.remove('hasInfoTop');
+        this.borderElem.classList.remove('hasInfoBottom');
+        this.infoElem.style.display = 'none';
+        return this.overlayElem;
+      }
+    }
+
+
+    /*
+     *   @method getAdjustedRect
+     *
+     *   @desc  Returns a object with dimensions adjusted for highlighting element
+     *
+     *  @param  {Object}  elem            -  DOM node of element to be highlighted
+     *  @param  {Number}  offset          -  Number of pixels for offset
+     *  @param  {Number}  borderWidth     -  Number of pixels for border width
+     *  @param  {Number}  borderContrast  -  Number of pixels to provide border contrast
+     *
+     *   @returns see @desc
+     */
+
+     getAdjustedRect(elem, offset, borderWidth, borderContrast) {
+
+      const rect  = elem.getBoundingClientRect();
+
+      const adjRect = {
+        left: 0,
+        top: 0,
+        width: 0,
+        height: 0
+      };
+
+      const offsetBorder = offset + borderWidth + 2 * borderContrast;
+
+      adjRect.left    = rect.left > offset ?
+                        Math.round(rect.left + (-1 * offsetBorder) + window.scrollX) :
+                        Math.round(rect.left + window.scrollX);
+
+      adjRect.width   = rect.left > offset ?
+                        Math.max(rect.width  + (2 * offsetBorder), minWidth) :
+                        Math.max(rect.width, minWidth);
+
+
+      adjRect.top     = rect.top > offset ?
+                        Math.round(rect.top  + (-1 * offsetBorder) + window.scrollY) :
+                        Math.round(rect.top + window.scrollY);
+
+      adjRect.height  = rect.top > offset ?
+                        Math.max(rect.height + (2 * offsetBorder), minHeight) :
+                        Math.max(rect.height, minHeight);
+
+      if ((adjRect.top < 0) || (adjRect.left < 0)) {
+      // Element is near top or left side of screen
+        adjRect.left = this.offset;
+        adjRect.top = this.offset;
+      }
+
+      return adjRect;
+    }
+
+    /*
      *   @method isElementInViewport
      *
      *   @desc  Returns true if element is already visible in view port,
      *          otheriwse false
      *
-     *   @param {Object} element : DOM node of element to highlight
+     *   @param {Object} elem : DOM node of element to highlight
      *
      *   @returns see @desc
      */
 
-    isElementInViewport(element) {
-      const rect = element.getBoundingClientRect();
+    isElementInViewport(elem) {
+      const rect = elem.getBoundingClientRect();
       return (
         rect.top >= window.screenY &&
         rect.left >= window.screenX &&
@@ -1673,20 +1968,19 @@ button:hover {
                        (window.screenX + document.documentElement.clientWidth)));
     }
 
-
     /*
      *   @method isElementStartInViewport
      *
      *   @desc  Returns true if start of the element is already visible in view port,
      *          otherwise false
      *
-     *   @param {Object} element : DOM node of element to highlight
+     *   @param {Object} elem : DOM node of element to highlight
      *
      *   @returns see @desc
      */
 
-    isElementStartInViewport(element) {
-      const rect = element.getBoundingClientRect();
+    isElementStartInViewport(elem) {
+      const rect = elem.getBoundingClientRect();
       return (
           rect.top >= window.screenY &&
           rect.top <= ((window.screenY + window.innerHeight) ||
@@ -1703,47 +1997,57 @@ button:hover {
      *   @desc  Returns true if element client height is larger than clientHeight,
      *          otheriwse false
      *
-     *   @param {Object} element : DOM node of element to highlight
+     *   @param {Object} elem : DOM node of element to highlight
      *
      *   @returns see @desc
      */
 
-    isElementInHeightLarge(element) {
-      var rect = element.getBoundingClientRect();
+    isElementInHeightLarge(elem) {
+      var rect = elem.getBoundingClientRect();
       return (1.2 * rect.height) > (window.innerHeight || document.documentElement.clientHeight);
     }
 
     /*
-     *   @method highlight
+     *   @method isElementHidden
      *
-     *   @desc  Highlights the element with the id on a page when highlighting
-     *          is enabled (NOTE: Highlight is enabled by default)
+     *   @desc  Returns true if the element is hidden on the
+     *          graphical rendering
      *
-     *   @param {Object}  elem            : DOM node of element to highlight
-     *   @param {String}  highlightTarget : value of highlight target
-     *   @param {String}  info            : Information about target
-     *   @param {Boolean} force           : If true override isRduced
+     *   @param  {Object}  elem   : DOM node
+     *
+     *   @returns see @desc
      */
+    isElementHidden(elem) {
+      const rect = elem.getBoundingClientRect();
+      return (rect.height < 3) ||
+             (rect.width  < 3) ||
+             ((rect.left + rect.width)  < (rect.width / 2)) ||
+             ((rect.top  + rect.height) < (rect.height / 2));
+    }
 
-    highlight(elem, highlightTarget, info='', force=false) {
-      const mediaQuery = window.matchMedia(`(prefers-reduced-motion: reduce)`);
-      const isReduced = !mediaQuery || mediaQuery.matches;
+    /*
+     *   @method getHiddenMessage
+     *
+     *   @desc  Returns string describing the hidden element
+     *
+     *   @param  {Object}  elem   : DOM node
+     *
+     *   @returns see @desc
+     */
+    getHiddenMessage(elem) {
+      if (elem.hasAttribute('data-skip-to-info')) {
+        const info = elem.getAttribute('data-skip-to-info');
 
-      if (elem && highlightTarget) {
-
-        const scrollElement = this.updateHighlightElement(elem, info);
-
-        if (this.isElementInHeightLarge(elem)) {
-          if (!this.isElementStartInViewport(elem) && (!isReduced || force)) {
-            scrollElement.scrollIntoView({ behavior: highlightTarget, block: 'start', inline: 'nearest' });
-          }
+        if (info.includes('heading')) {
+          return this.msgHeadingIsHidden;
         }
-        else {
-          if (!this.isElementInViewport(elem)  && (!isReduced || force)) {
-            scrollElement.scrollIntoView({ behavior: highlightTarget, block: 'center', inline: 'nearest' });
-          }
+
+        if (info.includes('landmark')) {
+          return this.msgRegionIsHidden;
         }
       }
+
+      return this.msgElementIsHidden;
     }
 
     /*
@@ -1752,137 +2056,11 @@ button:hover {
      *   @desc  Hides the highlight element on the page
      */
     removeHighlight() {
-      if (this.overlayElement) {
-        this.overlayElement.style.display = 'none';
+      if (this.overlayElem) {
+        this.overlayElem.style.display = 'none';
       }
     }
 
-    /*
-     *  @method  updateHighlightElement
-     *
-     *  @desc  Create an overlay element and set its position on the page.
-     *
-     *  @param  {Object}  element          -  DOM element node to highlight
-     *  @param  {String}  info             -  Description of the element
-     *
-     */
-
-     updateHighlightElement (element, info) {
-
-      let rect  = element.getBoundingClientRect();
-
-      let isHidden = false;
-
-      const rectLeft  = rect.left > offset ?
-                      Math.round(rect.left - offset + window.scrollX) :
-                      Math.round(rect.left + window.scrollX);
-
-      let left = rectLeft;
-
-      const rectWidth  = rect.left > offset ?
-                      Math.max(rect.width  + offset * 2, minWidth) :
-                      Math.max(rect.width, minWidth);
-
-      let width = rectWidth;
-
-      const rectTop    = rect.top > offset ?
-                      Math.round(rect.top  - offset + window.scrollY) :
-                      Math.round(rect.top + window.scrollY);
-
-      let top = rectTop;
-
-      const rectHeight   = rect.top > offset ?
-                      Math.max(rect.height + offset * 2, minHeight) :
-                      Math.max(rect.height, minHeight);
-
-      let height = rectHeight;
-
-      if ((rect.height < 3) || (rect.width < 3)) {
-        isHidden = true;
-      }
-
-      if ((rectTop < 0) || (rectLeft < 0)) {
-        isHidden = true;
-        if (element.parentNode) {
-          const parentRect = element.parentNode.getBoundingClientRect();
-
-          if ((parentRect.top > 0) && (parentRect.left > 0)) {
-            top = parentRect.top > offset ?
-                      Math.round(parentRect.top  - offset + window.scrollY) :
-                      Math.round(parentRect.top + window.scrollY);
-            left = parentRect.left > offset ?
-                      Math.round(parentRect.left - offset + window.scrollX) :
-                      Math.round(parentRect.left + window.scrollX);
-          }
-          else {
-            left = offset;
-            top = offset;
-          }
-        }
-        else {
-          left = offset;
-          top = offset;
-        }
-      }
-
-      this.overlayElem.style.left   = left   + 'px';
-      this.overlayElem.style.top    = top    + 'px';
-
-      if (isHidden) {
-        this.borderElem.textContent = 'Heading is hidden';
-        this.borderElem.classList.add('skip-to-hidden');
-        this.overlayElem.style.width  = 'auto';
-        this.overlayElem.style.height = 'auto';
-        this.borderElem.style.width  = 'auto';
-        this.borderElem.style.height = 'auto';
-        height = this.borderElem.getBoundingClientRect().height;
-        width  = this.borderElem.getBoundingClientRect().width;
-        if (rect.top > offset) {
-          height += offset + 2;
-          width += offset + 2;
-        }
-      }
-      else {
-        this.borderElem.textContent = '';
-        this.borderElem.classList.remove('skip-to-hidden');
-        this.overlayElem.style.width  = width  + 'px';
-        this.overlayElem.style.height = height + 'px';
-        this.borderElem.style.width  = (width  - 2 * borderWidth) + 'px';
-        this.borderElem.style.height = (height - 2 * borderWidth) + 'px';
-      }
-
-      this.overlayElem.style.display = 'block';
-
-      if (info) {
-        this.infoElem.style.display = 'inline-block';
-        this.infoElem.textContent = info;
-        if (top >= this.infoElem.getBoundingClientRect().height) {
-          this.borderElem.classList.remove('hasInfoBottom');
-          this.infoElem.classList.remove('hasInfoBottom');
-          this.borderElem.classList.add('hasInfoTop');
-          this.infoElem.classList.add('hasInfoTop');
-          if (!isHidden) {
-            this.infoElem.style.top = (-1 * (height + this.infoElem.getBoundingClientRect().height - 2 * borderWidth)) + 'px';
-          }
-          else {
-            this.infoElem.style.top = (-1 * (this.infoElem.getBoundingClientRect().height + this.borderElem.getBoundingClientRect().height)) + 'px';
-          }
-        }
-        else {
-          this.borderElem.classList.remove('hasInfoTop');
-          this.infoElem.classList.remove('hasInfoTop');
-          this.borderElem.classList.add('hasInfoBottom');
-          this.infoElem.classList.add('hasInfoBottom');
-          this.infoElem.style.top = -2 + 'px';
-        }
-        return this.infoElem;
-      }
-      else {
-        this.borderElem.classList.remove('hasInfo');
-        this.infoElem.style.display = 'none';
-        return this.overlayElem;
-      }
-    }
   }
 
   /* shortcutsMessage.js */
@@ -1891,7 +2069,7 @@ button:hover {
   const debug$8 = new DebugLogging('[shortcutsMessage]', false);
   debug$8.flag = false;
 
-  const defaultStyleOptions = colorThemes['default'];
+  const defaultStyleOptions$1 = colorThemes['default'];
 
   const styleTemplate = document.createElement('template');
   styleTemplate.textContent = `
@@ -2021,53 +2199,53 @@ button:hover {
       style = updateOption(style,
                            '$fontFamily',
                            config.fontFamily,
-                           defaultStyleOptions.fontFamily);
+                           defaultStyleOptions$1.fontFamily);
 
       style = updateOption(style,
                            '$fontSize',
                            config.fontSize,
-                           defaultStyleOptions.fontSize);
+                           defaultStyleOptions$1.fontSize);
 
       style = updateOption(style,
                            '$focusBorderColor',
                            config.focusBorderColor,
-                           defaultStyleOptions.focusBorderColor);
+                           defaultStyleOptions$1.focusBorderColor);
 
       style = updateOption(style,
                            '$focusBorderDarkColor',
                            config.focusBorderDarkColor,
-                           defaultStyleOptions.focusBorderDarkColor);
+                           defaultStyleOptions$1.focusBorderDarkColor);
 
 
       style = updateOption(style,
                            '$dialogTextColor',
                            config.dialogTextColor,
-                           defaultStyleOptions.dialogTextColor);
+                           defaultStyleOptions$1.dialogTextColor);
 
       style = updateOption(style,
                            '$dialogTextDarkColor',
                            config.dialogTextDarkColor,
-                           defaultStyleOptions.dialogTextDarkColor);
+                           defaultStyleOptions$1.dialogTextDarkColor);
 
       style = updateOption(style,
                            '$dialogBackgroundColor',
                            config.dialogBackgroundColor,
-                           defaultStyleOptions.dialogBackgroundColor);
+                           defaultStyleOptions$1.dialogBackgroundColor);
 
       style = updateOption(style,
                            '$dialogBackgroundDarkColor',
                            config.dialogBackgroundDarkColor,
-                           defaultStyleOptions.dialogBackgroundDarkColor);
+                           defaultStyleOptions$1.dialogBackgroundDarkColor);
 
       style = updateOption(style,
                            '$dialogBackgroundTitleColor',
                            config.dialogBackgroundTitleColor,
-                           defaultStyleOptions.dialogBackgroundTitleColor);
+                           defaultStyleOptions$1.dialogBackgroundTitleColor);
 
       style = updateOption(style,
                            '$dialogBackgroundTitleDarkColor',
                            config.dialogBackgroundTitleDarkColor,
-                           defaultStyleOptions.dialogBackgroundTitleDarkColor);
+                           defaultStyleOptions$1.dialogBackgroundTitleDarkColor);
 
       let styleNode = this.shadowRoot.querySelector('style');
 
@@ -3268,6 +3446,7 @@ button:hover {
     let navElements = [];
     let asideElements = [];
     let footerElements = [];
+    let headerElements = [];
     let regionElements = [];
     let otherElements = [];
     let dataId = '';
@@ -3347,10 +3526,19 @@ button:hover {
           case 'footer':
             footerElements.push(landmarkItem);
             break;
+          case 'header':
+            headerElements.push(landmarkItem);
+            break;
           case 'section':
             // Regions must have accessible name to be included
             if (landmarkItem.hasName) {
               regionElements.push(landmarkItem);
+            }
+            break;
+          case 'form':
+            // Forms must have accessible name to be included
+            if (landmarkItem.hasName) {
+              otherElements.push(landmarkItem);
             }
             break;
           default:
@@ -3362,7 +3550,7 @@ button:hover {
     if (config.landmarks.includes('doc-order')) {
       return allElements;
     }
-    return [].concat(mainElements, searchElements, navElements, asideElements, regionElements, footerElements, otherElements);
+    return [].concat(mainElements, searchElements, navElements, asideElements, regionElements, footerElements, headerElements, otherElements);
   }
 
   /* shortcuts.js */
@@ -3808,26 +3996,26 @@ button:hover {
         this.containerNode.appendChild(this.menuNode);
 
         this.landmarkGroupLabelNode = document.createElement('div');
-        this.landmarkGroupLabelNode.setAttribute('id', MENU_LANDMARK_GROUP_LABEL_ID);
+        this.landmarkGroupLabelNode.id = MENU_LANDMARK_GROUP_LABEL_ID;
         this.landmarkGroupLabelNode.setAttribute('role', 'separator');
         this.landmarkGroupLabelNode.textContent = this.addNumberToGroupLabel(this.config.landmarkGroupLabel);
         this.menuNode.appendChild(this.landmarkGroupLabelNode);
 
         this.landmarkGroupNode = document.createElement('div');
-        this.landmarkGroupNode.setAttribute('id', MENU_LANDMARK_GROUP_ID);
+        this.landmarkGroupNode.id = MENU_LANDMARK_GROUP_ID;
         this.landmarkGroupNode.setAttribute('role', 'group');
         this.landmarkGroupNode.className = 'overflow';
         this.landmarkGroupNode.setAttribute('aria-labelledby', MENU_LANDMARK_GROUP_LABEL_ID);
         this.menuNode.appendChild(this.landmarkGroupNode);
 
         this.headingGroupLabelNode = document.createElement('div');
-        this.headingGroupLabelNode.setAttribute('id', MENU_HEADINGS_GROUP_ID);
+        this.headingGroupLabelNode.id = MENU_HEADINGS_GROUP_LABEL_ID;
         this.headingGroupLabelNode.setAttribute('role', 'separator');
         this.headingGroupLabelNode.textContent = this.addNumberToGroupLabel(this.config.headingGroupLabel);
         this.menuNode.appendChild(this.headingGroupLabelNode);
 
         this.headingGroupNode = document.createElement('div');
-        this.headingGroupNode.setAttribute('id', MENU_HEADINGS_GROUP_ID);
+        this.headingGroupNode.id = MENU_HEADINGS_GROUP_ID;
         this.headingGroupNode.setAttribute('role', 'group');
         this.headingGroupNode.className = 'overflow';
         this.headingGroupNode.setAttribute('aria-labelledby', MENU_HEADINGS_GROUP_LABEL_ID);
@@ -5119,17 +5307,19 @@ button:hover {
   const debug$1 = new DebugLogging('skiptoContent', false);
   debug$1.flag = false;
 
-  /* @class SkipToContent574
+  const defaultStyleOptions = colorThemes['default'];
+
+  /* @class SkipToContent575
    *
    */
 
-  class SkipToContent574 extends HTMLElement {
+  class SkipToContent575 extends HTMLElement {
 
     constructor() {
       // Always call super first in constructor
       super();
       this.attachShadow({ mode: 'open' });
-      this.version = "5.7.4";
+      this.version = "5.7.5";
       this.buttonSkipTo = false;
       this.initialized = false;
 
@@ -5195,10 +5385,15 @@ button:hover {
         msgKey: 'Key',
         msgDescription: 'Description',
 
-        msgNextRegion: 'Next region',
+        msgElementHidden: 'Element is hidden',
+
+        msgNextRegion:     'Next region',
         msgPreviousRegion: 'Previous region',
-        msgNextHeading: 'Next heading',
+        msgRegionIsHidden: 'Region is hidden',
+
+        msgNextHeading:     'Next heading',
         msgPreviousHeading: 'Previous heading',
+        msgHeadingIsHidden: 'Heading is hidden',
 
         msgMainRegions: 'Main regions',
         msgNavigationRegions: 'Navigation regions',
@@ -5241,10 +5436,14 @@ button:hover {
         headings: 'main-only h1 h2',
 
         // Highlight options
-        highlightTarget: 'instant', // options: 'instant' (default), 'smooth' and 'auto'
+        highlightTarget:      defaultStyleOptions.highlightTarget,
+                              // options: 'instant' (default), 'smooth' and 'auto'
+        highlightBorderSize:  defaultStyleOptions.highlightBorderSize,
+                              // options: 'small' (default), 'medium', 'large', 'x-large'
+        highlightBorderStyle: defaultStyleOptions.highlightBorderStyle,
+                              // options: 'solid' (default), 'dotted', 'dashed'
 
         // Hidden heading when highlighting
-        msgHidden: 'Heading is hidden',
         hiddenHeadingColor: '#000000',
         hiddenHeadingDarkColor: '#000000',
         hiddenHeadingBackgroundColor: '#ffcc00',
@@ -5617,7 +5816,7 @@ button:hover {
           if (!isExtensionLoaded) {
             if (!isBookmarkletLoaded) {
               removePageSkipTo();
-              window.customElements.define(BOOKMARKLET_ELEMENT_NAME, SkipToContent574);
+              window.customElements.define(BOOKMARKLET_ELEMENT_NAME, SkipToContent575);
               skipToContentElem = document.createElement(BOOKMARKLET_ELEMENT_NAME);
               skipToContentElem.setAttribute('version', skipToContentElem.version);
               skipToContentElem.setAttribute('type', type);
@@ -5633,7 +5832,7 @@ button:hover {
           if (!isExtensionLoaded) {
             removePageSkipTo();
             removeBookmarkletSkipTo();
-            window.customElements.define(EXTENSION_ELEMENT_NAME, SkipToContent574);
+            window.customElements.define(EXTENSION_ELEMENT_NAME, SkipToContent575);
             skipToContentElem = document.createElement(EXTENSION_ELEMENT_NAME);
             skipToContentElem.setAttribute('version', skipToContentElem.version);
             skipToContentElem.setAttribute('type', type);
@@ -5646,7 +5845,7 @@ button:hover {
 
         default:
           if (!isPageLoaded && !isBookmarkletLoaded && !isExtensionLoaded) {
-            window.customElements.define(PAGE_SCRIPT_ELEMENT_NAME, SkipToContent574);
+            window.customElements.define(PAGE_SCRIPT_ELEMENT_NAME, SkipToContent575);
             skipToContentElem = document.createElement(PAGE_SCRIPT_ELEMENT_NAME);
             skipToContentElem.setAttribute('version', skipToContentElem.version);
             skipToContentElem.setAttribute('type', type);
