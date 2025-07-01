@@ -52,6 +52,7 @@
     'aria': {
       hostnameSelector: 'w3.org',
       pathnameSelector: 'ARIA/apg',
+      headings: 'h1 h2',
       fontFamily: 'sans-serif',
       fontSize: '10pt',
       positionLeft: '7%',
