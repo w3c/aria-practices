@@ -43,13 +43,24 @@
         </p>
         <p>
           To achieve this, authors may be tempted to nest the entirety of the
-          rich summary within the disclosure button itself, but this can make
-          the button’s accessible label cumbersome, inaccurate, or disorienting.
+          rich summary within the disclosure button itself, but this can:
         </p>
+        <ul>
+          <li>
+            Make the button’s accessible label cumbersome, inaccurate, or
+            disorienting.
+          </li>
+          <li>
+            Result in invalid HTML, since <a
+            href="https://html.spec.whatwg.org/multipage/form-elements.html#:~:text=Content%20model%3A,tabindex%20attribute%20specified.">the
+            <code>&lt;button&gt;</code> element only permits phrasing
+            content</a>.
+          </li>
+        </ul>
         <p>
           By using a basic disclosure pattern with some light JavaScript event
-          handling, it’s possible to create the desired experience without
-          compromising the quality of the button label.
+          handling, it’s possible to create the desired experience in a valid,
+          accessible way.
         </p>
         <p>Similar examples include:</p>
         <ul>
@@ -333,92 +344,82 @@
         <h2>Accessibility Features</h2>
         <ul>
           <li>
-            Each disclosure card’s rich summary presents a heading, brief text,
-            and a “Details” button.
-          </li>
-          <li>
-            In the collapsed state, the “Details” button is marked up with an <a
-            href="https://w3c.github.io/aria/#aria-expanded"><code>aria-expanded</code></a>
-            value of <code>false</code>. The button’s text label is accompanied
-            by an icon that visually conveys the same state: an encircled
-            chevron pointing downward, suggesting that more content can be
-            revealed.
-          </li>
-          <li>
-            The “Details” button uses <a
+            To form an accessible name that is brief but sufficiently
+            descriptive, the “Details” button uses <a
             href="https://w3c.github.io/aria/#aria-labelledby"><code>aria-labelledby</code></a>
-            to combine the card’s heading with the text “Details” to form an
-            accessible name that balances descriptiveness with brevity.
+            to combine the card’s heading with the text “Details”.
           </li>
           <li>
-            The card reinforces its clickability by visibly reacting to hover
-            events:
+            To help people with visual impairments identify the disclosure card
+            as interactive and make it easier to perceive that interacting with
+            the card will expand or collapse additional content:
             <ul>
-              <li>The card area gains a thin gray border.</li>
-              <li>The “Details” button gains an underline.</li>
-              <li>The chevron icon enlarges slightly.</li>
               <li>
-                The text and icon color of the “Details” button change from gray
-                to black.
+                When a pointer hovers over the card:
+                <ul>
+                  <li>The card area gains a thin gray border.</li>
+                  <li>The “Details” button gains an underline.</li>
+                  <li>The chevron icon enlarges slightly.</li>
+                  <li>
+                    The text and icon color of the “Details” button change from
+                    gray to black.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                When the “Details” button receives keyboard focus:
+                <ul>
+                  <li>
+                    The entire card gains a blue outline, giving the illusion
+                    that the card itself is “focused”.
+                  </li>
+                  <li>The “Details” button gains an underline.</li>
+                  <li>The chevron icon enlarges slightly.</li>
+                  <li>
+                    The text and icon color of the “Details” button change from
+                    gray to blue.
+                  </li>
+                  <li>
+                    The card continues to react to hover events by “stacking”
+                    the thin gray border alongside the blue outline, reinforcing
+                    that the entire card remains clickable in both its collapsed
+                    and expanded states.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                The “Details” button is accompanied by an encircled chevron icon
+                which points in a direction matching its
+                <code>aria-expanded</code> state:
+                <ul>
+                  <li>
+                    Downward when the disclosure is collapsed, indicating
+                    that activating it will expand the card.
+                  </li>
+                  <li>
+                    Upward when the disclosure is expanded, indicating
+                    that activating it will collapse the card.
+                  </li>
+                </ul>
               </li>
             </ul>
           </li>
           <li>
-            When the “Details” button receives keyboard focus:
-            <ul>
-              <li>
-                The entire card gains a blue outline, giving the illusion that
-                the card itself is “focused”.
-              </li>
-              <li>The “Details” button gains an underline.</li>
-              <li>The chevron icon enlarges slightly.</li>
-              <li>
-                The text and icon color of the “Details” button change from gray
-                to blue.
-              </li>
-              <li>
-                The card continues to react to hover events by “stacking” the
-                thin gray border alongside the blue outline, reinforcing that
-                the entire card remains clickable in both its collapsed and
-                expanded states.
-              </li>
-            </ul>
-          </li>
-          <li>
-            When any location within the card is clicked:
-            <ul>
-              <li>
-                Focus is programmatically placed on the “Details” button, as if
-                the user had activated it explicitly.
-              </li>
-              <li>
-                The disclosure toggles to its opposite state, increasing or
-                decreasing the height of the card to reveal or conceal
-                additional content.
-              </li>
-              <li>
-                The “Details” button’s <a
-                href="https://w3c.github.io/aria/#aria-expanded"><code>aria-expanded</code></a>
-                attribute is toggled to <code>true</code> or <code>false</code>
-                accordingly.
-              </li>
-              <li>
-                The chevron icon rotates 180 degrees, visually expressing the
-                ARIA state.
-              </li>
-            </ul>
+            To create a logical and predictable keyboard experience for
+            multimodal users, when any location within the card is clicked by a
+            pointer, keyboard focus is programmatically placed on the “Details”
+            button as if the user had activated it explicitly.
           </li>
           <li>
             If the user’s click operation triggers a text selection within the
             card (i.e., highlight), the disclosure’s toggling behavior is
-            suppressed to avoid interfering with the user’s intentions.
+            suppressed to avoid interference.
           </li>
           <li>
             If the user’s click operation targets a focusable element nested
             within the card (e.g., a link, form control, or button) or a
             clickable <code>&lt;label&gt;</code>, the disclosure’s toggling
-            behavior is suppressed to avoid interfering with the user’s
-            intentions.
+            behavior is suppressed to avoid interference.
           </li>
           <li>
             When forced colors are enabled, <a
