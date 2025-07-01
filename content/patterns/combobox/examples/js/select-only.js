@@ -182,7 +182,6 @@ const Select = function (el, options = []) {
   this.activeIndex = 0;
   this.open = false;
   this.searchString = '';
-  this.searchTimeout = null;
 
   // init
   if (el && this.comboEl && this.listboxEl) {
@@ -224,22 +223,6 @@ Select.prototype.createOption = function (optionText, index) {
   optionEl.addEventListener('mousedown', this.onOptionMouseDown.bind(this));
 
   return optionEl;
-};
-
-Select.prototype.getSearchString = function (char) {
-  // reset typing timeout and start new timeout
-  // this allows us to make multiple-letter matches, like a native select
-  if (typeof this.searchTimeout === 'number') {
-    window.clearTimeout(this.searchTimeout);
-  }
-
-  this.searchTimeout = window.setTimeout(() => {
-    this.searchString = '';
-  }, 500);
-
-  // add most recent letter to saved search string
-  this.searchString += char;
-  return this.searchString;
 };
 
 Select.prototype.onLabelClick = function () {
@@ -302,7 +285,7 @@ Select.prototype.onComboType = function (letter) {
   this.updateMenuState(true);
 
   // find the index of the first matching option
-  const searchString = this.getSearchString(letter);
+  const searchString = letter;
   const searchIndex = getIndexByLetter(
     this.options,
     searchString,
