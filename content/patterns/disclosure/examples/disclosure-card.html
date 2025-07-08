@@ -51,7 +51,18 @@
           </li>
         </ul>
         <p>
-          Instead, by slightly modifying the structure of the basic disclosure pattern and adding some light JavaScript event handling, it’s possible to create the desired experience in a valid, accessible way.
+          The following example avoids these problems by modifying the structure
+          of the basic disclosure pattern. Instead of having the entire summary
+          contained within a button that controls a separate details container,
+          it nests the expand and collapse disclosure button within an article
+          element that presents a card. When the card is collapsed, it presents
+          a rich summary and the disclosure button. When the card is expanded,
+          its content also includes the additional details content. This
+          structure allows the summary to include headings, links, or any other
+          type of rich content while also enabling the disclosure button to have
+          a concise, understandable accessible name. Finally, some light
+          JavaScript makes the entire card clickable, so its pointer
+          interactions are similar to the summary of a basic disclosure.
         </p>
         <p>Similar examples include:</p>
         <ul>
