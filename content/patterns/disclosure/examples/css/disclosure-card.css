@@ -48,13 +48,16 @@
   }
 
   h3 {
-    font: 500 var(--length-xxl) / 1.25;
+    font-size: var(--length-xxl);
+    font-weight: 500;
     border-block-end: var(--length-xs) solid currentcolor;
     text-wrap: balance;
   }
 
   h5 {
-    font: normal normal 600 var(--length-xl);
+    font-style: normal;
+    font-size: var(--length-xl);
+    font-weight: 600;
     line-height: 1.25;
   }
 
