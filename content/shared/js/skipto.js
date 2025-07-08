@@ -1,5 +1,5 @@
 /* ========================================================================
- * Version: 5.7
+ * Version: 5.8.0
  * Copyright (c) 2022, 2023, 2024, 2025 Jon Gunderson; Licensed BSD
  * Copyright (c) 2021 PayPal Accessibility Team and University of Illinois; Licensed BSD
  * All rights reserved.
@@ -26,7 +26,7 @@
       fontFamily: 'inherit',
       fontSize: 'inherit',
       positionLeft: '46%',
-      smallBreakPoint: '576',
+      smallBreakPoint: '580',
       mediumBreakPoint: '992',
       buttonTextColor: '#13294b',
       buttonBackgroundColor: '#dddddd',
@@ -232,6 +232,10 @@
 
   /* constants.js */
 
+  // Numbers
+
+  const REQUIRE_ACCESSIBLE_NAME_COUNT = 3;
+
   // Element IDs
 
   const SKIP_TO_ID            = 'id-skip-to-ver-5';
@@ -261,9 +265,9 @@
   const BOOKMARKLET_ELEMENT_NAME = 'skip-to-content-bookmarklet';
   const EXTENSION_ELEMENT_NAME   = 'skip-to-content-extension';
 
-  const INFO_DIALOG_ELEMENT_NAME = 'skip-to-content-info-dialog-575';
-  const MESSAGE_ELEMENT_NAME     = 'skip-to-content-message-element-575';
-  const HIGHLIGHT_ELEMENT_NAME   = 'skip-to-content-highlight-element-575';
+  const INFO_DIALOG_ELEMENT_NAME = 'skip-to-content-info-dialog-580';
+  const MESSAGE_ELEMENT_NAME     = 'skip-to-content-message-element-580';
+  const HIGHLIGHT_ELEMENT_NAME   = 'skip-to-content-highlight-element-580';
 
   // Attributes
 
@@ -2544,11 +2548,39 @@ button:hover {
   *   @returns  {String}  see @desc
   *
   */
+
   function addCssGeneratedContent (element, contents) {
 
-    let result = contents,
-        prefix = getComputedStyle(element, ':before').content,
-        suffix = getComputedStyle(element, ':after').content;
+    function isVisible (style) {
+
+      let flag = true;
+
+      const display = style.getPropertyValue("display");
+      if (display) {
+        flag = flag && display !== 'none';
+      }
+
+      const visibility = style.getPropertyValue("visibility");
+      if (visibility) {
+        flag = flag && (visibility !== 'hidden') && (visibility !== 'collapse');
+      }
+      return flag;
+    }
+
+    let result = contents;
+    const styleBefore = getComputedStyle(element, ':before');
+    const styleAfter  = getComputedStyle(element, ':after');
+
+    const beforeVisible = isVisible(styleBefore);
+    const afterVisible  = isVisible(styleAfter);
+
+    const prefix = beforeVisible ?
+                   styleBefore.content :
+                   '';
+
+    const suffix = afterVisible ?
+                   styleAfter.content :
+                   '';
 
     if ((prefix[0] === '"') && !prefix.toLowerCase().includes('moz-')) {
       result = prefix.substring(1, (prefix.length-1)) + result;
@@ -2646,6 +2678,7 @@ button:hover {
   const debug$5 = new DebugLogging('landmarksHeadings', false);
   debug$5.flag = false;
 
+
   const skipableElements = [
     'base',
     'content',
@@ -2659,7 +2692,10 @@ button:hover {
     'style',
     'template',
     'shadow',
-    'title'
+    'title',
+    PAGE_SCRIPT_ELEMENT_NAME,
+    BOOKMARKLET_ELEMENT_NAME,
+    EXTENSION_ELEMENT_NAME
   ];
 
   const allowedLandmarkSelectors = [
@@ -3278,7 +3314,7 @@ button:hover {
     // If targets undefined, use default settings
     if (typeof headingTargets !== 'string') {
       console.warn(`[skipto.js]: Error in heading configuration`);
-      headingTargets = 'main-only h1 h2';
+      headingTargets = 'h1 h2';
     }
 
     const [landmarks, headings] = queryDOMForLandmarksAndHeadings(landmarkTargets, headingTargets, skiptoId);
@@ -3307,7 +3343,8 @@ button:hover {
       if ((typeof role === 'string') &&
           ((role === 'presentation') || role === 'none')
          ) continue;
-      if (isVisible(heading.node) && isNotEmptyString(heading.node.textContent)) {
+      if (isVisible(heading.node) &&
+          isNotEmptyString(heading.node.textContent)) {
         if (heading.node.hasAttribute('data-skip-to-id')) {
           dataId = heading.node.getAttribute('data-skip-to-id');
         } else {
@@ -3425,6 +3462,32 @@ button:hover {
     return targetLandmarks;
   }
 
+  /*
+   * @function checkForName
+   *
+   * @desc  Removes landmark objects without an accessible name if array is longer
+   *        than accessible name count constant
+   *
+   * @param {Array} landmarks - Array of landmark objects
+   *
+   * @returns {Array}  Array of landmark objects
+   */
+  function checkForName (landmarks) {
+
+    let namedLandmarks = [];
+
+    if (landmarks.length > REQUIRE_ACCESSIBLE_NAME_COUNT) {
+
+      landmarks.forEach( (l) => {
+        if (l.hasName) {
+          namedLandmarks.push(l);
+        }
+      });
+      return namedLandmarks;
+    }
+
+    return landmarks;
+  }
 
   /*
    * @function getLandmarks
@@ -3550,6 +3613,18 @@ button:hover {
     if (config.landmarks.includes('doc-order')) {
       return allElements;
     }
+  //  if (config.excludeHiddenHeadings) {
+
+  //  }
+    if (config.showLandmarksWithoutNames === 'false') {
+      asideElements  = checkForName(asideElements);
+      navElements    = checkForName(navElements);
+      searchElements = checkForName(searchElements);
+      headerElements = checkForName(headerElements);
+      footerElements = checkForName(footerElements);
+
+    }
+
     return [].concat(mainElements, searchElements, navElements, asideElements, regionElements, footerElements, headerElements, otherElements);
   }
 
@@ -4452,19 +4527,31 @@ button:hover {
         // Update list of menuitems
         this.updateMenuitems();
 
-        // Are all headings in the main region
-        const allInMain = headingElements.length > 0 ?
-              headingElements.reduce( (flag, item) => {
-                return flag && item.inMain;
-              }, true) :
-              false;
-
         this.landmarkGroupLabelNode.textContent = this.addNumberToGroupLabel(config.landmarkGroupLabel, landmarkElements.length);
-        if (config.headings.includes('main') && allInMain) {
+        if (landmarkElements.length === 1) {
+          this.landmarkGroupLabelNode.setAttribute('aria-label', config.landmarkOneGroupLabel);
+        }
+        else {
+         this.landmarkGroupLabelNode.setAttribute('aria-label', `${landmarkElements.length} ${config.landmarkGroupLabel}`);
+        }
+
+        if (config.headings.includes('main')) {
           this.headingGroupLabelNode.textContent = this.addNumberToGroupLabel(config.headingMainGroupLabel, headingElements.length);
+          if (headingElements.length === 1) {
+            this.headingGroupLabelNode.setAttribute('aria-label', config.headingOneMainGroupLabel);
+          }
+          else {
+           this.headingGroupLabelNode.setAttribute('aria-label', `${headingElements.length} ${config.headingMainGroupLabel}`);
+          }
         }
         else {
           this.headingGroupLabelNode.textContent = this.addNumberToGroupLabel(config.headingGroupLabel, headingElements.length);
+          if (headingElements.length === 1) {
+            this.headingGroupLabelNode.setAttribute('aria-label', config.headingOneGroupLabel);
+          }
+          else {
+           this.headingGroupLabelNode.setAttribute('aria-label', `${headingElements.length} ${config.headingGroupLabel}`);
+          }
         }
       }
 
@@ -5309,17 +5396,17 @@ button:hover {
 
   const defaultStyleOptions = colorThemes['default'];
 
-  /* @class SkipToContent575
+  /* @class SkipToContent580
    *
    */
 
-  class SkipToContent575 extends HTMLElement {
+  class SkipToContent580 extends HTMLElement {
 
     constructor() {
       // Always call super first in constructor
       super();
       this.attachShadow({ mode: 'open' });
-      this.version = "5.7.5";
+      this.version = "5.8.0";
       this.buttonSkipTo = false;
       this.initialized = false;
 
@@ -5328,6 +5415,10 @@ button:hover {
         // Feature switches
         enableHeadingLevelShortcuts: true,
         lightDarkSupported: 'false',
+
+        // Content options
+
+        showLandmarksWithoutNames: 'false',
 
         focusOption: 'none',  // used by extensions only
 
@@ -5418,7 +5509,9 @@ button:hover {
         menuLabel: 'Landmarks and Headings',
         landmarkGroupLabel: 'Landmark Regions',
         headingGroupLabel: 'Headings',
+        headingOneGroupLabel: 'One Heading',
         headingMainGroupLabel: 'Headings in Main Region',
+        headingOneMainGroupLabel: 'One Heading in Main Region',
         headingLevelLabel: 'Heading level',
         mainLabel: 'main',
         searchLabel: 'search',
@@ -5816,7 +5909,7 @@ button:hover {
           if (!isExtensionLoaded) {
             if (!isBookmarkletLoaded) {
               removePageSkipTo();
-              window.customElements.define(BOOKMARKLET_ELEMENT_NAME, SkipToContent575);
+              window.customElements.define(BOOKMARKLET_ELEMENT_NAME, SkipToContent580);
               skipToContentElem = document.createElement(BOOKMARKLET_ELEMENT_NAME);
               skipToContentElem.setAttribute('version', skipToContentElem.version);
               skipToContentElem.setAttribute('type', type);
@@ -5832,7 +5925,7 @@ button:hover {
           if (!isExtensionLoaded) {
             removePageSkipTo();
             removeBookmarkletSkipTo();
-            window.customElements.define(EXTENSION_ELEMENT_NAME, SkipToContent575);
+            window.customElements.define(EXTENSION_ELEMENT_NAME, SkipToContent580);
             skipToContentElem = document.createElement(EXTENSION_ELEMENT_NAME);
             skipToContentElem.setAttribute('version', skipToContentElem.version);
             skipToContentElem.setAttribute('type', type);
@@ -5845,7 +5938,7 @@ button:hover {
 
         default:
           if (!isPageLoaded && !isBookmarkletLoaded && !isExtensionLoaded) {
-            window.customElements.define(PAGE_SCRIPT_ELEMENT_NAME, SkipToContent575);
+            window.customElements.define(PAGE_SCRIPT_ELEMENT_NAME, SkipToContent580);
             skipToContentElem = document.createElement(PAGE_SCRIPT_ELEMENT_NAME);
             skipToContentElem.setAttribute('version', skipToContentElem.version);
             skipToContentElem.setAttribute('type', type);
