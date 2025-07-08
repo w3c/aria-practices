@@ -456,12 +456,18 @@
             Classroom details</q>.
           </li>
           <li>
-            Each disclosure card is marked up as an <a
+            The content of each card is contained within an HTML <a
             href="https://w3c.github.io/aria/#article"><code>&lt;article&gt;</code></a>
-            element to convey a useful semantic grouping without adding
-            superfluous <a
-            href="https://w3c.github.io/aria/#dfn-landmark">landmarks</a> to the
-            document.
+            element that is labeled by the heading element within the card. This
+            gives each card the <a
+            href="https://w3c.github.io/aria/#article"><code>article</code></a>
+            role, which enables screen reader users to perceive the boundaries
+            of each card and easily move their reading cursor to the next or
+            previous card. The article element is preferable to the section
+            element because section elements would create ARIA <a
+            href="https://w3c.github.io/aria/#dfn-landmark">landmark</a>
+            regions, and excessive use of landmark regions diminishes their
+            utility.
           </li>
         </ul>
       </section>
