@@ -2,7 +2,7 @@
 "alert","2","2","Guidance: Alert Pattern","Guidance: Alert and Message Dialogs Pattern","Example: Alert","Example: Alert Dialog"
 "alertdialog","0","1","Example: Alert Dialog"
 "application","0","0"
-"article","0","1","Example: Infinite Scrolling Feed"
+"article","0","2","Example: Disclosure (Show/Hide) Card","Example: Infinite Scrolling Feed"
 "banner","1","3","Guidance: Banner","Example: Navigation Menubar","Example: Navigation Treeview","Example: Banner Landmark"
 "button","2","2","Guidance: Button Pattern","Guidance: Menu Button Pattern","Example: Button  (IDL Version)","Example: Button"
 "caption","0","0"
