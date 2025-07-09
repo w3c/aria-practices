@@ -218,10 +218,10 @@
         </p>
 
         <p>
-          The <a href="https://html.spec.whatwg.org/multipage/interaction.html#the-tabindex-attribute">HTML tabindex</a>
-          and <a href="https://www.w3.org/TR/SVG2/struct.html#tabindexattribute">SVG2 tabindex</a>
+          The <a href="https://html.spec.whatwg.org/multipage/interaction.html#the-tabindex-attribute">HTML <code>tabindex</code></a>
+          and <a href="https://www.w3.org/TR/SVG2/struct.html#tabindexattribute">SVG2 <code>tabindex</code></a>
           attributes can be used to add and remove elements from the tab sequence.
-          The value of tabindex can also influence the order of the tab sequence, although authors are strongly advised not to use tabindex for that purpose.
+          The value of <code>tabindex</code> can also influence the order of the tab sequence, although authors are strongly advised not to use <code>tabindex</code> for that purpose.
         </p>
 
         <p>
@@ -236,23 +236,23 @@
           The most robust method of manipulating the order of the tab sequence while also maintaining alignment with the reading order that is currently available in all browsers is rearranging elements in the DOM.
         </p>
 
-        <p>The values of the tabindex attribute have the following effects.</p>
+        <p>The values of the <code>tabindex</code> attribute have the following effects.</p>
 
         <dl>
-          <dt>tabindex is not present or does not have a valid value</dt>
+          <dt><code>tabindex</code> is not present or does not have a valid value</dt>
           <dd>
             The element has its default focus behavior.
             In HTML, only form controls and anchors with an HREF attribute are included in the tab sequence.
           </dd>
-          <dt>tabindex="0"</dt>
+          <dt><code>tabindex="0"</code></dt>
           <dd>The element is included in the tab sequence based on its position in the DOM.</dd>
-          <dt>tabindex="-1"</dt>
+          <dt><code>tabindex="-1"</code></dt>
           <dd>The element is not included in the tab sequence but is focusable with element.focus().</dd>
-          <dt>tabindex="X" where X is an integer in the range 1 &lt;= X &lt;= 32767</dt>
+          <dt><code>tabindex="X"</code> where <code>X</code> is an integer in the range <code>1 &lt;= X &lt;= 32767</code></dt>
           <dd>
             Authors are strongly advised NOT to use these values.
-            The element is placed in the tab sequence based on the value of tabindex.
-            Elements with a tabindex value of 0 and elements that are focusable by default will be in the sequence after elements with a tabindex value of 1 or greater.
+            The element is placed in the tab sequence based on the value of <code>tabindex</code>.
+            Elements with a <code>tabindex</code> value of 0 and elements that are focusable by default will be in the sequence after elements with a <code>tabindex</code> value of <code>1</code> or greater.
           </dd>
         </dl>
       </section>
@@ -291,14 +291,14 @@
           </li>
         </ul>
 
-        <p>The following sections explain two strategies for managing focus inside composite elements: creating a roving tabindex and using the aria-activedescendant property.</p>
+        <p>The following sections explain two strategies for managing focus inside composite elements: creating a roving <code>tabindex</code> and using the <code>aria-activedescendant</code> property.</p>
 
         <section id="kbd_roving_tabindex">
-          <h3>Managing Focus Within Components Using a Roving tabindex</h3>
+          <h3>Managing Focus Within Components Using a Roving <code>tabindex</code></h3>
 
           <p>
-            When using roving tabindex to manage focus in a composite UI component, the element that is to be included in the tab sequence has tabindex of "0" and all other focusable elements contained in the composite have tabindex of "-1".
-            The algorithm for the roving tabindex strategy is as follows.
+            When using roving <code>tabindex</code> to manage focus in a composite UI component, the element that is to be included in the tab sequence has <code>tabindex="0"</code> and all other focusable elements contained in the composite have <code>tabindex="-1"</code>.
+            The algorithm for the roving <code>tabindex</code> strategy is as follows.
           </p>
 
           <ul>
@@ -319,29 +319,29 @@
             </li>
           </ul>
 
-          <p>One benefit of using roving tabindex rather than aria-activedescendant to manage focus is that the user agent will scroll the newly focused element into view.</p>
+          <p>One benefit of using roving <code>tabindex</code> rather than <code>aria-activedescendant</code> to manage focus is that the user agent will scroll the newly focused element into view.</p>
         </section>
 
         <section id="kbd_focus_activedescendant">
-          <h3>Managing Focus in Composites Using aria-activedescendant</h3>
+          <h3>Managing Focus in Composites Using <code>aria-activedescendant</code></h3>
 
           <p>
-            If a component container has an ARIA role that supports the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property, it is not necessary to manipulate the tabindex attribute and move DOM focus among focusable elements within the container.
+            If a component container has an ARIA role that supports the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property, it is not necessary to manipulate the <code>tabindex</code> attribute and move DOM focus among focusable elements within the container.
             Instead, only the container element needs to be included in the tab sequence.
-            When the container has DOM focus, the value of aria-activedescendant on the container tells assistive technologies which element is active within the widget.
-            Assistive technologies will consider the element referred to as active to be the focused element even though DOM focus is on the element that has the aria-activedescendant property.
-            And, when the value of aria-activedescendant is changed, assistive technologies will receive focus change events equivalent to those received when DOM focus actually moves.
+            When the container has DOM focus, the value of <code>aria-activedescendant</code> on the container tells assistive technologies which element is active within the widget.
+            Assistive technologies will consider the element referred to as active to be the focused element even though DOM focus is on the element that has the <code>aria-activedescendant</code> property.
+            And, when the value of <code>aria-activedescendant</code> is changed, assistive technologies will receive focus change events equivalent to those received when DOM focus actually moves.
           </p>
 
-          <p>The steps for using the aria-activedescendant method of managing focus are as follows.</p>
+          <p>The steps for using the <code>aria-activedescendant</code> method of managing focus are as follows.</p>
 
           <ul>
             <li>
-              When the container element that has a role that supports aria-activedescendant is loaded or created, ensure that:
+              When the container element that has a role that supports <code>aria-activedescendant</code> is loaded or created, ensure that:
               <ul>
-                <li>The container element is included in the tab sequence as described in <a href="#kbd_general_between">Keyboard Navigation Between Components</a> or is a focusable element of a composite that implements <a href="#kbd_roving_tabindex">a roving tabindex</a>.</li>
+                <li>The container element is included in the tab sequence as described in <a href="#kbd_general_between">Keyboard Navigation Between Components</a> or is a focusable element of a composite that implements <a href="#kbd_roving_tabindex">a roving <code>tabindex</code></a>.</li>
                 <li>
-                  It has <code>aria-activedescendant="IDREF"</code> where IDREF is the ID of the element within the container that should be identified as active when the widget receives focus.
+                  It has <code>aria-activedescendant="IDREF"</code> where <code>IDREF</code> is the <code>id</code> of the element within the container that should be identified as active when the widget receives focus.
                   The referenced element needs to meet the DOM relationship requirements described below.
                 </li>
               </ul>
@@ -350,25 +350,25 @@
             <li>
               When the composite widget contains focus and the user presses a navigation key that moves focus within the widget, such as an arrow key:
               <ul>
-                <li>Change the value of aria-activedescendant on the container to refer to the element that should be reported to assistive technologies as active.</li>
+                <li>Change the value of <code>aria-activedescendant</code> on the container to refer to the element that should be reported to assistive technologies as active.</li>
                 <li>Move the visual focus indicator and, if necessary, scrolled the active element into view.</li>
               </ul>
             </li>
             <li>
-              If the design calls for a specific element to be focused the next time a user moves focus into the composite with <kbd>Tab</kbd> or <kbd>Shift+Tab</kbd>, check if aria-activedescendant is referring to that target element when the container loses focus.
-              If it is not, set aria-activedescendant to refer to the target element.
+              If the design calls for a specific element to be focused the next time a user moves focus into the composite with <kbd>Tab</kbd> or <kbd>Shift+Tab</kbd>, check if <code>aria-activedescendant</code> is referring to that target element when the container loses focus.
+              If it is not, set <code>aria-activedescendant</code> to refer to the target element.
             </li>
           </ul>
 
           <p>
-            The <a href="#aria-activedescendant" class="property-reference">specification for aria-activedescendant</a> places important restrictions on the DOM relationship between the focused element that has the aria-activedescendant attribute and the element referenced as active by the value of the attribute.
+            The <a href="#aria-activedescendant" class="property-reference">specification for <code>aria-activedescendant</code></a> places important restrictions on the DOM relationship between the focused element that has the <code>aria-activedescendant</code> attribute and the element referenced as active by the value of the attribute.
             One of the following three conditions must be met.
           </p>
           <ol>
             <li>The element referenced as active is a DOM descendant of the focused referencing element.</li>
             <li>The focused referencing element has a value specified for the <a href="#aria-owns" class="property-reference">aria-owns</a> property that includes the ID of the element referenced as active.</li>
             <li>
-              The focused referencing element has role of <a href="#combobox" class="role-reference">combobox</a>, <a href="#textbox" class="role-reference">textbox</a>, or <a href="#searchbox" class="role-reference">searchbox</a> and has <a href="#aria-controls" class="property-reference">aria-controls</a> property referring to an element with a role that supports aria-activedescendant and either:
+              The focused referencing element has role of <a href="#combobox" class="role-reference">combobox</a>, <a href="#textbox" class="role-reference">textbox</a>, or <a href="#searchbox" class="role-reference">searchbox</a> and has <a href="#aria-controls" class="property-reference">aria-controls</a> property referring to an element with a role that supports <code>aria-activedescendant</code> and either:
               <ol>
                 <li>The element referenced as active is a descendant of the controlled element.</li>
                 <li>The controlled element has a value specified for the <a href="#aria-owns" class="property-reference">aria-owns</a> property that includes the ID of the element referenced as active.</li>
