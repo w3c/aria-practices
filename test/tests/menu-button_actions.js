@@ -69,9 +69,9 @@ ariaTest(
       return document.querySelector(selector).hasAttribute('aria-expanded');
     }, ex.menubuttonSelector);
 
-    t.false(
+    t.true(
       hasAttribute,
-      'The menuitem should not have the "aria-expanded" attribute if the popup is closed'
+      'The menuitem should have the "aria-expanded is false" attribute if the popup is closed'
     );
 
     t.false(

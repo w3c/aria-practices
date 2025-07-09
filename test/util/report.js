@@ -5,9 +5,9 @@ const cheerio = require('cheerio');
 const path = require('path');
 const fs = require('fs');
 const htmlparser2 = require('htmlparser2');
-const { spawnSync } = require('child_process');
+const spawn = require('cross-spawn');
 
-const examplePath = path.resolve(__dirname, '..', '..', 'examples');
+const examplePath = path.resolve(__dirname, '..', '..', 'content', 'patterns');
 const testsPath = path.resolve(__dirname, '..', 'tests');
 const ignoreExampleDirs = path.resolve(
   __dirname,
@@ -25,13 +25,13 @@ const ignoreDirectories = fs
   .readFileSync(ignoreExampleDirs)
   .toString()
   .trim()
-  .split('\n')
+  .split(/\r\n|\r|\n/)
   .map((d) => path.resolve(examplePath, d));
 const ignoreFiles = fs
   .readFileSync(ignoreExampleFiles)
   .toString()
   .trim()
-  .split('\n')
+  .split(/\r\n|\r|\n/)
   .map((f) => path.resolve(examplePath, f));
 
 /**
@@ -175,17 +175,19 @@ const getRegressionTestCoverage = function (exampleCoverage) {
     allTestFiles.push(path.join(testsPath, testFile));
   });
 
-  const cmd = path.resolve(
+  const cmd = 'node';
+  const avaCmdPath = path.resolve(
     __dirname,
     '..',
     '..',
     'node_modules',
     'ava',
-    'cli.js'
+    'entrypoints',
+    'cli.mjs'
   );
-  const cmdArgs = [...allTestFiles, '--tap', '-c', '1'];
+  const cmdArgs = [avaCmdPath, ...allTestFiles, '--tap', '-c', '1'];
 
-  const output = spawnSync(cmd, cmdArgs);
+  const output = spawn.sync(cmd, cmdArgs);
   const avaResults = output.stdout.toString();
   const avaError = output.stderr.toString();
 
@@ -195,15 +197,15 @@ const getRegressionTestCoverage = function (exampleCoverage) {
     process.exitCode = 1;
     process.exit();
   }
-
-  let testRegex = /^# (\S+) [>›] (\S+\.html) \[data-test-id="(\S+)"\]/gm;
+  let testRegex = /[>›] (\S+\.html) \[data-test-id="(\S+)"]/gm;
   let matchResults;
   while ((matchResults = testRegex.exec(avaResults))) {
-    let example = matchResults[2];
+    let example = matchResults[1];
+    example = path.normalize(example.replace('content/patterns/', ''));
 
     // If the test file has a data-test-id, the data-test-id must exist on
     // the test page.
-    exampleCoverage[example].missingTests.delete(matchResults[3]);
+    exampleCoverage[example].missingTests.delete(matchResults[2]);
   }
 };
 

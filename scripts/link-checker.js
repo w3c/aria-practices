@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs/promises');
 const glob = require('glob');
 const HTMLParser = require('node-html-parser');
-const fetch = require('node-fetch');
+const nFetch = require('node-fetch');
 const options = require('../.link-checker');
 
 async function checkLinks() {
@@ -33,7 +33,24 @@ async function checkLinks() {
     return getLineNumber;
   };
 
-  const checkPathForHash = (hrefOrSrc, ids = [], hash) => {
+  const getHashCheckHandler = (hrefOrSrc) => {
+    return options.hashCheckHandlers.find(({ pattern }) =>
+      pattern.test(hrefOrSrc)
+    );
+  };
+
+  const getReactPartial = (hrefOrSrc, html) => {
+    const handler = getHashCheckHandler(hrefOrSrc);
+    if (handler) return handler.getPartial(html);
+    return undefined;
+  };
+
+  const checkPathForHash = (
+    hrefOrSrc,
+    ids = [],
+    hash,
+    { reactPartial } = {}
+  ) => {
     // On some websites, the ids may not exactly match the hash included
     // in the link.
     // For e.g. GitHub will prepend client facing ids with their own
@@ -43,10 +60,8 @@ async function checkLinks() {
     // as being 'user-content-foo-bar' for its own page processing purposes.
     //
     // See https://github.com/w3c/aria-practices/issues/2809
-    const handler = options.hashCheckHandlers.find(({ pattern }) =>
-      pattern.test(hrefOrSrc)
-    );
-    if (handler) return handler.matchHash(ids, hash);
+    const handler = getHashCheckHandler(hrefOrSrc);
+    if (handler) return handler.matchHash(ids, hash, { reactPartial });
     else return ids.includes(hash);
   };
 
@@ -134,21 +149,75 @@ async function checkLinks() {
         }
 
         const getPageData = async () => {
-          try {
-            const response = await fetch(externalPageLink);
-            const text = await response.text();
-            const html = HTMLParser.parse(text);
-            const ids = html
-              .querySelectorAll('[id]')
-              .map((idElement) => idElement.getAttribute('id'));
+          const domain = new URL(externalPageLink).hostname;
+          let retryCount = 0;
+          const maxRetries = 3;
+          const baseDelay = 15;
 
-            return { ok: response.ok, status: response.status, ids };
-          } catch (error) {
-            return {
-              errorMessage:
-                `Found broken external link on ${htmlPath}:${lineNumber}:${columnNumber}\n` +
-                `  ${error.stack}`,
-            };
+          while (retryCount < maxRetries) {
+            try {
+              const response = await nFetch(externalPageLink, {
+                headers: {
+                  // Spoof a normal looking User-Agent to keep the servers happy
+                  // See https://github.com/JustinBeckwith/linkinator/blob/main/src/index.ts
+                  //
+                  // To better future-proof against the ua string being
+                  // responsible for any breakage, pull common, up-to-date strings
+                  // from a reliable source.
+                  // https://github.com/w3c/aria-practices/issues/3270
+                  'User-Agent':
+                    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/605.1.1',
+                },
+              });
+
+              // Handle rate limit-related statuses
+              if (
+                response.status === 403 ||
+                response.status === 429 ||
+                response.status === 503 ||
+                response.status === 508
+              ) {
+                throw new Error(
+                  response.status === 429
+                    ? `Rate limited by ${domain}`
+                    : `Unsuccessful response from ${domain} (${response.status})`
+                );
+              }
+
+              const text = await response.text();
+              const html = HTMLParser.parse(text);
+              const ids = html
+                .querySelectorAll('[id]')
+                .map((idElement) => idElement.getAttribute('id'));
+
+              // Handle GitHub README links.
+              // These links are stored within a react-partial element
+              const reactPartial = getReactPartial(hrefOrSrc, html);
+              return {
+                ok: response.ok,
+                status: response.status,
+                ids,
+                reactPartial,
+              };
+            } catch (error) {
+              if (retryCount < maxRetries) {
+                // Found the retry-after unit returned from response headers too
+                // variable to use here, but ~15 seconds seems like a safe
+                // initial default
+                const delay = baseDelay * 1000 * Math.pow(2, retryCount);
+                console.info(
+                  `Error fetching ${externalPageLink}: ${error.message}, retrying in ${delay}ms`
+                );
+                await new Promise((resolve) => setTimeout(resolve, delay));
+                retryCount++;
+                continue;
+              }
+              return {
+                errorMessage:
+                  `Found broken external link on ${htmlPath}:${lineNumber}:${columnNumber}\n` +
+                  `  ${error.stack}`,
+              };
+            }
           }
         };
 
@@ -178,17 +247,6 @@ async function checkLinks() {
     Object.entries(externalPageLoaders).map(
       async ([externalPageLink, getPageData]) => {
         let pageData = await getPageData();
-        if (pageData.errorMessage) {
-          console.info('Retrying once');
-          pageData = await getPageData();
-        }
-        if (pageData.errorMessage) {
-          await new Promise((resolve) => {
-            setTimeout(resolve, 2000);
-          });
-          console.info('Retrying twice');
-          pageData = await getPageData();
-        }
         externalPageData[externalPageLink] = pageData;
         loadedCount += 1;
       }
@@ -284,8 +342,9 @@ async function checkLinks() {
 
         if (!pageData.ok) {
           consoleError(
-            `Found broken external link on ${htmlPath}:${lineNumber}:${columnNumber}, ` +
-              `status was ${pageData.status}`
+            `Found broken external link on ${htmlPath}:${lineNumber}:${columnNumber}. ` +
+              `Link is ${hrefOrSrc}, ` +
+              `status is ${pageData.status}`
           );
           continue;
         }
@@ -298,11 +357,13 @@ async function checkLinks() {
         if (
           !isHashCheckingDisabled &&
           hash &&
-          !checkPathForHash(hrefOrSrc, pageData.ids, hash)
+          !checkPathForHash(hrefOrSrc, pageData.ids, hash, {
+            reactPartial: pageData.reactPartial,
+          })
         ) {
           consoleError(
             `Found broken external link on ${htmlPath}:${lineNumber}:${columnNumber}, ` +
-              'hash not found on page'
+              `hash "#${hash}" not found on page`
           );
         }
       }

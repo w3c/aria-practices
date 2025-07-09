@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../../shared/css/core.css">
     <script src="../../shared/js/highlight.pack.js"></script>
     <script src="../../shared/js/app.js"></script>
-    <script src="../../shared/js/skipto.js"></script>
+    <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
   </head>
   <body>
     <main>
@@ -36,6 +36,7 @@
       </section>
 
       <section id="examples">
+        <img alt="" src="../../images/pattern-treeview.svg">
         <h2>Examples</h2>
         <ul>
           <li><a href="examples/treeview-1a.html">File Directory Treeview Example Using Computed Properties</a>: A file selector tree that demonstrates browser support for automatically computing <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code> based on DOM structure.</li>
@@ -126,19 +127,19 @@
                 Recommended selection model -- holding a modifier key while moving focus is not necessary:
                 <ul>
                   <li><kbd>Space</kbd>: Toggles the selection state of the focused node.</li>
-                  <li><kbd>Shift + Down Arrow</kbd> (Optional): Moves focus to and toggles the selection state of the next node.</li>
-                  <li><kbd>Shift + Up Arrow</kbd> (Optional): Moves focus to and toggles the selection state of the previous node.</li>
-                  <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous nodes from the most recently selected node to the current node.</li>
+                  <li><kbd>Shift</kbd> + <kbd>Down Arrow</kbd> (Optional): Moves focus to and toggles the selection state of the next node.</li>
+                  <li><kbd>Shift</kbd> + <kbd>Up Arrow</kbd> (Optional): Moves focus to and toggles the selection state of the previous node.</li>
+                  <li><kbd>Shift</kbd> + <kbd>Space</kbd> (Optional): Selects contiguous nodes from the most recently selected node to the current node.</li>
                   <li>
-                    <kbd>Control + Shift + Home</kbd> (Optional): Selects the node with focus and all nodes up to the first node.
+                    <kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>Home</kbd> (Optional): Selects the node with focus and all nodes up to the first node.
                     Optionally, moves focus to the first node.
                   </li>
                   <li>
-                    <kbd>Control + Shift + End</kbd> (Optional): Selects the node with focus and all nodes down to the last node.
+                    <kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>End</kbd> (Optional): Selects the node with focus and all nodes down to the last node.
                     Optionally, moves focus to the last node.
                   </li>
                   <li>
-                    <kbd>Control + A</kbd> (Optional): Selects all nodes in the tree.
+                    <kbd>Control</kbd> + <kbd>A</kbd> (Optional): Selects all nodes in the tree.
                     Optionally, if all nodes are selected, it can also unselect all nodes.
                   </li>
                 </ul>
@@ -146,22 +147,22 @@
               <li>
                 Alternative selection model -- Moving focus without holding the <kbd>Shift</kbd> or <kbd>Control</kbd> modifier unselects all selected nodes except for the focused node:
                 <ul>
-                  <li><kbd>Shift + Down Arrow</kbd>: Moves focus to and toggles the selection state of the next node.</li>
-                  <li><kbd>Shift + Up Arrow</kbd>: Moves focus to and toggles the selection state of the previous node.</li>
-                  <li><kbd>Control + Down Arrow</kbd>: Without changing the selection state, moves focus to the next node.</li>
-                  <li><kbd>Control + Up Arrow</kbd>: Without changing the selection state, moves focus to the previous node.</li>
-                  <li><kbd>Control + Space</kbd>: Toggles the selection state of the focused node.</li>
-                  <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous nodes from the most recently selected node to the current node.</li>
+                  <li><kbd>Shift</kbd> + <kbd>Down Arrow</kbd>: Moves focus to and toggles the selection state of the next node.</li>
+                  <li><kbd>Shift</kbd> + <kbd>Up Arrow</kbd>: Moves focus to and toggles the selection state of the previous node.</li>
+                  <li><kbd>Control</kbd> + <kbd>Down Arrow</kbd>: Without changing the selection state, moves focus to the next node.</li>
+                  <li><kbd>Control</kbd> + <kbd>Up Arrow</kbd>: Without changing the selection state, moves focus to the previous node.</li>
+                  <li><kbd>Control</kbd> + <kbd>Space</kbd>: Toggles the selection state of the focused node.</li>
+                  <li><kbd>Shift</kbd> + <kbd>Space</kbd> (Optional): Selects contiguous nodes from the most recently selected node to the current node.</li>
                   <li>
-                    <kbd>Control + Shift + Home</kbd> (Optional): Selects the node with focus and all nodes up to the first node.
+                    <kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>Home</kbd> (Optional): Selects the node with focus and all nodes up to the first node.
                     Optionally, moves focus to the first node.
                   </li>
                   <li>
-                    <kbd>Control + Shift + End</kbd> (Optional): Selects the node with focus and all nodes down to the last node.
+                    <kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>End</kbd> (Optional): Selects the node with focus and all nodes down to the last node.
                     Optionally, moves focus to the last node.
                   </li>
                   <li>
-                    <kbd>Control + A</kbd> (Optional): Selects all nodes in the tree.
+                    <kbd>Control</kbd> + <kbd>A</kbd> (Optional): Selects all nodes in the tree.
                     Optionally, if all nodes are selected, it can also unselect all nodes.
                   </li>
                 </ul>

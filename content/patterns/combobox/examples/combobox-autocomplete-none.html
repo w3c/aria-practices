@@ -11,7 +11,7 @@
     <script src="../../../shared/js/examples.js"></script>
     <script src="../../../shared/js/highlight.pack.js"></script>
     <script src="../../../shared/js/app.js"></script>
-    <script src="../../../shared/js/skipto.js"></script>
+    <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
 
     <!-- JS and CSS for this example -->
     <link href="css/combobox-autocomplete.css" rel="stylesheet">
@@ -20,7 +20,7 @@
   <body>
     <nav aria-label="Related Links" class="feedback">
       <ul>
-        <li><a href="https://github.com/w3c/aria-practices/projects/7">Related Issues</a></li>
+        <li><a href="https://github.com/orgs/w3c/projects/118">Related Issues</a></li>
         <li><a href="../combobox-pattern.html">Design Pattern</a></li>
       </ul>
     </nav>
@@ -29,6 +29,7 @@
 
       <section>
         <h2>About This Example</h2>
+        <img alt="" class="example-page-example-icon" src="../../../images/pattern-combobox.svg">
         <p>
           The below combobox that enables users to choose a term from a hypothetical list of previously searched terms demonstrates the <a href="../combobox-pattern.html">Combobox Pattern</a>.
           The design pattern describes four types of autocomplete behavior.
@@ -137,7 +138,7 @@
               </td>
             </tr>
             <tr data-test-id="textbox-key-alt-down-arrow">
-              <th><kbd>Alt + Down Arrow</kbd></th>
+              <th><kbd>Alt</kbd> + <kbd>Down Arrow</kbd></th>
               <td>Opens the listbox without moving focus or changing selection.</td>
             </tr>
             <tr data-test-id="textbox-key-up-arrow">
@@ -157,7 +158,7 @@
               <th>Standard single line text editing keys</th>
               <td>
                 <ul>
-                  <li>Keys used for cursor movement and text manipulation, such as <kbd>Delete</kbd> and <kbd>Shift + Right Arrow</kbd>.</li>
+                  <li>Keys used for cursor movement and text manipulation, such as <kbd>Delete</kbd> and <kbd>Shift</kbd> + <kbd>Right Arrow</kbd>.</li>
                   <li>An HTML <code>input</code> with <code>type="text"</code> is used for the textbox so the browser will provide platform-specific editing keys.</li>
                 </ul>
               </td>
@@ -466,13 +467,14 @@
         </ul>
       </section>
 
-      <section>
+      <section class="example-code">
         <h2 id="sc1_label">HTML Source Code</h2>
+        <p id="sc1_description">To copy the following HTML code, please open it in CodePen.</p>
         <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
         <pre><code id="sc1"></code></pre>
         <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
         <script>
-          sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
+          sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files', 'sc1_description');
           sourceCode.make();
         </script>
       </section>

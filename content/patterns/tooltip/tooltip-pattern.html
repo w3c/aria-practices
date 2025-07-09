@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../../shared/css/core.css">
     <script src="../../shared/js/highlight.pack.js"></script>
     <script src="../../shared/js/app.js"></script>
-    <script src="../../shared/js/skipto.js"></script>
+    <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
   </head>
   <body>
     <main>
@@ -33,6 +33,7 @@
       </section>
 
       <section id="examples">
+        <img alt="" src="../../images/pattern-tooltip.svg">
         <h2>Example</h2>
         <p>Work to develop a tooltip example is tracked by <a href="https://github.com/w3c/aria-practices/issues/127">issue 127.</a></p>
       </section>
@@ -44,10 +45,8 @@
           <h3>Note</h3>
           <ol>
             <li>Focus stays on the triggering element while the tooltip is displayed.</li>
-            <li>
-              If the tooltip is invoked when the trigger element receives focus, then it is dismissed when it no longer has focus (onBlur).
-              If the tooltip is invoked with mouseIn, then it is dismissed with on mouseOut.
-            </li>
+            <li>If the tooltip is invoked when the trigger element receives focus, then it is dismissed when it no longer has focus (onBlur).</li>
+            <li>If the tooltip is invoked when a pointing cursor moves over the trigger element, then it remains open as long as the cursor is over the trigger or the tooltip.</li>
           </ol>
         </div>
       </section>

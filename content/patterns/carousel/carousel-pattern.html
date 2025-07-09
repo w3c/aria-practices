@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../../shared/css/core.css">
     <script src="../../shared/js/highlight.pack.js"></script>
     <script src="../../shared/js/app.js"></script>
-    <script src="../../shared/js/skipto.js"></script>
+    <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
   </head>
   <body>
     <main>
@@ -54,6 +54,7 @@
       </section>
 
       <section id="examples">
+        <img alt="" src="../../images/pattern-carousel.svg">
         <h2>Examples</h2>
         <ul>
           <li><a href="examples/carousel-1-prev-next.html">Auto-Rotating Image Carousel with Buttons for Slide Control:</a> A basic image carousel that demonstrates the accessibility features necessary for carousels that rotate automatically on page load and also enables users to choose which slide is displayed with buttons for previous and next slide.</li>
@@ -85,7 +86,7 @@
             If the carousel has an auto-rotate feature, automatic slide rotation stops when any element in the carousel receives keyboard focus.
             It does not resume unless the user activates the rotation control.
           </li>
-          <li><kbd>Tab</kbd> and <kbd>Shift + Tab</kbd>: Move focus through the interactive elements of the carousel as specified by the page tab sequence -- scripting for <kbd>Tab</kbd> is not necessary.</li>
+          <li><kbd>Tab</kbd> and <kbd>Shift</kbd> + <kbd>Tab</kbd>: Move focus through the interactive elements of the carousel as specified by the page tab sequence -- scripting for <kbd>Tab</kbd> is not necessary.</li>
           <li>
             Button elements implement the keyboard interaction defined in the <a href="../button/button-pattern.html">button pattern</a>.
             Note: Activating the rotation control, next slide, and previous slide do not move focus, so users may easily repetitively activate them as many times as desired.

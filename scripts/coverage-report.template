@@ -9,6 +9,7 @@
   <script src="../../shared/js/examples.js"></script>
   <script src="../../shared/js/highlight.pack.js"></script>
   <script src="../../shared/js/app.js"></script>
+  <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
   <style>
     .sr-only {position: absolute; top: -30em;}
     table.summary th { width: 12em; }
@@ -17,6 +18,7 @@
 <body>
   <main>
     <h1>Coverage and Quality Reports</h1>
+    <p>Page last updated:</p>
     <section>
       <h2>About These Reports</h2>
       <p>
@@ -166,9 +168,19 @@
             <td id="example_summary_svg"></td>
           </tr>
           <tr>
-            <th scope="row">Uses <code>forced-color-adjust</code> on SVG</th>
-            <td id="example_summary_force_color"></td>
+            <th scope="row">Uses <code>forced-colors</code> media query</th>
+            <td id="example_summary_force_colors"></td>
           </tr>
+          <tr>
+            <th scope="row">Uses <code>currentColor</code> value</th>
+            <td id="example_summary_current_color"></td>
+          </tr>
+<!--
+          <tr>
+            <th scope="row">Uses <code>forced-color-adjust</code> in CSS/SVG</th>
+            <td id="example_summary_force_color_adjust"></td>
+          </tr>
+-->
           <tr>
             <th scope="row">Uses <code>event.KeyCode</code></th>
             <td id="example_summary_keycode"></td>
@@ -217,7 +229,7 @@
         </tbody>
       </table>
 
-      <h3 id="example_graphics_techniques">Graphics Techniques</h3>
+      <h3 id="example_graphics_techniques">SVG and High Contrast Techniques</h3>
       <table aria-labelledby="example_graphics_techniques" class="data attributes">
         <thead>
           <tr>
@@ -225,10 +237,8 @@
             <th>SVG in HTML</th>
             <th>SVG in CSS</th>
             <th>SVG in JS</th>
-            <th><code>forced-color-adjust</code></th>
-            <th>CSS ::before</th>
-            <th>CSS ::after</th>
-            <th>CSS content</th>
+            <th><code>forced-colors</code> media query</th>
+            <th><code>currentColor</code> value</th>
           </tr>
         </thead>
         <tbody id="example_graphics_techniques_tbody">

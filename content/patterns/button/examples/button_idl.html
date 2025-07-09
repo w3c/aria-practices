@@ -11,7 +11,7 @@
     <script src="../../../shared/js/examples.js"></script>
     <script src="../../../shared/js/highlight.pack.js"></script>
     <script src="../../../shared/js/app.js"></script>
-    <script src="../../../shared/js/skipto.js"></script>
+    <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
 
     <!-- JS and CSS for this example -->
     <link rel="stylesheet" href="css/button.css">
@@ -20,7 +20,7 @@
   <body>
     <nav aria-label="Related Links" class="feedback">
       <ul>
-        <li><a href="https://github.com/w3c/aria-practices/projects/14">Related Issues</a></li>
+        <li><a href="https://github.com/orgs/w3c/projects/132">Related Issues</a></li>
         <li><a href="../button-pattern.html">Design Pattern</a></li>
       </ul>
     </nav>
@@ -30,6 +30,7 @@
 
       <section>
         <h2>About This example</h2>
+        <img alt="" class="example-page-example-icon" src="../../../images/pattern-button.svg">
         <p>The following examples of the <a href="../button-pattern.html">Button Pattern</a> demonstrate a new JavaScript syntax for coding ARIA attributes.</p>
         <p>
           The JavaScript for the example buttons on this page uses the <a class="specref" href="#idl-interface">IDL Interface defined in ARIA 1.2</a>.
@@ -198,13 +199,14 @@
         </ul>
       </section>
 
-      <section>
+      <section class="example-code">
         <h2 id="sc1_label">HTML Source Code</h2>
+        <p id="sc1_description">To copy the following HTML code, please open it in CodePen.</p>
         <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
         <pre><code id="sc1"></code></pre>
         <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
         <script>
-          sourceCode.add('sc1', 'example', 'ex_label', 'css_js_files');
+          sourceCode.add('sc1', 'example', 'ex_label', 'css_js_files', 'sc1_description');
           sourceCode.make();
         </script>
       </section>

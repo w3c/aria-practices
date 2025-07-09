@@ -11,7 +11,7 @@
     <script src="../../../shared/js/examples.js"></script>
     <script src="../../../shared/js/highlight.pack.js"></script>
     <script src="../../../shared/js/app.js"></script>
-    <script src="../../../shared/js/skipto.js"></script>
+    <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
 
     <!-- JS and CSS for this example -->
     <link rel="stylesheet" href="css/slider-multithumb.css">
@@ -20,7 +20,7 @@
   <body>
     <nav aria-label="Related Links" class="feedback">
       <ul>
-        <li><a href="https://github.com/w3c/aria-practices/projects/3">Related Issues</a></li>
+        <li><a href="https://github.com/orgs/w3c/projects/124">Related Issues</a></li>
         <li><a href="../slider-multithumb-pattern.html">Design Pattern</a></li>
       </ul>
     </nav>
@@ -38,6 +38,7 @@
             Authors should fully test slider widgets using assistive technologies on devices where touch is a primary input mechanism before considering incorporation into production systems.
           </p>
         </div>
+        <img alt="" class="example-page-example-icon" src="../../../images/pattern-slider-multithumb.svg">
         <p>
           The following example of the <a href="../slider-multithumb-pattern.html">Multi-Thumb Slider Pattern</a> demonstrates an input for setting a pair of values that represent a range.
           This example enables users to specify a price range for a hotel reservation by moving the two arrows (thumbs) that represent the minimum and maximum price.
@@ -259,13 +260,14 @@
         </ul>
       </section>
 
-      <section>
+      <section class="example-code">
         <h2 id="sc1_label">HTML Source Code</h2>
+        <p id="sc1_description">To copy the following HTML code, please open it in CodePen.</p>
         <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
         <pre><code id="sc1"></code></pre>
         <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
         <script>
-          sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
+          sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files', 'sc1_description');
           sourceCode.make();
         </script>
       </section>

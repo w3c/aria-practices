@@ -1,5 +1,35 @@
+const HTMLParser = require('node-html-parser');
+
+// Checks object for attribute and returns value.
+// If not found on first pass, recursively checks
+// nested objects and arrays of nested object(s)
+// until attribute is found. If not found,
+// returns undefined.
+const getAttributeValue = (obj, attribute) => {
+  if (typeof obj !== 'object' || obj === null) return undefined;
+  if (Object.prototype.hasOwnProperty.call(obj, attribute))
+    return obj[attribute];
+
+  if (Array.isArray(obj)) {
+    for (const element of obj) {
+      const attributeValue = getAttributeValue(element, attribute);
+      if (attributeValue !== undefined) return attributeValue;
+    }
+  } else {
+    for (const key in obj) {
+      const attributeValue = getAttributeValue(obj[key], attribute);
+      if (attributeValue !== undefined) return attributeValue;
+    }
+  }
+
+  return undefined;
+};
+
 module.exports = {
-  filesToIgnore: ['content/shared/templates/example-usage-warning.html'],
+  filesToIgnore: [
+    // For example:
+    // 'content/shared/templates/example-usage-warning.html',
+  ],
   excludedLinks: {
     'content/patterns/menubar/examples/menubar-navigation.html': [
       '#ex1 [role=menuitem]',
@@ -15,8 +45,30 @@ module.exports = {
     {
       name: 'github',
       pattern: /^https:\/\/github\.com\/.*/,
-      matchHash: (ids, hash) =>
-        ids.includes(hash) || ids.includes(`user-content-${hash}`),
+      matchHash: (ids, hash, { reactPartial }) => {
+        if (reactPartial) {
+          // This is where the react-partial keeps data about READMEs and other *.md files
+          const richText = getAttributeValue(reactPartial, 'richText');
+          if (richText !== undefined) {
+            const html = HTMLParser.parse(richText);
+            const githubIds = html
+              .querySelectorAll('[id]')
+              .map((idElement) => idElement.getAttribute('id'));
+            return githubIds.includes(`user-content-${hash}`);
+          }
+        }
+        return ids.includes(hash) || ids.includes(`user-content-${hash}`);
+      },
+      getPartial: (html) => {
+        return html
+          .querySelectorAll('react-partial')
+          .filter(
+            (partialElement) =>
+              partialElement.getAttribute('partial-name') === 'repos-overview' // This is the partial that handles the READMEs
+          )
+          .flatMap((element) => element.getElementsByTagName('script'))
+          .map((element) => JSON.parse(element.innerHTML))[0];
+      },
     },
   ],
   ignoreHashesOnExternalPagesMatchingRegex: [

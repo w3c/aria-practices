@@ -54,6 +54,7 @@ aria.widget.SourceCode = function () {
   this.code = new Array();
   this.exampleHeader = new Array();
   this.resources = new Array();
+  this.HTMLDescription = new Array();
 };
 
 /**
@@ -63,6 +64,7 @@ aria.widget.SourceCode = function () {
  * @param {string} codeId          - ID of element containing only and all of the html used to render the example widget
  * @param {string} exampleHeaderId - ID of header element under which the "Open in Codepen" button belongs
  * @param {string} cssJsFilesId    - ID of element containing links to all the relevant js and css files used for the example widget
+ * @param {string} HTMLDescriptionId - ID of the separator element under the HTML Source Code which the "Open in Codepen" button belongs
  * @function add
  * @memberof aria.widget.SourceCode
  */
@@ -70,11 +72,13 @@ aria.widget.SourceCode.prototype.add = function (
   locationId,
   codeId,
   exampleHeaderId,
-  cssJsFilesId
+  cssJsFilesId,
+  HTMLDescriptionId
 ) {
   this.location[this.location.length] = locationId;
   this.code[this.code.length] = codeId;
   this.exampleHeader[this.exampleHeader.length] = exampleHeaderId;
+  this.HTMLDescription[this.HTMLDescription.length] = HTMLDescriptionId;
   this.resources[this.resources.length] = cssJsFilesId;
 };
 
@@ -88,9 +92,19 @@ aria.widget.SourceCode.prototype.make = function () {
   for (var i = 0; i < this.location.length; i++) {
     var sourceCodeNode = document.getElementById(this.location[i]);
     var nodeCode = document.getElementById(this.code[i]);
+    var exampleAmount = document.querySelectorAll('[id^="ex"]');
 
     sourceCodeNode.className = 'sourcecode';
     this.createCode(sourceCodeNode, nodeCode, 0, true);
+
+    if (this.HTMLDescription[i]) {
+      addOpenInCodePenForm(
+        i + exampleAmount,
+        this.HTMLDescription[i],
+        this.code[i],
+        this.resources[i]
+      );
+    }
 
     // Remove unnecessary `<br>` element.
     if (sourceCodeNode.innerHTML.startsWith('<br>')) {
@@ -129,7 +143,7 @@ aria.widget.SourceCode.prototype.createCode = function (
     var openTag = '';
     var nodeNameStr = node.nodeName.toLowerCase();
 
-    openTag += '<br/>' + indentation(indentLevel) + '&lt;' + nodeNameStr;
+    openTag += '\n' + indentation(indentLevel) + '&lt;' + nodeNameStr;
 
     var wrapAttributes = node.attributes.length > 2;
 
@@ -143,7 +157,7 @@ aria.widget.SourceCode.prototype.createCode = function (
         node.attributes[attrPos].nodeName + '="' + attributeValue + '"';
 
       if (wrapAttributes && attrPos !== node.attributes.length - 1) {
-        openTag += '<br/>' + indentation(indentLevel);
+        openTag += '\n' + indentation(indentLevel);
         openTag += '&nbsp;'.repeat(nodeNameStr.length + 2);
       }
     }
@@ -173,7 +187,7 @@ aria.widget.SourceCode.prototype.createCode = function (
             indentation(indentLevel)
           );
 
-          sourceCodeNode.innerHTML += '<br/>' + textNodeContent;
+          sourceCodeNode.innerHTML += '\n' + textNodeContent;
         }
         break;
 
@@ -186,7 +200,7 @@ aria.widget.SourceCode.prototype.createCode = function (
             indentation(indentLevel)
           );
 
-          sourceCodeNode.innerHTML += '<br/>' + commentNodeContent;
+          sourceCodeNode.innerHTML += '\n' + commentNodeContent;
         }
         break;
     }
@@ -198,7 +212,7 @@ aria.widget.SourceCode.prototype.createCode = function (
     var closeTag = '&lt;/' + node.nodeName.toLowerCase() + '&gt;';
 
     if (node.childNodes.length > 0) {
-      sourceCodeNode.innerHTML += '<br/>' + indentation(indentLevel);
+      sourceCodeNode.innerHTML += '\n' + indentation(indentLevel);
     }
 
     sourceCodeNode.innerHTML += closeTag;
@@ -369,7 +383,7 @@ function addOpenInCodePenForm(
   exampleFilesId
 ) {
   var jsonInputId = 'codepen-data-ex-' + exampleIndex;
-  var buttonId = exampleCodeId + '-codepenbutton';
+  var buttonId = exampleHeaderId + '-codepenbutton';
 
   var form = document.createElement('form');
   form.setAttribute('action', 'https://codepen.io/pen/define');

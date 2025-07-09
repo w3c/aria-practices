@@ -8,6 +8,13 @@ updates:
     open-pull-requests-limit: 99
     commit-message:
       prefix: "Infrastructure"
+    groups:
+      dependencies:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
   - package-ecosystem: github-actions
     directory: "/"
     schedule:

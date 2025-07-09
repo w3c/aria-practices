@@ -11,7 +11,7 @@
     <script src="../../../shared/js/examples.js"></script>
     <script src="../../../shared/js/highlight.pack.js"></script>
     <script src="../../../shared/js/app.js"></script>
-    <script src="../../../shared/js/skipto.js"></script>
+    <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
 
     <!-- JS and CSS for this example -->
     <link href="css/select-only.css" rel="stylesheet">
@@ -20,7 +20,7 @@
   <body>
     <nav aria-label="Related Links" class="feedback">
       <ul>
-        <li><a href="https://github.com/w3c/aria-practices/projects/7">Related Issues</a></li>
+        <li><a href="https://github.com/orgs/w3c/projects/118">Related Issues</a></li>
         <li><a href="../combobox-pattern.html">Design Pattern</a></li>
       </ul>
     </nav>
@@ -29,6 +29,7 @@
 
       <section>
         <h2>About This Example</h2>
+        <img alt="" class="example-page-example-icon" src="../../../images/pattern-combobox.svg">
         <p>
           The following example implementation of the <a href="../combobox-pattern.html">Combobox Pattern</a> demonstrates a single-select combobox widget that is functionally similar to an HTML <code>select</code> element.
           Unlike the editable combobox examples, this select-only combobox is not made with an <code>&lt;input&gt;</code> element, and it does not accept freeform user input.
@@ -50,8 +51,8 @@
         </div>
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div id="ex1">
-          <label id="combo1-label" class="combo-label">Favorite Fruit</label>
           <div class="combo js-select">
+            <div id="combo1-label" class="combo-label">Favorite Fruit</div>
             <div aria-controls="listbox1" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="combo1-label" id="combo1" class="combo-input" role="combobox" tabindex="0"></div>
             <div class="combo-menu" role="listbox" id="listbox1" aria-labelledby="combo1-label" tabindex="-1">
               <!-- options are inserted here -->
@@ -108,7 +109,7 @@
               </td>
             </tr>
             <tr data-test-id="combobox-key-alt-down-arrow">
-              <th><kbd>Alt + Down Arrow</kbd></th>
+              <th><kbd>Alt</kbd> + <kbd>Down Arrow</kbd></th>
               <td>Opens the listbox without moving focus or changing selection.</td>
             </tr>
             <tr data-test-id="combobox-key-up-arrow">
@@ -225,7 +226,7 @@
               </td>
             </tr>
             <tr data-test-id="listbox-key-alt-up-arrow">
-              <th><kbd>Alt + Up Arrow</kbd></th>
+              <th><kbd>Alt</kbd> + <kbd>Up Arrow</kbd></th>
               <td>
                 <ul>
                   <li>Sets the value to the content of the focused option in the listbox.</li>
@@ -406,13 +407,14 @@
         </ul>
       </section>
 
-      <section>
+      <section class="example-code">
         <h2 id="sc1_label">HTML Source Code</h2>
+        <p id="sc1_description">To copy the following HTML code, please open it in CodePen.</p>
         <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
         <pre><code id="sc1"></code></pre>
         <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
         <script>
-          sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
+          sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files', 'sc1_description');
           sourceCode.make();
         </script>
       </section>

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../../shared/css/core.css">
     <script src="../../shared/js/highlight.pack.js"></script>
     <script src="../../shared/js/app.js"></script>
-    <script src="../../shared/js/skipto.js"></script>
+    <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
   </head>
   <body>
     <main>
@@ -52,6 +52,7 @@
       </section>
 
       <section id="examples">
+        <img alt="" src="../../images/pattern-grid.svg">
         <h2>Examples</h2>
         <ul>
           <li><a href="examples/layout-grids.html">Layout Grid Examples</a>: Three example implementations of grids that are used to lay out widgets, including a collection of navigation links, a message recipients list, and a set of search results.</li>
@@ -108,8 +109,8 @@
             </li>
             <li><kbd>Home</kbd>: moves focus to the first cell in the row that contains focus.</li>
             <li><kbd>End</kbd>: moves focus to the last cell in the row that contains focus.</li>
-            <li><kbd>Control + Home</kbd>: moves focus to the first cell in the first row.</li>
-            <li><kbd>Control + End</kbd>: moves focus to the last cell in the last row.</li>
+            <li><kbd>Control</kbd> + <kbd>Home</kbd>: moves focus to the first cell in the first row.</li>
+            <li><kbd>Control</kbd> + <kbd>End</kbd>: moves focus to the last cell in the last row.</li>
           </ul>
           <div class="note">
             <h4>Note</h4>
@@ -122,21 +123,21 @@
                 While navigation keys, such as arrow keys, are moving focus from cell to cell, they are not available to do something like operate a combobox or move an editing caret inside of a cell.
                 If this functionality is needed, see <a href="#gridNav_inside">Editing and Navigating Inside a Cell</a>.
               </li>
-              <li>If navigation functions can dynamically add more rows or columns to the DOM, key events that move focus to the beginning or end of the grid, such as <kbd>Control + End</kbd>, may move focus to the last row in the DOM rather than the last available row in the back-end data.</li>
+              <li>If navigation functions can dynamically add more rows or columns to the DOM, key events that move focus to the beginning or end of the grid, such as <kbd>Control</kbd> + <kbd>End</kbd>, may move focus to the last row in the DOM rather than the last available row in the back-end data.</li>
             </ul>
           </div>
           <p>If a grid supports selection of cells, rows, or columns, the following keys are commonly used for these functions.</p>
           <ul>
-            <li><kbd>Control + Space</kbd>: selects the column that contains the focus.</li>
+            <li><kbd>Control</kbd> + <kbd>Space</kbd>: selects the column that contains the focus.</li>
             <li>
-              <kbd>Shift + Space</kbd>: Selects the row that contains the focus.
+              <kbd>Shift</kbd> + <kbd>Space</kbd>: Selects the row that contains the focus.
               If the grid includes a column with checkboxes for selecting rows, this key can serve as a shortcut for checking the box when focus is not on the checkbox.
             </li>
-            <li><kbd>Control + A</kbd>: Selects all cells.</li>
-            <li><kbd>Shift + Right Arrow</kbd>: Extends selection one cell to the right.</li>
-            <li><kbd>Shift + Left Arrow</kbd>: Extends selection one cell to the left.</li>
-            <li><kbd>Shift + Down Arrow</kbd>: Extends selection one cell down.</li>
-            <li><kbd>Shift + Up Arrow</kbd>: Extends selection one cell up.</li>
+            <li><kbd>Control</kbd> + <kbd>A</kbd>: Selects all cells.</li>
+            <li><kbd>Shift</kbd> + <kbd>Right Arrow</kbd>: Extends selection one cell to the right.</li>
+            <li><kbd>Shift</kbd> + <kbd>Left Arrow</kbd>: Extends selection one cell to the left.</li>
+            <li><kbd>Shift</kbd> + <kbd>Down Arrow</kbd>: Extends selection one cell down.</li>
+            <li><kbd>Shift</kbd> + <kbd>Up Arrow</kbd>: Extends selection one cell up.</li>
           </ul>
           <div class="note">
             <h5>Note</h5>
@@ -214,8 +215,8 @@
               <kbd>End</kbd>: moves focus to the last cell in the row that contains focus.
               Optionally, if the grid has a single column or fewer than three cells per row, focus may instead move to the last cell in the grid.
             </li>
-            <li><kbd>Control + Home</kbd> (optional): moves focus to the first cell in the first row.</li>
-            <li><kbd>Control + End</kbd> (Optional): moves focus to the last cell in the last row.</li>
+            <li><kbd>Control</kbd> + <kbd>Home</kbd> (optional): moves focus to the first cell in the first row.</li>
+            <li><kbd>Control</kbd> + <kbd>End</kbd> (Optional): moves focus to the last cell in the last row.</li>
           </ul>
           <div class="note">
             <h4>Note</h4>
@@ -228,7 +229,7 @@
                 While navigation keys, such as arrow keys, are moving focus from cell to cell, they are not available to do something like operate a combobox or move an editing caret inside of a cell.
                 If this functionality is needed, see <a href="#gridNav_inside">Editing and Navigating Inside a Cell</a>.
               </li>
-              <li>If navigation functions can dynamically add more rows or columns to the DOM, key events that move focus to the beginning or end of the grid, such as <kbd>control + End</kbd>, may move focus to the last row in the DOM rather than the last available row in the back-end data.</li>
+              <li>If navigation functions can dynamically add more rows or columns to the DOM, key events that move focus to the beginning or end of the grid, such as <kbd>control</kbd> + <kbd>End</kbd>, may move focus to the last row in the DOM rather than the last available row in the back-end data.</li>
             </ul>
           </div>
           <p>
@@ -237,16 +238,16 @@
           </p>
 
           <ul>
-            <li><kbd>Control + Space</kbd>: selects the column that contains the focus.</li>
+            <li><kbd>Control</kbd> + <kbd>Space</kbd>: selects the column that contains the focus.</li>
             <li>
-              <kbd>Shift + Space</kbd>: Selects the row that contains the focus.
+              <kbd>Shift</kbd> + <kbd>Space</kbd>: Selects the row that contains the focus.
               If the grid includes a column with checkboxes for selecting rows, this key can serve as a shortcut for checking the box when focus is not on the checkbox.
             </li>
-            <li><kbd>Control + A</kbd>: Selects all cells.</li>
-            <li><kbd>Shift + Right Arrow</kbd>: Extends selection one cell to the right.</li>
-            <li><kbd>Shift + Left Arrow</kbd>: Extends selection one cell to the left.</li>
-            <li><kbd>Shift + Down Arrow</kbd>: Extends selection one cell down.</li>
-            <li><kbd>Shift + Up Arrow</kbd>: Extends selection one cell up.</li>
+            <li><kbd>Control</kbd> + <kbd>A</kbd>: Selects all cells.</li>
+            <li><kbd>Shift</kbd> + <kbd>Right Arrow</kbd>: Extends selection one cell to the right.</li>
+            <li><kbd>Shift</kbd> + <kbd>Left Arrow</kbd>: Extends selection one cell to the left.</li>
+            <li><kbd>Shift</kbd> + <kbd>Down Arrow</kbd>: Extends selection one cell down.</li>
+            <li><kbd>Shift</kbd> + <kbd>Up Arrow</kbd>: Extends selection one cell up.</li>
           </ul>
           <div class="note">
             <h4>Note</h4>
@@ -353,7 +354,7 @@
               Optionally, the focus movement may wrap inside a single cell or within the grid itself.
             </li>
             <li>
-              <kbd>Shift + Tab</kbd>: moves focus to the previous widget in the grid.
+              <kbd>Shift</kbd> + <kbd>Tab</kbd>: moves focus to the previous widget in the grid.
               Optionally, the focus movement may wrap inside a single cell or within the grid itself.
             </li>
           </ul>

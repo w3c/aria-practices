@@ -11,7 +11,7 @@
     <script src="../../../shared/js/examples.js"></script>
     <script src="../../../shared/js/highlight.pack.js"></script>
     <script src="../../../shared/js/app.js"></script>
-    <script src="../../../shared/js/skipto.js"></script>
+    <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
 
     <!-- JS and CSS for this example -->
     <link rel="stylesheet" href="css/accordion.css">
@@ -19,7 +19,7 @@
   <body>
     <nav aria-label="Related Links" class="feedback">
       <ul>
-        <li><a href="https://github.com/w3c/aria-practices/projects/8">Related Issues</a></li>
+        <li><a href="https://github.com/orgs/w3c/projects/127">Related Issues</a></li>
         <li><a href="../accordion-pattern.html">Design Pattern</a></li>
       </ul>
     </nav>
@@ -28,6 +28,7 @@
 
       <section>
         <h2>About This Example</h2>
+        <img alt="" class="example-page-example-icon" src="../../../images/pattern-accordion.svg">
         <p>The below example section contains a simple personal information input form divided into 3 sections that demonstrates the <a href="../accordion-pattern.html">Accordion Pattern</a>.</p>
       </section>
 
@@ -174,7 +175,7 @@
               </td>
             </tr>
             <tr data-test-id="key-shift-tab">
-              <th><kbd>Shift + Tab</kbd></th>
+              <th><kbd>Shift</kbd> + <kbd>Tab</kbd></th>
               <td>
                 <ul>
                   <li>Moves focus to the previous focusable element.</li>
@@ -254,13 +255,14 @@
         </ul>
       </section>
 
-      <section>
+      <section class="example-code">
         <h2 id="sc1_label">HTML Source Code</h2>
+        <p id="sc1_description">To copy the following HTML code, please open it in CodePen.</p>
         <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
         <pre><code id="sc1"></code></pre>
         <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
         <script>
-          sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
+          sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files', 'sc1_description');
           sourceCode.make();
         </script>
       </section>

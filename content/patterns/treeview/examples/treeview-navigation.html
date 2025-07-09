@@ -11,7 +11,7 @@
     <script src="../../../shared/js/examples.js"></script>
     <script src="../../../shared/js/highlight.pack.js"></script>
     <script src="../../../shared/js/app.js"></script>
-    <script src="../../../shared/js/skipto.js"></script>
+    <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
 
     <!-- JS and CSS for this example -->
     <link href="css/treeview-navigation.css" rel="stylesheet">
@@ -20,7 +20,7 @@
   <body>
     <nav aria-label="Related Links" class="feedback">
       <ul>
-        <li><a href="https://github.com/w3c/aria-practices/projects/17">Related Issues</a></li>
+        <li><a href="https://github.com/orgs/w3c/projects/117">Related Issues</a></li>
         <li><a href="../treeview-pattern.html">Design Pattern</a></li>
       </ul>
     </nav>
@@ -37,6 +37,7 @@
             <li>A pattern more suited for typical site navigation with expandable groups of links is the <a href="../../disclosure/disclosure-pattern.html">disclosure pattern.</a></li>
           </ul>
         </div>
+        <img alt="" class="example-page-example-icon" src="../../../images/pattern-treeview.svg">
         <p>
           The below example demonstrates how the <a href="../treeview-pattern.html">Tree View Pattern</a> can be used to build a navigation tree for a set of hierarchically organized web pages.
           It illustrates navigation of a mythical university web site that is comparable to the navigation illustrated in the
@@ -687,13 +688,14 @@
         </ul>
       </section>
 
-      <section>
+      <section class="example-code">
         <h2 id="sc1_label">HTML Source Code</h2>
+        <p id="sc1_description">To copy the following HTML code, please open it in CodePen.</p>
         <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
         <pre><code id="sc1"></code></pre>
         <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
         <script>
-          sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
+          sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files', 'sc1_description');
           sourceCode.make();
         </script>
       </section>

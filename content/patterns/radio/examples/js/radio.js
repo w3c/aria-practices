@@ -82,7 +82,6 @@ class RadioGroup {
 
     switch (event.key) {
       case ' ':
-      case 'Enter':
         this.setChecked(tgt);
         flag = true;
         break;

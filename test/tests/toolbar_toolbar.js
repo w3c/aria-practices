@@ -3,11 +3,11 @@ const { By, Key } = require('selenium-webdriver');
 const assertAriaControls = require('../util/assertAriaControls');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
-const assertAttributeDNE = require('../util/assertAttributeDNE');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertRovingTabindex = require('../util/assertRovingTabindex');
 const assertHasFocus = require('../util/assertHasFocus');
 const assertAttributeCanBeToggled = require('../util/assertAttributeCanBeToggled');
+const translatePlatformKey = require('../util/translatePlatformKeys');
 
 const exampleFile = 'content/patterns/toolbar/examples/toolbar.html';
 
@@ -297,12 +297,24 @@ ariaTest(
 );
 
 ariaTest(
-  'Font family button has aria-expanded',
+  'Font family button has aria-expanded=false',
   exampleFile,
-  'toolbar-menubutton-aria-expanded',
+  'toolbar-menubutton-aria-expanded-false',
   async (t) => {
-    await assertAttributeDNE(t, ex.fontFamilyButtonSelector, 'aria-expanded');
+    await assertAttributeValues(
+      t,
+      ex.fontFamilyButtonSelector,
+      'aria-expanded',
+      'false'
+    );
+  }
+);
 
+ariaTest(
+  'Font family button has aria-expanded=true',
+  exampleFile,
+  'toolbar-menubutton-aria-expanded-true',
+  async (t) => {
     await (
       await t.context.session.findElement(By.css(ex.fontFamilyButtonSelector))
     ).click();
@@ -1104,7 +1116,9 @@ ariaTest(
   'toolbar-button-enter-or-space',
   async (t) => {
     let textarea = await t.context.session.findElement(By.css('textarea'));
-    await textarea.sendKeys(Key.chord(Key.CONTROL, 'a'));
+    let selectAllKeys = translatePlatformKey([Key.CONTROL, 'a']);
+    let selectAllChord = Key.chord(...selectAllKeys);
+    await textarea.sendKeys(selectAllChord);
     let originalText = await textarea.getAttribute('value');
 
     const buttons = await t.context.queryElements(
@@ -1195,7 +1209,9 @@ ariaTest(
   'toolbar-button-enter-or-space',
   async (t) => {
     let textarea = await t.context.session.findElement(By.css('textarea'));
-    await textarea.sendKeys(Key.chord(Key.CONTROL, 'a'));
+    let selectAllKeys = translatePlatformKey([Key.CONTROL, 'a']);
+    let selectAllChord = Key.chord(...selectAllKeys);
+    await textarea.sendKeys(selectAllChord);
     let originalText = await textarea.getAttribute('value');
 
     const buttons = await t.context.queryElements(

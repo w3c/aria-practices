@@ -242,6 +242,6 @@ FontMenu.prototype.close = function (force) {
     (!this.hasFocus && !this.hasHover && !this.controller.hasHover)
   ) {
     this.domNode.style.display = 'none';
-    this.controller.domNode.removeAttribute('aria-expanded');
+    this.controller.domNode.setAttribute('aria-expanded', 'false');
   }
 };

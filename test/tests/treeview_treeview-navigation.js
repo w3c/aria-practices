@@ -503,9 +503,8 @@ ariaTest(
       const isExpandable = await topLevelTreeitems[i].getAttribute('aria-owns');
 
       if (isExpandable) {
-        const expandedState = await topLevelTreeitems[i].getAttribute(
-          'aria-expanded'
-        );
+        const expandedState =
+          await topLevelTreeitems[i].getAttribute('aria-expanded');
 
         t.is(
           expandedState,

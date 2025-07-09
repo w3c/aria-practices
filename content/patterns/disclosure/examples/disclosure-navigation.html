@@ -11,7 +11,7 @@
     <script src="../../../shared/js/examples.js"></script>
     <script src="../../../shared/js/highlight.pack.js"></script>
     <script src="../../../shared/js/app.js"></script>
-    <script src="../../../shared/js/skipto.js"></script>
+    <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../../shared/js/skipto.js"></script>
 
     <!-- JS and CSS for this example -->
     <link href="css/disclosure-navigation.css" rel="stylesheet">
@@ -20,7 +20,7 @@
   <body>
     <nav aria-label="Related Links" class="feedback">
       <ul>
-        <li><a href="https://github.com/w3c/aria-practices/projects/14">Related Issues</a></li>
+        <li><a href="https://github.com/orgs/w3c/projects/132">Related Issues</a></li>
         <li><a href="../disclosure-pattern.html">Design Pattern</a></li>
       </ul>
     </nav>
@@ -38,6 +38,7 @@
             <a href="../../menubar/menu-and-menubar-pattern.html#keyboard_interaction">keyboard interactions specified by the menu and menubar pattern</a>.
           </p>
         </div>
+        <img alt="" class="example-page-example-icon" src="../../../images/pattern-disclosure.svg">
         <p>
           The following example demonstrates using the <a href="../disclosure-pattern.html">Disclosure Pattern</a> to show and hide dropdown lists of links in a navigation bar for a mythical university web site.
           Each disclosure button represents a section of the web site, and expanding it shows a list of links to pages within that section.
@@ -47,6 +48,7 @@
           <li><a href="disclosure-faq.html">Example Disclosure (Show/Hide) for Answers to Frequently Asked Questions</a></li>
           <li><a href="disclosure-image-description.html">Example Disclosure (Show/Hide) for an Image Description</a></li>
           <li><a href="disclosure-navigation-hybrid.html">Example Disclosure Navigation Menu with Top-Level Links</a></li>
+          <li><a href="disclosure-card.html">Disclosure (Show/Hide) Card</a></li>
           <li><a href="../../menubar/examples/menubar-navigation.html">Navigation Menubar Example</a></li>
         </ul>
         <h2>Example Usage Options</h2>
@@ -197,7 +199,7 @@
             <tr data-test-id="key-tab">
               <th>
                 <kbd>Tab</kbd><br>
-                <kbd>Shift + Tab</kbd>
+                <kbd>Shift</kbd> + <kbd>Tab</kbd>
               </th>
               <td>Move keyboard focus among top-level buttons, and if a dropdown is open, into and through links in the dropdown.</td>
             </tr>
@@ -360,13 +362,14 @@
         </ul>
       </section>
 
-      <section>
+      <section class="example-code">
         <h2 id="sc1_label">HTML Source Code</h2>
+        <p id="sc1_description">To copy the following HTML code, please open it in CodePen.</p>
         <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
         <pre><code id="sc1"></code></pre>
         <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
         <script>
-          sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files');
+          sourceCode.add('sc1', 'ex1', 'ex_label', 'css_js_files', 'sc1_description');
           sourceCode.make();
         </script>
       </section>

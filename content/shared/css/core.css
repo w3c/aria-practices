@@ -69,6 +69,7 @@ th .example-header {
   margin-left: 1em;
 }
 
+.example-code button,
 .example-header button {
   display: inline-block;
   position: relative;
