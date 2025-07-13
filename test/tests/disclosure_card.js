@@ -3,21 +3,34 @@ const { By, Key } = require('selenium-webdriver');
 const assertAriaControls = require('../util/assertAriaControls');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertTabOrder = require('../util/assertTabOrder');
-const exampleFile = 'content/patterns/disclosure/examples/disclosure-faq.html';
+const exampleFile = 'content/patterns/disclosure/examples/disclosure-card.html';
 
 const ex = {
-  buttonSelector: '#ex1 button',
+  buttonSelector: '#ex1 header button',
+  detailSelector: '#ex1 .details',
   buttonSelectors: [
-    '#ex1 ul li:nth-child(1) button',
-    '#ex1 ul li:nth-child(2) button',
-    '#ex1 ul li:nth-child(3) button',
-    '#ex1 ul li:nth-child(4) button',
+    '#ex1 ol li:nth-child(1) header button',
+    '#ex1 ol li:nth-child(2) header button',
+    '#ex1 ol li:nth-child(3) header button',
   ],
-  answerSelectors: [
-    '#ex1 ul li:nth-child(1) .desc',
-    '#ex1 ul li:nth-child(2) .desc',
-    '#ex1 ul li:nth-child(3) .desc',
-    '#ex1 ul li:nth-child(4) .desc',
+  detailsSelectors: [
+    '#ex1 ol li:nth-child(1) .details',
+    '#ex1 ol li:nth-child(2) .details',
+    '#ex1 ol li:nth-child(3) .details',
+  ],
+  expandedFocusableItems: [
+    '#ex1 ol li:nth-child(1) header button',
+    '#ex1 ol li:nth-child(1) .details a',
+    '#ex1 ol li:nth-child(1) .details input[type="checkbox"]',
+    '#ex1 ol li:nth-child(1) .details button',
+    '#ex1 ol li:nth-child(2) header button',
+    '#ex1 ol li:nth-child(2) .details a',
+    '#ex1 ol li:nth-child(2) .details input[type="checkbox"]',
+    '#ex1 ol li:nth-child(2) .details button',
+    '#ex1 ol li:nth-child(3) header button',
+    '#ex1 ol li:nth-child(3) .details a',
+    '#ex1 ol li:nth-child(3) .details input[type="checkbox"]',
+    '#ex1 ol li:nth-child(3) .details button',
   ],
 };
 
@@ -63,16 +76,23 @@ ariaTest(
   async (t) => {
     await assertAttributeValues(t, ex.buttonSelector, 'aria-expanded', 'false');
 
+    let details = await t.context.queryElements(t, ex.detailSelector);
+    for (let detail of details) {
+      t.true(
+        (await detail.getAttribute('inert')) === 'true',
+        'All details containers should be inert before clicking the Details buttons'
+      );
+    }
+
     let buttons = await t.context.queryElements(t, ex.buttonSelector);
     for (let button of buttons) {
       await button.click();
     }
 
-    let answers = await t.context.queryElements(t, ex.buttonSelector);
-    for (let answer of answers) {
-      t.true(
-        await answer.isDisplayed(),
-        'All answers should de displayed after clicking all questions'
+    for (let detail of details) {
+      t.false(
+        (await detail.getAttribute('inert')) === 'true',
+        'All details containers should not be inert after clicking the Details buttons'
       );
     }
 
@@ -90,7 +110,7 @@ ariaTest('TAB should move focus', exampleFile, 'key-tab', async (t) => {
     await button.click();
   }
 
-  await assertTabOrder(t, ex.buttonSelectors);
+  await assertTabOrder(t, ex.expandedFocusableItems);
 });
 
 ariaTest(
@@ -100,39 +120,37 @@ ariaTest(
   async (t) => {
     for (let index = 0; index < ex.buttonSelectors.length; index++) {
       let buttonSelector = ex.buttonSelectors[index];
-      let answerSelector = ex.answerSelectors[index];
+      let detailSelector = ex.detailsSelectors[index];
       let button = await t.context.session.findElement(By.css(buttonSelector));
 
       await button.sendKeys(Key.ENTER);
 
       t.true(
         await waitAndCheckExpandedTrue(t, buttonSelector),
-        'Question should have aria-expanded true after sending ENTER: ' +
+        'Details button should have aria-expanded true after sending ENTER: ' +
           buttonSelector
       );
 
-      t.true(
-        await t.context.session
-          .findElement(By.css(answerSelector))
-          .isDisplayed(),
-        'Answer should be displayed after sending ENTER to button: ' +
-          buttonSelector
+      t.false(
+        (await t.context.session
+          .findElement(By.css(detailSelector))
+          .getAttribute('inert')) === 'true',
+        `\`${detailSelector}\` should not be inert after sending ENTER to \`${buttonSelector}\``
       );
 
       await button.sendKeys(Key.ENTER);
 
       t.true(
         await waitAndCheckExpandedFalse(t, buttonSelector),
-        'Question should have aria-expanded false after sending ENTER twice: ' +
+        'Details button should have aria-expanded false after sending ENTER twice: ' +
           buttonSelector
       );
 
-      t.false(
-        await t.context.session
-          .findElement(By.css(answerSelector))
-          .isDisplayed(),
-        'Answer should not be displayed after sending ENTER twice to button: ' +
-          buttonSelector
+      t.true(
+        (await t.context.session
+          .findElement(By.css(detailSelector))
+          .getAttribute('inert')) === 'true',
+        `\`${detailSelector}\` should be inert after sending ENTER to \`${buttonSelector}\``
       );
     }
   }
@@ -145,39 +163,37 @@ ariaTest(
   async (t) => {
     for (let index = 0; index < ex.buttonSelectors.length; index++) {
       let buttonSelector = ex.buttonSelectors[index];
-      let answerSelector = ex.answerSelectors[index];
+      let detailSelector = ex.detailsSelectors[index];
       let button = await t.context.session.findElement(By.css(buttonSelector));
 
       await button.sendKeys(Key.SPACE);
 
       t.true(
         await waitAndCheckExpandedTrue(t, buttonSelector),
-        'Question should have aria-expanded true after sending SPACE: ' +
+        'Details button should have aria-expanded true after sending SPACE: ' +
           buttonSelector
       );
 
-      t.true(
-        await t.context.session
-          .findElement(By.css(answerSelector))
-          .isDisplayed(),
-        'Answer should be displayed after sending SPACE to button: ' +
-          buttonSelector
+      t.false(
+        (await t.context.session
+          .findElement(By.css(detailSelector))
+          .getAttribute('inert')) === 'true',
+        `\`${detailSelector}\` should not be inert after sending SPACE to \`${buttonSelector}\``
       );
 
       await button.sendKeys(Key.SPACE);
 
       t.true(
         await waitAndCheckExpandedFalse(t, buttonSelector),
-        'Question should have aria-expanded false after sending SPACE twice: ' +
+        'Details button should have aria-expanded false after sending SPACE twice: ' +
           buttonSelector
       );
 
-      t.false(
-        await t.context.session
-          .findElement(By.css(answerSelector))
-          .isDisplayed(),
-        'Answer should not be displayed after sending SPACE twice to button: ' +
-          buttonSelector
+      t.true(
+        (await t.context.session
+          .findElement(By.css(detailSelector))
+          .getAttribute('inert')) === 'true',
+        `\`${detailSelector}\` should be inert after sending SPACE to \`${buttonSelector}\``
       );
     }
   }
