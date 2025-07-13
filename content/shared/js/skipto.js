@@ -2468,7 +2468,7 @@ button:hover {
         else {
           if (node instanceof HTMLSlotElement) {
             // if no slotted elements, check for default slotted content
-            const assignedNodes = node.assignedNodes().length ? node.assignedNodes() : node.assignedNodes({ flatten: true });
+            const assignedNodes = Array.from(node.assignedNodes({ flatten: true }));
             assignedNodes.forEach( assignedNode => {
               nc = getNodeContents(assignedNode);
               if (nc.length) arr.push(nc);
@@ -2500,8 +2500,7 @@ button:hover {
         }
         break;
     }
-
-    return contents;
+    return normalize(contents);
   }
 
   /*
@@ -2602,7 +2601,7 @@ button:hover {
   /**
    *   @fuction getAccessibleName
    *
-   *   @desc Returns the accessible name for an heading or landamrk 
+   *   @desc Returns the accessible name for an heading or landmark
    *
    *   @paramn {Object}   dom      - Document of the current element
    *   @param  {node}     element  - DOM element node for either a heading or
@@ -3198,6 +3197,7 @@ button:hover {
                       headingTags.includes(tagName) ?
                       tagName.substring(1) :
                       '';
+
         if (headingTags.includes(tagName) ||
            (isHeadingRole && hasAriaLevel)) {
           const accName = getAccessibleName(doc, node, true);
@@ -3344,7 +3344,7 @@ button:hover {
           ((role === 'presentation') || role === 'none')
          ) continue;
       if (isVisible(heading.node) &&
-          isNotEmptyString(heading.node.textContent)) {
+          isNotEmptyString(heading.name)) {
         if (heading.node.hasAttribute('data-skip-to-id')) {
           dataId = heading.node.getAttribute('data-skip-to-id');
         } else {
@@ -4152,7 +4152,7 @@ button:hover {
 
         this.containerNode.addEventListener('focusin', this.handleFocusin.bind(this));
         this.containerNode.addEventListener('focusout', this.handleFocusout.bind(this));
-        this.containerNode.addEventListener('pointerdown', this.handleContinerPointerdown.bind(this), true);
+        this.containerNode.addEventListener('pointerdown', this.handleContainerPointerdown.bind(this), true);
         document.documentElement.addEventListener('pointerdown', this.handleBodyPointerdown.bind(this), true);
 
         if (this.usesAltKey || this.usesOptionKey) {
@@ -5298,7 +5298,7 @@ button:hover {
         event.preventDefault();
       }
 
-      handleContinerPointerdown(event) {
+      handleContainerPointerdown(event) {
         debug$2.flag && debug$2.log(`[down]: target: ${event.pointerId}`);
 
         if (this.isOverButton(event.clientX, event.clientY)) {
@@ -5306,8 +5306,8 @@ button:hover {
         }
         else {
           this.containerNode.setPointerCapture(event.pointerId);
-          this.containerNode.addEventListener('pointermove', this.handleContinerPointermove.bind(this));
-          this.containerNode.addEventListener('pointerup', this.handleContinerPointerup.bind(this));
+          this.containerNode.addEventListener('pointermove', this.handleContainerPointermove.bind(this));
+          this.containerNode.addEventListener('pointerup', this.handleContainerPointerup.bind(this));
 
           if (this.containerNode.contains(event.target)) {
             if (this.isOpen()) {
@@ -5331,7 +5331,7 @@ button:hover {
         event.preventDefault();
       }
 
-      handleContinerPointermove(event) {
+      handleContainerPointermove(event) {
         const mi = this.getMenuitem(event.clientX, event.clientY);
         if (mi) {
           this.removeHoverClass(mi);
@@ -5349,11 +5349,11 @@ button:hover {
         event.preventDefault();
       }
 
-      handleContinerPointerup(event) {
+      handleContainerPointerup(event) {
 
         this.containerNode.releasePointerCapture(event.pointerId);
-        this.containerNode.removeEventListener('pointermove', this.handleContinerPointermove);
-        this.containerNode.removeEventListener('pointerup', this.handleContinerPointerup);
+        this.containerNode.removeEventListener('pointermove', this.handleContainerPointermove);
+        this.containerNode.removeEventListener('pointerup', this.handleContainerPointerup);
 
         const mi = this.getMenuitem(event.clientX, event.clientY);
         const omb = this.isOverButton(event.clientX, event.clientY);
