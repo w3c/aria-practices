@@ -405,7 +405,7 @@ $skipToId [role="menuitem"].hover .label {
    *
    *   @desc Returns
    *
-   *   @param  {Object}  colorThemes  -  Javascript object with keyed color themes
+   *   @param  {Object}  colorThemes  -  JavaScript object with keyed color themes
    *   @param  {String}  colorTheme   -  A string identifying a color theme  
    *
    *   @returns {Object}  see @desc
@@ -2828,8 +2828,8 @@ $skipToId [role="menuitem"].hover .label {
        * @desc Get configuration information from author configuration to change
        *       default settings 
        *
-       * @param  {object}  config       - Javascript object with default configuration information
-       * @param  {object}  globalConfig - Javascript object with configuration information oin a global variable
+       * @param  {object}  config       - JavaScript object with default configuration information
+       * @param  {object}  globalConfig - JavaScript object with configuration information oin a global variable
        */
       setupConfigFromGlobal: function(config, globalConfig) {
         let authorConfig = {};
@@ -2869,7 +2869,7 @@ $skipToId [role="menuitem"].hover .label {
        * @desc Get configuration information from author configuration to change
        *       default settings
        *
-       * @param  {object}  config - Javascript object with default configuration information
+       * @param  {object}  config - JavaScript object with default configuration information
        */
       setupConfigFromDataAttribute: function(config) {
         let dataConfig = {};
