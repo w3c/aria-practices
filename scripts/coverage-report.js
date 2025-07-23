@@ -546,18 +546,19 @@ glob
       pointerUp: getNumberOfReferences(dataJS, 'pointerup', true),
     };
 
-    (example.documentationRoles = addExampleToRoles(getRoles(html), example)),
-      console.log(
-        '  [Documentation Roles]: ' + example.documentationRoles.length
-      );
-    (example.documentationAttributes = addExampleToPropertiesAndStates(
+    example.documentationRoles = addExampleToRoles(getRoles(html), example);
+    console.log(
+      '  [Documentation Roles]: ' + example.documentationRoles.length
+    );
+
+    example.documentationAttributes = addExampleToPropertiesAndStates(
       getPropertiesAndStates(html),
       example
-    )),
-      console.log(
-        '  [Documentation aria-* Attributes]: ' +
-          example.documentationAttributes.length
-      );
+    );
+    console.log(
+      '  [Documentation aria-* Attributes]: ' +
+        example.documentationAttributes.length
+    );
 
     indexOfExamples.push(example);
   });
