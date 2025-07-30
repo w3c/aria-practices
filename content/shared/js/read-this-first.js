@@ -1,8 +1,6 @@
 'use strict';
 
 /**
- * Read This First Banner
- *
  * Inserts the "Read This First" banner from /content/shared/templates/read-this-first.html into
  * pages after the h1 element when the DOM is loaded. The banner is configured using data
  * attributes on the script element.
@@ -15,11 +13,6 @@
  * CONFIGURATION OPTIONS:
  * - showImage: boolean (default: true) - Controls whether the illustration image is displayed
  *
- * REQUIREMENTS:
- * - Page must have an <h1> element (banner is inserted after it)
- * - Script automatically adjusts paths based on where it's called from
- * - Works with both template file fetch and fallback banner
- *
  * BEHAVIOR:
  * - Banner is inserted after the h1 element when DOM is loaded
  * - If template file can't be fetched (e.g., CORS issues with file:// protocol), uses fallback
@@ -31,7 +24,7 @@
     showImage: true,
   };
 
-  // NOTE: If read-this-first.html is ever changed, update this fallback banner to match
+  // NOTE: If /content/shared/templates/read-this-first.html is ever changed, update this fallback banner to match
   // MUST HAVE `div class="read-this-first"`
   const fallbackBanner = `
     <div class="read-this-first">
@@ -53,21 +46,13 @@
     const scriptElement = document.querySelector(
       'script[src*="read-this-first.js"]'
     );
-    if (!scriptElement) {
-      return '../../'; // Default fallback
-    }
+    if (!scriptElement) return '../../';
 
     const scriptSrc = scriptElement.getAttribute('src');
     // Extract the directory path from the script src
     // e.g., "../../shared/js/read-this-first.js" gives "../../"
     const match = scriptSrc.match(/^(.*\/)shared\/js\/read-this-first\.js$/);
     return match ? match[1] : '../../';
-  }
-
-  function adjustPaths(html, basePath) {
-    return html
-      .replace(/src="\.\.\/\.\.\//g, `src="${basePath}`)
-      .replace(/href="\.\.\/\.\.\//g, `href="${basePath}`);
   }
 
   function parseConfigFromDataAttribute() {
@@ -104,37 +89,31 @@
   function removeImageIfNeeded(bannerElement, config) {
     if (!config.showImage) {
       const img = bannerElement.querySelector('img');
-      if (img) {
-        img.remove();
-      }
+      if (img) img.remove();
     }
   }
 
   async function insertBanner(config) {
-    // Find the h1 element
+    // Get the first found h1 element on page
     const h1 = document.querySelector('h1');
-    if (!h1) {
-      return;
-    }
+    if (!h1) return;
 
     // Get the base path for relative URLs
     const basePath = getScriptBasePath();
 
     try {
-      // Fetch the banner HTML from the template file
+      // Fetch the banner HTML from the template file (will fail with file:// protocol)
       const response = await fetch(
         `${basePath}shared/templates/read-this-first.html`
       );
       const html = await response.text();
 
-      // Parse the HTML and extract the read-this-first div
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, 'text/html');
+      // Get the read-this-first div
       const bannerDiv = doc.querySelector('.read-this-first');
 
-      if (!bannerDiv) {
-        return;
-      }
+      if (!bannerDiv) return;
 
       const bannerElement = bannerDiv.cloneNode(true);
       removeImageIfNeeded(bannerElement, config);
@@ -143,11 +122,13 @@
       h1.parentNode.insertBefore(bannerElement, h1.nextSibling);
     } catch (error) {
       // Fallback to static banner if fetch fails (CORS will fail with file:// protocol)
-      const temp = document.createElement('div');
+      const tempBannerDiv = document.createElement('div');
       // Adjust paths in the fallback banner based on script location
-      const adjustedFallbackBanner = adjustPaths(fallbackBanner, basePath);
-      temp.innerHTML = adjustedFallbackBanner;
-      const fallbackBannerElement = temp.firstElementChild;
+      tempBannerDiv.innerHTML = fallbackBanner
+        .replace(/src="\.\.\/\.\.\//g, `src="${basePath}`)
+        .replace(/href="\.\.\/\.\.\//g, `href="${basePath}`);
+
+      const fallbackBannerElement = tempBannerDiv.firstElementChild;
       removeImageIfNeeded(fallbackBannerElement, config);
 
       // Insert the banner after h1
@@ -160,8 +141,8 @@
     await insertBanner(config);
   }
 
-  // Initialize on DOMContentLoaded
   if (document.readyState === 'loading') {
+    // Initialize on DOMContentLoaded
     document.addEventListener('DOMContentLoaded', init);
   } else {
     // DOM is already loaded
