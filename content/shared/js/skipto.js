@@ -1,5 +1,5 @@
 /* ========================================================================
- * Version: 5.8.1
+ * Version: 5.8.2
  * Copyright (c) 2022, 2023, 2024, 2025 Jon Gunderson; Licensed BSD
  * Copyright (c) 2021 PayPal Accessibility Team and University of Illinois; Licensed BSD
  * All rights reserved.
@@ -4881,7 +4881,7 @@ button:hover {
        * @return {object}  see @desc
        */
       getMenuitem(x, y) {
-        for (let i = 0; i < this.menuitemNodes.length; i += 1) {
+        for (let i = (this.menuitemNodes.length - 1); i >= 0; i -= 1) {
           const node = this.menuitemNodes[i];
           const rect = node.getBoundingClientRect();
 
@@ -5289,6 +5289,7 @@ button:hover {
       }
 
       handleMenuitemClick(event) {
+        debug$2.log(`[handleMenuitemClick]: ${event.currentTarget.textContent}`);
         this.handleMenuitemAction(event.currentTarget);
         event.stopPropagation();
         event.preventDefault();
@@ -5324,7 +5325,6 @@ button:hover {
       }
 
       handleMenuitemPointerleave(event) {
-        debug$2.flag && debug$2.log(`[leave]`);
         let tgt = event.currentTarget;
         tgt.classList.remove('hover');
         event.stopPropagation();
@@ -5439,7 +5439,7 @@ button:hover {
       // Always call super first in constructor
       super();
       this.attachShadow({ mode: 'open' });
-      this.version = "5.8.1";
+      this.version = "5.8.2";
       this.buttonSkipTo = false;
       this.initialized = false;
 
