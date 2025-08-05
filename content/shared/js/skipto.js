@@ -4561,30 +4561,15 @@ button:hover {
         this.updateMenuitems();
 
         this.landmarkGroupLabelNode.textContent = this.addNumberToGroupLabel(config.landmarkGroupLabel, landmarkElements.length);
-        if (landmarkElements.length === 1) {
-          this.landmarkGroupLabelNode.setAttribute('aria-label', config.landmarkOneGroupLabel);
-        }
-        else {
-         this.landmarkGroupLabelNode.setAttribute('aria-label', `${landmarkElements.length} ${config.landmarkGroupLabel}`);
-        }
+        this.landmarkGroupLabelNode.setAttribute('aria-label', config.landmarkGroupLabel);
 
         if (config.headings.includes('main')) {
           this.headingGroupLabelNode.textContent = this.addNumberToGroupLabel(config.headingMainGroupLabel, headingElements.length);
-          if (headingElements.length === 1) {
-            this.headingGroupLabelNode.setAttribute('aria-label', config.headingOneMainGroupLabel);
-          }
-          else {
-           this.headingGroupLabelNode.setAttribute('aria-label', `${headingElements.length} ${config.headingMainGroupLabel}`);
-          }
+          this.headingGroupLabelNode.setAttribute('aria-label', config.headingMainGroupLabel);
         }
         else {
           this.headingGroupLabelNode.textContent = this.addNumberToGroupLabel(config.headingGroupLabel, headingElements.length);
-          if (headingElements.length === 1) {
-            this.headingGroupLabelNode.setAttribute('aria-label', config.headingOneGroupLabel);
-          }
-          else {
-           this.headingGroupLabelNode.setAttribute('aria-label', `${headingElements.length} ${config.headingGroupLabel}`);
-          }
+          this.headingGroupLabelNode.setAttribute('aria-label', config.headingGroupLabel);
         }
       }
 
@@ -5544,9 +5529,7 @@ button:hover {
         menuLabel: 'Landmarks and Headings',
         landmarkGroupLabel: 'Landmark Regions',
         headingGroupLabel: 'Headings',
-        headingOneGroupLabel: 'One Heading',
         headingMainGroupLabel: 'Headings in Main Region',
-        headingOneMainGroupLabel: 'One Heading in Main Region',
         headingLevelLabel: 'Heading level',
         mainLabel: 'main',
         searchLabel: 'search',
