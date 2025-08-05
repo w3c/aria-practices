@@ -104,10 +104,6 @@
       margin: 0;
       outline: none;
       border-radius: 0;
-
-      &, &:hover, &:focus {
-        border: none;
-      }
     }
 
     [role="spinbutton"] {
@@ -116,6 +112,10 @@
       max-inline-size: fit-content;
       field-sizing: content;
       font-variant-numeric: tabular-nums;
+
+      &, &:hover, &:focus {
+        border: none;
+      }
     }
 
     button {
