@@ -54,13 +54,13 @@
     margin-block-end: 1rem;
   }
 
-  .fields {
+  .spinner-fields {
     display: flex;
     flex-wrap: wrap;
     gap: 2ch;
   }
 
-  .field {
+  .spinner-field {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
