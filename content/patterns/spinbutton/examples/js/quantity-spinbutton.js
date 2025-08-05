@@ -11,14 +11,18 @@ class SpinButton {
   constructor(el) {
     this.el = el;
     this.id = el.id;
-    this.controls = Array.from(document.querySelectorAll(`button[aria-controls="${this.id}"]`));
+    this.controls = Array.from(
+      document.querySelectorAll(`button[aria-controls="${this.id}"]`)
+    );
     this.output = document.querySelector(`output[for="${this.id}"]`);
     this.timer = null;
     this.setBounds();
     el.addEventListener('input', () => this.setValue(el.value));
     el.addEventListener('blur', () => this.setValue(el.value, true));
-    el.addEventListener('keydown', e => this.handleKey(e));
-    this.controls.forEach(btn => btn.addEventListener('click', () => this.handleClick(btn)));
+    el.addEventListener('keydown', (e) => this.handleKey(e));
+    this.controls.forEach((btn) =>
+      btn.addEventListener('click', () => this.handleClick(btn))
+    );
     this.setValue(el.value);
   }
 
@@ -37,13 +41,18 @@ class SpinButton {
     const el = this.el;
     this.hasMin = el.hasAttribute('aria-valuemin');
     this.hasMax = el.hasAttribute('aria-valuemax');
-    this.min = this.hasMin ? +el.getAttribute('aria-valuemin') : Number.MIN_SAFE_INTEGER;
-    this.max = this.hasMax ? +el.getAttribute('aria-valuemax') : Number.MAX_SAFE_INTEGER;
+    this.min = this.hasMin
+      ? +el.getAttribute('aria-valuemin')
+      : Number.MIN_SAFE_INTEGER;
+    this.max = this.hasMax
+      ? +el.getAttribute('aria-valuemax')
+      : Number.MAX_SAFE_INTEGER;
   }
 
   setValue(raw, onBlur = false) {
     let val = typeof raw === 'number' ? raw : this.parseValue(raw);
-    val = (val === null) ? ((onBlur && this.hasMin) ? this.min : '') : this.clamp(val);
+    val =
+      val === null ? (onBlur && this.hasMin ? this.min : '') : this.clamp(val);
     this.el.value = val;
     this.el.setAttribute('aria-valuenow', val);
     this.updateButtonStates();
@@ -51,10 +60,13 @@ class SpinButton {
 
   updateButtonStates() {
     const val = +this.el.value;
-    this.controls.forEach(btn => {
+    this.controls.forEach((btn) => {
       const op = btn.getAttribute('data-spinbutton-operation');
-      btn.setAttribute('aria-disabled',
-        (op === 'decrement' ? val <= this.min : val >= this.max) ? 'true' : 'false'
+      btn.setAttribute(
+        'aria-disabled',
+        (op === 'decrement' ? val <= this.min : val >= this.max)
+          ? 'true'
+          : 'false'
       );
     });
   }
@@ -84,12 +96,15 @@ class SpinButton {
   }
 
   handleClick(btn) {
-    const dir = btn.getAttribute('data-spinbutton-operation') === 'decrement' ? -1 : 1;
+    const dir =
+      btn.getAttribute('data-spinbutton-operation') === 'decrement' ? -1 : 1;
     this.setValue((+this.el.value || 0) + dir);
     this.announce();
   }
 }
 
 window.addEventListener('load', () =>
-  document.querySelectorAll('[role="spinbutton"]').forEach(el => new SpinButton(el))
+  document
+    .querySelectorAll('[role="spinbutton"]')
+    .forEach((el) => new SpinButton(el))
 );
