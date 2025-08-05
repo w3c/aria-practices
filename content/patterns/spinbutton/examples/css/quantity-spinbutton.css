@@ -103,7 +103,11 @@
       padding: 0.25em 0.5em;
       margin: 0;
       outline: none;
-      border-radius: none;
+      border-radius: 0;
+
+      &, &:hover, &:focus {
+        border: none;
+      }
     }
 
     [role="spinbutton"] {
