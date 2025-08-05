@@ -94,6 +94,7 @@
     }
 
     input, button {
+      appearance: none;
       font: inherit;
       font-weight: bold;
       color: inherit;
@@ -102,6 +103,7 @@
       padding: 0.25em 0.5em;
       margin: 0;
       outline: none;
+      border-radius: none;
     }
 
     [role="spinbutton"] {
