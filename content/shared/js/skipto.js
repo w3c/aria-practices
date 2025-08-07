@@ -1,5 +1,5 @@
 /* ========================================================================
- * Version: 5.8.2
+ * Version: 5.8.3
  * Copyright (c) 2022, 2023, 2024, 2025 Jon Gunderson; Licensed BSD
  * Copyright (c) 2021 PayPal Accessibility Team and University of Illinois; Licensed BSD
  * All rights reserved.
@@ -2096,6 +2096,9 @@ button:hover {
       if (this.overlayElem) {
         this.overlayElem.style.display = 'none';
       }
+      if (this.hiddenElem) {
+        this.hiddenElem.style.display = 'none';
+      }
     }
 
   }
@@ -3867,7 +3870,8 @@ button:hover {
       return false;
     } // end function
 
-    passFound = passElem === document.body;
+    passFound = (passElem === document.body) ||
+                (passElem.parentNode && (passElem.parentNode.id === SKIP_TO_ID));
     let node = transverseDOMForElement(document.body);
 
     if (!node && useFirst && firstNode) {
@@ -5424,7 +5428,7 @@ button:hover {
       // Always call super first in constructor
       super();
       this.attachShadow({ mode: 'open' });
-      this.version = "5.8.2";
+      this.version = "5.8.3";
       this.buttonSkipTo = false;
       this.initialized = false;
 
