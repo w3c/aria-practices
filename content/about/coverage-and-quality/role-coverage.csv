@@ -63,7 +63,7 @@
 "separator","0","1","Example: Editor Menubar"
 "slider","2","5","Guidance: Slider (Multi-Thumb) Pattern","Guidance: Slider Pattern","Example: Horizontal Multi-Thumb Slider","Example: Color Viewer Slider","Example: Rating Slider","Example: Media Seek Slider","Example: Vertical Temperature Slider"
 "spinbutton","1","3","Guidance: Spinbutton Pattern","Example: (Deprecated) Date Picker Spin Button","Example: Quantity Spin Button","Example: Toolbar"
-"status","0","1","Example: Quantity Spin Button"
+"status","0","0"
 "switch","1","3","Guidance: Switch Pattern","Example: Switch  Using HTML Button","Example: Switch  Using HTML Checkbox Input","Example: Switch"
 "tab","1","4","Guidance: Keyboard Navigation Between Components (The Tab Sequence)","Example: Auto-Rotating Image Carousel with Tabs for Slide Control","Example: Experimental  Tabs with Action Buttons","Example: Tabs with Automatic Activation","Example: Tabs with Manual Activation"
 "table","2","1","Guidance: Table Pattern","Guidance: Grid and Table Properties","Example: Table"

@@ -25,8 +25,8 @@ const ex = {
     accname: 'Remove adult',
   },
 
-  status: {
-    sel: 'div[for="adults"]',
+  output: {
+    sel: 'output[for="adults"]',
     selfDestruct: '2000',
   },
 };
@@ -120,14 +120,15 @@ ariaTest(
   }
 );
 
-ariaTest(
-  'role="status" on div element',
-  exampleFile,
-  'status-role',
-  async (t) => {
-    await assertAriaRoles(t, 'example', 'status', '3', 'div');
-  }
-);
+ariaTest('output element exists', exampleFile, 'output', async (t) => {
+  let output = await t.context.queryElements(t, ex.output.sel);
+
+  t.is(
+    output.length,
+    1,
+    'One output element should be found by selector: ' + ex.output.sel
+  );
+});
 
 // keys
 
@@ -301,11 +302,11 @@ ariaTest(
   }
 );
 
-// incerment and decrement buttons
+// increment and decrement buttons
 
 ariaTest('increment button', exampleFile, 'increment-button', async (t) => {
   const spinner = await t.context.session.findElement(By.css(ex.spin.sel));
-  const status = await t.context.session.findElement(By.css(ex.status.sel));
+  const output = await t.context.session.findElement(By.css(ex.output.sel));
   const button = await t.context.session.findElement(By.css(ex.inc.sel));
   const min = parseInt(ex.spin.min);
   const max = parseInt(ex.spin.max);
@@ -325,11 +326,11 @@ ariaTest('increment button', exampleFile, 'increment-button', async (t) => {
       `After clicking ${val - 1} times, aria-valuenow should be ${val}`
     );
 
-    // Check that the status element has the expected value.
+    // Check that the output element has the expected value.
     t.is(
-      await status.getText(),
+      await output.getText(),
       String(val),
-      `After clicking ${val - 1} times, status should be ${val}`
+      `After clicking ${val - 1} times, output should be ${val}`
     );
   }
 
@@ -347,11 +348,11 @@ ariaTest('increment button', exampleFile, 'increment-button', async (t) => {
     `After clicking once more, aria-valuenow should still be ${max}`
   );
 
-  // Check that the status element has the expected value.
+  // Check that the output element has the expected value.
   t.is(
-    await status.getText(),
+    await output.getText(),
     String(max),
-    `After clicking once more, status should still be ${max}`
+    `After clicking once more, output should still be ${max}`
   );
 
   // Check that the decrement button is still not disabled
@@ -360,20 +361,20 @@ ariaTest('increment button', exampleFile, 'increment-button', async (t) => {
   // Check that the increment button is still disabled
   await assertAttributeValues(t, ex.inc.sel, 'aria-disabled', 'true');
 
-  // Wait for the status to self-destruct
-  await t.context.session.sleep(parseInt(ex.status.selfDestruct) + 500);
+  // Wait for the output to self-destruct
+  await t.context.session.sleep(parseInt(ex.output.selfDestruct) + 500);
 
-  // Check that the status element is empty
+  // Check that the output element is empty
   t.is(
-    await status.getText(),
+    await output.getText(),
     '',
-    `After waiting for the status self-destruct timer, it should be empty`
+    `After waiting for the output self-destruct timer, it should be empty`
   );
 });
 
 ariaTest('decrement button', exampleFile, 'decrement-button', async (t) => {
   const spinner = await t.context.session.findElement(By.css(ex.spin.sel));
-  const status = await t.context.session.findElement(By.css(ex.status.sel));
+  const output = await t.context.session.findElement(By.css(ex.output.sel));
   const button = await t.context.session.findElement(By.css(ex.dec.sel));
   const min = parseInt(ex.spin.min);
   const max = parseInt(ex.spin.max);
@@ -393,11 +394,11 @@ ariaTest('decrement button', exampleFile, 'decrement-button', async (t) => {
       `After clicking ${val + 1} times, aria-valuenow should be ${val}`
     );
 
-    // Check that the status element has the expected value.
+    // Check that the output element has the expected value.
     t.is(
-      await status.getText(),
+      await output.getText(),
       String(val),
-      `After clicking ${val + 1} times, status should be ${val}`
+      `After clicking ${val + 1} times, output should be ${val}`
     );
   }
 
@@ -415,11 +416,11 @@ ariaTest('decrement button', exampleFile, 'decrement-button', async (t) => {
     `After clicking once more, aria-valuenow should still be ${min}`
   );
 
-  // Check that the status element has the expected value.
+  // Check that the output element has the expected value.
   t.is(
-    await status.getText(),
+    await output.getText(),
     String(min),
-    `After clicking once more, status should still be ${min}`
+    `After clicking once more, output should still be ${min}`
   );
 
   // Check that the decrement button is still disabled
@@ -428,13 +429,13 @@ ariaTest('decrement button', exampleFile, 'decrement-button', async (t) => {
   // Check that the increment button is still not disabled
   await assertAttributeValues(t, ex.inc.sel, 'aria-disabled', 'false');
 
-  // Wait for the status to self-destruct
-  await t.context.session.sleep(parseInt(ex.status.selfDestruct) + 500);
+  // Wait for the output to self-destruct
+  await t.context.session.sleep(parseInt(ex.output.selfDestruct) + 500);
 
-  // Check that the status element is empty
+  // Check that the output element is empty
   t.is(
-    await status.getText(),
+    await output.getText(),
     '',
-    `After waiting for the status self-destruct timer, it should be empty`
+    `After waiting for the output self-destruct timer, it should be empty`
   );
 });
