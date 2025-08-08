@@ -87,13 +87,11 @@
                       <span aria-hidden="true">&plus;</span>
                     </button>
                   </div>
-                  <output
+                  <div
+                    role="status"
                     for="adults"
-                    role="log"
-                    aria-live="polite"
-                    aria-relevant="additions"
-                    class="visually-hidden">
-                  </output>
+                    data-self-destruct="2000"
+                    class="visually-hidden"></div>
                 </div>
                 <div class="spinner-field">
                   <label for="kids">
@@ -132,7 +130,11 @@
                       <span aria-hidden="true">&plus;</span>
                     </button>
                   </div>
-                  <output for="kids" role="log" aria-live="polite" aria-relevant="additions" class="visually-hidden"></output>
+                  <div
+                    role="status"
+                    for="kids"
+                    data-self-destruct="2000"
+                    class="visually-hidden"></div>
                 </div>
                 <div class="spinner-field">
                   <label for="animals">
@@ -171,7 +173,11 @@
                       <span aria-hidden="true">&plus;</span>
                     </button>
                   </div>
-                  <output for="animals" role="log" aria-live="polite" aria-relevant="additions" class="visually-hidden"></output>
+                  <div
+                    role="status"
+                    for="animals"
+                    data-self-destruct="2000"
+                    class="visually-hidden"></div>
                 </div>
               </div>
             </fieldset>
@@ -190,7 +196,8 @@
           <li>
             The spin button input and its adjacent buttons are visually
             presented as a singular form field containing an editable value, an
-            increase operation, and a decrease operation.
+            <span data-test-id="increment-button">increment button</span>, and a
+            <span data-test-id="decrement-button">decrement button</span>.
           </li>
           <li>
             When either the spin button input or its adjacent buttons have
@@ -202,7 +209,7 @@
             focus indicator appears with subtle animation to draw attention.
           </li>
           <li>
-            The increase and decrease buttons:
+            The increment and decrement buttons:
             <ul>
               <li>
                 Are generously sized for ease of use.
@@ -270,6 +277,15 @@
               <th><kbd>End</kbd></th>
               <td>Increases to maximum value.</td>
             </tr>
+            <tr data-test-id="standard-single-line-editing-keys">
+              <th>Standard single line text editing keys</th>
+              <td>
+                <ul>
+                  <li>Keys used for cursor movement and text manipulation, such as <kbd>Delete</kbd> and <kbd>Shift</kbd> + <kbd>Right Arrow</kbd>.</li>
+                  <li>An HTML <code>input</code> with <code>type="text"</code> is used for the spin button so the browser will provide platform-specific editing keys.</li>
+                </ul>
+              </td>
+            </tr>
           </tbody>
         </table>
       </section>
@@ -319,7 +335,7 @@
               <td></td>
               <th scope="row"><code>title="NAME_STRING"</code></th>
               <td><code>button</code></td>
-              <td>Defines the accessible name for each increase and decrease button (<q>Remove adult</q>, <q>Add adult</q>, <q>Remove kid</q>, <q>Add kid</q>, <q>Remove animal</q>, and <q>Add animal</q>).</td>
+              <td>Defines the accessible name for each increment and decrement button (<q>Remove adult</q>, <q>Add adult</q>, <q>Remove kid</q>, <q>Add kid</q>, <q>Remove animal</q>, and <q>Add animal</q>).</td>
             </tr>
             <tr data-test-id="button-aria-controls">
               <td></td>
@@ -333,15 +349,15 @@
               <td></td>
               <th scope="row"><code>tabindex="-1"</code></th>
               <td><code>button</code></td>
-              <td>Removes the decrease and increase buttons from the page <kbd>Tab</kbd> sequence while keeping them focusable so they can be accessed with touch-based and voice-based assistive technologies.</td>
+              <td>Removes the increment and decrement buttons from the page <kbd>Tab</kbd> sequence while keeping them focusable so they can be accessed with touch-based and voice-based assistive technologies.</td>
             </tr>
-            <tr data-test-id="button-aria-disabled">
+            <tr>
               <td></td>
               <th scope="row"><code>aria-disabled="true"</code></th>
               <td><code>button</code></td>
               <td>Set when the minimum or maximum value has been reached to inform assistive technologies that the button has been disabled.</td>
             </tr>
-            <tr data-test-id="button-aria-disabled">
+            <tr>
               <td></td>
               <th scope="row"><code>aria-disabled="false"</code></th>
               <td><code>button</code></td>
@@ -351,27 +367,18 @@
               <td></td>
               <th scope="row"><code>aria-hidden="true"</code></th>
               <td><code>span</code></td>
-              <td>For assistive technology users, hides the visible minus and plus characters in the decrease and increase buttons since they are symbolic of the superior button labels provided by the <code>title</code> attribute.</td>
+              <td>For assistive technology users, hides the visible minus and plus characters in the increment and decrement buttons since they are symbolic of the superior button labels provided by the <code>title</code> attribute.</td>
             </tr>
-            <tr data-test-id="log-role">
-              <th scope="row"><code>log</code></th>
+            <tr data-test-id="status-role">
+              <th scope="row"><code>status</code></th>
               <td></td>
-              <td><code>output</code></td>
-              <td>Identifies the invisible <code>output</code> element as a <code>log</code>.</td>
-            </tr>
-            <tr data-test-id="log-aria-live">
-              <td></td>
-              <th scope="row">
-                <code>aria-live="polite"</code>
-              </th>
-              <td>
-                <code>output</code>
-              </td>
+              <td><code>div</code></td>
               <td>
                 <ul>
-                  <li>Triggers a screen reader announcement of the <code>output</code> element’s updated content at the next graceful opportunity.</li>
-                  <li>When either the increase or decrease button is pressed, the current value of the spin button is injected into the <code>output</code> element.</li>
-                  <li>In keeping with the <code>log</code> role of the <code>output</code>, its contents are emptied 3 seconds after injection.</li>
+                  <li>Identifies the invisible <code>div</code> as a <code>status</code> element with an implicit <code>aria-live</code> value of <code>polite</code>.</li>
+                  <li>Triggers a screen reader announcement of the <code>status</code> element’s updated content at the next graceful opportunity.</li>
+                  <li>When either the increment or decrement button is pressed, the current value of the spin button is injected into the <code>status</code> element.</li>
+                  <li>Its contents are emptied 2000 milliseconds after injection.</li>
                 </ul>
               </td>
             </tr>

@@ -14,7 +14,7 @@ class SpinButton {
     this.controls = Array.from(
       document.querySelectorAll(`button[aria-controls="${this.id}"]`)
     );
-    this.output = document.querySelector(`output[for="${this.id}"]`);
+    this.status = document.querySelector(`[role="status"][for="${this.id}"]`);
     this.timer = null;
     this.setBounds();
     el.addEventListener('input', () => this.setValue(el.value));
@@ -72,13 +72,13 @@ class SpinButton {
   }
 
   announce() {
-    if (!this.output) return;
-    this.output.textContent = this.el.value;
+    if (!this.status) return;
+    this.status.textContent = this.el.value;
     clearTimeout(this.timer);
     this.timer = setTimeout(() => {
-      this.output.textContent = '';
+      this.status.textContent = '';
       this.timer = null;
-    }, 3000);
+    }, this.status.dataset.selfDestruct || 1000);
   }
 
   handleKey(e) {
