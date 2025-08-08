@@ -2,6 +2,7 @@ const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaRoles = require('../util/assertAriaRoles');
+const translatePlatformKey = require('../util/translatePlatformKeys');
 
 const exampleFile =
   'content/patterns/spinbutton/examples/quantity-spinbutton.html';
@@ -264,13 +265,15 @@ ariaTest(
     const spinner = await t.context.session.findElement(By.css(ex.spin.sel));
     const min = parseInt(ex.spin.min);
     const max = parseInt(ex.spin.max);
+    const selectAllKeys = translatePlatformKey([Key.CONTROL, 'a']);
+    const selectAllChord = Key.chord(...selectAllKeys);
 
     for (const inputScenario of Object.entries(ex.inputScenarios)) {
       const [input, expected] = inputScenario;
 
       // Input the value
       await spinner.clear();
-      await spinner.sendKeys(Key.chord(Key.COMMAND, 'a'));
+      await spinner.sendKeys(selectAllChord);
       await spinner.sendKeys(input);
 
       // Force blur after input
