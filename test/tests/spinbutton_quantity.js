@@ -34,7 +34,7 @@ const ex = {
 
 ex.inc.symbolSel = ex.inc.sel + ' > span';
 ex.dec.symbolSel = ex.dec.sel + ' > span';
-(ex.inputScenarios = {
+ex.inputScenarios = {
   0: ex.spin.min,
   1: ex.spin.min,
   4: '4',
@@ -42,17 +42,18 @@ ex.dec.symbolSel = ex.dec.sel + ' > span';
   13: ex.spin.max,
   abc: ex.spin.min,
   '-7': '7',
-}),
-  // Attributes
+};
 
-  ariaTest(
-    'role="spinbutton" on input element',
-    exampleFile,
-    'spinbutton-role',
-    async (t) => {
-      await assertAriaRoles(t, 'example', 'spinbutton', '3', 'input');
-    }
-  );
+// Attributes
+
+ariaTest(
+  'role="spinbutton" on input element',
+  exampleFile,
+  'spinbutton-role',
+  async (t) => {
+    await assertAriaRoles(t, 'example', 'spinbutton', '3', 'input');
+  }
+);
 
 ariaTest(
   '"aria-valuemin" represents the minimum value on spinbuttons',
