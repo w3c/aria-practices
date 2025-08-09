@@ -25,7 +25,9 @@
   border: 1px solid color-mix(in srgb, ghostwhite, darkblue 10%);
   border-radius: 0.5rem;
 
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -93,7 +95,8 @@
       outline-offset: var(--length-s);
     }
 
-    input, button {
+    input,
+    button {
       appearance: none;
       font: inherit;
       font-weight: bold;
@@ -113,7 +116,9 @@
       field-sizing: content;
       font-variant-numeric: tabular-nums;
 
-      &, &:hover, &:focus {
+      &,
+      &:hover,
+      &:focus {
         border: none;
       }
     }
