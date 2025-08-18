@@ -370,6 +370,10 @@ ariaTest(
     let menu = await t.context.session.findElement(By.css(ex.menuSelector));
 
     for (let i = 0; i < menuItems.length; i++) {
+      // Reset expanded state if necessary
+      if ((await menuButton.getAttribute('aria-expanded')) === 'true') {
+        await menuButton.click();
+      }
       await menuButton.click();
       await t.context.session.wait(
         async function () {
