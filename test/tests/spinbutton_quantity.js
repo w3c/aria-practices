@@ -367,7 +367,7 @@ ariaTest('increment button', exampleFile, 'increment-button', async (t) => {
   await assertAttributeValues(t, ex.inc.sel, 'aria-disabled', 'true');
 
   // Wait for the output to self-destruct
-  await t.context.session.sleep(parseInt(ex.output.selfDestruct) + 500);
+  await t.context.session.sleep(parseInt(ex.output.selfDestruct));
 
   // Check that the output element is empty
   t.is(
@@ -435,7 +435,7 @@ ariaTest('decrement button', exampleFile, 'decrement-button', async (t) => {
   await assertAttributeValues(t, ex.inc.sel, 'aria-disabled', 'false');
 
   // Wait for the output to self-destruct
-  await t.context.session.sleep(parseInt(ex.output.selfDestruct) + 500);
+  await t.context.session.sleep(parseInt(ex.output.selfDestruct));
 
   // Check that the output element is empty
   t.is(
