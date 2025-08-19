@@ -324,7 +324,7 @@ function getUniqueRolesInExample(html, dataJS) {
           if (items.length) {
             roles.push(role);
           } else {
-            // Check Javascript
+            // Check JavaScript
 
             const hasRole1 = RegExp(".role = '" + role, 'g');
             const hasRole2 = RegExp('.role = "' + role, 'g');
