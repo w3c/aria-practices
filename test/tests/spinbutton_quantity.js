@@ -42,6 +42,7 @@ ex.inputScenarios = {
   13: ex.spin.max,
   abc: ex.spin.min,
   '-7': '7',
+  ' ': ex.spin.min,
 };
 
 // Attributes
