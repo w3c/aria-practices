@@ -162,7 +162,7 @@ ariaTest('home', exampleFile, 'spinbutton-home', async (t) => {
   t.is(
     parseInt(await spinner.getAttribute('aria-valuenow')),
     min,
-    `After sending end key, aria-valuenow should be the minimum value: ${min}`
+    `After sending home key, aria-valuenow should be the minimum value: ${min}`
   );
 
   // Check that the decrement button is disabled.
