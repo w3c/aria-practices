@@ -1,11 +1,13 @@
 const { ariaTest } = require('..');
-const { By, Key } = require('selenium-webdriver');
+const { By, Key, until } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const translatePlatformKey = require('../util/translatePlatformKeys');
 
 const exampleFile =
   'content/patterns/spinbutton/examples/quantity-spinbutton.html';
+
+const BUFFER_VAL = 500; // until() buffer, in milliseconds
 
 const ex = {
   spin: {
@@ -367,14 +369,11 @@ ariaTest('increment button', exampleFile, 'increment-button', async (t) => {
   await assertAttributeValues(t, ex.inc.sel, 'aria-disabled', 'true');
 
   // Wait for the output to self-destruct
-  await t.context.session.sleep(parseInt(ex.output.selfDestruct));
-
-  // Check that the output element is empty
-  t.is(
-    await output.getText(),
-    '',
-    `After waiting for the output self-destruct timer, it should be empty`
+  await t.context.session.wait(
+    until.elementTextIs(output, ''),
+    output.selfDestruct + BUFFER_VAL
   );
+  t.pass('After waiting for the output self-destruct timer, output is empty');
 });
 
 ariaTest('decrement button', exampleFile, 'decrement-button', async (t) => {
@@ -435,12 +434,9 @@ ariaTest('decrement button', exampleFile, 'decrement-button', async (t) => {
   await assertAttributeValues(t, ex.inc.sel, 'aria-disabled', 'false');
 
   // Wait for the output to self-destruct
-  await t.context.session.sleep(parseInt(ex.output.selfDestruct));
-
-  // Check that the output element is empty
-  t.is(
-    await output.getText(),
-    '',
-    `After waiting for the output self-destruct timer, it should be empty`
+  await t.context.session.wait(
+    until.elementTextIs(output, ''),
+    output.selfDestruct + BUFFER_VAL
   );
+  t.pass('After waiting for the output self-destruct timer, output is empty');
 });
