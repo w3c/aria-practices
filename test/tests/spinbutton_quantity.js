@@ -1,6 +1,7 @@
 const { ariaTest } = require('..');
 const { By, Key, until } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
+const assertAttributeDNE = require('../util/assertAttributeDNE');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const translatePlatformKey = require('../util/translatePlatformKeys');
 
@@ -37,14 +38,14 @@ const ex = {
 ex.inc.symbolSel = ex.inc.sel + ' > span';
 ex.dec.symbolSel = ex.dec.sel + ' > span';
 ex.inputScenarios = {
-  0: ex.spin.min,
-  1: ex.spin.min,
-  4: '4',
-  8: ex.spin.max,
-  13: ex.spin.max,
-  abc: ex.spin.min,
-  '-7': '7',
-  ' ': ex.spin.min,
+  0: { value: '0', valid: false },
+  1: { value: '1', valid: true },
+  4: { value: '4', valid: true },
+  8: { value: '8', valid: true },
+  13: { value: '13', valid: false },
+  abc: { value: ex.spin.min, valid: true },
+  '-7': { value: '7', valid: true },
+  ' ': { value: ex.spin.min, valid: true },
 };
 
 // Attributes
@@ -150,7 +151,7 @@ ariaTest('end', exampleFile, 'spinbutton-end', async (t) => {
   );
 
   // Check that the decrement button is not disabled.
-  await assertAttributeValues(t, ex.dec.sel, 'aria-disabled', 'false');
+  await assertAttributeDNE(t, ex.dec.sel, 'aria-disabled');
 
   // Check that the increment button is disabled.
   await assertAttributeValues(t, ex.inc.sel, 'aria-disabled', 'true');
@@ -172,7 +173,7 @@ ariaTest('home', exampleFile, 'spinbutton-home', async (t) => {
   await assertAttributeValues(t, ex.dec.sel, 'aria-disabled', 'true');
 
   // Check that the increment button is not disabled.
-  await assertAttributeValues(t, ex.inc.sel, 'aria-disabled', 'false');
+  await assertAttributeDNE(t, ex.inc.sel, 'aria-disabled');
 });
 
 ariaTest('up arrow', exampleFile, 'spinbutton-up-arrow', async (t) => {
@@ -197,7 +198,7 @@ ariaTest('up arrow', exampleFile, 'spinbutton-up-arrow', async (t) => {
   }
 
   // Check that the decrement button is no longer disabled.
-  await assertAttributeValues(t, ex.dec.sel, 'aria-disabled', 'false');
+  await assertAttributeDNE(t, ex.dec.sel, 'aria-disabled');
 
   // Check that the increment button is now disabled.
   await assertAttributeValues(t, ex.inc.sel, 'aria-disabled', 'true');
@@ -211,7 +212,7 @@ ariaTest('up arrow', exampleFile, 'spinbutton-up-arrow', async (t) => {
   );
 
   // Check that the decrement button is still not disabled
-  await assertAttributeValues(t, ex.dec.sel, 'aria-disabled', 'false');
+  await assertAttributeDNE(t, ex.dec.sel, 'aria-disabled');
 
   // Check that the increment button is still disabled
   await assertAttributeValues(t, ex.inc.sel, 'aria-disabled', 'true');
@@ -242,7 +243,7 @@ ariaTest('down arrow', exampleFile, 'spinbutton-down-arrow', async (t) => {
   await assertAttributeValues(t, ex.dec.sel, 'aria-disabled', 'true');
 
   // Check that the increment button is no longer disabled.
-  await assertAttributeValues(t, ex.inc.sel, 'aria-disabled', 'false');
+  await assertAttributeDNE(t, ex.inc.sel, 'aria-disabled');
 
   // Send one more and check that aria-valuenow remains at the maximum value.
   await spinner.sendKeys(Key.ARROW_DOWN);
@@ -256,7 +257,7 @@ ariaTest('down arrow', exampleFile, 'spinbutton-down-arrow', async (t) => {
   await assertAttributeValues(t, ex.dec.sel, 'aria-disabled', 'true');
 
   // Check that the increment button is still not disabled.
-  await assertAttributeValues(t, ex.inc.sel, 'aria-disabled', 'false');
+  await assertAttributeDNE(t, ex.inc.sel, 'aria-disabled');
 });
 
 // text input
@@ -274,6 +275,7 @@ ariaTest(
 
     for (const inputScenario of Object.entries(ex.inputScenarios)) {
       const [input, expected] = inputScenario;
+      const [val, valid] = Object.values(expected);
 
       // Input the value
       await spinner.clear();
@@ -286,25 +288,30 @@ ariaTest(
       // Check that aria-valuenow is updated correctly.
       t.is(
         parseInt(await spinner.getAttribute('aria-valuenow')),
-        parseInt(expected),
-        `After inputting “${input}”, aria-valuenow should be ${expected}`
+        parseInt(val),
+        `After inputting “${input}”, aria-valuenow should be ${val}`
       );
+
+      // Check that the input has the expected aria-invalid state.
+      if (!valid) {
+        await assertAttributeValues(t, ex.spin.sel, 'aria-invalid', 'true');
+      } else {
+        await assertAttributeDNE(t, ex.spin.sel, 'aria-invalid');
+      }
 
       // Check that the decrement button has the expected aria-disabled state.
-      await assertAttributeValues(
-        t,
-        ex.dec.sel,
-        'aria-disabled',
-        parseInt(expected) <= parseInt(min) ? 'true' : 'false'
-      );
+      if (parseInt(val) <= parseInt(min)) {
+        await assertAttributeValues(t, ex.dec.sel, 'aria-disabled', 'true');
+      } else {
+        await assertAttributeDNE(t, ex.dec.sel, 'aria-disabled');
+      }
 
       // Check that the increment button has the expected aria-disabled state.
-      await assertAttributeValues(
-        t,
-        ex.inc.sel,
-        'aria-disabled',
-        parseInt(expected) >= parseInt(max) ? 'true' : 'false'
-      );
+      if (parseInt(val) >= parseInt(max)) {
+        await assertAttributeValues(t, ex.inc.sel, 'aria-disabled', 'true');
+      } else {
+        await assertAttributeDNE(t, ex.inc.sel, 'aria-disabled');
+      }
     }
   }
 );
@@ -342,7 +349,7 @@ ariaTest('increment button', exampleFile, 'increment-button', async (t) => {
   }
 
   // Check that the decrement button is no longer disabled.
-  await assertAttributeValues(t, ex.dec.sel, 'aria-disabled', 'false');
+  await assertAttributeDNE(t, ex.dec.sel, 'aria-disabled');
 
   // Check that the increment button is now disabled.
   await assertAttributeValues(t, ex.inc.sel, 'aria-disabled', 'true');
@@ -363,7 +370,7 @@ ariaTest('increment button', exampleFile, 'increment-button', async (t) => {
   );
 
   // Check that the decrement button is still not disabled
-  await assertAttributeValues(t, ex.dec.sel, 'aria-disabled', 'false');
+  await assertAttributeDNE(t, ex.dec.sel, 'aria-disabled');
 
   // Check that the increment button is still disabled
   await assertAttributeValues(t, ex.inc.sel, 'aria-disabled', 'true');
@@ -410,7 +417,7 @@ ariaTest('decrement button', exampleFile, 'decrement-button', async (t) => {
   await assertAttributeValues(t, ex.dec.sel, 'aria-disabled', 'true');
 
   // Check that the increment button is no longer disabled.
-  await assertAttributeValues(t, ex.inc.sel, 'aria-disabled', 'false');
+  await assertAttributeDNE(t, ex.inc.sel, 'aria-disabled');
 
   // Send one more and check that aria-valuenow remains at the maximum value.
   await button.click();
@@ -431,7 +438,7 @@ ariaTest('decrement button', exampleFile, 'decrement-button', async (t) => {
   await assertAttributeValues(t, ex.dec.sel, 'aria-disabled', 'true');
 
   // Check that the increment button is still not disabled
-  await assertAttributeValues(t, ex.inc.sel, 'aria-disabled', 'false');
+  await assertAttributeDNE(t, ex.inc.sel, 'aria-disabled');
 
   // Wait for the output to self-destruct
   await t.context.session.wait(

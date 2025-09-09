@@ -17,8 +17,12 @@ class SpinButton {
     this.output = document.querySelector(`output[for="${this.id}"]`);
     this.timer = null;
     this.setBounds();
-    el.addEventListener('input', () => this.setValue(el.value));
-    el.addEventListener('blur', () => this.setValue(el.value, true));
+    el.addEventListener('input', () => this.setValue(el.value, true));
+    el.addEventListener('blur', () => {
+      if (el.value === '' && this.hasMin) {
+        this.setValue(this.min, true);
+      }
+    });
     el.addEventListener('keydown', (e) => this.handleKey(e));
     this.controls.forEach((btn) =>
       btn.addEventListener('click', () => this.handleClick(btn))
@@ -49,12 +53,40 @@ class SpinButton {
       : Number.MAX_SAFE_INTEGER;
   }
 
-  setValue(raw, onBlur = false) {
+  isValid(val) {
+    if (val === '' || val === null) return true;
+    const numVal = +val;
+    return !(
+      (this.hasMin && numVal < this.min) ||
+      (this.hasMax && numVal > this.max)
+    );
+  }
+
+  snapValue(val, currentVal) {
+    let result = val;
+
+    if (this.hasMin) result = Math.max(result, this.min);
+    if (this.hasMax) result = Math.min(result, this.max);
+    if (
+      (result < currentVal && val > currentVal) ||
+      (result > currentVal && val < currentVal)
+    ) {
+      return currentVal;
+    }
+    return result;
+  }
+
+  setValue(raw, fromInput = false) {
     let val = typeof raw === 'number' ? raw : this.parseValue(raw);
-    val =
-      val === null ? (onBlur && this.hasMin ? this.min : '') : this.clamp(val);
+
+    if (!fromInput) {
+      const currentVal = +this.el.value || 0;
+      val = this.snapValue(val, currentVal);
+    }
+
     this.el.value = val;
-    this.el.setAttribute('aria-valuenow', val);
+    this.el.ariaValueNow = val;
+    this.el.ariaInvalid = !this.isValid(val) ? true : null;
     this.updateButtonStates();
   }
 
@@ -62,12 +94,11 @@ class SpinButton {
     const val = +this.el.value;
     this.controls.forEach((btn) => {
       const op = btn.getAttribute('data-spinbutton-operation');
-      btn.setAttribute(
-        'aria-disabled',
-        (op === 'decrement' ? val <= this.min : val >= this.max)
-          ? 'true'
-          : 'false'
-      );
+      btn.ariaDisabled = (
+        op === 'decrement' ? val <= this.min : val >= this.max
+      )
+        ? true
+        : null;
     });
   }
 

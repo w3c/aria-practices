@@ -88,6 +88,7 @@
                       <span aria-hidden="true">&plus;</span>
                     </button>
                   </div>
+                  <small id="error-adults">Must be between 1 and 8</small>
                   <small id="help-adults">1 to 8</small>
                   <output
                     for="adults"
@@ -132,6 +133,7 @@
                       <span aria-hidden="true">&plus;</span>
                     </button>
                   </div>
+                  <small id="error-kids">Must be between 0 and 8</small>
                   <small id="help-kids">0 to 8</small>
                   <output
                     for="kids"
@@ -176,6 +178,7 @@
                       <span aria-hidden="true">&plus;</span>
                     </button>
                   </div>
+                  <small id="error-animals">Must be between 0 and 12</small>
                   <small id="help-animals">0 to 12</small>
                   <output
                     for="animals"
@@ -334,6 +337,12 @@
               <td><code>input[type="text"]</code></td>
               <td>Indicates the maximum allowed value for the spin button.</td>
             </tr>
+            <tr data-test-id="spinbutton-aria-invalid">
+              <td></td>
+              <th scope="row"><code>aria-invalid="true"</code></th>
+              <td><code>input[type="text"]</code></td>
+              <td>Indicates that the current value is invalid.</td>
+            </tr>
             <tr data-test-id="button-title">
               <td></td>
               <th scope="row"><code>title="NAME_STRING"</code></th>
@@ -359,12 +368,6 @@
               <th scope="row"><code>aria-disabled="true"</code></th>
               <td><code>button</code></td>
               <td>Set when the minimum or maximum value has been reached to inform assistive technologies that the button has been disabled.</td>
-            </tr>
-            <tr>
-              <td></td>
-              <th scope="row"><code>aria-disabled="false"</code></th>
-              <td><code>button</code></td>
-              <td>Set when the value is greater than the minimum value or lesser than the maximum value.</td>
             </tr>
             <tr data-test-id="span-aria-hidden">
               <td></td>
