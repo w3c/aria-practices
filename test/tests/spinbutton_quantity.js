@@ -19,6 +19,14 @@ const ex = {
     now: '1',
   },
 
+  help: {
+    id: 'help-adults',
+  },
+
+  error: {
+    id: 'error-adults',
+  },
+
   inc: {
     sel: '[aria-controls="adults"][data-spinbutton-operation="increment"]',
     accname: 'Add adult',
@@ -83,6 +91,29 @@ ariaTest(
   'spinbutton-aria-valuenow',
   async (t) => {
     await assertAttributeValues(t, ex.spin.sel, 'aria-valuenow', ex.spin.now);
+  }
+);
+
+ariaTest(
+  '"aria-describedby" is used to provide help text for the spinbutton.',
+  exampleFile,
+  'spinbutton-aria-describedby',
+  async (t) => {
+    await assertAttributeValues(t, ex.spin.sel, 'aria-describedby', ex.help.id);
+  }
+);
+
+ariaTest(
+  '"aria-errormessage" is used to provide an error message for the spinbutton.',
+  exampleFile,
+  'spinbutton-aria-errormessage',
+  async (t) => {
+    await assertAttributeValues(
+      t,
+      ex.spin.sel,
+      'aria-errormessage',
+      ex.error.id
+    );
   }
 );
 
