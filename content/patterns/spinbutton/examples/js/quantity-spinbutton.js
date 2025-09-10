@@ -86,7 +86,7 @@ class SpinButton {
 
     this.el.value = val;
     this.el.ariaValueNow = val;
-    this.el.ariaInvalid = !this.isValid(val) ? true : null;
+    this.el.ariaInvalid = !this.isValid(val) ? 'true' : null;
     this.updateButtonStates();
   }
 
@@ -97,7 +97,7 @@ class SpinButton {
       btn.ariaDisabled = (
         op === 'decrement' ? val <= this.min : val >= this.max
       )
-        ? true
+        ? 'true'
         : null;
     });
   }
