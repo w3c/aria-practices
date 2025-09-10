@@ -256,6 +256,26 @@
             color keywords</a> are used to ensure visibility and sufficient
             contrast for the spin button’s content and interactive states.
           </li>
+          <li>
+            Each spin button’s minimum and maximum values are conveyed in help
+            text that is associated with <code>aria-describedby</code>.
+          </li>
+          <li>
+            When a user inputs an invalid value:
+            <ul>
+              <li>
+                The spin button is visually styled to indicate an error state.
+              </li>
+              <li>
+                <code>aria-invalid="true"</code> is added to the input to inform
+                assistive technologies of the invalid state.
+              </li>
+              <li>
+                An error message is displayed and associated with
+                <code>aria-errormessage</code>.
+              </li>
+            </ul>
+          </li>
         </ul>
       </section>
 
