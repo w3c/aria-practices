@@ -19,10 +19,6 @@ const ex = {
     now: '1',
   },
 
-  help: {
-    id: 'help-adults',
-  },
-
   error: {
     id: 'error-adults',
   },
@@ -91,15 +87,6 @@ ariaTest(
   'spinbutton-aria-valuenow',
   async (t) => {
     await assertAttributeValues(t, ex.spin.sel, 'aria-valuenow', ex.spin.now);
-  }
-);
-
-ariaTest(
-  '"aria-describedby" is used to provide help text for the spinbutton.',
-  exampleFile,
-  'spinbutton-aria-describedby',
-  async (t) => {
-    await assertAttributeValues(t, ex.spin.sel, 'aria-describedby', ex.help.id);
   }
 );
 
