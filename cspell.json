@@ -78,6 +78,7 @@
     "Dubnium",
     "Dušek",
     "Dvořák",
+    "Ebene",
     "Église",
     "Elasmobranchii",
     "entrypoints",
@@ -292,7 +293,6 @@
     "Zhou"
   ],
   "ignoreRegExpList": [
-    "id=\"(?:[^\\\"]+|\\.)*\"",
     "src=\"(?:[^\\\"]+|\\.)*\"",
     "class=\"(?:[^\\\"]+|\\.)*\"",
     "data-test-id=\"(?:[^\\\"]+|\\.)*\"",
