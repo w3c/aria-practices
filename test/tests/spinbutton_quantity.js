@@ -461,7 +461,7 @@ ariaTest('decrement button', exampleFile, 'decrement-button', async (t) => {
   // Wait for the output to self-destruct
   await t.context.session.wait(
     until.elementTextIs(output, ''),
-    output.selfDestruct + BUFFER_VAL
+    parseInt(ex.output.selfDestruct) + BUFFER_VAL
   );
   t.pass('After waiting for the output self-destruct timer, output is empty');
 });
