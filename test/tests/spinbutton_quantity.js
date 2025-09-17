@@ -268,7 +268,7 @@ ariaTest('down arrow', exampleFile, 'spinbutton-down-arrow', async (t) => {
   t.is(
     parseInt(await spinner.getAttribute('aria-valuenow')),
     min,
-    `After sending one more up arrow, aria-valuenow should still be ${min}`
+    `After sending one more down arrow, aria-valuenow should still be ${min}`
   );
 
   // Check that the decrement button is still disabled.
