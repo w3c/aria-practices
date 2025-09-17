@@ -263,7 +263,7 @@ ariaTest('down arrow', exampleFile, 'spinbutton-down-arrow', async (t) => {
   // Check that the increment button is no longer disabled.
   await assertAttributeDNE(t, ex.inc.sel, 'aria-disabled');
 
-  // Send one more and check that aria-valuenow remains at the maximum value.
+  // Send one more and check that aria-valuenow remains at the minimum value.
   await spinner.sendKeys(Key.ARROW_DOWN);
   t.is(
     parseInt(await spinner.getAttribute('aria-valuenow')),
