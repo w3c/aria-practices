@@ -56,8 +56,8 @@
         <li><a href="#roles_with_no_examples">Roles with no Guidance or Examples (<span class="roles_with_no_examples_count">28</span>)</a></li>
         <li><a href="#roles_with_one_example">Roles with at Least One Guidance or Example (<span class="roles_with_one_example_count">12</span>)</a></li>
         <li><a href="#roles_with_more_than_one_example">Roles with More than One Guidance or Example  (<span class="roles_with_more_than_one_examples_count">38</span>)</a></li>
-        <li><a href="#props_with_no_examples">Properties and States with no Examples (<span class="props_with_no_examples_count">12</span>)</a></li>
-        <li><a href="#props_with_one_example">Properties and States with One Examples (<span class="props_with_one_example_count">8</span>)</a></li>
+        <li><a href="#props_with_no_examples">Properties and States with no Examples (<span class="props_with_no_examples_count">10</span>)</a></li>
+        <li><a href="#props_with_one_example">Properties and States with One Examples (<span class="props_with_one_example_count">10</span>)</a></li>
         <li><a href="#props_with_more_than_one_example">Properties and States with More than One Example  (<span class="props_with_more_than_one_examples_count">28</span>)</a></li>
         <li><a href="#example_coding">Example Coding Practices</a></li>
       </ul>
@@ -368,7 +368,7 @@
                 <li><a href="../../../content/patterns/listbox/examples/listbox-grouped.html">Listbox  with Grouped Options</a></li>
                 <li><a href="../../../content/patterns/menubar/examples/menubar-editor.html">Editor Menubar</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
                 <li><a href="../../../content/patterns/slider/examples/slider-color-viewer.html">Color Viewer Slider</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
-                <li><a href="../../../content/patterns/spinbutton/examples/datepicker-spinbuttons.html">Date Picker Spin Button</a></li>
+                <li><a href="../../../content/patterns/spinbutton/examples/datepicker-spinbuttons.html">(Deprecated) Date Picker Spin Button</a></li>
                 <li><a href="../../../content/patterns/switch/examples/switch-button.html">Switch  Using HTML Button</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
                 <li><a href="../../../content/patterns/treeview/examples/treeview-1a.html">File Directory Treeview  Using Computed Properties</a></li>
                 <li><a href="../../../content/patterns/treeview/examples/treeview-1b.html">File Directory Treeview  Using Declared Properties</a></li>
@@ -523,6 +523,7 @@
                 <li><a href="../../../content/patterns/treeview/treeview-pattern.html#keyboard_interaction">Note</a></li>
                 <li><a href="../../../content/patterns/treeview/treeview-pattern.html#roles_states_properties">Note</a></li>
                 <li><a href="../../../content/patterns/windowsplitter/windowsplitter-pattern.html#keyboard_interaction">Note</a></li>
+                <li><a href="../../../content/practices/keyboard-interface/keyboard-interface-practice.html#kbd_general_within">Note</a></li>
                 <li><a href="../../../content/practices/keyboard-interface/keyboard-interface-practice.html#kbd_shortcuts_assigning">Note</a></li>
             </ul>
 </td>
@@ -628,7 +629,8 @@
             <td><a href="../../../content/patterns/spinbutton/spinbutton-pattern.html#">Spinbutton Pattern</a>
 </td>
             <td><ul>
-                <li><a href="../../../content/patterns/spinbutton/examples/datepicker-spinbuttons.html">Date Picker Spin Button</a></li>
+                <li><a href="../../../content/patterns/spinbutton/examples/datepicker-spinbuttons.html">(Deprecated) Date Picker Spin Button</a></li>
+                <li><a href="../../../content/patterns/spinbutton/examples/quantity-spinbutton.html">Quantity Spin Button</a></li>
                 <li><a href="../../../content/patterns/toolbar/examples/toolbar.html">Toolbar</a></li>
             </ul>
 </td>
@@ -727,15 +729,13 @@
     </section>
 
     <section id="props_with_no_examples">
-      <h2 id="props_with_no_examples_label">Properties and States with No Guidance or Examples (<span class="props_with_no_examples_count">12</span>)</h2>
+      <h2 id="props_with_no_examples_label">Properties and States with No Guidance or Examples (<span class="props_with_no_examples_count">10</span>)</h2>
       <div><strong>NOTE:</strong> The HC abbreviation means example has High Contrast support.</div>
       <ul id="props_with_no_examples_ul">
             <li><code>aria-details</code></li>
             <li><code>aria-dropeffect</code></li>
-            <li><code>aria-errormessage</code></li>
             <li><code>aria-flowto</code></li>
             <li><code>aria-grabbed</code></li>
-            <li><code>aria-invalid</code></li>
             <li><code>aria-keyshortcuts</code></li>
             <li><code>aria-multiline</code></li>
             <li><code>aria-placeholder</code></li>
@@ -745,7 +745,7 @@
     </section>
 
     <section id="props_with_one_example">
-      <h2 id="props_with_one_example_label">Properties and States with at Least One Guidance or Example (<span class="props_with_one_example_count">8</span>)</h2>
+      <h2 id="props_with_one_example_label">Properties and States with at Least One Guidance or Example (<span class="props_with_one_example_count">10</span>)</h2>
       <div><strong>NOTE:</strong> The HC abbreviation means example has High Contrast support.</div>
       <table aria-labelledby="props_with_one_example_label" class="data attributes">
         <thead>
@@ -780,6 +780,18 @@
             <td><a href="../../../content/practices/grid-and-table-properties/grid-and-table-properties-practice.html#gridAndTableProperties_spans">Defining cell spans using aria-colspan and aria-rowspan</a>
 </td>
             <td></td>
+          </tr>
+          <tr>
+            <td><code>aria-errormessage</code></td>
+            <td></td>
+            <td><a href="../../../content/patterns/spinbutton/examples/quantity-spinbutton.html">Quantity Spin Button</a>
+</td>
+          </tr>
+          <tr>
+            <td><code>aria-invalid</code></td>
+            <td></td>
+            <td><a href="../../../content/patterns/spinbutton/examples/quantity-spinbutton.html">Quantity Spin Button</a>
+</td>
           </tr>
           <tr>
             <td><code>aria-multiselectable</code></td>
@@ -900,6 +912,7 @@
                 <li><a href="../../../content/patterns/menu-button/examples/menu-button-actions-active-descendant.html">Actions Menu Button  Using aria-activedescendant</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
                 <li><a href="../../../content/patterns/menu-button/examples/menu-button-actions.html">Actions Menu Button  Using element.focus()</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
                 <li><a href="../../../content/patterns/menu-button/examples/menu-button-links.html">Navigation Menu Button</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="../../../content/patterns/spinbutton/examples/quantity-spinbutton.html">Quantity Spin Button</a></li>
                 <li><a href="../../../content/patterns/tabs/examples/tabs-actions.html">Experimental  Tabs with Action Buttons</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
                 <li><a href="../../../content/patterns/tabs/examples/tabs-automatic.html">Tabs with Automatic Activation</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
                 <li><a href="../../../content/patterns/tabs/examples/tabs-manual.html">Tabs with Manual Activation</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
@@ -939,6 +952,7 @@
             <td><ul>
                 <li><a href="../../../content/patterns/alertdialog/examples/alertdialog.html">Alert Dialog</a></li>
                 <li><a href="../../../content/patterns/menubar/examples/menubar-editor.html">Editor Menubar</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
+                <li><a href="../../../content/patterns/spinbutton/examples/quantity-spinbutton.html">Quantity Spin Button</a></li>
                 <li><a href="../../../content/patterns/toolbar/examples/toolbar.html">Toolbar</a></li>
             </ul>
 </td>
@@ -1003,7 +1017,8 @@
                 <li><a href="../../../content/patterns/slider/examples/slider-rating.html">Rating Slider</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
                 <li><a href="../../../content/patterns/slider/examples/slider-seek.html">Media Seek Slider</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
                 <li><a href="../../../content/patterns/slider/examples/slider-temperature.html">Vertical Temperature Slider</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
-                <li><a href="../../../content/patterns/spinbutton/examples/datepicker-spinbuttons.html">Date Picker Spin Button</a></li>
+                <li><a href="../../../content/patterns/spinbutton/examples/datepicker-spinbuttons.html">(Deprecated) Date Picker Spin Button</a></li>
+                <li><a href="../../../content/patterns/spinbutton/examples/quantity-spinbutton.html">Quantity Spin Button</a></li>
                 <li><a href="../../../content/patterns/switch/examples/switch-button.html">Switch  Using HTML Button</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
                 <li><a href="../../../content/patterns/switch/examples/switch-checkbox.html">Switch  Using HTML Checkbox Input</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
                 <li><a href="../../../content/patterns/switch/examples/switch.html">Switch</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
@@ -1030,7 +1045,7 @@
                 <li><a href="../../../content/patterns/menubar/examples/menubar-navigation.html">Navigation Menubar</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
                 <li><a href="../../../content/patterns/radio/examples/radio-rating.html">Rating Radio Group</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
                 <li><a href="../../../content/patterns/slider-multithumb/examples/slider-multithumb.html">Horizontal Multi-Thumb Slider</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
-                <li><a href="../../../content/patterns/spinbutton/examples/datepicker-spinbuttons.html">Date Picker Spin Button</a></li>
+                <li><a href="../../../content/patterns/spinbutton/examples/datepicker-spinbuttons.html">(Deprecated) Date Picker Spin Button</a></li>
                 <li><a href="../../../content/patterns/table/examples/table.html">Table</a></li>
                 <li><a href="../../../content/patterns/toolbar/examples/toolbar.html">Toolbar</a></li>
                 <li><a href="../../../content/patterns/treegrid/examples/treegrid-1.html">Treegrid Email Inbox</a></li>
@@ -1070,7 +1085,7 @@
                 <li><a href="../../../content/patterns/slider/examples/slider-rating.html">Rating Slider</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
                 <li><a href="../../../content/patterns/slider/examples/slider-seek.html">Media Seek Slider</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
                 <li><a href="../../../content/patterns/slider/examples/slider-temperature.html">Vertical Temperature Slider</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
-                <li><a href="../../../content/patterns/spinbutton/examples/datepicker-spinbuttons.html">Date Picker Spin Button</a></li>
+                <li><a href="../../../content/patterns/spinbutton/examples/datepicker-spinbuttons.html">(Deprecated) Date Picker Spin Button</a></li>
                 <li><a href="../../../content/patterns/switch/examples/switch-button.html">Switch  Using HTML Button</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
                 <li><a href="../../../content/patterns/tabs/examples/tabs-actions.html">Experimental  Tabs with Action Buttons</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
                 <li><a href="../../../content/patterns/tabs/examples/tabs-automatic.html">Tabs with Automatic Activation</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
@@ -1223,7 +1238,8 @@
                 <li><a href="../../../content/patterns/slider/examples/slider-rating.html">Rating Slider</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
                 <li><a href="../../../content/patterns/slider/examples/slider-seek.html">Media Seek Slider</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
                 <li><a href="../../../content/patterns/slider/examples/slider-temperature.html">Vertical Temperature Slider</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
-                <li><a href="../../../content/patterns/spinbutton/examples/datepicker-spinbuttons.html">Date Picker Spin Button</a></li>
+                <li><a href="../../../content/patterns/spinbutton/examples/datepicker-spinbuttons.html">(Deprecated) Date Picker Spin Button</a></li>
+                <li><a href="../../../content/patterns/spinbutton/examples/quantity-spinbutton.html">Quantity Spin Button</a></li>
                 <li><a href="../../../content/patterns/toolbar/examples/toolbar.html">Toolbar</a></li>
             </ul>
 </td>
@@ -1238,7 +1254,8 @@
                 <li><a href="../../../content/patterns/slider/examples/slider-rating.html">Rating Slider</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
                 <li><a href="../../../content/patterns/slider/examples/slider-seek.html">Media Seek Slider</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
                 <li><a href="../../../content/patterns/slider/examples/slider-temperature.html">Vertical Temperature Slider</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
-                <li><a href="../../../content/patterns/spinbutton/examples/datepicker-spinbuttons.html">Date Picker Spin Button</a></li>
+                <li><a href="../../../content/patterns/spinbutton/examples/datepicker-spinbuttons.html">(Deprecated) Date Picker Spin Button</a></li>
+                <li><a href="../../../content/patterns/spinbutton/examples/quantity-spinbutton.html">Quantity Spin Button</a></li>
                 <li><a href="../../../content/patterns/toolbar/examples/toolbar.html">Toolbar</a></li>
             </ul>
 </td>
@@ -1254,7 +1271,8 @@
                 <li><a href="../../../content/patterns/slider/examples/slider-rating.html">Rating Slider</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
                 <li><a href="../../../content/patterns/slider/examples/slider-seek.html">Media Seek Slider</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
                 <li><a href="../../../content/patterns/slider/examples/slider-temperature.html">Vertical Temperature Slider</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
-                <li><a href="../../../content/patterns/spinbutton/examples/datepicker-spinbuttons.html">Date Picker Spin Button</a></li>
+                <li><a href="../../../content/patterns/spinbutton/examples/datepicker-spinbuttons.html">(Deprecated) Date Picker Spin Button</a></li>
+                <li><a href="../../../content/patterns/spinbutton/examples/quantity-spinbutton.html">Quantity Spin Button</a></li>
                 <li><a href="../../../content/patterns/toolbar/examples/toolbar.html">Toolbar</a></li>
             </ul>
 </td>
@@ -1267,7 +1285,7 @@
                 <li><a href="../../../content/patterns/slider/examples/slider-rating.html">Rating Slider</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
                 <li><a href="../../../content/patterns/slider/examples/slider-seek.html">Media Seek Slider</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
                 <li><a href="../../../content/patterns/slider/examples/slider-temperature.html">Vertical Temperature Slider</a> (<abbr title="High Contrast Support">HC</abbr>)</li>
-                <li><a href="../../../content/patterns/spinbutton/examples/datepicker-spinbuttons.html">Date Picker Spin Button</a></li>
+                <li><a href="../../../content/patterns/spinbutton/examples/datepicker-spinbuttons.html">(Deprecated) Date Picker Spin Button</a></li>
                 <li><a href="../../../content/patterns/toolbar/examples/toolbar.html">Toolbar</a></li>
             </ul>
 </td>
@@ -1283,7 +1301,7 @@
         <tbody>
           <tr>
             <th scope="row">Total Examples</th>
-            <td id="example_summary_total">62</td>
+            <td id="example_summary_total">63</td>
           </tr>
           <tr>
             <th scope="row">High Contrast Documentation</th>
@@ -1295,7 +1313,7 @@
           </tr>
           <tr>
             <th scope="row">Uses <code>forced-colors</code> media query</th>
-            <td id="example_summary_force_colors">3</td>
+            <td id="example_summary_force_colors">4</td>
           </tr>
           <tr>
             <th scope="row">Uses <code>currentColor</code> value</th>
@@ -1317,7 +1335,7 @@
           </tr>
           <tr>
             <th scope="row">Use Class</th>
-            <td id="example_summary_class">37</td>
+            <td id="example_summary_class">38</td>
           </tr>
           <tr>
             <th scope="row">Use Prototype</th>
@@ -1964,7 +1982,7 @@
             <td></td>
           </tr>
           <tr>
-            <td><a href="../../../content/patterns/spinbutton/examples/datepicker-spinbuttons.html">Date Picker Spin Button</a></td>
+            <td><a href="../../../content/patterns/spinbutton/examples/datepicker-spinbuttons.html">(Deprecated) Date Picker Spin Button</a></td>
             <td>prototype</td>
             <td>Yes</td>
             <td></td>
@@ -1974,6 +1992,19 @@
             <td>2</td>
             <td>7</td>
             <td>7</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="../../../content/patterns/spinbutton/examples/quantity-spinbutton.html">Quantity Spin Button</a></td>
+            <td>class</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>example</td>
+            <td>1</td>
+            <td>1</td>
+            <td>8</td>
+            <td>8</td>
             <td></td>
           </tr>
           <tr>
@@ -2462,11 +2493,19 @@
             <td>Yes</td>
           </tr>
           <tr>
-            <td><a href="../../../content/patterns/spinbutton/examples/datepicker-spinbuttons.html">Date Picker Spin Button</a></td>
+            <td><a href="../../../content/patterns/spinbutton/examples/datepicker-spinbuttons.html">(Deprecated) Date Picker Spin Button</a></td>
             <td>Yes</td>
             <td>Yes</td>
             <td></td>
             <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="../../../content/patterns/spinbutton/examples/quantity-spinbutton.html">Quantity Spin Button</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
             <td></td>
           </tr>
           <tr>
