@@ -324,7 +324,7 @@ function getUniqueRolesInExample(html, dataJS) {
           if (items.length) {
             roles.push(role);
           } else {
-            // Check Javascript
+            // Check JavaScript
 
             const hasRole1 = RegExp(".role = '" + role, 'g');
             const hasRole2 = RegExp('.role = "' + role, 'g');
@@ -546,18 +546,19 @@ glob
       pointerUp: getNumberOfReferences(dataJS, 'pointerup', true),
     };
 
-    (example.documentationRoles = addExampleToRoles(getRoles(html), example)),
-      console.log(
-        '  [Documentation Roles]: ' + example.documentationRoles.length
-      );
-    (example.documentationAttributes = addExampleToPropertiesAndStates(
+    example.documentationRoles = addExampleToRoles(getRoles(html), example);
+    console.log(
+      '  [Documentation Roles]: ' + example.documentationRoles.length
+    );
+
+    example.documentationAttributes = addExampleToPropertiesAndStates(
       getPropertiesAndStates(html),
       example
-    )),
-      console.log(
-        '  [Documentation aria-* Attributes]: ' +
-          example.documentationAttributes.length
-      );
+    );
+    console.log(
+      '  [Documentation aria-* Attributes]: ' +
+        example.documentationAttributes.length
+    );
 
     indexOfExamples.push(example);
   });
