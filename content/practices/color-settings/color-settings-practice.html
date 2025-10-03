@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Supporting Color Contrast Settings</title>
+
+    <!-- Core JS and CSS shared by all practices -->
+    <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
+    <link rel="stylesheet" href="../../shared/css/core.css">
+
+    <link rel="stylesheet" href="./css/color-settings-practice.css">
+
+    <link rel="stylesheet" href="./css/switch-increase-contrast.css">
+    <link rel="stylesheet" href="./css/switch-color-scheme.css">
+    <link rel="stylesheet" href="./css/switch-current-color.css">
+    <link rel="stylesheet" href="./css/switch-system-color.css">
+
+    <script src="../../shared/js/examples.js"></script>
+    <script src="../../shared/js/highlight.pack.js"></script>
+    <script src="../../shared/js/app.js"></script>
+    <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+
+    <script src="./js/color-settings-practice.js"></script>
+    <script src="./js/switch-system-color.js"></script>
+    <script src="../../patterns/switch/examples/js/switch-button.js"></script>
+
+
+  </head>
+  <body>
+    <main>
+      <h1>Supporting Color Contrast Settings</h1>
+      
+      <section id="introduction">
+        <h2>Introduction</h2>
+        <p>
+          Some people with
+          <a href="https://www.w3.org/WAI/people-use-web/abilities-barriers/visual/">visual disabilities using the web</a>
+          need more than the
+          <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html">required default minimum color contrast</a>.
+          Additionally, people with visual or cognitive disabilities sometimes need combinations of colors that are different from those specified by an author.
+          Operating systems provide settings that enable those users to increase contrast and choose alternate color themes.
+          Web authors can ensure their content is accessible to those users by appropriately responding to such operating system settings.
+          This section explains how to make components responsive to color and contrast settings and how to test support for those settings.
+        </p>
+
+        <p>This section covers:</p>
+        <ol>
+          <li>Operating system and browser features that enable users to adjust rendered colors and contrast ratios.</li>
+          <li>Using the CSS media queries that support user color and contrast settings (<code>prefers-contrast</code>, <code>prefers-color-scheme</code>, and <code>forced-colors</code>).</li>
+          <li>Using <code>&lt;system-colors&gt;</code> CSS data types to provide consistent rendering of components.</li>
+          <li>Using the value of <code>currentcolor</code> to inherit the value of the <code>color</code> property value of text content that responds to user color and contrast settings.</li>
+          <li>The benefits of using SVG graphics when creating components that adapt to color contrast and theme settings.</li>
+        </ol>
+      </section>
+
+      <section id="os-high-contrast">
+        <h2>User Options for Adjusting Colors and Contrast</h2>
+        <p>The following table summarizes operating system settings that enable users to adjust color themes and increase contrast as well as authoring practices for supporting those settings in web content.</p>
+        <table class="data">
+          <caption>Operating System Contrast Adjustment Features</caption>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th abbr="Operating Systems">OS</th>
+              <th>Description</th>
+              <th>Authoring Practices</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Invert Colors</th>
+              <td>
+                <ul>
+                  <li><a href="https://support.apple.com/en-ge/guide/mac-help/mchl11ddd4b3/mac">macOS</a></li>
+                  <li><a href="https://support.microsoft.com/en-us/office/use-color-and-contrast-for-accessibility-in-microsoft-365-bb11486d-fc7d-4cd9-b344-16e2bc2a2387#bkmk_invertwin11">Windows</a></li>
+                  <li><a href="https://support.apple.com/en-ge/guide/iphone/iph3e2e1fb0/ios">iOS</a></li>
+                  <li><a href="https://support.google.com/accessibility/android/answer/6151800?hl=en">Android</a></li>
+                  <li><a href="https://help.gnome.org/users/gnome-help/stable/a11y-mag.html.en">Linux/GNOME</a></li>
+                </ul>
+              </td>
+              <td>
+                <p>
+                  Operating system accessibility setting that automatically transforms all rendered colors in all apps, including browser content, by subtracting each RGB value from 255.
+                  This is a simple way of enabling users to turn a light color theme into a dark color theme or vice-versa.
+                  It is a prominent feature in the accessibility settings of most operating systems.
+                </p>
+                <p>Examples of color inversion:</p>
+                <ul>
+                  <li>rgb(255, 255, 255) is rendered as rgb(0, 0, 0)</li>
+                  <li>rgb(165, 42, 42) is rendered as rgb(90, 213, 213)</li>
+                  <li>rgb(220, 220, 220) is rendered as rgb(35, 35, 35)</li>
+                </ul>
+              </td>
+              <td>
+                <p>
+                  When this setting is enabled, some browsers set the CSS media query <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/inverted-colors"><code>inverted-colors</code></a> to <code>invert</code>.
+                </p>
+                <p>Inverting of colors can have unpleasant side effects, such as shadows turning into highlights, which can reduce the readability of the content, use gradients instead.
+                </p>
+                <p>
+                  For content to render well when invert colors is enabled, ensure it meets the minimum color requirements specified by <a href="https://www.w3.org/TR/WCAG22/">Web Content Accessibility Guidelines</a> (WCAG) and avoid using shadows.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <th>Increase contrast</th>
+              <td>
+                <ul>
+                  <li><a href="https://support.apple.com/guide/mac-help/change-display-settings-for-accessibility-unac089/mac">macOS</a></li>
+                  <li><a href="https://support.microsoft.com/en-us/windows/change-color-contrast-in-windows-fedc744c-90ac-69df-aed5-c8a90125e696">Windows</a></li>
+                  <li><a href="https://support.apple.com/en-ge/guide/iphone/ipheed8d2fca/18.0/ios/18.0">iOS</a></li>
+                  <li><a href="https://www.android.com/accessibility/vision/">Android</a></li>
+                  <li><a href="https://help.gnome.org/users/gnome-help/stable/a11y-contrast.html.en">Linux/GNOME</a></li>
+                </ul>
+              </td>
+              <td>
+                Operating system accessibility setting indicating the user prefers contrast that is stronger than the default minimum.
+                Typically, this setting does not automatically change rendering of native apps or web content, so it only works when authors provide support for it.
+                Each operating system supports  this setting differently; there is no standard that specifies how much contrast should be increased when this setting is enabled.
+                A reasonable target for web content is specified by
+                <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-enhanced">WCAG 1.4.6: Contrast (Enhanced)</a>.
+              </td>
+              <td>
+                When this setting is enabled, the CSS media query <code>prefers-contrast</code> is set to <code>more</code>.
+                Develop a higher contrast color scheme and use this media query to determine when to enable it.
+                This can also include switching to use <code>system-colors</code> CSS media types.
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Color Scheme<br>
+                (AKA Light and Dark Modes)
+              </th>
+              <td>
+                <ul>
+                  <li><a href="https://support.apple.com/guide/mac-help/use-a-light-or-dark-appearance-mchl52e1c2d2/mac">macOS</a></li>
+                  <li><a href="https://www.microsoft.com/en-us/windows/learning-center/when-to-use-dark-mode">Windows</a></li>
+                  <li><a href="https://support.apple.com/en-ge/guide/iphone/iph60ba71065/18.0/ios/18.0#iph33fda3e85">iOS</a></li>
+                  <li><a href="https://support.google.com/android/answer/9730472?hl=en">Android</a></li>
+                  <li><a href="https://help.gnome.org/users/gnome-help/stable/display-night-light.html.en">Linux/GNOME</a></li>
+                </ul>
+              </td>
+              <td>
+                An operating system setting that enables users to choose between a <code>light</code> and <code>dark</code> color scheme.
+                The default is usually the <code>light</code> color scheme.
+                Typically, this setting does not automatically change rendering of native apps or web content, so it only works when developers provide support for it.
+                People switch to the <code>dark</code> color scheme in dark settings, e.g. at night, because it can make content easier to read or be less disruptive to other people.
+                However, people with certain visual disabilities prefer a dark color scheme as their default.
+              </td>
+              <td>
+                The CSS media query <code>prefers-color-scheme</code> identifies the current color scheme by returning <code>light</code> or <code>dark</code>.
+                Develop styles for dark text on a light background and light text on a dark background and use this media query to apply the appropriate style.
+                Ensure the text content and components for both settings meet
+                <a href="https://www.w3.org/TR/WCAG21/#contrast-minimum">WCAG 1.4.3: Contrast (Minimum)</a>.
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Contrast Themes<br>
+                (AKA Forced Colors)
+              </th>
+              <td><a href="https://support.microsoft.com/en-us/windows/change-color-contrast-in-windows-fedc744c-90ac-69df-aed5-c8a90125e696">Windows 10 and later.</a></td>
+              <td>
+                Operating system accessibility feature that automatically forces all native apps and web content to render using an alternative color theme chosen by the user.
+                Some of the themes are designed to provide extra high contrast, and users can customize their chosen color theme.
+                Browsers replace author specified colors with user specified colors based on the type of HTML element.
+                Browser selections for replacement colors generally respect the system colors described below.
+                Note that ARIA attributes do not inform replacement color selection, e.g., a <code>div</code> with role <code>button</code> renders with text colors, not button colors.
+              </td>
+              <td>
+                When a user selects a contrast theme, the CSS media query <code>forced-colors</code> is set to <code>active</code>.
+                Use <code>currentcolor</code> and <code>system-color</code> values to style user interface controls and custom widgets to the user preferences.
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </section>
+
+      <section id="invert-colors">
+        <h2>Invert Colors</h2>
+        <p>
+          The invert colors accessibility setting is an operating system feature that automatically transforms all rendered colors to their opposite.
+          For example, content rendered as white is changed to black.
+          Content styled as blue is rendered as a brown, i.e., a mixture of red and green.
+          The <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/inverted-colors"><code>inverted-colors: inverted</code></a> CSS media query can be used to detect when the user setting for inverting colors, but it is not widely supported in browsers.
+        </p>
+
+        <p>To support the invert colors setting:</p>
+        <ol>
+          <li>
+            Develop a default color scheme that meets
+          <a href="https://www.w3.org/TR/WCAG22/#contrast-minimum">WCAG 1.4.3: Contrast (Minimum)</a> requirement.
+          </li>
+          <li>Avoid using shadow styling, use gradients instead.</li>
+        </ol>
+
+        <h3 id="invert-colors-example">Invert Colors Example</h3>
+
+        <p>
+          The following example illustrates how a <code>switch</code> element is rendered on macOS both when invert colors is disabled and enabled.
+        </p>
+
+        <table class="data" aria-labelledby="invert-colors-example">
+          <thead>
+            <tr>
+              <th>Setting</th>
+              <th>Screen Shot</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Invert Colors: Off (default)</td>
+              <td><img src="./images/currentcolor-macos-invert-off.png" alt="Screen shot of switch example with invert colors turned off" style="height: 85px"></td>
+            </tr>
+            <tr>
+              <td>Invert Colors: on</td>
+              <td><img src="./images/currentcolor-macos-invert-on.png" alt="Screen shot of switch example with invert colors turned on" style="height: 85px"></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="prefers-contrast">
+        <h2>Increase Contrast</h2>
+        <p>
+          Increase contrast is an operating system feature, usually available in accessibility settings, that enables users to specify a preference for contrast that is higher than default minimum.
+          When users turn on increased contrast, each operating system changes the contrast of its own user interface differently; there is no standard for how much contrast should be increased.
+          Typically, this setting does not automatically change rendering of native apps or web content, so users benefit only when authors provide support for it.
+        </p>
+        <p>To support the increase contrast setting:</p>
+        <ol>
+          <li>
+            Develop an increased contrast color scheme that meets or exceeds the requirements specified in
+            <a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced">WCAG 1.4.6: Contrast (Enhanced)</a>.
+          </li>
+          <li>When the the <code>prefers-contrast</code> media query changes from <code>no-preference</code> to <code>more</code>, render content using the increased contrast color scheme.</li>
+        </ol>
+        <p>Note: Operating systems that support the <code>forced-colors</code> media query set <code>prefers-contrast</code> to <code>custom</code> when the <code>forced-colors</code> is set to <code>active</code>.  </p>
+
+        <h3 id="prefers-contrast-example">Increase Contrast Example</h3>
+        <p> Enable the "increased contrast" feature on your device, and color contrast ratios in the below example will change:</p>
+        <ul>
+          <li>Text contrast increases from 12.8 to 18.1.</li>
+          <li>Contrast of border and fill for the button increases from 4.6 to 12.2.</li>
+        </ul>
+
+        <div class="example">
+          <button type="button" role="switch" aria-checked="false" class="increase-contrast">
+            <span class="label">Living Room Lights</span>
+            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="36">
+              <rect class="container" x="1" y="1" width="34" height="18" rx="9" />
+              <circle class="off" cx="11"  cy="10" r="8" />
+              <circle class="on"  cx="25" cy="10" r="8" />
+            </svg>
+            <span class="on" aria-hidden="true">On</span>
+            <span class="off" aria-hidden="true">Off</span>
+          </button>
+          <button type="button" role="switch" aria-checked="false" class="increase-contrast">
+            <span class="label">Outdoor Lights</span>
+            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="36">
+              <rect class="container" x="1" y="1" width="34" height="18" rx="9" />
+              <circle class="off" cx="11"  cy="10" r="8" />
+              <circle class="on"  cx="25" cy="10" r="8" />
+            </svg>
+            <span class="on" aria-hidden="true">On</span>
+            <span class="off" aria-hidden="true">Off</span>
+          </button>
+        </div>
+
+        <table class="data">
+          <caption>Increase Contrast Example Color Changes</caption>
+          <thead>
+            <tr>
+              <th rowspan="2" style="vertical-align: bottom"><code>prefers-contrast</code></th>
+              <th colspan="3">Text</th>
+              <th colspan="3">Button</th>
+            </tr>
+            <tr>
+              <th abbr="Background">BG</th>
+              <th>Text</th>
+              <th abbr="Color Contrast Radio">CCR</th>
+              <th abbr="Background">BG</th>
+              <th>Fill</th>
+              <th abbr="Color Contrast Radio">CCR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th><code>no-preference</code></th>
+              <td>
+                <div role="img"
+                     class="sample"
+                     style="background-color: #e9e9e9"
+                     aria-label="Color is a light gray">
+                </div>
+                <span class="color">#e9e9e9</span>
+              </td>
+              <td>
+                <div role="img"
+                     class="sample"
+                     style="background-color: #242424"
+                     aria-label="Color is a very dark gray">
+                </div>
+                <span class="color">#242424</span>
+              </td>
+              <td>12.8</td>
+              <td>
+                 <div role="img"
+                     class="sample"
+                     style="background-color: #a1a1a1"
+                     aria-label="Color is a very light gray">
+                </div>
+                <span class="color">#a1a1a1</span>
+              </td>
+              <td>
+                 <div role="img"
+                     class="sample"
+                     style="background-color: #fff"
+                     aria-label="Color is white">
+                </div>
+                <span class="color">#fff</span>
+              </td>
+              <td>4.6</td>
+            </tr>
+            <tr>
+              <th>
+                <code>more</code>
+              </th>
+              <td>
+                 <div role="img"
+                     class="sample"
+                     style="background-color: #eeeeee"
+                     aria-label="Accent color is light gray">
+                </div>
+                <span class="color">#eeeeee</span>
+              </td>
+              <td>
+                 <div role="img"
+                     class="sample"
+                     style="background-color: #000000"
+                     aria-label="Color is black">
+                </div>
+                <span class="color">#000000</span>
+              </td>
+              <td>18.1</td>
+              <td>
+                 <div role="img"
+                     class="sample"
+                     style="background-color: #0051A4"
+                     aria-label="Color is dark blue">
+                </div>
+                <span class="color">#0051A4</span>
+              </td>
+              <td>
+                 <div role="img"
+                     class="sample"
+                     style="background-color: #fff"
+                     aria-label="Color is white">
+                </div>
+                <span class="color">#fff</span>
+              </td>
+              <td>12.2</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>CSS Media Query Code</h4>
+
+        <pre>
+          <code>
+@media (prefers-contrast: more) {
+  button[role="switch"] {
+    background-color: #eeeeee;
+    color: #000;
+
+    .label {
+      color: #000;
+    }
+
+    svg {
+      rect {
+        fill: #0051A4;
+        stroke: #061d3a;
+      }
+
+      circle {
+        &.off,
+        &.on {
+          stroke: #061d3a;
+          fill: #fff;
+        }
+      }
+    }
+  }
+}
+          </code>
+        </pre>
+
+        <h3>Testing Increase Contrast</h3>
+        <p>In  each operating system used by the target audience:</p>
+        <ol>
+          <li>Turn on the increase contrast feature, which is typically located  in accessibility settings.</li>
+          <li>
+            Verify that the color contrast ratios of text and components meets or exceeds the requirements specified by
+            <a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced">WCAG 1.4.6: Contrast (Enhanced)</a>.
+          </li>
+        </ol>
+
+      </section>
+
+      <section id="color-scheme">
+        <h2>Color Scheme (Light and Dark Modes)</h2>
+        <p>
+          The color scheme known as dark mode is used by people in dark settings, e.g. at night, because it can make content easier to read or be less disruptive to others.
+          While such use cases were primary drivers of its development, dark mode also significantly improves accessibility for many people with visual impairments.
+        </p>
+
+        <p>To support the increase contrast setting:</p>
+        <ol>
+          <li>
+            To support dark mode, develop styles for dark text on a light background and light text on a dark background.  The CSS <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark"><code>light-dark</code> function</a> or a CSS <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme">media query <code>prefers-color-scheme</code></a>, the media query identifies the current color scheme by returning <code>light</code> or <code>dark</code>.
+          </li>
+          <li>
+            Choose color palettes that are easy to read in both light and dark modes.
+          </li>
+          <li>
+            Instead of shadow styling use highlights and gradients, since shadow styling is difficult to perceive in dark mode.
+          </li>
+          <li>
+            Use CSS filters on images to reduce their brightness to make them easier to view in dark mode (*** is this advice we want to give? ***).
+          </li>
+          <li>
+            Ensure the text content and components of both color schemes meet or exceed the color contrast ratios specified by
+            <a href="https://www.w3.org/TR/WCAG21/#contrast-minimum">WCAG 1.4.3: Contrast (Minimum)</a>.
+          </li>
+        </ol>
+
+        <p>Dark mode design resources:</p>
+        <ul>
+          <li><a href="https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/#design">CSS-Tricks: Dark Mode in CSS Guide</a></li>
+          <li><a href="https://www.uxdesigninstitute.com/blog/dark-mode-design-practical-guide/">UX Design Institute: How to design for dark mode: a practical guide</a></li>
+          <li><a href="https://medium.com/@tundehercules/designing-effective-dark-mode-interfaces-17f38ecea2e9">Medium: How to Design Accessible Dark Mode Interfaces</a></li>
+        </ul>
+
+        <h3 id="color-scheme-switch">Color Scheme Example: Switch</h3>
+        <p>
+          The below example of a switch shows how colors can change when users switch color schemes.  
+          Enable "dark mode" on your device, and the example will be rendered with the dark color scheme.
+        </p>
+        <div class="example">
+          <button type="button" role="switch" aria-checked="false" class="color-scheme">
+            <span class="label">Dining Room Lights</span>
+            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="36">
+              <rect class="container" x="1" y="1" width="34" height="18" rx="9" />
+              <circle class="off" cx="11"  cy="10" r="8" />
+              <circle class="on"  cx="25" cy="10" r="8" />
+            </svg>
+            <span class="on" aria-hidden="true">On</span>
+            <span class="off" aria-hidden="true">Off</span>
+          </button>
+          <button type="button" role="switch" aria-checked="false" class="color-scheme">
+            <span class="label">Outdoor Lights</span>
+            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="36">
+              <rect class="container" x="1" y="1" width="34" height="18" rx="9" />
+              <circle class="off" cx="11"  cy="10" r="8" />
+              <circle class="on"  cx="25" cy="10" r="8" />
+            </svg>
+            <span class="on" aria-hidden="true">On</span>
+            <span class="off" aria-hidden="true">Off</span>
+          </button>
+        </div>
+
+        <table class="data">
+          <caption>Color Scheme Changes</caption>
+          <thead>
+            <tr>
+              <th rowspan="2" style="vertical-align: bottom">
+                <code>prefers-color-scheme</code>
+              </th>
+              <th colspan="3">Text</th>
+              <th colspan="3">Button</th>
+            </tr>
+            <tr>
+              <th abbr="Background">BG</th>
+              <th>Text</th>
+              <th abbr="Color Contrast Radio">CCR</th>
+              <th abbr="Background">BG</th>
+              <th>Fill</th>
+              <th abbr="Color Contrast Radio">CCR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th><code>light</code></th>
+              <td>
+                <div role="img"
+                     class="sample"
+                     style="background-color: #e9e9e9"
+                     aria-label="Color is a light gray">
+                </div>
+                <span class="color">#e9e9e9</span>
+              </td>
+              <td>
+                <div role="img"
+                     class="sample"
+                     style="background-color: #242424"
+                     aria-label="Color is a very dark gray">
+                </div>
+                <span class="color">#242424</span>
+              </td>
+              <td>12.8</td>
+              <td>
+                 <div role="img"
+                     class="sample"
+                     style="background-color: #a1a1a1"
+                     aria-label="Color is a very light gray">
+                </div>
+                <span class="color">#a1a1a1</span>
+              </td>
+              <td>
+                 <div role="img"
+                     class="sample"
+                     style="background-color: #fff"
+                     aria-label="Color is white">
+                </div>
+                <span class="color">#fff</span>
+              </td>
+              <td>4.6</td>
+            </tr>
+            <tr>
+              <th>
+                <code>dark</code>
+              </th>
+              <td>
+                 <div role="img"
+                     class="sample"
+                     style="background-color: #333"
+                     aria-label="Accent color is light gray">
+                </div>
+                <span class="color">#333</span>
+              </td>
+              <td>
+                 <div role="img"
+                     class="sample"
+                     style="background-color: #fff"
+                     aria-label="Color is black">
+                </div>
+                <span class="color">#fff</span>
+              </td>
+              <td>12.6</td>
+              <td>
+                 <div role="img"
+                     class="sample"
+                     style="background-color: #36c"
+                     aria-label="Color is dark blue">
+                </div>
+                <span class="color">#36c</span>
+              </td>
+              <td>
+                 <div role="img"
+                     class="sample"
+                     style="background-color: #fff"
+                     aria-label="Color is white">
+                </div>
+                <span class="color">#fff</span>
+              </td>
+              <td>5.36</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>CSS Media Query Code</h4>
+
+        <pre>
+          <code>
+:root {
+  color-scheme: light dark;
+}
+
+button.color-scheme[role="switch"] {
+  display: block;
+  margin: 2px;
+  padding: 4px 4px 8px 8px;
+  border: 0 solid light-dark(#005a9c, #add8e6);
+  border-radius: 5px;
+  width: 17em;
+  height: 3em;
+  text-align: left;
+  background-color: light-dark(#e9e9e9, #333);
+  color: light-dark(#242424, #fff);
+
+  .label {
+    position: relative;
+    top: -3px;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    width: 10em;
+    vertical-align: middle;
+    color: light-dark(#242424, #fff);
+  }
+
+  svg {
+    rect {
+      fill: light-dark(#a1a1a1, #36c);
+      stroke-width: 2;
+      stroke: light-dark(#757575, #36c);
+    }
+
+    circle {
+      &.off {
+        display: block;
+        stroke: light-dark(#757575, #fff);
+        fill: light-dark(#fff, #fff);
+        fill-opacity: 1;
+      }
+    }
+  }
+}
+          </code>
+        </pre>
+
+        <h3 id="color-scheme-wikipedia">Color Scheme Example: Wikipedia Page</h3>
+
+        <p>The following example illustrates how Wikipedia supports the color scheme media query.  The example includes showing the "Appearance" sidebar allowing the user to choose the light or dark scheme and other rendering options for text size and column width.</p>
+
+        <table class="data">
+          <thead>
+            <tr>
+              <th>Media Query</th>
+              <th>Screen Shot</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <code>prefers-color-scheme: light</code>
+              </td>
+              <td>
+                <img style="width: 95%" src="./images/wikipedia-scheme-light.png" alt="Screen shot of wikipedia page with user preferences sidebar open.  The red circle shows the users settings radio button for light settings checked.">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code>prefers-color-scheme: dark</code>
+              </td>
+              <td>
+                <img style="width: 95%" src="./images/wikipedia-scheme-dark.png" alt="Screen shot of wikipedia page with user preferences sidebar open.  The red circle shows the users settings radio button for dark settings checked.">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Testing Dark Color Scheme</h3>
+        <p>In  each operating system used by the target audience:</p>
+        <ol>
+          <li>Turn on the dark color theme.</li>
+          <li>
+            Verify contrast for text and components meet or exceed the contrast ratios specified by
+            <a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum">WCAG 1.4.2: Contrast (Minimum)</a>.
+          </li>
+        </ol>
+      </section>
+
+      <section id="forced-colors">
+        <h2>Contrast Themes (Forced Colors)</h2>
+
+        <p>
+          Contrast themes are an operating system accessibility feature available in Windows 10 and 11 that automatically forces all native apps and web content to render using an alternative color theme chosen by the user.
+          Themes are designed to provide extra high contrast, and users can customize their chosen color theme.
+          Browsers automatically replace each author specified color with one of a small set of colors specified by the user's chosen theme based on the type of HTML element.
+          The replacement color used by a browser for a specific element corresponds to one of the system colors described below.  In addition to forcing color changes the browser also ignores background images and gradients.  The following table shows the color themes user can choose in Windows 11.  Each theme is a set of eight colors, which the user can customize.
+        </p>
+
+        <table class="data">
+          <caption>Contrast Themes Colors for Windows 11</caption>
+          <thead>
+            <tr>
+              <th rowspan="2" style="vertical-align: bottom">Feature</th>
+              <th colspan="4">Windows 11 Contrast Themes</th>
+            </tr>
+            <tr>
+              <th>Aquatic</th>
+              <th>Desert</th>
+              <th>Dusk</th>
+              <th>Night Sky</th>
+            </tr>
+          </thead>
+          <tbody id="contrast-theme-features">
+          </tbody>
+        </table>
+
+        <p>Note: In Windows 10 and Windows 11 users can edit the colors of a contrast theme to create their own unique theme.</p>
+
+
+        <h3 id="using-system-colors">Supporting Contrast Themes in Custom Components</h3>
+        <p>
+          ARIA attributes do not inform replacement color selection, e.g., a <code>div</code> with role <code>button</code> renders with text colors, not button colors.
+          When the user chooses a contrast theme, such as described by
+          <a href="https://support.microsoft.com/en-us/windows/change-color-contrast-in-windows-fedc744c-90ac-69df-aed5-c8a90125e696">Windows 11 Accessibility Settings &gt; Contrast Theme</a>,
+          browsers set the <code>forced-colors</code> property to <code>active</code>.
+          When using ARIA to alter the semantics of elements authors need to verify the appropriate system color for each feature when forced colors are enabled.
+
+          The following table provides guidance on how system colors should be applied when forced colors is enabled for common user interface controls.  When elements with altered semantics do not match the appropriate system color for elements, authors must set the appropriate system color using the <code>forced-colors: active</code> media query.
+        </p>
+
+        <p>To support the <code>forced-colors: active</code> media query:</p>
+        <ol>
+          <li>
+            Authors should use <code>&lt;system-colors&gt;</code> associated with the features and behaviors of the component.
+          </li>
+          <li>
+            Most interactive custom components should be using the <code>buttonBorder</code>, <code>ButtonFace</code> and <code>ButtonText</code> values.
+          </li>
+          <li>
+            For more complex interactive components to differentiate component features consider using <code>Highlight</code> or <code>ActiveText</code> values to make the features easier to identify. See the <a href="#html-input-range-contrast-theme">HTML range slider</a> (e.g. <code>input[type="range"])</code>) for how other colors than just button colors are used in styling the slider and thumb features.
+          </li>
+          <li>
+            Disabled components should use <code>GrayText</code> to identify the disabled state.
+          </li>
+        </ol>
+
+        <h3 id="forced-colors-example-switch">Contrast Theme Example: Switch using <code>div[role="switch"]</code></h3>
+
+      <p>The following switch example uses systems colors to style the SVG elements used to indicate the on and off states.  One reason current color cannot be used in this example is due to using <code>div[role="switch"]</code> to identify the switch component.  The <code>div</code> elements current color is <code>CanvasText</code>, and the switch needs to use the colors associated with buttons: <code>ButtonBorder</code>, <code>ButtonFace</code> and <code>ButtonText</code>. In addition to the button colors, the system colors <code>ActiveText</code> is used for the fill of the SVG circle when the switch is on the on state and the <code>GrayText</code> is used as the fill in the off state to make the state easier to discern visually the state of the switch.</p>
+
+        <div class="example">
+          <div role="switch" tabindex="0" aria-checked="false" class="system-color">
+            <span class="label">Living Room Lights</span>
+            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="36">
+              <rect class="container" x="1" y="1" width="34" height="18" rx="9" />
+              <circle class="off" cx="11"  cy="10" r="7" />
+              <circle class="on"  cx="25" cy="10" r="7" />
+            </svg>
+            <span class="on" aria-hidden="true">On</span>
+            <span class="off" aria-hidden="true">Off</span>
+          </div>
+          <div role="switch" tabindex="0" aria-checked="false" class="system-color">
+            <span class="label">Outdoor Lights</span>
+            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="36">
+              <rect class="container" x="1" y="1" width="34" height="18" rx="9" />
+              <circle class="off" cx="11"  cy="10" r="7" />
+              <circle class="on"  cx="25" cy="10" r="7" />
+            </svg>
+            <span class="on" aria-hidden="true">On</span>
+            <span class="off" aria-hidden="true">Off</span>
+          </div>
+        </div>
+
+        <p>The following table shows how the graphical rendering changes for the switch using system colors for some Windows 11 contrast themes. </p>
+
+        <table class="data">
+          <caption>Switch Example using System Colors with Selected High Contrast User Settings in Windows 11</caption>
+          <thead>
+            <tr>
+              <th>Setting</th>
+              <th>Screen Shot</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Contrast Theme: none (default)</td>
+              <td>
+                <img class="theme-switch-button" src="./images/switch-div-default.png" alt="Screen shot of switch example using system colors with no contrast theme applied">
+              </td>
+            </tr>
+            <tr>
+              <td>Contrast Theme: Aquatic</td>
+              <td><img class="theme-switch-button"  src="./images/switch-div-aquatic.png" alt="Screen shot of switch example using system colors with aquatic contrast theme applied"></td>
+            </tr>
+            <tr>
+              <td>Contrast Theme: Desert</td>
+              <td>
+                <img class="theme-switch-button"  src="./images/switch-div-desert.png" alt="Screen shot of switch example using system colors with desert contrast theme applied">
+              </td>
+            </tr>
+            <tr>
+              <td>Contrast Theme: Night sky</td>
+              <td>
+                <img class="theme-switch-button"  src="./images/switch-div-night-sky.png" alt="Screen shot of switch example using system colors with night sky contrast theme applied">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+       <h4>CSS Code using <code>&lt;system-colors&gt;</code> value</h4>
+
+        <pre>
+          <code>
+@media (forced-colors: active) {
+  div[role="switch"].system-color {
+    background-color: ButtonFace;
+    color: ButtonText;
+
+    .label {
+      color: ButtonText;
+    }
+
+    svg {
+      rect {
+        stroke: ButtonBorder;
+      }
+
+      circle.off {
+        stroke: ButtonBorder;
+        fill: GrayText;
+      }
+    }
+
+    &[aria-checked="true"] svg circle.on {
+      stroke-color: ButtonBorder;
+      fill: ActiveText;
+    }
+
+    &:focus,
+    &:hover {
+      background-color: ButtonFace;
+    }
+  }
+}
+          </code>
+        </pre>
+
+        <h3 id="table-forced-colors">Examples using Forced Colors</h3>
+        <ul>
+          <li><a href="../../patterns/feed/examples/feed.html">Feed</a></li>
+          <li><a href="../../patterns/slider/examples/slider-rating.html">Rating Slider</a></li>
+        </ul>
+
+        <h3 id="computed-system-colors">Browser System Color Support</h3>
+
+        <p>The following table identifies those system colors defined in <a href="https://www.w3.org/TR/css-color-4/#css-system-colors">CSS Color Module Level 4</a> which reliably support contrast themes in both Mozilla (e.g. Firefox) <em>and</em> Chromium (e.g. Chrome, Edge, Opera) based browsers.  The colors in the table are the computed color for the operating system (e.g. Windows 10 or 11), browser and contrast theme you are using to view the table.  Changing your contrast theme will update the computed colors in the table.  The computed colors also may vary between operating systems and browsers. </p>
+
+        <p>NOTE: Some <a href="#do-not-use-system-colors">system colors <em>not</em> in the table</a> may support a contrast theme color in either Mozilla (e.g. Firefox) or Chromium (e.g. Chrome, Edge, Opera) based browsers, but not in both.  Only colors supported in both browsers are included in the table.</p>
+
+        <table aria-labelledby="system-colors" class="data">
+          <thead>
+            <tr>
+              <th>System Color</th>
+              <th>Contrast Theme Color</th>
+              <th>Computed Color</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody id="system-colors">
+          </tbody>
+        </table>
+
+        <h3 id="do-not-use-system-colors">System Colors that do not support Contrast Themes</h3>
+
+        <p>The following list of system colors do <em>not</em> support contrast themes, since they do not render one of the contrast theme colors in both Mozilla (e.g. Firefox) and Chromium (e.g. Chrome, Edge, Opera) based browsers.</p>
+
+        <ul id="unsupported-system-colors">
+        </ul>
+
+      </section>
+
+      <section id="svg">
+        <h2>SVG Graphics versus Bit-Mapped Images for Components</h2>
+
+        <h3>Limitations of Bit-Mapped Images</h3>
+
+        <p>The colors of pixels used in bit-mapped images (e.g. .png, .jpeg) can respond to media queries by changing the actual image rendered or by applying a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter">CSS filter</a> to the image.  Even when one or more of these techniques are used to respond to changes in contrast settings the resulting images may still be difficult or impossible for people with some types of visual impairments to see.  Low resolution images also do not scale smoothly when the browser zoom features are used to increase the size of rendered content and the resulting distortion will make it more difficult or impossible for people to identify the component.</p>
+
+        <p>Note: Bit-mapped images used for components should meet <a href="https://www.w3.org/TR/WCAG21/#contrast-minimum">WCAG 1.4.3: Contrast (Minimum)</a> requirement.</p>
+
+        <h3>Benefits of SVG Graphics</h3>
+
+        <p>SVG graphics can respond to contrast related media queries including <code>prefers-contrast</code>, <code>prefers-color-scheme</code> and <code>forced-colors</code> to change the styling of components.  SVG provides smooth scaling of the graphics as the size of components are adjusted using browser zoom features. SVG elements can also adapt to a wide variety of screen sizes and load faster due to their smaller size than equivalent bit-mapped images.</p>
+
+        <h4>Using Current Color Value</h4>
+
+        <p>
+          The SVG elements of custom components should match the color styling of other features in the component based on user settings, for example users applying a Contrast Theme in Microsoft Windows.  When SVG elements are used in custom components the <code>currentcolor</code> value can be used for <code>fill</code> and <code>stroke</code> properties to inherit color styling from ancestor elements, reducing the need for media queries to synchronize colors.
+        </p>
+
+        <p>Examples using current color:</p>
+
+        <ul>
+          <li><a href="../../patterns/checkbox/examples/checkbox-mixed.html">Checkbox (Mixed-State)</a></li>
+          <li><a href="../../patterns/disclosure/examples/disclosure-faq.html">Disclosure (Show/Hide) for Answers to Frequently Asked Questions</a></li>
+          <li><a href="../../patterns/radio/examples/radio-activedescendant.html">Radio Group  Using aria-activedescendant</a></li>
+          <li><a href="../../patterns/slider/examples/slider-seek.html">Media Seek Slider</a></li>
+          <li><a href="../../patterns/slider/examples/slider-temperature.html">Vertical Temperature Slider</a></li>
+        </ul>
+
+
+
+        <table class="data">
+          <caption>Summary of SVG vs. Bit-Mapped Features</caption>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Bit-Mapped</th>
+              <th>SVG</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Scale to Screen Size</th>
+              <td>Distortion<sup>1</sup></td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <th>Smooth Zooming</th>
+              <td>Distortion<sup>1</sup></td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <th>Color Changes using Media Queries</th>
+              <td>Image substitution or CSS filters</td>
+              <td>Yes</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p><sup>1</sup> Distortion dependent on image quality and rendering dimensions.</p>
+
+      </section>
+
+      <section id="testing">
+        <h2>Testing for Contrast Theme Support</h2>
+
+        <p>High contrast testing requires setting operating system contrast features or using browser extensions or configuration to emulate high contrast.  </p>
+
+        <h3 id="os-high-contrast-config">Operating System High Contrast Settings</h3>
+
+        <ul>
+          <li><a href="https://support.microsoft.com/en-us/windows/change-color-contrast-in-windows-fedc744c-90ac-69df-aed5-c8a90125e696"> Windows 10 and 11: Change color contrast in Windows</a></li>
+          <li><a href="https://support.apple.com/guide/mac-help/change-display-settings-for-accessibility-unac089/mac">macOS: Change Display settings for accessibility on Mac</a></li>
+          <li><a href="https://help.gnome.org/users/gnome-help/stable/a11y-contrast.html.en">Linux GNOME: Adjust the contrast</a></li>
+          <li><a href="https://support.apple.com/guide/ipad/make-text-easier-to-read-ipad9a246013/17.0/ipados/17.0">iPad: Make iPad text easier to read with accessibility features</a></li>
+          <li><a href="https://support.apple.com/guide/iphone/make-text-easier-to-read-iph3c076905a/17.0/ios/17.0">iPhone: Make iPhone text easier to read with accessibility features</a></li>
+          <li><a href="https://support.google.com/accessibility/android/answer/11183305">Android: Change text &amp; display settings</a></li>
+        </ul>
+
+        <h3 id="chrome-high-contrast-options">Chrome High Contrast Options</h3>
+
+        <p>The Chrome browser has Render options in the DOM Inspector to enable and disable contrast related media queries. Use the <a href="https://developer.chrome.com/docs/devtools/rendering/emulate-css">DOM Inspector Render Tab: Emulate</a>  and you can change the setting for <code>prefers-color-scheme: dark</code> and <code>forced-colors: active</code>.
+        </p>
+      </section>
+
+    </main>
+  </body>
+</html>
