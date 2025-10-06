@@ -28,23 +28,21 @@
       positionLeft: '46%',
       smallBreakPoint: '580',
       mediumBreakPoint: '992',
-      buttonTextColor: '#13294b',
-      buttonBackgroundColor: '#dddddd',
-      focusBorderColor: '#c5050c',
-      menuTextColor: '#13294b',
-      menuBackgroundColor: '#dddddd',
-      menuitemFocusTextColor: '#dddddd',
-      menuitemFocusBackgroundColor: '#13294b',
-      menuTextDarkColor: '#ffffff',
-      menuBackgroundDarkColor: '#000000',
-      menuitemFocusTextDarkColor: '#ffffff',
-      menuitemFocusBackgroundDarkColor: '#013c93',
-      focusBorderDarkColor: '#ffffff',
-      buttonTextDarkColor: '#ffffff',
-      buttonBackgroundDarkColor: '#013c93',
+      buttonTextColor: 'hsl(216, 60%, 18%)',
+      buttonTextDarkColor: 'hsl(216, 60%, 72%)',
+      buttonBackgroundColor: 'hsl(0, 0%, 87%)',
+      buttonBackgroundDarkColor: 'hsl(0, 0%, 13%)',
+      focusBorderColor: 'hsl(358, 95%, 40%)',
+      focusBorderDarkColor: 'hsl(358, 95%, 60%)',
+      menuTextColor: 'hsl(216, 60%, 18%)',
+      menuTextDarkColor: 'hsl(216, 60%, 72%)',
+      menuBackgroundColor: 'hsl(0, 0%, 87%)',
+      menuBackgroundDarkColor: 'hsl(0, 0%, 13%)',
+      menuitemFocusTextColor: 'hsl(0, 0%, 87%)',
+      menuitemFocusTextDarkColor: 'hsl(0, 0%, 13%)',
+      menuitemFocusBackgroundColor: 'hsl(216, 60%, 18%)',
+      menuitemFocusBackgroundDarkColor: 'hsl(216, 60%, 72%)',
       zIndex: '2000000',
-      z2Index: '20000002',
-      zHighlight: '1999900',
       displayOption: 'fixed',
       highlightTarget: 'instant',
       highlightBorderSize: 'small',
@@ -244,7 +242,6 @@
   const SCRIPT_EXTENSION_ID   = `id-skip-to-extension`;
   const SCRIPT_BOOKMARKLET_ID = `id-skip-to-bookmarklet`;
 
-  const MENU_ID   = 'id-skip-to-menu';
 
   const MENU_LANDMARK_GROUP_ID        = 'id-skip-to-landmark-group';
   const MENU_LANDMARK_GROUP_LABEL_ID  = 'id-skip-to-landmark-group-label';
@@ -257,8 +254,10 @@
 
   const MENU_ABOUT_ID     = 'id-skip-to-about';
 
+  const BUTTON_ID         = 'id-skip-to-button';
+  const MENU_ID           = 'id-skip-to-menu';
+  const DIALOG_ID         = 'id-skip-to-dialog';
   const MESSAGE_ID        = 'id-skip-to-message';
-
   const HIGHLIGHT_ID      = 'id-skip-to-highlight-overlay';
   const HIDDEN_ELEMENT_ID = 'id-skip-to-hidden-element';
 
@@ -1425,7 +1424,7 @@ dialog button:hover {
 
   const templateInfoDialog = document.createElement('template');
   templateInfoDialog.innerHTML = `
-  <dialog>
+  <dialog id="${DIALOG_ID}">
     <div class="header">
       <h2>Keyboard Shortcuts</h2>
       <button>✕</button>
@@ -3432,9 +3431,10 @@ dialog button:hover {
    */
   function monitorKeyboardFocus () {
     document.addEventListener('focusin', () => {
-      const skipToContentElem = document.querySelector(EXTENSION_ELEMENT_NAME) | document.querySelector(BOOKMARKLET_ELEMENT_NAME);
+      const skipToContentElem = document.querySelector(EXTENSION_ELEMENT_NAME) || document.querySelector(BOOKMARKLET_ELEMENT_NAME);
+      debug$4.log(`[monitorKeyboardFocus]: ${skipToContentElem}`);
       if (skipToContentElem) {
-        skipToContentElem.removeHighlight();
+        skipToContentElem.buttonSkipTo.removeHighlight();
       }
     });
   }
@@ -3452,13 +3452,12 @@ dialog button:hover {
 
   function navigateContent (target, direction, msgHeadingLevel, useFirst=false, nameRequired=false) {
 
-    const lastFocusElem = getFocusElement();
+    let lastFocusElem = getFocusElement();
     let elem = lastFocusElem;
     let lastElem;
     let count = 0;
 
     // Note: The counter is used as a safety mechanism for any endless loops
-
     do {
       lastElem = elem;
       elem = queryDOMForSkipToNavigation(target, direction, elem, useFirst, nameRequired);
@@ -3491,7 +3490,7 @@ dialog button:hover {
 
       const skipToContentElem = document.querySelector(EXTENSION_ELEMENT_NAME) || document.querySelector(BOOKMARKLET_ELEMENT_NAME);
       if (skipToContentElem) {
-        skipToContentElem.highlight(elem, 'instant', info, true);  // force highlight
+        skipToContentElem.buttonSkipTo.highlight(elem, 'instant', info, true);  // force highlight
       }
 
     }
@@ -3795,7 +3794,8 @@ dialog button:hover {
 
   const templateMenuButton = document.createElement('template');
   templateMenuButton.innerHTML = `
-    <button aria-haspopup="menu"
+    <button id="${BUTTON_ID}"
+            aria-haspopup="menu"
             aria-expanded= "false"
             aria-label="Skip To Content"
             aria-controls="id-skip-to-menu">
@@ -3874,6 +3874,7 @@ dialog button:hover {
 
         this.menuButtonNode = document.createElement(ce);
         this.menuButtonNode.className = 'menu-button';
+        this.menuButtonNode.id = SKIP_TO_ID;
         this.containerNode.appendChild(this.menuButtonNode);
 
         if (ce === 'nav') {
@@ -4409,7 +4410,7 @@ dialog button:hover {
           this.removeHoverClass(menuitem);
           menuitem.classList.add('hover');
           menuitem.focus();
-          this.skipToContentElem.setAttribute('focus', 'menu');
+  //        this.skipToContentElem.setAttribute('focus', 'menu');
           this.focusMenuitem = menuitem;
           if (menuitem.hasAttribute('data-id')) {
             const elem = queryDOMForSkipToId(menuitem.getAttribute('data-id'));
@@ -4716,12 +4717,12 @@ dialog button:hover {
       
       handleFocusin() {
         this.buttonNode.classList.add('focus');
-        this.skipToContentElem.setAttribute('focus', 'button');
+  //      this.skipToContentElem.setAttribute('focus', 'button');
       }
       
       handleFocusout() {
         this.buttonNode.classList.remove('focus');
-        this.skipToContentElem.setAttribute('focus', 'none');
+  //      this.skipToContentElem.setAttribute('focus', 'none');
       }
       
       handleButtonKeydown(event) {
@@ -4740,7 +4741,7 @@ dialog button:hover {
           case 'Escape':
             this.closePopup();
             this.buttonNode.focus();
-            this.skipToContentElem.setAttribute('focus', 'button');
+  //          this.skipToContentElem.setAttribute('focus', 'button');
             flag = true;
             break;
           case 'Up':
@@ -4760,7 +4761,7 @@ dialog button:hover {
         if (this.isOpen()) {
           this.closePopup();
           this.buttonNode.focus();
-          this.skipToContentElem.setAttribute('focus', 'button');
+  //        this.skipToContentElem.setAttribute('focus', 'button');
         } else {
           this.openPopup();
           this.setFocusToFirstMenuitem();
@@ -4930,10 +4931,12 @@ dialog button:hover {
 
         if (tgt.hasAttribute('data-shortcuts-toggle')) {
           if (tgt.getAttribute('data-shortcuts-toggle') === 'enable') {
-            this.skipToContentElem.setAttribute('shortcuts', 'enable');
+            this.config.shortcuts = 'enabled';
+  //          this.skipToContentElem.setAttribute('shortcuts', 'enable');
           }
           else {
-            this.skipToContentElem.setAttribute('shortcuts', 'disable');
+            this.config.shortcuts = 'disabled';
+  //          this.skipToContentElem.setAttribute('shortcuts', 'disable');
           }
           this.closePopup();
         }
@@ -4969,7 +4972,7 @@ dialog button:hover {
           if (event.key === 'Tab') {
             this.closePopup();
             this.buttonNode.focus();
-            this.skipToContentElem.setAttribute('focus', 'button');
+  //          this.skipToContentElem.setAttribute('focus', 'button');
             flag = true;
           }
         } else {
@@ -4983,7 +4986,7 @@ dialog button:hover {
             case 'Escape':
               this.closePopup();
               this.buttonNode.focus();
-              this.skipToContentElem.setAttribute('focus', 'button');
+  //            this.skipToContentElem.setAttribute('focus', 'button');
               flag = true;
               break;
             case 'Left':
@@ -5081,7 +5084,7 @@ dialog button:hover {
               if (!this.isOverMenu(event.clientX, event.clientY)) {
                 this.closePopup();
                 this.buttonNode.focus();
-                this.skipToContentElem.setAttribute('focus', 'button');
+  //              this.skipToContentElem.setAttribute('focus', 'button');
               }
             }
             else {
@@ -5131,7 +5134,7 @@ dialog button:hover {
             if (this.isOpen()) {
               this.closePopup();
               this.buttonNode.focus();
-              this.skipToContentElem.setAttribute('focus', 'button');
+  //            this.skipToContentElem.setAttribute('focus', 'button');
             }        
           }
         }
@@ -5434,8 +5437,7 @@ dialog button:hover {
         }
 
       }
-
-      this.setAttribute('focus', 'none');
+  //    this.setAttribute('focus', 'none');
     }
 
    /*
@@ -5532,7 +5534,7 @@ dialog button:hover {
       return config;
     }
 
-      /*
+    /*
      * @method supportShortcuts
      *
      * @desc  Set suuportShortcuts configuration property
@@ -5549,6 +5551,34 @@ dialog button:hover {
         this.config.shortcuts = 'disabled';
       }
     }
+
+   /*
+     *   @method highlight
+     *
+     *   @desc  Highlights the element on the page when highlighting
+     *          is enabled (NOTE: Highlight is enabled by default)
+     *
+     *   @param {Object}  elem            : DOM node of element to highlight
+     *   @param {String}  highlightTarget : value of highlight target
+     *   @param {String}  info            : Information about target
+     *   @param {Boolean} force           : If true override isRduced
+     */
+
+    highlight(elem, highlightTarget='instant', info='', force=false) {
+      this.buttonSkipto.highlight(elem, highlightTarget, info, force);
+    }
+
+    /*
+     *   @method removeHighlight
+     *
+     *   @desc  Hides the highlight element on the page
+     */
+    removeHighlight() {
+      debug$1.log(`[removeHighlight]`);
+      this.buttonSkipto.removeHighlight();
+
+    }
+
   }
 
   /* skipto.js */
