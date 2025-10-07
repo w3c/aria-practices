@@ -29,6 +29,7 @@
 .slider-multithumb .slider-group .range {
   fill: currentcolor;
   opacity: 0.4;
+  pointer-events: none;
 }
 
 .slider-multithumb .slider-group .thumb {

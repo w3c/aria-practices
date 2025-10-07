@@ -13,7 +13,7 @@ jobs:
     if: ${{ github.event_name == 'delete' && github.event.ref_type == 'branch' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -27,7 +27,7 @@ jobs:
         run: |
           node scripts/wai-trigger-cleanup.js
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.W3CGRUNTBOT_TOKEN }}
           OWNER: ${{ github.repository_owner }}
           # reference github.event.ref for branch deletion
           APG_BRANCH: ${{ github.event.ref }}
@@ -36,7 +36,7 @@ jobs:
     if: ${{ github.event_name == 'pull_request' || github.event_name == 'pull_request_target' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -50,7 +50,7 @@ jobs:
         run: |
           node scripts/wai-trigger-cleanup.js
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.W3CGRUNTBOT_TOKEN }}
           OWNER: ${{ github.repository_owner }}
           # reference github.head_ref for pull request
           APG_BRANCH: ${{ github.head_ref }}

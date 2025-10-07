@@ -4,7 +4,7 @@ const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAttributeDNE = require('../util/assertAttributeDNE');
 const assertAriaRoles = require('../util/assertAriaRoles');
-
+const isMacOS = require('../util/isMacOS');
 const exampleFile = 'content/patterns/combobox/examples/grid-combo.html';
 
 const ex = {
@@ -877,10 +877,17 @@ ariaTest(
     // Send key "ARROW_HOME"
     await combobox.sendKeys(Key.HOME);
 
-    t.true(
-      await confirmCursorIndex(t, ex.comboboxSelector, 0),
-      'Cursor should be at index 0 after one ARROW_HOME key'
-    );
+    // On macOS, the HOME key deselects the grid popup
+    // but it doesn't move the cursor.
+    // This is being tracked in issue #3191
+    // https://github.com/w3c/aria-practices/issues/3191
+    // TODO: Remove this once the issue is fixed
+    if (!isMacOS()) {
+      t.true(
+        await confirmCursorIndex(t, ex.comboboxSelector, 0),
+        'Cursor should be at index 0 after one ARROW_HOME key'
+      );
+    }
 
     t.is(
       await combobox.getAttribute('aria-activedescendant'),

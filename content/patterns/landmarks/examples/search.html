@@ -61,11 +61,29 @@
               </ul>
               <div class="tab-content">
                 <div id="tabpanel2" aria-labelledby="tab2" role="tabpanel" class="tab-pane active">
-                  <p>There is no HTML element that defines a <code>search</code> landmark, see the ARIA techniques for defining a <code>search</code> landmark.</p>
+                  <p>Use the HTML <code>search</code> element to define a <code>search</code> landmark.</p>
+                  <h3>HTML Example</h3>
+                  <search>
+                    <input type="search" size="20" aria-label="search text"><input type="submit" value="Search">
+                  </search>
+                  <br>
+                  <div class="code">
+                    <strong>&lt;search&gt;</strong>
+                    <br>
+                    <br>
+                    &nbsp;&nbsp;&lt;input type="search" aria-label="search text" size="20"&gt;
+                    <br>
+                    <br>
+                    &nbsp;&nbsp;&lt;input type="submit" value="Search"&gt;
+                    <br>
+                    <br>
+                    <strong>&lt;/search&gt;</strong>
+                    <br>
+                  </div>
                 </div>
                 <div id="tabpanel1" aria-labelledby="tab1" role="tabpanel" class="tab-pane">
                   <p>A <code>role="search"</code> attribute is used to define a <code>search</code> landmark.</p>
-                   <h3>ARIA Example</h3>
+                  <h3>ARIA Example</h3>
 
                   <form role="search">
 
@@ -86,7 +104,7 @@
                     &lt;/form&gt;
                     <br>
                   </div>
-               </div>
+                </div>
               </div>
             </section>
           </main>

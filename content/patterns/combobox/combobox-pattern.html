@@ -11,6 +11,7 @@
     <script src="../../shared/js/highlight.pack.js"></script>
     <script src="../../shared/js/app.js"></script>
     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+    <script data-read-this-first="showImage:false" src="../../shared/js/read-this-first.js"></script>
   </head>
   <body>
     <main>
@@ -148,9 +149,9 @@
             </ul>
           </li>
           <li>If the combobox is editable, it supports standard single line text editing keys appropriate for the device platform (see note below).</li>
-          <li><kbd>Alt + Down Arrow</kbd> (Optional): If the popup is available but not displayed, displays the popup without moving focus.</li>
+          <li><kbd>Alt</kbd> + <kbd>Down Arrow</kbd> (Optional): If the popup is available but not displayed, displays the popup without moving focus.</li>
           <li>
-            <kbd>Alt + Up Arrow</kbd> (Optional): If the popup is displayed:
+            <kbd>Alt</kbd> + <kbd>Up Arrow</kbd> (Optional): If the popup is displayed:
             <ul>
               <li>If the popup contains focus, returns focus to the combobox.</li>
               <li>Closes the popup.</li>
@@ -270,8 +271,8 @@
               <li>If the combobox is editable, returns focus to the combobox and places the cursor after the last character.</li>
             </ul>
           </li>
-          <li><kbd>Control + Home</kbd> (optional): moves focus to the first row.</li>
-          <li><kbd>Control + End</kbd> (Optional): moves focus to the last row.</li>
+          <li><kbd>Control</kbd> + <kbd>Home</kbd> (optional): moves focus to the first row.</li>
+          <li><kbd>Control</kbd> + <kbd>End</kbd> (Optional): moves focus to the last row.</li>
           <li>Any printable character: If the combobox is editable, returns the focus to the combobox without closing the popup and types the character.</li>
           <li><kbd>Backspace</kbd> (Optional): If the combobox is editable, returns focus to the combobox and deletes the character prior to the cursor.</li>
           <li><kbd>Delete</kbd> (Optional): If the combobox is editable, returns focus to the combobox, removes the selected state if a suggestion was selected, and removes the inline autocomplete string if present.</li>

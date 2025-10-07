@@ -11,6 +11,7 @@
     <script src="../../shared/js/highlight.pack.js"></script>
     <script src="../../shared/js/app.js"></script>
     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+    <script data-read-this-first="showImage:false" src="../../shared/js/read-this-first.js"></script>
   </head>
   <body>
     <main>
@@ -27,7 +28,7 @@
         <p>
           Ensuring all users can easily control and are not adversely affected by slide rotation is an essential aspect of making carousels accessible.
           For instance, the screen reader experience can be confusing and disorienting if slides that are not visible on screen are incorrectly hidden, e.g., displayed off-screen.
-          Similarly, if slides rotate automatically and a screen reader user is not aware of the rotation, the user may read an element on slide one, execute the screen reader command for next element, and, instead of hearing the next element on slide one, hear an element from slide 2 without any knowledge that the element just announced is from an entirely new context.
+          Similarly, if slides rotate automatically and a screen reader user is not aware of the rotation, the user may read an element on slide 1, execute the screen reader command for next element, and, instead of hearing the next element on slide 1, hear an element from slide 2 without any knowledge that the element just announced is from an entirely new context.
         </p>
         <p>Features needed to provide sufficient rotation control include:</p>
         <ul>
@@ -86,7 +87,7 @@
             If the carousel has an auto-rotate feature, automatic slide rotation stops when any element in the carousel receives keyboard focus.
             It does not resume unless the user activates the rotation control.
           </li>
-          <li><kbd>Tab</kbd> and <kbd>Shift + Tab</kbd>: Move focus through the interactive elements of the carousel as specified by the page tab sequence -- scripting for <kbd>Tab</kbd> is not necessary.</li>
+          <li><kbd>Tab</kbd> and <kbd>Shift</kbd> + <kbd>Tab</kbd>: Move focus through the interactive elements of the carousel as specified by the page tab sequence -- scripting for <kbd>Tab</kbd> is not necessary.</li>
           <li>
             Button elements implement the keyboard interaction defined in the <a href="../button/button-pattern.html">button pattern</a>.
             Note: Activating the rotation control, next slide, and previous slide do not move focus, so users may easily repetitively activate them as many times as desired.
