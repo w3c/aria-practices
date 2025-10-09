@@ -347,8 +347,16 @@
               <li>When focus leaves the tree, if the item representing the current page is in a branch that has been collapsed, that branch is expanded to ensure the current page item is both visible and exposed as active to assistive technologies.</li>
             </ul>
           </li>
-        </ul>
-        <h3>Visual design and high contrast features</h3>
+        </ul>
+        <p>
+          In this navigation example, the
+          <a href="https://www.w3.org/TR/wai-aria-1.2/#aria-current" class="property-reference"><code>aria-current</code></a>
+          attribute is used instead of
+          <a href="https://www.w3.org/TR/wai-aria-1.2/#aria-selected" class="property-reference"><code>aria-selected</code></a>
+          because it more clearly communicates which page is currently displayed.
+          The ARIA Tree View pattern does not require that an item be selected.
+        </p>
+        <h3>Visual design and high contrast features</h3>
         <ul>
           <li>To help communicate that the arrow keys are available for navigation within the tree, a border is added to the tree container when focus is within the tree.</li>
           <li>
