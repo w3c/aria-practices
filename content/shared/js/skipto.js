@@ -54,88 +54,144 @@
       fontFamily: 'sans-serif',
       fontSize: '10pt',
       positionLeft: '7%',
-      menuTextColor: '#000',
-      menuBackgroundColor: '#def',
-      menuitemFocusTextColor: '#fff',
-      menuitemFocusBackgroundColor: '#005a9c',
-      focusBorderColor: '#005a9c',
-      buttonTextColor: '#005a9c',
-      buttonBackgroundColor: '#ddd',
+      menuTextColor: 'hsl(0, 0%, 0%)',
+      menuTextDarkColor: 'hsl(0, 0%, 100%)',
+      menuBackgroundColor: 'hsl(210, 100%, 93%)',
+      menuBackgroundDarkColor: 'hsl(210, 100%, 07%)',
+      menuitemFocusTextColor: 'hsl(0, 0%, 100%)',
+      menuitemFocusTextDarkColor: 'hsl(0, 0%, 0%)',
+      menuitemFocusBackgroundColor: 'hsl(205, 100%, 31%)',
+      menuitemFocusBackgroundDarkColor: 'hsl(205, 100%, 69%)',
+      focusBorderColor: 'hsl(205, 100%, 31%)',
+      focusBorderDarkColor: 'hsl(205, 100%, 69%)',
+      buttonTextColor: 'hsl(205, 100%, 31%)',
+      buttonTextDarkColor: 'hsl(205, 100%, 69%)',
+      buttonBackgroundColor: 'hsl(0, 0%, 87%)',
+      buttonBackgroundDarkColor: 'hsl(0, 0%, 13%)'
     },
     'illinois': {
       hostnameSelector: 'illinois.edu',
-      menuTextColor: '#00132c',
-      menuBackgroundColor: '#cad9ef',
-      menuitemFocusTextColor: '#eeeeee',
-      menuitemFocusBackgroundColor: '#00132c',
-      focusBorderColor: '#ff552e',
-      buttonTextColor: '#444444',
-      buttonBackgroundColor: '#dddede',
+      menuTextColor: 'hsl(214, 100%, 9%)',
+      menuTextDarkColor: 'hsl(214, 100%, 91%)',
+      menuBackgroundColor: 'hsl(216, 54%, 86%)',
+      menuBackgroundDarkColor: 'hsl(216, 54%, 14%)',
+      menuitemFocusTextColor: 'hsl(0, 0%, 93%)',
+      menuitemFocusTextDarkColor: 'hsl(0, 0%, 7%)',
+      menuitemFocusBackgroundColor: 'hsl(214, 100%, 9%)',
+      menuitemFocusBackgroundDarkColor: 'hsl(214, 100%, 91%)',
+      focusBorderColor: 'hsl(11, 100%, 59%)',
+      focusBorderDarkColor: 'hsl(11, 100%, 41%)',
+      buttonTextColor: 'hsl(0, 0%, 27%)',
+      buttonTextDarkColor: 'hsl(0, 0%, 73%)',
+      buttonBackgroundColor: 'hsl(180, 1%, 87%)',
+      buttonBackgroundDarkColor: 'hsl(180, 1%, 13%)',
       highlightTarget: 'disabled'
     },
     'openweba11y': {
       hostnameSelector: 'openweba11y.com',
-      buttonTextColor: '#13294B',
-      buttonBackgroundColor: '#dddddd',
-      focusBorderColor: '#C5050C',
-      menuTextColor: '#13294B',
-      menuBackgroundColor: '#dddddd',
-      menuitemFocusTextColor: '#dddddd',
-      menuitemFocusBackgroundColor: '#13294B',
+      buttonTextColor: 'hsl(216, 60%, 18%)',
+      buttonTextDarkColor: 'hsl(216, 60%, 82%)',
+      buttonBackgroundColor: 'hsl(0, 0%, 87%)',
+      buttonBackgroundDarkColor: 'hsl(0, 0%, 13%)',
+      focusBorderColor: 'hsl(358, 95%, 40%)',
+      focusBorderDarkColor: 'hsl(358, 95%, 60%)',
+      menuTextColor: 'hsl(216, 60%, 18%)',
+      menuTextDarkColor: 'hsl(216, 60%, 82%)',
+      menuBackgroundColor: 'hsl(0, 0%, 87%)',
+      menuBackgroundDarkColor: 'hsl(0, 0%, 13%)',
+      menuitemFocusTextColor: 'hsl(0, 0%, 87%)',
+      menuitemFocusTextDarkColor: 'hsl(0, 0%, 13%)',
+      menuitemFocusBackgroundColor: ' hsl(216, 60%, 18%)',
+      menuitemFocusBackgroundDarkColor: ' hsl(216, 60%, 82%)',
       fontSize: '90%'
     },
     'skipto': {
       hostnameSelector: 'skipto-landmarks-headings.github.io',
       positionLeft: '25%',
       fontSize: '14px',
-      menuTextColor: '#00132c',
-      menuBackgroundColor: '#cad9ef',
-      menuitemFocusTextColor: '#eeeeee',
-      menuitemFocusBackgroundColor: '#00132c',
-      focusBorderColor: '#ff552e',
-      buttonTextColor: '#444444',
-      buttonBackgroundColor: '#dddede',
+      menuTextColor: 'hsl(214, 100%, 9%)',
+      menuTextDarkColor: 'hsl(214, 100%, 91%)',
+      menuBackgroundColor: 'hsl(216, 54%, 86%)',
+      menuBackgroundDarkColor: 'hsl(216, 54%, 14%)',
+      menuitemFocusTextColor: 'hsl(0, 0%, 93%)',
+      menuitemFocusTextDarkColor: 'hsl(0, 0%, 7%)',
+      menuitemFocusBackgroundColor: 'hsl(214, 100%, 9%)',
+      menuitemFocusBackgroundDarkColor: 'hsl(214, 100%, 91%)',
+      focusBorderColor: 'hsl(11, 100%, 59%)',
+      focusBorderDarkColor: 'hsl(11, 100%, 41%)',
+      buttonTextColor: 'hsl(0, 0%, 27%)',
+      buttonTextDarkColor: 'hsl(0, 0%, 73%)',
+      buttonBackgroundColor: 'hsl(180, 1%, 87%)',
+      buttonBackgroundDarkColor: 'hsl(180, 1%, 13%)',
     },
     'uic': {
       hostnameSelector: 'uic.edu',
-      menuTextColor: '#001e62',
-      menuBackgroundColor: '#f8f8f8',
-      menuitemFocusTextColor: '#ffffff',
-      menuitemFocusBackgroundColor: '#001e62',
-      focusBorderColor: '#d50032',
-      buttonTextColor: '#ffffff',
-      buttonBackgroundColor: '#001e62',
+      menuTextColor: 'hsl(222, 100%, 19%)',
+      menuTextDarkColor: 'hsl(222, 100%, 81%)',
+      menuBackgroundColor: 'hsl(0, 0%, 97%)',
+      menuBackgroundDarkColor: 'hsl(0, 0%, 3%)',
+      menuitemFocusTextColor: 'hsl(0, 0%, 100%)',
+      menuitemFocusTextDarkColor: 'hsl(0, 0%, 0%)',
+      menuitemFocusBackgroundColor: 'hsl(222, 100%, 19%)',
+      menuitemFocusBackgroundDarkColor: 'hsl(222, 100%, 81%)',
+      focusBorderColor: 'hsl(346, 100%, 42%)',
+      focusBorderDarkColor: 'hsl(346, 100%, 58%)',
+      buttonTextColor: 'hsl(0, 0%, 100%)',
+      buttonTextDarkColor: 'hsl(0, 0%, 0%)',
+      buttonBackgroundColor: 'hsl(222, 100%, 19%)',
+      buttonBackgroundDarkColor: 'hsl(222, 100%, 81%)'
     },
     'uillinois': {
       hostnameSelector: 'uillinois.edu',
-      menuTextColor: '#001e62',
-      menuBackgroundColor: '#e8e9ea',
-      menuitemFocusTextColor: '#f8f8f8',
-      menuitemFocusBackgroundColor: '#13294b',
-      focusBorderColor: '#dd3403',
-      buttonTextColor: '#e8e9ea',
-      buttonBackgroundColor: '#13294b',
+      menuTextColor: 'hsl(222, 100%, 19%)',
+      menuTextDarkColor: 'hsl(222, 100%, 81%)',
+      menuBackgroundColor: 'hsl(210, 5%, 91%)',
+      menuBackgroundDarkColor: 'hsl(210, 5%, 9%)',
+      menuitemFocusTextColor: 'hsl(0, 0%, 97%)',
+      menuitemFocusTextDarkColor: 'hsl(0, 0%, 3%)',
+      menuitemFocusBackgroundColor: 'hsl(216, 60%, 18%)',
+      menuitemFocusBackgroundDarkColor: 'hsl(216, 60%, 82%)',
+      focusBorderColor: 'hsl(13, 97%, 44%)',
+      focusBorderDarkColor: 'hsl(13, 97%, 56%)',
+      buttonTextColor: 'hsl(210, 5%, 91%)',
+      buttonTextDarkColor: 'hsl(210, 5%, 9%)',
+      buttonBackgroundColor: 'hsl(216, 60%, 18%)',
+      buttonBackgroundDarkColor: 'hsl(216, 60%, 82%)',
       highlightTarget: 'disabled'
     },
     'uis': {
       hostnameSelector: 'uis.edu',
-      menuTextColor: '#036',
-      menuBackgroundColor: '#fff',
-      menuitemFocusTextColor: '#fff',
-      menuitemFocusBackgroundColor: '#036',
-      focusBorderColor: '#dd3444',
-      buttonTextColor: '#fff',
-      buttonBackgroundColor: '#036',
+      menuTextColor: 'hsl(210, 100%, 20%)',
+      menuTextDarkColor: 'hsl(210, 100%, 80%)',
+      menuBackgroundColor: 'hsl(0, 0%, 100%)',
+      menuBackgroundDarkColor: 'hsl(0, 0%, 0%)',
+      menuitemFocusTextColor: 'hsl(0, 0%, 100%)',
+      menuitemFocusTextDarkColor: 'hsl(0, 0%, 0%)',
+      menuitemFocusBackgroundColor: 'hsl(210, 100%, 20%)',
+      menuitemFocusBackgroundDarkColor: 'hsl(210, 100%, 80%)',
+      focusBorderColor: 'hsl(354, 71%, 54%)',
+      focusBorderDarkColor: 'hsl(354, 71%, 46%)',
+      buttonTextColor: 'hsl(0, 0%, 100%)',
+      buttonTextDarkColor: 'hsl(0, 0%, 0%)',
+      buttonBackgroundColor: 'hsl(210, 100%, 20%)',
+      buttonBackgroundDarkColor: 'hsl(210, 100%, 80%)',
     },
     'walmart': {
       hostnameSelector: 'walmart.com',
-      buttonTextColor: '#ffffff',
-      buttonBackgroundColor: '#00419a',
-      focusBorderColor: '#ffc220',
-      menuTextColor: '#ffffff',
-      menuBackgroundColor: '#0071dc',
-      menuitemFocusTextColor: '#00419a',
-      menuitemFocusBackgroundColor: '#ffffff',
+      buttonTextColor: 'hsl(0, 0%, 100%)',
+      buttonTextDarkColor: 'hsl(0, 0%, 0%)',
+      buttonBackgroundColor: 'hsl(215, 100%, 30%)',
+      buttonBackgroundDarkColor: 'hsl(215, 100%, 70%)',
+      focusBorderColor: 'hsl(44, 100%, 56%)',
+      focusBorderDarkColor: 'hsl(44, 100%, 44%)',
+      menuTextColor: 'hsl(0, 0%, 100%)',
+      menuTextDarkColor: 'hsl(0, 0%, 0%)',
+      menuBackgroundColor: 'hsl(209, 100%, 43%)',
+      menuBackgroundDarkColor: 'hsl(209, 100%, 57%)',
+      menuitemFocusTextColor: 'hsl(215, 100%, 30%)',
+      menuitemFocusTextDarkColor: 'hsl(215, 100%, 70%)',
+      menuitemFocusBackgroundColor: 'hsl(0, 0%, 100%)',
+      menuitemFocusBackgroundDarkColor: 'hsl(0, 0%, 0%)',
     }
   };
 
@@ -858,8 +914,6 @@ dialog {
   border-color: light-dark(var(--skipto-focus-border-color), --skipto-focus-border-dark-color));
   border-radius: 5px;
   z-index: 2000001;
-  width: 80%;
-  max-width: 450px;
 }
 
 dialog .header {
@@ -887,12 +941,14 @@ dialog .header h2 {
 
 dialog .header button {
   position: absolute;
-  top: -0.25em;
-  right: 0;
+  top: 4px;
+  right: 2px;
   border: none;
   background: transparent;
   font-weight: bold;
-  color: light-dark(black, white);
+  color: light-dark(var(--skipto-dialog-text-color), var(--skipto-dialog-text-dark-color));
+  font-family: var(--skipto-font-family);
+  font-size: var(--skipto-font-size);
 }
 
 dialog .content {
@@ -934,6 +990,7 @@ dialog .content .copyright {
 
 dialog .content table {
   width: auto;
+  border-collapse: collapse;
 }
 
 dialog .content caption {
@@ -961,19 +1018,26 @@ dialog .content th {
   border-bottom-color: light-dark(#999999, #777777);
 }
 
-dialog .content th.shortcut {
-  width: 2.5em;
-}
-
-dialog .content td {
+dialog .content td.shortcut,
+dialog .content td.desc {
   margin: 0;
-  padding: 0;
+  padding-left: 0.25em;
+  padding-right: 0.25em;
   padding-top: 0.125em;
   padding-bottom: 0.125em;
   text-align: left;
   font-size: 100%;
 }
 
+dialog .content th.shortcut {
+  text-align: left;
+  width: 3em;
+}
+
+dialog .content th.desc {
+  text-align: left;
+  width: 12em;
+}
 
 dialog .content table tr:nth-child(even) {
   background-color: light-dark(#eeeeee, #111111);
@@ -985,12 +1049,11 @@ dialog .buttons {
   margin-bottom: 0.5em;
 }
 
-dialog button {
-  margin: 6px;
-}
-
 dialog .buttons button {
+  margin: 6px;
   min-width: 5em;
+  font-family: var(--skipto-font-family);
+  font-size: var(--skipto-font-size);
 }
 
 dialog button:focus {
@@ -3432,7 +3495,6 @@ dialog button:hover {
   function monitorKeyboardFocus () {
     document.addEventListener('focusin', () => {
       const skipToContentElem = document.querySelector(EXTENSION_ELEMENT_NAME) || document.querySelector(BOOKMARKLET_ELEMENT_NAME);
-      debug$4.log(`[monitorKeyboardFocus]: ${skipToContentElem}`);
       if (skipToContentElem) {
         skipToContentElem.buttonSkipTo.removeHighlight();
       }
@@ -3461,7 +3523,6 @@ dialog button:hover {
     do {
       lastElem = elem;
       elem = queryDOMForSkipToNavigation(target, direction, elem, useFirst, nameRequired);
-      debug$4.flag && debug$4.log(`[navigateContent][elem]: ${elem} (${lastElem === elem})`);
       if (elem) {
         elem.tabIndex = elem.tabIndex >= 0 ? elem.tabIndex : -1;
         elem.focus();
@@ -3531,31 +3592,25 @@ dialog button:hover {
 
           if (target.includes('heading'))
 
-          debug$4.flag && debug$4.log(`[checkForTarget][${node.tagName}]: ${node.textContent.trim().substring(0, 10)} (vis:${isVisible(node)} pf:${passFound})`);
-
           if (!firstNode &&
               isVisible(node)) {
-            debug$4.flag && debug$4.log(`[checkForTarget][firstNode]`);
             firstNode = node;
           }
 
           if ((node !== passElem) &&
               isVisible(node)) {
-            debug$4.flag && debug$4.log(`[checkForTarget][lastNode]`);
             lastNode = node;
           }
 
           if (passFound &&
              (direction === 'next') &&
               isVisible(node)) {
-            debug$4.flag && debug$4.log(`[checkForTarget][found]`);
             return node;
           }
         }
 
         if (node === passElem) {
           passFound = true;
-          debug$4.flag && debug$4.log(`[checkForTarget][passFound]: ${node.tagName}`);
           if (direction === 'previous') {
             return lastNode;
           }
@@ -3880,6 +3935,7 @@ dialog button:hover {
         if (ce === 'nav') {
           this.menuButtonNode.setAttribute('aria-label', this.config.buttonLabel);
         }
+
         if (isNotEmptyString(this.config.customClass)) {
           this.menuButtonNode.classList.add(this.config.customClass);
         }
@@ -4410,7 +4466,7 @@ dialog button:hover {
           this.removeHoverClass(menuitem);
           menuitem.classList.add('hover');
           menuitem.focus();
-  //        this.skipToContentElem.setAttribute('focus', 'menu');
+          this.skipToContentElem.setAttribute('focus', 'menu');
           this.focusMenuitem = menuitem;
           if (menuitem.hasAttribute('data-id')) {
             const elem = queryDOMForSkipToId(menuitem.getAttribute('data-id'));
@@ -4717,12 +4773,12 @@ dialog button:hover {
       
       handleFocusin() {
         this.buttonNode.classList.add('focus');
-  //      this.skipToContentElem.setAttribute('focus', 'button');
+        this.skipToContentElem.setAttribute('focus', 'button');
       }
       
       handleFocusout() {
         this.buttonNode.classList.remove('focus');
-  //      this.skipToContentElem.setAttribute('focus', 'none');
+        this.skipToContentElem.setAttribute('focus', 'none');
       }
       
       handleButtonKeydown(event) {
@@ -4741,7 +4797,7 @@ dialog button:hover {
           case 'Escape':
             this.closePopup();
             this.buttonNode.focus();
-  //          this.skipToContentElem.setAttribute('focus', 'button');
+            this.skipToContentElem.setAttribute('focus', 'button');
             flag = true;
             break;
           case 'Up':
@@ -4761,7 +4817,7 @@ dialog button:hover {
         if (this.isOpen()) {
           this.closePopup();
           this.buttonNode.focus();
-  //        this.skipToContentElem.setAttribute('focus', 'button');
+          this.skipToContentElem.setAttribute('focus', 'button');
         } else {
           this.openPopup();
           this.setFocusToFirstMenuitem();
@@ -4932,11 +4988,11 @@ dialog button:hover {
         if (tgt.hasAttribute('data-shortcuts-toggle')) {
           if (tgt.getAttribute('data-shortcuts-toggle') === 'enable') {
             this.config.shortcuts = 'enabled';
-  //          this.skipToContentElem.setAttribute('shortcuts', 'enable');
+            this.skipToContentElem.setAttribute('shortcuts', 'enable');
           }
           else {
             this.config.shortcuts = 'disabled';
-  //          this.skipToContentElem.setAttribute('shortcuts', 'disable');
+            this.skipToContentElem.setAttribute('shortcuts', 'disable');
           }
           this.closePopup();
         }
@@ -4972,7 +5028,7 @@ dialog button:hover {
           if (event.key === 'Tab') {
             this.closePopup();
             this.buttonNode.focus();
-  //          this.skipToContentElem.setAttribute('focus', 'button');
+            this.skipToContentElem.setAttribute('focus', 'button');
             flag = true;
           }
         } else {
@@ -4986,7 +5042,7 @@ dialog button:hover {
             case 'Escape':
               this.closePopup();
               this.buttonNode.focus();
-  //            this.skipToContentElem.setAttribute('focus', 'button');
+              this.skipToContentElem.setAttribute('focus', 'button');
               flag = true;
               break;
             case 'Left':
@@ -5084,7 +5140,7 @@ dialog button:hover {
               if (!this.isOverMenu(event.clientX, event.clientY)) {
                 this.closePopup();
                 this.buttonNode.focus();
-  //              this.skipToContentElem.setAttribute('focus', 'button');
+                this.skipToContentElem.setAttribute('focus', 'button');
               }
             }
             else {
@@ -5134,7 +5190,7 @@ dialog button:hover {
             if (this.isOpen()) {
               this.closePopup();
               this.buttonNode.focus();
-  //            this.skipToContentElem.setAttribute('focus', 'button');
+              this.skipToContentElem.setAttribute('focus', 'button');
             }        
           }
         }
@@ -5383,23 +5439,26 @@ dialog button:hover {
       }
 
       if (name === 'setfocus') {
-          switch(newValue) {
-            case 'button':
-              this.buttonSkipTo.closePopup();
-              this.buttonSkipTo.buttonNode.focus();
-              break;
+        switch (newValue.trim().toLowerCase()) {
 
-            case 'menu':
-              this.buttonSkipTo.openPopup();
-              this.buttonSkipTo.setFocusToFirstMenuitem();
-              break;
+          case 'button':
+            this.buttonSkipTo.closePopup();
+            this.buttonSkipTo.buttonNode.focus();
+            break;
 
-            case 'none':
-              this.buttonSkipTo.closePopup();
-              document.body.focus();
-              break;
-          }
+          case 'menu':
+            this.buttonSkipTo.openPopup();
+            this.buttonSkipTo.setFocusToFirstMenuitem();
+            break;
+
+          default:
+            this.buttonSkipTo.closePopup();
+            document.body.focus();
+            break;
+        }
       }
+
+
     }
 
     /*
