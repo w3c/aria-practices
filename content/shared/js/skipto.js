@@ -4816,6 +4816,7 @@ dialog button:hover {
       }
 
       handleButtonClick(event) {
+        this.menuButtonNode.classList.add('focus');
         if (this.isOpen()) {
           this.closePopup();
           this.buttonNode.focus();
