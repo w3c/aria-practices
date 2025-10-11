@@ -1,5 +1,5 @@
 /* ========================================================================
- * Version: 5.9.0
+ * Version: 5.9.2
  * Copyright (c) 2022, 2023, 2024, 2025 Jon Gunderson; Licensed BSD
  * Copyright (c) 2021 PayPal Accessibility Team and University of Illinois; Licensed BSD
  * All rights reserved.
@@ -550,12 +550,12 @@
   z-index: var(--skipto-z-index-1);
 }
 
-.menu-button button.popup {
+.menu-button.popup {
   top: var(--skipto-popup-offset);
   transition: top 0.35s ease;
 }
 
-.menu-button button.popup.show-border {
+.menu-button.popup.show-border {
   top: var(--skipto-show-border-offset);
   transition: top 0.35s ease;
 }
@@ -575,9 +575,13 @@
   display: none;
 }
 
-.menu-button button {
+.menu-button {
   position: fixed;
   left: var(--skipto-position-left);
+  z-index: var(--skipto-z-index-1) !important;
+}
+
+.menu-button button {
   margin: 0;
   padding: 0;
   border-width: 0px 1px 1px 1px;
@@ -586,61 +590,59 @@
   border-color: light-dark(var(--skipto-button-background-color), var(--skipto-button-background-dark-color));
   color: light-dark(var(--skipto-button-text-color), var(--skipto-button-text-dark-color));
   background-color: light-dark(var(--skipto-button-background-color), var(--skipto-button-background-dark-color));
-  z-index: 100000 !important;
-  z-index: var(--skipto-z-index-1) !important;
   font-size: var(--skipto-font-size);
   font-family: var(--skipto-font-family);
 }
 
 @media screen and (max-width: var(--skipto-small-break-point)) {
-  .menu-button button:not(.popup) .skipto-small {
+  .menu-button:not(.popup) button .skipto-small {
     transition: top 0.35s ease;
     display: inline-block;
   }
 
-  .menu-button button:not(.popup) .skipto-text,
-  button:not(.popup) .skipto-medium {
+  .menu-button:not(.popup) button .skipto-text,
+  .menu-button:not(.popup) button .skipto-medium {
     transition: top 0.35s ease;
     display: none;
   }
 
-  .menu-button button:not(.popup):focus .skipto-text {
+  .menu-button:not(.popup) button:focus .skipto-text {
     transition: top 0.35s ease;
     display: inline-block;
   }
 
-  .menu-button button:not(.popup):focus .skipto-small,
-  .menu-button button:not(.popup):focus .skipto-medium {
+  .menu-button:not(.popup) button:focus .skipto-small,
+  .menu-button:not(.popup) button:focus .skipto-medium {
     transition: top 0.35s ease;
     display: none;
   }
 }
 
 @media screen and (min-width: var(--skipto-small-break-point)) and (max-width: var(--skipto-medium-break-point)) {
-  .menu-button button:not(.popup) .skipto-medium {
+  .menu-button:not(.popup) button .skipto-medium {
     transition: top 0.35s ease;
     display: inline-block;
   }
 
-  .menu-button button:not(.popup) .skipto-text,
-  .menu-button button:not(.popup) .skipto-small {
+  .menu-button:not(.popup) button .skipto-text,
+  .menu-button:not(.popup) button .skipto-small {
     transition: top 0.35s ease;
     display: none;
   }
 
-  .menu-button button:not(.popup):focus .skipto-text {
+  .menu-button:not(.popup) button:focus .skipto-text {
     transition: top 0.35s ease;
     display: inline-block;
   }
 
-  .menu-button button:not(.popup):focus .skipto-small,
-  .menu-button button:not(.popup):focus .skipto-medium {
+  .menu-button:not(.popup) button:focus .skipto-small,
+  .menu-button:not(.popup) button:focus .skipto-medium {
     transition: top 0.35s ease;
     display: none;
   }
 }
 
-.menu-button button.static {
+.menu-button.static {
   position: absolute !important;
 }
 
@@ -804,9 +806,9 @@
   border-color: light-dark(var(--skipto-focus-border-color), var(--skipto-focus-border-dark-color));
 }
 
-.menu-button button.popup.menu,
-.menu-button button.popup:focus,
-.menu-button button.popup:hover {
+.menu-button.popup.focus,
+.menu-button.popup.menu,
+.menu-button.popup:hover {
   top: 0;
   display: block;
   transition: left 1s ease;
@@ -1421,21 +1423,20 @@ dialog button:hover {
     updateStyle(containerNode, '--skipto-z-index-1', config.zIndex, theme.zIndex, d.zIndex);
 
 
+    const menuButtonNode = containerNode.querySelector('.menu-button');
     const buttonNode = containerNode.querySelector('button');
     const rect = buttonNode.getBoundingClientRect();
-    if (buttonNode.classList.contains('show-border')) {
+    if (menuButtonNode.classList.contains('show-border')) {
       const borderOffset = -1 * rect.height + 4 + 'px';
       containerNode.style.setProperty('--skipto-show-border-offset', borderOffset);
     }
     else {
-      if (buttonNode.classList.contains('popup')) {
+      if (menuButtonNode.classList.contains('popup')) {
         const popupOffset = -1 * rect.height - 6 + 'px';
         containerNode.style.setProperty('--skipto-popup-offset', popupOffset);
       }
     }
     containerNode.style.setProperty('--skipto-menu-offset', rect.height + 'px');
-
-
 
     const zIndex2 = config.zIndex ?
                     (parseInt(config.zIndex) + 1).toString() :
@@ -1584,7 +1585,7 @@ dialog button:hover {
         Happy Skipping!
       </div>
       <div class="version">
-        Version 5.9.0
+        Version 5.9.1
       </div>
       <div class="copyright">
         BSD License, Copyright 2021-2025
@@ -3590,8 +3591,6 @@ dialog button:hover {
               node.hasAttribute('data-skip-to-acc-name') &&
               node.getAttribute('data-skip-to-acc-name').trim().length > 0))) {
 
-          if (target.includes('heading'))
-
           if (!firstNode &&
               isVisible(node)) {
             firstNode = node;
@@ -3681,6 +3680,8 @@ dialog button:hover {
     passFound = (passElem === document.body) ||
                 (passElem.parentNode && (passElem.parentNode.id === SKIP_TO_ID));
     let node = transverseDOMForElement(document.body);
+
+    debug$4.log(`[node]: ${node} [useFirst]: ${useFirst} [firstNode]: ${firstNode}`);
 
     if (!node && useFirst && firstNode) {
       node = firstNode;
@@ -3939,12 +3940,13 @@ dialog button:hover {
         if (isNotEmptyString(this.config.customClass)) {
           this.menuButtonNode.classList.add(this.config.customClass);
         }
-
-        // Create button
-
-        const [buttonVisibleLabel, buttonAriaLabel] = this.getBrowserSpecificShortcut(this.config);
+        this.setDisplayOption(this.menuButtonNode, this.config.displayOption);
 
         this.menuButtonNode.appendChild(templateMenuButton.content.cloneNode(true));
+
+        // Setup button
+
+        const [buttonVisibleLabel, buttonAriaLabel] = this.getBrowserSpecificShortcut(this.config);
 
         this.buttonNode = this.containerNode.querySelector('button');
         this.buttonNode.setAttribute('aria-label', buttonAriaLabel);
@@ -3960,7 +3962,6 @@ dialog button:hover {
         this.mediumButtonNode = this.buttonNode.querySelector('span.skipto-medium');
         this.mediumButtonNode.textContent = this.config.buttonLabel;
 
-        this.setDisplayOption(this.config.displayOption);
 
         // Create menu container
         this.menuitemNodes = [];
@@ -4740,29 +4741,30 @@ dialog button:hover {
        * @desc Set display option for button visibility wehn it does not
        *       have focus
        *
+       * @param  {Object}  elem  - DOM element to update style
        * @param  {String}  value - String with configuration information
        */
-      setDisplayOption(value) {
+      setDisplayOption(elem, value) {
 
         if (typeof value === 'string') {
           value = value.trim().toLowerCase();
-          if (value.length && this.buttonNode) {
+          if (value.length && elem) {
 
-            this.buttonNode.classList.remove('static');
-            this.buttonNode.classList.remove('popup');
-            this.buttonNode.classList.remove('show-border');
+            elem.classList.remove('static');
+            elem.classList.remove('popup');
+            elem.classList.remove('show-border');
 
             switch (value) {
               case 'static':
-                this.buttonNode.classList.add('static');
+                elem.classList.add('static');
                 break;
               case 'onfocus':  // Legacy option
               case 'popup':
-                this.buttonNode.classList.add('popup');
+                elem.classList.add('popup');
                 break;
               case 'popup-border':
-                this.buttonNode.classList.add('popup');
-                this.buttonNode.classList.add('show-border');
+                elem.classList.add('popup');
+                elem.classList.add('show-border');
                 break;
             }
           }
@@ -4772,12 +4774,12 @@ dialog button:hover {
       // Menu event handlers
       
       handleFocusin() {
-        this.buttonNode.classList.add('focus');
+        this.menuButtonNode.classList.add('focus');
         this.skipToContentElem.setAttribute('focus', 'button');
       }
       
       handleFocusout() {
-        this.buttonNode.classList.remove('focus');
+        this.menuButtonNode.classList.remove('focus');
         this.skipToContentElem.setAttribute('focus', 'none');
       }
       
@@ -4877,7 +4879,7 @@ dialog button:hover {
               case this.config.shortcutRegionComplementary:
                 elem = navigateContent('complementary', 'next', this.config.msgHeadingLevel, true);
                 if (!elem) {
-                  this.shortcutsMessage.open(this.config.msgNoMoreRegions.replace('%r', 'complementary'));
+                  this.shortcutsMessage.open(this.config.msgNoRegionsFound.replace('%r', 'complementary'));
                 }
                 flag = true;
                 break;
@@ -4885,7 +4887,7 @@ dialog button:hover {
               case this.config.shortcutRegionMain:
                 elem = navigateContent('main', 'next', this.config.msgHeadingLevel, true);
                 if (!elem) {
-                  this.shortcutsMessage.open(this.config.msgNoMoreRegions.replace('%r', 'main'));
+                  this.shortcutsMessage.open(this.config.msgNoRegionsFound.replace('%r', 'main'));
                 }
                 flag = true;
                 break;
@@ -4893,7 +4895,7 @@ dialog button:hover {
               case this.config.shortcutRegionNavigation:
                 elem = navigateContent('navigation', 'next', this.config.msgHeadingLevel, true);
                 if (!elem) {
-                  this.shortcutsMessage.open(this.config.msgNoMoreRegions.replace('%r', 'navigation'));
+                  this.shortcutsMessage.open(this.config.msgNoRegionsFound.replace('%r', 'navigation'));
                 }
                 flag = true;
                 break;
@@ -5225,7 +5227,7 @@ dialog button:hover {
       // Always call super first in constructor
       super();
       this.attachShadow({ mode: 'open' });
-      this.version = "5.9.0";
+      this.version = "5.9.2";
       this.buttonSkipTo = false;
       this.initialized = false;
 
