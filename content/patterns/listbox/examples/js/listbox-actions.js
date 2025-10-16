@@ -98,10 +98,6 @@ aria.ListboxActions = class ListboxActions {
    *  The element to focus
    */
   focusActionsItem(element) {
-    let li = element.closest('[role="option"]');
-    //let ad = li.querySelector('#'+this.activeDescendant);
-    //let ad = document.getElementById(this.activeDescendant);
-    //this.defocusActionsItem(ad);
     element.classList.add('focusedActionButton');
     this.setActiveDescendant(element);
   }
@@ -120,14 +116,14 @@ aria.ListboxActions = class ListboxActions {
     if (previousItem) {
       this.listboxActionsNode.insertBefore(currentItem, previousItem);
       this.handleItemChange('moved_up', [currentItem]);
-      /** Hides the down arrow for item moved to the end of list and unhides item moved up from bottom */
+      /** Hides the down arrow for item moved to the end of list and shows arrow on item moved up from bottom */
       if (this.listboxOptionArray.indexOf(previousItem) == this.listboxOptionArray.length-2) {
         currentItem.querySelector('.downarrow').classList.remove('hide-actions-button');
         currentItem.querySelector('.downarrow').classList.remove('focusedActionButton');
         previousItem.querySelector('.downarrow').classList.add('hide-actions-button');
         this.activeDescendant = currentItem.id;
       }
-      /** Hides the up arrow for item moved to the top of list and unhides item moved down from top */
+      /** Hides the up arrow for item moved to the top of list and shows arrow on item moved down from top */
       if (this.listboxOptionArray.indexOf(previousItem) == 1) {
         currentItem.querySelector('.uparrow').classList.add('hide-actions-button');
         currentItem.querySelector('.uparrow').classList.remove('focusedActionButton');
@@ -151,14 +147,14 @@ aria.ListboxActions = class ListboxActions {
     if (nextItem) {
       this.listboxActionsNode.insertBefore(nextItem, currentItem);
       this.handleItemChange('moved_down', [currentItem]);
-      /** Hides the down arrow for item moved to the end of list and unhides item moved up from bottom */
+      /** Hides the down arrow for item moved to the end of list and shows arrow on item moved up from bottom */
       if (this.listboxOptionArray.indexOf(nextItem) == this.listboxOptionArray.length-1) {
         currentItem.querySelector('.downarrow').classList.add('hide-actions-button');
         currentItem.querySelector('.downarrow').classList.remove('focusedActionButton');
         nextItem.querySelector('.downarrow').classList.remove('hide-actions-button');
         this.setActiveDescendant(currentItem);
       }
-      /** Hides the up arrow for item moved to the top of list and unhides item moved down from top */
+      /** Hides the up arrow for item moved to the top of list and shows arrow on item moved down from top */
       if (this.listboxOptionArray.indexOf(nextItem) == 2) {
         currentItem.querySelector('.uparrow').classList.remove('hide-actions-button');
         currentItem.querySelector('.uparrow').classList.remove('focusedActionButton');
@@ -171,8 +167,10 @@ aria.ListboxActions = class ListboxActions {
   /**
    * @description
    *  Delete, Move or Favorite the currently selected items.
+   * @param event
+   * @param activButton
    */
-  doActionButtonEvents (evt, activeButton) {
+  doActionButtonEvents (event, activeButton) {
     let activeButtonClasslist = Array.from(activeButton.classList);
     const index = activeButtonClasslist.indexOf('focusedActionButton');
     if (index > -1) { 
@@ -189,8 +187,7 @@ aria.ListboxActions = class ListboxActions {
         }        
         break;
       case 'favorite':
-          let isPressed =  activeButton.ariaPressed && activeButton.ariaPressed == 'true';
-          activeButton.setAttribute('aria-pressed',(!isPressed).toString());
+          activeButton.setAttribute('aria-pressed',(activeButton.ariaPressed && activeButton.ariaPressed == 'true'?'false':'true'));
         break;
       case 'uparrow':
         this.moveUpItems();
@@ -243,8 +240,7 @@ aria.ListboxActions = class ListboxActions {
         }
         break;
       case 'Enter':
-        let activeButton = evt.currentTarget.ariaActiveDescendantElement?evt.currentTarget.ariaActiveDescendantElement:evt.currentTarget;
-        this.doActionButtonEvents (evt, activeButton);
+        this.doActionButtonEvents(evt, evt.currentTarget.ariaActiveDescendantElement?evt.currentTarget.ariaActiveDescendantElement:evt.currentTarget);
         break;
       default:
         break;
