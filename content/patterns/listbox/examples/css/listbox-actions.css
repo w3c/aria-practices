@@ -1,0 +1,78 @@
+[role="option"] span.actions {
+    display: none;
+}
+[role="listbox"]:focus [role="option"].focused span.actions, [role="option"]:hover span.actions {
+    position: absolute;
+    right: 0.5em;
+    display: inline;
+}
+[role="option"] span[role="option"]:hover span.actions {
+    position: absolute;
+    right: 0.5em;
+    display: inline;
+}
+span.uparrow::before {
+    content: "↑";
+    min-width: 24px;
+    min-height: 24px;
+    display: inline-block;
+    text-align: center;
+    padding: 2px;
+}
+span.downarrow::before {
+    content: "↓";
+    min-width: 24px;
+    min-height: 24px;
+    display: inline-block;
+    text-align: center;
+    padding: 2px;
+}
+span.favorite[aria-pressed="true"]::before {
+    content: "★";
+    min-width: 24px;
+    min-height: 24px;
+    display: inline-block;
+    text-align: center;
+    padding: 2px;
+}
+span.favorite:not([aria-pressed])::before, span.favorite[aria-pressed="false"]::before {
+    content: "☆";
+    min-width: 24px;
+    min-height: 24px;
+    display: inline-block;
+    text-align: center;
+    padding: 2px;
+}
+span.delete::before {
+    content: "🗑";
+    min-width: 24px;
+    min-height: 24px;
+    display: inline-block;
+    text-align: center;
+    padding: 2px;
+}
+[role="option"] [role="button"]:hover, .focusedActionButton {
+    background-color: rgb(226, 239, 225);
+    color: black;
+    outline-offset: 2px;
+    white-space: pre;
+    /* outline: #036 solid 4px; */
+    padding-top: 10px;
+    padding-bottom: 7px;
+    border: 3px solid #036;
+    margin-top: 2px;
+}
+.listbox-area {
+    display: block;
+    padding: 20px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(170, 170, 170);
+    border-image: initial;
+    border-radius: 4px;
+    background: rgb(238, 238, 238);
+    max-width: 20em;
+}
+.hide-actions-button {
+    display: none;
+}
