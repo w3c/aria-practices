@@ -168,7 +168,7 @@ aria.ListboxActions = class ListboxActions {
    * @description
    *  Delete, Move or Favorite the currently selected items.
    * @param event
-   * @param activButton
+   * @param activeButton
    */
   doActionButtonEvents (event, activeButton) {
     let activeButtonClasslist = Array.from(activeButton.classList);
