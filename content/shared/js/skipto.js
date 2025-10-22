@@ -551,12 +551,13 @@
 }
 
 .menu-button.popup {
-  top: var(--skipto-popup-offset);
+  transform: translateY(var(--skipto-popup-offset));
   transition: top 0.35s ease;
 }
 
 .menu-button.popup.show-border {
-  top: var(--skipto-show-border-offset);
+  transform: translateY(var(--skipto-show-border-offset));
+/* top: var(--skipto-show-border-offset); */
   transition: top 0.35s ease;
 }
 
@@ -648,8 +649,6 @@
 
 .menu-button [role="menu"] {
   position: fixed;
-  top: var(--skipto-menu-offset);
-  left: var(--skipto-position-left);
   min-width: 16em;
   display: none;
   margin: 0;
@@ -809,7 +808,7 @@
 .menu-button.popup.focus,
 .menu-button.popup.menu,
 .menu-button.popup:hover {
-  top: 0;
+  transform: translateY(0);
   display: block;
   transition: left 1s ease;
   z-index: var(--skipto-z-index-1) !important;
@@ -4616,14 +4615,9 @@ dialog button:hover {
         const menuRect = this.menuNode.getBoundingClientRect();
         const diff = window.innerWidth - buttonRect.left - menuRect.width;
         if (diff < 0) {
-          if (window.innerWidth > menuRect.width) {
-            this.menuNode.style.left = (window.innerWidth - menuRect.width) + 'px';
-          } else {
+          if (window.innerWidth < menuRect.width) {
             this.menuNode.style.left = '0px';
           }
-        }
-        else {
-          this.menuNode.style.left = buttonRect.left + 'px';
         }
 
         this.menuNode.removeAttribute('aria-busy');
