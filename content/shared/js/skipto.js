@@ -577,7 +577,7 @@
 }
 
 .menu-button {
-  position: fixed;
+  position: absolute;
   left: var(--skipto-position-left);
   z-index: var(--skipto-z-index-1) !important;
 }
@@ -648,7 +648,7 @@
 }
 
 .menu-button [role="menu"] {
-  position: fixed;
+  position: absolute;
   min-width: 16em;
   display: none;
   margin: 0;
@@ -1426,12 +1426,12 @@ dialog button:hover {
     const buttonNode = containerNode.querySelector('button');
     const rect = buttonNode.getBoundingClientRect();
     if (menuButtonNode.classList.contains('show-border')) {
-      const borderOffset = -1 * rect.height + 4 + 'px';
+      const borderOffset = -1 * rect.height + 1 + 'px';
       containerNode.style.setProperty('--skipto-show-border-offset', borderOffset);
     }
     else {
       if (menuButtonNode.classList.contains('popup')) {
-        const popupOffset = -1 * rect.height - 6 + 'px';
+        const popupOffset = -1 * rect.height + 'px';
         containerNode.style.setProperty('--skipto-popup-offset', popupOffset);
       }
     }
