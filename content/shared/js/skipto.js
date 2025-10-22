@@ -1426,7 +1426,7 @@ dialog button:hover {
     const buttonNode = containerNode.querySelector('button');
     const rect = buttonNode.getBoundingClientRect();
     if (menuButtonNode.classList.contains('show-border')) {
-      const borderOffset = -1 * rect.height + 1 + 'px';
+      const borderOffset = -1 * rect.height + 2 + 'px';
       containerNode.style.setProperty('--skipto-show-border-offset', borderOffset);
     }
     else {
