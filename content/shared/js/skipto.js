@@ -4741,7 +4741,7 @@ dialog button:hover {
       setDisplayOption(elem, value) {
 
         function isIOS() {
-          return (!/(iPad|iPhone|iPod)/g.test(navigator.userAgent) && !navigator.maxTouchPoints);
+          return (/(iPad|iPhone|iPod)/g.test(navigator.userAgent) && navigator.maxTouchPoints);
         }
 
         if (typeof value === 'string') {
