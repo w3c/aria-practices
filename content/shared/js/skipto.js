@@ -4740,6 +4740,10 @@ dialog button:hover {
        */
       setDisplayOption(elem, value) {
 
+        function isIOS() {
+          return (!/(iPad|iPhone|iPod)/g.test(navigator.userAgent) && !navigator.maxTouchPoints);
+        }
+
         if (typeof value === 'string') {
           value = value.trim().toLowerCase();
           if (value.length && elem) {
@@ -4755,6 +4759,9 @@ dialog button:hover {
               case 'onfocus':  // Legacy option
               case 'popup':
                 elem.classList.add('popup');
+                if (isIOS()) {
+                  elem.classList.add('show-border');
+                }
                 break;
               case 'popup-border':
                 elem.classList.add('popup');
