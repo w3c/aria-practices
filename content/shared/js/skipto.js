@@ -475,6 +475,17 @@
     return !isDisplayNone(element);
   }
 
+  /**
+   * @function isIOS
+   *
+   * @desc  Returns true if operating system is iOS
+   *
+   * @return  {Boolean}  see @desc
+   */
+  function isIOS() {
+    return (/(iPad|iPhone|iPod)/g.test(navigator.userAgent) && navigator.maxTouchPoints);
+  }
+
   /* style.js */
 
   /* Constants */
@@ -561,6 +572,10 @@
   transition: top 0.35s ease;
 }
 
+.menu-button.popup.ios button {
+  display: none;
+}
+
 .menu-button button .skipto-text {
   padding: 6px 8px 6px 8px;
   display: inline-block;
@@ -577,7 +592,7 @@
 }
 
 .menu-button {
-  position: absolute;
+  position: fixed;
   left: var(--skipto-position-left);
   z-index: var(--skipto-z-index-1) !important;
 }
@@ -648,7 +663,6 @@
 }
 
 .menu-button [role="menu"] {
-  position: absolute;
   min-width: 16em;
   display: none;
   margin: 0;
@@ -812,6 +826,10 @@
   display: block;
   transition: left 1s ease;
   z-index: var(--skipto-z-index-1) !important;
+}
+
+.menu-button.popup.ios.focus button {
+  display: block;
 }
 
 .menu-button button:focus .skipto-text,
@@ -3943,6 +3961,19 @@ dialog button:hover {
 
         this.menuButtonNode.appendChild(templateMenuButton.content.cloneNode(true));
 
+        const testFlag = false;
+
+        // If iOS add a link to open menu when clicked and hide button
+        if ((this.config.displayOption.toLowerCase() === 'popup') && (isIOS() || testFlag)) {
+          const aElem = document.createElement('a');
+          aElem.href = "#";
+          aElem.style = "position: absolute; top: -30em; left: -300em";
+          aElem.textContent = "Skip To Content";
+          aElem.addEventListener('click', this.handleIOSClick.bind(this));
+          document.body.prepend(aElem);
+          debug$2.log(`[Adding iOS link][end]`);
+        }
+
         // Setup button
 
         const [buttonVisibleLabel, buttonAriaLabel] = this.getBrowserSpecificShortcut(this.config);
@@ -4740,10 +4771,6 @@ dialog button:hover {
        */
       setDisplayOption(elem, value) {
 
-        function isIOS() {
-          return (/(iPad|iPhone|iPod)/g.test(navigator.userAgent) && navigator.maxTouchPoints);
-        }
-
         if (typeof value === 'string') {
           value = value.trim().toLowerCase();
           if (value.length && elem) {
@@ -4756,13 +4783,12 @@ dialog button:hover {
               case 'static':
                 elem.classList.add('static');
                 break;
+
               case 'onfocus':  // Legacy option
               case 'popup':
                 elem.classList.add('popup');
-                if (isIOS()) {
-                  elem.classList.add('show-border');
-                }
                 break;
+
               case 'popup-border':
                 elem.classList.add('popup');
                 elem.classList.add('show-border');
@@ -5201,6 +5227,10 @@ dialog button:hover {
 
         event.stopPropagation();
         event.preventDefault();
+      }
+
+      handleIOSClick () {
+        this.skipToContentElem.setAttribute('setfocus', 'menu');
       }
 
       handleBodyPointerdown(event) {
