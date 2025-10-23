@@ -3967,10 +3967,13 @@ dialog button:hover {
         if ((this.config.displayOption.toLowerCase() === 'popup') && (isIOS() || testFlag)) {
           const aElem = document.createElement('a');
           aElem.href = "#";
+          // Position off screen
           aElem.style = "position: absolute; top: -30em; left: -300em";
-          aElem.textContent = "Skip To Content";
+          aElem.textContent = this.config.buttonLabel;
           aElem.addEventListener('click', this.handleIOSClick.bind(this));
+          aElem.addEventListener('focus', this.handleIOSFocus.bind(this));
           document.body.prepend(aElem);
+          // add class to hide button
           this.menuButtonNode.classList.add('ios');
         }
 
@@ -5232,6 +5235,11 @@ dialog button:hover {
       handleIOSClick () {
         this.skipToContentElem.setAttribute('setfocus', 'menu');
       }
+
+      handleIOSFocus () {
+        this.skipToContentElem.setAttribute('setfocus', 'button');
+      }
+
 
       handleBodyPointerdown(event) {
         if (!this.isOverButton(event.clientX, event.clientY) &&
