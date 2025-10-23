@@ -3971,7 +3971,7 @@ dialog button:hover {
           aElem.textContent = "Skip To Content";
           aElem.addEventListener('click', this.handleIOSClick.bind(this));
           document.body.prepend(aElem);
-          debug$2.log(`[Adding iOS link][end]`);
+          this.menuButtonNode.classList.add('ios');
         }
 
         // Setup button
