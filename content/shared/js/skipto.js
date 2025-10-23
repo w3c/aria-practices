@@ -3961,18 +3961,17 @@ dialog button:hover {
 
         this.menuButtonNode.appendChild(templateMenuButton.content.cloneNode(true));
 
-        const testFlag = false;
-
+        this.linkNode = false;
         // If iOS add a link to open menu when clicked and hide button
-        if ((this.config.displayOption.toLowerCase() === 'popup') && (isIOS() || testFlag)) {
-          const aElem = document.createElement('a');
-          aElem.href = "#";
+        if ((this.config.displayOption.toLowerCase() === 'popup') && isIOS()) {
+          this.linkNode = document.createElement('a');
+          this.linkNode.href = "#";
           // Position off screen
-          aElem.style = "position: absolute; top: -30em; left: -300em";
-          aElem.textContent = this.config.buttonLabel;
-          aElem.addEventListener('click', this.handleIOSClick.bind(this));
-          aElem.addEventListener('focus', this.handleIOSFocus.bind(this));
-          document.body.prepend(aElem);
+          this.linkNode.style = "position: absolute; top: -30em; left: -300em";
+          this.linkNode.textContent = this.config.buttonLabel;
+          // If there is a click event from VO, move focus to menu
+          this.linkNode.addEventListener('click', this.handleIOSClick.bind(this));
+          document.body.prepend(this.linkNode);
           // add class to hide button
           this.menuButtonNode.classList.add('ios');
         }
@@ -4665,12 +4664,21 @@ dialog button:hover {
        *
        * @desc Closes the memu of landmark regions and headings
        */
-      closePopup() {
+      closePopup(moveFocusToButton=false) {
         if (this.isOpen()) {
           this.buttonNode.setAttribute('aria-expanded', 'false');
           this.menuNode.style.display = 'none';
           this.highlightElement.removeHighlight();
           this.buttonNode.classList.remove('menu');
+          if (moveFocusToButton) {
+            if (this.linkNode) {
+              this.linkNode.focus();
+            }
+            else {
+              this.buttonNode.focus();
+            }
+            this.skipToContentElem.setAttribute('focus', 'button');
+          }
         }
       }
 
@@ -4827,9 +4835,7 @@ dialog button:hover {
             break;
           case 'Esc':
           case 'Escape':
-            this.closePopup();
-            this.buttonNode.focus();
-            this.skipToContentElem.setAttribute('focus', 'button');
+            this.closePopup(true);
             flag = true;
             break;
           case 'Up':
@@ -4848,9 +4854,7 @@ dialog button:hover {
       handleButtonClick(event) {
         this.menuButtonNode.classList.add('focus');
         if (this.isOpen()) {
-          this.closePopup();
-          this.buttonNode.focus();
-          this.skipToContentElem.setAttribute('focus', 'button');
+          this.closePopup(true);
         } else {
           this.openPopup();
           this.setFocusToFirstMenuitem();
@@ -5059,9 +5063,7 @@ dialog button:hover {
             flag = true;
           }
           if (event.key === 'Tab') {
-            this.closePopup();
-            this.buttonNode.focus();
-            this.skipToContentElem.setAttribute('focus', 'button');
+            this.closePopup(true);
             flag = true;
           }
         } else {
@@ -5073,9 +5075,7 @@ dialog button:hover {
               break;
             case 'Esc':
             case 'Escape':
-              this.closePopup();
-              this.buttonNode.focus();
-              this.skipToContentElem.setAttribute('focus', 'button');
+              this.closePopup(true);
               flag = true;
               break;
             case 'Left':
@@ -5171,9 +5171,7 @@ dialog button:hover {
           if (this.containerNode.contains(event.target)) {
             if (this.isOpen()) {
               if (!this.isOverMenu(event.clientX, event.clientY)) {
-                this.closePopup();
-                this.buttonNode.focus();
-                this.skipToContentElem.setAttribute('focus', 'button');
+                this.closePopup(true);
               }
             }
             else {
@@ -5221,9 +5219,7 @@ dialog button:hover {
         else {
           if (!omb) {
             if (this.isOpen()) {
-              this.closePopup();
-              this.buttonNode.focus();
-              this.skipToContentElem.setAttribute('focus', 'button');
+              this.closePopup(true);
             }        
           }
         }
@@ -5235,11 +5231,6 @@ dialog button:hover {
       handleIOSClick () {
         this.skipToContentElem.setAttribute('setfocus', 'menu');
       }
-
-      handleIOSFocus () {
-        this.skipToContentElem.setAttribute('setfocus', 'button');
-      }
-
 
       handleBodyPointerdown(event) {
         if (!this.isOverButton(event.clientX, event.clientY) &&
