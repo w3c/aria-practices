@@ -287,6 +287,9 @@
 
   /* constants.js */
 
+  // Version
+  const VERSION = '5.9.2';
+
   // Numbers
 
   const REQUIRE_ACCESSIBLE_NAME_COUNT = 3;
@@ -1602,7 +1605,7 @@ dialog button:hover {
         Happy Skipping!
       </div>
       <div class="version">
-        Version 5.9.2
+        Version ${VERSION}
       </div>
       <div class="copyright">
         BSD License, Copyright 2021-2025
@@ -3962,9 +3965,8 @@ dialog button:hover {
         this.menuButtonNode.appendChild(templateMenuButton.content.cloneNode(true));
 
         this.linkNode = false;
-        const testFlag = true;
         // If iOS add a link to open menu when clicked and hide button
-        if ((this.config.displayOption.toLowerCase() === 'popup') && (isIOS() || testFlag)) {
+        if ((this.config.displayOption.toLowerCase() === 'popup') && (isIOS() || debug$2.flag)) {
           this.linkNode = document.createElement('a');
           this.linkNode.href = "#";
           // Position off screen
@@ -5261,17 +5263,17 @@ dialog button:hover {
 
   const defaultStyleOptions = colorThemes['default'];
 
-  /* @class SkipToContent590
+  /* @class SkipToContent592
    *
    */
 
-  class SkipToContent590 extends HTMLElement {
+  class SkipToContent592 extends HTMLElement {
 
     constructor() {
       // Always call super first in constructor
       super();
       this.attachShadow({ mode: 'open' });
-      this.version = "5.9.2";
+      this.version = `${VERSION}`;
       this.buttonSkipTo = false;
       this.initialized = false;
 
@@ -5788,7 +5790,7 @@ dialog button:hover {
           if (!isExtensionLoaded) {
             if (!isBookmarkletLoaded) {
               removePageSkipTo();
-              window.customElements.define(BOOKMARKLET_ELEMENT_NAME, SkipToContent590);
+              window.customElements.define(BOOKMARKLET_ELEMENT_NAME, SkipToContent592);
               skipToContentElem = document.createElement(BOOKMARKLET_ELEMENT_NAME);
               skipToContentElem.setAttribute('version', skipToContentElem.version);
               skipToContentElem.setAttribute('type', type);
@@ -5804,7 +5806,7 @@ dialog button:hover {
           if (!isExtensionLoaded) {
             removePageSkipTo();
             removeBookmarkletSkipTo();
-            window.customElements.define(EXTENSION_ELEMENT_NAME, SkipToContent590);
+            window.customElements.define(EXTENSION_ELEMENT_NAME, SkipToContent592);
             skipToContentElem = document.createElement(EXTENSION_ELEMENT_NAME);
             skipToContentElem.setAttribute('version', skipToContentElem.version);
             skipToContentElem.setAttribute('type', type);
@@ -5817,7 +5819,7 @@ dialog button:hover {
 
         default:
           if (!isPageLoaded && !isBookmarkletLoaded && !isExtensionLoaded) {
-            window.customElements.define(PAGE_SCRIPT_ELEMENT_NAME, SkipToContent590);
+            window.customElements.define(PAGE_SCRIPT_ELEMENT_NAME, SkipToContent592);
             skipToContentElem = document.createElement(PAGE_SCRIPT_ELEMENT_NAME);
             skipToContentElem.setAttribute('version', skipToContentElem.version);
             skipToContentElem.setAttribute('type', type);
