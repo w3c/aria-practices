@@ -4658,6 +4658,11 @@ dialog button:hover {
         this.buttonNode.setAttribute('aria-expanded', 'true');
         // use custom element attribute to set focus to the menu
         this.buttonNode.classList.add('menu');
+
+        if (this.linkNode) {
+          this.linkNode.style.display = 'none';
+        }
+
       }
 
       /*
@@ -4673,7 +4678,7 @@ dialog button:hover {
           this.buttonNode.classList.remove('menu');
           if (moveFocusToButton) {
             if (this.linkNode) {
-              this.linkNode.display = 'block';
+              this.linkNode.style.display = 'block';
               this.linkNode.focus();
             }
             else {
@@ -4817,7 +4822,7 @@ dialog button:hover {
         this.menuButtonNode.classList.add('focus');
         this.skipToContentElem.setAttribute('focus', 'button');
         if (this.linkNode) {
-          this.linkNode.display = 'none';
+          this.linkNode.style.display = 'none';
         }
       }
       
@@ -4825,7 +4830,7 @@ dialog button:hover {
         this.menuButtonNode.classList.remove('focus');
         this.skipToContentElem.setAttribute('focus', 'none');
         if (this.linkNode) {
-          this.linkNode.display = 'block';
+          this.linkNode.style.display = 'block';
         }
       }
       
