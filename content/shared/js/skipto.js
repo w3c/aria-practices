@@ -1602,7 +1602,7 @@ dialog button:hover {
         Happy Skipping!
       </div>
       <div class="version">
-        Version 5.9.1
+        Version 5.9.2
       </div>
       <div class="copyright">
         BSD License, Copyright 2021-2025
