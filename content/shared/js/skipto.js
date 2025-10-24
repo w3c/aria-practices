@@ -3962,8 +3962,9 @@ dialog button:hover {
         this.menuButtonNode.appendChild(templateMenuButton.content.cloneNode(true));
 
         this.linkNode = false;
+        const testFlag = true;
         // If iOS add a link to open menu when clicked and hide button
-        if ((this.config.displayOption.toLowerCase() === 'popup') && isIOS()) {
+        if ((this.config.displayOption.toLowerCase() === 'popup') && (isIOS() || testFlag)) {
           this.linkNode = document.createElement('a');
           this.linkNode.href = "#";
           // Position off screen
@@ -4672,6 +4673,7 @@ dialog button:hover {
           this.buttonNode.classList.remove('menu');
           if (moveFocusToButton) {
             if (this.linkNode) {
+              this.linkNode.display = 'block';
               this.linkNode.focus();
             }
             else {
@@ -4814,11 +4816,17 @@ dialog button:hover {
       handleFocusin() {
         this.menuButtonNode.classList.add('focus');
         this.skipToContentElem.setAttribute('focus', 'button');
+        if (this.linkNode) {
+          this.linkNode.display = 'none';
+        }
       }
       
       handleFocusout() {
         this.menuButtonNode.classList.remove('focus');
         this.skipToContentElem.setAttribute('focus', 'none');
+        if (this.linkNode) {
+          this.linkNode.display = 'block';
+        }
       }
       
       handleButtonKeydown(event) {
