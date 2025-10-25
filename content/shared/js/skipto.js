@@ -5243,8 +5243,10 @@ dialog button:hover {
         event.preventDefault();
       }
 
-      handleIOSClick () {
+      handleIOSClick (event) {
         this.skipToContentElem.setAttribute('setfocus', 'menu');
+        event.stopPropagation();
+        event.preventDefault();
       }
 
       handleBodyPointerdown(event) {
