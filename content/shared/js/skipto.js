@@ -479,14 +479,14 @@
   }
 
   /**
-   * @function isIOS
+   * @function isMobile
    *
-   * @desc  Returns true if operating system is iOS
+   * @desc  Returns true if operating system is iOS or Android
    *
    * @return  {Boolean}  see @desc
    */
-  function isIOS() {
-    return (/(iPad|iPhone|iPod)/g.test(navigator.userAgent) && navigator.maxTouchPoints);
+  function isMobile() {
+    return (/(iPad|iPhone|iPod|android)/g.test(navigator.userAgent) && navigator.maxTouchPoints);
   }
 
   /* style.js */
@@ -575,7 +575,7 @@
   transition: top 0.35s ease;
 }
 
-.menu-button.popup.ios button {
+.menu-button.popup.mobile button {
   display: none;
 }
 
@@ -831,7 +831,7 @@
   z-index: var(--skipto-z-index-1) !important;
 }
 
-.menu-button.popup.ios.focus button {
+.menu-button.popup.mobile.focus button {
   display: block;
 }
 
@@ -3965,18 +3965,18 @@ dialog button:hover {
         this.menuButtonNode.appendChild(templateMenuButton.content.cloneNode(true));
 
         this.linkNode = false;
-        // If iOS add a link to open menu when clicked and hide button
-        if ((this.config.displayOption.toLowerCase() === 'popup') && (isIOS() || debug$2.flag)) {
+        // If Mobile add a link to open menu when clicked and hide button
+        if ((this.config.displayOption.toLowerCase() === 'popup') && isMobile()) {
           this.linkNode = document.createElement('a');
           this.linkNode.href = "#";
           // Position off screen
           this.linkNode.style = "position: absolute; top: -30em; left: -300em";
           this.linkNode.textContent = this.config.buttonLabel;
           // If there is a click event from VO, move focus to menu
-          this.linkNode.addEventListener('click', this.handleIOSClick.bind(this));
+          this.linkNode.addEventListener('click', this.handleMobileClick.bind(this));
           document.body.prepend(this.linkNode);
           // add class to hide button
-          this.menuButtonNode.classList.add('ios');
+          this.menuButtonNode.classList.add('mobile');
         }
 
         // Setup button
@@ -5243,7 +5243,7 @@ dialog button:hover {
         event.preventDefault();
       }
 
-      handleIOSClick (event) {
+      handleMobileClick (event) {
         this.skipToContentElem.setAttribute('setfocus', 'menu');
         event.stopPropagation();
         event.preventDefault();
