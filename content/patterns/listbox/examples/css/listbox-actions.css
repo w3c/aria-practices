@@ -1,67 +1,62 @@
 [role="option"] span.actions {
     display: none;
 }
-[role="listbox"]:focus [role="option"].focused span.actions, [role="option"]:hover span.actions {
+
+[role="listbox"]:focus [role="option"].focused span.actions,
+[role="option"]:hover span.actions {
+    position: absolute;
+    right: 0.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    top: -3px;
+}
+
+span[role="option"]:hover span.actions {
     position: absolute;
     right: 0.5em;
     display: inline;
 }
-[role="option"] span[role="option"]:hover span.actions {
-    position: absolute;
-    right: 0.5em;
-    display: inline;
+
+button.actionbutton::before {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+    width: 15px;
 }
-span.uparrow::before {
-    content: "↑";
-    min-width: 24px;
-    min-height: 24px;
-    display: inline-block;
-    text-align: center;
-    padding: 2px;
+
+button.uparrow::before {
+    content: "↑" / "";
 }
-span.downarrow::before {
-    content: "↓";
-    min-width: 24px;
-    min-height: 24px;
-    display: inline-block;
-    text-align: center;
-    padding: 2px;
+
+button.downarrow::before {
+    content: "↓" / "";
 }
-span.favorite[aria-pressed="true"]::before {
-    content: "★";
-    min-width: 24px;
-    min-height: 24px;
-    display: inline-block;
-    text-align: center;
-    padding: 2px;
+
+button.favorite[aria-pressed="true"]::before {
+    content: "★" / "";
 }
-span.favorite:not([aria-pressed])::before, span.favorite[aria-pressed="false"]::before {
-    content: "☆";
-    min-width: 24px;
-    min-height: 24px;
-    display: inline-block;
-    text-align: center;
-    padding: 2px;
+
+button.favorite:not([aria-pressed])::before,
+button.favorite[aria-pressed="false"]::before {
+    content: "☆" / "";
 }
-span.delete::before {
-    content: "🗑";
-    min-width: 24px;
-    min-height: 24px;
-    display: inline-block;
-    text-align: center;
-    padding: 2px;
+
+button.delete::before {
+    content: "🗑" / "";
 }
-[role="option"] [role="button"]:hover, .focusedActionButton {
+
+[role="option"] button:hover,
+.focusedActionButton {
     background-color: rgb(226, 239, 225);
     color: black;
-    outline-offset: 2px;
+    outline-offset: 0px;
     white-space: pre;
-    /* outline: #036 solid 4px; */
-    padding-top: 10px;
-    padding-bottom: 7px;
-    border: 3px solid #036;
-    margin-top: 2px;
+    outline: #036 solid 3px;
 }
+
 .listbox-area {
     display: block;
     padding: 20px;
@@ -73,6 +68,7 @@ span.delete::before {
     background: rgb(238, 238, 238);
     max-width: 20em;
 }
+
 .hide-actions-button {
     display: none;
 }

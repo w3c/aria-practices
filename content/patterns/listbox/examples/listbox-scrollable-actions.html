@@ -17,7 +17,6 @@
     <link href="css/listbox.css" rel="stylesheet">
     <link href="css/listbox-actions.css" rel="stylesheet">
     <script src="js/listbox.js"></script>
-    <script src="js/listbox-scrollable.js"></script>
     <script src="js/listbox-actions.js"></script>
   </head>
   <body>
@@ -62,6 +61,7 @@
           <h2 id="ex_label">Example</h2>
         </div>
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
+        <div class="offscreen">Last change: <span aria-live="polite" id="ss_live_region"></span></div>
         <div id="ex">
           <p>Choose your favorite transuranic element (actinide or transactinide).</p>
           <div class="listbox-area">
@@ -74,262 +74,262 @@
                 </li>
                 <li id="ss_elem_Np" role="option" aria-actions="">
                   <span class="checkmark" aria-hidden="true"></span>
-                  Neptunium
+                  Neptunium <span class="offscreen favoriteindication"></span>
                   <span class="actions">
-                    <span role="button" aria-label="move up" class="uparrow hide-actions-button" id="ss_elem_Np_uparrow"></span>
-                    <span role="button" aria-label="move down" class="downarrow" id="ss_elem_Np_downarrow"></span>
-                    <span role="button" aria-label="favorite" class="favorite" id="ss_elem_Np_favorite"></span>
-                    <span role="button" aria-label="delete" class="delete" id="ss_elem_Np_delete"></span>
+                    <button aria-label="move up" class="uparrow actionbutton hide-actions-button" id="ss_elem_Np_uparrow"></button>
+                    <button aria-label="move down" class="downarrow actionbutton" id="ss_elem_Np_downarrow"></button>
+                    <button aria-label="favorite" class="favorite actionbutton" id="ss_elem_Np_favorite"></button>
+                    <button aria-label="delete" class="delete actionbutton" id="ss_elem_Np_delete"></button>
                   </span>
                 </li>
                 <li id="ss_elem_Pu" role="option" aria-actions="">
                   <span class="checkmark" aria-hidden="true"></span>
-                  Plutonium
+                  Plutonium <span class="offscreen favoriteindication"></span>
                   <span class="actions">
-                    <span role="button" aria-label="move up" class="uparrow" id="ss_elem_Pu_uparrow"></span>
-                    <span role="button" aria-label="move down" class="downarrow" id="ss_elem_Pu_downarrow"></span>
-                    <span role="button" aria-label="favorite" class="favorite" id="ss_elem_Pu_favorite"></span>
-                    <span role="button" aria-label="delete" class="delete" id="ss_elem_Pu_delete"></span>
+                    <button aria-label="move up" class="uparrow actionbutton" id="ss_elem_Pu_uparrow"></button>
+                    <button aria-label="move down" class="downarrow actionbutton" id="ss_elem_Pu_downarrow"></button>
+                    <button aria-label="favorite" class="favorite actionbutton" id="ss_elem_Pu_favorite"></button>
+                    <button aria-label="delete" class="delete actionbutton" id="ss_elem_Pu_delete"></button>
                   </span>
                 </li>
                 <li id="ss_elem_Am" role="option" aria-actions="">
                   <span class="checkmark" aria-hidden="true"></span>
-                  Americium
+                  Americium <span class="offscreen favoriteindication"></span>
                   <span class="actions">
-                    <span role="button" aria-label="move up" class="uparrow" id="ss_elem_Am_uparrow"></span>
-                    <span role="button" aria-label="move down" class="downarrow" id="ss_elem_Am_downarrow"></span>
-                    <span role="button" aria-label="favorite" class="favorite" id="ss_elem_Am_favorite"></span>
-                    <span role="button" aria-label="delete" class="delete" id="ss_elem_Am_delete"></span>
+                    <button aria-label="move up" class="uparrow actionbutton" id="ss_elem_Am_uparrow"></button>
+                    <button aria-label="move down" class="downarrow actionbutton" id="ss_elem_Am_downarrow"></button>
+                    <button aria-label="favorite" class="favorite actionbutton" id="ss_elem_Am_favorite"></button>
+                    <button aria-label="delete" class="delete actionbutton" id="ss_elem_Am_delete"></button>
                   </span>
                 </li>
                 <li id="ss_elem_Cm" role="option" aria-actions="">
                   <span class="checkmark" aria-hidden="true"></span>
-                  Curium
+                  Curium <span class="offscreen favoriteindication"></span>
                   <span class="actions">
-                    <span role="button" aria-label="move up" class="uparrow" id="ss_elem_Cm_uparrow"></span>
-                    <span role="button" aria-label="move down" class="downarrow" id="ss_elem_Cm_downarrow"></span>
-                    <span role="button" aria-label="favorite" class="favorite" id="ss_elem_Cm_favorite"></span>
-                    <span role="button" aria-label="delete" class="delete" id="ss_elem_Cm_delete"></span>
+                    <button aria-label="move up" class="uparrow actionbutton" id="ss_elem_Cm_uparrow"></button>
+                    <button aria-label="move down" class="downarrow actionbutton" id="ss_elem_Cm_downarrow"></button>
+                    <button aria-label="favorite" class="favorite actionbutton" id="ss_elem_Cm_favorite"></button>
+                    <button aria-label="delete" class="delete actionbutton" id="ss_elem_Cm_delete"></button>
                   </span>
                 </li>
                 <li id="ss_elem_Bk" role="option" aria-actions="">
                   <span class="checkmark" aria-hidden="true"></span>
-                  Berkelium
+                  Berkelium <span class="offscreen favoriteindication"></span>
                   <span class="actions">
-                    <span role="button" aria-label="move up" class="uparrow" id="ss_elem_Bk_uparrow"></span>
-                    <span role="button" aria-label="move down" class="downarrow" id="ss_elem_Bk_downarrow"></span>
-                    <span role="button" aria-label="favorite" class="favorite" id="ss_elem_Bk_favorite"></span>
-                    <span role="button" aria-label="delete" class="delete" id="ss_elem_Bk_delete"></span>
+                    <button aria-label="move up" class="uparrow actionbutton" id="ss_elem_Bk_uparrow"></button>
+                    <button aria-label="move down" class="downarrow actionbutton" id="ss_elem_Bk_downarrow"></button>
+                    <button aria-label="favorite" class="favorite actionbutton" id="ss_elem_Bk_favorite"></button>
+                    <button aria-label="delete" class="delete actionbutton" id="ss_elem_Bk_delete"></button>
                   </span>
                 </li>
                 <li id="ss_elem_Cf" role="option" aria-actions="">
                   <span class="checkmark" aria-hidden="true"></span>
-                  Californium
+                  Californium <span class="offscreen favoriteindication"></span>
                   <span class="actions">
-                    <span role="button" aria-label="move up" class="uparrow" id="ss_elem_Cf_uparrow"></span>
-                    <span role="button" aria-label="move down" class="downarrow" id="ss_elem_Cf_downarrow"></span>
-                    <span role="button" aria-label="favorite" class="favorite" id="ss_elem_Cf_favorite"></span>
-                    <span role="button" aria-label="delete" class="delete" id="ss_elem_Cf_delete"></span>
+                    <button aria-label="move up" class="uparrow actionbutton" id="ss_elem_Cf_uparrow"></button>
+                    <button aria-label="move down" class="downarrow actionbutton" id="ss_elem_Cf_downarrow"></button>
+                    <button aria-label="favorite" class="favorite actionbutton" id="ss_elem_Cf_favorite"></button>
+                    <button aria-label="delete" class="delete actionbutton" id="ss_elem_Cf_delete"></button>
                   </span>
                 </li>
                 <li id="ss_elem_Es" role="option" aria-actions="">
                   <span class="checkmark" aria-hidden="true"></span>
-                  Einsteinium
+                  Einsteinium <span class="offscreen favoriteindication"></span>
                   <span class="actions">
-                    <span role="button" aria-label="move up" class="uparrow" id="ss_elem_Es_uparrow"></span>
-                    <span role="button" aria-label="move down" class="downarrow" id="ss_elem_Es_downarrow"></span>
-                    <span role="button" aria-label="favorite" class="favorite" id="ss_elem_Es_favorite"></span>
-                    <span role="button" aria-label="delete" class="delete" id="ss_elem_Es_delete"></span>
+                    <button aria-label="move up" class="uparrow actionbutton" id="ss_elem_Es_uparrow"></button>
+                    <button aria-label="move down" class="downarrow actionbutton" id="ss_elem_Es_downarrow"></button>
+                    <button aria-label="favorite" class="favorite actionbutton" id="ss_elem_Es_favorite"></button>
+                    <button aria-label="delete" class="delete actionbutton" id="ss_elem_Es_delete"></button>
                   </span>
                 </li>
                 <li id="ss_elem_Fm" role="option" aria-actions="">
                   <span class="checkmark" aria-hidden="true"></span>
-                  Fermium
+                  Fermium <span class="offscreen favoriteindication"></span>
                   <span class="actions">
-                    <span role="button" aria-label="move up" class="uparrow" id="ss_elem_Fm_uparrow"></span>
-                    <span role="button" aria-label="move down" class="downarrow" id="ss_elem_Fm_downarrow"></span>
-                    <span role="button" aria-label="favorite" class="favorite" id="ss_elem_Fm_favorite"></span>
-                    <span role="button" aria-label="delete" class="delete" id="ss_elem_Fm_delete"></span>
+                    <button aria-label="move up" class="uparrow actionbutton" id="ss_elem_Fm_uparrow"></button>
+                    <button aria-label="move down" class="downarrow actionbutton" id="ss_elem_Fm_downarrow"></button>
+                    <button aria-label="favorite" class="favorite actionbutton" id="ss_elem_Fm_favorite"></button>
+                    <button aria-label="delete" class="delete actionbutton" id="ss_elem_Fm_delete"></button>
                   </span>
                 </li>
                 <li id="ss_elem_Md" role="option" aria-actions="">
                   <span class="checkmark" aria-hidden="true"></span>
-                  Mendelevium
+                  Mendelevium <span class="offscreen favoriteindication"></span>
                   <span class="actions">
-                    <span role="button" aria-label="move up" class="uparrow" id="ss_elem_Md_uparrow"></span>
-                    <span role="button" aria-label="move down" class="downarrow" id="ss_elem_Md_downarrow"></span>
-                    <span role="button" aria-label="favorite" class="favorite" id="ss_elem_Md_favorite"></span>
-                    <span role="button" aria-label="delete" class="delete" id="ss_elem_Md_delete"></span>
+                    <button aria-label="move up" class="uparrow actionbutton" id="ss_elem_Md_uparrow"></button>
+                    <button aria-label="move down" class="downarrow actionbutton" id="ss_elem_Md_downarrow"></button>
+                    <button aria-label="favorite" class="favorite actionbutton" id="ss_elem_Md_favorite"></button>
+                    <button aria-label="delete" class="delete actionbutton" id="ss_elem_Md_delete"></button>
                   </span>
                 </li>
                 <li id="ss_elem_No" role="option" aria-actions="">
                   <span class="checkmark" aria-hidden="true"></span>
-                  Nobelium
+                  Nobelium <span class="offscreen favoriteindication"></span>
                   <span class="actions">
-                    <span role="button" aria-label="move up" class="uparrow" id="ss_elem_No_uparrow"></span>
-                    <span role="button" aria-label="move down" class="downarrow" id="ss_elem_No_downarrow"></span>
-                    <span role="button" aria-label="favorite" class="favorite" id="ss_elem_No_favorite"></span>
-                    <span role="button" aria-label="delete" class="delete" id="ss_elem_No_delete"></span>
+                    <button aria-label="move up" class="uparrow actionbutton" id="ss_elem_No_uparrow"></button>
+                    <button aria-label="move down" class="downarrow actionbutton" id="ss_elem_No_downarrow"></button>
+                    <button aria-label="favorite" class="favorite actionbutton" id="ss_elem_No_favorite"></button>
+                    <button aria-label="delete" class="delete actionbutton" id="ss_elem_No_delete"></button>
                   </span>
                 </li>
                 <li id="ss_elem_Lr" role="option" aria-actions="">
                   <span class="checkmark" aria-hidden="true"></span>
-                  Lawrencium
+                  Lawrencium <span class="offscreen favoriteindication"></span>
                   <span class="actions">
-                    <span role="button" aria-label="move up" class="uparrow" id="ss_elem_Lr_uparrow"></span>
-                    <span role="button" aria-label="move down" class="downarrow" id="ss_elem_Lr_downarrow"></span>
-                    <span role="button" aria-label="favorite" class="favorite" id="ss_elem_Lr_favorite"></span>
-                    <span role="button" aria-label="delete" class="delete" id="ss_elem_Lr_delete"></span>
+                    <button aria-label="move up" class="uparrow actionbutton" id="ss_elem_Lr_uparrow"></button>
+                    <button aria-label="move down" class="downarrow actionbutton" id="ss_elem_Lr_downarrow"></button>
+                    <button aria-label="favorite" class="favorite actionbutton" id="ss_elem_Lr_favorite"></button>
+                    <button aria-label="delete" class="delete actionbutton" id="ss_elem_Lr_delete"></button>
                   </span>
                 </li>
                 <li id="ss_elem_Rf" role="option" aria-actions="">
                   <span class="checkmark" aria-hidden="true"></span>
-                  Rutherfordium
+                  Rutherfordium <span class="offscreen favoriteindication"></span>
                   <span class="actions">
-                    <span role="button" aria-label="move up" class="uparrow" id="ss_elem_Rf_uparrow"></span>
-                    <span role="button" aria-label="move down" class="downarrow" id="ss_elem_Rf_downarrow"></span>
-                    <span role="button" aria-label="favorite" class="favorite" id="ss_elem_Rf_favorite"></span>
-                    <span role="button" aria-label="delete" class="delete" id="ss_elem_Rf_delete"></span>
+                    <button aria-label="move up" class="uparrow actionbutton" id="ss_elem_Rf_uparrow"></button>
+                    <button aria-label="move down" class="downarrow actionbutton" id="ss_elem_Rf_downarrow"></button>
+                    <button aria-label="favorite" class="favorite actionbutton" id="ss_elem_Rf_favorite"></button>
+                    <button aria-label="delete" class="delete actionbutton" id="ss_elem_Rf_delete"></button>
                   </span>
                 </li>
                 <li id="ss_elem_Db" role="option" aria-actions="">
                   <span class="checkmark" aria-hidden="true"></span>
-                  Dubnium
+                  Dubnium <span class="offscreen favoriteindication"></span>
                   <span class="actions">
-                    <span role="button" aria-label="move up" class="uparrow" id="ss_elem_Db_uparrow"></span>
-                    <span role="button" aria-label="move down" class="downarrow" id="ss_elem_Db_downarrow"></span>
-                    <span role="button" aria-label="favorite" class="favorite" id="ss_elem_Db_favorite"></span>
-                    <span role="button" aria-label="delete" class="delete" id="ss_elem_Db_delete"></span>
+                    <button aria-label="move up" class="uparrow actionbutton" id="ss_elem_Db_uparrow"></button>
+                    <button aria-label="move down" class="downarrow actionbutton" id="ss_elem_Db_downarrow"></button>
+                    <button aria-label="favorite" class="favorite actionbutton" id="ss_elem_Db_favorite"></button>
+                    <button aria-label="delete" class="delete actionbutton" id="ss_elem_Db_delete"></button>
                   </span>
                 </li>
                 <li id="ss_elem_Sg" role="option" aria-actions="">
                   <span class="checkmark" aria-hidden="true"></span>
-                  Seaborgium
+                  Seaborgium <span class="offscreen favoriteindication"></span>
                   <span class="actions">
-                    <span role="button" aria-label="move up" class="uparrow" id="ss_elem_Sg_uparrow"></span>
-                    <span role="button" aria-label="move down" class="downarrow" id="ss_elem_Sg_downarrow"></span>
-                    <span role="button" aria-label="favorite" class="favorite" id="ss_elem_Sg_favorite"></span>
-                    <span role="button" aria-label="delete" class="delete" id="ss_elem_Sg_delete"></span>
+                    <button aria-label="move up" class="uparrow actionbutton" id="ss_elem_Sg_uparrow"></button>
+                    <button aria-label="move down" class="downarrow actionbutton" id="ss_elem_Sg_downarrow"></button>
+                    <button aria-label="favorite" class="favorite actionbutton" id="ss_elem_Sg_favorite"></button>
+                    <button aria-label="delete" class="delete actionbutton" id="ss_elem_Sg_delete"></button>
                   </span>
                 </li>
                 <li id="ss_elem_Bh" role="option" aria-actions="">
                   <span class="checkmark" aria-hidden="true"></span>
-                  Bohrium
+                  Bohrium <span class="offscreen favoriteindication"></span>
                   <span class="actions">
-                    <span role="button" aria-label="move up" class="uparrow" id="ss_elem_Bh_uparrow"></span>
-                    <span role="button" aria-label="move down" class="downarrow" id="ss_elem_Bh_downarrow"></span>
-                    <span role="button" aria-label="favorite" class="favorite" id="ss_elem_Bh_favorite"></span>
-                    <span role="button" aria-label="delete" class="delete" id="ss_elem_Bh_delete"></span>
+                    <button aria-label="move up" class="uparrow actionbutton" id="ss_elem_Bh_uparrow"></button>
+                    <button aria-label="move down" class="downarrow actionbutton" id="ss_elem_Bh_downarrow"></button>
+                    <button aria-label="favorite" class="favorite actionbutton" id="ss_elem_Bh_favorite"></button>
+                    <button aria-label="delete" class="delete actionbutton" id="ss_elem_Bh_delete"></button>
                   </span>
                 </li>
                 <li id="ss_elem_Hs" role="option" aria-actions="">
                   <span class="checkmark" aria-hidden="true"></span>
-                  Hassium
+                  Hassium <span class="offscreen favoriteindication"></span>
                   <span class="actions">
-                    <span role="button" aria-label="move up" class="uparrow" id="ss_elem_Hs_uparrow"></span>
-                    <span role="button" aria-label="move down" class="downarrow" id="ss_elem_Hs_downarrow"></span>
-                    <span role="button" aria-label="favorite" class="favorite" id="ss_elem_Hs_favorite"></span>
-                    <span role="button" aria-label="delete" class="delete" id="ss_elem_Hs_delete"></span>
+                    <button aria-label="move up" class="uparrow actionbutton" id="ss_elem_Hs_uparrow"></button>
+                    <button aria-label="move down" class="downarrow actionbutton" id="ss_elem_Hs_downarrow"></button>
+                    <button aria-label="favorite" class="favorite actionbutton" id="ss_elem_Hs_favorite"></button>
+                    <button aria-label="delete" class="delete actionbutton" id="ss_elem_Hs_delete"></button>
                   </span>
                 </li>
                 <li id="ss_elem_Mt" role="option" aria-actions="">
                   <span class="checkmark" aria-hidden="true"></span>
-                  Meitnerium
+                  Meitnerium <span class="offscreen favoriteindication"></span>
                   <span class="actions">
-                    <span role="button" aria-label="move up" class="uparrow" id="ss_elem_Mt_uparrow"></span>
-                    <span role="button" aria-label="move down" class="downarrow" id="ss_elem_Mt_downarrow"></span>
-                    <span role="button" aria-label="favorite" class="favorite" id="ss_elem_Mt_favorite"></span>
-                    <span role="button" aria-label="delete" class="delete" id="ss_elem_Mt_delete"></span>
+                    <button aria-label="move up" class="uparrow actionbutton" id="ss_elem_Mt_uparrow"></button>
+                    <button aria-label="move down" class="downarrow actionbutton" id="ss_elem_Mt_downarrow"></button>
+                    <button aria-label="favorite" class="favorite actionbutton" id="ss_elem_Mt_favorite"></button>
+                    <button aria-label="delete" class="delete actionbutton" id="ss_elem_Mt_delete"></button>
                   </span>
                 </li>
                 <li id="ss_elem_Ds" role="option" aria-actions="">
                   <span class="checkmark" aria-hidden="true"></span>
-                  Darmstadtium
+                  Darmstadtium <span class="offscreen favoriteindication"></span>
                   <span class="actions">
-                    <span role="button" aria-label="move up" class="uparrow" id="ss_elem_Ds_uparrow"></span>
-                    <span role="button" aria-label="move down" class="downarrow" id="ss_elem_Ds_downarrow"></span>
-                    <span role="button" aria-label="favorite" class="favorite" id="ss_elem_Ds_favorite"></span>
-                    <span role="button" aria-label="delete" class="delete" id="ss_elem_Ds_delete"></span>
+                    <button aria-label="move up" class="uparrow actionbutton" id="ss_elem_Ds_uparrow"></button>
+                    <button aria-label="move down" class="downarrow actionbutton" id="ss_elem_Ds_downarrow"></button>
+                    <button aria-label="favorite" class="favorite actionbutton" id="ss_elem_Ds_favorite"></button>
+                    <button aria-label="delete" class="delete actionbutton" id="ss_elem_Ds_delete"></button>
                   </span>
                 </li>
                 <li id="ss_elem_Rg" role="option" aria-actions="">
                   <span class="checkmark" aria-hidden="true"></span>
-                  Roentgenium
+                  Roentgenium <span class="offscreen favoriteindication"></span>
                   <span class="actions">
-                    <span role="button" aria-label="move up" class="uparrow" id="ss_elem_Rg_uparrow"></span>
-                    <span role="button" aria-label="move down" class="downarrow" id="ss_elem_Rg_downarrow"></span>
-                    <span role="button" aria-label="favorite" class="favorite" id="ss_elem_Rg_favorite"></span>
-                    <span role="button" aria-label="delete" class="delete" id="ss_elem_Rg_delete"></span>
+                    <button aria-label="move up" class="uparrow actionbutton" id="ss_elem_Rg_uparrow"></button>
+                    <button aria-label="move down" class="downarrow actionbutton" id="ss_elem_Rg_downarrow"></button>
+                    <button aria-label="favorite" class="favorite actionbutton" id="ss_elem_Rg_favorite"></button>
+                    <button aria-label="delete" class="delete actionbutton" id="ss_elem_Rg_delete"></button>
                   </span>
                 </li>
                 <li id="ss_elem_Cn" role="option" aria-actions="">
                   <span class="checkmark" aria-hidden="true"></span>
-                  Copernicium
+                  Copernicium <span class="offscreen favoriteindication"></span>
                   <span class="actions">
-                    <span role="button" aria-label="move up" class="uparrow" id="ss_elem_Cn_uparrow"></span>
-                    <span role="button" aria-label="move down" class="downarrow" id="ss_elem_Cn_downarrow"></span>
-                    <span role="button" aria-label="favorite" class="favorite" id="ss_elem_Cn_favorite"></span>
-                    <span role="button" aria-label="delete" class="delete" id="ss_elem_Cn_delete"></span>
+                    <button aria-label="move up" class="uparrow actionbutton" id="ss_elem_Cn_uparrow"></button>
+                    <button aria-label="move down" class="downarrow actionbutton" id="ss_elem_Cn_downarrow"></button>
+                    <button aria-label="favorite" class="favorite actionbutton" id="ss_elem_Cn_favorite"></button>
+                    <button aria-label="delete" class="delete actionbutton" id="ss_elem_Cn_delete"></button>
                   </span>
                 </li>
                 <li id="ss_elem_Nh" role="option" aria-actions="">
                   <span class="checkmark" aria-hidden="true"></span>
-                  Nihonium
+                  Nihonium <span class="offscreen favoriteindication"></span>
                   <span class="actions">
-                    <span role="button" aria-label="move up" class="uparrow" id="ss_elem_Nh_uparrow"></span>
-                    <span role="button" aria-label="move down" class="downarrow" id="ss_elem_Nh_downarrow"></span>
-                    <span role="button" aria-label="favorite" class="favorite" id="ss_elem_Nh_favorite"></span>
-                    <span role="button" aria-label="delete" class="delete" id="ss_elem_Nh_delete"></span>
+                    <button aria-label="move up" class="uparrow actionbutton" id="ss_elem_Nh_uparrow"></button>
+                    <button aria-label="move down" class="downarrow actionbutton" id="ss_elem_Nh_downarrow"></button>
+                    <button aria-label="favorite" class="favorite actionbutton" id="ss_elem_Nh_favorite"></button>
+                    <button aria-label="delete" class="delete actionbutton" id="ss_elem_Nh_delete"></button>
                   </span>
                 </li>
                 <li id="ss_elem_Fl" role="option" aria-actions="">
                   <span class="checkmark" aria-hidden="true"></span>
-                  Flerovium
+                  Flerovium <span class="offscreen favoriteindication"></span>
                   <span class="actions">
-                    <span role="button" aria-label="move up" class="uparrow" id="ss_elem_Fl_uparrow"></span>
-                    <span role="button" aria-label="move down" class="downarrow" id="ss_elem_Fl_downarrow"></span>
-                    <span role="button" aria-label="favorite" class="favorite" id="ss_elem_Fl_favorite"></span>
-                    <span role="button" aria-label="delete" class="delete" id="ss_elem_Fl_delete"></span>
+                    <button aria-label="move up" class="uparrow actionbutton" id="ss_elem_Fl_uparrow"></button>
+                    <button aria-label="move down" class="downarrow actionbutton" id="ss_elem_Fl_downarrow"></button>
+                    <button aria-label="favorite" class="favorite actionbutton" id="ss_elem_Fl_favorite"></button>
+                    <button aria-label="delete" class="delete actionbutton" id="ss_elem_Fl_delete"></button>
                   </span>
                 </li>
                 <li id="ss_elem_Mc" role="option" aria-actions="">
                   <span class="checkmark" aria-hidden="true"></span>
-                  Moscovium
+                  Moscovium <span class="offscreen favoriteindication"></span>
                   <span class="actions">
-                    <span role="button" aria-label="move up" class="uparrow" id="ss_elem_Mc_uparrow"></span>
-                    <span role="button" aria-label="move down" class="downarrow" id="ss_elem_Mc_downarrow"></span>
-                    <span role="button" aria-label="favorite" class="favorite" id="ss_elem_Mc_favorite"></span>
-                    <span role="button" aria-label="delete" class="delete" id="ss_elem_Mc_delete"></span>
+                    <button aria-label="move up" class="uparrow actionbutton" id="ss_elem_Mc_uparrow"></button>
+                    <button aria-label="move down" class="downarrow actionbutton" id="ss_elem_Mc_downarrow"></button>
+                    <button aria-label="favorite" class="favorite actionbutton" id="ss_elem_Mc_favorite"></button>
+                    <button aria-label="delete" class="delete actionbutton" id="ss_elem_Mc_delete"></button>
                   </span>
                 </li>
                 <li id="ss_elem_Lv" role="option" aria-actions="">
                   <span class="checkmark" aria-hidden="true"></span>
-                  Livermorium
+                  Livermorium <span class="offscreen favoriteindication"></span>
                   <span class="actions">
-                    <span role="button" aria-label="move up" class="uparrow" id="ss_elem_Lv_uparrow"></span>
-                    <span role="button" aria-label="move down" class="downarrow" id="ss_elem_Lv_downarrow"></span>
-                    <span role="button" aria-label="favorite" class="favorite" id="ss_elem_Lv_favorite"></span>
-                    <span role="button" aria-label="delete" class="delete" id="ss_elem_Lv_delete"></span>
+                    <button aria-label="move up" class="uparrow actionbutton" id="ss_elem_Lv_uparrow"></button>
+                    <button aria-label="move down" class="downarrow actionbutton" id="ss_elem_Lv_downarrow"></button>
+                    <button aria-label="favorite" class="favorite actionbutton" id="ss_elem_Lv_favorite"></button>
+                    <button aria-label="delete" class="delete actionbutton" id="ss_elem_Lv_delete"></button>
                   </span>
                 </li>
                 <li id="ss_elem_Ts" role="option" aria-actions="">
                   <span class="checkmark" aria-hidden="true"></span>
-                  Tennessine
+                  Tennessine <span class="offscreen favoriteindication"></span>
                   <span class="actions">
-                    <span role="button" aria-label="move up" class="uparrow" id="ss_elem_Ts_uparrow"></span>
-                    <span role="button" aria-label="move down" class="downarrow" id="ss_elem_Ts_downarrow"></span>
-                    <span role="button" aria-label="favorite" class="favorite" id="ss_elem_Ts_favorite"></span>
-                    <span role="button" aria-label="delete" class="delete" id="ss_elem_Ts_delete"></span>
+                    <button aria-label="move up" class="uparrow actionbutton" id="ss_elem_Ts_uparrow"></button>
+                    <button aria-label="move down" class="downarrow actionbutton" id="ss_elem_Ts_downarrow"></button>
+                    <button aria-label="favorite" class="favorite actionbutton" id="ss_elem_Ts_favorite"></button>
+                    <button aria-label="delete" class="delete actionbutton" id="ss_elem_Ts_delete"></button>
                   </span>
                 </li>
                 <li id="ss_elem_Og" role="option" aria-actions="">
                   <span class="checkmark" aria-hidden="true"></span>
-                  Oganesson
+                  Oganesson <span class="offscreen favoriteindication"></span>
                   <span class="actions">
-                    <span role="button" aria-label="move up" class="uparrow" id="ss_elem_Og_uparrow"></span>
-                    <span role="button" aria-label="move down" class="downarrow hide-actions-button" id="ss_elem_Og_downarrow"></span>
-                    <span role="button" aria-label="favorite" class="favorite" id="ss_elem_Og_favorite"></span>
-                    <span role="button" aria-label="delete" class="delete" id="ss_elem_Og_delete"></span>
+                    <button aria-label="move up" class="uparrow actionbutton" id="ss_elem_Og_uparrow"></button>
+                    <button aria-label="move down" class="downarrow actionbutton hide-actions-button" id="ss_elem_Og_downarrow"></button>
+                    <button aria-label="favorite" class="favorite actionbutton" id="ss_elem_Og_favorite"></button>
+                    <button aria-label="delete" class="delete actionbutton" id="ss_elem_Og_delete"></button>
                   </span>
                 </li>
               </ul>
