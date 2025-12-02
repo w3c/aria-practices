@@ -18,7 +18,18 @@ span[role="option"]:hover span.actions {
     right: 0.5em;
     display: inline;
 }
-
+button.actionbutton {
+    display: inline-block;
+    border-radius: 5px;
+    text-align: center;
+    color: #222428;
+    font-size: 14px;
+    line-height: 1.5em;
+    margin-right: 0.25em;
+    background-color: buttonface;
+    padding: 0px 5px 0px 5px;
+    margin-top: -3px;
+}
 button.actionbutton::before {
     display: flex;
     justify-content: center;
@@ -51,10 +62,12 @@ button.delete::before {
 [role="option"] button:hover,
 .focusedActionButton {
     background-color: rgb(226, 239, 225);
-    color: black;
+    color: black!important;
     outline-offset: 0px;
     white-space: pre;
-    outline: #036 solid 3px;
+    outline-offset: 0px;
+    outline: #036 solid 3px!important;
+    border-color: rgb(0, 90, 156);
 }
 
 .listbox-area {

@@ -28,7 +28,7 @@ aria.ListboxActions = class ListboxActions {
       var updateText = '';
       switch (event) {
         case 'removed':
-          updateText = 'Removed ' + items[0].innerText;
+          updateText = 'Deleted ' + items[0].innerText;
           break;
         case 'moved_up':
         case 'moved_down':
