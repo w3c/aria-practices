@@ -13,11 +13,6 @@
     top: -3px;
 }
 
-span[role="option"]:hover span.actions {
-    position: absolute;
-    right: 0.5em;
-    display: inline;
-}
 button.actionbutton {
     display: inline-block;
     border-radius: 5px;
@@ -27,9 +22,10 @@ button.actionbutton {
     line-height: 1.5em;
     margin-right: 0.25em;
     background-color: buttonface;
-    padding: 0px 5px 0px 5px;
+    padding: 0px 5px;
     margin-top: -3px;
 }
+
 button.actionbutton::before {
     display: flex;
     justify-content: center;
@@ -63,7 +59,6 @@ button.delete::before {
 .focusedActionButton {
     background-color: rgb(226, 239, 225);
     color: black!important;
-    outline-offset: 0px;
     white-space: pre;
     outline-offset: 0px;
     outline: #036 solid 3px!important;
