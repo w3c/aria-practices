@@ -1,82 +1,81 @@
 [role="option"] span.actions {
-    display: none;
+  display: none;
 }
 
-[role="listbox"]:focus [role="option"].focused span.actions,
-[role="option"]:hover span.actions {
-    position: absolute;
-    right: 0.5em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 3px;
-    top: -3px;
+[role="option"]:hover span.actions,
+[role="listbox"]:focus [role="option"].focused span.actions {
+  position: absolute;
+  right: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  top: -3px;
 }
 
-button.actionbutton {
-    display: inline-block;
-    border-radius: 5px;
-    text-align: center;
-    color: #222428;
-    font-size: 14px;
-    line-height: 1.5em;
-    margin-right: 0.25em;
-    background-color: buttonface;
-    padding: 0px 5px;
-    margin-top: -3px;
+button.actionButton {
+  display: inline-block;
+  border-radius: 5px;
+  text-align: center;
+  color: #222428;
+  font-size: 14px;
+  line-height: 1.5em;
+  margin-right: 0.25em;
+  background-color: buttonface;
+  padding-right: 5px;
+  margin-top: -3px;
 }
 
-button.actionbutton::before {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 32px;
-    width: 15px;
+button.actionButton::before {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  width: 15px;
 }
 
 button.uparrow::before {
-    content: "↑" / "";
+  content: "↑" / "";
 }
 
 button.downarrow::before {
-    content: "↓" / "";
+  content: "↓" / "";
 }
 
 button.favorite[aria-pressed="true"]::before {
-    content: "★" / "";
+  content: "★" / "";
 }
 
 button.favorite:not([aria-pressed])::before,
 button.favorite[aria-pressed="false"]::before {
-    content: "☆" / "";
+  content: "☆" / "";
 }
 
 button.delete::before {
-    content: "🗑" / "";
+  content: "🗑" / "";
 }
 
 [role="option"] button:hover,
 .focusedActionButton {
-    background-color: rgb(226, 239, 225);
-    color: black!important;
-    white-space: pre;
-    outline-offset: 0px;
-    outline: #036 solid 3px!important;
-    border-color: rgb(0, 90, 156);
+  background-color: rgb(226 239 225);
+  color: black !important;
+  white-space: pre;
+  outline: #036 solid 3px !important;
+  border-color: rgb(0 90 156);
 }
 
 .listbox-area {
-    display: block;
-    padding: 20px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgb(170, 170, 170);
-    border-image: initial;
-    border-radius: 4px;
-    background: rgb(238, 238, 238);
-    max-width: 20em;
+  display: block;
+  padding: 20px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(170 170 170);
+  border-image: initial;
+  border-radius: 4px;
+  background: rgb(238 238 238);
+  max-width: 20em;
 }
 
 .hide-actions-button {
-    display: none;
+  display: none;
 }

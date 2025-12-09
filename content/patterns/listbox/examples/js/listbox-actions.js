@@ -18,7 +18,7 @@ var aria = aria || {};
  * @description
  *  ListboxActions object representing the state and interactions for a listbox with action items widget
  * @param listboxActionsObject
- *  Instantiation of the Listbox 
+ *  Instantiation of the Listbox
  */
 
 aria.ListboxActions = class ListboxActions {
@@ -39,7 +39,7 @@ aria.ListboxActions = class ListboxActions {
           pos++;
           updateText = 'Moved to position ' + pos;
           break;
-        case 'favorited':
+        case 'favorite':
           updateText = 'Favorited ' + items[0].innerText;
           break;
         case 'unfavorited':
@@ -56,8 +56,10 @@ aria.ListboxActions = class ListboxActions {
       'aria-activedescendant'
     );
     this.registerActionsEvents();
-    this.listboxOptionArray = Array.from(this.listboxActionsNode.querySelectorAll('[role="option"]'));
-    this.handleItemChange = function () { };
+    this.listboxOptionArray = Array.from(
+      this.listboxActionsNode.querySelectorAll('[role="option"]')
+    );
+    this.handleItemChange = function () {};
     this.listboxItemCurrent = null;
     this.listboxActiveOption = null;
     this.listboxCurrentItemActionsButtons = [];
@@ -66,11 +68,22 @@ aria.ListboxActions = class ListboxActions {
   }
 
   registerActionsEvents() {
-    this.listboxActionsNode.addEventListener('keydown', this.checkKeyPressActions.bind(this));
-    this.listboxActionsNode.addEventListener('click', this.setCurrentActiveOptionForListbox.bind(this));
-    let actionButtons = this.listboxActionsNode.querySelectorAll('button:not(.hide-actions-button)');
+    this.listboxActionsNode.addEventListener(
+      'keydown',
+      this.checkKeyPressActions.bind(this)
+    );
+    this.listboxActionsNode.addEventListener(
+      'click',
+      this.setCurrentActiveOptionForListbox.bind(this)
+    );
+    let actionButtons = this.listboxActionsNode.querySelectorAll(
+      'button:not(.hide-actions-button)'
+    );
     for (let i = 0; i < actionButtons.length; i++) {
-      actionButtons[i].addEventListener('click', this.checkClickItemActions.bind(this));
+      actionButtons[i].addEventListener(
+        'click',
+        this.checkClickItemActions.bind(this)
+      );
     }
   }
   /**
@@ -129,20 +142,37 @@ aria.ListboxActions = class ListboxActions {
     }
     const currentItem = this.listboxItemCurrent;
     const previousItem = currentItem.previousElementSibling;
-    this.listboxOptionArray = Array.from(this.listboxActionsNode.querySelectorAll('[role="option"]'));
+    this.listboxOptionArray = Array.from(
+      this.listboxActionsNode.querySelectorAll('[role="option"]')
+    );
     if (previousItem) {
       /** Hides the down arrow for item moved to the end of list and shows arrow on item moved up from bottom */
-      if (this.listboxOptionArray.indexOf(previousItem) == this.listboxOptionArray.length - 2) {
-        currentItem.querySelector('.downarrow').classList.remove('hide-actions-button');
-        currentItem.querySelector('.downarrow').classList.remove('focusedActionButton');
-        previousItem.querySelector('.downarrow').classList.add('hide-actions-button');
+      if (
+        this.listboxOptionArray.indexOf(previousItem) ==
+        this.listboxOptionArray.length - 2
+      ) {
+        currentItem
+          .querySelector('.downarrow')
+          .classList.remove('hide-actions-button');
+        currentItem
+          .querySelector('.downarrow')
+          .classList.remove('focusedActionButton');
+        previousItem
+          .querySelector('.downarrow')
+          .classList.add('hide-actions-button');
         this.activeDescendant = currentItem.id;
       }
       /** Hides the up arrow for item moved to the top of list and shows arrow on item moved down from top */
       if (this.listboxOptionArray.indexOf(previousItem) == 1) {
-        currentItem.querySelector('.uparrow').classList.add('hide-actions-button');
-        currentItem.querySelector('.uparrow').classList.remove('focusedActionButton');
-        previousItem.querySelector('.uparrow').classList.remove('hide-actions-button');
+        currentItem
+          .querySelector('.uparrow')
+          .classList.add('hide-actions-button');
+        currentItem
+          .querySelector('.uparrow')
+          .classList.remove('focusedActionButton');
+        previousItem
+          .querySelector('.uparrow')
+          .classList.remove('hide-actions-button');
         this.setActiveDescendant(currentItem);
       }
     }
@@ -158,19 +188,34 @@ aria.ListboxActions = class ListboxActions {
     }
     var currentItem = this.listboxItemCurrent;
     var nextItem = currentItem.nextElementSibling;
-    this.listboxOptionArray = Array.from(this.listboxActionsNode.querySelectorAll('[role="option"]'));
+    this.listboxOptionArray = Array.from(
+      this.listboxActionsNode.querySelectorAll('[role="option"]')
+    );
     if (nextItem) {
       /** Hides the down arrow for item moved to the end of list and shows arrow on item moved up from bottom */
-      if (this.listboxOptionArray.indexOf(nextItem) == this.listboxOptionArray.length - 1) {
-        currentItem.querySelector('.downarrow').classList.add('hide-actions-button');
-        currentItem.querySelector('.downarrow').classList.remove('focusedActionButton');
-        nextItem.querySelector('.downarrow').classList.remove('hide-actions-button');
+      if (
+        this.listboxOptionArray.indexOf(nextItem) ==
+        this.listboxOptionArray.length - 1
+      ) {
+        currentItem
+          .querySelector('.downarrow')
+          .classList.add('hide-actions-button');
+        currentItem
+          .querySelector('.downarrow')
+          .classList.remove('focusedActionButton');
+        nextItem
+          .querySelector('.downarrow')
+          .classList.remove('hide-actions-button');
         this.setActiveDescendant(currentItem);
       }
       /** Hides the up arrow for item moved to the top of list and shows arrow on item moved down from top */
       if (this.listboxOptionArray.indexOf(nextItem) == 2) {
-        currentItem.querySelector('.uparrow').classList.remove('hide-actions-button');
-        currentItem.querySelector('.uparrow').classList.remove('focusedActionButton');
+        currentItem
+          .querySelector('.uparrow')
+          .classList.remove('hide-actions-button');
+        currentItem
+          .querySelector('.uparrow')
+          .classList.remove('focusedActionButton');
         nextItem.querySelector('.uparrow').classList.add('hide-actions-button');
         this.activeDescendant = currentItem.id;
       }
@@ -191,8 +236,12 @@ aria.ListboxActions = class ListboxActions {
     if (index > -1) {
       activeButtonClasslist.splice(index, 1);
     }
-    this.listboxOptionArray = Array.from(this.listboxActionsNode.querySelectorAll('[role="option"]'));
-    let optionIndex = this.listboxOptionArray.findIndex(elem => elem.id === this.listboxItemCurrent.id);
+    this.listboxOptionArray = Array.from(
+      this.listboxActionsNode.querySelectorAll('[role="option"]')
+    );
+    let optionIndex = this.listboxOptionArray.findIndex(
+      (elem) => elem.id === this.listboxItemCurrent.id
+    );
     this.Listbox.activeDescendant = this.listboxOptionArray[optionIndex].id;
 
     switch (activeButtonClasslist[0]) {
@@ -203,14 +252,26 @@ aria.ListboxActions = class ListboxActions {
           this.defocusActionsItem(this.listboxCurrentItemActionsButtons[i]);
         }
         for (let i = 0; i < this.listboxItemsWithAriaActionsArray.length; i++) {
-          this.setActiveDescendant(this.listboxItemsWithAriaActionsArray[i], '');
+          this.setActiveDescendant(
+            this.listboxItemsWithAriaActionsArray[i],
+            ''
+          );
         }
         break;
       case 'favorite':
-        activeButton.setAttribute('aria-pressed', (activeButton.ariaPressed && activeButton.ariaPressed == 'true' ? 'false' : 'true'));
-        this.Listbox.handleItemChange((activeButton.ariaPressed == 'true' ? 'favorited' : 'unfavorited'), [activeOption]);
-        if (activeOption.querySelector('.favoriteindication')) {
-          activeOption.querySelector('.favoriteindication').innerText = (activeButton.ariaPressed == 'true' ? 'Favorite' : '');
+        activeButton.setAttribute(
+          'aria-pressed',
+          activeButton.ariaPressed && activeButton.ariaPressed == 'true'
+            ? 'false'
+            : 'true'
+        );
+        this.Listbox.handleItemChange(
+          activeButton.ariaPressed == 'true' ? 'favorite' : 'unfavorited',
+          [activeOption]
+        );
+        if (activeOption.querySelector('.favoriteIndication')) {
+          activeOption.querySelector('.favoriteIndication').innerText =
+            activeButton.ariaPressed == 'true' ? 'Favorite' : '';
         }
         break;
       case 'uparrow':
@@ -225,12 +286,21 @@ aria.ListboxActions = class ListboxActions {
     this.Listbox.updateScroll();
   }
   checkKeyPressActions(event) {
-    let listitemCurrentItemActionsButtonPosition, listboxCurrentItemActionsButton;
+    let listitemCurrentItemActionsButtonPosition,
+      listboxCurrentItemActionsButton;
     this.listboxItemCurrent = this.listboxActionsNode.querySelector('.focused');
-    this.activeDescendant = this.listboxActionsNode.getAttribute('aria-activedescendant');
-    this.listboxActiveOption = this.listboxActionsNode.querySelector('.focused');
-    this.listboxCurrentItemActionsButtons = Array.from(this.listboxItemCurrent.querySelectorAll('button:not(.hide-actions-button)'));
-    this.listboxItemsWithAriaActionsArray = event.currentTarget.querySelectorAll('[aria-actions]');
+    this.activeDescendant = this.listboxActionsNode.getAttribute(
+      'aria-activedescendant'
+    );
+    this.listboxActiveOption =
+      this.listboxActionsNode.querySelector('.focused');
+    this.listboxCurrentItemActionsButtons = Array.from(
+      this.listboxItemCurrent.querySelectorAll(
+        'button:not(.hide-actions-button)'
+      )
+    );
+    this.listboxItemsWithAriaActionsArray =
+      event.currentTarget.querySelectorAll('[aria-actions]');
     switch (event.key) {
       case 'ArrowUp':
       case 'ArrowDown':
@@ -240,38 +310,75 @@ aria.ListboxActions = class ListboxActions {
         for (let i = 0; i < this.listboxItemsWithAriaActionsArray.length; i++) {
           this.setAriaActions(this.listboxItemsWithAriaActionsArray[i], ' ');
         }
-        this.setAriaActions(this.listboxItemCurrent, this.listboxCurrentItemActionsButtons.map(node => node.id).join(' '));
+        this.setAriaActions(
+          this.listboxItemCurrent,
+          this.listboxCurrentItemActionsButtons.map((node) => node.id).join(' ')
+        );
         break;
       case 'ArrowLeft':
       case 'ArrowRight':
         for (let i = 0; i < this.listboxCurrentItemActionsButtons.length; i++) {
           this.defocusActionsItem(this.listboxCurrentItemActionsButtons[i]);
         }
-        listboxCurrentItemActionsButton = this.listboxActionsNode.querySelector('#' + this.activeDescendant);
-        if (listboxCurrentItemActionsButton && this.listboxCurrentItemActionsButtons.find(elem => elem.id === this.activeDescendant)) {
-          listitemCurrentItemActionsButtonPosition = this.listboxCurrentItemActionsButtons.findIndex(elem => elem.id === this.activeDescendant);
+        listboxCurrentItemActionsButton = this.listboxActionsNode.querySelector(
+          '#' + this.activeDescendant
+        );
+        if (
+          listboxCurrentItemActionsButton &&
+          this.listboxCurrentItemActionsButtons.find(
+            (elem) => elem.id === this.activeDescendant
+          )
+        ) {
+          listitemCurrentItemActionsButtonPosition =
+            this.listboxCurrentItemActionsButtons.findIndex(
+              (elem) => elem.id === this.activeDescendant
+            );
         } else {
           listitemCurrentItemActionsButtonPosition = -1;
         }
         if (event.key == 'ArrowLeft') {
           if (listitemCurrentItemActionsButtonPosition > 0) {
-            this.focusActionsItem(this.listboxCurrentItemActionsButtons[listitemCurrentItemActionsButtonPosition - 1]);
+            this.focusActionsItem(
+              this.listboxCurrentItemActionsButtons[
+                listitemCurrentItemActionsButtonPosition - 1
+              ]
+            );
           } else {
-            this.defocusActionsItem(this.listboxCurrentItemActionsButtons[listitemCurrentItemActionsButtonPosition]);
+            this.defocusActionsItem(
+              this.listboxCurrentItemActionsButtons[
+                listitemCurrentItemActionsButtonPosition
+              ]
+            );
             this.setActiveDescendant(this.listboxItemCurrent);
           }
         } else if (event.key == 'ArrowRight') {
           if (listitemCurrentItemActionsButtonPosition < 0) {
             this.focusActionsItem(this.listboxCurrentItemActionsButtons[0]);
-          } else if (listitemCurrentItemActionsButtonPosition < (this.listboxCurrentItemActionsButtons.length - 1)) {
-            this.focusActionsItem(this.listboxCurrentItemActionsButtons[listitemCurrentItemActionsButtonPosition + 1]);
+          } else if (
+            listitemCurrentItemActionsButtonPosition <
+            this.listboxCurrentItemActionsButtons.length - 1
+          ) {
+            this.focusActionsItem(
+              this.listboxCurrentItemActionsButtons[
+                listitemCurrentItemActionsButtonPosition + 1
+              ]
+            );
           } else {
-            this.focusActionsItem(this.listboxCurrentItemActionsButtons[listitemCurrentItemActionsButtonPosition]);
+            this.focusActionsItem(
+              this.listboxCurrentItemActionsButtons[
+                listitemCurrentItemActionsButtonPosition
+              ]
+            );
           }
         }
         break;
       case 'Enter':
-        this.doActionButtonEvents(event, event.currentTarget.ariaActiveDescendantElement ? event.currentTarget.ariaActiveDescendantElement : event.currentTarget);
+        this.doActionButtonEvents(
+          event,
+          event.currentTarget.ariaActiveDescendantElement
+            ? event.currentTarget.ariaActiveDescendantElement
+            : event.currentTarget
+        );
         break;
       default:
         break;
@@ -279,7 +386,7 @@ aria.ListboxActions = class ListboxActions {
   }
   /**
    * @description
-   *  Prepares action item click events to be passed on to the key press listener 
+   *  Prepares action item click events to be passed on to the key press listener
    * @param event
    *  The click event
    */
@@ -315,5 +422,7 @@ aria.ListboxActions = class ListboxActions {
   }
 };
 window.addEventListener('load', function () {
-  new aria.ListboxActions(new aria.Listbox(document.getElementById('ss_elem_list')));
+  new aria.ListboxActions(
+    new aria.Listbox(document.getElementById('ss_elem_list'))
+  );
 });
