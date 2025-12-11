@@ -1664,18 +1664,18 @@ dialog button:hover {
       this.dialogElem.close();
     }
 
-    openDialog (content) {
+    openDialog (content, title) {
       this.content = content;
 
       if (content === 'shortcuts') {
         this.shortcutContentElem.style.display = 'block';
         this.aboutContentElem.style.display = 'none';
-        this.titleElem.textContent = 'Keyboard Shortcuts';
+        this.titleElem.textContent = title;
       }
       else {
         this.shortcutContentElem.style.display = 'none';
         this.aboutContentElem.style.display = 'block';
-        this.titleElem.textContent = 'About SkipTo.js';
+        this.titleElem.textContent = title;
       }
       this.dialogElem.showModal();
       this.closeButtonElem2.focus();
@@ -5059,12 +5059,12 @@ dialog button:hover {
         }
 
         if (tgt.hasAttribute('data-shortcuts-info')) {
-          this.infoDialog.openDialog('shortcuts');
+          this.infoDialog.openDialog('shortcuts', this.config.shortcutsInfoLabel);
           this.closePopup();
         }
 
         if (tgt.hasAttribute('data-about-info')) {
-          this.infoDialog.openDialog('about');
+          this.infoDialog.openDialog('about', this.config.aboutInfoLabel);
           this.closePopup();
         }
 
@@ -5336,11 +5336,11 @@ dialog button:hover {
         shortcutRegionNavigation: 'n',
         shortcutRegionComplementary: 'c',
 
+        shortcutsInfoLabel:          'Keyboard Shortcuts',
         shortcutsGroupEnabledLabel:  'Shortcuts: Enabled',
         shortcutsGroupDisabledLabel: 'Shortcuts: Disabled',
         shortcutsToggleEnableLabel:  'Enable shortcuts',
         shortcutsToggleDisableLabel: 'Disable shortcuts',
-        shortcutsInfoLabel:          'Shortcut Information',
 
         aboutSupported: 'true',
         aboutInfoLabel: `About SkipTo.js`,
