@@ -1515,7 +1515,6 @@ dialog button:hover {
         <h2>Keyboard Shortcuts</h2>
         <button>✕</button>
       </div>
-
       <div class="content">
          <table>
             <caption>Landmark Regions</caption>
@@ -1594,7 +1593,6 @@ dialog button:hover {
       </div>
     </div>
 
-
     <div class="about">
       <div class="header">
         <h2>About SkipTo.js</h2>
@@ -1648,17 +1646,17 @@ dialog button:hover {
 
       this.dialogElem = attachElem.querySelector('dialog');
 
-      this.closeButtonElem1  = attachElem.querySelector('.header button');
+      this.closeButtonElem1  = attachElem.querySelector(`#${DIALOG_ID} .header button`);
       this.closeButtonElem1.addEventListener('click', this.onCloseButtonClick.bind(this));
       this.closeButtonElem1.addEventListener('keydown', this.onKeyDown.bind(this));
 
-      this.shortcutContentElem = attachElem.querySelector('.shortcuts');
-      this.aboutContentElem    = attachElem.querySelector('.about');
+      this.shortcutContentElem = attachElem.querySelector(`#${DIALOG_ID} .shortcuts`);
+      this.aboutContentElem    = attachElem.querySelector(`#${DIALOG_ID} .about`);
 
-      const moreInfoButtonElem = attachElem.querySelector('.buttons button.more');
+      const moreInfoButtonElem = attachElem.querySelector(`#${DIALOG_ID} .buttons button.more`);
       moreInfoButtonElem.addEventListener('click', this.onMoreInfoClick.bind(this));
 
-      this.closeButtonElem2  = attachElem.querySelector('.buttons button.close');
+      this.closeButtonElem2  = attachElem.querySelector(`#${DIALOG_ID} .buttons button.close`);
       this.closeButtonElem2.addEventListener('click', this.onCloseButtonClick.bind(this));
       this.closeButtonElem2.addEventListener('keydown', this.onKeyDown.bind(this));
 
@@ -1673,8 +1671,8 @@ dialog button:hover {
       this.content = content;
 
       if (content === 'shortcuts') {
-        this.aboutContentElem.style.display = 'none';
         this.shortcutContentElem.style.display = 'block';
+        this.aboutContentElem.style.display = 'none';
       }
       else {
         this.shortcutContentElem.style.display = 'none';
@@ -1685,7 +1683,7 @@ dialog button:hover {
     }
 
     onMoreInfoClick () {
-      const url = this.content === 'shortcut' ?
+      const url = this.content === 'shortcuts' ?
                                     MORE_SHORTCUT_INFO_URL :
                                     MORE_ABOUT_INFO_URL;
       if (url) {
@@ -5065,7 +5063,7 @@ dialog button:hover {
         }
 
         if (tgt.hasAttribute('data-about-info')) {
-          this.infoDialog.openDialog('skipto');
+          this.infoDialog.openDialog('about');
           this.closePopup();
         }
 
@@ -5693,9 +5691,7 @@ dialog button:hover {
      *   @desc  Hides the highlight element on the page
      */
     removeHighlight() {
-      debug$1.log(`[removeHighlight]`);
       this.buttonSkipto.removeHighlight();
-
     }
 
   }
