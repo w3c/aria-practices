@@ -1510,12 +1510,12 @@ dialog button:hover {
   templateInfoDialog.innerHTML = `
   <dialog id="${DIALOG_ID}">
 
-    <div class="shortcuts">
+    <div>
       <div class="header">
-        <h2>Keyboard Shortcuts</h2>
-        <button>✕</button>
+        <h2 class="title"></h2>
+        <button aria-label="Close">✕</button>
       </div>
-      <div class="content">
+      <div class="shortcuts content">
          <table>
             <caption>Landmark Regions</caption>
             <thead>
@@ -1593,12 +1593,8 @@ dialog button:hover {
       </div>
     </div>
 
-    <div class="about">
-      <div class="header">
-        <h2>About SkipTo.js</h2>
-        <button>✕</button>
-      </div>
-      <div class="content">
+    <div>
+      <div class="about content">
         <div class="desc">
           SkipTo.js is a free and open source utility to support the WCAG 2.4.1 Bypass Block requirement.
         </div>
@@ -1650,6 +1646,7 @@ dialog button:hover {
       this.closeButtonElem1.addEventListener('click', this.onCloseButtonClick.bind(this));
       this.closeButtonElem1.addEventListener('keydown', this.onKeyDown.bind(this));
 
+      this.titleElem           = attachElem.querySelector(`#${DIALOG_ID} .title`);
       this.shortcutContentElem = attachElem.querySelector(`#${DIALOG_ID} .shortcuts`);
       this.aboutContentElem    = attachElem.querySelector(`#${DIALOG_ID} .about`);
 
@@ -1673,10 +1670,12 @@ dialog button:hover {
       if (content === 'shortcuts') {
         this.shortcutContentElem.style.display = 'block';
         this.aboutContentElem.style.display = 'none';
+        this.titleElem.textContent = 'Keyboard Shortcuts';
       }
       else {
         this.shortcutContentElem.style.display = 'none';
         this.aboutContentElem.style.display = 'block';
+        this.titleElem.textContent = 'About SkipTo.js';
       }
       this.dialogElem.showModal();
       this.closeButtonElem2.focus();
@@ -1697,6 +1696,8 @@ dialog button:hover {
           !event.altKey &&
           !event.ctlKey &&
           !event.metaKey) {
+
+        debug$a.log(`shift: ${event.shiftKey} ${event.currentTarget === this.closeButtonElem1} ${event.currentTarget === this.closeButtonElem2}`);
 
         if (event.shiftKey &&
             (event.currentTarget === this.closeButtonElem1)) {
