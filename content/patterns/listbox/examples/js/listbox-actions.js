@@ -70,11 +70,11 @@ aria.ListboxActions = class ListboxActions {
   registerActionsEvents() {
     this.listboxActionsNode.addEventListener(
       'keydown',
-      this.checkKeyPressActions.bind(this)
+      this.onCheckKeyPressActions.bind(this)
     );
     this.listboxActionsNode.addEventListener(
       'click',
-      this.setCurrentActiveOptionForListbox.bind(this)
+      this.onSetCurrentActiveOptionForListbox.bind(this)
     );
     let actionButtons = this.listboxActionsNode.querySelectorAll(
       'button:not(.hide-actions-button)'
@@ -82,7 +82,7 @@ aria.ListboxActions = class ListboxActions {
     for (let i = 0; i < actionButtons.length; i++) {
       actionButtons[i].addEventListener(
         'click',
-        this.checkClickItemActions.bind(this)
+        this.onCheckClickItemActions.bind(this)
       );
     }
   }
@@ -110,6 +110,7 @@ aria.ListboxActions = class ListboxActions {
     }
     this.listboxActionsNode.setAttribute('aria-activedescendant', element.id);
     this.activeDescendant = element.id;
+    this.listboxCurrentOptionIndex = this.listboxOptionArray.indexOf(element);
   }
   /**
    * @description
@@ -257,6 +258,8 @@ aria.ListboxActions = class ListboxActions {
             ''
           );
         }
+        this.setActiveDescendant(this.listboxItemsWithAriaActionsArray[0]);
+        this.Listbox.focusItem(this.listboxOptionArray[0]);
         break;
       case 'favorite':
         activeButton.setAttribute(
@@ -269,8 +272,8 @@ aria.ListboxActions = class ListboxActions {
           activeButton.ariaPressed == 'true' ? 'favorite' : 'unfavorited',
           [activeOption]
         );
-        if (activeOption.querySelector('.favoriteIndication')) {
-          activeOption.querySelector('.favoriteIndication').innerText =
+        if (activeOption.querySelector('.js-favoriteIndication')) {
+          activeOption.querySelector('.js-favoriteIndication').innerText =
             activeButton.ariaPressed == 'true' ? 'Favorite' : '';
         }
         break;
@@ -285,20 +288,24 @@ aria.ListboxActions = class ListboxActions {
     }
     this.Listbox.updateScroll();
   }
-  checkKeyPressActions(event) {
+  onCheckKeyPressActions(event) {
     let listitemCurrentItemActionsButtonPosition,
       listboxCurrentItemActionsButton;
     this.listboxItemCurrent = this.listboxActionsNode.querySelector('.focused');
+    this.listboxCurrentOptionIndex = this.listboxOptionArray.indexOf(this.listboxItemCurrent);
+    console.log(this.listboxCurrentOptionIndex);
     this.activeDescendant = this.listboxActionsNode.getAttribute(
       'aria-activedescendant'
     );
     this.listboxActiveOption =
       this.listboxActionsNode.querySelector('.focused');
-    this.listboxCurrentItemActionsButtons = Array.from(
-      this.listboxItemCurrent.querySelectorAll(
-        'button:not(.hide-actions-button)'
-      )
-    );
+    if (this.listboxItemCurrent) {
+      this.listboxCurrentItemActionsButtons = Array.from(
+        this.listboxItemCurrent.querySelectorAll(
+          'button:not(.hide-actions-button)'
+        )
+      );
+    }
     this.listboxItemsWithAriaActionsArray =
       event.currentTarget.querySelectorAll('[aria-actions]');
     switch (event.key) {
@@ -390,7 +397,7 @@ aria.ListboxActions = class ListboxActions {
    * @param event
    *  The click event
    */
-  checkClickItemActions(event) {
+  onCheckClickItemActions(event) {
     event.preventDefault();
     event.key = 'Enter';
     let previousFocus = this.listboxActionsNode.querySelectorAll('.focused');
@@ -401,7 +408,7 @@ aria.ListboxActions = class ListboxActions {
     }
     let newFocus = event.srcElement.closest('[role="option"]');
     newFocus.classList.add('focused');
-    this.checkKeyPressActions(event);
+    this.onCheckKeyPressActions(event);
   }
   /**
    * @description
@@ -410,7 +417,7 @@ aria.ListboxActions = class ListboxActions {
    * @param event
    *  The click event
    */
-  setCurrentActiveOptionForListbox(event) {
+  onSetCurrentActiveOptionForListbox(event) {
     if (event.srcElement.localName != 'button') {
       for (let i = 0; i < this.listboxOptionArray.length; i++) {
         let listboxOptionCurrent = this.listboxOptionArray[i];
