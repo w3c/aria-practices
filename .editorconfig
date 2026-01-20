@@ -1,11 +1,11 @@
 # EditorConfig helps developers define and maintain consistent coding styles
 # between different editors and IDEs.
 
-# EditorConig has support in a wide range of text editors. You can view a
+# EditorConfig has support in a wide range of text editors. You can view a
 # complete list—or download a plugin—at the EditorConfig website:
 # http://editorconfig.org/#download
 
-# More about editorconfig files on their website: http://EditorConfig.org
+# More about EditorConfig files on their website: http://EditorConfig.org
 
 # For now, this is the topmost editor config file.
 # Set to false if aria repo gets one.
