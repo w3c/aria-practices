@@ -391,9 +391,8 @@
       <section id="kbd_disabled_controls">
         <h2>Focusability of disabled controls</h2>
         <p>
-          By default, disabled HTML input elements are removed from the tab sequence.
-          In most contexts, the normal expectation is that disabled interactive elements are not focusable.
-          However, there are some contexts where it is common for disabled elements to be focusable, especially inside of composite widgets.
+          By default, HTML input elements with the <code>disabled</code> attribute are removed from the tab sequence.
+          However, there are some contexts where it is useful for an element to convey a disabled state while remaining focusable, especially inside of composite widgets.
           For example, as demonstrated in the
           <a href="../../patterns/menubar/menu-and-menubar-pattern.html">menu and menubar pattern</a>,
           disabled items are focusable when navigating through a menu with the arrow keys.
@@ -406,12 +405,12 @@
         </p>
 
         <p>
-          Authors are encouraged to adopt a consistent set of conventions for the focusability of disabled elements.
+          Authors are encouraged to adopt a consistent set of pattern-specific conventions for the focusability of disabled elements.
           The examples in this guide adopt the following conventions, which both reflect common practice and attempt to balance competing concerns.
         </p>
 
         <ol>
-          <li>For elements that are in the tab sequence when enabled, remove them from the tab sequence when disabled.</li>
+          <li>For disabled elements that don’t need to remain discoverable, remove them from the tab sequence.</li>
 
           <li>
             For the following composite widget elements, keep them focusable when disabled:
