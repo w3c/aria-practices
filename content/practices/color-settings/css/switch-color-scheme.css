@@ -1,0 +1,87 @@
+:root {
+  color-scheme: light dark;
+}
+
+button.color-scheme[role="switch"] {
+  display: block;
+  margin: 2px;
+  padding: 4px 4px 8px 8px;
+  border: 0 solid light-dark(#005a9c, #add8e6);
+  border-radius: 5px;
+  width: 17em;
+  height: 3em;
+  text-align: left;
+  background-color: light-dark(#e9e9e9, #333);
+  color: light-dark(#242424, #fff);
+}
+
+button.color-scheme[role="switch"] .label {
+  position: relative;
+  top: -3px;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  width: 10em;
+  vertical-align: middle;
+  color: light-dark(#242424, #fff);
+}
+
+button.color-scheme[role="switch"] svg {
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+  position: relative;
+  top: 4px;
+}
+
+button.color-scheme[role="switch"] svg rect {
+  fill: light-dark(#a1a1a1, #36c);
+  stroke-width: 2;
+  stroke: light-dark(#757575, #36c);
+}
+
+button.color-scheme[role="switch"] svg circle.off {
+  display: block;
+  stroke: light-dark(#757575, #fff);
+  fill: light-dark(#fff, #fff);
+  fill-opacity: 1;
+}
+
+button.color-scheme[role="switch"] svg circle.on {
+  display: none;
+}
+
+button.color-scheme[role="switch"][aria-checked="true"] svg circle.off {
+  display: none;
+}
+
+button.color-scheme[role="switch"][aria-checked="true"] svg circle.on {
+  display: block;
+  stroke: #fff;
+  fill: #fff;
+  fill-opacity: 1;
+}
+
+button.color-scheme[role="switch"] span.off {
+  display: inline-block;
+}
+
+button.color-scheme[role="switch"] span.on {
+  display: none;
+}
+
+button.color-scheme[role="switch"][aria-checked="true"] span.off {
+  display: none;
+}
+
+button.color-scheme[role="switch"][aria-checked="true"] span.on {
+  display: inline-block;
+}
+
+button.color-scheme[role="switch"]:focus,
+button.color-scheme[role="switch"]:hover {
+  padding: 2px 2px 6px 6px;
+  border-width: 2px;
+  outline: none;
+  cursor: pointer;
+}
