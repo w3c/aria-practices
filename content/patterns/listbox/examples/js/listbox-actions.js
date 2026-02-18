@@ -55,16 +55,16 @@ aria.ListboxActions = class ListboxActions {
     this.activeDescendant = this.listboxActionsNode.getAttribute(
       'aria-activedescendant'
     );
-    this.registerActionsEvents();
     this.listboxOptionArray = Array.from(
       this.listboxActionsNode.querySelectorAll('[role="option"]')
     );
-    this.handleItemChange = function () {};
+    this.handleItemChange = function () { };
     this.listboxItemCurrent = null;
     this.listboxActiveOption = null;
     this.listboxCurrentItemActionsButtons = [];
     this.listboxCurrentOptionIndex = -1;
     this.listboxItemsWithAriaActionsArray = [];
+    this.registerActionsEvents();
   }
 
   registerActionsEvents() {
@@ -77,7 +77,7 @@ aria.ListboxActions = class ListboxActions {
       this.onSetCurrentActiveOptionForListbox.bind(this)
     );
     let actionButtons = this.listboxActionsNode.querySelectorAll(
-      'button:not(.hide-actions-button)'
+      'button:not(.hide-actions-button),.js-favorite'
     );
     for (let i = 0; i < actionButtons.length; i++) {
       actionButtons[i].addEventListener(
@@ -85,6 +85,15 @@ aria.ListboxActions = class ListboxActions {
         this.onCheckClickItemActions.bind(this)
       );
     }
+    let selectionCheckbox = this.listboxActionsNode.querySelectorAll(
+      '.js-selection'
+    );
+    for (let i = 0; i < selectionCheckbox.length; i++) {
+      selectionCheckbox[i].addEventListener('click', (event) => {
+        event.currentTarget.closest('[role="option"]').click();
+      });
+    }
+    
   }
   /**
    * @description
@@ -134,92 +143,55 @@ aria.ListboxActions = class ListboxActions {
   }
   /**
    * @description
-   *  Updates necessary attributes to ensure the up arrow does not appear if the option is the first.
-   *  Updates necessary attributes to ensure that the down arrow does not appear if the option is the last.
+   *  Updates necessary attributes to ensure the up does not appear if an option is the first in the list.
+   *  Updates necessary attributes to ensure the down does not appear if an option is the last in the list.
    */
-  prepareToMoveUpItems() {
-    if (!this.activeDescendant) {
-      return;
-    }
-    const currentItem = this.listboxItemCurrent;
-    const previousItem = currentItem.previousElementSibling;
+  updateArrowUpDownItems() {
     this.listboxOptionArray = Array.from(
       this.listboxActionsNode.querySelectorAll('[role="option"]')
     );
-    if (previousItem) {
-      /** Hides the down arrow for item moved to the end of list and shows arrow on item moved up from bottom */
-      if (
-        this.listboxOptionArray.indexOf(previousItem) ==
-        this.listboxOptionArray.length - 2
-      ) {
-        currentItem
-          .querySelector('.downarrow')
-          .classList.remove('hide-actions-button');
-        currentItem
+    for (let i = 0;i < this.listboxOptionArray.length;i++) {
+      let option = this.listboxOptionArray[i];
+      if (this.listboxOptionArray.indexOf(option) == this.listboxOptionArray.length-1) {
+        option
           .querySelector('.downarrow')
           .classList.remove('focusedActionButton');
-        previousItem
+        option
           .querySelector('.downarrow')
           .classList.add('hide-actions-button');
-        this.activeDescendant = currentItem.id;
-      }
-      /** Hides the up arrow for item moved to the top of list and shows arrow on item moved down from top */
-      if (this.listboxOptionArray.indexOf(previousItem) == 1) {
-        currentItem
-          .querySelector('.uparrow')
-          .classList.add('hide-actions-button');
-        currentItem
+      } else if (this.listboxOptionArray.indexOf(option) == 0) {
+        option
           .querySelector('.uparrow')
           .classList.remove('focusedActionButton');
-        previousItem
+        option
+          .querySelector('.uparrow')
+          .classList.add('hide-actions-button');
+      } else {
+        option
+          .querySelector('.downarrow')
+          .classList.remove('hide-actions-button');
+        option
           .querySelector('.uparrow')
           .classList.remove('hide-actions-button');
-        this.setActiveDescendant(currentItem);
       }
     }
   }
   /**
    * @description
-   *  Updates necessary attributes to ensure the down arrow does not appear if the option is the last option.
-   *  Updates necessary attributes to ensure that the up arrow does not appear if the options is first option.
+   *  Key press listener
+   *  Updates the details panel when listbox selection is made
+   * @param currentOption
    */
-  prepareToMoveDownItems() {
-    if (!this.activeDescendant) {
-      return;
-    }
-    var currentItem = this.listboxItemCurrent;
-    var nextItem = currentItem.nextElementSibling;
-    this.listboxOptionArray = Array.from(
-      this.listboxActionsNode.querySelectorAll('[role="option"]')
-    );
-    if (nextItem) {
-      /** Hides the down arrow for item moved to the end of list and shows arrow on item moved up from bottom */
-      if (
-        this.listboxOptionArray.indexOf(nextItem) ==
-        this.listboxOptionArray.length - 1
-      ) {
-        currentItem
-          .querySelector('.downarrow')
-          .classList.add('hide-actions-button');
-        currentItem
-          .querySelector('.downarrow')
-          .classList.remove('focusedActionButton');
-        nextItem
-          .querySelector('.downarrow')
-          .classList.remove('hide-actions-button');
-        this.setActiveDescendant(currentItem);
+  populateDetails(currentOption) {
+    if (currentOption.role == "option") {
+      let detailPanels = document.querySelectorAll('.js-detailPanel');
+      for (let i = 0; i < detailPanels.length; i++) {
+        if (!detailPanels[i].classList.contains('is-hidden')) {
+          detailPanels[i].classList.add('is-hidden');
+        }
       }
-      /** Hides the up arrow for item moved to the top of list and shows arrow on item moved down from top */
-      if (this.listboxOptionArray.indexOf(nextItem) == 2) {
-        currentItem
-          .querySelector('.uparrow')
-          .classList.remove('hide-actions-button');
-        currentItem
-          .querySelector('.uparrow')
-          .classList.remove('focusedActionButton');
-        nextItem.querySelector('.uparrow').classList.add('hide-actions-button');
-        this.activeDescendant = currentItem.id;
-      }
+      let detailPanel = document.querySelector('#' + currentOption.id + '_detail_panel');
+      detailPanel.classList.toggle('is-hidden');
     }
   }
 
@@ -260,8 +232,15 @@ aria.ListboxActions = class ListboxActions {
         }
         this.setActiveDescendant(this.listboxItemsWithAriaActionsArray[0]);
         this.Listbox.focusItem(this.listboxOptionArray[0]);
+        this.updateArrowUpDownItems();
         break;
+      case 'js-favorite':
       case 'favorite':
+        //If the favorite icon was clicked and is the activeButton instead of the action button,
+        //convert the activeButton to the action button and continue processing
+        if (activeButton.classList.contains('js-favorite')) {
+          activeButton = activeButton.closest('[role="option"]').querySelector('.favorite');
+        }
         activeButton.setAttribute(
           'aria-pressed',
           activeButton.ariaPressed && activeButton.ariaPressed == 'true'
@@ -272,28 +251,34 @@ aria.ListboxActions = class ListboxActions {
           activeButton.ariaPressed == 'true' ? 'favorite' : 'unfavorited',
           [activeOption]
         );
-        if (activeOption.querySelector('.js-favoriteIndication')) {
-          activeOption.querySelector('.js-favoriteIndication').innerText =
+        activeOption.classList.toggle('js-favoriteIndication');
+        if (activeOption.classList.contains('js-favoriteIndication')) {
+          activeOption.querySelector('.offscreen').innerText =
             activeButton.ariaPressed == 'true' ? 'Favorite' : '';
         }
         break;
       case 'uparrow':
-        this.prepareToMoveUpItems();
         this.Listbox.moveUpItems();
+        this.updateArrowUpDownItems();
         break;
       case 'downarrow':
-        this.prepareToMoveDownItems();
         this.Listbox.moveDownItems();
+        this.updateArrowUpDownItems();
         break;
     }
     this.Listbox.updateScroll();
   }
+  /**
+   * @description
+   *  Handles the action buttons key press events 
+   * @param event
+   *  The key press event
+   */
   onCheckKeyPressActions(event) {
     let listitemCurrentItemActionsButtonPosition,
       listboxCurrentItemActionsButton;
     this.listboxItemCurrent = this.listboxActionsNode.querySelector('.focused');
     this.listboxCurrentOptionIndex = this.listboxOptionArray.indexOf(this.listboxItemCurrent);
-    console.log(this.listboxCurrentOptionIndex);
     this.activeDescendant = this.listboxActionsNode.getAttribute(
       'aria-activedescendant'
     );
@@ -321,6 +306,7 @@ aria.ListboxActions = class ListboxActions {
           this.listboxItemCurrent,
           this.listboxCurrentItemActionsButtons.map((node) => node.id).join(' ')
         );
+        this.populateDetails(this.listboxItemCurrent);
         break;
       case 'ArrowLeft':
       case 'ArrowRight':
@@ -347,13 +333,13 @@ aria.ListboxActions = class ListboxActions {
           if (listitemCurrentItemActionsButtonPosition > 0) {
             this.focusActionsItem(
               this.listboxCurrentItemActionsButtons[
-                listitemCurrentItemActionsButtonPosition - 1
+              listitemCurrentItemActionsButtonPosition - 1
               ]
             );
           } else {
             this.defocusActionsItem(
               this.listboxCurrentItemActionsButtons[
-                listitemCurrentItemActionsButtonPosition
+              listitemCurrentItemActionsButtonPosition
               ]
             );
             this.setActiveDescendant(this.listboxItemCurrent);
@@ -367,13 +353,13 @@ aria.ListboxActions = class ListboxActions {
           ) {
             this.focusActionsItem(
               this.listboxCurrentItemActionsButtons[
-                listitemCurrentItemActionsButtonPosition + 1
+              listitemCurrentItemActionsButtonPosition + 1
               ]
             );
           } else {
             this.focusActionsItem(
               this.listboxCurrentItemActionsButtons[
-                listitemCurrentItemActionsButtonPosition
+              listitemCurrentItemActionsButtonPosition
               ]
             );
           }
@@ -387,8 +373,6 @@ aria.ListboxActions = class ListboxActions {
             : event.currentTarget
         );
         break;
-      default:
-        break;
     }
   }
   /**
@@ -398,7 +382,7 @@ aria.ListboxActions = class ListboxActions {
    *  The click event
    */
   onCheckClickItemActions(event) {
-    event.preventDefault();
+    event.stopImmediatePropagation();
     event.key = 'Enter';
     let previousFocus = this.listboxActionsNode.querySelectorAll('.focused');
     let prev;
@@ -426,6 +410,7 @@ aria.ListboxActions = class ListboxActions {
         }
       }
     }
+    this.populateDetails(event.target);
   }
 };
 window.addEventListener('load', function () {
