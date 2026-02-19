@@ -14,7 +14,6 @@
     justify-content: center;
     align-items: center;
     gap: 3px;
-    top: 0px;
 }
 
 .contentRow {
@@ -30,7 +29,6 @@
 
 .listbox-area h3 {
     font-weight:normal;
-    margin: 0px;
     color: var(--text);
     font-family: sans-serif;
     font-size: 1em;
