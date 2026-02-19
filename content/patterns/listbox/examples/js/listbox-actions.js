@@ -93,7 +93,7 @@ aria.ListboxActions = class ListboxActions {
         event.currentTarget.closest('[role="option"]').click();
       });
     }
-    
+
   }
   /**
    * @description
@@ -150,9 +150,9 @@ aria.ListboxActions = class ListboxActions {
     this.listboxOptionArray = Array.from(
       this.listboxActionsNode.querySelectorAll('[role="option"]')
     );
-    for (let i = 0;i < this.listboxOptionArray.length;i++) {
+    for (let i = 0; i < this.listboxOptionArray.length; i++) {
       let option = this.listboxOptionArray[i];
-      if (this.listboxOptionArray.indexOf(option) == this.listboxOptionArray.length-1) {
+      if (this.listboxOptionArray.indexOf(option) == this.listboxOptionArray.length - 1) {
         option
           .querySelector('.downarrow')
           .classList.remove('focusedActionButton');
