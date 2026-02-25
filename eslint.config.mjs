@@ -121,4 +121,19 @@ export default [
 
     languageOptions: { sourceType: 'module' },
   },
+  {
+    files: ['mcp-server/**/*.mjs'],
+
+    languageOptions: {
+      ecmaVersion: 'latest',
+      globals: {
+        ...globals.node,
+      },
+    },
+
+    rules: {
+      'no-console': 'off',
+      strict: 'off',
+    },
+  },
 ];

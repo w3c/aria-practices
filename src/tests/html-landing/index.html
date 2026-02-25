@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to Acme Corp</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { font-family: system-ui, sans-serif; margin: 0; padding: 20px; }
+      .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ccc; padding-bottom: 16px; }
+      .nav a { margin-right: 16px; }
+      .hero { padding: 40px 0; }
+      .hero img { width: 100%; max-width: 600px; height: 200px; object-fit: cover; }
+      .section-title { cursor: pointer; padding: 12px; background: #f0f0f0; margin: 4px 0; }
+      .section-content { display: none; padding: 12px; border: 1px solid #eee; }
+      .section-content.open { display: block; }
+      .cta { padding: 12px 24px; background: #0066cc; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+      form { max-width: 400px; margin: 20px 0; }
+      form input { width: 100%; padding: 8px; margin: 8px 0; }
+      footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ccc; }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div>Acme Corp</div>
+      <div class="nav">
+        <span onclick="location.href='#products'">Products</span>
+        <span onclick="location.href='#about'">About</span>
+        <span onclick="location.href='#contact'">Contact</span>
+      </div>
+    </div>
+
+    <div class="hero">
+      <h2>Innovation for everyone</h2>
+      <img src="https://placehold.co/600x200" />
+      <div class="cta" onclick="alert('Sign up!')">Get Started</div>
+    </div>
+
+    <div id="products">
+      <h4>Our Products</h4>
+      <div class="section-title" onclick="toggle(this)">Widget A</div>
+      <div class="section-content">Widget A is the best. It does everything.</div>
+      <div class="section-title" onclick="toggle(this)">Widget B</div>
+      <div class="section-content">Widget B is also great. Try it today.</div>
+      <div class="section-title" onclick="toggle(this)">Widget C</div>
+      <div class="section-content">Widget C completes the set.</div>
+    </div>
+
+    <div id="about">
+      <h4>About Us</h4>
+      <p>We are a leading provider of widgets since 2020.</p>
+    </div>
+
+    <div id="contact">
+      <h4>Contact</h4>
+      <form onsubmit="return false;">
+        <input type="text" placeholder="Your name" />
+        <input type="email" placeholder="Email" />
+        <div class="cta" onclick="this.closest('form').submit()">Submit</div>
+      </form>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 Acme Corp. All rights reserved.</p>
+    </footer>
+
+    <script>
+      function toggle(el) {
+        var next = el.nextElementSibling;
+        next.classList.toggle('open');
+      }
+    </script>
+  </body>
+</html>

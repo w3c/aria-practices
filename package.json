@@ -24,7 +24,8 @@
     "test": "npm run lint && npm run regression",
     "vnu-jar": "java -jar node_modules/vnu-jar/build/dist/vnu.jar --filterfile .vnurc --no-langdetect --skip-non-html content/",
     "create-gh-project": "node ./scripts/create-gh-project.js",
-    "prepare": "husky"
+    "prepare": "husky",
+    "mcp": "node mcp-server/index.mjs"
   },
   "repository": {
     "type": "git",
@@ -60,7 +61,10 @@
     "selenium-webdriver": "^4.34.0",
     "stylelint": "^16.22.0",
     "stylelint-config-standard": "^36.0.1",
-    "vnu-jar": "^24.10.17"
+    "vnu-jar": "^24.10.17",
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.23.0",
+    "node-html-markdown": "^2.0.0"
   },
   "lint-staged": {
     "*": "prettier --ignore-unknown --write",
