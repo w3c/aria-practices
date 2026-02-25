@@ -43,6 +43,8 @@ Replace `/path/to/aria-practices` with the actual path to your cloned repository
 
 For other MCP-compatible clients, see the [Model Context Protocol documentation](https://modelcontextprotocol.io/).
 
+**Cursor Skill:** Copy `skill/wai-aria-apg` to `.cursor/skills/` in your project so the AI uses APG patterns when building accessible components. See [skill/README.md](skill/README.md).
+
 ## Contributing
 
 1. Comment in an existing issue or raise a new issue, expressing your willingness to help and briefly summarizing the nature of your proposed resolution.
