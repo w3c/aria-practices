@@ -23,44 +23,16 @@ var aria = aria || {};
 
 aria.ListboxActions = class ListboxActions {
   constructor(listboxActionsObject) {
-    this.Listbox = listboxActionsObject;
-    this.Listbox.setHandleItemChange(function (event, items) {
-      var updateText = '';
-      switch (event) {
-        case 'removed':
-          updateText = 'Deleted ' + items[0].innerText;
-          break;
-        case 'moved_up':
-        case 'moved_down':
-          var pos = Array.prototype.indexOf.call(
-            this.listboxNode.children,
-            items[0]
-          );
-          pos++;
-          updateText = 'Moved to position ' + pos;
-          break;
-        case 'favorite':
-          updateText = 'Favorited ' + items[0].innerText;
-          break;
-        case 'unfavorited':
-          updateText = 'Unfavorited ' + items[0].innerText;
-          break;
-      }
-      if (updateText) {
-        var ex1LiveRegion = document.getElementById('ss_live_region');
-        ex1LiveRegion.innerHTML = updateText;
-      }
-    });
-    this.listboxActionsNode = this.Listbox.listboxNode;
+    this.listboxActionsNode = listboxActionsObject;
     this.activeDescendant = this.listboxActionsNode.getAttribute(
       'aria-activedescendant'
     );
     this.listboxOptionArray = Array.from(
       this.listboxActionsNode.querySelectorAll('[role="option"]')
     );
-    this.handleItemChange = function () { };
     this.listboxItemCurrent = null;
     this.listboxActiveOption = null;
+    this.activeDescendant = null;
     this.listboxCurrentItemActionsButtons = [];
     this.listboxCurrentOptionIndex = -1;
     this.listboxItemsWithAriaActionsArray = [];
@@ -85,16 +57,191 @@ aria.ListboxActions = class ListboxActions {
         this.onCheckClickItemActions.bind(this)
       );
     }
-    let selectionCheckbox = this.listboxActionsNode.querySelectorAll(
-      '.js-selection'
-    );
-    for (let i = 0; i < selectionCheckbox.length; i++) {
-      selectionCheckbox[i].addEventListener('click', (event) => {
-        event.currentTarget.closest('[role="option"]').click();
-      });
+  }
+  handleItemChange (event, item) {
+    var updateText = '';
+    switch (event) {
+      case 'removed':
+        updateText = 'Deleted ' + item.innerText;
+        break;
+      case 'moved_up':
+      case 'moved_down':
+        var pos = Array.prototype.indexOf.call(
+          this.listboxActionsNode.children,
+          item
+        );
+        pos++;
+        updateText = 'Moved to position ' + pos;
+        break;
+      case 'favorite':
+        updateText = 'Favorited ' + item.innerText;
+        break;
+      case 'unfavorited':
+        updateText = 'Unfavorited ' + item.innerText;
+        break;
+    }
+    if (updateText) {
+      var ex1LiveRegion = document.getElementById('ss_live_region');
+      ex1LiveRegion.innerHTML = updateText;
+    }
+  }
+  /* Return the next listbox option, if it exists; otherwise, returns null */
+  findNextOption(currentOption) {
+    const allOptions = Array.prototype.slice.call(
+      this.listboxActionsNode.querySelectorAll('[role="option"]')
+    ); // get options array
+    const currentOptionIndex = allOptions.indexOf(currentOption);
+    let nextOption = null;
+
+    if (currentOptionIndex > -1 && currentOptionIndex < allOptions.length - 1) {
+      nextOption = allOptions[currentOptionIndex + 1];
     }
 
+    return nextOption;
   }
+
+  /* Return the previous listbox option, if it exists; otherwise, returns null */
+  findPreviousOption(currentOption) {
+    const allOptions = Array.prototype.slice.call(
+      this.listboxActionsNode.querySelectorAll('[role="option"]')
+    ); // get options array
+    const currentOptionIndex = allOptions.indexOf(currentOption);
+    let previousOption = null;
+
+    if (currentOptionIndex > -1 && currentOptionIndex > 0) {
+      previousOption = allOptions[currentOptionIndex - 1];
+    }
+
+    return previousOption;
+  }
+  /**
+   * @description
+   *  Focus on the specified item
+   * @param element
+   *  The element to focus
+   */
+  focusItem(element) {
+    element.classList.add('focused');
+    this.listboxActionsNode.setAttribute('aria-activedescendant', element.id);
+    this.activeDescendant = element.id;
+  }
+  /**
+   * @description
+   *  Defocus the specified item
+   * @param element
+   *  The element to defocus
+   */
+  defocusItem(element) {
+   if (element) {
+    element.classList.remove('focused');
+   }
+  }
+  /**
+   * @description
+   *  Focus on the specified item
+   * @param element
+   *  The element to focus
+   */
+  selectItem(element) {
+    for (let i = 0;i < this.listboxOptionArray.length;i++) {
+      this.deselectItem(this.listboxOptionArray[i]);
+      this.defocusItem(this.listboxOptionArray[i]);
+    }
+    element.setAttribute('aria-selected',true);
+    this.focusItem(element);
+    this.populateDetails(element);
+    this.listboxActionsNode.setAttribute('aria-activedescendant', element.id);
+    this.activeDescendant = element.id;
+  }
+  /**
+   * @description
+   *  Defocus the specified item
+   * @param element
+   *  The element to defocus
+   */
+  deselectItem(element) {
+    if (!element) {
+      return;
+    }
+    if (!this.multiselectable) {
+      element.removeAttribute('aria-selected');
+    }
+  }
+  /**
+   * @description
+   *  Enable/disable the up/down arrows based on the activeDescendant.
+   */
+  checkUpDownButtons() {
+    const activeElement = document.getElementById(this.activeDescendant);
+
+    if (!this.moveUpDownEnabled) {
+      return;
+    }
+
+    if (!activeElement) {
+      this.upButton.setAttribute('aria-disabled', 'true');
+      this.downButton.setAttribute('aria-disabled', 'true');
+      return;
+    }
+
+    if (this.upButton) {
+      if (activeElement.previousElementSibling) {
+        this.upButton.setAttribute('aria-disabled', false);
+      } else {
+        this.upButton.setAttribute('aria-disabled', 'true');
+      }
+    }
+
+    if (this.downButton) {
+      if (activeElement.nextElementSibling) {
+        this.downButton.setAttribute('aria-disabled', false);
+      } else {
+        this.downButton.setAttribute('aria-disabled', 'true');
+      }
+    }
+  }
+  /**
+   * @description
+   *  Shifts the currently focused item up on the list. No shifting occurs if the
+   *  item is already at the top of the list.
+   */
+  moveUpItems() {
+    if (!this.activeDescendant) {
+      return;
+    }
+
+    const currentItem = document.getElementById(this.activeDescendant);
+    const previousItem = currentItem.previousElementSibling;
+
+    if (previousItem) {
+      this.listboxActionsNode.insertBefore(currentItem, previousItem);
+      this.handleItemChange('moved_up', currentItem);
+    }
+
+    this.checkUpDownButtons();
+  }
+
+  /**
+   * @description
+   *  Shifts the currently focused item down on the list. No shifting occurs if
+   *  the item is already at the end of the list.
+   */
+  moveDownItems() {
+    if (!this.activeDescendant) {
+      return;
+    }
+
+    var currentItem = document.getElementById(this.activeDescendant);
+    var nextItem = currentItem.nextElementSibling;
+
+    if (nextItem) {
+      this.listboxActionsNode.insertBefore(nextItem, currentItem);
+      this.handleItemChange('moved_down', currentItem);
+    }
+
+    this.checkUpDownButtons();
+  }
+
   /**
    * @description
    *  Defocus the specified item
@@ -129,7 +276,9 @@ aria.ListboxActions = class ListboxActions {
    *  The item to update and the action IDREF to update
    */
   setAriaActions(item, actions) {
-    item.setAttribute('aria-actions', actions);
+    if (item) {
+      item.setAttribute('aria-actions', actions);
+    }
   }
   /**
    * @description
@@ -215,7 +364,7 @@ aria.ListboxActions = class ListboxActions {
     let optionIndex = this.listboxOptionArray.findIndex(
       (elem) => elem.id === this.listboxItemCurrent.id
     );
-    this.Listbox.activeDescendant = this.listboxOptionArray[optionIndex].id;
+    this.activeDescendant = this.listboxOptionArray[optionIndex].id;
 
     switch (activeButtonClasslist[0]) {
       case 'delete':
@@ -231,7 +380,6 @@ aria.ListboxActions = class ListboxActions {
           );
         }
         this.setActiveDescendant(this.listboxItemsWithAriaActionsArray[0]);
-        this.Listbox.focusItem(this.listboxOptionArray[0]);
         this.updateArrowUpDownItems();
         break;
       case 'js-favorite':
@@ -247,7 +395,7 @@ aria.ListboxActions = class ListboxActions {
             ? 'false'
             : 'true'
         );
-        this.Listbox.handleItemChange(
+        this.handleItemChange(
           activeButton.ariaPressed == 'true' ? 'favorite' : 'unfavorited',
           [activeOption]
         );
@@ -258,15 +406,16 @@ aria.ListboxActions = class ListboxActions {
         }
         break;
       case 'uparrow':
-        this.Listbox.moveUpItems();
+        this.moveUpItems();
         this.updateArrowUpDownItems();
         break;
       case 'downarrow':
-        this.Listbox.moveDownItems();
+        this.moveDownItems();
         this.updateArrowUpDownItems();
         break;
+      default:
+        this.selectItem(event.currentTarget.querySelector('.focused'));
     }
-    this.Listbox.updateScroll();
   }
   /**
    * @description
@@ -275,6 +424,7 @@ aria.ListboxActions = class ListboxActions {
    *  The key press event
    */
   onCheckKeyPressActions(event) {
+    event.preventDefault();
     let listitemCurrentItemActionsButtonPosition,
       listboxCurrentItemActionsButton;
     this.listboxItemCurrent = this.listboxActionsNode.querySelector('.focused');
@@ -287,7 +437,7 @@ aria.ListboxActions = class ListboxActions {
     if (this.listboxItemCurrent) {
       this.listboxCurrentItemActionsButtons = Array.from(
         this.listboxItemCurrent.querySelectorAll(
-          'button:not(.hide-actions-button)'
+          'button:not(.hide-actions-button),[role="button"]:not(.hide-actions-button)'
         )
       );
     }
@@ -306,7 +456,26 @@ aria.ListboxActions = class ListboxActions {
           this.listboxItemCurrent,
           this.listboxCurrentItemActionsButtons.map((node) => node.id).join(' ')
         );
-        this.populateDetails(this.listboxItemCurrent);
+        this.defocusItem(this.listboxItemCurrent);
+        if (event.key === 'ArrowUp') {
+          this.listboxItemCurrent = this.findPreviousOption(this.listboxItemCurrent);
+        } else {
+          let next = this.findNextOption(this.listboxItemCurrent);
+          if (next) {
+            this.listboxItemCurrent = this.findNextOption(this.listboxItemCurrent);
+          } else {
+            this.listboxItemCurrent = this.listboxOptionArray[0];
+          }
+        }
+
+        if (this.listboxItemCurrent && this.multiselectable && event.shiftKey) {
+          this.selectRange(this.startRangeIndex, this.listboxItemCurrent);
+        }
+
+        if (this.listboxItemCurrent) {
+          this.focusItem(this.listboxItemCurrent);
+        }
+
         break;
       case 'ArrowLeft':
       case 'ArrowRight':
@@ -366,6 +535,7 @@ aria.ListboxActions = class ListboxActions {
         }
         break;
       case 'Enter':
+      case ' ':
         this.doActionButtonEvents(
           event,
           event.currentTarget.ariaActiveDescendantElement
@@ -405,16 +575,16 @@ aria.ListboxActions = class ListboxActions {
     if (event.srcElement.localName != 'button') {
       for (let i = 0; i < this.listboxOptionArray.length; i++) {
         let listboxOptionCurrent = this.listboxOptionArray[i];
-        if (this.Listbox.activeDescendant != listboxOptionCurrent.id) {
-          this.Listbox.defocusItem(listboxOptionCurrent);
+        if (this.activeDescendant != listboxOptionCurrent.id) {
+          this.defocusItem(listboxOptionCurrent);
         }
       }
     }
-    this.populateDetails(event.target);
+    let target = event.target.role == 'option'? event.target:event.target.closest('[role="option"]');
+    this.selectItem(target);
+    this.populateDetails(target);
   }
 };
 window.addEventListener('load', function () {
-  new aria.ListboxActions(
-    new aria.Listbox(document.getElementById('ss_elem_list'))
-  );
+  new aria.ListboxActions(document.getElementById('ss_elem_list'));
 });
