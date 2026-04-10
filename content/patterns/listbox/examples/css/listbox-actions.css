@@ -114,7 +114,7 @@ button.delete::before {
 [role="option"] {
     position: relative;
     display: block;
-    line-height: 1.8em;
+    line-height: 1.8em !important;
     cursor: pointer;
     margin: 2px 2px 2px 8px;
     padding: 2px 1em 2px 2.5em;
