@@ -84,8 +84,8 @@ button.actionButton::before {
 button.favorite {
     background-color: transparent;
     position: absolute;
-    left: 9px;
-    top: -4px;
+    left: 15px;
+    top: 2px;
     border: none;
     outline: none;
 }
@@ -132,7 +132,7 @@ button.delete::before {
 }
 
 .focusedActionButton {
-    background-color: rgb(226 239 225);
+    background-color: rgb(226 239 225) !important;
     color: black !important;
     white-space: pre;
     outline: #036 solid 3px !important;
