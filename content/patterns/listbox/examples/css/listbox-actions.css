@@ -69,7 +69,7 @@ button.actionButton {
     margin-right: 0.25em;
     background-color: buttonface;
     padding-right: 5px;
-    margin-top: -4px;
+    margin-top: -1px;
     padding: 0px 4px 0px 4px !important;
 }
 
@@ -85,9 +85,10 @@ button.favorite {
     background-color: transparent;
     position: absolute;
     left: 15px;
-    top: 2px;
+    top: 7px;
     border: none;
     outline: none;
+    margin-top: -5px;
 }
 
 button.uparrow::before {
@@ -127,8 +128,6 @@ button.delete::before {
     outline: #036 solid 3px !important;
     border-color: rgb(0 90 156);
     padding: 0px 4px 0px 4px;
-    top: 3px;
-    left: 17px;
 }
 
 .focusedActionButton {
