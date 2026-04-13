@@ -116,6 +116,21 @@ aria.ListboxActions = class ListboxActions {
   }
   /**
    * @description
+   *  Remove all of the selected items from the listbox; Removes the focused items
+   *  in a single select listbox and the items with aria-selected in a multi
+   *  select listbox.
+   * @returns {Array}
+   *  An array of items that were removed from the listbox
+   */
+  deleteItems() {
+    let itemToDelete = document.getElementById(this.activeDescendant);
+
+    itemToDelete.remove();
+
+    this.handleItemChange('removed', itemToDelete);
+  }
+  /**
+   * @description
    *  Focus on the specified item
    * @param element
    *  The element to focus
@@ -369,7 +384,7 @@ aria.ListboxActions = class ListboxActions {
     switch (activeButtonClasslist[0]) {
       case 'delete':
         this.listboxItemCurrent.classList.remove('focused');
-        this.Listbox.deleteItems();
+        this.deleteItems();
         for (let i = 0; i < this.listboxCurrentItemActionsButtons.length; i++) {
           this.defocusActionsItem(this.listboxCurrentItemActionsButtons[i]);
         }

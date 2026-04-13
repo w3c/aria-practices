@@ -69,7 +69,8 @@ button.actionButton {
     margin-right: 0.25em;
     background-color: buttonface;
     padding-right: 5px;
-    margin-top: -3px;
+    margin-top: -1px;
+    padding: 0px 4px 0px 4px !important;
 }
 
 button.actionButton::before {
@@ -83,9 +84,11 @@ button.actionButton::before {
 button.favorite {
     background-color: transparent;
     position: absolute;
-    left: 16px;
-    top: 3px;
+    left: 15px;
+    top: 7px;
     border: none;
+    outline: none;
+    margin-top: -5px;
 }
 
 button.uparrow::before {
@@ -112,15 +115,23 @@ button.delete::before {
 [role="option"] {
     position: relative;
     display: block;
-    line-height: 1.8em;
+    line-height: 1.8em !important;
     cursor: pointer;
     margin: 2px 2px 2px 8px;
     padding: 2px 1em 2px 2.5em;
 }
 
-[role="option"] button.actionButton:hover,
-.focusedActionButton {
+[role="option"] button.actionButton:hover {
     background-color: rgb(226 239 225);
+    color: black !important;
+    white-space: pre;
+    outline: #036 solid 3px !important;
+    border-color: rgb(0 90 156);
+    padding: 0px 4px 0px 4px;
+}
+
+.focusedActionButton {
+    background-color: rgb(226 239 225) !important;
     color: black !important;
     white-space: pre;
     outline: #036 solid 3px !important;
