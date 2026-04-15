@@ -997,7 +997,7 @@ ariaTest(
 );
 
 ariaTest(
-  'Space in submenu selects item',
+  'SPACE in submenu selects item',
   exampleFile,
   'submenu-space',
   async (t) => {
