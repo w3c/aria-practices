@@ -1,5 +1,5 @@
 const { ariaTest } = require('..');
-const { By, Key } = require('selenium-webdriver');
+const { By, Key, WebElement } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
@@ -992,6 +992,96 @@ ariaTest(
           ' in menubar should move the focus to menuitem ' +
           test.endIndex
       );
+    }
+  }
+);
+
+ariaTest(
+  'SPACE in submenu selects item',
+  exampleFile,
+  'submenu-space',
+  async (t) => {
+    const menuitems = await t.context.queryElements(
+      t,
+      ex.menubarMenuitemSelector
+    );
+    const submenus = await t.context.queryElements(t, ex.submenuSelector);
+
+    for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
+      for (
+        let itemIndex = 0;
+        itemIndex < ex.numSubmenuItems[menuIndex];
+        itemIndex++
+      ) {
+        // Open the submenu
+        await menuitems[menuIndex].sendKeys(Key.ENTER);
+        const items = await t.context.queryElements(
+          t,
+          ex.allSubmenuItems[menuIndex]
+        );
+        const item = items[itemIndex];
+        const itemText = await item.getText();
+
+        // Get the current style attribute on the "Text Sample"
+        const originalStyle = await t.context.session
+          .findElement(By.css(ex.textareaSelector))
+          .getAttribute('style');
+
+        // send ENTER to the item
+        await item.sendKeys(Key.SPACE);
+
+        const isMenuitem = await t.context.session.executeScript(
+          'return arguments[0].matches(arguments[1]);',
+          item,
+          ex.submenuMenuitemSelector
+        );
+
+        // test that the submenu's display status.
+        t.is(
+          await submenus[menuIndex].isDisplayed(),
+          !isMenuitem,
+          'Sending key "SPACE" to submenu item "' +
+            itemText +
+            '" should ' +
+            (isMenuitem ? '' : 'not ') +
+            'close list'
+        );
+
+        // Test that the focus is back on the menuitem in the menubar
+        t.true(
+          isMenuitem
+            ? await checkFocus(t, ex.menubarMenuitemSelector, menuIndex)
+            : await WebElement.equals(
+                await t.context.session.switchTo().activeElement(),
+                item
+              ),
+          'Sending key "Space" to submenu item "' +
+            itemText +
+            '" should keep the focus on that submenu item when the item is menuitemradio or menuitemcheckbox, ' +
+            'otherwise it should move the focus to menuitem ' +
+            menuIndex +
+            ' in the menubar'
+        );
+
+        let changedStyle = true;
+        if (itemIndex === 0 && menuIndex === 0) {
+          // Only when selecting the first (selected by default) font option will the style not change.
+          changedStyle = false;
+        }
+
+        // Get the current style attribute on the "Text Sample"
+        const currentStyle = await t.context.session
+          .findElement(By.css(ex.textareaSelector))
+          .getAttribute('style');
+
+        t.is(
+          currentStyle != originalStyle,
+          changedStyle,
+          'Sending key "SPACE" to submenu item "' +
+            itemText +
+            '" should change the style attribute on the Text Sample.'
+        );
+      }
     }
   }
 );
