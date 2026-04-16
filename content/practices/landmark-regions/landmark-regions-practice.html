@@ -42,7 +42,9 @@
           </thead>
           <tbody>
             <tr>
-              <td><code>aside</code></td>
+              <td>
+                <code>aside</code> if it is in the context of a <code>body</code> or <code>main</code> element, or has an <a href="https://www.w3.org/TR/accname-1.2/#dfn-accessible-name">accessible name</a> and is in the context of an <code>article</code>, <code>aside</code>, <code>nav</code> or <code>section</code> element.
+              </td>
               <td><code>complementary</code></td>
             </tr>
             <tr>
@@ -195,7 +197,10 @@
           <section>
             <h4>HTML Technique</h4>
 
-            <p>Use the HTML <code>aside</code> element to define a <code>complementary</code> landmark.</p>
+            <ul>
+              <li>Use the HTML <code>aside</code> element to define a <code>complementary</code> landmark when its context is the <code>body</code> or <code>main</code> element.</li>
+              <li>Use the HTML <code>aside</code> element with an <a href="https://www.w3.org/TR/accname-1.2/#dfn-accessible-name">accessible name</a> to define a <code>complementary</code> landmark when its context is an <code>article</code>, <code>aside</code>, <code>nav</code> or <code>section</code> element.</li>
+            </ul>
 
             <h4>ARIA Technique</h4>
 
