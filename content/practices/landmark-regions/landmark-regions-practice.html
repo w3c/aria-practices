@@ -50,20 +50,24 @@
             <tr>
               <td>
                 <code>aside</code> if it has both:
-                  <ol>
+                  <ul>
                     <li>
                       A label provided by <code>aria-labelledby</code> or <code>aria-label</code>
                     </li>
                     <li>
                      Is in the context of an <code>article</code>, <code>aside</code>, <code>nav</code> or <code>section</code> element
                    </li>
-                 </ol>
+                 </ul>
               </td>
               <td><code>complementary</code></td>
             </tr>
             <tr>
               <td><code>footer</code> if it is in the context of a <code>body</code> element</td>
               <td><code>contentinfo</code></td>
+            </tr>
+            <tr>
+              <td><code>form</code> if it has a label provided by <code>aria-labelledby</code> or <code>aria-label</code></td>
+              <td><code>form</code></td>
             </tr>
             <tr>
               <td><code>header</code> if it is in the context of a <code>body</code> element</td>
