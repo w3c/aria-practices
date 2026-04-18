@@ -52,7 +52,7 @@
                 <code>aside</code> if it has both:
                   <ol>
                     <li>
-                      An accessible name provided by <code>aria-labelledby</code> or <code>aria-label</code>
+                      A label provided by <code>aria-labelledby</code> or <code>aria-label</code>
                     </li>
                     <li>
                      Is in the context of an <code>article</code>, <code>aside</code>, <code>nav</code> or <code>section</code> element
@@ -78,7 +78,7 @@
               <td><code>navigation</code></td>
             </tr>
             <tr>
-              <td><code>section</code> if it has an accessible name provided by <code>aria-labelledby</code> or <code>aria-label</code></td>
+              <td><code>section</code> if it has a label provided by <code>aria-labelledby</code> or <code>aria-label</code></td>
               <td><code>region</code></td>
             </tr>
             <tr>
@@ -130,7 +130,7 @@
             See Landmark Roles section below.
           </li>
 
-          <li>If an area begins with a heading element (e.g. <code>h1-h6</code>) it can be used as the label for the area using the <code>aria-labelledby</code> attribute.</li>
+          <li>If an area begins with a heading element (e.g. <code>h1-h6</code>) it can be used as the label for the area using <code>aria-labelledby</code>.</li>
 
           <li>If an area requires a label and does not have a heading element, provide a label using the <code>aria-label</code> attribute.</li>
 
@@ -213,7 +213,7 @@
 
             <ul>
               <li>Use the HTML <code>aside</code> element to define a <code>complementary</code> landmark when its context is the <code>body</code> or <code>main</code> element.</li>
-              <li>Use the HTML <code>aside</code> element with an <a href="https://www.w3.org/TR/accname-1.2/#dfn-accessible-name">accessible name</a> to define a <code>complementary</code> landmark when its context is an <code>article</code>, <code>aside</code>, <code>nav</code> or <code>section</code> element.</li>
+              <li>Use the HTML <code>aside</code> element with a label to define a <code>complementary</code> landmark when its context is an <code>article</code>, <code>aside</code>, <code>nav</code> or <code>section</code> element.  A label is defined using <code>aria-labelledby</code> or <code>aria-label</code>.</li>
             </ul>
 
             <h4>ARIA Technique</h4>
@@ -303,7 +303,7 @@
           <section>
             <h4>HTML Techniques</h4>
 
-            <p>The HTML <code>form</code> element defines a <code>form</code> landmark when it has an accessible name (e.g. <code>aria-labelledby</code>, <code>aria-label</code> or <code>title</code>).</p>
+            <p>The HTML <code>form</code> element defines a <code>form</code> landmark when it has a label defined using <code>aria-labelledby</code> or <code>aria-label</code>.</p>
 
             <h4>ARIA Technique</h4>
 
@@ -393,7 +393,7 @@
           <section>
             <h4>HTML Technique</h4>
 
-            <p>The HTML <code>section</code> element defines a <code>region</code> landmark when it has an accessible name (e.g. <code>aria-labelledby</code>, <code>aria-label</code> or <code>title</code>).</p>
+            <p>The HTML <code>section</code> element defines a <code>region</code> landmark when it has an label defined using <code>aria-labelledby</code> or <code>aria-label</code>.</p>
 
             <h4>ARIA Technique</h4>
 
