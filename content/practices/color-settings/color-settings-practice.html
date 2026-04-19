@@ -73,7 +73,6 @@
               <td>
                 <ul>
                   <li><a href="https://support.apple.com/en-ge/guide/mac-help/mchl11ddd4b3/mac">macOS</a></li>
-                  <li><a href="https://support.microsoft.com/en-us/office/use-color-and-contrast-for-accessibility-in-microsoft-365-bb11486d-fc7d-4cd9-b344-16e2bc2a2387#bkmk_invertwin11">Windows</a></li>
                   <li><a href="https://support.apple.com/en-ge/guide/iphone/iph3e2e1fb0/ios">iOS</a></li>
                   <li><a href="https://support.google.com/accessibility/android/answer/6151800?hl=en">Android</a></li>
                   <li><a href="https://help.gnome.org/users/gnome-help/stable/a11y-mag.html.en">Linux/GNOME</a></li>
@@ -109,8 +108,7 @@
                 <ul>
                   <li><a href="https://support.apple.com/guide/mac-help/change-display-settings-for-accessibility-unac089/mac">macOS</a></li>
                   <li><a href="https://support.microsoft.com/en-us/windows/change-color-contrast-in-windows-fedc744c-90ac-69df-aed5-c8a90125e696">Windows</a></li>
-                  <li><a href="https://support.apple.com/en-ge/guide/iphone/ipheed8d2fca/18.0/ios/18.0">iOS</a></li>
-                  <li><a href="https://www.android.com/accessibility/vision/">Android</a></li>
+                  <li>The increase contrast setting in iOS can be found in the <a href=" <a href="https://support.apple.com/en-is/guide/iphone/iph3c076905a/26/ios/26">iOS Accessibility Settings for Display and Text</a></li>
                   <li><a href="https://help.gnome.org/users/gnome-help/stable/a11y-contrast.html.en">Linux/GNOME</a></li>
                 </ul>
               </td>
@@ -185,7 +183,8 @@
           The invert colors accessibility setting is an operating system feature that automatically transforms all rendered colors to their opposite.
           For example, content rendered as white is changed to black.
           Content styled as blue is rendered as a brown, i.e., a mixture of red and green.
-          The <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/inverted-colors"><code>inverted-colors: inverted</code></a> CSS media query can be used to detect when the user setting for inverting colors, but it is not widely supported in browsers.
+         </p>
+          <p><strong>Note:</strong> The <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/inverted-colors"><code>inverted-colors: inverted</code></a> CSS media query can be used to detect when the user setting for inverting colors, but it is not widely supported in browsers.
         </p>
 
         <h3 id="invert-colors-example">Invert Colors Example</h3>
@@ -226,7 +225,14 @@
 
         <h3 id="invert-colors-supporting">Testing Invert Colors</h3>
 
-        <p><em>*** Needs some content ***</em></p>
+        <p>In each operating system used by the target audience:</p>
+        <ol>
+          <li>Turn on the invert colors feature, which is typically located in accessibility settings.</li>
+          <li>
+            Verify that the color contrast ratios of text and components meets or exceeds the requirements specified by
+            <a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced">WCAG 1.4.6: Contrast (Enhanced)</a>.
+          </li>
+        </ol>
 
       </section>
 
@@ -871,11 +877,7 @@ button.color-scheme[role="switch"] {
       <section id="svg">
         <h2>Supporting Color Settings using SVG Graphics</h2>
 
-
-        <p>SVG graphics can respond to contrast related media queries including <code>prefers-contrast</code>, <code>prefers-color-scheme</code> and <code>forced-colors</code> to change the styling of components.  SVG provides smooth scaling of the graphics as the size of components are adjusted using browser zoom features. SVG elements can also adapt to a wide variety of screen sizes and load faster due to their smaller size than equivalent bit-mapped images.</p>
-
-        <p>The colors of pixels used in bit-mapped images (e.g. .png, .jpeg) can respond to media queries by changing the actual image rendered or by applying a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter">CSS filter</a> to the image.  Even when one or more of these techniques are used to respond to changes in contrast settings the resulting images may still be difficult or impossible for people with some types of visual impairments to see.  Low resolution images also do not scale smoothly when the browser zoom features are used to increase the size of rendered content and the resulting distortion will make it more difficult or impossible for people to identify the component.</p>
-
+        <p>SVG graphics can respond to contrast related media queries including <code>prefers-contrast</code>, <code>prefers-color-scheme</code> and <code>forced-colors</code> to change the styling of components. In many cases using the <code>currentcolor</code> value eliminates the need to even use media queries to adjust colors.  SVG provides smooth scaling of the graphics as the size of components are adjusted using browser zoom features. SVG elements can also adapt to a wide variety of screen sizes and load faster due to their smaller size than equivalent bit-mapped images.</p>
 
         <table class="data">
           <caption>Summary of SVG vs. Bit-Mapped Features</caption>
