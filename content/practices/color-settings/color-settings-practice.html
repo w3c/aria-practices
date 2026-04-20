@@ -676,7 +676,7 @@ button.color-scheme[role="switch"] {
 
         <h3>Testing Color Scheme</h3>
 
-        <p>In  each operating system used by the target audience:</p>
+        <p>In each operating system used by the target audience:</p>
         <ol>
           <li>Turn on the dark color theme.</li>
           <li>
@@ -853,24 +853,19 @@ button.color-scheme[role="switch"] {
 
         <h3>Testing Contrast Theme</h3>
 
-        <p>High contrast testing requires setting operating system contrast features or using browser extensions or configuration to emulate high contrast.  </p>
+        <p>In Microsoft Windows operating system used:</p>
+        <ol>
+          <li>Turn on one of the contrast themes or use the Chrome browser options to turn on contrast themes just in the browser.</li>
+          <li>
+            Verify contrast for text and components meet or exceed the contrast ratios specified by
+            <a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum">WCAG 1.4.2: Contrast (Minimum)</a>.
+          </li>
+        </ol>
 
-        <h4>Operating System High Contrast Settings</h4>
-
-        <ul>
-          <li><a href="https://support.microsoft.com/en-us/windows/change-color-contrast-in-windows-fedc744c-90ac-69df-aed5-c8a90125e696"> Windows 10 and 11: Change color contrast in Windows</a></li>
-          <li><a href="https://support.apple.com/guide/mac-help/change-display-settings-for-accessibility-unac089/mac">macOS: Change Display settings for accessibility on Mac</a></li>
-          <li><a href="https://help.gnome.org/users/gnome-help/stable/a11y-contrast.html.en">Linux GNOME: Adjust the contrast</a></li>
-          <li><a href="https://support.apple.com/guide/ipad/make-text-easier-to-read-ipad9a246013/17.0/ipados/17.0">iPad: Make iPad text easier to read with accessibility features</a></li>
-          <li><a href="https://support.apple.com/guide/iphone/make-text-easier-to-read-iph3c076905a/17.0/ios/17.0">iPhone: Make iPhone text easier to read with accessibility features</a></li>
-          <li><a href="https://support.google.com/accessibility/android/answer/11183305">Android: Change text &amp; display settings</a></li>
-        </ul>
-
-        <h4>Chrome High Contrast Options</h4>
+        <h4>Chrome Contrast Options</h4>
 
         <p>The Chrome browser has Render options in the DOM Inspector to enable and disable contrast related media queries. Use the <a href="https://developer.chrome.com/docs/devtools/rendering/emulate-css">DOM Inspector Render Tab: Emulate</a>  and you can change the setting for <code>prefers-color-scheme: dark</code> and <code>forced-colors: active</code>.
         </p>
-
 
       </section>
 
@@ -926,7 +921,18 @@ button.color-scheme[role="switch"] {
         <p>
           The SVG elements of custom components should match the color styling of other features in the component based on user settings, for example users applying a Contrast Theme in Microsoft Windows.  When SVG elements are used in custom components the <code>currentcolor</code> value can be used for <code>fill</code> and <code>stroke</code> properties to inherit color styling from ancestor elements, reducing the need for media queries to synchronize colors.
         </p>
+      </section>
 
+      <section id="references">
+        <h2>References</h2>
+        <ul>
+          <li><a href="https://support.microsoft.com/en-us/windows/change-color-contrast-in-windows-fedc744c-90ac-69df-aed5-c8a90125e696"> Windows 10 and 11: Change color contrast in Windows</a></li>
+          <li><a href="https://support.apple.com/guide/mac-help/change-display-settings-for-accessibility-unac089/mac">macOS: Change Display settings for accessibility on Mac</a></li>
+          <li><a href="https://help.gnome.org/users/gnome-help/stable/a11y-contrast.html.en">Linux GNOME: Adjust the contrast</a></li>
+          <li><a href="https://support.apple.com/guide/ipad/make-text-easier-to-read-ipad9a246013/17.0/ipados/17.0">iPad: Make iPad text easier to read with accessibility features</a></li>
+          <li><a href="https://support.apple.com/guide/iphone/make-text-easier-to-read-iph3c076905a/17.0/ios/17.0">iPhone: Make iPhone text easier to read with accessibility features</a></li>
+          <li><a href="https://support.google.com/accessibility/android/answer/11183305">Android: Change text &amp; display settings</a></li>
+        </ul>
 
       </section>
 
