@@ -49,15 +49,7 @@
             </tr>
             <tr>
               <td>
-                <code>aside</code> if it has both:
-                  <ul>
-                    <li>
-                      A label provided by <code>aria-labelledby</code> or <code>aria-label</code>
-                    </li>
-                    <li>
-                     Is in the context of an <code>article</code>, <code>aside</code>, <code>nav</code> or <code>section</code> element
-                   </li>
-                 </ul>
+                <code>aside</code> if it has a label (see <a href="#aria_lh_step3">Step 3</a> below) and is in the context of an <code>article</code>, <code>aside</code>, <code>nav</code> or <code>section</code> element
               </td>
               <td><code>complementary</code></td>
             </tr>
@@ -66,7 +58,7 @@
               <td><code>contentinfo</code></td>
             </tr>
             <tr>
-              <td><code>form</code> if it has a label provided by <code>aria-labelledby</code> or <code>aria-label</code></td>
+              <td><code>form</code> if it has a label (see <a href="#aria_lh_step3">Step 3</a> below)</td>
               <td><code>form</code></td>
             </tr>
             <tr>
@@ -82,7 +74,7 @@
               <td><code>navigation</code></td>
             </tr>
             <tr>
-              <td><code>section</code> if it has a label provided by <code>aria-labelledby</code> or <code>aria-label</code></td>
+              <td><code>section</code> if it has a label (see <a href="#aria_lh_step3">Step 3</a> below)</td>
               <td><code>region</code></td>
             </tr>
             <tr>
@@ -91,6 +83,7 @@
             </tr>
           </tbody>
         </table>
+
       </section>
 
       <section>
@@ -119,11 +112,11 @@
           </li>
         </ul>
 
-        <p id="aria_lh_step3"><strong>Step 3: Label areas</strong></p>
+        <p id="aria_lh_step3"><strong>Step 3: Label landmarks</strong></p>
 
         <ul>
           <li>
-            If a specific landmark role is used more than once on a page, provide each instance of that landmark with a unique label.
+            If a specific landmark role requires a label or is used more than once on a page, provide each instance of that landmark with a unique and descriptive label.  The label should be short and help people understand the content in the region.
             There is one rare circumstance where providing the same label to multiple instances of a landmark can be beneficial: the content and purpose of each instance is identical.
             For example, a large search results table has two sets of identical pagination controls -- one above and one below the table, so each set is in a navigation region labelled <q>Search Results</q>.
             In this case, adding extra information to the label that distinguishes the two instances may be more distracting than helpful.
@@ -134,9 +127,9 @@
             See Landmark Roles section below.
           </li>
 
-          <li>If an area begins with a heading element (e.g. <code>h1-h6</code>) it can be used as the label for the area using <code>aria-labelledby</code>.</li>
+          <li>If an landmark region begins with a heading element (e.g. <code>h1-h6</code>) it can be used as the label for the region using <code>aria-labelledby</code>.</li>
 
-          <li>If an area requires a label and does not have a heading element, provide a label using the <code>aria-label</code> attribute.</li>
+          <li>If a landmark requires a label and does not have a heading element, provide a label using the <code>aria-label</code> attribute.  Note: While the <code>title</code> attribute can also be used to provide a label, it is not considered a best practice and is discouraged.</li>
 
           <li>
             Do not use the landmark role as part of the label.
@@ -217,7 +210,7 @@
 
             <ul>
               <li>Use the HTML <code>aside</code> element to define a <code>complementary</code> landmark when its context is the <code>body</code> or <code>main</code> element.</li>
-              <li>Use the HTML <code>aside</code> element with a label to define a <code>complementary</code> landmark when its context is an <code>article</code>, <code>aside</code>, <code>nav</code> or <code>section</code> element.  A label is defined using <code>aria-labelledby</code> or <code>aria-label</code>.</li>
+              <li>Use the HTML <code>aside</code> element with a label (see <a href="#aria_lh_step3">Step 3</a> above) to define a <code>complementary</code> landmark when its context is an <code>article</code>, <code>aside</code>, <code>nav</code> or <code>section</code> element.</li>
             </ul>
 
             <h4>ARIA Technique</h4>
@@ -307,11 +300,12 @@
           <section>
             <h4>HTML Techniques</h4>
 
-            <p>The HTML <code>form</code> element defines a <code>form</code> landmark when it has a label defined using <code>aria-labelledby</code> or <code>aria-label</code>.</p>
+            <p>The HTML <code>form</code> element defines a <code>form</code> landmark when it has a label (see <a href="#aria_lh_step3">Step 3</a> above).</p>
+            <p>NOTE: If the form uses a <code>fieldset/legend</code> to provide a grouping label for all the controls in the form, use the <code>legend</code> element as a landmark label by referencing it using <code>aria-labelledby</code>.</p>
 
             <h4>ARIA Technique</h4>
 
-            <p>Use the <code>role=&quot;form&quot;</code> to identify a region of the page; do not use it to identify every form field.</p>
+            <p>Use the <code>role=&quot;form&quot;</code> with a label (see <a href="#aria_lh_step3">Step 3</a> above) to identify a region of the page with a set of form controls; do not use it to identify every form field.</p>
           </section>
 
           <section>
@@ -397,11 +391,11 @@
           <section>
             <h4>HTML Technique</h4>
 
-            <p>The HTML <code>section</code> element defines a <code>region</code> landmark when it has an label defined using <code>aria-labelledby</code> or <code>aria-label</code>.</p>
+            <p>The HTML <code>section</code> element defines a <code>region</code> landmark when it has an label (see <a href="#aria_lh_step3">Step 3</a> above).</p>
 
             <h4>ARIA Technique</h4>
 
-            <p>If the HTML <code>section</code> element technique is not being used, use a <code>role=&quot;region&quot;</code> attribute to define a <code>region</code> landmark.</p>
+            <p>If the HTML <code>section</code> element technique is not being used, use a <code>role=&quot;region&quot;</code> attribute to define a <code>region</code> landmark with a label (see <a href="#aria_lh_step3">Step 3</a> above).</p>
           </section>
 
           <section>
