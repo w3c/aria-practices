@@ -439,7 +439,6 @@ aria.ListboxActions = class ListboxActions {
    *  The key press event
    */
   onCheckKeyPressActions(event) {
-    event.preventDefault();
     let listitemCurrentItemActionsButtonPosition,
       listboxCurrentItemActionsButton;
     this.listboxItemCurrent = this.listboxActionsNode.querySelector('.focused');
@@ -461,6 +460,7 @@ aria.ListboxActions = class ListboxActions {
     switch (event.key) {
       case 'ArrowUp':
       case 'ArrowDown':
+        event.preventDefault();
         for (let i = 0; i < this.listboxCurrentItemActionsButtons.length; i++) {
           this.defocusActionsItem(this.listboxCurrentItemActionsButtons[i]);
         }
@@ -494,6 +494,7 @@ aria.ListboxActions = class ListboxActions {
         break;
       case 'ArrowLeft':
       case 'ArrowRight':
+        event.preventDefault();
         for (let i = 0; i < this.listboxCurrentItemActionsButtons.length; i++) {
           this.defocusActionsItem(this.listboxCurrentItemActionsButtons[i]);
         }
@@ -551,6 +552,7 @@ aria.ListboxActions = class ListboxActions {
         break;
       case 'Enter':
       case ' ':
+        event.preventDefault();
         this.doActionButtonEvents(
           event,
           event.currentTarget.ariaActiveDescendantElement

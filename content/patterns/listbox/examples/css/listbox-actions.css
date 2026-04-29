@@ -68,7 +68,6 @@ button.actionButton {
     line-height: 1.5em;
     margin-right: 0.25em;
     background-color: buttonface;
-    padding-right: 5px;
     margin-top: -1px;
     padding: 0px 4px 0px 4px !important;
 }
@@ -101,15 +100,26 @@ button.downarrow::before {
 
 button.favorite[aria-pressed="true"]::before {
     content: "★" / "";
+    font-size: 1.25em;
 }
 
 button.favorite:not([aria-pressed])::before,
 button.favorite[aria-pressed="false"]::before {
     content: "☆" / "";
+    font-size: 1.25em;
 }
 
+/*Using a custom SVG for a more small wastebasket that is also recognizable*/
 button.delete::before {
-    content: "🗑️" / "";
+  content: "";
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("data:image/svg+xml;utf8,\
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='2 -12 21 36' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>\
+    <path d='M3 6h18'/>\
+    <path d='M8 6V4h8v2'/>\
+    <path d='M6 6l1 14h10l1-14'/>\
+    </svg>");
 }
 
 [role="option"] {
@@ -159,13 +169,14 @@ button.delete::before {
 [role="option"][aria-actions] span.js-selection::before {
     position: absolute;
     left: 0.2em;
-    content: "☐" / "Favorite";
+    content: "" / "Favorite";
 }
 
 [role="option"][aria-selected="true"] span.js-selection::before {
     position: absolute;
     left: 0.2em;
-    content: "☑" / "Favorite";
+    content: "✓" / "Favorite";
+    margin-top: 2px;
 }
 
 .listbox-area {
