@@ -391,9 +391,9 @@
       <section id="kbd_disabled_controls">
         <h2>Focusability of disabled controls</h2>
         <p>
-          By default, disabled HTML input elements are removed from the tab sequence.
-          In most contexts, the normal expectation is that disabled interactive elements are not focusable.
-          However, there are some contexts where it is common for disabled elements to be focusable, especially inside of composite widgets.
+          Browsers remove HTML input elements with the <code>disabled</code> attribute from the tab sequence.
+          However, there are some contexts where it is useful for an element to convey a disabled state while remaining focusable, especially inside of composite widgets.
+          This can be accomplished by applying the state <code>aria-disabled="true"</code>.
           For example, as demonstrated in the
           <a href="../../patterns/menubar/menu-and-menubar-pattern.html">menu and menubar pattern</a>,
           disabled items are focusable when navigating through a menu with the arrow keys.
@@ -402,21 +402,42 @@
         <p>
           Removing focusability from disabled elements can offer users both advantages and disadvantages.
           Allowing keyboard users to skip disabled elements usually reduces the number of key presses required to complete a task.
-          However, preventing focus from moving to disabled elements can hide their presence from screen reader users who "see" by moving the focus.
+          However, screen reader users are far less likely to discover disabled elements that are not focusable because moving focus is one of their primary methods of discovery.
         </p>
 
         <p>
-          Authors are encouraged to adopt a consistent set of conventions for the focusability of disabled elements.
+Authors are encouraged to adopt consistent pattern-based conventions for the focusability of disabled elements.
           The examples in this guide adopt the following conventions, which both reflect common practice and attempt to balance competing concerns.
         </p>
-
         <ol>
-          <li>For elements that are in the tab sequence when enabled, remove them from the tab sequence when disabled.</li>
+          <li>
+            When users can reasonably infer the presence of a disabled element from nearby
+            focusable elements, it is removed from the keyboard focus order
+            using the HTML <code>disabled</code> attribute. For example:
+            <ul>
+              <li>
+                In the <a
+                href="../../patterns/grid/examples/layout-grids.html#ex3_label">“Scrollable
+                Search Results” grid example</a>, when the grid is showing the
+                first page and the “Next” button receives focus, users can infer
+                that the “Previous” button is disabled.
+              </li>
+              <li>
+                A toolbar with buttons for moving, removing, and adding items in a list includes buttons for &quot;Up&quot;, &quot;Down&quot;, &quot;Add&quot;, and &quot;Remove&quot;.
+                The &quot;Up&quot; button is disabled and its focusability is removed when the first item in the list is selected.
+                Given the presence of the &quot;Down&quot; button, discoverability of the &quot;Up&quot; button is not a concern.
+              </li>
+            </ul>
+          </li>
 
           <li>
-            For the following composite widget elements, keep them focusable when disabled:
-
+            When a disabled element <em>does</em> need to remain discoverable, <code>aria-disabled="true"</code> is applied so that it will remain focusable. For example:
             <ul>
+              <li>
+                The “Copy”, “Cut”, and “Paste” buttons in the <a href="../../patterns/toolbar/examples/toolbar.html">Toolbar</a>.
+                The discoverability of these features relies on their focusability even when they are not immediately applicable
+                (i.e., when no text is selected in the editor and/or when the clipboard is empty).
+              </li>
               <li>Options in a <a href="../../patterns/listbox/listbox-pattern.html">Listbox</a></li>
               <li>Menu items in a <a href="../../patterns/menubar/menu-and-menubar-pattern.html">Menu or menu bar</a></li>
               <li>Tab elements in a set of <a href="../../patterns/tabs/tabs-pattern.html">Tabs</a></li>
@@ -424,23 +445,6 @@
             </ul>
           </li>
 
-          <li>
-            For elements contained in a toolbar, make them focusable if discoverability is a concern.
-            Here are two examples to aid with this judgment.
-
-            <ol>
-              <li>
-                A toolbar with buttons for moving, removing, and adding items in a list includes buttons for &quot;Up&quot;, &quot;Down&quot;, &quot;Add&quot;, and &quot;Remove&quot;.
-                The &quot;Up&quot; button is disabled and its focusability is removed when the first item in the list is selected.
-                Given the presence of the &quot;Down&quot; button, discoverability of the &quot;Up&quot; button is not a concern.
-              </li>
-
-              <li>
-                A toolbar in an editor contains a set of special smart paste functions that are disabled when the clipboard is empty or when the function is not applicable to the current content of the clipboard.
-                It could be helpful to keep the disabled buttons focusable if the ability to discover their functionality is primarily via their presence on the toolbar.
-              </li>
-            </ol>
-          </li>
         </ol>
 
         <p>One design technique for mitigating the impact of including disabled elements in the path of keyboard focus is employing appropriate keyboard shortcuts as described in <a href="#kbd_shortcuts">Keyboard Shortcuts</a>.</p>
