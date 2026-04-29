@@ -1,81 +1,192 @@
+li {
+    min-width: 10em;
+}
+
+.hide-actions-button {
+    display: none !important;
+}
+
 [role="option"] span.actions {
-  display: none;
+    display: none;
 }
 
 [role="option"]:hover span.actions,
 [role="listbox"]:focus [role="option"].focused span.actions {
-  position: absolute;
-  right: 0.5em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3px;
-  top: -3px;
+    position: absolute;
+    right: 0.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    top: 0;
+}
+
+.contentRow {
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.contentColumn {
+    flex: 1;
+    padding: 1rem;
+    background-color: #f0f0f0;
+}
+
+.listbox-area h3 {
+    font-weight: normal;
+    color: var(--text);
+    font-family: sans-serif;
+    font-size: 1em;
+    padding-bottom: 3px;
+    margin-top: 0!important;
+}
+
+.listbox-area ul {
+    padding-top: 5px;
+}
+
+.detailPanel {
+    margin: 1em 0 0;
+    padding-top: 7px;
+    padding-left: 10px;
+    min-height: 18em;
+    border: 1px solid #aaa;
+    background: white;
+}
+
+.detailPanel.is-hidden {
+    display: none;
 }
 
 button.actionButton {
-  display: inline-block;
-  border-radius: 5px;
-  text-align: center;
-  color: #222428;
-  font-size: 14px;
-  line-height: 1.5em;
-  margin-right: 0.25em;
-  background-color: buttonface;
-  padding-right: 5px;
-  margin-top: -3px;
+    display: inline-block;
+    border-radius: 5px;
+    text-align: center;
+    color: #222428;
+    font-size: 14px;
+    line-height: 1.5em;
+    margin-right: 0.25em;
+    background-color: buttonface;
+    margin-top: -1px;
+    padding: 0px 4px 0px 4px !important;
 }
 
 button.actionButton::before {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 32px;
-  width: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+    width: 15px;
+}
+
+button.favorite {
+    background-color: transparent;
+    position: absolute;
+    left: 15px;
+    top: 7px;
+    border: none;
+    outline: none;
+    margin-top: -5px;
 }
 
 button.uparrow::before {
-  content: "↑" / "";
+    content: "↑" / "";
 }
 
 button.downarrow::before {
-  content: "↓" / "";
+    content: "↓" / "";
 }
 
 button.favorite[aria-pressed="true"]::before {
-  content: "★" / "";
+    content: "★" / "";
+    font-size: 1.25em;
 }
 
 button.favorite:not([aria-pressed])::before,
 button.favorite[aria-pressed="false"]::before {
-  content: "☆" / "";
+    content: "☆" / "";
+    font-size: 1.25em;
 }
 
+/*Using a custom SVG for a more small wastebasket that is also recognizable*/
 button.delete::before {
-  content: "🗑" / "";
+  content: "";
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("data:image/svg+xml;utf8,\
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='2 -12 21 36' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>\
+    <path d='M3 6h18'/>\
+    <path d='M8 6V4h8v2'/>\
+    <path d='M6 6l1 14h10l1-14'/>\
+    </svg>");
 }
 
-[role="option"] button:hover,
+[role="option"] {
+    position: relative;
+    display: block;
+    line-height: 1.8em !important;
+    cursor: pointer;
+    margin: 2px 2px 2px 8px;
+    padding: 2px 1em 2px 2.5em;
+}
+
+[role="option"] button.actionButton:hover {
+    background-color: rgb(226 239 225);
+    color: black !important;
+    white-space: pre;
+    outline: #036 solid 3px !important;
+    border-color: rgb(0 90 156);
+    padding: 0px 4px 0px 4px;
+}
+
 .focusedActionButton {
-  background-color: rgb(226 239 225);
-  color: black !important;
-  white-space: pre;
-  outline: #036 solid 3px !important;
-  border-color: rgb(0 90 156);
+    background-color: rgb(226 239 225) !important;
+    color: black !important;
+    white-space: pre;
+    outline: #036 solid 3px !important;
+    border-color: rgb(0 90 156);
+}
+
+[role="option"][aria-selected="true"] span.favoriteOptionIndication::before {
+    position: absolute;
+    left: 1.2em;
+    content: "";
+}
+
+[role="option"][aria-actions] span.favoriteOptionIndication::before {
+    position: absolute;
+    left: 1.4em;
+    content: "☆" / "Favorite";
+}
+
+[role="option"][aria-actions].js-favoriteIndication span.favoriteOptionIndication::before {
+    position: absolute;
+    left: 1.4em;
+    content: "★" / "Favorite";
+}
+
+[role="option"][aria-actions] span.js-selection::before {
+    position: absolute;
+    left: 0.2em;
+    content: "" / "Favorite";
+}
+
+[role="option"][aria-selected="true"] span.js-selection::before {
+    position: absolute;
+    left: 0.2em;
+    content: "✓" / "Favorite";
+    margin-top: 2px;
 }
 
 .listbox-area {
-  display: block;
-  padding: 20px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: rgb(170 170 170);
-  border-image: initial;
-  border-radius: 4px;
-  background: rgb(238 238 238);
-  max-width: 20em;
-}
-
-.hide-actions-button {
-  display: none;
+    display: block;
+    padding: 20px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(170 170 170);
+    border-image: initial;
+    border-radius: 4px;
+    background: rgb(238 238 238);
+    max-width: 20em;
 }
