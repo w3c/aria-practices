@@ -448,13 +448,6 @@ aria.ListboxActions = class ListboxActions {
     );
     this.listboxActiveOption =
       this.listboxActionsNode.querySelector('.focused');
-    if (this.listboxItemCurrent) {
-      this.listboxCurrentItemActionsButtons = Array.from(
-        this.listboxItemCurrent.querySelectorAll(
-          'button:not(.hide-actions-button),[role="button"]:not(.hide-actions-button)'
-        )
-      );
-    }
     this.listboxItemsWithAriaActionsArray =
       event.currentTarget.querySelectorAll('[aria-actions]');
     switch (event.key) {
@@ -467,10 +460,6 @@ aria.ListboxActions = class ListboxActions {
         for (let i = 0; i < this.listboxItemsWithAriaActionsArray.length; i++) {
           this.setAriaActions(this.listboxItemsWithAriaActionsArray[i], ' ');
         }
-        this.setAriaActions(
-          this.listboxItemCurrent,
-          this.listboxCurrentItemActionsButtons.map((node) => node.id).join(' ')
-        );
         this.defocusItem(this.listboxItemCurrent);
         if (event.key === 'ArrowUp') {
           this.listboxItemCurrent = this.findPreviousOption(this.listboxItemCurrent);
@@ -482,7 +471,6 @@ aria.ListboxActions = class ListboxActions {
             this.listboxItemCurrent = this.listboxOptionArray[0];
           }
         }
-
         if (this.listboxItemCurrent && this.multiselectable && event.shiftKey) {
           this.selectRange(this.startRangeIndex, this.listboxItemCurrent);
         }
@@ -490,7 +478,15 @@ aria.ListboxActions = class ListboxActions {
         if (this.listboxItemCurrent) {
           this.focusItem(this.listboxItemCurrent);
         }
-
+        this.listboxCurrentItemActionsButtons = Array.from(
+          this.listboxItemCurrent.querySelectorAll(
+            'button:not(.hide-actions-button),[role="button"]:not(.hide-actions-button)'
+          )
+        );
+        this.setAriaActions(
+          this.listboxItemCurrent,
+          this.listboxCurrentItemActionsButtons.map((node) => node.id).join(' ')
+        );
         break;
       case 'ArrowLeft':
       case 'ArrowRight':
