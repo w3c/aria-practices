@@ -370,6 +370,15 @@ ariaTest(
     let menu = await t.context.session.findElement(By.css(ex.menuSelector));
 
     for (let i = 0; i < menuItems.length; i++) {
+      // Reset expanded state if necessary
+      // Note: This is a workaround. In the test environment, the menu button's
+      // aria-expanded state isn't being set back to false on a menu option
+      // click which requires this workaround.
+      // Issue tracked at https://github.com/w3c/aria-practices/issues/3331
+      // TODO: Remove once fixed
+      if ((await menuButton.getAttribute('aria-expanded')) === 'true') {
+        await menuButton.click();
+      }
       await menuButton.click();
       await t.context.session.wait(
         async function () {
