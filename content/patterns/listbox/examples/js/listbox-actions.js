@@ -358,6 +358,17 @@ aria.ListboxActions = class ListboxActions {
       detailPanel.classList.toggle('is-hidden');
     }
   }
+  /**
+   * @description
+   *  Populates the list of action buttons
+   */
+  populateCurrentItemActionButtons () {
+    this.listboxCurrentItemActionsButtons = Array.from(
+      this.listboxItemCurrent.querySelectorAll(
+        'button:not(.hide-actions-button),[role="button"]:not(.hide-actions-button)'
+      )
+    );
+  }
 
   /**
    * @description
@@ -423,10 +434,12 @@ aria.ListboxActions = class ListboxActions {
       case 'uparrow':
         this.moveUpItems();
         this.updateArrowUpDownItems();
+        this.populateCurrentItemActionButtons();
         break;
       case 'downarrow':
         this.moveDownItems();
         this.updateArrowUpDownItems();
+        this.populateCurrentItemActionButtons();
         break;
       default:
         this.selectItem(event.currentTarget.querySelector('.focused'));
@@ -478,11 +491,7 @@ aria.ListboxActions = class ListboxActions {
         if (this.listboxItemCurrent) {
           this.focusItem(this.listboxItemCurrent);
         }
-        this.listboxCurrentItemActionsButtons = Array.from(
-          this.listboxItemCurrent.querySelectorAll(
-            'button:not(.hide-actions-button),[role="button"]:not(.hide-actions-button)'
-          )
-        );
+        this.populateCurrentItemActionButtons();
         this.setAriaActions(
           this.listboxItemCurrent,
           this.listboxCurrentItemActionsButtons.map((node) => node.id).join(' ')
@@ -490,6 +499,7 @@ aria.ListboxActions = class ListboxActions {
         break;
       case 'ArrowLeft':
       case 'ArrowRight':
+        console.log('pickle');
         event.preventDefault();
         for (let i = 0; i < this.listboxCurrentItemActionsButtons.length; i++) {
           this.defocusActionsItem(this.listboxCurrentItemActionsButtons[i]);

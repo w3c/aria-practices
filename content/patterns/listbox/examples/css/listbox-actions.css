@@ -11,7 +11,7 @@ li {
 }
 
 [role="option"]:hover span.actions,
-[role="listbox"]:focus [role="option"].focused span.actions {
+#ss_elem_list:focus [role="option"].focused span.actions {
     position: absolute;
     right: 0.5em;
     display: flex;
@@ -167,7 +167,7 @@ button.delete::before  {
     white-space: pre;
 }
 
-.focusedActionButton {
+#ss_elem_list:focus button.focusedActionButton {
     color: black !important;
     background-color: rgb(226 239 225) !important;
     border-color: rgb(0 90 156);
