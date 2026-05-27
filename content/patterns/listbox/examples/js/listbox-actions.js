@@ -33,7 +33,7 @@ aria.ListboxActions = class ListboxActions {
     );
     this.selectItem(this.listboxOptionArray[0]);
     this.listboxItemCurrent = this.listboxOptionArray[0];
-    this.populateCurrentItemActionButtons ()
+    this.populateCurrentItemActionButtons();
     this.listboxActiveOption = null;
     this.activeDescendant = null;
     this.listboxCurrentOptionIndex = -1;
@@ -63,7 +63,7 @@ aria.ListboxActions = class ListboxActions {
       );
     }
   }
-  setupNotifications () {
+  setupNotifications() {
     if (!this.useAriaNotify) {
       this.ariaLiveRegion = document.createElement('div');
       this.ariaLiveRegion.ariaLive = 'assertive';
@@ -74,7 +74,7 @@ aria.ListboxActions = class ListboxActions {
   removeNotificationViaTimeout(ariaLiveRegion) {
     ariaLiveRegion.innerText = '';
   }
-  doNotification (notificationText){
+  doNotification(notificationText) {
     if (this.useAriaNotify) {
       document.ariaNotify(notificationText);
     } else {
@@ -82,7 +82,7 @@ aria.ListboxActions = class ListboxActions {
       setTimeout(this.removeNotificationViaTimeout, 2000, this.ariaLiveRegion);
     }
   }
-  handleItemChange (event, item) {
+  handleItemChange(event, item) {
     var updateText = '';
     switch (event) {
       case 'removed':
@@ -105,7 +105,7 @@ aria.ListboxActions = class ListboxActions {
         break;
     }
     if (updateText) {
-      this.doNotification (updateText);
+      this.doNotification(updateText);
     }
   }
   /* Return the next listbox option, if it exists; otherwise, returns null */
@@ -168,9 +168,9 @@ aria.ListboxActions = class ListboxActions {
    *  The element to defocus
    */
   defocusItem(element) {
-   if (element) {
-    element.classList.remove('focused');
-   }
+    if (element) {
+      element.classList.remove('focused');
+    }
   }
   /**
    * @description
@@ -179,11 +179,11 @@ aria.ListboxActions = class ListboxActions {
    *  The element to focus
    */
   selectItem(element) {
-    for (let i = 0;i < this.listboxOptionArray.length;i++) {
+    for (let i = 0; i < this.listboxOptionArray.length; i++) {
       this.deselectItem(this.listboxOptionArray[i]);
       this.defocusItem(this.listboxOptionArray[i]);
     }
-    element.setAttribute('aria-selected',true);
+    element.setAttribute('aria-selected', true);
     this.focusItem(element);
     this.populateDetails(element);
     this.listboxActionsNode.setAttribute('aria-activedescendant', element.id);
@@ -207,7 +207,7 @@ aria.ListboxActions = class ListboxActions {
    * @description
    *  Populates the list of action buttons
    */
-  populateCurrentItemActionButtons () {
+  populateCurrentItemActionButtons() {
     this.listboxCurrentItemActionsButtons = Array.from(
       this.listboxItemCurrent.querySelectorAll(
         'button:not(.hide-actions-button),[role=“button”]:not(.hide-actions-button)'
@@ -624,7 +624,7 @@ aria.ListboxActions = class ListboxActions {
         }
       }
     }
-    let target = event.target.role == 'option'? event.target:event.target.closest('[role="option"]');
+    let target = event.target.role == 'option' ? event.target : event.target.closest('[role="option"]');
     this.selectItem(target);
     this.populateDetails(target);
   }

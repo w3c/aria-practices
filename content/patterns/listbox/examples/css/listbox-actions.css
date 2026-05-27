@@ -39,7 +39,7 @@ li {
     font-family: sans-serif;
     font-size: 1em;
     padding-bottom: 3px;
-    margin-top: 0!important;
+    margin-top: 0 !important;
 }
 
 .listbox-area ul {
@@ -74,7 +74,7 @@ button.actionButton {
     outline: 1px solid black;
 }
 
-button.actionButton.favorite  {
+button.actionButton.favorite {
     display: inline-block;
     border-radius: 5px;
     text-align: center;
@@ -113,18 +113,18 @@ button.favorite {
     margin-top: -5px;
 }
 
-button.uparrow::before  {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 20' fill='none'%3E%3Cline x1='5' y1='18' x2='5' y2='4' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3Cline x1='2' y1='7' x2='5' y2='4' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3Cline x1='8' y1='7' x2='5' y2='4' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+button.uparrow::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 20' fill='none'%3E%3Cline x1='5' y1='18' x2='5' y2='4' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3Cline x1='2' y1='7' x2='5' y2='4' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3Cline x1='8' y1='7' x2='5' y2='4' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
 }
 
 button.downarrow::before {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 20' fill='none'%3E%3Cline x1='5' y1='2' x2='5' y2='16' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3Cline x1='2' y1='13' x2='5' y2='16' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3Cline x1='8' y1='13' x2='5' y2='16' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 20' fill='none'%3E%3Cline x1='5' y1='2' x2='5' y2='16' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3Cline x1='2' y1='13' x2='5' y2='16' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3Cline x1='8' y1='13' x2='5' y2='16' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
 }
 
 button.uparrow::before,
 button.downarrow::before {
-  width: 10px;
-  height: 18px;
+    width: 10px;
+    height: 18px;
 }
 
 button.favorite[aria-pressed="true"]::before,
@@ -142,7 +142,7 @@ button.favorite[aria-pressed="false"]::before {
     content: "☆" / "";
 }
 
-button.delete::before  {
+button.delete::before {
     width: 20px;
     height: 20px;
     margin: 0 -2px;
