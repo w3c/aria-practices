@@ -38,23 +38,59 @@
       </section>
 
       <section id="examples">
-        <img alt="" src="../../images/pattern-landmarks.svg">
         <h2>Examples</h2>
-        <ul>
-          <li><a href="examples/main.html">Main Landmark Example</a></li>
-          <li><a href="examples/navigation.html">Navigation Landmark Example</a></li>
-          <li><a href="examples/search.html">Search Landmark Example</a></li>
-          <li><a href="examples/banner.html">Banner Landmark Example</a></li>
-          <li><a href="examples/contentinfo.html">Contentinfo Landmark Example</a></li>
-          <li><a href="examples/complementary.html">Complementary Landmark Example</a></li>
-          <li><a href="examples/form.html">Form Landmark Example</a></li>
-          <li><a href="examples/region.html">Region Landmark Example</a></li>
-        </ul>
+
+        <p>The following table provides information on the landmark regions used on this page.</p>
+
+        <table class="data attributes">
+          <caption>
+            Landmark Roles Used on this Page
+          </caption>
+          <thead>
+            <tr>
+              <th>Landmark Role</th>
+              <th>Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>complementary</code></td>
+              <td>An <code>aside</code> element with a <code>aria-label</code> is used to define a <code>complementary</code> region with the accessible name of "feedback".</td>
+            </tr>
+            <tr>
+              <td><code>contentinfo</code></td>
+              <td>A <code>footer</code> element with a <code>aria-label</code> is used to define a <code>contentinfo</code> region with the accessible name of "site".</td>
+            </tr>
+            <tr>
+              <td><code>banner</code></td>
+              <td>A <code>header</code> element is used to define a <code>banner</code> region.  Since there is only one banner landmark on the page, no accessible name is needed.</td>
+            </tr>
+            <tr>
+              <td><code>main</code></td>
+              <td>A <code>main</code> element is used to define a <code>main</code> region.  Since there is only one main landmark on the page, no accessible name is needed.</td>
+            </tr>
+            <tr>
+              <td><code>navigation</code></td>
+              <td>There are two <code>navigation</code> regions on the page.  The both use the <code>nav</code> element to create the navigation regions.  The accessible name "APG" for the first one is defined using <code>aria-label</code> and second on with the name "Page Contents" is defined using <code>aria-labelledby</code> to reference the associated <code>h2</code> element.</td>
+            </tr>
+            <tr>
+              <td><code>region</code></td>
+              <td>There are no <code>region</code> regions defined on this page.</td>
+            </tr>
+            <tr>
+              <td><code>search</code></td>
+              <td>There are no <code>search</code> regions defined on this page.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+
       </section>
 
       <section id="keyboard_interaction">
         <h2>Keyboard Interaction</h2>
-        <p>Not applicable.</p>
+        <p>Web browsers currently do not provide keyboard support for navigation to landmark regions.  Screen readers and other types of assistive technology do provide their own keyboard support to view and navigate landmarks regions.</p>
       </section>
 
       <section id="roles_states_properties">
