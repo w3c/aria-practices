@@ -67,7 +67,7 @@ aria.ListboxActions = class ListboxActions {
     if (!this.useAriaNotify) {
       this.ariaLiveRegion = document.createElement('div');
       this.ariaLiveRegion.ariaLive = 'assertive';
-      this.ariaLiveRegion.classList.add("offscreen");
+      this.ariaLiveRegion.classList.add('offscreen');
       document.querySelector('main').appendChild(this.ariaLiveRegion);
     }
   }
@@ -348,20 +348,19 @@ aria.ListboxActions = class ListboxActions {
     );
     for (let i = 0; i < this.listboxOptionArray.length; i++) {
       let option = this.listboxOptionArray[i];
-      if (this.listboxOptionArray.indexOf(option) == this.listboxOptionArray.length - 1) {
+      if (
+        this.listboxOptionArray.indexOf(option) ==
+        this.listboxOptionArray.length - 1
+      ) {
         option
           .querySelector('.downarrow')
           .classList.remove('focusedActionButton');
-        option
-          .querySelector('.downarrow')
-          .classList.add('hide-actions-button');
+        option.querySelector('.downarrow').classList.add('hide-actions-button');
       } else if (this.listboxOptionArray.indexOf(option) == 0) {
         option
           .querySelector('.uparrow')
           .classList.remove('focusedActionButton');
-        option
-          .querySelector('.uparrow')
-          .classList.add('hide-actions-button');
+        option.querySelector('.uparrow').classList.add('hide-actions-button');
       } else {
         option
           .querySelector('.downarrow')
@@ -379,14 +378,16 @@ aria.ListboxActions = class ListboxActions {
    * @param currentOption
    */
   populateDetails(currentOption) {
-    if (currentOption.role == "option") {
+    if (currentOption.role == 'option') {
       let detailPanels = document.querySelectorAll('.js-detailPanel');
       for (let i = 0; i < detailPanels.length; i++) {
         if (!detailPanels[i].classList.contains('is-hidden')) {
           detailPanels[i].classList.add('is-hidden');
         }
       }
-      let detailPanel = document.querySelector('#' + currentOption.id + '_detail_panel');
+      let detailPanel = document.querySelector(
+        '#' + currentOption.id + '_detail_panel'
+      );
       detailPanel.classList.toggle('is-hidden');
     }
   }
@@ -435,7 +436,9 @@ aria.ListboxActions = class ListboxActions {
         //If the favorite icon was clicked and is the activeButton instead of the action button,
         //convert the activeButton to the action button and continue processing
         if (activeButton.classList.contains('js-favorite')) {
-          activeButton = activeButton.closest('[role="option"]').querySelector('.favorite');
+          activeButton = activeButton
+            .closest('[role="option"]')
+            .querySelector('.favorite');
         }
         activeButton.setAttribute(
           'aria-pressed',
@@ -469,7 +472,7 @@ aria.ListboxActions = class ListboxActions {
   }
   /**
    * @description
-   *  Handles the action buttons key press events 
+   *  Handles the action buttons key press events
    * @param event
    *  The key press event
    */
@@ -477,7 +480,9 @@ aria.ListboxActions = class ListboxActions {
     let listitemCurrentItemActionsButtonPosition,
       listboxCurrentItemActionsButton;
     this.listboxItemCurrent = this.listboxActionsNode.querySelector('.focused');
-    this.listboxCurrentOptionIndex = this.listboxOptionArray.indexOf(this.listboxItemCurrent);
+    this.listboxCurrentOptionIndex = this.listboxOptionArray.indexOf(
+      this.listboxItemCurrent
+    );
     this.activeDescendant = this.listboxActionsNode.getAttribute(
       'aria-activedescendant'
     );
@@ -497,11 +502,15 @@ aria.ListboxActions = class ListboxActions {
         }
         this.defocusItem(this.listboxItemCurrent);
         if (event.key === 'ArrowUp') {
-          this.listboxItemCurrent = this.findPreviousOption(this.listboxItemCurrent);
+          this.listboxItemCurrent = this.findPreviousOption(
+            this.listboxItemCurrent
+          );
         } else {
           let next = this.findNextOption(this.listboxItemCurrent);
           if (next) {
-            this.listboxItemCurrent = this.findNextOption(this.listboxItemCurrent);
+            this.listboxItemCurrent = this.findNextOption(
+              this.listboxItemCurrent
+            );
           } else {
             this.listboxItemCurrent = this.listboxOptionArray[0];
           }
@@ -545,13 +554,13 @@ aria.ListboxActions = class ListboxActions {
           if (listitemCurrentItemActionsButtonPosition > 0) {
             this.focusActionsItem(
               this.listboxCurrentItemActionsButtons[
-              listitemCurrentItemActionsButtonPosition - 1
+                listitemCurrentItemActionsButtonPosition - 1
               ]
             );
           } else {
             this.defocusActionsItem(
               this.listboxCurrentItemActionsButtons[
-              listitemCurrentItemActionsButtonPosition
+                listitemCurrentItemActionsButtonPosition
               ]
             );
             this.setActiveDescendant(this.listboxItemCurrent);
@@ -565,13 +574,13 @@ aria.ListboxActions = class ListboxActions {
           ) {
             this.focusActionsItem(
               this.listboxCurrentItemActionsButtons[
-              listitemCurrentItemActionsButtonPosition + 1
+                listitemCurrentItemActionsButtonPosition + 1
               ]
             );
           } else {
             this.focusActionsItem(
               this.listboxCurrentItemActionsButtons[
-              listitemCurrentItemActionsButtonPosition
+                listitemCurrentItemActionsButtonPosition
               ]
             );
           }
@@ -624,7 +633,10 @@ aria.ListboxActions = class ListboxActions {
         }
       }
     }
-    let target = event.target.role == 'option' ? event.target : event.target.closest('[role="option"]');
+    let target =
+      event.target.role == 'option'
+        ? event.target
+        : event.target.closest('[role="option"]');
     this.selectItem(target);
     this.populateDetails(target);
   }
