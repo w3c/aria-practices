@@ -24,19 +24,24 @@ var aria = aria || {};
 aria.ListboxActions = class ListboxActions {
   constructor(listboxActionsObject) {
     this.listboxActionsNode = listboxActionsObject;
+    this.listboxCurrentItemActionsButtons = [];
     this.activeDescendant = this.listboxActionsNode.getAttribute(
       'aria-activedescendant'
     );
     this.listboxOptionArray = Array.from(
       this.listboxActionsNode.querySelectorAll('[role="option"]')
     );
-    this.listboxItemCurrent = null;
+    this.selectItem(this.listboxOptionArray[0]);
+    this.listboxItemCurrent = this.listboxOptionArray[0];
+    this.populateCurrentItemActionButtons ()
     this.listboxActiveOption = null;
     this.activeDescendant = null;
-    this.listboxCurrentItemActionsButtons = [];
     this.listboxCurrentOptionIndex = -1;
     this.listboxItemsWithAriaActionsArray = [];
     this.registerActionsEvents();
+    this.useAriaNotify = document.ariaNotify;
+    this.setupNotifications();
+    this.ariaLiveRegion;
   }
 
   registerActionsEvents() {
@@ -56,6 +61,25 @@ aria.ListboxActions = class ListboxActions {
         'click',
         this.onCheckClickItemActions.bind(this)
       );
+    }
+  }
+  setupNotifications () {
+    if (!this.useAriaNotify) {
+      this.ariaLiveRegion = document.createElement('div');
+      this.ariaLiveRegion.ariaLive = 'assertive';
+      this.ariaLiveRegion.classList.add("offscreen");
+      document.querySelector('main').appendChild(this.ariaLiveRegion);
+    }
+  }
+  removeNotificationViaTimeout(ariaLiveRegion) {
+    ariaLiveRegion.innerText = '';
+  }
+  doNotification (notificationText){
+    if (this.useAriaNotify) {
+      document.ariaNotify(notificationText);
+    } else {
+      this.ariaLiveRegion.innerText = notificationText;
+      setTimeout(this.removeNotificationViaTimeout, 2000, this.ariaLiveRegion);
     }
   }
   handleItemChange (event, item) {
@@ -81,8 +105,7 @@ aria.ListboxActions = class ListboxActions {
         break;
     }
     if (updateText) {
-      var ex1LiveRegion = document.getElementById('ss_live_region');
-      ex1LiveRegion.innerHTML = updateText;
+      this.doNotification (updateText);
     }
   }
   /* Return the next listbox option, if it exists; otherwise, returns null */
@@ -119,8 +142,6 @@ aria.ListboxActions = class ListboxActions {
    *  Remove all of the selected items from the listbox; Removes the focused items
    *  in a single select listbox and the items with aria-selected in a multi
    *  select listbox.
-   * @returns {Array}
-   *  An array of items that were removed from the listbox
    */
   deleteItems() {
     let itemToDelete = document.getElementById(this.activeDescendant);
@@ -181,6 +202,17 @@ aria.ListboxActions = class ListboxActions {
     if (!this.multiselectable) {
       element.removeAttribute('aria-selected');
     }
+  }
+  /**
+   * @description
+   *  Populates the list of action buttons
+   */
+  populateCurrentItemActionButtons () {
+    this.listboxCurrentItemActionsButtons = Array.from(
+      this.listboxItemCurrent.querySelectorAll(
+        'button:not(.hide-actions-button),[role=“button”]:not(.hide-actions-button)'
+      )
+    );
   }
   /**
    * @description
@@ -396,6 +428,7 @@ aria.ListboxActions = class ListboxActions {
         }
         this.setActiveDescendant(this.listboxItemsWithAriaActionsArray[0]);
         this.updateArrowUpDownItems();
+        this.populateCurrentItemActionButtons();
         break;
       case 'js-favorite':
       case 'favorite':
@@ -412,7 +445,7 @@ aria.ListboxActions = class ListboxActions {
         );
         this.handleItemChange(
           activeButton.ariaPressed == 'true' ? 'favorite' : 'unfavorited',
-          [activeOption]
+          activeOption
         );
         activeOption.classList.toggle('js-favoriteIndication');
         if (activeOption.classList.contains('js-favoriteIndication')) {
@@ -423,10 +456,12 @@ aria.ListboxActions = class ListboxActions {
       case 'uparrow':
         this.moveUpItems();
         this.updateArrowUpDownItems();
+        this.populateCurrentItemActionButtons();
         break;
       case 'downarrow':
         this.moveDownItems();
         this.updateArrowUpDownItems();
+        this.populateCurrentItemActionButtons();
         break;
       default:
         this.selectItem(event.currentTarget.querySelector('.focused'));
@@ -478,11 +513,7 @@ aria.ListboxActions = class ListboxActions {
         if (this.listboxItemCurrent) {
           this.focusItem(this.listboxItemCurrent);
         }
-        this.listboxCurrentItemActionsButtons = Array.from(
-          this.listboxItemCurrent.querySelectorAll(
-            'button:not(.hide-actions-button),[role="button"]:not(.hide-actions-button)'
-          )
-        );
+        this.populateCurrentItemActionButtons();
         this.setAriaActions(
           this.listboxItemCurrent,
           this.listboxCurrentItemActionsButtons.map((node) => node.id).join(' ')

@@ -79,7 +79,6 @@
         <h2 id="ex_label">Example</h2>
       </div>
       <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
-      <div class="offscreen">Last change: <span aria-live="polite" id="ss_live_region"></span></div>
       <div id="ex">
         <p>
           Plan your bucket list: Select an item to view or edit its details. Flag it for follow up if you need to do
@@ -166,22 +165,13 @@
 
           <div class="contentColumn">
             <div class="listbox-area">
-              <h3>Details:</h3>
-              <div id="ss_elem_IronMan_detail_panel" class="js-detailPanel detailPanel is-hidden">
-                Iron Man content goes here.
-              </div>
-              <div id="ss_elem_Everest_detail_panel" class="js-detailPanel detailPanel is-hidden">
-                Climbing Mount Everest content goes here.
-              </div>
-              <div id="ss_elem_Archery_detail_panel" class="js-detailPanel detailPanel is-hidden">
-                Archery content goes here.
-              </div>
-              <div id="ss_elem_GuideDog_detail_panel" class="js-detailPanel detailPanel is-hidden">
-                Gide dog training content goes here.
-              </div>
-              <div id="ss_elem_Airplane_detail_panel" class="js-detailPanel detailPanel is-hidden">
-                Airplane Building content goes here.
-              </div>
+              <h3 id="listboxDetailsLabel">Details:</h3>
+              <textarea aria-labelledby="listboxDetailsLabel" readonly id="ss_elem_IronMan_detail_panel" class="js-detailPanel detailPanel is-hidden">Iron Man content goes here.</textarea>
+              <textarea aria-labelledby="listboxDetailsLabel" readonly id="ss_elem_Everest_detail_panel" class="js-detailPanel detailPanel is-hidden">Climbing Mount Everest content goes here.</textarea>
+              <textarea aria-labelledby="listboxDetailsLabel" readonly id="ss_elem_Archery_detail_panel" class="js-detailPanel detailPanel is-hidden">Archery content goes here.</textarea>
+              <textarea aria-labelledby="listboxDetailsLabel" readonly id="ss_elem_GuideDog_detail_panel" class="js-detailPanel detailPanel is-hidden">Gide dog training content goes here.</textarea>
+              <textarea aria-labelledby="listboxDetailsLabel" readonly id="ss_elem_Airplane_detail_panel" class="js-detailPanel detailPanel is-hidden">Airplane Building content goes here.
+              </textarea>
             </div>
           </div>
         </div>
