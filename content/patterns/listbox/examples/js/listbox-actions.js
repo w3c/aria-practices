@@ -25,18 +25,12 @@ aria.ListboxActions = class ListboxActions {
   constructor(listboxActionsObject) {
     this.listboxActionsNode = listboxActionsObject;
     this.listboxCurrentItemActionsButtons = [];
-    this.activeDescendant = this.listboxActionsNode.getAttribute(
-      'aria-activedescendant'
-    );
     this.listboxOptionArray = Array.from(
       this.listboxActionsNode.querySelectorAll('[role="option"]')
     );
     this.selectItem(this.listboxOptionArray[0]);
     this.listboxItemCurrent = this.listboxOptionArray[0];
     this.populateCurrentItemActionButtons();
-    this.listboxActiveOption = null;
-    this.activeDescendant = null;
-    this.listboxCurrentOptionIndex = -1;
     this.listboxItemsWithAriaActionsArray = [];
     this.registerActionsEvents();
     this.useAriaNotify = document.ariaNotify;
@@ -119,6 +113,9 @@ aria.ListboxActions = class ListboxActions {
     if (currentOptionIndex > -1 && currentOptionIndex < allOptions.length - 1) {
       nextOption = allOptions[currentOptionIndex + 1];
     }
+    if (!nextOption) {
+      nextOption = currentOption;
+    }
 
     return nextOption;
   }
@@ -135,13 +132,15 @@ aria.ListboxActions = class ListboxActions {
       previousOption = allOptions[currentOptionIndex - 1];
     }
 
+    if (!previousOption) {
+      previousOption = currentOption;
+    }
+
     return previousOption;
   }
   /**
    * @description
-   *  Remove all of the selected items from the listbox; Removes the focused items
-   *  in a single select listbox and the items with aria-selected in a multi
-   *  select listbox.
+   *  Remove the selected item from the listbox
    */
   deleteItems() {
     let itemToDelete = document.getElementById(this.activeDescendant);
@@ -186,8 +185,6 @@ aria.ListboxActions = class ListboxActions {
     element.setAttribute('aria-selected', true);
     this.focusItem(element);
     this.populateDetails(element);
-    this.listboxActionsNode.setAttribute('aria-activedescendant', element.id);
-    this.activeDescendant = element.id;
   }
   /**
    * @description
@@ -216,39 +213,6 @@ aria.ListboxActions = class ListboxActions {
   }
   /**
    * @description
-   *  Enable/disable the up/down arrows based on the activeDescendant.
-   */
-  checkUpDownButtons() {
-    const activeElement = document.getElementById(this.activeDescendant);
-
-    if (!this.moveUpDownEnabled) {
-      return;
-    }
-
-    if (!activeElement) {
-      this.upButton.setAttribute('aria-disabled', 'true');
-      this.downButton.setAttribute('aria-disabled', 'true');
-      return;
-    }
-
-    if (this.upButton) {
-      if (activeElement.previousElementSibling) {
-        this.upButton.setAttribute('aria-disabled', false);
-      } else {
-        this.upButton.setAttribute('aria-disabled', 'true');
-      }
-    }
-
-    if (this.downButton) {
-      if (activeElement.nextElementSibling) {
-        this.downButton.setAttribute('aria-disabled', false);
-      } else {
-        this.downButton.setAttribute('aria-disabled', 'true');
-      }
-    }
-  }
-  /**
-   * @description
    *  Shifts the currently focused item up on the list. No shifting occurs if the
    *  item is already at the top of the list.
    */
@@ -265,7 +229,6 @@ aria.ListboxActions = class ListboxActions {
       this.handleItemChange('moved_up', currentItem);
     }
 
-    this.checkUpDownButtons();
   }
 
   /**
@@ -286,7 +249,6 @@ aria.ListboxActions = class ListboxActions {
       this.handleItemChange('moved_down', currentItem);
     }
 
-    this.checkUpDownButtons();
   }
 
   /**
@@ -300,6 +262,15 @@ aria.ListboxActions = class ListboxActions {
       return;
     }
     element.classList.remove('focusedActionButton');
+  }
+  /**
+   * @description
+   *  Defocus the all action items
+   */
+  defocusActionsItems() {
+    for (let i = 0; i < this.listboxCurrentItemActionsButtons.length; i++) {
+      this.defocusActionsItem(this.listboxCurrentItemActionsButtons[i]);
+    }
   }
   /**
    * @description
@@ -325,6 +296,15 @@ aria.ListboxActions = class ListboxActions {
   setAriaActions(item, actions) {
     if (item) {
       item.setAttribute('aria-actions', actions);
+    }
+  }
+  /**
+   * @description
+   *  Sets aria-actions on the all options
+   */
+  unSetAllAriaActions() {
+    for (let i = 0; i < this.listboxItemsWithAriaActionsArray.length; i++) {
+      this.setAriaActions(this.listboxItemsWithAriaActionsArray[i], ' ');
     }
   }
   /**
@@ -369,6 +349,17 @@ aria.ListboxActions = class ListboxActions {
           .querySelector('.uparrow')
           .classList.remove('hide-actions-button');
       }
+    }
+    if (
+        this.listboxOptionArray.indexOf(this.listboxItemCurrent) == this.listboxOptionArray.length - 1 || 
+        this.listboxOptionArray.indexOf(this.listboxItemCurrent) == 0
+      ) {
+        this.setActiveDescendant(this.listboxItemCurrent);
+        this.focusItem(this.listboxItemCurrent);
+        this.setAriaActions(
+          this.listboxItemCurrent,
+          this.listboxCurrentItemActionsButtons.map((node) => node.id).join(' ')
+        );
     }
   }
   /**
@@ -418,16 +409,8 @@ aria.ListboxActions = class ListboxActions {
       case 'delete':
         this.listboxItemCurrent.classList.remove('focused');
         this.deleteItems();
-        for (let i = 0; i < this.listboxCurrentItemActionsButtons.length; i++) {
-          this.defocusActionsItem(this.listboxCurrentItemActionsButtons[i]);
-        }
-        for (let i = 0; i < this.listboxItemsWithAriaActionsArray.length; i++) {
-          this.setActiveDescendant(
-            this.listboxItemsWithAriaActionsArray[i],
-            ''
-          );
-        }
-        this.setActiveDescendant(this.listboxItemsWithAriaActionsArray[0]);
+        this.defocusActionsItems();
+        this.listboxActionsNode.setAttribute('aria-activedescendant', '');
         this.updateArrowUpDownItems();
         this.populateCurrentItemActionButtons();
         break;
@@ -480,26 +463,41 @@ aria.ListboxActions = class ListboxActions {
     let listitemCurrentItemActionsButtonPosition,
       listboxCurrentItemActionsButton;
     this.listboxItemCurrent = this.listboxActionsNode.querySelector('.focused');
-    this.listboxCurrentOptionIndex = this.listboxOptionArray.indexOf(
-      this.listboxItemCurrent
-    );
     this.activeDescendant = this.listboxActionsNode.getAttribute(
       'aria-activedescendant'
     );
-    this.listboxActiveOption =
-      this.listboxActionsNode.querySelector('.focused');
     this.listboxItemsWithAriaActionsArray =
       event.currentTarget.querySelectorAll('[aria-actions]');
     switch (event.key) {
+      case 'Home':
+      case 'End':
+        event.preventDefault();
+        this.defocusActionsItems();
+        this.unSetAllAriaActions();
+        this.defocusItem(this.listboxItemCurrent);
+        if (event.key === 'Home') {
+          this.focusItem(this.listboxOptionArray[0]);
+          this.listboxItemCurrent = this.listboxOptionArray[0];
+          this.populateCurrentItemActionButtons();
+          this.setAriaActions(
+            this.listboxItemCurrent,
+            this.listboxCurrentItemActionsButtons.map((node) => node.id).join(' ')
+          );
+        } else {
+          this.focusItem(this.listboxOptionArray[this.listboxOptionArray.length-1]);
+          this.listboxItemCurrent = this.listboxOptionArray[this.listboxOptionArray.length-1];
+          this.populateCurrentItemActionButtons();
+          this.setAriaActions(
+            this.listboxItemCurrent,
+            this.listboxCurrentItemActionsButtons.map((node) => node.id).join(' ')
+          );
+        }
+        break;
       case 'ArrowUp':
       case 'ArrowDown':
         event.preventDefault();
-        for (let i = 0; i < this.listboxCurrentItemActionsButtons.length; i++) {
-          this.defocusActionsItem(this.listboxCurrentItemActionsButtons[i]);
-        }
-        for (let i = 0; i < this.listboxItemsWithAriaActionsArray.length; i++) {
-          this.setAriaActions(this.listboxItemsWithAriaActionsArray[i], ' ');
-        }
+        this.defocusActionsItems();
+        this.unSetAllAriaActions();
         this.defocusItem(this.listboxItemCurrent);
         if (event.key === 'ArrowUp') {
           this.listboxItemCurrent = this.findPreviousOption(
@@ -531,9 +529,7 @@ aria.ListboxActions = class ListboxActions {
       case 'ArrowLeft':
       case 'ArrowRight':
         event.preventDefault();
-        for (let i = 0; i < this.listboxCurrentItemActionsButtons.length; i++) {
-          this.defocusActionsItem(this.listboxCurrentItemActionsButtons[i]);
-        }
+        this.defocusActionsItems();
         listboxCurrentItemActionsButton = this.listboxActionsNode.querySelector(
           '#' + this.activeDescendant
         );
