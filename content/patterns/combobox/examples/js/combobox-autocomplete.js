@@ -189,8 +189,17 @@ class ComboboxAutocomplete {
   // ComboboxAutocomplete Events
 
   filterOptions() {
-    // do not filter any options if autocomplete is none
-    if (this.isNone) {
+    // Do not filter options when:
+    // 1. The autocomplete value is "none".
+    // 2. The filter is empty.
+    // 3. The filter exactly matches the content of an option (case-insensitive).
+    if (
+      this.isNone ||
+      this.filter.trim() === '' ||
+      this.allOptions.some(
+        (opt) => this.getLowercaseContent(opt) === this.filter.toLowerCase()
+      )
+    ) {
       this.filter = '';
     }
 
@@ -514,9 +523,7 @@ class ComboboxAutocomplete {
   }
 
   onComboboxClick() {
-    if (this.isOpen()) {
-      this.close(true);
-    } else {
+    if (!this.isOpen()) {
       this.open();
     }
   }
