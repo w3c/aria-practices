@@ -228,7 +228,6 @@ aria.ListboxActions = class ListboxActions {
       this.listboxActionsNode.insertBefore(currentItem, previousItem);
       this.handleItemChange('moved_up', currentItem);
     }
-
   }
 
   /**
@@ -248,7 +247,6 @@ aria.ListboxActions = class ListboxActions {
       this.listboxActionsNode.insertBefore(nextItem, currentItem);
       this.handleItemChange('moved_down', currentItem);
     }
-
   }
 
   /**
@@ -351,15 +349,16 @@ aria.ListboxActions = class ListboxActions {
       }
     }
     if (
-        this.listboxOptionArray.indexOf(this.listboxItemCurrent) == this.listboxOptionArray.length - 1 || 
-        this.listboxOptionArray.indexOf(this.listboxItemCurrent) == 0
-      ) {
-        this.setActiveDescendant(this.listboxItemCurrent);
-        this.focusItem(this.listboxItemCurrent);
-        this.setAriaActions(
-          this.listboxItemCurrent,
-          this.listboxCurrentItemActionsButtons.map((node) => node.id).join(' ')
-        );
+      this.listboxOptionArray.indexOf(this.listboxItemCurrent) ==
+        this.listboxOptionArray.length - 1 ||
+      this.listboxOptionArray.indexOf(this.listboxItemCurrent) == 0
+    ) {
+      this.setActiveDescendant(this.listboxItemCurrent);
+      this.focusItem(this.listboxItemCurrent);
+      this.setAriaActions(
+        this.listboxItemCurrent,
+        this.listboxCurrentItemActionsButtons.map((node) => node.id).join(' ')
+      );
     }
   }
   /**
@@ -481,15 +480,22 @@ aria.ListboxActions = class ListboxActions {
           this.populateCurrentItemActionButtons();
           this.setAriaActions(
             this.listboxItemCurrent,
-            this.listboxCurrentItemActionsButtons.map((node) => node.id).join(' ')
+            this.listboxCurrentItemActionsButtons
+              .map((node) => node.id)
+              .join(' ')
           );
         } else {
-          this.focusItem(this.listboxOptionArray[this.listboxOptionArray.length-1]);
-          this.listboxItemCurrent = this.listboxOptionArray[this.listboxOptionArray.length-1];
+          this.focusItem(
+            this.listboxOptionArray[this.listboxOptionArray.length - 1]
+          );
+          this.listboxItemCurrent =
+            this.listboxOptionArray[this.listboxOptionArray.length - 1];
           this.populateCurrentItemActionButtons();
           this.setAriaActions(
             this.listboxItemCurrent,
-            this.listboxCurrentItemActionsButtons.map((node) => node.id).join(' ')
+            this.listboxCurrentItemActionsButtons
+              .map((node) => node.id)
+              .join(' ')
           );
         }
         break;
