@@ -229,18 +229,15 @@
       <h2 id="kbd_label">Keyboard Support</h2>
       <p>
         The example listbox on this page implements the following keyboard interface.
-        Other variations and options for the keyboard interface are described in the <a
-          href="../listbox-pattern.html#keyboard_interaction">Keyboard Interaction section of the Listbox Pattern</a>.
+        Other variations and options for the keyboard interface are described in the
+        <a href="../listbox-pattern.html#keyboard_interaction">Keyboard Interaction section of the Listbox Pattern</a>.
       </p>
       <p>
         <strong>NOTE:</strong> When visual focus is on an option in this listbox implementation, DOM focus remains on
-        the listbox element and the value of <code>aria-activedescendant</code> on the listbox refers to the descendant
-        option that is visually indicated as focused.
-        Where the following descriptions of keyboard commands mention focus, they are referring to the visual focus
-        indicator, not DOM focus.
+        the listbox element and the value of <code>aria-activedescendant</code> on the listbox refers to the descendant option that is visually indicated as focused.
+        Where the following descriptions of keyboard commands mention focus, they are referring to the visual focus indicator, not DOM focus.
         For more information about this focus management technique, see
-        <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_activedescendant">Managing
-          Focus in Composites Using aria-activedescendant</a>.
+        <a href="../../../practices/keyboard-interface/keyboard-interface-practice.html#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.
       </p>
       <table aria-labelledby="kbd_label" class="def">
         <thead>
@@ -256,11 +253,11 @@
           </tr>
           <tr data-test-id="key-down-arrow">
             <th><kbd>Down Arrow</kbd></th>
-            <td>Moves focus to and selects the next option.</td>
+            <td>Moves focus to the next option. If the last option has focus, does nothing.</td>
           </tr>
           <tr data-test-id="key-up-arrow">
             <th><kbd>Up Arrow</kbd></th>
-            <td>Moves focus to and selects the previous option.</td>
+            <td>Moves focus to the previous option. If the first option has focus, does nothing.</td>
           </tr>
           <tr data-test-id="key-right-arrow">
             <th><kbd>Right Arrow</kbd></th>
@@ -276,8 +273,7 @@
             <th><kbd>Left Arrow</kbd></th>
             <td>
               <ul>
-                <li>If any action button except for the first action button has focus, moves focus to the previous
-                  action button for the current option.</li>
+                <li>If any action button except for the first action button has focus, moves focus to the previous action button for the current option.</li>
                 <li>If the first action button has focus, moves focus to the current option.</li>
                 <li>If an option has focus, does nothing.</li>
               </ul>
@@ -285,11 +281,11 @@
           </tr>
           <tr data-test-id="key-home">
             <th><kbd>Home</kbd></th>
-            <td>Moves focus to and selects the first option.</td>
+            <td>Moves focus to the first option.</td>
           </tr>
           <tr data-test-id="key-end">
             <th><kbd>End</kbd></th>
-            <td>Moves focus to and selects the last option.</td>
+            <td>Moves focus to the last option.</td>
           </tr>
           <tr data-test-id="key-character">
             <th>Printable Characters</th>
