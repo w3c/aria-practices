@@ -15,6 +15,7 @@ const ex = {
   optionsSelector: '#ex1 [role="option"]',
   buttonSelector: '#ex1 button',
   numAOptions: 5,
+  numOptions: 56,
   exampleHeadingSelector: '.example-header',
 };
 
@@ -1094,6 +1095,107 @@ ariaTest(
       (await t.context.queryElements(t, ex.optionsSelector)).length,
       ex.numAOptions,
       'Sending standard editing keys should filter results'
+    );
+  }
+);
+
+ariaTest(
+  'Test clicking textbox opens popup but does not close it on second click',
+  exampleFile,
+  'textbox-click',
+  async (t) => {
+    const textbox = await t.context.session.findElement(
+      By.css(ex.textboxSelector)
+    );
+
+    // First click - popup should open
+    await textbox.click();
+    t.true(
+      await t.context.session
+        .findElement(By.css(ex.listboxSelector))
+        .isDisplayed(),
+      'Listbox should be displayed after clicking the textbox'
+    );
+
+    // Second click - popup should remain open
+    await textbox.click();
+    t.true(
+      await t.context.session
+        .findElement(By.css(ex.listboxSelector))
+        .isDisplayed(),
+      'Listbox should remain displayed after clicking the textbox a second time'
+    );
+  }
+);
+
+ariaTest(
+  'Test focusing textbox without click does not open popup',
+  exampleFile,
+  'textbox-focus',
+  async (t) => {
+    await t.context.session.executeScript(function () {
+      document.querySelector(arguments[0]).focus();
+    }, ex.textboxSelector);
+
+    t.false(
+      await t.context.session
+        .findElement(By.css(ex.listboxSelector))
+        .isDisplayed(),
+      'Listbox should not be displayed after focusing the textbox without clicking'
+    );
+  }
+);
+
+ariaTest(
+  'Test filter behavior: all options shown when value is empty or an exact match; filtered otherwise',
+  exampleFile,
+  'textbox-filter',
+  async (t) => {
+    const textbox = await t.context.session.findElement(
+      By.css(ex.textboxSelector)
+    );
+
+    // Click to open popup with empty input - all options should be shown
+    await textbox.click();
+    t.is(
+      (await t.context.queryElements(t, ex.optionsSelector)).length,
+      ex.numOptions,
+      'All options should be shown when the textbox is empty'
+    );
+
+    // Type an exact option name - all options should still be shown
+    await textbox.sendKeys('Alabama');
+    t.is(
+      (await t.context.queryElements(t, ex.optionsSelector)).length,
+      ex.numOptions,
+      'All options should be shown when the textbox value exactly matches an option'
+    );
+
+    // Type an exact option name in different case - all options should still be shown
+    await textbox.sendKeys(Key.chord(Key.CONTROL, 'a'), Key.BACK_SPACE);
+    await textbox.sendKeys('alabama');
+    t.is(
+      (await t.context.queryElements(t, ex.optionsSelector)).length,
+      ex.numOptions,
+      'All options should be shown when the textbox value exactly matches an option ignoring case'
+    );
+
+    // Type only whitespace - all options should be shown since trimmed value is empty
+    await textbox.sendKeys(Key.chord(Key.CONTROL, 'a'), Key.BACK_SPACE);
+    await textbox.sendKeys('  ');
+    t.is(
+      (await t.context.queryElements(t, ex.optionsSelector)).length,
+      ex.numOptions,
+      'All options should be shown when the textbox contains only whitespace'
+    );
+
+    // Clear the value and type a partial string - options should be filtered to exact count
+    await textbox.sendKeys(Key.chord(Key.CONTROL, 'a'), Key.BACK_SPACE);
+    await textbox.sendKeys('al');
+    t.is(
+      (await t.context.queryElements(t, ex.optionsSelector)).length,
+      2,
+      'Only Alabama and Alaska should be shown when typing "al"'
     );
   }
 );
