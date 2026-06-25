@@ -14,6 +14,37 @@ Please do not provide commit access to this repository without coordination.
 - Work is organized by topic in our [projects](https://github.com/w3c/aria-practices/projects). Each project corresponds to a type of design pattern or section of guidance.
 - The [scope of work and roadmap](https://github.com/w3c/aria-practices/wiki/Scope) are described in the project wiki.
 
+## MCP Server (AI and Chatbot Integration)
+
+The repository includes a [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server that exposes WAI-ARIA pattern documentation as on-demand resources. AI agents and chatbots can fetch pattern specs (keyboard interaction, ARIA roles, states, and properties) when helping developers build accessible components.
+
+**Prerequisites:** Node.js and `npm install`.
+
+**Run from cloned repo:**
+
+```sh
+npm run mcp
+```
+
+**Use with Cursor:** Add to your MCP settings (e.g. in Cursor settings or `.cursor/mcp.json`):
+
+```json
+{
+  "mcpServers": {
+    "wai-aria-apg": {
+      "command": "node",
+      "args": ["/path/to/aria-practices/mcp-server/index.mjs"]
+    }
+  }
+}
+```
+
+Replace `/path/to/aria-practices` with the actual path to your cloned repository. The AI can then fetch pattern specs via resources like `apg://pattern/accordion` or `apg://pattern/combobox`.
+
+For other MCP-compatible clients, see the [Model Context Protocol documentation](https://modelcontextprotocol.io/).
+
+**Cursor Skill:** Copy `skill/wai-aria-apg` to `.cursor/skills/` in your project so the AI uses APG patterns when building accessible components. See [skill/README.md](skill/README.md).
+
 ## Contributing
 
 1. Comment in an existing issue or raise a new issue, expressing your willingness to help and briefly summarizing the nature of your proposed resolution.
