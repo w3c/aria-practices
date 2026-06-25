@@ -158,15 +158,9 @@ async function checkLinks() {
             try {
               const response = await nFetch(externalPageLink, {
                 headers: {
-                  // Spoof a normal looking User-Agent to keep the servers happy
-                  // See https://github.com/JustinBeckwith/linkinator/blob/main/src/index.ts
-                  //
-                  // To better future-proof against the ua string being
-                  // responsible for any breakage, pull common, up-to-date strings
-                  // from a reliable source.
-                  // https://github.com/w3c/aria-practices/issues/3270
+                  // Clearly identifies this as being a link checker, and links to the project repo for more info.
                   'User-Agent':
-                    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/605.1.1',
+                    'W3C/aria-practices-link-checker (+https://github.com/w3c/aria-practices)',
                 },
               });
 
