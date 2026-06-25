@@ -1027,7 +1027,7 @@ ariaTest(
           .findElement(By.css(ex.textareaSelector))
           .getAttribute('style');
 
-        // send ENTER to the item
+        // send Space to the item
         await item.sendKeys(Key.SPACE);
 
         const isMenuitem = await t.context.session.executeScript(
