@@ -150,11 +150,10 @@ async function checkLinks() {
 
         const getPageData = async () => {
           const domain = new URL(externalPageLink).hostname;
-          let retryCount = 0;
           const maxRetries = 3;
           const baseDelay = 15;
 
-          while (retryCount < maxRetries) {
+          for (let attempt = 0; attempt < maxRetries; attempt++) {
             try {
               const response = await nFetch(externalPageLink, {
                 headers: {
@@ -194,16 +193,15 @@ async function checkLinks() {
                 reactPartial,
               };
             } catch (error) {
-              if (retryCount < maxRetries) {
+              if (attempt < maxRetries - 1) {
                 // Found the retry-after unit returned from response headers too
                 // variable to use here, but ~15 seconds seems like a safe
                 // initial default
-                const delay = baseDelay * 1000 * Math.pow(2, retryCount);
+                const delay = baseDelay * 1000 * Math.pow(2, attempt);
                 console.info(
                   `Error fetching ${externalPageLink}: ${error.message}, retrying in ${delay}ms`
                 );
                 await new Promise((resolve) => setTimeout(resolve, delay));
-                retryCount++;
                 continue;
               }
               return {
