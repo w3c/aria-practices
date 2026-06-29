@@ -48,63 +48,63 @@
               The structural information conveyed visually to users should be represented programmatically in the markup using landmark roles.
               The use of landmarks roles support keyboard navigation to the structure of a web page for screen reader users, and can be used as targets for author supplied "skip links" and browser extensions for enhanced keyboard navigation.
             </p>
-            <p>This section is intended to assist designers, developers and quality assurance staff in defining and understanding the importance of logical, usable, and accessible layout for assistive technologies
+            <p>This page is intended to assist designers, developers and quality assurance staff in defining and understanding the importance of logical, usable, and accessible layout for assistive technologies
               using HTML sectioning elements and ARIA landmark roles.
             </p>
             <p>Due to the complexity of today's web content, if using landmarks, <strong>all perceivable content</strong> should reside in a semantically meaningful landmark in order that content is not missed by the user.</p>
 
-            <p style="font-weight: bold">Step 1: Identify the logical structure</p>
+            <p><strong>Step 1: Identify the logical structure</strong></p>
+
             <ul>
-              <li>
-                Break the page into perceivable areas called "areas".
-              </li>
-              <li>
-                Typically, designers indicate areas visually using alignment and spacing of content.
-              </li>
-              <li>
-                Regions can be further defined into logical sub-areas as needed.
-              </li>
-              <li>
-                An example of a sub-area is a portlet in a portal application.
-              </li>
+              <li>Break the page into perceivable areas of content which designers typically indicate visually using alignment and spacing.</li>
+
+              <li>Areas can be further defined into logical sub-areas as needed.</li>
+
+              <li>An example of a sub-area is a portlet in a portal application.</li>
             </ul>
 
-            <p style="font-weight: bold">Step 2: Assign landmark roles to each area</p>
+            <p><strong>Step 2: Assign landmark roles to each area</strong></p>
+
             <ul>
-              <li>
-                Assign landmark roles based on the type of content in the area.
-              </li>
-              <li>
-                <code>banner</code>, <code>main</code>, <code>complementary</code> and <code>contentinfo</code> landmarks should be top level landmarks.
-              </li>
-              <li>
-                Landmark roles can be nested to identify parent/child relationships of the information being presented.
-              </li>
+              <li>Assign landmark roles based on the type of content in the area.</li>
+              <li><code>banner</code>, <code>main</code>, <code>complementary</code> and <code>contentinfo</code> landmarks should be top level landmarks.</li>
+              <li>Landmark roles can be nested to identify parent/child relationships of the information being presented.</li>
               <li>
                 Note that wrapping  the content  of a modal dialog in a landmark region is unnecessary.
                 A landmark that wraps modal content cannot provide any benefit to users because it is not perceivable unless the modal is open.
-                In addition, when a modal is open, a landmark containing its content is   superfluous because the modal itself is a container that provides both a name and boundaries.
+                In addition, when a modal is open, a landmark containing its content is superfluous because the modal itself is a container that provides both a name and boundaries.
               </li>
             </ul>
 
-            <p style="font-weight: bold">Step 3: Label each area</p>
+            <p id="aria_lh_step3"><strong>Step 3: Label landmarks</strong></p>
+
             <ul>
               <li>
-                If a specific landmark role is used more than once on a web page, it should have a unique label.
+                If a specific landmark role requires a label or is used more than once on a page, provide each instance of that landmark with a unique and descriptive label.  The label should be short and help people understand the content in the region.
               </li>
+
               <li>
-                If an area begins with a heading element (e.g. <code>h1-h6</code>), it can be used as the label for the area using <code>aria-labelledby</code> attribute.
+                There is one rare circumstance where providing the same label to multiple instances of a landmark can be beneficial: the content and purpose of each instance is identical.
+                For example, a large search results table has two sets of identical pagination controls -- one above and one below the table, so each set is in a navigation region labelled <q>Search Results</q>.
+                In this case, adding extra information to the label that distinguishes the two instances may be more distracting than helpful.
               </li>
+
               <li>
-                If an area does not have a heading element, provide a label using the <code>aria-label</code> attribute.
+                If a landmark is only used once on the page it may not require a label.
+                See Landmark Roles section below.
               </li>
+
+              <li>If an landmark region begins with a heading element (e.g. <code>h1-h6</code>) it can be used as the label for the region using <code>aria-labelledby</code>.</li>
+
+              <li>If a landmark requires a label and does not have a heading element, provide a label using the <code>aria-label</code> attribute.  Note: While the <code>title</code> attribute can also be used to provide a label, it is not considered a best practice and is discouraged.</li>
+
               <li>
-                Avoid using the landmark role as part of the label.
-                For example, a navigation landmark with a label "Site Navigation" will be announced by a screen reader as "Site Navigation Navigation".
-                The label should simply be "Site".
+                Do not use the landmark role as part of the label.
+                For example, a navigation landmark with a label &quot;Site Navigation&quot; will be announced by a screen reader as &quot;Site Navigation Navigation&quot;.
+                The label should simply be &quot;Site&quot;.
               </li>
             </ul>
-          </main>
+                  </main>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
           <aside aria-labelledby="id4">

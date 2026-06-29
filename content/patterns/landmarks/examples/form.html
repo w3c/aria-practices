@@ -82,7 +82,7 @@
             <ul>
               <li>Use the <code>search</code> landmark instead of the <code>form</code> landmark when the form is used for search functionality.</li>
               <li>A <code>form</code> landmark should have a label to help users understand the purpose of the form.</li>
-              <li>A label for the <code>form</code> landmark should be identified using <code>aria-labelledby</code> to visible heading element (e.g. an <code>h1-h6</code> element).</li>
+              <li>A label for the <code>form</code> landmark should be identified using <code>aria-labelledby</code> to visible heading element (e.g. an <code>h1-h6</code>) or <code>legend</code> element.</li>
               <li>If a page includes more than one <code>form</code> landmark, each should have a unique label.</li>
               <li>
                 Whenever possible, controls contained in a <code>form</code> landmark in an HTML document should use native host semantics:
@@ -92,7 +92,8 @@
                   <li><code>select</code></li>
                   <li><code>textarea</code></li>
                 </ul>
-                </li>
+              </li>
+              <li>Use the <code>form</code> landmark to identify a region of the page; do not use it to identify every form field.</li>
             </ul>
             <section aria-label="Coding Techniques">
               <ul id="myTabs" class="nav nav-tabs" role="tablist">
@@ -101,7 +102,10 @@
               </ul>
               <div class="tab-content">
                 <div id="tabpanel2" aria-labelledby="tab2" role="tabpanel" class="tab-pane active">
-                  <p>If a <code>form</code> element has an accessible name it is considered <code>form</code> landmark.</p>
+                  <ul>
+                    <li>Use a <code>form</code> element with a label to create a <code>form</code> landmark.</li>
+                    <li>Use an <code>aria-labelledby</code> reference to visible heading element (e.g. an <code>h1-h6</code>) or <code>legend</code> element for the label.</li>
+                </ul>
 
                   <h3>HTML Form Landmark Example</h3>
 
@@ -177,8 +181,9 @@
                 </div>
                 <div id="tabpanel1" aria-labelledby="tab1" role="tabpanel" class="tab-pane">
                   <ul>
-                    <li>The <code>role="form"</code> attribute defines a form landmark.</li>
-                    <li>Use the <code>role="form"</code> to identify a region of the page; do not use it to identify every form field.</li>
+                    <li>The <code>role="form"</code> attribute with label to define a <code>form</code> landmark.</li>
+                    <li>Use an <code>aria-labelledby</code> reference to visible heading element (e.g. an <code>h1-h6</code>) or <code>legend</code> element for the label.</li>
+
                   </ul>
 
                   <h3>ARIA Form Landmark Example</h3>
