@@ -3,7 +3,6 @@ const path = require('path');
 const fs = require('fs/promises');
 const glob = require('glob');
 const HTMLParser = require('node-html-parser');
-const nFetch = require('node-fetch');
 const options = require('../.link-checker');
 
 async function checkLinks() {
@@ -150,17 +149,21 @@ async function checkLinks() {
 
         const getPageData = async () => {
           const domain = new URL(externalPageLink).hostname;
-          let retryCount = 0;
           const maxRetries = 3;
           const baseDelay = 15;
 
-          while (retryCount < maxRetries) {
+          for (let attempt = 0; attempt < maxRetries; attempt++) {
+            let step = 'fetch';
             try {
-              const response = await nFetch(externalPageLink, {
+              const response = await fetch(externalPageLink, {
                 headers: {
                   // Clearly identifies this as being a link checker, and links to the project repo for more info.
                   'User-Agent':
                     'W3C/aria-practices-link-checker (+https://github.com/w3c/aria-practices)',
+                  Accept:
+                    'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                  'Accept-Language': 'en-US,en;q=0.5',
+                  'Accept-Encoding': 'gzip, deflate, br',
                 },
               });
 
@@ -178,14 +181,18 @@ async function checkLinks() {
                 );
               }
 
+              step = 'read body';
               const text = await response.text();
+              step = 'parse HTML';
               const html = HTMLParser.parse(text);
+              step = 'extract ids';
               const ids = html
                 .querySelectorAll('[id]')
                 .map((idElement) => idElement.getAttribute('id'));
 
               // Handle GitHub README links.
               // These links are stored within a react-partial element
+              step = 'getReactPartial';
               const reactPartial = getReactPartial(hrefOrSrc, html);
               return {
                 ok: response.ok,
@@ -194,16 +201,15 @@ async function checkLinks() {
                 reactPartial,
               };
             } catch (error) {
-              if (retryCount < maxRetries) {
+              if (attempt < maxRetries - 1) {
                 // Found the retry-after unit returned from response headers too
                 // variable to use here, but ~15 seconds seems like a safe
                 // initial default
-                const delay = baseDelay * 1000 * Math.pow(2, retryCount);
+                const delay = baseDelay * 1000 * Math.pow(2, attempt);
                 console.info(
-                  `Error fetching ${externalPageLink}: ${error.message}, retrying in ${delay}ms`
+                  `Error at step "${step}" for ${externalPageLink}: ${error.message}, retrying in ${delay}ms`
                 );
                 await new Promise((resolve) => setTimeout(resolve, delay));
-                retryCount++;
                 continue;
               }
               return {
@@ -232,22 +238,24 @@ async function checkLinks() {
 
   let externalPageData = {};
 
-  // Limit number of logs for readability
-  const intervalId = setInterval(() => {
-    console.info(`Checking ${loadedCount} of ${loadingCount} external pages`);
-  }, 5000);
-
-  await Promise.all(
-    Object.entries(externalPageLoaders).map(
-      async ([externalPageLink, getPageData]) => {
-        let pageData = await getPageData();
+  const concurrencyLimit = 5;
+  const loaderEntries = Object.entries(externalPageLoaders);
+  for (let i = 0; i < loaderEntries.length; i += concurrencyLimit) {
+    const batch = loaderEntries.slice(i, i + concurrencyLimit);
+    await Promise.all(
+      batch.map(async ([externalPageLink, getPageData]) => {
+        const start = Date.now();
+        const pageData = await getPageData();
+        const elapsed = ((Date.now() - start) / 1000).toFixed(2);
         externalPageData[externalPageLink] = pageData;
         loadedCount += 1;
-      }
-    )
-  );
+        console.info(
+          `[${loadedCount}/${loadingCount}] ${externalPageLink} (${elapsed}s)`
+        );
+      })
+    );
+  }
 
-  clearInterval(intervalId);
   console.info(`Checked ${loadingCount} of ${loadingCount} external pages`);
 
   for (const [htmlPath, { links }] of Object.entries(allLinkData)) {
