@@ -238,16 +238,21 @@ async function checkLinks() {
 
   let externalPageData = {};
 
-  for (const [externalPageLink, getPageData] of Object.entries(
-    externalPageLoaders
-  )) {
-    const start = Date.now();
-    const pageData = await getPageData();
-    const elapsed = ((Date.now() - start) / 1000).toFixed(2);
-    externalPageData[externalPageLink] = pageData;
-    loadedCount += 1;
-    console.info(
-      `[${loadedCount}/${loadingCount}] ${externalPageLink} (${elapsed}s)`
+  const concurrencyLimit = 5;
+  const loaderEntries = Object.entries(externalPageLoaders);
+  for (let i = 0; i < loaderEntries.length; i += concurrencyLimit) {
+    const batch = loaderEntries.slice(i, i + concurrencyLimit);
+    await Promise.all(
+      batch.map(async ([externalPageLink, getPageData]) => {
+        const start = Date.now();
+        const pageData = await getPageData();
+        const elapsed = ((Date.now() - start) / 1000).toFixed(2);
+        externalPageData[externalPageLink] = pageData;
+        loadedCount += 1;
+        console.info(
+          `[${loadedCount}/${loadingCount}] ${externalPageLink} (${elapsed}s)`
+        );
+      })
     );
   }
 
