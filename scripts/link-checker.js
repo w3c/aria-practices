@@ -160,6 +160,10 @@ async function checkLinks() {
                   // Clearly identifies this as being a link checker, and links to the project repo for more info.
                   'User-Agent':
                     'W3C/aria-practices-link-checker (+https://github.com/w3c/aria-practices)',
+                  Accept:
+                    'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                  'Accept-Language': 'en-US,en;q=0.5',
+                  'Accept-Encoding': 'gzip, deflate, br',
                 },
               });
 
