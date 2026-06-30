@@ -3,7 +3,6 @@ const path = require('path');
 const fs = require('fs/promises');
 const glob = require('glob');
 const HTMLParser = require('node-html-parser');
-const nFetch = require('node-fetch');
 const options = require('../.link-checker');
 
 async function checkLinks() {
@@ -154,8 +153,9 @@ async function checkLinks() {
           const baseDelay = 15;
 
           for (let attempt = 0; attempt < maxRetries; attempt++) {
+            let step = 'fetch';
             try {
-              const response = await nFetch(externalPageLink, {
+              const response = await fetch(externalPageLink, {
                 headers: {
                   // Clearly identifies this as being a link checker, and links to the project repo for more info.
                   'User-Agent':
@@ -181,14 +181,18 @@ async function checkLinks() {
                 );
               }
 
+              step = 'read body';
               const text = await response.text();
+              step = 'parse HTML';
               const html = HTMLParser.parse(text);
+              step = 'extract ids';
               const ids = html
                 .querySelectorAll('[id]')
                 .map((idElement) => idElement.getAttribute('id'));
 
               // Handle GitHub README links.
               // These links are stored within a react-partial element
+              step = 'getReactPartial';
               const reactPartial = getReactPartial(hrefOrSrc, html);
               return {
                 ok: response.ok,
@@ -203,7 +207,7 @@ async function checkLinks() {
                 // initial default
                 const delay = baseDelay * 1000 * Math.pow(2, attempt);
                 console.info(
-                  `Error fetching ${externalPageLink}: ${error.message}, retrying in ${delay}ms`
+                  `Error at step "${step}" for ${externalPageLink}: ${error.message}, retrying in ${delay}ms`
                 );
                 await new Promise((resolve) => setTimeout(resolve, delay));
                 continue;
