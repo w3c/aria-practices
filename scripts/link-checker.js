@@ -230,25 +230,19 @@ async function checkLinks() {
 
   let externalPageData = {};
 
-  // Limit number of logs for readability
-  const intervalId = setInterval(() => {
-    console.info(`Checking ${loadedCount} of ${loadingCount} external pages`);
-  }, 5000);
-
-  const concurrencyLimit = 5;
-  const loaderEntries = Object.entries(externalPageLoaders);
-  for (let i = 0; i < loaderEntries.length; i += concurrencyLimit) {
-    const batch = loaderEntries.slice(i, i + concurrencyLimit);
-    await Promise.all(
-      batch.map(async ([externalPageLink, getPageData]) => {
-        const pageData = await getPageData();
-        externalPageData[externalPageLink] = pageData;
-        loadedCount += 1;
-      })
+  for (const [externalPageLink, getPageData] of Object.entries(
+    externalPageLoaders
+  )) {
+    const start = Date.now();
+    const pageData = await getPageData();
+    const elapsed = ((Date.now() - start) / 1000).toFixed(2);
+    externalPageData[externalPageLink] = pageData;
+    loadedCount += 1;
+    console.info(
+      `[${loadedCount}/${loadingCount}] ${externalPageLink} (${elapsed}s)`
     );
   }
 
-  clearInterval(intervalId);
   console.info(`Checked ${loadingCount} of ${loadingCount} external pages`);
 
   for (const [htmlPath, { links }] of Object.entries(allLinkData)) {
