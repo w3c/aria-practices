@@ -523,9 +523,8 @@ class ComboboxAutocomplete {
   }
 
   onComboboxClick() {
-    if (this.isOpen()) {
-      this.close(true);
-    } else {
+    // Do not toggle open state. Only open the listbox if it is closed.
+    if (!this.isOpen()) {
       this.open();
     }
   }
