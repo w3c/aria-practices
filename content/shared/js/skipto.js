@@ -5730,11 +5730,11 @@ dialog button:hover {
   const debug$1 = new DebugLogging('skiptoContent', false);
   debug$1.flag = false;
 
-  /* @class SkipToContent5110
+  /* @class SkipToContent5111
    *
    */
 
-  class SkipToContent5110 extends HTMLElement {
+  class SkipToContent5111 extends HTMLElement {
 
     constructor() {
       // Always call super first in constructor
@@ -6258,7 +6258,7 @@ dialog button:hover {
           if (!isExtensionLoaded) {
             if (!isBookmarkletLoaded) {
               removePageSkipTo();
-              window.customElements.define(BOOKMARKLET_ELEMENT_NAME, SkipToContent5110);
+              window.customElements.define(BOOKMARKLET_ELEMENT_NAME, SkipToContent5111);
               skipToContentElem = document.createElement(BOOKMARKLET_ELEMENT_NAME);
               skipToContentElem.setAttribute('version', skipToContentElem.version);
               skipToContentElem.setAttribute('type', type);
@@ -6274,7 +6274,7 @@ dialog button:hover {
           if (!isExtensionLoaded) {
             removePageSkipTo();
             removeBookmarkletSkipTo();
-            window.customElements.define(EXTENSION_ELEMENT_NAME, SkipToContent5110);
+            window.customElements.define(EXTENSION_ELEMENT_NAME, SkipToContent5111);
             skipToContentElem = document.createElement(EXTENSION_ELEMENT_NAME);
             skipToContentElem.setAttribute('version', skipToContentElem.version);
             skipToContentElem.setAttribute('type', type);
@@ -6287,7 +6287,7 @@ dialog button:hover {
 
         default:
           if (!isPageLoaded && !isBookmarkletLoaded && !isExtensionLoaded) {
-            window.customElements.define(PAGE_SCRIPT_ELEMENT_NAME, SkipToContent5110);
+            window.customElements.define(PAGE_SCRIPT_ELEMENT_NAME, SkipToContent5111);
             skipToContentElem = document.createElement(PAGE_SCRIPT_ELEMENT_NAME);
             skipToContentElem.setAttribute('version', skipToContentElem.version);
             skipToContentElem.setAttribute('type', type);
