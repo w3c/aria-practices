@@ -341,6 +341,10 @@
             <ul>
               <li>The <code>aria-current="page"</code> attribute is applied to the item in the tree associated with the currently displayed page.</li>
               <li>
+                This example does not use <code>aria-selected</code> because it does not support selecting tree items independently of navigating to a page.
+                <code>aria-current</code> identifies the item associated with the currently displayed page rather than a selected item.
+              </li>
+              <li>
                 The tree item with <code>aria-current</code> is also the only item with <code>tabindex="0"</code>.
                 That is, when tabbing into the tree, focus always lands on the item representing the current page.
               </li>
@@ -608,6 +612,7 @@
               <td>
                 <ul>
                   <li>Applied to the <code>treeitem</code> that is the link to the currently displayed page.</li>
+                  <li>This example does not use <code>aria-selected</code> because the tree does not support selection independently of page navigation.</li>
                   <li>The visual indication of the <code>treeitem</code> with <code>aria-current</code> is a vertical bar to the left of the treeitem label.</li>
                 </ul>
               </td>
