@@ -91,6 +91,7 @@ class SpinButton {
 
     this.el.value = val;
     this.el.ariaValueNow = val;
+    this.el.ariaValueText = val;
     this.el.ariaInvalid = !this.isValid(val) ? 'true' : null;
     this.updateButtonStates();
   }
