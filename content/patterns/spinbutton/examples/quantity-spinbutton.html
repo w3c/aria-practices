@@ -251,6 +251,30 @@
             </ul>
           </li>
           <li>
+            When a spin button’s value is changed:
+            <ul>
+              <li>
+                Its <a
+                href="https://www.w3.org/TR/wai-aria-1.3/#spinbutton:~:text=Authors%20SHOULD%20set%20the%20aria%2Dvaluenow%20attribute%20when%20the%20spinbutton%20has%20a%20value"><code>aria-valuenow</code>
+                attribute is updated to reflect the new integer value</a>.
+              </li>
+              <li>
+                Its <code>aria-valuetext</code> attribute is also updated to the
+                same integer value. In this case, <code>aria-valuetext</code> is
+                technically unnecessary because <code>aria-valuenow</code>
+                already provides <a
+                href="https://www.w3.org/TR/wai-aria-1.3/#aria-valuetext">the
+                intended human-readable representation</a>: an integer. However,
+                when <code>aria-valuemin</code> and
+                <code>aria-valuemax</code> are present, some assistive
+                technologies may undesirably express the value as a percentage.
+                Providing <code>aria-valuetext</code> with the same integer
+                value unambiguously encourages all assistive technologies to
+                express the value as an integer instead.
+              </li>
+            </ul>
+          </li>
+          <li>
             When forced colors are enabled, <a
             href="https://www.w3.org/TR/css-color-4/#css-system-colors">system
             color keywords</a> are used to ensure visibility and sufficient
