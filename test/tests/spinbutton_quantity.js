@@ -91,6 +91,15 @@ ariaTest(
 );
 
 ariaTest(
+  '"aria-valuetext" reflects spinbutton value as human-readable text',
+  exampleFile,
+  'spinbutton-aria-valuetext',
+  async (t) => {
+    await assertAttributeValues(t, ex.spin.sel, 'aria-valuetext', ex.spin.now);
+  }
+);
+
+ariaTest(
   '"aria-errormessage" is used to provide an error message for the spinbutton.',
   exampleFile,
   'spinbutton-aria-errormessage',
@@ -167,6 +176,11 @@ ariaTest('end', exampleFile, 'spinbutton-end', async (t) => {
     max,
     `After sending end key, aria-valuenow should be the maximum value: ${max}`
   );
+  t.is(
+    parseInt(await spinner.getAttribute('aria-valuetext')),
+    max,
+    `After sending end key, aria-valuetext should be the maximum value: ${max}`
+  );
 
   // Check that the decrement button is not disabled.
   await assertAttributeDNE(t, ex.dec.sel, 'aria-disabled');
@@ -185,6 +199,11 @@ ariaTest('home', exampleFile, 'spinbutton-home', async (t) => {
     parseInt(await spinner.getAttribute('aria-valuenow')),
     min,
     `After sending home key, aria-valuenow should be the minimum value: ${min}`
+  );
+  t.is(
+    parseInt(await spinner.getAttribute('aria-valuetext')),
+    min,
+    `After sending home key, aria-valuetext should be the minimum value: ${min}`
   );
 
   // Check that the decrement button is disabled.
@@ -213,6 +232,13 @@ ariaTest('up arrow', exampleFile, 'spinbutton-up-arrow', async (t) => {
       val,
       `After sending ${val - 1} up arrows, aria-valuenow should be ${val}`
     );
+
+    // Check that aria-valuetext is updated correctly.
+    t.is(
+      parseInt(await spinner.getAttribute('aria-valuetext')),
+      val,
+      `After sending ${val - 1} up arrows, aria-valuetext should be ${val}`
+    );
   }
 
   // Check that the decrement button is no longer disabled.
@@ -221,12 +247,19 @@ ariaTest('up arrow', exampleFile, 'spinbutton-up-arrow', async (t) => {
   // Check that the increment button is now disabled.
   await assertAttributeValues(t, ex.inc.sel, 'aria-disabled', 'true');
 
-  // Send one more and check that aria-valuenow remains at the maximum value.
+  // Send one more and check that aria-valuenow and aria-valuetext remain at the
+  // maximum value.
   await spinner.sendKeys(Key.ARROW_UP);
   t.is(
     parseInt(await spinner.getAttribute('aria-valuenow')),
     max,
     `After sending one more up arrow, aria-valuenow should still be ${max}`
+  );
+
+  t.is(
+    parseInt(await spinner.getAttribute('aria-valuetext')),
+    max,
+    `After sending one more up arrow, aria-valuetext should still be ${max}`
   );
 
   // Check that the decrement button is still not disabled
@@ -255,6 +288,13 @@ ariaTest('down arrow', exampleFile, 'spinbutton-down-arrow', async (t) => {
       val,
       `After sending ${val + 1} down arrows, aria-valuenow should be ${val}`
     );
+
+    // Check that aria-valuetext is updated correctly.
+    t.is(
+      parseInt(await spinner.getAttribute('aria-valuetext')),
+      val,
+      `After sending ${val + 1} down arrows, aria-valuetext should be ${val}`
+    );
   }
 
   // Check that the decrement button is now disabled.
@@ -263,12 +303,18 @@ ariaTest('down arrow', exampleFile, 'spinbutton-down-arrow', async (t) => {
   // Check that the increment button is no longer disabled.
   await assertAttributeDNE(t, ex.inc.sel, 'aria-disabled');
 
-  // Send one more and check that aria-valuenow remains at the minimum value.
+  // Send one more and check that aria-valuenow and aria-valuetext remain at the
+  // minimum value.
   await spinner.sendKeys(Key.ARROW_DOWN);
   t.is(
     parseInt(await spinner.getAttribute('aria-valuenow')),
     min,
     `After sending one more down arrow, aria-valuenow should still be ${min}`
+  );
+  t.is(
+    parseInt(await spinner.getAttribute('aria-valuetext')),
+    min,
+    `After sending one more down arrow, aria-valuetext should still be ${min}`
   );
 
   // Check that the decrement button is still disabled.
@@ -308,6 +354,13 @@ ariaTest(
         parseInt(await spinner.getAttribute('aria-valuenow')),
         parseInt(val),
         `After inputting “${input}”, aria-valuenow should be ${val}`
+      );
+
+      // Check that aria-valuetext is updated correctly.
+      t.is(
+        parseInt(await spinner.getAttribute('aria-valuetext')),
+        parseInt(val),
+        `After inputting “${input}”, aria-valuetext should be ${val}`
       );
 
       // Check that the input has the expected aria-invalid state.
@@ -358,6 +411,13 @@ ariaTest('increment button', exampleFile, 'increment-button', async (t) => {
       `After clicking ${val - 1} times, aria-valuenow should be ${val}`
     );
 
+    // Check that aria-valuetext is updated correctly.
+    t.is(
+      parseInt(await spinner.getAttribute('aria-valuetext')),
+      val,
+      `After clicking ${val - 1} times, aria-valuetext should be ${val}`
+    );
+
     // Check that the output element has the expected value.
     t.is(
       await output.getText(),
@@ -372,12 +432,18 @@ ariaTest('increment button', exampleFile, 'increment-button', async (t) => {
   // Check that the increment button is now disabled.
   await assertAttributeValues(t, ex.inc.sel, 'aria-disabled', 'true');
 
-  // Send one more and check that aria-valuenow remains at the maximum value.
+  // Send one more and check that aria-valuenow and aria-valuetext remain at the
+  // maximum value.
   await button.click();
   t.is(
     parseInt(await spinner.getAttribute('aria-valuenow')),
     max,
     `After clicking once more, aria-valuenow should still be ${max}`
+  );
+  t.is(
+    parseInt(await spinner.getAttribute('aria-valuetext')),
+    max,
+    `After clicking once more, aria-valuetext should still be ${max}`
   );
 
   // Check that the output element has the expected value.
@@ -423,6 +489,13 @@ ariaTest('decrement button', exampleFile, 'decrement-button', async (t) => {
       `After clicking ${val + 1} times, aria-valuenow should be ${val}`
     );
 
+    // Check that aria-valuetext is updated correctly.
+    t.is(
+      parseInt(await spinner.getAttribute('aria-valuetext')),
+      val,
+      `After clicking ${val + 1} times, aria-valuetext should be ${val}`
+    );
+
     // Check that the output element has the expected value.
     t.is(
       await output.getText(),
@@ -437,12 +510,18 @@ ariaTest('decrement button', exampleFile, 'decrement-button', async (t) => {
   // Check that the increment button is no longer disabled.
   await assertAttributeDNE(t, ex.inc.sel, 'aria-disabled');
 
-  // Send one more and check that aria-valuenow remains at the maximum value.
+  // Send one more and check that aria-valuenow and aria-valuetext remain at the
+  // minimum value.
   await button.click();
   t.is(
     parseInt(await spinner.getAttribute('aria-valuenow')),
     min,
     `After clicking once more, aria-valuenow should still be ${min}`
+  );
+  t.is(
+    parseInt(await spinner.getAttribute('aria-valuetext')),
+    min,
+    `After clicking once more, aria-valuetext should still be ${min}`
   );
 
   // Check that the output element has the expected value.
