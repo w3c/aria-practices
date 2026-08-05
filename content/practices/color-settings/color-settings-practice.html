@@ -21,7 +21,6 @@
     <script src="../../shared/js/app.js"></script>
     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
 
-    <script src="./js/color-settings-practice.js"></script>
     <script src="./js/switch-system-color.js"></script>
     <script src="../../patterns/switch/examples/js/switch-button.js"></script>
 
@@ -691,7 +690,159 @@ button.color-scheme[role="switch"] {
               <th>Night Sky Theme</th>
             </tr>
           </thead>
-          <tbody id="contrast-theme-features">
+          <tbody>
+            <tr>
+              <th>Background</th>
+              <td>
+                <div role="img" class="sample" aria-label="Background feature is a dark shade of gray" style="background-color: rgb(32, 32, 32);"></div>
+                <div class="color">#202020</div>
+              </td>
+              <td>
+                <div role="img" class="sample" aria-label="Background feature is similar to light yellow" style="background-color: rgb(255, 250, 239);"></div>
+                <div class="color">#fffaef</div>
+              </td>
+              <td>
+                <div role="img" class="sample" aria-label="Background feature is similar to dark slate gray" style="background-color: rgb(45, 50, 54);"></div>
+                <div class="color">#2d3236</div>
+              </td>
+              <td>
+                <div role="img" class="sample" aria-label="Background feature is black" style="background-color: rgb(0, 0, 0);"></div>
+                <div class="color">#000000</div>
+              </td>
+            </tr>
+            <tr>
+              <th>Text</th>
+              <td>
+                <div role="img" class="sample" aria-label="Text feature is white" style="background-color: rgb(255, 255, 255);"></div>
+                <div class="color">#ffffff</div>
+              </td>
+              <td>
+                <div role="img" class="sample" aria-label="Text feature is a dark shade of gray" style="background-color: rgb(61, 61, 61);"></div>
+                <div class="color">#3d3d3d</div>
+              </td>
+              <td>
+                <div role="img" class="sample" aria-label="Text feature is white" style="background-color: rgb(255, 255, 255);"></div>
+                <div class="color">#ffffff</div>
+              </td>
+              <td>
+                <div role="img" class="sample" aria-label="Text feature is white" style="background-color: rgb(255, 255, 255);"></div>
+                <div class="color">#ffffff</div>
+              </td>
+            </tr>
+            <tr>
+              <th>Hyperlink</th>
+              <td>
+                <div role="img" class="sample" aria-label="Hyperlink feature is similar to aquamarine" style="background-color: rgb(117, 233, 252);"></div>
+                <div class="color">#75e9fc</div>
+              </td>
+              <td>
+                <div role="img" class="sample" aria-label="Hyperlink feature is similar to dark cyan" style="background-color: rgb(28, 94, 117);"></div>
+                <div class="color">#1c5e75</div>
+              </td>
+              <td>
+                <div role="img" class="sample" aria-label="Hyperlink feature is similar to aquamarine" style="background-color: rgb(112, 235, 222);"></div>
+                <div class="color">#70ebde</div>
+              </td>
+              <td>
+                <div role="img" class="sample" aria-label="Hyperlink feature is similar to medium purple" style="background-color: rgb(128, 128, 255);"></div>
+                <div class="color">#8080ff</div>
+              </td>
+            </tr>
+            <tr>
+              <th>Inactive Text</th>
+              <td>
+                <div role="img" class="sample" aria-label="Inactive Text feature is shade of gray" style="background-color: rgb(166, 166, 166);"></div>
+                <div class="color">#a6a6a6</div>
+              </td>
+              <td>
+                <div role="img" class="sample" aria-label="Inactive Text feature is shade of gray" style="background-color: rgb(103, 103, 103);"></div>
+                <div class="color">#676767</div>
+              </td>
+              <td>
+                <div role="img" class="sample" aria-label="Inactive Text feature is shade of gray" style="background-color: rgb(166, 166, 166);"></div>
+                <div class="color">#a6a6a6</div>
+              </td>
+              <td>
+                <div role="img" class="sample" aria-label="Inactive Text feature is shade of gray" style="background-color: rgb(166, 166, 166);"></div>
+                <div class="color">#a6a6a6</div>
+              </td>
+            </tr>
+            <tr>
+              <th>Selected Background</th>
+              <td>
+                <div role="img" class="sample" aria-label="Selected Background feature is similar to light sky blue" style="background-color: rgb(142, 227, 240);"></div>
+                <div class="color">#8ee3f0</div>
+              </td>
+              <td>
+                <div role="img" class="sample" aria-label="Selected Background feature is similar to saddle brown" style="background-color: rgb(144, 57, 9);"></div>
+                <div class="color">#903909</div>
+              </td>
+              <td>
+                <div role="img" class="sample" aria-label="Selected Background feature is similar to light steel blue" style="background-color: rgb(161, 191, 222);"></div>
+                <div class="color">#a1bfde</div>
+              </td>
+              <td>
+                <div role="img" class="sample" aria-label="Selected Background feature is similar to thistle" style="background-color: rgb(214, 180, 253);"></div>
+                <div class="color">#d6b4fd</div>
+              </td>
+            </tr>
+            <tr>
+              <th>Selected Text</th>
+              <td>
+                <div role="img" class="sample" aria-label="Selected Text feature is similar to dark slate gray" style="background-color: rgb(38, 59, 80);"></div>
+                <div class="color">#263b50</div>
+              </td>
+              <td>
+                <div role="img" class="sample" aria-label="Selected Text feature is similar to light yellow" style="background-color: rgb(255, 245, 227);"></div>
+                <div class="color">#fff5e3</div>
+              </td>
+              <td>
+                <div role="img" class="sample" aria-label="Selected Text feature is similar to dark slate gray" style="background-color: rgb(33, 45, 59);"></div>
+                <div class="color">#212d3b</div>
+              </td>
+              <td>
+                <div role="img" class="sample" aria-label="Selected Text feature is a dark shade of gray" style="background-color: rgb(43, 43, 43);"></div>
+                <div class="color">#2b2b2b</div>
+              </td>
+            </tr>
+            <tr>
+              <th>Button Background</th>
+              <td>
+                <div role="img" class="sample" aria-label="Button Background feature is a dark shade of gray" style="background-color: rgb(32, 32, 32);"></div>
+                <div class="color">#202020</div>
+              </td>
+              <td>
+                <div role="img" class="sample" aria-label="Button Background feature is similar to light yellow" style="background-color: rgb(255, 250, 239);"></div>
+                <div class="color">#fffaef</div>
+              </td>
+              <td>
+                <div role="img" class="sample" aria-label="Button Background feature is similar to dark slate gray" style="background-color: rgb(45, 50, 54);"></div>
+                <div class="color">#2d3236</div>
+              </td>
+              <td>
+                <div role="img" class="sample" aria-label="Button Background feature is black" style="background-color: rgb(0, 0, 0);"></div>
+                <div class="color">#000000</div>
+              </td>
+            </tr>
+            <tr>
+              <th>Button Text</th>
+              <td>
+                <div role="img" class="sample" aria-label="Button Text feature is white" style="background-color: rgb(255, 255, 255);"></div>
+                <div class="color">#ffffff</div>
+              </td>
+              <td>
+                <div role="img" class="sample" aria-label="Button Text feature is a dark shade of gray" style="background-color: rgb(32, 32, 32);"></div>
+                <div class="color">#202020</div>
+              </td>
+              <td>
+                <div role="img" class="sample" aria-label="Button Text feature is similar to powder blue" style="background-color: rgb(182, 246, 240);"></div>
+                <div class="color">#b6f6f0</div>
+              </td>
+              <td>
+                <div role="img" class="sample" aria-label="Button Text feature is similar to gold" style="background-color: rgb(255, 238, 50);"></div>
+                <div class="color">#ffee32</div>
+              </td>
+            </tr>
           </tbody>
         </table>
 
@@ -809,25 +960,135 @@ button.color-scheme[role="switch"] {
         <h3>Supported System Colors</h3>
         <p>
           The following table identifies those system colors defined in <a href="https://www.w3.org/TR/css-color-4/#css-system-colors">CSS Color Module Level 4</a> that reliably support contrast themes in both Mozilla (e.g. Firefox) <em>and</em> Chromium (e.g. Chrome, Edge, Opera) based browsers.
-          The colors in the table are the computed color for the operating system (e.g. Windows 10 or 11), browser and contrast theme you are using to view the table.
-          Changing your contrast theme will update the computed colors in the table.
-          The computed colors also may vary between operating systems and browsers.
+          The colors in the table are the computed color for the macOS operating system using a Chromium based browser.
+          The computed colors will vary between operating systems and browsers.
         </p>
         <p>
           NOTE: Some <a href="#do-not-use-system-colors">system colors <em>not</em> in the table</a> may support a contrast theme color in either Mozilla (e.g.Firefox) or Chromium (e.g. Chrome, Edge, Opera) based browsers, but not in both.
           Only colors supported in both browsers are included in the table.
         </p>
+
         <table class="data">
           <caption>System Colors Supported by Contrast Themes</caption>
           <thead>
             <tr>
               <th>System Color</th>
               <th>Contrast Theme Color</th>
-              <th>Computed Color</th>
+              <th>Computed Color (Chromium)</th>
               <th>Description</th>
             </tr>
           </thead>
-          <tbody id="system-colors">
+          <tbody>
+            <tr>
+              <th>ActiveText</th>
+              <td>Hyperlink</td>
+              <td>
+                <div role="img" class="sample" aria-label="Active text is red" style="background-color: activetext;">
+                </div>
+                <div class="color">#ff0000</div>
+              </td>
+              <td>Text of active links
+                          </td>
+            </tr>
+            <tr>
+              <th>ButtonBorder</th>
+              <td>Button Text</td>
+              <td>
+                <div role="img" class="sample" aria-label="Button border is black" style="background-color: buttonborder;"></div>
+                <div class="color">#000000</div>
+              </td>
+              <td>Base border color of controls</td>
+            </tr>
+            <tr>
+              <th>ButtonFace</th>
+              <td>Button Background</td>
+              <td>
+                <div role="img" class="sample" aria-label="Button face is a light shade of gray" style="background-color: buttonface;"></div>
+                <div class="color">#efefef</div>
+              </td>
+              <td>Background color of controls</td>
+            </tr>
+            <tr>
+              <th>ButtonText</th>
+              <td>Button Text</td>
+              <td>
+                <div role="img" class="sample" aria-label="Button text is black" style="background-color: buttontext;"></div>
+                <div class="color">#000000</div>
+              </td>
+              <td>Text color of controls</td>
+            </tr>
+            <tr>
+              <th>Canvas</th>
+              <td>Background</td>
+              <td>
+                <div role="img" class="sample" aria-label="Canvas is white" style="background-color: canvas;"></div>
+                <div class="color">#ffffff</div>
+              </td>
+              <td>Background of application content or documents</td>
+            </tr>
+            <tr>
+              <th>CanvasText</th>
+              <td>Text</td>
+              <td>
+                <div role="img" class="sample" aria-label="Canvas text is black" style="background-color: canvastext;"></div>
+                <div class="color">#000000</div>
+              </td>
+              <td>Text color in application content or documents</td>
+            </tr>
+            <tr>
+              <th>Field</th>
+              <td>Button Background</td>
+              <td>
+                <div role="img" class="sample" aria-label="Field is white" style="background-color: field;"></div>
+                <div class="color">#ffffff</div>
+              </td>
+              <td>Background of input fields</td>
+            </tr>
+            <tr>
+              <th>FieldText</th>
+              <td>Button text color</td>
+              <td>
+                <div role="img" class="sample" aria-label="Field text is black" style="background-color: fieldtext;"></div>
+                <div class="color">#000000</div>
+              </td>
+              <td>Text in input fields</td>
+            </tr>
+            <tr>
+              <th>GrayText</th>
+              <td>Inactive Text</td>
+              <td>
+                <div role="img" class="sample" aria-label="Gray text is gray" style="background-color: graytext;"></div>
+                <div class="color">#808080</div>
+              </td>
+              <td>Text color for disabled items (e.g. a disabled control)</td>
+            </tr>
+            <tr>
+              <th>Highlight</th>
+              <td>Selected Background</td>
+              <td>
+                <div role="img" class="sample" aria-label="Highlight is similar to powder blue" style="background-color: highlight;"></div>
+                <div class="color">#b3d7fe</div>
+              </td>
+              <td>Background of selected items</td>
+            </tr>
+            <tr>
+              <th>HighlightText</th>
+              <td>Selected Text</td>
+              <td>
+                <div role="img" class="sample" aria-label="Highlight text is black" style="background-color: highlighttext;"></div>
+                <div class="color">#000000</div>
+              </td>
+              <td>Text color of selected items</td>
+            </tr>
+            <tr>
+              <th>LinkText</th>
+              <td>Hyperlink</td>
+              <td>
+                <div role="img" class="sample" aria-label="Link text is similar to blue" style="background-color: linktext;"></div>
+                <div class="color">#0000ee</div>
+              </td>
+              <td>Text of non-active, non-visited links</td>
+            </tr>
           </tbody>
         </table>
 
@@ -836,7 +1097,14 @@ button.color-scheme[role="switch"] {
           The following list of system colors do <em>not</em> support contrast themes, since they do not render one of the contrast theme colors in both Mozilla (e.g. Firefox) and Chromium (e.g. Chrome, Edge, Opera) based browsers.
         </p>
 
-        <ul id="unsupported-system-colors">
+        <ul>
+          <li><code>AccentColor</code></li>
+          <li><code>AccentColorText</code></li>
+          <li><code>Mark</code></li>
+          <li><code>MarkText</code></li>
+          <li><code>SelectedItem</code></li>
+          <li><code>SelectedItemText</code></li>
+          <li><code>VisitedText</code></li>
         </ul>
 
         <h3>Testing Contrast Theme</h3>
@@ -845,7 +1113,7 @@ button.color-scheme[role="switch"] {
           <li>Turn on a contrast theme in either Windows or Chrome:
             <ol>
               <li>
-                Windows 10 or 11: Go to Settings > Accessibility > Contrast themes and select a theme.
+                Windows 10 or 11: Go to Settings &gt; Accessibility &gt; Contrast themes and select a theme.
                 For more information, see <a href="https://support.microsoft.com/en-US/accessibility/windows/change-color-contrast-in-windows">Change color contrast in Windows in Microsoft Support</a>.
               </li>
               <li>
@@ -853,6 +1121,7 @@ button.color-scheme[role="switch"] {
                 and then choose  between Chrome's light and dark themes by <a href="https://developer.chrome.com/docs/devtools/rendering/emulate-css#emulate_css_media_feature_prefers-color-scheme">emulating the prefers-color-scheme CSS media feature</a>.
               </li>
             </ol>
+          </li>
           <li>
             Verify contrast for text and components meet or exceed the contrast ratios specified by
             <a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum">WCAG 1.4.2: Contrast (Minimum)</a>.
