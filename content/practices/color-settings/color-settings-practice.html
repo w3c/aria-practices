@@ -636,8 +636,7 @@ button.color-scheme[role="switch"] {
           </tbody>
         </table>
 
-        <h3 id="color-scheme-supporting">Support Color Scheme</h3>
-
+        <h3 id="color-scheme-supporting">Supporting Color Scheme</h3>
         <ol>
           <li>
             To support dark mode, develop styles for dark text on a light background and light text on a dark background.  The CSS <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark"><code>light-dark</code> function</a> or a CSS <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme">media query <code>prefers-color-scheme</code></a>, the media query identifies the current color scheme by returning <code>light</code> or <code>dark</code>.
@@ -809,7 +808,7 @@ button.color-scheme[role="switch"] {
           <li><a href="../../patterns/slider/examples/slider-rating.html">Rating Slider</a></li>
         </ul>
 
-        <h3>System Colors Supported</h3>
+        <h3>Supported System Colors</h3>
         <p>
           The following table identifies those system colors defined in <a href="https://www.w3.org/TR/css-color-4/#css-system-colors">CSS Color Module Level 4</a> that reliably support contrast themes in both Mozilla (e.g. Firefox) <em>and</em> Chromium (e.g. Chrome, Edge, Opera) based browsers.
           The colors in the table are the computed color for the operating system (e.g. Windows 10 or 11), browser and contrast theme you are using to view the table.
@@ -821,6 +820,7 @@ button.color-scheme[role="switch"] {
           Only colors supported in both browsers are included in the table.
         </p>
         <table class="data">
+          <caption>System Colors Supported by Contrast Themes</caption>
           <thead>
             <tr>
               <th>System Color</th>
@@ -833,9 +833,10 @@ button.color-scheme[role="switch"] {
           </tbody>
         </table>
 
-        <h3>System Colors Unsupported</h3>
-
-        <p>The following list of system colors do <em>not</em> support contrast themes, since they do not render one of the contrast theme colors in both Mozilla (e.g. Firefox) and Chromium (e.g. Chrome, Edge, Opera) based browsers.</p>
+        <h3>Unsupported System Colors</h3>
+        <p>
+          The following list of system colors do <em>not</em> support contrast themes, since they do not render one of the contrast theme colors in both Mozilla (e.g. Firefox) and Chromium (e.g. Chrome, Edge, Opera) based browsers.
+        </p>
 
         <ul id="unsupported-system-colors">
         </ul>
