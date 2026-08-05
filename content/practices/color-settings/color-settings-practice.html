@@ -279,17 +279,13 @@
           <caption>Increase Contrast Example Color Changes</caption>
           <thead>
             <tr>
-              <th rowspan="2" style="vertical-align: bottom"><code>prefers-contrast</code></th>
-              <th colspan="3">Text</th>
-              <th colspan="3">Button</th>
-            </tr>
-            <tr>
-              <th abbr="Background">BG</th>
+              <th><code>prefers-contrast</code></th>
+              <th>Text Background</th>
               <th>Text</th>
-              <th abbr="Color Contrast Radio">CCR</th>
-              <th abbr="Background">BG</th>
-              <th>Fill</th>
-              <th abbr="Color Contrast Radio">CCR</th>
+              <th>Text Color Contrast</th>
+              <th>Button Background</th>
+              <th>Button Fill</th>
+              <th>Button Color Contrast</th>
             </tr>
           </thead>
           <tbody>
@@ -469,19 +465,13 @@
           <caption>Color Scheme Changes</caption>
           <thead>
             <tr>
-              <th rowspan="2" style="vertical-align: bottom">
-                <code>prefers-color-scheme</code>
-              </th>
-              <th colspan="3">Text</th>
-              <th colspan="3">Button</th>
-            </tr>
-            <tr>
-              <th abbr="Background">BG</th>
+              <th><code>prefers-color-scheme</code></th>
+              <th>Text Background</th>
               <th>Text</th>
-              <th abbr="Color Contrast Radio">CCR</th>
-              <th abbr="Background">BG</th>
-              <th>Fill</th>
-              <th abbr="Color Contrast Radio">CCR</th>
+              <th>Text Color Contrast</th>
+              <th>Button Background</th>
+              <th>Button Fill</th>
+              <th>Button Color Contrast</th>
             </tr>
           </thead>
           <tbody>
@@ -697,14 +687,11 @@ button.color-scheme[role="switch"] {
           <caption>Contrast Themes Colors for Windows 11</caption>
           <thead>
             <tr>
-              <th rowspan="2" style="vertical-align: bottom">Feature</th>
-              <th colspan="4">Windows 11 Contrast Themes</th>
-            </tr>
-            <tr>
-              <th>Aquatic</th>
-              <th>Desert</th>
-              <th>Dusk</th>
-              <th>Night Sky</th>
+              <th>Feature</th>
+              <th>Aquatic Theme</th>
+              <th>Desert Theme</th>
+              <th>Dusk Theme</th>
+              <th>Night Sky Theme</th>
             </tr>
           </thead>
           <tbody id="contrast-theme-features">
@@ -823,11 +810,16 @@ button.color-scheme[role="switch"] {
         </ul>
 
         <h3>System Colors Supported</h3>
-
-        <p>The following table identifies those system colors defined in <a href="https://www.w3.org/TR/css-color-4/#css-system-colors">CSS Color Module Level 4</a> which reliably support contrast themes in both Mozilla (e.g. Firefox) <em>and</em> Chromium (e.g. Chrome, Edge, Opera) based browsers.  The colors in the table are the computed color for the operating system (e.g. Windows 10 or 11), browser and contrast theme you are using to view the table.  Changing your contrast theme will update the computed colors in the table.  The computed colors also may vary between operating systems and browsers. </p>
-
-        <p>NOTE: Some <a href="#do-not-use-system-colors">system colors <em>not</em> in the table</a> may support a contrast theme color in either Mozilla (e.g. Firefox) or Chromium (e.g. Chrome, Edge, Opera) based browsers, but not in both.  Only colors supported in both browsers are included in the table.</p>
-
+        <p>
+          The following table identifies those system colors defined in <a href="https://www.w3.org/TR/css-color-4/#css-system-colors">CSS Color Module Level 4</a> that reliably support contrast themes in both Mozilla (e.g. Firefox) <em>and</em> Chromium (e.g. Chrome, Edge, Opera) based browsers.
+          The colors in the table are the computed color for the operating system (e.g. Windows 10 or 11), browser and contrast theme you are using to view the table.
+          Changing your contrast theme will update the computed colors in the table.
+          The computed colors also may vary between operating systems and browsers.
+        </p>
+        <p>
+          NOTE: Some <a href="#do-not-use-system-colors">system colors <em>not</em> in the table</a> may support a contrast theme color in either Mozilla (e.g.Firefox) or Chromium (e.g. Chrome, Edge, Opera) based browsers, but not in both.
+          Only colors supported in both browsers are included in the table.
+        </p>
         <table aria-labelledby="system-colors" class="data">
           <thead>
             <tr>
