@@ -42,7 +42,7 @@
     "ava": "^6.4.1",
     "cheerio": "^1.1.2",
     "cross-spawn": "^7.0.6",
-    "cspell": "^8.17.5",
+    "cspell": "^9.2.1",
     "eslint": "^9.31.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-ava": "^15.1.0",
