@@ -119,6 +119,19 @@ main .code {
   padding: 1em;
 }
 
+main figure {
+  margin: 0;
+  margin-bottom: 1em;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+main figcaption {
+  padding: 0.125em;
+  background: #ddd;
+  text-align: center;
+}
+
 nav {
   margin: 0;
   margin-bottom: 1em;
