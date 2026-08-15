@@ -638,19 +638,20 @@ button.color-scheme[role="switch"] {
         <h3 id="color-scheme-supporting">Supporting Color Scheme</h3>
         <ol>
           <li>
-            Develop styles for dark text on a light background and light text on a dark background.
-            Choose color palettes that are easy to read in both light and dark modes.
-          </li>
-          <li>
-            The CSS <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark"><code>light-dark</code> function</a> or a CSS <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme">media query <code>prefers-color-scheme</code></a>,
-            the media query identifies the current color scheme by returning <code>light</code> or <code>dark</code>.
-          </li>
-          <li>
-            Instead of shadow styling use highlights and gradients, since shadow styling is difficult to perceive in dark mode.
-          </li>
-          <li>
-            Ensure the text content and components of both color schemes meet or exceed the color contrast ratios specified by
+            Develop both a light scheme, with dark text on a light background, and a dark scheme, with light text on a dark background.
+            Choose color palettes that are easy to read in both schemes and ensure that text and components meet or exceed the color contrast ratios specified by
             <a href="https://www.w3.org/TR/WCAG21/#contrast-minimum">WCAG 1.4.3: Contrast (Minimum)</a>.
+          </li>
+          <li>
+            In dark schemes, consider using highlights and gradients instead of relying on shadows to distinguish components,
+            since shadows may be difficult to perceive against dark backgrounds.
+          </li>
+          <li>
+            Allow the active color scheme to respond to the user's color scheme preference.
+            The CSS <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme">media query <code>prefers-color-scheme</code></a>
+            can be used to apply different styles based on whether the user's preferred color scheme is <code>light</code> or <code>dark</code>.
+            The CSS <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark"><code>light-dark()</code> function</a>
+            can be used to select between two CSS values based on the color scheme in effect, without requiring separate styles in a <code>prefers-color-scheme</code> media query.
           </li>
         </ol>
 
@@ -658,7 +659,6 @@ button.color-scheme[role="switch"] {
         <ul>
           <li><a href="https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/">CSS-Tricks: Dark Mode in CSS Guide</a></li>
           <li><a href="https://www.uxdesigninstitute.com/blog/dark-mode-design-practical-guide/">UX Design Institute: How to design for dark mode: a practical guide</a></li>
-          <li><a href="https://medium.com/@tundehercules/designing-effective-dark-mode-interfaces-17f38ecea2e9">Medium: How to Design Accessible Dark Mode Interfaces</a></li>
         </ul>
 
         <h3>Testing Color Scheme</h3>
