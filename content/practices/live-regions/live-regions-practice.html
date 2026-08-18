@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Notifying Users with Live Regions (Automatic Screen Reader Announcements)</title>
+  <title>Using Live Regions and ARIA Notify for Automatic Screen Reader Announcements</title>
 
   <!-- Core JS and CSS shared by all practices -->
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -17,9 +17,24 @@
 
 <body>
   <main>
-    <h1>Notifying Users with Live Regions (Automatic Screen Reader Announcements)</h1>
+    <h1>Using Live Regions and ARIA Notify for Automatic Screen Reader Announcements</h1>
     <section id="introduction">
       <h2>Introduction</h2>
+      <p>
+        ARIA provides two ways of directly generating screen reader output: live regions and ARIA notify.
+        While these features have important use cases that are sometimes essential to an accessible experience, misuse or overuse severely degrades accessibility.
+      </p>
+      <p>This practice provides:</p>
+      <ul>
+        <li>An overview that compares live regions and ARIA notify</li>
+        <li>Design guidance for automatic announcements with appropriate use cases and best practices</li>
+        <li>Live region implementation guidance and examples</li>
+        <li>ARIA notify implementation guidance and examples</li>
+      </ul>
+    </section>
+    
+    <section id="live_regions">
+      <h2>Live Regions</h2>
       <p>
         Live regions are perceivable regions of a web page that are typically updated as a result of an external event when user focus might be elsewhere.
         These regions are not always updated as a result of a user interaction.
