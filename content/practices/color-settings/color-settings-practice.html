@@ -157,16 +157,20 @@
                 Contrast Themes<br>
                 (AKA Forced Colors)
               </th>
-              <td><a href="https://support.microsoft.com/en-us/windows/change-color-contrast-in-windows-fedc744c-90ac-69df-aed5-c8a90125e696">Windows 10 and later.</a></td>
               <td>
-                Operating system accessibility feature that automatically forces all native apps and web content to render using an alternative color theme chosen by the user.
-                Some of the themes are designed to provide extra high contrast, and users can customize their chosen color theme.
-                Browsers replace author specified colors with user specified colors based on the type of HTML element.
-                Browser selections for replacement colors generally respect the system colors described below.
+                <ul>
+                  <li><a href="https://support.microsoft.com/en-us/windows/change-color-contrast-in-windows-fedc744c-90ac-69df-aed5-c8a90125e696">Windows 10 and later.</a></li>
+                  <li><a href="https://support.mozilla.org/en-US/kb/firefox-contrast-control">Firefox</a></li>
+                </ul>
+              </td>
+              <td>
+                Operating system and browser accessibility feature that automatically forces content to render using an alternative color theme chosen by the user.
+                Contrast themes are often designed to provide extra high contrast.
+                Browsers replace author specified colors with colors that users specify for various types of HTML elements.
                 Note that ARIA attributes do not inform replacement color selection, e.g., a <code>div</code> with role <code>button</code> renders with text colors, not button colors.
               </td>
               <td>
-                When a user selects a contrast theme, the CSS media query <code>forced-colors</code> is set to <code>active</code>.
+                When a user enables a contrast theme, the CSS media query <code>forced-colors</code> is set to <code>active</code>.
                 Use <code>currentcolor</code> and <code>system-color</code> values to style user interface controls and custom widgets to the user preferences.
               </td>
             </tr>
