@@ -176,11 +176,11 @@ ariaTest(
 );
 
 ariaTest(
-  'DOWN ARROW sends initial focus to the first option',
+  'DOWN ARROW moves focus to the second option',
   exampleFile,
   'key-down-arrow',
   async (t) => {
-    // Sending the key down arrow will put focus on the first option if no options are focused
+    // Sending the key down arrow will move focus to the second option.
     const listbox = await t.context.session.findElement(
       By.css(ex.listboxSelector)
     );
@@ -190,7 +190,7 @@ ariaTest(
       t,
       ex.listboxSelector,
       ex.optionSelector,
-      0
+      1
     );
   }
 );

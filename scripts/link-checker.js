@@ -3,7 +3,6 @@ const path = require('path');
 const fs = require('fs/promises');
 const glob = require('glob');
 const HTMLParser = require('node-html-parser');
-const nFetch = require('node-fetch');
 const options = require('../.link-checker');
 
 async function checkLinks() {
@@ -149,36 +148,76 @@ async function checkLinks() {
         }
 
         const getPageData = async () => {
-          try {
-            const response = await nFetch(externalPageLink, {
-              headers: {
-                // Spoof a normal looking User-Agent to keep the servers happy
-                // See https://github.com/JustinBeckwith/linkinator/blob/main/src/index.ts
-                'User-Agent':
-                  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36',
-              },
-            });
-            const text = await response.text();
-            const html = HTMLParser.parse(text);
-            const ids = html
-              .querySelectorAll('[id]')
-              .map((idElement) => idElement.getAttribute('id'));
+          const domain = new URL(externalPageLink).hostname;
+          const maxRetries = 3;
+          const baseDelay = 15;
 
-            // Handle GitHub README links.
-            // These links are stored within a react-partial element
-            const reactPartial = getReactPartial(hrefOrSrc, html);
-            return {
-              ok: response.ok,
-              status: response.status,
-              ids,
-              reactPartial,
-            };
-          } catch (error) {
-            return {
-              errorMessage:
-                `Found broken external link on ${htmlPath}:${lineNumber}:${columnNumber}\n` +
-                `  ${error.stack}`,
-            };
+          for (let attempt = 0; attempt < maxRetries; attempt++) {
+            let step = 'fetch';
+            try {
+              const response = await fetch(externalPageLink, {
+                headers: {
+                  // Clearly identifies this as being a link checker, and links to the project repo for more info.
+                  'User-Agent':
+                    'W3C/aria-practices-link-checker (+https://github.com/w3c/aria-practices)',
+                  Accept:
+                    'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                  'Accept-Language': 'en-US,en;q=0.5',
+                  'Accept-Encoding': 'gzip, deflate, br',
+                },
+              });
+
+              // Handle rate limit-related statuses
+              if (
+                response.status === 403 ||
+                response.status === 429 ||
+                response.status === 503 ||
+                response.status === 508
+              ) {
+                throw new Error(
+                  response.status === 429
+                    ? `Rate limited by ${domain}`
+                    : `Unsuccessful response from ${domain} (${response.status})`
+                );
+              }
+
+              step = 'read body';
+              const text = await response.text();
+              step = 'parse HTML';
+              const html = HTMLParser.parse(text);
+              step = 'extract ids';
+              const ids = html
+                .querySelectorAll('[id]')
+                .map((idElement) => idElement.getAttribute('id'));
+
+              // Handle GitHub README links.
+              // These links are stored within a react-partial element
+              step = 'getReactPartial';
+              const reactPartial = getReactPartial(hrefOrSrc, html);
+              return {
+                ok: response.ok,
+                status: response.status,
+                ids,
+                reactPartial,
+              };
+            } catch (error) {
+              if (attempt < maxRetries - 1) {
+                // Found the retry-after unit returned from response headers too
+                // variable to use here, but ~15 seconds seems like a safe
+                // initial default
+                const delay = baseDelay * 1000 * Math.pow(2, attempt);
+                console.info(
+                  `Error at step "${step}" for ${externalPageLink}: ${error.message}, retrying in ${delay}ms`
+                );
+                await new Promise((resolve) => setTimeout(resolve, delay));
+                continue;
+              }
+              return {
+                errorMessage:
+                  `Found broken external link on ${htmlPath}:${lineNumber}:${columnNumber}\n` +
+                  `  ${error.stack}`,
+              };
+            }
           }
         };
 
@@ -199,33 +238,24 @@ async function checkLinks() {
 
   let externalPageData = {};
 
-  // Limit number of logs for readability
-  const intervalId = setInterval(() => {
-    console.info(`Checking ${loadedCount} of ${loadingCount} external pages`);
-  }, 5000);
-
-  await Promise.all(
-    Object.entries(externalPageLoaders).map(
-      async ([externalPageLink, getPageData]) => {
-        let pageData = await getPageData();
-        if (pageData.errorMessage) {
-          console.info('Retrying once');
-          pageData = await getPageData();
-        }
-        if (pageData.errorMessage) {
-          await new Promise((resolve) => {
-            setTimeout(resolve, 2000);
-          });
-          console.info('Retrying twice');
-          pageData = await getPageData();
-        }
+  const concurrencyLimit = 5;
+  const loaderEntries = Object.entries(externalPageLoaders);
+  for (let i = 0; i < loaderEntries.length; i += concurrencyLimit) {
+    const batch = loaderEntries.slice(i, i + concurrencyLimit);
+    await Promise.all(
+      batch.map(async ([externalPageLink, getPageData]) => {
+        const start = Date.now();
+        const pageData = await getPageData();
+        const elapsed = ((Date.now() - start) / 1000).toFixed(2);
         externalPageData[externalPageLink] = pageData;
         loadedCount += 1;
-      }
-    )
-  );
+        console.info(
+          `[${loadedCount}/${loadingCount}] ${externalPageLink} (${elapsed}s)`
+        );
+      })
+    );
+  }
 
-  clearInterval(intervalId);
   console.info(`Checked ${loadingCount} of ${loadingCount} external pages`);
 
   for (const [htmlPath, { links }] of Object.entries(allLinkData)) {
@@ -314,8 +344,9 @@ async function checkLinks() {
 
         if (!pageData.ok) {
           consoleError(
-            `Found broken external link on ${htmlPath}:${lineNumber}:${columnNumber}, ` +
-              `status was ${pageData.status}`
+            `Found broken external link on ${htmlPath}:${lineNumber}:${columnNumber}. ` +
+              `Link is ${hrefOrSrc}, ` +
+              `status is ${pageData.status}`
           );
           continue;
         }

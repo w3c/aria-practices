@@ -85,7 +85,7 @@ aria.Utils = aria.Utils || {};
   aria.OpenDialogList = aria.OpenDialogList || new Array(0);
 
   /**
-   * @returns {object} the last opened dialog (the current dialog)
+   * @returns {object|void} the last opened dialog (the current dialog)
    */
   aria.getCurrentDialog = function () {
     if (aria.OpenDialogList && aria.OpenDialogList.length) {
