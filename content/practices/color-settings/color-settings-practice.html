@@ -680,15 +680,151 @@ button.color-scheme[role="switch"] {
       <section id="contrast-themes">
         <h2>Contrast Themes (Forced Colors)</h2>
         <p>
-          Contrast themes are an operating system accessibility feature available in Windows 10 and 11 that automatically forces all native apps and web content to render using an alternative color theme chosen by the user.
+          Contrast themes are an accessibility setting available in
+          <a href="https://support.microsoft.com/en-US/accessibility/windows/change-color-contrast-in-windows">Windows</a>
+          and <a href="https://support.mozilla.org/en-US/kb/firefox-contrast-control">Firefox</a>
+          that automatically forces apps and content to render using an alternative color theme chosen by the user.
           In addition to forcing color changes the browser also ignores background images and gradients.
+          Note that Chrome also provides an implementation, but it is not customizable and can only be enabled by using its developer tools.
         </p>
         <p>
-          Each theme is a user-customizable set of eight colors designed to provide extra high contrast.
-          Browsers automatically replace each author specified color with one of the theme colors based on the type of HTML element.
-          The replacement color used by a browser for a specific element corresponds to one of the system colors described below.
+          A contrast theme enables users to specify the colors that are used to render various types of UI elements, such as text, hyperlinks, and buttons.
+          When a contrast theme is enabled, the browser automatically replaces each author specified color with one of the theme colors based on the type of HTML element.
+          CSS color module Level 4 defines twenty-three <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/system-color"><code>system color keywords</code></a> that operating system and browsers can use to define a theme.
+          A system color keyword specifies the types of UI elements that are automatically rendered with the color value mapped to that keyword by a contrast theme.
+          For example, the Windows Dusk theme specifies powder blue #b6f6f0 as the system color associated with the keyword <code>buttonText</code>.
+          When the Dusk theme is active, the browser automatically replaces each author specified color with powder blue #b6f6f0 when rendring text on buttons or when rendering any other element that is also mapped to the system color <code>buttonText</code>.
           </p>
-        <p>The following table shows the color themes users can choose in Windows 11.</p>
+          <p>
+            None of the implementations of contrast themes in operating systems or browsers support all twenty-three system color keywords.
+            The following table shows the twenty-three system color keywords and indicates which are supported in the Windows, Firefox, and Chromium implementations.
+</p>
+<table class="data">
+          <caption>System Colors Supported by Various Contrast Theme Implementations</caption>
+          <thead>
+            <tr>
+              <th>CSS System Color</th>
+              <th>Windows Theme Feature</th>
+              <th>Chromium Computed Color)</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>ActiveText</th>
+              <td>Hyperlink</td>
+              <td>
+                <div role="img" class="sample" aria-label="Active text is red" style="background-color: activetext;">
+                </div>
+                <div class="color">#ff0000</div>
+              </td>
+              <td>Text of active links
+                          </td>
+            </tr>
+            <tr>
+              <th>ButtonBorder</th>
+              <td>Button Text</td>
+              <td>
+                <div role="img" class="sample" aria-label="Button border is black" style="background-color: buttonborder;"></div>
+                <div class="color">#000000</div>
+              </td>
+              <td>Base border color of controls</td>
+            </tr>
+            <tr>
+              <th>ButtonFace</th>
+              <td>Button Background</td>
+              <td>
+                <div role="img" class="sample" aria-label="Button face is a light shade of gray" style="background-color: buttonface;"></div>
+                <div class="color">#efefef</div>
+              </td>
+              <td>Background color of controls</td>
+            </tr>
+            <tr>
+              <th>ButtonText</th>
+              <td>Button Text</td>
+              <td>
+                <div role="img" class="sample" aria-label="Button text is black" style="background-color: buttontext;"></div>
+                <div class="color">#000000</div>
+              </td>
+              <td>Text color of controls</td>
+            </tr>
+            <tr>
+              <th>Canvas</th>
+              <td>Background</td>
+              <td>
+                <div role="img" class="sample" aria-label="Canvas is white" style="background-color: canvas;"></div>
+                <div class="color">#ffffff</div>
+              </td>
+              <td>Background of application content or documents</td>
+            </tr>
+            <tr>
+              <th>CanvasText</th>
+              <td>Text</td>
+              <td>
+                <div role="img" class="sample" aria-label="Canvas text is black" style="background-color: canvastext;"></div>
+                <div class="color">#000000</div>
+              </td>
+              <td>Text color in application content or documents</td>
+            </tr>
+            <tr>
+              <th>Field</th>
+              <td>Button Background</td>
+              <td>
+                <div role="img" class="sample" aria-label="Field is white" style="background-color: field;"></div>
+                <div class="color">#ffffff</div>
+              </td>
+              <td>Background of input fields</td>
+            </tr>
+            <tr>
+              <th>FieldText</th>
+              <td>Button text color</td>
+              <td>
+                <div role="img" class="sample" aria-label="Field text is black" style="background-color: fieldtext;"></div>
+                <div class="color">#000000</div>
+              </td>
+              <td>Text in input fields</td>
+            </tr>
+            <tr>
+              <th>GrayText</th>
+              <td>Inactive Text</td>
+              <td>
+                <div role="img" class="sample" aria-label="Gray text is gray" style="background-color: graytext;"></div>
+                <div class="color">#808080</div>
+              </td>
+              <td>Text color for disabled items (e.g. a disabled control)</td>
+            </tr>
+            <tr>
+              <th>Highlight</th>
+              <td>Selected Background</td>
+              <td>
+                <div role="img" class="sample" aria-label="Highlight is similar to powder blue" style="background-color: highlight;"></div>
+                <div class="color">#b3d7fe</div>
+              </td>
+              <td>Background of selected items</td>
+            </tr>
+            <tr>
+              <th>HighlightText</th>
+              <td>Selected Text</td>
+              <td>
+                <div role="img" class="sample" aria-label="Highlight text is black" style="background-color: highlighttext;"></div>
+                <div class="color">#000000</div>
+              </td>
+              <td>Text color of selected items</td>
+            </tr>
+            <tr>
+              <th>LinkText</th>
+              <td>Hyperlink</td>
+              <td>
+                <div role="img" class="sample" aria-label="Link text is similar to blue" style="background-color: linktext;"></div>
+                <div class="color">#0000ee</div>
+              </td>
+              <td>Text of non-active, non-visited links</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Contrast Themes Windows Example</h3>
+        <p>The following table shows the default colors for each theme users can choose in Windows 11.</p>
         <table class="data">
           <caption>Contrast Themes Colors for Windows 11</caption>
           <thead>
@@ -859,8 +995,7 @@ button.color-scheme[role="switch"] {
         <p>Note: In Windows 10 and Windows 11 users can edit the colors of a contrast theme to create their own unique theme.</p>
 
         <h3>Contrast Theme Switch Example</h3>
-
-      <p>The following switch example uses systems colors to style the SVG elements used to indicate the on and off states.  One reason current color cannot be used in this example is due to using <code>div[role="switch"]</code> to identify the switch component.  The <code>div</code> elements current color is <code>CanvasText</code>, and the switch needs to use the colors associated with buttons: <code>ButtonBorder</code>, <code>ButtonFace</code> and <code>ButtonText</code>. In addition to the button colors, the system colors <code>ActiveText</code> is used for the fill of the SVG circle when the switch is on the on state and the <code>GrayText</code> is used as the fill in the off state to make the state easier to discern visually the state of the switch.</p>
+        <p>The following switch example uses systems colors to style the SVG elements used to indicate the on and off states.  One reason current color cannot be used in this example is due to using <code>div[role="switch"]</code> to identify the switch component.  The <code>div</code> elements current color is <code>CanvasText</code>, and the switch needs to use the colors associated with buttons: <code>ButtonBorder</code>, <code>ButtonFace</code> and <code>ButtonText</code>. In addition to the button colors, the system colors <code>ActiveText</code> is used for the fill of the SVG circle when the switch is on the on state and the <code>GrayText</code> is used as the fill in the off state to make the state easier to discern visually the state of the switch.</p>
 
         <div class="example">
           <div role="switch" tabindex="0" aria-checked="false" class="system-color">
@@ -921,7 +1056,7 @@ button.color-scheme[role="switch"] {
           </tbody>
         </table>
 
-       <h4>CSS Code using <code>&lt;system-colors&gt;</code> value</h4>
+        <h4>CSS Code using <code>&lt;system-colors&gt;</code> value</h4>
 
         <pre>
           <code>
@@ -960,164 +1095,17 @@ button.color-scheme[role="switch"] {
         </pre>
 
         <h3>Contrast Theme APG Examples</h3>
-
         <ul>
           <li><a href="../../patterns/feed/examples/feed.html">Feed</a></li>
           <li><a href="../../patterns/slider/examples/slider-rating.html">Rating Slider</a></li>
         </ul>
 
-        <h3>Supported System Colors</h3>
-        <p>
-          The following table identifies those system colors defined in <a href="https://www.w3.org/TR/css-color-4/#css-system-colors">CSS Color Module Level 4</a> that reliably support contrast themes in both Mozilla (e.g. Firefox) <em>and</em> Chromium (e.g. Chrome, Edge, Opera) based browsers.
-          The colors in the table are the computed color for the macOS operating system using a Chromium based browser.
-          The computed colors will vary between operating systems and browsers.
-        </p>
-        <p>
-          NOTE: Some <a href="#do-not-use-system-colors">system colors <em>not</em> in the table</a> may support a contrast theme color in either Mozilla (e.g.Firefox) or Chromium (e.g. Chrome, Edge, Opera) based browsers, but not in both.
-          Only colors supported in both browsers are included in the table.
-        </p>
+        <h3>Supporting Contrast Themes</h3>
+        <ol>
+          <li>to be written.</li>
+        </ol>
 
-        <table class="data">
-          <caption>System Colors Supported by Contrast Themes</caption>
-          <thead>
-            <tr>
-              <th>CSS System Color</th>
-              <th>Windows Theme Feature</th>
-              <th>Chromium Computed Color)</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>ActiveText</th>
-              <td>Hyperlink</td>
-              <td>
-                <div role="img" class="sample" aria-label="Active text is red" style="background-color: activetext;">
-                </div>
-                <div class="color">#ff0000</div>
-              </td>
-              <td>Text of active links
-                          </td>
-            </tr>
-            <tr>
-              <th>ButtonBorder</th>
-              <td>Button Text</td>
-              <td>
-                <div role="img" class="sample" aria-label="Button border is black" style="background-color: buttonborder;"></div>
-                <div class="color">#000000</div>
-              </td>
-              <td>Base border color of controls</td>
-            </tr>
-            <tr>
-              <th>ButtonFace</th>
-              <td>Button Background</td>
-              <td>
-                <div role="img" class="sample" aria-label="Button face is a light shade of gray" style="background-color: buttonface;"></div>
-                <div class="color">#efefef</div>
-              </td>
-              <td>Background color of controls</td>
-            </tr>
-            <tr>
-              <th>ButtonText</th>
-              <td>Button Text</td>
-              <td>
-                <div role="img" class="sample" aria-label="Button text is black" style="background-color: buttontext;"></div>
-                <div class="color">#000000</div>
-              </td>
-              <td>Text color of controls</td>
-            </tr>
-            <tr>
-              <th>Canvas</th>
-              <td>Background</td>
-              <td>
-                <div role="img" class="sample" aria-label="Canvas is white" style="background-color: canvas;"></div>
-                <div class="color">#ffffff</div>
-              </td>
-              <td>Background of application content or documents</td>
-            </tr>
-            <tr>
-              <th>CanvasText</th>
-              <td>Text</td>
-              <td>
-                <div role="img" class="sample" aria-label="Canvas text is black" style="background-color: canvastext;"></div>
-                <div class="color">#000000</div>
-              </td>
-              <td>Text color in application content or documents</td>
-            </tr>
-            <tr>
-              <th>Field</th>
-              <td>Button Background</td>
-              <td>
-                <div role="img" class="sample" aria-label="Field is white" style="background-color: field;"></div>
-                <div class="color">#ffffff</div>
-              </td>
-              <td>Background of input fields</td>
-            </tr>
-            <tr>
-              <th>FieldText</th>
-              <td>Button text color</td>
-              <td>
-                <div role="img" class="sample" aria-label="Field text is black" style="background-color: fieldtext;"></div>
-                <div class="color">#000000</div>
-              </td>
-              <td>Text in input fields</td>
-            </tr>
-            <tr>
-              <th>GrayText</th>
-              <td>Inactive Text</td>
-              <td>
-                <div role="img" class="sample" aria-label="Gray text is gray" style="background-color: graytext;"></div>
-                <div class="color">#808080</div>
-              </td>
-              <td>Text color for disabled items (e.g. a disabled control)</td>
-            </tr>
-            <tr>
-              <th>Highlight</th>
-              <td>Selected Background</td>
-              <td>
-                <div role="img" class="sample" aria-label="Highlight is similar to powder blue" style="background-color: highlight;"></div>
-                <div class="color">#b3d7fe</div>
-              </td>
-              <td>Background of selected items</td>
-            </tr>
-            <tr>
-              <th>HighlightText</th>
-              <td>Selected Text</td>
-              <td>
-                <div role="img" class="sample" aria-label="Highlight text is black" style="background-color: highlighttext;"></div>
-                <div class="color">#000000</div>
-              </td>
-              <td>Text color of selected items</td>
-            </tr>
-            <tr>
-              <th>LinkText</th>
-              <td>Hyperlink</td>
-              <td>
-                <div role="img" class="sample" aria-label="Link text is similar to blue" style="background-color: linktext;"></div>
-                <div class="color">#0000ee</div>
-              </td>
-              <td>Text of non-active, non-visited links</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h3>Unsupported System Colors</h3>
-        <p>
-          The following list of system colors do <em>not</em> support contrast themes, since they do not render one of the contrast theme colors in both Mozilla (e.g. Firefox) and Chromium (e.g. Chrome, Edge, Opera) based browsers.
-        </p>
-
-        <ul>
-          <li><code>AccentColor</code></li>
-          <li><code>AccentColorText</code></li>
-          <li><code>Mark</code></li>
-          <li><code>MarkText</code></li>
-          <li><code>SelectedItem</code></li>
-          <li><code>SelectedItemText</code></li>
-          <li><code>VisitedText</code></li>
-        </ul>
-
-        <h3>Testing Contrast Theme</h3>
-
+        <h3>Testing Contrast Themes</h3>
         <ol>
           <li>Turn on a contrast theme in either Windows or Chrome:
             <ol>
