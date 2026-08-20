@@ -1,5 +1,5 @@
 /* ========================================================================
- * Version: 5.11.1
+ * Version: 5.11.2
  * Copyright (c) 2022, 2023, 2024, 2025, 2026 Jon Gunderson; Licensed BSD
  * Copyright (c) 2021 PayPal Accessibility Team and University of Illinois; Licensed BSD
  * All rights reserved.
@@ -299,7 +299,7 @@
   /* constants.js */
 
   // Version
-  const VERSION = '5.11.1';
+  const VERSION = '5.11.2';
 
   // Numbers
 
@@ -923,7 +923,7 @@ dialog {
   left: 50%;
   transform: translate(-50%,-50%);
   font-family: var(--skipto-font-family);
-  font-size: var(--skipto-font-size);
+  font-size: 12pt;
   max-width: 70%;
   margin: 0;
   padding: 0;
@@ -950,25 +950,14 @@ dialog .header {
   background-color: light-dark(var(--skipto-dialog-background-title-color), var(--skipto-dialog-background-title-dark-color));
   color: light-dark(var(--skipto-dialog-text-color), var(--skipto-dialog-text-dark-color));
   position: relative;
-  font-size: 100%;
 }
 
-dialog .header h2 {
+dialog .header h2,
+dialog button {
   margin: 0;
   padding: 0;
-  font-size: 120%;
-}
-
-dialog .header button {
-  position: absolute;
-  top: 0px;
-  right: 2px;
-  border: none;
-  background: transparent;
   font-weight: bold;
-  font-size: 1.75em;
-  color: light-dark(var(--skipto-dialog-text-color), var(--skipto-dialog-text-dark-color));
-  font-family: var(--skipto-font-family);
+  font-size: 12pt;
 }
 
 dialog .content {
@@ -976,7 +965,6 @@ dialog .content {
   margin-right: 2em;
   margin-top: 0;
   margin-bottom: 2em;
-  font-size: 110%;
 }
 
 dialog .content .desc {
@@ -1001,7 +989,7 @@ dialog .content .privacy {
 dialog .content .happy {
   text-align: center;
   font-family: 'Brush Script MT', cursive;
-  font-size: 200%;
+  font-size: 24pt;
   letter-spacing: 0.05em;
 }
 
@@ -1012,6 +1000,9 @@ dialog .content .copyright {
 }
 
 dialog .content table {
+  margin: 0;
+  margin-top: 1em;
+  padding: 0.25em;
   width: auto;
   border-collapse: collapse;
 }
@@ -1019,23 +1010,20 @@ dialog .content table {
 dialog .content caption {
   margin: 0;
   padding: 0;
-  margin-top: 1em;
+  padding-left: 0.25em;
   text-align: left;
   font-weight: bold;
-  font-size: 110%;
 }
 
 dialog .content th {
   margin: 0;
   padding: 0;
+  padding-left: 0.25em;
   padding-top: 0.125em;
   padding-bottom: 0.125em;
   text-align: left;
   font-weight: bold;
-  font-size: 100%;
-}
-
-dialog .content th {
+  font-size: 11pt;
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-bottom-color: light-dark(#999999, #777777);
@@ -1049,7 +1037,6 @@ dialog .content td.desc {
   padding-top: 0.125em;
   padding-bottom: 0.125em;
   text-align: left;
-  font-size: 100%;
 }
 
 dialog .content th.shortcut {
@@ -1074,9 +1061,13 @@ dialog .buttons {
 
 dialog .buttons button {
   margin: 6px;
+  padding-top: .25em;
+  padding-left: .5em;
+  padding-right: .5em;
+  padding-bottom: .25em;
   min-width: 5em;
   font-family: var(--skipto-font-family);
-  font-size: 125%;
+  font-size: 12pt;
 }
 
 dialog button:focus {
@@ -1542,12 +1533,8 @@ dialog button:hover {
     const divHeaderElem = createElem('div', '', 'header');
     divContainerElem.appendChild(divHeaderElem);
 
-    const divH2Elem = createElem('h2', title, 'title');
-    divHeaderElem.appendChild(divH2Elem);
-
-    const divClose1ButtonElem = createElem('button', '×');
-    divClose1ButtonElem.ariaLabel = config.closeLabel;
-    divHeaderElem.appendChild(divClose1ButtonElem);
+    const divTitleElem = createElem('h2', title, 'title');
+    divHeaderElem.appendChild(divTitleElem);
 
     // Dialog content container
 
@@ -1598,14 +1585,17 @@ dialog button:hover {
       {shortcut: config.shortcutHeadingH3,       desc: config.msgH3Headings},
       {shortcut: config.shortcutHeadingH4,       desc: config.msgH4Headings},
       {shortcut: config.shortcutHeadingH5,       desc: config.msgH5Headings},
-      {shortcut: config.shortcutHeadingH5,       desc: config.msgH6Headings},
+      {shortcut: config.shortcutHeadingH6,       desc: config.msgH6Headings},
     ];
 
-    function getShortcutTable(caption, shortcuts) {
+    function getShortcutTable(caption, shortcuts, initFocus=false) {
 
       let trElem, thElem, tdElem, kbdElem;
 
       const tableElem = createElem('table');
+      if (initFocus) {
+        tableElem.id = 'focus';
+      }
 
       const captionElem = createElem('caption', caption);
       tableElem.appendChild(captionElem);
@@ -1646,9 +1636,9 @@ dialog button:hover {
       return tableElem;
     }
 
-    contentElem.appendChild(getShortcutTable(config.menuButtonLabel, buttonShortcuts));
-    contentElem.appendChild(getShortcutTable(config.landmarkGroupLabel, landmarkShortcuts));
+    contentElem.appendChild(getShortcutTable(config.landmarkGroupLabel, landmarkShortcuts, true));
     contentElem.appendChild(getShortcutTable(config.headingGroupLabel, headingShortcuts));
+    contentElem.appendChild(getShortcutTable(config.menuButtonLabel, buttonShortcuts));
 
   }
 
@@ -1666,6 +1656,7 @@ dialog button:hover {
     contentElem.appendChild(divDescLabelElem);
 
     const divDescElem = createElem('div', config.aboutDesc, 'desc');
+    divDescElem.id = 'focus';
     contentElem.appendChild(divDescElem);
 
     // Button menu shortcut key
@@ -1698,30 +1689,32 @@ dialog button:hover {
   }
 
   /*
+
+
    * @class InfoDialog
    *
    * @desc Base class for SkipTo.js dialogs
    */
 
   class InfoDialog {
-    constructor (attachElem, id, title, config) {
+    constructor (skipToElem, attachElem, id, title, config) {
 
       // Get references
+
+      this.skipToElem = skipToElem;
 
       this.dialogElem = getInfoDialogElems(id, title, config);
       attachElem.appendChild(this.dialogElem);
       this.dialogElem.addEventListener('keydown', this.onKeyDown.bind(this));
 
-      this.closeButtonElem1  = attachElem.querySelector(`#${id} .header button`);
-      this.closeButtonElem1.addEventListener('click', this.onCloseButtonClick.bind(this));
-      this.closeButtonElem1.addEventListener('keydown', this.onKeyDown.bind(this));
+      this.closeButtonElem  = attachElem.querySelector(`#${id} .buttons button.close`);
+      this.closeButtonElem.addEventListener('click', this.onCloseButtonClick.bind(this));
+      this.closeButtonElem.addEventListener('keydown', this.onKeyDown.bind(this));
 
-      this.closeButtonElem2  = attachElem.querySelector(`#${id} .buttons button.close`);
-      this.closeButtonElem2.addEventListener('click', this.onCloseButtonClick.bind(this));
-      this.closeButtonElem2.addEventListener('keydown', this.onKeyDown.bind(this));
+      this.moreInfoButtonElem = attachElem.querySelector(`#${id} .buttons button.more`);
+      this.moreInfoButtonElem.addEventListener('click', this.onMoreInfoClick.bind(this));
 
-      const moreInfoButtonElem = attachElem.querySelector(`#${id} .buttons button.more`);
-      moreInfoButtonElem.addEventListener('click', this.onMoreInfoClick.bind(this));
+      this.titleElem = this.dialogElem.querySelector('.header h2');
 
       return this;
     }
@@ -1737,11 +1730,24 @@ dialog button:hover {
 
     onCloseButtonClick () {
       this.dialogElem.close();
+      this.skipToElem.setFocusToButton();
     }
 
     openDialog () {
       this.dialogElem.showModal();
-      this.dialogElem.focus();
+
+      const focusElem = this.dialogElem.querySelector('#focus');
+
+      if (focusElem) {
+        focusElem.tabIndex = -1;
+        focusElem.focus();
+        focusElem.addEventListener('keydown', this.onKeyDown.bind(this));
+      }
+      else {
+        this.titleElem.tabIndex = -1;
+        this.titleElem.focus();
+        this.titleElem.addEventListener('keydown', this.onKeyDown.bind(this));
+      }
     }
 
     onKeyDown (event) {
@@ -1752,16 +1758,15 @@ dialog button:hover {
           !event.metaKey) {
 
         if (event.shiftKey &&
-            ((event.target === this.closeButtonElem1) ||
-             (event.target === this.dialogElem))) {
-          this.closeButtonElem2.focus();
+            (event.target !== this.closeButtonElem)) {
+          this.closeButtonElem.focus();
           event.preventDefault();
           event.stopPropagation();
         }
 
         if (!event.shiftKey &&
-            (event.target === this.closeButtonElem2)) {
-          this.closeButtonElem1.focus();
+            (event.target === this.closeButtonElem)) {
+          this.moreInfoButtonElem.focus();
           event.preventDefault();
           event.stopPropagation();
         }
@@ -1777,9 +1782,9 @@ dialog button:hover {
 
   class ShortcutsDialog extends InfoDialog {
 
-    constructor (attachElem, config) {
+    constructor (skipToElem, attachElem, config) {
 
-      super(attachElem, SHORTCUTS_DIALOG_ID, config.shortcutsInfoLabel, config);
+      super(skipToElem, attachElem, SHORTCUTS_DIALOG_ID, config.shortcutsInfoLabel, config);
 
       const contentElem = attachElem.querySelector(`#${SHORTCUTS_DIALOG_ID} .content`);
       addShortcutsContentElems(contentElem, config);
@@ -1791,9 +1796,9 @@ dialog button:hover {
 
   class AboutDialog extends InfoDialog {
 
-    constructor (attachElem, config) {
+    constructor (skipToElem, attachElem, config) {
 
-      super(attachElem, ABOUT_DIALOG_ID, config.aboutInfoLabel, config);
+      super(skipToElem, attachElem, ABOUT_DIALOG_ID, config.aboutInfoLabel, config);
 
       const contentElem = attachElem.querySelector(`#${ABOUT_DIALOG_ID} .content`);
       addAboutContentElems(contentElem, config);
@@ -4438,8 +4443,8 @@ dialog button:hover {
         }
 
         // Information dialog
-        this.shortcutsDialog = new ShortcutsDialog(this.containerNode, this.config);
-        this.aboutDialog     = new AboutDialog(this.containerNode, this.config);
+        this.shortcutsDialog = new ShortcutsDialog(this, this.containerNode, this.config);
+        this.aboutDialog     = new AboutDialog(this, this.containerNode, this.config);
 
         // Shortcut messages
         this.shortcutsMessage = new ShortcutsMessage(this.containerNode, this.config.msgMessageLabel);
@@ -4489,6 +4494,17 @@ dialog button:hover {
           this.hideButtonNode.style.left = left + 'px';
           this.hideButtonNode.style.top  = top + 'px';
        }
+
+      /*
+       * @method setFocusToButton
+       *
+       * @desc Shows button if hidden and gives it focus
+       */
+      setFocusToButton () {
+        this.menuButtonNode.classList.add('focus');
+        this.buttonNode.focus();
+      }
+
 
       /*
        * @method scrollBehavior
@@ -5730,11 +5746,11 @@ dialog button:hover {
   const debug$1 = new DebugLogging('skiptoContent', false);
   debug$1.flag = false;
 
-  /* @class SkipToContent5111
+  /* @class SkipToContent5112
    *
    */
 
-  class SkipToContent5111 extends HTMLElement {
+  class SkipToContent5112 extends HTMLElement {
 
     constructor() {
       // Always call super first in constructor
@@ -5809,8 +5825,8 @@ dialog button:hover {
         aboutDesc: 'SkipTo.js is a free and open source utility to support the WCAG 2.4.1 Bypass Block requirement.  ',
         aboutPrivacyLabel: 'Privacy',
         aboutPrivacy: 'SkipTo.js does not collect or store any information about users or work with any other parties to collect or share user browsing information.',
-        aboutShortcutLabel :'"Skip To Content" Button Shortcut',
-        aboutShortcut :'Open Menu',
+        aboutShortcutLabel : 'Keyboard Shortcut',
+        aboutShortcut :'Opens the SkipTo.js menu and focuses the first menu item.',
 
 
         closeLabel: 'Close',
@@ -6258,7 +6274,7 @@ dialog button:hover {
           if (!isExtensionLoaded) {
             if (!isBookmarkletLoaded) {
               removePageSkipTo();
-              window.customElements.define(BOOKMARKLET_ELEMENT_NAME, SkipToContent5111);
+              window.customElements.define(BOOKMARKLET_ELEMENT_NAME, SkipToContent5112);
               skipToContentElem = document.createElement(BOOKMARKLET_ELEMENT_NAME);
               skipToContentElem.setAttribute('version', skipToContentElem.version);
               skipToContentElem.setAttribute('type', type);
@@ -6274,7 +6290,7 @@ dialog button:hover {
           if (!isExtensionLoaded) {
             removePageSkipTo();
             removeBookmarkletSkipTo();
-            window.customElements.define(EXTENSION_ELEMENT_NAME, SkipToContent5111);
+            window.customElements.define(EXTENSION_ELEMENT_NAME, SkipToContent5112);
             skipToContentElem = document.createElement(EXTENSION_ELEMENT_NAME);
             skipToContentElem.setAttribute('version', skipToContentElem.version);
             skipToContentElem.setAttribute('type', type);
@@ -6287,7 +6303,7 @@ dialog button:hover {
 
         default:
           if (!isPageLoaded && !isBookmarkletLoaded && !isExtensionLoaded) {
-            window.customElements.define(PAGE_SCRIPT_ELEMENT_NAME, SkipToContent5111);
+            window.customElements.define(PAGE_SCRIPT_ELEMENT_NAME, SkipToContent5112);
             skipToContentElem = document.createElement(PAGE_SCRIPT_ELEMENT_NAME);
             skipToContentElem.setAttribute('version', skipToContentElem.version);
             skipToContentElem.setAttribute('type', type);
