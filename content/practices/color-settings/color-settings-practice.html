@@ -684,21 +684,22 @@ button.color-scheme[role="switch"] {
           and <a href="https://support.mozilla.org/en-US/kb/firefox-contrast-control">Firefox</a>
           that automatically forces apps and content to render using an alternative color theme chosen by the user.
           In addition to forcing color changes the browser also ignores background images and gradients.
-          Note that Chrome also provides a platform-independent implementation that works for web content on macOS, but it is not customizable and can only be enabled by using its developer tools.
+          Note that Chrome both responds to the Windows settings and provides a platform-independent implementation that works for web content on macOS, but on macOS, it is not customizable and can only be enabled by using Chrome developer tools.
         </p>
         <p>
-          A contrast theme enables users to specify the colors that are used to render various types of UI elements, such as text, hyperlinks, and buttons.
-          When a contrast theme is enabled, the browser automatically replaces each author specified color with one of the theme colors based on the type of HTML element.
-          CSS color module Level 4 defines twenty-three <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/system-color"><code>system color keywords</code></a> that operating system and browsers can use to define a theme.
-          A system color keyword specifies the types of UI elements that are automatically rendered with the color value mapped to that keyword by a contrast theme.
-          For example, the Windows Dusk theme specifies powder blue #b6f6f0 as the system color associated with the keyword <code>buttonText</code>.
-          When the Dusk theme is active, the browser automatically replaces each author specified color with powder blue #b6f6f0 when rendering text on buttons or when rendering any other element that is also mapped to the system color <code>buttonText</code>.
+          A contrast theme enables users to specify the colors that are used to render various kinds of UI elements, such as text, selected text, active controls, and inactive controls.
+          When a contrast theme is enabled, the browser automatically replaces the colors an author specified for an element with the theme color that the user chose for that kind of element.
+          For example, the Windows Dusk theme specifies powder blue #b6f6f0 as the color for the kind of elements known as <code>buttonText</code>.
+          So, if the Dusk theme is active, the browser ignores author-specified colors and renders the text on buttons using powder blue #b6f6f0.
         </p>
         <p>
-          None of the implementations of contrast themes in operating systems or browsers enable users to specify a color for all twenty-three system color keywords.
-          Windows themes include a total of eight colors (four foreground and four background) while Firefox settings provide four color choices (two foreground and two background).
-          The following table shows the twenty-three system color keywords and indicates which are supported in the Windows, Firefox, and Chromium implementations.
+          CSS color module Level 4 specifies nineteen <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/system-color"><code>system color keywords</code></a>
+          that are mapped to nineteen kinds of elements.
+          While operating systems or browsers could enable users to design themes with up to nineteen colors, all implementations provide users with a much smaller and more practical number of choices.
+          Windows themes map the nineteen system color keywords to eight colors (four foreground and four background) while Firefox custom contrast settings provide four color choices (two foreground and two background).
+          Note that when using Firefox on Windows, it provides an option  to inherit the eight-color Windows theme.
         </p>
+        <p>The following table shows the nineteen system color keywords and indicates which are supported in the Windows, Firefox, and Chromium implementations.</p>
         <table class="data">
           <caption>System Colors Supported by Various Contrast Theme Implementations</caption>
           <thead>
