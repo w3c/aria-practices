@@ -189,14 +189,23 @@ class ComboboxAutocomplete {
   // ComboboxAutocomplete Events
 
   filterOptions() {
-    // do not filter any options if autocomplete is none
-    if (this.isNone) {
-      this.filter = '';
-    }
+    var normalizedFilter = this.filter.trim().toLowerCase();
+    var hasExactMatch =
+      normalizedFilter !== '' &&
+      this.allOptions.some(
+        (opt) => this.getLowercaseContent(opt).trim() === normalizedFilter
+      );
+    // Do not filter options when:
+    // 1. The autocomplete value is "none".
+    // 2. The filter is empty.
+    // 3. The filter exactly matches the content of an option (case-insensitive).
+    var optionsFilter =
+      this.isNone || normalizedFilter === '' || hasExactMatch
+        ? ''
+        : normalizedFilter;
 
     var option = null;
     var currentOption = this.option;
-    var filter = this.filter.toLowerCase();
 
     this.filteredOptions = [];
     this.listboxNode.innerHTML = '';
@@ -204,8 +213,8 @@ class ComboboxAutocomplete {
     for (var i = 0; i < this.allOptions.length; i++) {
       option = this.allOptions[i];
       if (
-        filter.length === 0 ||
-        this.getLowercaseContent(option).indexOf(filter) === 0
+        optionsFilter.length === 0 ||
+        this.getLowercaseContent(option).indexOf(optionsFilter) === 0
       ) {
         this.filteredOptions.push(option);
         this.listboxNode.appendChild(option);
@@ -422,14 +431,19 @@ class ComboboxAutocomplete {
   onComboboxKeyUp(event) {
     var flag = false,
       option = null,
-      char = event.key;
+      char = event.key,
+      isTextEditKey =
+        this.isPrintableCharacter(char) ||
+        event.key === 'Backspace' ||
+        event.key === 'Delete';
 
     if (this.isPrintableCharacter(char)) {
       this.filter += char;
     }
 
     // this is for the case when a selection in the textbox has been deleted
-    if (this.comboboxNode.value.length < this.filter.length) {
+    // updated to only check for text edit keys, since the filter should not be updated on navigation keys
+    if (isTextEditKey && this.comboboxNode.value.length < this.filter.length) {
       this.filter = this.comboboxNode.value;
       this.option = null;
       this.filterOptions();
@@ -514,9 +528,8 @@ class ComboboxAutocomplete {
   }
 
   onComboboxClick() {
-    if (this.isOpen()) {
-      this.close(true);
-    } else {
+    // Do not toggle open state. Only open the listbox if it is closed.
+    if (!this.isOpen()) {
       this.open();
     }
   }
