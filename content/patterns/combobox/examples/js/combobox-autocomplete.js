@@ -200,7 +200,7 @@ class ComboboxAutocomplete {
     // 2. The filter is empty.
     // 3. The filter exactly matches the content of an option (case-insensitive).
     var optionsFilter =
-      this.none || normalizedFilter === '' || hasExactMatch
+      this.isNone || normalizedFilter === '' || hasExactMatch
         ? ''
         : normalizedFilter;
 
@@ -431,14 +431,19 @@ class ComboboxAutocomplete {
   onComboboxKeyUp(event) {
     var flag = false,
       option = null,
-      char = event.key;
+      char = event.key,
+      isTextEditKey =
+        this.isPrintableCharacter(char) ||
+        event.key === 'Backspace' ||
+        event.key === 'Delete';
 
     if (this.isPrintableCharacter(char)) {
       this.filter += char;
     }
 
     // this is for the case when a selection in the textbox has been deleted
-    if (this.comboboxNode.value.length < this.filter.length) {
+    // updated to only check for text edit keys, since the filter should not be updated on navigation keys
+    if (isTextEditKey && this.comboboxNode.value.length < this.filter.length) {
       this.filter = this.comboboxNode.value;
       this.option = null;
       this.filterOptions();

@@ -1207,3 +1207,42 @@ ariaTest(
     );
   }
 );
+
+ariaTest(
+  'Test arrow key navigation after an exact option match',
+  exampleFile,
+  'textbox-filter',
+  async (t) => {
+    const textbox = await t.context.session.findElement(
+      By.css(ex.textboxSelector)
+    );
+
+    await textbox.sendKeys('California', Key.ARROW_DOWN);
+
+    t.is(
+      await textbox.getAttribute('value'),
+      'Colorado',
+      'The first ARROW_DOWN should move from California to Colorado'
+    );
+    await assertAriaSelectedAndActivedescendant(
+      t,
+      ex.textboxSelector,
+      ex.optionsSelector,
+      6
+    );
+
+    await textbox.sendKeys(Key.ARROW_DOWN);
+
+    t.is(
+      await textbox.getAttribute('value'),
+      'Connecticut',
+      'The second ARROW_DOWN should move from Colorado to Connecticut'
+    );
+    await assertAriaSelectedAndActivedescendant(
+      t,
+      ex.textboxSelector,
+      ex.optionsSelector,
+      7
+    );
+  }
+);
