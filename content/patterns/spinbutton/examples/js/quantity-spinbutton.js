@@ -15,6 +15,11 @@ class SpinButton {
       document.querySelectorAll(`button[aria-controls="${this.id}"]`)
     );
     this.output = document.querySelector(`output[for="${this.id}"]`);
+    this.useAriaNotify = typeof el.ariaNotify === 'function';
+    if (this.useAriaNotify && this.output) {
+      this.output.remove();
+      this.output = null;
+    }
     this.timer = null;
     this.setBounds();
     el.addEventListener('input', () => this.setValue(el.value, true));
@@ -103,6 +108,10 @@ class SpinButton {
   }
 
   announce() {
+    if (this.useAriaNotify) {
+      this.el.ariaNotify(String(this.el.value));
+      return;
+    }
     if (!this.output) return;
     this.output.textContent = this.el.value;
     clearTimeout(this.timer);
