@@ -43,13 +43,8 @@
           <tbody>
             <tr>
               <td>
-                <code>aside</code> if it is in the context of a <code>body</code> or <code>main</code> element
-              </td>
-              <td><code>complementary</code></td>
-            </tr>
-            <tr>
-              <td>
-                <code>aside</code> if it has a label (see <a href="#aria_lh_step3">Step 3</a> below) and is in the context of an <code>article</code>, <code>aside</code>, <code>nav</code> or <code>section</code> element
+                <div><code>aside</code> if it is in the context of a <code>body</code>, <code>header</code>, <code>footer</code> or <code>main</code> element.</div>
+                <div><strong>Note:</strong> The <code>aside</code> element if it has a label (see <a href="#aria_lh_step3">Step 3</a> below) will be create a <code>complementary</code> landmark in any context, including <code>article</code>, <code>aside</code>, <code>nav</code> or <code>section</code> elements.  It is <code>not</code> considered a best practice to create a complementary landmark in any context other than the body element.</div>
               </td>
               <td><code>complementary</code></td>
             </tr>
