@@ -43,8 +43,8 @@
           <tbody>
             <tr>
               <td>
-                <p><code>aside</code> if it is in the context of a <code>body</code>, <code>footer</code>, <code>header</code> or <code>main</code> element.</p>
-                <p><strong>Note:</strong> The <code>aside</code> element will create a <code>complementary</code> if it has a label (see <a href="#aria_lh_step3">Step 3</a> below) in any context, including <code>article</code>, <code>aside</code>, <code>nav</code> or <code>section</code> elements.  It is <code>not</code> considered a best practice to create a complementary landmark in any context other than the body element.</p>
+                <p><code>aside</code> if it is in the context of a <code>body</code>, <code>footer</code>, <code>header</code> or <code>main</code> element, or if the <code>aside</code> element has an label (see <a href="#aria_lh_step3">Step 3</a> below) in any context.</p>
+                <p><strong>Note:</strong> The <code>aside</code> element will <em>not</em> create a <code>complementary</code> landmark region in the context of an <code>article</code>, <code>aside</code>, <code>nav</code> or <code>section</code> elements.  In these contexts the <code>aside</code> could be used for purposes other than creating a <code>complementary</code> landmark region.  </p>
               </td>
               <td><code>complementary</code></td>
             </tr>
@@ -204,7 +204,7 @@
             <h4>HTML Technique</h4>
 
             <ul>
-              <li>Use the HTML <code>aside</code> element to define a <code>complementary</code> landmark when its context is the <code>body</code>, <code>footer</code>, <code>header</code> or <code>main</code> element.</li>
+              <li>Use the HTML <code>aside</code> element to define a <code>complementary</code> landmark when its context is the <code>body</code> element (e.g. not in the context of a <code>footer</code>, <code>header</code> or <code>main</code> elements).</li>
               <li><strong>Note:</strong> The HTML <code>aside</code> element with a label (see <a href="#aria_lh_step3">Step 3</a> above) will define a <code>complementary</code> landmark in any context, including an <code>article</code>, <code>aside</code>, <code>nav</code> or <code>section</code> element.</li>
             </ul>
 
