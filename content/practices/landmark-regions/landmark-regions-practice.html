@@ -11,6 +11,33 @@
     <script src="../../shared/js/highlight.pack.js"></script>
     <script src="../../shared/js/app.js"></script>
     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
+    <style>
+      figure.image {
+        margin: 0;
+        margin-top: 1.5em;
+        margin-bottom: 3em;
+        border: 2px solid hsl(0, 0%, 87%);
+        padding: 0;
+        max-width: 98%;
+        line-height: 0.8;
+      }
+
+      figure.image img {
+        margin: 0;
+        border-width: 0;
+        padding: 0;
+        width: 100%;
+      }
+
+      figure.image figcaption {
+        margin: 0;
+        padding: 0.5em;
+        font-weight: bold;
+        font-size: 110%;
+        background-color: hsl(0, 0%, 87%);
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
     <main>
@@ -42,12 +69,25 @@
           </thead>
           <tbody>
             <tr>
-              <td><code>aside</code></td>
+              <td>
+                <p><code>aside</code> element if it is in the context of a <code>body</code>, <code>footer</code>, <code>header</code> or <code>main</code> element, or if the <code>aside</code> element has a label (see <a href="#aria_lh_step3">Step 3</a> below) in any context.</p>
+                <p><strong>Note:</strong> The <code>aside</code> element will <em>not</em> create a <code>complementary</code> landmark region in the following contexts:</p>
+                <ul>
+                  <li><code>article</code></li>
+                  <li><code>aside</code></li>
+                  <li><code>nav</code></li>
+                  <li><code>section</code></li>
+                </ul>
+              </td>
               <td><code>complementary</code></td>
             </tr>
             <tr>
               <td><code>footer</code> if it is in the context of a <code>body</code> element</td>
               <td><code>contentinfo</code></td>
+            </tr>
+            <tr>
+              <td><code>form</code> if it has a label (see <a href="#aria_lh_step3">Step 3</a> below)</td>
+              <td><code>form</code></td>
             </tr>
             <tr>
               <td><code>header</code> if it is in the context of a <code>body</code> element</td>
@@ -62,7 +102,7 @@
               <td><code>navigation</code></td>
             </tr>
             <tr>
-              <td><code>section</code> if it has an accessible name provided by <code>aria-labelledby</code> or <code>aria-label</code></td>
+              <td><code>section</code> if it has a label (see <a href="#aria_lh_step3">Step 3</a> below)</td>
               <td><code>region</code></td>
             </tr>
             <tr>
@@ -71,6 +111,7 @@
             </tr>
           </tbody>
         </table>
+
       </section>
 
       <section>
@@ -99,11 +140,14 @@
           </li>
         </ul>
 
-        <p id="aria_lh_step3"><strong>Step 3: Label areas</strong></p>
+        <p id="aria_lh_step3"><strong>Step 3: Label landmarks</strong></p>
 
         <ul>
           <li>
-            If a specific landmark role is used more than once on a page, provide each instance of that landmark with a unique label.
+            If a specific landmark role requires a label or is used more than once on a page, provide each instance of that landmark with a unique and descriptive label.  The label should be short and help people understand the content in the region.
+          </li>
+
+          <li>
             There is one rare circumstance where providing the same label to multiple instances of a landmark can be beneficial: the content and purpose of each instance is identical.
             For example, a large search results table has two sets of identical pagination controls -- one above and one below the table, so each set is in a navigation region labelled <q>Search Results</q>.
             In this case, adding extra information to the label that distinguishes the two instances may be more distracting than helpful.
@@ -114,9 +158,11 @@
             See Landmark Roles section below.
           </li>
 
-          <li>If an area begins with a heading element (e.g. <code>h1-h6</code>) it can be used as the label for the area using the <code>aria-labelledby</code> attribute.</li>
+          <li>If an landmark region begins with a heading element (e.g. <code>h1-h6</code>) it can be used as the label for the region using <code>aria-labelledby</code>.</li>
 
-          <li>If an area requires a label and does not have a heading element, provide a label using the <code>aria-label</code> attribute.</li>
+          <li>If a <code>form</code> landmark region has a <code>fieldset</code> element that encapsulates all the controls in the form, the corresponding <code>legend</code> element can be used as the label for the region using <code>aria-labelledby</code>.</li>
+
+          <li>If a landmark requires a label and does not have a heading element, provide a label using the <code>aria-label</code> attribute.  Note: While the <code>title</code> attribute can also be used to provide a label, it is not considered a best practice and is discouraged.</li>
 
           <li>
             Do not use the landmark role as part of the label.
@@ -154,7 +200,7 @@
               <li>The HTML <code>header</code> element defines a <code>banner</code> landmark when its context is the <code>body</code> element.</li>
 
               <li>
-                The HTML <code>header</code> element is not considered a <code>banner</code> landmark when it is descendant of any of following elements (see <a href="" class="html-mapping">HTML Accessibility Mappings</a>):
+                The HTML <code>header</code> element is <em>not</em> considered a <code>banner</code> landmark when it is descendant of any of following elements:
                 <ul>
                   <li><code>article</code></li>
                   <li><code>aside</code></li>
@@ -170,11 +216,6 @@
             <p>If the HTML <code>header</code> element technique is not being used, a <code>role=&quot;banner&quot;</code> attribute should be used to define a <code>banner</code> landmark.</p>
           </section>
 
-          <section>
-            <h4>Examples</h4>
-
-            <p><a href="../../patterns/landmarks/examples/banner.html">Banner Landmark Example</a></p>
-          </section>
         </section>
 
         <section id="aria_lh_complementary">
@@ -195,18 +236,25 @@
           <section>
             <h4>HTML Technique</h4>
 
-            <p>Use the HTML <code>aside</code> element to define a <code>complementary</code> landmark.</p>
+            <ul>
+              <li>Use the HTML <code>aside</code> element to define a <code>complementary</code> landmark when its context is the <code>body</code> element.</li>
+              <li>
+                The HTML <code>aside</code> element is <em>not</em> considered a <code>contentinfo</code> landmark when it is descendant of any of following elements:
+                <ul>
+                  <li><code>article</code></li>
+                  <li><code>aside</code></li>
+                  <li><code>main</code></li>
+                  <li><code>nav</code></li>
+                  <li><code>section</code></li>
+                </ul>
+              </li>
+            </ul>
 
             <h4>ARIA Technique</h4>
 
             <p>If the HTML <code>aside</code> element technique is not being used, use a <code>role=&quot;complementary&quot;</code> attribute to define a <code>complementary</code> landmark.</p>
           </section>
 
-          <section>
-            <h4>Examples</h4>
-
-            <p><a href="../../patterns/landmarks/examples/complementary.html">Complementary Landmark Example</a></p>
-          </section>
         </section>
 
         <section id="aria_lh_contentinfo">
@@ -231,7 +279,7 @@
               <li>The HTML <code>footer</code> element defines a <code>contentinfo</code> landmark when its context is the <code>body</code> element.</li>
 
               <li>
-                The HTML <code>footer</code> element is not considered a <code>contentinfo</code> landmark when it is descendant of any of following elements (see <a href="" class="html-mapping">HTML Accessibility Mappings</a>):
+                The HTML <code>footer</code> element is <em>not</em> considered a <code>contentinfo</code> landmark when it is descendant of any of following elements:
                 <ul>
                   <li><code>article</code></li>
                   <li><code>aside</code></li>
@@ -247,10 +295,6 @@
             <p>If the HTML <code>footer</code> element technique is not being used, a <code>role=&quot;contentinfo&quot;</code> attribute should be used to define a <code>contentinfo</code> landmark.</p>
           </section>
 
-          <section>
-            <h4>Examples</h4>
-            <p><a href="../../patterns/landmarks/examples/contentinfo.html">Contentinfo Landmark Example</a></p>
-          </section>
         </section>
 
         <section id="aria_lh_form">
@@ -263,7 +307,7 @@
 
             <li>A <code>form</code> landmark should have a label to help users understand the purpose of the form.</li>
 
-            <li>A label for the <code>form</code> landmark should be visible to all users (e.g. an <code>h1-h6</code> element).</li>
+            <li>A label for the <code>form</code> landmark should be visible to all users (e.g. an <code>h1-h6</code> element) or <code>legend</code> element.</li>
 
             <li>If a page includes more than one <code>form</code> landmark, each should have a unique label (see <a href="#aria_lh_step3">Step 3</a> above).</li>
 
@@ -284,18 +328,14 @@
           <section>
             <h4>HTML Techniques</h4>
 
-            <p>The HTML <code>form</code> element defines a <code>form</code> landmark when it has an accessible name (e.g. <code>aria-labelledby</code>, <code>aria-label</code> or <code>title</code>).</p>
+            <p>The HTML <code>form</code> element defines a <code>form</code> landmark when it has a label (see <a href="#aria_lh_step3">Step 3</a> above).</p>
+            <p>NOTE: If the form uses a <code>fieldset/legend</code> to provide a grouping label for all the controls in the form, use the <code>legend</code> element as a landmark label by referencing it using <code>aria-labelledby</code>.</p>
 
             <h4>ARIA Technique</h4>
 
-            <p>Use the <code>role=&quot;form&quot;</code> to identify a region of the page; do not use it to identify every form field.</p>
+            <p>Use the <code>role=&quot;form&quot;</code> with a label (see <a href="#aria_lh_step3">Step 3</a> above) to identify a region of the page with a set of form controls; do not use it to identify every form field.</p>
           </section>
 
-          <section>
-            <h4>Examples</h4>
-
-            <p><a href="../../patterns/landmarks/examples/form.html">Form Landmark Example</a></p>
-          </section>
         </section>
 
         <section id="aria_lh_main">
@@ -323,11 +363,6 @@
             <p>If the HTML <code>main</code> element technique is not being used, use a <code>role=&quot;main&quot;</code> attribute to define a <code>main</code> landmark.</p>
           </section>
 
-          <section>
-            <h4>Examples</h4>
-
-            <p><a href="../../patterns/landmarks/examples/main.html">Main Landmark Example</a></p>
-          </section>
         </section>
 
         <section id="aria_lh_navigation">
@@ -351,11 +386,6 @@
             <p>If the HTML <code>nav</code> element technique is not being used, use a <code>role=&quot;navigation&quot;</code> attribute to define a <code>navigation</code> landmark.</p>
           </section>
 
-          <section>
-            <h4>Examples</h4>
-
-            <p><a href="../../patterns/landmarks/examples/navigation.html">Navigation Landmark Example</a></p>
-          </section>
         </section>
 
         <section id="aria_lh_region">
@@ -374,18 +404,13 @@
           <section>
             <h4>HTML Technique</h4>
 
-            <p>The HTML <code>section</code> element defines a <code>region</code> landmark when it has an accessible name (e.g. <code>aria-labelledby</code>, <code>aria-label</code> or <code>title</code>).</p>
+            <p>The HTML <code>section</code> element defines a <code>region</code> landmark when it has an label (see <a href="#aria_lh_step3">Step 3</a> above).</p>
 
             <h4>ARIA Technique</h4>
 
-            <p>If the HTML <code>section</code> element technique is not being used, use a <code>role=&quot;region&quot;</code> attribute to define a <code>region</code> landmark.</p>
+            <p>If the HTML <code>section</code> element technique is not being used, use a <code>role=&quot;region&quot;</code> attribute to define a <code>region</code> landmark with a label (see <a href="#aria_lh_step3">Step 3</a> above).</p>
           </section>
 
-          <section>
-            <h4>Examples</h4>
-
-            <p><a href="../../patterns/landmarks/examples/region.html">Region Landmark Example</a></p>
-          </section>
         </section>
 
         <section id="aria_lh_search">
@@ -409,12 +434,284 @@
             <p>If the HTML <code>search</code> element technique is not being used, use a <code>role=&quot;search&quot;</code> attribute to define a <code>search</code> landmark.</p>
           </section>
 
-          <section>
-            <h4>Examples</h4>
-
-            <p><a href="../../patterns/landmarks/examples/search.html">Search Landmark Example</a></p>
-          </section>
         </section>
+
+        <section>
+          <h2>Assistive Technology Support</h2>
+          <p>The following sections demonstrate how various popular
+          assistive technologies support landmark navigation</p>
+
+          <ul>
+            <li><a href="#jaws">JAWS Screen Reader for Windows</a></li>
+            <li><a href="#nvda">NVDA Screen Reader for Windows</a></li>
+            <li><a href="#vo">VoiceOver Screen Reader for macOS</a></li>
+            <li><a href="#orca">ORCA Screen Reader for Linux/Gnome</a></li>
+            <li><a href="#skipto">SkipTo.js browser extension</a></li>
+          </ul>
+
+          <section>
+            <h3 id="jaws">JAWS Screen Reader for Windows</h3>
+            <p>The following commands are available in the JAWS screen reader (since version 15) for navigating landmarks:</p>
+
+            <table class="table table-striped table-hover" aria-labelledby="jaws">
+
+              <thead>
+                <tr>
+                  <th>Command</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Q</td>
+                  <td>Go to main landmark</td>
+                </tr>
+                <tr>
+                  <td>R</td>
+                  <td>Go to next landmark</td>
+                </tr>
+                <tr>
+                  <td>Shift+R</td>
+                  <td>Go to previous landmark</td>
+                </tr>
+                <tr>
+                  <td>Insert+Control+R</td>
+                  <td>List of landmarks</td>
+                </tr>
+              </tbody>
+
+            </table>
+
+            <figure class="image">
+              <img src="./images/landmarks-jaws.png" alt="">
+              <figcaption>Screen shot of list of landmarks in JAWS</figcaption>
+            </figure>
+
+          </section>
+
+          <section>
+          <h3 id="nvda">NVDA Screen Reader for Windows</h3>
+             <p>The following commands are available in NVDA screen reader (since version 2014.2) for navigating landmarks:</p>
+
+            <table class="table table-striped table-hover" aria-labelledby="nvda">
+
+              <thead>
+                <tr>
+                  <th>Command</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>D</td>
+                  <td>Go to next landmark</td>
+                </tr>
+                <tr>
+                  <td>Shift+D</td>
+                  <td>Go to previous landmark</td>
+                </tr>
+                <tr>
+                  <td>NVDA+F7</td>
+                  <td>List of landmarks</td>
+                </tr>
+              </tbody>
+
+            </table>
+
+              <figure class="image">
+                <img src="images/landmarks-nvda.png" alt="">
+                <figcaption>Screen shot of list of landmarks in NVDA</figcaption>
+              </figure>
+          </section>
+
+          <section>
+          <h3 id="vo">VoiceOver Screen Reader for macOS</h3>
+             <p>The following commands are available in VoiceOver screen reader for navigating landmarks:</p>
+            <table class="table table-striped table-hover" aria-labelledby="vo">
+
+              <thead>
+                <tr>
+                  <th>Command</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>W (Quick Nav)</td>
+                  <td>Go to next landmark</td>
+                </tr>
+                <tr>
+                  <td>Shift+W (Quick Nav)</td>
+                  <td>Go to previous landmark</td>
+                </tr>
+                <tr>
+                  <td>Control+Option+U, then left or right arrow key to landmark list</td>
+                  <td>List of landmarks</td>
+                </tr>
+              </tbody>
+
+            </table>
+
+            <figure class="image">
+              <img src="images/landmarks-vo.png" alt="">
+              <figcaption>Screen shot of list of landmarks in VoiceOver</figcaption>
+            </figure>
+
+          </section>
+
+          <section>
+          <h3 id="orca">ORCA Screen Reader for Linux/GNOME</h3>
+            <p>The following commands are available in ORCA Screen reader for navigating landmarks:</p>
+
+            <table class="table table-striped table-hover" aria-labelledby="orca">
+
+              <thead>
+                <tr>
+                  <th>Command</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>M</td>
+                  <td>Next landmark</td>
+                </tr>
+                <tr>
+                  <td>Shift+M</td>
+                  <td>Previous landmark</td>
+                </tr>
+                <tr>
+                  <td>Alt+Shift+M</td>
+                  <td>List of landmarks</td>
+                </tr>
+              </tbody>
+
+            </table>
+
+            <figure class="image">
+              <img src="images/landmarks-orca.png" alt="">
+              <figcaption>Screen shot of list of landmarks in Orca</figcaption>
+            </figure>
+          </section>
+
+          <section>
+            <h3 id="skipto">SkipTo.js Browser Extension</h3>
+
+            <p>The <a href="https://skipto-landmarks-headings.github.io/page-script-5/extensions.html">SkipTo.js browser extensions</a> implement the <a href="https://www.w3.org/TR/UAAG/">User Agent Accessibility Guidelines 1.0</a> requirement <q><a href="https://www.w3.org/TR/UAAG/guidelines.html#tech-nav-structure">9.9 Allow Structured Navigation</a></q>. It does this by providing keyboard navigation to major landmarks and headings on any web page.  The keyboard shortcut to open the "Skip To Content" menu is <kbd>alt</kbd> + <kbd>0</kbd> on Windows/Linux and <kbd>option</kbd> + <kbd>0</kbd> on Mac keyboards. </p>
+
+            <p>The following table identifies additional single key shortcuts to navigate headings and landmarks.  The single key commands are similar to the navigation commands found in screen readers.</p>
+
+
+            <table class="table table-striped table-hover" aria-labelledby="skipto">
+
+              <thead>
+                <tr>
+                  <th>Command</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>r</td>
+                  <td>Next landmark</td>
+                </tr>
+                <tr>
+                  <td>shift+r</td>
+                  <td>Previous landmark</td>
+                </tr>
+                <tr>
+                  <td>h</td>
+                  <td>Next heading</td>
+                </tr>
+                <tr>
+                  <td>shift+h</td>
+                  <td>Previous heading</td>
+                </tr>
+                <tr>
+                  <td>m</td>
+                  <td>Next Main landmark</td>
+                </tr>
+                <tr>
+                  <td>n</td>
+                  <td>Next Navigation landmark</td>
+                </tr>
+                <tr>
+                  <td>c</td>
+                  <td>Next Complementary landmark</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>Next H1 heading</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Next H2 heading</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Next H3 heading</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Next H4 heading</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Next H5 heading</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>Next H6 heading</td>
+                </tr>
+              </tbody>
+
+            </table>
+
+            <p>Links to extensions:</p>
+            <ul style="margin-top: 1em">
+              <li><a href="https://chromewebstore.google.com/detail/skiptojs-for-chrome/mgmnhfooeifhicajoeoamlchoadbioof">SkipTo.js for Chrome</a></li>
+              <li><a href="https://microsoftedge.microsoft.com/addons/detail/skiptojs-for-microsoft-e/ljimnmfdebledgndinpmilpbmkfamicg">SkipTo.js for Edge</a></li>
+              <li><a href="https://addons.mozilla.org/en-US/firefox/addon/skipto-js-for-firefox/">SkipTo.js for Firefox</a></li>
+              <li><a href="https://addons.opera.com/en/extensions/details/skiptojs-for-opera/">SkipTo.js for Opera</a></li>
+            </ul>
+
+            <figure class="image">
+              <img src="images/landmarks-skipto.png" alt="">
+              <figcaption>Screen shot of SkipTo.js menu of major landmarks and Headings</figcaption>
+            </figure>
+
+          </section>
+
+        </section>
+
+        <section>
+          <h2 id="read-more">Read More</h2>
+          <ul>
+            <li><a href="https://www.w3.org/TR/WCAG20-TECHS/aria#ARIA11">ARIA11: Using ARIA landmarks to identify regions of a page</a> (WCAG 2.0 Technique)</li>
+            <li><a href="https://www.w3.org/TR/WCAG20-TECHS/aria#ARIA20">ARIA20: Using the region role to identify a region of the page</a> (WCAG 2.0 Technique)</li>
+            <li><a href="https://alistapart.com/column/wai-finding-with-aria-landmark-roles">WAI-finding with ARIA Landmark Roles</a> (A List Apart)</li>
+            <li><a href="https://vispero.com/resources/using-wai-aria-landmark-roles/">Using WAI-ARIA Landmarks – updated</a> (Vispero)</li>
+            <li><a href="https://vispero.com/resources/basic-screen-reader-commands-for-accessibility-testing/">Basic screen reader commands for accessibility testing</a>  (Vispero)</li>
+            <li><a href="https://webaim.org/projects/screenreadersurvey10/#landmarks">Screen Reader User Survey #10 Results: Landmarks/Regions</a> (WebAIM)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 id="tools">Tools</h2>
+
+          <ul>
+            <li><a href="https://opena11y.github.io/h2l-side-panel/">Headings, Landmarks and Links Browser Extensions</a> (H2L)</li>
+            <li><a href="https://skipto-landmarks-headings.github.io/page-script-5/extensions.html">SkipTo.js: Browser Extensions</a></li>
+            <li><a href="https://skipto-landmarks-headings.github.io/page-script-5/page-script.html">SkipTo.js: Page Script</a> <em>(used on this page)</em></li>
+            <li><a href="http://matatk.agrip.org.uk/landmarks/">Landmarks Browser Extension</a></li>
+            <li><a href="https://accessibility-bookmarklets.org/">Accessibility Bookmarklets: Landmark Bookmarklet</a></li>
+            <li><a href="https://whatsock.github.io/visual-aria/github-bookmarklet/visual-aria.htm">The Visual ARIA Bookmarklet</a></li>
+            <li><a href="https://opena11y.github.io/ainspector/">Accessibility Inspector for WCAG Evaluation</a> (Landmark Rule Category)</li>
+          </ul>
+
+        </section>
+
+
       </section>
     </main>
   </body>
