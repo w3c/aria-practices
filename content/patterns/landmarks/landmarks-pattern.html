@@ -38,23 +38,56 @@
       </section>
 
       <section id="examples">
-        <img alt="" src="../../images/pattern-landmarks.svg">
         <h2>Examples</h2>
-        <ul>
-          <li><a href="examples/main.html">Main Landmark Example</a></li>
-          <li><a href="examples/navigation.html">Navigation Landmark Example</a></li>
-          <li><a href="examples/search.html">Search Landmark Example</a></li>
-          <li><a href="examples/banner.html">Banner Landmark Example</a></li>
-          <li><a href="examples/contentinfo.html">Contentinfo Landmark Example</a></li>
-          <li><a href="examples/complementary.html">Complementary Landmark Example</a></li>
-          <li><a href="examples/form.html">Form Landmark Example</a></li>
-          <li><a href="examples/region.html">Region Landmark Example</a></li>
-        </ul>
+
+        <p>The following table provides information on the landmark regions used on this page.</p>
+
+        <table class="data attributes">
+          <caption>
+            Landmark Roles Used on this Page
+          </caption>
+          <thead>
+            <tr>
+              <th>Landmark Role</th>
+              <th>Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>complementary</code></td>
+              <td>An <code>aside</code> element with a <code>aria-label</code> is used to define a <code>complementary</code> region with the accessible name of "feedback".</td>
+            </tr>
+            <tr>
+              <td><code>contentinfo</code></td>
+              <td>A <code>footer</code> element with a <code>aria-label</code> is used to define a <code>contentinfo</code> region with the accessible name of "site".</td>
+            </tr>
+            <tr>
+              <td><code>banner</code></td>
+              <td>A <code>header</code> element is used to define a <code>banner</code> region.  Since there is only one banner landmark on the page, no accessible name is needed.</td>
+            </tr>
+            <tr>
+              <td><code>main</code></td>
+              <td>A <code>main</code> element is used to define a <code>main</code> region.  Since there is only one main landmark on the page, no accessible name is needed.</td>
+            </tr>
+            <tr>
+              <td><code>navigation</code></td>
+              <td>There are two <code>navigation</code> regions on the page.  The both use the <code>nav</code> element to create the navigation regions.  The accessible name "APG" for the first one is defined using <code>aria-label</code> and second on with the name "Page Contents" is defined using <code>aria-labelledby</code> to reference the associated <code>h2</code> element.</td>
+            </tr>
+            <tr>
+              <td><code>region</code></td>
+              <td>There are no <code>region</code> regions defined on this page.</td>
+            </tr>
+            <tr>
+              <td><code>search</code></td>
+              <td>There are no <code>search</code> regions defined on this page.</td>
+            </tr>
+          </tbody>
+        </table>
       </section>
 
       <section id="keyboard_interaction">
         <h2>Keyboard Interaction</h2>
-        <p>Not applicable.</p>
+        <p>Web browsers currently do not provide keyboard support for navigation to landmark regions.  Screen readers and other types of assistive technology do provide their own keyboard support to view and navigate landmarks regions.</p>
       </section>
 
       <section id="roles_states_properties">
@@ -63,6 +96,35 @@
           The <a href="../../practices//landmark-regions//landmark-regions-practice.html">Landmark Regions Practice</a> describes the HTML elements, roles, properties, and usage guidelines for each of the landmark region roles.
         </p>
       </section>
+
+<!-- Resources -->
+
+        <section id="resources">
+          <h2>ARIA Landmark Resources and Tools</h2>
+
+          <h2>Read More</h2>
+          <ul>
+            <li><a href="https://www.w3.org/TR/WCAG20-TECHS/aria#ARIA11">ARIA11: Using ARIA landmarks to identify regions of a page</a> (WCAG 2.0 Technique)</li>
+            <li><a href="https://www.w3.org/TR/WCAG20-TECHS/aria#ARIA20">ARIA20: Using the region role to identify a region of the page</a> (WCAG 2.0 Technique)</li>
+            <li><a href="https://alistapart.com/column/wai-finding-with-aria-landmark-roles">WAI-finding with ARIA Landmark Roles</a> (A List Apart)</li>
+            <li><a href="https://vispero.com/resources/using-wai-aria-landmark-roles/">Using WAI-ARIA Landmarks – updated</a> (Vispero)</li>
+            <li><a href="https://vispero.com/resources/basic-screen-reader-commands-for-accessibility-testing/">Basic screen reader commands for accessibility testing</a>  (Vispero)</li>
+            <li><a href="https://webaim.org/projects/screenreadersurvey10/#landmarks">Screen Reader User Survey #10 Results: Landmarks/Regions</a> (WebAIM)</li>
+          </ul>
+
+          <h2>Tools</h2>
+
+          <ul>
+            <li><a href="https://opena11y.github.io/h2l-side-panel/">Headings, Landmarks and Links Browser Extensions</a> (H2L)</li>
+            <li><a href="https://skipto-landmarks-headings.github.io/page-script-5/extensions.html">SkipTo.js: Browser Extensions</a></li>
+            <li><a href="https://skipto-landmarks-headings.github.io/page-script-5/page-script.html">SkipTo.js: Page Script</a> <em>(used on this page)</em></li>
+            <li><a href="http://matatk.agrip.org.uk/landmarks/">Landmarks Browser Extension</a></li>
+            <li><a href="https://accessibility-bookmarklets.org/">Accessibility Bookmarklets: Landmark Bookmarklet</a></li>
+            <li><a href="https://whatsock.github.io/visual-aria/github-bookmarklet/visual-aria.htm">The Visual ARIA Bookmarklet</a></li>
+            <li><a href="https://opena11y.github.io/ainspector/">Accessibility Inspector for WCAG Evaluation</a> (Landmark Rule Category)</li>
+          </ul>
+
+        </section>
 
     </main>
   </body>

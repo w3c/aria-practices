@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../shared/css/core.css">
     <script src="../../shared/js/highlight.pack.js"></script>
     <script src="../../shared/js/app.js"></script>
+    <script src="./js/image-resizing.js"></script>
     <script data-skipto="colorTheme:aria; displayOption:popup; containerElement:div" src="../../shared/js/skipto.js"></script>
   </head>
   <body>
@@ -143,7 +144,7 @@
 
             <li>The <code>banner</code> landmark should be a top-level landmark.</li>
 
-            <li>When a page contains nested <code>document</code> and/or <code>application</code> roles (e.g. typically through the use of <code>iframe</code> and <code>frame</code> elements), each <code>document</code> or <code>application</code> role may have one <code>banner</code> landmark.</li>
+            <li>When a page contains nested <code>document</code> and/or <code>application</code> roles (e.g. typically through the use of <code>iframe</code> and custom elements), each <code>document</code> or <code>application</code> role may have one <code>banner</code> landmark.</li>
 
             <li>If a page includes more than one <code>banner</code> landmark, each should have a unique label (see <a href="#aria_lh_step3">Step 3</a> above).</li>
           </ul>
@@ -170,11 +171,6 @@
             <p>If the HTML <code>header</code> element technique is not being used, a <code>role=&quot;banner&quot;</code> attribute should be used to define a <code>banner</code> landmark.</p>
           </section>
 
-          <section>
-            <h4>Examples</h4>
-
-            <p><a href="../../patterns/landmarks/examples/banner.html">Banner Landmark Example</a></p>
-          </section>
         </section>
 
         <section id="aria_lh_complementary">
@@ -202,11 +198,6 @@
             <p>If the HTML <code>aside</code> element technique is not being used, use a <code>role=&quot;complementary&quot;</code> attribute to define a <code>complementary</code> landmark.</p>
           </section>
 
-          <section>
-            <h4>Examples</h4>
-
-            <p><a href="../../patterns/landmarks/examples/complementary.html">Complementary Landmark Example</a></p>
-          </section>
         </section>
 
         <section id="aria_lh_contentinfo">
@@ -219,7 +210,7 @@
 
             <li>The <code>contentinfo</code> landmark should be a top-level landmark.</li>
 
-            <li>When a page contains nested <code>document</code> and/or <code>application</code> roles (e.g. typically through the use of <code>iframe</code> and <code>frame</code> elements), each <code>document</code> or <code>application</code> role may have one <code>contentinfo</code> landmark.</li>
+            <li>When a page contains nested <code>document</code> and/or <code>application</code> roles (e.g. typically through the use of <code>iframe</code> and custom elements), each <code>document</code> or <code>application</code> role may have one <code>contentinfo</code> landmark.</li>
 
             <li>If a page includes more than one <code>contentinfo</code> landmark, each should have a unique label (see <a href="#aria_lh_step3">Step 3</a> above).</li>
           </ul>
@@ -247,10 +238,6 @@
             <p>If the HTML <code>footer</code> element technique is not being used, a <code>role=&quot;contentinfo&quot;</code> attribute should be used to define a <code>contentinfo</code> landmark.</p>
           </section>
 
-          <section>
-            <h4>Examples</h4>
-            <p><a href="../../patterns/landmarks/examples/contentinfo.html">Contentinfo Landmark Example</a></p>
-          </section>
         </section>
 
         <section id="aria_lh_form">
@@ -291,11 +278,6 @@
             <p>Use the <code>role=&quot;form&quot;</code> to identify a region of the page; do not use it to identify every form field.</p>
           </section>
 
-          <section>
-            <h4>Examples</h4>
-
-            <p><a href="../../patterns/landmarks/examples/form.html">Form Landmark Example</a></p>
-          </section>
         </section>
 
         <section id="aria_lh_main">
@@ -308,7 +290,7 @@
 
             <li>The <code>main</code> landmark should be a top-level landmark.</li>
 
-            <li>When a page contains nested <code>document</code> and/or <code>application</code> roles (e.g. typically through the use of <code>iframe</code> and <code>frame</code> elements), each <code>document</code> or <code>application</code> role may have one <code>main</code> landmark.</li>
+            <li>When a page contains nested <code>document</code> and/or <code>application</code> roles (e.g. typically through the use of <code>iframe</code> and custom elements), each <code>document</code> or <code>application</code> role may have one <code>main</code> landmark.</li>
 
             <li>If a page includes more than one <code>main</code> landmark, each should have a unique label (see <a href="#aria_lh_step3">Step 3</a> above).</li>
           </ul>
@@ -323,11 +305,6 @@
             <p>If the HTML <code>main</code> element technique is not being used, use a <code>role=&quot;main&quot;</code> attribute to define a <code>main</code> landmark.</p>
           </section>
 
-          <section>
-            <h4>Examples</h4>
-
-            <p><a href="../../patterns/landmarks/examples/main.html">Main Landmark Example</a></p>
-          </section>
         </section>
 
         <section id="aria_lh_navigation">
@@ -351,11 +328,6 @@
             <p>If the HTML <code>nav</code> element technique is not being used, use a <code>role=&quot;navigation&quot;</code> attribute to define a <code>navigation</code> landmark.</p>
           </section>
 
-          <section>
-            <h4>Examples</h4>
-
-            <p><a href="../../patterns/landmarks/examples/navigation.html">Navigation Landmark Example</a></p>
-          </section>
         </section>
 
         <section id="aria_lh_region">
@@ -381,11 +353,6 @@
             <p>If the HTML <code>section</code> element technique is not being used, use a <code>role=&quot;region&quot;</code> attribute to define a <code>region</code> landmark.</p>
           </section>
 
-          <section>
-            <h4>Examples</h4>
-
-            <p><a href="../../patterns/landmarks/examples/region.html">Region Landmark Example</a></p>
-          </section>
         </section>
 
         <section id="aria_lh_search">
@@ -409,13 +376,9 @@
             <p>If the HTML <code>search</code> element technique is not being used, use a <code>role=&quot;search&quot;</code> attribute to define a <code>search</code> landmark.</p>
           </section>
 
-          <section>
-            <h4>Examples</h4>
-
-            <p><a href="../../patterns/landmarks/examples/search.html">Search Landmark Example</a></p>
-          </section>
         </section>
       </section>
+
     </main>
   </body>
 </html>
