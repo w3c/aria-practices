@@ -3,6 +3,7 @@ const { By, Key, until } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAttributeDNE = require('../util/assertAttributeDNE');
 const assertAriaRoles = require('../util/assertAriaRoles');
+const assertNoElements = require('../util/assertNoElements');
 const translatePlatformKey = require('../util/translatePlatformKeys');
 
 const exampleFile =
@@ -41,6 +42,35 @@ const ex = {
 
 ex.inc.symbolSel = ex.inc.sel + ' > span';
 ex.dec.symbolSel = ex.dec.sel + ' > span';
+
+// Returns true if the browser supports ariaNotify on the spinbutton element
+async function hasAriaNotify(t) {
+  return t.context.session.executeScript(
+    (sel) => typeof document.querySelector(sel).ariaNotify === 'function',
+    ex.spin.sel
+  );
+}
+
+// Inject a spy on el.ariaNotify and return a handle to retrieve calls.
+// Call `getAriaNotifyCalls(t)` after interactions to read the log.
+async function installAriaNotifySpy(t) {
+  await t.context.session.executeScript((sel) => {
+    const el = document.querySelector(sel);
+    el.__ariaNotifyCalls = [];
+    const orig = el.ariaNotify.bind(el);
+    el.ariaNotify = (msg) => {
+      el.__ariaNotifyCalls.push(msg);
+      return orig(msg);
+    };
+  }, ex.spin.sel);
+}
+
+async function getAriaNotifyCalls(t) {
+  return t.context.session.executeScript((sel) => {
+    return document.querySelector(sel).__ariaNotifyCalls || [];
+  }, ex.spin.sel);
+}
+
 ex.inputScenarios = {
   0: { value: '0', valid: false },
   1: { value: '1', valid: true },
@@ -144,15 +174,31 @@ ariaTest(
   }
 );
 
-ariaTest('output element exists', exampleFile, 'output', async (t) => {
-  let output = await t.context.queryElements(t, ex.output.sel);
+ariaTest(
+  'notification mechanism uses ariaNotify or output element',
+  exampleFile,
+  'output',
+  async (t) => {
+    const usesAriaNotify = await hasAriaNotify(t);
 
-  t.is(
-    output.length,
-    1,
-    'One output element should be found by selector: ' + ex.output.sel
-  );
-});
+    if (usesAriaNotify) {
+      t.log('ariaNotify is supported; output element should be removed');
+      await assertNoElements(
+        t,
+        ex.output.sel,
+        'When ariaNotify is supported, the output element should be removed'
+      );
+    } else {
+      t.log('ariaNotify is not supported; output element should exist');
+      let output = await t.context.queryElements(t, ex.output.sel);
+      t.is(
+        output.length,
+        1,
+        'One output element should be found by selector: ' + ex.output.sel
+      );
+    }
+  }
+);
 
 // keys
 
@@ -338,11 +384,18 @@ ariaTest(
 
 ariaTest('increment button', exampleFile, 'increment-button', async (t) => {
   const spinner = await t.context.session.findElement(By.css(ex.spin.sel));
-  const output = await t.context.session.findElement(By.css(ex.output.sel));
   const button = await t.context.session.findElement(By.css(ex.inc.sel));
+  const usesAriaNotify = await hasAriaNotify(t);
   const min = parseInt(ex.spin.min);
   const max = parseInt(ex.spin.max);
   let val = min;
+
+  let output;
+  if (usesAriaNotify) {
+    await installAriaNotifySpy(t);
+  } else {
+    output = await t.context.session.findElement(By.css(ex.output.sel));
+  }
 
   // Send home key
   await spinner.sendKeys(Key.HOME);
@@ -358,12 +411,14 @@ ariaTest('increment button', exampleFile, 'increment-button', async (t) => {
       `After clicking ${val - 1} times, aria-valuenow should be ${val}`
     );
 
-    // Check that the output element has the expected value.
-    t.is(
-      await output.getText(),
-      String(val),
-      `After clicking ${val - 1} times, output should be ${val}`
-    );
+    if (!usesAriaNotify) {
+      // Check that the output element has the expected value.
+      t.is(
+        await output.getText(),
+        String(val),
+        `After clicking ${val - 1} times, output should be ${val}`
+      );
+    }
   }
 
   // Check that the decrement button is no longer disabled.
@@ -380,12 +435,14 @@ ariaTest('increment button', exampleFile, 'increment-button', async (t) => {
     `After clicking once more, aria-valuenow should still be ${max}`
   );
 
-  // Check that the output element has the expected value.
-  t.is(
-    await output.getText(),
-    String(max),
-    `After clicking once more, output should still be ${max}`
-  );
+  if (!usesAriaNotify) {
+    // Check that the output element has the expected value.
+    t.is(
+      await output.getText(),
+      String(max),
+      `After clicking once more, output should still be ${max}`
+    );
+  }
 
   // Check that the decrement button is still not disabled
   await assertAttributeDNE(t, ex.dec.sel, 'aria-disabled');
@@ -393,21 +450,42 @@ ariaTest('increment button', exampleFile, 'increment-button', async (t) => {
   // Check that the increment button is still disabled
   await assertAttributeValues(t, ex.inc.sel, 'aria-disabled', 'true');
 
-  // Wait for the output to self-destruct
-  await t.context.session.wait(
-    until.elementTextIs(output, ''),
-    parseInt(ex.output.selfDestruct) + BUFFER_VAL
-  );
-  t.pass('After waiting for the output self-destruct timer, output is empty');
+  if (usesAriaNotify) {
+    // Verify ariaNotify was called with each value
+    const calls = await getAriaNotifyCalls(t);
+    const expectedCalls = [];
+    for (let i = min + 1; i <= max; i++) expectedCalls.push(String(i));
+    expectedCalls.push(String(max)); // the extra click at max
+    t.log('ariaNotify calls:', calls);
+    t.deepEqual(
+      calls,
+      expectedCalls,
+      'ariaNotify should have been called with each incremented value'
+    );
+  } else {
+    // Wait for the output to self-destruct
+    await t.context.session.wait(
+      until.elementTextIs(output, ''),
+      parseInt(ex.output.selfDestruct) + BUFFER_VAL
+    );
+    t.pass('After waiting for the output self-destruct timer, output is empty');
+  }
 });
 
 ariaTest('decrement button', exampleFile, 'decrement-button', async (t) => {
   const spinner = await t.context.session.findElement(By.css(ex.spin.sel));
-  const output = await t.context.session.findElement(By.css(ex.output.sel));
   const button = await t.context.session.findElement(By.css(ex.dec.sel));
+  const usesAriaNotify = await hasAriaNotify(t);
   const min = parseInt(ex.spin.min);
   const max = parseInt(ex.spin.max);
   let val = max;
+
+  let output;
+  if (usesAriaNotify) {
+    await installAriaNotifySpy(t);
+  } else {
+    output = await t.context.session.findElement(By.css(ex.output.sel));
+  }
 
   // Send end key
   await spinner.sendKeys(Key.END);
@@ -423,12 +501,14 @@ ariaTest('decrement button', exampleFile, 'decrement-button', async (t) => {
       `After clicking ${val + 1} times, aria-valuenow should be ${val}`
     );
 
-    // Check that the output element has the expected value.
-    t.is(
-      await output.getText(),
-      String(val),
-      `After clicking ${val + 1} times, output should be ${val}`
-    );
+    if (!usesAriaNotify) {
+      // Check that the output element has the expected value.
+      t.is(
+        await output.getText(),
+        String(val),
+        `After clicking ${val + 1} times, output should be ${val}`
+      );
+    }
   }
 
   // Check that the decrement button is now disabled.
@@ -445,12 +525,14 @@ ariaTest('decrement button', exampleFile, 'decrement-button', async (t) => {
     `After clicking once more, aria-valuenow should still be ${min}`
   );
 
-  // Check that the output element has the expected value.
-  t.is(
-    await output.getText(),
-    String(min),
-    `After clicking once more, output should still be ${min}`
-  );
+  if (!usesAriaNotify) {
+    // Check that the output element has the expected value.
+    t.is(
+      await output.getText(),
+      String(min),
+      `After clicking once more, output should still be ${min}`
+    );
+  }
 
   // Check that the decrement button is still disabled
   await assertAttributeValues(t, ex.dec.sel, 'aria-disabled', 'true');
@@ -458,10 +540,24 @@ ariaTest('decrement button', exampleFile, 'decrement-button', async (t) => {
   // Check that the increment button is still not disabled
   await assertAttributeDNE(t, ex.inc.sel, 'aria-disabled');
 
-  // Wait for the output to self-destruct
-  await t.context.session.wait(
-    until.elementTextIs(output, ''),
-    parseInt(ex.output.selfDestruct) + BUFFER_VAL
-  );
-  t.pass('After waiting for the output self-destruct timer, output is empty');
+  if (usesAriaNotify) {
+    // Verify ariaNotify was called with each value
+    const calls = await getAriaNotifyCalls(t);
+    const expectedCalls = [];
+    for (let i = max - 1; i >= min; i--) expectedCalls.push(String(i));
+    expectedCalls.push(String(min)); // the extra click at min
+    t.log('ariaNotify calls:', calls);
+    t.deepEqual(
+      calls,
+      expectedCalls,
+      'ariaNotify should have been called with each decremented value'
+    );
+  } else {
+    // Wait for the output to self-destruct
+    await t.context.session.wait(
+      until.elementTextIs(output, ''),
+      parseInt(ex.output.selfDestruct) + BUFFER_VAL
+    );
+    t.pass('After waiting for the output self-destruct timer, output is empty');
+  }
 });
