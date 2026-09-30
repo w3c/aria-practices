@@ -15,6 +15,7 @@ const ex = {
   optionsSelector: '#ex1 [role="option"]',
   buttonSelector: '#ex1 button',
   numAOptions: 5,
+  numOptions: 56,
   secondAOption: 'Alaska',
 };
 
@@ -1041,6 +1042,207 @@ ariaTest(
       (await t.context.queryElements(t, ex.optionsSelector)).length,
       ex.numAOptions,
       'Sending standard editing keys should filter results'
+    );
+  }
+);
+
+ariaTest(
+  'Test clicking textbox opens popup but does not close it on second click',
+  exampleFile,
+  'textbox-click',
+  async (t) => {
+    const textbox = await t.context.session.findElement(
+      By.css(ex.textboxSelector)
+    );
+
+    // First click - popup should open
+    await textbox.click();
+    t.true(
+      await t.context.session
+        .findElement(By.css(ex.listboxSelector))
+        .isDisplayed(),
+      'Listbox should be displayed after clicking the textbox'
+    );
+
+    // Second click - popup should remain open
+    await textbox.click();
+    t.true(
+      await t.context.session
+        .findElement(By.css(ex.listboxSelector))
+        .isDisplayed(),
+      'Listbox should remain displayed after clicking the textbox a second time'
+    );
+  }
+);
+
+ariaTest(
+  'Test focusing textbox without click does not open popup',
+  exampleFile,
+  'textbox-focus',
+  async (t) => {
+    // Focus the textbox via JavaScript without triggering a click
+    await t.context.session.executeScript(function () {
+      document.querySelector(arguments[0]).focus();
+    }, ex.textboxSelector);
+
+    t.false(
+      await t.context.session
+        .findElement(By.css(ex.listboxSelector))
+        .isDisplayed(),
+      'Listbox should not be displayed after focusing the textbox without clicking'
+    );
+  }
+);
+
+ariaTest(
+  'Test filter behavior: all options are shown when value is empty',
+  exampleFile,
+  'textbox-filter',
+  async (t) => {
+    const textbox = await t.context.session.findElement(
+      By.css(ex.textboxSelector)
+    );
+
+    await textbox.click();
+
+    t.is(
+      (await t.context.queryElements(t, ex.optionsSelector)).length,
+      ex.numOptions,
+      'All options should be shown when the textbox is empty'
+    );
+  }
+);
+
+ariaTest(
+  'Test filter behavior: all options are shown when value exactly matches an option',
+  exampleFile,
+  'textbox-filter',
+  async (t) => {
+    const textbox = await t.context.session.findElement(
+      By.css(ex.textboxSelector)
+    );
+
+    await textbox.sendKeys('Alabama');
+
+    t.is(
+      (await t.context.queryElements(t, ex.optionsSelector)).length,
+      ex.numOptions,
+      'All options should be shown when the textbox value exactly matches an option'
+    );
+  }
+);
+
+ariaTest(
+  'Test filter behavior: exact option matches are case-insensitive',
+  exampleFile,
+  'textbox-filter',
+  async (t) => {
+    const textbox = await t.context.session.findElement(
+      By.css(ex.textboxSelector)
+    );
+
+    await textbox.sendKeys('alabama');
+
+    t.is(
+      (await t.context.queryElements(t, ex.optionsSelector)).length,
+      ex.numOptions,
+      'All options should be shown when the textbox value exactly matches an option ignoring case'
+    );
+  }
+);
+
+ariaTest(
+  'Test filter behavior: trimmed exact option matches show all options',
+  exampleFile,
+  'textbox-filter',
+  async (t) => {
+    await t.context.session.executeScript(function () {
+      document.querySelector(arguments[0]).value = 'Alabama ';
+    }, ex.textboxSelector);
+
+    await t.context.session.findElement(By.css(ex.textboxSelector)).click();
+
+    t.is(
+      (await t.context.queryElements(t, ex.optionsSelector)).length,
+      ex.numOptions,
+      'All options should be shown when the trimmed textbox value exactly matches an option'
+    );
+  }
+);
+
+ariaTest(
+  'Test filter behavior: all options are shown when trimmed value is empty',
+  exampleFile,
+  'textbox-filter',
+  async (t) => {
+    const textbox = await t.context.session.findElement(
+      By.css(ex.textboxSelector)
+    );
+
+    await textbox.sendKeys('  ');
+
+    t.is(
+      (await t.context.queryElements(t, ex.optionsSelector)).length,
+      ex.numOptions,
+      'All options should be shown when the textbox contains only whitespace'
+    );
+  }
+);
+
+ariaTest(
+  'Test filter behavior: partial values filter options',
+  exampleFile,
+  'textbox-filter',
+  async (t) => {
+    const textbox = await t.context.session.findElement(
+      By.css(ex.textboxSelector)
+    );
+
+    await textbox.sendKeys('al');
+
+    t.is(
+      (await t.context.queryElements(t, ex.optionsSelector)).length,
+      2,
+      'Only Alabama and Alaska should be shown when typing "al"'
+    );
+  }
+);
+
+ariaTest(
+  'Test arrow key navigation after an exact option match',
+  exampleFile,
+  'textbox-filter',
+  async (t) => {
+    const textbox = await t.context.session.findElement(
+      By.css(ex.textboxSelector)
+    );
+
+    await textbox.sendKeys('California', Key.ARROW_DOWN);
+
+    t.is(
+      await textbox.getAttribute('value'),
+      'Colorado',
+      'The first ARROW_DOWN should move from California to Colorado'
+    );
+    await assertAriaSelectedAndActivedescendant(
+      t,
+      ex.textboxSelector,
+      ex.optionsSelector,
+      6
+    );
+
+    await textbox.sendKeys(Key.ARROW_DOWN);
+
+    t.is(
+      await textbox.getAttribute('value'),
+      'Connecticut',
+      'The second ARROW_DOWN should move from Colorado to Connecticut'
+    );
+    await assertAriaSelectedAndActivedescendant(
+      t,
+      ex.textboxSelector,
+      ex.optionsSelector,
+      7
     );
   }
 );

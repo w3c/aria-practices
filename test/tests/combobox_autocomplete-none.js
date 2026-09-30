@@ -815,3 +815,50 @@ ariaTest(
     );
   }
 );
+
+ariaTest(
+  'Test clicking textbox opens popup but does not close it on second click',
+  exampleFile,
+  'textbox-click',
+  async (t) => {
+    const textbox = await t.context.session.findElement(
+      By.css(ex.textboxSelector)
+    );
+
+    // First click - popup should open
+    await textbox.click();
+    t.true(
+      await t.context.session
+        .findElement(By.css(ex.listboxSelector))
+        .isDisplayed(),
+      'Listbox should be displayed after clicking the textbox'
+    );
+
+    // Second click - popup should remain open
+    await textbox.click();
+    t.true(
+      await t.context.session
+        .findElement(By.css(ex.listboxSelector))
+        .isDisplayed(),
+      'Listbox should remain displayed after clicking the textbox a second time'
+    );
+  }
+);
+
+ariaTest(
+  'Test focusing textbox without click does not open popup',
+  exampleFile,
+  'textbox-focus',
+  async (t) => {
+    await t.context.session.executeScript(function () {
+      document.querySelector(arguments[0]).focus();
+    }, ex.textboxSelector);
+
+    t.false(
+      await t.context.session
+        .findElement(By.css(ex.listboxSelector))
+        .isDisplayed(),
+      'Listbox should not be displayed after focusing the textbox without clicking'
+    );
+  }
+);
