@@ -108,6 +108,37 @@ button {
   display: none;
 }
 
+/*
+ * Animate expand and collapse only when the user has not asked for reduced motion.
+ * Collapsed content becomes invisible immediately, so it leaves the accessibility
+ * tree and the tab order at once; only the space it occupied closes over time.
+ * Browsers without support for these features show and hide the panel instantly.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .accordion-panel {
+    interpolate-size: allow-keywords;
+    overflow: clip;
+    transition:
+      height 0.2s ease-out,
+      padding-block 0.2s ease-out,
+      display 0.2s allow-discrete;
+  }
+
+  .accordion-panel[hidden] {
+    height: 0;
+    padding-block: 0;
+    visibility: hidden;
+  }
+
+  /* Scoped to an accordion in use, so the initially open panel does not animate on page load */
+  @starting-style {
+    .accordion:is(:focus-within, :hover) .accordion-panel {
+      height: 0;
+      padding-block: 0;
+    }
+  }
+}
+
 fieldset {
   border: 0;
   margin: 0;
