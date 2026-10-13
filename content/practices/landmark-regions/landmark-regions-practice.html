@@ -42,7 +42,7 @@
           </thead>
           <tbody>
             <tr>
-              <td><code>aside</code></td>
+              <td><code>aside</code> if it is in the context of a <code>body</code> or <code>main</code> element, or if it is scoped to another sectioning content element and has an accessible name.</td>
               <td><code>complementary</code></td>
             </tr>
             <tr>
@@ -62,7 +62,7 @@
               <td><code>navigation</code></td>
             </tr>
             <tr>
-              <td><code>section</code> if it has an accessible name provided by <code>aria-labelledby</code> or <code>aria-label</code></td>
+              <td><code>section</code> if it has an accessible name</td>
               <td><code>region</code></td>
             </tr>
             <tr>
@@ -185,8 +185,6 @@
           </p>
 
           <ul>
-            <li><code>complementary</code> landmarks should be top level landmarks (e.g. not contained within any other landmarks).</li>
-
             <li>If the complementary content is not related to the main content, a more general role should be assigned (e.g. <code>region</code>).</li>
 
             <li>If a page includes more than one <code>complementary</code> landmark, each should have a unique label (see <a href="#aria_lh_step3">Step 3</a> above).</li>
@@ -195,7 +193,10 @@
           <section>
             <h4>HTML Technique</h4>
 
-            <p>Use the HTML <code>aside</code> element to define a <code>complementary</code> landmark.</p>
+            <ul>
+              <li><p>The HTML <code>aside</code> element defines a <code>complementary</code> landmark when its context is the <code>body</code> or <code>main</code> element.</p></li>
+              <li><p>The HTML <code>aside</code> element defines a <code>complementary</code> landmark when its context is another sectioning content element, and when it has an accessible name (e.g. provided using either the <code>aria-labelledby</code> or <code>aria-label</code> attributes).</p></li>
+            </ul>
 
             <h4>ARIA Technique</h4>
 
