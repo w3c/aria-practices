@@ -59,14 +59,10 @@ class SliderTemperature {
     this.sliderValueNode.setAttribute('x', this.valueX);
     this.sliderFocusNode.setAttribute('x', this.focusX);
 
-    this.svgNode.addEventListener('click', this.onRailClick.bind(this));
+    this.svgNode.addEventListener('pointerdown', this.onPointerDown.bind(this));
     this.sliderNode.addEventListener(
       'keydown',
       this.onSliderKeydown.bind(this)
-    );
-    this.sliderNode.addEventListener(
-      'pointerdown',
-      this.onSliderPointerDown.bind(this)
     );
 
     // bind a pointermove event handler to move pointer
@@ -212,24 +208,22 @@ class SliderTemperature {
     return max - (diffY * (max - min)) / this.railHeight;
   }
 
-  onRailClick(event) {
-    var value = this.calcValue(this.getSVGPoint(event).y);
-    this.moveSliderTo(value);
-
-    event.preventDefault();
-    event.stopPropagation();
-
-    // Set focus to the clicked handle
-    this.sliderNode.focus();
-  }
-
-  onSliderPointerDown(event) {
+  onPointerDown(event) {
     this.isMoving = true;
 
+    // Move the thumb to the pointer position on the down event, unless the
+    // thumb itself was pressed, then track the pointer until it is released
+    if (
+      event.target !== this.sliderThumbNode &&
+      event.target !== this.sliderFocusNode
+    ) {
+      this.moveSliderTo(this.calcValue(this.getSVGPoint(event).y));
+    }
+
     event.preventDefault();
     event.stopPropagation();
 
-    // Set focus to the clicked handle
+    // Set focus to the slider
     this.sliderNode.focus();
   }
 
