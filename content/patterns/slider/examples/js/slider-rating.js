@@ -42,12 +42,12 @@ class RatingSlider {
     );
 
     this.labelTexts.forEach((lt) => {
-      lt.addEventListener('click', this.onTargetClick.bind(this));
+      lt.addEventListener('pointerdown', this.onTargetPointerDown.bind(this));
+      lt.addEventListener('pointermove', this.onPointerMove.bind(this));
     });
 
     this.targetRects.forEach((tr) => {
-      tr.addEventListener('click', this.onTargetClick.bind(this));
-      tr.addEventListener('pointerdown', this.onSliderPointerDown.bind(this));
+      tr.addEventListener('pointerdown', this.onTargetPointerDown.bind(this));
       tr.addEventListener('pointermove', this.onPointerMove.bind(this));
     });
 
@@ -382,7 +382,10 @@ class RatingSlider {
     this.sliderNode.setAttribute('aria-valuetext', valuetext);
   }
 
-  onTargetClick(event) {
+  onTargetPointerDown(event) {
+    // Move the thumb to the pressed rating on the down event, then track the
+    // pointer until it is released
+    this.isMoving = true;
     this.moveSliderTo(
       event.currentTarget.parentNode.getAttribute('data-value')
     );
@@ -390,16 +393,8 @@ class RatingSlider {
     event.preventDefault();
     event.stopPropagation();
 
-    // Set focus to the clicked handle
+    // Set focus to the slider
     this.sliderNode.focus();
-  }
-
-  onSliderPointerDown(event) {
-    if (!this.isMoving) {
-      this.isMoving = true;
-    }
-    event.preventDefault();
-    event.stopPropagation();
   }
 
   onPointerMove(event) {
@@ -413,11 +408,7 @@ class RatingSlider {
   }
 
   onPointerUp() {
-    if (this.isMoving) {
-      this.isMoving = false;
-      // Set focus to the clicked handle
-      this.sliderNode.focus();
-    }
+    this.isMoving = false;
   }
 
   onResize() {
