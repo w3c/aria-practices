@@ -135,6 +135,10 @@
           </li>
           <li>Each slide container has role <a href="#group" class="role-reference">group</a> with the property <a href="#aria-roledescription" class="property-reference">aria-roledescription</a> set to <code>slide</code>.</li>
           <li>
+            Each slide container that is not currently displayed, including any slide that is only partially visible, is hidden from assistive technologies and its content is not included in the page <kbd>Tab</kbd> sequence.
+            Note: if slides that are not displayed remain reachable, screen reader and keyboard users can move into content they cannot see, which makes the carousel cumbersome and disorienting to navigate.
+          </li>
+          <li>
             Each slide has an accessible name:
             <ul>
               <li>If a slide has a visible label, its accessible label is provided by the property <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the slide container set to the ID of the element containing the visible label.</li>
