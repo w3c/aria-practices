@@ -26,7 +26,7 @@ Note: Please feel free to ask questions either through an issue or on the [Autho
 
 ### Code conformance
 
-This repository utilizes [linting](https://en.wikipedia.org/wiki/Lint_%28software%29) tools to do static code analysis and ensure consistent code quality across HTML, CSS, and JavaScript. Each linting tool and respective code standards are documented below and in the [code guide](https://github.com/w3c/aria-practices/wiki/Code-Guide).
+This repository utilizes [linting](https://en.wikipedia.org/wiki/Lint_%28software%29) tools to do static code analysis and ensure consistent code quality across HTML, CSS, and JavaScript. Each linting tool and respective code standards are documented below and in the [code guide](docs/code-guide.md).
 
 Pull requests that contain linting errors will not be merged until the errors are resolved. To make this easier, you can install and run the tools locally before pushing code. Also note that the tools for CSS and JavaScript will automatically fix many issues if you have them installed locally. To install these tools:
 
