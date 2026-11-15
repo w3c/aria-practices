@@ -155,8 +155,12 @@
         <h2>Accessibility Features</h2>
         <ul>
           <li>
-            Panels animate open and closed only for users who have not indicated a preference for reduced motion.
-            When a panel collapses, its content is hidden immediately, so it is removed from the accessibility tree and the tab sequence before the space it occupied finishes closing.
+            If a user has enabled a reduce motion feature on their device that reflects a preference for reduced motion via the
+            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion">prefers-reduced-motion CSS media feature</a>,
+            animation does not occur when opening or closing a panel.
+          </li>
+          <li>
+            To prevent the content contained in a panel that is in the process of closing from momentarily being in the page tab sequence and screen reader reading order, the content is immediately hidden before the space the content occupied animates away.
           </li>
         </ul>
       </section>
