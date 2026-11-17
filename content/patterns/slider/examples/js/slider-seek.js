@@ -56,15 +56,10 @@ class SliderSeek {
 
     // define possible slider positions
 
-    this.svgNode.addEventListener('click', this.onRailClick.bind(this));
+    this.svgNode.addEventListener('pointerdown', this.onPointerDown.bind(this));
     this.sliderNode.addEventListener(
       'keydown',
       this.onSliderKeydown.bind(this)
-    );
-
-    this.sliderNode.addEventListener(
-      'pointerdown',
-      this.onSliderPointerDown.bind(this)
     );
 
     // bind a pointermove event handler to move pointer
@@ -308,39 +303,36 @@ class SliderSeek {
     );
   }
 
-  onRailClick(event) {
-    var x = this.getSVGPoint(event).x;
+  // Calculate the slider value from the horizontal position of a pointer event
+  calcValue(x) {
     var min = this.getValueMin();
     var max = this.getValueMax();
     var diffX = x - this.railX;
-    var value = Math.round((diffX * (max - min)) / this.railWidth);
-    this.moveSliderTo(value);
-
-    event.preventDefault();
-    event.stopPropagation();
-
-    // Set focus to the clicked handle
-    this.sliderNode.focus();
+    return Math.round((diffX * (max - min)) / this.railWidth);
   }
 
-  onSliderPointerDown(event) {
+  onPointerDown(event) {
     this.isMoving = true;
+
+    // Move the thumb to the pointer position on the down event, unless the
+    // thumb itself was pressed, then track the pointer until it is released
+    if (
+      event.target !== this.sliderThumbNode &&
+      event.target !== this.sliderFocusNode
+    ) {
+      this.moveSliderTo(this.calcValue(this.getSVGPoint(event).x));
+    }
 
     event.preventDefault();
     event.stopPropagation();
 
-    // Set focus to the clicked handle
+    // Set focus to the slider
     this.sliderNode.focus();
   }
 
   onPointerMove(event) {
     if (this.isMoving) {
-      var x = this.getSVGPoint(event).x;
-      var min = this.getValueMin();
-      var max = this.getValueMax();
-      var diffX = x - this.railX;
-      var value = Math.round((diffX * (max - min)) / this.railWidth);
-      this.moveSliderTo(value);
+      this.moveSliderTo(this.calcValue(this.getSVGPoint(event).x));
 
       event.preventDefault();
       event.stopPropagation();
