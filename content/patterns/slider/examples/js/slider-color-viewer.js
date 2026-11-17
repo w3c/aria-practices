@@ -40,10 +40,7 @@ class ColorViewerSliders {
     this.initSliderRefs(this.sliders, 'green');
     this.initSliderRefs(this.sliders, 'blue');
 
-    document.body.addEventListener(
-      'pointerup',
-      this.onThumbPointerUp.bind(this)
-    );
+    document.body.addEventListener('pointerup', this.onPointerUp.bind(this));
 
     this.colorBoxNode = domNode.querySelector('.color-box');
     this.colorValueHexNode = domNode.querySelector('input.color-value-hex');
@@ -103,11 +100,6 @@ class ColorViewerSliders {
         this.sliders[slider].sliderNode.tabIndex = 0;
       }
 
-      this.sliders[slider].railNode.addEventListener(
-        'click',
-        this.onRailClick.bind(this)
-      );
-
       this.sliders[slider].sliderNode.addEventListener(
         'keydown',
         this.onSliderKeyDown.bind(this)
@@ -115,22 +107,17 @@ class ColorViewerSliders {
 
       this.sliders[slider].sliderNode.addEventListener(
         'pointerdown',
-        this.onThumbPointerDown.bind(this)
+        this.onSliderPointerDown.bind(this)
       );
 
       this.sliders[slider].valueNode.addEventListener(
         'keydown',
         this.onSliderKeyDown.bind(this)
-      );
-
-      this.sliders[slider].valueNode.addEventListener(
-        'pointerdown',
-        this.onThumbPointerDown.bind(this)
       );
 
       this.sliders[slider].sliderNode.addEventListener(
         'pointermove',
-        this.onThumbPointerMove.bind(this)
+        this.onPointerMove.bind(this)
       );
 
       this.moveSliderTo(
@@ -269,53 +256,53 @@ class ColorViewerSliders {
     }
   }
 
-  onThumbPointerDown(event) {
-    this.pointerSlider = this.getSlider(event.currentTarget);
-
-    // Set focus to the clicked on
-    this.pointerSlider.sliderNode.focus();
-
-    event.preventDefault();
-    event.stopPropagation();
-  }
-
-  onThumbPointerUp() {
-    this.pointerSlider = false;
-  }
-
-  onThumbPointerMove(event) {
-    if (
-      this.pointerSlider &&
-      this.pointerSlider.sliderNode.contains(event.target)
-    ) {
-      let x = this.getSVGPoint(this.pointerSlider, event).x;
-      let min = this.getValueMin(this.pointerSlider);
-      let max = this.getValueMax(this.pointerSlider);
-      let diffX = x - this.railX;
-      let value = Math.round((diffX * (max - min)) / this.railWidth);
-      this.moveSliderTo(this.pointerSlider, value);
-
-      event.preventDefault();
-      event.stopPropagation();
-    }
-  }
-
-  // handle click event on the rail
-  onRailClick(event) {
-    var slider = this.getSlider(event.currentTarget);
-
+  // Calculate the slider value from the horizontal position of a pointer event
+  getValueFromPointer(slider, event) {
     var x = this.getSVGPoint(slider, event).x;
     var min = this.getValueMin(slider);
     var max = this.getValueMax(slider);
     var diffX = x - this.railX;
-    var value = Math.round((diffX * (max - min)) / this.railWidth);
-    this.moveSliderTo(slider, value);
+    return Math.round((diffX * (max - min)) / this.railWidth);
+  }
+
+  onSliderPointerDown(event) {
+    var slider = this.getSlider(event.currentTarget);
+
+    this.pointerSlider = slider;
+
+    // Move the thumb to the pointer position on the down event, unless the
+    // thumb itself was pressed, then track the pointer until it is released
+    if (
+      event.target !== slider.thumbNode &&
+      event.target !== slider.focusNode
+    ) {
+      this.moveSliderTo(slider, this.getValueFromPointer(slider, event));
+    }
+
+    // Set focus to the slider
+    slider.sliderNode.focus();
 
     event.preventDefault();
     event.stopPropagation();
+  }
 
-    // Set focus to the clicked handle
-    slider.sliderNode.focus();
+  onPointerUp() {
+    this.pointerSlider = false;
+  }
+
+  onPointerMove(event) {
+    if (
+      this.pointerSlider &&
+      this.pointerSlider.sliderNode.contains(event.target)
+    ) {
+      this.moveSliderTo(
+        this.pointerSlider,
+        this.getValueFromPointer(this.pointerSlider, event)
+      );
+
+      event.preventDefault();
+      event.stopPropagation();
+    }
   }
 
   getColorHex() {
