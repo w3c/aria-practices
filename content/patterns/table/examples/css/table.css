@@ -28,6 +28,6 @@
   border-bottom: thin solid #888;
 }
 
-[role="table"] [role="rowgroup"]:last-child [role="row"]:nth-child(odd) {
+[role="table"] [role="row"]:nth-child(even of [role="row"]) {
   background-color: #ddd;
 }

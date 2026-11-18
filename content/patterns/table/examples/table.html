@@ -48,39 +48,35 @@
         <div id="ex1">
           <div role="table" aria-label="Students" aria-describedby="students_table_desc">
             <div id="students_table_desc">Students currently enrolled in WAI-ARIA 101 for the coming semester</div>
-            <div role="rowgroup">
-              <div role="row">
-                <span role="columnheader">First Name</span>
-                <span role="columnheader">Last Name</span>
-                <span role="columnheader">Company</span>
-                <span role="columnheader">Address</span>
-              </div>
+            <div role="row">
+              <span role="columnheader">First Name</span>
+              <span role="columnheader">Last Name</span>
+              <span role="columnheader">Company</span>
+              <span role="columnheader">Address</span>
             </div>
-            <div role="rowgroup">
-              <div role="row">
-                <span role="cell">Fred</span>
-                <span role="cell">Jackson</span>
-                <span role="cell">Acme, Inc.</span>
-                <span role="cell">123 Broad St.</span>
-              </div>
-              <div role="row">
-                <span role="cell">Sara</span>
-                <span role="cell">James</span>
-                <span role="cell">Acme, Inc.</span>
-                <span role="cell">123 Broad St.</span>
-              </div>
-              <div role="row">
-                <span role="cell">Ralph</span>
-                <span role="cell">Jefferson</span>
-                <span role="cell">XYZ, Inc.</span>
-                <span role="cell">456 Main St.</span>
-              </div>
-              <div role="row">
-                <span role="cell">Nancy</span>
-                <span role="cell">Jensen</span>
-                <span role="cell">XYZ, Inc.</span>
-                <span role="cell">456 Main St.</span>
-              </div>
+            <div role="row">
+              <span role="cell">Fred</span>
+              <span role="cell">Jackson</span>
+              <span role="cell">Acme, Inc.</span>
+              <span role="cell">123 Broad St.</span>
+            </div>
+            <div role="row">
+              <span role="cell">Sara</span>
+              <span role="cell">James</span>
+              <span role="cell">Acme, Inc.</span>
+              <span role="cell">123 Broad St.</span>
+            </div>
+            <div role="row">
+              <span role="cell">Ralph</span>
+              <span role="cell">Jefferson</span>
+              <span role="cell">XYZ, Inc.</span>
+              <span role="cell">456 Main St.</span>
+            </div>
+            <div role="row">
+              <span role="cell">Nancy</span>
+              <span role="cell">Jensen</span>
+              <span role="cell">XYZ, Inc.</span>
+              <span role="cell">456 Main St.</span>
             </div>
           </div>
         </div>
@@ -125,17 +121,6 @@
               </th>
               <td><code>div</code></td>
               <td>Refers to the element that serves as the caption for the table.</td>
-            </tr>
-            <tr data-test-id="rowgroup-role">
-              <th scope="row"><code>rowgroup</code></th>
-              <td></td>
-              <td><code>div</code></td>
-              <td>
-                <ul>
-                  <li>Identifies the elements that serve as containers for the table header and table body rows.</li>
-                  <li>Unlike HTML, WAI-ARIA does not include separate roles for the table header and table body row sets.</li>
-                </ul>
-              </td>
             </tr>
             <tr data-test-id="row-role">
               <th scope="row"><code>row</code></th>

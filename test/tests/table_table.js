@@ -7,7 +7,6 @@ const exampleFile = 'content/patterns/table/examples/table.html';
 
 const ex = {
   tableSelector: '#ex1 [role="table"]',
-  numRowgroups: 2,
   numRows: 5,
   numColumnHeaders: 4,
   numCells: 16,
@@ -42,31 +41,17 @@ ariaTest(
   }
 );
 
-ariaTest('role="rowgroup" exists', exampleFile, 'rowgroup-role', async (t) => {
-  const rowgroups = await t.context.queryElements(
-    t,
-    ex.tableSelector + ' [role="rowgroup"]'
-  );
-
-  t.is(
-    rowgroups.length,
-    ex.numRowgroups,
-    ex.numRowgroups +
-      ' role="rowgroup" elements should be found within the table element'
-  );
-});
-
 ariaTest('role="row" exists', exampleFile, 'row-role', async (t) => {
   const rows = await t.context.queryElements(
     t,
-    ex.tableSelector + ' [role="rowgroup"] [role="row"]'
+    ex.tableSelector + ' > [role="row"]'
   );
 
   t.is(
     rows.length,
     ex.numRows,
     ex.numRows +
-      ' role="row" elements should be found nested within the table element and rowgroup elements'
+      ' role="row" elements should be found as children of the table element'
   );
 });
 
@@ -77,14 +62,14 @@ ariaTest(
   async (t) => {
     const columnHeaders = await t.context.queryElements(
       t,
-      ex.tableSelector + ' [role="rowgroup"] [role="row"] [role="columnheader"]'
+      ex.tableSelector + ' [role="row"] [role="columnheader"]'
     );
 
     t.is(
       columnHeaders.length,
       ex.numColumnHeaders,
       ex.numColumnHeaders +
-        ' role="columnheader" elements should be found nested within the table element, rowgroup element and row element.'
+        ' role="columnheader" elements should be found nested within the table element and row element.'
     );
   }
 );
@@ -92,13 +77,13 @@ ariaTest(
 ariaTest('role="cell" exists', exampleFile, 'cell-role', async (t) => {
   const cells = await t.context.queryElements(
     t,
-    ex.tableSelector + ' [role="rowgroup"] [role="row"] [role="cell"]'
+    ex.tableSelector + ' [role="row"] [role="cell"]'
   );
 
   t.is(
     cells.length,
     ex.numCells,
     ex.numCells +
-      ' role="cell" elements should be found nested within the table element, rowgroup element and row element.'
+      ' role="cell" elements should be found nested within the table element and row element.'
   );
 });
