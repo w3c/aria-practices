@@ -37,6 +37,8 @@
           For example, in some browsers, an HTML <code>select</code> element with <code>size="1"</code> is presented to assistive technologies as a combobox.
           Alternatively, if a combobox supports text input, it is referred to as editable.
           An editable combobox may either allow users to input any arbitrary value, or it may restrict its value to a discrete set of allowed values, in which case typing input serves to filter suggestions presented in the popup.
+          When filtering is applied, the popup displays only options that match the typed string.
+          However, if the typed string is empty or exactly matches one of the available options, all options are displayed without filtering.
         </p>
         <p>
           The popup is hidden by default, i.e., the default state is collapsed.
@@ -48,7 +50,8 @@
             It is displayed when the <kbd>Down Arrow</kbd> key is pressed or the <q>Open</q> button is activated.
             Optionally, if the combobox is editable and contains a string that does not match an allowed value, expansion does not occur.
           </li>
-          <li>It is displayed when the combobox receives focus even if the combobox is editable and empty.</li>
+          <li>It is displayed when the user clicks the combobox input. Clicking the input only opens the popup and does not toggle it closed.</li>
+          <li>If a chevron or toggle button is present adjacent to the combobox, activating it toggles the popup open or closed.</li>
           <li>If the combobox is editable, the popup is displayed only if a certain number of characters are typed in the combobox and those characters match some portion of one of the suggested values.</li>
         </ul>
         <p>Combobox widgets are useful for acquiring user input in either of two scenarios:</p>
