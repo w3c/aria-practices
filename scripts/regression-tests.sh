@@ -17,7 +17,9 @@ EXAMPLE_INFRA=$(echo "$EXAMPLE_DIRS" | grep -P '^(js|css)$')
 
 PACKAGE_UPDATE=$(git diff --name-only $COMMIT_RANGE | grep -P 'package(-lock)?\.json')
 
-if [[ $TEST_INFRA || $EXAMPLE_INFRA || $PACKAGE_UPDATE ]]
+REGRESSION_WORKFLOW_UPDATE=$(git diff --name-only $COMMIT_RANGE | grep -P '.github/workflows/regression.yml')
+
+if [[ $TEST_INFRA || $EXAMPLE_INFRA || $PACKAGE_UPDATE || $REGRESSION_WORKFLOW_UPDATE ]]
 then
 
     # If the example/js or example/css directories or the test/index.js or the test/utils.js
