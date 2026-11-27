@@ -1,8 +1,5 @@
-[context.deploy-preview]
-# Applies to deploy previews, generated from pull requests.
-command = "bash build-netlify.sh"
-
 [build]
+command = "bash build-netlify.sh"
 publish = "wai-aria-practices/_site"
 
 [build.environment]
