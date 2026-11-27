@@ -1,0 +1,6 @@
+[build]
+command = "bash build-netlify.sh"
+publish = "wai-aria-practices/_site"
+
+[build.environment]
+RUBY_VERSION = "3.4.13"
