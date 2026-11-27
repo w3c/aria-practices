@@ -1,0 +1,10 @@
+[context.deploy-preview]
+# Applies to deploy previews, generated from pull requests.
+command = "bash build-netlify.sh"
+
+[build]
+ignore : "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF 'content/**' '**/*.js' 'test/**' 'scripts/reference-tables.*' '':(exclude)common/**' ':(exclude)content/landmarks/examples/**', ':(exclude).github/**'"
+publish = "wai-aria-practices/_site"
+
+[build.environment]
+RUBY_VERSION = "3.4.13"
